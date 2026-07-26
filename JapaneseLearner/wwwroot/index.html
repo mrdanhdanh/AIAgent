@@ -6,6 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Japanese Learner</title>
     <base href="/" />
+    <script>
+        (function() {
+            var base = document.querySelector('base');
+            if (base) {
+                var segments = window.location.pathname.split('/').filter(Boolean);
+                if (segments.length >= 2) {
+                    base.href = '/' + segments.slice(0, 2).join('/') + '/';
+                }
+            }
+        })();
+    </script>
     <link rel="preload" id="webassembly" />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
     <script>
@@ -43,19 +54,6 @@
         <span class="dismiss">🗙</span>
     </div>
     <script src="_framework/blazor.webassembly.js"></script>
-    <script>
-        (function() {
-            var base = document.querySelector('base');
-            var blazorScript = document.querySelector('script[src*="blazor.webassembly.js"]');
-            if (blazorScript && blazorScript.src) {
-                var url = new URL(blazorScript.src);
-                var idx = url.pathname.indexOf('/_framework/blazor.webassembly.js');
-                if (idx > 0) {
-                    base.href = url.pathname.substring(0, idx) + '/';
-                }
-            }
-        })();
-    </script>
 </body>
 
 </html>
