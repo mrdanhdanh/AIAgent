@@ -43,19 +43,6 @@
         <span class="dismiss">🗙</span>
     </div>
     <script src="_framework/blazor.webassembly.js"></script>
-    <script>
-        (function() {
-            var base = document.querySelector('base');
-            var blazorScript = document.querySelector('script[src*="blazor.webassembly.js"]');
-            if (blazorScript && blazorScript.src) {
-                var url = new URL(blazorScript.src);
-                var idx = url.pathname.indexOf('/_framework/blazor.webassembly.js');
-                if (idx > 0) {
-                    base.href = url.pathname.substring(0, idx) + '/';
-                }
-            }
-        })();
-    </script>
 </body>
 
 </html>

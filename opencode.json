@@ -144,6 +144,18 @@
         "bash": "allow",
         "edit": "deny"
       }
+    },
+    "cleaner": {
+      "description": "Chuyên gia dọn rác Workspace — quét file rác, phân loại Cấp 1/2/3, backup trước khi xóa, dry-run, confirmation gate",
+      "mode": "subagent",
+      "model": "opencode/deepseek-v4-flash-free",
+      "permission": {
+        "read": "allow",
+        "grep": "allow",
+        "glob": "allow",
+        "bash": "allow",
+        "edit": "deny"
+      }
     }
   },
   "command": {
@@ -161,6 +173,11 @@
       "template": "Bạn là Pusher Agent. Thực hiện git push an toàn với safety checks. Đọc hướng dẫn đầy đủ tại: .opencode/commands/team-gitpush.md\n\nTham số: $ARGUMENTS",
       "description": "Pre-push safety validation + git push execution — kiem tra secret, convention, build, test, xac nhan user, push len remote",
       "agent": "pusher"
+    },
+    "team-cleanup": {
+      "template": "Bạn là Cleaner Agent. Dọn rác Workspace tự động. Đọc hướng dẫn đầy đủ tại: .opencode/skills/workspace-cleaner/SKILL.md\n\nTham số: $ARGUMENTS\n\nHành động:\n1. Phân tích tham số (--dry-run, --force, --target, --keep-backup, --aggressive, --older-than)\n2. Gọi workspace-cleaner script: .opencode/skills/workspace-cleaner/scripts/workspace-cleaner.ps1\n3. Output báo cáo YAML",
+      "description": "Don rac Workspace tu dong — xoa build artifacts, backup cu, temp files, cache. Tich hop dry-run, backup truoc khi xoa, confirmation gate",
+      "agent": "cleaner"
     }
   },
   "skills": {

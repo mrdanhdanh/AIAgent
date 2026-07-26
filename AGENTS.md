@@ -69,3 +69,14 @@ Trước khi commit/push lên git, chạy `/team-gitguard` để review:
 Output verdict: `PASS` | `BLOCKED` | `WARNING`. CRITICAL issues → BLOCKED (không cho push).
 
 Chi tiết: `.opencode/skills/gitguard/SKILL.md`
+
+## Workspace Cleanup
+
+Chạy `/team-cleanup` để dọn rác Workspace:
+- **Cấp 1** (an toàn): `bin/`, `obj/`, `TestResults/`
+- **Cấp 2** (cần backup): Backup cũ, log files, temp zip
+- **Cấp 3** (cần xác nhận): `release/`, `publish/`, NuGet cache
+
+Flags: `--dry-run`, `--force`, `--target <type>`, `--keep-backup <N>`, `--aggressive`, `--older-than <days>`
+
+Chi tiết: `.opencode/skills/workspace-cleaner/SKILL.md`

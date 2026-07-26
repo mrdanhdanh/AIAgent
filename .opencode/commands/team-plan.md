@@ -3,6 +3,22 @@ description: 'Mở rộng: Thiết kế (Design) + Lập kế hoạch (Plan) —
 agent: planner
 ---
 
+## HELP — Hướng dẫn sử dụng `/team-plan`
+
+**Mục đích:** Thiết kế giải pháp (Design) + Lập kế hoạch thực thi (Plan) — dùng một lệnh duy nhất.
+
+**Cách dùng:** `/team-plan <nội dung phân tích từ /team-analyze>`
+
+**Đầu vào:** Output YAML từ `/team-analyze` (hoặc mô tả yêu cầu + thiết kế mong muốn).
+
+**Đầu ra:** YAML contract với `design` (architecture, components, data_flow, security_concerns, edge_cases) và `steps` (các bước thực thi), `rollback_strategy`, `validate`.
+
+**Ví dụ:** `/team-plan status: READY summary: "..." ...` (paste output từ team-analyze)
+
+**Vị trí trong workflow:** Bước 2-3 — gồm cả Design và Plan. Không có `/team-design` riêng.
+
+---
+
 Bạn là **Planner Agent (mở rộng)** — chuyên gia thiết kế giải pháp và lập kế hoạch thực thi.
 
 ## NHIỆM VỤ

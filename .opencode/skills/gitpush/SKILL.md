@@ -25,14 +25,15 @@ Skill chuyên thực hiện git push an toàn: kiểm tra source code trước k
 
 GitPush là skill thực hiện toàn bộ quy trình push code lên git remote một cách an toàn. Khác với `team-gitguard` (chỉ review, read-only), GitPush thực hiện:
 
-1. **Pre-push safety checks** — secret scan, convention, security, code quality
-2. **Build validation** — code compile được không
-3. **Test validation** — test có pass không
-4. **Git status analysis** — branch, remote, commits, ahead/behind
-5. **Diff summary** — file nào thay đổi, thêm/dòng/xóa
-6. **Confirmation gate** — hỏi user trước khi push
-7. **Push execution** — git push lên remote
-8. **Post-push verification** — confirm thành công
+1. **Auto-commit** — tự động tạo commit message từ phân tích diff (hoặc dùng message do user cung cấp)
+2. **Pre-push safety checks** — secret scan, convention, security, code quality
+3. **Build validation** — code compile được không
+4. **Test validation** — test có pass không
+5. **Git status analysis** — branch, remote, commits, ahead/behind
+6. **Diff summary** — file nào thay đổi, thêm/dòng/xóa
+7. **Confirmation gate** — hỏi user trước khi push
+8. **Push execution** — git push lên remote
+9. **Post-push verification** — confirm thành công
 
 ### Khi nào dùng GitPush?
 
@@ -51,10 +52,12 @@ GitPush là skill thực hiện toàn bộ quy trình push code lên git remote 
 
 | Command | Mô tả |
 |---------|-------|
-| `/team-gitpush` | Chạy toàn bộ quy trình gitpush với safety checks |
-| `/team-gitpush --skip-checks` | Bỏ qua safety checks, chỉ push |
+| `/team-gitpush` | Auto-commit từ diff + safety checks + push (mặc định) |
+| `/team-gitpush --skip-checks` | Bỏ qua safety checks, chỉ auto-commit + push |
 | `/team-gitpush --force` | Force push (cảnh báo kỹ) |
 | `/team-gitpush --branch <name>` | Push lên branch cụ thể |
+| `/team-gitpush --message "<msg>"` | Dùng message này thay vì auto-generate |
+| `/team-gitpush --no-commit` | Bỏ qua auto-commit, chỉ push commit đã có |
 
 ---
 
@@ -68,6 +71,13 @@ User request (/team-gitpush)
 │   Pusher Agent        │
 │   (pusher.md)         │
 └──────────┬────────────┘
+           │
+           ├── 0. Auto-commit
+           │      ├── Phân tích diff (git diff --stat)
+           │      ├── Xác định type/scope/summary
+           │      ├── Tạo commit message tự động
+           │      ├── git add -A && git commit
+           │      └── (hoặc dùng --message / --no-commit)
            │
            ├── 1. Git status analysis
            │      └── git status, branch, remote, ahead/behind
@@ -85,10 +95,10 @@ User request (/team-gitpush)
            │      └── dotnet test
            │
            ├── 5. Diff summary
-           │      └── git diff --stat
+           │      └── git diff --stat + commit message preview
            │
            ├── 6. Confirmation gate
-           │      └── Hiển thị summary → user confirm Y/N
+           │      └── Hiển thị summary + commit message → user confirm Y/N
            │
            ├── 7. Push execution
            │      └── git push origin <branch>
@@ -100,6 +110,52 @@ User request (/team-gitpush)
 ---
 
 ## QUY TRÌNH GITPUSH
+
+### Bước 0: Auto-commit
+
+Mặc định: tự động stage tất cả thay đổi và tạo commit message từ phân tích diff.
+
+**Cách auto-generate commit message:**
+
+1. **Phân tích diff** — `git diff --stat` và `git diff --cached` để xác định:
+   - Các file thay đổi (đuôi mở rộng, tên file)
+   - Nội dung thay đổi (thêm function, sửa logic, xóa code)
+   - Scope (component, service, test, config, ...)
+
+2. **Xác định type** dựa trên nội dung diff:
+
+   | Pattern | Type |
+   |---------|------|
+   | Thêm class/interface/component mới | `feat` |
+   | Sửa logic, fix bug | `fix` |
+   | Sửa tên biến, refactor code | `refactor` |
+   | Thêm/xóa comment, doc | `docs` |
+   | Thêm/xóa test | `test` |
+   | Sửa CSS/style/giao diện | `style` |
+   | Sửa config, build, CI | `chore` |
+   | Sửa performance | `perf` |
+
+3. **Xác định scope** từ tên file:
+   - `Pages/*.razor` → scope là tên page
+   - `Services/*.cs` → scope là tên service
+   - `.opencode/**/*` → scope là `opencode`
+
+4. **Tạo summary** (≤ 72 ký tự):
+   - 1 file: `"{verb} {FileName}"`
+   - 2-3 file: `"{verb} {FileA}, {FileB}"`
+   - Nhiều file: `"{verb} {n} files in {scope}"`
+
+5. **Output**:
+   ```
+   {type}({scope}): {summary}
+
+   - {file1}: {change description}
+   - {file2}: {change description}
+   ```
+
+**Các flag liên quan:**
+- `--message "<msg>"`: dùng message này thay vì auto-generate
+- `--no-commit`: bỏ qua auto-commit, chỉ push commit đã có
 
 ### Bước 1: Git status analysis
 
@@ -155,9 +211,11 @@ git diff --stat origin/<branch>...<branch>
 git diff --stat --cached
 ```
 
+Hiển thị commit message đã tạo (nếu auto-commit).
+
 ### Bước 6: Confirmation gate
 
-Hiển thị bảng tổng kết cho user:
+Hiển thị bảng tổng kết cho user (bao gồm commit message):
 
 ```
 ╔══════════════════════════════════════════╗
@@ -165,8 +223,9 @@ Hiển thị bảng tổng kết cho user:
 ╠══════════════════════════════════════════╣
 ║ Repository: JapaneseLearner              ║
 ║ Branch:     main                         ║
+║ Commit:     feat(char): Add new feature  ║
 ║ Remote:     origin (github.com)          ║
-║ Commits:    3 ahead, 0 behind            ║
+║ Commits:    1 ahead, 0 behind            ║
 ║ Files:      5 changed (+120/-30)         ║
 ║ Build:      ✅ PASS                      ║
 ║ Tests:      ✅ PASS (42/42)              ║
@@ -230,10 +289,18 @@ git_safety:
 status: SUCCESS | BLOCKED | CANCELLED | FAILED
 summary: "Tổng kết gitpush (2-3 câu)"
 
+auto_commit:
+  enabled: true
+  mode: "auto"                          # auto | manual | skipped
+  message: "feat(char-service): Add kanji stroke order data"
+  type: "feat"
+  scope: "char-service"
+  files_count: 3
+
 git_status:
   branch: "main"
   remote: "origin"
-  ahead: 3
+  ahead: 1
   behind: 0
   last_commit: "abc1234"
 
@@ -279,6 +346,14 @@ post_push:
 ## SƠ ĐỒ QUYẾT ĐỊNH
 
 ```yaml
+bước_0_auto_commit:
+  working tree sạch + ahead == 0: → CANCELLED "Không có gì để commit/push"
+  --no-commit + ahead == 0: → CANCELLED "Không có commit để push"
+  --no-commit + ahead > 0: → bỏ qua, tiếp tục
+  --message "..." + có thay đổi: → git add -A + commit với message
+  không có --message + có thay đổi: → auto-gen message → git add -A + commit
+  auto-gen thất bại: → hỏi user nhập message tay hoặc CANCEL
+
 bước_1_git_status:
   không có git repo: → BLOCKED "Không tìm thấy git repository"
   không có remote: → BLOCKED "Chưa cấu hình remote, thêm remote trước"
@@ -316,11 +391,12 @@ GitPush có thể chạy độc lập hoặc tích hợp vào Dev Team workflow:
 ### Chạy độc lập
 
 ```powershell
-/team-gitpush                          # Full safety check + push
-/team-gitpush --skip-checks            # Chỉ push, bỏ qua kiểm tra
+/team-gitpush                          # Auto-commit + safety checks + push (mặc định)
+/team-gitpush --skip-checks            # Auto-commit + push, bỏ qua kiểm tra
 /team-gitpush --force                  # Force push (cảnh báo kỹ)
 /team-gitpush --branch feature-xyz     # Push lên branch khác
-/team-gitpush --message "Fix bug"      # Commit + push (stage all)
+/team-gitpush --message "Fix bug"      # Dùng message này, stage all + commit + push
+/team-gitpush --no-commit              # Chỉ push commit đã có, không auto-commit
 ```
 
 ### Tích hợp vào Dev Team workflow
@@ -345,7 +421,9 @@ Khi đó orchestrator sẽ:
 | Git chưa init | BLOCKED, hướng dẫn `git init` |
 | Chưa có remote | BLOCKED, hướng dẫn `git remote add origin <url>` |
 | Remote không truy cập được | FAILED, kiểm tra network/credentials |
-| Không có commit để push | CANCELLED, không có gì để push |
+| Working tree sạch + ahead == 0 | CANCELLED, không có gì để commit/push |
+| --no-commit + ahead == 0 | CANCELLED, không có commit để push |
+| Auto-commit không thể gen message | HỎI user nhập message tay (hoặc CANCEL) |
 | Push bị reject (diverged) | FAILED, hướng dẫn `git pull --rebase` trước |
 | Build FAIL | BLOCKED, sửa lỗi build trước |
 | Test FAIL | WARNING, hỏi user có muốn push không |
@@ -353,18 +431,33 @@ Khi đó orchestrator sẽ:
 | User không phản hồi (timeout 60s) | CANCELLED tự động |
 | Proxy/VPN block | FAILED, kiểm tra kết nối mạng |
 
-### Commit + Push (fast path)
+### Auto-commit (mặc định)
 
 ```powershell
-/team-gitpush --message "Fix: validate email format"
+/team-gitpush
 ```
 
-Fast path tự động:
-1. `git add -A`
-2. `git commit -m "<message>"`
-3. Chạy safety checks
-4. Build + Test
-5. Push
+Mặc định tự động:
+1. Phân tích diff → auto-generate commit message
+2. `git add -A` + `git commit -m "<auto message>"`
+3. Chạy safety checks + Build + Test
+4. Confirmation gate → Push
+
+### Dùng message tùy chỉnh
+
+```powershell
+/team-gitpush --message "fix(char-service): correct kanji stroke order mapping"
+```
+
+Ghi đè auto-generate: stage all + commit với message chỉ định + safety checks + push.
+
+### Chỉ push (bỏ qua auto-commit)
+
+```powershell
+/team-gitpush --no-commit
+```
+
+Chỉ push các commit đã có lên remote (không stage/commit gì thêm).
 
 ### Force push safety
 
@@ -381,9 +474,13 @@ Force push (`--force` hoặc `--force-with-lease`) chỉ được phép khi:
 
 ## GHI CHÚ
 
+- Mặc định: auto-commit từ diff + safety checks + push (tất cả trong 1 lệnh)
+- `--no-commit` để bỏ qua auto-commit, chỉ push commit đã có
+- `--message "..."` để ghi đè commit message (vẫn stage all)
 - Luôn chạy safety checks trước khi push (trừ `--skip-checks`)
 - Build và test bắt buộc chạy nếu có file .cs/.razor thay đổi
 - Confirmation gate bắt buộc — không tự động push
 - Force push yêu cầu xác nhận kép
+- Working tree clean + ahead == 0 → CANCELLED (không có gì để làm)
 - Nếu push bị reject, hướng dẫn cụ thể cách khắc phục
 - Khi tích hợp vào dev-team workflow, GitPush là bước cuối trước Complete

@@ -3,6 +3,32 @@ description: Chạy toàn bộ team workflow: analyze → design/plan → review
 agent: general
 ---
 
+## HELP — Hướng dẫn sử dụng `/team`
+
+**Mục đích:** Chạy toàn bộ Dev Agent Team workflow tự động — Analyze → Design → Plan → Review → Backup → Build → Smoke Test → UI Audit → Test Plan → Test → Self-Improve → Complete.
+
+**Cách dùng:** `/team <yêu cầu phát triển bằng ngôn ngữ tự nhiên>`
+
+**Đầu vào:** Mô tả yêu cầu phát triển (tiếng Việt hoặc tiếng Anh), ví dụ: `/team Thêm chức năng reset password`
+
+**Đầu ra:** Báo cáo cuối cùng gồm phân tích, kế hoạch, kết quả build, kết quả test, coverage, self-improvement suggestions.
+
+**Các lệnh thành phần (chạy riêng lẻ):**
+- `/team-analyze` — Phân tích yêu cầu
+- `/team-plan` — Thiết kế + Lập kế hoạch
+- `/team-review` — Đánh giá kế hoạch
+- `/team-build` — Thực thi code
+- `/team-ui-audit` — Kiểm tra UI
+- `/team-testplan` — Lập kế hoạch test
+- `/team-test` — Chạy kiểm thử
+- `/team-selfimprove` — Đề xuất cải tiến
+- `/team-gitguard` — Review security trước push
+- `/team-gitpush` — Push an toàn lên git
+
+**Xem thêm:** `.opencode/skills/dev-team/SKILL.md`
+
+---
+
 Bạn đang vận hành **Dev Agent Team** — orchestrator điều phối 7 agent chuyên biệt theo 12 bước.
 
 Đọc tài liệu đầy đủ tại: `.opencode/skills/dev-team/SKILL.md`

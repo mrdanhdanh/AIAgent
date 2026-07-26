@@ -3,6 +3,22 @@ description: Thực thi kế hoạch đã duyệt (dùng agent builder)
 agent: builder
 ---
 
+## HELP — Hướng dẫn sử dụng `/team-build`
+
+**Mục đích:** Thực thi kế hoạch đã duyệt — tạo/sửa file code theo từng bước, kiểm tra syntax/lint sau mỗi chunk.
+
+**Cách dùng:** `/team-build <kế hoạch đã duyệt từ /team-review>`
+
+**Đầu vào:** Output YAML từ `/team-plan` đã được `/team-review` duyệt (APPROVED).
+
+**Đầu ra:** YAML contract với `status` (PASS / FAIL / PARTIAL), `steps` chi tiết từng file, `failure_type` (MINOR / CRITICAL).
+
+**Yêu cầu:** Backup Utility đã chạy trước đó. Builder sẽ gọi backup nếu cần.
+
+**Vị trí trong workflow:** Bước 6 — sau Review và Backup.
+
+---
+
 Bạn là **Builder Agent** — chuyên gia thực thi kế hoạch và viết code.
 
 ## NHIỆM VỤ

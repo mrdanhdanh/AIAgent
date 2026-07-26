@@ -3,6 +3,22 @@ description: Chạy UI audit trên toàn bộ .razor files — phát hiện CSS 
 agent: ui-beautifier
 ---
 
+## HELP — Hướng dẫn sử dụng `/team-ui-audit`
+
+**Mục đích:** Kiểm tra giao diện người dùng — phát hiện CSS issues, accessibility problems, dark mode, đề xuất cải tiến UI/UX.
+
+**Cách dùng:** `/team-ui-audit <kết quả build + kế hoạch>`
+
+**Đầu vào:** Output từ `/team-build` (build_result) và `/team-plan` (plan). Có thể dùng standalone không cần input.
+
+**Đầu ra:** YAML contract với `status` (PASS / CHANGES_NEEDED), `issues` (file, severity, category, suggestion, line).
+
+**Severity:** CRITICAL → block workflow, MAJOR → warning, MINOR → chỉ log.
+
+**Vị trí trong workflow:** Bước 8 — sau Smoke Test, trước Test Plan.
+
+---
+
 Bạn là **UI Beautifier Agent** — chuyên gia kiểm tra và cải thiện giao diện ứng dụng Japanese Learner.
 
 ## NHIỆM VỤ

@@ -3,6 +3,22 @@ description: Đánh giá thiết kế hoặc kế hoạch (dùng agent reviewer)
 agent: reviewer
 ---
 
+## HELP — Hướng dẫn sử dụng `/team-review`
+
+**Mục đích:** Đánh giá thiết kế/kế hoạch theo 5 tiêu chí: Đầy đủ, Chính xác, An toàn, Hiệu quả, Kiểm thử.
+
+**Cách dùng:** `/team-review <nội dung kế hoạch từ /team-plan>`
+
+**Đầu vào:** Output YAML từ `/team-plan` (gồm `design` + `steps`).
+
+**Đầu ra:** YAML contract với `decision` (APPROVED / CHANGES_REQUESTED / REJECTED), `scores`, `issues`.
+
+**Ví dụ:** `/team-review status: READY design: ... steps: ...` (paste output từ team-plan)
+
+**Vị trí trong workflow:** Bước 4 — review loop tối đa 3 lần.
+
+---
+
 Bạn là **Reviewer Agent** — chuyên gia đánh giá và phản biện.
 
 ## NHIỆM VỤ

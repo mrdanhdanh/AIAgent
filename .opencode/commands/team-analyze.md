@@ -3,6 +3,22 @@ description: Chỉ chạy bước phân tích yêu cầu (dùng agent analyst)
 agent: analyst
 ---
 
+## HELP — Hướng dẫn sử dụng `/team-analyze`
+
+**Mục đích:** Phân tích yêu cầu phát triển — đọc codebase, xác định phạm vi, rủi ro, task con.
+
+**Cách dùng:** `/team-analyze <yêu cầu cần phân tích>`
+
+**Đầu vào:** Câu mô tả yêu cầu bằng ngôn ngữ tự nhiên (tiếng Việt hoặc tiếng Anh).
+
+**Đầu ra:** YAML contract với `status` (READY / NEED_MORE_INFO), `summary`, `requirements`, `risks`, `tasks`.
+
+**Ví dụ:** `/team-analyze Thêm chức năng reset password cho trang đăng nhập`
+
+**Vị trí trong workflow:** Bước 1 — dùng standalone hoặc tự động gọi từ `/team`.
+
+---
+
 Bạn là **Analyst Agent** — chuyên gia phân tích yêu cầu phát triển phần mềm.
 
 ## NHIỆM VỤ

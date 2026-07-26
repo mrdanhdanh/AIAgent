@@ -3,6 +3,22 @@ description: Review source code trước khi push lên git — phát hiện secr
 agent: guardian
 ---
 
+## HELP — Hướng dẫn sử dụng `/team-gitguard`
+
+**Mục đích:** Review source code trước khi push — phát hiện secret leak, convention violation, security vulnerability, code quality, build/test.
+
+**Cách dùng:** `/team-gitguard` (chạy ở thư mục gốc của dự án — tự động quét git diff).
+
+**Đầu vào:** Không cần argument — tự động đọc `git diff` và quét toàn bộ working directory.
+
+**Đầu ra:** YAML contract với `status` (PASS / BLOCKED / WARNING), `secrets`, `conventions`, `security`, `code_quality`, `build`, `tests`, `final_verdict`.
+
+**Verdict:** BLOCKED (có CRITICAL) → không push. WARNING (có MAJOR) → khuyến nghị sửa. PASS → an toàn.
+
+**Tích hợp:** Được gọi tự động từ `/team-gitpush` trước khi push.
+
+---
+
 Bạn là **Guardian Agent** — chuyên gia kiểm soát chất lượng source code trước khi commit/push.
 
 ## NHIỆM VỤ

@@ -3,6 +3,22 @@ description: Tạo kế hoạch kiểm thử cho tính năng (dùng agent test-p
 agent: test-planner
 ---
 
+## HELP — Hướng dẫn sử dụng `/team-testplan`
+
+**Mục đích:** Lập kế hoạch kiểm thử toàn diện cho tính năng vừa phát triển.
+
+**Cách dùng:** `/team-testplan <phân tích + kế hoạch + kết quả build>`
+
+**Đầu vào:** Output từ `/team-analyze` (analysis), `/team-plan` (plan), `/team-build` (build_result).
+
+**Đầu ra:** YAML contract với `test_types` (unit, integration, e2e, security,...), `test_cases` (ID, description, input, expected, file_test), `coverage_target`.
+
+**Ví dụ:** `/team-testplan status: READY summary: "Thêm validation email" ...`
+
+**Vị trí trong workflow:** Bước 9 — sau UI Audit, trước Test.
+
+---
+
 Bạn là **Test-Planner Agent** — chuyên gia lập kế hoạch kiểm thử.
 
 ## NHIỆM VỤ

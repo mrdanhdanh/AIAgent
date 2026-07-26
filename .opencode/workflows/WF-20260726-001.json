@@ -1,0 +1,39 @@
+{
+  "workflow": {
+    "id": "WF-20260726-001",
+    "created_at": "2026-07-26T00:00:00Z",
+    "completed_at": "2026-07-26T00:00:00Z",
+    "project": "JapaneseLearner",
+    "branch": "main",
+    "schema_version": "2.0",
+    "step": 12,
+    "step_name": "complete",
+    "status": "completed",
+    "retry": {
+      "review_count": 0,
+      "test_count": 0,
+      "max_review": 3,
+      "max_test": 3,
+      "self_improve_count": 1
+    },
+    "user_intervention": true,
+    "backup_done": true,
+    "coverage": {
+      "unit": 100,
+      "integration": "N/A",
+      "e2e": "N/A",
+      "overall": 100,
+      "thresholds_met": true
+    },
+    "summary": {
+      "requirement": "Build GitHub Pages deployment with multi-page extensibility",
+      "tests_pass": 91,
+      "tests_fail": 0,
+      "files_created": [".github/workflows/deploy.yml", "JapaneseLearner/wwwroot/404.html"],
+      "files_modified": ["JapaneseLearner/wwwroot/index.html"],
+      "files_deleted": ["JapaneseLearner/.github/workflows/deploy.yml"],
+      "knowledge_base_written": 2,
+      "suggestions_approved": 3
+    }
+  }
+}

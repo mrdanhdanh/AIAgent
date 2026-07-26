@@ -1,27 +1,33 @@
-<#
+﻿<#
 .SYNOPSIS
-    GitPush Utility — thực hiện git push an toàn với safety checks, confirmation gate.
+    GitPush Utility — thực hiện git push an toàn với auto-commit, safety checks, confirmation gate.
 .DESCRIPTION
-    Nhận branch + flags, thực hiện toàn bộ quy trình push: kiểm tra git status,
-    phân tích diff, push lên remote, xác nhận kết quả.
+    Nhận branch + flags, thực hiện toàn bộ quy trình push:
+    - Auto-commit: tự gen commit message từ diff (hoặc dùng commitMessage nếu có)
+    - Safety checks: secret scan, convention, security, code quality
+    - Build + Test validation
+    - Confirmation gate → push → post-push verify
 .PARAMETER branch
     Branch cần push (mặc định: branch hiện tại).
 .PARAMETER remote
     Remote name (mặc định: origin).
 .PARAMETER force
-    Switch: force push với --force-with-lease.
+    Switch: force push với --force-with-LEASE.
 .PARAMETER skipChecks
     Switch: bỏ qua safety checks (build, test, secret scan).
 .PARAMETER commitMessage
-    Nếu có: stage all + commit với message này trước khi push.
+    Nếu có: dùng message này thay vì auto-generate.
+.PARAMETER noCommit
+    Switch: bỏ qua auto-commit, chỉ push commit đã có (cần ahead > 0).
 .PARAMETER projectRoot
     Thư mục gốc dự án (mặc định: thư mục hiện tại).
 .PARAMETER timeoutSeconds
     Timeout chờ user xác nhận (mặc định: 60).
 .EXAMPLE
-    .\gitpush-utility.ps1
+    .\gitpush-utility.ps1                                     # Auto-commit + push
+    .\gitpush-utility.ps1 -commitMessage "Fix bug"            # Manual message + push
+    .\gitpush-utility.ps1 -noCommit                           # Chỉ push commit có sẵn
     .\gitpush-utility.ps1 -branch "feature-xyz" -force
-    .\gitpush-utility.ps1 -commitMessage "Fix bug" -skipChecks
 #>
 
 param(
@@ -41,14 +47,133 @@ param(
     [string]$commitMessage = "",
 
     [Parameter(Mandatory = $false)]
+    [switch]$noCommit,
+
+    [Parameter(Mandatory = $false)]
     [string]$projectRoot = (Get-Location).Path,
 
     [Parameter(Mandatory = $false)]
     [int]$timeoutSeconds = 60
 )
 
+function Get-AutoCommitMessage {
+    <#
+    .SYNOPSIS
+        Tự động tạo commit message từ git diff.
+    .DESCRIPTION
+        Phân tích diff --stat và diff nội dung để xác định type, scope, summary.
+    #>
+    $diffStat = & git diff --stat 2>$null
+    $cachedStat = & git diff --stat --cached 2>$null
+
+    if (-not $diffStat -and -not $cachedStat) {
+        return $null
+    }
+
+    $allFiles = @()
+    $insertions = 0
+    $deletions = 0
+
+    $stats = @($diffStat, $cachedStat) | Where-Object { $_ }
+    foreach ($stat in $stats) {
+        foreach ($line in ($stat -split "`n")) {
+            if ($line -match '^ (.+?)\s+\|') {
+                $allFiles += $matches[1]
+            }
+            if ($line -match '(\d+) insertion') { $insertions += [int]$matches[1] }
+            if ($line -match '(\d+) deletion') { $deletions += [int]$matches[1] }
+        }
+    }
+    $allFiles = $allFiles | Select-Object -Unique
+
+    if ($allFiles.Count -eq 0) { return $null }
+
+    # --- Detect type từ nội dung diff ---
+    $rawDiff = & git diff --cached 2>$null
+    if (-not $rawDiff) { $rawDiff = & git diff 2>$null }
+
+    $type = "chore"
+    $hasNewClass = $rawDiff -match '\+.*(class |interface |struct |enum )\s+\w+'
+    $hasFix = $rawDiff -match '\+.*(fix|bug|issue|error|exception|crash|null|fail)'
+    $hasRefactor = $rawDiff -match '(rename|move|extract|inline|split|merge)'
+    $hasDoc = $rawDiff -match '\+.*(\/\/\/|/// |\/\*|\*\/|# )'
+    $hasTest = $allFiles | Where-Object { $_ -match '\.Tests\.|test|spec' }
+    $hasStyle = $rawDiff -match '(color|background|font|margin|padding|flex|grid|@media|\.css)'
+    $hasPerf = $rawDiff -match '(async|await|Task\.|caching|memory|performance|lazy)'
+
+    if ($hasNewClass) { $type = "feat" }
+    elseif ($hasFix) { $type = "fix" }
+    elseif ($hasRefactor) { $type = "refactor" }
+    elseif ($hasTest) { $type = "test" }
+    elseif ($hasStyle) { $type = "style" }
+    elseif ($hasPerf) { $type = "perf" }
+    elseif ($hasDoc) { $type = "docs" }
+    else { $type = "chore" }
+
+    # --- Detect scope từ tên file ---
+    $scope = ""
+    if ($allFiles[0] -match '^\.opencode') { $scope = "opencode" }
+    elseif ($allFiles[0] -match 'Pages[\\/](\w+)') { $scope = $matches[1] }
+    elseif ($allFiles[0] -match 'Services[\\/](\w+)') { $scope = $matches[1].ToLower() -replace 'service$','' + "-service" }
+    elseif ($allFiles[0] -match '\.csproj') { $scope = "build" }
+    elseif ($allFiles[0] -match '\.Tests\.') { $scope = "tests" }
+
+    # --- Tạo summary ---
+    $summary = ""
+    $fileNames = $allFiles | ForEach-Object {
+        if ($_ -match '[\\/]([^\\/]+)\.\w+$') { $matches[1] } else { $_ }
+    }
+
+    $verbMap = @{
+        "feat" = "Add"
+        "fix" = "Fix"
+        "refactor" = "Refactor"
+        "test" = "Update"
+        "style" = "Update"
+        "perf" = "Improve"
+        "docs" = "Update"
+        "chore" = "Update"
+    }
+    $verb = $verbMap[$type]
+
+    if ($allFiles.Count -eq 1) {
+        $summary = "$verb $($fileNames[0])"
+    } elseif ($allFiles.Count -le 3) {
+        $summary = "$verb $($fileNames[0..([math]::Min(1,$fileNames.Count-1))] -join ', ')"
+        if ($allFiles.Count -gt 2) { $summary += " and $($fileNames[2])" }
+    } else {
+        $summary = "$verb $($allFiles.Count) files"
+        if ($scope) { $summary += " in $scope" }
+    }
+
+    # --- Tạo body ngắn ---
+    $bodyLines = @()
+    foreach ($f in $allFiles) {
+        $desc = ""
+        if ($rawDiff -match '\+.*(new|added|create|implement)\b.*' -and $f -match '\.cs$') { $desc = "add new implementation" }
+        elseif ($rawDiff -match '\-.*(removed|deleted|deprecated)\b') { $desc = "remove deprecated code" }
+        elseif ($insertions -gt $deletions * 2) { $desc = "add $insertions lines" }
+        elseif ($deletions -gt $insertions * 2) { $desc = "remove $deletions lines" }
+        else { $desc = "update $([math]::Max($insertions,$deletions)) lines" }
+        $bodyLines += "- $f`: $desc"
+    }
+
+    $message = "$type"
+    if ($scope) { $message += "($scope)" }
+    $message += ": $summary"
+    $message += "`n`n"
+    $message += ($bodyLines -join "`n")
+
+    return $message
+}
+
+function Test-WorkingTreeClean {
+    $status = & git status --porcelain 2>$null
+    return [string]::IsNullOrEmpty($status)
+}
+
 function Write-Divider {
-    param([string $char = "═", [int]$width = 46])
+    param([string]$char = "═", [int]$width = 46)
     Write-Output ("║" + ($char * $width) + "║")
 }
 
@@ -118,21 +243,73 @@ if ($?) {
     }
 }
 
-if ($ahead -eq 0 -and [string]::IsNullOrEmpty($commitMessage)) {
-    return @{ status = "CANCELLED"; summary = "Không có commit mới để push (ahead = 0)"; git_status = @{ branch = $branch; remote = $remote; ahead = 0; behind = $behind } }
+# --- Determine commit mode ---
+$autoCommitInfo = $null
+$hasChanges = -not (Test-WorkingTreeClean)
+
+if ($ahead -eq 0 -and -not $hasChanges) {
+    return @{ status = "CANCELLED"; summary = "Không có thay đổi nào để commit hoặc push (ahead=0, working tree clean)"; git_status = @{ branch = $branch; remote = $remote; ahead = 0; behind = $behind } }
 }
 
-# --- Fast path: commit if message provided ---
-if (-not [string]::IsNullOrEmpty($commitMessage)) {
-    Write-Output "  [COMMIT] Stage all files..."
+# --- Auto-commit (mặc định) ---
+if (-not $noCommit -and $hasChanges) {
+    $finalMessage = ""
+
+    if (-not [string]::IsNullOrEmpty($commitMessage)) {
+        # Dùng message từ user
+        $finalMessage = $commitMessage
+        Write-Output "  [COMMIT] Using provided message..."
+    } else {
+        # Auto-generate message từ diff
+        Write-Output "  [COMMIT] Auto-generating commit message from changes..."
+        $generated = Get-AutoCommitMessage
+        if ($generated) {
+            $finalMessage = $generated
+            Write-Output "  [OK] Generated: $($finalMessage.Split("`n")[0])"
+        } else {
+            # Fallback: hỏi user
+            Write-Output "  [INPUT] Could not auto-generate commit message."
+            Write-Output "  Enter commit message (or 'CANCEL' to abort):"
+            $userMsg = Read-Host
+            if ($userMsg.Trim().ToUpper() -eq "CANCEL") {
+                return @{ status = "CANCELLED"; summary = "User hủy auto-commit"; git_status = @{ branch = $branch; remote = $remote; ahead = $ahead; behind = $behind } }
+            }
+            $finalMessage = $userMsg
+        }
+    }
+
     & git add -A 2>$null
-    & git commit -m $commitMessage 2>$null
-    $ahead = & git rev-list --left-right --count "$remote/$branch...$branch" 2>$null
+    & git commit -m $finalMessage 2>$null
+    if ($LASTEXITCODE -ne 0) {
+        return @{ status = "FAILED"; summary = "Commit thất bại"; error = "git commit failed" }
+    }
+
+    # Cập nhật ahead count
+    $revCount = & git rev-list --left-right --count "$remote/$branch...$branch" 2>$null
     if ($?) {
-        $parts = $ahead -split "`t"
+        $parts = $revCount -split "`t"
         if ($parts.Count -ge 2) { $ahead = [int]$parts[1] }
     }
-    Write-Output "  [OK] Committed: $commitMessage"
+
+    $autoCommitInfo = @{
+        enabled = $true
+        mode = if ([string]::IsNullOrEmpty($commitMessage)) { "auto" } else { "manual" }
+        message = $finalMessage
+        type = if ($finalMessage -match '^(\w+)') { $matches[1] } else { "chore" }
+        scope = if ($finalMessage -match '^(\w+)\(([^)]+)\)') { $matches[2] } else { "" }
+    }
+
+    Write-Output "  [OK] Committed ($($autoCommitInfo.mode)): $($finalMessage.Split("`n")[0])"
+} elseif ($noCommit) {
+    Write-Output "  [SKIP] --no-commit flag set, skipping auto-commit"
+    if ($ahead -eq 0) {
+        return @{ status = "CANCELLED"; summary = "--no-commit nhưng không có commit nào để push (ahead = 0)"; git_status = @{ branch = $branch; remote = $remote; ahead = 0; behind = $behind } }
+    }
+} else {
+    Write-Output "  [SKIP] Working tree clean, không có thay đổi mới để commit"
+    if ($ahead -eq 0) {
+        return @{ status = "CANCELLED"; summary = "Working tree clean và không có commit để push"; git_status = @{ branch = $branch; remote = $remote; ahead = 0; behind = $behind } }
+    }
 }
 
 # --- Get last commit ---
@@ -260,7 +437,7 @@ if ($pushExitCode -eq 0) {
     }
     $remoteSynced = ($newAhead -eq 0 -and $newBehind -eq 0)
 
-    return @{
+    $result = @{
         status = "SUCCESS"
         summary = "Push thành công lên $remote/$branch"
         git_status = @{ branch = $branch; remote = $remote; remote_url = $remoteUrl; ahead = $ahead; behind = $behind; last_commit = $lastCommit }
@@ -268,6 +445,8 @@ if ($pushExitCode -eq 0) {
         push = @{ status = "SUCCESS"; command = $pushCommand; output = ($pushOutput -join "`n"); duration_seconds = $durationSeconds }
         post_push = @{ remote_synced = $remoteSynced; ahead = $newAhead; behind = $newBehind; new_remote_commit = $newRemoteCommit }
     }
+    if ($autoCommitInfo) { $result.auto_commit = $autoCommitInfo }
+    return $result
 } else {
     $pushOutputStr = $pushOutput -join "`n"
 
@@ -281,7 +460,7 @@ if ($pushExitCode -eq 0) {
         $errorType = "AUTH"
     }
 
-    return @{
+    $failResult = @{
         status = "FAILED"
         summary = "Push thất bại: $errorType"
         git_status = @{ branch = $branch; remote = $remote; remote_url = $remoteUrl; ahead = $ahead; behind = $behind; last_commit = $lastCommit }
@@ -294,4 +473,6 @@ if ($pushExitCode -eq 0) {
             UNKNOWN = "Lỗi không xác định. Kiểm tra output ở trên."
         }[$errorType]
     }
+    if ($autoCommitInfo) { $failResult.auto_commit = $autoCommitInfo }
+    return $failResult
 }

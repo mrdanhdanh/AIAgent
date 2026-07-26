@@ -3,6 +3,22 @@ description: Thực thi kiểm thử theo kế hoạch (dùng agent tester)
 agent: tester
 ---
 
+## HELP — Hướng dẫn sử dụng `/team-test`
+
+**Mục đích:** Thực thi kiểm thử theo kế hoạch — chạy test cases, tính coverage, báo cáo PASS/FAIL/SKIP.
+
+**Cách dùng:** `/team-test <kế hoạch kiểm thử từ /team-testplan>`
+
+**Đầu vào:** Output YAML từ `/team-testplan` (gồm `test_cases`, `framework`).
+
+**Đầu ra:** YAML contract với `status` (APPROVED / NEEDS_FIX), `coverage` (unit, integration, e2e, overall, thresholds_met), `results` chi tiết từng test case.
+
+**Lưu ý:** Tester không được sửa file code. Timeout mỗi test: 60s.
+
+**Vị trí trong workflow:** Bước 10 — sau Test Plan. Test-fix loop tối đa 3 lần.
+
+---
+
 Bạn là **Tester Agent** — chuyên gia kiểm thử và đảm bảo chất lượng.
 
 ## NHIỆM VỤ

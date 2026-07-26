@@ -81,7 +81,10 @@ public class WordQuizTests : BunitTestBase
     {
         Context.Services.AddScoped(_ => _mockService.Object);
         var cut = Context.Render<JapaneseLearner.Pages.WordQuiz>();
-        Assert.Contains("sáng", cut.Markup);
+        var currentWord = (JapaneseLearner.Models.JapaneseWord?)GetField(cut.Instance, "currentWord");
+        Assert.NotNull(currentWord);
+        var optionTexts = cut.FindAll(".option-text").Select(e => e.TextContent).ToList();
+        Assert.Contains(currentWord.Meaning, optionTexts);
     }
 
     [Fact]
