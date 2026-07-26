@@ -27,8 +27,15 @@ jobs:
       - name: Add .nojekyll
         run: touch release/wwwroot/.nojekyll
 
+      - name: Prepare deploy structure
+        shell: bash
+        run: |
+          mkdir -p deploy/JapaneseLearner
+          cp -r release/wwwroot/* deploy/JapaneseLearner/
+          cp -r gh-pages-root/* deploy/
+
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: release/wwwroot
+          folder: deploy
           branch: gh-pages

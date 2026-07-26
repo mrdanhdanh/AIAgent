@@ -17,3 +17,4 @@ Quy tắc:
 - Secret/Security lỗi = BLOCKED
 - Force push yêu cầu xác nhận kép
 - `--no-commit` để bỏ qua auto-commit, chỉ push commit đã có
+- `--cur` để stage chỉ unstaged changes (`git add -u`), bỏ qua untracked files

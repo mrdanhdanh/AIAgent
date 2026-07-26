@@ -15,6 +15,7 @@ agent: pusher
 - `--branch <name>` — Push lên branch cụ thể
 - `--message "<msg>"` — Ghi đè commit message
 - `--no-commit` — Chỉ push commit đã có (không auto-commit)
+- `--cur` — Chỉ stage file có unstaged changes (dùng `git add -u` thay vì `git add -A`), bỏ qua untracked files
 
 **Đầu vào:** Không cần argument — tự động đọc `git status` và `git diff`.
 
@@ -42,12 +43,15 @@ Hỗ trợ các flag:
 - `--branch <name>`: Push lên branch cụ thể
 - `--message "<msg>"`: Dùng message này thay vì auto-generate
 - `--no-commit`: Bỏ qua auto-commit, chỉ push commit đã có (ahead > 0 mới push)
+- `--cur`: Chỉ stage file có unstaged changes (`git add -u`), bỏ qua untracked files — dùng khi chỉ muốn commit/push các file đang sửa trong phiên hiện tại
 
 ## QUY TRÌNH THỰC HIỆN
 
 ### Bước 0: Auto-commit (tạo commit message từ diff)
 
 Mặc định: stage tất cả thay đổi (`git add -A`) và tạo commit message tự động dựa trên phân tích diff.
+
+Nếu có flag `--cur`: stage chỉ các file đang có unstaged changes (`git add -u`), bỏ qua untracked files và file đã staged từ trước. Dùng khi bạn chỉ muốn commit/push các file đã sửa trong phiên làm việc hiện tại, tránh lẫn file rác từ các tác vụ khác.
 
 #### Cách auto-generate commit message:
 
@@ -103,6 +107,7 @@ Mặc định: stage tất cả thay đổi (`git add -A`) và tạo commit mess
 #### Khi nào bỏ qua auto-commit:
 - `--no-commit`: không stage/commit, chỉ push commit đã có
 - `--message "..."`: dùng message người dùng cung cấp
+- `--cur`: stage chỉ unstaged changes của tracked files (`git add -u`)
 - Không có file nào thay đổi (working tree clean): bỏ qua, chỉ push
 
 ### Bước 1: Git status analysis
@@ -319,6 +324,9 @@ post_push:
 - Mặc định: auto-commit từ diff + push (không cần `--message`)
 - `--no-commit` để bỏ qua auto-commit, chỉ push commit đã có
 - `--message "..."` để ghi đè commit message (vẫn stage all)
+- `--cur` để stage chỉ unstaged changes của tracked files (`git add -u`), không stage untracked files
+- `--message` + `--cur` có thể kết hợp: stage chỉ unstaged changes rồi dùng message đó
+- `--no-commit` + `--cur`: xung đột — ưu tiên `--no-commit` (bỏ qua auto-commit)
 - Không tự động push — luôn cần confirmation từ user
 - `--force` yêu cầu xác nhận kép (nhập 'FORCE')
 - BLOCKED safety → không push, giải thích lý do

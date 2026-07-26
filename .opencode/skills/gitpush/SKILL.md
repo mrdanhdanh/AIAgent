@@ -52,10 +52,11 @@ GitPush là skill thực hiện toàn bộ quy trình push code lên git remote 
 
 | Command | Mô tả |
 |---------|-------|
-| `/team-gitpush` | Auto-commit từ diff + safety checks + push (mặc định) |
-| `/team-gitpush --skip-checks` | Bỏ qua safety checks, chỉ auto-commit + push |
+| `/team-gitpush` | Chạy toàn bộ quy trình gitpush với safety checks |
+| `/team-gitpush --skip-checks` | Bỏ qua safety checks, chỉ push |
 | `/team-gitpush --force` | Force push (cảnh báo kỹ) |
 | `/team-gitpush --branch <name>` | Push lên branch cụ thể |
+| `/team-gitpush --cur` | Chỉ stage file có unstaged changes (`git add -u`), bỏ qua untracked files |
 | `/team-gitpush --message "<msg>"` | Dùng message này thay vì auto-generate |
 | `/team-gitpush --no-commit` | Bỏ qua auto-commit, chỉ push commit đã có |
 
