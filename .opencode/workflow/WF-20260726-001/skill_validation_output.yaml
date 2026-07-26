@@ -1,0 +1,27 @@
+status: SUGGESTIONS_READY
+suggestions:
+  - id: SUG-001
+    category: TESTING_PATTERN
+    description: "Thêm E2E Playwright test cho deployment verification — verify 404.html redirect, dynamic base href, page load sau redirect. Dự án đã có Playwright infrastructure (SK-010) nhưng chưa dùng để test deployment."
+    evidence: "91 unit tests pass nhưng 0 E2E test cho deployment pipeline. deploy.yml tạo GitHub Pages site, 404.html + index.html script xử lý SPA redirect, nhưng không có automated test verify các edge case: redirect loop, base href trên subpath, sessionStorage restore."
+    impact: MEDIUM
+    requires_approval: true
+  - id: SUG-002
+    category: WORKFLOW_IMPROVEMENT
+    description: "Thêm cross-reference giữa deployment/blazor-wasm-github-pages.md và workflow/validate-github-actions-yaml.md vì cùng chủ đề GitHub Pages deployment pattern."
+    evidence: "Hai knowledge entry cùng về GitHub Pages deployment nhưng độc lập, không link với nhau. deploy.yml không có validate YAML step dù YAML validation entry được tạo/update trong cùng workflow."
+    impact: LOW
+    requires_approval: false
+  - id: SUG-003
+    category: CODING_PATTERN
+    description: "Đồng bộ knowledge base với implementation thực tế của 404.html. KB mô tả segmentCount=1 logic nhưng actual implementation dùng baseHref + ?redirect= approach."
+    evidence: "deployment/blazor-wasm-github-pages.md lines 37-53 mô tả 404.html với var segmentCount = 1 logic. Actual wwwroot/404.html lines 7-12 dùng baseHref + encodeURIComponent approach khác."
+    impact: LOW
+    requires_approval: false
+  - id: SUG-004
+    category: WORKFLOW_IMPROVEMENT
+    description: "Thêm step validate GitHub Actions YAML trong workflow trước/sau build. validate-github-actions-yaml.md được tạo khuyến nghị validate YAML nhưng không được tích hợp vào workflow thực tế."
+    evidence: "validate-github-actions-yaml.md khuyến nghị dùng github/validate-workflow@v1 hoặc yamllint. deploy.yml syntax error sẽ không được phát hiện cho đến khi GitHub Action chạy và fail."
+    impact: MEDIUM
+    requires_approval: true
+summary: "Workflow WF-20260726-001 (GitHub Pages deployment) hoàn tất sạch — 0 retry, 91/91 PASS, 100% coverage. Phát hiện 3 kỹ năng mới (GitHub Actions CI-CD, Blazor WASM GitHub Pages hosting, SPA routing). Đề xuất 4 cải tiến: 2 MEDIUM cần approval (E2E deployment test + YAML validation), 2 LOW auto-approve (KB cross-reference + KB sync). Không phát hiện critical gaps — workflow chạy ổn định."

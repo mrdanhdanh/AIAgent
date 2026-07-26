@@ -156,6 +156,18 @@
         "bash": "allow",
         "edit": "deny"
       }
+    },
+    "general": {
+      "description": "General-purpose orchestrator agent — điều phối workflow, triệu hồi sub-agents, quản lý state machine",
+      "mode": "subagent",
+      "model": "opencode/deepseek-v4-flash-free",
+      "permission": {
+        "read": "allow",
+        "grep": "allow",
+        "glob": "allow",
+        "bash": "allow",
+        "edit": "allow"
+      }
     }
   },
   "command": {
@@ -163,6 +175,57 @@
       "template": "Bạn là Backup Agent. Dùng Backup Utility để backup/rollback file.\n\n## Script paths\nbackupScript: .opencode/scripts/backup-utility.ps1\nrollbackScript: .opencode/scripts/rollback-utility.ps1\n\n## Actions\n- save <files...>: Backup file trước khi sửa\n- rollback <workflowId> [--force]: Restore từ backup\n- list: Liệt kê backup history\n- verify <workflowId>: Kiểm tra integrity\n\nThực hiện action $ARGUMENTS và output kết quả.",
       "description": "Backup va rollback file dung Backup Utility",
       "agent": "backup-agent"
+    },
+    "team": {
+      "template": "Bạn là Orchestrator Agent. Chạy toàn bộ Dev Agent Team workflow. Đọc hướng dẫn đầy đủ tại: .opencode/commands/team.md\n\nYêu cầu: $ARGUMENTS",
+      "description": "Chay toan bo team workflow: analyze, design/plan, review, backup, build, smoke test, testplan, test, self-improve",
+      "agent": "general"
+    },
+    "team-analyze": {
+      "template": "Bạn là Analyst Agent. Phân tích yêu cầu phát triển. Đọc hướng dẫn đầy đủ tại: .opencode/commands/team-analyze.md\n\nYêu cầu: $ARGUMENTS",
+      "description": "Phan tich yeu cau phat trien — doc codebase, xac dinh pham vi, rui ro, task con",
+      "agent": "analyst"
+    },
+    "team-plan": {
+      "template": "Bạn là Planner Agent. Thiết kế giải pháp + Lập kế hoạch thực thi. Đọc hướng dẫn đầy đủ tại: .opencode/commands/team-plan.md\n\nNội dung: $ARGUMENTS",
+      "description": "Thiet ke giai phap (Design) + Lap ke hoach thuc thi (Plan)",
+      "agent": "planner"
+    },
+    "team-review": {
+      "template": "Bạn là Reviewer Agent. Đánh giá thiết kế/kế hoạch. Đọc hướng dẫn đầy đủ tại: .opencode/commands/team-review.md\n\nNội dung: $ARGUMENTS",
+      "description": "Danh gia thiet ke hoac ke hoach theo 6 tieu chi",
+      "agent": "reviewer"
+    },
+    "team-build": {
+      "template": "Bạn là Builder Agent. Thực thi kế hoạch đã duyệt. Đọc hướng dẫn đầy đủ tại: .opencode/commands/team-build.md\n\nKế hoạch: $ARGUMENTS",
+      "description": "Thuc thi ke hoach da duyet — tao/sua file code, kiem tra syntax/lint",
+      "agent": "builder"
+    },
+    "team-testplan": {
+      "template": "Bạn là Test-Planner Agent. Tạo kế hoạch kiểm thử. Đọc hướng dẫn đầy đủ tại: .opencode/commands/team-testplan.md\n\nThông tin: $ARGUMENTS",
+      "description": "Tao ke hoach kiem thu toan dien cho tinh nang da phat trien",
+      "agent": "test-planner"
+    },
+    "team-test": {
+      "template": "Bạn là Tester Agent. Thực thi kiểm thử. Đọc hướng dẫn đầy đủ tại: .opencode/commands/team-test.md\n\nKế hoạch test: $ARGUMENTS",
+      "description": "Thuc thi kiem thu theo ke hoach — chay test cases, tinh coverage, bao cao PASS/FAIL/SKIP",
+      "agent": "tester"
+    },
+    "team-ui-audit": {
+      "template": "Bạn là UI Beautifier Agent. Kiểm tra giao diện người dùng. Đọc hướng dẫn đầy đủ tại: .opencode/commands/team-ui-audit.md\n\nNội dung: $ARGUMENTS",
+      "description": "Chay UI audit tren toan bo .razor files — CSS issues, accessibility, dark mode",
+      "agent": "ui-beautifier"
+    },
+    "team-selfimprove": {
+      "template": "Bạn là Self-Improver Agent. Phân tích workflow và đề xuất cải tiến. Đọc hướng dẫn đầy đủ tại: .opencode/commands/team-selfimprove.md\n\nDữ liệu workflow: $ARGUMENTS",
+      "description": "Phan tich workflow va de xuat cai tien coding pattern, testing pattern, workflow",
+      "agent": "self-improver"
+    },
+    "team-explore": {
+      "template": "[DEPRECATED] Explore step đã được gộp vào Analyze. Dùng team-analyze thay thế.",
+      "description": "[DEPRECATED] Explore step da duoc gop vao Analyze. Dung team-analyze thay the.",
+      "agent": "codebase-explorer",
+      "deprecated": true
     },
     "team-gitguard": {
       "template": "Bạn là Guardian Agent. Review source code trước khi push lên git. Đọc hướng dẫn đầy đủ tại: .opencode/commands/team-gitguard.md\n\nNội dung: $ARGUMENTS",
@@ -178,6 +241,11 @@
       "template": "Bạn là Cleaner Agent. Dọn rác Workspace tự động. Đọc hướng dẫn đầy đủ tại: .opencode/skills/workspace-cleaner/SKILL.md\n\nTham số: $ARGUMENTS\n\nHành động:\n1. Phân tích tham số (--dry-run, --force, --target, --keep-backup, --aggressive, --older-than)\n2. Gọi workspace-cleaner script: .opencode/skills/workspace-cleaner/scripts/workspace-cleaner.ps1\n3. Output báo cáo YAML",
       "description": "Don rac Workspace tu dong — xoa build artifacts, backup cu, temp files, cache. Tich hop dry-run, backup truoc khi xoa, confirmation gate",
       "agent": "cleaner"
+    },
+    "team-syncdocs": {
+      "template": "Bạn là System Documentation Sync Agent. Quét và đồng bộ toàn bộ system docs. Đọc hướng dẫn đầy đủ tại: .opencode/commands/team-syncdocs.md\n\nTham số: $ARGUMENTS",
+      "description": "Dong bo toan bo system docs: quet agents, commands, skills, scripts, knowledge -> cap nhat SYSTEM_MAP.md, cross-references",
+      "agent": "general"
     }
   },
   "skills": {
