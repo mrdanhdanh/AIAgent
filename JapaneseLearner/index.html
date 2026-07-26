@@ -6,7 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Japanese Learner</title>
     <base href="/" />
-    <link href="_framework/dotnet.eyohjashpd.js" rel="preload" as="script" fetchpriority="high" crossorigin="anonymous" integrity="sha256-lvMSYgiJXFNJsm4r3tW7oxwUfT0NgnEmPZGKbY10E1I=" />
+    <script>
+        (function() {
+            var base = document.querySelector('base');
+            if (base) {
+                var segments = window.location.pathname.split('/').filter(Boolean);
+                if (segments.length >= 2) {
+                    base.href = '/' + segments.slice(0, 2).join('/') + '/';
+                }
+            }
+        })();
+    </script>
+    <link href="_framework/dotnet.yukvkzzd0m.js" rel="preload" as="script" fetchpriority="high" crossorigin="anonymous" integrity="sha256-phTkd8ZJRonPMe+xJXBEJpMVWVfmp4dERJRoFjc/jM4=" />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
     <script>
         (function() {
@@ -28,20 +39,20 @@
     <script type="importmap">{
   "imports": {
     "./_framework/blazor.webassembly.js": "./_framework/blazor.webassembly.958z1vx7fr.js",
-    "./_framework/dotnet.js": "./_framework/dotnet.eyohjashpd.js",
     "./_framework/dotnet.native.js": "./_framework/dotnet.native.puryxhmhq9.js",
-    "./_framework/dotnet.runtime.js": "./_framework/dotnet.runtime.web2r9gqbh.js"
+    "./_framework/dotnet.runtime.js": "./_framework/dotnet.runtime.web2r9gqbh.js",
+    "./_framework/dotnet.js": "./_framework/dotnet.yukvkzzd0m.js"
   },
   "scopes": {},
   "integrity": {
     "./_framework/blazor.webassembly.958z1vx7fr.js": "sha256-A59Tr9HqEhHMu8kU7kruLI9ayw5MRS6Lvc6z7jCbghk=",
     "./_framework/blazor.webassembly.js": "sha256-A59Tr9HqEhHMu8kU7kruLI9ayw5MRS6Lvc6z7jCbghk=",
-    "./_framework/dotnet.eyohjashpd.js": "sha256-lvMSYgiJXFNJsm4r3tW7oxwUfT0NgnEmPZGKbY10E1I=",
-    "./_framework/dotnet.js": "sha256-lvMSYgiJXFNJsm4r3tW7oxwUfT0NgnEmPZGKbY10E1I=",
+    "./_framework/dotnet.js": "sha256-phTkd8ZJRonPMe+xJXBEJpMVWVfmp4dERJRoFjc/jM4=",
     "./_framework/dotnet.native.js": "sha256-gQbHHzCnWx8iDOC65EKbql7bEltJkfao7lmkAbIRajw=",
     "./_framework/dotnet.native.puryxhmhq9.js": "sha256-gQbHHzCnWx8iDOC65EKbql7bEltJkfao7lmkAbIRajw=",
     "./_framework/dotnet.runtime.js": "sha256-SOUHEQ3FhDAibBSR2u90NWZpoBjPuWRmH0BAATUlhJU=",
-    "./_framework/dotnet.runtime.web2r9gqbh.js": "sha256-SOUHEQ3FhDAibBSR2u90NWZpoBjPuWRmH0BAATUlhJU="
+    "./_framework/dotnet.runtime.web2r9gqbh.js": "sha256-SOUHEQ3FhDAibBSR2u90NWZpoBjPuWRmH0BAATUlhJU=",
+    "./_framework/dotnet.yukvkzzd0m.js": "sha256-phTkd8ZJRonPMe+xJXBEJpMVWVfmp4dERJRoFjc/jM4="
   }
 }</script>
 </head>
@@ -61,19 +72,6 @@
         <span class="dismiss">🗙</span>
     </div>
     <script src="_framework/blazor.webassembly.js"></script>
-    <script>
-        (function() {
-            var base = document.querySelector('base');
-            var blazorScript = document.querySelector('script[src*="blazor.webassembly.js"]');
-            if (blazorScript && blazorScript.src) {
-                var url = new URL(blazorScript.src);
-                var idx = url.pathname.indexOf('/_framework/blazor.webassembly.js');
-                if (idx > 0) {
-                    base.href = url.pathname.substring(0, idx) + '/';
-                }
-            }
-        })();
-    </script>
 </body>
 
 </html>
