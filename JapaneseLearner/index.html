@@ -5,15 +5,18 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Japanese Learner</title>
-    <base href="/" />
     <script>
         (function() {
             var base = document.querySelector('base');
-            if (base) {
-                var segments = window.location.pathname.split('/').filter(Boolean);
-                if (segments.length >= 2) {
-                    base.href = '/' + segments.slice(0, 2).join('/') + '/';
-                }
+            if (!base) {
+                base = document.createElement('base');
+                document.head.appendChild(base);
+            }
+            var segments = window.location.pathname.split('/').filter(Boolean);
+            if (segments.length >= 2) {
+                base.href = '/' + segments.slice(0, 2).join('/') + '/';
+            } else {
+                base.href = '/';
             }
             var redirect = new URL(window.location.href).searchParams.get('redirect');
             var basePath = window.location.pathname.replace(/\/$/, '');
@@ -29,7 +32,7 @@
             }
         })();
     </script>
-    <link href="_framework/dotnet.11ozdbpbhx.js" rel="preload" as="script" fetchpriority="high" crossorigin="anonymous" integrity="sha256-Ze11pqoa2WcQjvBSR5GxkaK9l0WT+WOIPEEfB2gTBfo=" />
+    <link href="_framework/dotnet.gbir6nmx92.js" rel="preload" as="script" fetchpriority="high" crossorigin="anonymous" integrity="sha256-hEh704ZT3EO8azdSyjoYmBGWWhwI0B1NF+MFFSfP7io=" />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
     <script>
         (function() {
@@ -51,7 +54,7 @@
     <script type="importmap">{
   "imports": {
     "./_framework/blazor.webassembly.js": "./_framework/blazor.webassembly.958z1vx7fr.js",
-    "./_framework/dotnet.js": "./_framework/dotnet.11ozdbpbhx.js",
+    "./_framework/dotnet.js": "./_framework/dotnet.gbir6nmx92.js",
     "./_framework/dotnet.native.js": "./_framework/dotnet.native.puryxhmhq9.js",
     "./_framework/dotnet.runtime.js": "./_framework/dotnet.runtime.web2r9gqbh.js"
   },
@@ -59,8 +62,8 @@
   "integrity": {
     "./_framework/blazor.webassembly.958z1vx7fr.js": "sha256-A59Tr9HqEhHMu8kU7kruLI9ayw5MRS6Lvc6z7jCbghk=",
     "./_framework/blazor.webassembly.js": "sha256-A59Tr9HqEhHMu8kU7kruLI9ayw5MRS6Lvc6z7jCbghk=",
-    "./_framework/dotnet.11ozdbpbhx.js": "sha256-Ze11pqoa2WcQjvBSR5GxkaK9l0WT+WOIPEEfB2gTBfo=",
-    "./_framework/dotnet.js": "sha256-Ze11pqoa2WcQjvBSR5GxkaK9l0WT+WOIPEEfB2gTBfo=",
+    "./_framework/dotnet.gbir6nmx92.js": "sha256-hEh704ZT3EO8azdSyjoYmBGWWhwI0B1NF+MFFSfP7io=",
+    "./_framework/dotnet.js": "sha256-hEh704ZT3EO8azdSyjoYmBGWWhwI0B1NF+MFFSfP7io=",
     "./_framework/dotnet.native.js": "sha256-gQbHHzCnWx8iDOC65EKbql7bEltJkfao7lmkAbIRajw=",
     "./_framework/dotnet.native.puryxhmhq9.js": "sha256-gQbHHzCnWx8iDOC65EKbql7bEltJkfao7lmkAbIRajw=",
     "./_framework/dotnet.runtime.js": "sha256-SOUHEQ3FhDAibBSR2u90NWZpoBjPuWRmH0BAATUlhJU=",
