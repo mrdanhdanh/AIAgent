@@ -1,7 +1,9 @@
 ﻿{
     "issues":  [
-                   "ORPHAN_AGENT: agent=guardian",
-                   "ORPHAN_AGENT: agent=pusher",
+                   "MISSING_AGENT: command=backup, agent=backup-agent",
+                   "MISSING_AGENT: command=team, agent=general",
+                   "MISSING_AGENT: command=team-syncdocs, agent=general",
+                   "ORPHAN_AGENT: agent=cleaner",
                    "UPDATE_FAILED: Cannot locate table in SKILL.md"
                ],
     "knowledge":  {
@@ -31,6 +33,84 @@
                                                          }
                   },
     "agents":  {
+                   "ui-beautifier":  {
+                                         "description":  "Chuyên đánh giá và cải thiện giao diện người dùng cho Japanese Learner (Blazor WASM + FluentUI 4.14.3). Phân tích .razor files, phát hiện CSS issues, accessibility problems, và đề xuất cải tiến UI/UX.",
+                                         "model":  "opencode/deepseek-v4-flash-free",
+                                         "file":  "agents/ui-beautifier.md",
+                                         "mode":  "subagent",
+                                         "permissions":  {
+                                                             "grep":  "deny",
+                                                             "bash":  "deny",
+                                                             "read":  "deny",
+                                                             "edit":  "deny",
+                                                             "glob":  "deny"
+                                                         }
+                                     },
+                   "cleaner":  {
+                                   "description":  "Workspace Cleaner Agent — quét rác, phân loại, backup, dọn dẹp workspace tự động với dry-run và confirmation gate.",
+                                   "model":  "opencode/deepseek-v4-flash-free",
+                                   "file":  "agents/cleaner.md",
+                                   "mode":  null,
+                                   "permissions":  {
+                                                       "grep":  "deny",
+                                                       "bash":  "deny",
+                                                       "read":  "deny",
+                                                       "edit":  "deny",
+                                                       "glob":  "deny"
+                                                   }
+                               },
+                   "test-planner":  {
+                                        "description":  "Tạo kế hoạch kiểm thử chi tiết cho tính năng đã phát triển",
+                                        "model":  "opencode/deepseek-v4-flash-free",
+                                        "file":  "agents/test-planner.md",
+                                        "mode":  "subagent",
+                                        "permissions":  {
+                                                            "grep":  "deny",
+                                                            "bash":  "deny",
+                                                            "read":  "deny",
+                                                            "edit":  "deny",
+                                                            "glob":  "deny"
+                                                        }
+                                    },
+                   "analyst":  {
+                                   "description":  "Phân tích yêu cầu người dùng, xác định phạm vi, rủi ro và các task cần thực hiện",
+                                   "model":  "opencode/deepseek-v4-flash-free",
+                                   "file":  "agents/analyst.md",
+                                   "mode":  "subagent",
+                                   "permissions":  {
+                                                       "grep":  "deny",
+                                                       "bash":  "deny",
+                                                       "read":  "deny",
+                                                       "edit":  "deny",
+                                                       "glob":  "deny"
+                                                   }
+                               },
+                   "codebase-explorer":  {
+                                             "description":  "Khám phá cấu trúc dự án, phân tích codebase, mapping dependencies và patterns. Agent read-only chạy trước khi thực hiện thay đổi.",
+                                             "model":  "opencode/deepseek-v4-flash-free",
+                                             "file":  "agents/codebase-explorer.md",
+                                             "mode":  "subagent",
+                                             "permissions":  {
+                                                                 "grep":  "deny",
+                                                                 "bash":  "deny",
+                                                                 "read":  "deny",
+                                                                 "edit":  "deny",
+                                                                 "glob":  "deny"
+                                                             }
+                                         },
+                   "reviewer":  {
+                                    "description":  "Đánh giá kế hoạch thực thi, kiểm tra tính đúng đắn, đầy đủ và hiệu quả",
+                                    "model":  "opencode/deepseek-v4-flash-free",
+                                    "file":  "agents/reviewer.md",
+                                    "mode":  "subagent",
+                                    "permissions":  {
+                                                        "grep":  "deny",
+                                                        "bash":  "deny",
+                                                        "read":  "deny",
+                                                        "edit":  "deny",
+                                                        "glob":  "deny"
+                                                    }
+                                },
                    "guardian":  {
                                     "description":  "Chuyên gia review source code trước khi push lên git — phát hiện secret, lỗi convention, lỗ hổng bảo mật, vi phạm quy tắc dự án",
                                     "model":  null,
@@ -44,6 +124,58 @@
                                                         "glob":  "deny"
                                                     }
                                 },
+                   "tester":  {
+                                  "description":  "Thực thi kiểm thử, validate tính năng và báo cáo kết quả kèm coverage",
+                                  "model":  "opencode/deepseek-v4-flash-free",
+                                  "file":  "agents/tester.md",
+                                  "mode":  "subagent",
+                                  "permissions":  {
+                                                      "grep":  "deny",
+                                                      "bash":  "deny",
+                                                      "read":  "deny",
+                                                      "edit":  "deny",
+                                                      "glob":  "deny"
+                                                  }
+                              },
+                   "self-improver":  {
+                                         "description":  "Sau khi workflow hoàn tất, đọc lại quá trình, phân tích kỹ năng đã dùng và thiếu, đề xuất cải tiến (chỉ suggestion, không ghi KB). Cần qua approval gate trước khi ghi knowledge base.",
+                                         "model":  "opencode/deepseek-v4-flash-free",
+                                         "file":  "agents/self-improver.md",
+                                         "mode":  "subagent",
+                                         "permissions":  {
+                                                             "grep":  "deny",
+                                                             "bash":  "deny",
+                                                             "read":  "deny",
+                                                             "edit":  "deny",
+                                                             "glob":  "deny"
+                                                         }
+                                     },
+                   "planner":  {
+                                   "description":  "Mở rộng: Thiết kế giải pháp + Lập kế hoạch thực thi chi tiết. Đảm nhiệm cả Design phase và Plan phase.",
+                                   "model":  "opencode/deepseek-v4-flash-free",
+                                   "file":  "agents/planner.md",
+                                   "mode":  "subagent",
+                                   "permissions":  {
+                                                       "grep":  "deny",
+                                                       "bash":  "deny",
+                                                       "read":  "deny",
+                                                       "edit":  "deny",
+                                                       "glob":  "deny"
+                                                   }
+                               },
+                   "builder":  {
+                                   "description":  "Thực thi kế hoạch đã được đánh giá, viết code và thực hiện thay đổi",
+                                   "model":  "opencode/deepseek-v4-flash-free",
+                                   "file":  "agents/builder.md",
+                                   "mode":  "subagent",
+                                   "permissions":  {
+                                                       "grep":  "deny",
+                                                       "bash":  "deny",
+                                                       "read":  "deny",
+                                                       "edit":  "deny",
+                                                       "glob":  "deny"
+                                                   }
+                               },
                    "pusher":  {
                                   "description":  "Chuyên gia thực hiện git push an toàn — auto-commit từ diff, safety checks, build, test, confirmation gate, push execution, post-push verify",
                                   "model":  null,
@@ -59,7 +191,90 @@
                               }
                },
     "commands":  {
-
+                     "team-selfimprove":  {
+                                              "agent":  "self-improver",
+                                              "description":  "Phân tích workflow và đề xuất cải tiến (chỉ suggestion, không ghi KB)",
+                                              "deprecated":  false,
+                                              "file":  "commands/team-selfimprove.md"
+                                          },
+                     "team-explore":  {
+                                          "agent":  "codebase-explorer",
+                                          "description":  "[DEPRECATED] Explore step đã được gộp vào Analyze. Dùng team-analyze thay thế.",
+                                          "deprecated":  true,
+                                          "file":  "commands/team-explore.md"
+                                      },
+                     "backup":  {
+                                    "agent":  "backup-agent",
+                                    "description":  "Backup và rollback file dùng Backup Utility. Gọi khi cần backup trước khi sửa file, rollback lỗi, kiểm tra backup.",
+                                    "deprecated":  false,
+                                    "file":  "commands/backup.md"
+                                },
+                     "team-gitpush":  {
+                                          "agent":  "pusher",
+                                          "description":  "Auto-commit từ diff, pre-push safety validation + git push execution — kiểm tra secret, convention, build, test, xác nhận user, push lên remote",
+                                          "deprecated":  false,
+                                          "file":  "commands/team-gitpush.md"
+                                      },
+                     "team-test":  {
+                                       "agent":  "tester",
+                                       "description":  "Thực thi kiểm thử theo kế hoạch (dùng agent tester)",
+                                       "deprecated":  false,
+                                       "file":  "commands/team-test.md"
+                                   },
+                     "team-review":  {
+                                         "agent":  "reviewer",
+                                         "description":  "Đánh giá thiết kế hoặc kế hoạch (dùng agent reviewer)",
+                                         "deprecated":  false,
+                                         "file":  "commands/team-review.md"
+                                     },
+                     "team-analyze":  {
+                                          "agent":  "analyst",
+                                          "description":  "Chỉ chạy bước phân tích yêu cầu (dùng agent analyst)",
+                                          "deprecated":  false,
+                                          "file":  "commands/team-analyze.md"
+                                      },
+                     "team":  {
+                                  "agent":  "general",
+                                  "description":  "Cháº¡y toÃ n bá»™ team workflow: analyze â†’ design/plan â†’ review â†’ backup â†’ build â†’ smoke test â†’ testplan â†’ test â†’ self-improve",
+                                  "deprecated":  false,
+                                  "file":  "commands/team.md"
+                              },
+                     "team-gitguard":  {
+                                           "agent":  "guardian",
+                                           "description":  "Review source code trước khi push lên git — phát hiện secret, lỗi convention, lỗ hổng bảo mật, vi phạm quy tắc dự án",
+                                           "deprecated":  false,
+                                           "file":  "commands/team-gitguard.md"
+                                       },
+                     "team-testplan":  {
+                                           "agent":  "test-planner",
+                                           "description":  "Tạo kế hoạch kiểm thử cho tính năng (dùng agent test-planner)",
+                                           "deprecated":  false,
+                                           "file":  "commands/team-testplan.md"
+                                       },
+                     "team-build":  {
+                                        "agent":  "builder",
+                                        "description":  "Thực thi kế hoạch đã duyệt (dùng agent builder)",
+                                        "deprecated":  false,
+                                        "file":  "commands/team-build.md"
+                                    },
+                     "team-syncdocs":  {
+                                           "agent":  "general",
+                                           "description":  "Đồng bộ toàn bộ system docs: quét agents, commands, skills, scripts, knowledge → cập nhật SYSTEM_MAP.md, cross-references, fix lỗi. Chạy định kỳ khi thêm/sửa/xóa file hệ thống.",
+                                           "deprecated":  false,
+                                           "file":  "commands/team-syncdocs.md"
+                                       },
+                     "team-plan":  {
+                                       "agent":  "planner",
+                                       "description":  "Mở rộng: Thiết kế (Design) + Lập kế hoạch (Plan) — dùng agent planner",
+                                       "deprecated":  false,
+                                       "file":  "commands/team-plan.md"
+                                   },
+                     "team-ui-audit":  {
+                                           "agent":  "ui-beautifier",
+                                           "description":  "Chạy UI audit trên toàn bộ .razor files — phát hiện CSS issues, accessibility problems, đề xuất cải tiến UI/UX",
+                                           "deprecated":  false,
+                                           "file":  "commands/team-ui-audit.md"
+                                       }
                  },
     "scripts":  {
                     "gitpush-utility":  {
@@ -75,7 +290,7 @@
                     "sync-system-docs":  {
                                              "summary":  "Utility script",
                                              "file":  "scripts/sync-system-docs.ps1",
-                                             "size":  24676
+                                             "size":  24059
                                          },
                     "rollback-utility":  {
                                              "summary":  "Utility script",
@@ -85,24 +300,136 @@
                 },
     "cross_refs":  {
                        "command_to_agent":  {
-
+                                                "team-selfimprove":  "self-improver",
+                                                "team-explore":  "codebase-explorer",
+                                                "backup":  "backup-agent",
+                                                "team-gitpush":  "pusher",
+                                                "team-test":  "tester",
+                                                "team-review":  "reviewer",
+                                                "team-analyze":  "analyst",
+                                                "team":  "general",
+                                                "team-gitguard":  "guardian",
+                                                "team-testplan":  "test-planner",
+                                                "team-build":  "builder",
+                                                "team-syncdocs":  "general",
+                                                "team-plan":  "planner",
+                                                "team-ui-audit":  "ui-beautifier"
                                             },
                        "skill_to_commands":  {
+                                                 "dev-team":  [
+                                                                  {
+                                                                      "file":  ".opencode/commands/team.md",
+                                                                      "command":  "team"
+                                                                  },
+                                                                  {
+                                                                      "file":  ".opencode/commands/team-syncdocs.md",
+                                                                      "command":  "team-syncdocs"
+                                                                  }
+                                                              ],
+                                                 "gitguard":  [
+                                                                  {
+                                                                      "file":  ".opencode/commands/team.md",
+                                                                      "command":  "team"
+                                                                  },
+                                                                  {
+                                                                      "file":  ".opencode/commands/team-gitguard.md",
+                                                                      "command":  "team-gitguard"
+                                                                  }
+                                                              ],
+                                                 "workspace-cleaner":  [
 
+                                                                       ],
+                                                 "gitpush":  [
+                                                                 {
+                                                                     "file":  ".opencode/commands/team-gitpush.md",
+                                                                     "command":  "team-gitpush"
+                                                                 },
+                                                                 {
+                                                                     "file":  ".opencode/commands/team.md",
+                                                                     "command":  "team"
+                                                                 },
+                                                                 {
+                                                                     "file":  ".opencode/commands/team-gitguard.md",
+                                                                     "command":  "team-gitguard"
+                                                                 }
+                                                             ]
                                              },
                        "orphans":  [
-                                       "Agent \u0027guardian\u0027 is not referenced by any command",
-                                       "Agent \u0027pusher\u0027 is not referenced by any command"
+                                       "Agent \u0027cleaner\u0027 is not referenced by any command"
                                    ],
                        "missing":  [
-
+                                       "Command \u0027backup\u0027 references agent \u0027backup-agent\u0027 which does not exist",
+                                       "Command \u0027team\u0027 references agent \u0027general\u0027 which does not exist",
+                                       "Command \u0027team-syncdocs\u0027 references agent \u0027general\u0027 which does not exist"
                                    ],
                        "agent_to_commands":  {
-
+                                                 "backup-agent":  [
+                                                                      "backup"
+                                                                  ],
+                                                 "codebase-explorer":  [
+                                                                           "team-explore"
+                                                                       ],
+                                                 "builder":  [
+                                                                 "team-build"
+                                                             ],
+                                                 "guardian":  [
+                                                                  "team-gitguard"
+                                                              ],
+                                                 "ui-beautifier":  [
+                                                                       "team-ui-audit"
+                                                                   ],
+                                                 "self-improver":  [
+                                                                       "team-selfimprove"
+                                                                   ],
+                                                 "planner":  [
+                                                                 "team-plan"
+                                                             ],
+                                                 "test-planner":  [
+                                                                      "team-testplan"
+                                                                  ],
+                                                 "analyst":  [
+                                                                 "team-analyze"
+                                                             ],
+                                                 "reviewer":  [
+                                                                  "team-review"
+                                                              ],
+                                                 "pusher":  [
+                                                                "team-gitpush"
+                                                            ],
+                                                 "tester":  [
+                                                                "team-test"
+                                                            ],
+                                                 "general":  [
+                                                                 "team",
+                                                                 "team-syncdocs"
+                                                             ]
                                              }
                    },
-    "scanned_at":  "2026-07-26T09:50:28.6091061+07:00",
+    "scanned_at":  "2026-07-26T09:54:26.5807297+07:00",
     "skills":  {
-
+                   "dev-team":  {
+                                    "schema_version":  "2.0",
+                                    "description":  "Hướng dẫn sử dụng Dev Agent Team gồm 9 agents (7 core + 2 support). Dùng khi cần phân tích, lập kế hoạch, đánh giá, code, kiểm thử một yêu cầu phát triển. Tích hợp cơ chế Self-Improvement với approval gate. Sử dụng câu lệnh team hoặc team-*.",
+                                    "name":  "dev-team",
+                                    "file":  "skills/dev-team/SKILL.md"
+                                },
+                   "gitguard":  {
+                                    "schema_version":  "1.0",
+                                    "description":  "Review source code trước khi push lên git — phát hiện secret, lỗi convention, lỗ hổng bảo mật, vi phạm quy tắc dự án. Tích hợp cơ chế blocking CRITICAL, cảnh báo MAJOR. Sử dụng câu lệnh /team-gitguard.",
+                                    "name":  "gitguard",
+                                    "file":  "skills/gitguard/SKILL.md"
+                                },
+                   "workspace-cleaner":  {
+                                             "schema_version":  "1.0",
+                                             "description":  "Dọn rác Workspace tự động — xóa build artifacts, backup cũ, temp files, cache không cần thiết. Tích hợp dry-run, backup trước khi xóa, confirmation gate. Sử dụng câu lệnh /team-cleanup.",
+                                             "name":  "workspace-cleaner",
+                                             "file":  "skills/workspace-cleaner/SKILL.md"
+                                         },
+                   "gitpush":  {
+                                   "schema_version":  "1.0",
+                                   "description":  "Pre-push safety validation + git push execution — kiểm tra secret, convention, build, test, sau đó push lên remote với xác nhận từ user. Sử dụng câu lệnh /team-gitpush.",
+                                   "name":  "gitpush",
+                                   "file":  "skills/gitpush/SKILL.md"
+                               }
                }
 }

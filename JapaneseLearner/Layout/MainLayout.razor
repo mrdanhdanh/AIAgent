@@ -9,11 +9,11 @@
 <div class="app-layout" data-theme="@(ThemeService.IsDarkMode ? "dark" : "light")">
     <header class="app-bar">
         <div class="app-bar-inner">
-            <FluentButton Appearance="@Appearance.Lightweight" class="nav-btn home-btn" Href="/">
+            <FluentButton Appearance="@Appearance.Lightweight" class="nav-btn home-btn" Href=".">
                 📖
             </FluentButton>
             <h1 class="app-title">
-                <a href="/" class="home-link">Japanese Learner</a>
+                <a href="." class="home-link">Japanese Learner</a>
             </h1>
             <div class="app-bar-spacer"></div>
             <FluentButton Appearance="@Appearance.Lightweight" class="nav-btn theme-btn" OnClick="ToggleTheme" Title="Chuyển đổi giao diện">
@@ -34,11 +34,11 @@
                 <FluentButton Appearance="@Appearance.Lightweight" OnClick="CloseDrawer" Class="drawer-close">✕</FluentButton>
             </div>
             <FluentNavMenu>
-                <FluentNavLink Href="/" Match="NavLinkMatch.All" OnClick="CloseDrawer">📖 Hiragana / Katakana</FluentNavLink>
-                <FluentNavLink Href="/words" OnClick="CloseDrawer">📝 Word Study</FluentNavLink>
-                <FluentNavLink Href="/words/quiz" OnClick="CloseDrawer">🎯 Word Quiz</FluentNavLink>
-                <FluentNavLink Href="/kanji" OnClick="CloseDrawer">🈚 Kanji Study</FluentNavLink>
-                <FluentNavLink Href="/admin" OnClick="CloseDrawer">⚙️ Admin</FluentNavLink>
+                <FluentNavLink Href="." Match="NavLinkMatch.All" OnClick="CloseDrawer">📖 Hiragana / Katakana</FluentNavLink>
+                <FluentNavLink Href="words" OnClick="CloseDrawer">📝 Word Study</FluentNavLink>
+                <FluentNavLink Href="words/quiz" OnClick="CloseDrawer">🎯 Word Quiz</FluentNavLink>
+                <FluentNavLink Href="kanji" OnClick="CloseDrawer">🈚 Kanji Study</FluentNavLink>
+                <FluentNavLink Href="admin" OnClick="CloseDrawer">⚙️ Admin</FluentNavLink>
             </FluentNavMenu>
         </aside>
     }

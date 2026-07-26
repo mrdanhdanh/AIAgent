@@ -1208,12 +1208,15 @@ foreach ($entry in $manifest.files) {
 | 2-3 | `/team-plan` | planner (mở rộng) | `team-plan.md` |
 | 4 | `/team-review` | reviewer | `team-review.md` |
 | 4.5 | `/team-gitguard` | guardian | `team-gitguard.md` |
+| 5 | `/team-backup` | backup-agent | `backup-agent` (opencode.json) |
 | 6 | `/team-build` | builder | `team-build.md` |
-| 7 | `/team-ui-audit` | ui-beautifier | `team-ui-audit.md` |
+| 7 | (tự động) | orchestrator | — (static analysis script) |
+| 8 | `/team-ui-audit` | ui-beautifier | `team-ui-audit.md` |
 | 9 | `/team-testplan` | test-planner | `team-testplan.md` |
 | 10 | `/team-test` | tester | `team-test.md` |
-| 11 | (gọi từ team.md) | self-improver | `.opencode/agents/self-improver.md` |
-| 12 | `/team-gitpush` | pusher | `team-gitpush.md` |
+| 11 | (tự động) | orchestrator | — (skill validation) |
+| 12 | (tự động) | orchestrator | — (complete + report) |
+| — | `/team-gitpush` | pusher | `team-gitpush.md` (post-workflow) |
 
 Không có command `/team-design` riêng — Design là phần mở rộng của Plan.
 
@@ -1338,7 +1341,7 @@ Orchestrator:
 - Workflow cũ thiếu field → dùng giá trị mặc định
 - Artifact cũ không có schema → permissive mode (log warning, không block)
 
-### Bước 4: Smoke test
+### Bước 4: File validation
 - Load SKILL.md bằng parser YAML frontmatter
 - Verify workflow mẫu không crash
 
@@ -1348,7 +1351,7 @@ Orchestrator:
 
 ```yaml
 complexity_estimate:
-  total_lines: 1300
+  total_lines: 1399
   files_affected:
     - ".opencode/skills/dev-team/SKILL.md"
   agents_needing_update: 0        # .opencode/agents/ không cần sửa

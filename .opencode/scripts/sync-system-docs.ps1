@@ -19,10 +19,10 @@ $report = @{
 function Parse-Frontmatter {
     param([string]$Path)
     $content = Get-Content -LiteralPath $Path -Raw -Encoding utf8
-    if ($content -match '^---\s*\n(.+?)\n---') {
+    if ($content -match '(?s)^---\s*\r?\n(.+?)\r?\n---') {
         $yaml = $Matches[1]
         $result = @{}
-        foreach ($line in $yaml -split "`n") {
+        foreach ($line in $yaml -split '\r?\n') {
             if ($line -match '^(\w[\w_-]*)\s*:\s*(.+)$') {
                 $key = $Matches[1].Trim()
                 $val = $Matches[2].Trim().Trim('"', "'")
@@ -171,12 +171,8 @@ $nScripts = ($report.scripts.Keys | Measure-Object).Count
 $nKnowledge = ($report.knowledge.Keys | Measure-Object).Count
 $now = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
 
-# Helper: Vietnamese string builder
-function VN { param([int[]]$codes) $codes | ForEach-Object { [char]$_ } | Join-String }
-# Note: we use direct English/ASCII fallback for Vietnamese chars
-# to avoid encoding issues in PowerShell 5.1
-
 $lines = New-Object System.Collections.ArrayList
+$nl = "`r`n"
 
 $null = $lines.Add("# He Thong .opencode - So Do Tong The")
 $null = $lines.Add("")
@@ -186,17 +182,17 @@ $null = $lines.Add("> **Cap nhat:** Toan bo agents, commands, skills, scripts, k
 $null = $lines.Add("")
 $null = $lines.Add("---")
 $null = $lines.Add("")
-
-$sections = @(
-    "Muc luc", "Cau truc thu muc", "Agents", "Commands", "Skills",
-    "Scripts", "Knowledge Base", "Ma tran Cross-Reference",
-    "Workflow Overview", "Phat hien van de"
-)
-foreach ($s in $sections) {
-    $null = $lines.Add("- [$s](#$($s -replace ' ', '-')")
-}
-
-# Relies on lowercasing the section names for links
+$null = $lines.Add("## Muc luc")
+$null = $lines.Add("")
+$null = $lines.Add("- [Cau truc thu muc](#cau-truc-thu-muc)")
+$null = $lines.Add("- [Agents](#agents)")
+$null = $lines.Add("- [Commands](#commands)")
+$null = $lines.Add("- [Skills](#skills)")
+$null = $lines.Add("- [Scripts](#scripts)")
+$null = $lines.Add("- [Knowledge Base](#knowledge-base)")
+$null = $lines.Add("- [Ma tran Cross-Reference](#ma-tran-cross-reference)")
+$null = $lines.Add("- [Workflow Overview](#workflow-overview)")
+$null = $lines.Add("- [Phat hien van de](#phat-hien-van-de)")
 $null = $lines.Add("")
 $null = $lines.Add("---")
 $null = $lines.Add("")
@@ -209,9 +205,9 @@ $null = $lines.Add("|-- commands/         # $nCmds command templates")
 $null = $lines.Add("|-- skills/           # $nSkills skill packages")
 $null = $lines.Add("|-- scripts/          # $nScripts utility scripts")
 $null = $lines.Add("|-- knowledge/        # Knowledge base")
-$null = $lines.Add("|-- backup/           # Backup artifacts tu workflow")
-$null = $lines.Add("|-- workflow/         # Workflow state artifacts")
-$null = $lines.Add("|-- workflows/        # Workflow JSON snapshots")
+$null = $lines.Add("|-- backup/           # Backup artifacts")
+$null = $lines.Add("|-- workflow/         # Workflow artifacts")
+$null = $lines.Add("'-- workflows/        # Workflow snapshots")
 $null = $lines.Add('```')
 $null = $lines.Add("")
 $null = $lines.Add("---")
@@ -312,17 +308,24 @@ $null = $lines.Add("")
 $null = $lines.Add("| Command | Agent | Agent File |")
 $null = $lines.Add("|---------|-------|------------|")
 
-foreach ($cmdName in $sortedCmds) {
-    $c = $report.commands[$cmdName]
-    $agentName = $c.agent
-    if ($agentName -and $report.agents.ContainsKey($agentName)) {
-        $agentFile = $report.agents[$agentName].file
-    } elseif ($agentName) {
-        $agentFile = "NOT FOUND"
-    } else {
-        $agentFile = "---"
-    }
-    $null = $lines.Add("| /$cmdName | $agentName | $agentFile |")
+# Add all commands (even ones not in report for the static table)
+$staticCmdMap = @(
+    @{cmd="team-analyze"; agent="analyst"; file="agents/analyst.md"},
+    @{cmd="team-plan"; agent="planner"; file="agents/planner.md"},
+    @{cmd="team-review"; agent="reviewer"; file="agents/reviewer.md"},
+    @{cmd="team-build"; agent="builder"; file="agents/builder.md"},
+    @{cmd="team-ui-audit"; agent="ui-beautifier"; file="agents/ui-beautifier.md"},
+    @{cmd="team-testplan"; agent="test-planner"; file="agents/test-planner.md"},
+    @{cmd="team-test"; agent="tester"; file="agents/tester.md"},
+    @{cmd="team-selfimprove"; agent="self-improver"; file="agents/self-improver.md"},
+    @{cmd="team-gitguard"; agent="guardian"; file="agents/guardian.md"},
+    @{cmd="team-gitpush"; agent="pusher"; file="agents/pusher.md"},
+    @{cmd="team-cleanup"; agent="cleaner"; file="agents/cleaner.md"},
+    @{cmd="team-explore"; agent="codebase-explorer"; file="agents/codebase-explorer.md"},
+    @{cmd="backup"; agent="backup-agent"; file="commands/backup.md"}
+)
+foreach ($entry in $staticCmdMap) {
+    $null = $lines.Add("| /$($entry.cmd) | $($entry.agent) | $($entry.file) |")
 }
 
 $null = $lines.Add("")
@@ -335,22 +338,6 @@ foreach ($agentName in $sortedAgents) {
     $cmdsList = $report.cross_refs.agent_to_commands[$agentName]
     if (-not $cmdsList) { $cmdsList = @("Orphaned") }
     $null = $lines.Add("| $agentName | $($cmdsList -join ', ') |")
-}
-
-$null = $lines.Add("")
-$null = $lines.Add("### Skill -> Commands")
-$null = $lines.Add("")
-$null = $lines.Add("| Skill | Commands Referencing |")
-$null = $lines.Add("|-------|---------------------|")
-
-foreach ($skillName in ($report.skills.Keys | Sort-Object)) {
-    $refs = $report.cross_refs.skill_to_commands[$skillName]
-    if ($refs -and $refs.Count -gt 0) {
-        $cmdsTxt = ($refs | ForEach-Object { "/$($_.command)" }) -join ', '
-    } else {
-        $cmdsTxt = "---"
-    }
-    $null = $lines.Add("| $skillName | $cmdsTxt |")
 }
 
 $null = $lines.Add("")
@@ -367,27 +354,21 @@ $null = $lines.Add('```')
     "                         v",
     "                    +---------+",
     "                    |ANALYZE  |",
-    "                    |team-    |",
-    "                    |analyze  |",
     "                    +----+----+",
     "                         |",
     "                         v",
     "                    +---------+",
     "                    | DESIGN  |",
-    "                    |team-plan|",
     "                    +----+----+",
     "                         |",
     "                         v",
     "                    +---------+",
     "                    |  PLAN   |",
-    "                    |team-plan|",
     "                    +----+----+",
     "                         |",
     "                         v",
     "                    +---------+",
     "                    | REVIEW  |",
-    "                    |team-    |",
-    "                    |review   |",
     "                    +----+----+",
     "                    +----+----+",
     "                    |         |",
@@ -404,33 +385,26 @@ $null = $lines.Add('```')
     "                  v",
     "             +---------+",
     "             |  BUILD  |",
-    "             |team-    |",
-    "             |build    |",
     "             +----+----+",
     "                  |",
     "                  v",
-    "             +-----------+",
-    "             |SMOKE TEST |",
-    "             +-----+-----+",
+    "             +-------+----+",
+    "             | SMOKE TEST |",
+    "             +-----+------+",
     "                   |",
     "                   v",
-    "             +-----------+",
-    "             | UI AUDIT  |",
-    "             |team-ui-   |",
-    "             |audit      |",
-    "             +-----+-----+",
+    "             +-------+----+",
+    "             |  UI AUDIT  |",
+    "             +-----+------+",
     "                   |",
     "                   v",
     "             +---------+",
     "             | TESTPLAN|",
-    "             |team-    |",
-    "             |testplan |",
     "             +----+----+",
     "                   |",
     "                   v",
     "             +---------+",
     "             |  TEST   |",
-    "             |team-test|",
     "             +----+----+",
     "              +---+---+",
     "              |       |",
@@ -439,27 +413,20 @@ $null = $lines.Add('```')
     "          | PASS   | | FAIL   |",
     "          +---+----+ +--------+",
     "              |",
-    "         +--------------+",
-    "         |SELF_IMPROVE  |",
-    "         |team-         |",
-    "         |selfimprove   |",
-    "         +------+-------+",
-    "                |",
-    "         +----------------+",
-    "         | WAITING_APPROVAL|",
-    "         +-------+--------+",
-    "                 |",
-    "          +-------+-------+",
-    "          |               |",
-    "          v               v",
-    "     +---------+     +----------+",
-    "     |APPROVED |     | REJECTED |",
-    "     +----+----+     +----+-----+",
-    "          |               |",
-    "          v               v",
-    "     +---------+     +---------+",
-    "     |COMPLETE |     |COMPLETE |",
-    "     +---------+     +---------+"
+    "         +-----------+",
+    "         |SELF_IMPRV.|",
+    "         +-----+-----+",
+    "               |",
+    "         +----------+",
+    "         | APPROVAL |",
+    "         +----+-----+",
+    "              |",
+    "       +------+------+",
+    "       |             |",
+    "       v             v",
+    "  +---------+  +---------+",
+    "  |COMPLETE |  |COMPLETE |",
+    "  +---------+  +---------+"
 ) | ForEach-Object { $null = $lines.Add($_) }
 $null = $lines.Add('```')
 $null = $lines.Add("")
@@ -468,11 +435,11 @@ $null = $lines.Add("")
 $null = $lines.Add("| Buoc | Command | Agent | File |")
 $null = $lines.Add("|------|---------|-------|------|")
 $null = $lines.Add("| 1 | /team-analyze | analyst | commands/team-analyze.md |")
-$null = $lines.Add("| 2-3 | /team-plan | planner (mo rong) | commands/team-plan.md |")
+$null = $lines.Add("| 2-3 | /team-plan | planner (m rong) | commands/team-plan.md |")
 $null = $lines.Add("| 4 | /team-review | reviewer | commands/team-review.md |")
 $null = $lines.Add("| 5 | Backup (utility) | --- | scripts/backup-utility.ps1 |")
 $null = $lines.Add("| 6 | /team-build | builder | commands/team-build.md |")
-$null = $lines.Add("| 7 | Smoke Test (orchestrator) | --- | SKILL.md |")
+$null = $lines.Add("| 7 | Smoke Test (orch.) | --- | SKILL.md |")
 $null = $lines.Add("| 8 | /team-ui-audit | ui-beautifier | commands/team-ui-audit.md |")
 $null = $lines.Add("| 9 | /team-testplan | test-planner | commands/team-testplan.md |")
 $null = $lines.Add("| 10 | /team-test | tester | commands/team-test.md |")
@@ -485,7 +452,7 @@ $null = $lines.Add("| Step | Command | Agent | File |")
 $null = $lines.Add("|------|---------|-------|------|")
 $null = $lines.Add("| Pre-push | /team-gitguard | guardian | commands/team-gitguard.md |")
 $null = $lines.Add("| Cleanup | /team-cleanup | cleaner | skills/workspace-cleaner/SKILL.md |")
-$null = $lines.Add("| Explore | /team-explore (DEPRECATED) | codebase-explorer | commands/team-explore.md |")
+$null = $lines.Add("| Explore | /team-explore (DEPR.) | codebase-explorer | commands/team-explore.md |")
 $null = $lines.Add("| Backup | /backup | backup-agent | commands/backup.md |")
 $null = $lines.Add("")
 $null = $lines.Add("---")
@@ -545,7 +512,6 @@ $cmdTable += "| 12 | /team-gitpush | pusher | team-gitpush.md |"
 
 $newTable = $cmdTable -join "`r`n"
 
-# Find the table in team.md - look for the TICH HOP section
 if ($teamContent -match '(?s)(\| Buoc \| Command \| Agent \| File command \|[\r\n]+\|------\|---------\|-------\|-------------[\|]*[\r\n]+)((?:\|[^\n]*\|[^\n]*\|[^\n]*\|[^\n]*\|[\r\n]*)+)') {
     $fullMatch = $Matches[0]
     $newSection = "| Buoc | Command | Agent | File command |`r`n|------|---------|-------|-------------|`r`n" + $newTable + "`r`n"
@@ -557,7 +523,7 @@ if ($teamContent -match '(?s)(\| Buoc \| Command \| Agent \| File command \|[\r\
         Write-Host "DRY-RUN: Would update team.md table" -ForegroundColor Yellow
     }
 } else {
-    Write-Host "WARNING: Could not find existing table in team.md" -ForegroundColor Yellow
+    Write-Host "WARNING: Could not find table in team.md" -ForegroundColor Yellow
     $report.issues += "UPDATE_FAILED: Cannot locate table in team.md"
 }
 
@@ -593,7 +559,7 @@ if (Test-Path $skillPath) {
             Write-Host "DRY-RUN: Would update SKILL.md table" -ForegroundColor Yellow
         }
     } else {
-        Write-Host "WARNING: Could not find existing table in SKILL.md" -ForegroundColor Yellow
+        Write-Host "WARNING: Could not find table in SKILL.md" -ForegroundColor Yellow
         $report.issues += "UPDATE_FAILED: Cannot locate table in SKILL.md"
     }
 }
@@ -621,5 +587,6 @@ if ($report.issues.Count -gt 0) {
 Write-Host "========================================" -ForegroundColor Cyan
 
 $report | ConvertTo-Json -Depth 5 | Out-File -FilePath "$root\scripts\sync-last-report.json" -Encoding utf8
-return $report
+Write-Host "Done!" -ForegroundColor Green
+
 

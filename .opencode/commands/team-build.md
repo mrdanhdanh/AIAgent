@@ -13,7 +13,7 @@ agent: builder
 
 **Đầu ra:** YAML contract với `status` (PASS / FAIL / PARTIAL), `steps` chi tiết từng file, `failure_type` (MINOR / CRITICAL).
 
-**Yêu cầu:** Backup Utility đã chạy trước đó. Builder sẽ gọi backup nếu cần.
+**Yêu cầu:** Backup-agent đã chạy trước đó (orchestrator gọi backup-agent ở Bước 5). Builder KHÔNG tự gọi backup.
 
 **Vị trí trong workflow:** Bước 6 — sau Review và Backup.
 
@@ -102,7 +102,7 @@ details: "Chi tiết build (markdown)"
 | Lỗi logic | Dừng, báo cáo chi tiết |
 
 ## QUY TẮC
-- Backup trước khi sửa bất kỳ file cũ nào (dùng Backup Utility, KHÔNG tự backup thủ công)
+- Orchestrator đã gọi backup-agent backup trước Bước 6 (Build). Builder KHÔNG tự backup thủ công.
 - Tuân thủ chính xác kế hoạch đã duyệt
 - Không thêm tính năng ngoài kế hoạch
 - Không commit secret/key/token
