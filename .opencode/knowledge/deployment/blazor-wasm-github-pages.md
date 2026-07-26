@@ -11,22 +11,27 @@ Blazor WASM app chạy localhost nhưng không hoạt động trên GitHub Pages
 
 ### Solution
 
-**1. Dynamic base href** — phải chạy trong `<head>` TRƯỚC các `<link>` CSS:
+**1. Dynamic base href** — KHÔNG dùng `<base href="/" />` trong static HTML
 ```javascript
 <script>
   (function() {
     var base = document.querySelector('base');
-    if (base) {
-      var segments = window.location.pathname.split('/').filter(Boolean);
-      if (segments.length >= 2) {
-        base.href = '/' + segments.slice(0, 2).join('/') + '/';
-      }
+    if (!base) {
+      base = document.createElement('base');
+      document.head.appendChild(base);
+    }
+    var segments = window.location.pathname.split('/').filter(Boolean);
+    if (segments.length >= 2) {
+      base.href = '/' + segments.slice(0, 2).join('/') + '/';
+    } else {
+      base.href = '/';
     }
   })();
 </script>
 ```
-Không dùng cách đọc `blazor.webassembly.js` src (chạy muộn, CSS đã load sai).
-Dùng `window.location.pathname` — chạy ngay, đúng với mọi URL.
+**Critical:** Không đặt `<base href="/" />` trong static HTML — browser speculative parser
+đọc nó và preload resource với base SAI trước khi JavaScript kịp chạy.
+Khi không có `<base>`, speculative parser dùng document URL làm base (đúng cho cả GitHub Pages lẫn localhost).
 
 **2. 404.html SPA fallback (root-level, multi-project):**
 ```html

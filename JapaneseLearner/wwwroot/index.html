@@ -5,15 +5,18 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Japanese Learner</title>
-    <base href="/" />
     <script>
         (function() {
             var base = document.querySelector('base');
-            if (base) {
-                var segments = window.location.pathname.split('/').filter(Boolean);
-                if (segments.length >= 2) {
-                    base.href = '/' + segments.slice(0, 2).join('/') + '/';
-                }
+            if (!base) {
+                base = document.createElement('base');
+                document.head.appendChild(base);
+            }
+            var segments = window.location.pathname.split('/').filter(Boolean);
+            if (segments.length >= 2) {
+                base.href = '/' + segments.slice(0, 2).join('/') + '/';
+            } else {
+                base.href = '/';
             }
             var redirect = new URL(window.location.href).searchParams.get('redirect');
             var basePath = window.location.pathname.replace(/\/$/, '');
