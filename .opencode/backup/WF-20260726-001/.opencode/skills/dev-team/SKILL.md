@@ -1,19 +1,19 @@
----
+﻿---
 name: dev-team
-description: Hướng dẫn sử dụng Dev Agent Team gồm 7 agent. Dùng khi cần phân tích, lập kế hoạch, đánh giá, code, kiểm thử một yêu cầu phát triển. Tích hợp cơ chế Self-Improvement với approval gate. Sử dụng câu lệnh team hoặc team-*.
+description: Hướng dẫn sử dụng Dev Agent Team gồm 9 agents (7 core + 2 support). Dùng khi cần phân tích, lập kế hoạch, đánh giá, code, kiểm thử một yêu cầu phát triển. Tích hợp cơ chế Self-Improvement với approval gate. Sử dụng câu lệnh team hoặc team-*.
 schema_version: "2.0"
 ---
 
 # Dev Agent Team — Orchestrator Guide
 
-Team gồm **General Agent (Orchestrator)** điều phối **7 agent chuyên biệt** theo quy trình phát triển phần mềm hoàn chỉnh:
-**Analyze → Design → Plan → Review → Backup → Build → Smoke Test → UI Audit → Test Plan → Test → Self-Improve → Complete**
+Team gồm **General Agent (Orchestrator)** điều phối **9 agents (7 core specialists: analyst, planner, reviewer, builder, ui-beautifier, test-planner, tester + 2 support: self-improver, backup-agent)** theo quy trình phát triển phần mềm hoàn chỉnh:
+**Analyze → Design → Plan → Review → Backup → Build → Static Analysis → UI Audit → Test Plan → Test → Skill Validation → Complete**
 
 Trong đó:
 - **General Agent (Orchestrator)**: Workflow orchestration + State management (không tự làm backup/restore)
-- **7 Specialists**: analyst, planner (mở rộng), reviewer, builder, ui-beautifier, test-planner, tester
+- **7 Core Specialists**: analyst, planner (mở rộng), reviewer, builder, ui-beautifier, test-planner, tester
 - **Self-Improver** (optional): Knowledge improvement (qua approval gate)
-- **Backup Utility**: Backup/Restore/Diff (script riêng, orchestrator chỉ gọi lệnh)
+- **backup-agent**: Backup/Restore/Diff (script riêng, orchestrator chỉ gọi lệnh) — support agent
 
 ---
 
@@ -31,13 +31,15 @@ Trong đó:
   - [Bước 4: Review](#bước-4-review)
   - [Bước 5: Backup](#bước-5-backup)
   - [Bước 6: Build](#bước-6-build)
-  - [Bước 7: Smoke Test](#bước-7-smoke-test)
+  - [Bước 7: Static Analysis](#bước-7-static-analysis)
   - [Bước 8: UI Audit](#bước-8-ui-audit)
   - [Bước 9: Test Plan](#bước-9-test-plan)
   - [Bước 10: Test](#bước-10-test)
-  - [Bước 11: Self-Improvement](#bước-11-self-improvement)
+  - [Bước 11: Skill Validation](#bước-11-skill-validation)
   - [Bước 12: Complete](#bước-12-complete)
 - [BÁO CÁO KẾT THÚC](#báo-cáo-kết-thúc)
+- [VALIDATION CHECKLIST PER PHASE](#validation-checklist-per-phase)
+- [CHECKPOINT MECHANISM](#checkpoint-mechanism)
 - [SƠ ĐỒ QUYẾT ĐỊNH (DECISION TREE)](#sơ-đồ-quyết-định-decision-tree)
 - [ROLLBACK MECHANISM](#rollback-mechanism)
 - [TÍCH HỢP VỚI COMMANDS RIÊNG LẺ](#tích-hợp-với-commands-riêng-lẻ)
@@ -58,14 +60,14 @@ Bạn là **General Agent** đóng vai trò orchestrator. Trách nhiệm:
 |-----------|----------|
 | **Orchestrator** | Triệu hồi đúng agent, truyền context, theo dõi trạng thái, quyết định |
 | **Orchestrator** | Quản lý vòng lặp (review loop, test-fix loop), kiểm tra same_error_count |
-| **Backup Utility** | Copy file, tạo hash manifest, restore (orchestrator chỉ gọi lệnh) |
+| **backup-agent** | Backup/Restore/Diff (orchestrator chỉ gọi lệnh) |
 | **Builder** | File modification, syntax validation |
 | **Tester** | Test execution, coverage tracking |
 | **Reviewer** | Risk assessment (Requirement + Design + Plan) |
 | **UI Beautifier** | UI audit, CSS refactor, dark mode, design tokens, accessibility check |
 | **Self-Improver** | Knowledge suggestion (không ghi trực tiếp) |
 
-Orchestrator không tự làm backup/restore/diff — gọi Backup Utility qua lệnh.
+Orchestrator không tự làm backup/restore/diff — gọi backup-agent qua lệnh.
 
 ---
 
@@ -94,12 +96,13 @@ workflow/
     04_review.md
     05_backup_manifest.json
     06_build.md
-    07_smoke_test.md
-    08_test_plan.md
-    09_test.md
-    10_self_improve.md
-    11_report.md
-    workflow.json                 # State machine snapshot
+    07_static_analysis.md
+    08_ui_audit.md
+    09_test_plan.md
+    10_test.md
+    11_skill_validation.md
+    12_report.md
+    workflow.json
 ```
 
 Mỗi agent chỉ đọc artifact của bước trước (không đọc toàn bộ lịch sử).
@@ -160,13 +163,13 @@ backward_compatibility:
                   │
                   ▼
              ┌─────────┐
-             │  BUILD  │ ◄──── nếu SMOKE/TEST FAIL
+             │  BUILD  │ ◄──── nếu STATIC_ANALYSIS/TEST FAIL
              └────┬────┘
                   ▼
-              ┌───────────┐
-              │SMOKE TEST │ ←── behavioral validation
-              └─────┬─────┘
-                    ▼
+           ┌───────────────┐
+           │STATIC ANALYSIS│ ←── YAML/JSON/lint validation
+           └───────┬───────┘
+                   ▼
               ┌───────────┐
               │ UI AUDIT  │ ←── ui-beautifier: CSS, dark mode, a11y
               └─────┬─────┘
@@ -185,11 +188,11 @@ backward_compatibility:
           │ PASS   │ │ FAIL   │ ───► quay lại BUILD
           └───┬────┘ └────────┘
               ▼
-         ┌──────────────┐
-         │SELF_IMPROVE  │ ←── approval gate
-         └──────┬───────┘
-                │
-                ▼
+         ┌──────────────────┐
+         │SKILL VALIDATION  │ ←── approval gate
+         └────────┬─────────┘
+                  │
+                  ▼
          ┌────────────────┐
          │ WAITING_APPROVAL│ ←── new state
          └───────┬────────┘
@@ -238,14 +241,14 @@ workflow:
   branch: "..."
   schema_version: "2.0"
   step: 1-12                        # Bước hiện tại (1-12)
-  step_name: analyze|design|plan|review|backup|build|smoke_test|ui_audit|testplan|test|self_improve|complete
+  step_name: analyze|design|plan|review|backup|build|static_analysis|ui_audit|testplan|test|skill_validation|complete
   status: running|blocked|completed|failed|waiting_user|cancelled|reviewing|building|testing|self_improving|waiting_approval
   retry:
     review_count: 0-3                # Số lần review loop
     test_count: 0-3                  # Số lần test-fix loop
     max_review: 3
     max_test: 3
-    self_improve_count: 0-1
+    skill_validation_count: 0-1
   user_intervention: false
   backup_done: false
   error_history:
@@ -275,12 +278,13 @@ workflow:
     plan: null
     review_result: null
     build_result: null
-    smoke_test_result: null          # Mới: kết quả smoke test
+    static_analysis_result: null     # Mới: kết quả static analysis
     ui_audit_result: null            # Kết quả UI audit từ ui-beautifier
     test_plan: null
     test_result: null
-    self_improve_result: null
+    skill_validation_result: null
     final_report: null
+    checkpoint_snapshots: []
 ```
 
 ### Cách tính error_hash
@@ -310,6 +314,7 @@ Mỗi agent output theo format YAML cố định. Orchestrator parse các field 
 | Field | Type | Required | Mô tả |
 |-------|------|----------|-------|
 | status | string | ✅ | `READY` hoặc `NEED_MORE_INFO` |
+| effort | string | ✅ | `Small`, `Medium`, hoặc `Large` — dựa trên scope phân tích |
 | summary | string | ✅ | Tóm tắt phân tích (3-5 dòng) |
 | details | string | ✅ | Phân tích chi tiết |
 | requirements | string[] | ✅ | Danh sách yêu cầu con |
@@ -320,6 +325,7 @@ Mỗi agent output theo format YAML cố định. Orchestrator parse các field 
 **Output mẫu:**
 ```yaml
 status: READY
+effort: Medium
 summary: "Phân tích yêu cầu, xác định 5 file cần sửa"
 details: "..."
 requirements:
@@ -338,6 +344,7 @@ tasks: []
 | Field | Type | Required | Mô tả |
 |-------|------|----------|-------|
 | status | string | ✅ | `READY` hoặc `NEEDS_MORE_INFO` |
+| effort | string | ✅ | `Small`, `Medium`, hoặc `Large` — dựa trên complexity thiết kế |
 | design | object | ✅ | Thiết kế: architecture, components, data_flow, security, edge_cases |
 | steps | object[] | ✅ | Các bước thực thi: `[{order, description, file, logic, check, chunk}]` |
 | rollback_strategy | object | ✅ | Chiến lược rollback: `{enabled, conditions[]}` |
@@ -346,6 +353,7 @@ tasks: []
 **Output mẫu:**
 ```yaml
 status: READY
+effort: Medium
 design:
   architecture: "Thêm service layer mới"
   components:
@@ -639,28 +647,14 @@ Output: Contract YAML theo schema Reviewer.
 ---
 
 ### Bước 5: Backup
-**Hành động:** Orchestrator gọi Backup Utility (không tự làm)
+**Hành động:** Orchestrator gọi backup-agent (qua backup-agent command)
 
 **Điều kiện:** Chỉ chạy nếu `current_data.plan` có chứa thao tác sửa file cũ
 
-**Cách thực hiện (Backup Utility):**
+**Cách thực hiện (backup-agent):**
 1. Orchestrator phân tích plan → danh sách file cần sửa
-2. Gọi Backup Utility script:
-   ```powershell
-   # backup-utility.ps1
-   param($files, $workflow_id)
-   $ts = Get-Date -Format "yyyyMMdd_HHmmss"
-   $backup_root = ".opencode\backup\$workflow_id"
-   foreach ($file in $files) {
-       $dest = Join-Path $backup_root $file
-       $parent = Split-Path $dest -Parent
-       New-Item -ItemType Directory -Path $parent -Force
-       Copy-Item -LiteralPath $file -Destination $dest -Force
-       $hash = (Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash.Substring(0,12)
-       Write-Output "$file -> $dest ($hash)"
-   }
-   ```
-3. Lưu backup manifest: `05_backup_manifest.json`
+2. Gọi backup-agent command: `backup-agent --files <file_list> --workflow-id <id>`
+3. backup-agent tự tạo backup manifest: `05_backup_manifest.json`
 4. Set `backup_done = true`
 
 **Nếu chỉ tạo file mới:** Log "📝 Kế hoạch chỉ tạo file mới, không cần backup"
@@ -681,7 +675,7 @@ Yêu cầu:
 1. Chia steps thành tối đa 4 chunks (theo chunk field trong plan)
 2. Sau mỗi chunk: kiểm tra syntax/lint
 3. Nếu chunk FAIL → dừng chunk đó, báo cáo ngay
-4. Backup file trước khi sửa (Backup Utility đã làm)
+4. Backup file trước khi sửa (backup-agent đã làm)
 5. Output: Contract YAML theo schema Builder
 ```
 
@@ -696,10 +690,10 @@ Yêu cầu:
 
 ---
 
-### Bước 7: Smoke Test
+### Bước 7: Static Analysis
 **Hành động:** Orchestrator chạy validation script (không gọi agent)
 
-**Mục đích:** Behavioral validation — kiểm tra file mới parse được và state machine hoạt động
+**Mục đích:** YAML/JSON/lint validation — kiểm tra cấu trúc file và state machine hoạt động
 
 **Các bước:**
 1. Parse YAML frontmatter của SKILL.md → kiểm tra `name`, `description`, `schema_version`
@@ -708,7 +702,7 @@ Yêu cầu:
 4. Parse YAML samples trong Output Contract section
 5. Simulate 1 workflow cycle: START → ANALYZE → DESIGN → PLAN → REVIEW → ... → COMPLETE
 
-**Output:** Ghi artifact `07_smoke_test.md`
+**Output:** Ghi artifact `07_static_analysis.md`
 
 **Sau output:**
 - **PASS** → tiếp tục
@@ -814,7 +808,7 @@ Output: Contract YAML theo schema Tester.
 **Sau output:** Lưu `current_data.test_result = output`, ghi artifact `10_test.md`
 
 **Xử lý kết quả:**
-- **APPROVED** (all PASS + coverage >= thresholds) → Chuyển sang BÁO CÁO KẾT THÚC
+- **APPROVED** (all PASS + coverage >= thresholds) → Chuyển sang Bước 11 (Skill Validation)
 - **NEEDS_FIX** (có FAIL hoặc coverage < threshold) →
   - `retry.test_count++`
   - Nếu `retry.test_count < retry.max_test` → Quay lại Bước 6 (Build)
@@ -860,7 +854,7 @@ Sau khi workflow hoàn tất (PASS), tổng hợp báo cáo:
 | Số lần review loop | {retry.review_count} |
 | Số lần test-fix loop | {retry.test_count} |
 | Backup | {"Đã thực hiện" / "Không cần"} |
-| Tổng số bước | 11 |
+| Tổng số bước | 12 |
 
 ### Phân tích (tóm tắt)
 {3-5 dòng từ current_data.analysis}
@@ -879,12 +873,12 @@ Sau khi workflow hoàn tất (PASS), tổng hợp báo cáo:
 - **Tỷ lệ PASS:** {x}%
 - **Coverage:** unit={u}% integration={i}% overall={o}%
 
-### Self-Improvement
+### Skill Validation
 - Số suggestions: {n}
 - Approval status: APPROVED / REJECTED / PENDING
 ```
 
-### Bước 11: Self-Improvement
+### Bước 11: Skill Validation
 **Agent:** `self-improver`
 
 **Điều kiện:** Chỉ chạy nếu workflow kết thúc với PASS
@@ -907,7 +901,7 @@ LƯU Ý: Chỉ tạo suggestions, KHÔNG ghi trực tiếp vào knowledge base.
 Output: Contract YAML theo schema Self-Improver.
 ```
 
-**Sau output:** Lưu `current_data.self_improve_result = output`, ghi artifact `10_self_improve.md`
+**Sau output:** Lưu `current_data.skill_validation_result = output`, ghi artifact `11_skill_validation.md`
 
 #### Approval Gate
 
@@ -931,7 +925,7 @@ approval_gate:
 Chỉ suggestion với `impact == LOW && requires_approval == false` được auto-approve.
 Tất cả suggestion khác đều cần user approval.
 
-Set `step = 11`, `step_name = complete`
+Set `step = 12`, `step_name = complete`
 
 ---
 
@@ -970,6 +964,133 @@ Bước {step}: {step_name}
 
 ---
 
+## VALIDATION CHECKLIST PER PHASE
+
+Mỗi phase có checklist validate riêng. Orchestrator phải kiểm tra trước khi chuyển sang bước kế tiếp.
+
+```yaml
+validation_checklist:
+  phase_01_analyze:
+    - "Output có đúng schema Analyst không?"
+    - "summary có ≥ 3 dòng không?"
+    - "requirements có ít nhất 1 item không?"
+    - "risks có description, severity, mitigation không?"
+  phase_02_design:
+    - "Output có đúng schema Planner không?"
+    - "design.architecture có mô tả không?"
+    - "design.components có list không?"
+    - "design.data_flow có mô tả không?"
+    - "design.security_concerns có xử lý không?"
+    - "design.edge_cases có list không?"
+  phase_03_plan:
+    - "steps có ít nhất 1 bước không?"
+    - "Mỗi step có order, description, file, logic, check, chunk không?"
+    - "rollback_strategy.enabled == true"
+    - "validate có ít nhất 1 mục không?"
+  phase_04_review:
+    - "decision phải là APPROVED/CHANGES_REQUESTED/REJECTED"
+    - "scores có đủ 6 field không?"
+    - "issues có id, severity, category không?"
+  phase_05_backup:
+    - "backup_done == true nếu plan có sửa file cũ"
+    - "05_backup_manifest.json tồn tại"
+  phase_06_build:
+    - "Builder output có status PASS/FAIL không?"
+    - "Mỗi step có order, status, file không?"
+    - "error_normalized không chứa line number/timestamp"
+  phase_07_static_analysis:
+    - "YAML frontmatter parse được không?"
+    - "Internal links đều có section tương ứng?"
+    - "Code block balance: số ``` mở = đóng?"
+    - "YAML samples trong Output Contract parse được?"
+  phase_08_ui_audit:
+    - "status là PASS hay CHANGES_NEEDED?"
+    - "CRITICAL/MAJOR issues được ghi nhận đầy đủ?"
+  phase_09_test_plan:
+    - "test_types có ít nhất unit/integration?"
+    - "test_cases có ít nhất 1 case?"
+    - "coverage_target.unit ≥ 80?"
+    - "coverage_target.integration ≥ 60?"
+  phase_10_test:
+    - "status là APPROVED hay NEEDS_FIX?"
+    - "coverage.thresholds_met == true nếu APPROVED"
+    - "Mỗi result có id, status, duration không?"
+  phase_11_skill_validation:
+    - "status là READY hay NO_SUGGESTIONS?"
+    - "Suggestion có category, content, impact không?"
+    - "impact MEDIUM/HIGH cần requires_approval == true"
+  phase_12_complete:
+    - "workflow.json snapshot đã lưu?"
+    - "Báo cáo đã đầy đủ thông tin?"
+```
+
+---
+
+## CHECKPOINT MECHANISM
+
+Workflow có thể được tạm dừng và tiếp tục sau. Checkpoint lưu trạng thái hiện tại để rollback nếu cần.
+
+### Checkpoint locations
+
+```yaml
+checkpoint:
+  enabled: true
+  auto_save:
+    - after_analyze
+    - after_design
+    - after_plan
+    - after_review
+    - after_backup
+    - after_build
+    - after_static_analysis
+    - after_ui_audit
+    - after_test_plan
+    - after_test
+    - after_skill_validation
+    - after_complete
+  manual_save:
+    - before_critical_step   # Build, Test
+    - before_rollback
+```
+
+### Checkpoint data
+
+Mỗi checkpoint lưu `checkpoint_snapshots` vào tracking variables:
+
+```yaml
+checkpoint_snapshot:
+  step: 7
+  step_name: "static_analysis"
+  timestamp: "2026-07-26T14:30:00Z"
+  status: "running"
+  current_data: { ... }         # Clone current_data tại thời điểm đó
+  retry: { ... }                # Clone retry counters
+  artifacts:                    # Danh sách artifact đã tạo
+    - "01_analysis.md"
+    - "02_design.md"
+    - "03_plan.md"
+    - "04_review.md"
+    - "05_backup_manifest.json"
+    - "06_build.md"
+```
+
+### Rollback to checkpoint
+
+Khi cần rollback, orchestrator chọn checkpoint và khôi phục:
+
+```yaml
+rollback_to_checkpoint:
+  steps:
+    1. "Xác định checkpoint target (step, timestamp)"
+    2. "Gọi backup-agent: restore --checkpoint <id>"
+    3. "Xóa artifacts sau checkpoint"
+    4. "Khôi phục tracking variables từ snapshot"
+    5. "Set step = checkpoint.step"
+    6. "Log rollback reason"
+```
+
+---
+
 ## SƠ ĐỒ QUYẾT ĐỊNH (DECISION TREE)
 
 ```yaml
@@ -996,13 +1117,13 @@ backup:
   plan chỉ tạo mới: → build
 
 build:
-  all PASS: → smoke_test
+  all PASS: → static_analysis
   FAIL + failure_type == MINOR: → sửa, build lại
   FAIL + failure_type == CRITICAL (same_error_count < 2): → hỏi_user
   FAIL + failure_type == CRITICAL (same_error_count >= 2): → catastrophic → rollback
   catastrophic: → rollback
 
-smoke_test:
+static_analysis:
   PASS: → ui_audit
   FAIL (retry < 3): → build (kèm báo lỗi)
   FAIL (retry >= 3): → hỏi_user
@@ -1014,13 +1135,13 @@ ui_audit:
   MINOR only: → testplan (auto-pass, chỉ log)
 
 test:
-  status == APPROVED (PASS + coverage đạt): → report → self_improve
+  status == APPROVED (PASS + coverage đạt): → report → skill_validation
   status == NEEDS_FIX (FAIL hoặc coverage < threshold + retry < 3): → build
   status == NEEDS_FIX (FAIL hoặc coverage < threshold + retry >= 3): → hỏi_user
 
-self_improve:
-  workflow == PASS: → self_improve → waiting_approval
-  workflow == FAIL: → complete (skip self_improve)
+skill_validation:
+  workflow == PASS: → skill_validation → waiting_approval
+  workflow == FAIL: → complete (skip skill_validation)
 
 waiting_approval:
   user APPROVE: → ghi knowledge → complete
@@ -1081,19 +1202,19 @@ foreach ($entry in $manifest.files) {
 
 ## TÍCH HỢP VỚI COMMANDS RIÊNG LẺ
 
-| Bước | Command | Agent | File command |
+| Buoc | Command | Agent | File command |
 |------|---------|-------|-------------|
-| 1 | `/team-analyze` | analyst | `team-analyze.md` |
-| 2-3 | `/team-plan` | planner (mở rộng) | `team-plan.md` |
-| 4 | `/team-review` | reviewer | `team-review.md` |
-| 4.5 | `/team-gitguard` | guardian | `team-gitguard.md` |
-| 6 | `/team-build` | builder | `team-build.md` |
-| 7 | `/team-ui-audit` | ui-beautifier | `team-ui-audit.md` |
-| 9 | `/team-testplan` | test-planner | `team-testplan.md` |
-| 10 | `/team-test` | tester | `team-test.md` |
-| 11 | (gọi từ team.md) | self-improver | `.opencode/agents/self-improver.md` |
-| 12 | `/team-gitpush` | pusher | `team-gitpush.md` |
-
+| Buoc | Command | Agent | File command |
+|------|---------|-------|-------------|
+| 1 | /team-analyze | analyst | team-analyze.md |
+| 2-3 | /team-plan | planner (mo rong) | team-plan.md |
+| 4 | /team-review | reviewer | team-review.md |
+| 6 | /team-build | builder | team-build.md |
+| 8 | /team-ui-audit | ui-beautifier | team-ui-audit.md |
+| 9 | /team-testplan | test-planner | team-testplan.md |
+| 10 | /team-test | tester | team-test.md |
+| 11 | (goi tu team.md) | self-improver | .opencode/agents/self-improver.md |
+| 12 | /team-gitpush | pusher | team-gitpush.md |
 Không có command `/team-design` riêng — Design là phần mở rộng của Plan.
 
 ### GitGuard → Fix → GitPush Flow
@@ -1168,27 +1289,31 @@ Orchestrator:
   → Gửi prompt build (chunk 1/2)
   ← ✅ PASS
   
-  step=7, smoke test
-  → Validate frontmatter + internal links
+  step=7, static analysis
+  → Validate YAML/JSON/lint
   ← ✅ PASS
   
-  step=8, agent=test-planner
+  step=8, ui audit
+  → Kiểm tra CSS, dark mode, a11y
+  ← ✅ PASS
+  
+  step=9, agent=test-planner
   → Gửi prompt test plan
   ← 5 test cases (2 unit, 2 edge, 1 regression)
   
-  step=9, agent=tester
+  step=10, agent=tester
   → Chạy test + tính coverage
   ← ✅ 5/5 PASS, coverage 85%
   
-  step=10, agent=self-improver
-  → Gửi prompt self-improve
+  step=11, agent=self-improver
+  → Gửi prompt skill validation
   ← 2 suggestions (1 auto-approve, 1 cần user)
   
-  step=10a, approval gate
+  step=11a, approval gate
   → Hiển thị suggestions cho user
   ← User approve cả 2
   
-  step=11, complete
+  step=12, complete
   → BÁO CÁO KẾT THÚC
 ```
 
@@ -1213,7 +1338,7 @@ Orchestrator:
 - Workflow cũ thiếu field → dùng giá trị mặc định
 - Artifact cũ không có schema → permissive mode (log warning, không block)
 
-### Bước 4: Smoke test
+### Bước 4: File validation
 - Load SKILL.md bằng parser YAML frontmatter
 - Verify workflow mẫu không crash
 
@@ -1223,7 +1348,7 @@ Orchestrator:
 
 ```yaml
 complexity_estimate:
-  total_lines: 1300
+  total_lines: 1399
   files_affected:
     - ".opencode/skills/dev-team/SKILL.md"
   agents_needing_update: 0        # .opencode/agents/ không cần sửa
@@ -1246,15 +1371,15 @@ complexity_estimate:
 5. **State machine consistency**: Diagram khớp với Decision Tree
 6. **Variable checklist**: Mọi biến trong tracking variables được dùng ở đâu đó
 
-### Behavioral Smoke Test
+### Behavioral Validation
 
 ```yaml
-smoke_test:
+static_analysis:
   steps:
     - "Parse SKILL.md frontmatter"
     - "Kiểm tra internal links"
     - "Parse YAML samples"
-    - "Simulate workflow cycle: START → ANALYZE → DESIGN → PLAN → REVIEW → BACKUP → BUILD → SMOKE_TEST → UI_AUDIT → TESTPLAN → TEST → SELF_IMPROVE → WAITING_APPROVAL → COMPLETE"
+    - "Simulate workflow cycle: START → ANALYZE → DESIGN → PLAN → REVIEW → BACKUP → BUILD → STATIC_ANALYSIS → UI_AUDIT → TESTPLAN → TEST → SKILL_VALIDATION → WAITING_APPROVAL → COMPLETE"
     - "Verify state transition match decision tree"
 ```
 
@@ -1265,10 +1390,11 @@ smoke_test:
 - Có thể chạy từng bước riêng bằng các lệnh `/team-*`
 - Design phase do Planner đảm nhiệm với extended prompt. Không cần agent riêng.
 - Luôn validate frontmatter YAML sau mỗi lần sửa file .md
-- Self-Improvement chỉ tạo suggestions, không ghi trực tiếp knowledge base
+- Skill Validation (self-improver) chỉ tạo suggestions, không ghi trực tiếp knowledge base
 - Approval gate bắt buộc cho suggestion có impact MEDIUM/HIGH
 - Backward compatible: workflow cũ được gán ID "WF-LEGACY-{timestamp}"
-- Backup/Rollback do Backup Utility thực hiện, Orchestrator chỉ gọi lệnh
+- Backup/Rollback do backup-agent thực hiện, Orchestrator chỉ gọi lệnh
 - Nếu workflow bị block ở bước nào, cung cấp đủ thông tin để người dùng biết:
   - Đang ở bước nào, Output hiện tại, Cần quyết định gì
 - Khi workflow hoàn tất, output báo cáo phải đầy đủ và rõ ràng
+

@@ -6,7 +6,7 @@
 - `JapaneseLearner.Tests/` — xUnit + bUnit unit tests (Moq)
 - `JapaneseLearner.E2ETests/` — Playwright E2E tests (auto-starts dev server)
 - `TestOneDrive/` — unrelated Blazor WASM app; ignore
-- `.opencode/` — dev-team skill (Vietnamese), agent definitions, knowledge base
+- `.opencode/` — agent definitions (Vietnamese), skills, commands, knowledge base
 
 No `.sln` file. Build/run/test per-project with `dotnet`.
 
@@ -30,18 +30,8 @@ dotnet test JapaneseLearner.E2ETests\JapaneseLearner.E2ETests.csproj
 ```
 
 - E2E Playwright browser path hardcoded in `PlaywrightFixture.cs:24` — will fail on other machines.
-- `BunitTestBase` sets up **FluentUI** JSInterop mocks (8 modules). Use as base for bUnit component tests.
+- `BunitTestBase` sets up **FluentUI** JSInterop mocks (9 modules). Use as base for bUnit component tests.
 - `MockStorageService` implements `ILocalStorageService` for service-layer tests without browser storage.
-
-## Architecture notes
-
-- **FluentUI 4.14.3** — not MudBlazor. Main components: `FluentButton`, `FluentSelect<TOption>`, `FluentDialog`, `FluentProgressRing`, `FluentDesignTheme`, `FluentNavMenu`/`FluentNavLink`. Uses `Appearance` enum (`.Accent`, `.Lightweight`, `.Neutral`).
-- **Service-Interface DI**: `ICharService`/`CharService`, `IWordService`/`WordService` — `AddScoped` in `Program.cs`. Adding a new service requires touching `Program.cs`.
-- **Cache-first storage**: Services cache in-memory, persist to `Blazored.LocalStorage`. Seed data on first load. Write-through on every mutation.
-- **Tri-state rendering**: Each page handles Loading → Empty → Data via `isLoading` + `list.Count == 0`.
-- **Inline `<style>` blocks**: All pages define styles inline (not CSS isolation files).
-- `JapaneseWord.Level` is set but **never read** by business logic — dead field.
-- Vocabulary meanings are in **Vietnamese**.
 
 ## Routes
 
@@ -49,13 +39,34 @@ dotnet test JapaneseLearner.E2ETests\JapaneseLearner.E2ETests.csproj
 |------|-----------|-------------|
 | `/` | `Home.razor` | Hiragana/Katakana flashcard quiz |
 | `/words` | `WordStudy.razor` | Vocabulary flashcard quiz (7 type tabs) |
+| `/words/quiz` | `WordQuiz.razor` | Multiple-choice word quiz |
+| `/kanji` | `KanjiStudy.razor` | Kanji study list |
+| `/kanji/{Id:int}` | `KanjiDetail.razor` | Single kanji detail |
 | `/admin` | `Admin.razor` | CRUD for chars and words (2-tab layout) |
+
+## Architecture notes
+
+- **FluentUI 4.14.3** — not MudBlazor. Main components: `FluentButton`, `FluentSelect<TOption>`, `FluentDialog`, `FluentProgressRing`, `FluentDesignTheme`, `FluentNavMenu`/`FluentNavLink`. Uses `Appearance` enum (`.Accent`, `.Lightweight`, `.Neutral`).
+- **Service-Interface DI**: `ICharService`/`CharService`, `IWordService`/`WordService`, `IKanjiService`/`KanjiService`, `IThemeService`/`ThemeService` — `AddScoped` in `Program.cs`. Adding a new service requires touching `Program.cs`.
+- **Cache-first storage**: Services cache in-memory, persist to `Blazored.LocalStorage`. Seed data on first load. Write-through on every mutation.
+- **Progress reporting**: `WordService` and `KanjiService` accept optional `IProgress<int>` in `GetAllAsync` for large seed data loads.
+- **Tri-state rendering**: Each page handles Loading → Empty → Data via `isLoading` + `list.Count == 0`.
+- **CSS**: `MainLayout.razor.css` (CSS isolation for layout); all pages use inline `<style>` blocks.
+- **ThemeService**: dark mode toggle, persisted via `Blazored.LocalStorage`, uses `FluentDesignTheme` component.
+- Vocabulary meanings are in **Vietnamese**.
+- `JapaneseWord.Level` is set in Admin CRUD UI but never read by quiz/filter logic — display-only field.
 
 ## .opencode conventions
 
 - Agent definitions in `.opencode/agents/` (Vietnamese). Dev-team workflow in `.opencode/skills/dev-team/SKILL.md`.
 - Knowledge base at `.opencode/knowledge/` stores lessons and patterns from past workflows.
-- Model: `opencode/deepseek-v4-flash-free` (was `anthropic/claude-sonnet-4-6` — see `opencode.json.bak`).
+- Model: `opencode/deepseek-v4-flash-free`.
+
+## CI / Deploy
+
+- GitHub Pages via `.github/workflows/deploy.yml` — triggers on push to `master`, publishes to `gh-pages` branch.
+- Deploy runs `dotnet publish -c Release`, copies output under `/JapaneseLearner/` subpath via `gh-pages-root/` wrapper.
+- .NET 10 omits the unhashed `blazor.webassembly.js` copy; the workflow manually copies the hashed version.
 
 ## Pre-Push Review (GitGuard)
 

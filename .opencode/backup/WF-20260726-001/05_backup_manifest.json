@@ -1,19 +1,26 @@
 ﻿{
-    "schema_version":  "2.0",
-    "skipped":  0,
-    "succeeded":  1,
-    "project_root":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI",
-    "failed":  0,
-    "created_at":  "2026-07-26T08:45:08Z",
-    "files":  [
-                  {
-                      "size":  1601,
-                      "relative_path":  "JapaneseLearner\\wwwroot\\index.html",
-                      "original_path":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\JapaneseLearner\\wwwroot\\index.html",
-                      "hash":  "1F428C808C1D",
-                      "backup_path":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\backup\\WF-20260726-001\\JapaneseLearner\\wwwroot\\index.html"
-                  }
-              ],
-    "total_files":  1,
-    "workflow_id":  "WF-20260726-001"
+  "workflow_id": "WF-20260726-001",
+  "created_at": "2026-07-26T09:40:00Z",
+  "files": [
+    {
+      "original_path": ".opencode/commands/team.md",
+      "backup_path": ".opencode/backup/WF-20260726-001/team.md.bak",
+      "size": 15500
+    },
+    {
+      "original_path": ".opencode/SYSTEM_MAP.md",
+      "backup_path": ".opencode/backup/WF-20260726-001/SYSTEM_MAP.md.bak",
+      "size": 8500
+    },
+    {
+      "original_path": ".opencode/agents/self-improver.md",
+      "backup_path": ".opencode/backup/WF-20260726-001/self-improver.md.bak",
+      "size": 2200
+    },
+    {
+      "original_path": ".opencode/commands/team-selfimprove.md",
+      "backup_path": ".opencode/backup/WF-20260726-001/team-selfimprove.md.bak",
+      "size": 3200
+    }
+  ]
 }

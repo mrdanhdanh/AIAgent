@@ -1,143 +1,143 @@
-﻿---
-description: Cháº¡y toÃ n bá»™ team workflow: analyze â†’ design/plan â†’ review â†’ backup â†’ build â†’ smoke test â†’ testplan â†’ test â†’ self-improve
+---
+description: Chạy toàn bộ team workflow: analyze → design/plan → review → backup → build → static analysis → ui audit → testplan → test → skill validation → complete
 agent: general
 ---
 
-## HELP â€” HÆ°á»›ng dáº«n sá»­ dá»¥ng `/team`
+## HELP — Hướng dẫn sử dụng `/team`
 
-**Má»¥c Ä‘Ã­ch:** Cháº¡y toÃ n bá»™ Dev Agent Team workflow tá»± Ä‘á»™ng â€” Analyze â†’ Design â†’ Plan â†’ Review â†’ Backup â†’ Build â†’ Smoke Test â†’ UI Audit â†’ Test Plan â†’ Test â†’ Self-Improve â†’ Complete.
+**Mục đích:** Chạy toàn bộ Dev Agent Team workflow tự động — Analyze → Design → Plan → Review → Backup → Build → static analysis → UI Audit → Test Plan → Test → Skill Validation → Complete.
 
-**CÃ¡ch dÃ¹ng:** `/team <yÃªu cáº§u phÃ¡t triá»ƒn báº±ng ngÃ´n ngá»¯ tá»± nhiÃªn>`
+**Cách dùng:** `/team <yêu cầu phát triển bằng ngôn ngữ tự nhiên>`
 
-**Äáº§u vÃ o:** MÃ´ táº£ yÃªu cáº§u phÃ¡t triá»ƒn (tiáº¿ng Viá»‡t hoáº·c tiáº¿ng Anh), vÃ­ dá»¥: `/team ThÃªm chá»©c nÄƒng reset password`
+**Đầu vào:** Mô tả yêu cầu phát triển (tiếng Việt hoặc tiếng Anh), ví dụ: `/team Thêm chức năng reset password`
 
-**Äáº§u ra:** BÃ¡o cÃ¡o cuá»‘i cÃ¹ng gá»“m phÃ¢n tÃ­ch, káº¿ hoáº¡ch, káº¿t quáº£ build, káº¿t quáº£ test, coverage, self-improvement suggestions.
+**Đầu ra:** Báo cáo cuối cùng gồm phân tích, kế hoạch, kết quả build, kết quả test, coverage, skill validation suggestions.
 
-**CÃ¡c lá»‡nh thÃ nh pháº§n (cháº¡y riÃªng láº»):**
-- `/team-analyze` â€” PhÃ¢n tÃ­ch yÃªu cáº§u
-- `/team-plan` â€” Thiáº¿t káº¿ + Láº­p káº¿ hoáº¡ch
-- `/team-review` â€” ÄÃ¡nh giÃ¡ káº¿ hoáº¡ch
-- `/team-build` â€” Thá»±c thi code
-- `/team-ui-audit` â€” Kiá»ƒm tra UI
-- `/team-testplan` â€” Láº­p káº¿ hoáº¡ch test
-- `/team-test` â€” Cháº¡y kiá»ƒm thá»­
-- `/team-selfimprove` â€” Äá» xuáº¥t cáº£i tiáº¿n
-- `/team-gitguard` â€” Review security trÆ°á»›c push
-- `/team-gitpush` â€” Push an toÃ n lÃªn git
+**Các lệnh thành phần (chạy riêng lẻ):**
+- `/team-analyze` — Phân tích yêu cầu
+- `/team-plan` — Thiết kế + Lập kế hoạch
+- `/team-review` — Đánh giá kế hoạch
+- `/team-build` — Thực thi code
+- `/team-ui-audit` — Kiểm tra UI
+- `/team-testplan` — Lập kế hoạch test
+- `/team-test` — Chạy kiểm thử
+- `/team-selfimprove` — Đề xuất cải tiến
+- `/team-gitguard` — Review security trước push
+- `/team-gitpush` — Push an toàn lên git
 
-**Xem thÃªm:** `.opencode/skills/dev-team/SKILL.md`
+**Xem thêm:** `.opencode/skills/dev-team/SKILL.md`
 
 ---
 
-Báº¡n Ä‘ang váº­n hÃ nh **Dev Agent Team** â€” orchestrator Ä‘iá»u phá»‘i 7 agent chuyÃªn biá»‡t theo 12 bÆ°á»›c.
+Bạn đang vận hành **Dev Agent Team** — orchestrator điều phối 9 agents (7 core + 2 support) chuyên biệt theo 12 bước.
 
-Äá»c tÃ i liá»‡u Ä‘áº§y Ä‘á»§ táº¡i: `.opencode/skills/dev-team/SKILL.md`
-CÃ¡c lá»‡nh thÃ nh pháº§n: `/team-analyze`, `/team-plan`, `/team-review`, `/team-build`, `/team-ui-audit`, `/team-testplan`, `/team-test`
+Đọc tài liệu đầy đủ tại: `.opencode/skills/dev-team/SKILL.md`
+Các lệnh thành phần: `/team-analyze`, `/team-plan`, `/team-review`, `/team-build`, `/team-ui-audit`, `/team-testplan`, `/team-test`
 
-YÃªu cáº§u: $ARGUMENTS
+Yêu cầu: $ARGUMENTS
 
 ---
 
 ## WORKFLOW ID
 
-Táº¡o workflow ID ngay khi báº¯t Ä‘áº§u: `WF-YYYYMMDD-NNN`.
-LÆ°u vÃ o biáº¿n `workflow.id` vÃ  dÃ¹ng cho má»i artifact, backup, rollback, logging.
+Tạo workflow ID ngay khi bắt đầu: `WF-YYYYMMDD-NNN`.
+Lưu vào biến `workflow.id` và dùng cho mọi artifact, backup, rollback, logging.
 
 ---
 
-## MÃ” HÃŒNH ORCHESTRATOR
+## MÔ HÌNH ORCHESTRATOR
 
-Báº¡n lÃ  **General Agent** Ä‘Ã³ng vai trÃ² orchestrator â€” chá»‰ Ä‘áº£m nhiá»‡m orchestration vÃ  state management.
+Bạn là **General Agent** đóng vai trò orchestrator — chỉ đảm nhiệm orchestration và state management.
 
-TrÃ¡ch nhiá»‡m:
-1. **Triá»‡u há»“i** Ä‘Ãºng agent theo Ä‘Ãºng bÆ°á»›c
-2. **Truyá»n context** â€” output bÆ°á»›c trÆ°á»›c lÃ  input bÆ°á»›c sau
-3. **Xá»­ lÃ½ vÃ²ng láº·p** â€” review loop, test-fix loop (tá»‘i Ä‘a 3 láº§n, kiá»ƒm tra same_error_count)
-4. **Theo dÃµi tráº¡ng thÃ¡i** â€” biáº¿n step, retry_count, status, error_history
-5. **Quyáº¿t Ä‘á»‹nh** â€” tiáº¿p tá»¥c, retry, rollback, dá»«ng, hoáº·c há»i ngÆ°á»i dÃ¹ng
+Trách nhiệm:
+1. **Triệu hồi** đúng agent theo đúng bước
+2. **Truyền context** — output bước trước là input bước sau
+3. **Xử lý vòng lặp** — review loop, test-fix loop (tối đa 3 lần, kiểm tra same_error_count)
+4. **Theo dõi trạng thái** — biến step, retry_count, status, error_history
+5. **Quyết định** — tiếp tục, retry, rollback, dừng, hoặc hỏi người dùng
 
 ---
 
-## MÃY TRáº NG THÃI (STATE MACHINE)
+## MÁY TRẠNG THÁI (STATE MACHINE)
 
 ```
-                    â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-                    â”‚  START  â”‚
-                    â””â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”˜
-                         â–¼
-                    â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-                    â”‚ANALYZE  â”‚ â—„â”€â”€â”€â”€ NEED_MORE_INFO â†’ há»i user
-                    â””â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”˜
-                         â–¼
-                    â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-                    â”‚ DESIGN  â”‚ â†â”€â”€ Planner má»Ÿ rá»™ng
-                    â””â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”˜
-                         â–¼
-                    â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-                    â”‚  PLAN   â”‚
-                    â””â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”˜
-                         â–¼
-                    â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-                    â”‚ REVIEW  â”‚
-                    â””â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”˜
-                    â”Œâ”€â”€â”€â”€â”´â”€â”€â”€â”€â”
-                    â”‚         â”‚
-                    â–¼         â–¼
-             â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-             â”‚APPROVED â”‚  â”‚CHANGES_REQ   â”‚
-             â””â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”˜  â””â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”˜
-                  â”‚              â”‚ (retry < 3)
-                  â–¼              â–¼
-             â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”   â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-             â”‚ BACKUP  â”‚   â”‚  PLAN   â”‚
-             â””â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”˜   â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
-                  â”‚
-                  â–¼
-             â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-             â”‚  BUILD  â”‚ â—„â”€â”€â”€â”€ náº¿u SMOKE/TEST FAIL
-             â””â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”˜
-                  â–¼
-             â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-             â”‚SMOKE TEST â”‚ â†â”€â”€ behavioral validation
-             â””â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”˜
-                   â–¼
-             â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-             â”‚ TESTPLANâ”‚
-             â””â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”˜
-                  â–¼
-             â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-             â”‚  TEST   â”‚
-             â””â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”˜
-              â”Œâ”€â”€â”€â”´â”€â”€â”€â”
-              â”‚       â”‚
-              â–¼       â–¼
-          â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â” â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”
-          â”‚ PASS   â”‚ â”‚ FAIL   â”‚ â”€â”€â”€â–º quay láº¡i BUILD
-          â””â”€â”€â”€â”¬â”€â”€â”€â”€â”˜ â””â”€â”€â”€â”€â”€â”€â”€â”€â”˜
-              â–¼
-         â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-         â”‚SELF_IMPROVE  â”‚ â†â”€â”€ approval gate
-         â””â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”˜
-                â–¼
-         â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-         â”‚ WAITING_APPROVALâ”‚
-         â””â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”˜
-           â”Œâ”€â”€â”€â”€â”€â”´â”€â”€â”€â”€â”€â”
-           â”‚           â”‚
-           â–¼           â–¼
-      â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â” â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-      â”‚APPROVED â”‚ â”‚ REJECTED â”‚
-      â””â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”˜ â””â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”˜
-           â”‚            â”‚
-           â–¼            â–¼
-      â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â” â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-      â”‚COMPLETE â”‚ â”‚COMPLETE â”‚ (skip KB)
-      â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜ â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+                    ┌─────────┐
+                    │  START  │
+                    └────┬────┘
+                         ▼
+                    ┌─────────┐
+                    │ANALYZE  │ ◄──── NEED_MORE_INFO → hỏi user
+                    └────┬────┘
+                         ▼
+                    ┌─────────┐
+                    │ DESIGN  │ ←── Planner mở rộng
+                    └────┬────┘
+                         ▼
+                    ┌─────────┐
+                    │  PLAN   │
+                    └────┬────┘
+                         ▼
+                    ┌─────────┐
+                    │ REVIEW  │
+                    └────┬────┘
+                    ┌────┴────┐
+                    │         │
+                    ▼         ▼
+             ┌─────────┐  ┌──────────────┐
+             │APPROVED │  │CHANGES_REQ   │
+             └────┬────┘  └──────┬───────┘
+                  │              │ (retry < 3)
+                  ▼              ▼
+             ┌─────────┐   ┌─────────┐
+             │ BACKUP  │   │  PLAN   │
+             └────┬────┘   └─────────┘
+                  │
+                  ▼
+             ┌─────────┐
+             │  BUILD  │ ◄──── nếu STATIC_ANALYSIS/TEST FAIL
+             └────┬────┘
+                  ▼
+             ┌───────────┐
+             │static analysis │ ←── behavioral validation
+             └─────┬─────┘
+                   ▼
+             ┌─────────┐
+             │ TESTPLAN│
+             └────┬────┘
+                  ▼
+             ┌─────────┐
+             │  TEST   │
+             └────┬────┘
+              ┌───┴───┐
+              │       │
+              ▼       ▼
+          ┌────────┐ ┌────────┐
+          │ PASS   │ │ FAIL   │ ───► quay lại BUILD
+          └───┬────┘ └────────┘
+              ▼
+         ┌──────────────┐
+         │SKILL_VALIDATION  │ ←── approval gate
+         └──────┬───────┘
+                ▼
+         ┌────────────────┐
+         │ WAITING_APPROVAL│
+         └───────┬────────┘
+           ┌─────┴─────┐
+           │           │
+           ▼           ▼
+      ┌─────────┐ ┌──────────┐
+      │APPROVED │ │ REJECTED │
+      └────┬────┘ └────┬─────┘
+           │            │
+           ▼            ▼
+      ┌─────────┐ ┌─────────┐
+      │COMPLETE │ │COMPLETE │ (skip KB)
+      └─────────┘ └─────────┘
 ```
 
 ---
 
-## BIáº¾N THEO DÃ•I (TRACKING VARIABLES)
+## BIẾN THEO DÕI (TRACKING VARIABLES)
 
 ```yaml
 workflow:
@@ -146,15 +146,15 @@ workflow:
   project: "JapaneseLearner"
   branch: "main"
   schema_version: "2.0"
-  step: 1-11
-  step_name: analyze|design|plan|review|backup|build|smoke_test|testplan|test|self_improve|complete
+  step: 1-12
+  step_name: analyze|design|plan|review|backup|build|static_analysis|ui_audit|testplan|test|skill_validation|complete
   status: running|blocked|completed|failed|waiting_user|cancelled|reviewing|building|testing|self_improving|waiting_approval
   retry:
     review_count: 0-3
     test_count: 0-3
     max_review: 3
     max_test: 3
-    self_improve_count: 0-1
+    skill_validation_count: 0-1
   user_intervention: false
   backup_done: false
   error_history:
@@ -175,116 +175,118 @@ workflow:
     plan: null
     review_result: null
     build_result: null
-    smoke_test_result: null
+    static_analysis_result: null
+    ui_audit_result: null
     test_plan: null
     test_result: null
-    self_improve_result: null
+    skill_validation_result: null
     final_report: null
+    checkpoint_snapshots: []
 ```
 
 ---
 
-## QUY TRÃŒNH CHI TIáº¾T
+## QUY TRÌNH CHI TIẾT
 
-### BÆ°á»›c 1: Analyze
+### Bước 1: Analyze
 **Agent:** `analyst` (qua `/team-analyze`)
 
 **Prompt** (xem `team-analyze.md`)
 
 **Sau output:**
 - Parse YAML output theo schema Analyst
-- `status: NEED_MORE_INFO` â†’ há»i user, set `user_intervention: true`
-- `status: READY` â†’ lÆ°u `current_data.analysis = output`, tÄƒng `step = 2`
+- `status: NEED_MORE_INFO` → hỏi user, set `user_intervention: true`
+- `status: READY` → lưu `current_data.analysis = output`, tăng `step = 2`
 
 ---
 
-### BÆ°á»›c 2: Design
-**Agent:** `planner` (má»Ÿ rá»™ng â€” qua `/team-plan`)
+### Bước 2: Design
+**Agent:** `planner` (mở rộng — qua `/team-plan`)
 
 **Prompt:**
 ```
-Báº¡n lÃ  Planner Agent (má»Ÿ rá»™ng). Dá»±a trÃªn bÃ¡o cÃ¡o phÃ¢n tÃ­ch, thiáº¿t káº¿ giáº£i phÃ¡p chi tiáº¿t.
-BÃ¡o cÃ¡o: {current_data.analysis}
+Bạn là Planner Agent (mở rộng). Dựa trên báo cáo phân tích, thiết kế giải pháp chi tiết.
+Báo cáo: {current_data.analysis}
 
-YÃªu cáº§u Design:
-1. Architecture: MÃ´ táº£ kiáº¿n trÃºc tá»•ng thá»ƒ
-2. Components: Liá»‡t kÃª component cáº§n táº¡o/sá»­a
-3. Data flow: Luá»“ng dá»¯ liá»‡u giá»¯a cÃ¡c component
-4. Security concerns: CÃ¡c rá»§i ro báº£o máº­t
-5. Edge cases: CÃ¡c trÆ°á»ng há»£p Ä‘áº·c biá»‡t
+Yêu cầu Design:
+1. Architecture: Mô tả kiến trúc tổng thể
+2. Components: Liệt kê component cần tạo/sửa
+3. Data flow: Luồng dữ liệu giữa các component
+4. Security concerns: Các rủi ro bảo mật
+5. Edge cases: Các trường hợp đặc biệt
 
-Output: Contract YAML theo schema Planner (bao gá»“m design).
+Output: Contract YAML theo schema Planner (bao gồm design).
 ```
 
-**Sau output:** LÆ°u `current_data.design = output`, tÄƒng `step = 3`
+**Sau output:** Lưu `current_data.design = output`, tăng `step = 3`
 
 ---
 
-### BÆ°á»›c 3: Plan
-**Agent:** `planner` (tiáº¿p â€” cÃ¹ng agent Design, qua `/team-plan`)
+### Bước 3: Plan
+**Agent:** `planner` (tiếp — cùng agent Design, qua `/team-plan`)
 
 **Prompt:**
 ```
-Báº¡n lÃ  Planner Agent. Dá»±a trÃªn thiáº¿t káº¿, láº­p káº¿ hoáº¡ch thá»±c thi chi tiáº¿t tá»«ng bÆ°á»›c.
-Thiáº¿t káº¿: {current_data.design}
+Bạn là Planner Agent. Dựa trên thiết kế, lập kế hoạch thực thi chi tiết từng bước.
+Thiết kế: {current_data.design}
 
-YÃªu cáº§u:
-1. Má»—i bÆ°á»›c cÃ³: MÃ´ táº£, File, Logic, Kiá»ƒm tra, Chunk (1-4)
-2. Thá»© tá»±: config â†’ logic â†’ test
-3. ThÃªm rollback_strategy
-4. Káº¿t thÃºc báº±ng validate tá»•ng thá»ƒ
+Yêu cầu:
+1. Mỗi bước có: Mô tả, File, Logic, Kiểm tra, Chunk (1-4)
+2. Thứ tự: config → logic → test
+3. Thêm rollback_strategy
+4. Kết thúc bằng validate tổng thể
 
-Output: Contract YAML theo schema Planner (cáº­p nháº­t steps, rollback_strategy, validate).
+Output: Contract YAML theo schema Planner (cập nhật steps, rollback_strategy, validate).
 ```
 
-**Sau output:** LÆ°u `current_data.plan = output`, tÄƒng `step = 4`
+**Sau output:** Lưu `current_data.plan = output`, tăng `step = 4`
 
-**Kiá»ƒm tra:** Káº¿ hoáº¡ch pháº£i cÃ³ Ã­t nháº¥t 1 bÆ°á»›c â€” náº¿u khÃ´ng â†’ yÃªu cáº§u lÃ m láº¡i.
+**Kiểm tra:** Kế hoạch phải có ít nhất 1 bước — nếu không → yêu cầu làm lại.
 
 ---
 
-### BÆ°á»›c 4: Review
+### Bước 4: Review
 **Agent:** `reviewer` (qua `/team-review`)
 
 **Prompt** (xem `team-review.md`)
 
 **Sau output:**
-- **APPROVED** â†’ LÆ°u `current_data.review_result = output`, tÄƒng `step = 5`
-- **CHANGES_REQUESTED** â†’
+- **APPROVED** → Lưu `current_data.review_result = output`, tăng `step = 5`
+- **CHANGES_REQUESTED** →
   - `retry.review_count++`
-  - Náº¿u `retry.review_count < retry.max_review` vÃ  `same_error_count < 2` â†’ Quay láº¡i BÆ°á»›c 3 (Plan)
-  - Náº¿u `retry.review_count >= retry.max_review` hoáº·c `same_error_count >= 2` â†’ Dá»«ng, set `status: blocked`
-- **REJECTED** â†’ Dá»«ng, set `status: failed`
+  - Nếu `retry.review_count < retry.max_review` và `same_error_count < 2` → Quay lại Bước 3 (Plan)
+  - Nếu `retry.review_count >= retry.max_review` hoặc `same_error_count >= 2` → Dừng, set `status: blocked`
+- **REJECTED** → Dừng, set `status: failed`
 
 ---
 
-### BÆ°á»›c 5: Backup
-**HÃ nh Ä‘á»™ng:** Orchestrator gá»i **Backup Utility** script (khÃ´ng tá»± backup thá»§ cÃ´ng)
+### Bước 5: Backup
+**Hành động:** Orchestrator gọi **Backup Utility** script (không tự backup thủ công)
 
-**Äiá»u kiá»‡n:** Cháº¡y náº¿u plan cÃ³ `requires_backup: true` hoáº·c cÃ³ file cÅ© cáº§n sá»­a
+**Điều kiện:** Chạy nếu plan có `requires_backup: true` hoặc có file cũ cần sửa
 
-**CÃ¡ch thá»±c hiá»‡n:**
+**Cách thực hiện:**
 ```powershell
-# Gá»i Backup Utility (luÃ´n dÃ¹ng script, KHÃ”NG tá»± copy thá»§ cÃ´ng)
+# Gọi Backup Utility (luôn dùng script, KHÔNG tự copy thủ công)
 $backupScript = ".opencode\scripts\backup-utility.ps1"
-$files = @("path/to/file1.cs", "path/to/file2.razor")  # tá»« plan
+$files = @("path/to/file1.cs", "path/to/file2.razor")  # từ plan
 & $backupScript -files $files -workflowId "$($workflow.id)"
 ```
 
-Backup Utility sáº½:
-1. Copy tá»«ng file vÃ o `.opencode/backup/<WF-ID>/` (giá»¯ nguyÃªn cáº¥u trÃºc thÆ° má»¥c)
-2. TÃ­nh SHA256 hash (12 kÃ½ tá»± Ä‘áº§u) cho má»—i file
+Backup Utility sẽ:
+1. Copy từng file vào `.opencode/backup/<WF-ID>/` (giữ nguyên cấu trúc thư mục)
+2. Tính SHA256 hash (12 ký tự đầu) cho mỗi file
 3. Ghi manifest `05_backup_manifest.json`
-4. Tráº£ vá» bÃ¡o cÃ¡o JSON
+4. Trả về báo cáo JSON
 
 **Set:** `backup_done = true`
 
-**Náº¿u chá»‰ táº¡o file má»›i:** Log "ðŸ“ Káº¿ hoáº¡ch chá»‰ táº¡o file má»›i, khÃ´ng cáº§n backup"
+**Nếu chỉ tạo file mới:** Log "📝 Kế hoạch chỉ tạo file mới, không cần backup"
 
 ---
 
 ### Rollback (khi catastrophic failure)
-Khi cáº§n rollback, gá»i **Rollback Utility**:
+Khi cần rollback, gọi **Rollback Utility**:
 ```powershell
 $rollbackScript = ".opencode\scripts\rollback-utility.ps1"
 & $rollbackScript -workflowId "$($workflow.id)" [-force]
@@ -292,214 +294,376 @@ $rollbackScript = ".opencode\scripts\rollback-utility.ps1"
 
 ---
 
-### BÆ°á»›c 6: Build
+### Bước 6: Build
 **Agent:** `builder` (qua `/team-build`)
 
 **Prompt** (xem `team-build.md`)
 
 **Sau output:**
-- **PASS** â†’ tÄƒng `step = 7`
-- **FAIL + failure_type == MINOR** â†’ YÃªu cáº§u builder sá»­a
-- **FAIL + failure_type == CRITICAL** â†’ Kiá»ƒm tra same_error_count:
-  - Náº¿u â‰¥ 2 â†’ Catastrophic failure â†’ ROLLBACK
-  - Náº¿u < 2 â†’ há»i user
+- **PASS** → tăng `step = 7`
+- **FAIL + failure_type == MINOR** → Yêu cầu builder sửa
+- **FAIL + failure_type == CRITICAL** → Kiểm tra same_error_count:
+  - Nếu ≥ 2 → Catastrophic failure → ROLLBACK
+  - Nếu < 2 → hỏi user
 
 ---
 
-### BÆ°á»›c 7: Smoke Test
-**HÃ nh Ä‘á»™ng:** Orchestrator cháº¡y validation (khÃ´ng gá»i agent)
+### Bước 7: Static Analysis
+**Hành động:** Orchestrator chạy validation (không gọi agent)
 
-**CÃ¡c bÆ°á»›c:**
-1. Parse YAML frontmatter cá»§a SKILL.md â†’ kiá»ƒm tra name, description, schema_version
-2. Kiá»ƒm tra táº¥t cáº£ internal links (`#...`) cÃ³ section tÆ°Æ¡ng á»©ng
-3. Kiá»ƒm tra code block balance (sá»‘ ``` má»Ÿ = Ä‘Ã³ng)
+**Các bước:**
+1. Parse YAML frontmatter của SKILL.md → kiểm tra name, description, schema_version
+2. Kiểm tra tất cả internal links (`#...`) có section tương ứng
+3. Kiểm tra code block balance (số ``` mở = đóng)
 4. Parse YAML samples trong Output Contract section
-5. Simulate 1 workflow cycle: START â†’ ANALYZE â†’ DESIGN â†’ PLAN â†’ REVIEW â†’ ... â†’ COMPLETE
+5. Simulate 1 workflow cycle: START → ANALYZE → DESIGN → PLAN → REVIEW → ... → COMPLETE
 
 **Sau output:**
-- **PASS** â†’ tÄƒng `step = 8`
-- **FAIL** â†’ `retry.test_count++`, quay láº¡i BÆ°á»›c 6 náº¿u retry < 3
+- **PASS** → tăng `step = 8`
+- **FAIL** → `retry.test_count++`, quay lại Bước 6 nếu retry < 3
 
 ---
 
-### BÆ°á»›c 8: Test Plan
+### Bước 8: UI Audit
+**Agent:** `ui-beautifier` (qua `/team-ui-audit`)
+
+**Mục đích:** Kiểm tra và cải thiện giao diện người dùng — phát hiện CSS issues, accessibility problems, đề xuất cải tiến UI/UX.
+
+**Prompt** (xem `team-ui-audit.md`)
+
+**Sau output:** Lưu `current_data.ui_audit_result = output`, tăng `step = 9`
+
+**Xử lý kết quả:**
+- **PASS** (không có CRITICAL/MAJOR issues) → tiếp tục
+- **CHANGES_NEEDED** (có CRITICAL hoặc MAJOR) → `retry.test_count++`, quay lại Bước 6 (Build) nếu retry < 3
+- **MINOR issues** → chỉ log warning, không block workflow
+
+---
+
+### Bước 9: Test Plan
 **Agent:** `test-planner` (qua `/team-testplan`)
 
 **Prompt** (xem `team-testplan.md`)
 
-**Sau output:** LÆ°u `current_data.test_plan = output`, tÄƒng `step = 9`
+**Sau output:** Lưu `current_data.test_plan = output`, tăng `step = 10`
 
 ---
 
-### BÆ°á»›c 9: Test
+### Bước 10: Test
 **Agent:** `tester` (qua `/team-test`)
 
 **Prompt** (xem `team-test.md`)
 
 **Sau output:**
-- **APPROVED** (all PASS + coverage >= thresholds) â†’ BÃO CÃO Káº¾T THÃšC
-- **NEEDS_FIX** â†’
+- **APPROVED** (all PASS + coverage >= thresholds) → chuyển sang Bước 11 (Skill Validation)
+- **NEEDS_FIX** →
   - `retry.test_count++`
-  - Náº¿u `retry.test_count < retry.max_test` vÃ  `same_error_count < 2` â†’ Quay láº¡i BÆ°á»›c 6
-  - Náº¿u `retry.test_count >= retry.max_test` hoáº·c `same_error_count >= 2` â†’ Dá»«ng, set `status: failed`
+  - Nếu `retry.test_count < retry.max_test` và `same_error_count < 2` → Quay lại Bước 6
+  - Nếu `retry.test_count >= retry.max_test` hoặc `same_error_count >= 2` → Dừng, set `status: failed`
 
 ---
 
-### BÆ°á»›c 10: Self-Improvement
+### Bước 11: Skill Validation
 **Agent:** `self-improver`
 
-**Äiá»u kiá»‡n:** Chá»‰ cháº¡y náº¿u workflow PASS
+**Điều kiện:** Chỉ chạy nếu workflow PASS
 
 **Prompt** (xem `team-selfimprove.md`)
 
 **Approval Gate:**
-- Self-Improver táº¡o suggestions vÃ o artifact
+- Self-Improver tạo suggestions vào artifact
 - Set status = `waiting_approval`
-- Hiá»ƒn thá»‹ suggestions cho user
-- User pháº£n há»“i: APPROVE | REJECT | MODIFY
-- Auto-approve náº¿u `impact == LOW && requires_approval == false`
+- Hiển thị suggestions cho user
+- User phản hồi: APPROVE | REJECT | MODIFY
+- Auto-approve nếu `impact == LOW && requires_approval == false`
 
-Set `step = 11`
-
----
-
-### BÆ°á»›c 11: Complete
-
-Káº¿t thÃºc workflow, lÆ°u workflow.json snapshot.
+Set `step = 12`
 
 ---
 
-## SÆ  Äá»’ QUYáº¾T Äá»ŠNH (DECISION TREE)
+### Bước 12: Complete
+
+Kết thúc workflow, lưu workflow.json snapshot.
+
+---
+
+---
+
+## VALIDATION CHECKLIST PER PHASE
+
+```yaml
+validation_checklist:
+  phase_01_analyze:
+    - "Output có đúng schema Analyst không?"
+    - "summary có >= 3 dòng không?"
+    - "requirements có ít nhất 1 item không?"
+    - "risks có description, severity, mitigation không?"
+  phase_02_design:
+    - "Output có đúng schema Planner không?"
+    - "design.architecture có mô tả không?"
+    - "design.components có list không?"
+    - "design.data_flow có mô tả không?"
+    - "design.security_concerns có xử lý không?"
+    - "design.edge_cases có list không?"
+  phase_03_plan:
+    - "steps có ít nhất 1 bước không?"
+    - "Mỗi step có order, description, file, logic, check, chunk không?"
+    - "rollback_strategy.enabled == true"
+    - "validate có ít nhất 1 mục không?"
+  phase_04_review:
+    - "decision phải là APPROVED/CHANGES_REQUESTED/REJECTED"
+    - "scores có đủ 6 field không?"
+    - "issues có id, severity, category không?"
+  phase_05_backup:
+    - "backup_done == true nếu plan có sửa file cũ"
+    - "05_backup_manifest.json tồn tại"
+  phase_06_build:
+    - "Builder output có status PASS/FAIL không?"
+    - "Mỗi step có order, status, file không?"
+    - "error_normalized không chứa line number/timestamp"
+  phase_07_static_analysis:
+    - "YAML frontmatter parse được không?"
+    - "Internal links đều có section tương ứng?"
+    - "Code block balance: số ``` mở = đóng?"
+    - "YAML samples trong Output Contract parse được?"
+  phase_08_ui_audit:
+    - "status là PASS hay CHANGES_NEEDED?"
+    - "CRITICAL/MAJOR issues được ghi nhận đầy đủ?"
+  phase_09_test_plan:
+    - "test_types có ít nhất unit/integration?"
+    - "test_cases có ít nhất 1 case?"
+    - "coverage_target.unit >= 80?"
+    - "coverage_target.integration >= 60?"
+  phase_10_test:
+    - "status là APPROVED hay NEEDS_FIX?"
+    - "coverage.thresholds_met == true nếu APPROVED"
+    - "Mỗi result có id, status, duration không?"
+  phase_11_skill_validation:
+    - "status là READY hay NO_SUGGESTIONS?"
+    - "Suggestion có category, content, impact không?"
+    - "impact MEDIUM/HIGH cần requires_approval == true"
+  phase_12_complete:
+    - "workflow.json snapshot đã lưu?"
+    - "Báo cáo đã đầy đủ thông tin?"
+```
+
+
+---
+
+## CHECKPOINT MECHANISM
+
+Workflow có thể được tạm dừng và tiếp tục sau. Checkpoint lưu trạng thái hiện tại để rollback nếu cần.
+
+### Checkpoint locations
+
+```yaml
+checkpoint:
+  enabled: true
+  auto_save:
+    - after_analyze
+    - after_design
+    - after_plan
+    - after_review
+    - after_backup
+    - after_build
+    - after_static_analysis
+    - after_ui_audit
+    - after_test_plan
+    - after_test
+    - after_skill_validation
+    - after_complete
+  manual_save:
+    - before_critical_step
+    - before_rollback
+```
+
+
+### Checkpoint data
+
+```yaml
+checkpoint_snapshot:
+  step: 7
+  step_name: "static_analysis"
+  timestamp: "2026-07-26T14:30:00Z"
+  status: "running"
+  current_data: { ... }
+  retry: { ... }
+  artifacts:
+    - "01_analysis.md"
+    - "02_design.md"
+    - "03_plan.md"
+    - "04_review.md"
+    - "05_backup_manifest.json"
+    - "06_build.md"
+```
+
+
+### Rollback to checkpoint
+
+```yaml
+rollback_to_checkpoint:
+  steps:
+    1. "Xác định checkpoint target (step, timestamp)"
+    2. "Gọi backup-agent: restore --checkpoint <id>"
+    3. "Xóa artifacts sau checkpoint"
+    4. "Khôi phục tracking variables từ snapshot"
+    5. "Set step = checkpoint.step"
+    6. "Log rollback reason"
+```
+
+
+---
+
+## BACKWARD COMPATIBILITY
+
+```yaml
+backward_compatibility:
+  missing_workflow_id:
+    action: auto_generate
+    format: "WF-LEGACY-{timestamp}"
+  missing_field:
+    action: use_default
+    defaults:
+      retry_count: 0
+      error_history: []
+      backup_done: false
+  artifact_schema_validation:
+    new_artifacts: strict
+    legacy_artifacts: permissive
+```
+
+
+## SƠ ĐỒ QUYẾT ĐỊNH (DECISION TREE)
 
 ```yaml
 analyze:
-  output.status == NEED_MORE_INFO: â†’ hoi_user
-  output.status == READY: â†’ design
+  output.status == NEED_MORE_INFO: → hoi_user
+  output.status == READY: → design
 
 design:
-  output hop le (co design): â†’ plan
-  output rong/thieu: â†’ yeu_cau_lam_lai
+  output hop le (co design): → plan
+  output rong/thieu: → yeu_cau_lam_lai
 
 plan:
-  output hop le (co steps): â†’ review
-  output thieu steps: â†’ yeu_cau_lam_lai
+  output hop le (co steps): → review
+  output thieu steps: → yeu_cau_lam_lai
 
 review:
-  decision == APPROVED: â†’ backup
-  decision == CHANGES_REQUESTED (retry < 3 && same_error < 2): â†’ plan
-  decision == CHANGES_REQUESTED (retry >= 3 OR same_error >= 2): â†’ hoi_user
-  decision == REJECTED: â†’ hoi_user
+  decision == APPROVED: → backup
+  decision == CHANGES_REQUESTED (retry < 3 && same_error < 2): → plan
+  decision == CHANGES_REQUESTED (retry >= 3 OR same_error >= 2): → hoi_user
+  decision == REJECTED: → hoi_user
 
 backup:
-  can sua file cu: â†’ backup â†’ build
-  chi tao moi: â†’ build
+  can sua file cu: → backup → build
+  chi tao moi: → build
 
 build:
-  all PASS: â†’ smoke_test
-  FAIL + MINOR (same_error < 2): â†’ sua, build lai
-  FAIL + CRITICAL (same_error < 2): â†’ hoi_user
-  FAIL + same_error >= 2: â†’ catastrophic â†’ rollback
+  all PASS: → static_analysis
+  FAIL + MINOR (same_error < 2): → sua, build lai
+  FAIL + CRITICAL (same_error < 2): → hoi_user
+  FAIL + same_error >= 2: → catastrophic → rollback
 
-smoke_test:
-  PASS: â†’ testplan
-  FAIL (retry < 3): â†’ build
-  FAIL (retry >= 3): â†’ hoi_user
+static_analysis:
+  PASS: → testplan
+  FAIL (retry < 3): → build
+  FAIL (retry >= 3): → hoi_user
 
 test:
-  APPROVED (PASS + coverage dat): â†’ report â†’ self_improve
-  NEEDS_FIX (retry < 3 && same_error < 2): â†’ build
-  NEEDS_FIX (retry >= 3 OR same_error >= 2): â†’ hoi_user
+  APPROVED (PASS + coverage đạt): → report → skill_validation
+  NEEDS_FIX (retry < 3 && same_error < 2): → build
+  NEEDS_FIX (retry >= 3 OR same_error >= 2): → hoi_user
 
-self_improve:
-  PASS: â†’ self_improve â†’ waiting_approval
-  FAIL: â†’ complete (skip)
+skill_validation:
+  PASS: → skill_validation → waiting_approval
+  FAIL: → complete (skip)
 
 waiting_approval:
-  user APPROVE: â†’ ghi knowledge â†’ complete
-  user REJECT: â†’ skip â†’ complete
-  user MODIFY: â†’ ghi knowledge (da sua) â†’ complete
+  user APPROVE: → ghi knowledge → complete
+  user REJECT: → skip → complete
+  user MODIFY: → ghi knowledge (đã sửa) → complete
 
 complete:
-  â†’ Luu workflow.json â†’ Ket thuc
+  → Lưu workflow.json → Kết thúc
 ```
 
 ---
 
-## TÃCH Há»¢P Vá»šI COMMANDS RIÃŠNG Láºº
+## TÍCH HỢP VỚI COMMANDS RIÊNG LẺ
 
-| Buoc | Command | Agent | File command |
-|------|---------|-------|-------------|
-| Buoc | Command | Agent | File command |
+| Bước | Command | Agent | File command |
 |------|---------|-------|-------------|
 | 1 | /team-analyze | analyst | team-analyze.md |
-| 2-3 | /team-plan | planner (mo rong) | team-plan.md |
+| 2-3 | /team-plan | planner (mở rộng) | team-plan.md |
 | 4 | /team-review | reviewer | team-review.md |
 | 4.5 | /team-gitguard | guardian | team-gitguard.md |
 | 6 | /team-build | builder | team-build.md |
 | 8 | /team-ui-audit | ui-beautifier | team-ui-audit.md |
 | 9 | /team-testplan | test-planner | team-testplan.md |
 | 10 | /team-test | tester | team-test.md |
-| 11 | (goi tu team.md) | self-improver | .opencode/agents/self-improver.md |
+| 11 | (gọi từ team.md) | self-improver | .opencode/agents/self-improver.md |
 | 12 | /team-gitpush | pusher | team-gitpush.md |
-KhÃ´ng cÃ³ command `/team-design` riÃªng â€” Design lÃ  pháº§n má»Ÿ rá»™ng cá»§a Plan.
+Không có command `/team-design` riêng — Design là phần mở rộng của Plan.
 
 ### GitGuard (Pre-Push Review)
 
-Command `/team-gitguard` dÃ¹ng **Guardian Agent** Ä‘á»ƒ review source code trÆ°á»›c khi push lÃªn git. Kiá»ƒm tra: secret leak, convention violation, security vulnerability, code quality, build/test. Output: PASS | BLOCKED | WARNING.
+Command `/team-gitguard` dùng **Guardian Agent** để review source code trước khi push lên git. Kiểm tra: secret leak, convention violation, security vulnerability, code quality, build/test. Output: PASS | BLOCKED | WARNING.
 
-Xem thÃªm: `.opencode/skills/gitguard/SKILL.md`
+Xem thêm: `.opencode/skills/gitguard/SKILL.md`
 
 ### GitPush (Safe Push)
 
-Command `/team-gitpush` dÃ¹ng **Pusher Agent** Ä‘á»ƒ thá»±c hiá»‡n git push an toÃ n vá»›i safety checks vÃ  confirmation gate. Quy trÃ¬nh:
+Command `/team-gitpush` dùng **Pusher Agent** để thực hiện git push an toàn với safety checks và confirmation gate. Quy trình:
 
-1. **Git status analysis** â€” branch, remote, ahead/behind, staged/unstaged
-2. **Safety checks** â€” secret scan, convention, security, code quality (clone GitGuard)
-3. **Build validation** â€” `dotnet build`
-4. **Test validation** â€” `dotnet test`
-5. **Diff summary** â€” file changed, insertions, deletions
-6. **Confirmation gate** â€” báº£ng tá»•ng káº¿t, user xÃ¡c nháº­n Y/N
-7. **Push execution** â€” `git push origin <branch>`
-8. **Post-push verification** â€” xÃ¡c nháº­n remote synced
+1. **Git status analysis** — branch, remote, ahead/behind, staged/unstaged
+2. **Safety checks** — secret scan, convention, security, code quality (clone GitGuard)
+3. **Build validation** — `dotnet build`
+4. **Test validation** — `dotnet test`
+5. **Diff summary** — file changed, insertions, deletions
+6. **Confirmation gate** — bảng tổng kết, user xác nhận Y/N
+7. **Push execution** — `git push origin <branch>`
+8. **Post-push verification** — xác nhận remote synced
 
 Flags: `--skip-checks`, `--force`, `--branch <name>`, `--message "<msg>"` (fast path commit+push).
 
-Xem thÃªm: `.opencode/skills/gitpush/SKILL.md`
+Xem thêm: `.opencode/skills/gitpush/SKILL.md`
 
 ---
 
-## Xá»¬ LÃ NGOáº I Lá»†
+## XỬ LÝ NGOẠI LỆ
 
 ### Timeout
-- Má»—i láº§n gá»i agent: tá»‘i Ä‘a 120 giÃ¢y
+- Mỗi lần gọi agent: tối đa 120 giây
 
-### User can thiá»‡p
-- User gá»­i thÃ´ng tin má»›i: cáº­p nháº­t context, tiáº¿p tá»¥c tá»« bÆ°á»›c hiá»‡n táº¡i
-- User yÃªu cáº§u dá»«ng: set `status: cancelled`, bÃ¡o cÃ¡o táº¡m thá»i
+### User can thiệp
+- User gửi thông tin mới: cập nhật context, tiếp tục từ bước hiện tại
+- User yêu cầu dừng: set `status: cancelled`, báo cáo tạm thời
 
-### Lá»—i gá»i agent
-- KhÃ´ng available: thá»­ láº¡i 1 láº§n sau 10s, váº«n lá»—i â†’ há»i user
-- Output sai format: yÃªu cáº§u lÃ m láº¡i
+### Lỗi gọi agent
+- Không available: thử lại 1 lần sau 10s, vẫn lỗi → hỏi user
+- Output sai format: yêu cầu làm lại
 
 ### Same error detection
-- `same_error_count >= 2` â†’ STOP, rollback
+- `same_error_count >= 2` → STOP, rollback
 
-### Rollback tá»± Ä‘á»™ng
+### Rollback tự động
 ```powershell
 $backup_root = ".opencode\backup\$workflow_id"
-# Äá»c manifest vÃ  restore tá»«ng file
+# Đọc manifest và restore từng file
 ```
 
 ---
 
-## GHI CHÃš
+## GHI CHÚ
 
-- Táº¡o workflow ID ngay khi báº¯t Ä‘áº§u
-- LuÃ´n validate frontmatter YAML sau má»—i láº§n sá»­a file .md
-- Design phase do Planner Ä‘áº£m nhiá»‡m vá»›i extended prompt
-- Self-Improvement chá»‰ táº¡o suggestions, khÃ´ng ghi trá»±c tiáº¿p knowledge base
-- Approval gate báº¯t buá»™c cho suggestion cÃ³ impact MEDIUM/HIGH
-- Backup/Rollback do Backup Utility thá»±c hiá»‡n, Orchestrator chá»‰ gá»i lá»‡nh
-- Khi workflow hoÃ n táº¥t, output bÃ¡o cÃ¡o Ä‘áº§y Ä‘á»§ vÃ  rÃµ rÃ ng
+- Tạo workflow ID ngay khi bắt đầu
+- Luôn validate frontmatter YAML sau mỗi lần sửa file .md
+- Design phase do Planner đảm nhiệm với extended prompt
+- Skill Validation chỉ tạo suggestions, không ghi trực tiếp knowledge base
+- Approval gate bắt buộc cho suggestion có impact MEDIUM/HIGH
+- Backup/Rollback do Backup Utility thực hiện, Orchestrator chỉ gọi lệnh
+- Khi workflow hoàn tất, output báo cáo đầy đủ và rõ ràng
+
+
 
 

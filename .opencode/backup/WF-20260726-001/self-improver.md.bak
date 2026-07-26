@@ -34,12 +34,13 @@ QUY TRÌNH:
 ĐẦU RA (YAML CONTRACT):
 
 ```yaml
-status: READY | NO_SUGGESTIONS
+status: "SUGGESTIONS_READY | NO_SUGGESTIONS"
 suggestions:
-  - category: CODING_PATTERN | TESTING_PATTERN | WORKFLOW_IMPROVEMENT
-    content: "Mô tả đề xuất"
+  - id: "SUG-001"
+    category: "CODING_PATTERN | TESTING_PATTERN | WORKFLOW_IMPROVEMENT"
+    description: "Mô tả đề xuất"
     evidence: "Bằng chứng từ workflow (số lần retry, lỗi gặp phải, ...)"
-    impact: HIGH | MEDIUM | LOW
+    impact: "HIGH | MEDIUM | LOW"
     requires_approval: true
 summary: "Tổng quan self-improvement (2-3 câu)"
 ```
@@ -48,7 +49,6 @@ EDGE CASES:
 1. Workflow thất bại (blocked/failed): Vẫn phân tích — bài học từ thất bại
 2. Không phát hiện kỹ năng mới: status: NO_SUGGESTIONS
 3. Workflow quá ngắn (< 3 bước): status: NO_SUGGESTIONS
-4. Output thiếu summary field → thêm summary mặc định: "No summary provided"
 
 QUY TẮC:
 - KHÔNG ghi trực tiếp vào knowledge base trước khi được approve

@@ -1,6 +1,6 @@
 ---
-last_updated: 2026-07-25
-total_lessons: 15
+last_updated: 2026-07-26
+total_lessons: 17
 ---
 
 # Lessons Learned
@@ -142,3 +142,19 @@ Kho bài học kinh nghiệm được tích lũy qua các workflow.
   observation: "bUnit có thể mock timer nhưng không verify được setTimeout behavior chính xác. Chỉ Playwright E2E test mới kiểm tra được luồng: chờ 5s → auto-next → card hiển thị câu mới."
   action: "Thêm E2E Playwright test: 1) Load trang /words/quiz, 2) Click tab, 3) Chờ 5 giây, 4) Verify câu mới xuất hiện, 5) Lặp lại. Dùng page.WaitForSelectorAsync với timeout > 5s."
   tags: ["e2e", "playwright", "timer", "testing", "blazor"]
+
+- lesson_id: LSN-016
+  type: "improvement"
+  workflow: "Nâng cấp Agent System - 7 hướng (WF-20260726-001)"
+  situation: "Workflow tạo deployment pipeline cho GitHub Pages (deploy.yml + 404.html + index.html redirect script) nhưng không có E2E test nào verify redirect, base href, page load sau redirect"
+  observation: "Dự án đã có Playwright infrastructure (SK-010) và E2E test project (JapaneseLearner.E2ETests/), hoàn toàn có thể thêm test deployment verification. Thiếu E2E coverage khiến lỗi redirect loop hoặc base href sai không được phát hiện cho đến khi deploy fail."
+  action: "Thêm E2E Playwright test cho deployment: 1) Verify 404.html redirect không tạo vòng lặp, 2) Dynamic base href hoạt động trên subpath, 3) App load được sau redirect, 4) SessionStorage redirect restore hoạt động."
+  tags: ["e2e", "playwright", "deployment", "github-pages", "suggestion-approved"]
+
+- lesson_id: LSN-017
+  type: "improvement"
+  workflow: "Nâng cấp Agent System - 7 hướng (WF-20260726-001)"
+  situation: "Workflow khuyến nghị validate GitHub Actions YAML trước deploy (created knowledge/workflow/validate-github-actions-yaml.md), nhưng bản thân workflow không include step validate YAML syntax"
+  observation: "GitHub Actions YAML syntax error không được phát hiện cho đến khi action chạy và fail trên GitHub. Cần thêm validate step vào dev-team workflow để phát hiện lỗi sớm."
+  action: "Thêm YAML validation step vào SKILL.md workflow: dùng `dotnet tool install -g yamllint` hoặc action `github-actions-yaml-validator` để kiểm tra .github/workflows/*.yml trước khi commit/deploy."
+  tags: ["github-actions", "yaml", "validation", "ci/cd", "suggestion-approved"]

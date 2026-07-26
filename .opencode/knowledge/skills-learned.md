@@ -1,6 +1,6 @@
 ---
-last_updated: 2026-07-25
-total_skills: 15
+last_updated: 2026-07-26
+total_skills: 18
 ---
 
 # Skills Learned
@@ -158,3 +158,30 @@ Mỗi kỹ năng được ghi nhận theo format:
   confidence: "new"
   related_files: ["JapaneseLearner.Tests/WordQuizTests.cs", "JapaneseLearner/Pages/WordQuiz.razor"]
   notes: "Dùng [assembly: InternalsVisibleTo(\"JapaneseLearner.Tests\")] trong JapaneseLearner.csproj hoặc trong file GlobalUsings để test internal component state mà không cần reflection. Pattern: expose IsCorrectAnswer(), GetCurrentOptions(), GetStats() như internal methods. Giảm reflection code, tăng maintainability."
+
+- skill_id: SK-016
+  name: "GitHub Actions CI-CD Pipeline for Blazor WASM"
+  category: "tool"
+  source_workflow: "Nâng cấp Agent System - 7 hướng (WF-20260726-001)"
+  usage_count: 1
+  confidence: "new"
+  related_files: [".github/workflows/deploy.yml"]
+  notes: "JamesIves/github-pages-deploy-action@v4. Pattern: checkout → setup .NET → publish → add .nojekyll → prepare structure → deploy. .NET 10 produces hashed blazor.webassembly.<hash>.js — needs copy workaround."
+
+- skill_id: SK-017
+  name: "Blazor WASM GitHub Pages Deployment Pattern"
+  category: "pattern"
+  source_workflow: "Nâng cấp Agent System - 7 hướng (WF-20260726-001)"
+  usage_count: 1
+  confidence: "new"
+  related_files: ["JapaneseLearner/wwwroot/404.html", ".github/workflows/deploy.yml"]
+  notes: "Dynamic base href via JS (index.html lines 9-31). 404.html SPA redirect fallback. Session-based redirect restore for Blazor WASM routing. Subpath deployment (/repo/) cần base href động."
+
+- skill_id: SK-018
+  name: "JavaScript SPA Routing Fallback"
+  category: "pattern"
+  source_workflow: "Nâng cấp Agent System - 7 hướng (WF-20260726-001)"
+  usage_count: 1
+  confidence: "new"
+  related_files: ["JapaneseLearner/wwwroot/404.html", "JapaneseLearner/wwwroot/index.html"]
+  notes: "404.html: capture URL → redirect to base with query param. index.html: parse redirect param → store in sessionStorage → restore URL after Blazor loads. Pattern avoids redirect loop."

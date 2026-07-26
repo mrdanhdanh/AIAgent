@@ -512,7 +512,7 @@ $cmdTable += "| 12 | /team-gitpush | pusher | team-gitpush.md |"
 
 $newTable = $cmdTable -join "`r`n"
 
-if ($teamContent -match '(?s)(\| Buoc \| Command \| Agent \| File command \|[\r\n]+\|------\|---------\|-------\|-------------[\|]*[\r\n]+)((?:\|[^\n]*\|[^\n]*\|[^\n]*\|[^\n]*\|[\r\n]*)+)') {
+    if ($teamContent -match '(?s)(\| Bước \| Command \| Agent \| File command \|[\r\n]+\|------\|---------\|-------\|-------------[\|]*[\r\n]+)((?:\|[^\n]*\|[^\n]*\|[^\n]*\|[^\n]*\|[\r\n]*)+)') {
     $fullMatch = $Matches[0]
     $newSection = "| Buoc | Command | Agent | File command |`r`n|------|---------|-------|-------------|`r`n" + $newTable + "`r`n"
     $newTeamContent = $teamContent -replace [regex]::Escape($fullMatch), $newSection
@@ -548,7 +548,7 @@ if (Test-Path $skillPath) {
 
     $newSkillTable = $skillTable -join "`r`n"
 
-    if ($skillContent -match '(?s)(\| Buoc \| Command \| Agent \| File command \|[\r\n]+\|------\|---------\|-------\|-------------[\|]*[\r\n]+)((?:\|[^\n]*\|[^\n]*\|[^\n]*\|[^\n]*\|[\r\n]*)+)') {
+    if ($skillContent -match '(?s)(\| Bước \| Command \| Agent \| File command \|[\r\n]+\|------\|---------\|-------\|-------------[\|]*[\r\n]+)((?:\|[^\n]*\|[^\n]*\|[^\n]*\|[^\n]*\|[\r\n]*)+)') {
         $fullMatch = $Matches[0]
         $newSection = "| Buoc | Command | Agent | File command |`r`n|------|---------|-------|-------------|`r`n" + $newSkillTable + "`r`n"
         $newSkillContent = $skillContent -replace [regex]::Escape($fullMatch), $newSection

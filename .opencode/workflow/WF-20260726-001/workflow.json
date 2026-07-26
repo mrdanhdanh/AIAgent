@@ -33,7 +33,7 @@
                                   },
                      "project":  "JapaneseLearner",
                      "branch":  "main",
-                     "status":  "completed",
+                     "status": "completed_approved",
                      "step_name":  "complete",
                      "step":  12,
                      "error_history":  {
