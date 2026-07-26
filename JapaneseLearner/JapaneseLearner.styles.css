@@ -34,8 +34,8 @@
     color: var(--appbar-text);
 }
 
-.nav-btn[b-3b8367fci6] {
-    opacity: 0.85 !important;
+.app-bar-inner .nav-btn[b-3b8367fci6] {
+    opacity: 0.85;
     transition: opacity 0.2s, transform 0.2s;
     color: var(--appbar-nav-btn);
     min-width: unset;
