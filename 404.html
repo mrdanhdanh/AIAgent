@@ -4,16 +4,17 @@
     <meta charset="utf-8" />
     <title>Redirecting...</title>
     <script>
-        var segment = window.location.pathname;
-        var search = window.location.search;
-        var hash = window.location.hash;
-        var base = document.querySelector('base');
-        var baseHref = base ? base.href : '/';
-        window.location.href = baseHref + '?redirect=' + encodeURIComponent(segment + search + hash);
+        var path = window.location.pathname;
+        var segments = path.split('/').filter(Boolean);
+        if (segments.length >= 2) {
+            var baseHref = '/' + segments.slice(0, 2).join('/') + '/';
+            var redirect = '/' + segments.slice(2).join('/');
+            sessionStorage.setItem('redirect', redirect);
+            window.location.replace(baseHref);
+        } else {
+            window.location.replace('/AIAgent/JapaneseLearner/');
+        }
     </script>
-    <meta http-equiv="refresh" content="0;url=/" />
 </head>
-<body>
-    <p>Redirecting to application...</p>
-</body>
+<body></body>
 </html>

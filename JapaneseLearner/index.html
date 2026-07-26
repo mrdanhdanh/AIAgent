@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Japanese Learner</title>
+    <base href="/" />
+    <link href="_framework/dotnet.eyohjashpd.js" rel="preload" as="script" fetchpriority="high" crossorigin="anonymous" integrity="sha256-lvMSYgiJXFNJsm4r3tW7oxwUfT0NgnEmPZGKbY10E1I=" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+    <script>
+        (function() {
+            try {
+                var stored = localStorage.getItem('japanese-learner-dark-mode');
+                if (stored) {
+                    var parsed = JSON.parse(stored);
+                    if (parsed === true) {
+                        document.documentElement.setAttribute('data-theme', 'dark');
+                    }
+                }
+            } catch(e) {}
+        })();
+    </script>
+    <link href="css/theme.css" rel="stylesheet" />
+    <link href="css/app.css" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link href="JapaneseLearner.styles.css" rel="stylesheet" />
+    <script type="importmap">{
+  "imports": {
+    "./_framework/blazor.webassembly.js": "./_framework/blazor.webassembly.958z1vx7fr.js",
+    "./_framework/dotnet.js": "./_framework/dotnet.eyohjashpd.js",
+    "./_framework/dotnet.native.js": "./_framework/dotnet.native.puryxhmhq9.js",
+    "./_framework/dotnet.runtime.js": "./_framework/dotnet.runtime.web2r9gqbh.js"
+  },
+  "scopes": {},
+  "integrity": {
+    "./_framework/blazor.webassembly.958z1vx7fr.js": "sha256-A59Tr9HqEhHMu8kU7kruLI9ayw5MRS6Lvc6z7jCbghk=",
+    "./_framework/blazor.webassembly.js": "sha256-A59Tr9HqEhHMu8kU7kruLI9ayw5MRS6Lvc6z7jCbghk=",
+    "./_framework/dotnet.eyohjashpd.js": "sha256-lvMSYgiJXFNJsm4r3tW7oxwUfT0NgnEmPZGKbY10E1I=",
+    "./_framework/dotnet.js": "sha256-lvMSYgiJXFNJsm4r3tW7oxwUfT0NgnEmPZGKbY10E1I=",
+    "./_framework/dotnet.native.js": "sha256-gQbHHzCnWx8iDOC65EKbql7bEltJkfao7lmkAbIRajw=",
+    "./_framework/dotnet.native.puryxhmhq9.js": "sha256-gQbHHzCnWx8iDOC65EKbql7bEltJkfao7lmkAbIRajw=",
+    "./_framework/dotnet.runtime.js": "sha256-SOUHEQ3FhDAibBSR2u90NWZpoBjPuWRmH0BAATUlhJU=",
+    "./_framework/dotnet.runtime.web2r9gqbh.js": "sha256-SOUHEQ3FhDAibBSR2u90NWZpoBjPuWRmH0BAATUlhJU="
+  }
+}</script>
+</head>
+
+<body>
+    <div id="app">
+        <svg class="loading-progress">
+            <circle r="40%" cx="50%" cy="50%" />
+            <circle r="40%" cx="50%" cy="50%" />
+        </svg>
+        <div class="loading-progress-text"></div>
+    </div>
+
+    <div id="blazor-error-ui">
+        An unhandled error has occurred.
+        <a href="." class="reload">Reload</a>
+        <span class="dismiss">🗙</span>
+    </div>
+    <script src="_framework/blazor.webassembly.js"></script>
+    <script>
+        (function() {
+            var base = document.querySelector('base');
+            var blazorScript = document.querySelector('script[src*="blazor.webassembly.js"]');
+            if (blazorScript && blazorScript.src) {
+                var url = new URL(blazorScript.src);
+                var idx = url.pathname.indexOf('/_framework/blazor.webassembly.js');
+                if (idx > 0) {
+                    base.href = url.pathname.substring(0, idx) + '/';
+                }
+            }
+        })();
+    </script>
+</body>
+
+</html>
