@@ -1,0 +1,216 @@
+﻿@page "/"
+@inject ICharService CharService
+
+<PageTitle>Japanese Learner</PageTitle>
+
+<div class="study-container">
+    <div class="study-header">
+        <div class="study-header-title">
+            <div class="study-header-icon" aria-hidden="true">
+                <span>あ</span>
+            </div>
+            <div>
+                <h1>Luyện tập</h1>
+                <p class="study-header-sub">Gõ phiên âm Romaji của chữ hiển thị</p>
+            </div>
+        </div>
+        <div class="study-header-stats">
+            <div class="stat-box stat-correct">
+                <span class="stat-num">@correctCount</span>
+                <span class="stat-label">Đúng</span>
+            </div>
+            <div class="stat-box stat-wrong">
+                <span class="stat-num">@wrongCount</span>
+                <span class="stat-label">Sai</span>
+            </div>
+        </div>
+    </div>
+
+    @if (isLoading)
+    {
+        <div class="loading-wrap">
+            <FluentProgressRing />
+        </div>
+    }
+    else if (availableChars.Count == 0)
+    {
+        <div class="empty-state">
+            <div class="empty-icon">📖</div>
+            <h3>Chưa có dữ liệu</h3>
+            <p>Vui lòng thêm chữ cái từ trang Admin để bắt đầu học.</p>
+            <FluentButton Appearance="@Appearance.Accent" Href="/admin" Class="mt-4">
+                Đến Admin
+            </FluentButton>
+        </div>
+    }
+    else
+    {
+        <div class="filter-row">
+            <FluentSelect TOption="string" @bind-Value="selectedType"
+                          @bind-Value:after="OnTypeChanged"
+                          Class="filter-select">
+                <FluentOption TOption="string" Value="@("All")">Tất cả</FluentOption>
+                <FluentOption TOption="string" Value="@("Hiragana")">Hiragana</FluentOption>
+                <FluentOption TOption="string" Value="@("Katakana")">Katakana</FluentOption>
+            </FluentSelect>
+        </div>
+
+        <div class="study-card @(isCorrect == true ? "card-correct" : isCorrect == false ? "card-wrong" : "")">
+            <div class="char-display">
+                <span class="japanese-char-display">@currentChar?.Character</span>
+            </div>
+
+            <div class="romaji-hint" aria-hidden="true">
+                <span class="hint-dot @(selectedType == "Hiragana" || selectedType == "All" ? "active" : "")">ひ</span>
+                <span class="hint-dot @(selectedType == "Katakana" || selectedType == "All" ? "active" : "")">カ</span>
+            </div>
+        </div>
+
+        @if (isCorrect == true)
+        {
+            <div class="feedback feedback-correct">
+                <span class="feedback-icon">✓</span>
+                Chính xác!
+            </div>
+        }
+        else if (isCorrect == false)
+        {
+            <div class="feedback feedback-wrong">
+                <span class="feedback-icon">✗</span>
+                Đáp án đúng: <strong>@currentChar?.Romaji</strong>
+            </div>
+        }
+
+        <div class="input-row">
+            <div class="input-wrap">
+                <FluentTextField @ref="inputRef" @bind-Value="userInput"
+                                 Placeholder="Nhập Romaji..."
+                                 Class="romaji-input"
+                                 Disabled="@(isCorrect == true)"
+                                 @onkeydown="HandleKeyDown" />
+            </div>
+            @if (isCorrect == true || isCorrect == false)
+            {
+                <FluentButton Appearance="@Appearance.Accent" OnClick="NextChar" Class="action-btn">
+                    Tiếp →
+                </FluentButton>
+            }
+            else
+            {
+                <FluentButton Appearance="@Appearance.Accent" OnClick="CheckAnswer"
+                             Disabled="string.IsNullOrWhiteSpace(userInput)" Class="action-btn">
+                    Kiểm tra
+                </FluentButton>
+            }
+        </div>
+    }
+</div>
+
+<style>
+    .study-container {
+        max-width: 520px;
+        margin: 0 auto;
+    }
+    .char-display {
+        min-height: 120px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .japanese-char-display {
+        font-size: 5rem;
+        line-height: 1.2;
+        font-family: var(--font-family);
+        color: var(--text-primary);
+        transition: transform 0.2s;
+        user-select: none;
+    }
+    .study-card:hover .japanese-char-display {
+        transform: scale(1.02);
+    }
+    .input-row {
+        align-items: stretch;
+    }
+    .action-btn {
+        height: auto;
+    }
+</style>
+
+@code {
+    private List<JapaneseChar> availableChars = new();
+    private JapaneseChar? currentChar;
+    private string userInput = "";
+    private bool? isCorrect;
+    private string selectedType = "All";
+    private int correctCount;
+    private int wrongCount;
+    private bool isLoading = true;
+    private FluentTextField inputRef = default!;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadChars();
+        isLoading = false;
+    }
+
+    private async Task LoadChars()
+    {
+        availableChars = await CharService.GetByTypeAsync(selectedType);
+        await PickRandomChar();
+    }
+
+    private async Task PickRandomChar()
+    {
+        if (availableChars.Count == 0) return;
+        var rng = new Random();
+        currentChar = availableChars[rng.Next(availableChars.Count)];
+        userInput = "";
+        isCorrect = null;
+        if (inputRef != null)
+            inputRef.FocusAsync();
+    }
+
+    private async Task CheckAnswer()
+    {
+        if (currentChar == null || string.IsNullOrWhiteSpace(userInput)) return;
+
+        if (userInput.Trim().ToLowerInvariant() == currentChar.Romaji.ToLowerInvariant())
+        {
+            isCorrect = true;
+            correctCount++;
+            StateHasChanged();
+            await Task.Delay(1000);
+            await PickRandomChar();
+        }
+        else
+        {
+            isCorrect = false;
+            wrongCount++;
+        }
+    }
+
+    private async Task NextChar()
+    {
+        await PickRandomChar();
+    }
+
+    private async Task HandleKeyDown(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter")
+        {
+            if (isCorrect == true || isCorrect == false)
+            {
+                await NextChar();
+            }
+            else
+            {
+                await CheckAnswer();
+            }
+        }
+    }
+
+    private async Task OnTypeChanged()
+    {
+        await LoadChars();
+    }
+}

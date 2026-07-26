@@ -1,0 +1,57 @@
+html, body {
+    font-family: 'Noto Sans JP', 'Roboto', sans-serif;
+    background: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+#blazor-error-ui {
+    background: #e63946;
+    color: white;
+    bottom: 0;
+    box-shadow: 0 -2px 8px rgba(0,0,0,0.15);
+    display: none;
+    left: 0;
+    padding: 0.6rem 1.25rem;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+#blazor-error-ui .dismiss {
+    cursor: pointer;
+    position: absolute;
+    right: 0.75rem;
+    top: 0.5rem;
+    color: white;
+}
+
+.loading-progress {
+    position: absolute;
+    display: block;
+    width: 8rem;
+    height: 8rem;
+    inset: 30vh 0 auto 0;
+    margin: 0 auto;
+}
+.loading-progress circle {
+    fill: none;
+    stroke: #e0e0e0;
+    stroke-width: 0.6rem;
+    transform-origin: 50% 50%;
+    transform: rotate(-90deg);
+}
+.loading-progress circle:last-child {
+    stroke: #e63946;
+    stroke-dasharray: calc(3.141 * var(--blazor-load-percentage, 0%) * 0.8), 500%;
+    transition: stroke-dasharray 0.05s ease-in-out;
+}
+.loading-progress-text {
+    position: absolute;
+    text-align: center;
+    font-weight: 500;
+    color: #1d3557;
+    inset: calc(30vh + 3.25rem) 0 auto 0.2rem;
+}
+.loading-progress-text:after {
+    content: var(--blazor-load-percentage-text, "Loading");
+}

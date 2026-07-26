@@ -1,0 +1,60 @@
+﻿@inherits LayoutComponentBase
+
+<MudThemeProvider Theme="Theme" />
+<MudPopoverProvider />
+<MudLayout>
+    <MudAppBar Elevation="0" Class="app-bar">
+        <MudIcon Icon="@Icons.Material.Filled.MenuBook" Class="mr-2" />
+        <MudText Typo="Typo.h6" Class="app-title">Japanese Learner</MudText>
+        <MudSpacer />
+        <MudIconButton Icon="@Icons.Material.Filled.Settings" Href="/admin" Color="Color.Inherit" Class="settings-btn" />
+    </MudAppBar>
+    <MudMainContent>
+        <div class="page-wrapper">
+            @Body
+        </div>
+    </MudMainContent>
+</MudLayout>
+
+@code {
+    private MudTheme Theme = new()
+    {
+        PaletteLight = new PaletteLight
+        {
+            Primary = "#E63946",
+            Secondary = "#457B9D",
+            Tertiary = "#F1FAEE",
+            Info = "#A8DADC",
+            Success = "#2A9D8F",
+            Warning = "#E9C46A",
+            Error = "#E63946",
+            Dark = "#1D3557",
+            Surface = "#FFFFFF",
+            Background = "#F8F9FA",
+            AppbarBackground = "#1D3557",
+            AppbarText = "#FFFFFF",
+            DrawerBackground = "#FFFFFF",
+            DrawerText = "#1D3557",
+        },
+        Typography = new Typography
+        {
+            Default = new DefaultTypography
+            {
+                FontFamily = new[] { "Noto Sans JP", "Roboto", "Helvetica", "Arial", "sans-serif" },
+                FontSize = "1rem",
+                FontWeight = "400",
+            },
+            H1 = new H1Typography
+            {
+                FontFamily = new[] { "Noto Sans JP", "Roboto", "Helvetica", "Arial", "sans-serif" },
+                FontWeight = "700",
+            },
+            H6 = new H6Typography
+            {
+                FontFamily = new[] { "Noto Sans JP", "Roboto", "Helvetica", "Arial", "sans-serif" },
+                FontWeight = "600",
+            },
+        },
+        Shadows = new Shadow()
+    };
+}

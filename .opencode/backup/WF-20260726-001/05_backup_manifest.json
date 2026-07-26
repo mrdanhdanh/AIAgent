@@ -1,0 +1,19 @@
+﻿{
+    "schema_version":  "2.0",
+    "skipped":  0,
+    "succeeded":  1,
+    "project_root":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI",
+    "failed":  0,
+    "created_at":  "2026-07-26T07:42:30Z",
+    "files":  [
+                  {
+                      "size":  63,
+                      "relative_path":  "opencode_test_rollback2.txt",
+                      "original_path":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\opencode_test_rollback2.txt",
+                      "hash":  "AD72EC79268D",
+                      "backup_path":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\backup\\WF-20260726-001\\opencode_test_rollback2.txt"
+                  }
+              ],
+    "total_files":  1,
+    "workflow_id":  "WF-20260726-001"
+}

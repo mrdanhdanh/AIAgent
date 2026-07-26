@@ -1,0 +1,471 @@
+@page "/words"
+@inject IWordService WordService
+
+<PageTitle>Luyện từ - Japanese Learner</PageTitle>
+
+<div class="word-study-container">
+    <div class="header-section">
+        <div class="header-title">
+            <div class="header-icon">語</div>
+            <div>
+                <h1>Luyện từ vựng</h1>
+                <p class="header-sub">Gõ phiên âm Romaji của từ hiển thị</p>
+            </div>
+        </div>
+        <div class="header-stats">
+            <div class="stat-box stat-correct">
+                <span class="stat-num">@correctCount</span>
+                <span class="stat-label">Đúng</span>
+            </div>
+            <div class="stat-box stat-wrong">
+                <span class="stat-num">@wrongCount</span>
+                <span class="stat-label">Sai</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-bar">
+        <button class="tab-btn @(selectedType == "All" ? "active" : "")" @onclick="@(() => SwitchType("All"))">Tất cả</button>
+        <button class="tab-btn @(selectedType == "Seion" ? "active" : "")" @onclick="@(() => SwitchType("Seion"))">清音</button>
+        <button class="tab-btn @(selectedType == "Dakuon" ? "active" : "")" @onclick="@(() => SwitchType("Dakuon"))">濁音</button>
+        <button class="tab-btn @(selectedType == "Handakuon" ? "active" : "")" @onclick="@(() => SwitchType("Handakuon"))">半濁音</button>
+        <button class="tab-btn @(selectedType == "Yoon" ? "active" : "")" @onclick="@(() => SwitchType("Yoon"))">拗音</button>
+        <button class="tab-btn @(selectedType == "Sokuon" ? "active" : "")" @onclick="@(() => SwitchType("Sokuon"))">促音</button>
+        <button class="tab-btn @(selectedType == "Choon" ? "active" : "")" @onclick="@(() => SwitchType("Choon"))">長音</button>
+    </div>
+
+    @if (isLoading)
+    {
+        <div class="loading-wrap">
+            <FluentProgressRing />
+        </div>
+    }
+    else if (availableWords.Count == 0)
+    {
+        <div class="empty-state">
+            <div class="empty-icon">📝</div>
+            <h3>Chưa có dữ liệu</h3>
+            <p>Vui lòng thêm từ từ trang Admin để bắt đầu học.</p>
+            <FluentButton Appearance="@Appearance.Accent" Href="/admin" Class="mt-4">
+                Đến Admin
+            </FluentButton>
+        </div>
+    }
+    else
+    {
+        <div class="type-indicator">
+            <span class="type-badge type-@currentWord?.Type?.ToLowerInvariant()">@GetTypeLabel(currentWord?.Type)</span>
+        </div>
+
+        <div class="study-card @(isCorrect == true ? "card-correct" : isCorrect == false ? "card-wrong" : "")">
+            <div class="char-display">
+                <span class="japanese-word @(GetCharCount() >= 4 ? "word-sm" : GetCharCount() >= 3 ? "word-md" : "")">@currentWord?.Characters</span>
+            </div>
+            <div class="romaji-hint">
+                <span class="hint-dot active">語</span>
+            </div>
+        </div>
+
+        @if (isCorrect == true)
+        {
+            <div class="feedback feedback-correct">
+                <span class="feedback-icon">✓</span>
+                Chính xác! (@currentWord?.Meaning)
+            </div>
+        }
+        else if (isCorrect == false)
+        {
+            <div class="feedback feedback-wrong">
+                <span class="feedback-icon">✗</span>
+                Đáp án đúng: <strong>@currentWord?.Romaji</strong>
+                @if (!string.IsNullOrWhiteSpace(currentWord?.Meaning))
+                {
+                    <span class="meaning-hint">(@currentWord.Meaning)</span>
+                }
+            </div>
+        }
+
+        <div class="input-row">
+            <div class="input-wrap">
+                <FluentTextField @ref="inputRef" @bind-Value="userInput"
+                                 Placeholder="Nhập Romaji..."
+                                 Class="romaji-input"
+                                 Disabled="@(isCorrect == true)"
+                                 @onkeydown="HandleKeyDown" />
+            </div>
+            @if (isCorrect == true || isCorrect == false)
+            {
+                <FluentButton Appearance="@Appearance.Accent" OnClick="NextWord" Class="action-btn">
+                    Tiếp →
+                </FluentButton>
+            }
+            else
+            {
+                <FluentButton Appearance="@Appearance.Accent" OnClick="CheckAnswer"
+                             Disabled="string.IsNullOrWhiteSpace(userInput)" Class="action-btn">
+                    Kiểm tra
+                </FluentButton>
+            }
+        </div>
+    }
+</div>
+
+<style>
+    .word-study-container {
+        max-width: 520px;
+        margin: 0 auto;
+    }
+    .header-section {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 16px;
+    }
+    .header-title {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+    .header-title h1 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #1d3557;
+        margin: 0;
+        line-height: 1.2;
+    }
+    .header-sub {
+        font-size: 0.8rem;
+        color: #666;
+        margin: 2px 0 0 0;
+    }
+    .header-icon {
+        width: 48px;
+        height: 48px;
+        background: linear-gradient(135deg, #457b9d, #1d3557);
+        color: white;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        font-weight: 700;
+        font-family: 'Noto Sans JP', sans-serif;
+        box-shadow: 0 4px 12px rgba(69,123,157,0.3);
+    }
+    .header-stats {
+        display: flex;
+        gap: 8px;
+    }
+    .stat-box {
+        text-align: center;
+        padding: 6px 14px;
+        border-radius: 10px;
+        min-width: 55px;
+    }
+    .stat-correct {
+        background: rgba(42,157,143,0.12);
+    }
+    .stat-wrong {
+        background: rgba(230,57,70,0.12);
+    }
+    .stat-num {
+        display: block;
+        font-size: 1.4rem;
+        font-weight: 700;
+        line-height: 1.2;
+    }
+    .stat-correct .stat-num { color: #2a9d8f; }
+    .stat-wrong .stat-num { color: #e63946; }
+    .stat-label {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: #666;
+    }
+    .tab-bar {
+        display: flex;
+        gap: 6px;
+        margin-bottom: 16px;
+        overflow-x: auto;
+        padding-bottom: 4px;
+        -webkit-overflow-scrolling: touch;
+    }
+    .tab-btn {
+        flex-shrink: 0;
+        padding: 6px 14px;
+        border-radius: 20px;
+        border: 2px solid #e0e0e0;
+        background: white;
+        color: #666;
+        font-size: 0.8rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+        font-family: inherit;
+    }
+    .tab-btn:hover {
+        border-color: #457b9d;
+        color: #457b9d;
+    }
+    .tab-btn.active {
+        background: #1d3557;
+        border-color: #1d3557;
+        color: white;
+    }
+    .type-indicator {
+        text-align: center;
+        margin-bottom: 12px;
+    }
+    .type-badge {
+        display: inline-block;
+        padding: 3px 14px;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+    }
+    .type-seion { background: rgba(69,123,157,0.12); color: #457b9d; }
+    .type-dakuon { background: rgba(230,57,70,0.1); color: #e63946; }
+    .type-handakuon { background: rgba(42,157,143,0.12); color: #2a9d8f; }
+    .type-yoon { background: rgba(233,196,106,0.2); color: #b8860b; }
+    .type-sokuon { background: rgba(168,218,220,0.3); color: #1d3557; }
+    .type-choon { background: rgba(69,123,157,0.15); color: #1d3557; }
+    .loading-wrap {
+        display: flex;
+        justify-content: center;
+        padding: 80px 0;
+    }
+    .empty-state {
+        text-align: center;
+        padding: 60px 20px;
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .empty-icon {
+        font-size: 3rem;
+        margin-bottom: 12px;
+    }
+    .empty-state h3 {
+        color: #1d3557;
+        margin: 0 0 8px 0;
+    }
+    .empty-state p {
+        color: #666;
+        margin: 0;
+    }
+    .study-card {
+        background: white;
+        border-radius: 20px;
+        padding: 40px 20px;
+        text-align: center;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+    }
+    .card-correct {
+        border-color: #2a9d8f;
+        box-shadow: 0 4px 24px rgba(42,157,143,0.15);
+    }
+    .card-wrong {
+        border-color: #e63946;
+        box-shadow: 0 4px 24px rgba(230,57,70,0.12);
+    }
+    .char-display {
+        min-height: 120px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .japanese-word {
+        font-size: 5rem;
+        line-height: 1.2;
+        font-family: 'Noto Sans JP', sans-serif;
+        color: #1d3557;
+        transition: transform 0.2s;
+        user-select: none;
+    }
+    .japanese-word.word-md {
+        font-size: 4rem;
+    }
+    .japanese-word.word-sm {
+        font-size: 3rem;
+    }
+    .study-card:hover .japanese-word {
+        transform: scale(1.02);
+    }
+    .romaji-hint {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 8px;
+    }
+    .hint-dot {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: #e8f0fe;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.75rem;
+        font-family: 'Noto Sans JP', sans-serif;
+        opacity: 0.6;
+        color: #457b9d;
+    }
+    .feedback {
+        text-align: center;
+        padding: 12px 20px;
+        border-radius: 12px;
+        margin-top: 16px;
+        font-size: 1rem;
+        font-weight: 500;
+        animation: fadeIn 0.2s ease;
+    }
+    .feedback-correct {
+        background: rgba(42,157,143,0.1);
+        color: #2a9d8f;
+        border: 1px solid rgba(42,157,143,0.2);
+    }
+    .feedback-wrong {
+        background: rgba(230,57,70,0.08);
+        color: #e63946;
+        border: 1px solid rgba(230,57,70,0.15);
+    }
+    .feedback-icon {
+        margin-right: 8px;
+        font-weight: 700;
+    }
+    .meaning-hint {
+        display: block;
+        font-size: 0.85rem;
+        font-weight: 400;
+        margin-top: 4px;
+        opacity: 0.8;
+    }
+    .input-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 16px;
+    }
+    .input-wrap {
+        flex: 1;
+    }
+    .romaji-input {
+        background: white;
+        border-radius: 12px;
+    }
+    .action-btn {
+        height: 48px;
+        border-radius: 12px !important;
+        padding: 0 24px !important;
+        font-weight: 600 !important;
+        white-space: nowrap;
+        min-width: 120px;
+        text-transform: none !important;
+    }
+    @@keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-4px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>
+
+@code {
+    private List<JapaneseWord> availableWords = new();
+    private JapaneseWord? currentWord;
+    private string userInput = "";
+    private bool? isCorrect;
+    private string selectedType = "All";
+    private int correctCount;
+    private int wrongCount;
+    private bool isLoading = true;
+    private FluentTextField inputRef = default!;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadWords();
+        isLoading = false;
+    }
+
+    private async Task LoadWords()
+    {
+        availableWords = await WordService.GetByTypeAsync(selectedType);
+        await PickRandomWord();
+    }
+
+    private async Task PickRandomWord()
+    {
+        if (availableWords.Count == 0) return;
+        var rng = new Random();
+        currentWord = availableWords[rng.Next(availableWords.Count)];
+        userInput = "";
+        isCorrect = null;
+        if (inputRef != null)
+            inputRef.FocusAsync();
+    }
+
+    private async Task CheckAnswer()
+    {
+        if (currentWord == null || string.IsNullOrWhiteSpace(userInput)) return;
+
+        if (userInput.Trim().ToLowerInvariant() == currentWord.Romaji.ToLowerInvariant())
+        {
+            isCorrect = true;
+            correctCount++;
+            StateHasChanged();
+            await Task.Delay(1000);
+            await PickRandomWord();
+        }
+        else
+        {
+            isCorrect = false;
+            wrongCount++;
+        }
+    }
+
+    private async Task NextWord()
+    {
+        await PickRandomWord();
+    }
+
+    private async Task HandleKeyDown(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter")
+        {
+            if (isCorrect == true || isCorrect == false)
+            {
+                await NextWord();
+            }
+            else
+            {
+                await CheckAnswer();
+            }
+        }
+    }
+
+    private async Task SwitchType(string type)
+    {
+        selectedType = type;
+        await LoadWords();
+    }
+
+    private int GetCharCount()
+    {
+        return currentWord?.Characters?.Length ?? 0;
+    }
+
+    private string GetTypeLabel(string? type)
+    {
+        return type switch
+        {
+            "Seion" => "清音 (Âm cơ bản)",
+            "Dakuon" => "濁音 (Âm đục)",
+            "Handakuon" => "半濁音 (Âm bán đục)",
+            "Yoon" => "拗音 (Âm ghép)",
+            "Sokuon" => "促音 (Âm ngắt)",
+            "Choon" => "長音 (Âm dài)",
+            _ => ""
+        };
+    }
+}

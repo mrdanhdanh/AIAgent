@@ -1,0 +1,653 @@
+@page "/admin"
+@inject ICharService CharService
+@inject IWordService WordService
+
+<PageTitle>Quản lý - Japanese Learner</PageTitle>
+
+<div class="admin-container">
+    <div class="admin-tab-bar">
+        <button class="admin-tab-btn @(activeTab == "chars" ? "active" : "")" @onclick="SwitchToChars">
+            📖 Bảng chữ cái
+        </button>
+        <button class="admin-tab-btn @(activeTab == "words" ? "active" : "")" @onclick="SwitchToWords">
+            📝 Từ vựng
+        </button>
+    </div>
+
+    @if (_showNotif)
+    {
+        <div class="notif-bar notif-success">@_notifMessage</div>
+    }
+
+    @if (activeTab == "chars")
+    {
+            <div class="admin-header">
+            <div class="admin-header-left">
+                <div class="admin-icon">📖</div>
+                <div>
+                    <h2>Quản lý bảng chữ cái</h2>
+                    <p class="admin-sub">Thêm, sửa, xóa các ký tự Hiragana và Katakana</p>
+                </div>
+            </div>
+            <FluentButton Appearance="@Appearance.Accent" OnClick="OpenAddCharDialog" Class="add-btn">
+                ➕ Thêm chữ
+            </FluentButton>
+        </div>
+
+        @if (chars == null)
+        {
+            <div class="loading-wrap">
+                <FluentProgressRing />
+            </div>
+        }
+        else if (chars.Count == 0)
+        {
+            <div class="empty-state">
+                <div class="empty-icon">📖</div>
+                <h3>Danh sách trống</h3>
+                <p>Chưa có chữ cái nào. Hãy thêm chữ mới để bắt đầu.</p>
+            </div>
+        }
+        else
+        {
+            <div class="table-wrap">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Chữ</th>
+                            <th>Phiên âm</th>
+                            <th>Loại</th>
+                            <th>Hành động</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var c in chars)
+                        {
+                            <tr>
+                                <td><span class="table-char">@c.Character</span></td>
+                                <td><code class="table-romaji">@c.Romaji</code></td>
+                                <td>
+                                    <span class="type-badge @(c.Type == "Hiragana" ? "type-hira" : "type-kata")">
+                                        @c.Type
+                                    </span>
+                                </td>
+                                <td>
+                                    <div class="action-btns">
+                                        <FluentButton Appearance="@Appearance.Lightweight" OnClick="() => OpenEditCharDialog(c)" Class="action-btn-icon" Title="@("Sửa chữ " + c.Character)">✏️</FluentButton>
+                                        <FluentButton Appearance="@Appearance.Lightweight" OnClick="() => OpenDeleteCharConfirm(c)" Class="action-btn-icon" Title="@("Xóa chữ " + c.Character)">🗑️</FluentButton>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+
+        @if (showCharDialog)
+        {
+            <FluentDialog Open="true">
+                <h3>@(isEditCharMode ? "Sửa chữ" : "Thêm chữ mới")</h3>
+                <div class="dialog-fields">
+                    <FluentTextField @bind-Value="editingChar.Character" Label="Chữ Nhật" Required="true" />
+                    <FluentTextField @bind-Value="editingChar.Romaji" Label="Phiên âm (Romaji)" Required="true" />
+                    <FluentSelect TOption="string" @bind-Value="editingChar.Type" Label="Loại" Required="true">
+                        <FluentOption TOption="string" Value="@("Hiragana")">Hiragana</FluentOption>
+                        <FluentOption TOption="string" Value="@("Katakana")">Katakana</FluentOption>
+                    </FluentSelect>
+                </div>
+                <div class="dialog-actions">
+                    <FluentButton Appearance="@Appearance.Neutral" OnClick="CancelCharDialog">Hủy</FluentButton>
+                    <FluentButton Appearance="@Appearance.Accent" OnClick="SaveChar" Disabled="!IsCharFormValid">
+                        @(isEditCharMode ? "Lưu thay đổi" : "Thêm vào danh sách")
+                    </FluentButton>
+                </div>
+            </FluentDialog>
+        }
+
+        @if (showCharDeleteConfirm)
+        {
+            <FluentDialog Open="true">
+                <h3>Xác nhận xóa</h3>
+                <p>Bạn có chắc muốn xóa chữ <strong>@charToDelete?.Character</strong> (@charToDelete?.Romaji)?</p>
+                <div class="dialog-actions">
+                    <FluentButton Appearance="@Appearance.Neutral" OnClick="CancelCharDelete">Hủy</FluentButton>
+                    <FluentButton Appearance="@Appearance.Accent" OnClick="DeleteChar">Xóa</FluentButton>
+                </div>
+            </FluentDialog>
+        }
+    }
+
+    @if (activeTab == "words")
+    {
+        <div class="admin-header">
+            <div class="admin-header-left">
+                <div class="admin-icon word-icon">📝</div>
+                <div>
+                    <h2>Quản lý từ vựng</h2>
+                    <p class="admin-sub">Thêm, sửa, xóa từ vựng tiếng Nhật</p>
+                </div>
+            </div>
+            <FluentButton Appearance="@Appearance.Accent" OnClick="OpenAddWordDialog" Class="add-btn">
+                ➕ Thêm từ
+            </FluentButton>
+        </div>
+
+        @if (words == null)
+        {
+            <div class="loading-wrap">
+                <FluentProgressRing />
+            </div>
+        }
+        else if (words.Count == 0)
+        {
+            <div class="empty-state">
+                <div class="empty-icon">📝</div>
+                <h3>Danh sách trống</h3>
+                <p>Chưa có từ vựng nào. Hãy thêm từ mới để bắt đầu.</p>
+            </div>
+        }
+        else
+        {
+            <div class="word-count">Tổng số: <strong>@words.Count</strong> từ</div>
+            <div class="table-wrap">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Từ</th>
+                            <th>Phiên âm</th>
+                            <th>Nghĩa</th>
+                            <th>Loại âm</th>
+                            <th>Level</th>
+                            <th>Hành động</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var w in words)
+                        {
+                            <tr>
+                                <td><span class="table-char">@w.Characters</span></td>
+                                <td><code class="table-romaji">@w.Romaji</code></td>
+                                <td><span class="table-meaning">@w.Meaning</span></td>
+                                <td><span class="type-badge type-@w.Type?.ToLowerInvariant()">@GetTypeLabel(w.Type)</span></td>
+                                <td><span class="level-badge">@w.Level</span></td>
+                                <td>
+                                    <div class="action-btns">
+                                        <FluentButton Appearance="@Appearance.Lightweight" OnClick="() => OpenEditWordDialog(w)" Class="action-btn-icon" Title="@("Sửa từ " + w.Characters)">✏️</FluentButton>
+                                        <FluentButton Appearance="@Appearance.Lightweight" OnClick="() => OpenDeleteWordConfirm(w)" Class="action-btn-icon" Title="@("Xóa từ " + w.Characters)">🗑️</FluentButton>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+
+        @if (showWordDialog)
+        {
+            <FluentDialog Open="true">
+                <h3>@(isEditWordMode ? "Sửa từ" : "Thêm từ mới")</h3>
+                <div class="dialog-fields">
+                    <FluentTextField @bind-Value="editingWord.Characters" Label="Chữ Nhật" Required="true" />
+                    <FluentTextField @bind-Value="editingWord.Romaji" Label="Phiên âm (Romaji)" Required="true" />
+                    <FluentTextField @bind-Value="editingWord.Meaning" Label="Nghĩa" Required="true" />
+                    <FluentSelect TOption="string" @bind-Value="editingWord.Type" Label="Loại âm" Required="true">
+                        <FluentOption TOption="string" Value="@("N5")">N5 (Tổng hợp)</FluentOption>
+                        <FluentOption TOption="string" Value="@("Seion")">清音 (Âm cơ bản)</FluentOption>
+                        <FluentOption TOption="string" Value="@("Dakuon")">濁音 (Âm đục)</FluentOption>
+                        <FluentOption TOption="string" Value="@("Handakuon")">半濁音 (Âm bán đục)</FluentOption>
+                        <FluentOption TOption="string" Value="@("Yoon")">拗音 (Âm ghép)</FluentOption>
+                        <FluentOption TOption="string" Value="@("Sokuon")">促音 (Âm ngắt)</FluentOption>
+                        <FluentOption TOption="string" Value="@("Choon")">長音 (Âm dài)</FluentOption>
+                    </FluentSelect>
+                    <FluentSelect TOption="string" @bind-Value="editingWord.Level" Label="JLPT Level" Required="true">
+                        <FluentOption TOption="string" Value="@("N5")">N5</FluentOption>
+                        <FluentOption TOption="string" Value="@("N4")">N4</FluentOption>
+                        <FluentOption TOption="string" Value="@("N3")">N3</FluentOption>
+                        <FluentOption TOption="string" Value="@("N2")">N2</FluentOption>
+                        <FluentOption TOption="string" Value="@("N1")">N1</FluentOption>
+                    </FluentSelect>
+                </div>
+                <div class="dialog-actions">
+                    <FluentButton Appearance="@Appearance.Neutral" OnClick="CancelWordDialog">Hủy</FluentButton>
+                    <FluentButton Appearance="@Appearance.Accent" OnClick="SaveWord" Disabled="!IsWordFormValid">
+                        @(isEditWordMode ? "Lưu thay đổi" : "Thêm vào danh sách")
+                    </FluentButton>
+                </div>
+            </FluentDialog>
+        }
+
+        @if (showWordDeleteConfirm)
+        {
+            <FluentDialog Open="true">
+                <h3>Xác nhận xóa</h3>
+                <p>Bạn có chắc muốn xóa từ <strong>@wordToDelete?.Characters</strong> (@wordToDelete?.Romaji)?</p>
+                <div class="dialog-actions">
+                    <FluentButton Appearance="@Appearance.Neutral" OnClick="CancelWordDelete">Hủy</FluentButton>
+                    <FluentButton Appearance="@Appearance.Accent" OnClick="DeleteWord">Xóa</FluentButton>
+                </div>
+            </FluentDialog>
+        }
+    }
+</div>
+
+<style>
+    .admin-container {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    .notif-bar {
+        padding: 10px 16px;
+        border-radius: 10px;
+        margin-bottom: 12px;
+        font-weight: 500;
+        animation: fadeIn 0.2s ease;
+    }
+    .notif-success {
+        background: var(--notif-success-bg);
+        color: var(--notif-success-text);
+        border: 1px solid var(--notif-success-border);
+    }
+.admin-tab-bar {
+        display: flex;
+        gap: 6px;
+        margin-bottom: 20px;
+        background: var(--tab-bar-bg);
+        border-radius: 14px;
+        padding: 6px;
+        box-shadow: var(--shadow-sm);
+    }
+    .admin-tab-btn {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 10px 16px;
+        border-radius: 10px;
+        border: none;
+        background: transparent;
+        color: var(--tab-btn-text);
+        font-size: 0.9rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all var(--transition-fast);
+        font-family: var(--font-family);
+    }
+    .admin-tab-btn:hover {
+        background: var(--tab-btn-hover-bg);
+        color: var(--tab-btn-hover-text-solid);
+    }
+    .admin-tab-btn.active {
+        background: var(--tab-btn-active-bg);
+        color: var(--tab-btn-active-text);
+    }
+    .admin-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 16px;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+    .admin-header-left {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+    }
+    .admin-icon {
+        width: 44px;
+        height: 44px;
+        background: var(--icon-admin-chars-bg);
+        color: var(--text-on-primary);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.3rem;
+    }
+    .word-icon {
+        background: var(--icon-admin-words-bg);
+    }
+    .admin-header h2 {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin: 0;
+    }
+    .admin-sub {
+        font-size: 0.8rem;
+        color: var(--text-secondary);
+        margin: 2px 0 0 0;
+    }
+    .add-btn {
+        border-radius: 10px;
+    }
+    .loading-wrap {
+        display: flex;
+        justify-content: center;
+        padding: 60px 0;
+    }
+    .empty-state {
+        text-align: center;
+        padding: 60px 20px;
+        background: var(--bg-card);
+        border-radius: 16px;
+        box-shadow: var(--shadow-sm);
+    }
+    .empty-icon { font-size: 3rem; margin-bottom: 12px; }
+    .empty-state h3 { color: var(--text-primary); margin: 0 0 8px 0; }
+    .empty-state p { color: var(--text-secondary); margin: 0; }
+    .word-count {
+        text-align: right;
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+        margin-bottom: 8px;
+    }
+    .table-wrap {
+        background: var(--bg-card);
+        border-radius: 16px;
+        box-shadow: var(--shadow-sm);
+        overflow: hidden;
+    }
+    .data-table {
+        width: 100%;
+        border-collapse: collapse;
+        background: transparent;
+    }
+    .data-table th {
+        text-align: left;
+        padding: 12px 16px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        border-bottom: 1px solid var(--table-th-border);
+        background: var(--table-th-bg);
+    }
+    .data-table td {
+        padding: 10px 16px;
+        border-bottom: 1px solid var(--table-td-border);
+        vertical-align: middle;
+    }
+    .data-table tr:last-child td {
+        border-bottom: none;
+    }
+    .table-char {
+        font-size: 1.2rem;
+        font-family: var(--font-family);
+        color: var(--text-primary);
+    }
+    .table-romaji {
+        background: var(--table-romaji-bg);
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-size: 0.85rem;
+        color: var(--table-romaji-text);
+    }
+    .table-meaning {
+        font-size: 0.9rem;
+        color: var(--text-table);
+    }
+    .type-badge {
+        display: inline-block;
+        padding: 3px 12px;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+    }
+    .type-hira {
+        background: var(--badge-seion-bg);
+        color: var(--badge-seion-text);
+    }
+    .type-kata {
+        background: var(--badge-dakuon-bg);
+        color: var(--badge-dakuon-text);
+    }
+    .type-seion { background: var(--badge-seion-bg); color: var(--badge-seion-text); }
+    .type-dakuon { background: var(--badge-dakuon-bg); color: var(--badge-dakuon-text); }
+    .type-handakuon { background: var(--badge-handakuon-bg); color: var(--badge-handakuon-text); }
+    .type-yoon { background: var(--badge-yoon-bg); color: var(--badge-yoon-text); }
+    .type-sokuon { background: var(--badge-sokuon-bg); color: var(--badge-sokuon-text); }
+    .type-choon { background: var(--badge-choon-bg); color: var(--badge-choon-text); }
+    .type-n5 { background: var(--badge-n5-bg); color: var(--badge-n5-text); }
+    .level-badge {
+        display: inline-block;
+        padding: 2px 10px;
+        border-radius: 12px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        background: var(--badge-level-bg);
+        color: var(--badge-level-text);
+    }
+    .action-btns {
+        display: flex;
+        gap: 4px;
+    }
+    .action-btn-icon {
+        transition: transform 0.15s;
+    }
+    .action-btn-icon:hover { transform: scale(1.1); }
+    .dialog-fields {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        padding: 8px 0;
+    }
+    .notif-bar {
+        animation: feedbackFadeIn 0.2s ease;
+    }
+</style>
+
+@code {
+    private string activeTab = "chars";
+    private string _notifMessage = "";
+    private bool _showNotif;
+
+    // Char state
+    private List<JapaneseChar> chars = new();
+    private bool showCharDialog;
+    private bool isEditCharMode;
+    private JapaneseChar editingChar = new();
+    private bool showCharDeleteConfirm;
+    private JapaneseChar? charToDelete;
+
+    // Word state
+    private List<JapaneseWord> words = new();
+    private bool showWordDialog;
+    private bool isEditWordMode;
+    private JapaneseWord editingWord = new();
+    private bool showWordDeleteConfirm;
+    private JapaneseWord? wordToDelete;
+
+    private bool IsCharFormValid =>
+        !string.IsNullOrWhiteSpace(editingChar.Character) &&
+        !string.IsNullOrWhiteSpace(editingChar.Romaji);
+
+    private bool IsWordFormValid =>
+        !string.IsNullOrWhiteSpace(editingWord.Characters) &&
+        !string.IsNullOrWhiteSpace(editingWord.Romaji) &&
+        !string.IsNullOrWhiteSpace(editingWord.Meaning);
+
+    protected override async Task OnInitializedAsync()
+    {
+        await RefreshCharList();
+    }
+
+    private void SwitchToChars()
+    {
+        activeTab = "chars";
+    }
+
+    private void SwitchToWords()
+    {
+        activeTab = "words";
+        if (words.Count == 0)
+            _ = RefreshWordList();
+    }
+
+    private async Task ShowNotif(string message)
+    {
+        _notifMessage = message;
+        _showNotif = true;
+        StateHasChanged();
+        await Task.Delay(3000);
+        _showNotif = false;
+    }
+
+    // ===== Char CRUD =====
+    private async Task RefreshCharList()
+    {
+        chars = await CharService.GetAllAsync();
+    }
+
+    private void OpenAddCharDialog()
+    {
+        editingChar = new JapaneseChar { Type = "Hiragana" };
+        isEditCharMode = false;
+        showCharDialog = true;
+    }
+
+    private void OpenEditCharDialog(JapaneseChar c)
+    {
+        editingChar = new JapaneseChar
+        {
+            Id = c.Id,
+            Character = c.Character,
+            Romaji = c.Romaji,
+            Type = c.Type
+        };
+        isEditCharMode = true;
+        showCharDialog = true;
+    }
+
+    private async Task SaveChar()
+    {
+        if (!IsCharFormValid) return;
+
+        if (isEditCharMode)
+            await CharService.UpdateAsync(editingChar);
+        else
+            await CharService.AddAsync(editingChar);
+
+        showCharDialog = false;
+        await RefreshCharList();
+    }
+
+    private void CancelCharDialog()
+    {
+        showCharDialog = false;
+    }
+
+    private void OpenDeleteCharConfirm(JapaneseChar c)
+    {
+        charToDelete = c;
+        showCharDeleteConfirm = true;
+    }
+
+    private async Task DeleteChar()
+    {
+        if (charToDelete != null)
+        {
+            await CharService.DeleteAsync(charToDelete.Id);
+            charToDelete = null;
+        }
+        showCharDeleteConfirm = false;
+        await RefreshCharList();
+    }
+
+    private void CancelCharDelete()
+    {
+        showCharDeleteConfirm = false;
+        charToDelete = null;
+    }
+
+    // ===== Word CRUD =====
+    private async Task RefreshWordList()
+    {
+        words = await WordService.GetAllAsync();
+    }
+
+    private void OpenAddWordDialog()
+    {
+        editingWord = new JapaneseWord { Type = "N5", Level = "N5" };
+        isEditWordMode = false;
+        showWordDialog = true;
+    }
+
+    private void OpenEditWordDialog(JapaneseWord w)
+    {
+        editingWord = new JapaneseWord
+        {
+            Id = w.Id,
+            Characters = w.Characters,
+            Romaji = w.Romaji,
+            Meaning = w.Meaning,
+            Type = w.Type,
+            Level = w.Level
+        };
+        isEditWordMode = true;
+        showWordDialog = true;
+    }
+
+    private async Task SaveWord()
+    {
+        if (!IsWordFormValid) return;
+
+        if (isEditWordMode)
+            await WordService.UpdateAsync(editingWord);
+        else
+            await WordService.AddAsync(editingWord);
+
+        showWordDialog = false;
+        await RefreshWordList();
+        await ShowNotif(isEditWordMode ? "Đã cập nhật từ" : "Đã thêm từ mới");
+    }
+
+    private void CancelWordDialog()
+    {
+        showWordDialog = false;
+    }
+
+    private void OpenDeleteWordConfirm(JapaneseWord w)
+    {
+        wordToDelete = w;
+        showWordDeleteConfirm = true;
+    }
+
+    private async Task DeleteWord()
+    {
+        if (wordToDelete != null)
+        {
+            await WordService.DeleteAsync(wordToDelete.Id);
+            wordToDelete = null;
+        }
+        showWordDeleteConfirm = false;
+        await RefreshWordList();
+        await ShowNotif("Đã xóa từ");
+    }
+
+    private void CancelWordDelete()
+    {
+        showWordDeleteConfirm = false;
+        wordToDelete = null;
+    }
+
+    private string GetTypeLabel(string? type)
+    {
+        return type switch
+        {
+            "Seion" => "清音",
+            "Dakuon" => "濁音",
+            "Handakuon" => "半濁音",
+            "Yoon" => "拗音",
+            "Sokuon" => "促音",
+            "Choon" => "長音",
+            "N5" => "N5",
+            _ => type ?? ""
+        };
+    }
+}

@@ -1,0 +1,40 @@
+.app-bar {
+    backdrop-filter: blur(10px);
+    background: rgba(29, 53, 87, 0.95) !important;
+}
+
+.app-title {
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+
+.nav-btn {
+    opacity: 0.85;
+    transition: opacity 0.2s, transform 0.2s;
+}
+.nav-btn:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.home-link {
+    color: inherit;
+    text-decoration: none;
+}
+.home-link:hover {
+    text-decoration: underline;
+}
+
+.page-wrapper {
+    min-height: calc(100vh - 64px);
+    padding: 32px 16px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e8f0fe 50%, #f1faee 100%);
+}
+
+.nav-menu {
+    opacity: 0.85;
+    transition: opacity 0.2s;
+}
+.nav-menu:hover {
+    opacity: 1;
+}

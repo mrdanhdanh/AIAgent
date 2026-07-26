@@ -1,0 +1,398 @@
+﻿@page "/"
+@inject ICharService CharService
+
+<PageTitle>Japanese Learner</PageTitle>
+
+<div class="study-container">
+    <div class="header-section">
+        <div class="header-title">
+            <div class="header-icon">あ</div>
+            <div>
+                <h1>Luyện tập</h1>
+                <p class="header-sub">Gõ phiên âm Romaji của chữ hiển thị</p>
+            </div>
+        </div>
+        <div class="header-stats">
+            <div class="stat-box stat-correct">
+                <span class="stat-num">@correctCount</span>
+                <span class="stat-label">Đúng</span>
+            </div>
+            <div class="stat-box stat-wrong">
+                <span class="stat-num">@wrongCount</span>
+                <span class="stat-label">Sai</span>
+            </div>
+        </div>
+    </div>
+
+    @if (isLoading)
+    {
+        <div class="loading-wrap">
+            <FluentProgressRing />
+        </div>
+    }
+    else if (availableChars.Count == 0)
+    {
+        <div class="empty-state">
+            <div class="empty-icon">📝</div>
+            <h3>Chưa có dữ liệu</h3>
+            <p>Vui lòng thêm chữ cái từ trang Admin để bắt đầu học.</p>
+            <FluentButton Appearance="@Appearance.Accent" Href="/admin" Class="mt-4">
+                Đến Admin
+            </FluentButton>
+        </div>
+    }
+    else
+    {
+        <div class="filter-row">
+            <FluentSelect TOption="string" @bind-Value="selectedType"
+                          @bind-Value:after="OnTypeChanged"
+                          Class="filter-select">
+                <FluentOption TOption="string" Value="@("All")">Tất cả</FluentOption>
+                <FluentOption TOption="string" Value="@("Hiragana")">Hiragana</FluentOption>
+                <FluentOption TOption="string" Value="@("Katakana")">Katakana</FluentOption>
+            </FluentSelect>
+        </div>
+
+        <div class="study-card @(isCorrect == true ? "card-correct" : isCorrect == false ? "card-wrong" : "")">
+            <div class="char-display">
+                <span class="japanese-char">@currentChar?.Character</span>
+            </div>
+
+            <div class="romaji-hint">
+                <span class="hint-dot @(selectedType == "Hiragana" || selectedType == "All" ? "active" : "")">ひ</span>
+                <span class="hint-dot @(selectedType == "Katakana" || selectedType == "All" ? "active" : "")">カ</span>
+            </div>
+        </div>
+
+        @if (isCorrect == true)
+        {
+            <div class="feedback feedback-correct">
+                <span class="feedback-icon">✓</span>
+                Chính xác!
+            </div>
+        }
+        else if (isCorrect == false)
+        {
+            <div class="feedback feedback-wrong">
+                <span class="feedback-icon">✗</span>
+                Đáp án đúng: <strong>@currentChar?.Romaji</strong>
+            </div>
+        }
+
+        <div class="input-row">
+            <div class="input-wrap">
+                <FluentTextField @ref="inputRef" @bind-Value="userInput"
+                                 Placeholder="Nhập Romaji..."
+                                 Class="romaji-input"
+                                 Disabled="@(isCorrect == true)"
+                                 @onkeydown="HandleKeyDown" />
+            </div>
+            @if (isCorrect == true || isCorrect == false)
+            {
+                <FluentButton Appearance="@Appearance.Accent" OnClick="NextChar" Class="action-btn">
+                    Tiếp →
+                </FluentButton>
+            }
+            else
+            {
+                <FluentButton Appearance="@Appearance.Accent" OnClick="CheckAnswer"
+                             Disabled="string.IsNullOrWhiteSpace(userInput)" Class="action-btn">
+                    Kiểm tra
+                </FluentButton>
+            }
+        </div>
+    }
+</div>
+
+<style>
+    .study-container {
+        max-width: 480px;
+        margin: 0 auto;
+    }
+    .header-section {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 24px;
+    }
+    .header-title {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+    .header-title h1 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #1d3557;
+        margin: 0;
+        line-height: 1.2;
+    }
+    .header-sub {
+        font-size: 0.8rem;
+        color: #666;
+        margin: 2px 0 0 0;
+    }
+    .header-icon {
+        width: 48px;
+        height: 48px;
+        background: linear-gradient(135deg, #e63946, #c1121f);
+        color: white;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        font-weight: 700;
+        font-family: 'Noto Sans JP', sans-serif;
+        box-shadow: 0 4px 12px rgba(230,57,70,0.3);
+    }
+    .header-stats {
+        display: flex;
+        gap: 8px;
+    }
+    .stat-box {
+        text-align: center;
+        padding: 6px 14px;
+        border-radius: 10px;
+        min-width: 55px;
+    }
+    .stat-correct {
+        background: rgba(42,157,143,0.12);
+    }
+    .stat-wrong {
+        background: rgba(230,57,70,0.12);
+    }
+    .stat-num {
+        display: block;
+        font-size: 1.4rem;
+        font-weight: 700;
+        line-height: 1.2;
+    }
+    .stat-correct .stat-num { color: #2a9d8f; }
+    .stat-wrong .stat-num { color: #e63946; }
+    .stat-label {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: #666;
+    }
+    .loading-wrap {
+        display: flex;
+        justify-content: center;
+        padding: 80px 0;
+    }
+    .empty-state {
+        text-align: center;
+        padding: 60px 20px;
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .empty-icon {
+        font-size: 3rem;
+        margin-bottom: 12px;
+    }
+    .empty-state h3 {
+        color: #1d3557;
+        margin: 0 0 8px 0;
+    }
+    .empty-state p {
+        color: #666;
+        margin: 0;
+    }
+    .filter-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 16px;
+    }
+    .filter-select {
+        min-width: 160px;
+    }
+    .study-card {
+        background: white;
+        border-radius: 20px;
+        padding: 40px 20px;
+        text-align: center;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+    }
+    .card-correct {
+        border-color: #2a9d8f;
+        box-shadow: 0 4px 24px rgba(42,157,143,0.15);
+    }
+    .card-wrong {
+        border-color: #e63946;
+        box-shadow: 0 4px 24px rgba(230,57,70,0.12);
+    }
+    .char-display {
+        min-height: 160px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .japanese-char {
+        font-size: 7rem;
+        line-height: 1.1;
+        font-family: 'Noto Sans JP', sans-serif;
+        color: #1d3557;
+        transition: transform 0.2s;
+        user-select: none;
+    }
+    .study-card:hover .japanese-char {
+        transform: scale(1.02);
+    }
+    .romaji-hint {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 8px;
+    }
+    .hint-dot {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: #eee;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.75rem;
+        font-family: 'Noto Sans JP', sans-serif;
+        opacity: 0.3;
+        transition: all 0.3s;
+    }
+    .hint-dot.active {
+        opacity: 0.6;
+        background: #e8f0fe;
+        color: #457b9d;
+    }
+    .feedback {
+        text-align: center;
+        padding: 12px 20px;
+        border-radius: 12px;
+        margin-top: 16px;
+        font-size: 1rem;
+        font-weight: 500;
+        animation: fadeIn 0.2s ease;
+    }
+    .feedback-correct {
+        background: rgba(42,157,143,0.1);
+        color: #2a9d8f;
+        border: 1px solid rgba(42,157,143,0.2);
+    }
+    .feedback-wrong {
+        background: rgba(230,57,70,0.08);
+        color: #e63946;
+        border: 1px solid rgba(230,57,70,0.15);
+    }
+    .feedback-icon {
+        margin-right: 8px;
+        font-weight: 700;
+    }
+    .input-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 16px;
+    }
+    .input-wrap {
+        flex: 1;
+    }
+    .romaji-input {
+        background: white;
+        border-radius: 12px;
+    }
+    .action-btn {
+        height: 48px;
+        border-radius: 12px !important;
+        padding: 0 24px !important;
+        font-weight: 600 !important;
+        white-space: nowrap;
+        min-width: 120px;
+        text-transform: none !important;
+    }
+    @@keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-4px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>
+
+@code {
+    private List<JapaneseChar> availableChars = new();
+    private JapaneseChar? currentChar;
+    private string userInput = "";
+    private bool? isCorrect;
+    private string selectedType = "All";
+    private int correctCount;
+    private int wrongCount;
+    private bool isLoading = true;
+    private FluentTextField inputRef = default!;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadChars();
+        isLoading = false;
+    }
+
+    private async Task LoadChars()
+    {
+        availableChars = await CharService.GetByTypeAsync(selectedType);
+        await PickRandomChar();
+    }
+
+    private async Task PickRandomChar()
+    {
+        if (availableChars.Count == 0) return;
+        var rng = new Random();
+        currentChar = availableChars[rng.Next(availableChars.Count)];
+        userInput = "";
+        isCorrect = null;
+        if (inputRef != null)
+            inputRef.FocusAsync();
+    }
+
+    private async Task CheckAnswer()
+    {
+        if (currentChar == null || string.IsNullOrWhiteSpace(userInput)) return;
+
+        if (userInput.Trim().ToLowerInvariant() == currentChar.Romaji.ToLowerInvariant())
+        {
+            isCorrect = true;
+            correctCount++;
+            StateHasChanged();
+            await Task.Delay(1000);
+            await PickRandomChar();
+        }
+        else
+        {
+            isCorrect = false;
+            wrongCount++;
+        }
+    }
+
+    private async Task NextChar()
+    {
+        await PickRandomChar();
+    }
+
+    private async Task HandleKeyDown(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter")
+        {
+            if (isCorrect == true || isCorrect == false)
+            {
+                await NextChar();
+            }
+            else
+            {
+                await CheckAnswer();
+            }
+        }
+    }
+
+    private async Task OnTypeChanged()
+    {
+        await LoadChars();
+    }
+}

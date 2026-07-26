@@ -1,0 +1,74 @@
+﻿@inherits LayoutComponentBase
+
+<MudThemeProvider Theme="Theme" />
+<MudPopoverProvider />
+<MudDialogProvider />
+<MudLayout>
+    <MudAppBar Elevation="0" Class="app-bar">
+        <MudIconButton Href="/" Color="Color.Inherit" Class="nav-btn">
+            <MudIcon Icon="@Icons.Material.Filled.MenuBook" />
+        </MudIconButton>
+        <MudText Typo="Typo.h6" Class="app-title">
+            <a href="/" class="home-link">Japanese Learner</a>
+        </MudText>
+        <MudSpacer />
+        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Class="nav-btn" OnClick="@(() => _drawerOpen = !_drawerOpen)" />
+    </MudAppBar>
+    <MudDrawer @bind-Open="_drawerOpen" Variant="DrawerVariant.Temporary" ClipMode="DrawerClipMode.Always">
+        <MudNavMenu>
+            <MudNavLink Href="/" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.MenuBook">Hiragana / Katakana</MudNavLink>
+            <MudNavLink Href="/words" Icon="@Icons.Material.Filled.TextSnippet">Word Study</MudNavLink>
+            <MudNavLink Href="/admin" Icon="@Icons.Material.Filled.Settings">Admin</MudNavLink>
+        </MudNavMenu>
+    </MudDrawer>
+    <MudMainContent>
+        <div class="page-wrapper">
+            @Body
+        </div>
+    </MudMainContent>
+</MudLayout>
+
+@code {
+    private bool _drawerOpen;
+
+    private MudTheme Theme = new()
+    {
+        PaletteLight = new PaletteLight
+        {
+            Primary = "#E63946",
+            Secondary = "#457B9D",
+            Tertiary = "#F1FAEE",
+            Info = "#A8DADC",
+            Success = "#2A9D8F",
+            Warning = "#E9C46A",
+            Error = "#E63946",
+            Dark = "#1D3557",
+            Surface = "#FFFFFF",
+            Background = "#F8F9FA",
+            AppbarBackground = "#1D3557",
+            AppbarText = "#FFFFFF",
+            DrawerBackground = "#FFFFFF",
+            DrawerText = "#1D3557",
+        },
+        Typography = new Typography
+        {
+            Default = new DefaultTypography
+            {
+                FontFamily = new[] { "Noto Sans JP", "Roboto", "Helvetica", "Arial", "sans-serif" },
+                FontSize = "1rem",
+                FontWeight = "400",
+            },
+            H1 = new H1Typography
+            {
+                FontFamily = new[] { "Noto Sans JP", "Roboto", "Helvetica", "Arial", "sans-serif" },
+                FontWeight = "700",
+            },
+            H6 = new H6Typography
+            {
+                FontFamily = new[] { "Noto Sans JP", "Roboto", "Helvetica", "Arial", "sans-serif" },
+                FontWeight = "600",
+            },
+        },
+        Shadows = new Shadow()
+    };
+}

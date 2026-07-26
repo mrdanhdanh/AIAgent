@@ -1,0 +1,34 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Publish
+        run: dotnet publish JapaneseLearner/JapaneseLearner.csproj -c Release -o release --nologo
+
+      - name: Add .nojekyll
+        run: touch release/wwwroot/.nojekyll
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: release/wwwroot
+          branch: gh-pages

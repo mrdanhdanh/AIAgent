@@ -1,0 +1,49 @@
+﻿@inherits LayoutComponentBase
+
+<FluentDesignTheme CustomColor="#E63946" Mode="DesignThemeModes.Light" StorageName="japanese-learner-theme" />
+
+<div class="app-layout">
+    <header class="app-bar">
+        <div class="app-bar-inner">
+            <FluentButton Appearance="@Appearance.Lightweight" class="nav-btn home-btn" Href="/">
+                📖
+            </FluentButton>
+            <h1 class="app-title">
+                <a href="/" class="home-link">Japanese Learner</a>
+            </h1>
+            <div style="flex:1"></div>
+            <FluentButton Appearance="@Appearance.Lightweight" class="nav-btn" OnClick="@(() => _drawerOpen = !_drawerOpen)">
+                ☰
+            </FluentButton>
+        </div>
+    </header>
+
+    @if (_drawerOpen)
+    {
+        <div class="drawer-overlay" @onclick="CloseDrawer"></div>
+        <aside class="drawer-panel">
+            <div class="drawer-header">
+                <h3>Navigation</h3>
+                <FluentButton Appearance="@Appearance.Lightweight" OnClick="CloseDrawer" Class="drawer-close">✕</FluentButton>
+            </div>
+            <FluentNavMenu>
+                <FluentNavLink Href="/" Match="NavLinkMatch.All" OnClick="CloseDrawer">📖 Hiragana / Katakana</FluentNavLink>
+                <FluentNavLink Href="/words" OnClick="CloseDrawer">📝 Word Study</FluentNavLink>
+                <FluentNavLink Href="/admin" OnClick="CloseDrawer">⚙️ Admin</FluentNavLink>
+            </FluentNavMenu>
+        </aside>
+    }
+
+    <main class="page-wrapper">
+        @Body
+    </main>
+</div>
+
+@code {
+    private bool _drawerOpen;
+
+    private void CloseDrawer()
+    {
+        _drawerOpen = false;
+    }
+}

@@ -1,0 +1,169 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "agent": {
+    "analyst": {
+      "description": "Phân tích yêu cầu người dùng, xác định phạm vi, rủi ro và các task cần thực hiện",
+      "mode": "subagent",
+      "model": "opencode/deepseek-v4-flash-free",
+      "permission": {
+        "read": "allow",
+        "grep": "allow",
+        "glob": "allow",
+        "edit": "deny",
+        "bash": "deny"
+      }
+    },
+    "planner": {
+      "description": "Lên kế hoạch thực thi chi tiết dựa trên yêu cầu đã phân tích",
+      "mode": "subagent",
+      "model": "opencode/deepseek-v4-flash-free",
+      "permission": {
+        "read": "allow",
+        "grep": "allow",
+        "glob": "allow",
+        "edit": "deny",
+        "bash": "deny"
+      }
+    },
+    "reviewer": {
+      "description": "Đánh giá kế hoạch thực thi, kiểm tra tính đúng đắn, đầy đủ và hiệu quả",
+      "mode": "subagent",
+      "model": "opencode/deepseek-v4-flash-free",
+      "permission": {
+        "read": "allow",
+        "grep": "allow",
+        "glob": "allow",
+        "edit": "deny",
+        "bash": "deny"
+      }
+    },
+    "builder": {
+      "description": "Thực thi kế hoạch đã được đánh giá, viết code và thực hiện thay đổi",
+      "mode": "subagent",
+      "model": "opencode/deepseek-v4-flash-free",
+      "permission": {
+        "read": "allow",
+        "grep": "allow",
+        "glob": "allow",
+        "edit": "allow",
+        "bash": "allow"
+      }
+    },
+    "test-planner": {
+      "description": "Tạo kế hoạch kiểm thử chi tiết cho tính năng đã phát triển",
+      "mode": "subagent",
+      "model": "opencode/deepseek-v4-flash-free",
+      "permission": {
+        "read": "allow",
+        "grep": "allow",
+        "glob": "allow",
+        "edit": "deny",
+        "bash": "deny"
+      }
+    },
+    "tester": {
+      "description": "Thực thi kiểm thử, validate tính năng và báo cáo kết quả",
+      "mode": "subagent",
+      "model": "opencode/deepseek-v4-flash-free",
+      "permission": {
+        "read": "allow",
+        "grep": "allow",
+        "glob": "allow",
+        "edit": "deny",
+        "bash": "allow"
+      }
+    },
+    "codebase-explorer": {
+      "description": "Khám phá cấu trúc dự án, phân tích codebase, mapping dependencies và patterns. Agent read-only chạy trước khi thực hiện thay đổi.",
+      "mode": "subagent",
+      "model": "opencode/deepseek-v4-flash-free",
+      "permission": {
+        "read": "allow",
+        "grep": "allow",
+        "glob": "allow",
+        "edit": "deny",
+        "bash": "deny"
+      }
+    },
+    "self-improver": {
+      "description": "Sau khi workflow hoàn tất, đọc lại quá trình, phân tích kỹ năng đã dùng và thiếu, đề xuất bổ sung vào knowledge base",
+      "mode": "subagent",
+      "model": "opencode/deepseek-v4-flash-free",
+      "permission": {
+        "read": "allow",
+        "grep": "allow",
+        "glob": "allow",
+        "edit": "allow",
+        "bash": "allow"
+      }
+    },
+    "ui-beautifier": {
+      "description": "Chuyên đánh giá và cải thiện giao diện người dùng cho Japanese Learner (Blazor WASM + FluentUI 4.14.3). Phân tích .razor files, phát hiện CSS issues, accessibility problems, và đề xuất cải tiến UI/UX.",
+      "mode": "subagent",
+      "model": "opencode/deepseek-v4-flash-free",
+      "permission": {
+        "read": "allow",
+        "grep": "allow",
+        "glob": "allow",
+        "edit": "allow",
+        "bash": "allow"
+      }
+    },
+    "backup-agent": {
+      "description": "Backup và rollback file dùng Backup Utility. Hỗ trợ: backup trước khi sửa file, rollback khi catastrophic failure, liệt kê backup history, verify backup integrity.",
+      "mode": "subagent",
+      "model": "opencode/deepseek-v4-flash-free",
+      "permission": {
+        "read": "allow",
+        "grep": "allow",
+        "glob": "allow",
+        "edit": "deny",
+        "bash": "allow"
+      }
+    },
+    "guardian": {
+      "description": "Chuyên gia review source code trước khi push lên git — phát hiện secret, lỗi convention, lỗ hổng bảo mật, vi phạm quy tắc dự án",
+      "mode": "subagent",
+      "model": "opencode/deepseek-v4-flash-free",
+      "permission": {
+        "read": "allow",
+        "grep": "allow",
+        "glob": "allow",
+        "bash": "allow",
+        "edit": "deny"
+      }
+    },
+    "pusher": {
+      "description": "Chuyên gia thực hiện git push an toàn — safety checks, build, test, confirmation gate, push execution, post-push verify",
+      "mode": "subagent",
+      "model": "opencode/deepseek-v4-flash-free",
+      "permission": {
+        "read": "allow",
+        "grep": "allow",
+        "glob": "allow",
+        "bash": "allow",
+        "edit": "deny"
+      }
+    }
+  },
+  "command": {
+    "backup": {
+      "template": "Bạn là Backup Agent. Dùng Backup Utility để backup/rollback file.\n\n## Script paths\nbackupScript: .opencode/scripts/backup-utility.ps1\nrollbackScript: .opencode/scripts/rollback-utility.ps1\n\n## Actions\n- save <files...>: Backup file trước khi sửa\n- rollback <workflowId> [--force]: Restore từ backup\n- list: Liệt kê backup history\n- verify <workflowId>: Kiểm tra integrity\n\nThực hiện action $ARGUMENTS và output kết quả.",
+      "description": "Backup va rollback file dung Backup Utility",
+      "agent": "backup-agent"
+    },
+    "team-gitguard": {
+      "template": "Bạn là Guardian Agent. Review source code trước khi push lên git. Đọc hướng dẫn đầy đủ tại: .opencode/commands/team-gitguard.md\n\nNội dung: $ARGUMENTS",
+      "description": "Review source code truoc khi push len git -- phat hien secret, loi convention, lo hong bao mat, vi pham quy tac du an",
+      "agent": "guardian"
+    },
+    "team-gitpush": {
+      "template": "Bạn là Pusher Agent. Thực hiện git push an toàn với safety checks. Đọc hướng dẫn đầy đủ tại: .opencode/commands/team-gitpush.md\n\nTham số: $ARGUMENTS",
+      "description": "Pre-push safety validation + git push execution — kiem tra secret, convention, build, test, xac nhan user, push len remote",
+      "agent": "pusher"
+    }
+  },
+  "skills": {
+    "paths": [".opencode/skills"]
+  }
+}

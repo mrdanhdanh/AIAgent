@@ -1,0 +1,92 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "agent": {
+    "analyst": {
+      "description": "Phân tích yêu cầu người dùng, xác định phạm vi, rủi ro và các task cần thực hiện",
+      "mode": "subagent",
+      "model": "opencode/deepseek-v4-flash-free",
+      "permission": {
+        "read": "allow",
+        "grep": "allow",
+        "glob": "allow",
+        "edit": "deny",
+        "bash": "deny"
+      }
+    },
+    "planner": {
+      "description": "Lên kế hoạch thực thi chi tiết dựa trên yêu cầu đã phân tích",
+      "mode": "subagent",
+      "model": "opencode/deepseek-v4-flash-free",
+      "permission": {
+        "read": "allow",
+        "grep": "allow",
+        "glob": "allow",
+        "edit": "deny",
+        "bash": "deny"
+      }
+    },
+    "reviewer": {
+      "description": "Đánh giá kế hoạch thực thi, kiểm tra tính đúng đắn, đầy đủ và hiệu quả",
+      "mode": "subagent",
+      "model": "opencode/deepseek-v4-flash-free",
+      "permission": {
+        "read": "allow",
+        "grep": "allow",
+        "glob": "allow",
+        "edit": "deny",
+        "bash": "deny"
+      }
+    },
+    "builder": {
+      "description": "Thực thi kế hoạch đã được đánh giá, viết code và thực hiện thay đổi",
+      "mode": "subagent",
+      "model": "opencode/deepseek-v4-flash-free",
+      "permission": {
+        "read": "allow",
+        "grep": "allow",
+        "glob": "allow",
+        "edit": "allow",
+        "bash": "allow"
+      }
+    },
+    "test-planner": {
+      "description": "Tạo kế hoạch kiểm thử chi tiết cho tính năng đã phát triển",
+      "mode": "subagent",
+      "model": "opencode/deepseek-v4-flash-free",
+      "permission": {
+        "read": "allow",
+        "grep": "allow",
+        "glob": "allow",
+        "edit": "deny",
+        "bash": "deny"
+      }
+    },
+    "tester": {
+      "description": "Thực thi kiểm thử, validate tính năng và báo cáo kết quả",
+      "mode": "subagent",
+      "model": "opencode/deepseek-v4-flash-free",
+      "permission": {
+        "read": "allow",
+        "grep": "allow",
+        "glob": "allow",
+        "edit": "deny",
+        "bash": "allow"
+      }
+    },
+    "self-improver": {
+      "description": "Sau khi workflow hoàn tất, đọc lại quá trình, phân tích kỹ năng đã dùng và thiếu, đề xuất bổ sung vào knowledge base",
+      "mode": "subagent",
+      "model": "opencode/deepseek-v4-flash-free",
+      "permission": {
+        "read": "allow",
+        "grep": "allow",
+        "glob": "allow",
+        "edit": "allow",
+        "bash": "allow"
+      }
+    }
+  },
+  "skills": {
+    "paths": [".opencode/skills"]
+  }
+}

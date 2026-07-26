@@ -1,0 +1,1087 @@
+---
+name: dev-team
+description: Hướng dẫn sử dụng Dev Agent Team gồm 7 agent. Dùng khi cần phân tích, lập kế hoạch, đánh giá, code, kiểm thử một yêu cầu phát triển. Tích hợp cơ chế Self-Improvement tự động. Sử dụng câu lệnh team hoặc team-*.
+---
+
+# Dev Agent Team — Orchestrator Guide
+
+Team gồm **General Agent (Orchestrator)** điều phối **6 agent chuyên biệt** theo quy trình phát triển phần mềm hoàn chỉnh:
+**Analyze → Design → Review Design → Plan → Review Plan → Backup → Build → Test Plan → Test → Report → Self-Improve**
+
+**General Agent** chỉ đảm nhiệm: workflow orchestration và state management. Các trách nhiệm khác (backup, rollback, diff, syntax validation, test execution, risk assessment, knowledge improvement) được tách sang agent chuyên biệt hoặc utility.
+
+---
+
+## MỤC LỤC
+
+- [MÔ HÌNH ORCHESTRATOR](#mô-hình-orchestrator)
+- [WORKFLOW ID & ARTIFACT MANAGEMENT](#workflow-id--artifact-management)
+- [MÁY TRẠNG THÁI (STATE MACHINE)](#máy-trạng-thái-state-machine)
+- [BIẾN THEO DÕI (TRACKING VARIABLES)](#biến-theo-dõi-tracking-variables)
+- [OUTPUT CONTRACT CỦA CÁC AGENT](#output-contract-của-các-agent)
+- [QUY TRÌNH CHI TIẾT](#quy-trình-chi-tiết)
+  - [Bước 1: Analyze](#bước-1-analyze)
+  - [Bước 2: Design](#bước-2-design)
+  - [Bước 3: Review Design](#bước-3-review-design)
+  - [Bước 4: Plan](#bước-4-plan)
+  - [Bước 5: Review Plan](#bước-5-review-plan)
+  - [Bước 6: Backup](#bước-6-backup)
+  - [Bước 7: Build](#bước-7-build)
+  - [Bước 8: Test Plan](#bước-8-test-plan)
+  - [Bước 9: Test](#bước-9-test)
+  - [Bước 10: Report](#bước-10-report)
+  - [Bước 11: Self-Improvement](#bước-11-self-improvement)
+- [ROLLBACK MECHANISM](#rollback-mechanism)
+- [SƠ ĐỒ QUYẾT ĐỊNH (DECISION TREE)](#sơ-đồ-quyết-định-decision-tree)
+- [TÍCH HỢP VỚI COMMANDS RIÊNG LẺ](#tích-hợp-với-commands-riêng-lẻ)
+- [XỬ LÝ NGOẠI LỆ (EXCEPTION HANDLING)](#xử-lý-ngoại-lệ-exception-handling)
+- [VÍ DỤ CHẠY WORKFLOW](#ví-dụ-chạy-workflow)
+- [GHI CHÚ](#ghi-chú)
+
+---
+
+## MÔ HÌNH ORCHESTRATOR
+
+**General Agent** chỉ đảm nhiệm:
+1. **Triệu hồi** đúng agent theo đúng bước
+2. **Truyền context** — output bước trước (qua artifact) là input bước sau
+3. **Xử lý vòng lặp** — review loop, test-fix loop (tối đa 3 lần, có kiểm tra lỗi trùng)
+4. **Theo dõi trạng thái** — biến step, retry_count, status, error_history
+5. **Quyết định** — tiếp tục, retry, dừng, rollback, hoặc hỏi người dùng
+
+Các trách nhiệm khác được phân tách:
+
+| Trách nhiệm | Agent/Module | Ghi chú |
+|-------------|-------------|---------|
+| Workflow orchestration | General Agent | |
+| State management | General Agent | |
+| File modification | Builder | |
+| Syntax validation | Builder | Kiểm tra sau mỗi bước build |
+| Test execution | Tester | |
+| Risk assessment | Reviewer | Review design + plan |
+| Knowledge improvement | Self-Improver | Chỉ suggestion, không ghi trực tiếp |
+| Backup | Backup Utility | Tách riêng, không nằm trong orchestration |
+| Restore/Rollback | Rollback Utility | |
+| Diff generation | Diff Utility | |
+
+---
+
+## WORKFLOW ID & ARTIFACT MANAGEMENT
+
+### Workflow ID
+
+Mỗi workflow được gán một ID duy nhất:
+
+```
+WF-YYYYMMDD-NNN
+```
+
+Ví dụ: `WF-20260723-001`, `WF-20260723-002`
+
+ID được tạo khi bắt đầu workflow và dùng cho: logging, rollback, artifacts, backup, self-improvement, audit.
+
+### Artifact Structure
+
+Mỗi bước trong workflow tạo ra một artifact file lưu tại:
+
+```
+.opencode/workflows/WF-xxxxxxxxx/
+├── 01_analyze.md
+├── 02_design.md
+├── 03_review_design.md
+├── 04_plan.md
+├── 05_review_plan.md
+├── 06_backup.md
+├── 07_build.md
+├── 08_testplan.md
+├── 09_test.md
+├── 10_report.md
+├── 11_self_improve.md
+└── workflow.json          # State machine snapshot
+```
+
+Agent tiếp theo chỉ đọc artifact của bước trước (không cần truyền context qua prompt dài).
+
+### workflow.json
+
+```yaml
+{
+  "workflow_id": "WF-20260723-001",
+  "created_at": "2026-07-23T22:00:00Z",
+  "project": "JapaneseLearner",
+  "branch": "main",
+  "user_request": "Thêm validation email...",
+  "status": "running",
+  "current_step": 1,
+  "artifacts": {
+    "01_analyze": ".opencode/workflows/WF-xxx/01_analyze.md",
+    ...
+  }
+}
+```
+
+---
+
+## MÁY TRẠNG THÁI (STATE MACHINE)
+
+```
+                    ┌─────────┐
+                    │  START  │
+                    └────┬────┘
+                         ▼
+                    ┌─────────┐
+                    │ANALYZE  │ ◄──── NEED_MORE_INFO → hỏi user
+                    └────┬────┘
+                         ▼
+                    ┌─────────┐
+                    │ DESIGN  │
+                    └────┬────┘
+                         ▼
+                    ┌──────────────┐
+                    │REVIEW DESIGN │
+                    └──────┬───────┘
+                      ┌────┴────┐
+                      │         │
+                      ▼         ▼
+               ┌──────────┐ ┌──────────┐
+               │APPROVED  │ │CHANGES   │ ──► quay DESIGN (retry < 3)
+               └────┬─────┘ └──────────┘
+                    ▼
+               ┌─────────┐
+               │  PLAN   │
+               └────┬────┘
+                    ▼
+               ┌─────────────┐
+               │REVIEW PLAN  │
+               └──────┬──────┘
+                 ┌────┴────┐
+                 │         │
+                 ▼         ▼
+          ┌──────────┐ ┌──────────┐
+          │APPROVED  │ │CHANGES   │ ──► quay PLAN (retry < 3)
+          └────┬─────┘ └──────────┘
+               ▼
+          ┌─────────┐
+          │ BACKUP  │ ──► .opencode/workflows/WF-xxx/backup/
+          └────┬────┘
+               ▼
+          ┌─────────┐
+          │  BUILD  │ ◄──── TEST FAIL (retry < 3, error mới)
+          └────┬────┘
+               ▼
+          ┌─────────┐
+          │ TESTPLAN│
+          └────┬────┘
+               ▼
+          ┌─────────┐
+          │  TEST   │
+          └────┬────┘
+           ┌───┴───┐
+           │       │
+           ▼       ▼
+       ┌────────┐ ┌──────────────┐
+       │ PASS   │ │ FAIL         │ ──► BUILD nếu error mới
+       └───┬────┘ └──────────────┘  ──► ROLLBACK nếu lỗi trùng
+           ▼
+      ┌─────────┐
+      │ REPORT  │
+      └────┬────┘
+           ▼
+      ┌──────────────────┐
+      │SELF_IMPROVE      │
+      │(suggestion only) │
+      └──────┬───────────┘
+             ▼
+      ┌──────────────┐
+      │   COMPLETE   │
+      └──────────────┘
+```
+
+Trạng thái mở rộng:
+
+| Trạng thái | Ý nghĩa |
+|-----------|---------|
+| `running` | Workflow đang chạy |
+| `blocked` | Đang chờ user can thiệp |
+| `waiting_user` | Đang chờ user phản hồi |
+| `reviewing` | Đang trong vòng lặp review |
+| `building` | Đang build |
+| `testing` | Đang test |
+| `self_improving` | Đang self-improve |
+| `completed` | Hoàn thành thành công |
+| `failed` | Thất bại |
+| `cancelled` | User yêu cầu dừng |
+
+---
+
+## BIẾN THEO DÕI (TRACKING VARIABLES)
+
+```yaml
+workflow:
+  id: WF-20260723-001              # Workflow ID
+  created_at: "2026-07-23T22:00:00Z"
+  project: ""                       # Tên project
+  branch: ""                       # Branch hiện tại
+  user_request: ""                  # Yêu cầu gốc từ user
+  step: 1-11                       # Bước hiện tại (1-11)
+  step_name: analyze|design|review_design|plan|review_plan|backup|build|testplan|test|report|self_improve|complete
+  status: running|blocked|waiting_user|cancelled|reviewing|building|testing|self_improving|completed|failed
+  agent_current: null              # Agent đang hoạt động
+  loop_type: null                  # Loại loop đang chạy: review_plan|review_design|test_fix|null
+
+  retry:
+    review_design_count: 0-3       # Số lần review design loop
+    review_plan_count: 0-3         # Số lần review plan loop
+    test_count: 0-3                # Số lần test-fix loop
+    max_review: 3
+    max_test: 3
+    self_improve_count: 0-1
+
+  error_history:                   # Lịch sử lỗi cho retry thông minh
+    review_design: []              # [hash1, hash2, ...]
+    review_plan: []                # [hash1, hash2, ...]
+    test_failures: []              # [hash1, hash2, ...]
+    build_failures: []             # [hash1, hash2, ...]
+
+  same_error_count: 0              # Số lần lỗi trùng lặp liên tiếp
+
+  user_intervention: false
+  backup_done: false               # true nếu đã backup
+  rollback_enabled: true
+
+  current_data:
+    analysis: null
+    design: null
+    review_design_result: null
+    plan: null
+    review_plan_result: null
+    build_result: null
+    test_plan: null
+    test_result: null
+    self_improve_suggestions: null
+
+  coverage:                        # Coverage tracking
+    unit: null
+    integration: null
+    e2e: null
+    requirement: null              # Mapping requirement → test result
+```
+
+---
+
+## OUTPUT CONTRACT CỦA CÁC AGENT
+
+Tất cả agent phải output theo format JSON/YAML cố định. Orchestrator parse output để quyết định bước tiếp theo.
+
+### Analyst Output Contract
+
+```yaml
+status: READY | NEED_MORE_INFO
+summary: "Tóm tắt ngắn (2-3 câu)"
+details: "Phân tích chi tiết (markdown)"
+requirements:
+  - id: REQ-001
+    description: "Mô tả yêu cầu"
+    priority: HIGH | MEDIUM | LOW
+risks:
+  - id: RISK-001
+    description: "Mô tả rủi ro"
+    severity: HIGH | MEDIUM | LOW
+    mitigation: "Cách giảm thiểu"
+design_proposal:
+  approach: "Cách tiếp cận"
+  components: ["File1.cs", "File2.cs"]
+  dependencies: ["LibA", "LibB"]
+tasks:
+  - id: TASK-001
+    description: "Task con"
+    files: ["path/to/file"]
+```
+
+### Designer Output Contract
+
+```yaml
+status: READY | NEED_MORE_INFO
+design:
+  architecture: "Mô tả kiến trúc"
+  components:
+    - name: "ComponentName"
+      file: "path/to/file"
+      responsibility: "Trách nhiệm"
+      changes: "Mô tả thay đổi"
+  data_flow: "Luồng dữ liệu"
+  security_concerns:
+    - "Vấn đề bảo mật"
+  edge_cases:
+    - "Edge case cần xử lý"
+```
+
+### Reviewer Output Contract
+
+```yaml
+decision: APPROVED | CHANGES_REQUESTED | REJECTED
+score:
+  completeness: 0-10
+  correctness: 0-10
+  safety: 0-10
+  efficiency: 0-10
+  testability: 0-10
+  overall: 0-10
+issues:
+  - id: ISS-001
+    severity: CRITICAL | MAJOR | MINOR
+    category: DESIGN | SECURITY | PERFORMANCE | LOGIC | STYLE
+    description: "Mô tả vấn đề"
+    suggestion: "Gợi ý sửa"
+summary: "Tổng quan đánh giá"
+```
+
+### Planner Output Contract
+
+```yaml
+status: READY
+steps:
+  - step: 1
+    description: "Mô tả bước"
+    action: CREATE | MODIFY | DELETE
+    file: "path/to/file"
+    logic: "Logic cần implement"
+    validation: "Cách kiểm tra"
+    requires_backup: true | false
+rollback_strategy:
+  condition: "Khi nào cần rollback"
+  steps: ["Mô tả bước rollback"]
+validate:
+  - command: "dotnet build"
+    expected: "Build thành công"
+```
+
+### Builder Output Contract
+
+```yaml
+status: PASS | FAIL | PARTIAL
+steps:
+  - step: 1
+    file: "path/to/file"
+    action: CREATE | MODIFY | DELETE
+    result: PASS | FAIL
+    error: "Chi tiết lỗi (nếu FAIL)"
+    error_hash: "sha256 của error message"
+overall:
+  total_steps: 5
+  passed: 3
+  failed: 2
+failure_type: MINOR | CRITICAL | null
+details: "Chi tiết build (markdown)"
+```
+
+### Test Planner Output Contract
+
+```yaml
+status: READY
+test_types:
+  unit: true | false
+  integration: true | false
+  e2e: true | false
+  security: true | false
+  performance: true | false
+  compatibility: true | false
+  accessibility: true | false
+  concurrency: true | false
+  negative: true | false
+  edge: true | false
+  regression: true | false
+test_cases:
+  - id: TC-001
+    type: UNIT | INTEGRATION | E2E | SECURITY | PERFORMANCE | COMPATIBILITY | ACCESSIBILITY | CONCURRENCY | NEGATIVE | EDGE | REGRESSION
+    description: "Mô tả"
+    input: "Input"
+    expected: "Expected output"
+    file_test: "path/to/test/file"
+    coverage:
+      requirement: ["REQ-001", "REQ-002"]
+      component: "ComponentName"
+framework: "xUnit | Playwright | ..."
+```
+
+### Tester Output Contract
+
+```yaml
+status: APPROVED | NEEDS_FIX
+coverage:
+  unit: { pass: 5, fail: 0, skip: 0, total: 5 }
+  integration: { pass: 3, fail: 0, skip: 0, total: 3 }
+  e2e: { pass: 2, fail: 0, skip: 0, total: 2 }
+  security: { pass: 1, fail: 0, skip: 0, total: 1 }
+  requirement:
+    - id: REQ-001
+      status: PASS | FAIL | SKIP
+      test_case: TC-001
+      notes: ""
+summary:
+  pass: 11
+  fail: 0
+  skip: 0
+  total: 11
+  pass_rate: 100.0
+  duration_seconds: 45
+results:
+  - id: TC-001
+    result: PASS | FAIL | SKIP
+    actual: "Actual output"
+    duration_ms: 1200
+    error: "Stack trace (nếu FAIL)"
+    skip_reason: "Lý do (nếu SKIP)"
+```
+
+### Self-Improver Output Contract
+
+```yaml
+status: SUGGESTIONS_READY | NO_SUGGESTIONS
+suggestions:
+  - id: SUG-001
+    category: CODING_PATTERN | TESTING_PATTERN | WORKFLOW_IMPROVEMENT
+    description: "Mô tả đề xuất"
+    evidence: "Bằng chứng từ workflow"
+    impact: HIGH | MEDIUM | LOW
+    requires_approval: true
+summary: "Tổng quan self-improvement"
+```
+
+---
+
+## QUY TRÌNH CHI TIẾT
+
+### Bước 1: Analyze
+**Agent:** `analyst` (gọi qua `/team-analyze` hoặc triệu hồi trực tiếp)
+
+**Tạo artifact:** `.opencode/workflows/{WF_ID}/01_analyze.md`
+
+**Prompt:**
+```
+Bạn là Analyst Agent. Phân tích yêu cầu sau, đọc codebase, xác định phạm vi, rủi ro, task con.
+
+Yêu cầu: {user_request}
+
+Hãy dùng glob/grep/read để hiểu cấu trúc dự án.
+
+Output phải theo format YAML contract sau:
+- status: READY hoặc NEED_MORE_INFO
+- summary: tóm tắt ngắn
+- details: phân tích chi tiết (markdown)
+- requirements: danh sách yêu cầu
+- risks: danh sách rủi ro (kèm severity, mitigation)
+- design_proposal: đề xuất thiết kế (approach, components, dependencies)
+- tasks: danh sách task con
+```
+
+**Sau output:**
+- Parse YAML output
+- `NEED_MORE_INFO` → Hỏi người dùng, set `user_intervention: true`, chờ phản hồi
+- `READY` → Lưu `current_data.analysis = output`, ghi artifact, tăng `step = 2`
+
+**Kiểm tra:** Nếu analyst output không parse được YAML → yêu cầu làm lại với format đúng
+
+---
+
+### Bước 2: Design
+**Agent:** `designer` (triệu hồi trực tiếp, không qua command riêng)
+
+**Đọc artifact:** `.opencode/workflows/{WF_ID}/01_analyze.md`
+
+**Tạo artifact:** `.opencode/workflows/{WF_ID}/02_design.md`
+
+**Prompt:**
+```
+Bạn là Designer Agent. Dựa trên báo cáo phân tích, thiết kế giải pháp chi tiết.
+
+Phân tích: {nội dung 01_analyze.md}
+
+Yêu cầu:
+1. Kiến trúc tổng thể
+2. Các component cần thay đổi/tạo mới
+3. Luồng dữ liệu
+4. Vấn đề bảo mật
+5. Edge cases
+
+Output phải theo format YAML contract:
+- status: READY hoặc NEED_MORE_INFO
+- design: architecture, components (name, file, responsibility, changes), data_flow, security_concerns, edge_cases
+```
+
+---
+
+### Bước 3: Review Design
+**Agent:** `reviewer` (gọi qua `/team-review` hoặc triệu hồi trực tiếp)
+
+**Đọc artifact:** `.opencode/workflows/{WF_ID}/02_design.md`
+
+**Tạo artifact:** `.opencode/workflows/{WF_ID}/03_review_design.md`
+
+**Prompt:**
+```
+Bạn là Reviewer Agent. Đánh giá thiết kế sau theo 6 tiêu chí: Đầy đủ, Chính xác, An toàn (bảo mật), Hiệu quả, Kiểm thử, Edge cases.
+
+Thiết kế: {nội dung 02_design.md}
+
+Output phải theo format YAML contract:
+- decision: APPROVED / CHANGES_REQUESTED / REJECTED
+- score: completeness, correctness, safety, efficiency, testability, overall (0-10)
+- issues: danh sách vấn đề (severity, category, description, suggestion)
+- summary: tổng quan đánh giá
+```
+
+**Sau output:**
+- **APPROVED** → Lưu, ghi artifact, tăng `step = 4`
+- **CHANGES_REQUESTED** →
+  - `retry.review_design_count++`, lưu error_hash vào `error_history.review_design[]`
+  - Kiểm tra lỗi trùng: nếu `same_error_count >= 2` → Dừng, yêu cầu user can thiệp
+  - Nếu `retry.review_design_count < retry.max_review` → Quay lại Bước 2, kèm góp ý
+  - Nếu >= max → Dừng, set `status: blocked`, `user_intervention: true`
+- **REJECTED** → Dừng, set `status: failed`, `user_intervention: true`
+
+---
+
+### Bước 4: Plan
+**Agent:** `planner` (gọi qua `/team-plan` hoặc triệu hồi trực tiếp)
+
+**Đọc artifact:** `.opencode/workflows/{WF_ID}/02_design.md`, `.opencode/workflows/{WF_ID}/03_review_design.md`
+
+**Tạo artifact:** `.opencode/workflows/{WF_ID}/04_plan.md`
+
+**Prompt:**
+```
+Bạn là Planner Agent. Dựa trên thiết kế đã duyệt, lập kế hoạch thực thi chi tiết từng bước.
+
+Thiết kế: {nội dung 02_design.md}
+Kết quả review: {nội dung 03_review_design.md}
+
+Yêu cầu:
+1. Mỗi bước có: Mô tả, File, Logic, Validation
+2. Thứ tự: config → logic → test
+3. Xác định rõ bước nào cần backup
+4. Có rollback strategy cho mỗi bước rủi ro
+5. Validate tổng thể cuối cùng
+
+Output phải theo format YAML contract:
+- status: READY
+- steps: danh sách bước (step, description, action, file, logic, validation, requires_backup)
+- rollback_strategy: condition, steps
+- validate: danh sách lệnh validate cuối cùng
+```
+
+---
+
+### Bước 5: Review Plan
+**Agent:** `reviewer` (gọi qua `/team-review` hoặc triệu hồi trực tiếp)
+
+**Đọc artifact:** `.opencode/workflows/{WF_ID}/04_plan.md`
+
+**Tạo artifact:** `.opencode/workflows/{WF_ID}/05_review_plan.md`
+
+**Prompt:**
+```
+Bạn là Reviewer Agent. Đánh giá kế hoạch sau theo 5 tiêu chí: Đầy đủ, Chính xác, An toàn, Hiệu quả, Kiểm thử.
+
+Kế hoạch: {nội dung 04_plan.md}
+
+Output phải theo format YAML contract:
+- decision: APPROVED / CHANGES_REQUESTED / REJECTED
+- score: completeness, correctness, safety, efficiency, testability, overall (0-10)
+- issues: danh sách vấn đề
+- summary: tổng quan
+```
+
+**Sau output:**
+- **APPROVED** → Lưu, ghi artifact, tăng `step = 6`
+- **CHANGES_REQUESTED** → Tương tự review design: kiểm tra retry + error hash
+- **REJECTED** → Dừng, set `status: failed`
+
+---
+
+### Bước 6: Backup
+**Hành động:** Orchestrator gọi Backup Utility (không tự làm)
+
+**Điều kiện:** Chạy nếu kế hoạch có bước `requires_backup: true`
+
+**Cách thực hiện:**
+
+1. Tạo thư mục backup theo workflow ID:
+   ```
+   .opencode/workflows/{WF_ID}/backup/
+   ```
+
+2. Với mỗi file cần backup:
+   ```powershell
+   $src = "path\to\file"
+   $wfId = "WF-20260723-001"
+   $dest = ".opencode\workflows\$wfId\backup\$([System.IO.Path]::GetFileName($src))_$([System.DateTime]::Now.ToString('yyyyMMdd_HHmmss'))_$((Get-FileHash $src -Algorithm SHA256).Hash.Substring(0,8))"
+   Copy-Item -LiteralPath $src -Destination $dest -Force
+   ```
+
+3. Lưu manifest:
+   ```yaml
+   # .opencode/workflows/{WF_ID}/backup/manifest.yaml
+   workflow_id: WF-20260723-001
+   created_at: "2026-07-23T22:00:00Z"
+   files:
+     - original: "path/to/file1.cs"
+       backup: "file1.cs_20260723_220000_a1b2c3d4"
+       hash: "sha256hash"
+     - original: "path/to/file2.cs"
+       backup: "file2.cs_20260723_220000_e5f6g7h8"
+       hash: "sha256hash"
+   ```
+
+4. Set `backup_done = true`
+
+**Tạo artifact:** `.opencode/workflows/{WF_ID}/06_backup.md`
+
+**Nếu chỉ tạo file mới:** Log và bỏ qua, không cần backup.
+
+---
+
+### Bước 7: Build
+**Agent:** `builder` (gọi qua `/team-build` hoặc triệu hồi trực tiếp)
+
+**Đọc artifact:** `.opencode/workflows/{WF_ID}/04_plan.md`, `.opencode/workflows/{WF_ID}/05_review_plan.md`
+
+**Tạo artifact:** `.opencode/workflows/{WF_ID}/07_build.md`
+
+**Prompt:**
+```
+Bạn là Builder Agent. Thực thi kế hoạch đã duyệt sau đây.
+
+Kế hoạch: {nội dung 04_plan.md}
+Review: {nội dung 05_review_plan.md}
+
+Yêu cầu:
+1. Đọc danh sách file cần backup từ backup manifest
+2. Làm đúng từng bước trong kế hoạch
+3. Kiểm tra syntax/lint sau mỗi bước
+4. Báo cáo kết quả từng bước (PASS/FAIL) kèm error_hash
+5. Nếu gặp lỗi nghiêm trọng: dừng, báo cáo chi tiết
+
+Output phải theo format YAML contract:
+- status: PASS / FAIL / PARTIAL
+- steps: danh sách kết quả từng bước (kèm error_hash nếu FAIL)
+- overall: total_steps, passed, failed
+- failure_type: MINOR / CRITICAL / null
+- details: chi tiết build
+```
+
+**Sau output:**
+- **PASS** → Lưu, ghi artifact, tăng `step = 8`
+- **FAIL / PARTIAL** →
+  - Lưu error_hash vào `error_history.build_failures[]`
+  - Kiểm tra lỗi trùng: nếu hash giống error_history trước → `same_error_count++`
+  - Nếu `same_error_count >= 2` → CẦN ROLLBACK:
+    ```
+    ⛔ Lỗi trùng lặp {same_error_count} lần: {error}
+    Tiến hành rollback...
+    ```
+    Gọi Rollback Utility (xem [ROLLBACK MECHANISM](#rollback-mechanism))
+    Set `status: failed`, báo user
+  - **Lỗi nhẹ** (syntax, lint, typo, không trùng): Yêu cầu builder sửa, build lại
+  - **Lỗi nặng** (logic sai, thiếu file): Dừng, hỏi user
+
+---
+
+### Bước 8: Test Plan
+**Agent:** `test-planner` (gọi qua `/team-testplan` hoặc triệu hồi trực tiếp)
+
+**Đọc artifact:** `.opencode/workflows/{WF_ID}/01_analyze.md`, `.opencode/workflows/{WF_ID}/04_plan.md`, `.opencode/workflows/{WF_ID}/07_build.md`
+
+**Tạo artifact:** `.opencode/workflows/{WF_ID}/08_testplan.md`
+
+**Prompt:**
+```
+Bạn là Test-Planner Agent. Tạo kế hoạch kiểm thử cho tính năng vừa phát triển.
+
+Phân tích: {nội dung 01_analyze.md}
+Kế hoạch: {nội dung 04_plan.md}
+Kết quả build: {nội dung 07_build.md}
+
+Yêu cầu:
+1. Xác định loại test:
+   - Unit
+   - Integration
+   - E2E
+   - Security (ví dụ: OTP timeout, brute force, rate limit, XSS, SQL injection)
+   - Performance (ví dụ: 100MB file, 500MB file, concurrent requests)
+   - Compatibility (trình duyệt, OS)
+   - Accessibility
+   - Concurrency (parallel upload, race condition)
+   - Negative tests (null input, unicode, exe file, empty)
+   - Edge cases
+   - Regression
+2. Mỗi test case có: ID, Mô tả, Input, Expected, File test
+3. Mapping requirement → test case (coverage)
+4. Xác định framework test hiện tại (dùng glob/grep)
+
+Output phải theo format YAML contract:
+- status: READY
+- test_types: danh sách loại test (true/false)
+- test_cases: danh sách test case (kèm coverage.requirement, coverage.component)
+- framework: tên framework
+```
+
+---
+
+### Bước 9: Test
+**Agent:** `tester` (gọi qua `/team-test` hoặc triệu hồi trực tiếp)
+
+**Đọc artifact:** `.opencode/workflows/{WF_ID}/08_testplan.md`
+
+**Tạo artifact:** `.opencode/workflows/{WF_ID}/09_test.md`
+
+**Prompt:**
+```
+Bạn là Tester Agent. Thực thi kế hoạch kiểm thử sau đây.
+
+Kế hoạch test: {nội dung 08_testplan.md}
+
+Yêu cầu:
+1. Chạy từng test case, ghi nhận PASS/FAIL/SKIP
+2. Với FAIL: ghi rõ lỗi, stack trace, input gây lỗi
+3. Với SKIP: ghi rõ lý do
+4. Timeout mỗi test: 60 giây
+5. Báo cáo coverage: số lượng PASS/FAIL/SKIP theo từng loại test
+6. Báo cáo requirement coverage: requirement nào được test, kết quả
+
+Output phải theo format YAML contract:
+- status: APPROVED / NEEDS_FIX
+- coverage: chi tiết coverage theo loại test và requirement
+- summary: pass, fail, skip, total, pass_rate, duration_seconds
+- results: danh sách kết quả từng test case
+```
+
+**Sau output:**
+- **PASS (tất cả PASS)** → Lưu, ghi artifact, chuyển BÁO CÁO KẾT THÚC
+- **FAIL (có 1+ FAIL)** →
+  - `retry.test_count++`
+  - Lưu error_hash vào `error_history.test_failures[]`
+  - Kiểm tra lỗi trùng: nếu hash giống lỗi trước → `same_error_count++`
+  - Nếu `same_error_count >= 2` → CẦN ROLLBACK:
+    ```
+    ⛔ Lỗi test trùng lặp {same_error_count} lần.
+    Rollback về trạng thái trước build...
+    ```
+    Gọi Rollback Utility. Set `status: failed`
+  - Nếu `retry.test_count < retry.max_test` và error mới → Quay lại Bước 7 (Build)
+  - Nếu `retry.test_count >= retry.max_test` → Dừng, set `status: failed`, hỏi user
+
+---
+
+### Bước 10: Report
+**Hành động:** Orchestrator tổng hợp báo cáo (không gọi agent)
+
+**Đọc tất cả artifact:** từ 01 đến 09
+
+**Tạo artifact:** `.opencode/workflows/{WF_ID}/10_report.md`
+
+```markdown
+## BÁO CÁO CUỐI CÙNG
+
+### Thông tin workflow
+| Thông số | Giá trị |
+|----------|---------|
+| Workflow ID | {workflow.id} |
+| Yêu cầu | {user_request} |
+| Số lần review design loop | {retry.review_design_count} |
+| Số lần review plan loop | {retry.review_plan_count} |
+| Số lần test-fix loop | {retry.test_count} |
+| Backup | {"Đã thực hiện" / "Không cần"} |
+| Rollback | {"Đã thực hiện" / "Không"} |
+| Tổng số bước | 11 |
+
+### File đã thay đổi
+| File | Trạng thái |
+|------|-----------|
+| path/to/file1 | Thanh cong |
+| path/to/file2 | Thanh cong |
+
+### Ket qua test
+| Loai | PASS | FAIL | SKIP |
+|------|------|------|------|
+| Unit | 5 | 0 | 0 |
+| Integration | 3 | 0 | 0 |
+| E2E | 2 | 0 | 0 |
+| Security | 1 | 0 | 0 |
+| **Tong** | **11** | **0** | **0** |
+
+**Ty le PASS:** 100%
+
+### Requirement Coverage
+| Requirement | Status | Test case |
+|-------------|--------|-----------|
+| REQ-001 | PASS | TC-001 |
+| REQ-002 | PASS | TC-002 |
+
+### Tong ket
+**Hoan thanh** — Tat ca test PASS, san sang cho production.
+
+### Self-Improvement Suggestions
+{current_data.self_improve_suggestions hoac "Khong thuc hien (workflow khong PASS)"}
+```
+
+---
+
+### Bước 11: Self-Improvement
+**Agent:** `self-improver` (gọi trực tiếp)
+
+**Điều kiện:** Chỉ chạy nếu workflow PASS (không chạy nếu blocked/failed/cancelled)
+
+**Đọc tất cả artifact:** từ 01 đến 10
+
+**Tạo artifact:** `.opencode/workflows/{WF_ID}/11_self_improve.md`
+
+**Prompt:**
+```
+Bạn là Self-Improver Agent. Phân tích toàn bộ workflow để đề xuất cải tiến.
+
+QUAN TRỌNG: Bạn chỉ được phép tạo SUGGESTIONS, không được ghi trực tiếp vào knowledge base.
+
+Các artifact:
+01_analyze: {nội dung 01_analyze.md}
+02_design: {nội dung 02_design.md}
+03_review_design: {nội dung 03_review_design.md}
+04_plan: {nội dung 04_plan.md}
+05_review_plan: {nội dung 05_review_plan.md}
+06_backup: {nội dung 06_backup.md}
+07_build: {nội dung 07_build.md}
+08_testplan: {nội dung 08_testplan.md}
+09_test: {nội dung 09_test.md}
+10_report: {nội dung 10_report.md}
+
+Output phải theo format YAML contract:
+- status: SUGGESTIONS_READY / NO_SUGGESTIONS
+- suggestions: danh sách đề xuất (category: CODING_PATTERN / TESTING_PATTERN / WORKFLOW_IMPROVEMENT, description, evidence, impact, requires_approval)
+- summary: tổng quan
+```
+
+**Sau output:**
+- Lưu `current_data.self_improve_suggestions = output`, ghi artifact
+- **Không tự động ghi knowledge base.** Suggestions chỉ được ghi sau khi được REVIEW và APPROVED.
+- Set `step = complete`
+
+**Kiểm tra:**
+- Output không đúng format → log warning, không block workflow
+- Self-improver không available → bỏ qua, log warning
+
+---
+
+## ROLLBACK MECHANISM
+
+### Khi nào rollback
+
+| Điều kiện | Mô tả |
+|-----------|-------|
+| Catastrophic failure | Lỗi nghiêm trọng, không thể tiếp tục |
+| Max retry reached | Đã đạt giới hạn retry |
+| Same error detected | Lỗi trùng lặp >= 2 lần |
+| User request | User yêu cầu rollback |
+
+### Cách thực hiện
+
+Gọi Rollback Utility:
+
+```powershell
+$wfId = "WF-20260723-001"
+$manifest = ".opencode\workflows\$wfId\backup\manifest.yaml"
+
+# Đọc manifest, restore từng file
+foreach ($file in $manifest.files) {
+    $src = ".opencode\workflows\$wfId\backup\$($file.backup)"
+    $dest = $file.original
+    Copy-Item -LiteralPath $src -Destination $dest -Force
+    Write-Output "Restore: $dest <- $($file.backup)"
+}
+```
+
+### Ghi log rollback
+
+```markdown
+## ROLLBACK LOG
+
+Workflow ID: WF-20260723-001
+Reason: Same error detected (error_hash: a1b2c3d4)
+Timestamp: 2026-07-23T22:30:00Z
+
+Files restored:
+- path/to/file1.cs <- file1.cs_20260723_220000_a1b2c3d4
+- path/to/file2.cs <- file2.cs_20260723_220000_e5f6g7h8
+```
+
+---
+
+## SƠ ĐỒ QUYẾT ĐỊNH (DECISION TREE)
+
+```yaml
+analyze:
+  output == NEED_MORE_INFO: → hoi_user
+  output == READY: → design
+
+design:
+  output == READY: → review_design
+  output == NEED_MORE_INFO: → hoi_user
+
+review_design:
+  APPROVED: → plan
+  CHANGES_REQUESTED (retry < 3, error moi): → design (kem gop y)
+  CHANGES_REQUESTED (retry >= 3): → hoi_user
+  CHANGES_REQUESTED (error trung): → hoi_user (co rollback)
+  REJECTED: → hoi_user
+
+plan:
+  output hop le: → review_plan
+  output rong/thieu: → yeu_cau_lam_lai
+
+review_plan:
+  APPROVED: → backup
+  CHANGES_REQUESTED (retry < 3, error moi): → plan (kem gop y)
+  CHANGES_REQUESTED (retry >= 3): → hoi_user
+  CHANGES_REQUESTED (error trung): → hoi_user
+  REJECTED: → hoi_user
+
+backup:
+  plan co sua file cu: → backup → build
+  plan chi tao moi: → build
+
+build:
+  all PASS: → testplan
+  loi nhe (syntax, error moi): → sua, build lai
+  loi nang: → hoi_user
+  error trung (same_error >= 2): → rollback → failed
+
+test:
+  all PASS: → report
+  FAIL (retry < 3, error moi): → build (kem bao loi)
+  FAIL (retry >= 3): → hoi_user
+  error trung (same_error >= 2): → rollback → failed
+
+self_improve:
+  workflow == PASS: → self_improve → complete
+  workflow == FAIL: → complete (skip self_improve)
+
+complete:
+  → Ket thuc workflow
+```
+
+---
+
+## TÍCH HỢP VỚI COMMANDS RIÊNG LẺ
+
+Orchestrator có thể gọi từng agent riêng qua command files:
+
+| Buoc | Command | Agent | File command |
+|------|---------|-------|-------------|
+| 1 | `/team-analyze` | analyst | `team-analyze.md` |
+| 2 | (goi truc tiep) | designer | `.opencode/agents/designer.md` |
+| 3 | `/team-review` | reviewer | `team-review.md` |
+| 4 | `/team-plan` | planner | `team-plan.md` |
+| 5 | `/team-review` | reviewer | `team-review.md` |
+| 7 | `/team-build` | builder | `team-build.md` |
+| 8 | `/team-testplan` | test-planner | `team-testplan.md` |
+| 9 | `/team-test` | tester | `team-test.md` |
+| 11 | (goi tu team.md) | self-improver | `.opencode/agents/self-improver.md` |
+
+Khi goi cac command nay, noi dung command file se la input day du cho agent.
+Orchestrator co the dung chung thay vi viet prompt thu cong.
+
+---
+
+## XU LY NGOAI LE (EXCEPTION HANDLING)
+
+### Timeout
+- Moi lan goi agent: toi da 120 giay
+- Neu qua thoi gian: log timeout, hoi user "Agent khong phan hoi, tiep tuc cho hay bo qua?"
+
+### User can thiep giua chung
+- Neu user gui thong tin moi: cap nhat context, artifact, tiep tuc tu buoc hien tai
+- Neu user yeu cau dung: set `status: cancelled`, tong hop bao cao tam thoi
+
+### Loi goi agent
+- Agent khong available: thu lai 1 lan sau 10s, neu van loi → hoi user
+- Agent output sai format (khong parse duoc YAML): yeu cau agent lam lai voi huong dan cu the hon
+
+### Loi he thong
+- Mat ket noi file system: thu lai 2 lan, neu van loi → hoi user
+- Loi backup: log canh bao, tiep tuc build (backup khong blocking)
+
+### Rollback tu dong
+- Khi `same_error_count >= 2`: rollback tu dong, bao cao cho user
+- Khi `max_retry_reached`: hoi user truoc khi rollback
+
+---
+
+## VI DU CHAY WORKFLOW
+
+```
+User: /team "Them validation email cho form dang ky"
+
+Orchestrator:
+  workflow_id = WF-20260723-001
+  
+  step=1, agent=analyst
+  → Phan tich: form o /src/components/RegisterForm.jsx
+  → Artifact: 01_analyze.md
+  
+  step=2, agent=designer
+  → Thiet ke: them EmailValidator class, cap nhat RegisterForm, them test
+  → Artifact: 02_design.md
+  
+  step=3, agent=reviewer
+  → Danh gia: APPROVED (safety=9, completeness=9)
+  → Artifact: 03_review_design.md
+  
+  step=4, agent=planner
+  → Ke hoach: 3 buoc (them validate, update UI, test)
+  → Artifact: 04_plan.md
+  
+  step=5, agent=reviewer
+  → Danh gia: APPROVED
+  → Artifact: 05_review_plan.md
+  
+  step=6, backup
+  → Backup RegisterForm.jsx → .opencode/workflows/WF-20260723-001/backup/
+  → Artifact: 06_backup.md
+  
+  step=7, agent=builder
+  → Xay dung: 3/3 buoc PASS
+  → Artifact: 07_build.md
+  
+  step=8, agent=test-planner
+  → 5 test cases (2 unit, 1 edge, 1 security, 1 regression)
+  → Artifact: 08_testplan.md
+  
+  step=9, agent=tester
+  → 5/5 PASS (coverage: 100%)
+  → Artifact: 09_test.md
+  
+  step=10, report
+  → Tong hop bao cao
+  → Artifact: 10_report.md
+  
+  step=11, agent=self-improver
+  → 3 suggestions (coding pattern, testing pattern, workflow)
+  → Artifact: 11_self_improve.md
+  
+  → HOAN THANH
+```
+
+---
+
+## GHI CHU
+
+- Co the chay tung buoc rieng bang cac lenh `/team-*`
+- Luon validate frontmatter YAML sau moi lan sua file .md
+- Tat ca agent output phai theo YAML contract dinh san
+- Artifact luon duoc luu truoc khi chuyen buoc
+- Neu workflow bi block o buoc nao, cung cap du thong tin de nguoi dung biet:
+  - Dang o buoc nao
+  - Workflow ID la gi
+  - Artifact hien tai la gi
+  - Can quyet dinh gi
+- Khi workflow hoan tat, output bao cao phai day du va ro rang
+- Self-improvement chi tao suggestion, can review + approve truoc khi ghi vao knowledge base
