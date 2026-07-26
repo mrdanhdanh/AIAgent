@@ -1,0 +1,12 @@
+﻿{
+    "created_at":  "2026-07-26T09:40:21.8754300+07:00",
+    "workflow_id":  "WF-20260726-001",
+    "files":  [
+                  {
+                      "size_bytes":  41002,
+                      "original_path":  ".opencode\\skills\\dev-team\\SKILL.md",
+                      "hash":  "4A87F47930AA",
+                      "backup_path":  ".opencode\\backup\\WF-20260726-001\\.opencode\\skills\\dev-team\\SKILL.md"
+                  }
+              ]
+}

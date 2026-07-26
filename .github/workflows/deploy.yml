@@ -33,6 +33,13 @@ jobs:
           mkdir -p deploy/JapaneseLearner
           cp -r release/wwwroot/* deploy/JapaneseLearner/
           cp -r gh-pages-root/* deploy/
+          # Copy hashed blazor.webassembly.<hash>.js to blazor.webassembly.js (.NET 10 omits unhashed copy)
+          for f in deploy/JapaneseLearner/_framework/blazor.webassembly.*.js; do
+            if [[ "$f" != *".gz" && "$f" != *".br" ]]; then
+              cp "$f" deploy/JapaneseLearner/_framework/blazor.webassembly.js
+              break
+            fi
+          done
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
