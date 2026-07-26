@@ -15,9 +15,21 @@
                     base.href = '/' + segments.slice(0, 2).join('/') + '/';
                 }
             }
+            var redirect = new URL(window.location.href).searchParams.get('redirect');
+            var basePath = window.location.pathname.replace(/\/$/, '');
+            if (redirect) {
+                sessionStorage.setItem('redirect', redirect);
+                history.replaceState(null, '', basePath + redirect);
+            } else {
+                var stored = sessionStorage.getItem('redirect');
+                if (stored) {
+                    sessionStorage.removeItem('redirect');
+                    history.replaceState(null, '', basePath + stored);
+                }
+            }
         })();
     </script>
-    <link href="_framework/dotnet.h7sw210nm5.js" rel="preload" as="script" fetchpriority="high" crossorigin="anonymous" integrity="sha256-MwOZUL4WDjSUWKeEtZPocgTrJMX9smrGQim9fmIg8hk=" />
+    <link href="_framework/dotnet.6f4gvo7m57.js" rel="preload" as="script" fetchpriority="high" crossorigin="anonymous" integrity="sha256-Ykm5sMR8Vmhc8gtaKlz3VpGlrDFYHNoioAI7lxktqLY=" />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
     <script>
         (function() {
@@ -39,7 +51,7 @@
     <script type="importmap">{
   "imports": {
     "./_framework/blazor.webassembly.js": "./_framework/blazor.webassembly.958z1vx7fr.js",
-    "./_framework/dotnet.js": "./_framework/dotnet.h7sw210nm5.js",
+    "./_framework/dotnet.js": "./_framework/dotnet.6f4gvo7m57.js",
     "./_framework/dotnet.native.js": "./_framework/dotnet.native.puryxhmhq9.js",
     "./_framework/dotnet.runtime.js": "./_framework/dotnet.runtime.web2r9gqbh.js"
   },
@@ -47,8 +59,8 @@
   "integrity": {
     "./_framework/blazor.webassembly.958z1vx7fr.js": "sha256-A59Tr9HqEhHMu8kU7kruLI9ayw5MRS6Lvc6z7jCbghk=",
     "./_framework/blazor.webassembly.js": "sha256-A59Tr9HqEhHMu8kU7kruLI9ayw5MRS6Lvc6z7jCbghk=",
-    "./_framework/dotnet.h7sw210nm5.js": "sha256-MwOZUL4WDjSUWKeEtZPocgTrJMX9smrGQim9fmIg8hk=",
-    "./_framework/dotnet.js": "sha256-MwOZUL4WDjSUWKeEtZPocgTrJMX9smrGQim9fmIg8hk=",
+    "./_framework/dotnet.6f4gvo7m57.js": "sha256-Ykm5sMR8Vmhc8gtaKlz3VpGlrDFYHNoioAI7lxktqLY=",
+    "./_framework/dotnet.js": "sha256-Ykm5sMR8Vmhc8gtaKlz3VpGlrDFYHNoioAI7lxktqLY=",
     "./_framework/dotnet.native.js": "sha256-gQbHHzCnWx8iDOC65EKbql7bEltJkfao7lmkAbIRajw=",
     "./_framework/dotnet.native.puryxhmhq9.js": "sha256-gQbHHzCnWx8iDOC65EKbql7bEltJkfao7lmkAbIRajw=",
     "./_framework/dotnet.runtime.js": "sha256-SOUHEQ3FhDAibBSR2u90NWZpoBjPuWRmH0BAATUlhJU=",
