@@ -9,18 +9,25 @@
 <div class="app-layout" data-theme="@(ThemeService.IsDarkMode ? "dark" : "light")">
     <header class="app-bar">
         <div class="app-bar-inner">
-            <FluentButton Appearance="@Appearance.Lightweight" class="nav-btn home-btn" Href=".">
-                📖
+            <FluentButton Appearance="@Appearance.Lightweight" class="nav-btn home-btn" Href="." aria-label="Trang chủ">
+                <FluentIcon Icon="@(Icons.Regular.Size20.BookContacts)" />
             </FluentButton>
             <h1 class="app-title">
                 <a href="." class="home-link">Japanese Learner</a>
             </h1>
             <div class="app-bar-spacer"></div>
-            <FluentButton Appearance="@Appearance.Lightweight" class="nav-btn theme-btn" OnClick="ToggleTheme" Title="Chuyển đổi giao diện">
-                @(ThemeService.IsDarkMode ? "☀️" : "🌙")
+            <FluentButton Appearance="@Appearance.Lightweight" class="nav-btn theme-btn" OnClick="ToggleTheme" Title="Chuyển đổi giao diện" aria-label="Chuyển đổi giao diện">
+                @if (ThemeService.IsDarkMode)
+                {
+                    <FluentIcon Icon="@(Icons.Regular.Size20.WeatherSunny)" />
+                }
+                else
+                {
+                    <FluentIcon Icon="@(Icons.Regular.Size20.WeatherMoon)" />
+                }
             </FluentButton>
-            <FluentButton Appearance="@Appearance.Lightweight" class="nav-btn" OnClick="@(() => _drawerOpen = !_drawerOpen)">
-                ☰
+            <FluentButton Appearance="@Appearance.Lightweight" class="nav-btn" OnClick="@(() => _drawerOpen = !_drawerOpen)" aria-label="Menu điều hướng">
+                <FluentIcon Icon="@(Icons.Regular.Size20.Navigation)" />
             </FluentButton>
         </div>
     </header>
@@ -31,14 +38,26 @@
         <aside class="drawer-panel">
             <div class="drawer-header">
                 <h3>Navigation</h3>
-                <FluentButton Appearance="@Appearance.Lightweight" OnClick="CloseDrawer" Class="drawer-close">✕</FluentButton>
+                <FluentButton Appearance="@Appearance.Lightweight" OnClick="CloseDrawer" Class="drawer-close" aria-label="Đóng menu">
+                    <FluentIcon Icon="@(Icons.Regular.Size20.Dismiss)" />
+                </FluentButton>
             </div>
             <FluentNavMenu>
-                <FluentNavLink Href="." Match="NavLinkMatch.All" OnClick="CloseDrawer">📖 Hiragana / Katakana</FluentNavLink>
-                <FluentNavLink Href="words" OnClick="CloseDrawer">📝 Word Study</FluentNavLink>
-                <FluentNavLink Href="words/quiz" OnClick="CloseDrawer">🎯 Word Quiz</FluentNavLink>
-                <FluentNavLink Href="kanji" OnClick="CloseDrawer">🈚 Kanji Study</FluentNavLink>
-                <FluentNavLink Href="admin" OnClick="CloseDrawer">⚙️ Admin</FluentNavLink>
+                <FluentNavLink Href="." Match="NavLinkMatch.All" OnClick="CloseDrawer">
+                    <FluentIcon Icon="@(Icons.Regular.Size20.BookContacts)" /> Hiragana / Katakana
+                </FluentNavLink>
+                <FluentNavLink Href="words" OnClick="CloseDrawer">
+                    <FluentIcon Icon="@(Icons.Regular.Size20.Document)" /> Word Study
+                </FluentNavLink>
+                <FluentNavLink Href="words/quiz" OnClick="CloseDrawer">
+                    <FluentIcon Icon="@(Icons.Regular.Size20.Target)" /> Word Quiz
+                </FluentNavLink>
+                <FluentNavLink Href="kanji" OnClick="CloseDrawer">
+                    <FluentIcon Icon="@(Icons.Regular.Size20.Compose)" /> Kanji Study
+                </FluentNavLink>
+                <FluentNavLink Href="admin" OnClick="CloseDrawer">
+                    <FluentIcon Icon="@(Icons.Regular.Size20.Settings)" /> Admin
+                </FluentNavLink>
             </FluentNavMenu>
         </aside>
     }

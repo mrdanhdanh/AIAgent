@@ -19,6 +19,7 @@
   --drawer-header-border: #e0e0e0;
   --drawer-header-text: #1d3557;
   --icon-hiragana-bg: linear-gradient(135deg, #e63946, #c1121f);
+  --icon-kanji-bg: linear-gradient(135deg, #e63946, #c1121f);
   --icon-word-bg: linear-gradient(135deg, #457b9d, #1d3557);
   --icon-admin-chars-bg: linear-gradient(135deg, #457b9d, #1d3557);
   --icon-admin-words-bg: linear-gradient(135deg, #2a9d8f, #1d3557);
@@ -42,6 +43,15 @@
   --feedback-wrong-bg: rgba(230, 57, 70, 0.08);
   --feedback-wrong-text: #e63946;
   --feedback-wrong-border: rgba(230, 57, 70, 0.15);
+  --color-on-yomi: #E63946;
+  --color-kun-yomi: #457b9d;
+  --accent-color: #E63946;
+  --opt-correct-border: #2a9d8f;
+  --opt-correct-bg: rgba(42, 157, 143, 0.15);
+  --opt-correct-text: #2a9d8f;
+  --opt-wrong-border: #e63946;
+  --opt-wrong-bg: rgba(230, 57, 70, 0.15);
+  --opt-wrong-text: #e63946;
   --tab-bar-bg: #ffffff;
   --tab-bar-shadow: rgba(0, 0, 0, 0.06);
   --tab-btn-bg: #ffffff;
@@ -69,6 +79,8 @@
   --badge-n5-text: #2a9d8f;
   --badge-level-bg: rgba(233, 196, 106, 0.2);
   --badge-level-text: #8b6914;
+  --badge-stroke-bg: #457b9d;
+  --badge-stroke-text: #ffffff;
   --table-th-bg: #fafafa;
   --table-th-border: #e0e0e0;
   --table-td-border: #f0f0f0;
@@ -122,6 +134,16 @@
   --hint-dot-bg: #333333;
   --hint-dot-active-bg: rgba(69, 123, 157, 0.3);
   --hint-dot-active-text: #a8d8ea;
+  --color-on-yomi: #e07a7a;
+  --color-kun-yomi: #a8d8ea;
+  --accent-color: #e07a7a;
+  --opt-correct-border: #6bc5b0;
+  --opt-correct-bg: rgba(42, 157, 143, 0.25);
+  --opt-correct-text: #6bc5b0;
+  --opt-wrong-border: #e07a7a;
+  --opt-wrong-bg: rgba(230, 57, 70, 0.25);
+  --opt-wrong-text: #e07a7a;
+  --icon-kanji-bg: linear-gradient(135deg, #c1121f, #8b0000);
   --tab-bar-bg: #1e1e1e;
   --tab-btn-bg: #2a2a2a;
   --tab-btn-border: #333333;
@@ -135,6 +157,8 @@
   --badge-choon-text: #e0e0e0;
   --badge-level-bg: rgba(233, 196, 106, 0.15);
   --badge-level-text: #e9c46a;
+  --badge-stroke-bg: #2a6f8a;
+  --badge-stroke-text: #e0e0e0;
   --badge-n5-text: #6bc5b0;
   --table-th-bg: #2a2a2a;
   --table-th-border: #333333;

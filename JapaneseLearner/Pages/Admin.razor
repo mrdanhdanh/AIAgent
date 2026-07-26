@@ -8,13 +8,13 @@
 <div class="admin-container">
     <div class="admin-tab-bar">
         <button class="admin-tab-btn @(activeTab == "chars" ? "active" : "")" @onclick="SwitchToChars">
-            📖 Bảng chữ cái
+            <FluentIcon Icon="@(Icons.Regular.Size20.BookContacts)" /> Bảng chữ cái
         </button>
         <button class="admin-tab-btn @(activeTab == "words" ? "active" : "")" @onclick="SwitchToWords">
-            📝 Từ vựng
+            <FluentIcon Icon="@(Icons.Regular.Size20.Document)" /> Từ vựng
         </button>
         <button class="admin-tab-btn @(activeTab == "kanji" ? "active" : "")" @onclick="SwitchToKanji">
-            🈚 Kanji
+            <FluentIcon Icon="@(Icons.Regular.Size20.Compose)" /> Kanji
         </button>
     </div>
 
@@ -27,14 +27,14 @@
     {
             <div class="admin-header">
             <div class="admin-header-left">
-                <div class="admin-icon">📖</div>
+                <div class="admin-icon"><FluentIcon Icon="@(Icons.Regular.Size20.BookContacts)" /></div>
                 <div>
                     <h2>Quản lý bảng chữ cái</h2>
                     <p class="admin-sub">Thêm, sửa, xóa các ký tự Hiragana và Katakana</p>
                 </div>
             </div>
             <FluentButton Appearance="@Appearance.Accent" OnClick="OpenAddCharDialog" Class="add-btn">
-                ➕ Thêm chữ
+                <FluentIcon Icon="@(Icons.Regular.Size20.Add)" /> Thêm chữ
             </FluentButton>
         </div>
 
@@ -47,7 +47,7 @@
         else if (chars.Count == 0)
         {
             <div class="empty-state">
-                <div class="empty-icon">📖</div>
+                <div class="empty-icon"><FluentIcon Icon="@(Icons.Regular.Size20.BookContacts)" /></div>
                 <h3>Danh sách trống</h3>
                 <p>Chưa có chữ cái nào. Hãy thêm chữ mới để bắt đầu.</p>
             </div>
@@ -77,8 +77,12 @@
                                 </td>
                                 <td>
                                     <div class="action-btns">
-                                        <FluentButton Appearance="@Appearance.Lightweight" OnClick="() => OpenEditCharDialog(c)" Class="action-btn-icon" Title="@("Sửa chữ " + c.Character)">✏️</FluentButton>
-                                        <FluentButton Appearance="@Appearance.Lightweight" OnClick="() => OpenDeleteCharConfirm(c)" Class="action-btn-icon" Title="@("Xóa chữ " + c.Character)">🗑️</FluentButton>
+                                        <FluentButton Appearance="@Appearance.Lightweight" OnClick="() => OpenEditCharDialog(c)" Class="action-btn-icon" Title="@("Sửa chữ " + c.Character)" aria-label="@("Sửa chữ " + c.Character)">
+                                            <FluentIcon Icon="@(Icons.Regular.Size20.Edit)" />
+                                        </FluentButton>
+                                        <FluentButton Appearance="@Appearance.Lightweight" OnClick="() => OpenDeleteCharConfirm(c)" Class="action-btn-icon" Title="@("Xóa chữ " + c.Character)" aria-label="@("Xóa chữ " + c.Character)">
+                                            <FluentIcon Icon="@(Icons.Regular.Size20.Delete)" />
+                                        </FluentButton>
                                     </div>
                                 </td>
                             </tr>
@@ -126,14 +130,14 @@
     {
         <div class="admin-header">
             <div class="admin-header-left">
-                <div class="admin-icon word-icon">📝</div>
+                <div class="admin-icon word-icon"><FluentIcon Icon="@(Icons.Regular.Size20.Document)" /></div>
                 <div>
                     <h2>Quản lý từ vựng</h2>
                     <p class="admin-sub">Thêm, sửa, xóa từ vựng tiếng Nhật</p>
                 </div>
             </div>
             <FluentButton Appearance="@Appearance.Accent" OnClick="OpenAddWordDialog" Class="add-btn">
-                ➕ Thêm từ
+                <FluentIcon Icon="@(Icons.Regular.Size20.Add)" /> Thêm từ
             </FluentButton>
         </div>
 
@@ -147,7 +151,7 @@
         else if (words.Count == 0)
         {
             <div class="empty-state">
-                <div class="empty-icon">📝</div>
+                <div class="empty-icon"><FluentIcon Icon="@(Icons.Regular.Size20.Document)" /></div>
                 <h3>Danh sách trống</h3>
                 <p>Chưa có từ vựng nào. Hãy thêm từ mới để bắt đầu.</p>
             </div>
@@ -178,8 +182,12 @@
                                 <td><span class="level-badge">@w.Level</span></td>
                                 <td>
                                     <div class="action-btns">
-                                        <FluentButton Appearance="@Appearance.Lightweight" OnClick="() => OpenEditWordDialog(w)" Class="action-btn-icon" Title="@("Sửa từ " + w.Characters)">✏️</FluentButton>
-                                        <FluentButton Appearance="@Appearance.Lightweight" OnClick="() => OpenDeleteWordConfirm(w)" Class="action-btn-icon" Title="@("Xóa từ " + w.Characters)">🗑️</FluentButton>
+                                        <FluentButton Appearance="@Appearance.Lightweight" OnClick="() => OpenEditWordDialog(w)" Class="action-btn-icon" Title="@("Sửa từ " + w.Characters)" aria-label="@("Sửa từ " + w.Characters)">
+                                            <FluentIcon Icon="@(Icons.Regular.Size20.Edit)" />
+                                        </FluentButton>
+                                        <FluentButton Appearance="@Appearance.Lightweight" OnClick="() => OpenDeleteWordConfirm(w)" Class="action-btn-icon" Title="@("Xóa từ " + w.Characters)" aria-label="@("Xóa từ " + w.Characters)">
+                                            <FluentIcon Icon="@(Icons.Regular.Size20.Delete)" />
+                                        </FluentButton>
                                     </div>
                                 </td>
                             </tr>
@@ -240,14 +248,14 @@
     {
         <div class="admin-header">
             <div class="admin-header-left">
-                <div class="admin-icon kanji-admin-icon">🈚</div>
+                <div class="admin-icon kanji-admin-icon"><FluentIcon Icon="@(Icons.Regular.Size20.Compose)" /></div>
                 <div>
                     <h2>Quản lý Kanji</h2>
                     <p class="admin-sub">Thêm, sửa, xóa Kanji N5</p>
                 </div>
             </div>
             <FluentButton Appearance="@Appearance.Accent" OnClick="OpenAddKanjiDialog" Class="add-btn">
-                ➕ Thêm Kanji
+                <FluentIcon Icon="@(Icons.Regular.Size20.Add)" /> Thêm Kanji
             </FluentButton>
         </div>
 
@@ -261,7 +269,7 @@
         else if (kanjiList.Count == 0)
         {
             <div class="empty-state">
-                <div class="empty-icon">🈚</div>
+                <div class="empty-icon"><FluentIcon Icon="@(Icons.Regular.Size20.Compose)" /></div>
                 <h3>Danh sách trống</h3>
                 <p>Chưa có Kanji nào. Hãy thêm Kanji mới để bắt đầu.</p>
             </div>
@@ -294,8 +302,12 @@
                                 <td><span class="level-badge">@k.JLPTLevel</span></td>
                                 <td>
                                     <div class="action-btns">
-                                        <FluentButton Appearance="@Appearance.Lightweight" OnClick="() => OpenEditKanjiDialog(k)" Class="action-btn-icon" Title="@("Sửa Kanji " + k.Kanji)">✏️</FluentButton>
-                                        <FluentButton Appearance="@Appearance.Lightweight" OnClick="() => OpenDeleteKanjiConfirm(k)" Class="action-btn-icon" Title="@("Xóa Kanji " + k.Kanji)">🗑️</FluentButton>
+                                        <FluentButton Appearance="@Appearance.Lightweight" OnClick="() => OpenEditKanjiDialog(k)" Class="action-btn-icon" Title="@("Sửa Kanji " + k.Kanji)" aria-label="@("Sửa Kanji " + k.Kanji)">
+                                            <FluentIcon Icon="@(Icons.Regular.Size20.Edit)" />
+                                        </FluentButton>
+                                        <FluentButton Appearance="@Appearance.Lightweight" OnClick="() => OpenDeleteKanjiConfirm(k)" Class="action-btn-icon" Title="@("Xóa Kanji " + k.Kanji)" aria-label="@("Xóa Kanji " + k.Kanji)">
+                                            <FluentIcon Icon="@(Icons.Regular.Size20.Delete)" />
+                                        </FluentButton>
                                     </div>
                                 </td>
                             </tr>
@@ -419,7 +431,6 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 1.3rem;
     }
     .word-icon {
         background: var(--icon-admin-words-bg);
@@ -457,7 +468,7 @@
         border-radius: 16px;
         box-shadow: var(--shadow-sm);
     }
-    .empty-icon { font-size: 3rem; margin-bottom: 12px; }
+    .empty-icon { margin-bottom: 12px; }
     .empty-state h3 { color: var(--text-primary); margin: 0 0 8px 0; }
     .empty-state p { color: var(--text-secondary); margin: 0; }
     .word-count {
@@ -597,6 +608,8 @@
     private bool showKanjiDeleteConfirm;
     private JapaneseKanji? kanjiToDelete;
 
+    private CancellationTokenSource? _notifCts;
+
     private bool IsCharFormValid =>
         !string.IsNullOrWhiteSpace(editingChar.Character) &&
         !string.IsNullOrWhiteSpace(editingChar.Romaji);
@@ -640,11 +653,22 @@
 
     private async Task ShowNotif(string message)
     {
+        _notifCts?.Cancel();
+        _notifCts = new CancellationTokenSource();
+
         _notifMessage = message;
         _showNotif = true;
         StateHasChanged();
-        await Task.Delay(3000);
-        _showNotif = false;
+
+        try
+        {
+            await Task.Delay(3000, _notifCts.Token);
+            _showNotif = false;
+        }
+        catch (TaskCanceledException)
+        {
+            // A newer notification replaced this one
+        }
     }
 
     // ===== Char CRUD =====
@@ -684,6 +708,7 @@
 
         showCharDialog = false;
         await RefreshCharList();
+        await ShowNotif(isEditCharMode ? "Đã cập nhật chữ" : "Đã thêm chữ mới");
     }
 
     private void CancelCharDialog()

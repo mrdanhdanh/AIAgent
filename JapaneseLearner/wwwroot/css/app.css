@@ -317,3 +317,92 @@ fluent-button:focus-visible {
     outline-offset: 2px;
     border-radius: 4px;
 }
+
+/* ===== Shared Study Tab Styles (WordStudy, WordQuiz) ===== */
+.tab-bar {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 16px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    -webkit-overflow-scrolling: touch;
+}
+.tab-btn {
+    flex-shrink: 0;
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 2px solid var(--tab-btn-border);
+    background: var(--tab-btn-bg);
+    color: var(--tab-btn-text);
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+}
+.tab-btn:hover {
+    border-color: var(--tab-btn-hover-border);
+    color: var(--tab-btn-hover-text);
+}
+.tab-btn.active {
+    background: var(--tab-btn-active-bg);
+    border-color: var(--tab-btn-active-bg);
+    color: var(--tab-btn-active-text);
+}
+.type-indicator {
+    text-align: center;
+    margin-bottom: 12px;
+}
+.type-badge {
+    display: inline-block;
+    padding: 3px 14px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+.type-seion { background: var(--badge-seion-bg); color: var(--badge-seion-text); }
+.type-dakuon { background: var(--badge-dakuon-bg); color: var(--badge-dakuon-text); }
+.type-handakuon { background: var(--badge-handakuon-bg); color: var(--badge-handakuon-text); }
+.type-yoon { background: var(--badge-yoon-bg); color: var(--badge-yoon-text); }
+.type-sokuon { background: var(--badge-sokuon-bg); color: var(--badge-sokuon-text); }
+.type-choon { background: var(--badge-choon-bg); color: var(--badge-choon-text); }
+
+/* Override char display for study pages (compact) */
+.word-study-container .char-display,
+.word-quiz-container .char-display,
+.study-container .char-display {
+    min-height: 120px;
+}
+.word-study-container .japanese-char-display,
+.word-quiz-container .japanese-char-display,
+.study-container .japanese-char-display {
+    font-size: 5rem;
+}
+.word-study-container .japanese-char-display.word-md,
+.word-quiz-container .japanese-char-display.word-md {
+    font-size: 4rem;
+}
+.word-study-container .japanese-char-display.word-sm,
+.word-quiz-container .japanese-char-display.word-sm {
+    font-size: 3rem;
+}
+.word-study-container .study-card:hover .japanese-char-display,
+.word-quiz-container .study-card:hover .japanese-char-display,
+.study-container .study-card:hover .japanese-char-display {
+    transform: scale(1.02);
+}
+
+/* Override input-row alignment for study pages */
+.word-study-container .input-row,
+.word-quiz-container .input-row,
+.study-container .input-row {
+    align-items: stretch;
+}
+
+/* Override action-btn height for study pages */
+.word-study-container .action-btn,
+.word-quiz-container .action-btn,
+.study-container .action-btn {
+    height: auto;
+}

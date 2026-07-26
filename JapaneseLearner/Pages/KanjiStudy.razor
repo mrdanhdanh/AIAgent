@@ -42,7 +42,7 @@
     else if (availableKanji.Count == 0)
     {
         <div class="empty-state">
-            <div class="empty-icon">🈚</div>
+            <div class="empty-icon"><FluentIcon Icon="@(Icons.Regular.Size20.Compose)" /></div>
             <h3>Chưa có dữ liệu</h3>
             <p>Vui lòng thêm Kanji từ trang Admin để bắt đầu học.</p>
             <FluentButton Appearance="@Appearance.Accent" Href="/admin" Class="mt-4">
@@ -66,7 +66,7 @@
         @if (isCorrect == true)
         {
             <div class="feedback feedback-correct">
-                <span class="feedback-icon">✓</span>
+                <span class="feedback-icon"><FluentIcon Icon="@(Icons.Regular.Size20.Checkmark)" /></span>
                 Chính xác!
                 <span class="meaning-hint">(@currentKanji?.Meaning)</span>
             </div>
@@ -84,7 +84,7 @@
         else if (isCorrect == false)
         {
             <div class="feedback feedback-wrong">
-                <span class="feedback-icon">✗</span>
+                <span class="feedback-icon"><FluentIcon Icon="@(Icons.Regular.Size20.Dismiss)" /></span>
                 <span>Âm On: <strong>@currentKanji?.OnYomi</strong></span>
                 <span>Âm Kun: <strong>@currentKanji?.KunYomi</strong></span>
                 @if (!string.IsNullOrWhiteSpace(currentKanji?.Meaning))

@@ -45,7 +45,7 @@
     else if (availableWords.Count == 0)
     {
         <div class="empty-state">
-            <div class="empty-icon">📝</div>
+            <div class="empty-icon"><FluentIcon Icon="@(Icons.Regular.Size20.Document)" /></div>
             <h3>Chưa có dữ liệu</h3>
             <p>Vui lòng thêm từ từ trang Admin để bắt đầu học.</p>
             <FluentButton Appearance="@Appearance.Accent" Href="/admin" Class="mt-4">
@@ -71,14 +71,14 @@
         @if (isCorrect == true)
         {
             <div class="feedback feedback-correct">
-                <span class="feedback-icon">✓</span>
+                <span class="feedback-icon"><FluentIcon Icon="@(Icons.Regular.Size20.Checkmark)" /></span>
                 Chính xác! (@currentWord?.Meaning)
             </div>
         }
         else if (isCorrect == false)
         {
             <div class="feedback feedback-wrong">
-                <span class="feedback-icon">✗</span>
+                <span class="feedback-icon"><FluentIcon Icon="@(Icons.Regular.Size20.Dismiss)" /></span>
                 Đáp án đúng: <strong>@currentWord?.Romaji</strong>
                 @if (!string.IsNullOrWhiteSpace(currentWord?.Meaning))
                 {
@@ -117,85 +117,12 @@
         max-width: 520px;
         margin: 0 auto;
     }
-    .tab-bar {
-        display: flex;
-        gap: 6px;
-        margin-bottom: 16px;
-        overflow-x: auto;
-        padding-bottom: 4px;
-        -webkit-overflow-scrolling: touch;
-    }
-    .tab-btn {
-        flex-shrink: 0;
-        padding: 6px 14px;
-        border-radius: 20px;
-        border: 2px solid var(--tab-btn-border);
-        background: var(--tab-btn-bg);
-        color: var(--tab-btn-text);
-        font-size: 0.8rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.2s;
-        font-family: inherit;
-    }
-    .tab-btn:hover {
-        border-color: var(--tab-btn-hover-border);
-        color: var(--tab-btn-hover-text);
-    }
-    .tab-btn.active {
-        background: var(--tab-btn-active-bg);
-        border-color: var(--tab-btn-active-bg);
-        color: var(--tab-btn-active-text);
-    }
-    .type-indicator {
-        text-align: center;
-        margin-bottom: 12px;
-    }
-    .type-badge {
-        display: inline-block;
-        padding: 3px 14px;
-        border-radius: 20px;
-        font-size: 0.75rem;
-        font-weight: 600;
-        letter-spacing: 0.5px;
-    }
-    .type-seion { background: var(--badge-seion-bg); color: var(--badge-seion-text); }
-    .type-dakuon { background: var(--badge-dakuon-bg); color: var(--badge-dakuon-text); }
-    .type-handakuon { background: var(--badge-handakuon-bg); color: var(--badge-handakuon-text); }
-    .type-yoon { background: var(--badge-yoon-bg); color: var(--badge-yoon-text); }
-    .type-sokuon { background: var(--badge-sokuon-bg); color: var(--badge-sokuon-text); }
-    .type-choon { background: var(--badge-choon-bg); color: var(--badge-choon-text); }
     .meaning-hint {
         display: block;
         font-size: 0.85rem;
         font-weight: 400;
         margin-top: 4px;
         opacity: 0.8;
-    }
-    .char-display {
-        min-height: 120px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    .japanese-char-display {
-        font-size: 5rem;
-        line-height: 1.2;
-        font-family: var(--font-family);
-        color: var(--text-primary);
-        transition: transform 0.2s;
-        user-select: none;
-    }
-    .japanese-char-display.word-md { font-size: 4rem; }
-    .japanese-char-display.word-sm { font-size: 3rem; }
-    .study-card:hover .japanese-char-display {
-        transform: scale(1.02);
-    }
-    .input-row {
-        align-items: stretch;
-    }
-    .action-btn {
-        height: auto;
     }
 </style>
 
