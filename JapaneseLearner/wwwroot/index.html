@@ -15,6 +15,18 @@
                     base.href = '/' + segments.slice(0, 2).join('/') + '/';
                 }
             }
+            var redirect = new URL(window.location.href).searchParams.get('redirect');
+            var basePath = window.location.pathname.replace(/\/$/, '');
+            if (redirect) {
+                sessionStorage.setItem('redirect', redirect);
+                history.replaceState(null, '', basePath + redirect);
+            } else {
+                var stored = sessionStorage.getItem('redirect');
+                if (stored) {
+                    sessionStorage.removeItem('redirect');
+                    history.replaceState(null, '', basePath + stored);
+                }
+            }
         })();
     </script>
     <link rel="preload" id="webassembly" />

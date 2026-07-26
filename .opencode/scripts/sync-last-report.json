@@ -1,0 +1,108 @@
+﻿{
+    "issues":  [
+                   "ORPHAN_AGENT: agent=guardian",
+                   "ORPHAN_AGENT: agent=pusher",
+                   "UPDATE_FAILED: Cannot locate table in SKILL.md"
+               ],
+    "knowledge":  {
+                      "knowledge/lessons.md":  {
+                                                   "file":  "knowledge/lessons.md",
+                                                   "size":  11524
+                                               },
+                      "knowledge/deployment\\blazor-wasm-github-pages.md":  {
+                                                                                "file":  "knowledge/deployment\\blazor-wasm-github-pages.md",
+                                                                                "size":  2227
+                                                                            },
+                      "knowledge/workflow\\validate-github-actions-yaml.md":  {
+                                                                                  "file":  "knowledge/workflow\\validate-github-actions-yaml.md",
+                                                                                  "size":  600
+                                                                              },
+                      "knowledge/skills-learned.md":  {
+                                                          "file":  "knowledge/skills-learned.md",
+                                                          "size":  8967
+                                                      },
+                      "knowledge/patterns\\common.md":  {
+                                                            "file":  "knowledge/patterns\\common.md",
+                                                            "size":  5171
+                                                        },
+                      "knowledge/blazor-ref-timing.md":  {
+                                                             "file":  "knowledge/blazor-ref-timing.md",
+                                                             "size":  1000
+                                                         }
+                  },
+    "agents":  {
+                   "guardian":  {
+                                    "description":  "Chuyên gia review source code trước khi push lên git — phát hiện secret, lỗi convention, lỗ hổng bảo mật, vi phạm quy tắc dự án",
+                                    "model":  null,
+                                    "file":  "agents/guardian.md",
+                                    "mode":  null,
+                                    "permissions":  {
+                                                        "grep":  "deny",
+                                                        "bash":  "deny",
+                                                        "read":  "deny",
+                                                        "edit":  "deny",
+                                                        "glob":  "deny"
+                                                    }
+                                },
+                   "pusher":  {
+                                  "description":  "Chuyên gia thực hiện git push an toàn — auto-commit từ diff, safety checks, build, test, confirmation gate, push execution, post-push verify",
+                                  "model":  null,
+                                  "file":  "agents/pusher.md",
+                                  "mode":  null,
+                                  "permissions":  {
+                                                      "grep":  "deny",
+                                                      "bash":  "deny",
+                                                      "read":  "deny",
+                                                      "edit":  "deny",
+                                                      "glob":  "deny"
+                                                  }
+                              }
+               },
+    "commands":  {
+
+                 },
+    "scripts":  {
+                    "gitpush-utility":  {
+                                            "summary":  "GitPush Utility — thực hiện git push an toàn với auto-commit, safety checks, confirmation gate.",
+                                            "file":  "scripts/gitpush-utility.ps1",
+                                            "size":  18071
+                                        },
+                    "backup-utility":  {
+                                           "summary":  "Utility script",
+                                           "file":  "scripts/backup-utility.ps1",
+                                           "size":  1314
+                                       },
+                    "sync-system-docs":  {
+                                             "summary":  "Utility script",
+                                             "file":  "scripts/sync-system-docs.ps1",
+                                             "size":  24676
+                                         },
+                    "rollback-utility":  {
+                                             "summary":  "Utility script",
+                                             "file":  "scripts/rollback-utility.ps1",
+                                             "size":  2432
+                                         }
+                },
+    "cross_refs":  {
+                       "command_to_agent":  {
+
+                                            },
+                       "skill_to_commands":  {
+
+                                             },
+                       "orphans":  [
+                                       "Agent \u0027guardian\u0027 is not referenced by any command",
+                                       "Agent \u0027pusher\u0027 is not referenced by any command"
+                                   ],
+                       "missing":  [
+
+                                   ],
+                       "agent_to_commands":  {
+
+                                             }
+                   },
+    "scanned_at":  "2026-07-26T09:50:28.6091061+07:00",
+    "skills":  {
+
+               }
+}

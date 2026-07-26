@@ -31,13 +31,15 @@ Trong đó:
   - [Bước 4: Review](#bước-4-review)
   - [Bước 5: Backup](#bước-5-backup)
   - [Bước 6: Build](#bước-6-build)
-  - [Bước 7: Smoke Test](#bước-7-smoke-test)
+  - [Bước 7: Static Analysis](#bước-7-static-analysis)
   - [Bước 8: UI Audit](#bước-8-ui-audit)
   - [Bước 9: Test Plan](#bước-9-test-plan)
   - [Bước 10: Test](#bước-10-test)
-  - [Bước 11: Self-Improvement](#bước-11-self-improvement)
+  - [Bước 11: Skill Validation](#bước-11-skill-validation)
   - [Bước 12: Complete](#bước-12-complete)
 - [BÁO CÁO KẾT THÚC](#báo-cáo-kết-thúc)
+- [VALIDATION CHECKLIST PER PHASE](#validation-checklist-per-phase)
+- [CHECKPOINT MECHANISM](#checkpoint-mechanism)
 - [SƠ ĐỒ QUYẾT ĐỊNH (DECISION TREE)](#sơ-đồ-quyết-định-decision-tree)
 - [ROLLBACK MECHANISM](#rollback-mechanism)
 - [TÍCH HỢP VỚI COMMANDS RIÊNG LẺ](#tích-hợp-với-commands-riêng-lẻ)
@@ -806,7 +808,7 @@ Output: Contract YAML theo schema Tester.
 **Sau output:** Lưu `current_data.test_result = output`, ghi artifact `10_test.md`
 
 **Xử lý kết quả:**
-- **APPROVED** (all PASS + coverage >= thresholds) → Chuyển sang BÁO CÁO KẾT THÚC
+- **APPROVED** (all PASS + coverage >= thresholds) → Chuyển sang Bước 11 (Skill Validation)
 - **NEEDS_FIX** (có FAIL hoặc coverage < threshold) →
   - `retry.test_count++`
   - Nếu `retry.test_count < retry.max_test` → Quay lại Bước 6 (Build)
@@ -1388,7 +1390,7 @@ static_analysis:
 - Có thể chạy từng bước riêng bằng các lệnh `/team-*`
 - Design phase do Planner đảm nhiệm với extended prompt. Không cần agent riêng.
 - Luôn validate frontmatter YAML sau mỗi lần sửa file .md
-- Self-Improvement chỉ tạo suggestions, không ghi trực tiếp knowledge base
+- Skill Validation (self-improver) chỉ tạo suggestions, không ghi trực tiếp knowledge base
 - Approval gate bắt buộc cho suggestion có impact MEDIUM/HIGH
 - Backward compatible: workflow cũ được gán ID "WF-LEGACY-{timestamp}"
 - Backup/Rollback do backup-agent thực hiện, Orchestrator chỉ gọi lệnh

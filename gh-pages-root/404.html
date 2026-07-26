@@ -4,13 +4,11 @@
     <meta charset="utf-8" />
     <title>Redirecting...</title>
     <script>
-        var path = window.location.pathname;
-        var segments = path.split('/').filter(Boolean);
+        var segments = window.location.pathname.split('/').filter(Boolean);
         if (segments.length >= 2) {
             var baseHref = '/' + segments.slice(0, 2).join('/') + '/';
             var redirect = '/' + segments.slice(2).join('/');
-            sessionStorage.setItem('redirect', redirect);
-            window.location.replace(baseHref);
+            window.location.replace(baseHref + '?redirect=' + encodeURIComponent(redirect));
         } else {
             window.location.replace('/AIAgent/JapaneseLearner/');
         }
