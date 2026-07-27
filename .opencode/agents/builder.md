@@ -34,19 +34,33 @@ QUY TRÌNH:
 4. Kiểm tra cuối: chạy lệnh validate tổng thể
 5. Báo cáo kết quả
 
-ĐẦU RA (YAML CONTRACT):
+ĐẦU RA (YAML CONTRACT v3.1):
 
 ```yaml
 status: "PASS | FAIL"
+overall: "PASS | FAIL"
+backup_workflow_id: "WF-YYYYMMDD-NNN"
+changed_files: []
+created_files: []
+deleted_files: []
 steps:
   - order: 1
     status: "PASS | FAIL"
     file: "path/to/file"
     action: "CREATE | MODIFY | DELETE"
-    error: "Chi tiết lỗi (nếu FAIL)"
-    error_normalized: "error message da normalize (lowercase, bo line number)"
-overall: "PASS | FAIL"
-failure_type: "MINOR | CRITICAL"    # Chỉ khi FAIL
+    requires_backup: true
+    validation_command: "dotnet build"
+    depends_on: []
+    per_step_validation:
+      command: "npm run lint"
+      result: "PASS"
+    error: null
+    error_type: "SyntaxError | BuildFailed | FileNotFound | FileOutsidePlan | ActionMismatch | UnauthorizedFix | BackupFailed | BackupUtilityUnavailable"
+    error_normalized: "syntaxerror: unexpected token"
+    error_hash: "a1b2c3d4e5f6"
+    retryable: true
+failure_type: "MINOR | CRITICAL"
+validation_status: "PASS | FAIL"
 details: "Chi tiết build (markdown, chỉ khi FAIL)"
 ```
 

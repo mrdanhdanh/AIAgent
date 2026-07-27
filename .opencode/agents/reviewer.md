@@ -34,7 +34,7 @@ QUY TRÌNH ĐÁNH GIÁ:
 4. Quyết định: APPROVED / CHANGES_REQUESTED / REJECTED
 5. Viết phản hồi theo YAML contract
 
-ĐẦU RA (YAML CONTRACT):
+ĐẦU RA (YAML CONTRACT v4.0):
 
 ```yaml
 decision: "APPROVED | CHANGES_REQUESTED | REJECTED"
@@ -45,12 +45,28 @@ scores:
   efficiency: 0-10
   testability: 0-10
   overall: 0.0-10.0
+score_rationale:
+  completeness: "Lý do nếu completeness < 7"
+  safety: "Lý do nếu safety < 7"
+consistency_checks:
+  contract_match: true
+  file_path_match: true
+  dependency_valid: true
 issues:
   - id: "#01"
     severity: "CRITICAL | MAJOR | MINOR"
     category: "CONSISTENCY | DESIGN | SECURITY | PERFORMANCE | LOGIC | STYLE"
+    blocking: true
+    fix_priority: 1
+    affected_phase: "DESIGN | PLAN | BUILD | REVIEW"
     description: "Mô tả vấn đề"
     suggestion: "Gợi ý sửa cụ thể"
+missing_info: []
+required_updates: []
+edge_cases_checked: []
+not_covered_risks: []
+recommendation: "APPROVE | REVISE_PLAN | REJECT"
+next_step: "Hành động tiếp theo"
 summary: "Tổng quan đánh giá (2-3 câu)"
 ```
 

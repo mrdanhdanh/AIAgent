@@ -1,7 +1,7 @@
 ﻿# He Thong .opencode - So Do Tong The
 
-> **Tu dong tao luc:** 2026-07-27 22:48:52
-> **Workflow ID:** WF-20260727-SYNC
+> **Tu dong tao luc:** 2026-07-28 01:28:55
+> **Workflow ID:** WF-20260728-SYNC
 > **Cap nhat:** Toan bo agents, commands, skills, scripts, knowledge
 
 ---
@@ -70,7 +70,7 @@
 | /team-gitguard | Review source code trước khi push lên git — phát hiện secret, lỗi convention, lỗ hổng bảo mật, vi phạm quy tắc dự án | guardian |  |
 | /team-gitpush | Auto-commit từ diff, pre-push safety validation + git push execution — kiểm tra secret, convention, build, test, xác nhận user, push lên remote | pusher |  |
 | /team-plan | Mở rộng: Thiết kế (Design) + Lập kế hoạch (Plan) — dùng agent planner | planner |  |
-| /team-review | Đánh giá thiết kế hoặc kế hoạch (dùng agent reviewer) | reviewer |  |
+| /team-review | Đánh giá thiết kế hoặc kế hoạch (dùng agent reviewer) — nâng cấp v4.0: decision thresholds, score_rationale, blocking issues, consistency, edge cases | reviewer |  |
 | /team-selfimprove | Phân tích workflow và đề xuất cải tiến (chỉ suggestion, không ghi KB) | self-improver |  |
 | /team-syncdocs | Đồng bộ toàn bộ system docs: quét agents, commands, skills, scripts, knowledge → cập nhật SYSTEM_MAP.md, cross-references, fix lỗi. Chạy định kỳ khi thêm/sửa/xóa file hệ thống. | general |  |
 | /team-test | Thực thi kiểm thử theo kế hoạch (dùng agent tester) | tester |  |
@@ -133,7 +133,6 @@
 | /team-gitguard | guardian | agents/guardian.md |
 | /team-gitpush | pusher | agents/pusher.md |
 | /team-cleanup | cleaner | agents/cleaner.md |
-| /team-explore | codebase-explorer | agents/codebase-explorer.md |
 | /backup | backup-agent | commands/backup.md |
 
 ### Agent -> Commands
@@ -202,7 +201,7 @@
                   |
                   v
              +-------+----+
-             | SMOKE TEST |
+             | STATIC ANALYSIS |
              +-----+------+
                    |
                    v
@@ -251,7 +250,7 @@
 | 4 | /team-review | reviewer | commands/team-review.md |
 | 5 | Backup (utility) | --- | scripts/backup-utility.ps1 |
 | 6 | /team-build | builder | commands/team-build.md |
-| 7 | Smoke Test (orch.) | --- | SKILL.md |
+| 7 | Static Analysis | --- | skills/dev-team/SKILL.md |
 | 8 | /team-ui-audit | ui-beautifier | commands/team-ui-audit.md |
 | 9 | /team-testplan | test-planner | commands/team-testplan.md |
 | 10 | /team-test | tester | commands/team-test.md |
@@ -264,7 +263,6 @@
 |------|---------|-------|------|
 | Pre-push | /team-gitguard | guardian | commands/team-gitguard.md |
 | Cleanup | /team-cleanup | cleaner | skills/workspace-cleaner/SKILL.md |
-| Explore | /team-explore (DEPR.) | codebase-explorer | commands/team-explore.md |
 | Backup | /backup | backup-agent | commands/backup.md |
 
 ---

@@ -71,7 +71,7 @@ Sau mỗi chunk, chạy `per_chunk_validate` (nếu có) trước khi chuyển s
     ```powershell
     $backupScript = ".opencode\scripts\backup-utility.ps1"
     $files = @("path/to/file1", "path/to/file2")
-    & $backupScript -files $files -workflowId "$workflowId"
+    & $backupScript -action save -files $files -workflowId "$workflowId"
     ```
   - Backup Utility sẽ:
     - Copy file vào `.opencode/backup/<WF-ID>/`

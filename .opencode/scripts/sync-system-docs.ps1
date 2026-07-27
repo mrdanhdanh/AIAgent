@@ -323,7 +323,7 @@ $staticCmdMap = @(
     @{cmd="team-gitguard"; agent="guardian"; file="agents/guardian.md"},
     @{cmd="team-gitpush"; agent="pusher"; file="agents/pusher.md"},
     @{cmd="team-cleanup"; agent="cleaner"; file="agents/cleaner.md"},
-    @{cmd="team-explore"; agent="codebase-explorer"; file="agents/codebase-explorer.md"},
+    # @{cmd="team-explore"; agent="codebase-explorer"; file="agents/codebase-explorer.md"},  # DEPRECATED — merged into analyst
     @{cmd="backup"; agent="backup-agent"; file="commands/backup.md"}
 )
 foreach ($entry in $staticCmdMap) {
@@ -391,7 +391,7 @@ $null = $lines.Add('```')
     "                  |",
     "                  v",
     "             +-------+----+",
-    "             | SMOKE TEST |",
+    "             | STATIC ANALYSIS |",
     "             +-----+------+",
     "                   |",
     "                   v",
@@ -441,7 +441,7 @@ $null = $lines.Add("| 2-3 | /team-plan | planner (m rong) | commands/team-plan.m
 $null = $lines.Add("| 4 | /team-review | reviewer | commands/team-review.md |")
 $null = $lines.Add("| 5 | Backup (utility) | --- | scripts/backup-utility.ps1 |")
 $null = $lines.Add("| 6 | /team-build | builder | commands/team-build.md |")
-$null = $lines.Add("| 7 | Smoke Test (orch.) | --- | SKILL.md |")
+$null = $lines.Add("| 7 | Static Analysis | --- | skills/dev-team/SKILL.md |")
 $null = $lines.Add("| 8 | /team-ui-audit | ui-beautifier | commands/team-ui-audit.md |")
 $null = $lines.Add("| 9 | /team-testplan | test-planner | commands/team-testplan.md |")
 $null = $lines.Add("| 10 | /team-test | tester | commands/team-test.md |")
@@ -454,7 +454,7 @@ $null = $lines.Add("| Step | Command | Agent | File |")
 $null = $lines.Add("|------|---------|-------|------|")
 $null = $lines.Add("| Pre-push | /team-gitguard | guardian | commands/team-gitguard.md |")
 $null = $lines.Add("| Cleanup | /team-cleanup | cleaner | skills/workspace-cleaner/SKILL.md |")
-$null = $lines.Add("| Explore | /team-explore (DEPR.) | codebase-explorer | commands/team-explore.md |")
+# $null = $lines.Add("| Explore | /team-explore (DEPR.) | codebase-explorer | commands/team-explore.md |")  # DEPRECATED
 $null = $lines.Add("| Backup | /backup | backup-agent | commands/backup.md |")
 $null = $lines.Add("")
 $null = $lines.Add("---")

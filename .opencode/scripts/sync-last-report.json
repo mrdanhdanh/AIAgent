@@ -251,7 +251,7 @@
                                    },
                      "team-review":  {
                                          "agent":  "reviewer",
-                                         "description":  "Đánh giá thiết kế hoặc kế hoạch (dùng agent reviewer)",
+                                         "description":  "Đánh giá thiết kế hoặc kế hoạch (dùng agent reviewer) — nâng cấp v4.0: decision thresholds, score_rationale, blocking issues, consistency, edge cases",
                                          "deprecated":  false,
                                          "file":  "commands/team-review.md"
                                      },
@@ -318,7 +318,7 @@
                     "sync-system-docs":  {
                                              "summary":  "Utility script",
                                              "file":  "scripts/sync-system-docs.ps1",
-                                             "size":  24418
+                                             "size":  24492
                                          },
                     "rollback-utility":  {
                                              "summary":  "Utility script",
@@ -442,7 +442,7 @@
                                                              ]
                                              }
                    },
-    "scanned_at":  "2026-07-27T22:48:52.5291269+07:00",
+    "scanned_at":  "2026-07-28T01:28:55.0681856+07:00",
     "skills":  {
                    "dev-team":  {
                                     "schema_version":  "3.2",
