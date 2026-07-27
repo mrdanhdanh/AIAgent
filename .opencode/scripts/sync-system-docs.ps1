@@ -310,6 +310,8 @@ $null = $lines.Add("|---------|-------|------------|")
 
 # Add all commands (even ones not in report for the static table)
 $staticCmdMap = @(
+    @{cmd="team"; agent="general"; file="commands/team.md"},
+    @{cmd="team-syncdocs"; agent="general"; file="commands/team-syncdocs.md"},
     @{cmd="team-analyze"; agent="analyst"; file="agents/analyst.md"},
     @{cmd="team-plan"; agent="planner"; file="agents/planner.md"},
     @{cmd="team-review"; agent="reviewer"; file="agents/reviewer.md"},
@@ -499,6 +501,9 @@ $teamContent = Get-Content -LiteralPath $teamFilePath -Raw -Encoding utf8
 $cmdTable = @()
 $cmdTable += "| Buoc | Command | Agent | File command |"
 $cmdTable += "|------|---------|-------|-------------|"
+$cmdTable += "| 0 | /team-syncdocs | general | team-syncdocs.md |"
+$cmdTable += "| 0 | /team-cleanup | cleaner | team-cleanup.md |"
+$cmdTable += "| 0 | /team | general | team.md |"
 $cmdTable += "| 1 | /team-analyze | analyst | team-analyze.md |"
 $cmdTable += "| 2-3 | /team-plan | planner (mo rong) | team-plan.md |"
 $cmdTable += "| 4 | /team-review | reviewer | team-review.md |"
@@ -507,14 +512,14 @@ $cmdTable += "| 6 | /team-build | builder | team-build.md |"
 $cmdTable += "| 8 | /team-ui-audit | ui-beautifier | team-ui-audit.md |"
 $cmdTable += "| 9 | /team-testplan | test-planner | team-testplan.md |"
 $cmdTable += "| 10 | /team-test | tester | team-test.md |"
-$cmdTable += "| 11 | (goi tu team.md) | self-improver | .opencode/agents/self-improver.md |"
+$cmdTable += "| 11 | team (goi tu) | self-improver | team-selfimprove.md |"
 $cmdTable += "| 12 | /team-gitpush | pusher | team-gitpush.md |"
 
 $newTable = $cmdTable -join "`r`n"
 
-    if ($teamContent -match '(?s)(\| Bước \| Command \| Agent \| File command \|[\r\n]+\|------\|---------\|-------\|-------------[\|]*[\r\n]+)((?:\|[^\n]*\|[^\n]*\|[^\n]*\|[^\n]*\|[\r\n]*)+)') {
+    if ($teamContent -match '(?s)(\| Buoc \| Command \| Agent \| File command \|[\r\n]+\|------\|---------\|-------\|-------------[\|]*[\r\n]+)((?:\|[^\n]*\|[^\n]*\|[^\n]*\|[^\n]*\|[\r\n]*)+)') {
     $fullMatch = $Matches[0]
-    $newSection = "| Buoc | Command | Agent | File command |`r`n|------|---------|-------|-------------|`r`n" + $newTable + "`r`n"
+    $newSection = $newTable + "`r`n"
     $newTeamContent = $teamContent -replace [regex]::Escape($fullMatch), $newSection
     if (-not $dryRun) {
         $newTeamContent | Out-File -LiteralPath $teamFilePath -Encoding utf8
@@ -536,6 +541,9 @@ if (Test-Path $skillPath) {
     $skillTable = @()
     $skillTable += "| Buoc | Command | Agent | File command |"
     $skillTable += "|------|---------|-------|-------------|"
+    $skillTable += "| 0 | /team-syncdocs | general | team-syncdocs.md |"
+    $skillTable += "| 0 | /team-cleanup | cleaner | team-cleanup.md |"
+    $skillTable += "| 0 | /team | general | team.md |"
     $skillTable += "| 1 | /team-analyze | analyst | team-analyze.md |"
     $skillTable += "| 2-3 | /team-plan | planner (mo rong) | team-plan.md |"
     $skillTable += "| 4 | /team-review | reviewer | team-review.md |"
@@ -543,14 +551,14 @@ if (Test-Path $skillPath) {
     $skillTable += "| 8 | /team-ui-audit | ui-beautifier | team-ui-audit.md |"
     $skillTable += "| 9 | /team-testplan | test-planner | team-testplan.md |"
     $skillTable += "| 10 | /team-test | tester | team-test.md |"
-    $skillTable += "| 11 | (goi tu team.md) | self-improver | .opencode/agents/self-improver.md |"
+    $skillTable += "| 11 | team (goi tu) | self-improver | team-selfimprove.md |"
     $skillTable += "| 12 | /team-gitpush | pusher | team-gitpush.md |"
 
     $newSkillTable = $skillTable -join "`r`n"
 
-    if ($skillContent -match '(?s)(\| Bước \| Command \| Agent \| File command \|[\r\n]+\|------\|---------\|-------\|-------------[\|]*[\r\n]+)((?:\|[^\n]*\|[^\n]*\|[^\n]*\|[^\n]*\|[\r\n]*)+)') {
+    if ($skillContent -match '(?s)(\| Buoc \| Command \| Agent \| File command \|[\r\n]+\|------\|---------\|-------\|-------------[\|]*[\r\n]+)((?:\|[^\n]*\|[^\n]*\|[^\n]*\|[^\n]*\|[\r\n]*)+)') {
         $fullMatch = $Matches[0]
-        $newSection = "| Buoc | Command | Agent | File command |`r`n|------|---------|-------|-------------|`r`n" + $newSkillTable + "`r`n"
+        $newSection = $newSkillTable + "`r`n"
         $newSkillContent = $skillContent -replace [regex]::Escape($fullMatch), $newSection
         if (-not $dryRun) {
             $newSkillContent | Out-File -LiteralPath $skillPath -Encoding utf8

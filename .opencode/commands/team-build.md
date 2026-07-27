@@ -28,17 +28,17 @@ Thực thi kế hoạch đã được duyệt dưới đây. Tạo/sửa file th
 
 $ARGUMENTS
 
-## VALIDATE ĐẦU VÀO (BẮT BUỘC)
+## VALIDATE ĐẦU VÀO (BẮT BUỘC) — CHUẨN HÓA
 
-Kiểm tra `$ARGUMENTS` có đủ các field sau — nếu thiếu field nào, trả `FAIL` ngay, không tự suy diễn:
+Kiểm tra `$ARGUMENTS` có đủ các field bắt buộc sau — nếu thiếu field nào, trả `FAIL` ngay, không tự suy diễn:
 
 | Field | Bắt buộc | Kiểm tra |
 |-------|----------|----------|
-| mục tiêu | ✅ | Có mô tả mục tiêu không? |
-| danh sách file | ✅ | Mỗi file có path đầy đủ không? |
-| từng bước đã duyệt | ✅ | Mỗi step có order, action, file, logic không? |
-| rule backup cho từng file | ✅ | `requires_backup` field có trong mỗi step không? |
-| lệnh validate cuối | ✅ | `final_validation` hoặc `validate` có ít nhất 1 lệnh không? |
+| `goal` | ✅ | Có mô tả mục tiêu rõ ràng không? |
+| `approved_steps` | ✅ | Mỗi step có order, action, file, logic, expected_result, requires_backup không? |
+| `allowed_files` | ✅ | Danh sách file được phép chỉnh sửa (chỉ sửa file trong list này) |
+| `validate_commands` | ✅ | `per_step_validation` và `final_validation` có ít nhất 1 lệnh không? |
+| `backup_required` | ✅ | Xác định file nào cần backup, file nào không (từ `requires_backup` field) |
 
 ```
 FAIL Example:
@@ -49,6 +49,17 @@ details: "Builder không thể xác thực kết quả build nếu không có l�
 ```
 
 ## QUY TRÌNH THỰC HIỆN
+
+### Chunk Rules (v3.2)
+Plan được chia thành chunks. Mỗi chunk có nội dung cụ thể:
+| Chunk | Nội dung | Ví dụ |
+|-------|----------|-------|
+| 1 | Config/schema/dependencies | Model, interface, DI registration |
+| 2 | Core logic/services | Business logic, algorithms |
+| 3 | UI/API surface | Pages, components, endpoints |
+| 4 | Tests + validation | Unit tests, integration tests |
+
+Sau mỗi chunk, chạy `per_chunk_validate` (nếu có) trước khi chuyển sang chunk tiếp theo.
 
 ### Bước 1: Chuẩn bị
 - Đọc toàn bộ kế hoạch, xác định danh sách file cần sửa/tạo
@@ -123,21 +134,25 @@ dotnet test
 status: "PASS | FAIL"                    # Kết quả tổng thể
 overall: "PASS | FAIL"                   # Đồng bộ với status
 backup_workflow_id: "WF-YYYYMMDD-NNN"    # Workflow ID từ backup
-changed_files:                           # Danh sách file đã thay đổi
+changed_files:                           # Danh sách file đã sửa (MODIFY)
   - "path/to/file1"
 created_files:                           # Danh sách file đã tạo mới
   - "path/to/newfile"
+deleted_files:                           # Danh sách file đã xóa
+  - "path/to/oldfile"
 steps:
   - order: 1
     status: "PASS | FAIL"                # Kết quả từng step
     file: "path/to/file"
     action: "CREATE | MODIFY | DELETE"   # Phải khớp với plan
     requires_backup: true                # Đã backup chưa
+    validation_command: "dotnet build"   # Lệnh validate cụ thể cho step này
+    depends_on: []                       # Các step phải chạy trước
     per_step_validation:                 # Kết quả kiểm tra ngay sau step
       command: "dotnet build"
       result: "PASS | FAIL"
     error: null                          # Raw error message
-    error_type: "SyntaxError | NullReferenceException | BuildFailed | ..."
+    error_type: "SyntaxError | FileNotFound | FileOutsidePlan | ..."
     error_normalized: "syntaxerror: unexpected token"  # Normalized (không line/timestamp)
     error_hash: "a1b2c3d4e5f6"          # SHA256 12 ký tự của error_normalized
     retryable: false                     # Có thể retry step này không?
@@ -146,7 +161,7 @@ validation_status: "PASS | FAIL"         # Kết quả final_validation
 details: "Chi tiết build (markdown)"
 ```
 
-## XỬ LÝ LỖI
+## XỬ LÝ LỖI — CHI TIẾT
 
 | Vấn đề | Cách xử lý |
 |--------|------------|
@@ -158,14 +173,21 @@ details: "Chi tiết build (markdown)"
 | **Backup thất bại** | DỪNG NGAY, báo CRITICAL, không tiếp tục build |
 | **Backup utility không sẵn sàng** | DỪNG NGAY, báo CRITICAL |
 | **Per-step validation FAIL** | Dừng step, không chạy step tiếp theo |
+| **File ngoài plan bị đụng vào** | DỪNG NGAY, báo error_type="FileOutsidePlan", retryable=false |
+| **Tự ý đổi MODIFY→CREATE** | DỪNG NGAY, báo error_type="ActionMismatch", retryable=false |
+| **Lỗi ngoài dự kiến** | DỪNG NGAY, báo error_type="Unknown", không tự "sửa đại" |
+| **Tự thêm code ngoài logic plan** | DỪNG NGAY, báo error_type="UnauthorizedFix", retryable=false |
 
-## QUY TẮC
+## QUY TẮC NGHIÊM NGẶT
 
 - **Tuân thủ chính xác kế hoạch đã duyệt — KHÔNG tự suy diễn thay đổi ngoài plan**
+- **Chỉ sửa đúng file được liệt kê trong plan** — file ngoài plan phải báo cáo, không đụng vào
 - **Nếu plan ghi `action: MODIFY` mà file không tồn tại → KHÔNG tự đổi sang CREATE**
 - **Nếu `requires_backup: true` và backup thất bại → DỪNG NGAY**
 - Orchestrator đã gọi backup-agent backup trước Bước 6 (Build). Builder KHÔNG tự backup thủ công.
-- Không thêm tính năng ngoài kế hoạch
-- Không commit secret/key/token
+- **KHÔNG thêm tính năng ngoài kế hoạch**
+- **KHÔNG commit secret/key/token**
+- **Gặp lỗi ngoài dự kiến → DỪNG NGAY, không tự "sửa đại"** — chỉ tiếp tục nếu lỗi nằm trong phạm vi plan
+- **Nếu plan ghi `action: MODIFY` và file đã tồn tại nhưng nội dung khác hẳn** → báo cáo, không tự ý ghi đè
 - Mỗi lỗi phải kèm **đầy đủ error fields**: `error_type`, `error_normalized`, `error_hash`, `retryable`
-- Output theo đúng YAML contract chuẩn hóa
+- Output theo đúng YAML contract chuẩn hóa (gồm `changed_files`, `created_files`, `deleted_files`)

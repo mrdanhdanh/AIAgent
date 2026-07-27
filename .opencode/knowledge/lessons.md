@@ -1,6 +1,6 @@
 ---
-last_updated: 2026-07-26
-total_lessons: 17
+last_updated: 2026-07-27
+total_lessons: 21
 ---
 
 # Lessons Learned
@@ -158,3 +158,35 @@ Kho bài học kinh nghiệm được tích lũy qua các workflow.
   observation: "GitHub Actions YAML syntax error không được phát hiện cho đến khi action chạy và fail trên GitHub. Cần thêm validate step vào dev-team workflow để phát hiện lỗi sớm."
   action: "Thêm YAML validation step vào SKILL.md workflow: dùng `dotnet tool install -g yamllint` hoặc action `github-actions-yaml-validator` để kiểm tra .github/workflows/*.yml trước khi commit/deploy."
   tags: ["github-actions", "yaml", "validation", "ci/cd", "suggestion-approved"]
+
+- lesson_id: LSN-018
+  type: "improvement"
+  workflow: "Nâng cấp Analyst Agent contract lên schema v2.0 (WF-20260727-001)"
+  situation: "7 agent contracts (analyst, planner, builder, reviewer, tester, test-planner, self-improver) có schema khác nhau, thiếu versioning field dẫn đến khó theo dõi thay đổi và backward compatibility"
+  observation: "Mỗi agent dùng YAML contract nhưng không có trường `schema_version`. Khi schema thay đổi, không có cách nào để biết version nào đang dùng. Ảnh hưởng đến orchestrator khi parse output từ nhiều version khác nhau."
+  action: "Thêm trường `schema_version` bắt buộc vào tất cả agent contracts (analyst, planner, builder, reviewer, tester, test-planner, self-improver). Phiên bản hiện tại set `schema_version: 2.0`. Mọi thay đổi contract trong tương lai phải bump version."
+  tags: ["opencode", "agent-contract", "versioning", "schema", "suggestion-approved"]
+
+- lesson_id: LSN-019
+  type: "improvement"
+  workflow: "Nâng cấp Analyst Agent contract lên schema v2.0 (WF-20260727-001)"
+  situation: "Các agent không kiểm tra đầu vào (arguments) trước khi xử lý, dẫn đến lỗi khi thiếu thông tin cần thiết"
+  observation: "Analyst đã được nâng cấp với input validation (goal/scope/criteria/allowed_scope), nhưng các agent khác (planner, builder, tester, reviewer) chưa có validation pattern tương tự. Khi thiếu thông tin, agent vẫn cố xử lý thay vì trả NEED_MORE_INFO."
+  action: "Thêm input validation pattern cho tất cả agents: kiểm tra required fields ngay đầu prompt, trả `NEED_MORE_INFO` kèm `missing_info` list nếu thiếu. Đồng bộ pattern từ analyst mới."
+  tags: ["opencode", "agent-design", "input-validation", "error-handling", "suggestion-approved"]
+
+- lesson_id: LSN-020
+  type: "improvement"
+  workflow: "Nâng cấp Analyst Agent contract lên schema v2.0 (WF-20260727-001)"
+  situation: "YAML contract validation được thực hiện thủ công trong static analysis step, dễ bỏ sót lỗi syntax"
+  observation: "Step 7 (Static Analysis) kiểm tra YAML frontmatter, internal links, code block balance thủ công. Không có tool tự động để validate YAML contract output của agents. Lỗi YAML syntax chỉ được phát hiện khi orchestrator parse output."
+  action: "Tích hợp YAML validator vào static analysis step: dùng `dotnet tool run yamllint` hoặc PowerShell script `ConvertFrom-Yaml` để parse và validate tất cả YAML blocks. Thêm vào SKILL.md static analysis checklist."
+  tags: ["opencode", "yaml", "validation", "automation", "static-analysis", "suggestion-approved"]
+
+- lesson_id: LSN-021
+  type: "improvement"
+  workflow: "Nâng cấp Analyst Agent contract lên schema v2.0 (WF-20260727-001)"
+  situation: "Analyst, team-analyze command, và SKILL.md đã được nâng cấp lên schema v2.0, nhưng 5 agents còn lại (planner, builder, reviewer, tester, test-planner) vẫn dùng schema cũ"
+  observation: "Workflow WF-20260727-001 chỉ cập nhật 3 files (analyst.md, team-analyze.md, SKILL.md). Các agent contracts còn lại chưa được đồng bộ: planner.md (thiếu evidence-backed dependencies, entry points), builder.md (thiếu scan scope), reviewer.md (thiếu structured impact), tester.md (thiếu schema_version), test-planner.md (thiếu patterns section)."
+  action: "Đồng bộ tất cả remaining agents (planner, builder, reviewer, tester, test-planner) lên schema v2.0: thêm schema_version, evidence-backed dependencies, entry points, scan scope, patterns chuẩn hóa, conclusion block."
+  tags: ["opencode", "agent-contract", "schema-v2", "sync", "suggestion-approved"]

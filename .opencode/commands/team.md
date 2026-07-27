@@ -145,7 +145,7 @@ workflow:
   created_at: "2026-07-24T00:00:00Z"
   project: "JapaneseLearner"
   branch: "main"
-  schema_version: "2.0"
+  schema_version: "3.2"     # v3.2: thêm input validation gates, categorized issues, risk_level, chunk rules, concrete rollback
   step: 1-12
   step_name: analyze|design|plan|review|backup|build|static_analysis|ui_audit|testplan|test|skill_validation|complete
   status: running|blocked|completed|failed|waiting_user|cancelled|reviewing|building|testing|self_improving|waiting_approval
@@ -205,17 +205,22 @@ workflow:
 
 **Prompt:**
 ```
-Bạn là Planner Agent (mở rộng). Dựa trên báo cáo phân tích, thiết kế giải pháp chi tiết.
+Bạn là Planner Agent (mở rộng — Design Phase). Dựa trên báo cáo phân tích, thiết kế giải pháp chi tiết.
+
+INPUT VALIDATION: Kiểm tra $ARGUMENTS có requirements[] không. Nếu không → NEEDS_MORE_INFO.
+
 Báo cáo: {current_data.analysis}
 
-Yêu cầu Design:
+Yêu cầu Design (v3.2):
 1. Architecture: Mô tả kiến trúc tổng thể
-2. Components: Liệt kê component cần tạo/sửa
+2. Components: Liệt kê component cần tạo/sửa (kèm action, path)
 3. Data flow: Luồng dữ liệu giữa các component
-4. Security concerns: Các rủi ro bảo mật
-5. Edge cases: Các trường hợp đặc biệt
+4. Security concerns: Các rủi ro bảo mật (kèm severity, mitigation)
+5. Edge cases: Các trường hợp đặc biệt (kèm handling)
+6. Issues: Phân loại blocking_issues, non_blocking_issues, open_questions
+7. Effort: Xác định Small/Medium/Large cho Plan strategy
 
-Output: Contract YAML theo schema Planner (bao gồm design).
+Output: Contract YAML v3.2 theo schema Planner (design). artifacts: ["02_design.md"]
 ```
 
 **Sau output:** Lưu `current_data.design = output`, tăng `step = 3`
@@ -227,16 +232,21 @@ Output: Contract YAML theo schema Planner (bao gồm design).
 
 **Prompt:**
 ```
-Bạn là Planner Agent. Dựa trên thiết kế, lập kế hoạch thực thi chi tiết từng bước.
+Bạn là Planner Agent (Plan Phase). Dựa trên thiết kế, lập kế hoạch thực thi chi tiết từng bước.
+
+INPUT VALIDATION: Kiểm tra $ARGUMENTS có design.components[] không. Nếu không → NEEDS_MORE_INFO.
+
 Thiết kế: {current_data.design}
 
-Yêu cầu:
-1. Mỗi bước có: Mô tả, File, Logic, Kiểm tra, Chunk (1-4)
-2. Thứ tự: config → logic → test
-3. Thêm rollback_strategy
-4. Kết thúc bằng validate tổng thể
+Yêu cầu (v3.2):
+1. Mỗi bước có: Mô tả, File, Logic, expected_result (REQUIRED), Kiểm tra, Chunk (1-4), risk_level
+2. Chunk Rules: 1=config, 2=logic, 3=UI, 4=test
+3. Thứ tự: config → logic → test
+4. Rollback strategy mở rộng: trigger_conditions, restore_order, requires_user_confirmation
+5. Validate: per_step_validation + per_chunk_validate + final_validation
+6. Effort-based: Small=1 plan, Medium=2 chunks, Large=nhiều plans
 
-Output: Contract YAML theo schema Planner (cập nhật steps, rollback_strategy, validate).
+Output: Contract YAML v3.2 (steps, rollback_strategy, validate). artifacts: ["03_plan.md"]
 ```
 
 **Sau output:** Lưu `current_data.plan = output`, tăng `step = 4`
@@ -302,9 +312,16 @@ $rollbackScript = ".opencode\scripts\rollback-utility.ps1"
 **Sau output:**
 - **PASS** → tăng `step = 7`
 - **FAIL + failure_type == MINOR** → Yêu cầu builder sửa
-- **FAIL + failure_type == CRITICAL** → Kiểm tra same_error_count:
-  - Nếu ≥ 2 → Catastrophic failure → ROLLBACK
-  - Nếu < 2 → hỏi user
+- **FAIL + failure_type == CRITICAL** → Kiểm tra error_type:
+  - **BackupFailed** → DỪNG NGAY, yêu cầu rollback, hỏi user
+  - **FileNotFound** (action=MODIFY) → DỪNG, yêu cầu sửa plan
+  - **BackupUtilityUnavailable** → DỪNG NGAY, hỏi user
+  - **FileOutsidePlan** → DỪNG NGAY, rollback, báo CRITICAL
+  - **ActionMismatch** (MODIFY→CREATE tự ý) → DỪNG NGAY, rollback, báo CRITICAL
+  - **UnauthorizedFix** (tự sửa lỗi ngoài dự kiến) → DỪNG NGAY, rollback, báo CRITICAL
+  - **Lỗi logic khác** → Kiểm tra same_error_count:
+    - Nếu ≥ 2 → Catastrophic failure → ROLLBACK
+    - Nếu < 2 → hỏi user
 
 ---
 
@@ -419,8 +436,15 @@ validation_checklist:
     - "05_backup_manifest.json tồn tại"
   phase_06_build:
     - "Builder output có status PASS/FAIL không?"
-    - "Mỗi step có order, status, file không?"
-    - "error_normalized không chứa line number/timestamp"
+    - "Mỗi step có order, status, file, action, requires_backup không?"
+    - "Mỗi step có error fields đầy đủ: error_type, error_normalized, error_hash, retryable?"
+    - "error_normalized không chứa line number/timestamp?"
+    - "Nếu action=MODIFY mà file không tồn tại → error_type=FileNotFound, retryable=false?"
+    - "Nếu requires_backup=true và backup fail → failure_type=CRITICAL?"
+    - "validation_status có kết quả không?"
+    - "changed_files, created_files, deleted_files đã liệt kê đầy đủ?"
+    - "backup_workflow_id có nếu có backup?"
+    - "Chỉ sửa đúng file trong plan? Không có file ngoài plan bị đụng vào?"
   phase_07_static_analysis:
     - "YAML frontmatter parse được không?"
     - "Internal links đều có section tương ứng?"
@@ -561,8 +585,15 @@ backup:
 build:
   all PASS: → static_analysis
   FAIL + MINOR (same_error < 2): → sua, build lai
-  FAIL + CRITICAL (same_error < 2): → hoi_user
-  FAIL + same_error >= 2: → catastrophic → rollback
+  FAIL + CRITICAL:
+    error_type == "BackupFailed": → DỪNG NGAY, rollback, hoi_user
+    error_type == "FileNotFound" (action=MODIFY): → DỪNG, hoi_user "Sua plan?"
+    error_type == "BackupUtilityUnavailable": → DỪNG NGAY, hoi_user
+    error_type == "FileOutsidePlan": → DỪNG NGAY, rollback
+    error_type == "ActionMismatch": → DỪNG NGAY, rollback
+    error_type == "UnauthorizedFix": → DỪNG NGAY, rollback
+    same_error < 2: → hoi_user
+    same_error >= 2: → catastrophic → rollback
 
 static_analysis:
   PASS: → testplan
@@ -593,8 +624,9 @@ complete:
 
 | Buoc | Command | Agent | File command |
 |------|---------|-------|-------------|
-| Buoc | Command | Agent | File command |
-|------|---------|-------|-------------|
+| 0 | /team-syncdocs | general | team-syncdocs.md |
+| 0 | /team-cleanup | cleaner | team-cleanup.md |
+| 0 | /team | general | team.md |
 | 1 | /team-analyze | analyst | team-analyze.md |
 | 2-3 | /team-plan | planner (mo rong) | team-plan.md |
 | 4 | /team-review | reviewer | team-review.md |
@@ -603,7 +635,7 @@ complete:
 | 8 | /team-ui-audit | ui-beautifier | team-ui-audit.md |
 | 9 | /team-testplan | test-planner | team-testplan.md |
 | 10 | /team-test | tester | team-test.md |
-| 11 | (goi tu team.md) | self-improver | .opencode/agents/self-improver.md |
+| 11 | team (goi tu) | self-improver | team-selfimprove.md |
 | 12 | /team-gitpush | pusher | team-gitpush.md |
 Không có command `/team-design` riêng — Design là phần mở rộng của Plan.
 
@@ -665,6 +697,7 @@ $backup_root = ".opencode\backup\$workflow_id"
 - Approval gate bắt buộc cho suggestion có impact MEDIUM/HIGH
 - Backup/Rollback do Backup Utility thực hiện, Orchestrator chỉ gọi lệnh
 - Khi workflow hoàn tất, output báo cáo đầy đủ và rõ ràng
+
 
 
 

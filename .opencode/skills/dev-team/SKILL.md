@@ -1,24 +1,26 @@
 ﻿---
 name: dev-team
 description: Hướng dẫn sử dụng Dev Agent Team gồm 9 agents (7 core + 2 support). Dùng khi cần phân tích, lập kế hoạch, đánh giá, code, kiểm thử một yêu cầu phát triển. Tích hợp cơ chế Self-Improvement với approval gate. Sử dụng câu lệnh team hoặc team-*.
-schema_version: "3.0"
+schema_version: "3.2"
 ---
 
 # Dev Agent Team — Orchestrator Guide
 
-**Schema:** 3.0 (nâng cấp từ 2.0)
+**Schema:** 3.1 (nâng cấp từ 3.0 — thêm `depends_on`, `deleted_files`, error types mới)
 
-## 7 NÂNG CẤP CHÍNH CHO BUILDER AGENT
+## 8 NÂNG CẤP CHÍNH CHO BUILDER AGENT
 
 | # | Cải tiến | Mô tả | Áp dụng cho |
 |---|----------|-------|-------------|
-| 1 | **Chuẩn hóa input kế hoạch** | `$ARGUMENTS` bắt buộc có: mục tiêu, danh sách file, từng bước đã duyệt, rule backup, lệnh validate cuối. Thiếu → trả `FAIL` sớm | Planner, Builder |
-| 2 | **Rõ cấu trúc từng step** | Mỗi step có: `action`(CREATE/MODIFY/DELETE), `file`, `expected_result`, `check`(per_step_validation), `requires_backup` | Planner (Plan phase) |
+| 1 | **Chuẩn hóa input kế hoạch** | `$ARGUMENTS` bắt buộc có: `goal`, `approved_steps`, `allowed_files`, `validate_commands`, `backup_required`. Thiếu → trả `FAIL` sớm | Planner, Builder |
+| 2 | **Rõ cấu trúc từng step** | Mỗi step có: `action`(CREATE/MODIFY/DELETE), `file`, `expected_result`, `check`(per_step_validation), `requires_backup`, `depends_on`, `validation_command` | Planner (Plan phase) |
 | 3 | **Error fields chi tiết** | `error_normalized` → `error_type` + `error_normalized` + `error_hash` + `retryable` | Builder output |
 | 4 | **Ràng buộc backup** | `requires_backup:true` + fail → DỪNG NGAY. File mới không cần backup. Utility không sẵn sàng → CRITICAL | Builder + Orchestrator |
 | 5 | **Validate theo giai đoạn** | `per_step_validation` (sau mỗi step) + `final_validation` (cuối cùng) | Planner (Plan phase) |
 | 6 | **Quy định file không tồn tại** | `MODIFY` mà file không tồn tại → không tự đổi sang `CREATE` → báo FAIL. Chỉ `CREATE` khi plan cho phép | Builder |
-| 7 | **Chuẩn hóa output** | `changed_files`, `created_files`, `backup_workflow_id`, `validation_status` | Builder output |
+| 7 | **Ràng buộc chỉnh sửa file** | Chỉ sửa đúng file trong plan. File ngoài plan → báo cáo, không đụng vào. `MODIFY` không thành `CREATE`. | Builder |
+| 8 | **Chuẩn hóa output** | `changed_files`, `created_files`, `deleted_files`, `backup_workflow_id`, `validation_status` | Builder output |
+| 9 | **Planner contract siết chặt (v3.2)** | Input validation gates, categorized issues, enriched step schema (risk_level), chunk rules, concrete rollback strategy | Planner, Builder, Orchestrator |
 
 ---
 
@@ -132,7 +134,7 @@ workflow:
   project: JapaneseLearner
   branch: main
   user_request: "Mô tả yêu cầu"
-  schema_version: "3.0"          # Nâng cấp: error fields, step structure, validation stages
+  schema_version: "3.1"          # v3.1: depends_on, deleted_files, FileOutsidePlan, ActionMismatch, UnauthorizedFix
 ```
 
 ### Artifact structure
@@ -172,6 +174,7 @@ backward_compatibility:
       error_history: []
       backup_done: false
   artifact_schema_validation:
+    v3_1_artifacts: strict        # Schema 3.1: depends_on, validation_command, deleted_files, FileOutsidePlan, ActionMismatch, UnauthorizedFix
     v3_artifacts: strict          # Schema 3.0: action, expected_result, error_type, error_hash, retryable, backup_workflow_id
     v2_artifacts: permissive      # Schema 2.0 legacy: log warning, tự động thêm field mặc định
 ```
@@ -419,11 +422,14 @@ error_type:
   - ValidationFailed: Per-step hoặc final validation thất bại
   - TestFailed: Test case FAIL
   - CoverageBelowThreshold: Coverage không đạt threshold
+  - FileOutsidePlan: Builder đụng vào file không được liệt kê trong plan
+  - ActionMismatch: Builder tự ý đổi MODIFY thành CREATE hoặc ngược lại
+  - UnauthorizedFix: Builder tự sửa lỗi ngoài phạm vi plan
   - Unknown: Không phân loại được
 
 retryable:
   - true: Có thể retry (syntax error, build fail, test fail)
-  - false: KHÔNG thể retry (file not found, backup fail, backup utility unavailable)
+  - false: KHÔNG thể retry (file not found, backup fail, backup utility unavailable, file outside plan, action mismatch, unauthorized fix)
 ```
 
 ---
@@ -434,7 +440,7 @@ Mỗi agent output theo format YAML cố định (extends [Base Schema](#base-ag
 
 **Format chung (extends Base Schema):** `status`, `summary`, `issues` (kế thừa từ Base), cộng thêm các field riêng của từng agent.
 
-### 1. Analyst
+### 1. Analyst (schema v2.0)
 
 **Schema:** (extends [Base Schema](#base-agent-schema))
 
@@ -444,44 +450,143 @@ Mỗi agent output theo format YAML cố định (extends [Base Schema](#base-ag
 | effort | string | ✅ | `Small`, `Medium`, hoặc `Large` — dựa trên scope phân tích |
 | summary | string | ✅ | Tóm tắt phân tích (3-5 dòng) |
 | details | string | ✅ | Phân tích chi tiết |
-| requirements | string[] | ✅ | Danh sách yêu cầu con |
-| risks | object[] | ✅ | Rủi ro: `[{description, severity, mitigation}]` |
-| design_proposal | string | ❌ | Đề xuất thiết kế (nếu có) |
-| tasks | object[] | ✅ | Task con: `[{name, file, effort}]` |
+| scanned_paths | string[] | ✅ | Đường dẫn đã quét |
+| ignored_paths | object[] | ✅ | Đường dẫn bỏ qua + lý do: `[{path, reason}]` |
+| discovered_modules | string[] | ✅ | Module/package con phát hiện |
+| structure | object | ✅ | Cấu trúc dự án: `{root, language, framework, entry_points[{path, type}], main_directories[{path, description, relevance}]}` |
+| requirements | object[] | ✅ | Yêu cầu: `[{id, description, priority}]` |
+| risks | object[] | ✅ | Rủi ro: `[{id, description, severity, mitigation}]` |
+| assumptions | object[] | ✅ | Giả định: `[{id, description}]` |
+| dependencies | object[] | ✅ | Phụ thuộc có bằng chứng: `[{from, to, type, evidence_file, evidence_line, reason}]` |
+| patterns | object | ✅ | Patterns: `{naming: {pattern, location, notes}, routing: {...}, state_management: {...}, testing: {framework, locations}}` |
+| impact_scope | object[] | ✅ | File bị ảnh hưởng: `[{file, level: DIRECT/INDIRECT/UNRELATED, notes}]` |
+| design_proposal | object | ❌ | Đề xuất thiết kế: `{approach, affected_modules, new_files, modified_files, integration_points}` |
+| tasks | object[] | ✅ | Task con: `[{id, description, files, depends_on, why}]` |
+| conclusion | object | ✅ | Kết luận: `{status, reason, missing_info[]}` |
 
-**Output mẫu:**
+**Output mẫu (v2.0):**
 ```yaml
 status: READY
 summary: "Phân tích yêu cầu, xác định 5 file cần sửa"
-issues: []
-next_action: "Chuyển sang Design phase"
-artifacts: ["01_analysis.md"]
 effort: Medium
-details: "..."
+details: "Phân tích chi tiết..."
+scanned_paths:
+  - "src/"
+  - "tests/"
+ignored_paths:
+  - path: "node_modules/"
+    reason: "Thư mục dependencies"
+discovered_modules:
+  - "Core"
+  - "Services"
+structure:
+  root: "JapaneseLearner"
+  language: "C#"
+  framework: "Blazor WebAssembly"
+  entry_points:
+    - path: "JapaneseLearner/Program.cs"
+      type: "app"
+    - path: "JapaneseLearner.Tests/BunitTestBase.cs"
+      type: "test"
+  main_directories:
+    - path: "src/"
+      description: "Mã nguồn chính"
+      relevance: "HIGH"
 requirements:
-  - "Thêm validation email"
+  - id: "REQ-001"
+    description: "Thêm validation email"
+    priority: "HIGH"
 risks:
-  - description: "Xung đột với validation hiện tại"
+  - id: "RISK-001"
+    description: "Xung đột với validation hiện tại"
     severity: MEDIUM
     mitigation: "Kiểm tra codebase trước khi sửa"
-tasks: []
+assumptions:
+  - id: "ASM-001"
+    description: "Dùng Regex email tiêu chuẩn"
+dependencies:
+  - from: "AuthService"
+    to: "IEmailValidator"
+    type: "service"
+    evidence_file: "src/Services/AuthService.cs"
+    evidence_line: 42
+    reason: "AuthService inject IEmailValidator qua constructor"
+patterns:
+  naming:
+    pattern: "PascalCase"
+    location: "src/Models/"
+    notes: "Tất cả model class dùng PascalCase"
+  routing:
+    pattern: "FluentUI Router via @page"
+    location: "src/Pages/"
+    notes: ".razor files with @page directive"
+  state_management:
+    pattern: "DI Service + Blazored.LocalStorage"
+    location: "src/Services/"
+    notes: "Cache-first, localStorage persistence"
+  testing:
+    framework: "xUnit + bUnit"
+    locations: ["JapaneseLearner.Tests/", "JapaneseLearner.E2ETests/"]
+impact_scope:
+  - file: "src/Services/AuthService.cs"
+    level: "DIRECT"
+    notes: "Cần inject IEmailValidator mới"
+  - file: "src/Pages/Login.razor"
+    level: "INDIRECT"
+    notes: "UI form gọi AuthService"
+design_proposal:
+  approach: "Thêm service layer mới"
+  affected_modules: ["Auth", "UI"]
+  new_files: ["src/Validators/EmailValidator.cs"]
+  modified_files: ["src/Services/AuthService.cs"]
+  integration_points: ["DI Container trong Program.cs"]
+tasks:
+  - id: "TASK-001"
+    description: "Tạo IEmailValidator interface"
+    files: ["src/Validators/IEmailValidator.cs"]
+    depends_on: []
+    why: "Interface cần được định nghĩa trước khi implement"
+conclusion:
+  status: "READY"
+  reason: "Đã xác định đầy đủ phạm vi, dependencies và impact"
+  missing_info: []
 ```
 
-### 2. Planner — Design Phase
+### 2. Planner — Design Phase (v3.2)
 
 **Schema:** (extends [Base Schema](#base-agent-schema))
 
 | Field | Type | Required | Mô tả |
 |-------|------|----------|-------|
 | status | string | ✅ | `READY` hoặc `NEEDS_MORE_INFO` |
-| effort | string | ✅ | `Small`, `Medium`, hoặc `Large` — dựa trên complexity thiết kế |
+| effort | string | ✅ | `Small`, `Medium`, hoặc `Large` — quyết định plan strategy (xem Effort Rules) |
 | design | object | ✅ | Thiết kế: architecture, components, data_flow, security, edge_cases |
+| blocking_issues | object[] | ❌ | Vấn đề phải giải quyết mới đi tiếp: `[{id, severity, category, description, suggestion}]` |
+| non_blocking_issues | object[] | ❌ | Vấn đề có thể đi tiếp, sửa sau: `[{id, severity, category, description, suggestion}]` |
+| open_questions | object[] | ❌ | Câu hỏi cần user trả lời: `[{id, description, suggestion}]` |
 
-**Output mẫu (Design):**
+**Effort Rules (v3.2):**
+| Effort | Strategy | Mô tả |
+|--------|----------|-------|
+| `Small` | 1 plan duy nhất, không chunk | 1-2 files, 1-4 steps |
+| `Medium` | Chia 2 chunks (config+logic, UI+test) | 3-5 files, 5-10 steps |
+| `Large` | Tách phase phụ hoặc nhiều plan riêng | >5 files, >10 steps |
+
+**Output mẫu (Design) — v3.2:**
 ```yaml
 status: READY
 summary: "Thiết kế giải pháp với EmailValidator service"
-issues: []
+blocking_issues: []
+non_blocking_issues:
+  - id: "#01"
+    severity: MINOR
+    category: CONSISTENCY
+    description: "Cần đồng bộ IEmailValidator interface"
+    suggestion: "Thêm interface trước khi implement"
+open_questions:
+  - id: "#Q01"
+    description: "Có cần support Unicode email không?"
+    suggestion: "Nếu có, thêm normalization step"
 next_action: "Chuyển sang Plan phase"
 artifacts: ["02_design.md"]
 effort: Medium
@@ -503,20 +608,24 @@ design:
       handling: "Normalize trước khi validate"
 ```
 
-### 3. Planner — Plan Phase (NÂNG CẤP)
+### 3. Planner — Plan Phase (v3.2 — SIẾT CHẶT)
 
 **Schema:** (extends [Base Schema](#base-agent-schema))
 
 | Field | Type | Required | Mô tả |
 |-------|------|----------|-------|
 | status | string | ✅ | `READY` hoặc `NEEDS_MORE_INFO` |
-| steps | object[] | ✅ | Các bước thực thi: `[{order, description, action, file, logic, expected_result, check, chunk, requires_backup}]` |
+| steps | object[] | ✅ | Các bước thực thi (xem Step Schema bên dưới) |
 | per_step_validation | object[] | ❌ | Validate ngay sau mỗi step: `[{step, command, expected}]` |
+| per_chunk_validate | object[] | ❌ | Validate sau mỗi chunk: `[{chunk, command, expected}]` — **MỚI v3.2** |
 | final_validation | object[] | ❌ | Validate cuối sau tất cả steps: `[{command, expected}]` |
-| rollback_strategy | object | ✅ | Chiến lược rollback: `{enabled, conditions[]}` |
+| rollback_strategy | object | ✅ | Chiến lược rollback (xem Rollback Strategy) |
 | validate | string[] | ✅ | (Giữ lại cho backward compatibility) |
+| blocking_issues | object[] | ❌ | Vấn đề phải giải quyết mới đi tiếp: `[{id, severity, category, description, suggestion}]` |
+| non_blocking_issues | object[] | ❌ | Vấn đề có thể đi tiếp, sửa sau: `[{id, severity, category, description, suggestion}]` |
+| open_questions | object[] | ❌ | Câu hỏi cần user trả lời: `[{id, description, suggestion}]` |
 
-**Cấu trúc step mới:**
+**Step Schema (v3.2) — tất cả fields:**
 | Step field | Type | Bắt buộc | Mô tả |
 |------------|------|----------|-------|
 | order | int | ✅ | Thứ tự thực thi |
@@ -524,16 +633,39 @@ design:
 | action | string | ✅ | `CREATE` / `MODIFY` / `DELETE` — **rõ ràng, không để Builder tự suy diễn** |
 | file | string | ✅ | Đường dẫn file |
 | logic | string | ✅ | Logic cần implement chi tiết |
-| expected_result | string | ✅ | Kết quả mong đợi sau bước này |
+| expected_result | string | ✅ **(REQUIRED v3.2)** | Kết quả mong đợi sau bước này — Builder dùng để verify |
 | check | string | ✅ | Cách kiểm tra (per_step_validation) |
-| chunk | int | ❌ | Nhóm thực thi (1-4), mặc định 1 |
+| chunk | int | ❌ | Nhóm thực thi (1-4), mặc định 1. Xem Chunk Rules |
 | requires_backup | bool | ✅ | `true` nếu action = MODIFY/DELETE file cũ; `false` nếu CREATE |
+| depends_on | int[] | ❌ | Các step phải chạy trước step này (mảng order) |
+| validation_command | string | ✅ | Lệnh validate cụ thể cho step này (vd: `dotnet build`, `npm run lint`) |
+| risk_level | string | ❌ | `LOW` / `MEDIUM` / `HIGH` — **MỚI v3.2**. Nếu HIGH, phải có rollback step |
 
-**Output mẫu (Plan) — nâng cấp:**
+**Chunk Rules (v3.2):**
+| Chunk | Nội dung | Ví dụ |
+|-------|----------|-------|
+| 1 | Config/schema/dependencies | Model, interface, DI registration, config files |
+| 2 | Core logic/services | Business logic, service implementation, algorithms |
+| 3 | UI/API surface | Pages, components, endpoints, handlers |
+| 4 | Tests + validation | Unit tests, integration tests, validation scripts |
+
+**Rollback Strategy (v3.2):**
+| Field | Type | Required | Mô tả |
+|-------|------|----------|-------|
+| enabled | bool | ✅ | `true` nếu có MODIFY/DELETE steps |
+| trigger_conditions | object[] | ❌ | `[{type, description, threshold?}]` — **MỚI v3.2** |
+| restore_order | object[] | ❌ | `[{step, action, file}]` — thứ tự restore **MỚI v3.2** |
+| requires_user_confirmation | bool | ❌ | `true` nếu cần user confirm trước khi rollback **MỚI v3.2** |
+| conditions | string[] | ❌ | (Giữ lại cho backward compatibility) |
+| steps | string[] | ❌ | (Giữ lại cho backward compatibility) |
+
+**Output mẫu (Plan) — v3.2:**
 ```yaml
 status: READY
 summary: "Kế hoạch 3 bước: config → logic → test"
-issues: []
+blocking_issues: []
+non_blocking_issues: []
+open_questions: []
 next_action: "Chuyển sang Review phase"
 artifacts: ["03_plan.md"]
 steps:
@@ -542,26 +674,54 @@ steps:
     action: MODIFY
     file: "src/validators.ts"
     logic: "Thêm hàm validateEmail() vào cuối file"
-    expected_result: "File validators.ts có hàm validateEmail()"
+    expected_result: "File validators.ts có hàm validateEmail() — build pass"
     check: "npm run lint"
     chunk: 1
     requires_backup: true
+    depends_on: []
+    validation_command: "npm run lint"
+    risk_level: MEDIUM
   - order: 2
     description: "Thêm unit test cho validateEmail"
     action: CREATE
     file: "tests/validators.test.ts"
     logic: "Tạo file test mới với 3 test cases"
-    expected_result: "File tests/validators.test.ts tồn tại"
+    expected_result: "File tests/validators.test.ts tồn tại — test pass"
     check: "npm run lint"
-    chunk: 1
+    chunk: 4
     requires_backup: false
+    depends_on: [1]
+    validation_command: "npm run lint"
+    risk_level: LOW
+  - order: 3
+    description: "Đăng ký service trong DI container"
+    action: MODIFY
+    file: "src/Program.cs"
+    logic: "Thêm services.AddScoped<IEmailValidator, EmailValidator>()"
+    expected_result: "Program.cs có DI registration — build pass"
+    check: "dotnet build"
+    chunk: 1
+    requires_backup: true
+    depends_on: [1]
+    validation_command: "dotnet build"
+    risk_level: HIGH
 per_step_validation:
   - step: 1
     command: "npm run lint"
     expected: "Lint PASS"
   - step: 2
-    command: "npm run lint"
-    expected: "Lint PASS"
+    command: "npm run test"
+    expected: "Test PASS"
+  - step: 3
+    command: "dotnet build"
+    expected: "Build PASS"
+per_chunk_validate:
+  - chunk: 1
+    command: "dotnet build"
+    expected: "Build PASS — chunk 1 hoàn tất"
+  - chunk: 4
+    command: "dotnet test"
+    expected: "Test PASS — chunk 4 hoàn tất"
 final_validation:
   - command: "dotnet build"
     expected: "Build thành công"
@@ -569,11 +729,30 @@ final_validation:
     expected: "Test PASS"
 rollback_strategy:
   enabled: true
-  conditions:
+  trigger_conditions:
+    - type: "catastrophic_failure"
+      description: "Lỗi không recover được"
+    - type: "max_retry_reached"
+      description: "Retry > 3 lần"
+      threshold: 3
+    - type: "user_request"
+      description: "User yêu cầu dừng"
+  restore_order:
+    - step: 3
+      action: "restore"
+      file: "src/Program.cs"
+    - step: 1
+      action: "restore"
+      file: "src/validators.ts"
+    - step: 2
+      action: "delete"
+      file: "tests/validators.test.ts"
+  requires_user_confirmation: true
+  conditions:                                    # backward compatibility
     - "catastrophic failure"
     - "max retry reached"
     - "user request"
-  steps:
+  steps:                                         # backward compatibility
     - "Bước 1: restore src/validators.ts từ backup"
     - "Bước 2: xóa tests/validators.test.ts nếu tồn tại"
 validate:
@@ -622,9 +801,10 @@ issues:
 | status | string | ✅ | `PASS` hoặc `FAIL` |
 | overall | string | ✅ | `PASS` / `FAIL` (đồng bộ với status) |
 | backup_workflow_id | string | ❌ | Workflow ID từ backup, có nếu có backup |
-| changed_files | string[] | ❌ | Danh sách file đã thay đổi (MODIFY/DELETE) |
+| changed_files | string[] | ❌ | Danh sách file đã thay đổi (MODIFY) |
 | created_files | string[] | ❌ | Danh sách file đã tạo mới |
-| steps | object[] | ✅ | `[{order, status, file, action, requires_backup, per_step_validation, error, error_type, error_normalized, error_hash, retryable}]` |
+| deleted_files | string[] | ❌ | Danh sách file đã xóa |
+| steps | object[] | ✅ | `[{order, status, file, action, requires_backup, validation_command, per_step_validation, error, error_type, error_normalized, error_hash, retryable}]` |
 | failure_type | string | ❌ | `MINOR` (syntax/lint) hoặc `CRITICAL` (logic, backup fail) — dùng [Error Priority](#error-priority--action-map) |
 | validation_status | string | ❌ | `PASS` / `FAIL` — kết quả final_validation |
 | details | string | ❌ | Chi tiết lỗi — chỉ khi FAIL |
@@ -638,7 +818,7 @@ issues:
 | error_hash | string | SHA256(error_normalized) lấy 12 ký tự đầu |
 | retryable | bool | Có thể retry step này không? (`false` nếu file không tồn tại, backup fail) |
 
-**Output mẫu mới:**
+**Output mẫu mới (v3.1 — contract chuẩn hóa):**
 ```yaml
 status: PASS
 overall: "PASS"
@@ -646,6 +826,7 @@ backup_workflow_id: "WF-20260726-001"
 changed_files:
   - "src/validators.ts"
 created_files: []
+deleted_files: []
 summary: "Build successful — 2/2 steps PASS"
 issues: []
 next_action: "Chuyển sang Static Analysis"
@@ -656,9 +837,11 @@ steps:
     file: "src/validators.ts"
     action: MODIFY
     requires_backup: true
+    validation_command: "npm run lint"
     per_step_validation:
       command: "npm run lint"
       result: "PASS"
+    depends_on: []
     error: null
     error_type: null
     error_normalized: null
@@ -669,9 +852,11 @@ steps:
     file: "src/handler.ts"
     action: MODIFY
     requires_backup: true
+    validation_command: "npm run lint"
     per_step_validation:
       command: "npm run lint"
       result: "FAIL"
+    depends_on: [1]
     error: "SyntaxError: Unexpected token (42:12)"
     error_type: "SyntaxError"
     error_normalized: "syntaxerror: unexpected token"
@@ -831,17 +1016,25 @@ Output: Contract YAML theo schema Analyst.
 ```
 Bạn là Planner Agent (Design Phase). Dựa trên báo cáo phân tích, thiết kế giải pháp chi tiết.
 
+## INPUT VALIDATION (AUTOMATIC)
+Parse $ARGUMENTS:
+- Nếu có `requirements[]` → Design Phase (hợp lệ)
+- Nếu không có → `status: NEEDS_MORE_INFO`, missing_info: ["Cần analysis report (có requirements[]) để thực hiện Design"]
+
 Báo cáo:
 {current_data.analysis}
 
-Yêu cầu Design:
+Yêu cầu Design (v3.2):
 1. Architecture: Mô tả kiến trúc tổng thể
 2. Components: Liệt kê component cần tạo/sửa (kèm đường dẫn, action: CREATE/MODIFY/DELETE)
 3. Data flow: Luồng dữ liệu giữa các component (Input → Xử lý → Output)
 4. Security concerns: Các rủi ro bảo mật (kèm severity, mitigation)
 5. Edge cases: Các trường hợp đặc biệt (kèm handling)
+6. Issues: Phân loại blocking_issues, non_blocking_issues, open_questions
+7. Effort: Xác định Small/Medium/Large — dùng để quyết định Plan strategy
 
-Output: Contract YAML theo schema Planner — Design Phase.
+Output: Contract YAML v3.2 theo schema Planner — Design Phase.
+artifacts: ["02_design.md"] (bắt buộc)
 ```
 
 **Sau output:** Lưu `current_data.design = output`, tăng `step = 3`, ghi artifact `02_design.md`
@@ -855,30 +1048,51 @@ Output: Contract YAML theo schema Planner — Design Phase.
 ```
 Bạn là Planner Agent (Plan Phase). Dựa trên thiết kế, lập kế hoạch thực thi chi tiết từng bước.
 
+## INPUT VALIDATION (AUTOMATIC)
+Parse $ARGUMENTS:
+- Nếu có `design.components[]` → Plan Phase (hợp lệ)
+- Nếu không có → `status: NEEDS_MORE_INFO`, missing_info: ["Cần design output (có design.components[]) để thực hiện Plan"]
+
 Thiết kế:
 {current_data.design}
 
-Yêu cầu (BẮT BUỘC):
+Yêu cầu (BẮT BUỘC — v3.2):
 1. Mỗi bước phải có đủ:
    - `action`: CREATE / MODIFY / DELETE (rõ ràng, không để Builder tự suy diễn)
    - `file`: Đường dẫn file
    - `logic`: Logic chi tiết
-   - `expected_result`: Kết quả mong đợi
+   - `expected_result`: Kết quả mong đợi (REQUIRED — Builder dùng để verify)
    - `check`: Cách kiểm tra (per_step_validation)
-   - `chunk`: 1-4
+   - `chunk`: 1-4 (theo Chunk Rules: 1=config, 2=logic, 3=UI, 4=test)
    - `requires_backup`: true (MODIFY/DELETE) / false (CREATE)
-2. Thứ tự: config → logic → test
-3. **Quy tắc file không tồn tại:**
+   - `depends_on`: [] (dependency giữa các step)
+   - `risk_level`: LOW/MEDIUM/HIGH (HIGH → phải có rollback step)
+2. Chunk Rules v3.2:
+   - Chunk 1 = Config/schema/dependencies
+   - Chunk 2 = Core logic/services
+   - Chunk 3 = UI/API surface
+   - Chunk 4 = Tests + validation
+3. Thứ tự: config → logic → test
+4. **Quy tắc file không tồn tại:**
    - Nếu `action: MODIFY` → file PHẢI tồn tại trong codebase
    - Nếu `action: CREATE` → file chưa tồn tại (sẽ tạo mới)
    - Không được ghi MODIFY cho file chưa tồn tại
-4. **Tách validate theo giai đoạn:**
+5. **Tách validate theo giai đoạn (v3.2):**
    - `per_step_validation`: Kiểm tra ngay sau mỗi step (lint, syntax check)
+   - `per_chunk_validate`: Kiểm tra sau mỗi chunk (khuyến nghị)
    - `final_validation`: Kiểm tra tổng thể sau tất cả steps (dotnet build, test)
-5. Thêm rollback_strategy (enabled, conditions, steps)
-6. Xác định dependency giữa các bước
+6. Rollback strategy mở rộng (v3.2):
+   - `trigger_conditions[]`: Điều kiện kích hoạt (catastrophic_failure, max_retry_reached, user_request)
+   - `restore_order[]`: Thứ tự restore các file
+   - `requires_user_confirmation`: Cần user confirm trước rollback?
+7. Effort-based strategy:
+   - Small → 1 plan, không chunk
+   - Medium → chia 2 chunks
+   - Large → tách phase phụ hoặc nhiều plan
+8. Issues: Phân loại blocking_issues, non_blocking_issues, open_questions
 
-Output: Contract YAML theo schema Planner — Plan Phase (đã nâng cấp).
+Output: Contract YAML v3.2 theo schema Planner — Plan Phase.
+artifacts: ["03_plan.md"] (bắt buộc)
 ```
 
 **Sau output:** Lưu `current_data.plan = output`, tăng `step = 4`, ghi artifact `03_plan.md`
@@ -1033,29 +1247,48 @@ Kế hoạch:
 
 Yêu cầu:
 1. Chia steps thành tối đa 4 chunks (theo chunk field trong plan)
-2. **Quy tắc file không tồn tại:**
+
+2. **Ràng buộc chỉnh sửa file — TUYỆT ĐỐI:**
+   - Chỉ sửa đúng file được liệt kê trong plan (field `file`)
+   - Nếu phát hiện file ngoài plan cần sửa → BÁO CÁO, KHÔNG ĐỤNG VÀO
+   - `action: MODIFY` không được tự đổi thành `action: CREATE`
+   - `action: CREATE` không được ghi đè lên file đã tồn tại (báo FAIL)
+
+3. **Quy tắc file không tồn tại:**
    - Nếu `action: MODIFY` mà file không tồn tại → KHÔNG tự đổi sang CREATE
      → Báo FAIL với error_type="FileNotFound", retryable=false
    - Chỉ `action: CREATE` khi kế hoạch đã nêu rõ
-3. **Backup constraint:** Nếu `requires_backup: true` mà backup chưa chạy → báo CRITICAL
-4. **Validation theo giai đoạn:**
+
+4. **Backup constraint:** Nếu `requires_backup: true` mà backup chưa chạy → báo CRITICAL
+
+5. **Validation theo giai đoạn:**
    - `per_step_validation`: Kiểm tra ngay sau mỗi step (lint, syntax check)
    - `final_validation`: Kiểm tra tổng thể sau tất cả steps (dotnet build, test)
-5. Nếu per_step_validation FAIL → dừng step đó, không tiếp tục
-6. Nếu chunk FAIL → dừng chunk đó, báo cáo ngay
-7. Backup file trước khi sửa (backup-agent đã làm ở Bước 6)
-8. **Mỗi lỗi phải kèm đầy đủ:** error_type, error_normalized, error_hash, retryable
-9. Output: Contract YAML theo schema Builder (đã nâng cấp)
+
+6. Nếu per_step_validation FAIL → dừng step đó, không tiếp tục
+7. Nếu chunk FAIL → dừng chunk đó, báo cáo ngay
+
+8. **XỬ LÝ LỖI NGOÀI DỰ KIẾN:**
+   - Gặp lỗi không nằm trong phạm vi plan → DỪNG NGAY
+   - KHÔNG tự "sửa đại" — không thêm code ngoài logic đã định
+   - Chỉ tiếp tục khi lỗi nằm trong phạm vi plan hoặc có chỉ dẫn mới từ orchestrator
+   - Báo cáo lỗi chi tiết kèm error_type="Unknown"
+
+9. **Mỗi lỗi phải kèm đầy đủ:** error_type, error_normalized, error_hash, retryable
+
+10. Output: Contract YAML theo schema Builder (đã nâng cấp) — gồm `changed_files`, `created_files`, `deleted_files`, `backup_workflow_id`, `validation_status`
 ```
 
 **Sau output:** Lưu `current_data.build_result = output`, tăng `step = 9` (Static Analysis), ghi artifact `07_build.md`
 
-**Xử lý kết quả (mở rộng):**
+**Xử lý kết quả (mở rộng — v3.1):**
 - **Tất cả PASS** → tiếp tục
 - **FAIL + failure_type == MINOR** (syntax/lint) → Yêu cầu builder sửa
 - **FAIL + failure_type == CRITICAL** → Kiểm tra nguyên nhân:
   - **Backup fail** (error_type = "BackupFailed") → DỪNG NGAY, không retry
   - **File không tồn tại** (error_type = "FileNotFound", action=MODIFY) → DỪNG, yêu cầu sửa plan
+  - **File ngoài plan bị đụng vào** → DỪNG NGAY, báo CRITICAL, yêu cầu rollback
+  - **Tự sửa lỗi ngoài dự kiến** (error_type = "Unknown" + tự thêm code) → DỪNG NGAY, báo CRITICAL
   - **Lỗi logic** → Kiểm tra same_error_count:
     - Nếu error hash trùng với `error_history.build_failures` ≥ 2 lần → Dừng, báo catastrophic failure
     - Nếu không → yêu cầu builder sửa hoặc hỏi user
@@ -1353,32 +1586,50 @@ Mỗi phase có checklist validate riêng. Orchestrator phải kiểm tra trư�
 ```yaml
 validation_checklist:
   phase_01_analyze:
-    - "Output có đúng schema Analyst không?"
+    - "Output có đúng schema Analyst v2.0 không?"
     - "summary có ≥ 3 dòng không?"
     - "requirements có ít nhất 1 item không?"
     - "risks có description, severity, mitigation không?"
+    - "structure có root, language, framework không?"
+    - "entry_points có ít nhất 1 entry không?"
+    - "impact_scope có file và level (DIRECT/INDIRECT/UNRELATED) không?"
+    - "dependencies có evidence_file và evidence_line không?"
+    - "patterns có naming, routing, state_management, testing không?"
+    - "conclusion có status, reason, missing_info không?"
+    - "scanned_paths và ignored_paths có được ghi nhận không?"
   phase_02_design:
-    - "Output có đúng schema Planner không?"
+    - "Output có đúng schema Planner v3.2 không?"
     - "design.architecture có mô tả không?"
     - "design.components có list không?"
     - "design.data_flow có mô tả không?"
     - "design.security_concerns có xử lý không?"
     - "design.edge_cases có list không?"
+    - "blocking_issues có được ghi nhận không? (ít nhất empty array)"
+    - "artifacts có '02_design.md' không?"
+    - "effort có giá trị Small/Medium/Large không?"
   phase_03_plan:
     - "steps có ít nhất 1 bước không?"
     - "Mỗi step có order, description, action, file, logic, expected_result, check, requires_backup không?"
     - "action là CREATE/MODIFY/DELETE rõ ràng?"
     - "requires_backup == true nếu action là MODIFY hoặc DELETE?"
     - "requires_backup == false nếu action là CREATE?"
-    - "Mỗi step có expected_result mô tả kết quả mong đợi?"
+    - "Mỗi step có expected_result mô tả kết quả mong đợi? (REQUIRED v3.2)"
     - "per_step_validation có ít nhất 1 mục không?"
+    - "per_chunk_validate có ít nhất 1 mục không? (khuyến nghị v3.2)"
     - "final_validation có ít nhất 1 mục không?"
     - "rollback_strategy.enabled == true"
-    - "validate có ít nhất 1 mục không?"
+    - "rollback_strategy.trigger_conditions có được định nghĩa không? (khuyến nghị v3.2)"
+    - "rollback_strategy.restore_order có thứ tự restore hợp lý không? (khuyến nghị v3.2)"
+    - "Step nào có risk_level=HIGH phải có rollback step tương ứng?"
+    - "Chunk assignment có tuân theo Chunk Rules không? (1=config, 2=logic, 3=UI, 4=test)"
+    - "validate có ít nhất 1 mục không? (backward compatibility)"
+    - "blocking_issues có được kiểm tra không?"
   phase_04_review:
     - "decision phải là APPROVED/CHANGES_REQUESTED/REJECTED"
     - "scores có đủ 6 field không?"
     - "issues có id, severity, category không?"
+    - "Nếu blocking_issues không empty → decision không thể là APPROVED"
+    - "diff_snapshot có được ghi nhận cho mỗi retry không?"
   phase_05_guardrail:
     - "Guardrail checklist đã chạy?"
     - "Plan có test steps không?"
@@ -1399,8 +1650,11 @@ validation_checklist:
     - "Nếu action=MODIFY mà file không tồn tại → error_type=FileNotFound, retryable=false?"
     - "Nếu requires_backup=true và backup fail → failure_type=CRITICAL?"
     - "validation_status có kết quả không?"
-    - "changed_files và created_files đã liệt kê đầy đủ?"
+    - "changed_files, created_files, deleted_files đã liệt kê đầy đủ?"
     - "backup_workflow_id có nếu có backup?"
+    - "Chỉ sửa đúng file trong plan? Không có file ngoài plan bị đụng vào?"
+    - "Không tự ý MODIFY → CREATE khi file không tồn tại?"
+    - "Có lỗi ngoài dự kiến bị tự 'sửa đại' không?"
   phase_08_static_analysis:
     - "YAML frontmatter parse được không?"
     - "Internal links đều có section tương ứng?"
@@ -1554,6 +1808,9 @@ build:
     error_type == "BackupFailed": → DỪNG NGAY, hỏi_user "Backup thất bại, cần xử lý thủ công?"
     error_type == "FileNotFound" (action=MODIFY): → DỪNG, hỏi_user "File không tồn tại, cần sửa plan?"
     error_type == "BackupUtilityUnavailable": → DỪNG NGAY, hỏi_user
+    error_type == "FileOutsidePlan": → DỪNG NGAY, báo CRITICAL "Builder đã đụng vào file ngoài plan, cần rollback"
+    error_type == "ActionMismatch" (MODIFY→CREATE tự ý): → DỪNG NGAY, báo CRITICAL
+    error_type == "UnauthorizedFix" (tự sửa lỗi ngoài dự kiến): → DỪNG NGAY, báo CRITICAL
     same_error_count < 2: → hỏi_user
     same_error_count >= 2: → catastrophic → rollback
   catastrophic: → rollback
@@ -1618,6 +1875,9 @@ rollback:
 3. **Syntax/lint toàn bộ file** không thể sửa sau 3 lần retry
 4. **File cần sửa bị xóa/mất** trong quá trình build (phát hiện qua diff với backup manifest)
 5. **Builder output FAIL với `failure_type: CRITICAL`** và không có giải pháp thay thế
+6. **Builder đụng vào file ngoài plan** (error_type = "FileOutsidePlan") — rollback ngay
+7. **Builder tự ý đổi action** (error_type = "ActionMismatch") — rollback ngay
+8. **Builder tự sửa lỗi ngoài dự kiến** (error_type = "UnauthorizedFix") — rollback ngay
 
 ### Cách thực hiện Rollback
 
@@ -1643,8 +1903,9 @@ Rollback tự động:
 
 | Buoc | Command | Agent | File command |
 |------|---------|-------|-------------|
-| Buoc | Command | Agent | File command |
-|------|---------|-------|-------------|
+| 0 | /team-syncdocs | general | team-syncdocs.md |
+| 0 | /team-cleanup | cleaner | team-cleanup.md |
+| 0 | /team | general | team.md |
 | 1 | /team-analyze | analyst | team-analyze.md |
 | 2-3 | /team-plan | planner (mo rong) | team-plan.md |
 | 4 | /team-review | reviewer | team-review.md |
@@ -1652,7 +1913,7 @@ Rollback tự động:
 | 8 | /team-ui-audit | ui-beautifier | team-ui-audit.md |
 | 9 | /team-testplan | test-planner | team-testplan.md |
 | 10 | /team-test | tester | team-test.md |
-| 11 | (goi tu team.md) | self-improver | .opencode/agents/self-improver.md |
+| 11 | team (goi tu) | self-improver | team-selfimprove.md |
 | 12 | /team-gitpush | pusher | team-gitpush.md |
 Không có command `/team-design` riêng — Design là phần mở rộng của Plan.
 
@@ -1801,10 +2062,13 @@ complexity_estimate:
   knowledge_files: 0              # .opencode/knowledge/ không cần sửa
   artifacts_structure: 12         # workflow.json + 11 artifact types
   new_sections:
-    - "7 nâng cấp chính cho Builder Agent"
+    - "8 nâng cấp chính cho Builder Agent"
     - "Error fields chi tiết (error_type, error_normalized, error_hash, retryable)"
     - "Chuẩn hóa input + step structure + validation stages"
     - "Ràng buộc backup + file existence rules"
+    - "depends_on + validation_command trong step schema"
+    - "Ràng buộc chỉnh sửa file (FileOutsidePlan, ActionMismatch, UnauthorizedFix)"
+    - "deleted_files trong output"
 ```
 
 ---
@@ -1846,5 +2110,6 @@ static_analysis:
 - Nếu workflow bị block ở bước nào, cung cấp đủ thông tin để người dùng biết:
   - Đang ở bước nào, Output hiện tại, Cần quyết định gì
 - Khi workflow hoàn tất, output báo cáo phải đầy đủ và rõ ràng
+
 
 

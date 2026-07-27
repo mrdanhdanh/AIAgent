@@ -1,7 +1,7 @@
 ﻿# He Thong .opencode - So Do Tong The
 
-> **Tu dong tao luc:** 2026-07-26 16:07:11
-> **Workflow ID:** WF-20260726-SYNC
+> **Tu dong tao luc:** 2026-07-27 22:48:52
+> **Workflow ID:** WF-20260727-SYNC
 > **Cap nhat:** Toan bo agents, commands, skills, scripts, knowledge
 
 ---
@@ -83,10 +83,10 @@
 
 | Skill | Name | Description | Schema Version |
 |-------|------|-------------|----------------|
-| dev-team | dev-team | Hướng dẫn sử dụng Dev Agent Team gồm 9 agents (7 core + 2 support). Dùng khi cần phân tích, lập kế hoạch, đánh giá, code, kiểm thử một yêu cầu phát triển. Tích hợp cơ chế Self-Improvement với approval gate. Sử dụng câu lệnh team hoặc team-*. | 3.0 |
-| gitguard | gitguard | Review source code trước khi push lên git — phát hiện secret, lỗi convention, lỗ hổng bảo mật, vi phạm quy tắc dự án. Tích hợp cơ chế blocking CRITICAL, cảnh báo MAJOR. Sử dụng câu lệnh /team-gitguard. | 1.0 |
+| dev-team | dev-team | Hướng dẫn sử dụng Dev Agent Team gồm 9 agents (7 core + 2 support). Dùng khi cần phân tích, lập kế hoạch, đánh giá, code, kiểm thử một yêu cầu phát triển. Tích hợp cơ chế Self-Improvement với approval gate. Sử dụng câu lệnh team hoặc team-*. | 3.2 |
+| gitguard | gitguard | Review source code trước khi push lên git — phát hiện secret, lỗi convention, lỗ hổng bảo mật, vi phạm quy tắc dự án. Tích hợp cơ chế blocking CRITICAL, cảnh báo MAJOR. Sử dụng câu lệnh /team-gitguard. | 2.0 |
 | gitpush | gitpush | Pre-push safety validation + git push execution — kiểm tra secret, convention, build, test, sau đó push lên remote với xác nhận từ user. Sử dụng câu lệnh /team-gitpush. | 1.0 |
-| workspace-cleaner | workspace-cleaner | Dọn rác Workspace tự động — xóa build artifacts, backup cũ, temp files, cache không cần thiết. Tích hợp dry-run bắt buộc, backup trước khi xóa, confirmation gate, protected list cấu trúc, và output contract chi tiết. Sử dụng câu lệnh /team-cleanup. | 2.0 |
+| workspace-cleaner | workspace-cleaner | Dọn rác Workspace tự động — xóa build artifacts, backup cũ, temp files, cache không cần thiết. Tích hợp dry-run bắt buộc, backup trước khi xóa, confirmation gate, protected list cấu trúc, và output contract chi tiết. Sử dụng câu lệnh /team-cleanup. | 2.1 |
 
 ---
 
@@ -107,7 +107,7 @@
 |------|------|
 | knowledge/blazor-ref-timing.md | 1 KB |
 | knowledge/deployment\blazor-wasm-github-pages.md | 4 KB |
-| knowledge/lessons.md | 13 KB |
+| knowledge/lessons.md | 17 KB |
 | knowledge/patterns\common.md | 5 KB |
 | knowledge/skills-learned.md | 11 KB |
 | knowledge/workflow\validate-github-actions-yaml.md | 1 KB |
@@ -120,6 +120,8 @@
 
 | Command | Agent | Agent File |
 |---------|-------|------------|
+| /team | general | commands/team.md |
+| /team-syncdocs | general | commands/team-syncdocs.md |
 | /team-analyze | analyst | agents/analyst.md |
 | /team-plan | planner | agents/planner.md |
 | /team-review | reviewer | agents/reviewer.md |

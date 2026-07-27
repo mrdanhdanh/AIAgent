@@ -1,7 +1,7 @@
 ---
 name: workspace-cleaner
 description: Dọn rác Workspace tự động — xóa build artifacts, backup cũ, temp files, cache không cần thiết. Tích hợp dry-run bắt buộc, backup trước khi xóa, confirmation gate, protected list cấu trúc, và output contract chi tiết. Sử dụng câu lệnh /team-cleanup.
-schema_version: "2.0"
+schema_version: "2.1"
 workflow_id_format: "WF-YYYYMMDD-NNN"
 risk_levels: ["LOW", "MEDIUM", "HIGH"]
 mandatory_dry_run: true
@@ -60,11 +60,11 @@ Workspace Cleaner là skill dọn dẹp workspace tự động, giúp giải ph�
 
 ### Hệ thống Risk Level chuẩn hóa
 
-| Mức | Định nghĩa | Hành động | Ví dụ |
-|-----|-----------|-----------|-------|
-| `LOW` | Cache/temp có thể xóa ngay, tái tạo được | Xóa trực tiếp, không cần backup | `bin/`, `obj/`, `TestResults/` |
-| `MEDIUM` | Build artifacts hoặc file có giá trị tạm thời | Cần backup trước khi xóa | Backup cũ, log files, temp zip |
-| `HIGH` | Có khả năng ảnh hưởng project nếu xóa nhầm | Chỉ xóa khi có xác nhận đặc biệt hoặc `--aggressive` | Publish artifacts, NuGet cache, node_modules |
+| Mức | Định nghĩa | Hành động | Điều kiện xóa | Ví dụ |
+|-----|-----------|-----------|--------------|-------|
+| `LOW` | Cache/temp có thể xóa ngay, tái tạo được | Xóa trực tiếp, **không cần backup** | Luôn được xóa nếu user confirm | `bin/`, `obj/`, `TestResults/` |
+| `MEDIUM` | File có giá trị tạm thời, có thể cần rollback | **Bắt buộc backup trước khi xóa**. Nếu backup FAIL → **KHÔNG được xóa** | Chỉ xóa khi backup thành công (`backup_report.status == SUCCESS` hoặc `PARTIAL` với item đó thành công) | Backup cũ, log files, temp zip |
+| `HIGH` | Có khả năng ảnh hưởng project nếu xóa nhầm | **Bị BLOCKED** nếu không có `--force` hoặc `--aggressive` | Chỉ xóa khi có `--force` hoặc `--aggressive` + user confirm từng item | Publish artifacts, NuGet cache, node_modules |
 
 ### Tiêu chí phát hiện rác chi tiết
 
@@ -223,34 +223,52 @@ if (Test-Protected -Path $candidatePath) {
 }
 ```
 
+Mỗi candidate trong `candidates_detail` được chuẩn hóa với các trường sau:
+
+| Trường | Kiểu | Bắt buộc | Mô tả |
+|--------|------|----------|-------|
+| `path` | `string` | ✅ | Đường dẫn tuyệt đối hoặc tương đối tới file/directory |
+| `type` | `string` | ✅ | Loại rác: `build`, `test_results`, `coverage`, `backup_old`, `log`, `temp_zip`, `publish`, `workflow_artifact`, `large_file`, `node_modules`, `dotnet_temp`, `ide_cache` |
+| `size_bytes` | `int` | ✅ | Kích thước tính bằng bytes |
+| `risk` | `string` | ✅ | `LOW` | `MEDIUM` | `HIGH` |
+| `reason` | `string` | ✅ | Lý do phát hiện là rác (vd: "Quá 30 ngày", "Dung lượng > 100MB", "Folder có thể tái tạo") |
+| `protected_hit` | `bool` | ✅ | `true` nếu candidate match protected list → bị loại khỏi danh sách xóa |
+| `backup_required` | `bool` | ✅ | `true` nếu risk == MEDIUM (cần backup trước xóa) |
+| `criteria` | `object` | ❌ | Chi tiết tiêu chí đã match: `patterns`, `extensions`, `max_size_mb`, `empty_dirs_only`, `generated_paths` |
+
 Output:
 ```yaml
 scan_report:
-  total_candidates: 23
-  total_size_bytes: 524288000     # 500MB
   scanned_files: 1542
   scanned_dirs: 89
+  candidates: 23
   protected_skipped: 0
-  candidates:
+  candidates_detail:
     - type: "build"
       path: "JapaneseLearner/bin/"
-      risk: "LOW"
       size_bytes: 157286400
-      criteria_match:
+      risk: "LOW"
+      reason: "Build artifact — có thể tái tạo bằng dotnet build"
+      protected_hit: false
+      backup_required: false
+      criteria:
         patterns: ["**/bin"]
         empty_dirs_only: false
-    - type: "build"
-      path: "JapaneseLearner/obj/"
-      risk: "LOW"
-      size_bytes: 157286400
-      criteria_match:
-        patterns: ["**/obj"]
-        empty_dirs_only: false
+        generated_paths: ["bin/"]
     - type: "backup_old"
       path: ".opencode/backup/WF-20260720-001/"
-      risk: "MEDIUM"
       size_bytes: 52428800
-    - ...
+      risk: "MEDIUM"
+      reason: "Backup workflow cũ, đã có 5 backup mới hơn (keep-backup: 5)"
+      protected_hit: false
+      backup_required: true
+    - type: "publish"
+      path: "JapaneseLearner/bin/Release/net10.0/publish/"
+      size_bytes: 41943040
+      risk: "HIGH"
+      reason: "Publish output — cần --aggressive để xóa"
+      protected_hit: false
+      backup_required: false
 ```
 
 ### Bước 2: Dry-run report (BẮT BUỘC)
@@ -283,11 +301,15 @@ Dry-run luôn chạy đầu tiên. `full` và `aggressive` chỉ được chạy
 ╚══════════════════════════════════════════════════════════════╝
 ```
 
-**Quy tắc Dry-run gate:**
-1. Nếu `--dry-run` được chỉ định → hiển thị báo cáo, DỪNG lại, không xóa gì
-2. Nếu `--force` → bỏ qua confirmation gate, nhưng vẫn chạy dry-run để báo cáo
-3. Nếu không có flag nào → dry-run chạy, hiển thị báo cáo, hỏi user "Tiếp tục? (Y/N)"
-4. Nếu dry-run phát hiện HIGH items > ngưỡng cho phép → BLOCKED, yêu cầu `--force`
+**Quy tắc Dry-run gate (siết):**
+
+| # | Quy tắc | Mô tả |
+|---|---------|-------|
+| 1 | `--dry-run` = không xóa gì | Dry-run mode **không bao giờ xóa bất kỳ file nào**. Chỉ hiển thị báo cáo scan + classification. Set `dry_run_only = true`. Kết thúc workflow tại đây. |
+| 2 | `full`/`aggressive` cần dry-run hợp lệ | Chế độ `full` hoặc `aggressive` chỉ được thực thi khi dry-run đã tạo ra **báo cáo hợp lệ** (scan hoàn tất, candidates đã xác định) AND `risk_gate_status == PASS`. Nếu dry-run chưa chạy hoặc báo cáo lỗi → BLOCKED. |
+| 3 | HIGH > threshold → STOP | Nếu dry-run phát hiện **số lượng HIGH items vượt ngưỡng cho phép** → `risk_gate_status = BLOCKED`. Execution **dừng lại ngay**, trừ khi có flag `--force`. |
+| 4 | `--force` override risk gate | `--force` cho phép bỏ qua risk gate, nhưng vẫn yêu cầu dry-run đã hoàn tất trước đó. Nếu dry-run chưa chạy → tự động chạy dry-run trước. |
+| 5 | No flag → dry-run → confirm | Nếu không có flag nào → dry-run tự động chạy, hiển thị báo cáo, hỏi user "Tiếp tục? (Y/N)". Chỉ cleanup nếu user xác nhận. |
 
 ### Bước 3: Backup (MEDIUM items)
 
@@ -304,6 +326,37 @@ $items = @(
 ```
 
 Backup được lưu vào `.opencode/backup/WF-20260726-001/`.
+
+**Backup gate rules (siết):**
+
+```yaml
+backup_gate_rules:
+  low:
+    backup_required: false
+    can_delete_without_backup: true
+    note: "LOW items được xóa trực tiếp, không cần backup"
+
+  medium:
+    backup_required: true
+    can_delete_without_backup: false
+    gate: "backup_report.status == SUCCESS || (backup_report.status == PARTIAL && item.status == 'success')"
+    block_if_backup_fails: true
+    fallback: "Chỉ xóa LOW items → status = PARTIAL. MEDIUM items bị lỗi backup được giữ lại."
+    note: "MEDIUM items CHỈ được xóa nếu backup thành công. Nếu backup FAIL → item đó KHÔNG bị xóa."
+
+  high:
+    backup_required: false
+    can_delete_without_backup: false
+    gate: "force == true || aggressive == true"
+    block_without_force: true
+    note: "HIGH items bị BLOCKED hoàn toàn nếu không có --force. Không cần backup vì không được phép xóa."
+```
+
+**Nguyên tắc áp dụng:**
+1. **LOW** → xóa ngay, không cần backup, không block
+2. **MEDIUM** → backup bắt buộc. Nếu backup fail → item bị **giữ lại**, không xóa. Ghi vào `failed_backups`.
+3. **HIGH** → mặc định **BLOCKED**. Chỉ xóa khi có `--force` hoặc `--aggressive` + user confirm từng cái.
+4. Nếu tất cả MEDIUM items đều backup fail → cleanup_report chỉ xóa LOW → status = `PARTIAL`.
 
 Output backup_report:
 ```yaml
@@ -400,12 +453,64 @@ cleanup_report:
 
 ### Bước 6: Verification
 
-Kiểm tra post-cleanup — xác nhận file đã được xóa và tính dung lượng giải phóng:
+Kiểm tra post-cleanup — xác nhận file đã được xóa và tính dung lượng giải phóng.
+
+**Tiêu chí spot_checks (siết):**
+
+```yaml
+verification_criteria:
+  spot_checks:
+    sampling_method: "stratified"
+    description: >
+      Chọn mẫu theo tầng (stratified sampling) — mỗi risk level chọn ít nhất
+      N file, ưu tiên file dung lượng lớn nhất hoặc có nguy cơ cao nhất.
+
+    minimum_per_risk:
+      low: 2       # Ít nhất 2 LOW items
+      medium: 3    # Ít nhất 3 MEDIUM items (hoặc tất cả nếu < 3)
+      high: 1      # Tất cả HIGH items (nếu có và đã xóa)
+
+    minimum_total: 5   # Tối thiểu 5 file hoặc 10% số items đã xóa (lấy giá trị lớn hơn)
+    formula: "max(5, ceil(deleted * 0.1))"
+
+    mandatory_checks:
+      - type: "deleted_confirmed"
+        description: "Xác nhận file đã được xóa khỏi disk"
+        count: "tối thiểu 3 file đã xóa"
+
+      - type: "protected_preserved"
+        description: "Xác nhận protected folders KHÔNG bị ảnh hưởng"
+        count: "ít nhất 1 folder protected"
+        targets: [".git/", ".opencode/agents/", ".opencode/skills/"]
+
+      - type: "backup_manifest_exists"
+        description: "Xác nhận backup manifest tồn tại và hợp lệ"
+        count: "1 file"
+        target: ".opencode/backup/<workflow_id>/05_backup_manifest.json"
+        checks:
+          - "manifest chứa đúng workflow_id"
+          - "số lượng backed_up_files khớp với MEDIUM items đã xóa"
+
+      - type: "freed_bytes_verified"
+        description: "Xác nhận dung lượng giải phóng khớp với cleanup_report"
+        count: "1 lần tính toán"
+
+    selection_rules:
+      - "Luôn chọn file có dung lượng lớn nhất trong mỗi risk level"
+      - "Luôn kiểm tra ít nhất 1 protected folder (thường là .git/)"
+      - "Luôn kiểm tra backup manifest tồn tại và hợp lệ"
+      - "Nếu có HIGH items bị skip → xác nhận chúng vẫn còn trên disk"
+```
+
+**Ví dụ output:**
 
 ```yaml
 verification_report:
-  status: "PASS"
-  checks:
+  freed_bytes: 460000000
+  after_size_bytes: 24288000
+  verification_status: "PASS"
+  spot_checks:
+    # --- Deleted confirmation ---
     - type: "deleted_confirmed"
       path: "JapaneseLearner/bin/"
       expected: "deleted"
@@ -416,58 +521,129 @@ verification_report:
       expected: "deleted"
       actual: "deleted"
       pass: true
+    - type: "deleted_confirmed"
+      path: "logs/error.log"
+      expected: "deleted"
+      actual: "deleted"
+      pass: true
+    # --- Protected preservation ---
+    - type: "protected_preserved"
+      path: ".git/"
+      expected: "exists"
+      actual: "exists"
+      pass: true
+    - type: "protected_preserved"
+      path: ".opencode/agents/"
+      expected: "exists"
+      actual: "exists"
+      pass: true
+    # --- Backup manifest ---
+    - type: "backup_manifest_exists"
+      path: ".opencode/backup/WF-20260726-001/05_backup_manifest.json"
+      expected: "valid_manifest"
+      actual: "valid_manifest"
+      pass: true
+      details:
+        workflow_id_match: true
+        backed_up_count: 10
+        deleted_medium_items: 10
+    # --- HIGH items skipped ---
     - type: "skipped_confirmed"
       path: "JapaneseLearner/bin/release/"
       expected: "kept"
       actual: "exists"
       pass: true
-  freed_bytes: 460000000
-  after_size_bytes: 24288000
-  verification_status: "PASS"
 ```
 
 ### Bước 7: Final consolidated report
+
+**Output contract chuẩn với đầy đủ trường điều phối:**
 
 ```yaml
 status: "SUCCESS | PARTIAL | FAILED | CANCELLED"
 mode: "dry-run | full | aggressive"
 target: "all | build | backup | temp | cache | log"
-summary: "Đã giải phóng 460MB, xóa 22 items, 1 skipped (HIGH), 0 failed"
+summary: "string (tóm tắt ngắn gọn kết quả)"
+risk_gate_status: "PASS | BLOCKED"
+blocked_items: 0           # Số items bị chặn (do protected hoặc risk gate)
+backup_required_items: 0   # Số items yêu cầu backup (MEDIUM)
+dry_run_only: false        # true nếu chạy ở chế độ dry-run
+freed_bytes: 0             # Dung lượng đã giải phóng (sau cleanup)
 
+# ── Report 1: Scan ──
 scan_report:
   scanned_files: 1542
   scanned_dirs: 89
   candidates: 23
   protected_skipped: 0
+  candidates_detail: []
 
+# ── Report 2: Classification ──
 classification_report:
   low: 15
   medium: 10
   high: 1
+  by_type:
+    build: 12
+    test: 3
+    backup_old: 3
+    log: 5
+    temp_zip: 2
+    publish: 1
 
+# ── Report 3: Backup ──
 backup_report:
-  workflow_id: "WF-20260726-001"
-  status: "SUCCESS"
-  manifest_path: ".opencode/backup/WF-20260726-001/05_backup_manifest.json"
-  backed_up_files: 10
-  failed_backups: 0
+  workflow_id: "WF-YYYYMMDD-NNN"
+  status: "SUCCESS | PARTIAL | FAILED | SKIPPED"
+  manifest_path: "string"
+  backed_up_files:
+    - source: ".opencode/backup/WF-20260720-001"
+      backup: ".opencode/backup/WF-20260726-001/backup-WF-20260720-001"
+      hash: "a1b2c3d4e5f6"
+      size_bytes: 52428800
+      status: "success"
+  failed_backups:
+    - source: "locked-file.tmp"
+      reason: "File đang được process khác sử dụng"
+      status: "failed"
   skip_reasons:
     protected_match: 2
     already_backed_up: 1
+    not_found: 0
 
+# ── Report 4: Cleanup ──
 cleanup_report:
+  status: "SUCCESS | PARTIAL | SKIPPED"
   deleted: 22
   skipped: 1
   failed: 0
   details:
-    low:  { attempted: 15, deleted: 15, skipped: 0, failed: 0 }
-    medium: { attempted: 10, deleted: 10, skipped: 0, failed: 0 }
-    high: { attempted: 1, deleted: 0, skipped: 1, failed: 0 }
+    low:
+      attempted: 15
+      deleted: 15
+      skipped: 0
+      failed: 0
+    medium:
+      attempted: 10
+      deleted: 10
+      skipped: 0
+      failed: 0
+    high:
+      attempted: 1
+      deleted: 0
+      skipped: 1
+      failed: 0
+  errors:
+    - path: "JapaneseLearner/bin/"
+      error: "Không thể xóa — file đang được process khác sử dụng"
+      severity: WARNING
 
+# ── Report 5: Verification ──
 verification_report:
   freed_bytes: 460000000
   after_size_bytes: 24288000
-  verification_status: "PASS"
+  verification_status: "PASS | FAIL | SKIPPED"
+  spot_checks: []
 ```
 
 ---
@@ -489,25 +665,33 @@ verification_report:
 
 ## ĐỊNH DẠNG ĐẦU RA (YAML CONTRACT) — CHI TIẾT
 
-Contract được tách thành 6 sub-report rõ ràng, mỗi report phục vụ một mục đích riêng:
+Contract được tách thành 6 sub-report rõ ràng, mỗi report phục vụ một mục đích riêng. Orchestrator dùng các trường điều phối ở cấp cao nhất để quyết định luồng xử lý:
 
 ```yaml
 status: "SUCCESS | PARTIAL | FAILED | CANCELLED"
 mode: "dry-run | full | aggressive"
 target: "all | build | backup | temp | cache | log"
 summary: "Đã giải phóng 500MB, xóa 23 items, backup 8 items"
+risk_gate_status: "PASS | BLOCKED"
+blocked_items: 3             # 2 protected + 1 HIGH (chưa force)
+backup_required_items: 10    # 10 MEDIUM items yêu cầu backup
+dry_run_only: false          # false = đã cleanup thật
+freed_bytes: 500000000       # Dung lượng đã giải phóng
 
 # ── Report 1: Scan ──
 scan_report:
   scanned_files: 1542
   scanned_dirs: 89
   candidates: 23
-  protected_skipped: 0
+  protected_skipped: 2       # 2 items bị protected list chặn
   candidates_detail:
     - type: "build"
       path: "JapaneseLearner/bin/"
-      risk: "LOW"
       size_bytes: 157286400
+      risk: "LOW"
+      reason: "Build artifact — có thể tái tạo bằng dotnet build"
+      protected_hit: false
+      backup_required: false
       criteria:
         patterns: ["**/bin", "**/obj"]
         empty_dirs_only: false
@@ -550,7 +734,7 @@ backup_report:
 
 # ── Report 4: Cleanup ──
 cleanup_report:
-  status: "SUCCESS | PARTIAL"
+  status: "SUCCESS | PARTIAL | SKIPPED"
   deleted: 22
   skipped: 1
   failed: 0
@@ -577,7 +761,7 @@ cleanup_report:
 
 # ── Report 5: Verification ──
 verification_report:
-  freed_bytes: 460000000
+  freed_bytes: 500000000
   after_size_bytes: 24288000
   verification_status: "PASS | FAIL | SKIPPED"
   spot_checks:
@@ -587,9 +771,14 @@ verification_report:
       actual: "deleted"
       pass: true
     - type: "protected_preserved"
-      path: "JapaneseLearner/Program.cs"
+      path: ".git/"
       expected: "exists"
       actual: "exists"
+      pass: true
+    - type: "backup_manifest_exists"
+      path: ".opencode/backup/WF-20260726-001/05_backup_manifest.json"
+      expected: "valid_manifest"
+      actual: "valid_manifest"
       pass: true
 ```
 
@@ -604,18 +793,43 @@ bước_1_scan:
   tìm thấy rác: → dry_run
 
 bước_2_dry_run:
-  --dry-run flag: → hiển thị báo cáo → CANCELLED (không xóa gì)
-  risk vượt ngưỡng (HIGH > threshold) và không --force: → BLOCKED "Yêu cầu --force để tiếp tục"
-  risk trong ngưỡng và --force: → bỏ qua confirm → backup
+  --dry-run flag: → hiển thị báo cáo → set dry_run_only = true → CANCELLED (không xóa gì)
+  dry-run không tạo được báo cáo hợp lệ: → BLOCKED "Dry-run chưa hoàn tất, không thể tiếp"
+  risk vượt ngưỡng (HIGH > threshold) và không --force:
+    → risk_gate_status = BLOCKED
+    → blocked_items = số HIGH items
+    → BLOCKED "Yêu cầu --force để tiếp tục"
+  risk vượt ngưỡng và --force:
+    → risk_gate_status = PASS (override)
+    → bỏ qua confirm → backup
+  risk trong ngưỡng và --force:
+    → risk_gate_status = PASS
+    → bỏ qua confirm → backup
   risk trong ngưỡng và không --force:
     user không confirm: → CANCELLED "User hủy cleanup"
     user confirm Y: → backup
 
 bước_3_backup:
-  có MEDIUM items: → backup → kiểm tra backup
-    backup SUCCESS: → confirm
-    backup FAILED: → không xóa MEDIUM items, chỉ xóa LOW → PARTIAL
-  không có MEDIUM items: → confirm (bỏ qua backup)
+  có MEDIUM items:
+    → backup từng item
+    → kiểm tra backup_report
+      backup SUCCESS (tất cả thành công):
+        → backup_required_items = số MEDIUM items
+        → confirm
+      backup PARTIAL (một số fail):
+        → failed_backups được ghi nhận
+        → MEDIUM items bị fail backup → KHÔNG XÓA (blocked_items++)
+        → chỉ xóa MEDIUM items đã backup thành công + LOW items
+        → confirm với cảnh báo
+      backup FAILED (tất cả fail):
+        → backup_required_items = 0 (không backup được cái nào)
+        → KHÔNG xóa MEDIUM items
+        → chỉ xóa LOW items
+        → status = PARTIAL
+  không có MEDIUM items:
+    → backup_required_items = 0
+    → backup_report.status = SKIPPED
+    → confirm (bỏ qua backup)
 
 bước_4_confirmation:
   --force: → cleanup execution
@@ -681,10 +895,12 @@ Workspace Cleaner có thể gọi từ PowerShell script:
 | File đang được process khác dùng | Log WARNING, bỏ qua file đó |
 | Không tìm thấy rác | CANCELLED "Workspace đã sạch" |
 | Chỉ có protected files | CANCELLED "Chỉ có protected files, không dọn được gì" |
-| Dry-run phát hiện risk vượt ngưỡng | BLOCKED — yêu cầu `--force` để tiếp tục |
+| Dry-run không tạo được báo cáo hợp lệ | BLOCKED "Dry-run chưa hoàn tất, không thể tiếp" — không cho phép `--force` bypass |
+| Dry-run phát hiện risk vượt ngưỡng | BLOCKED — yêu cầu `--force` để tiếp tục. Ghi `risk_gate_status = BLOCKED`, `blocked_items = N` |
+| `--force` gọi trước khi dry-run chạy | Tự động chạy dry-run trước, không bypass |
 | Quyền hạn không đủ để xóa | Log ERROR, đề xuất chạy với quyền admin |
-| Backup thất bại | Không xóa MEDIUM items, chỉ xóa LOW → PARTIAL |
-| Backup MEDIUM thất bại 1 phần | Ghi vào `failed_backups`, xóa MEDIUM items đã backup thành công |
+| Backup thất bại toàn bộ | Không xóa MEDIUM items, chỉ xóa LOW → PARTIAL. `blocked_items` tăng lên |
+| Backup MEDIUM thất bại 1 phần | Ghi vào `failed_backups`, chỉ xóa MEDIUM items đã backup thành công |
 | Disk đầy trong lúc backup | Dừng cleanup, rollback đã backup |
 | User không phản hồi (timeout 60s) | CANCELLED tự động |
 | Phát hiện protected file trong danh sách xóa | BLOCKED — không bao giờ xóa, ghi `skip_reasons.protected_match++` |
@@ -708,4 +924,6 @@ $rollbackScript = ".opencode\scripts\rollback-utility.ps1"
 5. **Backup MEDIUM items** trước khi xóa — lưu vào `.opencode/backup/<workflow_id>/`
 6. **Retention mặc định**: giữ 5 workflow backup gần nhất
 7. **Aggressive mode** (`--aggressive`) yêu cầu xác nhận kép (dry-run pass + user confirm)
-8. Workspace càng sạch → build càng nhanh, ít conflict
+8. **Gate dry-run → backup → delete là điểm dễ sai nhất**: dry-run phải PASS trước, backup MEDIUM phải SUCCESS trước khi xóa, HIGH luôn BLOCKED trừ khi có `--force`. Không được skip bước nào.
+9. **Orchestrator phải đọc `risk_gate_status`, `blocked_items`, `backup_required_items`, `dry_run_only`** để quyết định bước tiếp theo — không dựa vào `status` đơn thuần.
+10. Workspace càng sạch → build càng nhanh, ít conflict

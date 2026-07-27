@@ -11,7 +11,7 @@ agent: analyst
 
 **Đầu vào:** Câu mô tả yêu cầu bằng ngôn ngữ tự nhiên (tiếng Việt hoặc tiếng Anh).
 
-**Đầu ra:** YAML contract với `status` (READY / NEED_MORE_INFO), `summary`, `requirements`, `risks`, `tasks`.
+**Đầu ra:** YAML contract v2.0 với `status`, `structure`, `impact_scope`, `dependencies`, `patterns`, `conclusion`.
 
 **Ví dụ:** `/team-analyze Thêm chức năng reset password cho trang đăng nhập`
 
@@ -30,20 +30,44 @@ $ARGUMENTS
 
 ## QUY TRÌNH THỰC HIỆN
 
-1. **Đọc yêu cầu** — Hiểu rõ yêu cầu, nếu chưa rõ thì liệt kê câu hỏi
-2. **Khám phá codebase** — Dùng glob/grep/read để tìm hiểu cấu trúc dự án và code liên quan
-3. **Xác định phạm vi** — Trong scope / Ngoài scope / Ràng buộc kỹ thuật / Assumptions
-4. **Phân tích rủi ro** — Kỹ thuật, dữ liệu, tích hợp (kèm severity HIGH/MEDIUM/LOW + mitigation)
-5. **Đề xuất thiết kế** — Approach, affected_modules, new_files, modified_files, integration_points
-6. **Liệt kê task con** — ID, mô tả, file ảnh hưởng, depends_on, why
-7. **Kết luận** — READY hoặc NEED_MORE_INFO (nếu thiếu mục tiêu/phạm vi/file đích/tiêu chí chấp nhận)
+1. **Kiểm tra đầu vào bắt buộc** — Parse $ARGUMENTS, kiểm tra goal/scope/criteria/allowed_scope. Thiếu → NEED_MORE_INFO + missing_info
+2. **Khám phá codebase** — Dùng glob/grep/read, ghi scanned_paths, ignored_paths, discovered_modules
+3. **Xác định cấu trúc** — entry_points (app/module/test/config), main_directories, patterns
+4. **Xác định phạm vi ảnh hưởng** — DIRECT / INDIRECT / UNRELATED cho mỗi file
+5. **Xác định dependency tree** — from/to/type/evidence_file/evidence_line/reason
+6. **Phân tích rủi ro** — Kỹ thuật, dữ liệu, tích hợp (kèm severity + mitigation)
+7. **Đề xuất thiết kế** — Approach, affected_modules, new_files, modified_files, integration_points
+8. **Liệt kê task con** — ID, mô tả, file, depends_on, why
+9. **Kết luận** — READY hoặc NEED_MORE_INFO (kèm reason + missing_info)
 
-## ĐỊNH DẠNG ĐẦU RA (YAML CONTRACT)
+## ĐỊNH DẠNG ĐẦU RA (YAML CONTRACT v2.0)
 
 ```yaml
 status: "READY | NEED_MORE_INFO"
-summary: "Tóm tắt ngắn (2-3 câu)"
+summary: "Tóm tắt khám phá (2-3 câu)"
 details: "> Phân tích chi tiết (markdown) — phải liệt kê evidence: tên file, pattern tìm thấy, module liên quan"
+scanned_paths:
+  - "src/"
+  - "tests/"
+ignored_paths:
+  - path: "node_modules/"
+    reason: "Thư mục dependencies, không cần quét"
+discovered_modules:
+  - "JapaneseLearner"
+  - "JapaneseLearner.Tests"
+structure:
+  root: "JapaneseLearner"
+  language: "C#"
+  framework: "Blazor WebAssembly"
+  entry_points:
+    - path: "JapaneseLearner/Program.cs"
+      type: "app"
+    - path: "JapaneseLearner.Tests/BunitTestBase.cs"
+      type: "test"
+  main_directories:
+    - path: "src/"
+      description: "Mã nguồn chính"
+      relevance: "HIGH"
 requirements:
   - id: "REQ-001"
     description: "Mô tả yêu cầu"
@@ -55,7 +79,34 @@ risks:
     mitigation: "Cách giảm thiểu"
 assumptions:
   - id: "ASM-001"
-    description: "Mô tả giả định đang dùng — ghi rõ khi codebase chưa đủ thông tin"
+    description: "Mô tả giả định"
+dependencies:
+  - from: "ModuleA"
+    to: "ModuleB"
+    type: "import | service | data"
+    evidence_file: "path/to/file.cs"
+    evidence_line: 42
+    reason: "ModuleA gọi ModuleB qua DI"
+patterns:
+  naming:
+    pattern: "PascalCase"
+    location: "src/Models/"
+    notes: "Tất cả model class dùng PascalCase"
+  routing:
+    pattern: "FluentUI Router via @page"
+    location: "src/Pages/"
+    notes: ".razor files with @page directive"
+  state_management:
+    pattern: "DI Service + Blazored.LocalStorage"
+    location: "src/Services/"
+    notes: "Cache-first, localStorage persistence"
+  testing:
+    framework: "xUnit + bUnit"
+    locations: ["JapaneseLearner.Tests/", "JapaneseLearner.E2ETests/"]
+impact_scope:
+  - file: "path/to/file.cs"
+    level: "DIRECT | INDIRECT | UNRELATED"
+    notes: "Mô tả ảnh hưởng"
 design_proposal:
   approach: "Cách tiếp cận tổng thể"
   affected_modules: ["Module1", "Module2"]
@@ -68,6 +119,10 @@ tasks:
     files: ["path/to/file"]
     depends_on: ["TASK-000"]
     why: "Cần hoàn tất TASK-000 trước vì..."
+conclusion:
+  status: "READY | NEED_MORE_INFO"
+  reason: "Lý do ngắn gọn"
+  missing_info: []
 ```
 
 ## QUY TẮC
@@ -75,6 +130,6 @@ tasks:
 - Output LUÔN ở dạng YAML contract hợp lệ (validate trước khi xuất)
 - Output YAML: KHÔNG dùng dấu tab — chỉ dùng spaces để thụt lề
 - Chuỗi nhiều dòng trong YAML dùng `|` (literal block) hoặc `>` (folded block)
-- Nếu không đủ thông tin để phân tích (thiếu mục tiêu/phạm vi/file đích/tiêu chí chấp nhận): `status: NEED_MORE_INFO` phải xuất hiện NGAY ĐẦU tiên trong output
+- Nếu không đủ thông tin để phân tích: `conclusion.status: NEED_MORE_INFO`, kèm `missing_info` chi tiết
 - Nếu không chắc chắn, ghi rõ "Cần kiểm tra thêm: ..."
-- Luôn kết luận bằng READY hoặc NEED_MORE_INFO
+- Luôn kết luận bằng conclusion.status READY hoặc NEED_MORE_INFO kèm reason

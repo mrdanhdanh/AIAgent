@@ -1,7 +1,7 @@
 ---
 name: gitguard
 description: Review source code trước khi push lên git — phát hiện secret, lỗi convention, lỗ hổng bảo mật, vi phạm quy tắc dự án. Tích hợp cơ chế blocking CRITICAL, cảnh báo MAJOR. Sử dụng câu lệnh /team-gitguard.
-schema_version: "1.0"
+schema_version: "2.0"
 ---
 
 # GitGuard — Pre-Push Source Code Review Skill
@@ -85,41 +85,110 @@ User request (/team-gitguard)
 
 ## QUY TRÌNH KIỂM TRA
 
-### Bước 1: Xác định phạm vi
+### Bước 1: Xác định phạm vi — 3-tier priority
 
-- Chạy `git status --short` lấy danh sách file thay đổi
-- Nếu user truyền đường dẫn cụ thể, chỉ review các file đó
-- Nếu không có file thay đổi → PASS ngay, không cần review
+Phạm vi review được ưu tiên theo thứ tự: **staged changes → unstaged modified → untracked files**.
+Chỉ review file liên quan đến diff, không quét toàn bộ repo (trừ khi có flag `--full`).
+
+1. **Staged changes** (`git diff --cached --name-only`) — ưu tiên cao nhất
+   - File đã được `git add` và chuẩn bị commit
+   - Chạy `git diff --cached` để lấy nội dung thay đổi
+
+2. **Unstaged modified** (`git diff --name-only`) — ưu tiên thứ hai
+   - File đã được tracking nhưng chưa staged
+   - Chạy `git diff` để lấy nội dung thay đổi
+
+3. **Untracked files** (`git ls-files --others --exclude-standard`) — ưu tiên thấp nhất
+   - File mới chưa được tracking
+   - Review toàn bộ nội dung file
+
+Nếu user truyền đường dẫn cụ thể → chỉ review các file đó (bỏ qua git diff).
+Nếu không có file thay đổi → **PASS** ngay, không cần review.
+Flag `--full` → review toàn bộ source code (không chỉ diff).
 
 ### Bước 2: Secrets scan (CRITICAL)
 
-Quét từng file với regex patterns:
+Mỗi phát hiện cần kèm: `evidence` (pattern khớp, che dấu 1 phần), `confidence` (HIGH/MEDIUM/LOW), `fix_hint` (cách sửa cụ thể).
 
-| Pattern | Mục tiêu |
-|---------|----------|
-| `(API[_-]?KEY|SECRET|TOKEN|PASSWORD|PASSWD|CONNECTION_STRING)\s*[:=]\s*["'][^"']+["']` | Hardcoded credentials |
-| `-----BEGIN\s+(RSA|EC|DSA|OPENSSH|PGP)\s+PRIVATE\s+KEY-----` | Private keys |
-| `ghp_[[:alnum:]]{36,}` | GitHub personal access tokens |
-| `sk-[[:alnum:]]{32,}` | OpenAI API keys |
-| `https?://[^:]+:[^@]+@` | URL-embedded credentials |
-| File extension `.env`, `*.key`, `*.pem`, `*.pfx`, `*.jks`, `secrets.json` | Sensitive files |
+Quét từng file với regex patterns (4 nhóm riêng biệt):
 
-Nếu tìm thấy bất kỳ secret nào → **BLOCKED** ngay lập tức.
+#### Nhóm 1: Secrets (API keys, tokens, private keys)
+
+| Pattern | Mục tiêu | Severity | Confidence |
+|---------|----------|----------|------------|
+| `ghp_[[:alnum:]]{36,}` | GitHub personal access tokens | CRITICAL | HIGH |
+| `sk-[[:alnum:]]{32,}` | OpenAI API keys | CRITICAL | HIGH |
+| `-----BEGIN\s+(RSA|EC|DSA|OPENSSH|PGP)\s+PRIVATE\s+KEY-----` | Private keys | CRITICAL | HIGH |
+
+#### Nhóm 2: Credentials (user/pass, connection strings)
+
+| Pattern | Mục tiêu | Severity | Confidence |
+|---------|----------|----------|------------|
+| `(API[_-]?KEY|SECRET|TOKEN|PASSWORD|PASSWD)\s*[:=]\s*["'][^"']+["']` | Hardcoded credentials | CRITICAL | HIGH |
+| `(CONNECTION_STRING|conn_string)\s*[:=]\s*["'][^"']+["']` | Database connection strings | CRITICAL | HIGH |
+| `https?://[^:]+:[^@]+@` | URL-embedded credentials | CRITICAL | HIGH |
+
+#### Nhóm 3: Sensitive files
+
+| Extension/Path | Lý do | Severity | Confidence |
+|----------------|-------|----------|------------|
+| `.env` | Environment variables | CRITICAL | HIGH |
+| `*.key`, `*.pem`, `*.pfx`, `*.jks` | Private key files | CRITICAL | HIGH |
+| `secrets.json` | Secret configuration | CRITICAL | HIGH |
+
+#### Nhóm 4: High-entropy strings
+
+| Pattern | Mục tiêu | Severity | Confidence |
+|---------|----------|----------|------------|
+| Entropy > 4.5 (base64, hex strings) | Mã hóa/encoded credentials | MAJOR | MEDIUM |
+| `[A-Za-z0-9+/=]{40,}` (base64-like) | Potential encoded secrets | MAJOR | MEDIUM |
+
+**Nếu tìm thấy bất kỳ secret/credential nào (Nhóm 1-3)** → **BLOCKED** ngay lập tức.
+**High-entropy strings (Nhóm 4)** → **WARNING** (cần kiểm tra thêm).
+**False positive patterns** (xem section FALSE POSITIVE RULES) → giảm confidence xuống LOW.
 
 ### Bước 3: Convention check (MAJOR)
 
-Đối chiếu với AGENTS.md và knowledge base:
+Mỗi vi phạm cần kèm: `evidence` (đoạn code phát hiện), `confidence` (HIGH/MEDIUM/LOW), `fix_hint` (cách sửa). Conventions được chia làm 4 nhóm: framework, architecture, testing, UI (xem chi tiết Output Contract).
 
-| Rule | Kiểm tra |
-|------|----------|
-| FluentUI, không MudBlazor | `grep -i "Mud\|MudBlazor"` trên file .razor/.cs |
-| Service-Interface DI | Kiểm tra `AddScoped<I.*, .*>` trong Program.cs |
-| Cache-first storage | Kiểm tra in-memory cache pattern |
-| Tri-state rendering | `isLoading` + `list.Count == 0` pattern |
-| Inline style blocks | `<style>` trong .razor (không CSS isolation) |
-| Vietnamese meanings | Vocabulary Meaning field |
+Đối chiếu với AGENTS.md và knowledge base (4 nhóm conventions):
+
+#### Framework Conventions
+
+| Rule | Kiểm tra | Severity |
+|------|----------|----------|
+| FluentUI 4.14.3, không MudBlazor | `grep -i "Mud\|MudBlazor"` trên .razor/.cs | MAJOR |
+| Dùng FluentButton, FluentSelect, FluentDialog | Kiểm tra component imports | MAJOR |
+| Dùng Appearance enum (.Accent, .Lightweight, .Neutral) | Kiểm tra class style | MAJOR |
+
+#### Architecture Conventions
+
+| Rule | Kiểm tra | Severity |
+|------|----------|----------|
+| Service-Interface DI (`IWordService`/`WordService`) | Kiểm tra `AddScoped<I.*, .*>` trong Program.cs | MAJOR |
+| Cache-first: in-memory → Blazored.LocalStorage → seed | Kiểm tra cache pattern trong service | MAJOR |
+| Write-through on every mutation | Kiểm tra write sau mutation | MAJOR |
+
+#### Testing Conventions
+
+| Rule | Kiểm tra | Severity |
+|------|----------|----------|
+| xUnit + bUnit framework | Kiểm tra project references | MAJOR |
+| Test class kế thừa `BunitTestBase` | Kiểm tra class declaration | MAJOR |
+| FluentUI JSInterop mock (9 modules) | Kiểm tra mock setup | MAJOR |
+| MockStorageService cho ILocalStorageService | Kiểm tra mock injection | MAJOR |
+
+#### UI Conventions
+
+| Rule | Kiểm tra | Severity |
+|------|----------|----------|
+| Tri-state: isLoading → list.Count==0 → data | Kiểm tra pattern trong .razor | MAJOR |
+| Inline `<style>` blocks (không CSS isolation) | Kiểm tra file .razor.css | MAJOR |
+| Vietnamese meanings cho vocabulary | Kiểm tra Meaning field | MINOR |
 
 ### Bước 4: Security scan (CRITICAL/MAJOR)
+
+Mỗi lỗ hổng cần kèm: `evidence` (code pattern phát hiện), `confidence` (HIGH/MEDIUM/LOW), `fix_hint` (cách sửa, ví dụ: "Dùng paramterized query thay vì string concatenation").
 
 | Type | Pattern | Severity |
 |------|---------|----------|
@@ -132,6 +201,8 @@ Nếu tìm thấy bất kỳ secret nào → **BLOCKED** ngay lập tức.
 
 ### Bước 5: Code quality check (MAJOR/MINOR)
 
+Mỗi issue cần kèm: `evidence` (code pattern), `confidence` (MEDIUM mặc định), `fix_hint` (gợi ý refactor).
+
 - Magic strings/numbers không có tên hằng
 - Dead code: comment block toàn bộ method, unused using/import
 - Empty catch block: `catch\s*(\[.*\])?\s*\{\s*\}`
@@ -139,52 +210,162 @@ Nếu tìm thấy bất kỳ secret nào → **BLOCKED** ngay lập tức.
 - Long method: > 100 lines trong 1 method
 - Missing null check: `.` access trên parameter không check null
 
-### Bước 6: Build & test check
+### Bước 6: Build & test check (conditional)
 
-- Nếu file `.cs` hoặc `.razor` thay đổi → chạy `dotnet build`
-- Nếu build FAIL → **BLOCKED**
-- Nếu có test project tương ứng → chạy `dotnet test`
-- Nếu test FAIL → **WARNING** (không block, nhưng khuyến nghị sửa)
+Điều kiện hóa dựa trên loại file thay đổi — chỉ chạy khi cần thiết:
+
+| Loại file thay đổi | Hành động | Điều kiện |
+|--------------------|-----------|-----------|
+| `*.cs`, `*.razor` (C# files) | Chạy `dotnet build` | Có ít nhất 1 file .cs/.razor thay đổi |
+| `*Test*.cs`, `*.Tests.csproj`, test files | Chạy `dotnet test` | Có test file thay đổi + build PASS |
+| Non-.NET files (`.md`, `.json`, `.yaml`, `.js`, `.ts`, `.css`) | **SKIP** build/test | Không có C# thay đổi |
+| Mixed (cả .NET + non-.NET) | Chạy build + test | Kiểm tra trên .NET files |
+
+Kết quả:
+- Build FAIL → **BLOCKED** (CRITICAL)
+- Test FAIL → **WARNING** (MAJOR, khuyến nghị sửa)
+- Build+test PASS hoặc SKIP → tiếp tục
 
 ---
 
 ## 6 KÊNH KIỂM TRA
 
-| # | Kênh | Mục tiêu | Severity lỗi | Hành động |
-|---|------|----------|-------------|-----------|
-| 1 | **Secrets scan** | API keys, tokens, passwords, private keys, .env | CRITICAL | BLOCKED |
-| 2 | **Convention check** | Coding conventions từ AGENTS.md | MAJOR | WARNING |
-| 3 | **Security scan** | XSS, SQL injection, unsafe deserialization | CRITICAL | BLOCKED |
-| 4 | **Security scan (minor)** | Debug leftover, hardcoded IP | MAJOR/MINOR | WARNING/PASS |
-| 5 | **Code quality** | Magic values, dead code, empty catch, deep nesting | MAJOR/MINOR | WARNING/PASS |
-| 6 | **Build & test** | dotnet build, dotnet test | CRITICAL/MAJOR | BLOCKED/WARNING |
+| # | Kênh | Mục tiêu | Severity lỗi | Verdict | Evidence req. |
+|---|------|----------|-------------|---------|---------------|
+| 1 | **Secrets scan** | API keys, tokens, passwords, private keys, .env | CRITICAL | BLOCKED | ✅ evidence, confidence, fix_hint |
+| 2 | **Convention check** | Coding conventions từ AGENTS.md (4 nhóm) | MAJOR | WARNING | ✅ evidence, confidence, fix_hint |
+| 3 | **Security scan** | XSS, SQL injection, unsafe deserialization | CRITICAL | BLOCKED | ✅ evidence, confidence, fix_hint |
+| 4 | **Security scan (minor)** | Debug leftover, hardcoded IP | MAJOR/MINOR | WARNING/PASS | ✅ evidence, confidence |
+| 5 | **Code quality** | Magic values, dead code, empty catch, deep nesting | MAJOR/MINOR | WARNING/PASS | ✅ evidence, confidence, fix_hint |
+| 6 | **Build & test** | dotnet build, dotnet test (conditional) | CRITICAL/MAJOR | BLOCKED/WARNING | N/A (status output) |
 
 ---
 
-## ĐỊNH DẠNG ĐẦU RA
+## ĐỊNH DẠNG ĐẦU RA — Enhanced Contract v2.0
+
+Output contract mở rộng với bằng chứng (evidence), phân loại chi tiết, và tổng hợp rủi ro.
+
+### Evidence & Confidence Schema
+
+Mỗi finding trong output contract có thể kèm:
+
+| Field | Type | Mô tả |
+|-------|------|-------|
+| `evidence` | string | Đoạn code/pattern khớp (trích dẫn ngắn) |
+| `confidence` | string | Độ tin cậy: `HIGH` / `MEDIUM` / `LOW` |
+| `fix_hint` | string | Gợi ý sửa lỗi cụ thể |
+
+- `confidence == LOW` → có thể là false positive, cần kiểm tra thêm
+- `confidence == HIGH` → pattern khớp chính xác, ít FP
+- `fix_hint` cung cấp hướng dẫn sửa ngắn gọn
+
+### YAML Contract
 
 ```yaml
 status: PASS | BLOCKED | WARNING
 summary: "Tổng kết review (2-3 câu)"
 
+# === REVIEW SCOPE ===
+review_scope:
+  staged: ["path/to/file1.cs"]       # git diff --cached
+  modified: ["path/to/file2.razor"]  # git diff (unstaged)
+  untracked: ["path/to/file3.ts"]    # git ls-files --others
+  full_scan: false                   # true nếu --full flag
+
+# === SECRETS (4 sub-groups) ===
 secrets:
   found: 0
   items:
     - file: "path/to/file"
       line: 42
-      pattern: "API_KEY | TOKEN | PRIVATE_KEY | PASSWORD | CONNECTION_STRING | ENV_FILE"
-      snippet: "api_key = \"sk-...abcd\""    # che dấu 1 phần
+      pattern: "API_KEY"
       severity: CRITICAL
+      evidence: "api_key = \"sk-...abcd\""    # che dấu 1 phần
+      confidence: HIGH
+      fix_hint: "Dùng environment variable thay vì hardcode"
 
-conventions:
-  violations:
+credentials:
+  found: 0
+  items:
     - file: "path/to/file"
+      line: 15
+      pattern: "PASSWORD"
+      severity: CRITICAL
+      evidence: "password = \"***\""
+      confidence: HIGH
+      fix_hint: "Dùng secret manager hoặc Windows Auth"
+
+sensitive_files:
+  found: 0
+  items:
+    - file: ".env"
+      line: 1
+      extension: ".env"
+      severity: CRITICAL
+      confidence: HIGH
+      fix_hint: "Thêm .env vào .gitignore và xóa khỏi git history"
+
+high_entropy_strings:
+  found: 0
+  items:
+    - file: "path/to/file"
+      line: 30
+      entropy: 4.8
+      severity: MAJOR
+      confidence: MEDIUM
+      evidence: "aGVsbG8gd29ybGQ="
+      fix_hint: "Xác nhận đây không phải token/credential"
+
+# === CONVENTIONS (4 sub-groups) ===
+framework_conventions:
+  violations:
+    - file: "path/to/file.razor"
       line: 10
       rule: "Dùng FluentUI, không dùng MudBlazor"
       detected: "MudButton"
       expected: "FluentButton"
       severity: MAJOR
+      evidence: "<MudButton>"
+      confidence: HIGH
+      fix_hint: "Thay MudButton bằng FluentButton"
 
+architecture_conventions:
+  violations:
+    - file: "path/to/Program.cs"
+      line: 20
+      rule: "Service-Interface DI — AddScoped trong Program.cs"
+      detected: "Thiếu registration cho IWordService"
+      expected: "builder.Services.AddScoped<IWordService, WordService>();"
+      severity: MAJOR
+      evidence: "Không tìm thấy AddScoped<IWordService"
+      confidence: HIGH
+      fix_hint: "Thêm dòng AddScoped<IWordService, WordService>() trong Program.cs"
+
+testing_conventions:
+  violations:
+    - file: "path/to/TestFile.cs"
+      line: 5
+      rule: "Test class kế thừa BunitTestBase"
+      detected: "Không thấy : BunitTestBase"
+      expected: "class MyTest : BunitTestBase"
+      severity: MAJOR
+      evidence: "class MyTest {"
+      confidence: MEDIUM
+      fix_hint: "Kế thừa BunitTestBase để có mock JSInterop"
+
+ui_conventions:
+  violations:
+    - file: "path/to/Page.razor"
+      line: 1
+      rule: "Tri-state rendering: isLoading + list.Count == 0"
+      detected: "Thiếu isLoading check"
+      expected: "@if (isLoading) { ... } else if (list.Count == 0) { ... } else { ... }"
+      severity: MAJOR
+      evidence: "Thiếu pattern isLoading"
+      confidence: HIGH
+      fix_hint: "Thêm isLoading state và tri-state rendering"
+
+# === SECURITY ===
 security:
   vulnerabilities:
     - file: "path/to/file"
@@ -192,8 +373,11 @@ security:
       type: "XSS | SQL_INJECTION | HARDCODED_CREDENTIAL | UNSAFE_DESERIALIZATION | PATH_TRAVERSAL | DEBUG_LEFTOVER | HARDCODED_IP"
       severity: CRITICAL | MAJOR | MINOR
       description: "Mô tả ngắn gọn"
-      suggestion: "Cách sửa cụ thể"
+      evidence: "Đoạn code vi phạm"
+      confidence: HIGH
+      fix_hint: "Cách sửa cụ thể"
 
+# === CODE QUALITY ===
 code_quality:
   issues:
     - file: "path/to/file"
@@ -201,17 +385,33 @@ code_quality:
       type: "MAGIC_VALUE | DEAD_CODE | EMPTY_CATCH | DEEP_NESTING | LONG_METHOD | MISSING_NULL_CHECK | MISSING_VALIDATION"
       severity: MAJOR | MINOR
       description: "Mô tả"
+      evidence: "Đoạn code vi phạm"
+      confidence: MEDIUM
+      fix_hint: "Gợi ý refactor"
 
+# === BUILD ===
 build:
   status: PASS | FAIL | SKIPPED
   command: "dotnet build JapaneseLearner\JapaneseLearner.csproj"
   error: "Chi tiết lỗi nếu FAIL"
+  triggered_by: ["*.cs", "*.razor"]    # Chạy khi có file C# thay đổi
 
+# === TESTS ===
 tests:
   status: PASS | FAIL | SKIPPED
   command: "dotnet test JapaneseLearner.Tests\JapaneseLearner.Tests.csproj"
   details: "n/m passed, x% coverage"
+  triggered_by: ["*Test*.cs", "*Test*.razor", "*Tests*"]  # Chạy khi có test files
 
+# === RISK SUMMARY ===
+risk_summary:
+  critical: 0
+  major: 0
+  minor: 0
+  risk_score: 0                    # = critical*10 + major*3 + minor*1
+needs_manual_review: false         # true nếu có LOW confidence findings
+
+# === FINAL VERDICT ===
 final_verdict: PASS | BLOCKED | WARNING
 blocking_issues: 0
 warning_issues: 0
@@ -222,21 +422,30 @@ recommendation: "Hành động đề xuất cho người dùng"
 
 ## PHÂN LOẠI SEVERITY & VERDICT
 
-### Severity
+### Severity-verdict mapping
 
-| Severity | Ý nghĩa | Ví dụ |
-|----------|---------|-------|
-| **CRITICAL** | Rủi ro cao nhất — secret bị lộ, lỗ hổng bảo mật, code không compile | API key trong source, SQL injection, build FAIL |
-| **MAJOR** | Vi phạm convention, code quality nghiêm trọng | Sai FluentUI, missing null check, debug leftover |
-| **MINOR** | Code quality nhẹ, style, warning | Magic number, long method, unused import |
+| Severity | Ý nghĩa | Ví dụ | Verdict | Hành động |
+|----------|---------|-------|---------|-----------|
+| **CRITICAL** | Rủi ro cao nhất — secret, lỗ hổng bảo mật, build FAIL | API key, SQL injection, compile error | **BLOCKED** | KHÔNG được push. Phải sửa trước |
+| **MAJOR** | Vi phạm convention, code quality nghiêm trọng | Sai FluentUI, missing null check, test FAIL | **WARNING** | Có thể push, nhưng khuyến nghị sửa |
+| **MINOR** | Code quality nhẹ, style, warning | Magic number, long method, unused import | **PASS** | Tự động PASS, chỉ log warning, không block |
 
-### Verdict
+### Risk Score
 
-| Verdict | Điều kiện | Hành động |
-|---------|-----------|-----------|
-| **BLOCKED** | Có CRITICAL issue (secrets, security vuln, build FAIL) | KHÔNG được push. Phải sửa trước |
-| **WARNING** | Không có CRITICAL, nhưng có MAJOR issue | Có thể push, nhưng khuyến nghị sửa |
-| **PASS** | Không có CRITICAL hoặc MAJOR issue | ✅ An toàn để push |
+Điểm rủi ro tổng thể giúp orchestrator dễ quyết định hành động:
+
+```
+risk_score = (critical_count × 10) + (major_count × 3) + (minor_count × 1)
+```
+
+| risk_score | Ý nghĩa | Verdict |
+|-----------|---------|---------|
+| 0 | Không có issue nào | PASS |
+| 1-5 | Chỉ có MINOR issues | PASS (minor warning) |
+| 6-20 | Có MAJOR issues | WARNING |
+| > 20 | Có CRITICAL issues | BLOCKED |
+
+Ví dụ: 1 CRITICAL + 2 MAJOR + 3 MINOR = 1×10 + 2×3 + 3×1 = 19 → WARNING
 
 ---
 
@@ -351,6 +560,38 @@ Các quy tắc an toàn bảo mật được GitGuard kiểm tra, tổng hợp t
 | Regex false positive | Ghi log "Có thể false positive: ..." nhưng vẫn BLOCKED nếu CRITICAL |
 | File nhị phân (.dll, .exe, .png) | Chỉ check tên file, không check nội dung |
 | File quá lớn (>1MB) | Skip nội dung, chỉ check tên file + extension |
+
+## FALSE POSITIVE RULES
+
+Các pattern dễ báo nhầm (false positive) và cách xử lý:
+
+| Pattern | Context dễ FP | Flag | Hành động |
+|---------|--------------|------|-----------|
+| `sk-` (OpenAI key pattern) | Test fixtures, sample code | `ignore_if_test_fixture: true` | Giảm confidence → LOW, thêm `manual_review_required: true` |
+| `pk-` (private key pattern) | Documentation, example config | `ignore_if_placeholder: true` | Giảm confidence → LOW nếu value là "your-key-here" |
+| `token` | Variable name, test token | `ignore_if_test_fixture: true` | Chỉ báo nếu value khớp regex `ghp_\|gho_\|ghu_` |
+| `password` | Test data, placeholder | `ignore_if_placeholder: true` | Bỏ qua nếu value là "password123", "changeme" |
+| `api_key = "..."` | Hardcoded trong source | `manual_review_required: true` | Vẫn BLOCKED, nhưng ghi log "Cần kiểm tra thêm" |
+| Connection string | appsettings.json (đã .gitignore) | `manual_review_required: true` | Kiểm tra file có trong .gitignore không |
+| High-entropy string (base64) | Serialized data, encoded content | `ignore_if_test_fixture: true` | Giảm confidence → MEDIUM, cần xác nhận |
+
+### Flags chi tiết
+
+| Flag | Ý nghĩa | Khi nào dùng |
+|------|---------|--------------|
+| `ignore_if_test_fixture: true` | Bỏ qua nếu pattern xuất hiện trong file test (path chứa `Test`, `test`, `spec`, `fixture`) | Test files, sample data, mock data |
+| `ignore_if_placeholder: true` | Bỏ qua nếu value là placeholder (chứa "your", "example", "changeme", "xxxx") | Config mẫu, documentation, hướng dẫn |
+| `manual_review_required: true` | Vẫn báo cáo nhưng cần người kiểm tra thủ công | Edge cases không chắc chắn, pattern gần đúng |
+
+### Decision tree cho FP
+
+```
+Pattern match found?
+├── File trong test directory? → ignore_if_test_fixture = true → confidence LOW, manual review
+├── Value là placeholder? → ignore_if_placeholder = true → SKIP, không báo
+├── Pattern chính xác (HIGH confidence)? → BLOCKED
+└── Pattern gần đúng (MEDIUM confidence)? → manual_review_required = true → WARNING
+```
 
 ## GHI CHÚ
 
