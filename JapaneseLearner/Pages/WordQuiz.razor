@@ -1,5 +1,6 @@
 @page "/words/quiz"
 @inject IWordService WordService
+@inject NavigationManager Navigation
 
 <PageTitle>Trắc nghiệm từ vựng - Japanese Learner</PageTitle>
 
@@ -48,7 +49,7 @@
             <div class="empty-icon"><FluentIcon Icon="@(Icons.Regular.Size20.Document)" /></div>
             <h3>Chưa có dữ liệu</h3>
             <p>Vui lòng thêm từ từ trang Admin để bắt đầu học.</p>
-            <FluentButton Appearance="@Appearance.Accent" Href="/admin" Class="mt-4">
+            <FluentButton Appearance="@Appearance.Accent" Class="mt-4" @onclick="@(() => Navigation.NavigateTo("/admin"))">
                 Đến Admin
             </FluentButton>
         </div>

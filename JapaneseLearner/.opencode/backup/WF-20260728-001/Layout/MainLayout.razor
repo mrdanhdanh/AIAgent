@@ -1,7 +1,6 @@
 ﻿@inherits LayoutComponentBase
 @implements IDisposable
 @inject IThemeService ThemeService
-@inject NavigationManager Navigation
 
 <FluentDesignTheme CustomColor="#E63946"
                    Mode="@(ThemeService.IsDarkMode ? DesignThemeModes.Dark : DesignThemeModes.Light)"
@@ -10,7 +9,7 @@
 <div class="app-layout" data-theme="@(ThemeService.IsDarkMode ? "dark" : "light")">
     <header class="app-bar">
         <div class="app-bar-inner">
-            <FluentButton Appearance="@Appearance.Lightweight" class="nav-btn home-btn" aria-label="Trang chủ" @onclick="@(() => Navigation.NavigateTo("/"))">
+            <FluentButton Appearance="@Appearance.Lightweight" class="nav-btn home-btn" Href="." aria-label="Trang chủ">
                 <FluentIcon Icon="@(Icons.Regular.Size20.BookContacts)" />
             </FluentButton>
             <h1 class="app-title">
@@ -45,10 +44,7 @@
             </div>
             <FluentNavMenu>
                 <FluentNavLink Href="." Match="NavLinkMatch.All" OnClick="CloseDrawer">
-                    <FluentIcon Icon="@(Icons.Regular.Size20.Home)" /> Trang chủ
-                </FluentNavLink>
-                <FluentNavLink Href="alphabet" OnClick="CloseDrawer">
-                    <FluentIcon Icon="@(Icons.Regular.Size20.TextGrammarWand)" /> Bảng chữ cái
+                    <FluentIcon Icon="@(Icons.Regular.Size20.BookContacts)" /> Hiragana / Katakana
                 </FluentNavLink>
                 <FluentNavLink Href="words" OnClick="CloseDrawer">
                     <FluentIcon Icon="@(Icons.Regular.Size20.Document)" /> Word Study

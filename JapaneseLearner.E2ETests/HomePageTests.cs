@@ -1,91 +1,105 @@
 namespace JapaneseLearner.E2ETests;
 
-public class HomePageTests : IClassFixture<AppFixture>
+[Collection("E2E")]
+public class HomePageTests
 {
     private readonly AppFixture _fixture;
     public HomePageTests(AppFixture fixture) => _fixture = fixture;
 
     [Fact]
-    public async Task Page_Loads_And_Shows_Character()
+    public async Task Page_Loads_With_Correct_Title()
     {
         await using var pw = await PlaywrightFixture.CreateAsync();
         await pw.Page.GotoAsync(_fixture.ServerUrl);
 
-        await pw.Page.WaitForSelectorAsync(".japanese-char");
-        var charText = await pw.Page.TextContentAsync(".japanese-char");
-        Assert.False(string.IsNullOrWhiteSpace(charText));
-    }
-
-    [Fact]
-    public async Task Typing_Answer_And_Clicking_Check_Shows_Feedback()
-    {
-        await using var pw = await PlaywrightFixture.CreateAsync();
-        await pw.Page.GotoAsync(_fixture.ServerUrl);
-
-        await pw.Page.WaitForSelectorAsync(".romaji-input input");
-        await pw.Page.FillAsync(".romaji-input input", "a");
-        await pw.Page.ClickAsync("text=Kiểm tra");
-
-        var feedback = pw.Page.Locator(".feedback");
-        await feedback.WaitForAsync(new() { Timeout = 5000 });
-        Assert.True(await feedback.IsVisibleAsync());
-    }
-
-    [Fact]
-    public async Task Wrong_Answer_Shows_Correct_Romaji()
-    {
-        await using var pw = await PlaywrightFixture.CreateAsync();
-        await pw.Page.GotoAsync(_fixture.ServerUrl);
-
-        await pw.Page.WaitForSelectorAsync(".romaji-input input");
-        await pw.Page.FillAsync(".romaji-input input", "---wrong---");
-        await pw.Page.ClickAsync("text=Kiểm tra");
-
-        await pw.Page.WaitForSelectorAsync("text=Đáp án đúng:");
-        Assert.True(await pw.Page.Locator("text=Đáp án đúng:").IsVisibleAsync());
-    }
-
-    [Fact]
-    public async Task Next_Button_Appears_After_Answer()
-    {
-        await using var pw = await PlaywrightFixture.CreateAsync();
-        await pw.Page.GotoAsync(_fixture.ServerUrl);
-
-        await pw.Page.WaitForSelectorAsync(".romaji-input input");
-        await pw.Page.FillAsync(".romaji-input input", "a");
-        await pw.Page.ClickAsync("text=Kiểm tra");
-
-        await pw.Page.WaitForSelectorAsync("text=Tiếp →", new() { Timeout = 5000 });
-        Assert.True(await pw.Page.Locator("text=Tiếp →").IsVisibleAsync());
-    }
-
-    [Fact]
-    public async Task Next_Button_Loads_Next_Character()
-    {
-        await using var pw = await PlaywrightFixture.CreateAsync();
-        await pw.Page.GotoAsync(_fixture.ServerUrl);
-
-        await pw.Page.WaitForSelectorAsync(".japanese-char");
-        var firstChar = await pw.Page.TextContentAsync(".japanese-char");
-
-        await pw.Page.WaitForSelectorAsync(".romaji-input input");
-        await pw.Page.FillAsync(".romaji-input input", "---wrong---");
-        await pw.Page.ClickAsync("text=Kiểm tra");
-        await pw.Page.WaitForSelectorAsync("text=Tiếp →");
-        await pw.Page.ClickAsync("text=Tiếp →");
-        await Task.Delay(500);
-
-        var secondChar = await pw.Page.TextContentAsync(".japanese-char");
-        Assert.NotEqual(firstChar, secondChar);
-    }
-
-    [Fact]
-    public async Task Title_Is_Displayed()
-    {
-        await using var pw = await PlaywrightFixture.CreateAsync();
-        await pw.Page.GotoAsync(_fixture.ServerUrl);
+        // Wait for Blazor to render and update the page title
+        await pw.Page.WaitForSelectorAsync(".hero-title", new() { Timeout = 15000 });
+        await Task.Delay(1000);
 
         var title = await pw.Page.TitleAsync();
-        Assert.Equal("Japanese Learner", title);
+        Assert.Equal("Japanese Learner — Học tiếng Nhật", title);
+    }
+
+    [Fact]
+    public async Task Hero_Title_Is_Displayed()
+    {
+        await using var pw = await PlaywrightFixture.CreateAsync();
+        await pw.Page.GotoAsync(_fixture.ServerUrl);
+
+        await pw.Page.WaitForSelectorAsync(".hero-title");
+        var titleText = await pw.Page.TextContentAsync(".hero-title");
+        Assert.Equal("Japanese Learner", titleText);
+    }
+
+    [Fact]
+    public async Task Hero_Subtitle_Is_Displayed()
+    {
+        await using var pw = await PlaywrightFixture.CreateAsync();
+        await pw.Page.GotoAsync(_fixture.ServerUrl);
+
+        await pw.Page.WaitForSelectorAsync(".hero-subtitle");
+        Assert.True(await pw.Page.Locator(".hero-subtitle").IsVisibleAsync());
+    }
+
+    [Fact]
+    public async Task Navigation_Cards_Are_Displayed()
+    {
+        await using var pw = await PlaywrightFixture.CreateAsync();
+        await pw.Page.GotoAsync(_fixture.ServerUrl);
+
+        await pw.Page.WaitForSelectorAsync(".nav-card");
+        var cards = pw.Page.Locator(".nav-card");
+        Assert.Equal(5, await cards.CountAsync());
+    }
+
+    [Fact]
+    public async Task Navigation_Cards_Have_Expected_Titles()
+    {
+        await using var pw = await PlaywrightFixture.CreateAsync();
+        await pw.Page.GotoAsync(_fixture.ServerUrl);
+
+        await pw.Page.WaitForSelectorAsync(".nav-card-title");
+        var titles = pw.Page.Locator(".nav-card-title");
+        var expected = new[] { "Bảng chữ cái", "Từ vựng", "Quiz từ vựng", "Kanji", "Quản trị" };
+
+        Assert.Equal(expected.Length, await titles.CountAsync());
+        for (int i = 0; i < expected.Length; i++)
+        {
+            var text = await titles.Nth(i).TextContentAsync();
+            Assert.Equal(expected[i], text);
+        }
+    }
+
+    [Fact]
+    public async Task All_Cards_Have_Navigation_Buttons()
+    {
+        await using var pw = await PlaywrightFixture.CreateAsync();
+        await pw.Page.GotoAsync(_fixture.ServerUrl);
+
+        await pw.Page.WaitForSelectorAsync(".nav-card-btn");
+        var buttons = pw.Page.Locator(".nav-card-btn");
+        Assert.Equal(5, await buttons.CountAsync());
+    }
+
+    [Fact]
+    public async Task Navigate_To_Alphabet_Shows_Flashcard()
+    {
+        await using var pw = await PlaywrightFixture.CreateAsync();
+        // Navigate directly via URL to avoid SPA link rendering issues
+        await pw.Page.GotoAsync($"{_fixture.ServerUrl}/alphabet");
+
+        // Wait for the alphabet page flashcard content to render
+        await pw.Page.WaitForSelectorAsync(".japanese-char-display", new() { Timeout = 15000 });
+        Assert.Contains("/alphabet", pw.Page.Url);
+    }
+
+    [Fact]
+    public async Task Hero_Section_Has_Book_Icon()
+    {
+        await using var pw = await PlaywrightFixture.CreateAsync();
+        await pw.Page.GotoAsync(_fixture.ServerUrl);
+
+        await pw.Page.WaitForSelectorAsync(".hero-icon");
+        Assert.True(await pw.Page.Locator(".hero-icon").IsVisibleAsync());
     }
 }

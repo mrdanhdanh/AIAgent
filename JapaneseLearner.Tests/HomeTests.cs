@@ -1,178 +1,84 @@
-using System.Reflection;
 using Bunit;
+using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.DependencyInjection;
-using JapaneseLearner.Models;
-using JapaneseLearner.Services;
 using JapaneseLearner.Tests.TestHelpers;
-using Moq;
 
 namespace JapaneseLearner.Tests;
 
 public class HomeTests : BunitTestBase
 {
-    private static Mock<ICharService> CreateMockCharService(string romaji = "a")
+    [Fact]
+    public void Render_ShowsWelcomeTitle()
     {
-        var mock = new Mock<ICharService>();
-        mock.Setup(s => s.GetByTypeAsync("All"))
-            .ReturnsAsync(new List<JapaneseChar> { new() { Id = 1, Character = "あ", Romaji = romaji, Type = "Hiragana" } });
-        return mock;
-    }
+        var cut = Context.Render<JapaneseLearner.Pages.Home>();
 
-    private static void SetField<T>(T instance, string name, object value)
-    {
-        typeof(T).GetField(name, BindingFlags.NonPublic | BindingFlags.Instance)!.SetValue(instance, value);
-    }
-
-    private static object? GetField<T>(T instance, string name)
-    {
-        return typeof(T).GetField(name, BindingFlags.NonPublic | BindingFlags.Instance)!.GetValue(instance);
-    }
-
-    private static Task RunAsync<T>(T instance, string methodName)
-    {
-        return (Task)typeof(T).GetMethod(methodName, BindingFlags.NonPublic | BindingFlags.Instance)!.Invoke(instance, null)!;
+        Assert.Contains("Japanese Learner", cut.Markup);
     }
 
     [Fact]
-    public void Render_ShowsLoading()
+    public void Render_ShowsNavigationCards()
     {
-        var mockCharService = new Mock<ICharService>();
-        mockCharService.Setup(s => s.GetByTypeAsync("All"))
-            .ReturnsAsync(new List<JapaneseChar> { new() { Id = 1, Character = "あ", Romaji = "a", Type = "Hiragana" } });
-        Context.Services.AddScoped(_ => mockCharService.Object);
-
         var cut = Context.Render<JapaneseLearner.Pages.Home>();
 
-        Assert.Contains("Luyện tập", cut.Markup);
+        // Should have 5 navigation cards
+        Assert.Contains("Bảng chữ cái", cut.Markup);
+        Assert.Contains("Từ vựng", cut.Markup);
+        Assert.Contains("Quiz từ vựng", cut.Markup);
+        Assert.Contains("Kanji", cut.Markup);
+        Assert.Contains("Quản trị", cut.Markup);
     }
 
     [Fact]
-    public void Render_ShowsEmptyState_WhenNoChars()
+    public void Render_HasFiveNavButtons()
     {
-        var mockCharService = new Mock<ICharService>();
-        mockCharService.Setup(s => s.GetByTypeAsync("All"))
-            .ReturnsAsync(new List<JapaneseChar>());
-        Context.Services.AddScoped(_ => mockCharService.Object);
-
         var cut = Context.Render<JapaneseLearner.Pages.Home>();
 
-        Assert.Contains("Chưa có dữ liệu", cut.Markup);
+        var buttons = cut.FindAll("fluent-button, button");
+
+        Assert.Equal(5, buttons.Count);
     }
 
     [Fact]
-    public void Render_DisplaysChar_WhenDataExists()
+    public void ClickAlphabet_NavigatesToAlphabet()
     {
-        var mockCharService = new Mock<ICharService>();
-        mockCharService.Setup(s => s.GetByTypeAsync("All"))
-            .ReturnsAsync(new List<JapaneseChar> { new() { Id = 1, Character = "あ", Romaji = "a", Type = "Hiragana" } });
-        Context.Services.AddScoped(_ => mockCharService.Object);
-
+        var navMan = Context.Services.GetRequiredService<NavigationManager>();
         var cut = Context.Render<JapaneseLearner.Pages.Home>();
 
-        Assert.Contains("あ", cut.Markup);
+        cut.FindAll("fluent-button, button")[0].Click();
+
+        Assert.EndsWith("/alphabet", navMan.Uri);
     }
 
     [Fact]
-    public async Task CheckAnswer_CorrectInput_ShowsCorrectFeedback()
+    public void ClickWords_NavigatesToWords()
     {
-        var mock = CreateMockCharService();
-        Context.Services.AddScoped(_ => mock.Object);
+        var navMan = Context.Services.GetRequiredService<NavigationManager>();
         var cut = Context.Render<JapaneseLearner.Pages.Home>();
 
-        Task checkTask = null!;
-        await cut.InvokeAsync(() =>
-        {
-            SetField(cut.Instance, "userInput", "a");
-            checkTask = RunAsync(cut.Instance, "CheckAnswer");
-        });
-        cut.Render();
-        Assert.Contains("Chính xác", cut.Markup);
-        await checkTask;
+        cut.FindAll("fluent-button, button")[1].Click();
+
+        Assert.EndsWith("/words", navMan.Uri);
     }
 
     [Fact]
-    public async Task CheckAnswer_WrongInput_ShowsWrongFeedback()
+    public void ClickKanji_NavigatesToKanji()
     {
-        var mock = CreateMockCharService();
-        Context.Services.AddScoped(_ => mock.Object);
+        var navMan = Context.Services.GetRequiredService<NavigationManager>();
         var cut = Context.Render<JapaneseLearner.Pages.Home>();
 
-        await cut.InvokeAsync(() =>
-        {
-            SetField(cut.Instance, "userInput", "wrong");
-            RunAsync(cut.Instance, "CheckAnswer");
-        });
-        cut.Render();
-        Assert.Contains("Đáp án đúng", cut.Markup);
+        cut.FindAll("fluent-button, button")[3].Click();
+
+        Assert.EndsWith("/kanji", navMan.Uri);
     }
 
     [Fact]
-    public async Task CheckAnswer_TrimsWhitespace()
+    public void ClickAdmin_NavigatesToAdmin()
     {
-        var mock = CreateMockCharService();
-        Context.Services.AddScoped(_ => mock.Object);
+        var navMan = Context.Services.GetRequiredService<NavigationManager>();
         var cut = Context.Render<JapaneseLearner.Pages.Home>();
 
-        Task checkTask = null!;
-        await cut.InvokeAsync(() =>
-        {
-            SetField(cut.Instance, "userInput", " a ");
-            checkTask = RunAsync(cut.Instance, "CheckAnswer");
-        });
-        await checkTask;
-        var correctCount = (int)GetField(cut.Instance, "correctCount")!;
-        Assert.Equal(1, correctCount);
-    }
+        cut.FindAll("fluent-button, button")[4].Click();
 
-    [Fact]
-    public async Task CheckAnswer_IsCaseInsensitive()
-    {
-        var mock = CreateMockCharService();
-        Context.Services.AddScoped(_ => mock.Object);
-        var cut = Context.Render<JapaneseLearner.Pages.Home>();
-
-        Task checkTask = null!;
-        await cut.InvokeAsync(() =>
-        {
-            SetField(cut.Instance, "userInput", "A");
-            checkTask = RunAsync(cut.Instance, "CheckAnswer");
-        });
-        await checkTask;
-        var correctCount = (int)GetField(cut.Instance, "correctCount")!;
-        Assert.Equal(1, correctCount);
-    }
-
-    [Fact]
-    public async Task CorrectAnswer_IncrementsStat()
-    {
-        var mock = CreateMockCharService();
-        Context.Services.AddScoped(_ => mock.Object);
-        var cut = Context.Render<JapaneseLearner.Pages.Home>();
-
-        Task checkTask = null!;
-        await cut.InvokeAsync(() =>
-        {
-            SetField(cut.Instance, "userInput", "a");
-            checkTask = RunAsync(cut.Instance, "CheckAnswer");
-        });
-        await checkTask;
-        var correctCount = (int)GetField(cut.Instance, "correctCount")!;
-        Assert.Equal(1, correctCount);
-    }
-
-    [Fact]
-    public async Task WrongAnswer_IncrementsWrongStat()
-    {
-        var mock = CreateMockCharService();
-        Context.Services.AddScoped(_ => mock.Object);
-        var cut = Context.Render<JapaneseLearner.Pages.Home>();
-
-        await cut.InvokeAsync(() =>
-        {
-            SetField(cut.Instance, "userInput", "wrong");
-            RunAsync(cut.Instance, "CheckAnswer");
-        });
-        var wrongCount = (int)GetField(cut.Instance, "wrongCount")!;
-        Assert.Equal(1, wrongCount);
+        Assert.EndsWith("/admin", navMan.Uri);
     }
 }

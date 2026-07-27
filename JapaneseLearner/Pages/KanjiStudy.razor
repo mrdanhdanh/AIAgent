@@ -45,7 +45,7 @@
             <div class="empty-icon"><FluentIcon Icon="@(Icons.Regular.Size20.Compose)" /></div>
             <h3>Chưa có dữ liệu</h3>
             <p>Vui lòng thêm Kanji từ trang Admin để bắt đầu học.</p>
-            <FluentButton Appearance="@Appearance.Accent" Href="/admin" Class="mt-4">
+            <FluentButton Appearance="@Appearance.Accent" Class="mt-4" @onclick="@(() => Navigation.NavigateTo("/admin"))">
                 Đến Admin
             </FluentButton>
         </div>

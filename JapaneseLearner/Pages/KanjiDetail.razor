@@ -16,7 +16,7 @@
         <div class="empty-state">
             <div class="empty-icon"><FluentIcon Icon="@(Icons.Regular.Size20.Compose)" /></div>
             <h3>Không tìm thấy Kanji</h3>
-            <FluentButton Appearance="@Appearance.Accent" Href="/kanji" Class="mt-4">
+            <FluentButton Appearance="@Appearance.Accent" Class="mt-4" @onclick="@(() => Navigation.NavigateTo("/kanji"))">
                 ← Quay lại danh sách
             </FluentButton>
         </div>
@@ -24,7 +24,7 @@
     else
     {
         <div class="detail-header">
-            <FluentButton Appearance="@Appearance.Lightweight" Href="/kanji" Class="back-btn">
+            <FluentButton Appearance="@Appearance.Lightweight" Class="back-btn" @onclick="@(() => Navigation.NavigateTo("/kanji"))">
                 ← Quay lại
             </FluentButton>
         </div>

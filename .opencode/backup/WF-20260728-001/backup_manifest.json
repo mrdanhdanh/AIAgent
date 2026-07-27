@@ -1,61 +1,17 @@
 ﻿{
-    "created_at":  "2026-07-28T01:13:02.1323995+07:00",
+    "created_at":  "2026-07-28T01:38:29.8870378+07:00",
     "workflow_id":  "WF-20260728-001",
     "tool_version":  "2.0.0",
     "files":  [
                   {
-                      "hash":  "09138F1EE953",
-                      "backup_path":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\backup\\WF-20260728-001\\.opencode\\commands\\team.md",
-                      "original_path":  ".opencode\\commands\\team.md",
+                      "hash":  "B8422C6B0ED0",
+                      "backup_path":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\backup\\WF-20260728-001\\JapaneseLearner.Tests\\HomeTests.cs",
+                      "original_path":  "JapaneseLearner.Tests\\HomeTests.cs",
                       "error":  null,
-                      "sha256":  "09138F1EE953F621741E27A81C86632FD1BABC5D16E7367D82FF0E285C64BF51",
-                      "source_path":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\commands\\team.md",
+                      "sha256":  "B8422C6B0ED0990BF1D5F92A96878A9FD66FDE4A14E9888972713D4268E4E4A5",
+                      "source_path":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\JapaneseLearner.Tests\\HomeTests.cs",
                       "status":  "SUCCESS",
-                      "size_bytes":  26219,
-                      "skip_reason":  null
-                  },
-                  {
-                      "hash":  "E3FDC1FBF940",
-                      "backup_path":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\backup\\WF-20260728-001\\.opencode\\commands\\team-build.md",
-                      "original_path":  ".opencode\\commands\\team-build.md",
-                      "error":  null,
-                      "sha256":  "E3FDC1FBF940665D4C1B192C2EFE6B5868EDD0E83011DC790C946B72F12A0597",
-                      "source_path":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\commands\\team-build.md",
-                      "status":  "SUCCESS",
-                      "size_bytes":  9593,
-                      "skip_reason":  null
-                  },
-                  {
-                      "hash":  "D4BD7B543EBA",
-                      "backup_path":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\backup\\WF-20260728-001\\.opencode\\agents\\builder.md",
-                      "original_path":  ".opencode\\agents\\builder.md",
-                      "error":  null,
-                      "sha256":  "D4BD7B543EBA99CEB0A97FD3CFFB0F36E8D1D28B09115541D17A85186E3A705A",
-                      "source_path":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\agents\\builder.md",
-                      "status":  "SUCCESS",
-                      "size_bytes":  2405,
-                      "skip_reason":  null
-                  },
-                  {
-                      "hash":  "B6AC7E8BC09D",
-                      "backup_path":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\backup\\WF-20260728-001\\.opencode\\agents\\reviewer.md",
-                      "original_path":  ".opencode\\agents\\reviewer.md",
-                      "error":  null,
-                      "sha256":  "B6AC7E8BC09D46A34F151AA2DDB75E3A233E98BEE4C740F0C6D1D7FD3D15F99F",
-                      "source_path":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\agents\\reviewer.md",
-                      "status":  "SUCCESS",
-                      "size_bytes":  2254,
-                      "skip_reason":  null
-                  },
-                  {
-                      "hash":  "6DDF0B82C0A9",
-                      "backup_path":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\backup\\WF-20260728-001\\.opencode\\scripts\\sync-system-docs.ps1",
-                      "original_path":  ".opencode\\scripts\\sync-system-docs.ps1",
-                      "error":  null,
-                      "sha256":  "6DDF0B82C0A9C42809176FC30BA9517AD288599B3F9755368FBF4E989390AA57",
-                      "source_path":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\scripts\\sync-system-docs.ps1",
-                      "status":  "SUCCESS",
-                      "size_bytes":  24418,
+                      "size_bytes":  5953,
                       "skip_reason":  null
                   }
               ]

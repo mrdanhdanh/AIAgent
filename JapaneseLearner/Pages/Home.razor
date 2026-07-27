@@ -1,216 +1,156 @@
 ﻿@page "/"
-@inject ICharService CharService
+@inject NavigationManager Nav
 
-<PageTitle>Japanese Learner</PageTitle>
+<PageTitle>Japanese Learner — Học tiếng Nhật</PageTitle>
 
-<div class="study-container">
-    <div class="study-header">
-        <div class="study-header-title">
-            <div class="study-header-icon" aria-hidden="true">
-                <span>あ</span>
-            </div>
-            <div>
-                <h1>Luyện tập</h1>
-                <p class="study-header-sub">Gõ phiên âm Romaji của chữ hiển thị</p>
-            </div>
+<div class="home-container">
+    <div class="hero-section">
+        <div class="hero-icon" aria-hidden="true">
+            <FluentIcon Icon="@(Icons.Regular.Size48.BookContacts)" />
         </div>
-        <div class="study-header-stats">
-            <div class="stat-box stat-correct">
-                <span class="stat-num">@correctCount</span>
-                <span class="stat-label">Đúng</span>
-            </div>
-            <div class="stat-box stat-wrong">
-                <span class="stat-num">@wrongCount</span>
-                <span class="stat-label">Sai</span>
-            </div>
-        </div>
+        <h1 class="hero-title">Japanese Learner</h1>
+        <p class="hero-subtitle">
+            Ứng dụng học tiếng Nhật toàn diện — từ bảng chữ cái, từ vựng đến Kanji.
+            Luyện tập mỗi ngày để tiến bộ nhanh hơn!
+        </p>
     </div>
 
-    @if (isLoading)
-    {
-        <div class="loading-wrap">
-            <FluentProgressRing />
-        </div>
-    }
-    else if (availableChars.Count == 0)
-    {
-        <div class="empty-state">
-            <div class="empty-icon"><FluentIcon Icon="@(Icons.Regular.Size20.BookContacts)" /></div>
-            <h3>Chưa có dữ liệu</h3>
-            <p>Vui lòng thêm chữ cái từ trang Admin để bắt đầu học.</p>
-            <FluentButton Appearance="@Appearance.Accent" Href="/admin" Class="mt-4">
-                Đến Admin
+    <div class="nav-grid">
+        <div class="nav-card" data-color="alphabet">
+            <div class="nav-card-icon">
+                <FluentIcon Icon="@(Icons.Regular.Size32.BookContacts)" />
+            </div>
+            <h2 class="nav-card-title">Bảng chữ cái</h2>
+            <p class="nav-card-desc">Học Hiragana và Katakana qua flashcard. Luyện gõ Romaji để ghi nhớ mặt chữ.</p>
+            <FluentButton Appearance="@Appearance.Accent" Class="nav-card-btn" @onclick="@(() => Nav.NavigateTo("/alphabet"))">
+                Bắt đầu
             </FluentButton>
         </div>
-    }
-    else
-    {
-        <div class="filter-row">
-            <FluentSelect TOption="string" @bind-Value="selectedType"
-                          @bind-Value:after="OnTypeChanged"
-                          Class="filter-select">
-                <FluentOption TOption="string" Value="@("All")">Tất cả</FluentOption>
-                <FluentOption TOption="string" Value="@("Hiragana")">Hiragana</FluentOption>
-                <FluentOption TOption="string" Value="@("Katakana")">Katakana</FluentOption>
-            </FluentSelect>
+
+        <div class="nav-card" data-color="words">
+            <div class="nav-card-icon">
+                <FluentIcon Icon="@(Icons.Regular.Size32.Document)" />
+            </div>
+            <h2 class="nav-card-title">Từ vựng</h2>
+            <p class="nav-card-desc">Học từ vựng tiếng Nhật theo chủ đề với flashcard và phiên âm chi tiết.</p>
+            <FluentButton Appearance="@Appearance.Accent" Class="nav-card-btn" @onclick="@(() => Nav.NavigateTo("/words"))">
+                Bắt đầu
+            </FluentButton>
         </div>
 
-        <div class="study-card @(isCorrect == true ? "card-correct" : isCorrect == false ? "card-wrong" : "")">
-            <div class="char-display">
-                <span class="japanese-char-display">@currentChar?.Character</span>
+        <div class="nav-card" data-color="quiz">
+            <div class="nav-card-icon">
+                <FluentIcon Icon="@(Icons.Regular.Size32.Target)" />
             </div>
-
-            <div class="romaji-hint" aria-hidden="true">
-                <span class="hint-dot @(selectedType == "Hiragana" || selectedType == "All" ? "active" : "")">ひ</span>
-                <span class="hint-dot @(selectedType == "Katakana" || selectedType == "All" ? "active" : "")">カ</span>
-            </div>
+            <h2 class="nav-card-title">Quiz từ vựng</h2>
+            <p class="nav-card-desc">Kiểm tra kiến thức từ vựng với câu hỏi trắc nghiệm nhiều lựa chọn.</p>
+            <FluentButton Appearance="@Appearance.Accent" Class="nav-card-btn" @onclick="@(() => Nav.NavigateTo("/words/quiz"))">
+                Bắt đầu
+            </FluentButton>
         </div>
 
-        @if (isCorrect == true)
-        {
-            <div class="feedback feedback-correct">
-                    <span class="feedback-icon"><FluentIcon Icon="@(Icons.Regular.Size20.Checkmark)" /></span>
-                Chính xác!
+        <div class="nav-card" data-color="kanji">
+            <div class="nav-card-icon">
+                <FluentIcon Icon="@(Icons.Regular.Size32.Compose)" />
             </div>
-        }
-        else if (isCorrect == false)
-        {
-            <div class="feedback feedback-wrong">
-                <span class="feedback-icon"><FluentIcon Icon="@(Icons.Regular.Size20.Dismiss)" /></span>
-                Đáp án đúng: <strong>@currentChar?.Romaji</strong>
-            </div>
-        }
-
-        <div class="input-row">
-            <div class="input-wrap">
-                <FluentTextField @ref="inputRef" @bind-Value="userInput"
-                                 Placeholder="Nhập Romaji..."
-                                 Class="romaji-input"
-                                 Disabled="@(isCorrect == true)"
-                                 @onkeydown="HandleKeyDown" />
-            </div>
-            @if (isCorrect == true || isCorrect == false)
-            {
-                <FluentButton Appearance="@Appearance.Accent" OnClick="NextChar" Class="action-btn">
-                    Tiếp →
-                </FluentButton>
-            }
-            else
-            {
-                <FluentButton Appearance="@Appearance.Accent" OnClick="CheckAnswer"
-                             Disabled="string.IsNullOrWhiteSpace(userInput)" Class="action-btn">
-                    Kiểm tra
-                </FluentButton>
-            }
+            <h2 class="nav-card-title">Kanji</h2>
+            <p class="nav-card-desc">Tra cứu và học các chữ Kanji với âm đọc, nghĩa và ví dụ minh họa.</p>
+            <FluentButton Appearance="@Appearance.Accent" Class="nav-card-btn" @onclick="@(() => Nav.NavigateTo("/kanji"))">
+                Bắt đầu
+            </FluentButton>
         </div>
-    }
+
+        <div class="nav-card" data-color="admin">
+            <div class="nav-card-icon">
+                <FluentIcon Icon="@(Icons.Regular.Size32.Settings)" />
+            </div>
+            <h2 class="nav-card-title">Quản trị</h2>
+            <p class="nav-card-desc">Quản lý dữ liệu: thêm, sửa, xóa chữ cái và từ vựng trong hệ thống.</p>
+            <FluentButton Appearance="@Appearance.Accent" Class="nav-card-btn" @onclick="@(() => Nav.NavigateTo("/admin"))">
+                Đi đến
+            </FluentButton>
+        </div>
+    </div>
 </div>
 
 <style>
-    .study-container {
-        max-width: 520px;
+    .home-container {
+        max-width: 900px;
         margin: 0 auto;
+        padding: 2rem 1rem;
     }
-    .char-display {
-        min-height: 120px;
+
+    .hero-section {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+
+    .hero-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        color: var(--accent-fill-rest);
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin: 0.5rem 0;
+        color: var(--neutral-foreground-rest);
+    }
+
+    .hero-subtitle {
+        font-size: 1.1rem;
+        color: var(--neutral-foreground-hint);
+        max-width: 600px;
+        margin: 1rem auto 0;
+        line-height: 1.6;
+    }
+
+    .nav-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .nav-card {
+        background: var(--neutral-layer-3);
+        border-radius: 12px;
+        padding: 1.5rem;
         display: flex;
+        flex-direction: column;
         align-items: center;
-        justify-content: center;
+        text-align: center;
+        transition: transform 0.2s, box-shadow 0.2s;
+        border: 1px solid var(--neutral-stroke-divider-rest);
     }
-    .japanese-char-display {
-        font-size: 5rem;
-        line-height: 1.2;
-        font-family: var(--font-family);
-        color: var(--text-primary);
-        transition: transform 0.2s;
-        user-select: none;
+
+    .nav-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 24px rgba(0,0,0,0.12);
     }
-    .study-card:hover .japanese-char-display {
-        transform: scale(1.02);
+
+    .nav-card-icon {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        color: var(--accent-fill-rest);
     }
-    .input-row {
-        align-items: stretch;
+
+    .nav-card-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin: 0 0 0.5rem;
+        color: var(--neutral-foreground-rest);
     }
-    .action-btn {
-        height: auto;
+
+    .nav-card-desc {
+        font-size: 0.9rem;
+        color: var(--neutral-foreground-hint);
+        margin: 0 0 1.25rem;
+        line-height: 1.5;
+        flex-grow: 1;
+    }
+
+    .nav-card-btn {
+        width: 100%;
     }
 </style>
-
-@code {
-    private List<JapaneseChar> availableChars = new();
-    private JapaneseChar? currentChar;
-    private string userInput = "";
-    private bool? isCorrect;
-    private string selectedType = "All";
-    private int correctCount;
-    private int wrongCount;
-    private bool isLoading = true;
-    private FluentTextField inputRef = default!;
-
-    protected override async Task OnInitializedAsync()
-    {
-        await LoadChars();
-        isLoading = false;
-    }
-
-    private async Task LoadChars()
-    {
-        availableChars = await CharService.GetByTypeAsync(selectedType);
-        await PickRandomChar();
-    }
-
-    private async Task PickRandomChar()
-    {
-        if (availableChars.Count == 0) return;
-        var rng = new Random();
-        currentChar = availableChars[rng.Next(availableChars.Count)];
-        userInput = "";
-        isCorrect = null;
-        if (inputRef != null)
-            inputRef.FocusAsync();
-    }
-
-    private async Task CheckAnswer()
-    {
-        if (currentChar == null || string.IsNullOrWhiteSpace(userInput)) return;
-
-        if (userInput.Trim().ToLowerInvariant() == currentChar.Romaji.ToLowerInvariant())
-        {
-            isCorrect = true;
-            correctCount++;
-            StateHasChanged();
-            await Task.Delay(1000);
-            await PickRandomChar();
-        }
-        else
-        {
-            isCorrect = false;
-            wrongCount++;
-        }
-    }
-
-    private async Task NextChar()
-    {
-        await PickRandomChar();
-    }
-
-    private async Task HandleKeyDown(KeyboardEventArgs e)
-    {
-        if (e.Key == "Enter")
-        {
-            if (isCorrect == true || isCorrect == false)
-            {
-                await NextChar();
-            }
-            else
-            {
-                await CheckAnswer();
-            }
-        }
-    }
-
-    private async Task OnTypeChanged()
-    {
-        await LoadChars();
-    }
-}

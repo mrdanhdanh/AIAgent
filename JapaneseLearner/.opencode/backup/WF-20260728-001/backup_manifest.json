@@ -1,0 +1,37 @@
+﻿{
+    "created_at":  "2026-07-28T01:38:22.6492455+07:00",
+    "workflow_id":  "WF-20260728-001",
+    "tool_version":  "2.0.0",
+    "files":  [
+                  {
+                      "hash":  "9E09A8B51C50",
+                      "backup_path":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\JapaneseLearner\\.opencode\\backup\\WF-20260728-001\\Pages\\Home.razor",
+                      "original_path":  "Pages\\Home.razor",
+                      "error":  null,
+                      "sha256":  "9E09A8B51C50E0C518009C6C37F97EE0E7051DD6C60B7CC8718ACDB4EACB05B8",
+                      "source_path":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\JapaneseLearner\\Pages\\Home.razor",
+                      "status":  "SUCCESS",
+                      "size_bytes":  6963,
+                      "skip_reason":  null
+                  },
+                  {
+                      "hash":  "69BAE5423D95",
+                      "backup_path":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\JapaneseLearner\\.opencode\\backup\\WF-20260728-001\\Layout\\MainLayout.razor",
+                      "original_path":  "Layout\\MainLayout.razor",
+                      "error":  null,
+                      "sha256":  "69BAE5423D9525AA3F0967F2C66E3158C989876747654080F2F560D34264548B",
+                      "source_path":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\JapaneseLearner\\Layout\\MainLayout.razor",
+                      "status":  "SUCCESS",
+                      "size_bytes":  3693,
+                      "skip_reason":  null
+                  },
+                  {
+                      "error":  "File not found",
+                      "hash":  null,
+                      "original_path":  "JapaneseLearner.Tests\\HomeTests.cs",
+                      "size_bytes":  null,
+                      "skip_reason":  null,
+                      "status":  "FAILED"
+                  }
+              ]
+}
