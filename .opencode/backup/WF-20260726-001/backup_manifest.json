@@ -1,18 +1,15 @@
 ﻿{
-    "created_at":  "2026-07-26T11:11:08.8998755+07:00",
+    "created_at":  "2026-07-26T14:54:29.7703414+07:00",
     "workflow_id":  "WF-20260726-001",
+    "tool_version":  "2.0.0",
     "files":  [
                   {
-                      "size_bytes":  45300,
-                      "original_path":  ".opencode\\skills\\dev-team\\SKILL.md",
-                      "hash":  "E8DB292ECF43",
-                      "backup_path":  ".opencode\\backup\\WF-20260726-001\\.opencode\\skills\\dev-team\\SKILL.md"
-                  },
-                  {
-                      "size_bytes":  3457,
-                      "original_path":  ".opencode\\agents\\planner.md",
-                      "hash":  "A09902B87F66",
-                      "backup_path":  ".opencode\\backup\\WF-20260726-001\\.opencode\\agents\\planner.md"
+                      "error":  null,
+                      "hash":  null,
+                      "original_path":  "test.dll",
+                      "size_bytes":  6,
+                      "skip_reason":  "SENSITIVE",
+                      "status":  "SKIPPED"
                   }
               ]
 }

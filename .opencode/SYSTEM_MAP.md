@@ -1,6 +1,6 @@
 ﻿# He Thong .opencode - So Do Tong The
 
-> **Tu dong tao luc:** 2026-07-26 09:54:26
+> **Tu dong tao luc:** 2026-07-26 16:07:11
 > **Workflow ID:** WF-20260726-SYNC
 > **Cap nhat:** Toan bo agents, commands, skills, scripts, knowledge
 
@@ -24,8 +24,8 @@
 
 ```
 .opencode/
-|-- agents/           # 12 agent definitions
-|-- commands/         # 14 command templates
+|-- agents/           # 14 agent definitions
+|-- commands/         # 15 command templates
 |-- skills/           # 4 skill packages
 |-- scripts/          # 4 utility scripts
 |-- knowledge/        # Knowledge base
@@ -41,9 +41,11 @@
 | Agent | Description | Model | Permissions | Commands |
 |-------|-------------|-------|-------------|----------|
 | analyst | Phân tích yêu cầu người dùng, xác định phạm vi, rủi ro và các task cần thực hiện | opencode/deepseek-v4-flash-free |  | team-analyze |
+| backup-agent | Backup và rollback file dùng Backup Utility. Hỗ trợ: backup trước khi sửa file, rollback khi catastrophic failure, liệt kê backup history, verify backup integrity. | opencode/deepseek-v4-flash-free |  | backup |
 | builder | Thực thi kế hoạch đã được đánh giá, viết code và thực hiện thay đổi | opencode/deepseek-v4-flash-free |  | team-build |
-| cleaner | Workspace Cleaner Agent — quét rác, phân loại, backup, dọn dẹp workspace tự động với dry-run và confirmation gate. | opencode/deepseek-v4-flash-free |  | --- |
+| cleaner | Workspace Cleaner Agent v2.0 — quét rác theo tiêu chí cấu hình chi tiết, phân loại LOW/MEDIUM/HIGH, backup workflow-linked, dry-run bắt buộc, protected list 4 nhóm. | opencode/deepseek-v4-flash-free |  | team-cleanup |
 | codebase-explorer | Khám phá cấu trúc dự án, phân tích codebase, mapping dependencies và patterns. Agent read-only chạy trước khi thực hiện thay đổi. | opencode/deepseek-v4-flash-free |  | team-explore |
+| general | General-purpose orchestrator agent — điều phối workflow, triệu hồi sub-agents, quản lý state machine | opencode/deepseek-v4-flash-free |  | team, team-syncdocs |
 | guardian | Chuyên gia review source code trước khi push lên git — phát hiện secret, lỗi convention, lỗ hổng bảo mật, vi phạm quy tắc dự án | default |  | team-gitguard |
 | planner | Mở rộng: Thiết kế giải pháp + Lập kế hoạch thực thi chi tiết. Đảm nhiệm cả Design phase và Plan phase. | opencode/deepseek-v4-flash-free |  | team-plan |
 | pusher | Chuyên gia thực hiện git push an toàn — auto-commit từ diff, safety checks, build, test, confirmation gate, push execution, post-push verify | default |  | team-gitpush |
@@ -51,7 +53,7 @@
 | self-improver | Sau khi workflow hoàn tất, đọc lại quá trình, phân tích kỹ năng đã dùng và thiếu, đề xuất cải tiến (chỉ suggestion, không ghi KB). Cần qua approval gate trước khi ghi knowledge base. | opencode/deepseek-v4-flash-free |  | team-selfimprove |
 | tester | Thực thi kiểm thử, validate tính năng và báo cáo kết quả kèm coverage | opencode/deepseek-v4-flash-free |  | team-test |
 | test-planner | Tạo kế hoạch kiểm thử chi tiết cho tính năng đã phát triển | opencode/deepseek-v4-flash-free |  | team-testplan |
-| ui-beautifier | Chuyên đánh giá và cải thiện giao diện người dùng cho Japanese Learner (Blazor WASM + FluentUI 4.14.3). Phân tích .razor files, phát hiện CSS issues, accessibility problems, và đề xuất cải tiến UI/UX. | opencode/deepseek-v4-flash-free |  | team-ui-audit |
+| ui-beautifier | >- | opencode/deepseek-v4-flash-free |  | team-ui-audit |
 
 ---
 
@@ -60,9 +62,10 @@
 | Command | Description | Agent | Deprecated |
 |---------|-------------|-------|------------|
 | /backup | Backup và rollback file dùng Backup Utility. Gọi khi cần backup trước khi sửa file, rollback lỗi, kiểm tra backup. | backup-agent |  |
-| /team | Cháº¡y toÃ n bá»™ team workflow: analyze â†’ design/plan â†’ review â†’ backup â†’ build â†’ smoke test â†’ testplan â†’ test â†’ self-improve | general |  |
+| /team | Chạy toàn bộ team workflow: analyze → design/plan → review → backup → build → static analysis → ui audit → testplan → test → skill validation → complete | general |  |
 | /team-analyze | Chỉ chạy bước phân tích yêu cầu (dùng agent analyst) | analyst |  |
 | /team-build | Thực thi kế hoạch đã duyệt (dùng agent builder) | builder |  |
+| /team-cleanup | Dọn rác Workspace tự động — xóa build artifacts, backup cũ, temp files, cache. Tích hợp dry-run, backup trước khi xóa, confirmation gate. | cleaner |  |
 | /team-explore | [DEPRECATED] Explore step đã được gộp vào Analyze. Dùng team-analyze thay thế. | codebase-explorer | Yes |
 | /team-gitguard | Review source code trước khi push lên git — phát hiện secret, lỗi convention, lỗ hổng bảo mật, vi phạm quy tắc dự án | guardian |  |
 | /team-gitpush | Auto-commit từ diff, pre-push safety validation + git push execution — kiểm tra secret, convention, build, test, xác nhận user, push lên remote | pusher |  |
@@ -72,7 +75,7 @@
 | /team-syncdocs | Đồng bộ toàn bộ system docs: quét agents, commands, skills, scripts, knowledge → cập nhật SYSTEM_MAP.md, cross-references, fix lỗi. Chạy định kỳ khi thêm/sửa/xóa file hệ thống. | general |  |
 | /team-test | Thực thi kiểm thử theo kế hoạch (dùng agent tester) | tester |  |
 | /team-testplan | Tạo kế hoạch kiểm thử cho tính năng (dùng agent test-planner) | test-planner |  |
-| /team-ui-audit | Chạy UI audit trên toàn bộ .razor files — phát hiện CSS issues, accessibility problems, đề xuất cải tiến UI/UX | ui-beautifier |  |
+| /team-ui-audit | >- | ui-beautifier |  |
 
 ---
 
@@ -80,10 +83,10 @@
 
 | Skill | Name | Description | Schema Version |
 |-------|------|-------------|----------------|
-| dev-team | dev-team | Hướng dẫn sử dụng Dev Agent Team gồm 9 agents (7 core + 2 support). Dùng khi cần phân tích, lập kế hoạch, đánh giá, code, kiểm thử một yêu cầu phát triển. Tích hợp cơ chế Self-Improvement với approval gate. Sử dụng câu lệnh team hoặc team-*. | 2.0 |
+| dev-team | dev-team | Hướng dẫn sử dụng Dev Agent Team gồm 9 agents (7 core + 2 support). Dùng khi cần phân tích, lập kế hoạch, đánh giá, code, kiểm thử một yêu cầu phát triển. Tích hợp cơ chế Self-Improvement với approval gate. Sử dụng câu lệnh team hoặc team-*. | 3.0 |
 | gitguard | gitguard | Review source code trước khi push lên git — phát hiện secret, lỗi convention, lỗ hổng bảo mật, vi phạm quy tắc dự án. Tích hợp cơ chế blocking CRITICAL, cảnh báo MAJOR. Sử dụng câu lệnh /team-gitguard. | 1.0 |
 | gitpush | gitpush | Pre-push safety validation + git push execution — kiểm tra secret, convention, build, test, sau đó push lên remote với xác nhận từ user. Sử dụng câu lệnh /team-gitpush. | 1.0 |
-| workspace-cleaner | workspace-cleaner | Dọn rác Workspace tự động — xóa build artifacts, backup cũ, temp files, cache không cần thiết. Tích hợp dry-run, backup trước khi xóa, confirmation gate. Sử dụng câu lệnh /team-cleanup. | 1.0 |
+| workspace-cleaner | workspace-cleaner | Dọn rác Workspace tự động — xóa build artifacts, backup cũ, temp files, cache không cần thiết. Tích hợp dry-run bắt buộc, backup trước khi xóa, confirmation gate, protected list cấu trúc, và output contract chi tiết. Sử dụng câu lệnh /team-cleanup. | 2.0 |
 
 ---
 
@@ -91,10 +94,10 @@
 
 | Script | Summary | Size |
 |--------|---------|------|
-| backup-utility | Utility script | 1 KB |
+| backup-utility | Utility script | 12 KB |
 | gitpush-utility | GitPush Utility — thực hiện git push an toàn với auto-commit, safety checks, confirmation gate. | 18 KB |
-| rollback-utility | Utility script | 2 KB |
-| sync-system-docs | Utility script | 23 KB |
+| rollback-utility | Utility script | 9 KB |
+| sync-system-docs | Utility script | 24 KB |
 
 ---
 
@@ -103,10 +106,10 @@
 | File | Size |
 |------|------|
 | knowledge/blazor-ref-timing.md | 1 KB |
-| knowledge/deployment\blazor-wasm-github-pages.md | 2 KB |
-| knowledge/lessons.md | 11 KB |
+| knowledge/deployment\blazor-wasm-github-pages.md | 4 KB |
+| knowledge/lessons.md | 13 KB |
 | knowledge/patterns\common.md | 5 KB |
-| knowledge/skills-learned.md | 9 KB |
+| knowledge/skills-learned.md | 11 KB |
 | knowledge/workflow\validate-github-actions-yaml.md | 1 KB |
 
 ---
@@ -136,9 +139,11 @@
 | Agent | Commands |
 |-------|----------|
 | analyst | team-analyze |
+| backup-agent | backup |
 | builder | team-build |
-| cleaner | Orphaned |
+| cleaner | team-cleanup |
 | codebase-explorer | team-explore |
+| general | team, team-syncdocs |
 | guardian | team-gitguard |
 | planner | team-plan |
 | pusher | team-gitpush |
@@ -266,12 +271,9 @@
 
 | # | Loai | Chi tiet |
 |---|------|----------|
-| 1 | MISSING_AGENT | command=backup, agent=backup-agent |
-| 2 | MISSING_AGENT | command=team, agent=general |
-| 3 | MISSING_AGENT | command=team-syncdocs, agent=general |
-| 4 | ORPHAN_AGENT | agent=cleaner |
+| --- | OK | Khong phat hien van de. He thong dong bo hoan chinh. |
 
 ---
 
-> **Tong so:** 12 agents . 14 commands . 4 skills . 4 scripts . 6 knowledge files
+> **Tong so:** 14 agents . 15 commands . 4 skills . 4 scripts . 6 knowledge files
 > **Sinh boi:** sync-system-docs.ps1

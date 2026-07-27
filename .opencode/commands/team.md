@@ -1,4 +1,4 @@
----
+﻿---
 description: Chạy toàn bộ team workflow: analyze → design/plan → review → backup → build → static analysis → ui audit → testplan → test → skill validation → complete
 agent: general
 ---
@@ -591,17 +591,19 @@ complete:
 
 ## TÍCH HỢP VỚI COMMANDS RIÊNG LẺ
 
-| Bước | Command | Agent | File command |
+| Buoc | Command | Agent | File command |
+|------|---------|-------|-------------|
+| Buoc | Command | Agent | File command |
 |------|---------|-------|-------------|
 | 1 | /team-analyze | analyst | team-analyze.md |
-| 2-3 | /team-plan | planner (mở rộng) | team-plan.md |
+| 2-3 | /team-plan | planner (mo rong) | team-plan.md |
 | 4 | /team-review | reviewer | team-review.md |
 | 4.5 | /team-gitguard | guardian | team-gitguard.md |
 | 6 | /team-build | builder | team-build.md |
 | 8 | /team-ui-audit | ui-beautifier | team-ui-audit.md |
 | 9 | /team-testplan | test-planner | team-testplan.md |
 | 10 | /team-test | tester | team-test.md |
-| 11 | (gọi từ team.md) | self-improver | .opencode/agents/self-improver.md |
+| 11 | (goi tu team.md) | self-improver | .opencode/agents/self-improver.md |
 | 12 | /team-gitpush | pusher | team-gitpush.md |
 Không có command `/team-design` riêng — Design là phần mở rộng của Plan.
 
@@ -663,6 +665,7 @@ $backup_root = ".opencode\backup\$workflow_id"
 - Approval gate bắt buộc cho suggestion có impact MEDIUM/HIGH
 - Backup/Rollback do Backup Utility thực hiện, Orchestrator chỉ gọi lệnh
 - Khi workflow hoàn tất, output báo cáo đầy đủ và rõ ràng
+
 
 
 

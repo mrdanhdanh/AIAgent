@@ -1,39 +1,50 @@
-{
-  "workflow": {
-    "id": "WF-20260726-001",
-    "created_at": "2026-07-26T00:00:00Z",
-    "completed_at": "2026-07-26T00:00:00Z",
-    "project": "JapaneseLearner",
-    "branch": "main",
-    "schema_version": "2.0",
-    "step": 12,
-    "step_name": "complete",
-    "status": "completed",
-    "retry": {
-      "review_count": 0,
-      "test_count": 0,
-      "max_review": 3,
-      "max_test": 3,
-      "self_improve_count": 1
-    },
-    "user_intervention": true,
-    "backup_done": true,
-    "coverage": {
-      "unit": 100,
-      "integration": "N/A",
-      "e2e": "N/A",
-      "overall": 100,
-      "thresholds_met": true
-    },
-    "summary": {
-      "requirement": "Build GitHub Pages deployment with multi-page extensibility",
-      "tests_pass": 91,
-      "tests_fail": 0,
-      "files_created": [".github/workflows/deploy.yml", "JapaneseLearner/wwwroot/404.html"],
-      "files_modified": ["JapaneseLearner/wwwroot/index.html"],
-      "files_deleted": ["JapaneseLearner/.github/workflows/deploy.yml"],
-      "knowledge_base_written": 2,
-      "suggestions_approved": 3
-    }
-  }
+﻿{
+    "summary":  {
+                    "files_modified":  [
+                                           ".opencode\\scripts\\backup-utility.ps1",
+                                           ".opencode\\scripts\\rollback-utility.ps1",
+                                           ".opencode\\agents\\backup-agent.md",
+                                           ".opencode\\commands\\backup.md",
+                                           ".opencode\\skills\\dev-team\\SKILL.md"
+                                       ],
+                    "improvements":  [
+                                         "Action-based routing: save/list/verify/rollback với input validation rõ ràng",
+                                         "Manifest chuẩn: thêm sha256, source_path, backup_path, size, tool_version",
+                                         "Skip reasons: tách error vs skip_reason (SENSITIVE, MAX_SIZE_EXCEEDED, ORIGINAL_NEWER)",
+                                         "Exclude rules mở rộng: *.pdb, *.zip, node_modules, bin/, obj/, dist/, size threshold",
+                                         "Rollback an toàn: snapshot trước restore, không ghi đè file mới hơn, force cần xác nhận",
+                                         "Output summary chuẩn: backup_created, restored, integrity_ok, integrity_failed, skipped_sensitive"
+                                     ]
+                },
+    "artifacts":  [
+                      "01_analysis.md",
+                      "backup-utility.ps1 (cập nhật)",
+                      "rollback-utility.ps1 (cập nhật)",
+                      "backup-agent.md (cập nhật)",
+                      "backup.md (cập nhật)",
+                      "SKILL.md (cập nhật)"
+                  ],
+    "workflow":  {
+                     "step":  12,
+                     "id":  "WF-20260726-001",
+                     "created_at":  "2026-07-26T14:30:00+07:00",
+                     "backup_done":  true,
+                     "schema_version":  "2.0",
+                     "project":  "JapaneseLearner",
+                     "branch":  "main",
+                     "user_intervention":  false,
+                     "status":  "completed",
+                     "step_name":  "complete",
+                     "completed_at":  "2026-07-26T14:54:50.7314349+07:00",
+                     "error_history":  {
+
+                                       },
+                     "retry":  {
+                                   "max_review":  3,
+                                   "max_test":  3,
+                                   "test_count":  0,
+                                   "review_count":  0
+                               },
+                     "user_request":  "Nâng cấp Backup Agent với 6 điểm cải tiến"
+                 }
 }

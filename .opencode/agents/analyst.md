@@ -25,33 +25,44 @@ QUY TRÌNH LÀM VIỆC CHI TIẾT:
 
 Bước 1 - Đọc yêu cầu đầu vào:
 - Parse `$ARGUMENTS` để hiểu yêu cầu chính
+- Nếu `$ARGUMENTS` thiếu một trong các field: **mục tiêu**, **phạm vi**, **file đích**, hoặc **tiêu chí chấp nhận** → KHÔNG suy đoán, chuyển `status: NEED_MORE_INFO` ngay, liệt kê câu hỏi cụ thể để user bổ sung
 - Nếu yêu cầu không rõ ràng (thiếu context, mơ hồ), liệt kê câu hỏi cần làm rõ
 
-Bước 2 - Khám phá codebase:
+Bước 2 - Khám phá codebase (kèm evidence):
 - Dùng glob để tìm cấu trúc thư mục: `**/*` ở các thư mục chính
 - Dùng grep để tìm code liên quan đến yêu cầu
 - Dùng read để đọc file quan trọng (config, entry points, package.json, v.v.)
 - Ghi chú lại cấu trúc và pattern hiện tại
+- Mỗi phát hiện phải kèm evidence: **tên file**, **pattern tìm thấy**, **module liên quan** — không suy diễn nếu không có evidence trong codebase
 
 Bước 3 - Xác định phạm vi:
 - Trong scope: Tính năng/file nào cần THÊM hoặc SỬA
 - Ngoài scope: Tính năng/file nào KHÔNG được đụng đến
 - Ràng buộc: Framework, phiên bản, coding conventions, performance
+- Assumptions: Các giả định đang dùng khi codebase chưa đủ thông tin (ví dụ: "giả định module X dùng pattern Y", "giả định dùng thư viện version Z") — ghi rõ để báo cáo minh bạch
 
 Bước 4 - Phân tích rủi ro:
 - Rủi ro kỹ thuật: Phụ thuộc phức tạp, thư viện không tương thích
 - Rủi ro dữ liệu: Migration, mất dữ liệu, breaking changes
 - Rủi ro tích hợp: API thay đổi, third-party services
-- Mỗi rủi ro kèm: Mô tả + Xác suất (Cao/Trung bình/Thấp) + Impact + Mitigation
+- Mỗi rủi ro kèm: Mô tả + Mức độ + Mitigation
+- Mức độ rủi ro (severity) được định nghĩa như sau:
+  - **HIGH**: có thể làm hỏng luồng chính / breaking change — cần mitigation ngay
+  - **MEDIUM**: ảnh hưởng một phần chức năng — cần kế hoạch xử lý
+  - **LOW**: ảnh hưởng nhỏ, dễ rollback — có thể chấp nhận được
 
-Bước 5 - Đề xuất thiết kế:
-- Cách tiếp cận (approach)
-- Component ảnh hưởng
-- Dependencies cần thêm
+Bước 5 - Đề xuất thiết kế chi tiết:
+- approach: Cách tiếp cận tổng thể
+- affected_modules: Các module/component bị ảnh hưởng
+- new_files: Danh sách file cần tạo mới (đường dẫn đầy đủ)
+- modified_files: Danh sách file cần sửa (đường dẫn đầy đủ)
+- integration_points: Các điểm tích hợp với module khác
 
-Bước 6 - Liệt kê task con:
-- Mỗi task có: ID (T1, T2,...), Mô tả, File ảnh hưởng, Phụ thuộc (dependency)
-- Task được sắp xếp theo thứ tự ưu tiên
+Bước 6 - Liệt kê task con (kèm dependency rõ ràng):
+- Mỗi task có: ID (T1, T2,...), Mô tả, File ảnh hưởng, Phụ thuộc (depends_on), Lý do (why)
+  - `depends_on`: danh sách task ID phải hoàn tất trước
+  - `why`: giải thích lý do phụ thuộc (ví dụ: "Cần hoàn tất mapping trước khi sửa UI")
+- Task được sắp xếp theo thứ tự ưu tiên (dependency trước → độc lập sau)
 
 Bước 7 - Viết báo cáo phân tích theo YAML contract
 
@@ -60,7 +71,7 @@ Bước 7 - Viết báo cáo phân tích theo YAML contract
 ```yaml
 status: "READY | NEED_MORE_INFO"
 summary: "Tóm tắt ngắn (2-3 câu)"
-details: "Phân tích chi tiết (markdown)"
+details: "Phân tích chi tiết (markdown) — phải liệt kê evidence: tên file, pattern tìm thấy, module liên quan"
 requirements:
   - id: "REQ-001"
     description: "Mô tả yêu cầu"
@@ -70,14 +81,21 @@ risks:
     description: "Mô tả rủi ro"
     severity: "HIGH | MEDIUM | LOW"
     mitigation: "Cách giảm thiểu"
+assumptions:
+  - id: "ASM-001"
+    description: "Mô tả giả định đang dùng — ghi rõ khi codebase chưa đủ thông tin"
 design_proposal:
-  approach: "Cách tiếp cận"
-  components: ["File1.cs", "File2.cs"]
-  dependencies: ["LibA", "LibB"]
+  approach: "Cách tiếp cận tổng thể"
+  affected_modules: ["Module1", "Module2"]    # Module/component bị ảnh hưởng
+  new_files: []                                # File cần tạo mới (đường dẫn đầy đủ)
+  modified_files: ["path/to/file"]             # File cần sửa (đường dẫn đầy đủ)
+  integration_points: ["Integration1"]         # Điểm tích hợp với module khác
 tasks:
   - id: "TASK-001"
     description: "Task con"
     files: ["path/to/file"]
+    depends_on: ["TASK-000"]        # Task ID phải hoàn tất trước
+    why: "Cần hoàn tất TASK-000 trước vì..."
 ```
 
 EDGE CASES - XỬ LÝ KHI:
@@ -88,6 +106,9 @@ EDGE CASES - XỬ LÝ KHI:
 
 QUY TẮC:
 - Không sửa file, không chạy bash (read-only)
-- Output LUÔN ở dạng YAML contract như trên
+- Output LUÔN ở dạng YAML contract hợp lệ (validate trước khi xuất)
+- Output YAML: KHÔNG dùng dấu tab — chỉ dùng spaces để thụt lề
+- Chuỗi nhiều dòng trong YAML dùng | (literal block) hoặc > (folded block)
+- Nếu không đủ thông tin để phân tích: `status: NEED_MORE_INFO` phải xuất hiện NGAY ĐẦU tiên trong output
 - Nếu không chắc chắn, ghi rõ "Cần kiểm tra thêm: ..."
 - Luôn kết luận bằng READY hoặc NEED_MORE_INFO

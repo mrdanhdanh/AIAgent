@@ -28,13 +28,33 @@ Thực thi kế hoạch đã được duyệt dưới đây. Tạo/sửa file th
 
 $ARGUMENTS
 
+## VALIDATE ĐẦU VÀO (BẮT BUỘC)
+
+Kiểm tra `$ARGUMENTS` có đủ các field sau — nếu thiếu field nào, trả `FAIL` ngay, không tự suy diễn:
+
+| Field | Bắt buộc | Kiểm tra |
+|-------|----------|----------|
+| mục tiêu | ✅ | Có mô tả mục tiêu không? |
+| danh sách file | ✅ | Mỗi file có path đầy đủ không? |
+| từng bước đã duyệt | ✅ | Mỗi step có order, action, file, logic không? |
+| rule backup cho từng file | ✅ | `requires_backup` field có trong mỗi step không? |
+| lệnh validate cuối | ✅ | `final_validation` hoặc `validate` có ít nhất 1 lệnh không? |
+
+```
+FAIL Example:
+status: FAIL
+summary: "ARGUMENTS thiếu final_validation — không có lệnh kiểm tra tổng thể"
+failure_type: CRITICAL
+details: "Builder không thể xác thực kết quả build nếu không có lệnh validate cuối."
+```
+
 ## QUY TRÌNH THỰC HIỆN
 
 ### Bước 1: Chuẩn bị
 - Đọc toàn bộ kế hoạch, xác định danh sách file cần sửa/tạo
 - Ước lượng thứ tự thực thi
 
-### Bước 2: Backup files (qua Backup Utility)
+### Bước 2: Backup files (qua Backup Utility) — RÀNG BUỘC NGHIÊM NGẶT
 - Với mỗi file CŨ cần sửa có `requires_backup: true`:
   - Gọi **Backup Utility** script thay vì tự backup thủ công:
     ```powershell
@@ -45,19 +65,43 @@ $ARGUMENTS
   - Backup Utility sẽ:
     - Copy file vào `.opencode/backup/<WF-ID>/`
     - Tính SHA256 hash (12 ký tự)
-    - Ghi manifest `05_backup_manifest.json`
+    - Ghi manifest `backup_manifest.json`
     - Log kết quả từng file
-  - Nếu chỉ tạo file mới → bỏ qua
+  - **Nếu `requires_backup: true` mà backup thất bại → DỪNG NGAY, báo CRITICAL**
+    ```
+    status: FAIL
+    failure_type: CRITICAL
+    details: "Backup thất bại cho file X — không thể tiếp tục sửa file chưa backup"
+    ```
+  - **Nếu backup utility không sẵn sàng (script không chạy được) → báo CRITICAL**
+    ```
+    status: FAIL
+    failure_type: CRITICAL
+    details: "Backup utility không sẵn sàng tại $backupScript — dừng để tránh mất dữ liệu"
+    ```
+- Nếu file MỚI tạo (`action: CREATE`) → **không cần backup**, bỏ qua bước này
+  - Log: "📝 File mới, không cần backup"
+- Nếu plan không có `requires_backup` field → mặc định `requires_backup: true` (an toàn)
 
-### Bước 3: Thực thi từng bước
+### Bước 3: Thực thi từng bước — QUY ĐỊNH NGHIÊM NGẶT
 - Với mỗi bước trong kế hoạch:
-  - **Nếu tạo file mới**: Dùng `write` tool để tạo
-  - **Nếu sửa file cũ**: Dùng `read` → `edit` tool
-  - **Kiểm tra**: Chạy lệnh verify nếu có (lint, typecheck)
-  - **Log kết quả**: PASS / FAIL kèm error_hash nếu FAIL
+  - **Kiểm tra action trong plan:**
+    - `action: CREATE` → Dùng `write` tool để tạo file mới
+    - `action: MODIFY` → Dùng `read` → `edit` tool
+      - **Nếu file không tồn tại**: KHÔNG tự đổi sang CREATE. Báo FAIL.
+        ```
+        FAIL: action=MODIFY nhưng file "X" không tồn tại. Plan yêu cầu MODIFY nhưng file chưa có.
+        ```
+        Chỉ `action: CREATE` khi kế hoạch đã nêu rõ hoặc reviewer cho phép.
+    - `action: DELETE` → Xóa file nếu tồn tại
+  - **Per-step validation**: Chạy lệnh kiểm tra ngay sau step (theo `per_step_validation` trong plan)
+    - Nếu per-step validation FAIL → dừng step đó, báo lỗi, không tiếp tục
+  - **Log kết quả**: PASS / FAIL kèm error fields đầy đủ
 
-### Bước 4: Kiểm tra cuối
-- Chạy lệnh kiểm tra tổng thể nếu kế hoạch yêu cầu
+### Bước 4: Kiểm tra cuối (Final Validation)
+- Chạy lệnh kiểm tra tổng thể từ `final_validation` trong plan
+- Nếu plan chỉ có `validate` (cũ) → dùng `validate` làm final_validation
+- Ghi nhận kết quả vào `validation_status`
 - Tổng hợp báo cáo
 
 ## CÁC LỆNH KIỂM TRA THÔNG DỤNG
@@ -73,22 +117,32 @@ dotnet build
 dotnet test
 ```
 
-## ĐỊNH DẠNG ĐẦU RA (YAML CONTRACT)
+## ĐỊNH DẠNG ĐẦU RA (YAML CONTRACT) — CHUẨN HÓA
 
 ```yaml
-status: PASS | FAIL | PARTIAL
+status: "PASS | FAIL"                    # Kết quả tổng thể
+overall: "PASS | FAIL"                   # Đồng bộ với status
+backup_workflow_id: "WF-YYYYMMDD-NNN"    # Workflow ID từ backup
+changed_files:                           # Danh sách file đã thay đổi
+  - "path/to/file1"
+created_files:                           # Danh sách file đã tạo mới
+  - "path/to/newfile"
 steps:
-  - step: 1
+  - order: 1
+    status: "PASS | FAIL"                # Kết quả từng step
     file: "path/to/file"
-    action: CREATE | MODIFY | DELETE
-    result: PASS | FAIL
-    error: "Chi tiết lỗi (nếu FAIL)"
-    error_hash: "sha256 cua error message"
-overall:
-  total_steps: 5
-  passed: 3
-  failed: 2
-failure_type: MINOR | CRITICAL | null
+    action: "CREATE | MODIFY | DELETE"   # Phải khớp với plan
+    requires_backup: true                # Đã backup chưa
+    per_step_validation:                 # Kết quả kiểm tra ngay sau step
+      command: "dotnet build"
+      result: "PASS | FAIL"
+    error: null                          # Raw error message
+    error_type: "SyntaxError | NullReferenceException | BuildFailed | ..."
+    error_normalized: "syntaxerror: unexpected token"  # Normalized (không line/timestamp)
+    error_hash: "a1b2c3d4e5f6"          # SHA256 12 ký tự của error_normalized
+    retryable: false                     # Có thể retry step này không?
+failure_type: "MINOR | CRITICAL"         # MINOR: syntax/lint, CRITICAL: logic/backup fail
+validation_status: "PASS | FAIL"         # Kết quả final_validation
 details: "Chi tiết build (markdown)"
 ```
 
@@ -96,15 +150,22 @@ details: "Chi tiết build (markdown)"
 
 | Vấn đề | Cách xử lý |
 |--------|------------|
-| File không tồn tại khi đọc | Dùng glob kiểm tra lại, nếu không có → tạo mới |
-| Edit thất bại (oldString không match) | Đọc lại file, điều chỉnh oldString, thử lại |
-| Lint lỗi | Sửa lỗi lint ngay, format nếu cần |
-| Lỗi logic | Dừng, báo cáo chi tiết |
+| **File không tồn tại khi MODIFY** | KHÔNG tự tạo mới — báo FAIL, error_type="FileNotFound", retryable=false |
+| **File không tồn tại khi CREATE** | Tạo file mới (đúng hành vi) |
+| **Edit thất bại (oldString không match)** | Đọc lại file, điều chỉnh oldString, thử lại tối đa 2 lần |
+| **Lint lỗi** | Sửa lỗi lint ngay, format nếu cần |
+| **Lỗi logic** | Dừng, báo cáo chi tiết với error_type, error_hash |
+| **Backup thất bại** | DỪNG NGAY, báo CRITICAL, không tiếp tục build |
+| **Backup utility không sẵn sàng** | DỪNG NGAY, báo CRITICAL |
+| **Per-step validation FAIL** | Dừng step, không chạy step tiếp theo |
 
 ## QUY TẮC
+
+- **Tuân thủ chính xác kế hoạch đã duyệt — KHÔNG tự suy diễn thay đổi ngoài plan**
+- **Nếu plan ghi `action: MODIFY` mà file không tồn tại → KHÔNG tự đổi sang CREATE**
+- **Nếu `requires_backup: true` và backup thất bại → DỪNG NGAY**
 - Orchestrator đã gọi backup-agent backup trước Bước 6 (Build). Builder KHÔNG tự backup thủ công.
-- Tuân thủ chính xác kế hoạch đã duyệt
 - Không thêm tính năng ngoài kế hoạch
 - Không commit secret/key/token
-- Mỗi lỗi phải kèm error_hash để orchestrator phát hiện lỗi trùng
-- Output theo đúng YAML contract
+- Mỗi lỗi phải kèm **đầy đủ error fields**: `error_type`, `error_normalized`, `error_hash`, `retryable`
+- Output theo đúng YAML contract chuẩn hóa

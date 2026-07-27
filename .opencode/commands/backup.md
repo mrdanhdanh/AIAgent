@@ -11,13 +11,13 @@ Bạn là **Backup Agent** — quản lý backup/rollback file trong dự án.
 /backup <action> [args]
 ```
 
-| Action | Mô tả |
-|--------|-------|
-| `save <file1> [file2...]` | Backup file trước khi sửa |
-| `rollback <workflowId>` | Restore từ backup manifest |
-| `rollback <workflowId> --force` | Force restore (ghi đè file mới hơn) |
-| `list [workflowId]` | Liệt kê backup history |
-| `verify <workflowId>` | Kiểm tra integrity của backup |
+| Action | Mô tả | Input tối thiểu |
+|--------|-------|-----------------|
+| `save <file1> [file2...]` | Backup file trước khi sửa | Danh sách file |
+| `rollback <workflowId>` | Restore từ backup manifest | workflow_id |
+| `rollback <workflowId> --force` | Force restore (ghi đè file mới hơn) | workflow_id + xác nhận |
+| `list [workflowId]` | Liệt kê backup history | Không cần |
+| `verify <workflowId>` | Kiểm tra integrity của backup | workflow_id hoặc manifest path |
 
 ## Script paths
 
@@ -34,11 +34,15 @@ $rollbackScript = ".opencode\scripts\rollback-utility.ps1"
 
 ```powershell
 & ".opencode\scripts\backup-utility.ps1" `
+    -action save `
     -files @("path/to/file1.cs", "path/to/file2.razor") `
     -workflowId "WF-YYYYMMDD-NNN"
 ```
 
-Output JSON chứa trạng thái từng file + manifest path.
+Output JSON chứa trạng thái từng file + summary + manifest path.
+
+File bị loại trừ (exclude rules) sẽ được ghi `status: SKIPPED` + `skip_reason: "SENSITIVE"`.
+File > maxFileSizeMB (mặc định 50MB) sẽ được ghi `skip_reason: "MAX_SIZE_EXCEEDED"`.
 
 ### `rollback` — Restore từ backup
 
@@ -47,25 +51,33 @@ Output JSON chứa trạng thái từng file + manifest path.
     -workflowId "WF-YYYYMMDD-NNN"
 ```
 
-Safety check: không ghi đè file mới hơn backup (trừ `--force`).
+Safety:
+1. **Preview** — hiển thị danh sách file sẽ restore, đánh dấu conflict
+2. **Snapshot** — tự động backup file hiện tại vào `_pre_rollback_<timestamp>/`
+3. **Không ghi đè** file mới hơn backup (trừ `--force`)
+4. **Confirmation** — hỏi lại user trước khi restore
 
 ### `list` — Liệt kê backup
 
 ```powershell
-Get-ChildItem -Path ".opencode\backup" -Directory | Select-Object Name, LastWriteTime
-```
+# Tất cả workflow
+& ".opencode\scripts\backup-utility.ps1" -action list
 
-Với mỗi workflow, đọc manifest để xem danh sách file.
+# Một workflow cụ thể
+& ".opencode\scripts\backup-utility.ps1" -action list -workflowId "WF-YYYYMMDD-NNN"
+```
 
 ### `verify` — Kiểm tra integrity
 
 ```powershell
-$manifest = Get-Content ".opencode\backup\<WF-ID>\05_backup_manifest.json" -Raw | ConvertFrom-Json
-foreach ($entry in $manifest.files) {
-    $hash = (Get-FileHash $entry.backup_path -Algorithm SHA256).Hash.Substring(0,12)
-    if ($hash -ne $entry.hash) { "  [FAIL] $($entry.relative_path)" }
-}
+# Theo workflow ID
+& ".opencode\scripts\backup-utility.ps1" -action verify -workflowId "WF-YYYYMMDD-NNN"
+
+# Theo manifest path cụ thể
+& ".opencode\scripts\backup-utility.ps1" -action verify -manifestPath "path\to\backup_manifest.json"
 ```
+
+Tính SHA256 hash từng file backup, so sánh với manifest. Báo cáo `integrity_ok` / `integrity_failed`.
 
 ---
 
@@ -74,23 +86,40 @@ foreach ($entry in $manifest.files) {
 ```yaml
 action: save | rollback | list | verify
 workflow_id: "WF-YYYYMMDD-NNN"
-status: SUCCESS | PARTIAL | FAILED
+status: SUCCESS | PARTIAL | FAILED | NO_CHANGE
 summary:
-  total: 3
-  succeeded: 3
-  skipped: 0
+  total: 5
+  succeeded: 4
   failed: 0
+  skipped_sensitive: 1
+  skipped_size: 0
+  skipped_other: 0
+  backup_created: ["path/to/file.cs"]
+  restored: 3
+  integrity_ok: 4
+  integrity_failed: 0
 details:
   - file: "path/to/file.cs"
-    status: SUCCESS | SKIPPED | FAILED
+    status: SUCCESS | SKIPPED | FAILED | RESTORED
     hash: "a1b2c3d4e5f6"
+    sha256: "a1b2c3d4e5f67890abcdef1234567890abcdef1234567890abcdef1234567890"
     error: null
-manifest: ".opencode/backup/WF-YYYYMMDD-NNN/05_backup_manifest.json"
+    skip_reason: null | "SENSITIVE" | "MAX_SIZE_EXCEEDED" | "ORIGINAL_NEWER"
+    source_path: "C:\full\path\to\file.cs"
+    backup_path: "C:\full\path\to\backup\file.cs"
+    size_bytes: 12345
+manifest: ".opencode/backup/WF-YYYYMMDD-NNN/backup_manifest.json"
 ```
 
 ## Quy tắc
 
-- Luôn tạo/gọi workflow ID khi chạy backup
-- Không backup file nhạy cảm (*.exe, *.dll, .env, *secret*, *key*)
-- Rollback mặc định an toàn (không ghi đè file mới) — chỉ `--force` khi user xác nhận
-- Output luôn kèm summary JSON
+### Exclude rules (không backup)
+- `*.exe`, `*.dll`, `*.pdb`, `*.zip`, `*.tar.gz`
+- `node_modules/`, `bin/`, `obj/`, `dist/`
+- `.env`, `*secret*`, `*key*`
+- File > 50MB (có thể cấu hình qua `-maxFileSizeMB`)
+
+### Rollback safety
+- Mặc định: không ghi đè file đã thay đổi từ lúc backup
+- Tự động snapshot trước rollback
+- `--force` chỉ khi user xác nhận

@@ -1,6 +1,6 @@
 ---
 last_updated: 2026-07-26
-total_skills: 18
+total_skills: 19
 ---
 
 # Skills Learned
@@ -185,3 +185,12 @@ Mỗi kỹ năng được ghi nhận theo format:
   confidence: "new"
   related_files: ["JapaneseLearner/wwwroot/404.html", "JapaneseLearner/wwwroot/index.html"]
   notes: "404.html: capture URL → redirect to base with query param. index.html: parse redirect param → store in sessionStorage → restore URL after Blazor loads. Pattern avoids redirect loop."
+
+- skill_id: SK-019
+  name: "Analyst Agent Stability Standards"
+  category: "process"
+  source_workflow: "Nâng cấp Analyst Agent - 7 tiêu chuẩn ổn định (WF-20260726-001)"
+  usage_count: 1
+  confidence: "new"
+  related_files: [".opencode/agents/analyst.md", ".opencode/commands/team-analyze.md"]
+  notes: "7 tiêu chuẩn ổn định: 1) Ràng buộc đầu vào — NEED_MORE_INFO nếu thiếu mục tiêu/phạm vi/file đích/tiêu chí chấp nhận; 2) Assumptions — ghi rõ giả định khi codebase chưa đủ thông tin; 3) Evidence — trích dẫn file/pattern/module trong details; 4) Risk levels — HIGH (breaking change), MEDIUM (ảnh hưởng phần), LOW (dễ rollback); 5) Task dependency — depends_on + why; 6) Design proposal chi tiết — approach, affected_modules, new_files, modified_files, integration_points; 7) YAML safety — không tab, |/>, NEED_MORE_INFO đầu. Đồng bộ team-analyze.md command với output contract mới."

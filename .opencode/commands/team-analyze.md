@@ -32,39 +32,49 @@ $ARGUMENTS
 
 1. **Đọc yêu cầu** — Hiểu rõ yêu cầu, nếu chưa rõ thì liệt kê câu hỏi
 2. **Khám phá codebase** — Dùng glob/grep/read để tìm hiểu cấu trúc dự án và code liên quan
-3. **Xác định phạm vi** — Trong scope / Ngoài scope / Ràng buộc kỹ thuật
-4. **Phân tích rủi ro** — Kỹ thuật, dữ liệu, tích hợp (kèm xác suất + impact + mitigation)
-5. **Đề xuất thiết kế** — Approach, components ảnh hưởng, dependencies
-6. **Liệt kê task con** — ID, mô tả, file ảnh hưởng, phụ thuộc
-7. **Kết luận** — READY hoặc NEED_MORE_INFO
+3. **Xác định phạm vi** — Trong scope / Ngoài scope / Ràng buộc kỹ thuật / Assumptions
+4. **Phân tích rủi ro** — Kỹ thuật, dữ liệu, tích hợp (kèm severity HIGH/MEDIUM/LOW + mitigation)
+5. **Đề xuất thiết kế** — Approach, affected_modules, new_files, modified_files, integration_points
+6. **Liệt kê task con** — ID, mô tả, file ảnh hưởng, depends_on, why
+7. **Kết luận** — READY hoặc NEED_MORE_INFO (nếu thiếu mục tiêu/phạm vi/file đích/tiêu chí chấp nhận)
 
 ## ĐỊNH DẠNG ĐẦU RA (YAML CONTRACT)
 
 ```yaml
-status: READY | NEED_MORE_INFO
+status: "READY | NEED_MORE_INFO"
 summary: "Tóm tắt ngắn (2-3 câu)"
-details: "Phân tích chi tiết (markdown)"
+details: "> Phân tích chi tiết (markdown) — phải liệt kê evidence: tên file, pattern tìm thấy, module liên quan"
 requirements:
-  - id: REQ-001
+  - id: "REQ-001"
     description: "Mô tả yêu cầu"
-    priority: HIGH | MEDIUM | LOW
+    priority: "HIGH | MEDIUM | LOW"
 risks:
-  - id: RISK-001
+  - id: "RISK-001"
     description: "Mô tả rủi ro"
-    severity: HIGH | MEDIUM | LOW
+    severity: "HIGH | MEDIUM | LOW"
     mitigation: "Cách giảm thiểu"
+assumptions:
+  - id: "ASM-001"
+    description: "Mô tả giả định đang dùng — ghi rõ khi codebase chưa đủ thông tin"
 design_proposal:
-  approach: "Cách tiếp cận"
-  components: ["File1.cs", "File2.cs"]
-  dependencies: ["LibA", "LibB"]
+  approach: "Cách tiếp cận tổng thể"
+  affected_modules: ["Module1", "Module2"]
+  new_files: []
+  modified_files: ["path/to/file"]
+  integration_points: ["Integration1"]
 tasks:
-  - id: TASK-001
+  - id: "TASK-001"
     description: "Task con"
     files: ["path/to/file"]
+    depends_on: ["TASK-000"]
+    why: "Cần hoàn tất TASK-000 trước vì..."
 ```
 
 ## QUY TẮC
-- Không sửa file, không chạy bash
-- Output LUÔN ở dạng YAML contract như trên
-- Nếu không chắc chắn, ghi "Cần kiểm tra thêm: ..."
-- Kết luận bằng READY hoặc NEED_MORE_INFO
+- Không sửa file, không chạy bash (read-only)
+- Output LUÔN ở dạng YAML contract hợp lệ (validate trước khi xuất)
+- Output YAML: KHÔNG dùng dấu tab — chỉ dùng spaces để thụt lề
+- Chuỗi nhiều dòng trong YAML dùng `|` (literal block) hoặc `>` (folded block)
+- Nếu không đủ thông tin để phân tích (thiếu mục tiêu/phạm vi/file đích/tiêu chí chấp nhận): `status: NEED_MORE_INFO` phải xuất hiện NGAY ĐẦU tiên trong output
+- Nếu không chắc chắn, ghi rõ "Cần kiểm tra thêm: ..."
+- Luôn kết luận bằng READY hoặc NEED_MORE_INFO

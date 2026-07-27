@@ -1,10 +1,26 @@
 ﻿---
 name: dev-team
 description: Hướng dẫn sử dụng Dev Agent Team gồm 9 agents (7 core + 2 support). Dùng khi cần phân tích, lập kế hoạch, đánh giá, code, kiểm thử một yêu cầu phát triển. Tích hợp cơ chế Self-Improvement với approval gate. Sử dụng câu lệnh team hoặc team-*.
-schema_version: "2.0"
+schema_version: "3.0"
 ---
 
 # Dev Agent Team — Orchestrator Guide
+
+**Schema:** 3.0 (nâng cấp từ 2.0)
+
+## 7 NÂNG CẤP CHÍNH CHO BUILDER AGENT
+
+| # | Cải tiến | Mô tả | Áp dụng cho |
+|---|----------|-------|-------------|
+| 1 | **Chuẩn hóa input kế hoạch** | `$ARGUMENTS` bắt buộc có: mục tiêu, danh sách file, từng bước đã duyệt, rule backup, lệnh validate cuối. Thiếu → trả `FAIL` sớm | Planner, Builder |
+| 2 | **Rõ cấu trúc từng step** | Mỗi step có: `action`(CREATE/MODIFY/DELETE), `file`, `expected_result`, `check`(per_step_validation), `requires_backup` | Planner (Plan phase) |
+| 3 | **Error fields chi tiết** | `error_normalized` → `error_type` + `error_normalized` + `error_hash` + `retryable` | Builder output |
+| 4 | **Ràng buộc backup** | `requires_backup:true` + fail → DỪNG NGAY. File mới không cần backup. Utility không sẵn sàng → CRITICAL | Builder + Orchestrator |
+| 5 | **Validate theo giai đoạn** | `per_step_validation` (sau mỗi step) + `final_validation` (cuối cùng) | Planner (Plan phase) |
+| 6 | **Quy định file không tồn tại** | `MODIFY` mà file không tồn tại → không tự đổi sang `CREATE` → báo FAIL. Chỉ `CREATE` khi plan cho phép | Builder |
+| 7 | **Chuẩn hóa output** | `changed_files`, `created_files`, `backup_workflow_id`, `validation_status` | Builder output |
+
+---
 
 Team gồm **General Agent (Orchestrator)** điều phối **9 agents (7 core specialists: analyst, planner, reviewer, builder, ui-beautifier, test-planner, tester + 2 support: self-improver, backup-agent)** theo quy trình phát triển phần mềm hoàn chỉnh:
 **Analyze → Design → Plan → Review → Guardrail → Backup → Build → Static Analysis → UI Audit → Test Plan → Test → Skill Validation → Complete**
@@ -116,7 +132,7 @@ workflow:
   project: JapaneseLearner
   branch: main
   user_request: "Mô tả yêu cầu"
-  schema_version: "2.0"          # Để backward compatibility
+  schema_version: "3.0"          # Nâng cấp: error fields, step structure, validation stages
 ```
 
 ### Artifact structure
@@ -126,11 +142,11 @@ workflow/
   WF-20260723-001/
     01_analysis.md
     02_design.md                  # Planner — Design Phase
-    03_plan.md                    # Planner — Plan Phase
+    03_plan.md                    # Planner — Plan Phase (nâng cấp: action, expected_result, per_step_validation, final_validation)
     04_review.md
-    05_guardrail.md               # Pre-Build Guardrail
-    06_backup_manifest.json
-    07_build.md
+    05_guardrail.md               # Pre-Build Guardrail (nâng cấp: step_action_check, requires_backup_check, per_step/final validation check)
+    backup_manifest.json          # Backup manifest (tên do script tạo)
+    07_build.md                   # Builder output (nâng cấp: error_type, error_hash, retryable, validation_status)
     08_static_analysis.md
     09_ui_audit.md
     10_test_plan.md
@@ -156,8 +172,8 @@ backward_compatibility:
       error_history: []
       backup_done: false
   artifact_schema_validation:
-    new_artifacts: strict         # Phải đúng schema
-    legacy_artifacts: permissive  # Log warning, không block
+    v3_artifacts: strict          # Schema 3.0: action, expected_result, error_type, error_hash, retryable, backup_workflow_id
+    v2_artifacts: permissive      # Schema 2.0 legacy: log warning, tự động thêm field mặc định
 ```
 
 ---
@@ -279,7 +295,7 @@ workflow:
   created_at: "2026-07-23T22:00:00Z"
   project: "..."
   branch: "..."
-  schema_version: "2.0"
+schema_version: "3.0"
   step: 1-13                        # Bước hiện tại (1-13)
   step_name: analyze|design|plan|review|guardrail|backup|build|static_analysis|ui_audit|testplan|test|skill_validation|complete
   status: running|blocked|completed|failed|waiting_user|cancelled|reviewing|building|testing|self_improving|waiting_approval
@@ -295,19 +311,28 @@ workflow:
     review:
       - hash: "a1b2c3d4e5f6"        # SHA256(error) lấy 12 ký tự
         error: "error message"
+        error_type: "ReviewIssue"    # Phân loại lỗi
+        error_normalized: "error message normalized"
         step: 3
+        retryable: true              # Có thể retry không?
         severity: MAJOR              # Error Priority: CRITICAL/MAJOR/MINOR
         action_taken: "rebuild"      # Action theo Error Priority Map
     test_failures:
       - hash: "..."
         error: "..."
+        error_type: "TestFailed"
+        error_normalized: "..."
         step: 9
+        retryable: true
         severity: CRITICAL
         action_taken: "stop"
     build_failures:
       - hash: "..."
         error: "..."
+        error_type: "SyntaxError"
+        error_normalized: "syntaxerror: unexpected token"
         step: 6
+        retryable: true
         severity: MINOR
         action_taken: "log"
     same_error_count: 0              # Nếu ≥ 2 → STOP
@@ -370,18 +395,35 @@ Cách phát hiện `same_error`:
 3. Nếu hash trùng → `same_errors[]`, tăng `same_error_count`
 4. Nếu `same_error_count >= 2` → STOP, rollback
 
-### Cách tính error_hash
+### Cách tính error_hash và error_type
 
 ```
-1. Lấy raw error message (từ stderr/exception)
-2. Normalize: loại bỏ line number, timestamp, memory address, stack trace line
-3. Trim whitespace, lowercase
-4. SHA256(string) → lấy 12 ký tự đầu
+error_hash:
+  1. Lấy raw error message (từ stderr/exception)
+  2. Normalize: loại bỏ line number, timestamp, memory address, stack trace line
+  3. Trim whitespace, lowercase
+  4. SHA256(string) → lấy 12 ký tự đầu
 
-Ví dụ:
-  Raw:    "Line 42: System.NullReferenceException: Object reference at MyClass.cs:123"
-  Normal: "system.nullreferenceexception: object reference"
-  Hash:   "a1b2c3d4e5f6"
+  Ví dụ:
+    Raw:    "Line 42: System.NullReferenceException: Object reference at MyClass.cs:123"
+    Normal: "system.nullreferenceexception: object reference"
+    Hash:   "a1b2c3d4e5f6"
+
+error_type:
+  - SyntaxError: Lỗi cú pháp (unexpected token, missing bracket)
+  - BuildFailed: Lỗi build (dotnet build thất bại)
+  - FileNotFound: File không tồn tại khi action=MODIFY
+  - NullReferenceException: Null reference runtime error
+  - BackupFailed: Backup utility thất bại
+  - BackupUtilityUnavailable: Backup utility script không tìm thấy
+  - ValidationFailed: Per-step hoặc final validation thất bại
+  - TestFailed: Test case FAIL
+  - CoverageBelowThreshold: Coverage không đạt threshold
+  - Unknown: Không phân loại được
+
+retryable:
+  - true: Có thể retry (syntax error, build fail, test fail)
+  - false: KHÔNG thể retry (file not found, backup fail, backup utility unavailable)
 ```
 
 ---
@@ -461,18 +503,33 @@ design:
       handling: "Normalize trước khi validate"
 ```
 
-### 3. Planner — Plan Phase
+### 3. Planner — Plan Phase (NÂNG CẤP)
 
 **Schema:** (extends [Base Schema](#base-agent-schema))
 
 | Field | Type | Required | Mô tả |
 |-------|------|----------|-------|
 | status | string | ✅ | `READY` hoặc `NEEDS_MORE_INFO` |
-| steps | object[] | ✅ | Các bước thực thi: `[{order, description, file, logic, check, chunk, requires_backup}]` |
+| steps | object[] | ✅ | Các bước thực thi: `[{order, description, action, file, logic, expected_result, check, chunk, requires_backup}]` |
+| per_step_validation | object[] | ❌ | Validate ngay sau mỗi step: `[{step, command, expected}]` |
+| final_validation | object[] | ❌ | Validate cuối sau tất cả steps: `[{command, expected}]` |
 | rollback_strategy | object | ✅ | Chiến lược rollback: `{enabled, conditions[]}` |
-| validate | string[] | ✅ | Các bước validate cuối |
+| validate | string[] | ✅ | (Giữ lại cho backward compatibility) |
 
-**Output mẫu (Plan):**
+**Cấu trúc step mới:**
+| Step field | Type | Bắt buộc | Mô tả |
+|------------|------|----------|-------|
+| order | int | ✅ | Thứ tự thực thi |
+| description | string | ✅ | Mô tả bước |
+| action | string | ✅ | `CREATE` / `MODIFY` / `DELETE` — **rõ ràng, không để Builder tự suy diễn** |
+| file | string | ✅ | Đường dẫn file |
+| logic | string | ✅ | Logic cần implement chi tiết |
+| expected_result | string | ✅ | Kết quả mong đợi sau bước này |
+| check | string | ✅ | Cách kiểm tra (per_step_validation) |
+| chunk | int | ❌ | Nhóm thực thi (1-4), mặc định 1 |
+| requires_backup | bool | ✅ | `true` nếu action = MODIFY/DELETE file cũ; `false` nếu CREATE |
+
+**Output mẫu (Plan) — nâng cấp:**
 ```yaml
 status: READY
 summary: "Kế hoạch 3 bước: config → logic → test"
@@ -481,25 +538,44 @@ next_action: "Chuyển sang Review phase"
 artifacts: ["03_plan.md"]
 steps:
   - order: 1
-    description: "Backup file"
+    description: "Thêm validation logic cho email"
+    action: MODIFY
     file: "src/validators.ts"
-    logic: "Copy file cũ"
-    check: "File tồn tại"
+    logic: "Thêm hàm validateEmail() vào cuối file"
+    expected_result: "File validators.ts có hàm validateEmail()"
+    check: "npm run lint"
     chunk: 1
     requires_backup: true
   - order: 2
-    description: "Thêm validation logic"
-    file: "src/validators.ts"
-    logic: "Thêm hàm validateEmail()"
-    check: "Syntax OK"
+    description: "Thêm unit test cho validateEmail"
+    action: CREATE
+    file: "tests/validators.test.ts"
+    logic: "Tạo file test mới với 3 test cases"
+    expected_result: "File tests/validators.test.ts tồn tại"
+    check: "npm run lint"
     chunk: 1
     requires_backup: false
+per_step_validation:
+  - step: 1
+    command: "npm run lint"
+    expected: "Lint PASS"
+  - step: 2
+    command: "npm run lint"
+    expected: "Lint PASS"
+final_validation:
+  - command: "dotnet build"
+    expected: "Build thành công"
+  - command: "dotnet test"
+    expected: "Test PASS"
 rollback_strategy:
   enabled: true
   conditions:
     - "catastrophic failure"
     - "max retry reached"
     - "user request"
+  steps:
+    - "Bước 1: restore src/validators.ts từ backup"
+    - "Bước 2: xóa tests/validators.test.ts nếu tồn tại"
 validate:
   - "Chạy dotnet build"
   - "Chạy unit tests"
@@ -537,35 +613,73 @@ issues:
     suggestion: "Đề xuất giải pháp"
 ```
 
-### 5. Builder
+### 5. Builder (NÂNG CẤP)
 
 **Schema:** (extends [Base Schema](#base-agent-schema))
 
 | Field | Type | Required | Mô tả |
 |-------|------|----------|-------|
 | status | string | ✅ | `PASS` hoặc `FAIL` |
-| steps | object[] | ✅ | `[{order, status, file, error, error_normalized}]` |
-| overall | string | ✅ | `PASS` / `FAIL` |
-| failure_type | string | ❌ | `MINOR` (syntax/lint) hoặc `CRITICAL` (logic) — dùng [Error Priority](#error-priority--action-map) |
+| overall | string | ✅ | `PASS` / `FAIL` (đồng bộ với status) |
+| backup_workflow_id | string | ❌ | Workflow ID từ backup, có nếu có backup |
+| changed_files | string[] | ❌ | Danh sách file đã thay đổi (MODIFY/DELETE) |
+| created_files | string[] | ❌ | Danh sách file đã tạo mới |
+| steps | object[] | ✅ | `[{order, status, file, action, requires_backup, per_step_validation, error, error_type, error_normalized, error_hash, retryable}]` |
+| failure_type | string | ❌ | `MINOR` (syntax/lint) hoặc `CRITICAL` (logic, backup fail) — dùng [Error Priority](#error-priority--action-map) |
+| validation_status | string | ❌ | `PASS` / `FAIL` — kết quả final_validation |
 | details | string | ❌ | Chi tiết lỗi — chỉ khi FAIL |
 
-**Output mẫu:**
+**Error fields chi tiết trong step:**
+| Error field | Type | Mô tả |
+|-------------|------|-------|
+| error | string | Raw error message gốc |
+| error_type | string | Phân loại: `SyntaxError`, `BuildFailed`, `FileNotFound`, `NullReferenceException`, `BackupFailed`, `ValidationFailed`, ... |
+| error_normalized | string | Error đã normalize (loại bỏ line number, timestamp, stack trace) |
+| error_hash | string | SHA256(error_normalized) lấy 12 ký tự đầu |
+| retryable | bool | Có thể retry step này không? (`false` nếu file không tồn tại, backup fail) |
+
+**Output mẫu mới:**
 ```yaml
 status: PASS
+overall: "PASS"
+backup_workflow_id: "WF-20260726-001"
+changed_files:
+  - "src/validators.ts"
+created_files: []
 summary: "Build successful — 2/2 steps PASS"
 issues: []
 next_action: "Chuyển sang Static Analysis"
-artifacts: ["06_build.md"]
+artifacts: ["07_build.md"]
 steps:
   - order: 1
     status: PASS
     file: "src/validators.ts"
+    action: MODIFY
+    requires_backup: true
+    per_step_validation:
+      command: "npm run lint"
+      result: "PASS"
+    error: null
+    error_type: null
+    error_normalized: null
+    error_hash: null
+    retryable: false
   - order: 2
     status: FAIL
     file: "src/handler.ts"
-    error: "SyntaxError: Unexpected token"
+    action: MODIFY
+    requires_backup: true
+    per_step_validation:
+      command: "npm run lint"
+      result: "FAIL"
+    error: "SyntaxError: Unexpected token (42:12)"
+    error_type: "SyntaxError"
     error_normalized: "syntaxerror: unexpected token"
-overall: "PASS"
+    error_hash: "a1b2c3d4e5f6"
+    retryable: true
+failure_type: "MINOR"
+validation_status: "FAIL"
+details: "Step 2 FAIL do lỗi syntax — đã sửa và retry"
 ```
 
 ### 6. Test-Planner
@@ -744,14 +858,27 @@ Bạn là Planner Agent (Plan Phase). Dựa trên thiết kế, lập kế hoạ
 Thiết kế:
 {current_data.design}
 
-Yêu cầu:
-1. Mỗi bước có: Mô tả, File, Logic, Kiểm tra, Chunk (1-4), requires_backup (true/false)
+Yêu cầu (BẮT BUỘC):
+1. Mỗi bước phải có đủ:
+   - `action`: CREATE / MODIFY / DELETE (rõ ràng, không để Builder tự suy diễn)
+   - `file`: Đường dẫn file
+   - `logic`: Logic chi tiết
+   - `expected_result`: Kết quả mong đợi
+   - `check`: Cách kiểm tra (per_step_validation)
+   - `chunk`: 1-4
+   - `requires_backup`: true (MODIFY/DELETE) / false (CREATE)
 2. Thứ tự: config → logic → test
-3. Thêm rollback_strategy (enabled, conditions, steps)
-4. Xác định dependency giữa các bước
-5. Kết thúc bằng validate tổng thể
+3. **Quy tắc file không tồn tại:**
+   - Nếu `action: MODIFY` → file PHẢI tồn tại trong codebase
+   - Nếu `action: CREATE` → file chưa tồn tại (sẽ tạo mới)
+   - Không được ghi MODIFY cho file chưa tồn tại
+4. **Tách validate theo giai đoạn:**
+   - `per_step_validation`: Kiểm tra ngay sau mỗi step (lint, syntax check)
+   - `final_validation`: Kiểm tra tổng thể sau tất cả steps (dotnet build, test)
+5. Thêm rollback_strategy (enabled, conditions, steps)
+6. Xác định dependency giữa các bước
 
-Output: Contract YAML theo schema Planner — Plan Phase.
+Output: Contract YAML theo schema Planner — Plan Phase (đã nâng cấp).
 ```
 
 **Sau output:** Lưu `current_data.plan = output`, tăng `step = 4`, ghi artifact `03_plan.md`
@@ -808,10 +935,30 @@ guardrail:
     required: true
     check: "rollback_strategy.enabled == true?"
     fail_action: "BLOCK — yêu cầu thêm rollback strategy"
+  step_action_check:
+    required: true
+    check: "Mỗi step có action CREATE/MODIFY/DELETE rõ ràng không?"
+    fail_action: "BLOCK — mỗi step phải có action rõ ràng"
+  step_expected_result:
+    required: true
+    check: "Mỗi step có expected_result không?"
+    fail_action: "BLOCK — mỗi step phải có expected_result"
+  requires_backup_check:
+    required: true
+    check: "requires_backup == true cho MODIFY/DELETE, false cho CREATE?"
+    fail_action: "BLOCK — requires_backup không khớp với action"
+  per_step_validation_check:
+    required: true
+    check: "Có per_step_validation cho mỗi step không?"
+    fail_action: "BLOCK — cần per_step_validation"
+  final_validation_check:
+    required: true
+    check: "Có final_validation không?"
+    fail_action: "BLOCK — cần final_validation"
   dependency_check:
     required: true
-    check: "Tất cả file trong steps có tồn tại không? (glob check)"
-    fail_action: "WARN — file không tồn tại, có thể cần tạo mới"
+    check: "Tất cả file MODIFY trong steps có tồn tại không? (glob check)"
+    fail_action: "WARN — file không tồn tại, plan yêu cầu MODIFY nhưng file chưa có"
   backup_check:
     required: false
     check: "Steps có requires_backup:true — backup đã chạy chưa?"
@@ -831,22 +978,50 @@ Ghi artifact `05_guardrail.md`
 
 ---
 
-### Bước 6: Backup
+### Bước 6: Backup — RÀNG BUỘC NGHIÊM NGẶT
 **Hành động:** Orchestrator gọi backup-agent (qua backup-agent command)
 
-**Điều kiện:** Chỉ chạy nếu `current_data.plan` có chứa thao tác sửa file cũ
+**Điều kiện:** Chỉ chạy nếu `current_data.plan` có chứa thao tác sửa file cũ (`requires_backup: true`)
 
 **Cách thực hiện (backup-agent):**
 1. Orchestrator phân tích plan → danh sách file cần sửa
-2. Gọi backup-agent command: `backup-agent --files <file_list> --workflow-id <id>`
-3. backup-agent tự tạo backup manifest: `06_backup_manifest.json`
+2. Gọi backup-agent command (action-based):
+   ```powershell
+   & ".opencode\scripts\backup-utility.ps1" -action save -files @("file1.cs", "file2.razor") -workflowId "<WF-ID>"
+   ```
+3. backup-agent tự tạo backup manifest: `backup_manifest.json` (trong `.opencode/backup/<WF-ID>/`)
 4. Set `backup_done = true`
+
+**Exclude rules tự động:** File nhạy cảm/size lớn được skip với `skip_reason` rõ ràng (SENSITIVE / MAX_SIZE_EXCEEDED)
+**Manifest chuẩn:** Gồm `workflow_id`, `created_at`, `tool_version`, `files[]` với `sha256`, `source_path`, `backup_path`, `size`
+
+**RÀNG BUỘC BACKUP — PHẢI TUÂN THỦ:**
+1. **Nếu `requires_backup: true` mà backup thất bại → DỪNG NGAY, báo CRITICAL**
+   - Không tiếp tục build, không retry
+   - Set `status: blocked`, yêu cầu user can thiệp
+2. **Nếu file MỚI tạo (action: CREATE) → không cần backup**
+   - Log "📝 File mới, không cần backup"
+3. **Nếu backup utility không sẵn sàng → báo `CRITICAL`**
+   - Kiểm tra script tồn tại trước khi gọi: `Test-Path ".opencode\scripts\backup-utility.ps1"`
+   - Nếu không tìm thấy → dừng ngay, không tự backup thủ công
+4. **Nếu manifest không được tạo → coi như backup thất bại**
 
 **Nếu chỉ tạo file mới:** Log "📝 Kế hoạch chỉ tạo file mới, không cần backup"
 
+### Rollback an toàn
+Khi cần rollback (catastrophic failure), gọi rollback utility:
+```powershell
+& ".opencode\scripts\rollback-utility.ps1" -workflowId "<WF-ID>"
+```
+Quy trình rollback:
+1. **Preview** — hiển thị danh sách file, đánh dấu conflict
+2. **Snapshot** — tự động backup file hiện tại vào `_pre_rollback_<timestamp>/`
+3. **Safety** — không ghi đè file mới hơn backup (trừ `--force`)
+4. **Summary** — báo cáo restored, skipped, failed
+
 ---
 
-### Bước 7: Build
+### Bước 7: Build (NÂNG CẤP)
 **Agent:** `builder`
 
 **Prompt:**
@@ -858,20 +1033,32 @@ Kế hoạch:
 
 Yêu cầu:
 1. Chia steps thành tối đa 4 chunks (theo chunk field trong plan)
-2. Sau mỗi chunk: kiểm tra syntax/lint
-3. Nếu chunk FAIL → dừng chunk đó, báo cáo ngay
-4. Backup file trước khi sửa (backup-agent đã làm)
-5. Output: Contract YAML theo schema Builder
+2. **Quy tắc file không tồn tại:**
+   - Nếu `action: MODIFY` mà file không tồn tại → KHÔNG tự đổi sang CREATE
+     → Báo FAIL với error_type="FileNotFound", retryable=false
+   - Chỉ `action: CREATE` khi kế hoạch đã nêu rõ
+3. **Backup constraint:** Nếu `requires_backup: true` mà backup chưa chạy → báo CRITICAL
+4. **Validation theo giai đoạn:**
+   - `per_step_validation`: Kiểm tra ngay sau mỗi step (lint, syntax check)
+   - `final_validation`: Kiểm tra tổng thể sau tất cả steps (dotnet build, test)
+5. Nếu per_step_validation FAIL → dừng step đó, không tiếp tục
+6. Nếu chunk FAIL → dừng chunk đó, báo cáo ngay
+7. Backup file trước khi sửa (backup-agent đã làm ở Bước 6)
+8. **Mỗi lỗi phải kèm đầy đủ:** error_type, error_normalized, error_hash, retryable
+9. Output: Contract YAML theo schema Builder (đã nâng cấp)
 ```
 
 **Sau output:** Lưu `current_data.build_result = output`, tăng `step = 9` (Static Analysis), ghi artifact `07_build.md`
 
-**Kiểm tra:**
+**Xử lý kết quả (mở rộng):**
 - **Tất cả PASS** → tiếp tục
-- **FAIL + failure_type == MINOR** → Yêu cầu builder sửa
-- **FAIL + failure_type == CRITICAL** → Kiểm tra same_error_count:
-  - Nếu error hash trùng với `error_history.build_failures` ≥ 2 lần → Dừng, báo catastrophic failure
-  - Nếu không → yêu cầu builder sửa hoặc hỏi user
+- **FAIL + failure_type == MINOR** (syntax/lint) → Yêu cầu builder sửa
+- **FAIL + failure_type == CRITICAL** → Kiểm tra nguyên nhân:
+  - **Backup fail** (error_type = "BackupFailed") → DỪNG NGAY, không retry
+  - **File không tồn tại** (error_type = "FileNotFound", action=MODIFY) → DỪNG, yêu cầu sửa plan
+  - **Lỗi logic** → Kiểm tra same_error_count:
+    - Nếu error hash trùng với `error_history.build_failures` ≥ 2 lần → Dừng, báo catastrophic failure
+    - Nếu không → yêu cầu builder sửa hoặc hỏi user
 
 ---
 
@@ -1042,10 +1229,10 @@ Sau khi workflow hoàn tất (PASS), tổng hợp báo cáo theo mẫu 5 phần:
 ### 2. Những gì đã làm
 {3-5 dòng mô tả công việc đã thực hiện}
 
-| File | Trạng thái | Mô tả |
-|------|-----------|-------|
-| path/to/file1 | ✅ Thành công | Sửa validation |
-| path/to/file2 | ✅ Thành công | Thêm test |
+| File | Hành động | Trạng thái | Mô tả |
+|------|-----------|-----------|-------|
+| path/to/file1 | MODIFY | ✅ Thành công | Sửa validation |
+| path/to/file2 | CREATE | ✅ Thành công | Thêm test |
 
 ### 3. Lỗi / rủi ro còn lại
 | Severity | Mô tả | Trạng thái |
@@ -1059,8 +1246,8 @@ Sau khi workflow hoàn tất (PASS), tổng hợp báo cáo theo mẫu 5 phần:
 - `03_plan.md` — Kế hoạch thực thi
 - `04_review.md` — Đánh giá kế hoạch
 - `05_guardrail.md` — Pre-build guardrail
-- `06_backup_manifest.json` — Backup manifest
-- `07_build.md` — Kết quả build
+- `backup_manifest.json` — Backup manifest
+- `07_build.md` — Kết quả build (nâng cấp: error_type, error_hash, retryable, validation_status)
 - `08_static_analysis.md` — Static analysis
 - `09_ui_audit.md` — UI audit
 - `10_test_plan.md` — Kế hoạch test
@@ -1179,7 +1366,13 @@ validation_checklist:
     - "design.edge_cases có list không?"
   phase_03_plan:
     - "steps có ít nhất 1 bước không?"
-    - "Mỗi step có order, description, file, logic, check, chunk không?"
+    - "Mỗi step có order, description, action, file, logic, expected_result, check, requires_backup không?"
+    - "action là CREATE/MODIFY/DELETE rõ ràng?"
+    - "requires_backup == true nếu action là MODIFY hoặc DELETE?"
+    - "requires_backup == false nếu action là CREATE?"
+    - "Mỗi step có expected_result mô tả kết quả mong đợi?"
+    - "per_step_validation có ít nhất 1 mục không?"
+    - "final_validation có ít nhất 1 mục không?"
     - "rollback_strategy.enabled == true"
     - "validate có ít nhất 1 mục không?"
   phase_04_review:
@@ -1193,11 +1386,21 @@ validation_checklist:
     - "File dependencies có tồn tại không?"
   phase_06_backup:
     - "backup_done == true nếu plan có sửa file cũ"
-    - "06_backup_manifest.json tồn tại"
+    - "backup_manifest.json tồn tại (tên mới, không còn 05_backup_manifest.json)"
+    - "Manifest có workflow_id, created_at, tool_version"
+    - "Mỗi file entry có original_path, hash, sha256, size_bytes, source_path, backup_path"
+    - "File loại trừ (exe, dll, pdb, zip, node_modules, bin/, obj/, dist/, .env, *secret*) có status SKIPPED + skip_reason"
+    - "Rollback snapshot được tạo trước khi restore"
   phase_07_build:
     - "Builder output có status PASS/FAIL không?"
-    - "Mỗi step có order, status, file không?"
-    - "error_normalized không chứa line number/timestamp"
+    - "Mỗi step có order, status, file, action, requires_backup không?"
+    - "Mỗi step có error fields đầy đủ: error_type, error_normalized, error_hash, retryable?"
+    - "error_normalized không chứa line number/timestamp?"
+    - "Nếu action=MODIFY mà file không tồn tại → error_type=FileNotFound, retryable=false?"
+    - "Nếu requires_backup=true và backup fail → failure_type=CRITICAL?"
+    - "validation_status có kết quả không?"
+    - "changed_files và created_files đã liệt kê đầy đủ?"
+    - "backup_workflow_id có nếu có backup?"
   phase_08_static_analysis:
     - "YAML frontmatter parse được không?"
     - "Internal links đều có section tương ứng?"
@@ -1290,7 +1493,7 @@ checkpoint_snapshot:
     - artifact: "05_guardrail.md"
       version: "v1"
       timestamp: "2026-07-26T14:20:00Z"
-    - artifact: "06_backup_manifest.json"
+    - artifact: "backup_manifest.json"
       version: "v1"
       timestamp: "2026-07-26T14:25:00Z"
     - artifact: "07_build.md"
@@ -1346,9 +1549,13 @@ backup:
 
 build:
   all PASS: → static_analysis
-  FAIL + failure_type == MINOR: → sửa, build lại
-  FAIL + failure_type == CRITICAL (same_error_count < 2): → hỏi_user
-  FAIL + failure_type == CRITICAL (same_error_count >= 2): → catastrophic → rollback
+  FAIL + failure_type == MINOR (syntax/lint): → sửa, build lại
+  FAIL + failure_type == CRITICAL:
+    error_type == "BackupFailed": → DỪNG NGAY, hỏi_user "Backup thất bại, cần xử lý thủ công?"
+    error_type == "FileNotFound" (action=MODIFY): → DỪNG, hỏi_user "File không tồn tại, cần sửa plan?"
+    error_type == "BackupUtilityUnavailable": → DỪNG NGAY, hỏi_user
+    same_error_count < 2: → hỏi_user
+    same_error_count >= 2: → catastrophic → rollback
   catastrophic: → rollback
 
 static_analysis:
@@ -1415,37 +1622,38 @@ rollback:
 ### Cách thực hiện Rollback
 
 ```powershell
-# rollback-utility.ps1
-param($workflow_id)
-$backup_root = ".opencode\backup\$workflow_id"
-# Đọc manifest và restore từng file
-$manifest = Get-Content "$backup_root\05_backup_manifest.json" | ConvertFrom-Json
-foreach ($entry in $manifest.files) {
-    Copy-Item -LiteralPath $entry.backup_path -Destination $entry.original_path -Force
-    Write-Output "✅ Restored: $($entry.original_path)"
-}
+# rollback-utility.ps1 (action-based)
+& ".opencode\scripts\rollback-utility.ps1" -workflowId "<WF-ID>"
+```
+
+Rollback tự động:
+1. **Preview** trước khi restore
+2. **Snapshot** file hiện tại vào `_pre_rollback_<timestamp>/`
+3. **Safety**: không ghi đè nếu file đã thay đổi (trừ `--force`)
+4. **Summary**: restored, skipped_newer, skipped_notfound, failed
+
+Để force restore (khi user xác nhận):
+```powershell
+& ".opencode\scripts\rollback-utility.ps1" -workflowId "<WF-ID>" -force
 ```
 
 ---
 
 ## TÍCH HỢP VỚI COMMANDS RIÊNG LẺ
 
-| Bước | Command | Agent | File command |
+| Buoc | Command | Agent | File command |
 |------|---------|-------|-------------|
-| 1 | `/team-analyze` | analyst | `team-analyze.md` |
-| 2 | `/team-plan` (Design) | planner | `team-plan.md` |
-| 3 | `/team-plan` (Plan) | planner | `team-plan.md` |
-| 4 | `/team-review` | reviewer | `team-review.md` |
-| 5 | (tự động) | orchestrator | — (Guardrail) |
-| 6 | `/team-backup` | backup-agent | `backup-agent` |
-| 7 | `/team-build` | builder | `team-build.md` |
-| 8 | (tự động) | orchestrator | — (Static Analysis) |
-| 9 | `/team-ui-audit` | ui-beautifier | `team-ui-audit.md` |
-| 10 | `/team-testplan` | test-planner | `team-testplan.md` |
-| 11 | `/team-test` | tester | `team-test.md` |
-| 12 | (tự động) | self-improver | `.opencode/agents/self-improver.md` |
-| 13 | (tự động) | orchestrator | — (Complete) |
-| — | `/team-gitpush` | pusher | `team-gitpush.md` (post-workflow) |
+| Buoc | Command | Agent | File command |
+|------|---------|-------|-------------|
+| 1 | /team-analyze | analyst | team-analyze.md |
+| 2-3 | /team-plan | planner (mo rong) | team-plan.md |
+| 4 | /team-review | reviewer | team-review.md |
+| 6 | /team-build | builder | team-build.md |
+| 8 | /team-ui-audit | ui-beautifier | team-ui-audit.md |
+| 9 | /team-testplan | test-planner | team-testplan.md |
+| 10 | /team-test | tester | team-test.md |
+| 11 | (goi tu team.md) | self-improver | .opencode/agents/self-improver.md |
+| 12 | /team-gitpush | pusher | team-gitpush.md |
 Không có command `/team-design` riêng — Design là phần mở rộng của Plan.
 
 ### GitGuard → Fix → GitPush Flow
@@ -1583,15 +1791,20 @@ Orchestrator:
 
 ```yaml
 complexity_estimate:
-  total_lines: ~1650
+  total_lines: ~1800
   files_affected:
     - ".opencode/skills/dev-team/SKILL.md"
-    - ".opencode/agents/planner.md"
-  agents_needing_update: 1        # planner.md: tách Design/Plan
-  commands_needing_update: 0      # team-*.md command files không cần sửa
+    - ".opencode/commands/team-build.md"
+    - ".opencode/commands/team-plan.md"
+  agents_needing_update: 0        # Không cần sửa agent riêng
+  commands_needing_update: 2      # team-build.md + team-plan.md
   knowledge_files: 0              # .opencode/knowledge/ không cần sửa
-  artifacts_structure: 13         # workflow.json + 12 artifact types
-  new_sections: 4                 # Base Agent Schema, Error Priority, Guardrail, Diff Mechanism
+  artifacts_structure: 12         # workflow.json + 11 artifact types
+  new_sections:
+    - "7 nâng cấp chính cho Builder Agent"
+    - "Error fields chi tiết (error_type, error_normalized, error_hash, retryable)"
+    - "Chuẩn hóa input + step structure + validation stages"
+    - "Ràng buộc backup + file existence rules"
 ```
 
 ---
@@ -1633,4 +1846,5 @@ static_analysis:
 - Nếu workflow bị block ở bước nào, cung cấp đủ thông tin để người dùng biết:
   - Đang ở bước nào, Output hiện tại, Cần quyết định gì
 - Khi workflow hoàn tất, output báo cáo phải đầy đủ và rõ ràng
+
 
