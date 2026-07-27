@@ -1,0 +1,45 @@
+﻿{
+    "created_at":  "2026-07-28T00:15:02Z",
+    "workflow_id":  "WF-20260728-001",
+    "failed_backups":  [
+
+                       ],
+    "backed_up_files":  [
+                            {
+                                "size_bytes":  46380,
+                                "backup":  "backup-WF-20260724-001",
+                                "status":  "success",
+                                "source":  ".opencode\\backup\\WF-20260724-001"
+                            },
+                            {
+                                "size_bytes":  25701,
+                                "backup":  "backup-WF-20260725-001",
+                                "status":  "success",
+                                "source":  ".opencode\\backup\\WF-20260725-001"
+                            },
+                            {
+                                "size_bytes":  185165,
+                                "backup":  "backup-WF-20260726-001",
+                                "status":  "success",
+                                "source":  ".opencode\\backup\\WF-20260726-001"
+                            },
+                            {
+                                "size_bytes":  109922,
+                                "backup":  "backup-WF-20260727-001",
+                                "status":  "success",
+                                "source":  ".opencode\\backup\\WF-20260727-001"
+                            },
+                            {
+                                "size_bytes":  123058,
+                                "backup":  "backup-WF-20260727-002",
+                                "status":  "success",
+                                "source":  ".opencode\\backup\\WF-20260727-002"
+                            },
+                            {
+                                "size_bytes":  53655,
+                                "backup":  "backup-WF-UI-20260724",
+                                "status":  "success",
+                                "source":  ".opencode\\backup\\WF-UI-20260724"
+                            }
+                        ]
+}

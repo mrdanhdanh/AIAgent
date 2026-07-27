@@ -145,7 +145,7 @@ workflow:
   created_at: "2026-07-24T00:00:00Z"
   project: "JapaneseLearner"
   branch: "main"
-  schema_version: "3.2"     # v3.2: thêm input validation gates, categorized issues, risk_level, chunk rules, concrete rollback
+  schema_version: "3.1"     # v3.1: thêm depends_on, deleted_files, FileOutsidePlan, UnauthorizedFix, ActionMismatch
   step: 1-12
   step_name: analyze|design|plan|review|backup|build|static_analysis|ui_audit|testplan|test|skill_validation|complete
   status: running|blocked|completed|failed|waiting_user|cancelled|reviewing|building|testing|self_improving|waiting_approval
@@ -205,22 +205,17 @@ workflow:
 
 **Prompt:**
 ```
-Bạn là Planner Agent (mở rộng — Design Phase). Dựa trên báo cáo phân tích, thiết kế giải pháp chi tiết.
-
-INPUT VALIDATION: Kiểm tra $ARGUMENTS có requirements[] không. Nếu không → NEEDS_MORE_INFO.
-
+Bạn là Planner Agent (mở rộng). Dựa trên báo cáo phân tích, thiết kế giải pháp chi tiết.
 Báo cáo: {current_data.analysis}
 
-Yêu cầu Design (v3.2):
+Yêu cầu Design:
 1. Architecture: Mô tả kiến trúc tổng thể
-2. Components: Liệt kê component cần tạo/sửa (kèm action, path)
+2. Components: Liệt kê component cần tạo/sửa
 3. Data flow: Luồng dữ liệu giữa các component
-4. Security concerns: Các rủi ro bảo mật (kèm severity, mitigation)
-5. Edge cases: Các trường hợp đặc biệt (kèm handling)
-6. Issues: Phân loại blocking_issues, non_blocking_issues, open_questions
-7. Effort: Xác định Small/Medium/Large cho Plan strategy
+4. Security concerns: Các rủi ro bảo mật
+5. Edge cases: Các trường hợp đặc biệt
 
-Output: Contract YAML v3.2 theo schema Planner (design). artifacts: ["02_design.md"]
+Output: Contract YAML theo schema Planner (bao gồm design).
 ```
 
 **Sau output:** Lưu `current_data.design = output`, tăng `step = 3`
@@ -232,21 +227,16 @@ Output: Contract YAML v3.2 theo schema Planner (design). artifacts: ["02_design.
 
 **Prompt:**
 ```
-Bạn là Planner Agent (Plan Phase). Dựa trên thiết kế, lập kế hoạch thực thi chi tiết từng bước.
-
-INPUT VALIDATION: Kiểm tra $ARGUMENTS có design.components[] không. Nếu không → NEEDS_MORE_INFO.
-
+Bạn là Planner Agent. Dựa trên thiết kế, lập kế hoạch thực thi chi tiết từng bước.
 Thiết kế: {current_data.design}
 
-Yêu cầu (v3.2):
-1. Mỗi bước có: Mô tả, File, Logic, expected_result (REQUIRED), Kiểm tra, Chunk (1-4), risk_level
-2. Chunk Rules: 1=config, 2=logic, 3=UI, 4=test
-3. Thứ tự: config → logic → test
-4. Rollback strategy mở rộng: trigger_conditions, restore_order, requires_user_confirmation
-5. Validate: per_step_validation + per_chunk_validate + final_validation
-6. Effort-based: Small=1 plan, Medium=2 chunks, Large=nhiều plans
+Yêu cầu:
+1. Mỗi bước có: Mô tả, File, Logic, Kiểm tra, Chunk (1-4)
+2. Thứ tự: config → logic → test
+3. Thêm rollback_strategy
+4. Kết thúc bằng validate tổng thể
 
-Output: Contract YAML v3.2 (steps, rollback_strategy, validate). artifacts: ["03_plan.md"]
+Output: Contract YAML theo schema Planner (cập nhật steps, rollback_strategy, validate).
 ```
 
 **Sau output:** Lưu `current_data.plan = output`, tăng `step = 4`
@@ -255,30 +245,18 @@ Output: Contract YAML v3.2 (steps, rollback_strategy, validate). artifacts: ["03
 
 ---
 
-### Bước 4: Review (NÂNG CẤP v4.0)
+### Bước 4: Review
 **Agent:** `reviewer` (qua `/team-review`)
 
-**Prompt** (xem `team-review.md` — schema v4.0)
-
-**Đầu vào:** Output từ Design + Plan phases.
-
-**Đầu ra:** YAML v4.0 gồm `decision`, `scores`, `score_rationale`, `consistency_checks`, `issues[]` (mở rộng: blocking, fix_priority, affected_phase), `missing_info`, `required_updates`, `edge_cases_checked`, `not_covered_risks`, `recommendation`, `next_step`.
-
-**Ngưỡng quyết định:**
-- `APPROVED` khi `overall >= 8.5` và **không có** issue `CRITICAL`
-- `CHANGES_REQUESTED` khi có vấn đề sửa được
-- `REJECTED` chỉ khi sai hướng, thiếu nền tảng
+**Prompt** (xem `team-review.md`)
 
 **Sau output:**
-- Parse YAML, kiểm tra `decision` + `scores.overall` + `issues[].severity`
-- **APPROVED** (overall >= 8.5, không CRITICAL) → Lưu `current_data.review_result = output`, tăng `step = 5`
+- **APPROVED** → Lưu `current_data.review_result = output`, tăng `step = 5`
 - **CHANGES_REQUESTED** →
   - `retry.review_count++`
-  - Nếu `retry.review_count < retry.max_review` và `same_error_count < 2` → Quay lại Bước 3 (Plan), kèm `required_updates` từ reviewer
+  - Nếu `retry.review_count < retry.max_review` và `same_error_count < 2` → Quay lại Bước 3 (Plan)
   - Nếu `retry.review_count >= retry.max_review` hoặc `same_error_count >= 2` → Dừng, set `status: blocked`
 - **REJECTED** → Dừng, set `status: failed`
-
-**Kiểm tra thêm:** Nếu có issue `blocking: true` mà decision = APPROVED → bất hợp lệ, yêu cầu reviewer sửa.
 
 ---
 
@@ -441,16 +419,8 @@ validation_checklist:
     - "validate có ít nhất 1 mục không?"
   phase_04_review:
     - "decision phải là APPROVED/CHANGES_REQUESTED/REJECTED"
-    - "scores có đủ 6 field không? (completeness, accuracy, safety, efficiency, testability, overall)"
-    - "Mỗi score dưới 7 có score_rationale tương ứng không?"
-    - "issues có id, severity, category, blocking, description, suggestion không?"
-    - "Nếu blocking=true trong issue → decision không thể là APPROVED"
-    - "Nếu có CRITICAL issue → decision không thể là APPROVED"
-    - "overall >= 8.5 và không CRITICAL → APPROVED"
-    - "consistency_checks có 3 field không? (contract_match, file_path_match, dependency_valid)"
-    - "Nếu decision = CHANGES_REQUESTED → có missing_info và required_updates không?"
-    - "edge_cases_checked có ít nhất 1 item không?"
-    - "recommendation và next_step có được định nghĩa không?"
+    - "scores có đủ 6 field không?"
+    - "issues có id, severity, category không?"
   phase_05_backup:
     - "backup_done == true nếu plan có sửa file cũ"
     - "05_backup_manifest.json tồn tại"
@@ -644,9 +614,8 @@ complete:
 
 | Buoc | Command | Agent | File command |
 |------|---------|-------|-------------|
-| 0 | /team-syncdocs | general | team-syncdocs.md |
-| 0 | /team-cleanup | cleaner | team-cleanup.md |
-| 0 | /team | general | team.md |
+| Buoc | Command | Agent | File command |
+|------|---------|-------|-------------|
 | 1 | /team-analyze | analyst | team-analyze.md |
 | 2-3 | /team-plan | planner (mo rong) | team-plan.md |
 | 4 | /team-review | reviewer | team-review.md |
@@ -655,7 +624,7 @@ complete:
 | 8 | /team-ui-audit | ui-beautifier | team-ui-audit.md |
 | 9 | /team-testplan | test-planner | team-testplan.md |
 | 10 | /team-test | tester | team-test.md |
-| 11 | team (goi tu) | self-improver | team-selfimprove.md |
+| 11 | (goi tu team.md) | self-improver | .opencode/agents/self-improver.md |
 | 12 | /team-gitpush | pusher | team-gitpush.md |
 Không có command `/team-design` riêng — Design là phần mở rộng của Plan.
 
@@ -717,7 +686,6 @@ $backup_root = ".opencode\backup\$workflow_id"
 - Approval gate bắt buộc cho suggestion có impact MEDIUM/HIGH
 - Backup/Rollback do Backup Utility thực hiện, Orchestrator chỉ gọi lệnh
 - Khi workflow hoàn tất, output báo cáo đầy đủ và rõ ràng
-
 
 
 

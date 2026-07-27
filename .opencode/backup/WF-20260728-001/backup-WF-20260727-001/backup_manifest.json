@@ -1,0 +1,40 @@
+﻿{
+    "created_at":  "2026-07-27T22:14:12.6871303+07:00",
+    "workflow_id":  "WF-20260727-001",
+    "tool_version":  "2.0.0",
+    "files":  [
+                  {
+                      "hash":  "EC1850B34B47",
+                      "backup_path":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\backup\\WF-20260727-001\\.opencode\\skills\\gitguard\\SKILL.md",
+                      "original_path":  ".opencode/skills/gitguard/SKILL.md",
+                      "error":  null,
+                      "sha256":  "EC1850B34B47C912250E8A1072C35B81C6149023F6913B8FDCC6ACE91BC1ACA7",
+                      "source_path":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\skills\\gitguard\\SKILL.md",
+                      "status":  "SUCCESS",
+                      "size_bytes":  14170,
+                      "skip_reason":  null
+                  },
+                  {
+                      "hash":  "4CA8C4E93B08",
+                      "backup_path":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\backup\\WF-20260727-001\\.opencode\\agents\\guardian.md",
+                      "original_path":  ".opencode/agents/guardian.md",
+                      "error":  null,
+                      "sha256":  "4CA8C4E93B080457A6430417391BFC9A9CAD5EBA305A63853055719FB56D212B",
+                      "source_path":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\agents\\guardian.md",
+                      "status":  "SUCCESS",
+                      "size_bytes":  5678,
+                      "skip_reason":  null
+                  },
+                  {
+                      "hash":  "B800F83B28F3",
+                      "backup_path":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\backup\\WF-20260727-001\\.opencode\\commands\\team-gitguard.md",
+                      "original_path":  ".opencode/commands/team-gitguard.md",
+                      "error":  null,
+                      "sha256":  "B800F83B28F3A2C0251A663BF46A599D602D393D02208672690A8B08F9D9F8EF",
+                      "source_path":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\commands\\team-gitguard.md",
+                      "status":  "SUCCESS",
+                      "size_bytes":  6482,
+                      "skip_reason":  null
+                  }
+              ]
+}

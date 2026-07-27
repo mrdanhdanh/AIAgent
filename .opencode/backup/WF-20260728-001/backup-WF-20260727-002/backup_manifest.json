@@ -1,0 +1,62 @@
+﻿{
+    "created_at":  "2026-07-27T22:17:23.5537252+07:00",
+    "workflow_id":  "WF-20260727-002",
+    "tool_version":  "2.0.0",
+    "files":  [
+                  {
+                      "hash":  "F02B883C4370",
+                      "backup_path":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\backup\\WF-20260727-002\\.opencode\\skills\\dev-team\\SKILL.md",
+                      "original_path":  ".opencode\\skills\\dev-team\\SKILL.md",
+                      "error":  null,
+                      "sha256":  "F02B883C437063C02CA768FED422340D2B1F3011F478122E613B492FBB27DD35",
+                      "source_path":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\skills\\dev-team\\SKILL.md",
+                      "status":  "SUCCESS",
+                      "size_bytes":  75490,
+                      "skip_reason":  null
+                  },
+                  {
+                      "hash":  "4B96139E74EA",
+                      "backup_path":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\backup\\WF-20260727-002\\.opencode\\agents\\planner.md",
+                      "original_path":  ".opencode\\agents\\planner.md",
+                      "error":  null,
+                      "sha256":  "4B96139E74EA212C974360FB9E944425B800509D0141FEE6504BFCB2A85F127F",
+                      "source_path":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\agents\\planner.md",
+                      "status":  "SUCCESS",
+                      "size_bytes":  4155,
+                      "skip_reason":  null
+                  },
+                  {
+                      "hash":  "4CDD4027775C",
+                      "backup_path":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\backup\\WF-20260727-002\\.opencode\\commands\\team-plan.md",
+                      "original_path":  ".opencode\\commands\\team-plan.md",
+                      "error":  null,
+                      "sha256":  "4CDD4027775C313A107ED2BAB16D6ECDA0373D10B7D8A63D96C237A92D9586B6",
+                      "source_path":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\commands\\team-plan.md",
+                      "status":  "SUCCESS",
+                      "size_bytes":  6692,
+                      "skip_reason":  null
+                  },
+                  {
+                      "hash":  "6C77E547A238",
+                      "backup_path":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\backup\\WF-20260727-002\\.opencode\\commands\\team.md",
+                      "original_path":  ".opencode\\commands\\team.md",
+                      "error":  null,
+                      "sha256":  "6C77E547A238D683906AF63745FC0E2A01A291687A8FFC5AAFF4B97D9B481380",
+                      "source_path":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\commands\\team.md",
+                      "status":  "SUCCESS",
+                      "size_bytes":  23798,
+                      "skip_reason":  null
+                  },
+                  {
+                      "hash":  "8793A8954C26",
+                      "backup_path":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\backup\\WF-20260727-002\\.opencode\\commands\\team-build.md",
+                      "original_path":  ".opencode\\commands\\team-build.md",
+                      "error":  null,
+                      "sha256":  "8793A8954C269D302F9A2EE742673A4E6C2AA2E527CB7B4D75A61C6F0C59F7C2",
+                      "source_path":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\commands\\team-build.md",
+                      "status":  "SUCCESS",
+                      "size_bytes":  9088,
+                      "skip_reason":  null
+                  }
+              ]
+}

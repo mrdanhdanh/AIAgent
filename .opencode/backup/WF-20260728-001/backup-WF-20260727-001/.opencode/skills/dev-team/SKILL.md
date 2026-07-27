@@ -1,7 +1,7 @@
 ﻿---
 name: dev-team
 description: Hướng dẫn sử dụng Dev Agent Team gồm 9 agents (7 core + 2 support). Dùng khi cần phân tích, lập kế hoạch, đánh giá, code, kiểm thử một yêu cầu phát triển. Tích hợp cơ chế Self-Improvement với approval gate. Sử dụng câu lệnh team hoặc team-*.
-schema_version: "3.2"
+schema_version: "3.1"
 ---
 
 # Dev Agent Team — Orchestrator Guide
@@ -20,7 +20,6 @@ schema_version: "3.2"
 | 6 | **Quy định file không tồn tại** | `MODIFY` mà file không tồn tại → không tự đổi sang `CREATE` → báo FAIL. Chỉ `CREATE` khi plan cho phép | Builder |
 | 7 | **Ràng buộc chỉnh sửa file** | Chỉ sửa đúng file trong plan. File ngoài plan → báo cáo, không đụng vào. `MODIFY` không thành `CREATE`. | Builder |
 | 8 | **Chuẩn hóa output** | `changed_files`, `created_files`, `deleted_files`, `backup_workflow_id`, `validation_status` | Builder output |
-| 9 | **Planner contract siết chặt (v3.2)** | Input validation gates, categorized issues, enriched step schema (risk_level), chunk rules, concrete rollback strategy | Planner, Builder, Orchestrator |
 
 ---
 
@@ -440,7 +439,7 @@ Mỗi agent output theo format YAML cố định (extends [Base Schema](#base-ag
 
 **Format chung (extends Base Schema):** `status`, `summary`, `issues` (kế thừa từ Base), cộng thêm các field riêng của từng agent.
 
-### 1. Analyst (schema v2.0)
+### 1. Analyst
 
 **Schema:** (extends [Base Schema](#base-agent-schema))
 
@@ -450,143 +449,44 @@ Mỗi agent output theo format YAML cố định (extends [Base Schema](#base-ag
 | effort | string | ✅ | `Small`, `Medium`, hoặc `Large` — dựa trên scope phân tích |
 | summary | string | ✅ | Tóm tắt phân tích (3-5 dòng) |
 | details | string | ✅ | Phân tích chi tiết |
-| scanned_paths | string[] | ✅ | Đường dẫn đã quét |
-| ignored_paths | object[] | ✅ | Đường dẫn bỏ qua + lý do: `[{path, reason}]` |
-| discovered_modules | string[] | ✅ | Module/package con phát hiện |
-| structure | object | ✅ | Cấu trúc dự án: `{root, language, framework, entry_points[{path, type}], main_directories[{path, description, relevance}]}` |
-| requirements | object[] | ✅ | Yêu cầu: `[{id, description, priority}]` |
-| risks | object[] | ✅ | Rủi ro: `[{id, description, severity, mitigation}]` |
-| assumptions | object[] | ✅ | Giả định: `[{id, description}]` |
-| dependencies | object[] | ✅ | Phụ thuộc có bằng chứng: `[{from, to, type, evidence_file, evidence_line, reason}]` |
-| patterns | object | ✅ | Patterns: `{naming: {pattern, location, notes}, routing: {...}, state_management: {...}, testing: {framework, locations}}` |
-| impact_scope | object[] | ✅ | File bị ảnh hưởng: `[{file, level: DIRECT/INDIRECT/UNRELATED, notes}]` |
-| design_proposal | object | ❌ | Đề xuất thiết kế: `{approach, affected_modules, new_files, modified_files, integration_points}` |
-| tasks | object[] | ✅ | Task con: `[{id, description, files, depends_on, why}]` |
-| conclusion | object | ✅ | Kết luận: `{status, reason, missing_info[]}` |
+| requirements | string[] | ✅ | Danh sách yêu cầu con |
+| risks | object[] | ✅ | Rủi ro: `[{description, severity, mitigation}]` |
+| design_proposal | string | ❌ | Đề xuất thiết kế (nếu có) |
+| tasks | object[] | ✅ | Task con: `[{name, file, effort}]` |
 
-**Output mẫu (v2.0):**
+**Output mẫu:**
 ```yaml
 status: READY
 summary: "Phân tích yêu cầu, xác định 5 file cần sửa"
+issues: []
+next_action: "Chuyển sang Design phase"
+artifacts: ["01_analysis.md"]
 effort: Medium
-details: "Phân tích chi tiết..."
-scanned_paths:
-  - "src/"
-  - "tests/"
-ignored_paths:
-  - path: "node_modules/"
-    reason: "Thư mục dependencies"
-discovered_modules:
-  - "Core"
-  - "Services"
-structure:
-  root: "JapaneseLearner"
-  language: "C#"
-  framework: "Blazor WebAssembly"
-  entry_points:
-    - path: "JapaneseLearner/Program.cs"
-      type: "app"
-    - path: "JapaneseLearner.Tests/BunitTestBase.cs"
-      type: "test"
-  main_directories:
-    - path: "src/"
-      description: "Mã nguồn chính"
-      relevance: "HIGH"
+details: "..."
 requirements:
-  - id: "REQ-001"
-    description: "Thêm validation email"
-    priority: "HIGH"
+  - "Thêm validation email"
 risks:
-  - id: "RISK-001"
-    description: "Xung đột với validation hiện tại"
+  - description: "Xung đột với validation hiện tại"
     severity: MEDIUM
     mitigation: "Kiểm tra codebase trước khi sửa"
-assumptions:
-  - id: "ASM-001"
-    description: "Dùng Regex email tiêu chuẩn"
-dependencies:
-  - from: "AuthService"
-    to: "IEmailValidator"
-    type: "service"
-    evidence_file: "src/Services/AuthService.cs"
-    evidence_line: 42
-    reason: "AuthService inject IEmailValidator qua constructor"
-patterns:
-  naming:
-    pattern: "PascalCase"
-    location: "src/Models/"
-    notes: "Tất cả model class dùng PascalCase"
-  routing:
-    pattern: "FluentUI Router via @page"
-    location: "src/Pages/"
-    notes: ".razor files with @page directive"
-  state_management:
-    pattern: "DI Service + Blazored.LocalStorage"
-    location: "src/Services/"
-    notes: "Cache-first, localStorage persistence"
-  testing:
-    framework: "xUnit + bUnit"
-    locations: ["JapaneseLearner.Tests/", "JapaneseLearner.E2ETests/"]
-impact_scope:
-  - file: "src/Services/AuthService.cs"
-    level: "DIRECT"
-    notes: "Cần inject IEmailValidator mới"
-  - file: "src/Pages/Login.razor"
-    level: "INDIRECT"
-    notes: "UI form gọi AuthService"
-design_proposal:
-  approach: "Thêm service layer mới"
-  affected_modules: ["Auth", "UI"]
-  new_files: ["src/Validators/EmailValidator.cs"]
-  modified_files: ["src/Services/AuthService.cs"]
-  integration_points: ["DI Container trong Program.cs"]
-tasks:
-  - id: "TASK-001"
-    description: "Tạo IEmailValidator interface"
-    files: ["src/Validators/IEmailValidator.cs"]
-    depends_on: []
-    why: "Interface cần được định nghĩa trước khi implement"
-conclusion:
-  status: "READY"
-  reason: "Đã xác định đầy đủ phạm vi, dependencies và impact"
-  missing_info: []
+tasks: []
 ```
 
-### 2. Planner — Design Phase (v3.2)
+### 2. Planner — Design Phase
 
 **Schema:** (extends [Base Schema](#base-agent-schema))
 
 | Field | Type | Required | Mô tả |
 |-------|------|----------|-------|
 | status | string | ✅ | `READY` hoặc `NEEDS_MORE_INFO` |
-| effort | string | ✅ | `Small`, `Medium`, hoặc `Large` — quyết định plan strategy (xem Effort Rules) |
+| effort | string | ✅ | `Small`, `Medium`, hoặc `Large` — dựa trên complexity thiết kế |
 | design | object | ✅ | Thiết kế: architecture, components, data_flow, security, edge_cases |
-| blocking_issues | object[] | ❌ | Vấn đề phải giải quyết mới đi tiếp: `[{id, severity, category, description, suggestion}]` |
-| non_blocking_issues | object[] | ❌ | Vấn đề có thể đi tiếp, sửa sau: `[{id, severity, category, description, suggestion}]` |
-| open_questions | object[] | ❌ | Câu hỏi cần user trả lời: `[{id, description, suggestion}]` |
 
-**Effort Rules (v3.2):**
-| Effort | Strategy | Mô tả |
-|--------|----------|-------|
-| `Small` | 1 plan duy nhất, không chunk | 1-2 files, 1-4 steps |
-| `Medium` | Chia 2 chunks (config+logic, UI+test) | 3-5 files, 5-10 steps |
-| `Large` | Tách phase phụ hoặc nhiều plan riêng | >5 files, >10 steps |
-
-**Output mẫu (Design) — v3.2:**
+**Output mẫu (Design):**
 ```yaml
 status: READY
 summary: "Thiết kế giải pháp với EmailValidator service"
-blocking_issues: []
-non_blocking_issues:
-  - id: "#01"
-    severity: MINOR
-    category: CONSISTENCY
-    description: "Cần đồng bộ IEmailValidator interface"
-    suggestion: "Thêm interface trước khi implement"
-open_questions:
-  - id: "#Q01"
-    description: "Có cần support Unicode email không?"
-    suggestion: "Nếu có, thêm normalization step"
+issues: []
 next_action: "Chuyển sang Plan phase"
 artifacts: ["02_design.md"]
 effort: Medium
@@ -608,24 +508,20 @@ design:
       handling: "Normalize trước khi validate"
 ```
 
-### 3. Planner — Plan Phase (v3.2 — SIẾT CHẶT)
+### 3. Planner — Plan Phase (NÂNG CẤP)
 
 **Schema:** (extends [Base Schema](#base-agent-schema))
 
 | Field | Type | Required | Mô tả |
 |-------|------|----------|-------|
 | status | string | ✅ | `READY` hoặc `NEEDS_MORE_INFO` |
-| steps | object[] | ✅ | Các bước thực thi (xem Step Schema bên dưới) |
+| steps | object[] | ✅ | Các bước thực thi: `[{order, description, action, file, logic, expected_result, check, chunk, requires_backup}]` |
 | per_step_validation | object[] | ❌ | Validate ngay sau mỗi step: `[{step, command, expected}]` |
-| per_chunk_validate | object[] | ❌ | Validate sau mỗi chunk: `[{chunk, command, expected}]` — **MỚI v3.2** |
 | final_validation | object[] | ❌ | Validate cuối sau tất cả steps: `[{command, expected}]` |
-| rollback_strategy | object | ✅ | Chiến lược rollback (xem Rollback Strategy) |
+| rollback_strategy | object | ✅ | Chiến lược rollback: `{enabled, conditions[]}` |
 | validate | string[] | ✅ | (Giữ lại cho backward compatibility) |
-| blocking_issues | object[] | ❌ | Vấn đề phải giải quyết mới đi tiếp: `[{id, severity, category, description, suggestion}]` |
-| non_blocking_issues | object[] | ❌ | Vấn đề có thể đi tiếp, sửa sau: `[{id, severity, category, description, suggestion}]` |
-| open_questions | object[] | ❌ | Câu hỏi cần user trả lời: `[{id, description, suggestion}]` |
 
-**Step Schema (v3.2) — tất cả fields:**
+**Cấu trúc step mới (v3.1):**
 | Step field | Type | Bắt buộc | Mô tả |
 |------------|------|----------|-------|
 | order | int | ✅ | Thứ tự thực thi |
@@ -633,39 +529,18 @@ design:
 | action | string | ✅ | `CREATE` / `MODIFY` / `DELETE` — **rõ ràng, không để Builder tự suy diễn** |
 | file | string | ✅ | Đường dẫn file |
 | logic | string | ✅ | Logic cần implement chi tiết |
-| expected_result | string | ✅ **(REQUIRED v3.2)** | Kết quả mong đợi sau bước này — Builder dùng để verify |
+| expected_result | string | ✅ | Kết quả mong đợi sau bước này |
 | check | string | ✅ | Cách kiểm tra (per_step_validation) |
-| chunk | int | ❌ | Nhóm thực thi (1-4), mặc định 1. Xem Chunk Rules |
+| chunk | int | ❌ | Nhóm thực thi (1-4), mặc định 1 |
 | requires_backup | bool | ✅ | `true` nếu action = MODIFY/DELETE file cũ; `false` nếu CREATE |
 | depends_on | int[] | ❌ | Các step phải chạy trước step này (mảng order) |
 | validation_command | string | ✅ | Lệnh validate cụ thể cho step này (vd: `dotnet build`, `npm run lint`) |
-| risk_level | string | ❌ | `LOW` / `MEDIUM` / `HIGH` — **MỚI v3.2**. Nếu HIGH, phải có rollback step |
 
-**Chunk Rules (v3.2):**
-| Chunk | Nội dung | Ví dụ |
-|-------|----------|-------|
-| 1 | Config/schema/dependencies | Model, interface, DI registration, config files |
-| 2 | Core logic/services | Business logic, service implementation, algorithms |
-| 3 | UI/API surface | Pages, components, endpoints, handlers |
-| 4 | Tests + validation | Unit tests, integration tests, validation scripts |
-
-**Rollback Strategy (v3.2):**
-| Field | Type | Required | Mô tả |
-|-------|------|----------|-------|
-| enabled | bool | ✅ | `true` nếu có MODIFY/DELETE steps |
-| trigger_conditions | object[] | ❌ | `[{type, description, threshold?}]` — **MỚI v3.2** |
-| restore_order | object[] | ❌ | `[{step, action, file}]` — thứ tự restore **MỚI v3.2** |
-| requires_user_confirmation | bool | ❌ | `true` nếu cần user confirm trước khi rollback **MỚI v3.2** |
-| conditions | string[] | ❌ | (Giữ lại cho backward compatibility) |
-| steps | string[] | ❌ | (Giữ lại cho backward compatibility) |
-
-**Output mẫu (Plan) — v3.2:**
+**Output mẫu (Plan) — nâng cấp:**
 ```yaml
 status: READY
 summary: "Kế hoạch 3 bước: config → logic → test"
-blocking_issues: []
-non_blocking_issues: []
-open_questions: []
+issues: []
 next_action: "Chuyển sang Review phase"
 artifacts: ["03_plan.md"]
 steps:
@@ -674,54 +549,30 @@ steps:
     action: MODIFY
     file: "src/validators.ts"
     logic: "Thêm hàm validateEmail() vào cuối file"
-    expected_result: "File validators.ts có hàm validateEmail() — build pass"
+    expected_result: "File validators.ts có hàm validateEmail()"
     check: "npm run lint"
     chunk: 1
     requires_backup: true
     depends_on: []
     validation_command: "npm run lint"
-    risk_level: MEDIUM
   - order: 2
     description: "Thêm unit test cho validateEmail"
     action: CREATE
     file: "tests/validators.test.ts"
     logic: "Tạo file test mới với 3 test cases"
-    expected_result: "File tests/validators.test.ts tồn tại — test pass"
+    expected_result: "File tests/validators.test.ts tồn tại"
     check: "npm run lint"
-    chunk: 4
+    chunk: 1
     requires_backup: false
     depends_on: [1]
     validation_command: "npm run lint"
-    risk_level: LOW
-  - order: 3
-    description: "Đăng ký service trong DI container"
-    action: MODIFY
-    file: "src/Program.cs"
-    logic: "Thêm services.AddScoped<IEmailValidator, EmailValidator>()"
-    expected_result: "Program.cs có DI registration — build pass"
-    check: "dotnet build"
-    chunk: 1
-    requires_backup: true
-    depends_on: [1]
-    validation_command: "dotnet build"
-    risk_level: HIGH
 per_step_validation:
   - step: 1
     command: "npm run lint"
     expected: "Lint PASS"
   - step: 2
-    command: "npm run test"
-    expected: "Test PASS"
-  - step: 3
-    command: "dotnet build"
-    expected: "Build PASS"
-per_chunk_validate:
-  - chunk: 1
-    command: "dotnet build"
-    expected: "Build PASS — chunk 1 hoàn tất"
-  - chunk: 4
-    command: "dotnet test"
-    expected: "Test PASS — chunk 4 hoàn tất"
+    command: "npm run lint"
+    expected: "Lint PASS"
 final_validation:
   - command: "dotnet build"
     expected: "Build thành công"
@@ -729,30 +580,11 @@ final_validation:
     expected: "Test PASS"
 rollback_strategy:
   enabled: true
-  trigger_conditions:
-    - type: "catastrophic_failure"
-      description: "Lỗi không recover được"
-    - type: "max_retry_reached"
-      description: "Retry > 3 lần"
-      threshold: 3
-    - type: "user_request"
-      description: "User yêu cầu dừng"
-  restore_order:
-    - step: 3
-      action: "restore"
-      file: "src/Program.cs"
-    - step: 1
-      action: "restore"
-      file: "src/validators.ts"
-    - step: 2
-      action: "delete"
-      file: "tests/validators.test.ts"
-  requires_user_confirmation: true
-  conditions:                                    # backward compatibility
+  conditions:
     - "catastrophic failure"
     - "max retry reached"
     - "user request"
-  steps:                                         # backward compatibility
+  steps:
     - "Bước 1: restore src/validators.ts từ backup"
     - "Bước 2: xóa tests/validators.test.ts nếu tồn tại"
 validate:
@@ -760,107 +592,36 @@ validate:
   - "Chạy unit tests"
 ```
 
-### 4. Reviewer (NÂNG CẤP — v4.0: decision thresholds, score_rationale, blocking, consistency, missing_info, scoring scale, edge cases, recommendation)
+### 4. Reviewer
 
 **Schema:** (extends [Base Schema](#base-agent-schema))
 
 | Field | Type | Required | Mô tả |
 |-------|------|----------|-------|
-| decision | string | ✅ | `APPROVED`, `CHANGES_REQUESTED`, hoặc `REJECTED` — xem Decision Thresholds |
-| scores | object | ✅ | `{completeness, accuracy, safety, efficiency, testability, overall}` (0-10) — xem Scoring Scale |
-| score_rationale | object | ❌ | Giải thích cho từng score nếu **dưới 7**: `{completeness: "...", accuracy: "...", safety: "...", efficiency: "...", testability: "..."}` |
-| issues | object[] | ✅ | Danh sách vấn đề (xem Issue Schema mở rộng bên dưới) |
-| consistency_checks | object | ❌ | Kiểm tra tính nhất quán: `{contract_match: bool, file_path_match: bool, dependency_valid: bool}` |
-| missing_info | string[] | ❌ | Thông tin còn thiếu khi `decision = CHANGES_REQUESTED` |
-| required_updates | string[] | ❌ | Các cập nhật bắt buộc — Planner sửa đúng chỗ, không suy luận |
-| edge_cases_checked | string[] | ❌ | Các edge case đã kiểm tra |
-| not_covered_risks | string[] | ❌ | Rủi ro chưa được xử lý |
-| recommendation | string | ❌ | `APPROVE` / `REVISE_PLAN` / `REWORK_DESIGN` / `REJECT` — hành động cụ thể |
-| next_step | string | ❌ | Bước tiếp theo cho Orchestrator (vd: "Quay lại Plan phase sửa file path") |
+| decision | string | ✅ | `APPROVED`, `CHANGES_REQUESTED`, hoặc `REJECTED` |
+| scores | object | ✅ | `{completeness, accuracy, safety, efficiency, testability, overall}` (1-10) |
+| issues | object[] | ✅ | `[{id, severity, category, description, suggestion}]` — **severity dùng [Error Priority](#error-priority--action-map)** |
 
-**Thang điểm chuẩn (Scoring Scale):**
-
-| Điểm | Mức | Ý nghĩa |
-|------|-----|---------|
-| `10` | Hoàn hảo | Không thiếu sót, không cần cải thiện |
-| `8-9` | Tốt | Chỉ thiếu rất nhỏ, có thể APPROVED ngay |
-| `5-7` | Trung bình | Có vấn đề đáng kể, cần CHANGES_REQUESTED |
-| `<5` | Kém | Sai nghiêm trọng, có thể REJECTED |
-
-**Ngưỡng quyết định (Decision Thresholds):**
-
-| Decision | Điều kiện | Hành động |
-|----------|-----------|-----------|
-| `APPROVED` | `overall >= 8.5` **và không có** issue `CRITICAL` | Chuyển sang bước kế tiếp |
-| `CHANGES_REQUESTED` | Có vấn đề sửa được (overall < 8.5 hoặc có CRITICAL nhưng không fatal) | Quay lại Plan/Design, kèm `required_updates` |
-| `REJECTED` | Sai hướng, thiếu nền tảng, hoặc không thể thực thi | Dừng workflow, báo user |
-
-**Issue Schema (mở rộng — v4.0):**
-
-| Issue Field | Type | Required | Mô tả |
-|-------------|------|----------|-------|
-| id | string | ✅ | Mã định danh (vd: `#01`) |
-| severity | string | ✅ | `CRITICAL` / `MAJOR` / `MINOR` — dùng [Error Priority](#error-priority--action-map) |
-| category | string | ✅ | `CONSISTENCY` / `DESIGN` / `SECURITY` / `PERFORMANCE` / `LOGIC` / `STYLE` |
-| blocking | bool | ✅ | `true` = chặn duyệt / `false` = chỉ cần cải thiện nhẹ |
-| fix_priority | int | ❌ | 1 (gấp) → 5 (có thể làm sau) |
-| affected_phase | string | ❌ | `DESIGN` / `PLAN` / `BUILD` / `REVIEW` — phase cần sửa |
-| description | string | ✅ | Mô tả vấn đề |
-| suggestion | string | ✅ | Đề xuất giải pháp cụ thể |
-
-**Output mẫu (v4.0):**
+**Output mẫu:**
 ```yaml
 status: READY
-summary: "Kế hoạch cần bổ sung security validation + đồng bộ file path"
+summary: "Kế hoạch cần bổ sung security validation"
 next_action: "Quay lại Plan phase để sửa"
 artifacts: ["04_review.md"]
 decision: CHANGES_REQUESTED
 scores:
   completeness: 7
   accuracy: 8
-  safety: 5
+  safety: 9
   efficiency: 7
   testability: 6
-  overall: 6.6
-score_rationale:
-  safety: "Thiếu bước mã hóa dữ liệu nhạy cảm, không có rate limiting"
-  testability: "Không có test case cho edge case null/empty input"
-consistency_checks:
-  contract_match: true
-  file_path_match: false
-  dependency_valid: true
+  overall: 7.4
 issues:
   - id: "#01"
     severity: CRITICAL
     category: CONSISTENCY
-    blocking: true
-    fix_priority: 1
-    affected_phase: "PLAN"
-    description: "File path không khớp giữa Design và Plan: Design ghi `src/validators.ts` nhưng Plan dùng `src/utils/validators.ts`"
-    suggestion: "Đồng bộ path: dùng `src/validators.ts` hoặc cập nhật Design component path"
-  - id: "#02"
-    severity: MAJOR
-    category: SECURITY
-    blocking: true
-    fix_priority: 1
-    affected_phase: "PLAN"
-    description: "Thiếu bước mã hóa dữ liệu nhạy cảm trong luồng xử lý"
-    suggestion: "Thêm step encrypt/decrypt trong data flow"
-missing_info:
-  - "Chưa rõ cơ chế rate limiting cho API endpoint"
-  - "Thiếu thông tin về input validation format"
-required_updates:
-  - "Sửa file path trong Plan step 1 từ `src/utils/validators.ts` thành `src/validators.ts`"
-  - "Thêm step mã hóa dữ liệu nhạy cảm"
-edge_cases_checked:
-  - "Email rỗng / null → Không được xử lý trong Plan hiện tại"
-  - "Unicode email → Không có normalization step"
-  - "Concurrent request → Chưa có locking mechanism"
-not_covered_risks:
-  - "SQL injection qua email input — chưa có parameterized query"
-  - "ReDoS attack qua regex validation — không có timeout"
-recommendation: "REVISE_PLAN"
-next_step: "Quay lại Plan phase, sửa file path + thêm security steps. Reviewer chờ bản sửa."
+    description: "Mô tả vấn đề"
+    suggestion: "Đề xuất giải pháp"
 ```
 
 ### 5. Builder (NÂNG CẤP)
@@ -1087,25 +848,17 @@ Output: Contract YAML theo schema Analyst.
 ```
 Bạn là Planner Agent (Design Phase). Dựa trên báo cáo phân tích, thiết kế giải pháp chi tiết.
 
-## INPUT VALIDATION (AUTOMATIC)
-Parse $ARGUMENTS:
-- Nếu có `requirements[]` → Design Phase (hợp lệ)
-- Nếu không có → `status: NEEDS_MORE_INFO`, missing_info: ["Cần analysis report (có requirements[]) để thực hiện Design"]
-
 Báo cáo:
 {current_data.analysis}
 
-Yêu cầu Design (v3.2):
+Yêu cầu Design:
 1. Architecture: Mô tả kiến trúc tổng thể
 2. Components: Liệt kê component cần tạo/sửa (kèm đường dẫn, action: CREATE/MODIFY/DELETE)
 3. Data flow: Luồng dữ liệu giữa các component (Input → Xử lý → Output)
 4. Security concerns: Các rủi ro bảo mật (kèm severity, mitigation)
 5. Edge cases: Các trường hợp đặc biệt (kèm handling)
-6. Issues: Phân loại blocking_issues, non_blocking_issues, open_questions
-7. Effort: Xác định Small/Medium/Large — dùng để quyết định Plan strategy
 
-Output: Contract YAML v3.2 theo schema Planner — Design Phase.
-artifacts: ["02_design.md"] (bắt buộc)
+Output: Contract YAML theo schema Planner — Design Phase.
 ```
 
 **Sau output:** Lưu `current_data.design = output`, tăng `step = 3`, ghi artifact `02_design.md`
@@ -1119,51 +872,30 @@ artifacts: ["02_design.md"] (bắt buộc)
 ```
 Bạn là Planner Agent (Plan Phase). Dựa trên thiết kế, lập kế hoạch thực thi chi tiết từng bước.
 
-## INPUT VALIDATION (AUTOMATIC)
-Parse $ARGUMENTS:
-- Nếu có `design.components[]` → Plan Phase (hợp lệ)
-- Nếu không có → `status: NEEDS_MORE_INFO`, missing_info: ["Cần design output (có design.components[]) để thực hiện Plan"]
-
 Thiết kế:
 {current_data.design}
 
-Yêu cầu (BẮT BUỘC — v3.2):
+Yêu cầu (BẮT BUỘC):
 1. Mỗi bước phải có đủ:
    - `action`: CREATE / MODIFY / DELETE (rõ ràng, không để Builder tự suy diễn)
    - `file`: Đường dẫn file
    - `logic`: Logic chi tiết
-   - `expected_result`: Kết quả mong đợi (REQUIRED — Builder dùng để verify)
+   - `expected_result`: Kết quả mong đợi
    - `check`: Cách kiểm tra (per_step_validation)
-   - `chunk`: 1-4 (theo Chunk Rules: 1=config, 2=logic, 3=UI, 4=test)
+   - `chunk`: 1-4
    - `requires_backup`: true (MODIFY/DELETE) / false (CREATE)
-   - `depends_on`: [] (dependency giữa các step)
-   - `risk_level`: LOW/MEDIUM/HIGH (HIGH → phải có rollback step)
-2. Chunk Rules v3.2:
-   - Chunk 1 = Config/schema/dependencies
-   - Chunk 2 = Core logic/services
-   - Chunk 3 = UI/API surface
-   - Chunk 4 = Tests + validation
-3. Thứ tự: config → logic → test
-4. **Quy tắc file không tồn tại:**
+2. Thứ tự: config → logic → test
+3. **Quy tắc file không tồn tại:**
    - Nếu `action: MODIFY` → file PHẢI tồn tại trong codebase
    - Nếu `action: CREATE` → file chưa tồn tại (sẽ tạo mới)
    - Không được ghi MODIFY cho file chưa tồn tại
-5. **Tách validate theo giai đoạn (v3.2):**
+4. **Tách validate theo giai đoạn:**
    - `per_step_validation`: Kiểm tra ngay sau mỗi step (lint, syntax check)
-   - `per_chunk_validate`: Kiểm tra sau mỗi chunk (khuyến nghị)
    - `final_validation`: Kiểm tra tổng thể sau tất cả steps (dotnet build, test)
-6. Rollback strategy mở rộng (v3.2):
-   - `trigger_conditions[]`: Điều kiện kích hoạt (catastrophic_failure, max_retry_reached, user_request)
-   - `restore_order[]`: Thứ tự restore các file
-   - `requires_user_confirmation`: Cần user confirm trước rollback?
-7. Effort-based strategy:
-   - Small → 1 plan, không chunk
-   - Medium → chia 2 chunks
-   - Large → tách phase phụ hoặc nhiều plan
-8. Issues: Phân loại blocking_issues, non_blocking_issues, open_questions
+5. Thêm rollback_strategy (enabled, conditions, steps)
+6. Xác định dependency giữa các bước
 
-Output: Contract YAML v3.2 theo schema Planner — Plan Phase.
-artifacts: ["03_plan.md"] (bắt buộc)
+Output: Contract YAML theo schema Planner — Plan Phase (đã nâng cấp).
 ```
 
 **Sau output:** Lưu `current_data.plan = output`, tăng `step = 4`, ghi artifact `03_plan.md`
@@ -1172,58 +904,17 @@ artifacts: ["03_plan.md"] (bắt buộc)
 
 ---
 
-### Bước 4: Review (NÂNG CẤP — v4.0)
+### Bước 4: Review
 **Agent:** `reviewer`
 
 **Prompt:**
 ```
-Bạn là Reviewer Agent (v4.0). Đánh giá kế hoạch sau một cách nghiêm túc.
-
-## INPUT
-Thiết kế:
-{current_data.design}
+Bạn là Reviewer Agent. Đánh giá kế hoạch sau theo 5 tiêu chí: Đầy đủ, Chính xác, An toàn, Hiệu quả, Kiểm thử.
 
 Kế hoạch:
 {current_data.plan}
 
-## TIÊU CHÍ ĐÁNH GIÁ
-
-| # | Tiêu chí | Trọng số | Câu hỏi cần trả lời |
-|---|----------|----------|---------------------|
-| 1 | **Đầy đủ (Completeness)** | 20% | Có bao quát toàn bộ yêu cầu? Thiếu task/file/edge case nào? |
-| 2 | **Chính xác (Accuracy)** | 20% | Logic đúng? Tên file, đường dẫn chính xác? |
-| 3 | **An toàn (Safety/Security)** | 20% | Có rủi ro bảo mật? Có bước backup? Có rollback? |
-| 4 | **Hiệu quả (Efficiency)** | 15% | Có cách tối ưu hơn? Over-engineering? |
-| 5 | **Kiểm thử (Testability)** | 15% | Có bước verify/validate? Có test cho edge cases? |
-| 6 | **Edge cases** | 10% | Xử lý null/empty/timeout/concurrent? |
-
-## THANG ĐIỂM CHUẨN
-- `10`: Hoàn hảo, không thiếu sót
-- `8-9`: Tốt, chỉ thiếu rất nhỏ
-- `5-7`: Có vấn đề đáng kể, cần sửa
-- `<5`: Sai nghiêm trọng
-
-## NGƯỠNG QUYẾT ĐỊNH
-- `APPROVED`: overall >= 8.5 và KHÔNG có issue CRITICAL
-- `CHANGES_REQUESTED`: có vấn đề sửa được
-- `REJECTED`: sai hướng, thiếu nền tảng, không thể thực thi
-
-## KIỂM TRA TÍNH NHẤT QUÁN
-Kiểm tra các mục sau và ghi vào `consistency_checks`:
-1. **contract_match**: Input/output contract giữa Design và Plan có khớp không?
-2. **file_path_match**: File/path có nhất quán giữa Design.components và Plan.steps không?
-3. **dependency_valid**: Dependencies giữa các step có hợp lý không?
-
-## YÊU CẦU OUTPUT
-Output: Contract YAML v4.0 theo schema Reviewer — gồm:
-- decision + scores
-- score_rationale (cho mỗi score < 7)
-- consistency_checks
-- issues[] với các field mở rộng: blocking, fix_priority, affected_phase
-- missing_info, required_updates (nếu decision = CHANGES_REQUESTED)
-- edge_cases_checked, not_covered_risks
-- recommendation + next_step
-artifacts: ["04_review.md"]
+Output: Contract YAML theo schema Reviewer.
 ```
 
 **Sau output:**
@@ -1698,57 +1389,32 @@ Mỗi phase có checklist validate riêng. Orchestrator phải kiểm tra trư�
 ```yaml
 validation_checklist:
   phase_01_analyze:
-    - "Output có đúng schema Analyst v2.0 không?"
+    - "Output có đúng schema Analyst không?"
     - "summary có ≥ 3 dòng không?"
     - "requirements có ít nhất 1 item không?"
     - "risks có description, severity, mitigation không?"
-    - "structure có root, language, framework không?"
-    - "entry_points có ít nhất 1 entry không?"
-    - "impact_scope có file và level (DIRECT/INDIRECT/UNRELATED) không?"
-    - "dependencies có evidence_file và evidence_line không?"
-    - "patterns có naming, routing, state_management, testing không?"
-    - "conclusion có status, reason, missing_info không?"
-    - "scanned_paths và ignored_paths có được ghi nhận không?"
   phase_02_design:
-    - "Output có đúng schema Planner v3.2 không?"
+    - "Output có đúng schema Planner không?"
     - "design.architecture có mô tả không?"
     - "design.components có list không?"
     - "design.data_flow có mô tả không?"
     - "design.security_concerns có xử lý không?"
     - "design.edge_cases có list không?"
-    - "blocking_issues có được ghi nhận không? (ít nhất empty array)"
-    - "artifacts có '02_design.md' không?"
-    - "effort có giá trị Small/Medium/Large không?"
   phase_03_plan:
     - "steps có ít nhất 1 bước không?"
     - "Mỗi step có order, description, action, file, logic, expected_result, check, requires_backup không?"
     - "action là CREATE/MODIFY/DELETE rõ ràng?"
     - "requires_backup == true nếu action là MODIFY hoặc DELETE?"
     - "requires_backup == false nếu action là CREATE?"
-    - "Mỗi step có expected_result mô tả kết quả mong đợi? (REQUIRED v3.2)"
+    - "Mỗi step có expected_result mô tả kết quả mong đợi?"
     - "per_step_validation có ít nhất 1 mục không?"
-    - "per_chunk_validate có ít nhất 1 mục không? (khuyến nghị v3.2)"
     - "final_validation có ít nhất 1 mục không?"
     - "rollback_strategy.enabled == true"
-    - "rollback_strategy.trigger_conditions có được định nghĩa không? (khuyến nghị v3.2)"
-    - "rollback_strategy.restore_order có thứ tự restore hợp lý không? (khuyến nghị v3.2)"
-    - "Step nào có risk_level=HIGH phải có rollback step tương ứng?"
-    - "Chunk assignment có tuân theo Chunk Rules không? (1=config, 2=logic, 3=UI, 4=test)"
-    - "validate có ít nhất 1 mục không? (backward compatibility)"
-    - "blocking_issues có được kiểm tra không?"
+    - "validate có ít nhất 1 mục không?"
   phase_04_review:
     - "decision phải là APPROVED/CHANGES_REQUESTED/REJECTED"
-    - "scores có đủ 6 field không? (completeness, accuracy, safety, efficiency, testability, overall)"
-    - "Mỗi score dưới 7 có score_rationale tương ứng không?"
-    - "issues có id, severity, category, blocking, description, suggestion không?"
-    - "Nếu blocking=true trong issue → decision không thể là APPROVED"
-    - "Nếu có CRITICAL issue → decision không thể là APPROVED"
-    - "overall >= 8.5 và không CRITICAL → APPROVED"
-    - "consistency_checks có 3 field không? (contract_match, file_path_match, dependency_valid)"
-    - "Nếu decision = CHANGES_REQUESTED → có missing_info và required_updates không?"
-    - "edge_cases_checked có ít nhất 1 item không?"
-    - "recommendation và next_step có được định nghĩa không?"
-    - "diff_snapshot có được ghi nhận cho mỗi retry không?"
+    - "scores có đủ 6 field không?"
+    - "issues có id, severity, category không?"
   phase_05_guardrail:
     - "Guardrail checklist đã chạy?"
     - "Plan có test steps không?"
@@ -2022,9 +1688,8 @@ Rollback tự động:
 
 | Buoc | Command | Agent | File command |
 |------|---------|-------|-------------|
-| 0 | /team-syncdocs | general | team-syncdocs.md |
-| 0 | /team-cleanup | cleaner | team-cleanup.md |
-| 0 | /team | general | team.md |
+| Buoc | Command | Agent | File command |
+|------|---------|-------|-------------|
 | 1 | /team-analyze | analyst | team-analyze.md |
 | 2-3 | /team-plan | planner (mo rong) | team-plan.md |
 | 4 | /team-review | reviewer | team-review.md |
@@ -2032,7 +1697,7 @@ Rollback tự động:
 | 8 | /team-ui-audit | ui-beautifier | team-ui-audit.md |
 | 9 | /team-testplan | test-planner | team-testplan.md |
 | 10 | /team-test | tester | team-test.md |
-| 11 | team (goi tu) | self-improver | team-selfimprove.md |
+| 11 | (goi tu team.md) | self-improver | .opencode/agents/self-improver.md |
 | 12 | /team-gitpush | pusher | team-gitpush.md |
 Không có command `/team-design` riêng — Design là phần mở rộng của Plan.
 
@@ -2229,6 +1894,5 @@ static_analysis:
 - Nếu workflow bị block ở bước nào, cung cấp đủ thông tin để người dùng biết:
   - Đang ở bước nào, Output hiện tại, Cần quyết định gì
 - Khi workflow hoàn tất, output báo cáo phải đầy đủ và rõ ràng
-
 
 
