@@ -28,13 +28,13 @@
     </div>
 
     <div class="tab-bar">
-        <button class="tab-btn @(selectedType == "All" ? "active" : "")" @onclick="@(() => SwitchType("All"))">Tất cả</button>
-        <button class="tab-btn @(selectedType == "Seion" ? "active" : "")" @onclick="@(() => SwitchType("Seion"))">清音</button>
-        <button class="tab-btn @(selectedType == "Dakuon" ? "active" : "")" @onclick="@(() => SwitchType("Dakuon"))">濁音</button>
-        <button class="tab-btn @(selectedType == "Handakuon" ? "active" : "")" @onclick="@(() => SwitchType("Handakuon"))">半濁音</button>
-        <button class="tab-btn @(selectedType == "Yoon" ? "active" : "")" @onclick="@(() => SwitchType("Yoon"))">拗音</button>
-        <button class="tab-btn @(selectedType == "Sokuon" ? "active" : "")" @onclick="@(() => SwitchType("Sokuon"))">促音</button>
-        <button class="tab-btn @(selectedType == "Choon" ? "active" : "")" @onclick="@(() => SwitchType("Choon"))">長音</button>
+        <button class="tab-btn @(selectedType == "All" ? "active" : "")" aria-pressed="@(selectedType == "All" ? "true" : "false")" @onclick="@(() => SwitchType("All"))">Tất cả</button>
+        <button class="tab-btn @(selectedType == "Seion" ? "active" : "")" aria-pressed="@(selectedType == "Seion" ? "true" : "false")" @onclick="@(() => SwitchType("Seion"))">清音</button>
+        <button class="tab-btn @(selectedType == "Dakuon" ? "active" : "")" aria-pressed="@(selectedType == "Dakuon" ? "true" : "false")" @onclick="@(() => SwitchType("Dakuon"))">濁音</button>
+        <button class="tab-btn @(selectedType == "Handakuon" ? "active" : "")" aria-pressed="@(selectedType == "Handakuon" ? "true" : "false")" @onclick="@(() => SwitchType("Handakuon"))">半濁音</button>
+        <button class="tab-btn @(selectedType == "Yoon" ? "active" : "")" aria-pressed="@(selectedType == "Yoon" ? "true" : "false")" @onclick="@(() => SwitchType("Yoon"))">拗音</button>
+        <button class="tab-btn @(selectedType == "Sokuon" ? "active" : "")" aria-pressed="@(selectedType == "Sokuon" ? "true" : "false")" @onclick="@(() => SwitchType("Sokuon"))">促音</button>
+        <button class="tab-btn @(selectedType == "Choon" ? "active" : "")" aria-pressed="@(selectedType == "Choon" ? "true" : "false")" @onclick="@(() => SwitchType("Choon"))">長音</button>
     </div>
 
     @if (isLoading)
@@ -132,14 +132,14 @@
         background: var(--tab-btn-hover-bg);
     }
     .option-btn.opt-correct {
-        border-color: #2ecc71;
-        background: rgba(46, 204, 113, 0.15);
-        color: #2ecc71;
+        border-color: var(--opt-correct-border);
+        background: var(--opt-correct-bg);
+        color: var(--opt-correct-text);
     }
     .option-btn.opt-wrong {
-        border-color: #e74c3c;
-        background: rgba(231, 76, 60, 0.15);
-        color: #e74c3c;
+        border-color: var(--opt-wrong-border);
+        background: var(--opt-wrong-bg);
+        color: var(--opt-wrong-text);
     }
     .option-btn.opt-disabled {
         cursor: default;

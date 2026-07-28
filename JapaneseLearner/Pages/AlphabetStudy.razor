@@ -112,28 +112,8 @@
         max-width: 520px;
         margin: 0 auto;
     }
-    .char-display {
-        min-height: 120px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
     .japanese-char-display {
-        font-size: 5rem;
         line-height: 1.2;
-        font-family: var(--font-family);
-        color: var(--text-primary);
-        transition: transform 0.2s;
-        user-select: none;
-    }
-    .study-card:hover .japanese-char-display {
-        transform: scale(1.02);
-    }
-    .input-row {
-        align-items: stretch;
-    }
-    .action-btn {
-        height: auto;
     }
 </style>
 
@@ -180,7 +160,7 @@
             isCorrect = true;
             correctCount++;
             StateHasChanged();
-            await Task.Delay(1000);
+            await Task.Delay(1500);
             await PickRandomChar();
         }
         else
