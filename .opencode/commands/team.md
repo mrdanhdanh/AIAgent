@@ -18,7 +18,7 @@ agent: general
 - `/team-plan` — Thiết kế + Lập kế hoạch
 - `/team-review` — Đánh giá kế hoạch
 - `/team-build` — Thực thi code
-- `/team-ui-audit` — Kiểm tra UI
+- `/team-ui-audit` — Kiểm tra UI (6-phase pipeline: ui-ux-pro-max, impeccable, taste-skill, gitguard, workspace-cleaner)
 - `/team-testplan` — Lập kế hoạch test
 - `/team-test` — Chạy kiểm thử
 - `/team-selfimprove` — Đề xuất cải tiến
@@ -105,10 +105,18 @@ Trách nhiệm:
               ┌────────────────┐
               │Static Analysis │ ←── behavioral validation
               └───────┬────────┘
-                      ▼
-              ┌─────────────┐
-              │  UI AUDIT   │
-              └──────┬──────┘
+               ▼
+          ┌──────────────────────────────┐
+          │     UI AUDIT PIPELINE v3.1 (5 skills, 6 phases)     │
+          ├──────────────────────────────┤
+          │ Phase 1: Core (ui-beautifier │
+          │          + impeccable audit) │
+          │ Phase 2: Critique (impeccable│
+          │          critique)           │
+          │ Phase 3: Security (gitguard) │
+          │ Phase 4: Cleanup (workspace- │
+          │          cleaner)            │
+          └──────────┬───────────────────┘
                      ▼
               ┌──────────┐
               │ TESTPLAN │
@@ -387,19 +395,40 @@ $rollbackScript = ".opencode\scripts\rollback-utility.ps1"
 
 ---
 
-### Bước 9: UI Audit
-**Agent:** `ui-beautifier` (qua `/team-ui-audit`)
+### Bước 9: UI Audit (Pipeline v3)
+**Agent:** `ui-beautifier` (qua `/team-ui-audit`) — tích hợp 5 skills: ui-ux-pro-max (design intelligence), impeccable (audit + critique), taste-skill (anti-slop), gitguard (security), workspace-cleaner (cleanup)
 
-**Mục đích:** Kiểm tra và cải thiện giao diện người dùng — phát hiện CSS issues, accessibility problems, đề xuất cải tiến UI/UX.
+**Mục đích:** Kiểm tra và cải thiện giao diện người dùng qua pipeline 4 phase:
+- **Phase 1 (Core):** CSS issues, accessibility, responsive, FluentUI, design tokens — ui-beautifier + impeccable audit
+- **Phase 2 (Critique):** UX heuristic scoring, visual hierarchy, cognitive load — impeccable critique
+- **Phase 3 (Security):** XSS, secret leak, unsafe patterns — gitguard integration
+- **Phase 4 (Cleanup):** Dọn rác workspace, CSS debt artifacts — workspace-cleaner
+
+**Modes:**
+| Mode | Phases | Use case |
+|------|--------|----------|
+| `quick` | Phase 1 | Scan nhanh CSS/a11y |
+| `full` | Phase 1 + 2 | Audit + UX critique |
+| `security` | Phase 1 + 3 | Audit + security check |
+| `cleanup` | Phase 1 + 4 | Audit + cleanup |
+| `critique` | Phase 2 only | UX review thuần |
+| `complete` | Phase 1→2→3→4 | Toàn bộ pipeline |
 
 **Prompt** (xem `team-ui-audit.md`)
 
-**Sau output:** Lưu `current_data.ui_audit_result = output`, tăng `step = 10` (Test Plan)
+**Sau output:** Lưu `current_data.ui_audit_result = output` (multi-phase consolidated report), tăng `step = 10` (Test Plan)
 
-**Xử lý kết quả:**
-- **PASS** (không có CRITICAL/MAJOR issues) → tiếp tục
-- **CHANGES_NEEDED** (có CRITICAL hoặc MAJOR) → `retry.test_count++`, quay lại Bước 7 (Build) nếu retry < 3
-- **MINOR issues** → chỉ log warning, không block workflow
+**Xử lý kết quả (theo phase):**
+- **Phase 1 (Core):** PASS (không CRITICAL/MAJOR) → tiếp tục Phase 2; CHANGES_NEEDED → xử lý theo mode
+- **Phase 2 (Critique):** PASS (overall >= 6.5) → tiếp tục; CHANGES_NEEDED → log warning (UX issues không block)
+- **Phase 3 (Security):** PASS → tiếp tục; CRITICAL security issues → `retry.test_count++`, quay lại Bước 7
+- **Phase 4 (Cleanup):** SUCCESS/PARTIAL → tiếp tục (cleanup không block workflow)
+- **SKIPPED phase:** Log lý do, tiếp tục pipeline
+
+**Xử lý tổng thể:**
+- **PASS** (không có CRITICAL issues ở Phase 1 & 3) → tiếp tục Test Plan
+- **CHANGES_NEEDED** (có CRITICAL ở Phase 1 hoặc Phase 3) → `retry.test_count++`, quay lại Bước 7 (Build) nếu retry < 3
+- **MINOR issues** (Phase 2 UX critique, Phase 4 cleanup) → chỉ log warning, không block workflow
 
 ---
 
@@ -504,6 +533,13 @@ validation_checklist:
   phase_08_ui_audit:
     - "status là PASS hay CHANGES_NEEDED?"
     - "CRITICAL/MAJOR issues được ghi nhận đầy đủ?"
+    - "pipeline.phases_executed có liệt kê đủ phases không?"
+    - "Mỗi phase có phase_status tương ứng không?"
+    - "multi_phase_scores có đủ phase scores không?"
+    - "Phase 2 (Critique) skip reason có được ghi nhận nếu SKIPPED?"
+    - "Phase 3 (Security) CRITICAL issues có được xử lý đúng?"
+    - "Phase 4 (Cleanup) freed_bytes có được tính không?"
+    - "schema_version là 3.0?"
   phase_09_test_plan:
     - "test_types có ít nhất unit/integration?"
     - "test_cases có ít nhất 1 case?"
@@ -542,6 +578,18 @@ cross_reference_validation:
     expected: "Non-empty"
   - command: "grep 'STATIC ANALYSIS' .opencode/scripts/sync-system-docs.ps1"
     expected: "2 matches (line 394 diagram, line 444 table)"
+  - command: "grep -c 'UI AUDIT PIPELINE' .opencode/commands/team.md"
+    expected: ">= 1"
+  - command: "grep -c 'Phase [0-5]' .opencode/commands/team-ui-audit.md"
+    expected: "6"
+  - command: "grep -c 'multi_phase_scores' .opencode/commands/team-ui-audit.md"
+    expected: ">= 1"
+  - command: "grep -c 'ui-ux-pro-max\\|taste-skill' .opencode/commands/team-ui-audit.md"
+    expected: ">= 2"
+  - command: "grep -c 'Pipeline Architecture' .opencode/agents/ui-beautifier.md"
+    expected: ">= 1"
+  - command: "grep -c 'schema_version.*3.0' .opencode/agents/ui-beautifier.md"
+    expected: ">= 1"
 ```
 
 ## .opencode STRUCTURE VALIDATION
@@ -692,9 +740,13 @@ static_analysis:
   FAIL (retry >= 3): → hoi_user
 
 ui_audit:
-  PASS: → testplan
-  CHANGES_NEEDED: → build
+  PASS (all phases): → testplan
+  CHANGES_NEEDED (Phase 1 CRITICAL): → build
+  CHANGES_NEEDED (Phase 3 CRITICAL): → build
+  CHANGES_NEEDED (Phase 2 UX issues): → testplan (warning)
+  CHANGES_NEEDED (Phase 4 partial): → testplan (warning)
   MINOR: → testplan (warning)
+  SKIPPED phase (not available): → tiếp tục, log warning
 
 test:
   APPROVED (PASS + coverage đạt): → report → skill_validation
@@ -728,7 +780,7 @@ complete:
 | 4 | /team-review | reviewer | team-review.md |
 | 4.5 | /team-gitguard | guardian | team-gitguard.md |
 | 6 | /team-build | builder | team-build.md |
-| 8 | /team-ui-audit | ui-beautifier | team-ui-audit.md |
+| 8 | /team-ui-audit | ui-beautifier (v3.1 — 6-phase pipeline) | team-ui-audit.md |
 | 9 | /team-testplan | test-planner | team-testplan.md |
 | 10 | /team-test | tester | team-test.md |
 | 11 | team (goi tu) | self-improver | team-selfimprove.md |

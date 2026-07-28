@@ -5,7 +5,7 @@ agent: general
 
 ## HELP — Hướng dẫn sử dụng `/team`
 
-**Mục đích:** Chạy toàn bộ Dev Agent Team workflow tự động — Analyze → Design → Plan → Review → Backup → Build → static analysis → UI Audit → Test Plan → Test → Skill Validation → Complete.
+**Mục đích:** Chạy toàn bộ Dev Agent Team workflow tự động — Analyze → Design → Plan → Review → Guardrail → Backup → Build → Static Analysis → UI Audit → Test Plan → Test → Skill Validation → Complete.
 
 **Cách dùng:** `/team <yêu cầu phát triển bằng ngôn ngữ tự nhiên>`
 
@@ -29,7 +29,7 @@ agent: general
 
 ---
 
-Bạn đang vận hành **Dev Agent Team** — orchestrator điều phối 9 agents (7 core + 2 support) chuyên biệt theo 12 bước.
+Bạn đang vận hành **Dev Agent Team** — orchestrator điều phối 9 agents (7 core + 2 support) chuyên biệt theo 13 bước.
 
 Đọc tài liệu đầy đủ tại: `.opencode/skills/dev-team/SKILL.md`
 Các lệnh thành phần: `/team-analyze`, `/team-plan`, `/team-review`, `/team-build`, `/team-ui-audit`, `/team-testplan`, `/team-test`
@@ -80,29 +80,38 @@ Trách nhiệm:
                     ┌─────────┐
                     │ REVIEW  │
                     └────┬────┘
-                    ┌────┴────┐
-                    │         │
-                    ▼         ▼
-             ┌─────────┐  ┌──────────────┐
-             │APPROVED │  │CHANGES_REQ   │
-             └────┬────┘  └──────┬───────┘
-                  │              │ (retry < 3)
-                  ▼              ▼
-             ┌─────────┐   ┌─────────┐
-             │ BACKUP  │   │  PLAN   │
-             └────┬────┘   └─────────┘
-                  │
-                  ▼
-             ┌─────────┐
-             │  BUILD  │ ◄──── nếu STATIC_ANALYSIS/TEST FAIL
-             └────┬────┘
-                  ▼
-             ┌───────────┐
-             │static analysis │ ←── behavioral validation
-             └─────┬─────┘
+                     ┌────┴────┐
+                     │         │
+                     ▼         ▼
+              ┌─────────┐  ┌──────────────┐
+              │APPROVED │  │CHANGES_REQ   │
+              └────┬────┘  └──────┬───────┘
+                   │              │ (retry < 3)
+                   ▼              ▼
+              ┌────────────┐  ┌─────────┐
+              │ GUARDRAIL  │  │  PLAN   │
+              └─────┬──────┘  └─────────┘
+                    │
+                    ▼
+              ┌─────────┐
+              │ BACKUP  │
+              └────┬────┘
+                   │
                    ▼
-             ┌─────────┐
-             │ TESTPLAN│
+              ┌─────────┐
+              │  BUILD  │ ◄──── nếu STATIC_ANALYSIS/TEST FAIL
+              └────┬────┘
+                   ▼
+              ┌────────────────┐
+              │Static Analysis │ ←── behavioral validation
+              └───────┬────────┘
+                      ▼
+              ┌─────────────┐
+              │  UI AUDIT   │
+              └──────┬──────┘
+                     ▼
+              ┌──────────┐
+              │ TESTPLAN │
              └────┬────┘
                   ▼
              ┌─────────┐
@@ -146,8 +155,8 @@ workflow:
   project: "JapaneseLearner"
   branch: "main"
   schema_version: "3.2"     # v3.2: thêm input validation gates, categorized issues, risk_level, chunk rules, concrete rollback
-  step: 1-12
-  step_name: analyze|design|plan|review|backup|build|static_analysis|ui_audit|testplan|test|skill_validation|complete
+  step: 1-13
+  step_name: analyze|design|plan|review|guardrail|backup|build|static_analysis|ui_audit|testplan|test|skill_validation|complete
   status: running|blocked|completed|failed|waiting_user|cancelled|reviewing|building|testing|self_improving|waiting_approval
   retry:
     review_count: 0-3
@@ -175,6 +184,7 @@ workflow:
     plan: null
     review_result: null
     build_result: null
+    guardrail_result: null
     static_analysis_result: null
     ui_audit_result: null
     test_plan: null
@@ -271,7 +281,7 @@ Output: Contract YAML v3.2 (steps, rollback_strategy, validate). artifacts: ["03
 
 **Sau output:**
 - Parse YAML, kiểm tra `decision` + `scores.overall` + `issues[].severity`
-- **APPROVED** (overall >= 8.5, không CRITICAL) → Lưu `current_data.review_result = output`, tăng `step = 5`
+- **APPROVED** (overall >= 8.5, không CRITICAL) → Lưu `current_data.review_result = output`, tăng `step = 5` (Guardrail)
 - **CHANGES_REQUESTED** →
   - `retry.review_count++`
   - Nếu `retry.review_count < retry.max_review` và `same_error_count < 2` → Quay lại Bước 3 (Plan), kèm `required_updates` từ reviewer
@@ -282,7 +292,31 @@ Output: Contract YAML v3.2 (steps, rollback_strategy, validate). artifacts: ["03
 
 ---
 
-### Bước 5: Backup
+### Bước 5: Guardrail (Pre-Build Guardrail)
+**Hành động:** Orchestrator tự chạy (không gọi sub-agent)
+
+**Mục đích:** Kiểm tra tính hợp lệ của kế hoạch TRƯỚC KHI backup — phát hiện sớm các vấn đề có thể gây catastrophic failure.
+
+**Checklist Guardrail:**
+1. **test_cases**: Kế hoạch có mô tả cách kiểm tra từng thay đổi không?
+2. **rollback_strategy**: Có rollback strategy không? `rollback_strategy.enabled == true`?
+3. **step_action_check**: Mỗi step có action (CREATE/MODIFY/DELETE) rõ ràng không?
+4. **step_expected_result**: Mỗi step có expected_result không?
+5. **requires_backup_check**: File MODIFY có `requires_backup: true` không?
+6. **per_step_validation_check**: Step có per_step_validation/validation_command không?
+7. **final_validation_check**: Plan có final_validation (hoặc validate) không?
+8. **dependency_check**: depends_on không có circular dependency?
+9. **backup_check**: Backup utility có sẵn sàng tại `.opencode\scripts\backup-utility.ps1` không?
+10. **validate_steps**: Tất cả step trong plan có đủ order, description, file, logic, check không?
+
+**Xử lý kết quả:**
+- **PASS** (tất cả 10 checks OK) → tăng `step = 6`, chuyển sang Backup
+- **BLOCK** (có CRITICAL issue) → set `status: blocked`, yêu cầu user can thiệp
+- **WARNING** (có MAJOR/MINOR issue) → tăng `step = 6`, log warning, vẫn cho qua
+
+---
+
+### Bước 6: Backup
 **Hành động:** Orchestrator gọi **Backup Utility** script (không tự backup thủ công)
 
 **Điều kiện:** Chạy nếu plan có `requires_backup: true` hoặc có file cũ cần sửa
@@ -292,7 +326,7 @@ Output: Contract YAML v3.2 (steps, rollback_strategy, validate). artifacts: ["03
 # Gọi Backup Utility (luôn dùng script, KHÔNG tự copy thủ công)
 $backupScript = ".opencode\scripts\backup-utility.ps1"
 $files = @("path/to/file1.cs", "path/to/file2.razor")  # từ plan
-& $backupScript -files $files -workflowId "$($workflow.id)"
+& $backupScript -action save -files $files -workflowId "$($workflow.id)"
 ```
 
 Backup Utility sẽ:
@@ -316,13 +350,13 @@ $rollbackScript = ".opencode\scripts\rollback-utility.ps1"
 
 ---
 
-### Bước 6: Build
+### Bước 7: Build
 **Agent:** `builder` (qua `/team-build`)
 
 **Prompt** (xem `team-build.md`)
 
 **Sau output:**
-- **PASS** → tăng `step = 7`
+- **PASS** → tăng `step = 8` (Static Analysis)
 - **FAIL + failure_type == MINOR** → Yêu cầu builder sửa
 - **FAIL + failure_type == CRITICAL** → Kiểm tra error_type:
   - **BackupFailed** → DỪNG NGAY, yêu cầu rollback, hỏi user
@@ -337,7 +371,7 @@ $rollbackScript = ".opencode\scripts\rollback-utility.ps1"
 
 ---
 
-### Bước 7: Static Analysis
+### Bước 8: Static Analysis
 **Hành động:** Orchestrator chạy validation (không gọi agent)
 
 **Các bước:**
@@ -348,51 +382,48 @@ $rollbackScript = ".opencode\scripts\rollback-utility.ps1"
 5. Simulate 1 workflow cycle: START → ANALYZE → DESIGN → PLAN → REVIEW → ... → COMPLETE
 
 **Sau output:**
-- **PASS** → tăng `step = 8`
-- **FAIL** → `retry.test_count++`, quay lại Bước 6 nếu retry < 3
+- **PASS** → tăng `step = 9` (UI Audit)
+- **FAIL** → `retry.test_count++`, quay lại Bước 7 nếu retry < 3
 
 ---
 
-### Bước 8: UI Audit
+### Bước 9: UI Audit
 **Agent:** `ui-beautifier` (qua `/team-ui-audit`)
 
 **Mục đích:** Kiểm tra và cải thiện giao diện người dùng — phát hiện CSS issues, accessibility problems, đề xuất cải tiến UI/UX.
 
 **Prompt** (xem `team-ui-audit.md`)
 
-**Sau output:** Lưu `current_data.ui_audit_result = output`, tăng `step = 9`
+**Sau output:** Lưu `current_data.ui_audit_result = output`, tăng `step = 10` (Test Plan)
 
 **Xử lý kết quả:**
 - **PASS** (không có CRITICAL/MAJOR issues) → tiếp tục
-- **CHANGES_NEEDED** (có CRITICAL hoặc MAJOR) → `retry.test_count++`, quay lại Bước 6 (Build) nếu retry < 3
+- **CHANGES_NEEDED** (có CRITICAL hoặc MAJOR) → `retry.test_count++`, quay lại Bước 7 (Build) nếu retry < 3
 - **MINOR issues** → chỉ log warning, không block workflow
 
 ---
 
-### Bước 9: Test Plan
+### Bước 10: Test Plan
 **Agent:** `test-planner` (qua `/team-testplan`)
 
 **Prompt** (xem `team-testplan.md`)
 
-**Sau output:** Lưu `current_data.test_plan = output`, tăng `step = 10`
+**Sau output:** Lưu `current_data.test_plan = output`, tăng `step = 11` (Test)
 
 ---
 
-### Bước 10: Test
-**Agent:** `tester` (qua `/team-test`)
-
-**Prompt** (xem `team-test.md`)
+### Bước 11: Test
 
 **Sau output:**
-- **APPROVED** (all PASS + coverage >= thresholds) → chuyển sang Bước 11 (Skill Validation)
+- **APPROVED** (all PASS + coverage >= thresholds) → chuyển sang Bước 12 (Skill Validation)
 - **NEEDS_FIX** →
   - `retry.test_count++`
-  - Nếu `retry.test_count < retry.max_test` và `same_error_count < 2` → Quay lại Bước 6
+  - Nếu `retry.test_count < retry.max_test` và `same_error_count < 2` → Quay lại Bước 7
   - Nếu `retry.test_count >= retry.max_test` hoặc `same_error_count >= 2` → Dừng, set `status: failed`
 
 ---
 
-### Bước 11: Skill Validation
+### Bước 12: Skill Validation
 **Agent:** `self-improver`
 
 **Điều kiện:** Chỉ chạy nếu workflow PASS
@@ -406,11 +437,11 @@ $rollbackScript = ".opencode\scripts\rollback-utility.ps1"
 - User phản hồi: APPROVE | REJECT | MODIFY
 - Auto-approve nếu `impact == LOW && requires_approval == false`
 
-Set `step = 12`
+Set `step = 13` (Complete)
 
 ---
 
-### Bước 12: Complete
+### Bước 13: Complete
 
 Kết thúc workflow, lưu workflow.json snapshot.
 
@@ -491,8 +522,44 @@ validation_checklist:
     - "Báo cáo đã đầy đủ thông tin?"
 ```
 
+## CROSS-REFERENCE VALIDATION
+
+```yaml
+cross_reference_validation:
+  - command: "grep -c 'GUARDRAIL' .opencode/commands/team.md"
+    expected: ">= 1"
+  - command: "grep -c 'UI AUDIT\\|ui_audit' .opencode/commands/team.md"
+    expected: ">= 1"
+  - command: "grep -c 'backupScript.*-action save' .opencode/commands/team.md"
+    expected: ">= 1 (line 295)"
+  - command: "grep -c 'backupScript.*-action save' .opencode/commands/team-build.md"
+    expected: ">= 1 (line 74)"
+  - command: "grep -c 'backup_workflow_id' .opencode/agents/builder.md"
+    expected: ">= 1"
+  - command: "grep -c 'score_rationale' .opencode/agents/reviewer.md"
+    expected: ">= 1"
+  - command: "grep 'step: 1-13' .opencode/commands/team.md"
+    expected: "Non-empty"
+  - command: "grep 'STATIC ANALYSIS' .opencode/scripts/sync-system-docs.ps1"
+    expected: "2 matches (line 394 diagram, line 444 table)"
+```
+
+## .opencode STRUCTURE VALIDATION
+
+```yaml
+opencode_validation:
+  - command: "Test-Path .opencode/agents/*.md"
+    expected: "True"
+  - command: "Test-Path .opencode/commands/*.md"
+    expected: "True"
+  - command: "grep 'SMOKE TEST' .opencode/scripts/sync-system-docs.ps1"
+    expected: "0 matches"
+  - command: "grep 'codebase-explorer' .opencode/scripts/sync-system-docs.ps1"
+    expected: "0 matches"
+```
 
 ---
+
 
 ## CHECKPOINT MECHANISM
 
@@ -593,10 +660,14 @@ plan:
   output thieu steps: → yeu_cau_lam_lai
 
 review:
-  decision == APPROVED: → backup
+  decision == APPROVED: → guardrail
   decision == CHANGES_REQUESTED (retry < 3 && same_error < 2): → plan
   decision == CHANGES_REQUESTED (retry >= 3 OR same_error >= 2): → hoi_user
   decision == REJECTED: → hoi_user
+
+guardrail:
+  PASS (tat ca check): → backup
+  BLOCK (co CRITICAL): → hoi_user
 
 backup:
   can sua file cu: → backup → build
@@ -616,9 +687,14 @@ build:
     same_error >= 2: → catastrophic → rollback
 
 static_analysis:
-  PASS: → testplan
+  PASS: → ui_audit
   FAIL (retry < 3): → build
   FAIL (retry >= 3): → hoi_user
+
+ui_audit:
+  PASS: → testplan
+  CHANGES_NEEDED: → build
+  MINOR: → testplan (warning)
 
 test:
   APPROVED (PASS + coverage đạt): → report → skill_validation
@@ -717,6 +793,7 @@ $backup_root = ".opencode\backup\$workflow_id"
 - Approval gate bắt buộc cho suggestion có impact MEDIUM/HIGH
 - Backup/Rollback do Backup Utility thực hiện, Orchestrator chỉ gọi lệnh
 - Khi workflow hoàn tất, output báo cáo đầy đủ và rõ ràng
+
 
 
 
