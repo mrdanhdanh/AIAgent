@@ -8,16 +8,16 @@
 
 <div class="admin-container">
     <div class="admin-tab-bar">
-        <button class="admin-tab-btn @(activeTab == "chars" ? "active" : "")" @onclick="SwitchToChars">
+        <button class="admin-tab-btn @(activeTab == "chars" ? "active" : "")" @onclick="SwitchToChars" aria-pressed="@(activeTab == "chars" ? "true" : "false")">
             <FluentIcon Icon="@(Icons.Regular.Size20.BookContacts)" /> Bảng chữ cái
         </button>
-        <button class="admin-tab-btn @(activeTab == "words" ? "active" : "")" @onclick="SwitchToWords">
+        <button class="admin-tab-btn @(activeTab == "words" ? "active" : "")" @onclick="SwitchToWords" aria-pressed="@(activeTab == "words" ? "true" : "false")">
             <FluentIcon Icon="@(Icons.Regular.Size20.Document)" /> Từ vựng
         </button>
-        <button class="admin-tab-btn @(activeTab == "kanji" ? "active" : "")" @onclick="SwitchToKanji">
+        <button class="admin-tab-btn @(activeTab == "kanji" ? "active" : "")" @onclick="SwitchToKanji" aria-pressed="@(activeTab == "kanji" ? "true" : "false")">
             <FluentIcon Icon="@(Icons.Regular.Size20.Compose)" /> Kanji
         </button>
-        <button class="admin-tab-btn @(activeTab == "grammar" ? "active" : "")" @onclick="SwitchToGrammar">
+        <button class="admin-tab-btn @(activeTab == "grammar" ? "active" : "")" @onclick="SwitchToGrammar" aria-pressed="@(activeTab == "grammar" ? "true" : "false")">
             <FluentIcon Icon="@(Icons.Regular.Size20.TextGrammarWand)" /> Ngữ pháp
         </button>
     </div>
@@ -480,7 +480,7 @@
         border-radius: 10px;
         margin-bottom: 12px;
         font-weight: 500;
-        animation: fadeIn 0.2s ease;
+        animation: feedbackFadeIn 0.2s ease;
     }
     .notif-success {
         background: var(--notif-success-bg);
@@ -495,6 +495,9 @@
         border-radius: 14px;
         padding: 6px;
         box-shadow: var(--shadow-sm);
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        flex-wrap: nowrap;
     }
     .admin-tab-btn {
         flex: 1;
@@ -545,7 +548,7 @@
         justify-content: center;
     }
     .grammar-admin-icon {
-        background: #6A4E9C;
+        background: var(--icon-admin-grammar-bg, #6A4E9C);
     }
     .word-icon {
         background: var(--icon-admin-words-bg);
@@ -686,9 +689,6 @@
         flex-direction: column;
         gap: 16px;
         padding: 8px 0;
-    }
-    .notif-bar {
-        animation: feedbackFadeIn 0.2s ease;
     }
 </style>
 

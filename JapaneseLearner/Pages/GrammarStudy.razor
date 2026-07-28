@@ -46,7 +46,10 @@
         <div class="grammar-card-list">
             @foreach (var g in filteredList)
             {
-                <div class="grammar-card" @onclick="@(() => Navigation.NavigateTo($"/grammar/{g.Id}"))">
+                <div class="grammar-card" @onclick="@(() => NavigateToGrammar(g.Id))"
+                         role="button" tabindex="0"
+                         aria-label="Xem chi tiết: @g.Pattern"
+                         @onkeydown="@((e) => HandleCardKeydown(e, g.Id))">
                     <div class="grammar-card-header">
                         <span class="grammar-pattern">@g.Pattern</span>
                         <span class="grammar-level-badge">@g.JLPTLevel</span>
@@ -72,7 +75,7 @@
         margin: 0 auto;
     }
     .grammar-icon {
-        background: #6A4E9C;
+        background: var(--icon-grammar-bg, #6A4E9C);
     }
     .grammar-count {
         text-align: right;
@@ -151,7 +154,6 @@
         align-items: center;
         gap: 8px;
         margin-bottom: 16px;
-        justify-content: center;
     }
     .filter-label {
         font-size: 0.85rem;
@@ -200,5 +202,18 @@
         allGrammar = await GrammarService.GetByLevelAsync(level);
         filteredList = allGrammar;
         isLoading = false;
+    }
+
+    private void NavigateToGrammar(int id)
+    {
+        Navigation.NavigateTo($"/grammar/{id}");
+    }
+
+    private void HandleCardKeydown(KeyboardEventArgs e, int id)
+    {
+        if (e.Key == "Enter" || e.Key == " ")
+        {
+            NavigateToGrammar(id);
+        }
     }
 }

@@ -13,6 +13,7 @@ public class AdminTests : BunitTestBase
     private readonly Mock<ICharService> _mockCharService;
     private readonly Mock<IWordService> _mockWordService;
     private readonly Mock<IKanjiService> _mockKanjiService;
+    private readonly Mock<IGrammarService> _mockGrammarService;
     private readonly List<JapaneseChar> _testChars;
 
     public AdminTests()
@@ -20,6 +21,7 @@ public class AdminTests : BunitTestBase
         _mockCharService = new Mock<ICharService>();
         _mockWordService = new Mock<IWordService>();
         _mockKanjiService = new Mock<IKanjiService>();
+        _mockGrammarService = new Mock<IGrammarService>();
         _testChars = new List<JapaneseChar>
         {
             new() { Id = 1, Character = "あ", Romaji = "a", Type = "Hiragana" },
@@ -29,9 +31,11 @@ public class AdminTests : BunitTestBase
         _mockCharService.Setup(s => s.GetAllAsync()).ReturnsAsync(_testChars);
         _mockWordService.Setup(s => s.GetAllAsync()).ReturnsAsync(new List<JapaneseWord>());
         _mockKanjiService.Setup(s => s.GetAllAsync()).ReturnsAsync(new List<JapaneseKanji>());
+        _mockGrammarService.Setup(s => s.GetAllAsync()).ReturnsAsync(new List<JapaneseGrammar>());
         Context.Services.AddScoped(_ => _mockCharService.Object);
         Context.Services.AddScoped(_ => _mockWordService.Object);
         Context.Services.AddScoped(_ => _mockKanjiService.Object);
+        Context.Services.AddScoped(_ => _mockGrammarService.Object);
     }
 
     [Fact]
@@ -83,12 +87,15 @@ public class AdminTests : BunitTestBase
         emptyMockWord.Setup(s => s.GetAllAsync()).ReturnsAsync(new List<JapaneseWord>());
         var emptyMockKanji = new Mock<IKanjiService>();
         emptyMockKanji.Setup(s => s.GetAllAsync()).ReturnsAsync(new List<JapaneseKanji>());
+        var emptyMockGrammar = new Mock<IGrammarService>();
+        emptyMockGrammar.Setup(s => s.GetAllAsync()).ReturnsAsync(new List<JapaneseGrammar>());
 
         var ctx = new BunitContext();
         ctx.Services.AddFluentUIComponents();
         ctx.Services.AddScoped(_ => emptyMockChar.Object);
         ctx.Services.AddScoped(_ => emptyMockWord.Object);
         ctx.Services.AddScoped(_ => emptyMockKanji.Object);
+        ctx.Services.AddScoped(_ => emptyMockGrammar.Object);
 
         var js = ctx.JSInterop;
         var ver = "?v=4.14.3.26174";

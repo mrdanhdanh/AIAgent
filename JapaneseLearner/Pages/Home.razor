@@ -60,6 +60,17 @@
             </FluentButton>
         </div>
 
+        <div class="nav-card" data-color="grammar">
+            <div class="nav-card-icon">
+                <FluentIcon Icon="@(Icons.Regular.Size24.TextGrammarWand)" />
+            </div>
+            <h2 class="nav-card-title">Ngữ pháp N5</h2>
+            <p class="nav-card-desc">Học các mẫu ngữ pháp JLPT N5 với giải thích chi tiết và ví dụ minh họa.</p>
+            <FluentButton Appearance="@Appearance.Accent" Class="nav-card-btn" @onclick="@(() => Nav.NavigateTo("/grammar"))">
+                Bắt đầu
+            </FluentButton>
+        </div>
+
         <div class="nav-card" data-color="admin">
             <div class="nav-card-icon">
                 <FluentIcon Icon="@(Icons.Regular.Size32.Settings)" />
