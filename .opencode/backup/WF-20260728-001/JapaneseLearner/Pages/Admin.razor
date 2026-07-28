@@ -2,7 +2,6 @@
 @inject ICharService CharService
 @inject IWordService WordService
 @inject IKanjiService KanjiService
-@inject IGrammarService GrammarService
 
 <PageTitle>Quản lý - Japanese Learner</PageTitle>
 
@@ -16,9 +15,6 @@
         </button>
         <button class="admin-tab-btn @(activeTab == "kanji" ? "active" : "")" @onclick="SwitchToKanji">
             <FluentIcon Icon="@(Icons.Regular.Size20.Compose)" /> Kanji
-        </button>
-        <button class="admin-tab-btn @(activeTab == "grammar" ? "active" : "")" @onclick="SwitchToGrammar">
-            <FluentIcon Icon="@(Icons.Regular.Size20.TextGrammarWand)" /> Ngữ pháp
         </button>
     </div>
 
@@ -248,114 +244,6 @@
         }
     }
 
-    @if (activeTab == "grammar")
-    {
-        <div class="admin-header">
-            <div class="admin-header-left">
-                <div class="admin-icon grammar-admin-icon"><FluentIcon Icon="@(Icons.Regular.Size20.TextGrammarWand)" /></div>
-                <div>
-                    <h2>Quản lý ngữ pháp</h2>
-                    <p class="admin-sub">Thêm, sửa, xóa các mẫu ngữ pháp N5</p>
-                </div>
-            </div>
-            <FluentButton Appearance="@Appearance.Accent" OnClick="OpenAddGrammarDialog" Class="add-btn">
-                <FluentIcon Icon="@(Icons.Regular.Size20.Add)" /> Thêm ngữ pháp
-            </FluentButton>
-        </div>
-
-        @if (grammarList == null)
-        {
-            <div class="loading-wrap">
-                <FluentProgressRing />
-                <div class="loading-text">Đang tải ngữ pháp... @_grammarLoadProgress%</div>
-            </div>
-        }
-        else if (grammarList.Count == 0)
-        {
-            <div class="empty-state">
-                <div class="empty-icon"><FluentIcon Icon="@(Icons.Regular.Size20.TextGrammarWand)" /></div>
-                <h3>Danh sách trống</h3>
-                <p>Chưa có mẫu ngữ pháp nào. Hãy thêm mới để bắt đầu.</p>
-            </div>
-        }
-        else
-        {
-            <div class="word-count">Tổng số: <strong>@grammarList.Count</strong> mẫu ngữ pháp</div>
-            <div class="table-wrap">
-                <table class="data-table">
-                    <thead>
-                        <tr>
-                            <th>Mẫu</th>
-                            <th>Nghĩa</th>
-                            <th>Level</th>
-                            <th>Ví dụ</th>
-                            <th>Hành động</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var g in grammarList)
-                        {
-                            <tr>
-                                <td><span class="table-char">@g.Pattern</span></td>
-                                <td><span class="table-meaning">@g.Meaning</span></td>
-                                <td><span class="level-badge">@g.JLPTLevel</span></td>
-                                <td>@g.Examples.Count</td>
-                                <td>
-                                    <div class="action-btns">
-                                        <FluentButton Appearance="@Appearance.Lightweight" OnClick="() => OpenEditGrammarDialog(g)" Class="action-btn-icon" Title="@("Sửa mẫu " + g.Pattern)" aria-label="@("Sửa mẫu " + g.Pattern)">
-                                            <FluentIcon Icon="@(Icons.Regular.Size20.Edit)" />
-                                        </FluentButton>
-                                        <FluentButton Appearance="@Appearance.Lightweight" OnClick="() => OpenDeleteGrammarConfirm(g)" Class="action-btn-icon" Title="@("Xóa mẫu " + g.Pattern)" aria-label="@("Xóa mẫu " + g.Pattern)">
-                                            <FluentIcon Icon="@(Icons.Regular.Size20.Delete)" />
-                                        </FluentButton>
-                                    </div>
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
-        }
-
-        @if (showGrammarDialog)
-        {
-            <FluentDialog Open="true">
-                <h3>@(isEditGrammarMode ? "Sửa mẫu ngữ pháp" : "Thêm mẫu ngữ pháp mới")</h3>
-                <div class="dialog-fields">
-                    <FluentTextField @bind-Value="editingGrammar.Pattern" Label="Mẫu ngữ pháp" Required="true" />
-                    <FluentTextField @bind-Value="editingGrammar.Meaning" Label="Nghĩa" Required="true" />
-                    <FluentTextField @bind-Value="editingGrammar.Explanation" Label="Giải thích" Required="true" />
-                    <FluentSelect TOption="string" @bind-Value="editingGrammar.JLPTLevel" Label="JLPT Level" Required="true">
-                        <FluentOption TOption="string" Value="@("N5")">N5</FluentOption>
-                        <FluentOption TOption="string" Value="@("N4")">N4</FluentOption>
-                        <FluentOption TOption="string" Value="@("N3")">N3</FluentOption>
-                        <FluentOption TOption="string" Value="@("N2")">N2</FluentOption>
-                        <FluentOption TOption="string" Value="@("N1")">N1</FluentOption>
-                    </FluentSelect>
-                    <FluentTextField @bind-Value="_grammarExamplesStr" Label="Ví dụ (mỗi dòng một ví dụ)" Multiline="true" />
-                </div>
-                <div class="dialog-actions">
-                    <FluentButton Appearance="@Appearance.Neutral" OnClick="CancelGrammarDialog">Hủy</FluentButton>
-                    <FluentButton Appearance="@Appearance.Accent" OnClick="SaveGrammar" Disabled="!IsGrammarFormValid">
-                        @(isEditGrammarMode ? "Lưu thay đổi" : "Thêm vào danh sách")
-                    </FluentButton>
-                </div>
-            </FluentDialog>
-        }
-
-        @if (showGrammarDeleteConfirm)
-        {
-            <FluentDialog Open="true">
-                <h3>Xác nhận xóa</h3>
-                <p>Bạn có chắc muốn xóa mẫu ngữ pháp <strong>@grammarToDelete?.Pattern</strong> (@grammarToDelete?.Meaning)?</p>
-                <div class="dialog-actions">
-                    <FluentButton Appearance="@Appearance.Neutral" OnClick="CancelGrammarDelete">Hủy</FluentButton>
-                    <FluentButton Appearance="@Appearance.Accent" OnClick="DeleteGrammar">Xóa</FluentButton>
-                </div>
-            </FluentDialog>
-        }
-    }
-
     @if (activeTab == "kanji")
     {
         <div class="admin-header">
@@ -544,9 +432,6 @@
         align-items: center;
         justify-content: center;
     }
-    .grammar-admin-icon {
-        background: #6A4E9C;
-    }
     .word-icon {
         background: var(--icon-admin-words-bg);
     }
@@ -715,17 +600,6 @@
     private bool showWordDeleteConfirm;
     private JapaneseWord? wordToDelete;
 
-    // Grammar state
-    private List<JapaneseGrammar>? grammarList;
-    private bool _isGrammarLoading;
-    private int _grammarLoadProgress;
-    private bool showGrammarDialog;
-    private bool isEditGrammarMode;
-    private JapaneseGrammar editingGrammar = new();
-    private string _grammarExamplesStr = "";
-    private bool showGrammarDeleteConfirm;
-    private JapaneseGrammar? grammarToDelete;
-
     // Kanji state
     private List<JapaneseKanji>? kanjiList;
     private bool _isKanjiLoading;
@@ -754,11 +628,6 @@
         !string.IsNullOrWhiteSpace(editingKanji.KunYomi) &&
         !string.IsNullOrWhiteSpace(editingKanji.Meaning);
 
-    private bool IsGrammarFormValid =>
-        !string.IsNullOrWhiteSpace(editingGrammar.Pattern) &&
-        !string.IsNullOrWhiteSpace(editingGrammar.Meaning) &&
-        !string.IsNullOrWhiteSpace(editingGrammar.Explanation);
-
     protected override async Task OnInitializedAsync()
     {
         await RefreshCharList();
@@ -783,13 +652,6 @@
         activeTab = "kanji";
         if (!_isKanjiLoading && (kanjiList == null || kanjiList.Count == 0))
             _ = RefreshKanjiList();
-    }
-
-    private void SwitchToGrammar()
-    {
-        activeTab = "grammar";
-        if (!_isGrammarLoading && (grammarList == null || grammarList.Count == 0))
-            _ = RefreshGrammarList();
     }
 
     private async Task ShowNotif(string message)
@@ -958,94 +820,6 @@
     {
         showWordDeleteConfirm = false;
         wordToDelete = null;
-    }
-
-    // ===== Grammar CRUD =====
-    private async Task RefreshGrammarList()
-    {
-        _isGrammarLoading = true;
-        _grammarLoadProgress = 0;
-        grammarList = null;
-        var progress = new Progress<int>(p =>
-        {
-            _grammarLoadProgress = p;
-            StateHasChanged();
-        });
-        grammarList = await GrammarService.GetAllAsync(progress);
-        _isGrammarLoading = false;
-    }
-
-    private void OpenAddGrammarDialog()
-    {
-        editingGrammar = new JapaneseGrammar { JLPTLevel = "N5" };
-        _grammarExamplesStr = "";
-        isEditGrammarMode = false;
-        showGrammarDialog = true;
-    }
-
-    private void OpenEditGrammarDialog(JapaneseGrammar g)
-    {
-        editingGrammar = new JapaneseGrammar
-        {
-            Id = g.Id,
-            Pattern = g.Pattern,
-            Meaning = g.Meaning,
-            Explanation = g.Explanation,
-            JLPTLevel = g.JLPTLevel,
-            Examples = g.Examples
-        };
-        _grammarExamplesStr = string.Join("\n", g.Examples);
-        isEditGrammarMode = true;
-        showGrammarDialog = true;
-    }
-
-    private async Task SaveGrammar()
-    {
-        if (!IsGrammarFormValid) return;
-
-        editingGrammar.Examples = _grammarExamplesStr
-            .Split('\n', StringSplitOptions.RemoveEmptyEntries)
-            .Select(l => l.Trim())
-            .Where(l => !string.IsNullOrEmpty(l))
-            .ToList();
-
-        if (isEditGrammarMode)
-            await GrammarService.UpdateAsync(editingGrammar);
-        else
-            await GrammarService.AddAsync(editingGrammar);
-
-        showGrammarDialog = false;
-        await RefreshGrammarList();
-        await ShowNotif(isEditGrammarMode ? "Đã cập nhật mẫu ngữ pháp" : "Đã thêm mẫu ngữ pháp mới");
-    }
-
-    private void CancelGrammarDialog()
-    {
-        showGrammarDialog = false;
-    }
-
-    private void OpenDeleteGrammarConfirm(JapaneseGrammar g)
-    {
-        grammarToDelete = g;
-        showGrammarDeleteConfirm = true;
-    }
-
-    private async Task DeleteGrammar()
-    {
-        if (grammarToDelete != null)
-        {
-            await GrammarService.DeleteAsync(grammarToDelete.Id);
-            grammarToDelete = null;
-        }
-        showGrammarDeleteConfirm = false;
-        await RefreshGrammarList();
-        await ShowNotif("Đã xóa mẫu ngữ pháp");
-    }
-
-    private void CancelGrammarDelete()
-    {
-        showGrammarDeleteConfirm = false;
-        grammarToDelete = null;
     }
 
     // ===== Kanji CRUD =====

@@ -1,17 +1,39 @@
 ﻿{
-    "created_at":  "2026-07-28T23:05:41.5485514+07:00",
+    "created_at":  "2026-07-28T23:28:38.5996358+07:00",
     "workflow_id":  "WF-20260728-001",
     "tool_version":  "2.0.0",
     "files":  [
                   {
-                      "hash":  "F92F0D3AFFD9",
-                      "backup_path":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\backup\\WF-20260728-001\\JapaneseLearner\\Layout\\MainLayout.razor",
-                      "original_path":  "JapaneseLearner/Layout/MainLayout.razor",
+                      "hash":  "567B1F361AD2",
+                      "backup_path":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\backup\\WF-20260728-001\\JapaneseLearner\\Pages\\Admin.razor",
+                      "original_path":  "JapaneseLearner\\Pages\\Admin.razor",
                       "error":  null,
-                      "sha256":  "F92F0D3AFFD9065AFE71FC34274A4E3DD2191164E329D61CFC28F572B84BD0A4",
+                      "sha256":  "567B1F361AD24F67298856CE022242D426DA150751B568283B7A463E720111F8",
+                      "source_path":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\JapaneseLearner\\Pages\\Admin.razor",
+                      "status":  "SUCCESS",
+                      "size_bytes":  34840,
+                      "skip_reason":  null
+                  },
+                  {
+                      "hash":  "F08687D76988",
+                      "backup_path":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\backup\\WF-20260728-001\\JapaneseLearner\\Layout\\MainLayout.razor",
+                      "original_path":  "JapaneseLearner\\Layout\\MainLayout.razor",
+                      "error":  null,
+                      "sha256":  "F08687D769883653ACDBB58E24DEDDA061D229CB9D0D7CD89EE8BDE709D792F8",
                       "source_path":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\JapaneseLearner\\Layout\\MainLayout.razor",
                       "status":  "SUCCESS",
-                      "size_bytes":  3955,
+                      "size_bytes":  4144,
+                      "skip_reason":  null
+                  },
+                  {
+                      "hash":  "CD83191D9BC4",
+                      "backup_path":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\backup\\WF-20260728-001\\JapaneseLearner\\Program.cs",
+                      "original_path":  "JapaneseLearner\\Program.cs",
+                      "error":  null,
+                      "sha256":  "CD83191D9BC473844D4735349B03AE71B5D56B03BFA15ADDC277EF1A321BB07B",
+                      "source_path":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\JapaneseLearner\\Program.cs",
+                      "status":  "SUCCESS",
+                      "size_bytes":  856,
                       "skip_reason":  null
                   }
               ]

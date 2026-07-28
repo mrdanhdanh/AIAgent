@@ -1,0 +1,206 @@
+@page "/grammar/{Id:int}"
+@inject IGrammarService GrammarService
+@inject NavigationManager Navigation
+
+<PageTitle>@(grammar?.Pattern ?? "Ngữ pháp") - Chi tiết</PageTitle>
+
+<div class="grammar-detail-container">
+    @if (isLoading)
+    {
+        <div class="loading-wrap">
+            <FluentProgressRing />
+        </div>
+    }
+    else if (grammar == null)
+    {
+        <div class="empty-state">
+            <div class="empty-icon"><FluentIcon Icon="@(Icons.Regular.Size20.TextGrammarWand)" /></div>
+            <h3>Không tìm thấy mẫu ngữ pháp</h3>
+            <FluentButton Appearance="@Appearance.Accent" Class="mt-4" @onclick="@(() => Navigation.NavigateTo("/grammar"))">
+                ← Quay lại danh sách
+            </FluentButton>
+        </div>
+    }
+    else
+    {
+        <div class="detail-header">
+            <FluentButton Appearance="@Appearance.Lightweight" Class="back-btn" @onclick="@(() => Navigation.NavigateTo("/grammar"))">
+                ← Quay lại
+            </FluentButton>
+        </div>
+
+        <div class="grammar-hero">
+            <h1 class="grammar-hero-pattern">@grammar.Pattern</h1>
+            <span class="grammar-level-badge-detail">@grammar.JLPTLevel</span>
+        </div>
+
+        <div class="grammar-info-section">
+            <div class="info-card">
+                <span class="info-label">Nghĩa</span>
+                <span class="info-value meaning">@grammar.Meaning</span>
+            </div>
+            <div class="info-card">
+                <span class="info-label">Giải thích</span>
+                <p class="info-explanation">@grammar.Explanation</p>
+            </div>
+        </div>
+
+        @if (grammar.Examples != null && grammar.Examples.Count > 0)
+        {
+            <div class="section">
+                <h3 class="section-title">Ví dụ</h3>
+                <div class="examples-list">
+                    @foreach (var ex in grammar.Examples)
+                    {
+                        <div class="example-item">@ex</div>
+                    }
+                </div>
+            </div>
+        }
+
+        <div class="nav-buttons">
+            <FluentButton Appearance="@Appearance.Lightweight" OnClick="PrevGrammar"
+                         Disabled="@(!HasPrev)">
+                ← Mẫu trước
+            </FluentButton>
+            <FluentButton Appearance="@Appearance.Accent" OnClick="NextGrammar"
+                         Disabled="@(!HasNext)">
+                Mẫu sau →
+            </FluentButton>
+        </div>
+    }
+</div>
+
+<style>
+    .grammar-detail-container {
+        max-width: 640px;
+        margin: 0 auto;
+    }
+    .detail-header {
+        margin-bottom: 16px;
+    }
+    .back-btn {
+        font-size: 0.9rem;
+    }
+    .grammar-hero {
+        text-align: center;
+        padding: 24px 0;
+    }
+    .grammar-hero-pattern {
+        font-size: 2.5rem;
+        font-weight: 700;
+        font-family: var(--font-family);
+        color: var(--text-primary);
+        margin: 0 0 12px 0;
+    }
+    .grammar-level-badge-detail {
+        display: inline-block;
+        padding: 6px 20px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        font-weight: 700;
+        background: var(--badge-level-bg, #E63946);
+        color: var(--badge-level-text, white);
+    }
+    .grammar-info-section {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 24px;
+    }
+    .info-card {
+        background: var(--bg-card);
+        border-radius: 12px;
+        padding: 16px 20px;
+        box-shadow: var(--shadow-sm);
+    }
+    .info-label {
+        display: block;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: var(--text-secondary);
+        margin-bottom: 6px;
+        font-weight: 600;
+    }
+    .info-value {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: var(--text-primary);
+    }
+    .info-explanation {
+        font-size: 0.95rem;
+        color: var(--text-primary);
+        margin: 0;
+        line-height: 1.6;
+    }
+    .section {
+        margin-bottom: 20px;
+    }
+    .section-title {
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin: 0 0 10px 0;
+    }
+    .examples-list {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+    .example-item {
+        background: var(--bg-card);
+        border-radius: 10px;
+        padding: 12px 16px;
+        font-size: 1rem;
+        color: var(--text-primary);
+        box-shadow: var(--shadow-sm);
+        font-family: var(--font-family);
+    }
+    .nav-buttons {
+        display: flex;
+        justify-content: space-between;
+        gap: 8px;
+        margin-top: 24px;
+    }
+</style>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    private JapaneseGrammar? grammar;
+    private List<JapaneseGrammar> allGrammar = new();
+    private bool isLoading = true;
+
+    private int CurrentIndex => allGrammar.FindIndex(g => g.Id == Id);
+    private bool HasPrev => CurrentIndex > 0;
+    private bool HasNext => CurrentIndex >= 0 && CurrentIndex < allGrammar.Count - 1;
+
+    protected override async Task OnInitializedAsync()
+    {
+        allGrammar = await GrammarService.GetAllAsync();
+        grammar = allGrammar.FirstOrDefault(g => g.Id == Id);
+        isLoading = false;
+    }
+
+    private async Task PrevGrammar()
+    {
+        var idx = CurrentIndex;
+        if (idx > 0)
+        {
+            var prev = allGrammar[idx - 1];
+            Navigation.NavigateTo($"/grammar/{prev.Id}");
+        }
+    }
+
+    private async Task NextGrammar()
+    {
+        var idx = CurrentIndex;
+        if (idx >= 0 && idx < allGrammar.Count - 1)
+        {
+            var next = allGrammar[idx + 1];
+            Navigation.NavigateTo($"/grammar/{next.Id}");
+        }
+    }
+}

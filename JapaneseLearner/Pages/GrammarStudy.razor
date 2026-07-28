@@ -1,0 +1,204 @@
+@page "/grammar"
+@inject IGrammarService GrammarService
+@inject NavigationManager Navigation
+
+<PageTitle>Ngữ pháp N5 - Japanese Learner</PageTitle>
+
+<div class="grammar-study-container">
+    <div class="study-header">
+        <div class="study-header-title">
+            <div class="study-header-icon grammar-icon" aria-hidden="true">
+                <span>文</span>
+            </div>
+            <div>
+                <h1>Ngữ pháp N5</h1>
+                <p class="study-header-sub">Các mẫu ngữ pháp cơ bản trình độ N5</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="filter-row">
+        <span class="filter-label">JLPT:</span>
+        <button class="filter-btn @(selectedLevel == "All" ? "active" : "")" aria-pressed="@(selectedLevel == "All" ? "true" : "false")" @onclick="@(() => SwitchLevel("All"))">All</button>
+        <button class="filter-btn @(selectedLevel == "N5" ? "active" : "")" aria-pressed="@(selectedLevel == "N5" ? "true" : "false")" @onclick="@(() => SwitchLevel("N5"))">N5</button>
+    </div>
+
+    @if (isLoading)
+    {
+        <div class="loading-wrap">
+            <FluentProgressRing />
+        </div>
+    }
+    else if (filteredList.Count == 0)
+    {
+        <div class="empty-state">
+            <div class="empty-icon"><FluentIcon Icon="@(Icons.Regular.Size20.TextGrammarWand)" /></div>
+            <h3>Chưa có dữ liệu</h3>
+            <p>Vui lòng thêm ngữ pháp từ trang Admin để bắt đầu học.</p>
+            <FluentButton Appearance="@Appearance.Accent" Class="mt-4" @onclick="@(() => Navigation.NavigateTo("/admin"))">
+                Đến Admin
+            </FluentButton>
+        </div>
+    }
+    else
+    {
+        <div class="grammar-count">Tổng số: <strong>@filteredList.Count</strong> mẫu ngữ pháp</div>
+        <div class="grammar-card-list">
+            @foreach (var g in filteredList)
+            {
+                <div class="grammar-card" @onclick="@(() => Navigation.NavigateTo($"/grammar/{g.Id}"))">
+                    <div class="grammar-card-header">
+                        <span class="grammar-pattern">@g.Pattern</span>
+                        <span class="grammar-level-badge">@g.JLPTLevel</span>
+                    </div>
+                    <div class="grammar-card-body">
+                        <p class="grammar-meaning">@g.Meaning</p>
+                        <p class="grammar-explanation">@g.Explanation</p>
+                    </div>
+                    <div class="grammar-card-footer">
+                        <span class="grammar-example-count">
+                            <FluentIcon Icon="@(Icons.Regular.Size20.Document)" /> @g.Examples.Count ví dụ
+                        </span>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>
+
+<style>
+    .grammar-study-container {
+        max-width: 720px;
+        margin: 0 auto;
+    }
+    .grammar-icon {
+        background: #6A4E9C;
+    }
+    .grammar-count {
+        text-align: right;
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+        margin-bottom: 12px;
+    }
+    .grammar-card-list {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+    .grammar-card {
+        background: var(--bg-card);
+        border-radius: 14px;
+        padding: 16px 20px;
+        box-shadow: var(--shadow-sm);
+        cursor: pointer;
+        transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .grammar-card:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+    }
+    .grammar-card-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 8px;
+    }
+    .grammar-pattern {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        font-family: var(--font-family);
+    }
+    .grammar-level-badge {
+        display: inline-block;
+        padding: 3px 12px;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        background: var(--badge-level-bg, #E63946);
+        color: var(--badge-level-text, white);
+    }
+    .grammar-card-body {
+        margin-bottom: 8px;
+    }
+    .grammar-meaning {
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin: 0 0 4px 0;
+    }
+    .grammar-explanation {
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+        margin: 0;
+        line-height: 1.4;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    .grammar-card-footer {
+        font-size: 0.8rem;
+        color: var(--text-secondary);
+    }
+    .grammar-example-count {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+    }
+    .filter-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 16px;
+        justify-content: center;
+    }
+    .filter-label {
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+    }
+    .filter-btn {
+        padding: 6px 16px;
+        border-radius: 20px;
+        border: 2px solid var(--tab-btn-border);
+        background: var(--tab-btn-bg);
+        color: var(--tab-btn-text);
+        font-size: 0.8rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+        font-family: inherit;
+    }
+    .filter-btn:hover {
+        border-color: var(--tab-btn-hover-border);
+    }
+    .filter-btn.active {
+        background: var(--tab-btn-active-bg);
+        border-color: var(--tab-btn-active-bg);
+        color: var(--tab-btn-active-text);
+    }
+</style>
+
+@code {
+    private List<JapaneseGrammar> allGrammar = new();
+    private List<JapaneseGrammar> filteredList = new();
+    private string selectedLevel = "All";
+    private bool isLoading = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        allGrammar = await GrammarService.GetByLevelAsync("N5");
+        filteredList = allGrammar;
+        isLoading = false;
+    }
+
+    private async Task SwitchLevel(string level)
+    {
+        selectedLevel = level;
+        isLoading = true;
+        allGrammar = await GrammarService.GetByLevelAsync(level);
+        filteredList = allGrammar;
+        isLoading = false;
+    }
+}

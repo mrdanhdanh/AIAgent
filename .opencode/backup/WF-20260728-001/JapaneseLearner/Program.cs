@@ -15,7 +15,6 @@ builder.Services.AddBlazoredLocalStorage();
 builder.Services.AddScoped<ICharService, CharService>();
 builder.Services.AddScoped<IWordService, WordService>();
 builder.Services.AddScoped<IKanjiService, KanjiService>();
-builder.Services.AddScoped<IGrammarService, GrammarService>();
 builder.Services.AddScoped<IThemeService, ThemeService>();
 
 await builder.Build().RunAsync();
