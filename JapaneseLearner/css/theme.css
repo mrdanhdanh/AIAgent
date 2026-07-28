@@ -144,6 +144,10 @@
   --opt-wrong-bg: rgba(230, 57, 70, 0.25);
   --opt-wrong-text: #e07a7a;
   --icon-kanji-bg: linear-gradient(135deg, #c1121f, #8b0000);
+  --icon-hiragana-bg: linear-gradient(135deg, #c1121f, #8b0000);
+  --icon-word-bg: linear-gradient(135deg, #2a6f8a, #0d2137);
+  --icon-admin-chars-bg: linear-gradient(135deg, #2a6f8a, #0d2137);
+  --icon-admin-words-bg: linear-gradient(135deg, #1a6b5a, #0d2137);
   --tab-bar-bg: #1e1e1e;
   --tab-btn-bg: #2a2a2a;
   --tab-btn-border: #333333;
