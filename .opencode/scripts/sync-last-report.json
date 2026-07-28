@@ -3,10 +3,6 @@
 
                ],
     "knowledge":  {
-                      "knowledge/lessons.md":  {
-                                                   "file":  "knowledge/lessons.md",
-                                                   "size":  17106
-                                               },
                       "knowledge/deployment\\blazor-wasm-github-pages.md":  {
                                                                                 "file":  "knowledge/deployment\\blazor-wasm-github-pages.md",
                                                                                 "size":  3585
@@ -23,10 +19,18 @@
                                                             "file":  "knowledge/patterns\\common.md",
                                                             "size":  5171
                                                         },
+                      "knowledge/ui-audit-pipeline.md":  {
+                                                             "file":  "knowledge/ui-audit-pipeline.md",
+                                                             "size":  3459
+                                                         },
                       "knowledge/blazor-ref-timing.md":  {
                                                              "file":  "knowledge/blazor-ref-timing.md",
                                                              "size":  1000
-                                                         }
+                                                         },
+                      "knowledge/lessons.md":  {
+                                                   "file":  "knowledge/lessons.md",
+                                                   "size":  17106
+                                               }
                   },
     "agents":  {
                    "backup-agent":  {
@@ -225,12 +229,12 @@
                                           "deprecated":  true,
                                           "file":  "commands/team-explore.md"
                                       },
-                     "backup":  {
-                                    "agent":  "backup-agent",
-                                    "description":  "Backup và rollback file dùng Backup Utility. Gọi khi cần backup trước khi sửa file, rollback lỗi, kiểm tra backup.",
-                                    "deprecated":  false,
-                                    "file":  "commands/backup.md"
-                                },
+                     "impeccable":  {
+                                        "agent":  null,
+                                        "description":  "Design, redesign, shape, critique, audit, polish, or improve frontend UI. Sub-commands: init, shape, document, critique, audit, polish, bolder, quieter, distill, harden, onboard, animate, colorize, typeset, layout, delight, overdrive, clarify, adapt, optimize, live, hooks, doctor, extract.",
+                                        "deprecated":  false,
+                                        "file":  "commands/impeccable.md"
+                                    },
                      "team-gitpush":  {
                                           "agent":  "pusher",
                                           "description":  "Auto-commit từ diff, pre-push safety validation + git push execution — kiểm tra secret, convention, build, test, xác nhận user, push lên remote",
@@ -243,12 +247,6 @@
                                           "deprecated":  false,
                                           "file":  "commands/team-cleanup.md"
                                       },
-                     "team-test":  {
-                                       "agent":  "tester",
-                                       "description":  "Thực thi kiểm thử theo kế hoạch (dùng agent tester)",
-                                       "deprecated":  false,
-                                       "file":  "commands/team-test.md"
-                                   },
                      "team-review":  {
                                          "agent":  "reviewer",
                                          "description":  "Đánh giá thiết kế hoặc kế hoạch (dùng agent reviewer) — nâng cấp v4.0: decision thresholds, score_rationale, blocking issues, consistency, edge cases",
@@ -291,11 +289,23 @@
                                            "deprecated":  false,
                                            "file":  "commands/team-syncdocs.md"
                                        },
+                     "backup":  {
+                                    "agent":  "backup-agent",
+                                    "description":  "Backup và rollback file dùng Backup Utility. Gọi khi cần backup trước khi sửa file, rollback lỗi, kiểm tra backup.",
+                                    "deprecated":  false,
+                                    "file":  "commands/backup.md"
+                                },
                      "team-plan":  {
                                        "agent":  "planner",
                                        "description":  "Mở rộng: Thiết kế (Design) + Lập kế hoạch (Plan) — dùng agent planner",
                                        "deprecated":  false,
                                        "file":  "commands/team-plan.md"
+                                   },
+                     "team-test":  {
+                                       "agent":  "tester",
+                                       "description":  "Thực thi kiểm thử theo kế hoạch (dùng agent tester)",
+                                       "deprecated":  false,
+                                       "file":  "commands/team-test.md"
                                    },
                      "team-ui-audit":  {
                                            "agent":  "ui-beautifier",
@@ -308,7 +318,7 @@
                     "gitpush-utility":  {
                                             "summary":  "GitPush Utility — thực hiện git push an toàn với auto-commit, safety checks, confirmation gate.",
                                             "file":  "scripts/gitpush-utility.ps1",
-                                            "size":  18071
+                                            "size":  18565
                                         },
                     "backup-utility":  {
                                            "summary":  "Utility script",
@@ -336,7 +346,6 @@
                                                 "backup":  "backup-agent",
                                                 "team-gitpush":  "pusher",
                                                 "team-cleanup":  "cleaner",
-                                                "team-test":  "tester",
                                                 "team-review":  "reviewer",
                                                 "team-analyze":  "analyst",
                                                 "team":  "general",
@@ -344,6 +353,7 @@
                                                 "team-testplan":  "test-planner",
                                                 "team-build":  "builder",
                                                 "team-syncdocs":  "general",
+                                                "team-test":  "tester",
                                                 "team-plan":  "planner",
                                                 "team-ui-audit":  "ui-beautifier"
                                             },
@@ -351,6 +361,20 @@
 
                                    ],
                        "skill_to_commands":  {
+                                                 "workspace-cleaner":  [
+                                                                           {
+                                                                               "file":  ".opencode/commands/team-cleanup.md",
+                                                                               "command":  "team-cleanup"
+                                                                           },
+                                                                           {
+                                                                               "file":  ".opencode/commands/team.md",
+                                                                               "command":  "team"
+                                                                           },
+                                                                           {
+                                                                               "file":  ".opencode/commands/team-ui-audit.md",
+                                                                               "command":  "team-ui-audit"
+                                                                           }
+                                                                       ],
                                                  "dev-team":  [
                                                                   {
                                                                       "file":  ".opencode/commands/team-cleanup.md",
@@ -365,22 +389,6 @@
                                                                       "command":  "team-syncdocs"
                                                                   }
                                                               ],
-                                                 "gitguard":  [
-                                                                  {
-                                                                      "file":  ".opencode/commands/team.md",
-                                                                      "command":  "team"
-                                                                  },
-                                                                  {
-                                                                      "file":  ".opencode/commands/team-gitguard.md",
-                                                                      "command":  "team-gitguard"
-                                                                  }
-                                                              ],
-                                                 "workspace-cleaner":  [
-                                                                           {
-                                                                               "file":  ".opencode/commands/team-cleanup.md",
-                                                                               "command":  "team-cleanup"
-                                                                           }
-                                                                       ],
                                                  "gitpush":  [
                                                                  {
                                                                      "file":  ".opencode/commands/team-gitpush.md",
@@ -394,7 +402,35 @@
                                                                      "file":  ".opencode/commands/team-gitguard.md",
                                                                      "command":  "team-gitguard"
                                                                  }
-                                                             ]
+                                                             ],
+                                                 "impeccable":  [
+                                                                    {
+                                                                        "file":  ".opencode/commands/impeccable.md",
+                                                                        "command":  "impeccable"
+                                                                    },
+                                                                    {
+                                                                        "file":  ".opencode/commands/team.md",
+                                                                        "command":  "team"
+                                                                    },
+                                                                    {
+                                                                        "file":  ".opencode/commands/team-ui-audit.md",
+                                                                        "command":  "team-ui-audit"
+                                                                    }
+                                                                ],
+                                                 "gitguard":  [
+                                                                  {
+                                                                      "file":  ".opencode/commands/team.md",
+                                                                      "command":  "team"
+                                                                  },
+                                                                  {
+                                                                      "file":  ".opencode/commands/team-gitguard.md",
+                                                                      "command":  "team-gitguard"
+                                                                  },
+                                                                  {
+                                                                      "file":  ".opencode/commands/team-ui-audit.md",
+                                                                      "command":  "team-ui-audit"
+                                                                  }
+                                                              ]
                                              },
                        "agent_to_commands":  {
                                                  "backup-agent":  [
@@ -442,7 +478,7 @@
                                                              ]
                                              }
                    },
-    "scanned_at":  "2026-07-28T01:28:55.0681856+07:00",
+    "scanned_at":  "2026-07-29T00:13:33.9588431+07:00",
     "skills":  {
                    "dev-team":  {
                                     "schema_version":  "3.2",
@@ -462,6 +498,12 @@
                                              "name":  "workspace-cleaner",
                                              "file":  "skills/workspace-cleaner/SKILL.md"
                                          },
+                   "impeccable":  {
+                                      "schema_version":  null,
+                                      "description":  "Use when the user wants to design, redesign, shape, critique, audit, polish, clarify, distill, harden, optimize, adapt, animate, colorize, extract, or otherwise improve a frontend interface. Covers websites, landing pages, dashboards, product UI, app shells, components, forms, settings, onboarding, and empty states. Handles UX review, visual hierarchy, information architecture, cognitive load, accessibility, performance, responsive behavior, theming, anti-patterns, typography, fonts, spacing, layout, alignment, color, motion, micro-interactions, UX copy, error states, edge cases, i18n, and reusable design systems or tokens. Also use for bland designs that need to become bolder or more delightful, loud designs that should become quieter, live browser iteration on UI elements, or ambitious visual effects that should feel technically extraordinary. Not for backend-only or non-UI tasks.",
+                                      "name":  "impeccable",
+                                      "file":  "skills/impeccable/SKILL.md"
+                                  },
                    "gitpush":  {
                                    "schema_version":  "1.0",
                                    "description":  "Pre-push safety validation + git push execution — kiểm tra secret, convention, build, test, sau đó push lên remote với xác nhận từ user. Sử dụng câu lệnh /team-gitpush.",

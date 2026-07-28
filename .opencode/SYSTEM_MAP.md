@@ -1,7 +1,7 @@
 ﻿# He Thong .opencode - So Do Tong The
 
-> **Tu dong tao luc:** 2026-07-28 01:28:55
-> **Workflow ID:** WF-20260728-SYNC
+> **Tu dong tao luc:** 2026-07-29 00:13:34
+> **Workflow ID:** WF-20260729-SYNC
 > **Cap nhat:** Toan bo agents, commands, skills, scripts, knowledge
 
 ---
@@ -25,8 +25,8 @@
 ```
 .opencode/
 |-- agents/           # 14 agent definitions
-|-- commands/         # 15 command templates
-|-- skills/           # 4 skill packages
+|-- commands/         # 16 command templates
+|-- skills/           # 5 skill packages
 |-- scripts/          # 4 utility scripts
 |-- knowledge/        # Knowledge base
 |-- backup/           # Backup artifacts
@@ -62,6 +62,7 @@
 | Command | Description | Agent | Deprecated |
 |---------|-------------|-------|------------|
 | /backup | Backup và rollback file dùng Backup Utility. Gọi khi cần backup trước khi sửa file, rollback lỗi, kiểm tra backup. | backup-agent |  |
+| /impeccable | Design, redesign, shape, critique, audit, polish, or improve frontend UI. Sub-commands: init, shape, document, critique, audit, polish, bolder, quieter, distill, harden, onboard, animate, colorize, typeset, layout, delight, overdrive, clarify, adapt, optimize, live, hooks, doctor, extract. | --- |  |
 | /team | Chạy toàn bộ team workflow: analyze → design/plan → review → backup → build → static analysis → ui audit → testplan → test → skill validation → complete | general |  |
 | /team-analyze | Chỉ chạy bước phân tích yêu cầu (dùng agent analyst) | analyst |  |
 | /team-build | Thực thi kế hoạch đã duyệt (dùng agent builder) | builder |  |
@@ -86,6 +87,7 @@
 | dev-team | dev-team | Hướng dẫn sử dụng Dev Agent Team gồm 9 agents (7 core + 2 support). Dùng khi cần phân tích, lập kế hoạch, đánh giá, code, kiểm thử một yêu cầu phát triển. Tích hợp cơ chế Self-Improvement với approval gate. Sử dụng câu lệnh team hoặc team-*. | 3.2 |
 | gitguard | gitguard | Review source code trước khi push lên git — phát hiện secret, lỗi convention, lỗ hổng bảo mật, vi phạm quy tắc dự án. Tích hợp cơ chế blocking CRITICAL, cảnh báo MAJOR. Sử dụng câu lệnh /team-gitguard. | 2.0 |
 | gitpush | gitpush | Pre-push safety validation + git push execution — kiểm tra secret, convention, build, test, sau đó push lên remote với xác nhận từ user. Sử dụng câu lệnh /team-gitpush. | 1.0 |
+| impeccable | impeccable | Use when the user wants to design, redesign, shape, critique, audit, polish, clarify, distill, harden, optimize, adapt, animate, colorize, extract, or otherwise improve a frontend interface. Covers websites, landing pages, dashboards, product UI, app shells, components, forms, settings, onboarding, and empty states. Handles UX review, visual hierarchy, information architecture, cognitive load, accessibility, performance, responsive behavior, theming, anti-patterns, typography, fonts, spacing, layout, alignment, color, motion, micro-interactions, UX copy, error states, edge cases, i18n, and reusable design systems or tokens. Also use for bland designs that need to become bolder or more delightful, loud designs that should become quieter, live browser iteration on UI elements, or ambitious visual effects that should feel technically extraordinary. Not for backend-only or non-UI tasks. |  |
 | workspace-cleaner | workspace-cleaner | Dọn rác Workspace tự động — xóa build artifacts, backup cũ, temp files, cache không cần thiết. Tích hợp dry-run bắt buộc, backup trước khi xóa, confirmation gate, protected list cấu trúc, và output contract chi tiết. Sử dụng câu lệnh /team-cleanup. | 2.1 |
 
 ---
@@ -110,6 +112,7 @@
 | knowledge/lessons.md | 17 KB |
 | knowledge/patterns\common.md | 5 KB |
 | knowledge/skills-learned.md | 11 KB |
+| knowledge/ui-audit-pipeline.md | 3 KB |
 | knowledge/workflow\validate-github-actions-yaml.md | 1 KB |
 
 ---
@@ -275,5 +278,5 @@
 
 ---
 
-> **Tong so:** 14 agents . 15 commands . 4 skills . 4 scripts . 6 knowledge files
+> **Tong so:** 14 agents . 16 commands . 5 skills . 4 scripts . 7 knowledge files
 > **Sinh boi:** sync-system-docs.ps1

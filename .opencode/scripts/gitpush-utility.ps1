@@ -415,7 +415,7 @@ $pushCommand += " $remote $branch"
 
 Write-Output "  [PUSH] $pushCommand"
 $startTime = Get-Date
-$pushOutput = & $pushCommand 2>&1
+$pushOutput = Invoke-Expression $pushCommand 2>&1
 $pushExitCode = $LASTEXITCODE
 $duration = (Get-Date) - $startTime
 $durationSeconds = [math]::Round($duration.TotalSeconds, 1)

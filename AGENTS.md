@@ -5,7 +5,6 @@
 - `JapaneseLearner/` — .NET 10 Blazor WebAssembly app (FluentUI 4.14.3)
 - `JapaneseLearner.Tests/` — xUnit + bUnit unit tests (Moq)
 - `JapaneseLearner.E2ETests/` — Playwright E2E tests (auto-starts dev server)
-- `TestOneDrive/` — unrelated Blazor WASM app; ignore
 - `.opencode/` — agent definitions (Vietnamese), skills, commands, knowledge base
 
 No `.sln` file. Build/run/test per-project with `dotnet`.
@@ -37,17 +36,21 @@ dotnet test JapaneseLearner.E2ETests\JapaneseLearner.E2ETests.csproj
 
 | Path | Component | Description |
 |------|-----------|-------------|
-| `/` | `Home.razor` | Hiragana/Katakana flashcard quiz |
+| `/` | `Home.razor` | Landing page with nav cards |
+| `/alphabet` | `AlphabetStudy.razor` | Hiragana/Katakana flashcard quiz |
 | `/words` | `WordStudy.razor` | Vocabulary flashcard quiz (7 type tabs) |
 | `/words/quiz` | `WordQuiz.razor` | Multiple-choice word quiz |
 | `/kanji` | `KanjiStudy.razor` | Kanji study list |
 | `/kanji/{Id:int}` | `KanjiDetail.razor` | Single kanji detail |
-| `/admin` | `Admin.razor` | CRUD for chars and words (2-tab layout) |
+| `/kanji/quiz` | `KanjiQuiz.razor` | Multiple-choice kanji quiz |
+| `/grammar` | `GrammarStudy.razor` | Grammar pattern study list |
+| `/grammar/{Id:int}` | `GrammarDetail.razor` | Single grammar detail |
+| `/admin` | `Admin.razor` | CRUD for chars, words, kanji, grammar (4-tab layout) |
 
 ## Architecture notes
 
 - **FluentUI 4.14.3** — not MudBlazor. Main components: `FluentButton`, `FluentSelect<TOption>`, `FluentDialog`, `FluentProgressRing`, `FluentDesignTheme`, `FluentNavMenu`/`FluentNavLink`. Uses `Appearance` enum (`.Accent`, `.Lightweight`, `.Neutral`).
-- **Service-Interface DI**: `ICharService`/`CharService`, `IWordService`/`WordService`, `IKanjiService`/`KanjiService`, `IThemeService`/`ThemeService` — `AddScoped` in `Program.cs`. Adding a new service requires touching `Program.cs`.
+- **Service-Interface DI**: `ICharService`/`CharService`, `IWordService`/`WordService`, `IKanjiService`/`KanjiService`, `IGrammarService`/`GrammarService`, `IThemeService`/`ThemeService` — `AddScoped` in `Program.cs`. Adding a new service requires touching `Program.cs`.
 - **Cache-first storage**: Services cache in-memory, persist to `Blazored.LocalStorage`. Seed data on first load. Write-through on every mutation.
 - **Progress reporting**: `WordService` and `KanjiService` accept optional `IProgress<int>` in `GetAllAsync` for large seed data loads.
 - **Tri-state rendering**: Each page handles Loading → Empty → Data via `isLoading` + `list.Count == 0`.
