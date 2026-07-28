@@ -153,8 +153,7 @@
     private async Task PickRandomWord()
     {
         if (availableWords.Count == 0) return;
-        var rng = new Random();
-        currentWord = availableWords[rng.Next(availableWords.Count)];
+        currentWord = availableWords[Random.Shared.Next(availableWords.Count)];
         userInput = "";
         isCorrect = null;
         if (inputRef != null)
@@ -170,7 +169,7 @@
             isCorrect = true;
             correctCount++;
             StateHasChanged();
-            await Task.Delay(1000);
+            await Task.Delay(1500);
             await PickRandomWord();
         }
         else

@@ -17,7 +17,7 @@
         </div>
     </div>
 
-    <div class="filter-row">
+    <div class="filter-row-buttons">
         <span class="filter-label">JLPT:</span>
         <button class="filter-btn @(selectedLevel == "All" ? "active" : "")" aria-pressed="@(selectedLevel == "All" ? "true" : "false")" @onclick="@(() => SwitchLevel("All"))">All</button>
         <button class="filter-btn @(selectedLevel == "N5" ? "active" : "")" aria-pressed="@(selectedLevel == "N5" ? "true" : "false")" @onclick="@(() => SwitchLevel("N5"))">N5</button>
@@ -42,7 +42,7 @@
     }
     else
     {
-        <div class="grammar-count">Tổng số: <strong>@filteredList.Count</strong> mẫu ngữ pháp</div>
+        <div class="word-count">Tổng số: <strong>@filteredList.Count</strong> mẫu ngữ pháp</div>
         <div class="grammar-card-list">
             @foreach (var g in filteredList)
             {
@@ -74,15 +74,7 @@
         max-width: 720px;
         margin: 0 auto;
     }
-    .grammar-icon {
-        background: var(--icon-grammar-bg, #6A4E9C);
-    }
-    .grammar-count {
-        text-align: right;
-        font-size: 0.85rem;
-        color: var(--text-secondary);
-        margin-bottom: 12px;
-    }
+
     .grammar-card-list {
         display: flex;
         flex-direction: column;
@@ -149,37 +141,7 @@
         align-items: center;
         gap: 4px;
     }
-    .filter-row {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        margin-bottom: 16px;
-    }
-    .filter-label {
-        font-size: 0.85rem;
-        font-weight: 600;
-        color: var(--text-secondary);
-    }
-    .filter-btn {
-        padding: 6px 16px;
-        border-radius: 20px;
-        border: 2px solid var(--tab-btn-border);
-        background: var(--tab-btn-bg);
-        color: var(--tab-btn-text);
-        font-size: 0.8rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.2s;
-        font-family: inherit;
-    }
-    .filter-btn:hover {
-        border-color: var(--tab-btn-hover-border);
-    }
-    .filter-btn.active {
-        background: var(--tab-btn-active-bg);
-        border-color: var(--tab-btn-active-bg);
-        color: var(--tab-btn-active-text);
-    }
+
 </style>
 
 @code {

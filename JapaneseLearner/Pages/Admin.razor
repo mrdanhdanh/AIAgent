@@ -8,18 +8,18 @@
 
 <div class="admin-container">
     <div class="admin-tab-bar">
-        <button class="admin-tab-btn @(activeTab == "chars" ? "active" : "")" @onclick="SwitchToChars" aria-pressed="@(activeTab == "chars" ? "true" : "false")">
+        <FluentButton Appearance="@(activeTab == "chars" ? Appearance.Accent : Appearance.Neutral)" Class="admin-tab-btn" @onclick="SwitchToChars">
             <FluentIcon Icon="@(Icons.Regular.Size20.BookContacts)" /> Bảng chữ cái
-        </button>
-        <button class="admin-tab-btn @(activeTab == "words" ? "active" : "")" @onclick="SwitchToWords" aria-pressed="@(activeTab == "words" ? "true" : "false")">
+        </FluentButton>
+        <FluentButton Appearance="@(activeTab == "words" ? Appearance.Accent : Appearance.Neutral)" Class="admin-tab-btn" @onclick="SwitchToWords">
             <FluentIcon Icon="@(Icons.Regular.Size20.Document)" /> Từ vựng
-        </button>
-        <button class="admin-tab-btn @(activeTab == "kanji" ? "active" : "")" @onclick="SwitchToKanji" aria-pressed="@(activeTab == "kanji" ? "true" : "false")">
+        </FluentButton>
+        <FluentButton Appearance="@(activeTab == "kanji" ? Appearance.Accent : Appearance.Neutral)" Class="admin-tab-btn" @onclick="SwitchToKanji">
             <FluentIcon Icon="@(Icons.Regular.Size20.Compose)" /> Kanji
-        </button>
-        <button class="admin-tab-btn @(activeTab == "grammar" ? "active" : "")" @onclick="SwitchToGrammar" aria-pressed="@(activeTab == "grammar" ? "true" : "false")">
+        </FluentButton>
+        <FluentButton Appearance="@(activeTab == "grammar" ? Appearance.Accent : Appearance.Neutral)" Class="admin-tab-btn" @onclick="SwitchToGrammar">
             <FluentIcon Icon="@(Icons.Regular.Size20.TextGrammarWand)" /> Ngữ pháp
-        </button>
+        </FluentButton>
     </div>
 
     @if (_showNotif)
@@ -487,7 +487,7 @@
         color: var(--notif-success-text);
         border: 1px solid var(--notif-success-border);
     }
-.admin-tab-bar {
+    .admin-tab-bar {
         display: flex;
         gap: 6px;
         margin-bottom: 20px;
@@ -507,22 +507,8 @@
         gap: 8px;
         padding: 10px 16px;
         border-radius: 10px;
-        border: none;
-        background: transparent;
-        color: var(--tab-btn-text);
         font-size: 0.9rem;
         font-weight: 600;
-        cursor: pointer;
-        transition: all var(--transition-fast);
-        font-family: var(--font-family);
-    }
-    .admin-tab-btn:hover {
-        background: var(--tab-btn-hover-bg);
-        color: var(--tab-btn-hover-text-solid);
-    }
-    .admin-tab-btn.active {
-        background: var(--tab-btn-active-bg);
-        color: var(--tab-btn-active-text);
     }
     .admin-header {
         display: flex;
@@ -577,11 +563,7 @@
         gap: 16px;
         padding: 60px 0;
     }
-    .loading-text {
-        font-size: 0.9rem;
-        color: var(--text-secondary);
-        font-weight: 500;
-    }
+
     .empty-state {
         text-align: center;
         padding: 60px 20px;
@@ -592,12 +574,7 @@
     .empty-icon { margin-bottom: 12px; }
     .empty-state h3 { color: var(--text-primary); margin: 0 0 8px 0; }
     .empty-state p { color: var(--text-secondary); margin: 0; }
-    .word-count {
-        text-align: right;
-        font-size: 0.85rem;
-        color: var(--text-secondary);
-        margin-bottom: 8px;
-    }
+
     .table-wrap {
         background: var(--bg-card);
         border-radius: 16px;
@@ -680,10 +657,6 @@
         display: flex;
         gap: 4px;
     }
-    .action-btn-icon {
-        transition: transform 0.15s;
-    }
-    .action-btn-icon:hover { transform: scale(1.1); }
     .dialog-fields {
         display: flex;
         flex-direction: column;

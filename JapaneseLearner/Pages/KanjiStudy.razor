@@ -27,7 +27,7 @@
         </div>
     </div>
 
-    <div class="filter-row">
+    <div class="filter-row-buttons">
         <span class="filter-label">JLPT:</span>
         <button class="filter-btn @(selectedLevel == "All" ? "active" : "")" aria-pressed="@(selectedLevel == "All" ? "true" : "false")" @onclick="@(() => SwitchLevel("All"))">All</button>
         <button class="filter-btn @(selectedLevel == "N5" ? "active" : "")" aria-pressed="@(selectedLevel == "N5" ? "true" : "false")" @onclick="@(() => SwitchLevel("N5"))">N5</button>
@@ -124,122 +124,12 @@
         max-width: 520px;
         margin: 0 auto;
     }
-    .kanji-icon {
-        background: var(--icon-kanji-bg, #E63946);
-    }
-    .filter-row {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        margin-bottom: 16px;
-        justify-content: center;
-    }
-    .filter-label {
-        font-size: 0.85rem;
-        font-weight: 600;
-        color: var(--text-secondary);
-    }
-    .filter-btn {
-        padding: 6px 16px;
-        border-radius: 20px;
-        border: 2px solid var(--tab-btn-border);
-        background: var(--tab-btn-bg);
-        color: var(--tab-btn-text);
-        font-size: 0.8rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.2s;
-        font-family: inherit;
-    }
-    .filter-btn:hover {
-        border-color: var(--tab-btn-hover-border);
-    }
-    .filter-btn.active {
-        background: var(--tab-btn-active-bg);
-        border-color: var(--tab-btn-active-bg);
-        color: var(--tab-btn-active-text);
-    }
-    .type-indicator {
-        text-align: center;
-        margin-bottom: 12px;
-        display: flex;
-        justify-content: center;
-        gap: 8px;
-    }
-    .level-badge {
-        display: inline-block;
-        padding: 4px 14px;
-        border-radius: 20px;
-        font-size: 0.75rem;
-        font-weight: 700;
-        background: var(--badge-level-bg, #E63946);
-        color: var(--badge-level-text, white);
-    }
-    .stroke-badge {
-        display: inline-block;
-        padding: 4px 14px;
-        border-radius: 20px;
-        font-size: 0.75rem;
-        font-weight: 600;
-        background: var(--badge-stroke-bg, #457b9d);
-        color: var(--badge-stroke-text, white);
-    }
-    .kanji-display {
-        min-height: 140px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    .kanji-char {
-        font-size: 6rem;
-        line-height: 1.2;
-        font-family: var(--font-family);
-        color: var(--text-primary);
-        transition: transform 0.2s;
-        user-select: none;
-    }
-    .study-card:hover .kanji-char {
-        transform: scale(1.02);
-    }
-    .reading-display {
-        display: flex;
-        gap: 12px;
-        margin: 12px auto;
-        max-width: 400px;
-    }
-    .reading-box {
-        flex: 1;
-        background: var(--bg-card);
-        border-radius: 12px;
-        padding: 10px;
-        text-align: center;
-        box-shadow: var(--shadow-sm);
-    }
-    .reading-label {
-        display: block;
-        font-size: 0.7rem;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        color: var(--text-secondary);
-        margin-bottom: 4px;
-    }
-    .reading-value {
-        font-size: 1.1rem;
-        font-weight: 600;
-        color: var(--text-primary);
-    }
     .meaning-hint {
         display: block;
         font-size: 0.85rem;
         font-weight: 400;
         margin-top: 4px;
         opacity: 0.8;
-    }
-    .input-row {
-        align-items: stretch;
-    }
-    .action-btn {
-        height: auto;
     }
 </style>
 
@@ -269,8 +159,7 @@
     private async Task PickRandomKanji()
     {
         if (availableKanji.Count == 0) return;
-        var rng = new Random();
-        currentKanji = availableKanji[rng.Next(availableKanji.Count)];
+        currentKanji = availableKanji[Random.Shared.Next(availableKanji.Count)];
         userInput = "";
         isCorrect = null;
         if (inputRef != null)

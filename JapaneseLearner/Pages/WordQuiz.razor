@@ -104,54 +104,6 @@
         max-width: 520px;
         margin: 0 auto;
     }
-    .options-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 10px;
-        margin-top: 20px;
-    }
-    .option-btn {
-        padding: 14px 12px;
-        border-radius: 12px;
-        border: 2px solid var(--tab-btn-border);
-        background: var(--tab-btn-bg);
-        color: var(--text-primary);
-        font-size: 1rem;
-        font-weight: 500;
-        cursor: pointer;
-        transition: all 0.2s;
-        font-family: inherit;
-        text-align: center;
-        min-height: 52px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    .option-btn:hover:not(.opt-disabled) {
-        border-color: var(--tab-btn-hover-border);
-        background: var(--tab-btn-hover-bg);
-    }
-    .option-btn.opt-correct {
-        border-color: var(--opt-correct-border);
-        background: var(--opt-correct-bg);
-        color: var(--opt-correct-text);
-    }
-    .option-btn.opt-wrong {
-        border-color: var(--opt-wrong-border);
-        background: var(--opt-wrong-bg);
-        color: var(--opt-wrong-text);
-    }
-    .option-btn.opt-disabled {
-        cursor: default;
-        opacity: 0.85;
-    }
-    .feedback-prompt {
-        text-align: center;
-        font-size: 0.9rem;
-        color: var(--text-secondary);
-        margin-top: 16px;
-        opacity: 0.7;
-    }
 </style>
 
 @code {
@@ -252,7 +204,7 @@
         _timerCts = new CancellationTokenSource();
         try
         {
-            await Task.Delay(5000, _timerCts.Token);
+            await Task.Delay(3000, _timerCts.Token);
             await PickRandomWord();
         }
         catch (TaskCanceledException)

@@ -70,8 +70,9 @@
         @if (isCorrect == true)
         {
             <div class="feedback feedback-correct">
-                    <span class="feedback-icon"><FluentIcon Icon="@(Icons.Regular.Size20.Checkmark)" /></span>
+                <span class="feedback-icon"><FluentIcon Icon="@(Icons.Regular.Size20.Checkmark)" /></span>
                 Chính xác!
+
             </div>
         }
         else if (isCorrect == false)
@@ -143,8 +144,7 @@
     private async Task PickRandomChar()
     {
         if (availableChars.Count == 0) return;
-        var rng = new Random();
-        currentChar = availableChars[rng.Next(availableChars.Count)];
+        currentChar = availableChars[Random.Shared.Next(availableChars.Count)];
         userInput = "";
         isCorrect = null;
         if (inputRef != null)
