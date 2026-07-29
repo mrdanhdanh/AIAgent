@@ -18,6 +18,7 @@
   --drawer-shadow: rgba(0, 0, 0, 0.15);
   --drawer-header-border: #e0e0e0;
   --drawer-header-text: #1d3557;
+  --drawer-nav-text: #1d3557;
   --icon-hiragana-bg: linear-gradient(135deg, #e63946, #c1121f);
   --icon-kanji-bg: linear-gradient(135deg, #e63946, #c1121f);
   --icon-word-bg: linear-gradient(135deg, #457b9d, #1d3557);
@@ -126,6 +127,7 @@
   --drawer-shadow: rgba(0, 0, 0, 0.3);
   --drawer-header-border: #333333;
   --drawer-header-text: #e0e0e0;
+  --drawer-nav-text: #e0e0e0;
   --icon-shadow-hiragana: rgba(230, 57, 70, 0.15);
   --icon-shadow-word: rgba(69, 123, 157, 0.15);
   --stat-correct-bg: rgba(42, 157, 143, 0.2);

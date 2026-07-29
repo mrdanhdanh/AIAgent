@@ -94,6 +94,20 @@
     padding: 16px 16px 12px;
     border-bottom: 1px solid var(--drawer-header-border);
 }
+.drawer-panel ::deep .fluent-nav-link {
+    color: var(--drawer-nav-text);
+}
+
+.drawer-panel ::deep .fluent-nav-link:hover {
+    color: var(--accent-color);
+}
+
+.drawer-panel ::deep .fluent-nav-link:active,
+.drawer-panel ::deep .fluent-nav-link.active {
+    color: var(--accent-color);
+    font-weight: 600;
+}
+
 .drawer-header h3 {
     margin: 0;
     font-size: 1.1rem;
