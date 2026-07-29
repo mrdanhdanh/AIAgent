@@ -1,0 +1,403 @@
+@page "/practice/train"
+@inject ICharService CharService
+@inject NavigationManager Navigation
+@inject IJSRuntime JS
+@inject HttpClient Http
+
+<PageTitle>Tập luyện — Japanese Learner</PageTitle>
+
+<div class="practice-container">
+    <div class="study-header">
+        <div class="study-header-title">
+            <div class="study-header-icon practice-icon" aria-hidden="true">
+                <FluentIcon Icon="@(Icons.Regular.Size20.BookCompass)" />
+            </div>
+            <div>
+                <h1>Tập luyện</h1>
+                <p class="study-header-sub">Vẽ chữ để huấn luyện hệ thống nhận diện</p>
+            </div>
+        </div>
+    </div>
+
+    @if (isLoading)
+    {
+        <div class="loading-wrap">
+            <FluentProgressRing />
+        </div>
+    }
+    else if (allChars.Count == 0)
+    {
+        <div class="empty-state">
+            <div class="empty-icon"><FluentIcon Icon="@(Icons.Regular.Size20.BookCompass)" /></div>
+            <h3>Chưa có dữ liệu</h3>
+            <p>Vui lòng thêm chữ cái từ trang Admin trước.</p>
+            <FluentButton Appearance="@Appearance.Accent" Class="mt-4" @onclick="@(() => Navigation.NavigateTo("/admin"))">
+                Đến Admin
+            </FluentButton>
+        </div>
+    }
+    else
+    {
+        <div class="train-layout">
+            <div class="train-main">
+                <div class="target-char-card">
+                    <div class="target-char">@currentChar</div>
+                    <div class="target-label">@currentRomaji (@currentType)</div>
+                </div>
+
+                <div class="char-selector">
+                    <FluentSelect TOption="string" Items=charOptions OptionText=@(c => c)
+                                  @bind-SelectedOption=selectedChar @bind-SelectedOption:after="OnCharSelected" />
+                    <FluentButton Appearance="@Appearance.Lightweight" OnClick="PickRandom" Class="random-btn">
+                        <FluentIcon Icon="@(Icons.Regular.Size20.ArrowSync)" /> Ngẫu nhiên
+                    </FluentButton>
+                </div>
+            </div>
+
+            <div class="canvas-section">
+                <canvas id="train-canvas"></canvas>
+                <div class="canvas-toolbar">
+                    <FluentButton Appearance="@Appearance.Lightweight" OnClick="ClearCanvas" Class="toolbar-btn">Xoá</FluentButton>
+                    <FluentButton Appearance="@Appearance.Lightweight" OnClick="UndoStroke" Class="toolbar-btn">Hoàn tác</FluentButton>
+                </div>
+            </div>
+
+            <FluentButton Appearance="@Appearance.Accent" OnClick="SaveTemplate" Class="save-btn"
+                         Disabled="@isSaving">
+                @(isSaving ? "Đang lưu..." : "Lưu mẫu")
+            </FluentButton>
+
+            @if (!string.IsNullOrEmpty(saveMessage))
+            {
+                <div class="save-message @(saveMessage.Contains("thành công") ? "msg-ok" : "msg-err")">@saveMessage</div>
+            }
+
+            <div class="template-stats">
+                <h3>Mẫu đã lưu</h3>
+                @{
+                    var currentCount = templateByChar.GetValueOrDefault(currentChar, 0);
+                }
+                <div class="stats-summary">
+                    <span>Tổng số: <strong>@templateTotal</strong> mẫu · <strong>@templateByChar.Count</strong>/92 chữ</span>
+                    <span class="action-btns">
+                        <FluentButton Appearance="@Appearance.Lightweight" OnClick="ExportTemplates" Class="export-btn"
+                                     Disabled="@(templateTotal == 0)">Xuất file</FluentButton>
+                        <FluentButton Appearance="@Appearance.Lightweight" OnClick="@(() => _ = TriggerImport())" Class="import-btn">Nhập file</FluentButton>
+                    </span>
+                </div>
+                <input type="file" accept=".json" @ref=importInput @onchange="OnImportFile" class="import-input" />
+                <div class="current-char-templates">
+                    <span class="current-label">Chữ <strong>@currentChar</strong>:</span>
+                    <span class="tpl-count">@currentCount mẫu</span>
+                    @if (currentCount > 0)
+                    {
+                        <FluentButton Appearance="@Appearance.Lightweight" OnClick="ClearCurrentTemplates" Class="clear-char-btn">Xoá mẫu này</FluentButton>
+                    }
+                    @if (templateTotal > 0)
+                    {
+                        <FluentButton Appearance="@Appearance.Lightweight" OnClick="ClearAllTemplates" Class="clear-all-btn">Xoá tất cả</FluentButton>
+                    }
+                </div>
+                @if (currentCount == 0 && templateTotal == 0)
+                {
+                    <p class="empty-templates">Chưa có mẫu nào. Hãy vẽ và lưu mẫu đầu tiên!</p>
+                }
+                else if (currentCount == 0)
+                {
+                    <p class="empty-templates">Chưa có mẫu nào cho "@currentChar".</p>
+                }
+            </div>
+        </div>
+    }
+</div>
+
+<style>
+    .practice-container { max-width: 520px; margin: 0 auto; }
+    .practice-icon {
+        background: linear-gradient(135deg, #6c5ce7, #0984e3);
+        box-shadow: 0 4px 12px rgba(108,92,231,0.3);
+    }
+    .train-layout { display: flex; flex-direction: column; gap: 16px; }
+    .train-main { display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap; }
+    .target-char-card {
+        flex: 0 0 120px; text-align: center; padding: 16px;
+        background: var(--card-bg); border-radius: 16px;
+        box-shadow: 0 2px 12px var(--card-shadow-default);
+    }
+    .target-char { font-size: 3rem; line-height: 1.2; }
+    .target-label { font-size: 0.8rem; color: var(--text-secondary); margin-top: 4px; }
+    .char-selector {
+        flex: 1; display: flex; gap: 8px; align-items: flex-end; min-width: 200px;
+    }
+    .char-selector ::deep .fluent-select { flex: 1; }
+    .random-btn { white-space: nowrap; display: inline-flex; align-items: center; gap: 4px; }
+    .canvas-section { text-align: center; }
+    .canvas-section canvas {
+        width: 280px; height: 280px;
+        background: var(--canvas-bg, #ffffff);
+        border: 2px solid var(--canvas-border, #e0e0e0);
+        border-radius: 16px; touch-action: none; cursor: crosshair;
+        box-shadow: 0 2px 12px var(--card-shadow-default);
+    }
+    .canvas-toolbar {
+        display: flex; gap: 6px; justify-content: center; margin-top: 10px;
+    }
+    .toolbar-btn { font-size: 0.8rem; }
+    .save-btn { width: 100%; margin-top: 4px; }
+    .save-message {
+        text-align: center; padding: 8px; border-radius: 10px; font-size: 0.9rem;
+    }
+    .msg-ok { background: var(--feedback-correct-bg, #d4edda); color: #155724; }
+    .msg-err { background: var(--feedback-wrong-bg, #f8d7da); color: #721c24; }
+    .template-stats {
+        margin-top: 8px; padding: 16px;
+        background: var(--card-bg); border-radius: 16px;
+        box-shadow: 0 2px 12px var(--card-shadow-default);
+    }
+    .template-stats h3 { margin: 0 0 12px; font-size: 1rem; }
+    .stats-summary {
+        display: flex; gap: 16px; align-items: center; flex-wrap: wrap;
+        font-size: 0.85rem; margin-bottom: 12px;
+    }
+    .action-btns { margin-left: auto; display: flex; gap: 6px; }
+    .export-btn, .import-btn { font-size: 0.75rem; white-space: nowrap; }
+    .import-input { display: none; }
+    .clear-all-btn { margin-left: auto; font-size: 0.8rem; color: #e74c3c; }
+    .clear-char-btn { font-size: 0.8rem; color: #e67e22; }
+    .current-char-templates {
+        display: flex; gap: 8px; align-items: center; flex-wrap: wrap;
+        padding: 10px 14px; border-radius: 10px;
+        background: var(--surface-bg); font-size: 0.85rem;
+    }
+    .current-label { font-size: 0.85rem; }
+    .tpl-count { color: var(--text-secondary); font-size: 0.75rem; }
+    .empty-templates { font-size: 0.85rem; color: var(--text-secondary); text-align: center; padding: 16px; }
+</style>
+
+@code {
+    private List<JapaneseChar> allChars = new();
+    private string currentChar = "";
+    private string currentRomaji = "";
+    private string currentType = "";
+    private string selectedChar = "";
+    private bool isLoading = true;
+    private bool isSaving;
+    private string saveMessage = "";
+    private int templateTotal;
+    private Dictionary<string, int> templateByChar = new();
+    private bool _initDone;
+    private ElementReference importInput;
+
+    private List<string> charOptions = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        allChars = await CharService.GetAllAsync();
+        charOptions = allChars.Select(c => c.Character + " (" + c.Romaji + " - " + c.Type + ")").ToList();
+        if (allChars.Count > 0)
+        {
+            var first = allChars[0];
+            currentChar = first.Character;
+            currentRomaji = first.Romaji;
+            currentType = first.Type;
+            selectedChar = currentChar + " (" + currentRomaji + " - " + currentType + ")";
+        }
+        isLoading = false;
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (_initDone) return;
+        if (isLoading) return;
+        if (allChars.Count == 0) return;
+        _initDone = true;
+        var charsData = allChars.Select(c => new { character = c.Character, type = c.Type }).ToList();
+        await JS.InvokeVoidAsync("JapaneseHandwriting.setKanaData", charsData);
+        await JS.InvokeVoidAsync("JapaneseHandwriting.initCanvas", "train-canvas", 280, 280);
+        await LoadSeedTemplates();
+        await RefreshTemplateInfo();
+        StateHasChanged();
+    }
+
+    private async Task LoadSeedTemplates()
+    {
+        try
+        {
+            var hasLocal = await JS.InvokeAsync<bool>("JapaneseHandwriting.hasLocalTemplates");
+            if (hasLocal) return;
+            var json = await Http.GetStringAsync("data/user_templates.json");
+            if (string.IsNullOrEmpty(json) || json == "[]") return;
+            await JS.InvokeAsync<string>("JapaneseHandwriting.loadSeedFile", json);
+        }
+        catch
+        {
+        }
+    }
+
+    private void OnCharSelected()
+    {
+        var match = allChars.FirstOrDefault(c => c.Character + " (" + c.Romaji + " - " + c.Type + ")" == selectedChar);
+        if (match != null)
+        {
+            currentChar = match.Character;
+            currentRomaji = match.Romaji;
+            currentType = match.Type;
+            saveMessage = "";
+            _ = ClearCanvas();
+        }
+    }
+
+    private void PickRandom()
+    {
+        if (allChars.Count == 0) return;
+        var r = allChars[Random.Shared.Next(allChars.Count)];
+        currentChar = r.Character;
+        currentRomaji = r.Romaji;
+        currentType = r.Type;
+        selectedChar = r.Character + " (" + r.Romaji + " - " + r.Type + ")";
+        saveMessage = "";
+        _ = ClearCanvas();
+    }
+
+    private async Task SaveTemplate()
+    {
+        if (isSaving) return;
+        isSaving = true;
+        saveMessage = "";
+        StateHasChanged();
+
+        try
+        {
+            var json = await JS.InvokeAsync<string>("JapaneseHandwriting.saveUserTemplate", currentChar);
+            var result = System.Text.Json.JsonSerializer.Deserialize<SaveResult>(json);
+            if (result != null && result.Ok)
+            {
+                saveMessage = "Đã lưu mẫu cho " + currentChar + " thành công!";
+                await RefreshTemplateInfo();
+                StateHasChanged();
+                await Task.Delay(1500);
+                saveMessage = "";
+                await ClearCanvas();
+            }
+            else
+            {
+                saveMessage = "Lỗi: " + (result?.Error ?? "Không rõ");
+            }
+        }
+        catch (Exception ex)
+        {
+            saveMessage = "Lỗi: " + ex.Message;
+        }
+        finally
+        {
+            isSaving = false;
+            StateHasChanged();
+        }
+    }
+
+    private async Task ClearAllTemplates()
+    {
+        await JS.InvokeAsync<string>("JapaneseHandwriting.clearUserTemplates");
+        await RefreshTemplateInfo();
+        saveMessage = "Đã xoá tất cả mẫu.";
+        StateHasChanged();
+    }
+
+    private async Task ClearCurrentTemplates()
+    {
+        await JS.InvokeAsync<string>("JapaneseHandwriting.deleteUserTemplatesForChar", currentChar);
+        await RefreshTemplateInfo();
+        saveMessage = "Đã xoá mẫu cho " + currentChar + ".";
+        StateHasChanged();
+    }
+
+    private async Task RefreshTemplateInfo()
+    {
+        try
+        {
+            var json = await JS.InvokeAsync<string>("JapaneseHandwriting.getUserTemplateInfo");
+            var info = System.Text.Json.JsonSerializer.Deserialize<TemplateInfo>(json);
+            if (info != null)
+            {
+                templateTotal = info.Total;
+                templateByChar = info.ByChar ?? new();
+            }
+        }
+        catch { }
+    }
+
+    private async Task ExportTemplates()
+    {
+        try
+        {
+            var json = await JS.InvokeAsync<string>("JapaneseHandwriting.exportUserTemplates");
+            var bytes = System.Text.Encoding.UTF8.GetBytes(json);
+            await JS.InvokeVoidAsync("eval", @"
+                var a = document.createElement('a');
+                a.href = 'data:application/json;base64," + Convert.ToBase64String(bytes) + @"';
+                a.download = 'user_templates.json';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+            ");
+        }
+        catch { }
+    }
+
+    private async Task TriggerImport()
+    {
+        await JS.InvokeVoidAsync("JapaneseHandwriting.clickInput", importInput);
+    }
+
+    private async Task OnImportFile(ChangeEventArgs e)
+    {
+        try
+        {
+            var text = await JS.InvokeAsync<string>("JapaneseHandwriting.readFileText", importInput);
+            if (text == null) return;
+            var resultJson = await JS.InvokeAsync<string>("JapaneseHandwriting.importUserTemplates", text);
+            var result = System.Text.Json.JsonSerializer.Deserialize<SaveResult>(resultJson);
+            if (result != null && result.Ok)
+            {
+                saveMessage = "Đã nhập " + result.Count + " mẫu!";
+                await RefreshTemplateInfo();
+            }
+            else
+            {
+                saveMessage = "Lỗi: " + (result?.Error ?? "Không rõ");
+            }
+            StateHasChanged();
+        }
+        catch { }
+    }
+
+    private async Task ClearCanvas()
+    {
+        try { await JS.InvokeVoidAsync("JapaneseHandwriting.clearCanvas"); } catch { }
+    }
+
+    private async Task UndoStroke()
+    {
+        try { await JS.InvokeVoidAsync("JapaneseHandwriting.undoLast"); } catch { }
+    }
+
+    private class SaveResult
+    {
+        [System.Text.Json.Serialization.JsonPropertyName("ok")]
+        public bool Ok { get; set; }
+        [System.Text.Json.Serialization.JsonPropertyName("error")]
+        public string? Error { get; set; }
+        [System.Text.Json.Serialization.JsonPropertyName("total")]
+        public int Total { get; set; }
+        [System.Text.Json.Serialization.JsonPropertyName("count")]
+        public int Count { get; set; }
+    }
+
+    private class TemplateInfo
+    {
+        [System.Text.Json.Serialization.JsonPropertyName("total")]
+        public int Total { get; set; }
+        [System.Text.Json.Serialization.JsonPropertyName("byChar")]
+        public Dictionary<string, int>? ByChar { get; set; }
+    }
+}

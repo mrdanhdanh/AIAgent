@@ -589,3 +589,28 @@ fluent-button:focus-visible {
     color: var(--text-secondary);
     margin-bottom: 8px;
 }
+
+/* ===== FluentSelect dropdown scrollbar ===== */
+fluent-select::part(listbox) {
+    max-height: 260px; overflow-y: auto;
+}
+fluent-select::part(selected-value) {
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+
+/* ===== Practice / Handwriting ===== */
+.practice-container .study-card {
+    padding: 20px 16px;
+}
+.practice-container .japanese-char-display {
+    font-size: 5rem;
+}
+.practice-container .input-row {
+    align-items: stretch;
+}
+.practice-container .action-btn {
+    height: auto;
+}
+.practice-container .input-wrap fluent-text-field::part(root) {
+    border-radius: 12px;
+}

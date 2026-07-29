@@ -1,0 +1,494 @@
+@page "/practice"
+@inject ICharService CharService
+@inject IWordService WordService
+@inject NavigationManager Navigation
+@inject IJSRuntime JS
+
+<PageTitle>Luyện viết — Japanese Learner</PageTitle>
+
+<div class="practice-container">
+    <div class="study-header">
+        <div class="study-header-title">
+            <div class="study-header-icon practice-icon" aria-hidden="true">
+                <FluentIcon Icon="@(Icons.Regular.Size20.DrawShape)" />
+            </div>
+            <div>
+                <h1>Luyện viết</h1>
+                <p class="study-header-sub">Vẽ chữ Nhật trên canvas và kiểm tra kết quả</p>
+            </div>
+        </div>
+        <div class="study-header-stats">
+            <div class="stat-box stat-correct">
+                <span class="stat-num">@correctCount</span>
+                <span class="stat-label">Đúng</span>
+            </div>
+            <div class="stat-box stat-wrong">
+                <span class="stat-num">@wrongCount</span>
+                <span class="stat-label">Sai</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-bar">
+        <button class="tab-btn @(currentMode == PracticeMode.Dictionary ? "active" : "")"
+                aria-pressed="@(currentMode == PracticeMode.Dictionary ? "true" : "false")"
+                @onclick="@(async () => await SwitchMode(PracticeMode.Dictionary))">Từ điển</button>
+        <button class="tab-btn @(currentMode == PracticeMode.RandomAI ? "active" : "")"
+                aria-pressed="@(currentMode == PracticeMode.RandomAI ? "true" : "false")"
+                @onclick="@(async () => await SwitchMode(PracticeMode.RandomAI))">Random AI</button>
+    </div>
+
+    @if (currentMode == PracticeMode.RandomAI)
+    {
+        <div class="options-row">
+            <div class="option-group">
+                <label class="option-label">Độ dài:</label>
+                <div class="option-btns">
+                    @for (int i = 2; i <= 6; i++)
+                    {
+                        <button class="filter-btn @(randomLength == i ? "active" : "")"
+                                @onclick="@(async () => { randomLength = i; await LoadRandomMode(); })">@i</button>
+                    }
+                </div>
+            </div>
+            <div class="option-group">
+                <label class="option-label">Loại chữ:</label>
+                <div class="option-btns">
+                    <button class="filter-btn @(randomType == "All" ? "active" : "")"
+                            @onclick="@(async () => { randomType = "All"; await LoadRandomMode(); })">Cả hai</button>
+                    <button class="filter-btn @(randomType == "Hiragana" ? "active" : "")"
+                            @onclick="@(async () => { randomType = "Hiragana"; await LoadRandomMode(); })">Hiragana</button>
+                    <button class="filter-btn @(randomType == "Katakana" ? "active" : "")"
+                            @onclick="@(async () => { randomType = "Katakana"; await LoadRandomMode(); })">Katakana</button>
+                </div>
+            </div>
+        </div>
+    }
+
+    @if (isLoading)
+    {
+        <div class="loading-wrap">
+            <FluentProgressRing />
+        </div>
+    }
+    else if ((currentMode == PracticeMode.Dictionary && practiceWords.Count == 0) ||
+             (currentMode == PracticeMode.RandomAI && practiceChars.Count == 0))
+    {
+        <div class="empty-state">
+            <div class="empty-icon"><FluentIcon Icon="@(Icons.Regular.Size20.DrawShape)" /></div>
+            <h3>Chưa có dữ liệu</h3>
+            <p>@emptyMessage</p>
+            <FluentButton Appearance="@Appearance.Accent" Class="mt-4" @onclick="@(() => Navigation.NavigateTo("/admin"))">
+                Đến Admin
+            </FluentButton>
+        </div>
+    }
+    else
+    {
+        <div class="study-card @(isCorrect == true ? "card-correct" : isCorrect == false ? "card-wrong" : "")">
+            <div class="practice-prompt">
+                @if (currentMode == PracticeMode.Dictionary)
+                {
+                    <div class="prompt-romaji">@currentPrompt</div>
+                    <div class="prompt-label">ー @currentTypeLabel ー</div>
+                    @if (!string.IsNullOrEmpty(currentExtra))
+                    {
+                        <div class="prompt-hint">@currentExtra</div>
+                    }
+                }
+                else
+                {
+                    <div class="prompt-romaji">@currentPrompt</div>
+                    <div class="prompt-label">ー @currentTypeLabel ー</div>
+                }
+            </div>
+
+            <div class="canvas-wrap @(isPinned ? "pinned" : "")">
+                <canvas id="practice-canvas"></canvas>
+                <div class="canvas-toolbar">
+                    <FluentButton Appearance="@Appearance.Lightweight" OnClick="ClearCanvas" Class="toolbar-btn"
+                                  Disabled="@(isCorrect == true || isCorrect == false)">Xoá</FluentButton>
+                    <FluentButton Appearance="@Appearance.Lightweight" OnClick="UndoStroke" Class="toolbar-btn"
+                                  Disabled="@(isCorrect == true || isCorrect == false)">Hoàn tác</FluentButton>
+                    <FluentButton Appearance="@Appearance.Lightweight" OnClick="TogglePin" Class="@GetPinClass()">
+                        @(isPinned ? "Bỏ ghim" : "Ghim")
+                    </FluentButton>
+                </div>
+            </div>
+        </div>
+
+        @if (isCorrect != true && isCorrect != false)
+        {
+            @if (!string.IsNullOrEmpty(recognitionResult))
+            {
+                <div class="recognition-row">
+                    <div class="recognition-result">
+                        <span class="recog-label">Nhận diện:</span>
+                        <strong class="recog-char">@recognitionResult</strong>
+                        @if (recognitionTop3.Count > 0)
+                        {
+                            <span class="recog-alts">(@string.Join(", ", recognitionTop3))</span>
+                        }
+                    </div>
+                </div>
+            }
+        }
+
+        <div class="input-row">
+            <div class="input-wrap">
+                <FluentTextField @bind-Value="userInput"
+                                 Placeholder="Gõ tay hoặc dùng kết quả nhận diện..."
+                                 Class="romaji-input"
+                                 Disabled="@(isCorrect == true)"
+                                 @onkeydown="HandleKeyDown" />
+            </div>
+            @if (isCorrect == true || isCorrect == false)
+            {
+                <FluentButton Appearance="@Appearance.Accent" OnClick="NextPrompt" Class="action-btn">
+                    Tiếp →
+                </FluentButton>
+            }
+            else
+            {
+                <FluentButton Appearance="@Appearance.Accent" OnClick="RecognizeAndFill" Class="action-btn recog-btn"
+                             Disabled="@isProcessingRecognition">Nhận diện</FluentButton>
+                <FluentButton Appearance="@Appearance.Accent" OnClick="CheckAnswer"
+                             Disabled="string.IsNullOrWhiteSpace(userInput)" Class="action-btn">
+                    Gửi
+                </FluentButton>
+            }
+        </div>
+
+        @if (isCorrect == true)
+        {
+            <div class="feedback feedback-correct">
+                <span class="feedback-icon"><FluentIcon Icon="@(Icons.Regular.Size20.Checkmark)" /></span>
+                Chính xác!
+            </div>
+        }
+        else if (isCorrect == false)
+        {
+            <div class="feedback feedback-wrong">
+                <span class="feedback-icon"><FluentIcon Icon="@(Icons.Regular.Size20.Dismiss)" /></span>
+                Đáp án đúng: <strong>@currentAnswer</strong>
+                @if (!string.IsNullOrEmpty(currentExtra))
+                {
+                    <span class="meaning-hint">(@currentExtra)</span>
+                }
+            </div>
+        }
+    }
+</div>
+
+<style>
+    .practice-container { max-width: 520px; margin: 0 auto; }
+    .practice-icon {
+        background: var(--practice-icon-bg, linear-gradient(135deg, #2a9d8f, #1d3557));
+        box-shadow: 0 4px 12px var(--practice-icon-shadow, rgba(42,157,143,0.3));
+    }
+    .practice-prompt { padding: 12px 0 16px; }
+    .prompt-romaji { font-size: 2rem; font-weight: 700; color: var(--text-primary); letter-spacing: 2px; }
+    .prompt-hint { font-size: 0.85rem; color: var(--text-secondary); margin-top: 4px; }
+    .prompt-label { font-size: 0.85rem; color: var(--text-secondary); margin-top: 4px; font-weight: 500; }
+    .canvas-wrap {
+        margin: 12px auto; max-width: 300px;
+        transition: all 0.3s ease;
+    }
+    .canvas-wrap canvas {
+        display: block; width: 100%; height: auto; aspect-ratio: 1/1;
+        background: var(--canvas-bg, #ffffff);
+        border: 2px solid var(--canvas-border, #e0e0e0);
+        border-radius: 16px; touch-action: none; cursor: crosshair;
+        box-shadow: 0 2px 12px var(--card-shadow-default);
+    }
+    .canvas-wrap.pinned {
+        position: fixed; top: 80px; left: 50%; transform: translateX(-50%);
+        z-index: 100; max-width: 280px;
+        box-shadow: 0 8px 40px rgba(0,0,0,0.2);
+        border-radius: 16px;
+    }
+    .canvas-toolbar {
+        display: flex; gap: 6px; justify-content: center; margin-top: 10px;
+        flex-wrap: wrap;
+    }
+    .toolbar-btn { font-size: 0.8rem; }
+    .pin-btn.active { background: var(--accent-color); color: white; }
+    .options-row {
+        display: flex; gap: 16px; margin-bottom: 16px;
+        flex-wrap: wrap; align-items: flex-start;
+    }
+    .option-group { display: flex; flex-direction: column; gap: 6px; }
+    .option-label { font-size: 0.8rem; font-weight: 600; color: var(--text-secondary); }
+    .option-btns { display: flex; gap: 4px; flex-wrap: wrap; }
+    .recognition-row {
+        margin-top: 12px; text-align: center;
+        animation: feedbackFadeIn 0.2s ease;
+    }
+    .recognition-result {
+        padding: 8px 16px; border-radius: 10px;
+        background: var(--feedback-correct-bg);
+        display: inline-flex; align-items: center; gap: 8px;
+    }
+    .recog-label { font-size: 0.8rem; color: var(--text-secondary); }
+    .recog-char { font-size: 1.4rem; color: var(--text-primary); }
+    .recog-alts { font-size: 0.8rem; color: var(--text-secondary); }
+    .meaning-hint { display: block; font-size: 0.85rem; font-weight: 400; margin-top: 4px; opacity: 0.8; }
+    .input-row { gap: 8px; }
+    .recog-btn { min-width: 130px; }
+</style>
+
+@code {
+    private enum PracticeMode { Dictionary, RandomAI }
+
+    private List<JapaneseChar> practiceChars = new();
+    private List<JapaneseWord> practiceWords = new();
+    private PracticeMode currentMode = PracticeMode.Dictionary;
+    private int randomLength = 3;
+    private string randomType = "All";
+
+    private string currentPrompt = "";
+    private string currentAnswer = "";
+    private string currentExtra = "";
+    private string currentTypeLabel = "";
+    private string userInput = "";
+    private string recognitionResult = "";
+    private List<string> recognitionTop3 = new();
+    private bool? isCorrect;
+    private int correctCount;
+    private int wrongCount;
+    private bool isLoading = true;
+    private bool isPinned;
+    private bool isProcessingRecognition;
+    private string emptyMessage = "";
+    private CancellationTokenSource? _timerCts;
+    private bool _initDone;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadDictionaryMode();
+        isLoading = false;
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (_initDone) return;
+        if (isLoading) return;
+        _initDone = true;
+        var allChars = await CharService.GetAllAsync();
+        var charsData = allChars.Select(c => new { character = c.Character, type = c.Type }).ToList();
+        await JS.InvokeVoidAsync("JapaneseHandwriting.setKanaData", charsData);
+        await JS.InvokeVoidAsync("JapaneseHandwriting.initCanvas", "practice-canvas", 300, 300);
+    }
+
+    private async Task SwitchMode(PracticeMode mode)
+    {
+        if (currentMode == mode) return;
+        _timerCts?.Cancel();
+        isCorrect = null;
+        userInput = "";
+        recognitionResult = "";
+        recognitionTop3 = new();
+        await ClearCanvas();
+        currentMode = mode;
+
+        if (mode == PracticeMode.Dictionary)
+            await LoadDictionaryMode();
+        else
+            await LoadRandomMode();
+
+        await Task.Delay(50);
+        try { await JS.InvokeVoidAsync("JapaneseHandwriting.initCanvas", "practice-canvas", 300, 300); } catch { }
+    }
+
+    private async Task LoadDictionaryMode()
+    {
+        practiceWords = await WordService.GetAllAsync();
+        if (practiceWords.Count == 0)
+        {
+            emptyMessage = "Chưa có từ vựng. Vui lòng thêm từ Admin.";
+            return;
+        }
+        PickRandomWord();
+    }
+
+    private void PickRandomWord()
+    {
+        if (practiceWords.Count == 0) return;
+        var w = practiceWords[Random.Shared.Next(practiceWords.Count)];
+        currentPrompt = w.Romaji;
+        currentAnswer = w.Characters;
+        currentExtra = w.Meaning;
+        currentTypeLabel = w.Type;
+        ResetInput();
+    }
+
+    private async Task LoadRandomMode()
+    {
+        practiceChars = await CharService.GetByTypeAsync(randomType);
+        if (practiceChars.Count == 0)
+        {
+            emptyMessage = "Chưa có dữ liệu cho loại chữ này. Vui lòng thêm từ Admin.";
+            return;
+        }
+        GenerateRandomPrompt();
+    }
+
+    private void GenerateRandomPrompt()
+    {
+        if (practiceChars.Count == 0) return;
+
+        var chars = new List<JapaneseChar>();
+        for (int i = 0; i < randomLength; i++)
+            chars.Add(practiceChars[Random.Shared.Next(practiceChars.Count)]);
+
+        var romajiParts = chars.Select(c => c.Romaji).ToList();
+        currentPrompt = string.Join("", romajiParts);
+        currentAnswer = string.Join("", chars.Select(c => c.Character));
+        currentTypeLabel = randomType == "All"
+            ? (chars[0].Type == "Hiragana" ? "Hiragana" : "Katakana")
+            : randomType;
+        currentExtra = "";
+        ResetInput();
+    }
+
+    private void ResetInput()
+    {
+        userInput = "";
+        isCorrect = null;
+        recognitionResult = "";
+        recognitionTop3 = new();
+        _ = ClearCanvas();
+    }
+
+    private async Task RecognizeAndFill()
+    {
+        if (isProcessingRecognition) return;
+        isProcessingRecognition = true;
+        StateHasChanged();
+
+        try
+        {
+            var canvasEmpty = await JS.InvokeAsync<bool>("JapaneseHandwriting.isEmpty");
+            if (canvasEmpty)
+            {
+                return;
+            }
+
+            var json = await JS.InvokeAsync<string>("JapaneseHandwriting.recognize", GetCurrentFilterType());
+            var result = System.Text.Json.JsonSerializer.Deserialize<RecognitionResult>(json);
+            if (result != null && !string.IsNullOrEmpty(result.Best) && result.Score >= 0.7)
+            {
+                userInput += result.Best;
+                recognitionResult = result.Best;
+                recognitionTop3 = result.Top3 ?? new();
+                await ClearCanvas();
+            }
+            else
+            {
+                recognitionResult = "";
+                recognitionTop3 = new();
+            }
+        }
+        catch
+        {
+            recognitionResult = "";
+            recognitionTop3 = new();
+        }
+        finally
+        {
+            isProcessingRecognition = false;
+            StateHasChanged();
+        }
+    }
+
+    private async Task CheckAnswer()
+    {
+        if (string.IsNullOrWhiteSpace(userInput)) return;
+
+        if (userInput.Trim() == currentAnswer.Trim())
+        {
+            isCorrect = true;
+            correctCount++;
+            StateHasChanged();
+            await AutoNext();
+        }
+        else
+        {
+            isCorrect = false;
+            wrongCount++;
+            StateHasChanged();
+            await AutoNext();
+        }
+    }
+
+    private async Task AutoNext()
+    {
+        _timerCts?.Cancel();
+        _timerCts = new CancellationTokenSource();
+        try
+        {
+            await Task.Delay(3000, _timerCts.Token);
+            await NextPrompt();
+        }
+        catch (TaskCanceledException) { }
+    }
+
+    private async Task NextPrompt()
+    {
+        _timerCts?.Cancel();
+        if (currentMode == PracticeMode.Dictionary)
+            PickRandomWord();
+        else
+            GenerateRandomPrompt();
+    }
+
+    private async Task HandleKeyDown(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter")
+        {
+            if (isCorrect == true || isCorrect == false)
+                await NextPrompt();
+            else if (!string.IsNullOrWhiteSpace(userInput))
+                await CheckAnswer();
+        }
+    }
+
+    private async Task ClearCanvas()
+    {
+        try { await JS.InvokeVoidAsync("JapaneseHandwriting.clearCanvas"); } catch { }
+    }
+
+    private async Task UndoStroke()
+    {
+        try { await JS.InvokeVoidAsync("JapaneseHandwriting.undoLast"); } catch { }
+    }
+
+    private void TogglePin()
+    {
+        isPinned = !isPinned;
+    }
+
+    private string GetPinClass()
+    {
+        return $"toolbar-btn pin-btn{(isPinned ? " active" : "")}";
+    }
+
+    private string GetCurrentFilterType()
+    {
+        if (string.IsNullOrEmpty(currentAnswer)) return "";
+        var first = currentAnswer[0];
+        if (first >= 0x3040 && first <= 0x309F) return "Hiragana";
+        if (first >= 0x30A0 && first <= 0x30FF) return "Katakana";
+        return "";
+    }
+
+    private class RecognitionResult
+    {
+        [System.Text.Json.Serialization.JsonPropertyName("best")]
+        public string? Best { get; set; }
+        [System.Text.Json.Serialization.JsonPropertyName("score")]
+        public double Score { get; set; }
+        [System.Text.Json.Serialization.JsonPropertyName("top3")]
+        public List<string>? Top3 { get; set; }
+    }
+}

@@ -38,6 +38,28 @@
             </FluentButton>
         </div>
 
+        <div class="nav-card" data-color="practice">
+            <div class="nav-card-icon">
+                <FluentIcon Icon="@(Icons.Regular.Size32.Compose)" />
+            </div>
+            <h2 class="nav-card-title">Luyện viết</h2>
+            <p class="nav-card-desc">Luyện viết tay chữ Nhật trên canvas. Vẽ chữ và nhận diện kết quả thông minh.</p>
+            <FluentButton Appearance="@Appearance.Accent" Class="nav-card-btn" @onclick="@(() => Nav.NavigateTo("/practice"))">
+                Bắt đầu
+            </FluentButton>
+        </div>
+
+        <div class="nav-card" data-color="train">
+            <div class="nav-card-icon">
+                <FluentIcon Icon="@(Icons.Regular.Size20.BookCompass)" />
+            </div>
+            <h2 class="nav-card-title">Tập luyện</h2>
+            <p class="nav-card-desc">Vẽ và lưu mẫu chữ viết tay của bạn để cải thiện độ chính xác nhận diện.</p>
+            <FluentButton Appearance="@Appearance.Accent" Class="nav-card-btn" @onclick="@(() => Nav.NavigateTo("/practice/train"))">
+                Bắt đầu
+            </FluentButton>
+        </div>
+
         <div class="nav-card" data-color="quiz">
             <div class="nav-card-icon">
                 <FluentIcon Icon="@(Icons.Regular.Size32.Target)" />
