@@ -18,6 +18,7 @@
   --drawer-shadow: rgba(0, 0, 0, 0.15);
   --drawer-header-border: #e0e0e0;
   --drawer-header-text: #1d3557;
+  --drawer-nav-text: #1d3557;
   --icon-hiragana-bg: linear-gradient(135deg, #e63946, #c1121f);
   --icon-kanji-bg: linear-gradient(135deg, #e63946, #c1121f);
   --icon-word-bg: linear-gradient(135deg, #457b9d, #1d3557);
@@ -25,6 +26,10 @@
   --icon-admin-words-bg: linear-gradient(135deg, #2a9d8f, #1d3557);
   --icon-shadow-hiragana: rgba(230, 57, 70, 0.3);
   --icon-shadow-word: rgba(69, 123, 157, 0.3);
+  --practice-icon-bg: linear-gradient(135deg, #2a9d8f, #1d3557);
+  --practice-icon-shadow: rgba(42,157,143,0.3);
+  --canvas-bg: #ffffff;
+  --canvas-border: #e0e0e0;
   --stat-correct-bg: rgba(42, 157, 143, 0.12);
   --stat-correct-text: #2a9d8f;
   --stat-wrong-bg: rgba(230, 57, 70, 0.12);
@@ -126,8 +131,13 @@
   --drawer-shadow: rgba(0, 0, 0, 0.3);
   --drawer-header-border: #333333;
   --drawer-header-text: #e0e0e0;
+  --drawer-nav-text: #e0e0e0;
   --icon-shadow-hiragana: rgba(230, 57, 70, 0.15);
   --icon-shadow-word: rgba(69, 123, 157, 0.15);
+  --practice-icon-bg: linear-gradient(135deg, #1a6b5a, #0d2137);
+  --practice-icon-shadow: rgba(42,157,143,0.15);
+  --canvas-bg: #1e1e1e;
+  --canvas-border: #333333;
   --stat-correct-bg: rgba(42, 157, 143, 0.2);
   --stat-wrong-bg: rgba(230, 57, 70, 0.2);
   --card-shadow-default: rgba(0, 0, 0, 0.3);

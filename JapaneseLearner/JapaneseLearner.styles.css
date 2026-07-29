@@ -97,6 +97,20 @@
     padding: 16px 16px 12px;
     border-bottom: 1px solid var(--drawer-header-border);
 }
+.drawer-panel[b-3b8367fci6]  .fluent-nav-link {
+    color: var(--drawer-nav-text);
+}
+
+.drawer-panel[b-3b8367fci6]  .fluent-nav-link:hover {
+    color: var(--accent-color);
+}
+
+.drawer-panel[b-3b8367fci6]  .fluent-nav-link:active,
+.drawer-panel[b-3b8367fci6]  .fluent-nav-link.active {
+    color: var(--accent-color);
+    font-weight: 600;
+}
+
 .drawer-header h3[b-3b8367fci6] {
     margin: 0;
     font-size: 1.1rem;

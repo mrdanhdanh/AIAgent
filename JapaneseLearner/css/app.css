@@ -406,3 +406,211 @@ fluent-button:focus-visible {
 .study-container .action-btn {
     height: auto;
 }
+
+/* ===== Consolidation: icon variants ===== */
+.study-header-icon.kanji-icon {
+    background: var(--icon-kanji-bg);
+    box-shadow: 0 4px 12px var(--icon-shadow-hiragana);
+}
+.study-header-icon.grammar-icon {
+    background: var(--icon-grammar-bg, #6A4E9C);
+}
+
+/* ===== Consolidation: JLPT filter bar ===== */
+.filter-row-buttons {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+.filter-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+.filter-btn {
+    padding: 6px 16px;
+    border-radius: 20px;
+    border: 2px solid var(--tab-btn-border);
+    background: var(--tab-btn-bg);
+    color: var(--tab-btn-text);
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+}
+.filter-btn:hover {
+    border-color: var(--tab-btn-hover-border);
+}
+.filter-btn.active {
+    background: var(--tab-btn-active-bg);
+    border-color: var(--tab-btn-active-bg);
+    color: var(--tab-btn-active-text);
+}
+
+/* ===== Consolidation: type indicator & badges ===== */
+.type-indicator {
+    text-align: center;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+.level-badge {
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    background: var(--badge-level-bg, #E63946);
+    color: var(--badge-level-text, white);
+}
+.stroke-badge {
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    background: var(--badge-stroke-bg, #457b9d);
+    color: var(--badge-stroke-text, white);
+}
+
+/* ===== Consolidation: kanji display ===== */
+.kanji-display {
+    min-height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.kanji-char {
+    font-size: 6rem;
+    line-height: 1.2;
+    font-family: var(--font-family);
+    color: var(--text-primary);
+    transition: transform 0.2s;
+    user-select: none;
+}
+.study-card:hover .kanji-char {
+    transform: scale(1.02);
+}
+
+/* ===== Consolidation: reading display ===== */
+.reading-display {
+    display: flex;
+    gap: 12px;
+    margin: 12px auto;
+    max-width: 400px;
+}
+.reading-box {
+    flex: 1;
+    background: var(--bg-card);
+    border-radius: 12px;
+    padding: 10px;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+}
+.reading-label {
+    display: block;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+}
+.reading-value {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* ===== Consolidation: quiz options grid ===== */
+.options-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 20px;
+}
+.option-btn {
+    padding: 14px 12px;
+    border-radius: 12px;
+    border: 2px solid var(--tab-btn-border);
+    background: var(--tab-btn-bg);
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+    text-align: center;
+    min-height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.option-btn:hover:not(.opt-disabled) {
+    border-color: var(--tab-btn-hover-border);
+    background: var(--tab-btn-hover-bg);
+}
+.option-btn.opt-correct {
+    border-color: var(--opt-correct-border);
+    background: var(--opt-correct-bg);
+    color: var(--opt-correct-text);
+}
+.option-btn.opt-wrong {
+    border-color: var(--opt-wrong-border);
+    background: var(--opt-wrong-bg);
+    color: var(--opt-wrong-text);
+}
+.option-btn.opt-disabled {
+    cursor: default;
+    opacity: 0.85;
+}
+.feedback-prompt {
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-top: 16px;
+    opacity: 0.7;
+}
+
+/* ===== Consolidation: loading text ===== */
+.loading-text {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+/* ===== Consolidation: word count ===== */
+.word-count {
+    text-align: right;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+}
+
+/* ===== FluentSelect dropdown scrollbar ===== */
+fluent-select::part(listbox) {
+    max-height: 260px; overflow-y: auto;
+}
+fluent-select::part(selected-value) {
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+
+/* ===== Practice / Handwriting ===== */
+.practice-container .study-card {
+    padding: 20px 16px;
+}
+.practice-container .japanese-char-display {
+    font-size: 5rem;
+}
+.practice-container .input-row {
+    align-items: stretch;
+}
+.practice-container .action-btn {
+    height: auto;
+}
+.practice-container .input-wrap fluent-text-field::part(root) {
+    border-radius: 12px;
+}
