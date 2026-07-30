@@ -396,6 +396,7 @@
                             <th>Kanji</th>
                             <th>Âm On</th>
                             <th>Âm Kun</th>
+                            <th>Romaji</th>
                             <th>Nghĩa</th>
                             <th>Nét</th>
                             <th>Level</th>
@@ -409,6 +410,7 @@
                                 <td><span class="table-char">@k.Kanji</span></td>
                                 <td><code class="table-romaji">@k.OnYomi</code></td>
                                 <td><code class="table-romaji">@k.KunYomi</code></td>
+                                <td><code class="table-romaji">@k.Romaji</code></td>
                                 <td><span class="table-meaning">@k.Meaning</span></td>
                                 <td>@k.StrokeCount</td>
                                 <td><span class="level-badge">@k.JLPTLevel</span></td>
@@ -437,6 +439,7 @@
                     <FluentTextField @bind-Value="editingKanji.Kanji" Label="Kanji" Required="true" />
                     <FluentTextField @bind-Value="editingKanji.OnYomi" Label="Âm On" Required="true" />
                     <FluentTextField @bind-Value="editingKanji.KunYomi" Label="Âm Kun" Required="true" />
+                    <FluentTextField @bind-Value="editingKanji.Romaji" Label="Romaji" Required="true" />
                     <FluentTextField @bind-Value="editingKanji.Meaning" Label="Nghĩa" Required="true" />
                     <FluentTextField @bind-Value="_kanjiStrokeCountStr" Label="Số nét" Type="number" />
                     <FluentSelect TOption="string" @bind-Value="editingKanji.JLPTLevel" Label="JLPT Level" Required="true">
@@ -725,6 +728,7 @@
         !string.IsNullOrWhiteSpace(editingKanji.Kanji) &&
         !string.IsNullOrWhiteSpace(editingKanji.OnYomi) &&
         !string.IsNullOrWhiteSpace(editingKanji.KunYomi) &&
+        !string.IsNullOrWhiteSpace(editingKanji.Romaji) &&
         !string.IsNullOrWhiteSpace(editingKanji.Meaning);
 
     private bool IsGrammarFormValid =>

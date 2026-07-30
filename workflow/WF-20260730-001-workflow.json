@@ -1,0 +1,97 @@
+{
+    "workflow":  {
+                     "step":  13,
+                     "id":  "WF-20260730-001",
+                     "created_at":  "2026-07-30T00:00:00Z",
+                     "backup_done":  true,
+                     "schema_version":  "3.2",
+                     "project":  "JapaneseLearner",
+                     "files_modified":  [
+                                            ".opencode/agents/test-planner.md",
+                                            ".opencode/commands/team-testplan.md",
+                                            ".opencode/skills/dev-team/SKILL.md",
+                                            ".opencode/agents/tester.md",
+                                            ".opencode/commands/team-test.md"
+                                        ],
+                     "branch":  "main",
+                     "user_intervention":  false,
+                     "status":  "waiting_approval",
+                     "step_name":  "complete",
+                     "steps_executed":  [
+                                            {
+                                                "step":  1,
+                                                "name":  "analyze",
+                                                "status":  "completed"
+                                            },
+                                            {
+                                                "step":  2,
+                                                "name":  "design",
+                                                "status":  "completed"
+                                            },
+                                            {
+                                                "step":  3,
+                                                "name":  "plan",
+                                                "status":  "completed"
+                                            },
+                                            {
+                                                "step":  4,
+                                                "name":  "review",
+                                                "status":  "approved"
+                                            },
+                                            {
+                                                "step":  5,
+                                                "name":  "guardrail",
+                                                "status":  "passed"
+                                            },
+                                            {
+                                                "step":  6,
+                                                "name":  "backup",
+                                                "status":  "completed"
+                                            },
+                                            {
+                                                "step":  7,
+                                                "name":  "build",
+                                                "status":  "completed"
+                                            },
+                                            {
+                                                "step":  8,
+                                                "name":  "static_analysis",
+                                                "status":  "passed"
+                                            },
+                                            {
+                                                "step":  9,
+                                                "name":  "ui_audit",
+                                                "status":  "skipped"
+                                            },
+                                            {
+                                                "step":  10,
+                                                "name":  "test_plan",
+                                                "status":  "skipped"
+                                            },
+                                            {
+                                                "step":  11,
+                                                "name":  "test",
+                                                "status":  "skipped"
+                                            },
+                                            {
+                                                "step":  12,
+                                                "name":  "skill_validation",
+                                                "status":  "completed"
+                                            },
+                                            {
+                                                "step":  13,
+                                                "name":  "complete",
+                                                "status":  "running"
+                                            }
+                                        ],
+                     "completed_at":  "2026-07-30T21:56:25.3060348+07:00",
+                     "backup_manifest":  ".opencode/backup/WF-20260730-001/backup_manifest.json",
+                     "retry":  {
+                                   "max_review":  3,
+                                   "max_test":  3,
+                                   "test_count":  0,
+                                   "review_count":  0,
+                                   "skill_validation_count":  1
+                               }
+                 }
+}

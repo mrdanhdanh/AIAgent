@@ -1,0 +1,97 @@
+﻿{
+    "tool":  "compatibility-checker.ps1",
+    "checks":  [
+                   {
+                       "detail":  "No circular dependencies",
+                       "status":  "PASS",
+                       "check":  "dependency_cycles"
+                   },
+                   {
+                       "detail":  "8 agents without contracts",
+                       "status":  "WARN",
+                       "check":  "agent_contract_mapping"
+                   },
+                   {
+                       "detail":  "0 version mismatches found",
+                       "status":  "PASS",
+                       "check":  "schema_version_compatibility"
+                   },
+                   {
+                       "detail":  "Workflow contract validated",
+                       "status":  "PASS",
+                       "check":  "workflow_consistency"
+                   }
+               ],
+    "compatibility_score":  70,
+    "version":  "1.0.0",
+    "all_pass":  false,
+    "contracts_scanned":  5,
+    "timestamp":  "20260730_221036",
+    "summary":  "Compatibility: 70/100 - 8 issues (0 critical)",
+    "issues":  [
+                   {
+                       "description":  "Agent analyst has no contract definition",
+                       "affected":  [
+                                        "analyst"
+                                    ],
+                       "type":  "MISSING_CONTRACT",
+                       "severity":  "MAJOR"
+                   },
+                   {
+                       "description":  "Agent failure-agent has no contract definition",
+                       "affected":  [
+                                        "failure-agent"
+                                    ],
+                       "type":  "MISSING_CONTRACT",
+                       "severity":  "MAJOR"
+                   },
+                   {
+                       "description":  "Agent guardian has no contract definition",
+                       "affected":  [
+                                        "guardian"
+                                    ],
+                       "type":  "MISSING_CONTRACT",
+                       "severity":  "MAJOR"
+                   },
+                   {
+                       "description":  "Agent learning-agent has no contract definition",
+                       "affected":  [
+                                        "learning-agent"
+                                    ],
+                       "type":  "MISSING_CONTRACT",
+                       "severity":  "MAJOR"
+                   },
+                   {
+                       "description":  "Agent root-cause-agent has no contract definition",
+                       "affected":  [
+                                        "root-cause-agent"
+                                    ],
+                       "type":  "MISSING_CONTRACT",
+                       "severity":  "MAJOR"
+                   },
+                   {
+                       "description":  "Agent self-improver has no contract definition",
+                       "affected":  [
+                                        "self-improver"
+                                    ],
+                       "type":  "MISSING_CONTRACT",
+                       "severity":  "MAJOR"
+                   },
+                   {
+                       "description":  "Agent test-planner has no contract definition",
+                       "affected":  [
+                                        "test-planner"
+                                    ],
+                       "type":  "MISSING_CONTRACT",
+                       "severity":  "MAJOR"
+                   },
+                   {
+                       "description":  "Agent ui-beautifier has no contract definition",
+                       "affected":  [
+                                        "ui-beautifier"
+                                    ],
+                       "type":  "MISSING_CONTRACT",
+                       "severity":  "MAJOR"
+                   }
+               ]
+}

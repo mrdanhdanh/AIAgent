@@ -6,6 +6,7 @@ public class JapaneseKanji
     public string Kanji { get; set; } = string.Empty;
     public string OnYomi { get; set; } = string.Empty;
     public string KunYomi { get; set; } = string.Empty;
+    public string Romaji { get; set; } = string.Empty;
     public string Meaning { get; set; } = string.Empty;
     public int StrokeCount { get; set; }
     public string JLPTLevel { get; set; } = "N5";

@@ -1,0 +1,71 @@
+# Contract: Reviewer Agent
+# Schema version: 1.0
+# Description: Định nghĩa input/output contract cho Reviewer Agent
+
+contract_version: "1.0"
+agent: reviewer
+type: evaluation
+
+input:
+  from: planner
+  schema_version: "4.0"
+  required_fields:
+    - design: "{architecture, components, data_flow, security_concerns, edge_cases}"
+    - steps: "array[{order, description, action, file, logic, expected_result, check, requires_backup, validation_command}]"
+    - rollback_strategy: "{enabled, trigger_conditions[], restore_order[]}"
+    - validate: "array[string]"
+
+output:
+  schema_version: "4.0"
+  fields:
+    - decision: "APPROVED | CHANGES_REQUESTED | REJECTED"
+    - scores: "{completeness, accuracy, safety, efficiency, testability, overall}"
+    - score_rationale: "{completeness, accuracy, safety, efficiency, testability} (optional)"
+    - issues: "array[{id, severity, category, blocking, fix_priority, affected_phase, description, suggestion}]"
+    - consistency_checks: "{contract_match, file_path_match, dependency_valid} (optional)"
+    - missing_info: "array[string] (optional)"
+    - required_updates: "array[string] (optional)"
+    - edge_cases_checked: "array[string] (optional)"
+    - not_covered_risks: "array[string] (optional)"
+    - recommendation: "APPROVE | REVISE_PLAN | REWORK_DESIGN | REJECT (optional)"
+    - next_step: "string (optional)"
+
+decision_thresholds:
+  APPROVED:
+    overall_min: 8.5
+    conditions:
+      - "Không có issue CRITICAL"
+      - "Không có issue với blocking: true"
+  CHANGES_REQUESTED:
+    conditions:
+      - "Có vấn đề sửa được"
+      - "overall < 8.5 hoặc có CRITICAL nhưng không fatal"
+  REJECTED:
+    conditions:
+      - "Sai hướng, thiếu nền tảng, hoặc không thể thực thi"
+
+supported_versions:
+  - "3.0"
+  - "4.0"
+
+dependencies:
+  requires: ["planner"]
+  provides_to: ["orchestrator"]
+
+migration_rules:
+  "3.0_to_4.0":
+    added:
+      - score_rationale
+      - consistency_checks
+      - missing_info
+      - required_updates
+      - edge_cases_checked
+      - not_covered_risks
+      - recommendation
+      - next_step
+      - fix_priority (issue)
+      - affected_phase (issue)
+    changed:
+      - decision thresholds (8.5 thay vì 7.0)
+      - scores tính đến 6 field thay vì 4
+    breaking: false

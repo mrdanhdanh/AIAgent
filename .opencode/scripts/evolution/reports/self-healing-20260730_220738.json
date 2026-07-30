@@ -1,0 +1,18 @@
+﻿{
+    "tool":  "self-healing.ps1",
+    "summary":  "Self-healing: 0 auto-fixed, 0 pending (0 total scans)",
+    "version":  "1.0.0",
+    "all_pass":  true,
+    "fixes":  [
+
+              ],
+    "auto_fixed_count":  0,
+    "timestamp":  "20260730_220738",
+    "pending":  [
+
+                ],
+    "pending_count":  0,
+    "scans":  [
+
+              ]
+}

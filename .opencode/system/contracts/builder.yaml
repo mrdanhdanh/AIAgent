@@ -1,0 +1,77 @@
+# Contract: Builder Agent
+# Schema version: 1.0
+# Description: Định nghĩa input/output contract cho Builder Agent
+
+contract_version: "1.0"
+agent: builder
+type: execution
+
+input:
+  from: planner
+  schema_version: "3.2"
+  required_fields:
+    - steps: "array[{order, action, file, logic, expected_result, requires_backup, validation_command}]"
+    - rollback_strategy.enabled: "bool"
+    - final_validation: "array[{command, expected}]"
+
+output:
+  schema_version: "3.1"
+  fields:
+    - status: "PASS | FAIL"
+    - overall: "PASS | FAIL"
+    - backup_workflow_id: "string (optional)"
+    - changed_files: "array[string]"
+    - created_files: "array[string]"
+    - deleted_files: "array[string]"
+    - steps: "array[{order, status, file, action, requires_backup, validation_command, per_step_validation, depends_on, error, error_type, error_normalized, error_hash, retryable}]"
+    - failure_type: "MINOR | CRITICAL (optional)"
+    - validation_status: "PASS | FAIL"
+    - details: "string (optional)"
+
+error_types:
+  - SyntaxError
+  - BuildFailed
+  - FileNotFound
+  - NullReferenceException
+  - BackupFailed
+  - BackupUtilityUnavailable
+  - ValidationFailed
+  - TestFailed
+  - FileOutsidePlan
+  - ActionMismatch
+  - UnauthorizedFix
+
+retryable_errors:
+  - SyntaxError: true
+  - BuildFailed: true
+  - ValidationFailed: true
+non_retryable_errors:
+  - FileNotFound: false
+  - BackupFailed: false
+  - BackupUtilityUnavailable: false
+  - FileOutsidePlan: false
+  - ActionMismatch: false
+  - UnauthorizedFix: false
+
+supported_versions:
+  - "3.0"
+  - "3.1"
+
+dependencies:
+  requires: ["planner"]
+  provides_to: ["tester", "ui-beautifier"]
+
+migration_rules:
+  "3.0_to_3.1":
+    added:
+      - error_type
+      - error_normalized
+      - error_hash
+      - retryable
+      - backup_workflow_id
+      - failure_type
+      - created_files
+      - deleted_files
+    removed: []
+    changed: []
+    breaking: false

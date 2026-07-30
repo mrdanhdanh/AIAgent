@@ -1,0 +1,94 @@
+# Contract: Workflow Schema
+# Schema version: 1.0
+# Description: Định nghĩa workflow state machine contract
+
+contract_version: "1.0"
+type: workflow
+name: dev-team
+
+steps:
+  - order: 1
+    name: analyze
+    agent: analyst
+    command: team-analyze
+  - order: 2
+    name: design
+    agent: planner
+    command: team-plan
+  - order: 3
+    name: plan
+    agent: planner
+    command: team-plan
+  - order: 4
+    name: review
+    agent: reviewer
+    command: team-review
+  - order: 5
+    name: guardrail
+    agent: orchestrator
+    command: null
+  - order: 6
+    name: backup
+    agent: backup-agent
+    command: backup
+  - order: 7
+    name: build
+    agent: builder
+    command: team-build
+  - order: 8
+    name: static_analysis
+    agent: orchestrator
+    command: null
+  - order: 9
+    name: ui_audit
+    agent: ui-beautifier
+    command: team-ui-audit
+  - order: 10
+    name: testplan
+    agent: test-planner
+    command: team-testplan
+  - order: 11
+    name: test
+    agent: tester
+    command: team-test
+  - order: 12
+    name: skill_validation
+    agent: self-improver
+    command: team-selfimprove
+  - order: 13
+    name: complete
+    agent: orchestrator
+    command: null
+
+transitions:
+  analyze_to_design: "status == READY"
+  design_to_plan: "output có design.components[]"
+  plan_to_review: "output có steps[]"
+  review_to_guardrail: "decision == APPROVED"
+  review_to_plan: "decision == CHANGES_REQUESTED && retry < 3"
+  guardrail_to_backup: "PASS"
+  backup_to_build: "backup_done || only_new_files"
+  build_to_static_analysis: "status == PASS"
+  build_to_self: "FAIL + MINOR && retry < 3"
+  static_analysis_to_ui_audit: "PASS"
+  ui_audit_to_testplan: "PASS (no CRITICAL)"
+  testplan_to_test: "plan created"
+  test_to_skill_validation: "APPROVED && coverage met"
+  test_to_build: "NEEDS_FIX && retry < 3"
+  skill_validation_to_complete: "done"
+
+supported_versions:
+  - "3.0"
+  - "3.1"
+  - "3.2"
+
+migration_rules:
+  "3.1_to_3.2":
+    added:
+      - guardrail step
+      - static_analysis step
+      - risk_level field
+      - per_chunk_validate
+      - enhanced rollback_strategy
+    removed: []
+    breaking: false

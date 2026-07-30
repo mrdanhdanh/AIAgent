@@ -1,0 +1,531 @@
+@page "/alphabet/quiz"
+@inject ICharService CharService
+@inject NavigationManager Navigation
+
+<PageTitle>Trắc nghiệm bảng chữ cái - Japanese Learner</PageTitle>
+
+<div class="kana-quiz-container">
+    <div class="study-header">
+        <div class="study-header-title">
+            <div class="study-header-icon kana-icon" aria-hidden="true">
+                <span>あ</span>
+            </div>
+            <div>
+                <h1>Trắc nghiệm bảng chữ cái</h1>
+                <p class="study-header-sub">@(isKanaToRomajiMode ? "Chọn Romaji đúng của ký tự" : "Chọn ký tự đúng của Romaji")</p>
+            </div>
+        </div>
+        <div class="study-header-stats">
+            <div class="stat-box stat-correct">
+                <span class="stat-num">@correctCount</span>
+                <span class="stat-label">Đúng</span>
+            </div>
+            <div class="stat-box stat-wrong">
+                <span class="stat-num">@wrongCount</span>
+                <span class="stat-label">Sai</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="mode-toggle-row">
+        <button class="mode-btn @(isKanaToRomajiMode ? "active" : "")"
+                aria-pressed="@(isKanaToRomajiMode ? "true" : "false")"
+                @onclick="@(() => SwitchMode(true))">
+            <span class="mode-icon">あ</span>
+            <span>Kana → Romaji</span>
+        </button>
+        <button class="mode-btn @(!isKanaToRomajiMode ? "active" : "")"
+                aria-pressed="@(!isKanaToRomajiMode ? "true" : "false")"
+                @onclick="@(() => SwitchMode(false))">
+            <span class="mode-icon">ABC</span>
+            <span>Romaji → Kana</span>
+        </button>
+    </div>
+
+    @if (isLoading)
+    {
+        <div class="loading-wrap">
+            <FluentProgressRing />
+        </div>
+    }
+    else if (availableChars.Count == 0)
+    {
+        <div class="empty-state">
+            <div class="empty-icon"><FluentIcon Icon="@(Icons.Regular.Size20.BookContacts)" /></div>
+            <h3>Chưa có dữ liệu</h3>
+            <p>Không có chữ cái để học. Vui lòng thêm dữ liệu từ Admin.</p>
+            <FluentButton Appearance="@Appearance.Accent" Class="mt-4" @onclick="@(() => Navigation.NavigateTo("/admin"))">
+                Đến Admin
+            </FluentButton>
+        </div>
+    }
+    else
+    {
+        <div class="filter-row">
+            <FluentSelect TOption="string" @bind-Value="selectedType"
+                          @bind-Value:after="OnTypeChanged"
+                          Class="filter-select">
+                <FluentOption TOption="string" Value="@("All")">Tất cả</FluentOption>
+                <FluentOption TOption="string" Value="@("Hiragana")">Hiragana</FluentOption>
+                <FluentOption TOption="string" Value="@("Katakana")">Katakana</FluentOption>
+            </FluentSelect>
+        </div>
+
+        <div class="study-card @(isCorrect == true ? "card-correct" : isCorrect == false ? "card-wrong" : "")">
+            @if (isKanaToRomajiMode)
+            {
+                <div class="kana-display">
+                    <span class="kana-char">@currentChar?.Character</span>
+                </div>
+            }
+            else
+            {
+                <div class="romaji-display">
+                    <span class="romaji-text">@currentChar?.Romaji</span>
+                </div>
+            }
+        </div>
+
+        @if (isCorrect == true)
+        {
+            <div class="feedback feedback-correct">
+                <span class="feedback-icon"><FluentIcon Icon="@(Icons.Regular.Size20.Checkmark)" /></span>
+                Chính xác! (@currentChar?.Romaji)
+            </div>
+        }
+        else if (isCorrect == false)
+        {
+            <div class="feedback feedback-wrong">
+                <span class="feedback-icon"><FluentIcon Icon="@(Icons.Regular.Size20.Dismiss)" /></span>
+                @if (currentChar != null)
+                {
+                    <span>Đáp án đúng: <strong>@currentChar.Romaji</strong></span>
+                }
+            </div>
+        }
+        else
+        {
+            <div class="feedback feedback-prompt">
+                @(isKanaToRomajiMode ? "Chọn Romaji đúng của ký tự trên" : "Chọn ký tự đúng của Romaji trên")
+            </div>
+        }
+
+        <div class="options-grid">
+            @foreach (var opt in options)
+            {
+                <button class="option-btn @(selectedOption == opt ? (opt.IsCorrect ? "opt-correct" : "opt-wrong") : "")
+                        @(selectedOption != null ? "opt-disabled" : "")"
+                        disabled="@(selectedOption != null)"
+                        @onclick="() => SelectAnswer(opt)">
+                    <span class="option-text">@opt.Display</span>
+                </button>
+            }
+        </div>
+    }
+</div>
+
+<style>
+    .kana-quiz-container {
+        max-width: 520px;
+        margin: 0 auto;
+    }
+    .study-header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+    .study-header-title {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+    .study-header-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        font-size: 1.3rem;
+        font-weight: 700;
+        background: var(--accent-fill-rest);
+        color: white;
+        flex-shrink: 0;
+    }
+    .kana-icon {
+        background: #E63946;
+    }
+    .study-header h1 {
+        margin: 0;
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: var(--neutral-foreground-rest);
+    }
+    .study-header-sub {
+        margin: 2px 0 0;
+        font-size: 0.82rem;
+        color: var(--neutral-foreground-hint);
+    }
+    .study-header-stats {
+        display: flex;
+        gap: 8px;
+        flex-shrink: 0;
+    }
+    .stat-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background: var(--neutral-layer-2);
+        border-radius: 10px;
+        padding: 8px 14px;
+        min-width: 60px;
+    }
+    .stat-num {
+        font-size: 1.4rem;
+        font-weight: 700;
+        line-height: 1.2;
+    }
+    .stat-correct .stat-num { color: var(--status-fill-rest, #0EA05B); }
+    .stat-wrong .stat-num { color: var(--error-fill-rest, #D13438); }
+    .stat-label {
+        font-size: 0.7rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: var(--neutral-foreground-hint);
+    }
+    .mode-toggle-row {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 16px;
+        background: var(--tab-bar-bg, var(--neutral-layer-2));
+        border-radius: 12px;
+        padding: 4px;
+    }
+    .mode-btn {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        padding: 10px 14px;
+        border: none;
+        border-radius: 10px;
+        background: transparent;
+        color: var(--neutral-foreground-hint);
+        font-size: 0.9rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+    .mode-btn.active {
+        background: var(--neutral-layer-4);
+        color: var(--neutral-foreground-rest);
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    .mode-btn:hover:not(.active) {
+        background: var(--neutral-layer-3);
+    }
+    .mode-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 28px;
+        height: 28px;
+        border-radius: 6px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        background: var(--accent-fill-rest);
+        color: white;
+    }
+    .filter-row {
+        margin-bottom: 16px;
+    }
+    .filter-select {
+        width: 100%;
+    }
+    .loading-wrap {
+        display: flex;
+        justify-content: center;
+        padding: 3rem;
+    }
+    .empty-state {
+        text-align: center;
+        padding: 3rem 1rem;
+    }
+    .empty-icon {
+        margin-bottom: 12px;
+        opacity: 0.5;
+    }
+    .empty-state h3 {
+        margin: 0 0 8px;
+        color: var(--neutral-foreground-rest);
+    }
+    .empty-state p {
+        margin: 0 0 16px;
+        color: var(--neutral-foreground-hint);
+    }
+    .mt-4 {
+        margin-top: 1rem;
+    }
+    .study-card {
+        background: var(--neutral-layer-2);
+        border-radius: 16px;
+        padding: 2rem 1rem;
+        text-align: center;
+        margin-bottom: 12px;
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+    }
+    .study-card.card-correct {
+        border-color: var(--status-fill-rest, #0EA05B);
+        background: color-mix(in srgb, var(--status-fill-rest, #0EA05B) 8%, var(--neutral-layer-2));
+    }
+    .study-card.card-wrong {
+        border-color: var(--error-fill-rest, #D13438);
+        background: color-mix(in srgb, var(--error-fill-rest, #D13438) 8%, var(--neutral-layer-2));
+    }
+    .kana-display {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+    }
+    .kana-char {
+        font-size: 4rem;
+        font-weight: 700;
+        line-height: 1.2;
+        color: var(--neutral-foreground-rest);
+    }
+    .romaji-display {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem 1rem;
+    }
+    .romaji-text {
+        font-size: 2rem;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        color: var(--neutral-foreground-rest);
+    }
+    .feedback {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 12px 16px;
+        border-radius: 12px;
+        font-size: 0.95rem;
+        font-weight: 500;
+        margin-bottom: 12px;
+    }
+    .feedback-correct {
+        background: color-mix(in srgb, var(--status-fill-rest, #0EA05B) 12%, var(--neutral-layer-2));
+        color: var(--status-fill-rest, #0EA05B);
+    }
+    .feedback-wrong {
+        background: color-mix(in srgb, var(--error-fill-rest, #D13438) 12%, var(--neutral-layer-2));
+        color: var(--error-fill-rest, #D13438);
+    }
+    .feedback-prompt {
+        background: var(--neutral-layer-2);
+        color: var(--neutral-foreground-hint);
+        font-size: 0.85rem;
+    }
+    .options-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        margin-bottom: 16px;
+    }
+    .option-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 14px 12px;
+        border: 2px solid var(--neutral-stroke-rest, #E0E0E0);
+        border-radius: 12px;
+        background: var(--neutral-layer-1);
+        color: var(--neutral-foreground-rest);
+        font-size: 1rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        min-height: 52px;
+    }
+    .option-btn:hover:not(.opt-disabled) {
+        border-color: var(--accent-fill-rest);
+        background: color-mix(in srgb, var(--accent-fill-rest) 6%, var(--neutral-layer-1));
+    }
+    .option-btn.opt-correct {
+        border-color: var(--status-fill-rest, #0EA05B);
+        background: color-mix(in srgb, var(--status-fill-rest, #0EA05B) 12%, var(--neutral-layer-1));
+    }
+    .option-btn.opt-wrong {
+        border-color: var(--error-fill-rest, #D13438);
+        background: color-mix(in srgb, var(--error-fill-rest, #D13438) 12%, var(--neutral-layer-1));
+    }
+    .option-btn.opt-disabled {
+        cursor: default;
+        opacity: 0.85;
+    }
+    .option-text {
+        text-align: center;
+        word-break: break-word;
+    }
+</style>
+
+@code {
+    private class AnswerOption
+    {
+        public string Display { get; set; } = string.Empty;
+        public bool IsCorrect { get; set; }
+    }
+
+    private List<JapaneseChar> availableChars = new();
+    private JapaneseChar? currentChar;
+    private List<AnswerOption> options = new();
+    private AnswerOption? selectedOption;
+    private bool? isCorrect;
+    private int correctCount;
+    private int wrongCount;
+    private bool isKanaToRomajiMode = true;
+    private string selectedType = "All";
+    private bool isLoading = true;
+    private static readonly Random _rng = Random.Shared;
+    private CancellationTokenSource? _timerCts;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadCharsAsync();
+        isLoading = false;
+    }
+
+    private async Task LoadCharsAsync()
+    {
+        availableChars = await CharService.GetByTypeAsync(selectedType);
+        PickRandomChar();
+    }
+
+    private void PickRandomChar()
+    {
+        if (availableChars.Count == 0) return;
+
+        currentChar = availableChars[_rng.Next(availableChars.Count)];
+        selectedOption = null;
+        isCorrect = null;
+
+        options = GenerateOptions(currentChar);
+    }
+
+    private List<AnswerOption> GenerateOptions(JapaneseChar correct)
+    {
+        if (isKanaToRomajiMode)
+        {
+            var pool = availableChars
+                .Where(k => k.Romaji != correct.Romaji)
+                .Select(k => k.Romaji)
+                .Distinct()
+                .ToList();
+
+            var distractors = new List<string>();
+            while (distractors.Count < 3 && pool.Count > 0)
+            {
+                var idx = _rng.Next(pool.Count);
+                distractors.Add(pool[idx]);
+                pool.RemoveAt(idx);
+            }
+            while (distractors.Count < 3)
+            {
+                distractors.Add("???");
+            }
+
+            var result = new List<AnswerOption>
+            {
+                new AnswerOption { Display = correct.Romaji, IsCorrect = true }
+            };
+            result.AddRange(distractors.Select(d => new AnswerOption { Display = d, IsCorrect = false }));
+            Shuffle(result);
+            return result;
+        }
+        else
+        {
+            var pool = availableChars
+                .Where(k => k.Character != correct.Character)
+                .Select(k => k.Character)
+                .Distinct()
+                .ToList();
+
+            var distractors = new List<string>();
+            while (distractors.Count < 3 && pool.Count > 0)
+            {
+                var idx = _rng.Next(pool.Count);
+                distractors.Add(pool[idx]);
+                pool.RemoveAt(idx);
+            }
+            while (distractors.Count < 3)
+            {
+                distractors.Add("???");
+            }
+
+            var result = new List<AnswerOption>
+            {
+                new AnswerOption { Display = correct.Character, IsCorrect = true }
+            };
+            result.AddRange(distractors.Select(d => new AnswerOption { Display = d, IsCorrect = false }));
+            Shuffle(result);
+            return result;
+        }
+    }
+
+    private static void Shuffle<T>(List<T> list)
+    {
+        for (int i = list.Count - 1; i > 0; i--)
+        {
+            int j = _rng.Next(i + 1);
+            (list[i], list[j]) = (list[j], list[i]);
+        }
+    }
+
+    private async Task SelectAnswer(AnswerOption opt)
+    {
+        if (selectedOption != null) return;
+
+        selectedOption = opt;
+        isCorrect = opt.IsCorrect;
+
+        if (opt.IsCorrect)
+            correctCount++;
+        else
+            wrongCount++;
+
+        _timerCts?.Cancel();
+        _timerCts = new CancellationTokenSource();
+        try
+        {
+            await Task.Delay(3000, _timerCts.Token);
+            PickRandomChar();
+            StateHasChanged();
+        }
+        catch (TaskCanceledException)
+        {
+        }
+    }
+
+    private void SwitchMode(bool toKanaToRomaji)
+    {
+        if (isKanaToRomajiMode == toKanaToRomaji) return;
+        isKanaToRomajiMode = toKanaToRomaji;
+        _timerCts?.Cancel();
+        PickRandomChar();
+        StateHasChanged();
+    }
+
+    private async Task OnTypeChanged()
+    {
+        await LoadCharsAsync();
+        StateHasChanged();
+    }
+}

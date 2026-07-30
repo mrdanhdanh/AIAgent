@@ -1,0 +1,109 @@
+﻿@inherits LayoutComponentBase
+@implements IDisposable
+@inject IThemeService ThemeService
+@inject NavigationManager Navigation
+
+<FluentDesignTheme CustomColor="#E63946"
+                   Mode="@(ThemeService.IsDarkMode ? DesignThemeModes.Dark : DesignThemeModes.Light)"
+                   StorageName="japanese-learner-theme" />
+
+<div class="app-layout" data-theme="@(ThemeService.IsDarkMode ? "dark" : "light")">
+    <header class="app-bar">
+        <div class="app-bar-inner">
+            <FluentButton Appearance="@Appearance.Lightweight" class="nav-btn home-btn" aria-label="Trang chủ" @onclick="@(() => Navigation.NavigateTo("/"))">
+                <FluentIcon Icon="@(Icons.Regular.Size20.BookContacts)" />
+            </FluentButton>
+            <h1 class="app-title">
+                <a href="." class="home-link">Japanese Learner</a>
+            </h1>
+            <div class="app-bar-spacer"></div>
+            <FluentButton Appearance="@Appearance.Lightweight" class="nav-btn theme-btn" OnClick="ToggleTheme" Title="Chuyển đổi giao diện" aria-label="Chuyển đổi giao diện">
+                @if (ThemeService.IsDarkMode)
+                {
+                    <FluentIcon Icon="@(Icons.Regular.Size20.WeatherSunny)" />
+                }
+                else
+                {
+                    <FluentIcon Icon="@(Icons.Regular.Size20.WeatherMoon)" />
+                }
+            </FluentButton>
+            <FluentButton Appearance="@Appearance.Lightweight" class="nav-btn" OnClick="@(() => _drawerOpen = !_drawerOpen)" aria-label="Menu điều hướng">
+                <FluentIcon Icon="@(Icons.Regular.Size20.Navigation)" />
+            </FluentButton>
+        </div>
+    </header>
+
+    @if (_drawerOpen)
+    {
+        <div class="drawer-overlay" @onclick="CloseDrawer"></div>
+        <aside class="drawer-panel">
+            <div class="drawer-header">
+                <h3>Navigation</h3>
+                <FluentButton Appearance="@Appearance.Lightweight" OnClick="CloseDrawer" Class="drawer-close" aria-label="Đóng menu">
+                    <FluentIcon Icon="@(Icons.Regular.Size20.Dismiss)" />
+                </FluentButton>
+            </div>
+            <FluentNavMenu>
+                <FluentNavLink Href="." Match="NavLinkMatch.All" OnClick="CloseDrawer">
+                    <FluentIcon Icon="@(Icons.Regular.Size20.Home)" /> Trang chủ
+                </FluentNavLink>
+                <FluentNavLink Href="alphabet" OnClick="CloseDrawer">
+                    <FluentIcon Icon="@(Icons.Regular.Size20.TextGrammarWand)" /> Bảng chữ cái
+                </FluentNavLink>
+                <FluentNavLink Href="words" OnClick="CloseDrawer">
+                    <FluentIcon Icon="@(Icons.Regular.Size20.Document)" /> Word Study
+                </FluentNavLink>
+                <FluentNavLink Href="words/quiz" OnClick="CloseDrawer">
+                    <FluentIcon Icon="@(Icons.Regular.Size20.Target)" /> Word Quiz
+                </FluentNavLink>
+                <FluentNavLink Href="practice" OnClick="CloseDrawer">
+                    <FluentIcon Icon="@(Icons.Regular.Size20.DrawShape)" /> Luyện viết
+                </FluentNavLink>
+                <FluentNavLink Href="practice/train" OnClick="CloseDrawer">
+                    <FluentIcon Icon="@(Icons.Regular.Size20.BookCompass)" /> Tập luyện
+                </FluentNavLink>
+                <FluentNavLink Href="kanji" OnClick="CloseDrawer">
+                    <FluentIcon Icon="@(Icons.Regular.Size20.Compose)" /> Kanji Study
+                </FluentNavLink>
+                <FluentNavLink Href="kanji/quiz" OnClick="CloseDrawer">
+                    <FluentIcon Icon="@(Icons.Regular.Size20.Target)" /> Kanji Quiz
+                </FluentNavLink>
+                <FluentNavLink Href="grammar" OnClick="CloseDrawer">
+                    <FluentIcon Icon="@(Icons.Regular.Size20.TextGrammarWand)" /> Ngữ pháp N5
+                </FluentNavLink>
+                <FluentNavLink Href="admin" OnClick="CloseDrawer">
+                    <FluentIcon Icon="@(Icons.Regular.Size20.Settings)" /> Admin
+                </FluentNavLink>
+            </FluentNavMenu>
+        </aside>
+    }
+
+    <main class="page-wrapper">
+        @Body
+    </main>
+</div>
+
+@code {
+    private bool _drawerOpen;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await ThemeService.GetCurrentModeAsync();
+        ThemeService.OnThemeChanged += StateHasChanged;
+    }
+
+    private void CloseDrawer()
+    {
+        _drawerOpen = false;
+    }
+
+    private async Task ToggleTheme()
+    {
+        await ThemeService.ToggleAsync();
+    }
+
+    public void Dispose()
+    {
+        ThemeService.OnThemeChanged -= StateHasChanged;
+    }
+}

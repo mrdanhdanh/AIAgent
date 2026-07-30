@@ -1,0 +1,64 @@
+# Contract: Planner Agent
+# Schema version: 1.0
+# Description: Định nghĩa input/output contract cho Planner Agent (Design + Plan phases)
+
+contract_version: "1.0"
+agent: planner
+type: design_plan
+
+input:
+  from: analyst
+  schema_version: "2.0"
+  required_fields:
+    - status: "READY | NEEDS_MORE_INFO"
+    - summary: "string — tóm tắt phân tích (3-5 dòng)"
+    - requirements: "array[{id, description, priority}]"
+    - risks: "array[{id, description, severity, mitigation}]"
+    - impact_scope: "array[{file, level, notes}]"
+    - tasks: "array[{id, description, files, depends_on, why}]"
+    - conclusion: "{status, reason, missing_info[]}"
+
+output:
+  schema_version: "3.2"
+  design_fields:
+    - status: "READY | NEEDS_MORE_INFO"
+    - effort: "Small | Medium | Large"
+    - design.architecture: "string"
+    - design.components: "array[{name, path, action}]"
+    - design.data_flow: "string"
+    - design.security_concerns: "array[{description, severity, mitigation}]"
+    - design.edge_cases: "array[{description, handling}]"
+    - blocking_issues: "array[{id, severity, category, description, suggestion}]"
+    - non_blocking_issues: "array[{id, severity, category, description, suggestion}]"
+    - open_questions: "array[{id, description, suggestion}]"
+  plan_fields:
+    - steps: "array[{order, description, action, file, logic, expected_result, check, chunk, requires_backup, depends_on, validation_command, risk_level}]"
+    - rollback_strategy: "{enabled, trigger_conditions[], restore_order[], requires_user_confirmation}"
+    - per_step_validation: "array[{step, command, expected}]"
+    - per_chunk_validate: "array[{chunk, command, expected}]"
+    - final_validation: "array[{command, expected}]"
+    - validate: "array[string]"
+    - blocking_issues: "array"
+    - non_blocking_issues: "array"
+
+supported_versions:
+  - "3.1"
+  - "3.2"
+
+dependencies:
+  requires: ["analyst"]
+  provides_to: ["reviewer"]
+
+migration_rules:
+  "3.1_to_3.2":
+    added:
+      - risk_level (step)
+      - per_chunk_validate
+      - trigger_conditions (rollback)
+      - restore_order (rollback)
+      - requires_user_confirmation (rollback)
+      - expected_result (step — REQUIRED)
+    removed: []
+    changed:
+      - validate → final_validation (extended)
+    breaking: false

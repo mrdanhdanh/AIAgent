@@ -1,0 +1,20 @@
+﻿{
+    "recommendations":  [
+
+                        ],
+    "tool":  "health-score.ps1",
+    "overall":  80,
+    "version":  "1.0.0",
+    "summary":  "Health score: 80/100",
+    "categories":  {
+                       "Scripts":  81,
+                       "Compatibility":  100,
+                       "Workflow":  100,
+                       "Skills":  85,
+                       "Learning":  100,
+                       "Knowledge":  80,
+                       "Tests":  100,
+                       "Agents":  8
+                   },
+    "timestamp":  "20260730_221018"
+}

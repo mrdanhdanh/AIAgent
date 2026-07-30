@@ -1,0 +1,86 @@
+﻿{
+    "schema_version":  "3.2",
+    "completed_at":  "2026-07-30T21:56:44Z",
+    "step":  13,
+    "project":  "JapaneseLearner",
+    "created_at":  "2026-07-30T00:00:00Z",
+    "step_name":  "complete",
+    "files_modified":  [
+                           ".opencode/agents/test-planner.md",
+                           ".opencode/commands/team-testplan.md"
+                       ],
+    "status":  "completed",
+    "tests":  {
+                  "total":  15,
+                  "failed":  0,
+                  "passed":  15
+              },
+    "workflow_id":  "WF-20260730-001",
+    "steps_completed":  [
+                            {
+                                "step":  1,
+                                "name":  "analyze",
+                                "status":  "PASS"
+                            },
+                            {
+                                "step":  2,
+                                "name":  "design",
+                                "status":  "PASS"
+                            },
+                            {
+                                "step":  3,
+                                "name":  "plan",
+                                "status":  "PASS"
+                            },
+                            {
+                                "step":  4,
+                                "name":  "review",
+                                "status":  "APPROVED"
+                            },
+                            {
+                                "step":  5,
+                                "name":  "guardrail",
+                                "status":  "PASS"
+                            },
+                            {
+                                "step":  6,
+                                "name":  "backup",
+                                "status":  "SUCCESS"
+                            },
+                            {
+                                "step":  7,
+                                "name":  "build",
+                                "status":  "PASS"
+                            },
+                            {
+                                "step":  8,
+                                "name":  "static_analysis",
+                                "status":  "PASS"
+                            },
+                            {
+                                "step":  9,
+                                "name":  "ui_audit",
+                                "status":  "SKIPPED"
+                            },
+                            {
+                                "step":  10,
+                                "name":  "testplan",
+                                "status":  "PASS"
+                            },
+                            {
+                                "step":  11,
+                                "name":  "test",
+                                "status":  "PASS"
+                            },
+                            {
+                                "step":  12,
+                                "name":  "skill_validation",
+                                "status":  "READY"
+                            },
+                            {
+                                "step":  13,
+                                "name":  "complete",
+                                "status":  "DONE"
+                            }
+                        ]
+}

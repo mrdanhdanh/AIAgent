@@ -1,6 +1,15 @@
 ﻿param(
     [switch]$dryRun,
-    [switch]$force
+    [switch]$force,
+    [switch]$evolve,              # Run full System Evolution Engine
+    [switch]$semanticDiff,        # Run only Semantic Diff Engine
+    [switch]$compatibility,       # Run only Compatibility Checker
+    [switch]$migration,           # Run only Migration System
+    [switch]$selfHeal,            # Run only Self Healing Engine
+    [switch]$knowledgeMigrate,    # Run only Knowledge Migration
+    [switch]$healthScore,         # Run only Health Score
+    [switch]$report,              # Run only Evolution Report
+    [string]$evolutionMode = "full"  # full | scan | heal | report
 )
 
 $ErrorActionPreference = "Stop"
@@ -572,6 +581,195 @@ if (Test-Path $skillPath) {
     }
 }
 
+# === EVOLUTION ENGINE ORCHESTRATION ===
+$runEvolution = $evolve -or $semanticDiff -or $compatibility -or $migration -or $selfHeal -or $knowledgeMigrate -or $healthScore -or $report -or ($evolutionMode -ne "none")
+$evolutionResults = @{}
+$evolutionDir = "$root\scripts\evolution"
+$reportsDir = "$evolutionDir\reports"
+
+if ($runEvolution -and -not $dryRun) {
+    if (-not (Test-Path $reportsDir)) { New-Item -ItemType Directory -Path $reportsDir -Force | Out-Null }
+    
+    Write-Host "" -ForegroundColor Cyan
+    Write-Host "========================================" -ForegroundColor Magenta
+    Write-Host "  SYSTEM EVOLUTION ENGINE" -ForegroundColor Magenta
+    Write-Host "========================================" -ForegroundColor Magenta
+    
+    $runSemantic = $semanticDiff -or ($evolutionMode -in @('full', 'scan')) -or $evolve
+    $runCompat = $compatibility -or ($evolutionMode -in @('full', 'scan')) -or $evolve
+    $runMigration = $migration -or ($evolutionMode -in @('full', 'scan')) -or $evolve
+    $runHeal = $selfHeal -or ($evolutionMode -in @('full', 'heal')) -or $evolve
+    $runKnowledge = $knowledgeMigrate -or ($evolutionMode -in @('full', 'scan')) -or $evolve
+    $runHealth = $healthScore -or ($evolutionMode -in @('full')) -or $evolve
+    $runReport = $report -or ($evolutionMode -in @('full')) -or $evolve
+    
+    $evolutionSteps = @()
+    $evolutionIssues = @()
+    
+    # 1. Semantic Diff Engine
+    if ($runSemantic) {
+        Write-Host "`n[1/7] Semantic Diff Engine..." -ForegroundColor Cyan
+        $sdScript = "$evolutionDir\semantic-diff.ps1"
+        if (Test-Path $sdScript) {
+            $agentContracts = Get-ChildItem -Path "$root\system\contracts\*.yaml" -ErrorAction SilentlyContinue
+            foreach ($ac in $agentContracts) {
+                $agentName = $ac.BaseName
+                try {
+                    $sdResult = & $sdScript -agentName $agentName -outputDir $reportsDir
+                    $evolutionResults["semantic_diff_$agentName"] = $sdResult
+                    $evolutionSteps += "Semantic Diff: $agentName — $($sdResult.summary)"
+                } catch {
+                    $evolutionIssues += "SEMANTIC_DIFF_FAILED: agent=$agentName error=$($_.Exception.Message)"
+                }
+            }
+        } else {
+            $evolutionIssues += "SKIPPED: semantic-diff.ps1 not found"
+        }
+    }
+    
+    # 2. Compatibility Checker
+    if ($runCompat) {
+        Write-Host "[2/7] Compatibility Checker..." -ForegroundColor Cyan
+        $ccScript = "$evolutionDir\compatibility-checker.ps1"
+        if (Test-Path $ccScript) {
+            try {
+                $ccResult = & $ccScript -contractDir "$root\system\contracts" -agentsDir "$root\agents" -outputDir $reportsDir
+                $evolutionResults["compatibility"] = $ccResult
+                $evolutionSteps += "Compatibility: score=$($ccResult.compatibility_score)/100 issues=$($ccResult.issues.Count)"
+            } catch {
+                $evolutionIssues += "COMPATIBILITY_FAILED: $($_.Exception.Message)"
+            }
+        } else {
+            $evolutionIssues += "SKIPPED: compatibility-checker.ps1 not found"
+        }
+    }
+    
+    # 3. Migration System
+    if ($runMigration) {
+        Write-Host "[3/7] Migration System..." -ForegroundColor Cyan
+        $msScript = "$evolutionDir\migration-system.ps1"
+        if (Test-Path $msScript) {
+            try {
+                $msResult = & $msScript -contractDir "$root\system\contracts" -outputDir $reportsDir
+                $evolutionResults["migration"] = $msResult
+                $evolutionSteps += "Migration: $($msResult.tasks.Count) tasks, $($msResult.affected_agents.Count) affected"
+            } catch {
+                $evolutionIssues += "MIGRATION_FAILED: $($_.Exception.Message)"
+            }
+        } else {
+            $evolutionIssues += "SKIPPED: migration-system.ps1 not found"
+        }
+    }
+    
+    # 4. Self Healing Engine
+    if ($runHeal) {
+        Write-Host "[4/7] Self Healing Engine..." -ForegroundColor Cyan
+        $shScript = "$evolutionDir\self-healing.ps1"
+        if (Test-Path $shScript) {
+            try {
+                $shResult = & $shScript -contractDir "$root\system\contracts" -agentsDir "$root\agents" -commandsDir "$root\commands" -outputDir $reportsDir $(if ($force) { "-apply" } else { "" })
+                $evolutionResults["self_healing"] = $shResult
+                $evolutionSteps += "Self-healing: $($shResult.auto_fixed_count) fixed, $($shResult.pending_count) pending"
+            } catch {
+                $evolutionIssues += "SELF_HEALING_FAILED: $($_.Exception.Message)"
+            }
+        } else {
+            $evolutionIssues += "SKIPPED: self-healing.ps1 not found"
+        }
+    }
+    
+    # 5. Knowledge Migration
+    if ($runKnowledge) {
+        Write-Host "[5/7] Knowledge Migration..." -ForegroundColor Cyan
+        $kmScript = "$evolutionDir\knowledge-migration.ps1"
+        if (Test-Path $kmScript) {
+            try {
+                $kmResult = & $kmScript -knowledgeDir "$root\knowledge" -agentsDir "$root\agents" -outputDir $reportsDir
+                $evolutionResults["knowledge"] = $kmResult
+                $evolutionSteps += "Knowledge: $($kmResult.deprecated_knowledge.Count) deprecated, $($kmResult.missing_knowledge.Count) missing"
+            } catch {
+                $evolutionIssues += "KNOWLEDGE_MIGRATION_FAILED: $($_.Exception.Message)"
+            }
+        } else {
+            $evolutionIssues += "SKIPPED: knowledge-migration.ps1 not found"
+        }
+    }
+    
+    # 6. Health Score
+    if ($runHealth) {
+        Write-Host "[6/7] Health Score..." -ForegroundColor Cyan
+        $hsScript = "$evolutionDir\health-score.ps1"
+        if (Test-Path $hsScript) {
+            try {
+                $lastCompat = Get-ChildItem -Path "$reportsDir\compatibility-checker-*.json" | Sort-Object LastWriteTime -Descending | Select-Object -First 1
+                $lastKnowledge = Get-ChildItem -Path "$reportsDir\knowledge-migration-*.json" | Sort-Object LastWriteTime -Descending | Select-Object -First 1
+                $lastMigration = Get-ChildItem -Path "$reportsDir\migration-system-*.json" | Sort-Object LastWriteTime -Descending | Select-Object -First 1
+                
+                $hsResult = & $hsScript `
+                    -contractDir "$root\system\contracts" `
+                    -agentsDir "$root\agents" `
+                    -commandsDir "$root\commands" `
+                    -skillsDir "$root\skills" `
+                    -scriptsDir "$root\scripts" `
+                    -outputDir $reportsDir `
+                    $(if ($lastCompat) { "-compatibilityReport", "`"$($lastCompat.FullName)`"" } else { "" }) `
+                    $(if ($lastKnowledge) { "-knowledgeReport", "`"$($lastKnowledge.FullName)`"" } else { "" }) `
+                    $(if ($lastMigration) { "-migrationReport", "`"$($lastMigration.FullName)`"" } else { "" })
+                $evolutionResults["health"] = $hsResult
+                $evolutionSteps += "Health: $($hsResult.overall)/100"
+            } catch {
+                $evolutionIssues += "HEALTH_SCORE_FAILED: $($_.Exception.Message)"
+            }
+        } else {
+            $evolutionIssues += "SKIPPED: health-score.ps1 not found"
+        }
+    }
+    
+    # 7. Evolution Report
+    if ($runReport) {
+        Write-Host "[7/7] Evolution Report..." -ForegroundColor Cyan
+        $erScript = "$evolutionDir\evolution-report.ps1"
+        if (Test-Path $erScript) {
+            try {
+                $lastSD = Get-ChildItem -Path "$reportsDir\semantic-diff-*.json" | Sort-Object LastWriteTime -Descending | Select-Object -First 1
+                $lastCC = Get-ChildItem -Path "$reportsDir\compatibility-checker-*.json" | Sort-Object LastWriteTime -Descending | Select-Object -First 1
+                $lastMS = Get-ChildItem -Path "$reportsDir\migration-system-*.json" | Sort-Object LastWriteTime -Descending | Select-Object -First 1
+                $lastSH = Get-ChildItem -Path "$reportsDir\self-healing-*.json" | Sort-Object LastWriteTime -Descending | Select-Object -First 1
+                $lastKM = Get-ChildItem -Path "$reportsDir\knowledge-migration-*.json" | Sort-Object LastWriteTime -Descending | Select-Object -First 1
+                $lastHS = Get-ChildItem -Path "$reportsDir\health-score-*.json" | Sort-Object LastWriteTime -Descending | Select-Object -First 1
+                
+                $reportPath = "$root\SYSTEM_EVOLUTION_REPORT.md"
+                $null = & $erScript `
+                    $(if ($lastSD) { "-semanticDiffReport", "`"$($lastSD.FullName)`"" } else { "" }) `
+                    $(if ($lastCC) { "-compatibilityReport", "`"$($lastCC.FullName)`"" } else { "" }) `
+                    $(if ($lastMS) { "-migrationReport", "`"$($lastMS.FullName)`"" } else { "" }) `
+                    $(if ($lastSH) { "-selfHealingReport", "`"$($lastSH.FullName)`"" } else { "" }) `
+                    $(if ($lastKM) { "-knowledgeReport", "`"$($lastKM.FullName)`"" } else { "" }) `
+                    $(if ($lastHS) { "-healthReport", "`"$($lastHS.FullName)`"" } else { "" }) `
+                    -outputFile $reportPath
+                $evolutionResults["report"] = "Generated: $reportPath"
+                $evolutionSteps += "Evolution Report: $reportPath"
+            } catch {
+                $evolutionIssues += "EVOLUTION_REPORT_FAILED: $($_.Exception.Message)"
+            }
+        } else {
+            $evolutionIssues += "SKIPPED: evolution-report.ps1 not found"
+        }
+    }
+    
+    # Add evolution issues to main report
+    foreach ($ei in $evolutionIssues) {
+        $report.issues += "EVOLUTION: $ei"
+    }
+    
+    Write-Host ""
+    Write-Host "========================================" -ForegroundColor Magenta
+    Write-Host "  EVOLUTION ENGINE COMPLETE" -ForegroundColor Magenta
+    $healthScoreVal = if ($evolutionResults.health) { $evolutionResults.health.overall } else { "N/A" }
+    Write-Host "  Health Score: $healthScoreVal/100" -ForegroundColor $(if ($healthScoreVal -ge 80) { "Green" } elseif ($healthScoreVal -ge 50) { "Yellow" } else { "Red" })
+    Write-Host "========================================" -ForegroundColor Magenta
+}
+
 # === REPORT ===
 Write-Host ""
 Write-Host "========================================" -ForegroundColor Cyan
@@ -583,6 +781,9 @@ Write-Host "  Skills:     $($report.skills.Keys.Count)" -ForegroundColor White
 Write-Host "  Scripts:    $($report.scripts.Keys.Count)" -ForegroundColor White
 $kc = if ($report.knowledge.Keys) { $report.knowledge.Keys.Count } else { 0 }
 Write-Host "  Knowledge:  $kc" -ForegroundColor White
+if ($runEvolution) {
+    Write-Host "  Evolution:  Executed" -ForegroundColor Magenta
+}
 
 $issueColor = if ($report.issues.Count -gt 0) { "Red" } else { "Green" }
 Write-Host "  Issues:     $($report.issues.Count)" -ForegroundColor $issueColor
@@ -594,7 +795,17 @@ if ($report.issues.Count -gt 0) {
 }
 Write-Host "========================================" -ForegroundColor Cyan
 
+if ($runEvolution -and $evolutionResults.health) {
+    Write-Host "  System Health: $($evolutionResults.health.overall)/100" -ForegroundColor $(if ($evolutionResults.health.overall -ge 80) { "Green" } elseif ($evolutionResults.health.overall -ge 50) { "Yellow" } else { "Red" })
+    Write-Host "========================================" -ForegroundColor Cyan
+}
+
 $report | ConvertTo-Json -Depth 5 | Out-File -FilePath "$root\scripts\sync-last-report.json" -Encoding utf8
 Write-Host "Done!" -ForegroundColor Green
+
+# Return evolution report path if generated
+if ($runReport -and $evolutionResults.report) {
+    Write-Host "Evolution Report: $($evolutionResults.report)" -ForegroundColor Magenta
+}
 
 

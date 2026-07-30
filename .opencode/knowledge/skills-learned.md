@@ -1,6 +1,6 @@
 ---
-last_updated: 2026-07-26
-total_skills: 19
+last_updated: 2026-07-30
+total_skills: 21
 ---
 
 # Skills Learned
@@ -193,4 +193,22 @@ Mỗi kỹ năng được ghi nhận theo format:
   usage_count: 1
   confidence: "new"
   related_files: [".opencode/agents/analyst.md", ".opencode/commands/team-analyze.md"]
-  notes: "7 tiêu chuẩn ổn định: 1) Ràng buộc đầu vào — NEED_MORE_INFO nếu thiếu mục tiêu/phạm vi/file đích/tiêu chí chấp nhận; 2) Assumptions — ghi rõ giả định khi codebase chưa đủ thông tin; 3) Evidence — trích dẫn file/pattern/module trong details; 4) Risk levels — HIGH (breaking change), MEDIUM (ảnh hưởng phần), LOW (dễ rollback); 5) Task dependency — depends_on + why; 6) Design proposal chi tiết — approach, affected_modules, new_files, modified_files, integration_points; 7) YAML safety — không tab, |/>, NEED_MORE_INFO đầu. Đồng bộ team-analyze.md command với output contract mới."
+   notes: "7 tiêu chuẩn ổn định: 1) Ràng buộc đầu vào — NEED_MORE_INFO nếu thiếu mục tiêu/phạm vi/file đích/tiêu chí chấp nhận; 2) Assumptions — ghi rõ giả định khi codebase chưa đủ thông tin; 3) Evidence — trích dẫn file/pattern/module trong details; 4) Risk levels — HIGH (breaking change), MEDIUM (ảnh hưởng phần), LOW (dễ rollback); 5) Task dependency — depends_on + why; 6) Design proposal chi tiết — approach, affected_modules, new_files, modified_files, integration_points; 7) YAML safety — không tab, |/>, NEED_MORE_INFO đầu. Đồng bộ team-analyze.md command với output contract mới."
+
+- skill_id: SK-020
+  name: "Test-Planner Agent — 12-step rigorous test planning"
+  category: "process"
+  source_workflow: "Nâng cấp Test-Planner Agent - 11 cải tiến (WF-20260730-001)"
+  usage_count: 1
+  confidence: "new"
+  related_files: [".opencode/agents/test-planner.md", ".opencode/commands/team-testplan.md", ".opencode/agents/tester.md", ".opencode/commands/team-test.md"]
+  notes: "Quy trình 12 bước: STEP-0 Impact Analysis → 1 Requirement Extraction → 2 Existing Tests Analysis → 3 Risk Assessment → 4 Testability Check → 5 Coverage Matrix (REQ↔TC) → 6 Generate Test Cases (P0/P1/P2, positive/negative/boundary) → 7 Deduplicate → 8 Regression Analysis (direct/indirect/unaffected) → 9 Coverage Target (risk-based) → 10 Validation Checklist (12-item) → 11 Output (READY only if all_pass). Quy tắc chính: feature có input → bắt buộc positive+negative+boundary; mỗi TC verify ONE behavior; validation checklist 12-item — bất kỳ FAIL → INCOMPLETE; risk_level quyết định coverage target."
+
+- skill_id: SK-021
+  name: "Agent Upgrade Workflow — Self-Improver + Approval Gate"
+  category: "process"
+  source_workflow: "Nâng cấp Test-Planner Agent - 11 cải tiến (WF-20260730-001)"
+  usage_count: 1
+  confidence: "new"
+  related_files: [".opencode/agents/self-improver.md", ".opencode/agents/test-planner.md"]
+  notes: "Pattern: 1) Phân tích vấn đề hiện tại của agent (gì sai, thiếu gì); 2) Thiết kế 11 cải tiến dạng danh sách cụ thể; 3) Orchestrator triệu hồi Dev Team 13 bước để thực thi; 4) Self-Improver tạo suggestions sau workflow; 5) Approval gate: user xác nhận (APPROVE/REJECT/MODIFY) suggestions impact >= MEDIUM; 6) Ghi knowledge base sau approve. Kết quả: agent mới + command đồng bộ + cập nhật SKILL.md + backup + workflow snapshot."

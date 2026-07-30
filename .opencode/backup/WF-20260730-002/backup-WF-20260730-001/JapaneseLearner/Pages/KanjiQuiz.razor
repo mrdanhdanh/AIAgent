@@ -1,0 +1,239 @@
+@page "/kanji/quiz"
+@inject IKanjiService KanjiService
+@inject NavigationManager Navigation
+
+<PageTitle>Trắc nghiệm Kanji - Japanese Learner</PageTitle>
+
+<div class="kanji-quiz-container">
+    <div class="study-header">
+        <div class="study-header-title">
+            <div class="study-header-icon kanji-icon" aria-hidden="true">
+                <span>漢</span>
+            </div>
+            <div>
+                <h1>Trắc nghiệm Kanji</h1>
+                <p class="study-header-sub">Chọn nghĩa tiếng Việt của Kanji hiển thị</p>
+            </div>
+        </div>
+        <div class="study-header-stats">
+            <div class="stat-box stat-correct">
+                <span class="stat-num">@correctCount</span>
+                <span class="stat-label">Đúng</span>
+            </div>
+            <div class="stat-box stat-wrong">
+                <span class="stat-num">@wrongCount</span>
+                <span class="stat-label">Sai</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="filter-row-buttons">
+        <span class="filter-label">JLPT:</span>
+        <button class="filter-btn @(selectedLevel == "All" ? "active" : "")" aria-pressed="@(selectedLevel == "All" ? "true" : "false")" @onclick="@(() => SwitchLevel("All"))">Tất cả</button>
+        <button class="filter-btn @(selectedLevel == "N5" ? "active" : "")" aria-pressed="@(selectedLevel == "N5" ? "true" : "false")" @onclick="@(() => SwitchLevel("N5"))">N5</button>
+    </div>
+
+    @if (isLoading)
+    {
+        <div class="loading-wrap">
+            <FluentProgressRing />
+        </div>
+    }
+    else if (availableKanji.Count == 0)
+    {
+        <div class="empty-state">
+            <div class="empty-icon"><FluentIcon Icon="@(Icons.Regular.Size20.Compose)" /></div>
+            <h3>Chưa có dữ liệu</h3>
+            <p>Vui lòng thêm Kanji từ trang Admin để bắt đầu học.</p>
+            <FluentButton Appearance="@Appearance.Accent" Class="mt-4" @onclick="@(() => Navigation.NavigateTo("/admin"))">
+                Đến Admin
+            </FluentButton>
+        </div>
+    }
+    else
+    {
+        <div class="type-indicator">
+            <span class="level-badge">@currentKanji?.JLPTLevel</span>
+            <span class="stroke-badge">@currentKanji?.StrokeCount nét</span>
+        </div>
+
+        <div class="study-card @(isCorrect == true ? "card-correct" : isCorrect == false ? "card-wrong" : "")">
+            <div class="kanji-display">
+                <span class="kanji-char">@currentKanji?.Kanji</span>
+            </div>
+        </div>
+
+        @if (isCorrect == true)
+        {
+            <div class="feedback feedback-correct">
+                <span class="feedback-icon"><FluentIcon Icon="@(Icons.Regular.Size20.Checkmark)" /></span>
+                Chính xác!
+                <span class="meaning-hint">(@currentKanji?.Meaning)</span>
+            </div>
+            <div class="reading-display">
+                <div class="reading-box">
+                    <span class="reading-label">Âm On</span>
+                    <span class="reading-value">@currentKanji?.OnYomi</span>
+                </div>
+                <div class="reading-box">
+                    <span class="reading-label">Âm Kun</span>
+                    <span class="reading-value">@currentKanji?.KunYomi</span>
+                </div>
+            </div>
+        }
+        else if (isCorrect == false)
+        {
+            <div class="feedback feedback-wrong">
+                <span class="feedback-icon"><FluentIcon Icon="@(Icons.Regular.Size20.Dismiss)" /></span>
+                @if (currentKanji != null)
+                {
+                    <span>Đáp án đúng: <strong>@currentKanji.Meaning</strong></span>
+                }
+            </div>
+        }
+        else
+        {
+            <div class="feedback feedback-prompt">Chọn nghĩa đúng của Kanji trên</div>
+        }
+
+        <div class="options-grid">
+            @foreach (var opt in options)
+            {
+                <button class="option-btn @(selectedOption == opt ? (opt.IsCorrect ? "opt-correct" : "opt-wrong") : "")
+                        @(selectedOption != null ? "opt-disabled" : "")"
+                        disabled="@(selectedOption != null)"
+                        @onclick="() => SelectAnswer(opt)">
+                    <span class="option-text">@opt.Meaning</span>
+                </button>
+            }
+        </div>
+    }
+</div>
+
+<style>
+    .kanji-quiz-container {
+        max-width: 520px;
+        margin: 0 auto;
+    }
+    .meaning-hint {
+        display: inline-block;
+        font-size: 0.85rem;
+        font-weight: 400;
+        margin-left: 4px;
+        opacity: 0.8;
+    }
+</style>
+
+@code {
+    private class AnswerOption
+    {
+        public string Meaning { get; set; } = string.Empty;
+        public bool IsCorrect { get; set; }
+    }
+
+    private List<JapaneseKanji> availableKanji = new();
+    private JapaneseKanji? currentKanji;
+    private List<AnswerOption> options = new();
+    private AnswerOption? selectedOption;
+    private bool? isCorrect;
+    private string selectedLevel = "All";
+    private int correctCount;
+    private int wrongCount;
+    private static readonly Random _rng = Random.Shared;
+    private bool isLoading = true;
+    private CancellationTokenSource? _timerCts;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadKanji();
+        isLoading = false;
+    }
+
+    private async Task LoadKanji()
+    {
+        availableKanji = await KanjiService.GetByLevelAsync(selectedLevel);
+        await PickRandomKanji();
+    }
+
+    private async Task PickRandomKanji()
+    {
+        if (availableKanji.Count == 0) return;
+
+        currentKanji = availableKanji[_rng.Next(availableKanji.Count)];
+        selectedOption = null;
+        isCorrect = null;
+
+        options = GenerateOptions(currentKanji);
+        StateHasChanged();
+    }
+
+    private List<AnswerOption> GenerateOptions(JapaneseKanji correct)
+    {
+        var pool = availableKanji
+            .Where(k => k.Id != correct.Id && k.Meaning != correct.Meaning)
+            .Select(k => k.Meaning)
+            .Distinct()
+            .ToList();
+
+        var distractors = new List<string>();
+
+        while (distractors.Count < 3 && pool.Count > 0)
+        {
+            var idx = _rng.Next(pool.Count);
+            distractors.Add(pool[idx]);
+            pool.RemoveAt(idx);
+        }
+
+        while (distractors.Count < 3)
+        {
+            distractors.Add("???");
+        }
+
+        var result = new List<AnswerOption>
+        {
+            new AnswerOption { Meaning = correct.Meaning, IsCorrect = true }
+        };
+        result.AddRange(distractors.Select(d => new AnswerOption { Meaning = d, IsCorrect = false }));
+
+        for (int i = result.Count - 1; i > 0; i--)
+        {
+            int j = _rng.Next(i + 1);
+            (result[i], result[j]) = (result[j], result[i]);
+        }
+
+        return result;
+    }
+
+    private async Task SelectAnswer(AnswerOption opt)
+    {
+        if (selectedOption != null) return;
+
+        selectedOption = opt;
+        isCorrect = opt.IsCorrect;
+
+        if (opt.IsCorrect)
+            correctCount++;
+        else
+            wrongCount++;
+
+        StateHasChanged();
+
+        _timerCts?.Cancel();
+        _timerCts = new CancellationTokenSource();
+        try
+        {
+            await Task.Delay(3000, _timerCts.Token);
+            await PickRandomKanji();
+        }
+        catch (TaskCanceledException)
+        {
+        }
+    }
+
+    private async Task SwitchLevel(string level)
+    {
+        selectedLevel = level;
+        _timerCts?.Cancel();
+        await LoadKanji();
+    }
+}

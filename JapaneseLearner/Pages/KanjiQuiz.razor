@@ -1,5 +1,4 @@
 @page "/kanji/quiz"
-@inject IKanjiService KanjiService
 @inject NavigationManager Navigation
 
 <PageTitle>Trắc nghiệm Kanji - Japanese Learner</PageTitle>
@@ -11,8 +10,8 @@
                 <span>漢</span>
             </div>
             <div>
-                <h1>Trắc nghiệm Kanji</h1>
-                <p class="study-header-sub">Chọn nghĩa tiếng Việt của Kanji hiển thị</p>
+                <h1>Trắc nghiệm Kanji từ vựng</h1>
+                <p class="study-header-sub">@(isKanjiToRomajiMode ? "Chọn Romaji đúng của từ Kanji" : "Chọn từ Kanji đúng của Romaji")</p>
             </div>
         </div>
         <div class="study-header-stats">
@@ -27,24 +26,27 @@
         </div>
     </div>
 
-    <div class="filter-row-buttons">
-        <span class="filter-label">JLPT:</span>
-        <button class="filter-btn @(selectedLevel == "All" ? "active" : "")" aria-pressed="@(selectedLevel == "All" ? "true" : "false")" @onclick="@(() => SwitchLevel("All"))">Tất cả</button>
-        <button class="filter-btn @(selectedLevel == "N5" ? "active" : "")" aria-pressed="@(selectedLevel == "N5" ? "true" : "false")" @onclick="@(() => SwitchLevel("N5"))">N5</button>
+    <div class="mode-toggle-row">
+        <button class="mode-btn @(isKanjiToRomajiMode ? "active" : "")"
+                aria-pressed="@(isKanjiToRomajiMode ? "true" : "false")"
+                @onclick="@(() => SwitchMode(true))">
+            <span class="mode-icon">漢</span>
+            <span>Kanji → Romaji</span>
+        </button>
+        <button class="mode-btn @(!isKanjiToRomajiMode ? "active" : "")"
+                aria-pressed="@(!isKanjiToRomajiMode ? "true" : "false")"
+                @onclick="@(() => SwitchMode(false))">
+            <span class="mode-icon">ABC</span>
+            <span>Romaji → Kanji</span>
+        </button>
     </div>
 
-    @if (isLoading)
-    {
-        <div class="loading-wrap">
-            <FluentProgressRing />
-        </div>
-    }
-    else if (availableKanji.Count == 0)
+    @if (availableVocab.Count == 0)
     {
         <div class="empty-state">
             <div class="empty-icon"><FluentIcon Icon="@(Icons.Regular.Size20.Compose)" /></div>
             <h3>Chưa có dữ liệu</h3>
-            <p>Vui lòng thêm Kanji từ trang Admin để bắt đầu học.</p>
+            <p>Không có từ vựng Kanji để học. Vui lòng thêm dữ liệu từ Admin.</p>
             <FluentButton Appearance="@Appearance.Accent" Class="mt-4" @onclick="@(() => Navigation.NavigateTo("/admin"))">
                 Đến Admin
             </FluentButton>
@@ -52,32 +54,39 @@
     }
     else
     {
-        <div class="type-indicator">
-            <span class="level-badge">@currentKanji?.JLPTLevel</span>
-            <span class="stroke-badge">@currentKanji?.StrokeCount nét</span>
-        </div>
-
         <div class="study-card @(isCorrect == true ? "card-correct" : isCorrect == false ? "card-wrong" : "")">
-            <div class="kanji-display">
-                <span class="kanji-char">@currentKanji?.Kanji</span>
-            </div>
+            @if (isKanjiToRomajiMode)
+            {
+                <div class="kanji-display">
+                    <span class="kanji-char">@currentVocab?.Word</span>
+                </div>
+            }
+            else
+            {
+                <div class="romaji-display">
+                    <span class="romaji-text">@currentVocab?.Romaji</span>
+                </div>
+            }
         </div>
 
         @if (isCorrect == true)
         {
             <div class="feedback feedback-correct">
                 <span class="feedback-icon"><FluentIcon Icon="@(Icons.Regular.Size20.Checkmark)" /></span>
-                Chính xác!
-                <span class="meaning-hint">(@currentKanji?.Meaning)</span>
+                Chính xác! (@currentVocab?.Reading)
             </div>
             <div class="reading-display">
                 <div class="reading-box">
-                    <span class="reading-label">Âm On</span>
-                    <span class="reading-value">@currentKanji?.OnYomi</span>
+                    <span class="reading-label">Từ Kanji</span>
+                    <span class="reading-value">@currentVocab?.Word</span>
                 </div>
                 <div class="reading-box">
-                    <span class="reading-label">Âm Kun</span>
-                    <span class="reading-value">@currentKanji?.KunYomi</span>
+                    <span class="reading-label">Nghĩa</span>
+                    <span class="reading-value">@currentVocab?.Meaning</span>
+                </div>
+                <div class="reading-box">
+                    <span class="reading-label">Hiragana</span>
+                    <span class="reading-value">@currentVocab?.Reading</span>
                 </div>
             </div>
         }
@@ -85,15 +94,17 @@
         {
             <div class="feedback feedback-wrong">
                 <span class="feedback-icon"><FluentIcon Icon="@(Icons.Regular.Size20.Dismiss)" /></span>
-                @if (currentKanji != null)
+                @if (currentVocab != null)
                 {
-                    <span>Đáp án đúng: <strong>@currentKanji.Meaning</strong></span>
+                    <span>Đáp án đúng: <strong>@currentVocab.Romaji</strong> (@currentVocab.Reading)</span>
                 }
             </div>
         }
         else
         {
-            <div class="feedback feedback-prompt">Chọn nghĩa đúng của Kanji trên</div>
+            <div class="feedback feedback-prompt">
+                @(isKanjiToRomajiMode ? "Chọn Romaji đúng của từ trên" : "Chọn từ Kanji đúng của Romaji trên")
+            </div>
         }
 
         <div class="options-grid">
@@ -103,7 +114,7 @@
                         @(selectedOption != null ? "opt-disabled" : "")"
                         disabled="@(selectedOption != null)"
                         @onclick="() => SelectAnswer(opt)">
-                    <span class="option-text">@opt.Meaning</span>
+                    <span class="option-text">@opt.Display</span>
                 </button>
             }
         </div>
@@ -115,8 +126,92 @@
         max-width: 520px;
         margin: 0 auto;
     }
-    .meaning-hint {
-        display: inline-block;
+    .mode-toggle-row {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 16px;
+        background: var(--tab-bar-bg, var(--neutral-layer-2));
+        border-radius: 12px;
+        padding: 4px;
+    }
+    .mode-btn {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        padding: 10px 14px;
+        border: none;
+        border-radius: 10px;
+        background: transparent;
+        color: var(--neutral-foreground-hint);
+        font-size: 0.9rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+    .mode-btn.active {
+        background: var(--neutral-layer-4);
+        color: var(--neutral-foreground-rest);
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    .mode-btn:hover:not(.active) {
+        background: var(--neutral-layer-3);
+    }
+    .mode-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 28px;
+        height: 28px;
+        border-radius: 6px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        background: var(--accent-fill-rest);
+        color: white;
+    }
+    .romaji-display {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem 1rem;
+    }
+    .romaji-text {
+        font-size: 2rem;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        color: var(--neutral-foreground-rest);
+    }
+    .reading-display {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 16px;
+        flex-wrap: wrap;
+    }
+    .reading-box {
+        flex: 1;
+        min-width: 100px;
+        background: var(--neutral-layer-2);
+        border-radius: 10px;
+        padding: 10px 14px;
+        text-align: center;
+    }
+    .reading-label {
+        display: block;
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: var(--neutral-foreground-hint);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 4px;
+    }
+    .reading-value {
+        display: block;
+        font-size: 1rem;
+        font-weight: 500;
+        color: var(--neutral-foreground-rest);
+    }
+    .feedback-prompt-text, .meaning-hint {
         font-size: 0.85rem;
         font-weight: 400;
         margin-left: 4px;
@@ -125,83 +220,219 @@
 </style>
 
 @code {
+    private class KanjiVocabItem
+    {
+        public string Word { get; set; } = "";
+        public string Reading { get; set; } = "";
+        public string Romaji { get; set; } = "";
+        public string Meaning { get; set; } = "";
+    }
+
     private class AnswerOption
     {
-        public string Meaning { get; set; } = string.Empty;
+        public string Display { get; set; } = string.Empty;
         public bool IsCorrect { get; set; }
     }
 
-    private List<JapaneseKanji> availableKanji = new();
-    private JapaneseKanji? currentKanji;
+    private static readonly List<KanjiVocabItem> _vocabList = new()
+    {
+        // Numbers & counting
+        new() { Word = "一つ", Reading = "ひとつ", Romaji = "hitotsu", Meaning = "một (cái)" },
+        new() { Word = "一人", Reading = "ひとり", Romaji = "hitori", Meaning = "một người" },
+        new() { Word = "二つ", Reading = "ふたつ", Romaji = "futatsu", Meaning = "hai (cái)" },
+        new() { Word = "二人", Reading = "ふたり", Romaji = "futari", Meaning = "hai người" },
+        new() { Word = "三つ", Reading = "みっつ", Romaji = "mittsu", Meaning = "ba (cái)" },
+        new() { Word = "四つ", Reading = "よっつ", Romaji = "yottsu", Meaning = "bốn (cái)" },
+        new() { Word = "五つ", Reading = "いつつ", Romaji = "itsutsu", Meaning = "năm (cái)" },
+
+        // Time
+        new() { Word = "今日", Reading = "きょう", Romaji = "kyou", Meaning = "hôm nay" },
+        new() { Word = "明日", Reading = "あした", Romaji = "ashita", Meaning = "ngày mai" },
+        new() { Word = "昨日", Reading = "きのう", Romaji = "kinou", Meaning = "hôm qua" },
+        new() { Word = "毎日", Reading = "まいにち", Romaji = "mainichi", Meaning = "mỗi ngày" },
+        new() { Word = "毎週", Reading = "まいしゅう", Romaji = "maishuu", Meaning = "mỗi tuần" },
+        new() { Word = "今週", Reading = "こんしゅう", Romaji = "konshuu", Meaning = "tuần này" },
+        new() { Word = "来週", Reading = "らいしゅう", Romaji = "raishuu", Meaning = "tuần sau" },
+        new() { Word = "先週", Reading = "せんしゅう", Romaji = "senshuu", Meaning = "tuần trước" },
+        new() { Word = "今月", Reading = "こんげつ", Romaji = "kongetsu", Meaning = "tháng này" },
+        new() { Word = "来月", Reading = "らいげつ", Romaji = "raigetsu", Meaning = "tháng sau" },
+        new() { Word = "今年", Reading = "ことし", Romaji = "kotoshi", Meaning = "năm nay" },
+        new() { Word = "来年", Reading = "らいねん", Romaji = "rainen", Meaning = "năm sau" },
+        new() { Word = "去年", Reading = "きょねん", Romaji = "kyonen", Meaning = "năm ngoái" },
+        new() { Word = "時間", Reading = "じかん", Romaji = "jikan", Meaning = "thời gian" },
+        new() { Word = "時計", Reading = "とけい", Romaji = "tokei", Meaning = "đồng hồ" },
+        new() { Word = "午前", Reading = "ごぜん", Romaji = "gozen", Meaning = "buổi sáng" },
+        new() { Word = "午後", Reading = "ごご", Romaji = "gogo", Meaning = "buổi chiều" },
+        new() { Word = "半分", Reading = "はんぶん", Romaji = "hanbun", Meaning = "một nửa" },
+
+        // People
+        new() { Word = "先生", Reading = "せんせい", Romaji = "sensei", Meaning = "giáo viên" },
+        new() { Word = "学生", Reading = "がくせい", Romaji = "gakusei", Meaning = "học sinh" },
+        new() { Word = "友達", Reading = "ともだち", Romaji = "tomodachi", Meaning = "bạn bè" },
+        new() { Word = "家族", Reading = "かぞく", Romaji = "kazoku", Meaning = "gia đình" },
+        new() { Word = "子供", Reading = "こども", Romaji = "kodomo", Meaning = "trẻ em" },
+        new() { Word = "大人", Reading = "おとな", Romaji = "otona", Meaning = "người lớn" },
+        new() { Word = "父", Reading = "ちち", Romaji = "chichi", Meaning = "cha" },
+        new() { Word = "母", Reading = "はは", Romaji = "haha", Meaning = "mẹ" },
+        new() { Word = "兄", Reading = "あに", Romaji = "ani", Meaning = "anh trai" },
+        new() { Word = "姉", Reading = "あね", Romaji = "ane", Meaning = "chị gái" },
+        new() { Word = "弟", Reading = "おとうと", Romaji = "otouto", Meaning = "em trai" },
+        new() { Word = "妹", Reading = "いもうと", Romaji = "imouto", Meaning = "em gái" },
+
+        // Places
+        new() { Word = "学校", Reading = "がっこう", Romaji = "gakkou", Meaning = "trường học" },
+        new() { Word = "病院", Reading = "びょういん", Romaji = "byouin", Meaning = "bệnh viện" },
+        new() { Word = "銀行", Reading = "ぎんこう", Romaji = "ginkou", Meaning = "ngân hàng" },
+        new() { Word = "会社", Reading = "かいしゃ", Romaji = "kaisha", Meaning = "công ty" },
+        new() { Word = "公園", Reading = "こうえん", Romaji = "kouen", Meaning = "công viên" },
+        new() { Word = "教室", Reading = "きょうしつ", Romaji = "kyoushitsu", Meaning = "phòng học" },
+        new() { Word = "入口", Reading = "いりぐち", Romaji = "iriguchi", Meaning = "lối vào" },
+        new() { Word = "出口", Reading = "でぐち", Romaji = "deguchi", Meaning = "lối ra" },
+        new() { Word = "駅前", Reading = "えきまえ", Romaji = "ekimae", Meaning = "trước ga" },
+        new() { Word = "外国", Reading = "がいこく", Romaji = "gaikoku", Meaning = "nước ngoài" },
+        new() { Word = "図書館", Reading = "としょかん", Romaji = "toshokan", Meaning = "thư viện" },
+
+        // Language & communication
+        new() { Word = "日本語", Reading = "にほんご", Romaji = "nihongo", Meaning = "tiếng Nhật" },
+        new() { Word = "名前", Reading = "なまえ", Romaji = "namae", Meaning = "tên" },
+        new() { Word = "言葉", Reading = "ことば", Romaji = "kotoba", Meaning = "từ ngữ" },
+        new() { Word = "新聞", Reading = "しんぶん", Romaji = "shinbun", Meaning = "báo" },
+        new() { Word = "辞書", Reading = "じしょ", Romaji = "jisho", Meaning = "từ điển" },
+        new() { Word = "電話", Reading = "でんわ", Romaji = "denwa", Meaning = "điện thoại" },
+
+        // Actions
+        new() { Word = "勉強", Reading = "べんきょう", Romaji = "benkyou", Meaning = "học tập" },
+        new() { Word = "食事", Reading = "しょくじ", Romaji = "shokuji", Meaning = "bữa ăn" },
+        new() { Word = "料理", Reading = "りょうり", Romaji = "ryouri", Meaning = "nấu ăn" },
+        new() { Word = "旅行", Reading = "りょこう", Romaji = "ryokou", Meaning = "du lịch" },
+        new() { Word = "運動", Reading = "うんどう", Romaji = "undou", Meaning = "thể dục" },
+        new() { Word = "仕事", Reading = "しごと", Romaji = "shigoto", Meaning = "công việc" },
+        new() { Word = "散歩", Reading = "さんぽ", Romaji = "sanpo", Meaning = "đi dạo" },
+        new() { Word = "買物", Reading = "かいもの", Romaji = "kaimono", Meaning = "mua sắm" },
+
+        // Nature & weather
+        new() { Word = "天気", Reading = "てんき", Romaji = "tenki", Meaning = "thời tiết" },
+        new() { Word = "元気", Reading = "げんき", Romaji = "genki", Meaning = "khỏe mạnh" },
+        new() { Word = "空気", Reading = "くうき", Romaji = "kuuki", Meaning = "không khí" },
+
+        // Transport
+        new() { Word = "電車", Reading = "でんしゃ", Romaji = "densha", Meaning = "tàu điện" },
+        new() { Word = "自動車", Reading = "じどうしゃ", Romaji = "jidousha", Meaning = "ô tô" },
+        new() { Word = "飛行機", Reading = "ひこうき", Romaji = "hikouki", Meaning = "máy bay" },
+
+        // Adjectives & descriptors
+        new() { Word = "有名", Reading = "ゆうめい", Romaji = "yuumei", Meaning = "nổi tiếng" },
+        new() { Word = "上手", Reading = "じょうず", Romaji = "jouzu", Meaning = "giỏi" },
+        new() { Word = "下手", Reading = "へた", Romaji = "heta", Meaning = "kém" },
+        new() { Word = "大好き", Reading = "だいすき", Romaji = "daisuki", Meaning = "rất thích" },
+
+        // Others
+        new() { Word = "大丈夫", Reading = "だいじょうぶ", Romaji = "daijoubu", Meaning = "ổn, không sao" },
+        new() { Word = "一緒", Reading = "いっしょ", Romaji = "issho", Meaning = "cùng nhau" },
+        new() { Word = "沢山", Reading = "たくさん", Romaji = "takusan", Meaning = "nhiều" },
+        new() { Word = "毎朝", Reading = "まいあさ", Romaji = "maiasa", Meaning = "mỗi sáng" },
+        new() { Word = "毎晩", Reading = "まいばん", Romaji = "maiban", Meaning = "mỗi tối" },
+        new() { Word = "両親", Reading = "りょうしん", Romaji = "ryoushin", Meaning = "cha mẹ" },
+        new() { Word = "特別", Reading = "とくべつ", Romaji = "tokubetsu", Meaning = "đặc biệt" },
+        new() { Word = "大切", Reading = "たいせつ", Romaji = "taisetsu", Meaning = "quan trọng" },
+        new() { Word = "料理", Reading = "りょうり", Romaji = "ryouri", Meaning = "nấu ăn" },
+    };
+
+    private List<KanjiVocabItem> availableVocab = new();
+    private KanjiVocabItem? currentVocab;
     private List<AnswerOption> options = new();
     private AnswerOption? selectedOption;
     private bool? isCorrect;
-    private string selectedLevel = "All";
     private int correctCount;
     private int wrongCount;
+    private bool isKanjiToRomajiMode = true;
     private static readonly Random _rng = Random.Shared;
-    private bool isLoading = true;
     private CancellationTokenSource? _timerCts;
 
-    protected override async Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
-        await LoadKanji();
-        isLoading = false;
+        availableVocab = _vocabList.ToList();
+        PickRandomKanji();
     }
 
-    private async Task LoadKanji()
+    private void PickRandomKanji()
     {
-        availableKanji = await KanjiService.GetByLevelAsync(selectedLevel);
-        await PickRandomKanji();
-    }
+        if (availableVocab.Count == 0) return;
 
-    private async Task PickRandomKanji()
-    {
-        if (availableKanji.Count == 0) return;
-
-        currentKanji = availableKanji[_rng.Next(availableKanji.Count)];
+        currentVocab = availableVocab[_rng.Next(availableVocab.Count)];
         selectedOption = null;
         isCorrect = null;
 
-        options = GenerateOptions(currentKanji);
-        StateHasChanged();
+        options = GenerateOptions(currentVocab);
     }
 
-    private List<AnswerOption> GenerateOptions(JapaneseKanji correct)
+    private List<AnswerOption> GenerateOptions(KanjiVocabItem correct)
     {
-        var pool = availableKanji
-            .Where(k => k.Id != correct.Id && k.Meaning != correct.Meaning)
-            .Select(k => k.Meaning)
-            .Distinct()
-            .ToList();
-
-        var distractors = new List<string>();
-
-        while (distractors.Count < 3 && pool.Count > 0)
+        if (isKanjiToRomajiMode)
         {
-            var idx = _rng.Next(pool.Count);
-            distractors.Add(pool[idx]);
-            pool.RemoveAt(idx);
+            var pool = availableVocab
+                .Where(k => k.Romaji != correct.Romaji)
+                .Select(k => k.Romaji)
+                .Distinct()
+                .ToList();
+
+            var distractors = new List<string>();
+            while (distractors.Count < 3 && pool.Count > 0)
+            {
+                var idx = _rng.Next(pool.Count);
+                distractors.Add(pool[idx]);
+                pool.RemoveAt(idx);
+            }
+            while (distractors.Count < 3)
+            {
+                distractors.Add("???");
+            }
+
+            var result = new List<AnswerOption>
+            {
+                new AnswerOption { Display = correct.Romaji, IsCorrect = true }
+            };
+            result.AddRange(distractors.Select(d => new AnswerOption { Display = d, IsCorrect = false }));
+            Shuffle(result);
+            return result;
         }
-
-        while (distractors.Count < 3)
+        else
         {
-            distractors.Add("???");
+            var pool = availableVocab
+                .Where(k => k.Word != correct.Word)
+                .Select(k => k.Word)
+                .Distinct()
+                .ToList();
+
+            var distractors = new List<string>();
+            while (distractors.Count < 3 && pool.Count > 0)
+            {
+                var idx = _rng.Next(pool.Count);
+                distractors.Add(pool[idx]);
+                pool.RemoveAt(idx);
+            }
+            while (distractors.Count < 3)
+            {
+                distractors.Add("???");
+            }
+
+            var result = new List<AnswerOption>
+            {
+                new AnswerOption { Display = correct.Word, IsCorrect = true }
+            };
+            result.AddRange(distractors.Select(d => new AnswerOption { Display = d, IsCorrect = false }));
+            Shuffle(result);
+            return result;
         }
+    }
 
-        var result = new List<AnswerOption>
-        {
-            new AnswerOption { Meaning = correct.Meaning, IsCorrect = true }
-        };
-        result.AddRange(distractors.Select(d => new AnswerOption { Meaning = d, IsCorrect = false }));
-
-        for (int i = result.Count - 1; i > 0; i--)
+    private static void Shuffle<T>(List<T> list)
+    {
+        for (int i = list.Count - 1; i > 0; i--)
         {
             int j = _rng.Next(i + 1);
-            (result[i], result[j]) = (result[j], result[i]);
+            (list[i], list[j]) = (list[j], list[i]);
         }
-
-        return result;
     }
 
     private async Task SelectAnswer(AnswerOption opt)
@@ -216,24 +447,25 @@
         else
             wrongCount++;
 
-        StateHasChanged();
-
         _timerCts?.Cancel();
         _timerCts = new CancellationTokenSource();
         try
         {
             await Task.Delay(3000, _timerCts.Token);
-            await PickRandomKanji();
+            PickRandomKanji();
+            StateHasChanged();
         }
         catch (TaskCanceledException)
         {
         }
     }
 
-    private async Task SwitchLevel(string level)
+    private void SwitchMode(bool toKanjiToRomaji)
     {
-        selectedLevel = level;
+        if (isKanjiToRomajiMode == toKanjiToRomaji) return;
+        isKanjiToRomajiMode = toKanjiToRomaji;
         _timerCts?.Cancel();
-        await LoadKanji();
+        PickRandomKanji();
+        StateHasChanged();
     }
 }

@@ -1,6 +1,6 @@
 ﻿# He Thong .opencode - So Do Tong The
 
-> **Tu dong tao luc:** 2026-07-29 00:13:34
+> **Tu dong tao luc:** 2026-07-30 21:57:00
 > **Workflow ID:** WF-20260729-SYNC
 > **Cap nhat:** Toan bo agents, commands, skills, scripts, knowledge
 
@@ -107,13 +107,14 @@
 
 | File | Size |
 |------|------|
-| knowledge/blazor-ref-timing.md | 1 KB |
-| knowledge/deployment\blazor-wasm-github-pages.md | 4 KB |
+| knowledge/README.md | new |
 | knowledge/lessons.md | 17 KB |
-| knowledge/patterns\common.md | 5 KB |
 | knowledge/skills-learned.md | 11 KB |
-| knowledge/ui-audit-pipeline.md | 3 KB |
-| knowledge/workflow\validate-github-actions-yaml.md | 1 KB |
+| knowledge/framework/blazor/component-lifecycle.md | migrated |
+| knowledge/skills/blazor/ui.md | migrated |
+| knowledge/skills/blazor/patterns.md | migrated |
+| knowledge/project/japanese-learner/deployment.md | migrated |
+| knowledge/workflow/validate-github-actions-yaml.md | 1 KB |
 
 ---
 
@@ -278,5 +279,5 @@
 
 ---
 
-> **Tong so:** 14 agents . 16 commands . 5 skills . 4 scripts . 7 knowledge files
+> **Tong so:** 14 agents . 16 commands . 6 skills . 4 scripts . 8 knowledge files
 > **Sinh boi:** sync-system-docs.ps1

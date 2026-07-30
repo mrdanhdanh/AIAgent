@@ -1,0 +1,37 @@
+﻿{
+    "all_pass":  true,
+    "timestamp":  "20260730_220745",
+    "change_type_counts":  {
+                               "breaking_change":  0,
+                               "dependency_change":  0,
+                               "schema_change":  1,
+                               "workflow_change":  0,
+                               "contract_change":  0,
+                               "knowledge_change":  0
+                           },
+    "tool":  "semantic-diff.ps1",
+    "type":  "schema",
+    "version":  "1.0.0",
+    "summary":  "Semantic diff: 2 changes (0 breaking, 0 major)",
+    "agent":  "planner",
+    "new_file":  ".opencode/system/contracts/planner.yaml",
+    "changes":  [
+                    {
+                        "old_value":  "unknown",
+                        "description":  "Agent planner contract version: \"1.0\"",
+                        "new_value":  "\"1.0\"",
+                        "type":  "contract_change",
+                        "severity":  "INFO",
+                        "field":  "contract_version"
+                    },
+                    {
+                        "old_value":  "none",
+                        "description":  "Added fields: risk_level (step), per_chunk_validate, trigger_conditions (rollback), restore_order (rollback), requires_user_confirmation (rollback), expected_result (step — REQUIRED)",
+                        "breaking":  false,
+                        "new_value":  "risk_level (step), per_chunk_validate, trigger_conditions (rollback), restore_order (rollback), requires_user_confirmation (rollback), expected_result (step — REQUIRED)",
+                        "type":  "schema_change",
+                        "severity":  "MINOR",
+                        "field":  "added_fields"
+                    }
+                ]
+}

@@ -1,0 +1,34 @@
+# Contract: Tester Agent
+# Schema version: 1.0
+# Description: Định nghĩa input/output contract cho Tester Agent
+
+contract_version: "1.0"
+agent: tester
+type: verification
+
+input:
+  from: test-planner
+  schema_version: "2.0"
+  required_fields:
+    - test_cases: "array[{id, type, description, input, expected, file, priority}]"
+    - coverage_target: "{unit, integration, e2e, overall}"
+
+output:
+  schema_version: "1.0"
+  fields:
+    - status: "APPROVED | NEEDS_FIX"
+    - coverage: "{unit: int, integration: int, e2e: int, overall: float, thresholds_met: bool}"
+    - results: "array[{id, status: PASS|FAIL|SKIP, error, duration}]"
+
+coverage_thresholds:
+  unit_min: 80
+  integration_min: 60
+  e2e_min: 50
+  overall_min: 70
+
+supported_versions:
+  - "1.0"
+
+dependencies:
+  requires: ["test-planner"]
+  provides_to: ["orchestrator"]
