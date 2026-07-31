@@ -12,7 +12,9 @@
     [string]$evolutionMode = "full", # full | scan | heal | report
     [switch]$stressTest,          # Run stress test (fake tasks through 13-step workflow)
     [int]$stressCount = 20,       # Number of fake tasks (default 20)
-    [string]$stressSeed = "fixed" # Seed for deterministic random (same seed -> same result)
+    [string]$stressSeed = "fixed",# Seed for deterministic random (same seed -> same result)
+    [switch]$simulate,            # Run Simulation Engine (sandbox mode) — runtime validation
+    [switch]$benchmark            # Run Capability Benchmark Engine
 )
 
 $ErrorActionPreference = "Stop"
@@ -784,7 +786,7 @@ if (Test-Path $skillPath) {
 }
 
 # === EVOLUTION ENGINE ORCHESTRATION ===
-$runEvolution = $evolve -or $semanticDiff -or $compatibility -or $migration -or $selfHeal -or $knowledgeMigrate -or $healthScore -or $evolutionReport -or ($evolutionMode -ne "none")
+$runEvolution = $evolve -or $semanticDiff -or $compatibility -or $migration -or $selfHeal -or $knowledgeMigrate -or $healthScore -or $evolutionReport -or $simulate -or $benchmark -or ($evolutionMode -ne "none")
 $evolutionResults = @{}
 $evolutionDir = "$root\scripts\evolution"
 $reportsDir = "$evolutionDir\reports"
@@ -802,15 +804,19 @@ if ($runEvolution -and -not $dryRun) {
     $runMigration = $migration -or ($evolutionMode -in @('full', 'scan')) -or $evolve
     $runHeal = $selfHeal -or ($evolutionMode -in @('full', 'heal')) -or $evolve
     $runKnowledge = $knowledgeMigrate -or ($evolutionMode -in @('full', 'scan')) -or $evolve
+    $runSimulation = $simulate -or ($evolutionMode -in @('full', 'sandbox')) -or $evolve
+    $runBenchmark = $benchmark -or ($evolutionMode -in @('full', 'sandbox')) -or $evolve
     $runHealth = $healthScore -or ($evolutionMode -in @('full')) -or $evolve
     $runReport = $evolutionReport -or ($evolutionMode -in @('full')) -or $evolve
     
     $evolutionSteps = @()
     $evolutionIssues = @()
+    $lastSimulationReport = ""
+    $lastBenchmarkReport = ""
     
     # 1. Semantic Diff Engine
     if ($runSemantic) {
-        Write-Host "`n[1/7] Semantic Diff Engine..." -ForegroundColor Cyan
+        Write-Host "`n[1/9] Semantic Diff Engine..." -ForegroundColor Cyan
         $sdScript = "$evolutionDir\semantic-diff.ps1"
         if (Test-Path $sdScript) {
             $agentContracts = Get-ChildItem -Path "$root\system\contracts\*.yaml" -ErrorAction SilentlyContinue
@@ -831,7 +837,7 @@ if ($runEvolution -and -not $dryRun) {
     
     # 2. Compatibility Checker
     if ($runCompat) {
-        Write-Host "[2/7] Compatibility Checker..." -ForegroundColor Cyan
+        Write-Host "[2/9] Compatibility Checker..." -ForegroundColor Cyan
         $ccScript = "$evolutionDir\compatibility-checker.ps1"
         if (Test-Path $ccScript) {
             try {
@@ -848,7 +854,7 @@ if ($runEvolution -and -not $dryRun) {
     
     # 3. Migration System
     if ($runMigration) {
-        Write-Host "[3/7] Migration System..." -ForegroundColor Cyan
+        Write-Host "[3/9] Migration System..." -ForegroundColor Cyan
         $msScript = "$evolutionDir\migration-system.ps1"
         if (Test-Path $msScript) {
             try {
@@ -865,7 +871,7 @@ if ($runEvolution -and -not $dryRun) {
     
     # 4. Self Healing Engine
     if ($runHeal) {
-        Write-Host "[4/7] Self Healing Engine..." -ForegroundColor Cyan
+        Write-Host "[4/9] Self Healing Engine..." -ForegroundColor Cyan
         $shScript = "$evolutionDir\self-healing.ps1"
         if (Test-Path $shScript) {
             try {
@@ -882,7 +888,7 @@ if ($runEvolution -and -not $dryRun) {
     
     # 5. Knowledge Migration
     if ($runKnowledge) {
-        Write-Host "[5/7] Knowledge Migration..." -ForegroundColor Cyan
+        Write-Host "[5/9] Knowledge Migration..." -ForegroundColor Cyan
         $kmScript = "$evolutionDir\knowledge-migration.ps1"
         if (Test-Path $kmScript) {
             try {
@@ -897,28 +903,70 @@ if ($runEvolution -and -not $dryRun) {
         }
     }
     
-    # 6. Health Score
+    # 6. Simulation Engine (Runtime Validation — Sandbox Mode)
+    if ($runSimulation) {
+        Write-Host "[6/9] Simulation Engine..." -ForegroundColor Cyan
+        $simScript = "$evolutionDir\simulation-engine.ps1"
+        if (Test-Path $simScript) {
+            try {
+                $simResult = & $simScript -agentsDir "$root\agents" -skillsDir "$root\skills" -commandsDir "$root\commands" -contractDir "$root\system\contracts" -knowledgeDir "$root\knowledge" -outputDir $reportsDir
+                $evolutionResults["simulation"] = $simResult
+                $lastSimulationReport = Get-ChildItem -Path "$reportsDir\simulation-engine-*.json" | Sort-Object LastWriteTime -Descending | Select-Object -First 1
+                $evolutionSteps += "Simulation: $($simResult.runtime_health)/100 runtime health, $($simResult.runtime_errors.Count) runtime errors"
+            } catch {
+                $evolutionIssues += "SIMULATION_FAILED: $($_.Exception.Message)"
+            }
+        } else {
+            $evolutionIssues += "SKIPPED: simulation-engine.ps1 not found"
+        }
+    }
+    
+    # 7. Capability Benchmark Engine
+    if ($runBenchmark) {
+        Write-Host "[7/9] Capability Benchmark..." -ForegroundColor Cyan
+        $bmScript = "$evolutionDir\capability-benchmark.ps1"
+        if (Test-Path $bmScript) {
+            try {
+                $bmResult = & $bmScript -agentsDir "$root\agents" -knowledgeDir "$root\knowledge" -contractDir "$root\system\contracts" -outputDir $reportsDir
+                $evolutionResults["benchmark"] = $bmResult
+                $lastBenchmarkReport = Get-ChildItem -Path "$reportsDir\capability-benchmark-*.json" | Sort-Object LastWriteTime -Descending | Select-Object -First 1
+                $evolutionSteps += "Benchmark: $($bmResult.capability_score)/100 capability, $($bmResult.task_success_rate)% task sim pass"
+            } catch {
+                $evolutionIssues += "BENCHMARK_FAILED: $($_.Exception.Message)"
+            }
+        } else {
+            $evolutionIssues += "SKIPPED: capability-benchmark.ps1 not found"
+        }
+    }
+    
+    # 8. Health Score
     if ($runHealth) {
-        Write-Host "[6/7] Health Score..." -ForegroundColor Cyan
+        Write-Host "[8/9] Health Score..." -ForegroundColor Cyan
         $hsScript = "$evolutionDir\health-score.ps1"
         if (Test-Path $hsScript) {
             try {
                 $lastCompat = Get-ChildItem -Path "$reportsDir\compatibility-checker-*.json" | Sort-Object LastWriteTime -Descending | Select-Object -First 1
                 $lastKnowledge = Get-ChildItem -Path "$reportsDir\knowledge-migration-*.json" | Sort-Object LastWriteTime -Descending | Select-Object -First 1
                 $lastMigration = Get-ChildItem -Path "$reportsDir\migration-system-*.json" | Sort-Object LastWriteTime -Descending | Select-Object -First 1
-                
-                $hsResult = & $hsScript `
-                    -contractDir "$root\system\contracts" `
-                    -agentsDir "$root\agents" `
-                    -commandsDir "$root\commands" `
-                    -skillsDir "$root\skills" `
-                    -scriptsDir "$root\scripts" `
-                    -outputDir $reportsDir `
-                    $(if ($lastCompat) { "-compatibilityReport", "`"$($lastCompat.FullName)`"" } else { "" }) `
-                    $(if ($lastKnowledge) { "-knowledgeReport", "`"$($lastKnowledge.FullName)`"" } else { "" }) `
-                    $(if ($lastMigration) { "-migrationReport", "`"$($lastMigration.FullName)`"" } else { "" })
+
+                # Splatting bang hashtable — truyen dung ten param + gia tri
+                $hsArgs = @{
+                    contractDir = "$root\system\contracts"
+                    agentsDir = "$root\agents"
+                    commandsDir = "$root\commands"
+                    skillsDir = "$root\skills"
+                    scriptsDir = "$root\scripts"
+                    outputDir = $reportsDir
+                }
+                if ($lastCompat) { $hsArgs.compatibilityReport = $lastCompat.FullName }
+                if ($lastKnowledge) { $hsArgs.knowledgeReport = $lastKnowledge.FullName }
+                if ($lastMigration) { $hsArgs.migrationReport = $lastMigration.FullName }
+                if ($lastSimulationReport) { $hsArgs.simulationReport = $lastSimulationReport.FullName }
+                if ($lastBenchmarkReport) { $hsArgs.benchmarkReport = $lastBenchmarkReport.FullName }
+
+                $hsResult = & $hsScript @hsArgs
                 $evolutionResults["health"] = $hsResult
-                $evolutionSteps += "Health: $($hsResult.overall)/100"
+                $evolutionSteps += "Health: $($hsResult.overall)/100 (runtime=$($hsResult.categories.Runtime)/100, capability=$($hsResult.categories.Capability)/100)"
             } catch {
                 $evolutionIssues += "HEALTH_SCORE_FAILED: $($_.Exception.Message)"
             }
@@ -927,9 +975,9 @@ if ($runEvolution -and -not $dryRun) {
         }
     }
     
-    # 7. Evolution Report
+    # 9. Evolution Report
     if ($runReport) {
-        Write-Host "[7/7] Evolution Report..." -ForegroundColor Cyan
+        Write-Host "[9/9] Evolution Report..." -ForegroundColor Cyan
         $erScript = "$evolutionDir\evolution-report.ps1"
         if (Test-Path $erScript) {
             try {
@@ -939,16 +987,23 @@ if ($runEvolution -and -not $dryRun) {
                 $lastSH = Get-ChildItem -Path "$reportsDir\self-healing-*.json" | Sort-Object LastWriteTime -Descending | Select-Object -First 1
                 $lastKM = Get-ChildItem -Path "$reportsDir\knowledge-migration-*.json" | Sort-Object LastWriteTime -Descending | Select-Object -First 1
                 $lastHS = Get-ChildItem -Path "$reportsDir\health-score-*.json" | Sort-Object LastWriteTime -Descending | Select-Object -First 1
-                
+
                 $reportPath = "$root\SYSTEM_EVOLUTION_REPORT.md"
-                $null = & $erScript `
-                    $(if ($lastSD) { "-semanticDiffReport", "`"$($lastSD.FullName)`"" } else { "" }) `
-                    $(if ($lastCC) { "-compatibilityReport", "`"$($lastCC.FullName)`"" } else { "" }) `
-                    $(if ($lastMS) { "-migrationReport", "`"$($lastMS.FullName)`"" } else { "" }) `
-                    $(if ($lastSH) { "-selfHealingReport", "`"$($lastSH.FullName)`"" } else { "" }) `
-                    $(if ($lastKM) { "-knowledgeReport", "`"$($lastKM.FullName)`"" } else { "" }) `
-                    $(if ($lastHS) { "-healthReport", "`"$($lastHS.FullName)`"" } else { "" }) `
-                    -outputFile $reportPath
+
+                # Splatting bang hashtable
+                $erArgs = @{
+                    outputFile = $reportPath
+                }
+                if ($lastSD) { $erArgs.semanticDiffReport = $lastSD.FullName }
+                if ($lastCC) { $erArgs.compatibilityReport = $lastCC.FullName }
+                if ($lastMS) { $erArgs.migrationReport = $lastMS.FullName }
+                if ($lastSH) { $erArgs.selfHealingReport = $lastSH.FullName }
+                if ($lastKM) { $erArgs.knowledgeReport = $lastKM.FullName }
+                if ($lastHS) { $erArgs.healthReport = $lastHS.FullName }
+                if ($lastSimulationReport) { $erArgs.simulationReport = $lastSimulationReport.FullName }
+                if ($lastBenchmarkReport) { $erArgs.benchmarkReport = $lastBenchmarkReport.FullName }
+
+                $null = & $erScript @erArgs
                 $evolutionResults["report"] = "Generated: $reportPath"
                 $evolutionSteps += "Evolution Report: $reportPath"
             } catch {
@@ -968,7 +1023,11 @@ if ($runEvolution -and -not $dryRun) {
     Write-Host "========================================" -ForegroundColor Magenta
     Write-Host "  EVOLUTION ENGINE COMPLETE" -ForegroundColor Magenta
     $healthScoreVal = if ($evolutionResults.health) { $evolutionResults.health.overall } else { "N/A" }
-    Write-Host "  Health Score: $healthScoreVal/100" -ForegroundColor $(if ($healthScoreVal -ge 80) { "Green" } elseif ($healthScoreVal -ge 50) { "Yellow" } else { "Red" })
+    $runtimeVal = if ($evolutionResults.simulation) { $evolutionResults.simulation.runtime_health } else { "N/A" }
+    $capVal = if ($evolutionResults.benchmark) { $evolutionResults.benchmark.capability_score } else { "N/A" }
+    Write-Host "  Health Score:    $healthScoreVal/100" -ForegroundColor $(if ($healthScoreVal -ge 80) { "Green" } elseif ($healthScoreVal -ge 50) { "Yellow" } else { "Red" })
+    Write-Host "  Runtime Health:  $runtimeVal/100" -ForegroundColor $(if ($runtimeVal -ge 80) { "Green" } elseif ($runtimeVal -ge 50) { "Yellow" } else { "Red" })
+    Write-Host "  Capability:      $capVal/100" -ForegroundColor $(if ($capVal -ge 80) { "Green" } elseif ($capVal -ge 50) { "Yellow" } else { "Red" })
     Write-Host "========================================" -ForegroundColor Magenta
 }
 
@@ -1009,5 +1068,6 @@ Write-Host "Done!" -ForegroundColor Green
 if ($runReport -and $evolutionResults.report) {
     Write-Host "Evolution Report: $($evolutionResults.report)" -ForegroundColor Magenta
 }
+
 
 

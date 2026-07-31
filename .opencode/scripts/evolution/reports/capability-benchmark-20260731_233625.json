@@ -1,0 +1,537 @@
+﻿{
+    "tool":  "capability-benchmark.ps1",
+    "capability_score":  82,
+    "task_simulations":  [
+                             {
+                                 "capable_agents":  5,
+                                 "domain":  "Blazor",
+                                 "best_score":  100,
+                                 "task_type":  "bug_fix",
+                                 "status":  "PASS",
+                                 "task":  "Fix Blazor bug"
+                             },
+                             {
+                                 "capable_agents":  7,
+                                 "domain":  "Planning",
+                                 "best_score":  100,
+                                 "task_type":  "design",
+                                 "status":  "PASS",
+                                 "task":  "Design new feature"
+                             },
+                             {
+                                 "capable_agents":  6,
+                                 "domain":  "Testing",
+                                 "best_score":  95,
+                                 "task_type":  "testing",
+                                 "status":  "PASS",
+                                 "task":  "Write unit tests"
+                             },
+                             {
+                                 "capable_agents":  3,
+                                 "domain":  "Git",
+                                 "best_score":  100,
+                                 "task_type":  "git",
+                                 "status":  "PASS",
+                                 "task":  "Review and push code"
+                             },
+                             {
+                                 "capable_agents":  4,
+                                 "domain":  "Security",
+                                 "best_score":  100,
+                                 "task_type":  "security",
+                                 "status":  "PASS",
+                                 "task":  "Security audit"
+                             },
+                             {
+                                 "capable_agents":  7,
+                                 "domain":  "UI/UX",
+                                 "best_score":  100,
+                                 "task_type":  "ui_audit",
+                                 "status":  "PASS",
+                                 "task":  "UI audit and polish"
+                             },
+                             {
+                                 "capable_agents":  7,
+                                 "domain":  "Docs",
+                                 "best_score":  90,
+                                 "task_type":  "docs",
+                                 "status":  "PASS",
+                                 "task":  "Write documentation"
+                             },
+                             {
+                                 "capable_agents":  13,
+                                 "domain":  "Orchestration",
+                                 "best_score":  100,
+                                 "task_type":  "orchestration",
+                                 "status":  "PASS",
+                                 "task":  "Orchestrate team workflow"
+                             },
+                             {
+                                 "capable_agents":  9,
+                                 "domain":  "Scripting",
+                                 "best_score":  100,
+                                 "task_type":  "scripting",
+                                 "status":  "PASS",
+                                 "task":  "Write automation script"
+                             },
+                             {
+                                 "capable_agents":  7,
+                                 "domain":  "Database",
+                                 "best_score":  80,
+                                 "task_type":  "migration",
+                                 "status":  "PASS",
+                                 "task":  "Database migration"
+                             }
+                         ],
+    "agents_benchmarked":  17,
+    "verdict":  "STRONG",
+    "version":  "1.0.0",
+    "domains":  [
+                    {
+                        "agents":  5,
+                        "domain":  "Blazor",
+                        "score":  87
+                    },
+                    {
+                        "agents":  7,
+                        "domain":  "Planning",
+                        "score":  91
+                    },
+                    {
+                        "agents":  6,
+                        "domain":  "Testing",
+                        "score":  83
+                    },
+                    {
+                        "agents":  3,
+                        "domain":  "Git",
+                        "score":  93
+                    },
+                    {
+                        "agents":  4,
+                        "domain":  "Security",
+                        "score":  90
+                    },
+                    {
+                        "agents":  7,
+                        "domain":  "UI/UX",
+                        "score":  81
+                    },
+                    {
+                        "agents":  7,
+                        "domain":  "Docs",
+                        "score":  74
+                    },
+                    {
+                        "agents":  13,
+                        "domain":  "Orchestration",
+                        "score":  81
+                    },
+                    {
+                        "agents":  9,
+                        "domain":  "Scripting",
+                        "score":  76
+                    },
+                    {
+                        "agents":  7,
+                        "domain":  "Database",
+                        "score":  67
+                    }
+                ],
+    "task_success_rate":  100,
+    "timestamp":  "20260731_233625",
+    "summary":  "Benchmark: 82/100 capability, 100% task simulation pass, verdict STRONG",
+    "agent_capabilities":  [
+                               {
+                                   "overall":  89,
+                                   "agent":  "analyst",
+                                   "has_contract":  false,
+                                   "top_domains":  [
+                                                       {
+                                                           "score":  100,
+                                                           "domain":  "Blazor"
+                                                       },
+                                                       {
+                                                           "score":  90,
+                                                           "domain":  "Testing"
+                                                       },
+                                                       {
+                                                           "score":  90,
+                                                           "domain":  "Planning"
+                                                       },
+                                                       {
+                                                           "score":  75,
+                                                           "domain":  "Orchestration"
+                                                       }
+                                                   ]
+                               },
+                               {
+                                   "overall":  74,
+                                   "agent":  "backup-agent",
+                                   "has_contract":  false,
+                                   "top_domains":  [
+                                                       {
+                                                           "score":  100,
+                                                           "domain":  "Scripting"
+                                                       },
+                                                       {
+                                                           "score":  75,
+                                                           "domain":  "Orchestration"
+                                                       },
+                                                       {
+                                                           "score":  60,
+                                                           "domain":  "Database"
+                                                       },
+                                                       {
+                                                           "score":  60,
+                                                           "domain":  "UI/UX"
+                                                       }
+                                                   ]
+                               },
+                               {
+                                   "overall":  84,
+                                   "agent":  "builder",
+                                   "has_contract":  true,
+                                   "top_domains":  [
+                                                       {
+                                                           "score":  95,
+                                                           "domain":  "Orchestration"
+                                                       },
+                                                       {
+                                                           "score":  80,
+                                                           "domain":  "Scripting"
+                                                       },
+                                                       {
+                                                           "score":  80,
+                                                           "domain":  "Security"
+                                                       },
+                                                       {
+                                                           "score":  80,
+                                                           "domain":  "Git"
+                                                       }
+                                                   ]
+                               },
+                               {
+                                   "overall":  71,
+                                   "agent":  "cleaner",
+                                   "has_contract":  false,
+                                   "top_domains":  [
+                                                       {
+                                                           "score":  90,
+                                                           "domain":  "Orchestration"
+                                                       },
+                                                       {
+                                                           "score":  75,
+                                                           "domain":  "Scripting"
+                                                       },
+                                                       {
+                                                           "score":  60,
+                                                           "domain":  "Database"
+                                                       },
+                                                       {
+                                                           "score":  60,
+                                                           "domain":  "Docs"
+                                                       }
+                                                   ]
+                               },
+                               {
+                                   "overall":  75,
+                                   "agent":  "codebase-explorer",
+                                   "has_contract":  false,
+                                   "top_domains":  [
+                                                       {
+                                                           "score":  90,
+                                                           "domain":  "Testing"
+                                                       },
+                                                       {
+                                                           "score":  75,
+                                                           "domain":  "Orchestration"
+                                                       },
+                                                       {
+                                                           "score":  75,
+                                                           "domain":  "Database"
+                                                       },
+                                                       {
+                                                           "score":  60,
+                                                           "domain":  "Blazor"
+                                                       }
+                                                   ]
+                               },
+                               {
+                                   "overall":  71,
+                                   "agent":  "failure-agent",
+                                   "has_contract":  false,
+                                   "top_domains":  [
+                                                       {
+                                                           "score":  75,
+                                                           "domain":  "Docs"
+                                                       },
+                                                       {
+                                                           "score":  75,
+                                                           "domain":  "Orchestration"
+                                                       },
+                                                       {
+                                                           "score":  75,
+                                                           "domain":  "Testing"
+                                                       },
+                                                       {
+                                                           "score":  60,
+                                                           "domain":  "Database"
+                                                       }
+                                                   ]
+                               },
+                               {
+                                   "overall":  81,
+                                   "agent":  "general",
+                                   "has_contract":  false,
+                                   "top_domains":  [
+                                                       {
+                                                           "score":  100,
+                                                           "domain":  "Orchestration"
+                                                       },
+                                                       {
+                                                           "score":  90,
+                                                           "domain":  "Planning"
+                                                       },
+                                                       {
+                                                           "score":  75,
+                                                           "domain":  "Docs"
+                                                       },
+                                                       {
+                                                           "score":  60,
+                                                           "domain":  "Scripting"
+                                                       }
+                                                   ]
+                               },
+                               {
+                                   "overall":  100,
+                                   "agent":  "guardian",
+                                   "has_contract":  false,
+                                   "top_domains":  [
+                                                       {
+                                                           "score":  100,
+                                                           "domain":  "Git"
+                                                       },
+                                                       {
+                                                           "score":  100,
+                                                           "domain":  "Security"
+                                                       },
+                                                       {
+                                                           "score":  100,
+                                                           "domain":  "UI/UX"
+                                                       },
+                                                       {
+                                                           "score":  100,
+                                                           "domain":  "Blazor"
+                                                       }
+                                                   ]
+                               },
+                               {
+                                   "overall":  71,
+                                   "agent":  "learning-agent",
+                                   "has_contract":  false,
+                                   "top_domains":  [
+                                                       {
+                                                           "score":  90,
+                                                           "domain":  "Docs"
+                                                       },
+                                                       {
+                                                           "score":  75,
+                                                           "domain":  "Blazor"
+                                                       },
+                                                       {
+                                                           "score":  60,
+                                                           "domain":  "Scripting"
+                                                       },
+                                                       {
+                                                           "score":  60,
+                                                           "domain":  "Orchestration"
+                                                       }
+                                                   ]
+                               },
+                               {
+                                   "overall":  85,
+                                   "agent":  "planner",
+                                   "has_contract":  true,
+                                   "top_domains":  [
+                                                       {
+                                                           "score":  100,
+                                                           "domain":  "Planning"
+                                                       },
+                                                       {
+                                                           "score":  80,
+                                                           "domain":  "Database"
+                                                       },
+                                                       {
+                                                           "score":  80,
+                                                           "domain":  "UI/UX"
+                                                       },
+                                                       {
+                                                           "score":  80,
+                                                           "domain":  "Security"
+                                                       }
+                                                   ]
+                               },
+                               {
+                                   "overall":  84,
+                                   "agent":  "pusher",
+                                   "has_contract":  false,
+                                   "top_domains":  [
+                                                       {
+                                                           "score":  100,
+                                                           "domain":  "Git"
+                                                       },
+                                                       {
+                                                           "score":  100,
+                                                           "domain":  "Scripting"
+                                                       },
+                                                       {
+                                                           "score":  75,
+                                                           "domain":  "Orchestration"
+                                                       },
+                                                       {
+                                                           "score":  60,
+                                                           "domain":  "Testing"
+                                                       }
+                                                   ]
+                               },
+                               {
+                                   "overall":  76,
+                                   "agent":  "reviewer",
+                                   "has_contract":  true,
+                                   "top_domains":  [
+                                                       {
+                                                           "score":  80,
+                                                           "domain":  "UI/UX"
+                                                       },
+                                                       {
+                                                           "score":  80,
+                                                           "domain":  "Orchestration"
+                                                       },
+                                                       {
+                                                           "score":  80,
+                                                           "domain":  "Planning"
+                                                       },
+                                                       {
+                                                           "score":  65,
+                                                           "domain":  "Scripting"
+                                                       }
+                                                   ]
+                               },
+                               {
+                                   "overall":  64,
+                                   "agent":  "root-cause-agent",
+                                   "has_contract":  false,
+                                   "top_domains":  [
+                                                       {
+                                                           "score":  75,
+                                                           "domain":  "Orchestration"
+                                                       },
+                                                       {
+                                                           "score":  60,
+                                                           "domain":  "Docs"
+                                                       },
+                                                       {
+                                                           "score":  60,
+                                                           "domain":  "Database"
+                                                       },
+                                                       {
+                                                           "score":  60,
+                                                           "domain":  "Scripting"
+                                                       }
+                                                   ]
+                               },
+                               {
+                                   "overall":  82,
+                                   "agent":  "self-improver",
+                                   "has_contract":  false,
+                                   "top_domains":  [
+                                                       {
+                                                           "score":  90,
+                                                           "domain":  "Docs"
+                                                       },
+                                                       {
+                                                           "score":  90,
+                                                           "domain":  "Planning"
+                                                       },
+                                                       {
+                                                           "score":  75,
+                                                           "domain":  "Orchestration"
+                                                       },
+                                                       {
+                                                           "score":  75,
+                                                           "domain":  "UI/UX"
+                                                       }
+                                                   ]
+                               },
+                               {
+                                   "overall":  82,
+                                   "agent":  "test-planner",
+                                   "has_contract":  false,
+                                   "top_domains":  [
+                                                       {
+                                                           "score":  90,
+                                                           "domain":  "Testing"
+                                                       },
+                                                       {
+                                                           "score":  90,
+                                                           "domain":  "Planning"
+                                                       },
+                                                       {
+                                                           "score":  75,
+                                                           "domain":  "Database"
+                                                       },
+                                                       {
+                                                           "score":  75,
+                                                           "domain":  "UI/UX"
+                                                       }
+                                                   ]
+                               },
+                               {
+                                   "overall":  84,
+                                   "agent":  "tester",
+                                   "has_contract":  true,
+                                   "top_domains":  [
+                                                       {
+                                                           "score":  95,
+                                                           "domain":  "Planning"
+                                                       },
+                                                       {
+                                                           "score":  95,
+                                                           "domain":  "Testing"
+                                                       },
+                                                       {
+                                                           "score":  80,
+                                                           "domain":  "Scripting"
+                                                       },
+                                                       {
+                                                           "score":  65,
+                                                           "domain":  "Docs"
+                                                       }
+                                                   ]
+                               },
+                               {
+                                   "overall":  100,
+                                   "agent":  "ui-beautifier",
+                                   "has_contract":  false,
+                                   "top_domains":  [
+                                                       {
+                                                           "score":  100,
+                                                           "domain":  "Security"
+                                                       },
+                                                       {
+                                                           "score":  100,
+                                                           "domain":  "UI/UX"
+                                                       },
+                                                       {
+                                                           "score":  100,
+                                                           "domain":  "Orchestration"
+                                                       },
+                                                       {
+                                                           "score":  100,
+                                                           "domain":  "Blazor"
+                                                       }
+                                                   ]
+                               }
+                           ]
+}

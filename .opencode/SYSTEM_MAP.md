@@ -1,6 +1,6 @@
 ﻿# He Thong .opencode - So Do Tong The
 
-> **Tu dong tao luc:** 2026-07-31 23:07:52
+> **Tu dong tao luc:** 2026-07-31 23:42:04
 > **Workflow ID:** WF-20260731-SYNC
 > **Cap nhat:** Toan bo agents, commands, skills, scripts, knowledge
 
@@ -81,7 +81,7 @@
 | /team-review | Đánh giá thiết kế hoặc kế hoạch (dùng agent reviewer) — nâng cấp v4.0: decision thresholds, score_rationale, blocking issues, consistency, edge cases | reviewer |  |
 | /team-root-cause | Phân tích nguyên nhân gốc từ failure analysis. Tìm evidence trong codebase, tạo hypotheses, đề xuất fix. Gọi root-cause-agent. | --- |  |
 | /team-selfimprove | Phân tích workflow và đề xuất cải tiến (chỉ suggestion, không ghi KB) | self-improver |  |
-| /team-syncdocs | System Evolution Engine — đồng bộ system docs + semantic diff + compatibility check + migration + self-healing + health score + evolution report. Chạy định kỳ để duy trì sức khỏe hệ thống. | general |  |
+| /team-syncdocs | System Evolution Engine — đồng bộ system docs + semantic diff + compatibility check + migration + self-healing + health score + simulation (runtime validation) + capability benchmark + stress test + evolution report. Chạy định kỳ để duy trì sức khỏe hệ thống. | general |  |
 | /team-test | Thực thi kiểm thử theo kế hoạch (dùng agent tester, v3.0) | tester |  |
 | /team-testplan | Tạo kế hoạch kiểm thử chi tiết — impact analysis, risk-based, validation rules (schema v3.0) | test-planner |  |
 | /team-ui-audit | >- | ui-beautifier |  |
@@ -110,7 +110,7 @@
 | gitpush-utility | GitPush Utility — thực hiện git push an toàn với auto-commit, safety checks, confirmation gate. | 18 KB |
 | rollback-utility | Utility script | 9 KB |
 | schema-validator | Utility script | 4 KB |
-| sync-system-docs | Utility script | 36 KB |
+| sync-system-docs | Utility script | 48 KB |
 
 ---
 

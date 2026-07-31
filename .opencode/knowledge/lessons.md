@@ -1,6 +1,6 @@
 ---
-last_updated: 2026-07-27
-total_lessons: 21
+last_updated: 2026-07-31
+total_lessons: 22
 ---
 
 # Lessons Learned
@@ -190,3 +190,11 @@ Kho bài học kinh nghiệm được tích lũy qua các workflow.
   observation: "Workflow WF-20260727-001 chỉ cập nhật 3 files (analyst.md, team-analyze.md, SKILL.md). Các agent contracts còn lại chưa được đồng bộ: planner.md (thiếu evidence-backed dependencies, entry points), builder.md (thiếu scan scope), reviewer.md (thiếu structured impact), tester.md (thiếu schema_version), test-planner.md (thiếu patterns section)."
   action: "Đồng bộ tất cả remaining agents (planner, builder, reviewer, tester, test-planner) lên schema v2.0: thêm schema_version, evidence-backed dependencies, entry points, scan scope, patterns chuẩn hóa, conclusion block."
   tags: ["opencode", "agent-contract", "schema-v2", "sync", "suggestion-approved"]
+
+- lesson_id: LSN-022
+  type: "failure"
+  workflow: "Evolution Mode - Sandbox / Simulation Engine (WF-20260731-003)"
+  situation: "sync-system-docs.ps1 truyền report path vào health-score.ps1 và evolution-report.ps1 bằng pattern splatting inline: `$(if ($x) { \"-flag\", \"path\" } ...)`"
+  observation: "Trong PowerShell 5.1, subexpression `$(if ...) { \"-a\", \"b\" }` trả về một string duy nhất (không phải array các argument) khi dùng làm argument list → health-score luôn nhận sai param và fallback score 50. Hệ quả: compatibility/knowledge/migration scores từ trước đến giờ KHÔNG BAO GIỜ nhận đúng report (pre-existing bug, mọi workflow trước dùng fallback)."
+  action: "Chuyển sang hashtable splatting: tạo `@{}` chứa flag + value theo điều kiện, rồi `& script @hsArgs`. Verify bằng test: health-score phải trả real value (Compatibility=70, Knowledge=0) thay vì fallback 50. LƯU Ý: tương tự cho mọi call-site truyền optional flags theo điều kiện trong PowerShell."
+  tags: ["powershell", "splatting", "argument-passing", "ps-5.1", "bug-fix", "suggestion-approved"]

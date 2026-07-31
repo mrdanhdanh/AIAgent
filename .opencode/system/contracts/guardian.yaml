@@ -1,0 +1,73 @@
+# Contract: Guardian Agent
+# Schema version: 1.0
+# Description: Định nghĩa input/output contract cho Guardian Agent (gitguard phase — pre-push review)
+
+contract_version: "1.0"
+agent: guardian
+type: security_review
+
+input:
+  from: user
+  schema_version: "1.0"
+  required_fields:
+    - scope: "string — files cần review, đường dẫn cụ thể, hoặc --full"
+    - flags: "string (optional) — --full, --fix-hint"
+
+output:
+  schema_version: "2.0"
+  artifact: "gitguard_report.md"
+  fields:
+    - status: "PASS | BLOCKED | WARNING"
+    - summary: "string — tổng kết review"
+    - review_scope: "{staged[], modified[], untracked[], full_scan}"
+    - secrets: "{found, items[{file, line, pattern, severity, evidence, confidence, fix_hint}]}"
+    - credentials: "{found, items[]}"
+    - sensitive_files: "{found, items[]}"
+    - high_entropy_strings: "{found, items[]}"
+    - framework_conventions: "{violations[]}"
+    - architecture_conventions: "{violations[]}"
+    - testing_conventions: "{violations[]}"
+    - ui_conventions: "{violations[]}"
+    - security: "{vulnerabilities[{file, line, type, severity, description, evidence, confidence, fix_hint}]}"
+    - code_quality: "{issues[{file, line, type, severity, description, evidence, confidence, fix_hint}]}"
+    - build: "{status, command, error, triggered_by[]}"
+    - tests: "{status, command, details, triggered_by[]}"
+    - risk_summary: "{critical, major, minor, risk_score, needs_manual_review}"
+    - final_verdict: "PASS | BLOCKED | WARNING"
+    - blocking_issues: "int"
+    - warning_issues: "int"
+    - recommendation: "string"
+
+verdict_rules:
+  BLOCKED:
+    conditions:
+      - "Có ít nhất 1 issue CRITICAL (secret leak, security vulnerability)"
+  WARNING:
+    conditions:
+      - "Có issue MAJOR (convention violation, code quality)"
+  PASS:
+    conditions:
+      - "Chỉ có issue MINOR hoặc không có issue"
+
+risk_score_formula: "CRITICAL x 10 + MAJOR x 3 + MINOR x 1"
+
+supported_versions:
+  - "1.0"
+  - "2.0"
+
+dependencies:
+  requires: ["user"]
+  provides_to: ["pusher", "orchestrator"]
+
+migration_rules:
+  "1.0_to_2.0":
+    added:
+      - review_scope
+      - secrets 4 nhóm (secrets, credentials, sensitive_files, high_entropy_strings)
+      - conventions 4 nhóm
+      - risk_summary
+      - final_verdict
+      - confidence + fix_hint cho mọi finding
+    changed:
+      - severity mapping (CRITICAL→BLOCKED, MAJOR→WARNING, MINOR→PASS)
+    breaking: false

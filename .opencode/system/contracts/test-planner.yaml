@@ -1,0 +1,69 @@
+# Contract: Test-Planner Agent
+# Schema version: 1.0
+# Description: Định nghĩa input/output contract cho Test-Planner Agent (testplan phase)
+
+contract_version: "1.0"
+agent: test-planner
+type: test_planning
+
+input:
+  from: builder
+  schema_version: "3.1"
+  required_fields:
+    - status: "PASS | FAIL"
+    - changed_files: "array[string]"
+    - created_files: "array[string]"
+    - steps: "array[{order, status, file, action}]"
+
+output:
+  schema_version: "2.0"
+  artifact: "05_testplan.md"
+  fields:
+    - status: "READY | INCOMPLETE | NEED_MORE_INFO"
+    - impact_analysis: "{modified_files[], dependencies[], public_api_changed[], ui_changed, database_changed, config_changed, breaking_changes, affects[], does_not_affect[]}"
+    - requirements: "array[{id, description}]"
+    - test_types: "{unit, integration, e2e, security, negative, edge, regression}"
+    - existing_tests: "{framework, files_scanned[], already_cover[], missing[], duplicated[]}"
+    - risk_assessment: "{risk_level, reason, coverage_target}"
+    - testability: "{status: GOOD|WARNING|BAD, issues[], recommendations[]}"
+    - coverage_matrix: "array[{requirement, test_cases[]}]"
+    - test_cases: "array[{id, type, description, input, expected, file, priority, risk_level, coverage}]"
+    - regression_scope: "{direct[], indirect[], unaffected[], regression_cases[]}"
+    - coverage_target: "{unit, integration, e2e, overall}"
+    - validation: "{checklist[], all_pass}"
+
+decision_rules:
+  NEED_MORE_INFO:
+    conditions:
+      - "Không có requirements từ input"
+      - "Không biết feature ảnh hưởng gì (thiếu impact analysis)"
+  INCOMPLETE:
+    conditions:
+      - "Validation checklist có item FAIL"
+  READY:
+    conditions:
+      - "Validation all_pass == true"
+      - "Mọi requirement có >= 1 test case"
+
+supported_versions:
+  - "2.0"
+  - "3.0"
+
+dependencies:
+  requires: ["builder"]
+  provides_to: ["tester"]
+
+migration_rules:
+  "2.0_to_3.0":
+    added:
+      - impact_analysis
+      - existing_tests (chi tiết hóa)
+      - risk_assessment.coverage_target
+      - testability
+      - coverage_matrix
+      - regression_scope
+      - test_cases.coverage
+      - test_cases.risk_level
+      - validation checklist (12 items)
+    removed: []
+    breaking: false

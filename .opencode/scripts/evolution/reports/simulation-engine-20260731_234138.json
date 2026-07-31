@@ -1,0 +1,453 @@
+﻿{
+    "capability_issues":  [
+
+                          ],
+    "runtime_errors":  [
+                           {
+                               "detail":  "Skill dev-team chua tu \u0027deprecated/outdated/legacy\u0027 trong noi dung",
+                               "type":  "SKILL_DEPRECATED_CONTENT",
+                               "severity":  "WARNING"
+                           },
+                           {
+                               "detail":  "Skill impeccable chua tu \u0027deprecated/outdated/legacy\u0027 trong noi dung",
+                               "type":  "SKILL_DEPRECATED_CONTENT",
+                               "severity":  "WARNING"
+                           },
+                           {
+                               "detail":  "Command /impeccable khong khai bao agent/trigger va khong co trong opencode.json",
+                               "type":  "COMMAND_NO_AGENT",
+                               "severity":  "CRITICAL"
+                           },
+                           {
+                               "detail":  "Command /team-analyze-failure dung trigger \u0027analyze-failure\u0027 thay cho frontmatter agent",
+                               "type":  "COMMAND_TRIGGER_ROUTING",
+                               "severity":  "WARNING"
+                           },
+                           {
+                               "detail":  "Command /team-learn dung trigger \u0027learn\u0027 thay cho frontmatter agent",
+                               "type":  "COMMAND_TRIGGER_ROUTING",
+                               "severity":  "WARNING"
+                           },
+                           {
+                               "detail":  "Command /team-root-cause dung trigger \u0027root-cause\u0027 thay cho frontmatter agent",
+                               "type":  "COMMAND_TRIGGER_ROUTING",
+                               "severity":  "WARNING"
+                           },
+                           {
+                               "detail":  "Agent analyst khong co contract (agents/analyst.md khong co contract)",
+                               "type":  "MISSING_CONTRACT",
+                               "severity":  "MAJOR"
+                           },
+                           {
+                               "detail":  "Agent test-planner khong co contract (agents/test-planner.md khong co contract)",
+                               "type":  "MISSING_CONTRACT",
+                               "severity":  "MAJOR"
+                           },
+                           {
+                               "detail":  "Agent ui-beautifier khong co contract (agents/ui-beautifier.md khong co contract)",
+                               "type":  "MISSING_CONTRACT",
+                               "severity":  "MAJOR"
+                           },
+                           {
+                               "detail":  "Agent self-improver khong co contract (agents/self-improver.md khong co contract)",
+                               "type":  "MISSING_CONTRACT",
+                               "severity":  "MAJOR"
+                           },
+                           {
+                               "detail":  "Agent guardian khong co contract (agents/guardian.md khong co contract)",
+                               "type":  "MISSING_CONTRACT",
+                               "severity":  "MAJOR"
+                           }
+                       ],
+    "skills_tested":  5,
+    "runtime_health":  70,
+    "checks":  [
+                   {
+                       "detail":  "Agent analyst: frontmatter OK (mode=subagent)",
+                       "group":  "agent",
+                       "status":  "PASS",
+                       "check":  "structure_analyst"
+                   },
+                   {
+                       "detail":  "Agent backup-agent: frontmatter OK (mode=subagent)",
+                       "group":  "agent",
+                       "status":  "PASS",
+                       "check":  "structure_backup-agent"
+                   },
+                   {
+                       "detail":  "Agent builder: frontmatter OK (mode=subagent)",
+                       "group":  "agent",
+                       "status":  "PASS",
+                       "check":  "structure_builder"
+                   },
+                   {
+                       "detail":  "Agent cleaner: frontmatter OK (mode=)",
+                       "group":  "agent",
+                       "status":  "PASS",
+                       "check":  "structure_cleaner"
+                   },
+                   {
+                       "detail":  "Agent codebase-explorer: frontmatter OK (mode=subagent)",
+                       "group":  "agent",
+                       "status":  "PASS",
+                       "check":  "structure_codebase-explorer"
+                   },
+                   {
+                       "detail":  "Agent failure-agent: frontmatter OK (mode=subagent)",
+                       "group":  "agent",
+                       "status":  "PASS",
+                       "check":  "structure_failure-agent"
+                   },
+                   {
+                       "detail":  "Agent general: frontmatter OK (mode=subagent)",
+                       "group":  "agent",
+                       "status":  "PASS",
+                       "check":  "structure_general"
+                   },
+                   {
+                       "detail":  "Agent guardian: frontmatter OK (mode=)",
+                       "group":  "agent",
+                       "status":  "PASS",
+                       "check":  "structure_guardian"
+                   },
+                   {
+                       "detail":  "Agent learning-agent: frontmatter OK (mode=subagent)",
+                       "group":  "agent",
+                       "status":  "PASS",
+                       "check":  "structure_learning-agent"
+                   },
+                   {
+                       "detail":  "Agent planner: frontmatter OK (mode=subagent)",
+                       "group":  "agent",
+                       "status":  "PASS",
+                       "check":  "structure_planner"
+                   },
+                   {
+                       "detail":  "Agent pusher: frontmatter OK (mode=)",
+                       "group":  "agent",
+                       "status":  "PASS",
+                       "check":  "structure_pusher"
+                   },
+                   {
+                       "detail":  "Agent reviewer: frontmatter OK (mode=subagent)",
+                       "group":  "agent",
+                       "status":  "PASS",
+                       "check":  "structure_reviewer"
+                   },
+                   {
+                       "detail":  "Agent root-cause-agent: frontmatter OK (mode=subagent)",
+                       "group":  "agent",
+                       "status":  "PASS",
+                       "check":  "structure_root-cause-agent"
+                   },
+                   {
+                       "detail":  "Agent self-improver: frontmatter OK (mode=subagent)",
+                       "group":  "agent",
+                       "status":  "PASS",
+                       "check":  "structure_self-improver"
+                   },
+                   {
+                       "detail":  "Agent test-planner: frontmatter OK (mode=subagent)",
+                       "group":  "agent",
+                       "status":  "PASS",
+                       "check":  "structure_test-planner"
+                   },
+                   {
+                       "detail":  "Agent tester: frontmatter OK (mode=subagent)",
+                       "group":  "agent",
+                       "status":  "PASS",
+                       "check":  "structure_tester"
+                   },
+                   {
+                       "detail":  "Agent ui-beautifier: frontmatter OK (mode=subagent)",
+                       "group":  "agent",
+                       "status":  "PASS",
+                       "check":  "structure_ui-beautifier"
+                   },
+                   {
+                       "detail":  "Skill dev-team: tat ca file tham chieu ton tai",
+                       "group":  "skill",
+                       "status":  "PASS",
+                       "check":  "refs_dev-team"
+                   },
+                   {
+                       "detail":  "Skill dev-team: internal link khong co section: workflow-id--artifact-management, validation-checklist-per-phase, checkpoint-mechanism, rollback-mechanism, migration-plan, complexity-estimate, validation--testing, base-agent-schema, base-agent-schema, base-agent-schema, base-agent-schema, base-agent-schema, error-priority--action-map, base-agent-schema, error-priority--action-map, base-agent-schema, base-agent-schema, base-agent-schema, error-priority--action-map, base-agent-schema, base-agent-schema, base-agent-schema",
+                       "group":  "skill",
+                       "status":  "WARN",
+                       "check":  "sections_dev-team"
+                   },
+                   {
+                       "detail":  "Skill gitguard: tat ca file tham chieu ton tai",
+                       "group":  "skill",
+                       "status":  "PASS",
+                       "check":  "refs_gitguard"
+                   },
+                   {
+                       "detail":  "Skill gitguard: internal link khong co section: safety--security-rules",
+                       "group":  "skill",
+                       "status":  "WARN",
+                       "check":  "sections_gitguard"
+                   },
+                   {
+                       "detail":  "Skill gitpush: tat ca file tham chieu ton tai",
+                       "group":  "skill",
+                       "status":  "PASS",
+                       "check":  "refs_gitpush"
+                   },
+                   {
+                       "detail":  "Skill impeccable: tat ca file tham chieu ton tai",
+                       "group":  "skill",
+                       "status":  "PASS",
+                       "check":  "refs_impeccable"
+                   },
+                   {
+                       "detail":  "Skill workspace-cleaner: tat ca file tham chieu ton tai",
+                       "group":  "skill",
+                       "status":  "PASS",
+                       "check":  "refs_workspace-cleaner"
+                   },
+                   {
+                       "detail":  "Command /backup -\u003e agent \u0027backup-agent\u0027 OK",
+                       "group":  "command",
+                       "status":  "PASS",
+                       "check":  "agent_backup"
+                   },
+                   {
+                       "detail":  "Command /doctor -\u003e agent \u0027general\u0027 OK",
+                       "group":  "command",
+                       "status":  "PASS",
+                       "check":  "agent_doctor"
+                   },
+                   {
+                       "detail":  "Command /impeccable khong co routing (agent/trigger/opencode.json)",
+                       "group":  "command",
+                       "status":  "FAIL",
+                       "check":  "agent_impeccable"
+                   },
+                   {
+                       "detail":  "Command /team-analyze-failure route qua trigger \u0027analyze-failure\u0027",
+                       "group":  "command",
+                       "status":  "WARN",
+                       "check":  "agent_team-analyze-failure"
+                   },
+                   {
+                       "detail":  "Command /team-analyze -\u003e agent \u0027analyst\u0027 OK",
+                       "group":  "command",
+                       "status":  "PASS",
+                       "check":  "agent_team-analyze"
+                   },
+                   {
+                       "detail":  "Command /team-build -\u003e agent \u0027builder\u0027 OK",
+                       "group":  "command",
+                       "status":  "PASS",
+                       "check":  "agent_team-build"
+                   },
+                   {
+                       "detail":  "Command /team-cleanup -\u003e agent \u0027cleaner\u0027 OK",
+                       "group":  "command",
+                       "status":  "PASS",
+                       "check":  "agent_team-cleanup"
+                   },
+                   {
+                       "detail":  "Command /team-doctor -\u003e agent \u0027general\u0027 OK",
+                       "group":  "command",
+                       "status":  "PASS",
+                       "check":  "agent_team-doctor"
+                   },
+                   {
+                       "detail":  "Command /team-explore -\u003e agent \u0027codebase-explorer\u0027 OK",
+                       "group":  "command",
+                       "status":  "PASS",
+                       "check":  "agent_team-explore"
+                   },
+                   {
+                       "detail":  "Command /team-gitguard -\u003e agent \u0027guardian\u0027 OK",
+                       "group":  "command",
+                       "status":  "PASS",
+                       "check":  "agent_team-gitguard"
+                   },
+                   {
+                       "detail":  "Command /team-gitpush -\u003e agent \u0027pusher\u0027 OK",
+                       "group":  "command",
+                       "status":  "PASS",
+                       "check":  "agent_team-gitpush"
+                   },
+                   {
+                       "detail":  "Command /team-learn route qua trigger \u0027learn\u0027",
+                       "group":  "command",
+                       "status":  "WARN",
+                       "check":  "agent_team-learn"
+                   },
+                   {
+                       "detail":  "Command /team-plan -\u003e agent \u0027planner\u0027 OK",
+                       "group":  "command",
+                       "status":  "PASS",
+                       "check":  "agent_team-plan"
+                   },
+                   {
+                       "detail":  "Command /team-review -\u003e agent \u0027reviewer\u0027 OK",
+                       "group":  "command",
+                       "status":  "PASS",
+                       "check":  "agent_team-review"
+                   },
+                   {
+                       "detail":  "Command /team-root-cause route qua trigger \u0027root-cause\u0027",
+                       "group":  "command",
+                       "status":  "WARN",
+                       "check":  "agent_team-root-cause"
+                   },
+                   {
+                       "detail":  "Command /team-selfimprove -\u003e agent \u0027self-improver\u0027 OK",
+                       "group":  "command",
+                       "status":  "PASS",
+                       "check":  "agent_team-selfimprove"
+                   },
+                   {
+                       "detail":  "Command /team-syncdocs -\u003e agent \u0027general\u0027 OK",
+                       "group":  "command",
+                       "status":  "PASS",
+                       "check":  "agent_team-syncdocs"
+                   },
+                   {
+                       "detail":  "Command /team-test -\u003e agent \u0027tester\u0027 OK",
+                       "group":  "command",
+                       "status":  "PASS",
+                       "check":  "agent_team-test"
+                   },
+                   {
+                       "detail":  "Command /team-testplan -\u003e agent \u0027test-planner\u0027 OK",
+                       "group":  "command",
+                       "status":  "PASS",
+                       "check":  "agent_team-testplan"
+                   },
+                   {
+                       "detail":  "Command /team-ui-audit -\u003e agent \u0027ui-beautifier\u0027 OK",
+                       "group":  "command",
+                       "status":  "PASS",
+                       "check":  "agent_team-ui-audit"
+                   },
+                   {
+                       "detail":  "Command /team -\u003e agent \u0027general\u0027 OK",
+                       "group":  "command",
+                       "status":  "PASS",
+                       "check":  "agent_team"
+                   },
+                   {
+                       "detail":  "Agent analyst thieu contract",
+                       "group":  "contract",
+                       "status":  "WARN",
+                       "check":  "exists_analyst"
+                   },
+                   {
+                       "detail":  "Agent test-planner thieu contract",
+                       "group":  "contract",
+                       "status":  "WARN",
+                       "check":  "exists_test-planner"
+                   },
+                   {
+                       "detail":  "Agent ui-beautifier thieu contract",
+                       "group":  "contract",
+                       "status":  "WARN",
+                       "check":  "exists_ui-beautifier"
+                   },
+                   {
+                       "detail":  "Agent self-improver thieu contract",
+                       "group":  "contract",
+                       "status":  "WARN",
+                       "check":  "exists_self-improver"
+                   },
+                   {
+                       "detail":  "Agent guardian thieu contract",
+                       "group":  "contract",
+                       "status":  "WARN",
+                       "check":  "exists_guardian"
+                   },
+                   {
+                       "detail":  "Khong co schema version mismatch",
+                       "group":  "contract",
+                       "status":  "PASS",
+                       "check":  "version_compat"
+                   },
+                   {
+                       "detail":  "Integration plan output -\u003e review input: OK",
+                       "group":  "integration",
+                       "status":  "PASS",
+                       "check":  "planner_to_reviewer"
+                   },
+                   {
+                       "detail":  "Integration review output -\u003e build input: OK",
+                       "group":  "integration",
+                       "status":  "PASS",
+                       "check":  "reviewer_to_builder"
+                   },
+                   {
+                       "detail":  "Integration build output -\u003e test input: OK",
+                       "group":  "integration",
+                       "status":  "PASS",
+                       "check":  "builder_to_tester"
+                   },
+                   {
+                       "detail":  "Agent tester contract khong khai bao output artifact (khong kiem tra duoc)",
+                       "group":  "output",
+                       "status":  "WARN",
+                       "check":  "fake_task_tester"
+                   },
+                   {
+                       "detail":  "Agent ui-beautifier khong co contract va khong mo ta artifact 07_ui_audit.md",
+                       "group":  "output",
+                       "status":  "WARN",
+                       "check":  "fake_task_ui-beautifier"
+                   },
+                   {
+                       "detail":  "Agent analyst khong co contract va khong mo ta artifact 01_analysis.md",
+                       "group":  "output",
+                       "status":  "WARN",
+                       "check":  "fake_task_analyst"
+                   },
+                   {
+                       "detail":  "Agent builder contract khong khai bao output artifact (khong kiem tra duoc)",
+                       "group":  "output",
+                       "status":  "WARN",
+                       "check":  "fake_task_builder"
+                   },
+                   {
+                       "detail":  "Agent planner contract khong khai bao output artifact (khong kiem tra duoc)",
+                       "group":  "output",
+                       "status":  "WARN",
+                       "check":  "fake_task_planner"
+                   },
+                   {
+                       "detail":  "Agent reviewer contract khong khai bao output artifact (khong kiem tra duoc)",
+                       "group":  "output",
+                       "status":  "WARN",
+                       "check":  "fake_task_reviewer"
+                   },
+                   {
+                       "detail":  "Agent test-planner khong co contract va khong mo ta artifact 05_testplan.md",
+                       "group":  "output",
+                       "status":  "WARN",
+                       "check":  "fake_task_test-planner"
+                   }
+               ],
+    "timestamp":  "20260731_234138",
+    "mode":  "sandbox",
+    "commands_tested":  21,
+    "dependency_graph":  [
+
+                         ],
+    "agents_tested":  17,
+    "summary":  "Simulation: 43/61 checks PASS, 11 runtime errors, 0 integration issues, runtime health 70/100",
+    "contracts_tested":  5,
+    "verdict":  "WARNING",
+    "version":  "1.0.0",
+    "suggested_actions":  [
+                              "Tao contract cho agent thieu trong .opencode/system/contracts/",
+                              "Review loi COMMAND_TRIGGER_ROUTING (3x)",
+                              "Review loi SKILL_DEPRECATED_CONTENT (2x)",
+                              "Review loi COMMAND_NO_AGENT (1x)"
+                          ],
+    "tool":  "simulation-engine.ps1",
+    "integration_issues":  [
+
+                           ]
+}

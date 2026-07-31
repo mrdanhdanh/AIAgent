@@ -1,5 +1,5 @@
 ---
-description: 'System Evolution Engine — đồng bộ system docs + semantic diff + compatibility check + migration + self-healing + health score + evolution report. Chạy định kỳ để duy trì sức khỏe hệ thống.'
+description: 'System Evolution Engine — đồng bộ system docs + semantic diff + compatibility check + migration + self-healing + health score + simulation (runtime validation) + capability benchmark + stress test + evolution report. Chạy định kỳ để duy trì sức khỏe hệ thống.'
 agent: general
 ---
 
@@ -12,7 +12,10 @@ agent: general
 - **Self-Healing** các lỗi tương thích đơn giản
 - **Contract Registry** quản lý agents và workflows
 - **Knowledge Migration** phát hiện knowledge lỗi thời
-- **Health Score** chấm điểm sức khỏe hệ thống
+- **Simulation Engine (Sandbox)** — runtime validation: "nếu chạy thật thì có hoạt động không?"
+- **Capability Benchmark** — đánh giá năng lực từng Agent theo domain
+- **Stress Test** — 20 fake tasks qua 13-step workflow, đo độ ổn định
+- **Health Score** chấm điểm sức khỏe hệ thống (System + Runtime + Capability)
 - **Evolution Report** báo cáo tiến hóa hệ thống
 
 **Khi nào chạy:**
@@ -21,6 +24,7 @@ agent: general
 - Trước khi giới thiệu người mới vào dự án
 - Định kỳ (khuyến nghị mỗi tuần) để duy trì sức khỏe hệ thống
 - Khi nghi ngờ có compatibility issue giữa các agents
+- **Khi nghi ngờ agent/skill/command không chạy được ở runtime** → `--simulate`
 
 **Cách dùng:** `/team-syncdocs [--flags] [--evolution-mode <mode>]`
 
@@ -29,29 +33,36 @@ agent: general
 |------|-------|
 | `--dry-run` | Chỉ xem trước, không ghi file |
 | `--force` | Ghi đè không cần xác nhận + cho phép auto-fix |
-| `--evolve` | Chạy đầy đủ System Evolution Engine (7 engines) |
+| `--evolve` | Chạy đầy đủ System Evolution Engine (9 engines) |
 | `--semantic-diff` | Chỉ chạy Semantic Diff Engine |
 | `--compatibility` | Chỉ chạy Compatibility Checker |
 | `--migration` | Chỉ chạy Migration System |
 | `--self-heal` | Chỉ chạy Self Healing Engine |
 | `--knowledge-migrate` | Chỉ chạy Knowledge Migration |
+| `--simulate` | Chạy **Simulation Engine** (Sandbox mode) — runtime validation |
+| `--benchmark` | Chạy **Capability Benchmark Engine** |
+| `--stress-test` | Chạy **Stress Test** (20 fake tasks qua 13-step workflow) |
 | `--health-score` | Chỉ chạy Health Score |
 | `--report` | Chỉ chạy Evolution Report |
 
 **Modes:**
 | Mode | Mô tả | Engines chạy |
 |------|-------|-------------|
-| `full` (default) | Toàn bộ pipeline | 1→2→3→4→5→6→7 |
+| `full` (default) | Toàn bộ pipeline | 1→2→3→4→5→6→7→8→9 |
 | `scan` | Chỉ scan, không heal | 1, 2, 3, 5 |
 | `heal` | Scan + self-heal + migration | 1, 2, 3, 4, 5 |
-| `quick` | Scan nhanh + health | 1, 2, 6 |
-| `report` | Chỉ tạo report từ cache | 7 |
+| `sandbox` | Runtime validation + benchmark | 6, 7 (simulation + benchmark) |
+| `quick` | Scan nhanh + health | 1, 2, 8 |
+| `report` | Chỉ tạo report từ cache | 9 |
 
 **Đầu ra:**
 - `SYSTEM_MAP.md` — Sơ đồ tổng thể hệ thống
-- `SYSTEM_EVOLUTION_REPORT.md` — Báo cáo tiến hóa chi tiết
+- `SYSTEM_EVOLUTION_REPORT.md` — Báo cáo tiến hóa chi tiết (gồm Runtime Health + Capability)
 - Cập nhật cross-reference trong `team.md` và `SKILL.md`
 - Báo cáo phát hiện vấn đề, health score
+- `reports/simulation-engine-<ts>.json` — Runtime validation report
+- `reports/capability-benchmark-<ts>.json` — Capability report
+- `reports/stress-test-<ts>.json` — Stress test report
 
 ---
 
@@ -74,7 +85,9 @@ agent: general
 │   │   ├── migration-system.ps1      # Nâng cấp #3
 │   │   ├── self-healing.ps1          # Nâng cấp #4
 │   │   ├── knowledge-migration.ps1   # Nâng cấp #6
-│   │   ├── health-score.ps1          # Nâng cấp #8
+│   │   ├── simulation-engine.ps1     # Nâng cấp #9 (Runtime Validation)
+│   │   ├── capability-benchmark.ps1  # Nâng cấp #10 (Capability Benchmark)
+│   │   ├── health-score.ps1          # Nâng cấp #8 (System + Runtime + Capability)
 │   │   └── evolution-report.ps1      # Nâng cấp #7
 │   └── reports/              # Evolution reports output
 ├── SYSTEM_MAP.md             # System map (sync output)
@@ -137,14 +150,61 @@ Chạy `health-score.ps1`:
 - Scripts quality (documentation, parameters)
 - Tests coverage (số lượng test files)
 - Learning maturity (lessons, skills-learned)
-- Output: weighted score 0-100
+- **Runtime Health** (từ Simulation Engine — runtime validation)
+- **Capability Score** (từ Capability Benchmark)
+- Output: weighted score 0-100 (10 categories)
 
 ### Bước 8: Evolution Report
 Chạy `evolution-report.ps1`:
 - Tổng hợp tất cả kết quả từ bước 2-7
 - Tạo `SYSTEM_EVOLUTION_REPORT.md`
 - Hiển thị detected changes, auto-fixed, pending, learning, suggestions, health
+- **Hiển thị Runtime Simulation (runtime health + suggested actions)**
+- **Hiển thị Capability Benchmark (domain scores + task simulations)**
 - Output: Evolution Report Markdown
+
+---
+
+## SIMULATION ENGINE (Sandbox Mode)
+
+### Nâng cấp #9: Simulation Engine (`simulation-engine.ps1`)
+Runtime validation — trả lời câu hỏi **"nếu chạy thật thì có hoạt động không?"**:
+Static analysis chỉ kiểm tra file/contract đúng, nhưng các lỗi sau chỉ xuất hiện khi runtime:
+- Agent không load được skill
+- Skill tham chiếu file không tồn tại
+- Workflow bị loop / output format sai
+- Prompt bị conflict / command không truyền được parameter
+
+**6 nhóm validation:**
+| Group | Kiểm tra | Lỗi phát hiện |
+|-------|----------|---------------|
+| Agent Validation | Frontmatter, mode/model, permissions, depends_on, contract, skill requirements | `AGENT_BAD_FRONTMATTER`, `MISSING_DEPENDENCY`, `AGENT_PERMISSION_INVALID` |
+| Skill Validation | SKILL.md frontmatter, file tham chiếu tồn tại, deprecated, conflict | `SKILL_REF_NOT_FOUND`, `SKILL_DEPRECATED`, `SKILL_CONFLICT` |
+| Command Validation | Frontmatter, agent/trigger/opencode.json routing | `COMMAND_NO_AGENT`, `COMMAND_AGENT_NOT_FOUND`, `COMMAND_TRIGGER_ROUTING` |
+| Contract Validation | Contract tồn tại, schema version compat | `MISSING_CONTRACT`, `VERSION_MISMATCH` |
+| Integration Test | Chain planner→reviewer→builder→tester | `INTEGRATION_BREAK` |
+| Output Validation | Fake task injection, expected artifact vs contract output | `OUTPUT_MISMATCH` |
+
+**Runtime Health:** `passed_checks / total_checks * 100` → verdict STABLE (>=90) | WARNING (70-89) | UNSTABLE (<70)
+
+**Learning:** Từ các failures → `suggested_actions` (create skill, update contract, fix reference, ...)
+
+## CAPABILITY BENCHMARK
+
+### Nâng cấp #10: Capability Benchmark (`capability-benchmark.ps1`)
+Đánh giá năng lực từng Agent theo 10 domain:
+- Blazor/.NET, Planning, Testing, Git, Security, UI/UX, Docs, Orchestration, Scripting, Database
+- Scoring: base 40 + 15/keyword hit, cộng bonus từ contract presence + knowledge coverage
+- **Task simulation:** mỗi domain mô phỏng 1 task (vd "Fix Blazor bug") → PASS nếu có agent >= 60
+- Output: `capability_score` 0-100 + verdict STRONG (>=80) | MODERATE (60-79) | WEAK (<60)
+
+## STRESS TEST
+
+### Nâng cấp #11: Stress Test (inline trong sync-system-docs.ps1)
+- Sinh 20 fake tasks (deterministic theo seed) qua 13-step state machine
+- Mỗi bước có xác suất thành công mô phỏng thực tế
+- Stats: success rate, health score, verdict (STABLE/WARNING/UNSTABLE), weakest steps, common errors
+- Usage: `--stress-test -stressCount 20 -stressSeed <seed>`
 
 ---
 
@@ -152,7 +212,7 @@ Chạy `evolution-report.ps1`:
 
 ```yaml
 status: SUCCESS | PARTIAL | FAILED
-summary: "System Evolution: X changes, Y compatibility issues, Z auto-fixed, score: W/100"
+summary: "System Evolution: X changes, Y compatibility issues, Z auto-fixed, runtime health R/100, capability C/100, score: W/100"
 sync:
   files_updated:
     - ".opencode/SYSTEM_MAP.md"
@@ -180,6 +240,20 @@ evolution:
   knowledge:
     deprecated: X
     missing: X
+  simulation:
+    runtime_health: X/100
+    verdict: STABLE | WARNING | UNSTABLE
+    runtime_errors: X
+    integration_issues: X
+    suggested_actions: [action1, action2]
+  benchmark:
+    capability_score: X/100
+    verdict: STRONG | MODERATE | WEAK
+    task_success_rate: X%
+  stress_test:
+    total_tasks: X
+    success_rate: X%
+    verdict: STABLE | WARNING | UNSTABLE
   health_score:
     overall: X/100
     categories:
@@ -191,9 +265,11 @@ evolution:
       Scripts: X
       Tests: X
       Learning: X
+      Runtime: X
+      Capability: X
   report: ".opencode/SYSTEM_EVOLUTION_REPORT.md"
 issues:
-  - type: ORPHAN_AGENT | MISSING_AGENT | COMPATIBILITY_ISSUE | MIGRATION_REQUIRED
+  - type: ORPHAN_AGENT | MISSING_AGENT | COMPATIBILITY_ISSUE | MIGRATION_REQUIRED | RUNTIME_ERROR
     severity: WARNING | ERROR | CRITICAL
     detail: "Mô tả vấn đề"
 ```
@@ -206,7 +282,7 @@ issues:
 # Quick sync (legacy mode — chỉ sync docs)
 & ".opencode\scripts\sync-system-docs.ps1"
 
-# Full System Evolution (sync + all engines)
+# Full System Evolution (sync + all 9 engines)
 & ".opencode\scripts\sync-system-docs.ps1" -evolve
 
 # Scan only (no heal)
@@ -214,6 +290,18 @@ issues:
 
 # Scan + heal
 & ".opencode\scripts\sync-system-docs.ps1" -evolutionMode heal -force
+
+# Sandbox mode — runtime validation + capability benchmark
+& ".opencode\scripts\sync-system-docs.ps1" -evolutionMode sandbox
+
+# Simulation Engine only (runtime validation)
+& ".opencode\scripts\sync-system-docs.ps1" -simulate
+
+# Capability Benchmark only
+& ".opencode\scripts\sync-system-docs.ps1" -benchmark
+
+# Stress Test (20 fake tasks, deterministic)
+& ".opencode\scripts\sync-system-docs.ps1" -stressTest -stressCount 20
 
 # Health score only
 & ".opencode\scripts\sync-system-docs.ps1" -healthScore
@@ -224,7 +312,7 @@ issues:
 
 ---
 
-## HỆ THỐNG 8 NÂNG CẤP
+## HỆ THỐNG 11 NÂNG CẤP
 
 ### Nâng cấp #1: Semantic Diff Engine (`semantic-diff.ps1`)
 So sánh semantic giữa các phiên bản contract — phát hiện:
@@ -285,28 +373,32 @@ Tạo báo cáo Markdown gồm:
 - **Health Score:** Điểm sức khỏe tổng thể
 
 ### Nâng cấp #8: System Health Score (`health-score.ps1`)
-Chấm điểm 8 categories:
+Chấm điểm 10 categories (System Health + Runtime Health + Capability Score):
 | Category | Weight | Mô tả |
 |----------|--------|-------|
-| Workflow | 15% | Workflow contract integrity |
-| Skills | 15% | Skills freshness, schema version |
-| Knowledge | 10% | Knowledge completeness |
-| Compatibility | 15% | Cross-agent compatibility |
-| Agents | 15% | Agent health, contract coverage |
-| Scripts | 10% | Script quality, documentation |
-| Tests | 10% | Test coverage |
-| Learning | 10% | Lessons, patterns documentation |
+| Workflow | 13% | Workflow contract integrity |
+| Skills | 13% | Skills freshness, schema version |
+| Knowledge | 9% | Knowledge completeness |
+| Compatibility | 13% | Cross-agent compatibility |
+| Agents | 13% | Agent health, contract coverage |
+| Scripts | 9% | Script quality, documentation |
+| Tests | 9% | Test coverage |
+| Learning | 9% | Lessons, patterns documentation |
+| **Runtime** | **6%** | Runtime health từ Simulation Engine |
+| **Capability** | **6%** | Capability score từ Benchmark Engine |
 
-**Overall** = weighted average (0-100)
+**Overall** = weighted average (0-100). Runtime/Capability fallback 50 nếu chưa chạy simulation/benchmark.
 
 ---
 
 ## QUY TẮC
 
-- Backward compatible: `--evolve` flag mới, không phá vỡ sync cũ
+- Backward compatible: `--simulate`/`--benchmark` flags mới, không phá vỡ sync cũ
 - `--dry-run`: chỉ scan, không ghi file, không fix
 - `--force`: cho phép auto-fix (self-healing)
 - Self-healing luôn backup trước khi fix vào `.opencode/backup/self-heal/`
 - Health score < 50 → warning trong report
 - Migration tasks CRITICAL → cần user can thiệp
 - Contract Registry là single source of truth cho tất cả engines
+- **Simulation Engine là read-only** — không sửa file hệ thống
+- **Runtime Health < 70** → warning trong report (hệ thống cấu hình đúng nhưng runtime có vấn đề)

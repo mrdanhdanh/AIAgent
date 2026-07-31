@@ -1,0 +1,169 @@
+﻿{
+    "tool":  "migration-system.ps1",
+    "summary":  "Migration: 4 schema changes, 4 tasks, 4 affected agents",
+    "affected_agents":  [
+                            "builder",
+                            "planner",
+                            "reviewer",
+                            "workflow"
+                        ],
+    "version":  "1.0.0",
+    "all_pass":  true,
+    "migration_plan":  [
+                           {
+                               "removed":  [
+
+                                           ],
+                               "version":  "3.0_to_3.1",
+                               "source":  "builder",
+                               "breaking":  false,
+                               "requires_migration":  true,
+                               "downstream_affected":  [
+
+                                                       ],
+                               "added":  [
+                                             "error_type",
+                                             "error_normalized",
+                                             "error_hash",
+                                             "retryable",
+                                             "backup_workflow_id",
+                                             "failure_type",
+                                             "created_files",
+                                             "deleted_files"
+                                         ]
+                           },
+                           {
+                               "removed":  [
+
+                                           ],
+                               "version":  "3.1_to_3.2",
+                               "source":  "planner",
+                               "breaking":  false,
+                               "requires_migration":  true,
+                               "downstream_affected":  [
+
+                                                       ],
+                               "added":  [
+                                             "risk_level (step)",
+                                             "per_chunk_validate",
+                                             "trigger_conditions (rollback)",
+                                             "restore_order (rollback)",
+                                             "requires_user_confirmation (rollback)",
+                                             "expected_result (step — REQUIRED)"
+                                         ]
+                           },
+                           {
+                               "removed":  [
+
+                                           ],
+                               "version":  "3.0_to_4.0",
+                               "source":  "reviewer",
+                               "breaking":  false,
+                               "requires_migration":  true,
+                               "downstream_affected":  [
+
+                                                       ],
+                               "added":  [
+                                             "score_rationale",
+                                             "consistency_checks",
+                                             "missing_info",
+                                             "required_updates",
+                                             "edge_cases_checked",
+                                             "not_covered_risks",
+                                             "recommendation",
+                                             "next_step",
+                                             "fix_priority (issue)",
+                                             "affected_phase (issue)"
+                                         ]
+                           },
+                           {
+                               "removed":  [
+
+                                           ],
+                               "version":  "3.1_to_3.2",
+                               "source":  "workflow",
+                               "breaking":  false,
+                               "requires_migration":  true,
+                               "downstream_affected":  [
+
+                                                       ],
+                               "added":  [
+                                             "guardrail step",
+                                             "static_analysis step",
+                                             "risk_level field",
+                                             "per_chunk_validate",
+                                             "enhanced rollback_strategy"
+                                         ]
+                           }
+                       ],
+    "timestamp":  "20260731_233554",
+    "pending":  [
+                    "Update builder: Update agent prompt/contract to support new fields",
+                    "Update planner: Update agent prompt/contract to support new fields",
+                    "Update reviewer: Update agent prompt/contract to support new fields",
+                    "Update workflow: Update agent prompt/contract to support new fields"
+                ],
+    "tasks":  [
+                  {
+                      "priority":  "HIGH",
+                      "agent":  "builder",
+                      "fields":  [
+                                     "error_type",
+                                     "error_normalized",
+                                     "error_hash",
+                                     "retryable",
+                                     "backup_workflow_id",
+                                     "failure_type",
+                                     "created_files",
+                                     "deleted_files"
+                                 ],
+                      "type":  "ADD_FIELD_SUPPORT",
+                      "action":  "Update agent prompt/contract to support new fields"
+                  },
+                  {
+                      "priority":  "HIGH",
+                      "agent":  "planner",
+                      "fields":  [
+                                     "risk_level (step)",
+                                     "per_chunk_validate",
+                                     "trigger_conditions (rollback)",
+                                     "restore_order (rollback)",
+                                     "requires_user_confirmation (rollback)",
+                                     "expected_result (step — REQUIRED)"
+                                 ],
+                      "type":  "ADD_FIELD_SUPPORT",
+                      "action":  "Update agent prompt/contract to support new fields"
+                  },
+                  {
+                      "priority":  "HIGH",
+                      "agent":  "reviewer",
+                      "fields":  [
+                                     "score_rationale",
+                                     "consistency_checks",
+                                     "missing_info",
+                                     "required_updates",
+                                     "edge_cases_checked",
+                                     "not_covered_risks",
+                                     "recommendation",
+                                     "next_step",
+                                     "fix_priority (issue)",
+                                     "affected_phase (issue)"
+                                 ],
+                      "type":  "ADD_FIELD_SUPPORT",
+                      "action":  "Update agent prompt/contract to support new fields"
+                  },
+                  {
+                      "priority":  "HIGH",
+                      "agent":  "workflow",
+                      "fields":  [
+                                     "guardrail step",
+                                     "static_analysis step",
+                                     "risk_level field",
+                                     "per_chunk_validate",
+                                     "enhanced rollback_strategy"
+                                 ],
+                      "type":  "ADD_FIELD_SUPPORT",
+                      "action":  "Update agent prompt/contract to support new fields"
+                  }
+              ]
+}

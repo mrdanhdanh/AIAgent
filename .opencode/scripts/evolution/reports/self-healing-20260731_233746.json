@@ -1,0 +1,84 @@
+﻿{
+    "tool":  "self-healing.ps1",
+    "summary":  "Self-healing: 0 auto-fixed, 4 pending (4 total scans)",
+    "version":  "1.0.0",
+    "all_pass":  true,
+    "fixes":  [
+
+              ],
+    "auto_fixed_count":  0,
+    "timestamp":  "20260731_233746",
+    "pending":  [
+                    {
+                        "suggestion":  "recommendation",
+                        "wrong":  "recommendations",
+                        "requires_approval":  true,
+                        "type":  "TYPO_CANDIDATE",
+                        "confidence":  93,
+                        "file":  "test-planner.md"
+                    },
+                    {
+                        "suggestion":  "recommendation",
+                        "wrong":  "recommendations",
+                        "requires_approval":  true,
+                        "type":  "TYPO_CANDIDATE",
+                        "confidence":  93,
+                        "file":  "test-planner.md"
+                    },
+                    {
+                        "suggestion":  "recommendation",
+                        "wrong":  "recommendations",
+                        "requires_approval":  true,
+                        "type":  "TYPO_CANDIDATE",
+                        "confidence":  93,
+                        "file":  "ui-beautifier.md"
+                    },
+                    {
+                        "suggestion":  "recommendation",
+                        "wrong":  "recommendations",
+                        "requires_approval":  true,
+                        "type":  "TYPO_CANDIDATE",
+                        "confidence":  93,
+                        "file":  "ui-beautifier.md"
+                    }
+                ],
+    "pending_count":  4,
+    "scans":  [
+                  {
+                      "suggestion":  "recommendation",
+                      "wrong":  "recommendations",
+                      "line":  "unknown",
+                      "type":  "POSSIBLE_TYPO",
+                      "confidence":  93,
+                      "similarity":  93,
+                      "file":  "test-planner.md"
+                  },
+                  {
+                      "suggestion":  "recommendation",
+                      "wrong":  "recommendations",
+                      "line":  "unknown",
+                      "type":  "POSSIBLE_TYPO",
+                      "confidence":  93,
+                      "similarity":  93,
+                      "file":  "test-planner.md"
+                  },
+                  {
+                      "suggestion":  "recommendation",
+                      "wrong":  "recommendations",
+                      "line":  "unknown",
+                      "type":  "POSSIBLE_TYPO",
+                      "confidence":  93,
+                      "similarity":  93,
+                      "file":  "ui-beautifier.md"
+                  },
+                  {
+                      "suggestion":  "recommendation",
+                      "wrong":  "recommendations",
+                      "line":  "unknown",
+                      "type":  "POSSIBLE_TYPO",
+                      "confidence":  93,
+                      "similarity":  93,
+                      "file":  "ui-beautifier.md"
+                  }
+              ]
+}

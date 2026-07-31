@@ -348,7 +348,7 @@
                                     },
                      "team-syncdocs":  {
                                            "agent":  "general",
-                                           "description":  "System Evolution Engine — đồng bộ system docs + semantic diff + compatibility check + migration + self-healing + health score + evolution report. Chạy định kỳ để duy trì sức khỏe hệ thống.",
+                                           "description":  "System Evolution Engine — đồng bộ system docs + semantic diff + compatibility check + migration + self-healing + health score + simulation (runtime validation) + capability benchmark + stress test + evolution report. Chạy định kỳ để duy trì sức khỏe hệ thống.",
                                            "deprecated":  false,
                                            "file":  "commands/team-syncdocs.md"
                                        },
@@ -398,7 +398,7 @@
                     "sync-system-docs":  {
                                              "summary":  "Utility script",
                                              "file":  "scripts/sync-system-docs.ps1",
-                                             "size":  45885
+                                             "size":  49513
                                          },
                     "gitpush-utility":  {
                                             "summary":  "GitPush Utility — thực hiện git push an toàn với auto-commit, safety checks, confirmation gate.",
@@ -578,7 +578,7 @@
                                                              ]
                                              }
                    },
-    "scanned_at":  "2026-07-31T23:15:38.0374787+07:00",
+    "scanned_at":  "2026-07-31T23:42:04.2482898+07:00",
     "skills":  {
                    "dev-team":  {
                                     "schema_version":  "3.2",

@@ -1,0 +1,71 @@
+# Contract: UI Beautifier Agent
+# Schema version: 1.0
+# Description: Định nghĩa input/output contract cho UI Beautifier Agent (ui_audit phase) — multi-phase pipeline v3.0
+
+contract_version: "1.0"
+agent: ui-beautifier
+type: ui_audit
+
+input:
+  from: builder
+  schema_version: "3.1"
+  required_fields:
+    - status: "PASS | FAIL"
+    - changed_files: "array[string]"
+    - created_files: "array[string]"
+
+output:
+  schema_version: "3.0"
+  artifact: "07_ui_audit.md"
+  fields:
+    - status: "PASS | CHANGES_NEEDED | FAIL"
+    - mode: "quick | full | security | cleanup | critique | complete"
+    - pipeline: "{phases_executed[], phase_status{phase1, phase2, phase3, phase4}}"
+    - multi_phase_scores: "{phase1, phase2, phase3, phase4, overall}"
+    - issues: "array[{file, severity, category, description, suggestion, line, phase}]"
+    - critique_issues: "array[{severity, category, description, suggestion}]"
+    - security_issues: "array[{severity, category, description, suggestion, line}]"
+    - cleanup_report: "{status, freed_bytes, items_cleaned, items_skipped}"
+    - recommendations: "array[{category, description, impact, effort}]"
+    - applied_changes: "array[{file, issue, before, after, reason}]"
+    - diffs: "array[{file, before, after, reason}]"
+    - todos: "array[{file, description, priority, risk}]"
+    - summary: "string"
+    - details: "string"
+    - total_issues: "int"
+    - breakdown: "{critical, major, minor}"
+
+phase_gates:
+  phase1_core:
+    threshold_overall: 7.0
+    blocking: ["CRITICAL"]
+  phase2_critique:
+    threshold_overall: 6.5
+    blocking: []
+  phase3_security:
+    blocking: ["CRITICAL"]
+  phase4_cleanup:
+    blocking: []
+
+supported_versions:
+  - "2.0"
+  - "3.0"
+
+dependencies:
+  requires: ["builder"]
+  provides_to: ["orchestrator"]
+
+migration_rules:
+  "2.0_to_3.0":
+    added:
+      - pipeline.phases_executed
+      - pipeline.phase_status
+      - multi_phase_scores
+      - critique_issues
+      - security_issues
+      - cleanup_report
+      - issue.phase
+      - mode system mở rộng
+    changed:
+      - scoring weighted average (4 phases)
+    breaking: false

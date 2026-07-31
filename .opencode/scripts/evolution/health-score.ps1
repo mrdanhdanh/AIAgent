@@ -17,6 +17,8 @@ param(
     [string]$compatibilityReport = "",
     [string]$knowledgeReport = "",
     [string]$migrationReport = "",
+    [string]$simulationReport = "",
+    [string]$benchmarkReport = "",
     [string]$contractDir = ".opencode/system/contracts",
     [string]$agentsDir = ".opencode/agents",
     [string]$commandsDir = ".opencode/commands",
@@ -44,6 +46,8 @@ function Load-Report {
 $compData = Load-Report -Path $compatibilityReport
 $knowData = Load-Report -Path $knowledgeReport
 $migrData = Load-Report -Path $migrationReport
+$simData = Load-Report -Path $simulationReport
+$bmData = Load-Report -Path $benchmarkReport
 
 $results = @{
     tool = "health-score.ps1"
@@ -178,16 +182,36 @@ if ($migrData) {
 $learnScore = [Math]::Max(0, $learnScore)
 $results.categories.Learning = $learnScore
 
+# 9. Runtime Health (tu Simulation Engine — sandbox mode)
+Write-Host "Scoring: Runtime Health..." -ForegroundColor Cyan
+$runScore = 50  # fallback khi khong co simulation report
+if ($simData) {
+    $runScore = [int]$simData.runtime_health
+    if (-not $runScore -or $runScore -lt 0 -or $runScore -gt 100) { $runScore = 50 }
+}
+$results.categories.Runtime = $runScore
+
+# 10. Capability Score (tu Capability Benchmark Engine)
+Write-Host "Scoring: Capability..." -ForegroundColor Cyan
+$capScore = 50  # fallback khi khong co benchmark report
+if ($bmData) {
+    $capScore = [int]$bmData.capability_score
+    if (-not $capScore -or $capScore -lt 0 -or $capScore -gt 100) { $capScore = 50 }
+}
+$results.categories.Capability = $capScore
+
 # Compute overall
 $weights = @{
-    Workflow = 0.15
-    Skills = 0.15
-    Knowledge = 0.10
-    Compatibility = 0.15
-    Agents = 0.15
-    Scripts = 0.10
-    Tests = 0.10
-    Learning = 0.10
+    Workflow = 0.13
+    Skills = 0.13
+    Knowledge = 0.09
+    Compatibility = 0.13
+    Agents = 0.13
+    Scripts = 0.09
+    Tests = 0.09
+    Learning = 0.09
+    Runtime = 0.06
+    Capability = 0.06
 }
 
 $overall = 0
@@ -214,6 +238,12 @@ if ($cpScore -lt 80) {
 }
 if ($tsScore -lt 60) {
     $results.recommendations += "Tests score low ($tsScore/100) - more tests needed"
+}
+if ($runScore -lt 70) {
+    $results.recommendations += "Runtime health low ($runScore/100) - run simulation-engine.ps1 and fix runtime errors"
+}
+if ($capScore -lt 70) {
+    $results.recommendations += "Capability score low ($capScore/100) - consider adding skills/knowledge for weak domains"
 }
 
 $results.summary = "Health score: " + $results.overall + "/100"

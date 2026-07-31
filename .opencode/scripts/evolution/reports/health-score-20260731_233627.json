@@ -1,0 +1,23 @@
+﻿{
+    "recommendations":  [
+                            "Runtime health low (50/100) - run simulation-engine.ps1 and fix runtime errors",
+                            "Capability score low (50/100) - consider adding skills/knowledge for weak domains"
+                        ],
+    "tool":  "health-score.ps1",
+    "overall":  77,
+    "version":  "1.0.0",
+    "summary":  "Health score: 77/100",
+    "categories":  {
+                       "Scripts":  84,
+                       "Compatibility":  100,
+                       "Workflow":  100,
+                       "Skills":  85,
+                       "Learning":  100,
+                       "Knowledge":  80,
+                       "Tests":  100,
+                       "Capability":  50,
+                       "Runtime":  50,
+                       "Agents":  8
+                   },
+    "timestamp":  "20260731_233627"
+}

@@ -1,0 +1,70 @@
+# Contract: Analyst Agent
+# Schema version: 1.0
+# Description: Định nghĩa input/output contract cho Analyst Agent (analyze phase)
+
+contract_version: "1.0"
+agent: analyst
+type: analysis
+
+input:
+  from: user
+  schema_version: "1.0"
+  required_fields:
+    - goal: "string — mục tiêu thay đổi"
+    - scope: "string — module/file liên quan"
+    - criteria: "string — tiêu chí đánh giá tác động"
+    - allowed_scope: "string — phạm vi được phép khảo sát"
+
+output:
+  schema_version: "2.0"
+  artifact: "01_analysis.md"
+  fields:
+    - status: "READY | NEED_MORE_INFO"
+    - summary: "string — tóm tắt phân tích (2-3 câu)"
+    - details: "string — phân tích chi tiết kèm evidence"
+    - scanned_paths: "array[string]"
+    - ignored_paths: "array[string]"
+    - discovered_modules: "array[string]"
+    - structure: "{root, language, framework, entry_points[], main_directories[]}"
+    - requirements: "array[{id, description, priority}]"
+    - risks: "array[{id, description, severity, mitigation}]"
+    - assumptions: "array[{id, description}]"
+    - dependencies: "array[{from, to, type, evidence_file, evidence_line, reason}]"
+    - patterns: "{naming, routing, state_management, testing}"
+    - impact_scope: "array[{file, level: DIRECT|INDIRECT|UNRELATED, notes}]"
+    - design_proposal: "{approach, affected_modules[], new_files[], modified_files[], integration_points[]}"
+    - tasks: "array[{id, description, files[], depends_on[], why}]"
+    - conclusion: "{status, reason, missing_info[]}"
+
+decision_rules:
+  NEED_MORE_INFO:
+    conditions:
+      - "Thiếu goal, scope, criteria, hoặc allowed_scope"
+      - "Yêu cầu không rõ ràng, cần làm rõ thêm"
+  READY:
+    conditions:
+      - "Đủ thông tin để tiến hành design/plan"
+
+supported_versions:
+  - "2.0"
+
+dependencies:
+  requires: ["user"]
+  provides_to: ["planner"]
+
+migration_rules:
+  "1.0_to_2.0":
+    added:
+      - details
+      - scanned_paths
+      - ignored_paths
+      - discovered_modules
+      - structure
+      - assumptions
+      - dependencies (có evidence)
+      - patterns
+      - design_proposal
+      - conclusion
+    removed:
+      - findings (tách thành details)
+    breaking: false

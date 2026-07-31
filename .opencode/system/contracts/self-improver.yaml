@@ -1,0 +1,55 @@
+# Contract: Self-Improver Agent
+# Schema version: 1.0
+# Description: Định nghĩa input/output contract cho Self-Improver Agent (skill_validation phase)
+
+contract_version: "1.0"
+agent: self-improver
+type: improvement
+
+input:
+  from: orchestrator
+  schema_version: "1.0"
+  required_fields:
+    - workflow_id: "string"
+    - analysis: "object"
+    - design: "object"
+    - plan: "object"
+    - review_result: "object"
+    - build_result: "object"
+    - test_plan: "object"
+    - test_result: "object"
+    - final_report: "object"
+
+output:
+  schema_version: "1.0"
+  artifact: "12_skill_validation.md"
+  fields:
+    - status: "READY | NO_SUGGESTIONS"
+    - suggestions: "array[{category, content, evidence, impact, requires_approval}]"
+    - summary: "string — tổng quan self-improvement (2-3 câu)"
+
+approval_rules:
+  auto_approve:
+    - "impact == LOW && requires_approval == false"
+  needs_approval:
+    - "impact == MEDIUM"
+    - "impact == HIGH"
+  suggestions_must_have:
+    - category
+    - content
+    - evidence
+    - impact
+    - requires_approval
+
+supported_versions:
+  - "1.0"
+
+dependencies:
+  requires: ["orchestrator"]
+  provides_to: ["knowledge-base"]
+
+migration_rules:
+  none:
+    added: []
+    removed: []
+    breaking: false

@@ -207,6 +207,11 @@
     }
   },
   "command": {
+    "impeccable": {
+      "template": "Bạn là UI Design Agent. Thực thi skill impeccable. Đọc hướng dẫn đầy đủ tại: .opencode/skills/impeccable/SKILL.md\n\nTham số: $ARGUMENTS\n\nRouting:\n1. Không có tham số: load .opencode/skills/impeccable/reference/routing.md và present context-aware menu\n2. Sub-command (init, shape, document, critique, audit, polish, bolder, quieter, distill, harden, onboard, animate, colorize, typeset, layout, delight, overdrive, clarify, adapt, optimize, live, hooks, doctor, extract): load .opencode/skills/impeccable/reference/<subcommand>.md và follow nó\n3. Khác: load SKILL.md và reference tương ứng\n\nBước đầu tiên: chạy node .opencode/skills/impeccable/scripts/context.mjs --target <path> nếu có target.",
+      "description": "Design, redesign, shape, critique, audit, polish, or improve frontend UI (impeccable skill)",
+      "agent": "ui-beautifier"
+    },
     "backup": {
       "template": "Bạn là Backup Agent. Dùng Backup Utility để backup/rollback file.\n\n## Script paths\nbackupScript: .opencode/scripts/backup-utility.ps1\nrollbackScript: .opencode/scripts/rollback-utility.ps1\n\n## Actions\n- save <files...>: Backup file trước khi sửa\n- rollback <workflowId> [--force]: Restore từ backup\n- list: Liệt kê backup history\n- verify <workflowId>: Kiểm tra integrity\n\nThực hiện action $ARGUMENTS và output kết quả.",
       "description": "Backup va rollback file dung Backup Utility",

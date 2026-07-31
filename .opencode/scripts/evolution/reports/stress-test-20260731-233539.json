@@ -1,0 +1,150 @@
+﻿{
+    "stress_test":  {
+                        "failures":  [
+                                         {
+                                             "step":  "test",
+                                             "task_id":  "TASK-007",
+                                             "error_type":  "WORKFLOW_CONFLICT"
+                                         },
+                                         {
+                                             "step":  "analyze",
+                                             "task_id":  "TASK-008",
+                                             "error_type":  "CONTRACT_MISMATCH"
+                                         },
+                                         {
+                                             "step":  "plan",
+                                             "task_id":  "TASK-009",
+                                             "error_type":  "PARSER_ERROR"
+                                         },
+                                         {
+                                             "step":  "review",
+                                             "task_id":  "TASK-010",
+                                             "error_type":  "TIMEOUT"
+                                         },
+                                         {
+                                             "step":  "review",
+                                             "task_id":  "TASK-011",
+                                             "error_type":  "MISSING_SKILL"
+                                         },
+                                         {
+                                             "step":  "build",
+                                             "task_id":  "TASK-013",
+                                             "error_type":  "CONTRACT_MISMATCH"
+                                         },
+                                         {
+                                             "step":  "build",
+                                             "task_id":  "TASK-014",
+                                             "error_type":  "TEST_FAILURE"
+                                         },
+                                         {
+                                             "step":  "review",
+                                             "task_id":  "TASK-015",
+                                             "error_type":  "WORKFLOW_CONFLICT"
+                                         },
+                                         {
+                                             "step":  "backup",
+                                             "task_id":  "TASK-016",
+                                             "error_type":  "WORKFLOW_CONFLICT"
+                                         },
+                                         {
+                                             "step":  "build",
+                                             "task_id":  "TASK-018",
+                                             "error_type":  "TIMEOUT"
+                                         },
+                                         {
+                                             "step":  "ui_audit",
+                                             "task_id":  "TASK-020",
+                                             "error_type":  "TEST_FAILURE"
+                                         }
+                                     ],
+                        "total_tasks":  20,
+                        "weakest_steps":  [
+                                              {
+                                                  "step":  "review",
+                                                  "failure_rate":  15,
+                                                  "failure_count":  3
+                                              },
+                                              {
+                                                  "step":  "build",
+                                                  "failure_rate":  15,
+                                                  "failure_count":  3
+                                              },
+                                              {
+                                                  "step":  "test",
+                                                  "failure_rate":  5,
+                                                  "failure_count":  1
+                                              },
+                                              {
+                                                  "step":  "ui_audit",
+                                                  "failure_rate":  5,
+                                                  "failure_count":  1
+                                              },
+                                              {
+                                                  "step":  "analyze",
+                                                  "failure_rate":  5,
+                                                  "failure_count":  1
+                                              },
+                                              {
+                                                  "step":  "plan",
+                                                  "failure_rate":  5,
+                                                  "failure_count":  1
+                                              },
+                                              {
+                                                  "step":  "backup",
+                                                  "failure_rate":  5,
+                                                  "failure_count":  1
+                                              }
+                                          ],
+                        "avg_duration_ms":  629,
+                        "steps":  [
+                                      "analyze",
+                                      "design",
+                                      "plan",
+                                      "review",
+                                      "guardrail",
+                                      "backup",
+                                      "build",
+                                      "static_analysis",
+                                      "ui_audit",
+                                      "testplan",
+                                      "test",
+                                      "skill_validation",
+                                      "complete"
+                                  ],
+                        "step_success_prob":  {
+                                                  "complete":  0.99,
+                                                  "review":  0.88,
+                                                  "ui_audit":  0.9,
+                                                  "backup":  0.96,
+                                                  "build":  0.85,
+                                                  "design":  0.92,
+                                                  "guardrail":  0.97,
+                                                  "static_analysis":  0.92,
+                                                  "analyze":  0.95,
+                                                  "test":  0.82,
+                                                  "plan":  0.9,
+                                                  "testplan":  0.95,
+                                                  "skill_validation":  0.97
+                                              },
+                        "success_rate":  45,
+                        "verdict":  "UNSTABLE",
+                        "most_common_errors":  [
+                                                   {
+                                                       "count":  3,
+                                                       "error_type":  "WORKFLOW_CONFLICT"
+                                                   },
+                                                   {
+                                                       "count":  2,
+                                                       "error_type":  "CONTRACT_MISMATCH"
+                                                   },
+                                                   {
+                                                       "count":  2,
+                                                       "error_type":  "TIMEOUT"
+                                                   }
+                                               ],
+                        "seed":  "evolution-v3",
+                        "success_count":  9,
+                        "health_score":  53,
+                        "failure_count":  11
+                    }
+}

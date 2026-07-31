@@ -1,0 +1,23 @@
+﻿{
+    "recommendations":  [
+                            "Knowledge score low (0/100) - consider adding missing KB entries",
+                            "Compatibility score low (70/100) - check contract mismatches"
+                        ],
+    "tool":  "health-score.ps1",
+    "overall":  68,
+    "version":  "1.0.0",
+    "summary":  "Health score: 68/100",
+    "categories":  {
+                       "Scripts":  84,
+                       "Compatibility":  70,
+                       "Workflow":  100,
+                       "Skills":  85,
+                       "Learning":  90,
+                       "Knowledge":  0,
+                       "Tests":  100,
+                       "Capability":  82,
+                       "Runtime":  70,
+                       "Agents":  8
+                   },
+    "timestamp":  "20260731_234242"
+}

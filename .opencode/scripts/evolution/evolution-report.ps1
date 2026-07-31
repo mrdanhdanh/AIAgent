@@ -13,6 +13,8 @@ param(
     [string]$selfHealingReport = "",
     [string]$knowledgeReport = "",
     [string]$healthReport = "",
+    [string]$simulationReport = "",
+    [string]$benchmarkReport = "",
     [string]$outputDir = ".opencode/scripts/evolution/reports",
     [string]$outputFile = ""
 )
@@ -40,6 +42,8 @@ $ms = Load-JsonReport -Path $migrationReport
 $sh = Load-JsonReport -Path $selfHealingReport
 $km = Load-JsonReport -Path $knowledgeReport
 $hs = Load-JsonReport -Path $healthReport
+$sim = Load-JsonReport -Path $simulationReport
+$bm = Load-JsonReport -Path $benchmarkReport
 
 $results = @{
     report_type = "System Evolution Report"
@@ -61,6 +65,8 @@ $detected = @{
     missing_knowledge = 0
     auto_fixes = 0
     pending_fixes = 0
+    runtime_errors = 0
+    integration_issues = 0
 }
 
 if ($sd) {
@@ -84,6 +90,11 @@ if ($km) {
 if ($sh) {
     $detected.auto_fixes = $sh.auto_fixed_count
     $detected.pending_fixes = $sh.pending_count
+}
+
+if ($sim) {
+    $detected.runtime_errors = $sim.runtime_errors.Count
+    $detected.integration_issues = $sim.integration_issues.Count
 }
 
 $results.sections.detected = $detected
@@ -139,6 +150,37 @@ if ($km -and $km.missing_knowledge.Count -gt 0) {
 }
 $results.sections.suggestions = $suggestions
 
+# SECTION 5.5: Runtime Simulation (Runtime Health)
+$runtimeSection = @{}
+if ($sim) {
+    $runtimeSection = @{
+        runtime_health = $sim.runtime_health
+        verdict = $sim.verdict
+        agents_tested = $sim.agents_tested
+        skills_tested = $sim.skills_tested
+        commands_tested = $sim.commands_tested
+        contracts_tested = $sim.contracts_tested
+        checks_passed = @($sim.checks | Where-Object { $_.status -eq "PASS" }).Count
+        checks_total = $sim.checks.Count
+        runtime_errors = @($sim.runtime_errors | Select-Object -First 10 | ForEach-Object { "[" + $_.severity + "] " + $_.type + ": " + $_.detail })
+        suggested_actions = @($sim.suggested_actions | Select-Object -Unique)
+    }
+}
+$results.sections.runtime_simulation = $runtimeSection
+
+# SECTION 5.6: Capability Benchmark
+$benchmarkSection = @{}
+if ($bm) {
+    $benchmarkSection = @{
+        capability_score = $bm.capability_score
+        verdict = $bm.verdict
+        task_success_rate = $bm.task_success_rate
+        domains = @($bm.domains | Sort-Object { $_.score } -Descending | ForEach-Object { "$($_.domain):$($_.score)%" })
+        task_simulations = @($bm.task_simulations | ForEach-Object { "[" + $_.status + "] " + $_.task + " (best " + $_.best_score + ")" })
+    }
+}
+$results.sections.capability_benchmark = $benchmarkSection
+
 # SECTION 6: Health Score
 if ($hs) {
     $results.health_score = @{
@@ -175,9 +217,23 @@ Write-Host "  $($detected.compatibility_issues) compatibility issues"
 Write-Host "  $($detected.migration_tasks) migration tasks"
 Write-Host "  $($detected.deprecated_knowledge) deprecated knowledge"
 Write-Host "  $($detected.missing_knowledge) missing knowledge topics"
+Write-Host "  $($detected.runtime_errors) runtime errors (simulation)"
+Write-Host "  $($detected.integration_issues) integration issues"
 Write-Host ""
 Write-Host "--------------------------------" -ForegroundColor DarkGray
 Write-Host ""
+if ($sim) {
+    Write-Host "Runtime Health: $($sim.runtime_health)/100 ($($sim.verdict))" -ForegroundColor $(if ($sim.runtime_health -ge 80) { "Green" } elseif ($sim.runtime_health -ge 50) { "Yellow" } else { "Red" })
+    if ($sim.suggested_actions.Count -gt 0) {
+        Write-Host "  Suggested actions (learning):" -ForegroundColor Cyan
+        $sim.suggested_actions | Select-Object -Unique | ForEach-Object { Write-Host "    - $_" -ForegroundColor Cyan }
+    }
+    Write-Host ""
+}
+if ($bm) {
+    Write-Host "Capability Benchmark: $($bm.capability_score)/100 ($($bm.verdict), task sim $($bm.task_success_rate)%)" -ForegroundColor $(if ($bm.capability_score -ge 80) { "Green" } elseif ($bm.capability_score -ge 50) { "Yellow" } else { "Red" })
+    Write-Host ""
+}
 if ($autoFixed.Count -gt 0) {
     Write-Host "Auto-fixed:" -ForegroundColor Green
     foreach ($af in $autoFixed) { Write-Host "  $af" -ForegroundColor Green }
@@ -229,6 +285,8 @@ $reportLines += "| Deprecated knowledge | $($detected.deprecated_knowledge) |"
 $reportLines += "| Missing knowledge topics | $($detected.missing_knowledge) |"
 $reportLines += "| Auto-fixes applied | $($detected.auto_fixes) |"
 $reportLines += "| Pending fixes | $($detected.pending_fixes) |"
+$reportLines += "| Runtime errors (simulation) | $($detected.runtime_errors) |"
+$reportLines += "| Integration issues | $($detected.integration_issues) |"
 $reportLines += ""
 $reportLines += "---"
 $reportLines += ""
@@ -264,6 +322,62 @@ if ($suggestions.Count -gt 0) {
     $reportLines += "## Suggestions"
     $reportLines += ""
     foreach ($sg in $suggestions) { $reportLines += "$sg" }
+    $reportLines += ""
+    $reportLines += "---"
+    $reportLines += ""
+}
+
+if ($sim) {
+    $reportLines += "## Runtime Simulation (Sandbox)"
+    $reportLines += ""
+    $reportLines += "| Metric | Value |"
+    $reportLines += "|--------|-------|"
+    $reportLines += "| Runtime Health | $($sim.runtime_health)/100 |"
+    $reportLines += "| Verdict | $($sim.verdict) |"
+    $reportLines += "| Agents tested | $($sim.agents_tested) |"
+    $reportLines += "| Skills tested | $($sim.skills_tested) |"
+    $reportLines += "| Commands tested | $($sim.commands_tested) |"
+    $reportLines += "| Contracts tested | $($sim.contracts_tested) |"
+    $reportLines += "| Checks passed | $($runtimeSection.checks_passed)/$($runtimeSection.checks_total) |"
+    $reportLines += ""
+    if ($sim.runtime_errors.Count -gt 0) {
+        $reportLines += "### Runtime Errors"
+        $reportLines += ""
+        foreach ($re in $runtimeSection.runtime_errors) { $reportLines += "- $re" }
+        $reportLines += ""
+    }
+    if ($runtimeSection.suggested_actions.Count -gt 0) {
+        $reportLines += "### Suggested Actions (Learning)"
+        $reportLines += ""
+        foreach ($sa in $runtimeSection.suggested_actions) { $reportLines += "- $sa" }
+        $reportLines += ""
+    }
+    $reportLines += "---"
+    $reportLines += ""
+}
+
+if ($bm) {
+    $reportLines += "## Capability Benchmark"
+    $reportLines += ""
+    $reportLines += "| Metric | Value |"
+    $reportLines += "|--------|-------|"
+    $reportLines += "| Capability Score | $($bm.capability_score)/100 |"
+    $reportLines += "| Verdict | $($bm.verdict) |"
+    $reportLines += "| Task simulation pass | $($bm.task_success_rate)% |"
+    $reportLines += ""
+    $reportLines += "### Domain Capabilities"
+    $reportLines += ""
+    $reportLines += "| Domain | Score |"
+    $reportLines += "|--------|-------|"
+    $bm.domains | Sort-Object { $_.score } -Descending | ForEach-Object {
+        $reportLines += "| $($_.domain) | $($_.score)% |"
+    }
+    $reportLines += ""
+    $reportLines += "### Task Simulations"
+    $reportLines += ""
+    foreach ($ts in $bm.task_simulations) {
+        $reportLines += "- [$($ts.status)] $($ts.task) (best score $($ts.best_score))"
+    }
     $reportLines += ""
     $reportLines += "---"
     $reportLines += ""
