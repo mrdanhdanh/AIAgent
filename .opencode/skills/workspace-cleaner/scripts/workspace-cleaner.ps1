@@ -1,4 +1,4 @@
-param(
+﻿param(
     [ValidateSet("all", "build", "backup", "temp", "cache", "log")]
     [string]$Target = "all",
 
@@ -158,6 +158,12 @@ $protectedList = @{
 
     protected_dirs = @(
         ".git",
+        ".github",
+        ".opencode",
+        ".agents",
+        "workflow",
+        "workflows",
+        "gh-pages-root",
         ".opencode/agents",
         ".opencode/skills",
         ".opencode/scripts",
@@ -239,14 +245,35 @@ function Test-Protected {
 function Test-GlobMatch {
     param([string]$Path, [string]$Pattern)
 
-    # Chuyển glob pattern thành regex
-    $regex = '^' + [regex]::Escape($Pattern) `
-        -replace '\*\*/', '.*' `
-        -replace '\*', '[^/]*' `
-        -replace '\?', '.' `
-        -replace '\.\*\.\*', '.*' + '$'
+    # Normalize path separators
+    $path = $Path -replace '\\', '/'
+    $pattern = $Pattern -replace '\\', '/'
 
-    return ($Path -match $regex)
+    # Chuyển glob pattern thành regex (hỗ trợ **, *, ?)
+    $sb = New-Object System.Text.StringBuilder('^')
+    $i = 0
+    while ($i -lt $pattern.Length) {
+        $c = $pattern[$i]
+        if ($c -eq '*') {
+            if ($i + 1 -lt $pattern.Length -and $pattern[$i + 1] -eq '*') {
+                [void]$sb.Append('.*')
+                $i += 2
+                if ($i -lt $pattern.Length -and $pattern[$i] -eq '/') { $i++ }
+            } else {
+                [void]$sb.Append('[^/]*')
+                $i++
+            }
+        } elseif ($c -eq '?') {
+            [void]$sb.Append('[^/]')
+            $i++
+        } else {
+            [void]$sb.Append([regex]::Escape($c.ToString()))
+            $i++
+        }
+    }
+    [void]$sb.Append('$')
+
+    return ($path -match $sb.ToString())
 }
 
 # ─────────────────────────────────────────────
@@ -282,17 +309,17 @@ function Invoke-GarbageScan {
         return $candidates
     }
 
-    # Quét theo patterns
-    foreach ($pattern in $Config.patterns) {
-        $items = Get-ChildItem -Path $WorkspacePath -Directory -Filter (Split-Path $pattern -Leaf) -Recurse -ErrorAction SilentlyContinue |
-            Where-Object { $_.FullName -like ((Join-Path $WorkspacePath (Split-Path $pattern -Parent)).Replace('[','`[').Replace(']','`]') + "*") }
+    # Quét theo patterns (dùng glob match chuẩn — tránh -Filter "**" khớp mọi thứ)
+    $wsRootFull = (Resolve-Path $WorkspacePath).Path
+    $allDirs = Get-ChildItem -Path $WorkspacePath -Directory -Recurse -ErrorAction SilentlyContinue
 
-        # Fallback: dùng -Filter cho pattern đơn giản
-        if (-not $items) {
-            $leaf = Split-Path $pattern -Leaf
-            $parent = Split-Path $pattern -Parent
-            if ($parent -eq "*") { $parent = "" }
-            $items = Get-ChildItem -Path $WorkspacePath -Directory -Filter $leaf -Recurse -Depth 5 -ErrorAction SilentlyContinue
+    foreach ($pattern in $Config.patterns) {
+        $items = @()
+        foreach ($d in $allDirs) {
+            $rel = $d.FullName.Substring($wsRootFull.Length + 1)
+            if (Test-GlobMatch -Path $rel -Pattern $pattern) {
+                $items += $d
+            }
         }
 
         # Lọc theo max_size_mb
@@ -416,6 +443,21 @@ foreach ($gtype in $garbageConfig.Keys) {
             continue
         }
 
+        # Safe guard: candidate cấp 1 trong workspace gốc chỉ được xóa nếu thuộc loại build/test/publish/backup_old/temp_zip/log
+        if ($item.is_dir) {
+            $wsRootFull2 = (Resolve-Path -LiteralPath $WorkspacePath).Path
+            $parentDir = Split-Path -Path $item.path -Parent
+            if ($parentDir.TrimEnd('\') -eq $wsRootFull2.TrimEnd('\')) {
+                $safeTopTypes = @("build", "test", "publish", "backup_old", "temp_zip", "log", "coverage", "ide_cache")
+                if ($gtype -notin $safeTopTypes) {
+                    $skipReasons.protected_match++
+                    $scanReport.protected_skipped++
+                    Write-Host "    [PROTECTED] $($item.path) -> top-level dir không thuộc loại rác an toàn"
+                    continue
+                }
+            }
+        }
+
         # Thêm vào classification
         $risk = $config.risk
         $classificationReport[$risk.ToLower()]++
@@ -426,7 +468,7 @@ foreach ($gtype in $garbageConfig.Keys) {
 
         $scanReport.candidates++
 
-        $candidate = @{
+        $candidate = [pscustomobject]@{
             type       = $gtype
             path       = $item.path
             risk       = $risk
@@ -717,6 +759,13 @@ function Remove-ItemSafe {
 Write-Host ""
 Write-Host "=== CLEANUP EXECUTION ==="
 
+# Snapshot trạng thái protected files TRƯỚC khi cleanup để verification không báo fail giả
+$protectedSnapshot = @{}
+foreach ($p in @("AGENTS.md", "opencode.json", "Directory.Build.props")) {
+    $pFull = Join-Path -Path (Resolve-Path $WorkspacePath).Path -ChildPath $p
+    $protectedSnapshot[$p] = Test-Path -LiteralPath $pFull -ErrorAction SilentlyContinue
+}
+
 # --- LOW ---
 Write-Host "-- LOW risk items --"
 $lowRiskItems = $allCandidates | Where-Object { $_.risk -eq "LOW" }
@@ -852,12 +901,14 @@ $protectedCheckPaths = @(
 foreach ($p in $protectedCheckPaths) {
     $pFull = Join-Path -Path (Resolve-Path $WorkspacePath).Path -ChildPath $p
     $stillExists = Test-Path -LiteralPath $pFull -ErrorAction SilentlyContinue
+    # Nếu file chưa từng tồn tại trước cleanup thì không coi là vi phạm
+    $wasPresent = $protectedSnapshot.ContainsKey($p) -and $protectedSnapshot[$p]
     $check = @{
         type     = "protected_preserved"
         path     = $p
         expected = "exists"
         actual   = if ($stillExists) { "exists" } else { "deleted" }
-        pass     = $stillExists
+        pass     = if ($wasPresent) { $stillExists } else { $true }
     }
     $verificationReport.spot_checks += $check
 }

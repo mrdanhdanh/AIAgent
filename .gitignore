@@ -7,3 +7,9 @@ obj/
 TestResults/
 release/
 test-publish/
+backup/
+backups/
+**/backup/
+**/backups/
+cleanup-report.json
+cleanup-report-final.json
