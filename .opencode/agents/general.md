@@ -30,5 +30,6 @@ General Agent đóng vai trò orchestrator — chỉ đảm nhiệm orchestratio
 |---------|-------|
 | `/team` | Chạy toàn bộ team workflow: analyze → design → plan → ... → complete |
 | `/team-syncdocs` | Đồng bộ system docs: quét agents, commands, skills, scripts, knowledge |
+| `/doctor` | Kiểm tra sức khỏe hệ thống: Environment, System, Runtime, Capability + health score + self-repair (alias `/team-doctor`) |
 
-Xem thêm: `.opencode/commands/team.md`, `.opencode/commands/team-syncdocs.md`, `.opencode/skills/dev-team/SKILL.md`
+Xem thêm: `.opencode/commands/team.md`, `.opencode/commands/team-syncdocs.md`, `.opencode/commands/doctor.md`, `.opencode/skills/dev-team/SKILL.md`

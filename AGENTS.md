@@ -64,6 +64,7 @@ dotnet test JapaneseLearner.E2ETests\JapaneseLearner.E2ETests.csproj
 - Agent definitions in `.opencode/agents/` (Vietnamese). Dev-team workflow in `.opencode/skills/dev-team/SKILL.md`.
 - Knowledge base at `.opencode/knowledge/` stores lessons and patterns from past workflows.
 - Model: `opencode/deepseek-v4-flash-free`.
+- **`/doctor`**: kiểm tra sức khỏe hệ thống AI Agent Framework — Environment, Agents, Commands, Skills, Knowledge, Workflow, Contracts, Runtime (simulation), Capability (benchmark). Có health score + self-repair an toàn. Alias: `/team-doctor`. Chi tiết: `.opencode/commands/doctor.md`.
 
 ## CI / Deploy
 

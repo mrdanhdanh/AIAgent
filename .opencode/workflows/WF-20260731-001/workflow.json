@@ -1,0 +1,77 @@
+{
+    "schema_version": "3.2",
+    "workflow_id": "WF-20260731-001",
+    "project": "opencode-framework",
+    "created_at": "2026-07-31T00:00:00Z",
+    "completed_at": "2026-07-31T10:30:00Z",
+    "status": "completed",
+    "step": 13,
+    "step_name": "complete",
+    "title": "Doctor Agent /doctor + /team-doctor",
+    "files_modified": [
+        "opencode.json",
+        ".opencode/agents/general.md",
+        ".opencode/scripts/doctor.ps1",
+        "AGENTS.md",
+        ".opencode/SYSTEM_MAP.md",
+        ".opencode/commands/doctor.md",
+        ".opencode/commands/team-doctor.md"
+    ],
+    "files_created": [
+        ".opencode/scripts/doctor/environment.ps1",
+        ".opencode/scripts/doctor/agents.ps1",
+        ".opencode/scripts/doctor/commands.ps1",
+        ".opencode/scripts/doctor/skills.ps1",
+        ".opencode/scripts/doctor/workflows.ps1",
+        ".opencode/scripts/doctor/runtime.ps1",
+        ".opencode/scripts/doctor/simulation.ps1",
+        ".opencode/scripts/doctor/benchmark.ps1",
+        ".opencode/scripts/doctor/repair.ps1",
+        ".opencode/scripts/doctor/report.ps1",
+        ".opencode/workflows/WF-20260731-001/01_analysis.md",
+        ".opencode/workflows/WF-20260731-001/02_design.md",
+        ".opencode/workflows/WF-20260731-001/03_plan.md",
+        ".opencode/workflows/WF-20260731-001/04_review.md",
+        ".opencode/workflows/WF-20260731-001/05_testplan.md",
+        ".opencode/workflows/WF-20260731-001/06_test.md"
+    ],
+    "tests": {
+        "total": 8,
+        "passed": 8,
+        "failed": 0
+    },
+    "health_score_after": {
+        "overall": 93,
+        "environment": 85,
+        "agents": 85,
+        "commands": 100,
+        "skills": 92,
+        "workflow": 100,
+        "knowledge": 90,
+        "contracts": 100,
+        "runtime": 100,
+        "simulation": 100,
+        "benchmark": 86
+    },
+    "steps_completed": [
+        {"step": 1, "name": "analyze", "status": "PASS"},
+        {"step": 2, "name": "design", "status": "PASS"},
+        {"step": 3, "name": "plan", "status": "PASS"},
+        {"step": 4, "name": "review", "status": "APPROVED"},
+        {"step": 5, "name": "guardrail", "status": "PASS"},
+        {"step": 6, "name": "backup", "status": "SUCCESS"},
+        {"step": 7, "name": "build", "status": "PASS"},
+        {"step": 8, "name": "static_analysis", "status": "PASS"},
+        {"step": 9, "name": "ui_audit", "status": "SKIPPED"},
+        {"step": 10, "name": "testplan", "status": "PASS"},
+        {"step": 11, "name": "test", "status": "PASS"},
+        {"step": 12, "name": "skill_validation", "status": "PASS"},
+        {"step": 13, "name": "complete", "status": "DONE"}
+    ],
+    "notes": [
+        "Doctor Agent trien khai: 11 scripts (orchestrator + 10 modules), 2 command files (/doctor, /team-doctor), dang ky trong opencode.json.",
+        "SYSTEM_MAP.md cap nhat thu cong vi sync-system-docs.ps1 dang loi pre-existing ([switch]$report).",
+        "Phat hien 3 loi pre-existing (khong sua trong workflow nay, ghi nhan cho follow-up): sync-system-docs.ps1 [switch]$report, schema-validator.ps1 non-ASCII parse error, cross-ref-validator.ps1 double team- prefix.",
+        "Khong co thay doi nao ve UI / .NET code (ui_audit SKIPPED - N/A)."
+    ]
+}

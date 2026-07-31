@@ -1,14 +1,13 @@
-<#
+﻿<#
 .SYNOPSIS
-Doctor v1.0 — Kiểm tra sức khỏe hệ thống AI Agent Framework
+Doctor v1.0 - System health checker for AI Agent Framework
 .DESCRIPTION
-Quét toàn bộ hệ sinh thái .opencode/ qua 4 pillars:
+Scans the whole .opencode/ ecosystem across 4 pillars:
 - Environment: OpenCode, PowerShell, Python, Git, config, folders
 - System: Agents, Commands, Skills, Knowledge, Workflow, Contracts
-- Runtime: giả lập fake task qua workflow + 6 simulation scenarios
-- Capability: benchmark năng lực agent theo domain
-
-Hỗ trợ health score, suggested actions, self-repair (safe only).
+- Runtime: fake task simulation through workflow + 6 scenario types
+- Capability: agent capability benchmark by domain
+Supports health score, suggested actions, self-repair (safe only).
 .EXAMPLE
 & ".opencode\scripts\doctor.ps1" -Mode quick
 & ".opencode\scripts\doctor.ps1" -Mode full -Json
@@ -33,9 +32,9 @@ $toolVersion = "1.0.0"
 $root = (Resolve-Path -LiteralPath (Split-Path -Parent $MyInvocation.MyCommand.Path)).Path | Split-Path -Parent | Split-Path -Parent
 $moduleDir = Join-Path $root ".opencode/scripts/doctor"
 
-Write-Host "Doctor v$toolVersion — mode: $Mode" -ForegroundColor Cyan
+Write-Host "Doctor v$toolVersion - mode: $Mode" -ForegroundColor Cyan
 
-# ─── Dot-source all modules ──────────────────────────────────────
+# --- Dot-source all modules --------------------------------------
 $modules = @(
     "environment.ps1", "agents.ps1", "commands.ps1", "skills.ps1",
     "workflows.ps1", "runtime.ps1", "simulation.ps1", "benchmark.ps1",
@@ -54,7 +53,7 @@ foreach ($mod in $modules) {
     }
 }
 
-# ─── Dispatch by mode ────────────────────────────────────────────
+# --- Dispatch by mode --------------------------------------------
 $results = @()
 
 switch ($Mode) {
@@ -124,7 +123,7 @@ switch ($Mode) {
     }
 }
 
-# ─── Report ──────────────────────────────────────────────────────
+# --- Report ------------------------------------------------------
 if ($Mode -eq "repair") {
     # Repair mode: show repair summary primarily
     $repairResult = $results | Where-Object { $_.group -eq "Repair" } | Select-Object -First 1

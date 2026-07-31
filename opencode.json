@@ -297,6 +297,16 @@
       "template": "Bạn là Learning Agent. Chạy Learning Pipeline — quét failure records, auto-generate lessons và patterns. Đọc hướng dẫn đầy đủ tại: .opencode/commands/team-learn.md\n\nTham số: $ARGUMENTS",
       "description": "Chay Learning Pipeline — quet failure records tu memory, auto-generate lessons va patterns, cap nhat memory",
       "agent": "learning-agent"
+    },
+    "doctor": {
+      "template": "Bạn là Doctor Agent. Kiểm tra sức khỏe hệ thống AI Agent Framework. Đọc hướng dẫn đầy đủ tại: .opencode/commands/doctor.md\n\nTham số: $ARGUMENTS\n\nHành động:\n1. Phân tích tham số (--quick, --full, --runtime, --workflow, --agent, --skill, --command, --knowledge, --contracts, --simulation, --benchmark, --repair, --force, --dry-run, --json)\n2. Map mode sang tham số -Mode của script: quick|full|runtime|workflow|agent|skill|command|knowledge|contracts|simulation|benchmark|repair\n3. Gọi script: & \".opencode\\scripts\\doctor.ps1\" -Mode <mode> [-Force] [-DryRun] [-Json]\n4. Output báo cáo YAML theo output contract trong doctor.md",
+      "description": "Kiem tra suc khoe he thong AI Agent Framework — Environment, Agents, Commands, Skills, Knowledge, Workflow, Contracts, Runtime, Capability. Tich hop health score, simulation, benchmark va self-repair an toan",
+      "agent": "general"
+    },
+    "team-doctor": {
+      "template": "Bạn là Doctor Agent. Kiểm tra sức khỏe hệ thống AI Agent Framework (alias của /doctor). Đọc hướng dẫn đầy đủ tại: .opencode/commands/doctor.md\n\nTham số: $ARGUMENTS\n\nHành động:\n1. Phân tích tham số (--quick, --full, --runtime, --workflow, --agent, --skill, --command, --knowledge, --contracts, --simulation, --benchmark, --repair, --force, --dry-run, --json)\n2. Map mode sang tham số -Mode của script: quick|full|runtime|workflow|agent|skill|command|knowledge|contracts|simulation|benchmark|repair\n3. Gọi script: & \".opencode\\scripts\\doctor.ps1\" -Mode <mode> [-Force] [-DryRun] [-Json]\n4. Output báo cáo YAML theo output contract trong doctor.md",
+      "description": "Kiem tra suc khoe he thong AI Agent Framework (alias cua /doctor)",
+      "agent": "general"
     }
   },
   "skills": {
