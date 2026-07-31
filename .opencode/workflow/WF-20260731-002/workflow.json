@@ -1,0 +1,56 @@
+{
+  "workflow": {
+    "id": "WF-20260731-002",
+    "created_at": "2026-07-31",
+    "project": "AgentAI",
+    "branch": "master",
+    "user_request": "Fix 3 bug pre-existing trong .opencode/scripts/ (sync-system-docs.ps1, schema-validator.ps1, cross-ref-validator.ps1) + chay day du state machine 13 buoc",
+    "schema_version": "3.1"
+  },
+  "step": 13,
+  "step_name": "complete",
+  "status": "completed",
+  "retry": {
+    "review_count": 0,
+    "test_count": 0,
+    "max_review": 3,
+    "max_test": 3,
+    "skill_validation_count": 0
+  },
+  "user_intervention": false,
+  "backup_done": true,
+  "backup_workflow_id": "WF-20260731-002",
+  "error_history": {
+    "review": [],
+    "test_failures": [],
+    "build_failures": [],
+    "same_error_count": 0
+  },
+  "changed_files": [
+    ".opencode/scripts/sync-system-docs.ps1",
+    ".opencode/scripts/schema-validator.ps1",
+    ".opencode/scripts/cross-ref-validator.ps1"
+  ],
+  "created_files": [],
+  "deleted_files": [],
+  "artifacts": [
+    "01_analysis.md",
+    "02_design.md",
+    "03_plan.md",
+    "04_review.md",
+    "05_guardrail.md",
+    "07_build.md",
+    "08_static_analysis.md",
+    "09_ui_audit.md",
+    "10_test_plan.md",
+    "11_test.md",
+    "12_skill_validation.md",
+    "13_report.md"
+  ],
+  "test_results": {
+    "total": 8,
+    "passed": 8,
+    "failed": 0
+  },
+  "final_status": "COMPLETE"
+}

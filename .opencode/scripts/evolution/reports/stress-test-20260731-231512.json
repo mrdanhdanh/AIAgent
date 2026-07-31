@@ -1,0 +1,100 @@
+﻿{
+    "stress_test":  {
+                        "failures":  [
+                                         {
+                                             "step":  "ui_audit",
+                                             "task_id":  "TASK-001",
+                                             "error_type":  "OUTPUT_SCHEMA_INVALID"
+                                         },
+                                         {
+                                             "step":  "plan",
+                                             "task_id":  "TASK-002",
+                                             "error_type":  "MISSING_SKILL"
+                                         },
+                                         {
+                                             "step":  "review",
+                                             "task_id":  "TASK-004",
+                                             "error_type":  "TIMEOUT"
+                                         },
+                                         {
+                                             "step":  "testplan",
+                                             "task_id":  "TASK-005",
+                                             "error_type":  "TIMEOUT"
+                                         }
+                                     ],
+                        "total_tasks":  5,
+                        "weakest_steps":  [
+                                              {
+                                                  "step":  "ui_audit",
+                                                  "failure_rate":  20,
+                                                  "failure_count":  1
+                                              },
+                                              {
+                                                  "step":  "testplan",
+                                                  "failure_rate":  20,
+                                                  "failure_count":  1
+                                              },
+                                              {
+                                                  "step":  "plan",
+                                                  "failure_rate":  20,
+                                                  "failure_count":  1
+                                              },
+                                              {
+                                                  "step":  "review",
+                                                  "failure_rate":  20,
+                                                  "failure_count":  1
+                                              }
+                                          ],
+                        "avg_duration_ms":  515,
+                        "steps":  [
+                                      "analyze",
+                                      "design",
+                                      "plan",
+                                      "review",
+                                      "guardrail",
+                                      "backup",
+                                      "build",
+                                      "static_analysis",
+                                      "ui_audit",
+                                      "testplan",
+                                      "test",
+                                      "skill_validation",
+                                      "complete"
+                                  ],
+                        "step_success_prob":  {
+                                                  "complete":  0.99,
+                                                  "review":  0.88,
+                                                  "ui_audit":  0.9,
+                                                  "backup":  0.96,
+                                                  "build":  0.85,
+                                                  "design":  0.92,
+                                                  "guardrail":  0.97,
+                                                  "static_analysis":  0.92,
+                                                  "analyze":  0.95,
+                                                  "test":  0.82,
+                                                  "plan":  0.9,
+                                                  "testplan":  0.95,
+                                                  "skill_validation":  0.97
+                                              },
+                        "success_rate":  20,
+                        "verdict":  "UNSTABLE",
+                        "most_common_errors":  [
+                                                   {
+                                                       "count":  2,
+                                                       "error_type":  "TIMEOUT"
+                                                   },
+                                                   {
+                                                       "count":  1,
+                                                       "error_type":  "MISSING_SKILL"
+                                                   },
+                                                   {
+                                                       "count":  1,
+                                                       "error_type":  "OUTPUT_SCHEMA_INVALID"
+                                                   }
+                                               ],
+                        "seed":  "seed2",
+                        "success_count":  1,
+                        "health_score":  34,
+                        "failure_count":  4
+                    }
+}

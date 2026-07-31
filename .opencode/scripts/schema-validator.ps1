@@ -1,4 +1,4 @@
-param(
+﻿param(
     [Parameter(Mandatory = $false)]
     [string]$targetDir = ".opencode/agents",
 
@@ -24,11 +24,11 @@ function Test-YamlFrontmatter {
             }
         }
         if ($yaml -match ':\s+[|>]') {
-            $errors += "Literal block scalar (|/>) detected — ensure proper indentation"
+            $errors += "Literal block scalar (|/>) detected - ensure proper indentation"
         }
         $requiredFields = @("name", "description")
         foreach ($field in $requiredFields) {
-            if ($yaml -notmatch "^$field:") {
+            if ($yaml -notmatch "^${field}:") {
                 $errors += "Missing required field: $field"
             }
         }
@@ -71,7 +71,7 @@ function Test-YamlSamples {
         try {
             $null = $yamlBlocks[$i].Groups[1].Value | ConvertFrom-Yaml
         } catch {
-            $errors += "YAML sample block $($i+1): parse error — $($_.Exception.Message)"
+            $errors += "YAML sample block $($i+1): parse error - $($_.Exception.Message)"
         }
     }
     if (-not (Get-Command ConvertFrom-Yaml -ErrorAction SilentlyContinue)) {

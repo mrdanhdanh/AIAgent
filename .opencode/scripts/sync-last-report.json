@@ -1,36 +1,42 @@
 ﻿{
     "issues":  [
-
+                   "ORPHAN_AGENT: agent=learning-agent",
+                   "ORPHAN_AGENT: agent=root-cause-agent",
+                   "ORPHAN_AGENT: agent=failure-agent"
                ],
     "knowledge":  {
-                      "knowledge/deployment\\blazor-wasm-github-pages.md":  {
-                                                                                "file":  "knowledge/deployment\\blazor-wasm-github-pages.md",
-                                                                                "size":  3585
-                                                                            },
-                      "knowledge/workflow\\validate-github-actions-yaml.md":  {
-                                                                                  "file":  "knowledge/workflow\\validate-github-actions-yaml.md",
-                                                                                  "size":  835
-                                                                              },
-                      "knowledge/skills-learned.md":  {
-                                                          "file":  "knowledge/skills-learned.md",
-                                                          "size":  11423
-                                                      },
-                      "knowledge/patterns\\common.md":  {
-                                                            "file":  "knowledge/patterns\\common.md",
-                                                            "size":  5171
-                                                        },
-                      "knowledge/ui-audit-pipeline.md":  {
-                                                             "file":  "knowledge/ui-audit-pipeline.md",
-                                                             "size":  3459
-                                                         },
-                      "knowledge/blazor-ref-timing.md":  {
-                                                             "file":  "knowledge/blazor-ref-timing.md",
-                                                             "size":  1000
-                                                         },
                       "knowledge/lessons.md":  {
                                                    "file":  "knowledge/lessons.md",
-                                                   "size":  17106
-                                               }
+                                                   "size":  17298
+                                               },
+                      "knowledge/workflow\\validate-github-actions-yaml.md":  {
+                                                                                  "file":  "knowledge/workflow\\validate-github-actions-yaml.md",
+                                                                                  "size":  879
+                                                                              },
+                      "knowledge/project\\japanese-learner\\deployment.md":  {
+                                                                                 "file":  "knowledge/project\\japanese-learner\\deployment.md",
+                                                                                 "size":  3722
+                                                                             },
+                      "knowledge/skills-learned.md":  {
+                                                          "file":  "knowledge/skills-learned.md",
+                                                          "size":  13519
+                                                      },
+                      "knowledge/skills\\blazor\\patterns.md":  {
+                                                                    "file":  "knowledge/skills\\blazor\\patterns.md",
+                                                                    "size":  5337
+                                                                },
+                      "knowledge/skills\\blazor\\ui.md":  {
+                                                              "file":  "knowledge/skills\\blazor\\ui.md",
+                                                              "size":  3722
+                                                          },
+                      "knowledge/framework\\blazor\\component-lifecycle.md":  {
+                                                                                  "file":  "knowledge/framework\\blazor\\component-lifecycle.md",
+                                                                                  "size":  2570
+                                                                              },
+                      "knowledge/README.md":  {
+                                                  "file":  "knowledge/README.md",
+                                                  "size":  1590
+                                              }
                   },
     "agents":  {
                    "backup-agent":  {
@@ -85,6 +91,19 @@
                                                         "glob":  "deny"
                                                     }
                                 },
+                   "tester":  {
+                                  "description":  "Thực thi kiểm thử, validate tính năng và báo cáo kết quả kèm coverage (v3.0)",
+                                  "model":  "opencode/deepseek-v4-flash-free",
+                                  "file":  "agents/tester.md",
+                                  "mode":  "subagent",
+                                  "permissions":  {
+                                                      "grep":  "deny",
+                                                      "bash":  "deny",
+                                                      "read":  "deny",
+                                                      "edit":  "deny",
+                                                      "glob":  "deny"
+                                                  }
+                              },
                    "ui-beautifier":  {
                                          "description":  "\u003e-",
                                          "model":  "opencode/deepseek-v4-flash-free",
@@ -111,6 +130,19 @@
                                                              "glob":  "deny"
                                                          }
                                      },
+                   "learning-agent":  {
+                                          "description":  "Chuyên gia Learning Pipeline — đọc failure records từ memory, phân tích patterns xuyên suốt, auto-generate lessons và patterns mới. Ghi trực tiếp vào memory/. Cần approval gate cho MEDIUM/HIGH impact.",
+                                          "model":  "opencode/deepseek-v4-flash-free",
+                                          "file":  "agents/learning-agent.md",
+                                          "mode":  "subagent",
+                                          "permissions":  {
+                                                              "grep":  "deny",
+                                                              "bash":  "deny",
+                                                              "read":  "deny",
+                                                              "edit":  "deny",
+                                                              "glob":  "deny"
+                                                          }
+                                      },
                    "planner":  {
                                    "description":  "Mở rộng: Thiết kế giải pháp + Lập kế hoạch thực thi chi tiết. Đảm nhiệm cả Design phase và Plan phase.",
                                    "model":  "opencode/deepseek-v4-flash-free",
@@ -124,8 +156,21 @@
                                                        "glob":  "deny"
                                                    }
                                },
+                   "root-cause-agent":  {
+                                            "description":  "Chuyên gia phân tích nguyên nhân gốc (Root Cause Analysis) — nhận error đã normalized, tìm kiếm trong codebase, tạo hypotheses với confidence score, đề xuất hướng fix. Agent read + suggest.",
+                                            "model":  "opencode/deepseek-v4-flash-free",
+                                            "file":  "agents/root-cause-agent.md",
+                                            "mode":  "subagent",
+                                            "permissions":  {
+                                                                "grep":  "deny",
+                                                                "bash":  "deny",
+                                                                "read":  "deny",
+                                                                "edit":  "deny",
+                                                                "glob":  "deny"
+                                                            }
+                                        },
                    "test-planner":  {
-                                        "description":  "Tạo kế hoạch kiểm thử chi tiết cho tính năng đã phát triển",
+                                        "description":  "Tạo kế hoạch kiểm thử chi tiết, chống overlap, có impact analysis, coverage matrix, risk-based testing",
                                         "model":  "opencode/deepseek-v4-flash-free",
                                         "file":  "agents/test-planner.md",
                                         "mode":  "subagent",
@@ -176,19 +221,19 @@
                                                       "glob":  "deny"
                                                   }
                               },
-                   "tester":  {
-                                  "description":  "Thực thi kiểm thử, validate tính năng và báo cáo kết quả kèm coverage",
-                                  "model":  "opencode/deepseek-v4-flash-free",
-                                  "file":  "agents/tester.md",
-                                  "mode":  "subagent",
-                                  "permissions":  {
-                                                      "grep":  "deny",
-                                                      "bash":  "deny",
-                                                      "read":  "deny",
-                                                      "edit":  "deny",
-                                                      "glob":  "deny"
-                                                  }
-                              },
+                   "failure-agent":  {
+                                         "description":  "Chuyên gia phân tích và chuẩn hóa lỗi — classify error type, normalize error message, search failure memory, đề xuất lesson phù hợp. Read-only agent.",
+                                         "model":  "opencode/deepseek-v4-flash-free",
+                                         "file":  "agents/failure-agent.md",
+                                         "mode":  "subagent",
+                                         "permissions":  {
+                                                             "grep":  "deny",
+                                                             "bash":  "deny",
+                                                             "read":  "deny",
+                                                             "edit":  "deny",
+                                                             "glob":  "deny"
+                                                         }
+                                     },
                    "general":  {
                                    "description":  "General-purpose orchestrator agent — điều phối workflow, triệu hồi sub-agents, quản lý state machine",
                                    "model":  "opencode/deepseek-v4-flash-free",
@@ -229,18 +274,36 @@
                                           "deprecated":  true,
                                           "file":  "commands/team-explore.md"
                                       },
-                     "impeccable":  {
-                                        "agent":  null,
-                                        "description":  "Design, redesign, shape, critique, audit, polish, or improve frontend UI. Sub-commands: init, shape, document, critique, audit, polish, bolder, quieter, distill, harden, onboard, animate, colorize, typeset, layout, delight, overdrive, clarify, adapt, optimize, live, hooks, doctor, extract.",
-                                        "deprecated":  false,
-                                        "file":  "commands/impeccable.md"
-                                    },
+                     "team-doctor":  {
+                                         "agent":  "general",
+                                         "description":  "Doctor (alias /team-doctor) — kiểm tra sức khỏe hệ thống AI Agent Framework. Tương đương /doctor: Environment, System, Runtime, Capability, health score, self-repair an toàn.",
+                                         "deprecated":  false,
+                                         "file":  "commands/team-doctor.md"
+                                     },
+                     "backup":  {
+                                    "agent":  "backup-agent",
+                                    "description":  "Backup và rollback file dùng Backup Utility. Gọi khi cần backup trước khi sửa file, rollback lỗi, kiểm tra backup.",
+                                    "deprecated":  false,
+                                    "file":  "commands/backup.md"
+                                },
                      "team-gitpush":  {
                                           "agent":  "pusher",
                                           "description":  "Auto-commit từ diff, pre-push safety validation + git push execution — kiểm tra secret, convention, build, test, xác nhận user, push lên remote",
                                           "deprecated":  false,
                                           "file":  "commands/team-gitpush.md"
                                       },
+                     "doctor":  {
+                                    "agent":  "general",
+                                    "description":  "Doctor — kiểm tra sức khỏe hệ thống AI Agent Framework: Environment, Agents, Commands, Skills, Knowledge, Workflow, Contracts, Runtime (simulation), Capability (benchmark). Tích hợp health score, self-repair an toàn. Dùng /doctor hoặc /team-doctor.",
+                                    "deprecated":  false,
+                                    "file":  "commands/doctor.md"
+                                },
+                     "team-test":  {
+                                       "agent":  "tester",
+                                       "description":  "Thực thi kiểm thử theo kế hoạch (dùng agent tester, v3.0)",
+                                       "deprecated":  false,
+                                       "file":  "commands/team-test.md"
+                                   },
                      "team-cleanup":  {
                                           "agent":  "cleaner",
                                           "description":  "Dọn rác Workspace tự động — xóa build artifacts, backup cũ, temp files, cache. Tích hợp dry-run, backup trước khi xóa, confirmation gate.",
@@ -273,7 +336,7 @@
                                        },
                      "team-testplan":  {
                                            "agent":  "test-planner",
-                                           "description":  "Tạo kế hoạch kiểm thử cho tính năng (dùng agent test-planner)",
+                                           "description":  "Tạo kế hoạch kiểm thử chi tiết — impact analysis, risk-based, validation rules (schema v3.0)",
                                            "deprecated":  false,
                                            "file":  "commands/team-testplan.md"
                                        },
@@ -285,67 +348,94 @@
                                     },
                      "team-syncdocs":  {
                                            "agent":  "general",
-                                           "description":  "Đồng bộ toàn bộ system docs: quét agents, commands, skills, scripts, knowledge → cập nhật SYSTEM_MAP.md, cross-references, fix lỗi. Chạy định kỳ khi thêm/sửa/xóa file hệ thống.",
+                                           "description":  "System Evolution Engine — đồng bộ system docs + semantic diff + compatibility check + migration + self-healing + health score + evolution report. Chạy định kỳ để duy trì sức khỏe hệ thống.",
                                            "deprecated":  false,
                                            "file":  "commands/team-syncdocs.md"
                                        },
-                     "backup":  {
-                                    "agent":  "backup-agent",
-                                    "description":  "Backup và rollback file dùng Backup Utility. Gọi khi cần backup trước khi sửa file, rollback lỗi, kiểm tra backup.",
-                                    "deprecated":  false,
-                                    "file":  "commands/backup.md"
-                                },
+                     "impeccable":  {
+                                        "agent":  null,
+                                        "description":  "Design, redesign, shape, critique, audit, polish, or improve frontend UI. Sub-commands: init, shape, document, critique, audit, polish, bolder, quieter, distill, harden, onboard, animate, colorize, typeset, layout, delight, overdrive, clarify, adapt, optimize, live, hooks, doctor, extract.",
+                                        "deprecated":  false,
+                                        "file":  "commands/impeccable.md"
+                                    },
+                     "team-root-cause":  {
+                                             "agent":  null,
+                                             "description":  "Phân tích nguyên nhân gốc từ failure analysis. Tìm evidence trong codebase, tạo hypotheses, đề xuất fix. Gọi root-cause-agent.",
+                                             "deprecated":  false,
+                                             "file":  "commands/team-root-cause.md"
+                                         },
                      "team-plan":  {
                                        "agent":  "planner",
                                        "description":  "Mở rộng: Thiết kế (Design) + Lập kế hoạch (Plan) — dùng agent planner",
                                        "deprecated":  false,
                                        "file":  "commands/team-plan.md"
                                    },
-                     "team-test":  {
-                                       "agent":  "tester",
-                                       "description":  "Thực thi kiểm thử theo kế hoạch (dùng agent tester)",
-                                       "deprecated":  false,
-                                       "file":  "commands/team-test.md"
-                                   },
+                     "team-analyze-failure":  {
+                                                  "agent":  null,
+                                                  "description":  "Phân tích lỗi trong workflow. Thu thập raw error, normalize, classify, search failure memory, output phân tích. Gọi failure-agent.",
+                                                  "deprecated":  false,
+                                                  "file":  "commands/team-analyze-failure.md"
+                                              },
                      "team-ui-audit":  {
                                            "agent":  "ui-beautifier",
                                            "description":  "\u003e-",
                                            "deprecated":  false,
                                            "file":  "commands/team-ui-audit.md"
-                                       }
+                                       },
+                     "team-learn":  {
+                                        "agent":  null,
+                                        "description":  "Chạy Learning Pipeline — quét failure records, auto-generate lessons và patterns, cập nhật memory. Gọi learning-agent.",
+                                        "deprecated":  false,
+                                        "file":  "commands/team-learn.md"
+                                    }
                  },
     "scripts":  {
+                    "cross-ref-validator":  {
+                                                "summary":  "Utility script",
+                                                "file":  "scripts/cross-ref-validator.ps1",
+                                                "size":  6155
+                                            },
+                    "sync-system-docs":  {
+                                             "summary":  "Utility script",
+                                             "file":  "scripts/sync-system-docs.ps1",
+                                             "size":  45885
+                                         },
                     "gitpush-utility":  {
                                             "summary":  "GitPush Utility — thực hiện git push an toàn với auto-commit, safety checks, confirmation gate.",
                                             "file":  "scripts/gitpush-utility.ps1",
                                             "size":  18565
                                         },
+                    "schema-validator":  {
+                                             "summary":  "Utility script",
+                                             "file":  "scripts/schema-validator.ps1",
+                                             "size":  4418
+                                         },
+                    "doctor":  {
+                                   "summary":  "Doctor v1.0 - System health checker for AI Agent Framework",
+                                   "file":  "scripts/doctor.ps1",
+                                   "size":  6216
+                               },
                     "backup-utility":  {
                                            "summary":  "Utility script",
                                            "file":  "scripts/backup-utility.ps1",
-                                           "size":  12310
+                                           "size":  12675
                                        },
-                    "sync-system-docs":  {
-                                             "summary":  "Utility script",
-                                             "file":  "scripts/sync-system-docs.ps1",
-                                             "size":  24492
-                                         },
                     "rollback-utility":  {
                                              "summary":  "Utility script",
                                              "file":  "scripts/rollback-utility.ps1",
-                                             "size":  8826
+                                             "size":  9058
                                          }
                 },
     "cross_refs":  {
-                       "orphans":  [
-
-                                   ],
                        "command_to_agent":  {
                                                 "team-selfimprove":  "self-improver",
                                                 "team-explore":  "codebase-explorer",
+                                                "team-doctor":  "general",
                                                 "backup":  "backup-agent",
                                                 "team-gitpush":  "pusher",
+                                                "doctor":  "general",
                                                 "team-cleanup":  "cleaner",
+                                                "team-test":  "tester",
                                                 "team-review":  "reviewer",
                                                 "team-analyze":  "analyst",
                                                 "team":  "general",
@@ -353,13 +443,9 @@
                                                 "team-testplan":  "test-planner",
                                                 "team-build":  "builder",
                                                 "team-syncdocs":  "general",
-                                                "team-test":  "tester",
                                                 "team-plan":  "planner",
                                                 "team-ui-audit":  "ui-beautifier"
                                             },
-                       "missing":  [
-
-                                   ],
                        "skill_to_commands":  {
                                                  "workspace-cleaner":  [
                                                                            {
@@ -395,6 +481,10 @@
                                                                      "command":  "team-gitpush"
                                                                  },
                                                                  {
+                                                                     "file":  ".opencode/commands/doctor.md",
+                                                                     "command":  "doctor"
+                                                                 },
+                                                                 {
                                                                      "file":  ".opencode/commands/team.md",
                                                                      "command":  "team"
                                                                  },
@@ -405,12 +495,12 @@
                                                              ],
                                                  "impeccable":  [
                                                                     {
-                                                                        "file":  ".opencode/commands/impeccable.md",
-                                                                        "command":  "impeccable"
-                                                                    },
-                                                                    {
                                                                         "file":  ".opencode/commands/team.md",
                                                                         "command":  "team"
+                                                                    },
+                                                                    {
+                                                                        "file":  ".opencode/commands/impeccable.md",
+                                                                        "command":  "impeccable"
                                                                     },
                                                                     {
                                                                         "file":  ".opencode/commands/team-ui-audit.md",
@@ -432,6 +522,14 @@
                                                                   }
                                                               ]
                                              },
+                       "orphans":  [
+                                       "Agent \u0027learning-agent\u0027 is not referenced by any command",
+                                       "Agent \u0027root-cause-agent\u0027 is not referenced by any command",
+                                       "Agent \u0027failure-agent\u0027 is not referenced by any command"
+                                   ],
+                       "missing":  [
+
+                                   ],
                        "agent_to_commands":  {
                                                  "backup-agent":  [
                                                                       "backup"
@@ -470,6 +568,8 @@
                                                                 "team-test"
                                                             ],
                                                  "general":  [
+                                                                 "team-doctor",
+                                                                 "doctor",
                                                                  "team",
                                                                  "team-syncdocs"
                                                              ],
@@ -478,11 +578,11 @@
                                                              ]
                                              }
                    },
-    "scanned_at":  "2026-07-29T00:13:33.9588431+07:00",
+    "scanned_at":  "2026-07-31T23:15:38.0374787+07:00",
     "skills":  {
                    "dev-team":  {
                                     "schema_version":  "3.2",
-                                    "description":  "Hướng dẫn sử dụng Dev Agent Team gồm 9 agents (7 core + 2 support). Dùng khi cần phân tích, lập kế hoạch, đánh giá, code, kiểm thử một yêu cầu phát triển. Tích hợp cơ chế Self-Improvement với approval gate. Sử dụng câu lệnh team hoặc team-*.",
+                                    "description":  "Hướng dẫn sử dụng Dev Agent Team gồm 12 agents (10 core + 2 support). Dùng khi cần phân tích, lập kế hoạch, đánh giá, code, kiểm thử một yêu cầu phát triển. Tích hợp cơ chế Self-Improvement với approval gate, Failure Learning System với Root Cause Analysis và Learning Pipeline. Sử dụng câu lệnh team hoặc team-*.",
                                     "name":  "dev-team",
                                     "file":  "skills/dev-team/SKILL.md"
                                 },

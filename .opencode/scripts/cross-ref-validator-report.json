@@ -1,0 +1,641 @@
+{
+    "tool":  "cross-ref-validator.ps1",
+    "version":  "1.0.0",
+    "timestamp":  "20260731_230729",
+    "checks_total":  90,
+    "checks_fail":  0,
+    "checks_warn":  90,
+    "all_pass":  true,
+    "checks":  [
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#mô-hình-orchestrator",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#workflow-id",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#máy-tr?ng-thái-state-machine",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#bi?n-theo-dõi-tracking-variables",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#output-contract-c?a-các-agent",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#quy-trình-chi-ti?t",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#bu?c-1-analyze",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#bu?c-2-design",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#bu?c-3-plan",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#bu?c-4-review",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#bu?c-5-backup",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#bu?c-6-build",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#bu?c-7-static-analysis",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#bu?c-8-ui-audit",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#bu?c-9-test-plan",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#bu?c-10-test",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#bu?c-11-skill-validation",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#bu?c-12-complete",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#báo-cáo-k?t-thúc",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#validation-checklist-per-phase",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#checkpoint-mechanism",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#so-d?-quy?t-d?nh-decision-tree",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#rollback-mechanism",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#tích-h?p-v?i-commands-riêng-l?",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#x?-lý-ngo?i-l?-exception-handling",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#ví-d?-ch?y-workflow",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#migration-plan",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#complexity-estimate",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#validation",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#ghi-chú",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#base-agent-schema",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#base-agent-schema",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#base-agent-schema",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#01",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#Q01",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#base-agent-schema",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#base-agent-schema",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#01",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#error-priority",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#01",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#02",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#base-agent-schema",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#error-priority",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#base-agent-schema",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#base-agent-schema",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#base-agent-schema",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#error-priority",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#base-agent-schema",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#base-agent-schema",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#base-agent-schema",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#t?ng-quan",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#architecture",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#quy-trình-ki?m-tra",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#6-kênh-ki?m-tra",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#d?nh-d?ng-d?u-ra",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#phân-lo?i-severity",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#so-d?-quy?t-d?nh",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#tích-h?p-v?i-dev-team-workflow",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#safety",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#x?-lý-ngo?i-l?",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#t?ng-quan",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#architecture",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#quy-trình-gitpush",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#7-kênh-ki?m-tra-an-toàn",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#d?nh-d?ng-d?u-ra",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#so-d?-quy?t-d?nh",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#tích-h?p-v?i-dev-team-workflow",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#x?-lý-ngo?i-l?",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "critique.md",
+                       "Target":  "#cognitive-load-assessment",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "critique.md",
+                       "Target":  "#heuristics-scoring-guide",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "critique.md",
+                       "Target":  "#heuristics-scoring-guide",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "critique.md",
+                       "Target":  "#issue-severity-p0p3",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "critique.md",
+                       "Target":  "#persona-based-design-testing",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "document.md",
+                       "Target":  "#b8422e",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "document.md",
+                       "Target":  "#faf7f2",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "document.md",
+                       "Target":  "#HEX",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "document.md",
+                       "Target":  "#HEX",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "document.md",
+                       "Target":  "#HEX",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "document.md",
+                       "Target":  "#HEX",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "document.md",
+                       "Target":  "#191c1d",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "document.md",
+                       "Target":  "#fff",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#t?ng-quan",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#phân-lo?i-rác",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#architecture",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#quy-trình-d?n-d?p",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#8-kênh-ki?m-tra-rác",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#d?nh-d?ng-d?u-ra",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#so-d?-quy?t-d?nh",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#tích-h?p-v?i-dev-team-workflow",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#x?-lý-ngo?i-l?",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   }
+               ]
+}

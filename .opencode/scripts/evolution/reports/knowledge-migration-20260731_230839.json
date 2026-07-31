@@ -1,0 +1,156 @@
+﻿{
+    "tool":  "knowledge-migration.ps1",
+    "deprecated_knowledge":  [
+                                 {
+                                     "current":  "FluentUI 4.14.3",
+                                     "severity":  "MAJOR",
+                                     "detail":  "Knowledge references MudBlazor but project uses FluentUI",
+                                     "type":  "DEPRECATED_FRAMEWORK",
+                                     "suggestion":  "Update to FluentUI patterns",
+                                     "old":  "MudBlazor",
+                                     "file":  "knowledge/lessons.md"
+                                 },
+                                 {
+                                     "current":  "FluentUI 4.14.3",
+                                     "severity":  "MAJOR",
+                                     "detail":  "Knowledge references MudBlazor but project uses FluentUI",
+                                     "type":  "DEPRECATED_FRAMEWORK",
+                                     "suggestion":  "Update to FluentUI patterns",
+                                     "old":  "MudBlazor",
+                                     "file":  "knowledge/skills-learned.md"
+                                 },
+                                 {
+                                     "current":  "FluentUI 4.14.3",
+                                     "severity":  "MAJOR",
+                                     "detail":  "Knowledge references MudBlazor but project uses FluentUI",
+                                     "type":  "DEPRECATED_FRAMEWORK",
+                                     "suggestion":  "Update to FluentUI patterns",
+                                     "old":  "MudBlazor",
+                                     "file":  "knowledge/skills/blazor/patterns.md"
+                                 }
+                             ],
+    "missing_knowledge":  [
+                              {
+                                  "category":  "framework",
+                                  "suggestion":  "Create knowledge/framework/fluentu.md",
+                                  "reason":  "Topic \u0027fluentu\u0027 used in project but no KB entry found",
+                                  "topic":  "fluentu"
+                              },
+                              {
+                                  "category":  "framework",
+                                  "suggestion":  "Create knowledge/framework/fluentui-design-tokens.md",
+                                  "reason":  "Topic \u0027fluentui-design-tokens\u0027 used in project but no KB entry found",
+                                  "topic":  "fluentui-design-tokens"
+                              },
+                              {
+                                  "category":  "pattern",
+                                  "suggestion":  "Create knowledge/pattern/local-storage-patterns.md",
+                                  "reason":  "Topic \u0027local-storage-patterns\u0027 used in project but no KB entry found",
+                                  "topic":  "local-storage-patterns"
+                              },
+                              {
+                                  "category":  "testing",
+                                  "suggestion":  "Create knowledge/testing/xunit-bunit-testing.md",
+                                  "reason":  "Topic \u0027xunit-bunit-testing\u0027 used in project but no KB entry found",
+                                  "topic":  "xunit-bunit-testing"
+                              },
+                              {
+                                  "category":  "testing",
+                                  "suggestion":  "Create knowledge/testing/playwright-e2e.md",
+                                  "reason":  "Topic \u0027playwright-e2e\u0027 used in project but no KB entry found",
+                                  "topic":  "playwright-e2e"
+                              },
+                              {
+                                  "category":  "ui",
+                                  "suggestion":  "Create knowledge/ui/fluentui-components.md",
+                                  "reason":  "Topic \u0027fluentui-components\u0027 used in project but no KB entry found",
+                                  "topic":  "fluentui-components"
+                              },
+                              {
+                                  "category":  "ui",
+                                  "suggestion":  "Create knowledge/ui/dark-mode-theming.md",
+                                  "reason":  "Topic \u0027dark-mode-theming\u0027 used in project but no KB entry found",
+                                  "topic":  "dark-mode-theming"
+                              },
+                              {
+                                  "category":  "pattern",
+                                  "suggestion":  "Create knowledge/pattern/seed-data-patterns.md",
+                                  "reason":  "Topic \u0027seed-data-patterns\u0027 used in project but no KB entry found",
+                                  "topic":  "seed-data-patterns"
+                              },
+                              {
+                                  "category":  "ui",
+                                  "suggestion":  "Create knowledge/ui/tri-state-rendering.md",
+                                  "reason":  "Topic \u0027tri-state-rendering\u0027 used in project but no KB entry found",
+                                  "topic":  "tri-state-rendering"
+                              }
+                          ],
+    "version":  "1.0.0",
+    "summary":  "Knowledge migration: 8 files, 3 deprecated, 9 missing (score: 0/100)",
+    "timestamp":  "20260731_230839",
+    "knowledge_files":  [
+                            {
+                                "has_frontmatter":  true,
+                                "lines":  193,
+                                "file":  "knowledge/lessons.md",
+                                "size":  17298
+                            },
+                            {
+                                "has_frontmatter":  false,
+                                "lines":  44,
+                                "file":  "knowledge/README.md",
+                                "size":  1590
+                            },
+                            {
+                                "has_frontmatter":  true,
+                                "lines":  215,
+                                "file":  "knowledge/skills-learned.md",
+                                "size":  13519
+                            },
+                            {
+                                "has_frontmatter":  true,
+                                "lines":  80,
+                                "file":  "knowledge/framework/blazor/component-lifecycle.md",
+                                "size":  2570
+                            },
+                            {
+                                "has_frontmatter":  true,
+                                "lines":  91,
+                                "file":  "knowledge/project/japanese-learner/deployment.md",
+                                "size":  3722
+                            },
+                            {
+                                "has_frontmatter":  true,
+                                "lines":  89,
+                                "file":  "knowledge/skills/blazor/patterns.md",
+                                "size":  5337
+                            },
+                            {
+                                "has_frontmatter":  true,
+                                "lines":  100,
+                                "file":  "knowledge/skills/blazor/ui.md",
+                                "size":  3722
+                            },
+                            {
+                                "has_frontmatter":  false,
+                                "lines":  35,
+                                "file":  "knowledge/workflow/validate-github-actions-yaml.md",
+                                "size":  879
+                            }
+                        ],
+    "score":  0,
+    "pending_updates":  [
+                            "UPDATE: knowledge/lessons.md - Knowledge references MudBlazor but project uses FluentUI",
+                            "UPDATE: knowledge/skills-learned.md - Knowledge references MudBlazor but project uses FluentUI",
+                            "UPDATE: knowledge/skills/blazor/patterns.md - Knowledge references MudBlazor but project uses FluentUI",
+                            "CREATE: fluentu - Topic \u0027fluentu\u0027 used in project but no KB entry found",
+                            "CREATE: fluentui-design-tokens - Topic \u0027fluentui-design-tokens\u0027 used in project but no KB entry found",
+                            "CREATE: local-storage-patterns - Topic \u0027local-storage-patterns\u0027 used in project but no KB entry found",
+                            "CREATE: xunit-bunit-testing - Topic \u0027xunit-bunit-testing\u0027 used in project but no KB entry found",
+                            "CREATE: playwright-e2e - Topic \u0027playwright-e2e\u0027 used in project but no KB entry found",
+                            "CREATE: fluentui-components - Topic \u0027fluentui-components\u0027 used in project but no KB entry found",
+                            "CREATE: dark-mode-theming - Topic \u0027dark-mode-theming\u0027 used in project but no KB entry found",
+                            "CREATE: seed-data-patterns - Topic \u0027seed-data-patterns\u0027 used in project but no KB entry found",
+                            "CREATE: tri-state-rendering - Topic \u0027tri-state-rendering\u0027 used in project but no KB entry found"
+                        ]
+}

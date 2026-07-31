@@ -1,6 +1,6 @@
 ﻿# System Evolution Report
 
-**Generated:** 2026-07-30 22:14:39
+**Generated:** 2026-07-31 23:08:40
 **Tool:** evolution-report.ps1 v1.0.0
 
 ---
@@ -10,64 +10,19 @@
 | Type | Count |
 |------|-------|
 | Workflow changes | 0 |
-| Schema changes | 1 |
-| Compatibility issues | 8 |
-| Migration tasks | 4 |
-| Deprecated knowledge | 3 |
-| Missing knowledge topics | 9 |
+| Schema changes | 0 |
+| Compatibility issues | 0 |
+| Migration tasks | 0 |
+| Deprecated knowledge | 0 |
+| Missing knowledge topics | 0 |
 | Auto-fixes applied | 0 |
-| Pending fixes | 4 |
-
----
-
-## Pending
-
-- TYPO_CANDIDATE: test-planner.md - 'recommendations' -> 'recommendation' (confidence: 93%)
-- TYPO_CANDIDATE: test-planner.md - 'recommendations' -> 'recommendation' (confidence: 93%)
-- TYPO_CANDIDATE: ui-beautifier.md - 'recommendations' -> 'recommendation' (confidence: 93%)
-- TYPO_CANDIDATE: ui-beautifier.md - 'recommendations' -> 'recommendation' (confidence: 93%)
-- UPDATE: knowledge/knowledge\lessons.md - Knowledge references MudBlazor but project uses FluentUI
-- UPDATE: knowledge/knowledge\skills-learned.md - Knowledge references MudBlazor but project uses FluentUI
-- UPDATE: knowledge/knowledge\skills\blazor\patterns.md - Knowledge references MudBlazor but project uses FluentUI
-- CREATE: fluentu - Topic 'fluentu' used in project but no KB entry found
-- CREATE: fluentui-design-tokens - Topic 'fluentui-design-tokens' used in project but no KB entry found
-- CREATE: local-storage-patterns - Topic 'local-storage-patterns' used in project but no KB entry found
-- CREATE: xunit-bunit-testing - Topic 'xunit-bunit-testing' used in project but no KB entry found
-- CREATE: playwright-e2e - Topic 'playwright-e2e' used in project but no KB entry found
-- CREATE: fluentui-components - Topic 'fluentui-components' used in project but no KB entry found
-- CREATE: dark-mode-theming - Topic 'dark-mode-theming' used in project but no KB entry found
-- CREATE: seed-data-patterns - Topic 'seed-data-patterns' used in project but no KB entry found
-- CREATE: tri-state-rendering - Topic 'tri-state-rendering' used in project but no KB entry found
-
----
-
-## Learning
-
-- New pattern detected: 2 semantic changes in system
-- New bug fix strategy: 4 migration tasks generated
-
----
-
-## Suggestions
-
-- Add knowledge topic: fluentu (framework)
-- Add knowledge topic: fluentui-design-tokens (framework)
-- Add knowledge topic: local-storage-patterns (pattern)
+| Pending fixes | 0 |
 
 ---
 
 ## Health Score
 
-| Agents          | 8/100 |
-| Compatibility   | 100/100 |
-| Knowledge       | 80/100 |
-| Learning        | 100/100 |
-| Scripts         | 81/100 |
-| Skills          | 85/100 |
-| Tests           | 100/100 |
-| Workflow        | 100/100 |
-|-----------------|--------|
-| **Overall**     | **80/100** |
+Health score not computed.
 
 ---
 

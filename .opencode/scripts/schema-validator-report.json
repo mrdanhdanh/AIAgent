@@ -1,0 +1,97 @@
+{
+    "tool":  "schema-validator.ps1",
+    "version":  "1.0.0",
+    "timestamp":  "20260731_230651",
+    "target_dir":  ".opencode/agents",
+    "files_scanned":  17,
+    "files_passed":  0,
+    "files_failed":  17,
+    "all_pass":  false,
+    "results":  [
+                    {
+                        "File":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\agents\\analyst.md",
+                        "Status":  "FAIL",
+                        "Errors":  "FRONTMATTER: No YAML frontmatter found (--- ... ---); YAML: WARNING: ConvertFrom-Yaml not available (install powershell-yaml module)"
+                    },
+                    {
+                        "File":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\agents\\backup-agent.md",
+                        "Status":  "FAIL",
+                        "Errors":  "FRONTMATTER: No YAML frontmatter found (--- ... ---); YAML: WARNING: ConvertFrom-Yaml not available (install powershell-yaml module)"
+                    },
+                    {
+                        "File":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\agents\\builder.md",
+                        "Status":  "FAIL",
+                        "Errors":  "FRONTMATTER: No YAML frontmatter found (--- ... ---); YAML: WARNING: ConvertFrom-Yaml not available (install powershell-yaml module)"
+                    },
+                    {
+                        "File":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\agents\\cleaner.md",
+                        "Status":  "FAIL",
+                        "Errors":  "FRONTMATTER: No YAML frontmatter found (--- ... ---); YAML: WARNING: ConvertFrom-Yaml not available (install powershell-yaml module)"
+                    },
+                    {
+                        "File":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\agents\\codebase-explorer.md",
+                        "Status":  "FAIL",
+                        "Errors":  "FRONTMATTER: No YAML frontmatter found (--- ... ---); YAML: WARNING: ConvertFrom-Yaml not available (install powershell-yaml module)"
+                    },
+                    {
+                        "File":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\agents\\failure-agent.md",
+                        "Status":  "FAIL",
+                        "Errors":  "FRONTMATTER: No YAML frontmatter found (--- ... ---); YAML: WARNING: ConvertFrom-Yaml not available (install powershell-yaml module)"
+                    },
+                    {
+                        "File":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\agents\\general.md",
+                        "Status":  "FAIL",
+                        "Errors":  "FRONTMATTER: No YAML frontmatter found (--- ... ---); YAML: WARNING: ConvertFrom-Yaml not available (install powershell-yaml module)"
+                    },
+                    {
+                        "File":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\agents\\guardian.md",
+                        "Status":  "FAIL",
+                        "Errors":  "FRONTMATTER: No YAML frontmatter found (--- ... ---); YAML: WARNING: ConvertFrom-Yaml not available (install powershell-yaml module)"
+                    },
+                    {
+                        "File":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\agents\\learning-agent.md",
+                        "Status":  "FAIL",
+                        "Errors":  "FRONTMATTER: No YAML frontmatter found (--- ... ---); YAML: WARNING: ConvertFrom-Yaml not available (install powershell-yaml module)"
+                    },
+                    {
+                        "File":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\agents\\planner.md",
+                        "Status":  "FAIL",
+                        "Errors":  "FRONTMATTER: No YAML frontmatter found (--- ... ---); LINK: Broken internal link: #01; LINK: Broken internal link: #02; LINK: Broken internal link: #Q01; YAML: WARNING: ConvertFrom-Yaml not available (install powershell-yaml module)"
+                    },
+                    {
+                        "File":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\agents\\pusher.md",
+                        "Status":  "FAIL",
+                        "Errors":  "FRONTMATTER: No YAML frontmatter found (--- ... ---); YAML: WARNING: ConvertFrom-Yaml not available (install powershell-yaml module)"
+                    },
+                    {
+                        "File":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\agents\\reviewer.md",
+                        "Status":  "FAIL",
+                        "Errors":  "FRONTMATTER: No YAML frontmatter found (--- ... ---); LINK: Broken internal link: #01; YAML: WARNING: ConvertFrom-Yaml not available (install powershell-yaml module)"
+                    },
+                    {
+                        "File":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\agents\\root-cause-agent.md",
+                        "Status":  "FAIL",
+                        "Errors":  "FRONTMATTER: No YAML frontmatter found (--- ... ---); YAML: WARNING: ConvertFrom-Yaml not available (install powershell-yaml module)"
+                    },
+                    {
+                        "File":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\agents\\self-improver.md",
+                        "Status":  "FAIL",
+                        "Errors":  "FRONTMATTER: No YAML frontmatter found (--- ... ---); YAML: WARNING: ConvertFrom-Yaml not available (install powershell-yaml module)"
+                    },
+                    {
+                        "File":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\agents\\test-planner.md",
+                        "Status":  "FAIL",
+                        "Errors":  "FRONTMATTER: No YAML frontmatter found (--- ... ---); YAML: WARNING: ConvertFrom-Yaml not available (install powershell-yaml module)"
+                    },
+                    {
+                        "File":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\agents\\tester.md",
+                        "Status":  "FAIL",
+                        "Errors":  "FRONTMATTER: No YAML frontmatter found (--- ... ---); YAML: WARNING: ConvertFrom-Yaml not available (install powershell-yaml module)"
+                    },
+                    {
+                        "File":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\agents\\ui-beautifier.md",
+                        "Status":  "FAIL",
+                        "Errors":  "FRONTMATTER: No YAML frontmatter found (--- ... ---); LINK: Broken internal link: #1d3557; LINK: Broken internal link: #e63946; LINK: Broken internal link: #2a9d8f; LINK: Broken internal link: #457b9d; LINK: Broken internal link: #e9c46a; LINK: Broken internal link: #f8f9fa; LINK: Broken internal link: #ffffff; LINK: Broken internal link: #1d3557; LINK: Broken internal link: #666666; LINK: Broken internal link: #ff0000; LINK: Broken internal link: #ff0000; LINK: Broken internal link: #ff0000; YAML: WARNING: ConvertFrom-Yaml not available (install powershell-yaml module)"
+                    }
+                ]
+}

@@ -8,12 +8,214 @@
     [switch]$selfHeal,            # Run only Self Healing Engine
     [switch]$knowledgeMigrate,    # Run only Knowledge Migration
     [switch]$healthScore,         # Run only Health Score
-    [switch]$report,              # Run only Evolution Report
-    [string]$evolutionMode = "full"  # full | scan | heal | report
+    [switch]$evolutionReport,     # Run only Evolution Report
+    [string]$evolutionMode = "full", # full | scan | heal | report
+    [switch]$stressTest,          # Run stress test (fake tasks through 13-step workflow)
+    [int]$stressCount = 20,       # Number of fake tasks (default 20)
+    [string]$stressSeed = "fixed" # Seed for deterministic random (same seed -> same result)
 )
 
 $ErrorActionPreference = "Stop"
 $root = ".opencode"
+
+# === STRESS TEST ENGINE (--stressTest) ===
+# Khi bat -stressTest: chay stress test THAY VI sync/evolution thong thuong (log ro rang).
+# Gia lap $stressCount fake tasks qua 13-step state machine, deterministic theo seed.
+if ($stressTest) {
+    Write-Host ""
+    Write-Host "========================================" -ForegroundColor Magenta
+    Write-Host "  STRESS TEST ENGINE" -ForegroundColor Magenta
+    Write-Host "========================================" -ForegroundColor Magenta
+    Write-Host "  Mode: thay the sync/evolution thong thuong (stress test chay THAY VI)" -ForegroundColor Yellow
+
+    # --- Dry-run: chi in ke hoach, khong chay, khong ghi JSON ---
+    if ($dryRun) {
+        Write-Host ""
+        Write-Host "DRY-RUN: Stress test khong chay (chi in ke hoach)." -ForegroundColor Yellow
+        Write-Host "  Plan:" -ForegroundColor Cyan
+        Write-Host "    - Gia lap $stressCount fake tasks qua 13-step state machine" -ForegroundColor White
+        Write-Host "    - Steps: analyze -> design -> plan -> review -> guardrail -> backup -> build -> static_analysis -> ui_audit -> testplan -> test -> skill_validation -> complete" -ForegroundColor White
+        Write-Host "    - Seed deterministic: '$stressSeed' (cung seed -> cung ket qua)" -ForegroundColor White
+        Write-Host "    - Output: bao cao console + JSON reports/stress-test-<timestamp>.json" -ForegroundColor White
+        exit 0
+    }
+
+    # --- Deterministic seed tu chuoi: cung chuoi -> cung seed -> cung ket qua ---
+    $seedInt = 0
+    foreach ($ch in $stressSeed.ToCharArray()) {
+        $seedInt = ($seedInt * 31 + [int]$ch) % 2147483647
+    }
+    if ($seedInt -eq 0) { $seedInt = 1 }
+    $stressRng = New-Object System.Random -ArgumentList $seedInt
+
+    # --- 13-step state machine ---
+    $stressSteps = @(
+        "analyze", "design", "plan", "review", "guardrail", "backup", "build",
+        "static_analysis", "ui_audit", "testplan", "test", "skill_validation", "complete"
+    )
+    # Xac suat thanh cong base cho tung buoc (mo phong thuc te)
+    $stressProb = @{
+        "analyze" = 0.95; "design" = 0.92; "plan" = 0.90; "review" = 0.88
+        "guardrail" = 0.97; "backup" = 0.96; "build" = 0.85; "static_analysis" = 0.92
+        "ui_audit" = 0.90; "testplan" = 0.95; "test" = 0.82; "skill_validation" = 0.97
+        "complete" = 0.99
+    }
+    # Error types mo phong khi 1 buoc fail
+    $stressErrors = @(
+        "MISSING_SKILL", "CONTRACT_MISMATCH", "WORKFLOW_CONFLICT", "OUTPUT_SCHEMA_INVALID",
+        "TIMEOUT", "BACKUP_FAILED", "FILE_NOT_FOUND", "TEST_FAILURE", "PARSER_ERROR"
+    )
+
+    $stTotal = $stressCount
+    if ($stTotal -lt 1) { $stTotal = 1 }
+
+    $stSuccess = 0
+    $stFailures = New-Object System.Collections.ArrayList
+    $stErrorCount = @{}
+    $stStepFail = @{}
+    $stStepPass = @{}
+    $stDurationTotal = 0
+
+    foreach ($step in $stressSteps) {
+        $stStepFail[$step] = 0
+        $stStepPass[$step] = 0
+    }
+    foreach ($e in $stressErrors) { $stErrorCount[$e] = 0 }
+
+    Write-Host ""
+    Write-Host "Running $stTotal fake tasks (seed='$stressSeed', deterministic)..." -ForegroundColor Cyan
+
+    for ($i = 1; $i -le $stTotal; $i++) {
+        $taskId = "TASK-{0:D3}" -f $i
+        $taskDur = 0
+        $failedStep = $null
+        $errType = $null
+
+        # Chay qua 13 buoc; buoc dau tien fail -> task fail, dung ngay
+        foreach ($step in $stressSteps) {
+            $taskDur += $stressRng.Next(15, 120)  # gia lap thoi gian moi buoc
+            $prob = [double]$stressProb[$step]
+            $roll = $stressRng.NextDouble()
+            if ($roll -gt $prob) {
+                $failedStep = $step
+                $errType = $stressErrors[$stressRng.Next(0, $stressErrors.Count)]
+                break
+            }
+            $stStepPass[$step]++
+        }
+
+        if ($failedStep) {
+            $stStepFail[$failedStep]++
+            $stErrorCount[$errType]++
+            $null = $stFailures.Add(@{ task_id = $taskId; step = $failedStep; error_type = $errType })
+            Write-Host "  $taskId FAIL at step '$failedStep' (error: $errType)" -ForegroundColor Red
+        } else {
+            $stSuccess++
+            Write-Host "  $taskId PASS (13/13 steps)" -ForegroundColor Green
+        }
+        $stDurationTotal += $taskDur
+    }
+
+    # --- Tinh toan chi so ---
+    $successRate = [math]::Round(($stSuccess / $stTotal) * 100)
+    $stepTotal = $stressSteps.Count
+    $totalStepInstances = $stTotal * $stepTotal
+    $totalPassed = 0
+    foreach ($step in $stressSteps) { $totalPassed += $stStepPass[$step] }
+    $avgStepSuccess = [math]::Round(($totalPassed / $totalStepInstances) * 100, 1)
+    $avgDuration = [math]::Round($stDurationTotal / $stTotal)
+
+    # Health score = success_rate * 0.6 + avg_step_success * 0.4
+    $healthScoreVal = [math]::Round(($successRate * 0.6) + ($avgStepSuccess * 0.4))
+
+    # Verdict: STABLE >= 90%, WARNING 70-90%, UNSTABLE < 70%
+    if ($successRate -ge 90) { $verdict = "STABLE" }
+    elseif ($successRate -ge 70) { $verdict = "WARNING" }
+    else { $verdict = "UNSTABLE" }
+
+    # Most common errors (top 3)
+    $mostCommon = @(
+        $stErrorCount.GetEnumerator() |
+            Where-Object { $_.Value -gt 0 } |
+            Sort-Object { $_.Value } -Descending |
+            Select-Object -First 3 |
+            ForEach-Object { @{ error_type = $_.Key; count = $_.Value } }
+    )
+
+    # Weakest steps (chi cac buoc co failure, sort theo failure_rate desc)
+    $weakest = @(
+        $stressSteps |
+            Where-Object { $stStepFail[$_] -gt 0 } |
+            ForEach-Object {
+                @{ step = $_; failure_count = $stStepFail[$_]; failure_rate = [math]::Round(($stStepFail[$_] / $stTotal) * 100, 1) }
+            } |
+            Sort-Object { $_.failure_rate } -Descending
+    )
+
+    $stressReport = @{
+        stress_test = @{
+            total_tasks = $stTotal
+            success_count = $stSuccess
+            failure_count = $stFailures.Count
+            success_rate = $successRate
+            failures = @($stFailures)
+            most_common_errors = $mostCommon
+            weakest_steps = $weakest
+            avg_duration_ms = $avgDuration
+            health_score = $healthScoreVal
+            verdict = $verdict
+            seed = $stressSeed
+            steps = $stressSteps
+            step_success_prob = $stressProb
+        }
+    }
+
+    # --- Console report ---
+    Write-Host ""
+    Write-Host "========================================" -ForegroundColor Magenta
+    Write-Host "  STRESS TEST REPORT" -ForegroundColor Magenta
+    Write-Host "========================================" -ForegroundColor Magenta
+    Write-Host "  total_tasks:     $($stressReport.stress_test.total_tasks)"
+    Write-Host "  success_count:   $($stressReport.stress_test.success_count)"
+    Write-Host "  failure_count:   $($stressReport.stress_test.failure_count)"
+    Write-Host "  success_rate:    $($stressReport.stress_test.success_rate)%"
+    Write-Host "  avg_duration_ms: $($stressReport.stress_test.avg_duration_ms)"
+    Write-Host "  health_score:    $($stressReport.stress_test.health_score)"
+    $vColor = "Green"
+    if ($verdict -eq "WARNING") { $vColor = "Yellow" }
+    elseif ($verdict -eq "UNSTABLE") { $vColor = "Red" }
+    Write-Host "  verdict:         $verdict" -ForegroundColor $vColor
+    Write-Host "  ----------------------------------------"
+    if ($stFailures.Count -gt 0) {
+        Write-Host "  Failures:" -ForegroundColor Yellow
+        foreach ($f in $stFailures) {
+            Write-Host "    $($f.task_id): step=$($f.step) error=$($f.error_type)" -ForegroundColor Yellow
+        }
+        Write-Host "  Most common errors:" -ForegroundColor Yellow
+        foreach ($m in $mostCommon) {
+            Write-Host "    $($m.error_type): $($m.count)" -ForegroundColor Yellow
+        }
+        Write-Host "  Weakest steps:" -ForegroundColor Yellow
+        foreach ($w in $weakest) {
+            Write-Host "    $($w.step): failures=$($w.failure_count) rate=$($w.failure_rate)%" -ForegroundColor Yellow
+        }
+    } else {
+        Write-Host "  No failures. All tasks PASS." -ForegroundColor Green
+    }
+    Write-Host "========================================" -ForegroundColor Magenta
+
+    # --- Ghi JSON report ---
+    $stamp = Get-Date -Format "yyyyMMdd-HHmmss"
+    $stressReportDir = "$root\scripts\evolution\reports"
+    if (-not (Test-Path $stressReportDir)) {
+        New-Item -ItemType Directory -Path $stressReportDir -Force | Out-Null
+    }
+    $stressJsonPath = "$stressReportDir\stress-test-$stamp.json"
+    $stressReport | ConvertTo-Json -Depth 6 | Out-File -FilePath $stressJsonPath -Encoding utf8
+    Write-Host "Stress test report saved: $stressJsonPath" -ForegroundColor Green
+    exit 0
+}
+
 $report = @{
     scanned_at = (Get-Date -Format "o")
     agents = @{}
@@ -582,7 +784,7 @@ if (Test-Path $skillPath) {
 }
 
 # === EVOLUTION ENGINE ORCHESTRATION ===
-$runEvolution = $evolve -or $semanticDiff -or $compatibility -or $migration -or $selfHeal -or $knowledgeMigrate -or $healthScore -or $report -or ($evolutionMode -ne "none")
+$runEvolution = $evolve -or $semanticDiff -or $compatibility -or $migration -or $selfHeal -or $knowledgeMigrate -or $healthScore -or $evolutionReport -or ($evolutionMode -ne "none")
 $evolutionResults = @{}
 $evolutionDir = "$root\scripts\evolution"
 $reportsDir = "$evolutionDir\reports"
@@ -601,7 +803,7 @@ if ($runEvolution -and -not $dryRun) {
     $runHeal = $selfHeal -or ($evolutionMode -in @('full', 'heal')) -or $evolve
     $runKnowledge = $knowledgeMigrate -or ($evolutionMode -in @('full', 'scan')) -or $evolve
     $runHealth = $healthScore -or ($evolutionMode -in @('full')) -or $evolve
-    $runReport = $report -or ($evolutionMode -in @('full')) -or $evolve
+    $runReport = $evolutionReport -or ($evolutionMode -in @('full')) -or $evolve
     
     $evolutionSteps = @()
     $evolutionIssues = @()
