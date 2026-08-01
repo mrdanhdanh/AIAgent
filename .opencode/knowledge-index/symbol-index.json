@@ -1,0 +1,525 @@
+﻿{
+    "generated_at":  "2026-08-01T17:28:13.9661402+07:00",
+    "symbols":  {
+                    "Display":  [
+                                    {
+                                        "line":  1,
+                                        "file":  "JapaneseLearner/Pages/AlphabetQuiz.razor"
+                                    },
+                                    {
+                                        "line":  1,
+                                        "file":  "JapaneseLearner/Pages/KanjiQuiz.razor"
+                                    }
+                                ],
+                    "SaveResult":  [
+                                       {
+                                           "line":  1,
+                                           "file":  "JapaneseLearner/Pages/Training.razor"
+                                       }
+                                   ],
+                    "ThemeService":  [
+                                         {
+                                             "line":  1,
+                                             "file":  "JapaneseLearner/Services/ThemeService.cs"
+                                         }
+                                     ],
+                    "IGrammarService":  [
+                                            {
+                                                "line":  1,
+                                                "file":  "JapaneseLearner/Services/IGrammarService.cs"
+                                            },
+                                            {
+                                                "line":  1,
+                                                "file":  "JapaneseLearner/Services/IGrammarService.cs"
+                                            }
+                                        ],
+                    "JapaneseChar":  [
+                                         {
+                                             "line":  1,
+                                             "file":  "JapaneseLearner/Models/JapaneseChar.cs"
+                                         },
+                                         {
+                                             "line":  1,
+                                             "file":  "JapaneseLearner/Models/JapaneseChar.cs"
+                                         }
+                                     ],
+                    "Word":  [
+                                 {
+                                     "line":  1,
+                                     "file":  "JapaneseLearner/Pages/KanjiQuiz.razor"
+                                 }
+                             ],
+                    "Count":  [
+                                  {
+                                      "line":  1,
+                                      "file":  "JapaneseLearner/Pages/Training.razor"
+                                  }
+                              ],
+                    "Reading":  [
+                                    {
+                                        "line":  1,
+                                        "file":  "JapaneseLearner/Pages/KanjiQuiz.razor"
+                                    }
+                                ],
+                    "AddAsync":  [
+                                     {
+                                         "line":  1,
+                                         "file":  "JapaneseLearner/Services/CharService.cs"
+                                     },
+                                     {
+                                         "line":  1,
+                                         "file":  "JapaneseLearner/Services/GrammarService.cs"
+                                     },
+                                     {
+                                         "line":  1,
+                                         "file":  "JapaneseLearner/Services/KanjiService.cs"
+                                     },
+                                     {
+                                         "line":  1,
+                                         "file":  "JapaneseLearner/Services/WordService.cs"
+                                     }
+                                 ],
+                    "RecognitionResult":  [
+                                              {
+                                                  "line":  1,
+                                                  "file":  "JapaneseLearner/Pages/Practice.razor"
+                                              }
+                                          ],
+                    "CharService":  [
+                                        {
+                                            "line":  1,
+                                            "file":  "JapaneseLearner/Services/CharService.cs"
+                                        }
+                                    ],
+                    "Ok":  [
+                               {
+                                   "line":  1,
+                                   "file":  "JapaneseLearner/Pages/Training.razor"
+                               }
+                           ],
+                    "KunYomi":  [
+                                    {
+                                        "line":  1,
+                                        "file":  "JapaneseLearner/Models/JapaneseKanji.cs"
+                                    }
+                                ],
+                    "Total":  [
+                                  {
+                                      "line":  1,
+                                      "file":  "JapaneseLearner/Pages/Training.razor"
+                                  },
+                                  {
+                                      "line":  1,
+                                      "file":  "JapaneseLearner/Pages/Training.razor"
+                                  }
+                              ],
+                    "UpdateAsync":  [
+                                        {
+                                            "line":  1,
+                                            "file":  "JapaneseLearner/Services/CharService.cs"
+                                        },
+                                        {
+                                            "line":  1,
+                                            "file":  "JapaneseLearner/Services/GrammarService.cs"
+                                        },
+                                        {
+                                            "line":  1,
+                                            "file":  "JapaneseLearner/Services/KanjiService.cs"
+                                        },
+                                        {
+                                            "line":  1,
+                                            "file":  "JapaneseLearner/Services/WordService.cs"
+                                        }
+                                    ],
+                    "AnswerOption":  [
+                                         {
+                                             "line":  1,
+                                             "file":  "JapaneseLearner/Pages/AlphabetQuiz.razor"
+                                         },
+                                         {
+                                             "line":  1,
+                                             "file":  "JapaneseLearner/Pages/KanjiQuiz.razor"
+                                         },
+                                         {
+                                             "line":  1,
+                                             "file":  "JapaneseLearner/Pages/WordQuiz.razor"
+                                         }
+                                     ],
+                    "Error":  [
+                                  {
+                                      "line":  1,
+                                      "file":  "JapaneseLearner/Pages/Training.razor"
+                                  }
+                              ],
+                    "IsCorrect":  [
+                                      {
+                                          "line":  1,
+                                          "file":  "JapaneseLearner/Pages/AlphabetQuiz.razor"
+                                      },
+                                      {
+                                          "line":  1,
+                                          "file":  "JapaneseLearner/Pages/KanjiQuiz.razor"
+                                      },
+                                      {
+                                          "line":  1,
+                                          "file":  "JapaneseLearner/Pages/WordQuiz.razor"
+                                      }
+                                  ],
+                    "Examples":  [
+                                     {
+                                         "line":  1,
+                                         "file":  "JapaneseLearner/Models/JapaneseGrammar.cs"
+                                     },
+                                     {
+                                         "line":  1,
+                                         "file":  "JapaneseLearner/Models/JapaneseKanji.cs"
+                                     }
+                                 ],
+                    "Top3":  [
+                                 {
+                                     "line":  1,
+                                     "file":  "JapaneseLearner/Pages/Practice.razor"
+                                 }
+                             ],
+                    "IKanjiService":  [
+                                          {
+                                              "line":  1,
+                                              "file":  "JapaneseLearner/Services/IKanjiService.cs"
+                                          },
+                                          {
+                                              "line":  1,
+                                              "file":  "JapaneseLearner/Services/IKanjiService.cs"
+                                          }
+                                      ],
+                    "IThemeService":  [
+                                          {
+                                              "line":  1,
+                                              "file":  "JapaneseLearner/Services/IThemeService.cs"
+                                          },
+                                          {
+                                              "line":  1,
+                                              "file":  "JapaneseLearner/Services/IThemeService.cs"
+                                          }
+                                      ],
+                    "ICharService":  [
+                                         {
+                                             "line":  1,
+                                             "file":  "JapaneseLearner/Services/ICharService.cs"
+                                         },
+                                         {
+                                             "line":  1,
+                                             "file":  "JapaneseLearner/Services/ICharService.cs"
+                                         }
+                                     ],
+                    "JapaneseGrammar":  [
+                                            {
+                                                "line":  1,
+                                                "file":  "JapaneseLearner/Models/JapaneseGrammar.cs"
+                                            },
+                                            {
+                                                "line":  1,
+                                                "file":  "JapaneseLearner/Models/JapaneseGrammar.cs"
+                                            }
+                                        ],
+                    "Kanji":  [
+                                  {
+                                      "line":  1,
+                                      "file":  "JapaneseLearner/Models/JapaneseKanji.cs"
+                                  }
+                              ],
+                    "Pattern":  [
+                                    {
+                                        "line":  1,
+                                        "file":  "JapaneseLearner/Models/JapaneseGrammar.cs"
+                                    }
+                                ],
+                    "KanjiService":  [
+                                         {
+                                             "line":  1,
+                                             "file":  "JapaneseLearner/Services/KanjiService.cs"
+                                         }
+                                     ],
+                    "TemplateInfo":  [
+                                         {
+                                             "line":  1,
+                                             "file":  "JapaneseLearner/Pages/Training.razor"
+                                         }
+                                     ],
+                    "Type":  [
+                                 {
+                                     "line":  1,
+                                     "file":  "JapaneseLearner/Models/JapaneseChar.cs"
+                                 },
+                                 {
+                                     "line":  1,
+                                     "file":  "JapaneseLearner/Models/JapaneseWord.cs"
+                                 }
+                             ],
+                    "IWordService":  [
+                                         {
+                                             "line":  1,
+                                             "file":  "JapaneseLearner/Services/IWordService.cs"
+                                         },
+                                         {
+                                             "line":  1,
+                                             "file":  "JapaneseLearner/Services/IWordService.cs"
+                                         }
+                                     ],
+                    "ToggleAsync":  [
+                                        {
+                                            "line":  1,
+                                            "file":  "JapaneseLearner/Services/ThemeService.cs"
+                                        }
+                                    ],
+                    "KanjiVocabItem":  [
+                                           {
+                                               "line":  1,
+                                               "file":  "JapaneseLearner/Pages/KanjiQuiz.razor"
+                                           }
+                                       ],
+                    "Strokes":  [
+                                    {
+                                        "line":  1,
+                                        "file":  "JapaneseLearner/Models/JapaneseKanji.cs"
+                                    }
+                                ],
+                    "Explanation":  [
+                                        {
+                                            "line":  1,
+                                            "file":  "JapaneseLearner/Models/JapaneseGrammar.cs"
+                                        }
+                                    ],
+                    "JapaneseKanji":  [
+                                          {
+                                              "line":  1,
+                                              "file":  "JapaneseLearner/Models/JapaneseKanji.cs"
+                                          },
+                                          {
+                                              "line":  1,
+                                              "file":  "JapaneseLearner/Models/JapaneseKanji.cs"
+                                          }
+                                      ],
+                    "Id":  [
+                               {
+                                   "line":  1,
+                                   "file":  "JapaneseLearner/Models/JapaneseChar.cs"
+                               },
+                               {
+                                   "line":  1,
+                                   "file":  "JapaneseLearner/Models/JapaneseGrammar.cs"
+                               },
+                               {
+                                   "line":  1,
+                                   "file":  "JapaneseLearner/Models/JapaneseKanji.cs"
+                               },
+                               {
+                                   "line":  1,
+                                   "file":  "JapaneseLearner/Models/JapaneseWord.cs"
+                               },
+                               {
+                                   "line":  1,
+                                   "file":  "JapaneseLearner/Pages/GrammarDetail.razor"
+                               },
+                               {
+                                   "line":  1,
+                                   "file":  "JapaneseLearner/Pages/KanjiDetail.razor"
+                               }
+                           ],
+                    "GrammarService":  [
+                                           {
+                                               "line":  1,
+                                               "file":  "JapaneseLearner/Services/GrammarService.cs"
+                                           }
+                                       ],
+                    "OnYomi":  [
+                                   {
+                                       "line":  1,
+                                       "file":  "JapaneseLearner/Models/JapaneseKanji.cs"
+                                   }
+                               ],
+                    "Meaning":  [
+                                    {
+                                        "line":  1,
+                                        "file":  "JapaneseLearner/Models/JapaneseGrammar.cs"
+                                    },
+                                    {
+                                        "line":  1,
+                                        "file":  "JapaneseLearner/Models/JapaneseKanji.cs"
+                                    },
+                                    {
+                                        "line":  1,
+                                        "file":  "JapaneseLearner/Models/JapaneseWord.cs"
+                                    },
+                                    {
+                                        "line":  1,
+                                        "file":  "JapaneseLearner/Pages/KanjiQuiz.razor"
+                                    },
+                                    {
+                                        "line":  1,
+                                        "file":  "JapaneseLearner/Pages/WordQuiz.razor"
+                                    }
+                                ],
+                    "StrokeCount":  [
+                                        {
+                                            "line":  1,
+                                            "file":  "JapaneseLearner/Models/JapaneseKanji.cs"
+                                        }
+                                    ],
+                    "WordService":  [
+                                        {
+                                            "line":  1,
+                                            "file":  "JapaneseLearner/Services/WordService.cs"
+                                        }
+                                    ],
+                    "GetByTypeAsync":  [
+                                           {
+                                               "line":  1,
+                                               "file":  "JapaneseLearner/Services/CharService.cs"
+                                           },
+                                           {
+                                               "line":  1,
+                                               "file":  "JapaneseLearner/Services/WordService.cs"
+                                           }
+                                       ],
+                    "Characters":  [
+                                       {
+                                           "line":  1,
+                                           "file":  "JapaneseLearner/Models/JapaneseWord.cs"
+                                       }
+                                   ],
+                    "Character":  [
+                                      {
+                                          "line":  1,
+                                          "file":  "JapaneseLearner/Models/JapaneseChar.cs"
+                                      }
+                                  ],
+                    "Dispose":  [
+                                    {
+                                        "line":  1,
+                                        "file":  "JapaneseLearner/.opencode/backup/WF-20260728-001/Layout/MainLayout.razor"
+                                    },
+                                    {
+                                        "line":  1,
+                                        "file":  "JapaneseLearner/Layout/MainLayout.razor"
+                                    }
+                                ],
+                    "GetByLevelAsync":  [
+                                            {
+                                                "line":  1,
+                                                "file":  "JapaneseLearner/Services/GrammarService.cs"
+                                            },
+                                            {
+                                                "line":  1,
+                                                "file":  "JapaneseLearner/Services/KanjiService.cs"
+                                            }
+                                        ],
+                    "JapaneseWord":  [
+                                         {
+                                             "line":  1,
+                                             "file":  "JapaneseLearner/Models/JapaneseWord.cs"
+                                         },
+                                         {
+                                             "line":  1,
+                                             "file":  "JapaneseLearner/Models/JapaneseWord.cs"
+                                         }
+                                     ],
+                    "DeleteAsync":  [
+                                        {
+                                            "line":  1,
+                                            "file":  "JapaneseLearner/Services/CharService.cs"
+                                        },
+                                        {
+                                            "line":  1,
+                                            "file":  "JapaneseLearner/Services/GrammarService.cs"
+                                        },
+                                        {
+                                            "line":  1,
+                                            "file":  "JapaneseLearner/Services/KanjiService.cs"
+                                        },
+                                        {
+                                            "line":  1,
+                                            "file":  "JapaneseLearner/Services/WordService.cs"
+                                        }
+                                    ],
+                    "Level":  [
+                                  {
+                                      "line":  1,
+                                      "file":  "JapaneseLearner/Models/JapaneseWord.cs"
+                                  }
+                              ],
+                    "GetByIdAsync":  [
+                                         {
+                                             "line":  1,
+                                             "file":  "JapaneseLearner/Services/GrammarService.cs"
+                                         },
+                                         {
+                                             "line":  1,
+                                             "file":  "JapaneseLearner/Services/KanjiService.cs"
+                                         }
+                                     ],
+                    "Romaji":  [
+                                   {
+                                       "line":  1,
+                                       "file":  "JapaneseLearner/Models/JapaneseChar.cs"
+                                   },
+                                   {
+                                       "line":  1,
+                                       "file":  "JapaneseLearner/Models/JapaneseKanji.cs"
+                                   },
+                                   {
+                                       "line":  1,
+                                       "file":  "JapaneseLearner/Models/JapaneseWord.cs"
+                                   },
+                                   {
+                                       "line":  1,
+                                       "file":  "JapaneseLearner/Pages/KanjiQuiz.razor"
+                                   }
+                               ],
+                    "GetAllAsync":  [
+                                        {
+                                            "line":  1,
+                                            "file":  "JapaneseLearner/Services/CharService.cs"
+                                        },
+                                        {
+                                            "line":  1,
+                                            "file":  "JapaneseLearner/Services/GrammarService.cs"
+                                        },
+                                        {
+                                            "line":  1,
+                                            "file":  "JapaneseLearner/Services/KanjiService.cs"
+                                        },
+                                        {
+                                            "line":  1,
+                                            "file":  "JapaneseLearner/Services/WordService.cs"
+                                        }
+                                    ],
+                    "GetCurrentModeAsync":  [
+                                                {
+                                                    "line":  1,
+                                                    "file":  "JapaneseLearner/Services/ThemeService.cs"
+                                                }
+                                            ],
+                    "Best":  [
+                                 {
+                                     "line":  1,
+                                     "file":  "JapaneseLearner/Pages/Practice.razor"
+                                 }
+                             ],
+                    "JLPTLevel":  [
+                                      {
+                                          "line":  1,
+                                          "file":  "JapaneseLearner/Models/JapaneseGrammar.cs"
+                                      },
+                                      {
+                                          "line":  1,
+                                          "file":  "JapaneseLearner/Models/JapaneseKanji.cs"
+                                      }
+                                  ],
+                    "Score":  [
+                                  {
+                                      "line":  1,
+                                      "file":  "JapaneseLearner/Pages/Practice.razor"
+                                  }
+                              ]
+                }
+}

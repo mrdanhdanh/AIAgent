@@ -3,78 +3,114 @@
 
                ],
     "knowledge":  {
-                      "knowledge/testing\\playwright-e2e.md":  {
-                                                                   "file":  "knowledge/testing\\playwright-e2e.md",
-                                                                   "size":  2381
-                                                               },
-                      "knowledge/skills\\blazor\\ui.md":  {
-                                                              "file":  "knowledge/skills\\blazor\\ui.md",
-                                                              "size":  3722
-                                                          },
-                      "knowledge/framework\\blazor\\component-lifecycle.md":  {
-                                                                                  "file":  "knowledge/framework\\blazor\\component-lifecycle.md",
-                                                                                  "size":  2570
-                                                                              },
-                      "knowledge/ui\\fluentui-components.md":  {
-                                                                   "file":  "knowledge/ui\\fluentui-components.md",
-                                                                   "size":  1208
-                                                               },
-                      "knowledge/testing\\xunit-bunit-testing.md":  {
-                                                                        "file":  "knowledge/testing\\xunit-bunit-testing.md",
-                                                                        "size":  866
-                                                                    },
                       "knowledge/framework\\fluentu\\fluentu.md":  {
                                                                        "file":  "knowledge/framework\\fluentu\\fluentu.md",
                                                                        "size":  1245
                                                                    },
-                      "knowledge/skills-learned.md":  {
-                                                          "file":  "knowledge/skills-learned.md",
-                                                          "size":  14167
-                                                      },
-                      "knowledge/patterns\\seed-data-patterns.md":  {
-                                                                        "file":  "knowledge/patterns\\seed-data-patterns.md",
-                                                                        "size":  995
-                                                                    },
-                      "knowledge/ui\\tri-state-rendering.md":  {
-                                                                   "file":  "knowledge/ui\\tri-state-rendering.md",
-                                                                   "size":  900
-                                                               },
-                      "knowledge/framework\\fluentu\\design-tokens.md":  {
-                                                                             "file":  "knowledge/framework\\fluentu\\design-tokens.md",
-                                                                             "size":  983
-                                                                         },
-                      "knowledge/patterns\\localstorage.md":  {
-                                                                  "file":  "knowledge/patterns\\localstorage.md",
-                                                                  "size":  962
-                                                              },
-                      "knowledge/README.md":  {
-                                                  "file":  "knowledge/README.md",
-                                                  "size":  2448
-                                              },
-                      "knowledge/ui\\design-system-tokens.md":  {
-                                                                    "file":  "knowledge/ui\\design-system-tokens.md",
-                                                                    "size":  4698
-                                                                },
-                      "knowledge/lessons.md":  {
-                                                   "file":  "knowledge/lessons.md",
-                                                   "size":  19556
-                                               },
+                      "knowledge/framework\\blazor\\component-lifecycle.md":  {
+                                                                                  "file":  "knowledge/framework\\blazor\\component-lifecycle.md",
+                                                                                  "size":  2570
+                                                                              },
+                      "knowledge/knowledge-assistant\\index\\_index-report.json":  {
+                                                                                       "file":  "knowledge/knowledge-assistant\\index\\_index-report.json",
+                                                                                       "size":  555
+                                                                                   },
+                      "knowledge/knowledge-assistant\\index\\symbol-index.json":  {
+                                                                                      "file":  "knowledge/knowledge-assistant\\index\\symbol-index.json",
+                                                                                      "size":  6686
+                                                                                  },
+                      "knowledge/knowledge-assistant\\index\\dependency-graph.json":  {
+                                                                                          "file":  "knowledge/knowledge-assistant\\index\\dependency-graph.json",
+                                                                                          "size":  5265
+                                                                                      },
                       "knowledge/ui\\dark-mode-theming.md":  {
                                                                  "file":  "knowledge/ui\\dark-mode-theming.md",
                                                                  "size":  1040
                                                              },
-                      "knowledge/workflow\\validate-github-actions-yaml.md":  {
-                                                                                  "file":  "knowledge/workflow\\validate-github-actions-yaml.md",
-                                                                                  "size":  879
-                                                                              },
+                      "knowledge/testing\\playwright-e2e.md":  {
+                                                                   "file":  "knowledge/testing\\playwright-e2e.md",
+                                                                   "size":  2381
+                                                               },
+                      "knowledge/README.md":  {
+                                                  "file":  "knowledge/README.md",
+                                                  "size":  3743
+                                              },
+                      "knowledge/testing\\xunit-bunit-testing.md":  {
+                                                                        "file":  "knowledge/testing\\xunit-bunit-testing.md",
+                                                                        "size":  866
+                                                                    },
+                      "knowledge/knowledge-assistant\\index\\service-index.json":  {
+                                                                                       "file":  "knowledge/knowledge-assistant\\index\\service-index.json",
+                                                                                       "size":  498
+                                                                                   },
+                      "knowledge/patterns\\localstorage.md":  {
+                                                                  "file":  "knowledge/patterns\\localstorage.md",
+                                                                  "size":  962
+                                                              },
+                      "knowledge/project\\japanese-learner\\deployment.md":  {
+                                                                                 "file":  "knowledge/project\\japanese-learner\\deployment.md",
+                                                                                 "size":  3722
+                                                                             },
+                      "knowledge/knowledge-assistant\\index\\route-index.json":  {
+                                                                                     "file":  "knowledge/knowledge-assistant\\index\\route-index.json",
+                                                                                     "size":  2327
+                                                                                 },
+                      "knowledge/ui\\design-system-tokens.md":  {
+                                                                    "file":  "knowledge/ui\\design-system-tokens.md",
+                                                                    "size":  4698
+                                                                },
+                      "knowledge/knowledge-assistant\\README.md":  {
+                                                                       "file":  "knowledge/knowledge-assistant\\README.md",
+                                                                       "size":  2700
+                                                                   },
+                      "knowledge/ui\\tri-state-rendering.md":  {
+                                                                   "file":  "knowledge/ui\\tri-state-rendering.md",
+                                                                   "size":  900
+                                                               },
                       "knowledge/skills\\blazor\\patterns.md":  {
                                                                     "file":  "knowledge/skills\\blazor\\patterns.md",
                                                                     "size":  5505
                                                                 },
-                      "knowledge/project\\japanese-learner\\deployment.md":  {
-                                                                                 "file":  "knowledge/project\\japanese-learner\\deployment.md",
-                                                                                 "size":  3722
-                                                                             }
+                      "knowledge/knowledge-assistant\\index\\data-model-index.json":  {
+                                                                                          "file":  "knowledge/knowledge-assistant\\index\\data-model-index.json",
+                                                                                          "size":  5532
+                                                                                      },
+                      "knowledge/patterns\\seed-data-patterns.md":  {
+                                                                        "file":  "knowledge/patterns\\seed-data-patterns.md",
+                                                                        "size":  995
+                                                                    },
+                      "knowledge/framework\\fluentu\\design-tokens.md":  {
+                                                                             "file":  "knowledge/framework\\fluentu\\design-tokens.md",
+                                                                             "size":  983
+                                                                         },
+                      "knowledge/skills\\blazor\\ui.md":  {
+                                                              "file":  "knowledge/skills\\blazor\\ui.md",
+                                                              "size":  3722
+                                                          },
+                      "knowledge/workflow\\validate-github-actions-yaml.md":  {
+                                                                                  "file":  "knowledge/workflow\\validate-github-actions-yaml.md",
+                                                                                  "size":  879
+                                                                              },
+                      "knowledge/knowledge-assistant\\index\\document-index.json":  {
+                                                                                        "file":  "knowledge/knowledge-assistant\\index\\document-index.json",
+                                                                                        "size":  20792
+                                                                                    },
+                      "knowledge/ui\\fluentui-components.md":  {
+                                                                   "file":  "knowledge/ui\\fluentui-components.md",
+                                                                   "size":  1208
+                                                               },
+                      "knowledge/lessons.md":  {
+                                                   "file":  "knowledge/lessons.md",
+                                                   "size":  19556
+                                               },
+                      "knowledge/skills-learned.md":  {
+                                                          "file":  "knowledge/skills-learned.md",
+                                                          "size":  14167
+                                                      },
+                      "knowledge/knowledge-assistant\\index\\code-index.json":  {
+                                                                                    "file":  "knowledge/knowledge-assistant\\index\\code-index.json",
+                                                                                    "size":  6686
+                                                                                }
                   },
     "agents":  {
                    "backup-agent":  {
@@ -285,6 +321,19 @@
                                                        "glob":  "deny"
                                                    }
                                },
+                   "knowledge-agent":  {
+                                           "description":  "Intent Analyzer + Router cho Knowledge Assistant — phân loại câu hỏi, chọn skill pipeline, tổng hợp trả lời có nguồn",
+                                           "model":  "opencode/deepseek-v4-flash-free",
+                                           "file":  "agents/knowledge-agent.md",
+                                           "mode":  "subagent",
+                                           "permissions":  {
+                                                               "grep":  "deny",
+                                                               "bash":  "deny",
+                                                               "read":  "deny",
+                                                               "edit":  "deny",
+                                                               "glob":  "deny"
+                                                           }
+                                       },
                    "cleaner":  {
                                    "description":  "Workspace Cleaner Agent v2.0 — quét rác theo tiêu chí cấu hình chi tiết, phân loại LOW/MEDIUM/HIGH, backup workflow-linked, dry-run bắt buộc, protected list 4 nhóm.",
                                    "model":  "opencode/deepseek-v4-flash-free",
@@ -300,12 +349,12 @@
                                }
                },
     "commands":  {
-                     "team-test":  {
-                                       "agent":  "tester",
-                                       "description":  "Thực thi kiểm thử theo kế hoạch (dùng agent tester, v3.0)",
-                                       "deprecated":  false,
-                                       "file":  "commands/team-test.md"
-                                   },
+                     "team-review":  {
+                                         "agent":  "reviewer",
+                                         "description":  "Đánh giá thiết kế hoặc kế hoạch (dùng agent reviewer) — nâng cấp v4.0: decision thresholds, score_rationale, blocking issues, consistency, edge cases",
+                                         "deprecated":  false,
+                                         "file":  "commands/team-review.md"
+                                     },
                      "backup":  {
                                     "agent":  "backup-agent",
                                     "description":  "Backup và rollback file dùng Backup Utility. Gọi khi cần backup trước khi sửa file, rollback lỗi, kiểm tra backup.",
@@ -318,6 +367,12 @@
                                           "deprecated":  false,
                                           "file":  "commands/team-analyze.md"
                                       },
+                     "knowledge-compare-doc":  {
+                                                   "agent":  "knowledge-agent",
+                                                   "description":  "So sánh code hiện tại với tài liệu thiết kế — phát hiện lệch lạc giữa code và docs",
+                                                   "deprecated":  false,
+                                                   "file":  "commands/knowledge-compare-doc.md"
+                                               },
                      "team-learn":  {
                                         "agent":  "learning-agent",
                                         "description":  "Chạy Learning Pipeline — quét failure records, auto-generate lessons và patterns, cập nhật memory. Gọi learning-agent.",
@@ -330,6 +385,12 @@
                                                 "deprecated":  false,
                                                 "file":  "commands/test-accessibility.md"
                                             },
+                     "team-testplan":  {
+                                           "agent":  "test-planner",
+                                           "description":  "Tạo kế hoạch kiểm thử chi tiết — impact analysis, risk-based, validation rules (schema v3.0)",
+                                           "deprecated":  false,
+                                           "file":  "commands/team-testplan.md"
+                                       },
                      "team-analyze-failure":  {
                                                   "agent":  "failure-agent",
                                                   "description":  "Phân tích lỗi trong workflow. Thu thập raw error, normalize, classify, search failure memory, output phân tích. Gọi failure-agent.",
@@ -342,17 +403,29 @@
                                        "deprecated":  false,
                                        "file":  "commands/team-plan.md"
                                    },
-                     "team-syncdocs":  {
-                                           "agent":  "general",
-                                           "description":  "System Evolution Engine — đồng bộ system docs + semantic diff + compatibility check + migration + self-healing + health score + simulation (runtime validation) + capability benchmark + stress test + evolution report. Chạy định kỳ để duy trì sức khỏe hệ thống.",
-                                           "deprecated":  false,
-                                           "file":  "commands/team-syncdocs.md"
-                                       },
+                     "knowledge-impact":  {
+                                              "agent":  "knowledge-agent",
+                                              "description":  "Phân tích ảnh hưởng khi sửa một symbol/file — affected screens, services, models, tests kèm mức độ",
+                                              "deprecated":  false,
+                                              "file":  "commands/knowledge-impact.md"
+                                          },
                      "test-regression":  {
                                              "agent":  "test-planner",
                                              "description":  "Regression testing — tự động chọn module bị ảnh hưởng, sinh regression cases, chạy và báo cáo",
                                              "deprecated":  false,
                                              "file":  "commands/test-regression.md"
+                                         },
+                     "knowledge":  {
+                                       "agent":  "knowledge-agent",
+                                       "description":  "Help + routing cho Knowledge Assistant — liệt kê 10 commands, intent mapping, ví dụ sử dụng",
+                                       "deprecated":  false,
+                                       "file":  "commands/knowledge.md"
+                                   },
+                     "knowledge-trace":  {
+                                             "agent":  "knowledge-agent",
+                                             "description":  "Trace luồng hoạt động end-to-end — UI → Service → Model → LocalStorage, sinh chuỗi trace dạng cây",
+                                             "deprecated":  false,
+                                             "file":  "commands/knowledge-trace.md"
                                          },
                      "team-gitpush":  {
                                           "agent":  "pusher",
@@ -360,18 +433,30 @@
                                           "deprecated":  false,
                                           "file":  "commands/team-gitpush.md"
                                       },
-                     "team-testplan":  {
-                                           "agent":  "test-planner",
-                                           "description":  "Tạo kế hoạch kiểm thử chi tiết — impact analysis, risk-based, validation rules (schema v3.0)",
-                                           "deprecated":  false,
-                                           "file":  "commands/team-testplan.md"
-                                       },
-                     "team-review":  {
-                                         "agent":  "reviewer",
-                                         "description":  "Đánh giá thiết kế hoặc kế hoạch (dùng agent reviewer) — nâng cấp v4.0: decision thresholds, score_rationale, blocking issues, consistency, edge cases",
-                                         "deprecated":  false,
-                                         "file":  "commands/team-review.md"
-                                     },
+                     "team-test":  {
+                                       "agent":  "tester",
+                                       "description":  "Thực thi kiểm thử theo kế hoạch (dùng agent tester, v3.0)",
+                                       "deprecated":  false,
+                                       "file":  "commands/team-test.md"
+                                   },
+                     "knowledge-index":  {
+                                             "agent":  "general",
+                                             "description":  "Build/update Knowledge Index — quét source code + tài liệu sinh 7 loại index (code, symbol, api, database, dependency, document, business-rule). Chạy sau mỗi lần source thay đổi",
+                                             "deprecated":  false,
+                                             "file":  "commands/knowledge-index.md"
+                                         },
+                     "doctor":  {
+                                    "agent":  "general",
+                                    "description":  "Doctor — kiểm tra sức khỏe hệ thống AI Agent Framework: Environment, Agents, Commands, Skills, Knowledge, Workflow, Contracts, Runtime (simulation), Capability (benchmark). Tích hợp health score, self-repair an toàn. Dùng /doctor hoặc /team-doctor.",
+                                    "deprecated":  false,
+                                    "file":  "commands/doctor.md"
+                                },
+                     "trace":  {
+                                   "agent":  "general",
+                                   "description":  "Truy vết luồng xử lý từ đầu đến cuối — UI → API → Service → Repository → DB → Response, kèm evidence từng bước",
+                                   "deprecated":  false,
+                                   "file":  "commands/trace.md"
+                               },
                      "team-gitguard":  {
                                            "agent":  "guardian",
                                            "description":  "Review source code trước khi push lên git — phát hiện secret, lỗi convention, lỗ hổng bảo mật, vi phạm quy tắc dự án",
@@ -384,12 +469,24 @@
                                             "deprecated":  false,
                                             "file":  "commands/test-bootstrap.md"
                                         },
+                     "knowledge-health":  {
+                                              "agent":  "general",
+                                              "description":  "Đánh giá sức khỏe kiến thức hệ thống — phát hiện thiếu README, diagram, flow, ADR, comment, tài liệu lỗi thời",
+                                              "deprecated":  false,
+                                              "file":  "commands/knowledge-health.md"
+                                          },
                      "test-visual":  {
                                          "agent":  "ui-beautifier",
                                          "description":  "Visual regression testing — Take Screenshot → Compare → Generate Diff → Generate Report. Tích hợp skills visual-regression, screenshot-analyzer",
                                          "deprecated":  false,
                                          "file":  "commands/test-visual.md"
                                      },
+                     "knowledge-ask":  {
+                                           "agent":  "knowledge-agent",
+                                           "description":  "Hỏi Knowledge Assistant — module/component/service này hoạt động thế nào, dùng để làm gì",
+                                           "deprecated":  false,
+                                           "file":  "commands/knowledge-ask.md"
+                                       },
                      "team-doctor":  {
                                          "agent":  "general",
                                          "description":  "Doctor (alias /team-doctor) — kiểm tra sức khỏe hệ thống AI Agent Framework. Tương đương /doctor: Environment, System, Runtime, Capability, health score, self-repair an toàn.",
@@ -402,36 +499,78 @@
                                           "deprecated":  false,
                                           "file":  "commands/team-cleanup.md"
                                       },
-                     "test-e2e":  {
-                                      "agent":  "general",
-                                      "description":  "Chạy pipeline E2E — Requirement → Playwright → Fixture → Run → Report. Sinh test Playwright tự động theo skill playwright-e2e",
-                                      "deprecated":  false,
-                                      "file":  "commands/test-e2e.md"
-                                  },
+                     "ask":  {
+                                 "agent":  "general",
+                                 "description":  "Hỏi đáp tự do về codebase — module, API, màn hình, workflow. Điều phối Knowledge Assistant pipeline với intent analyzer",
+                                 "deprecated":  false,
+                                 "file":  "commands/ask.md"
+                             },
+                     "knowledge-why":  {
+                                           "agent":  "knowledge-agent",
+                                           "description":  "Giải thích lý do tồn tại của một symbol/thiết kế — đọc tài liệu, git history, code context",
+                                           "deprecated":  false,
+                                           "file":  "commands/knowledge-why.md"
+                                       },
+                     "explain":  {
+                                     "agent":  "general",
+                                     "description":  "Giải thích từng method trong một file source — input, output, logic, side-effect, dependencies",
+                                     "deprecated":  false,
+                                     "file":  "commands/explain.md"
+                                 },
                      "team-root-cause":  {
                                              "agent":  "root-cause-agent",
                                              "description":  "Phân tích nguyên nhân gốc từ failure analysis. Tìm evidence trong codebase, tạo hypotheses, đề xuất fix. Gọi root-cause-agent.",
                                              "deprecated":  false,
                                              "file":  "commands/team-root-cause.md"
                                          },
-                     "test-plan":  {
-                                       "agent":  "test-planner",
-                                       "description":  "Sinh toàn bộ kế hoạch test — Requirement → Test Matrix → Scenario → Boundary → Edge Case → Priority",
-                                       "deprecated":  false,
-                                       "file":  "commands/test-plan.md"
-                                   },
-                     "team-explore":  {
-                                          "agent":  "codebase-explorer",
-                                          "description":  "[DEPRECATED] Explore step đã được gộp vào Analyze. Dùng team-analyze thay thế.",
-                                          "deprecated":  true,
-                                          "file":  "commands/team-explore.md"
-                                      },
                      "team-selfimprove":  {
                                               "agent":  "self-improver",
                                               "description":  "Phân tích workflow và đề xuất cải tiến (chỉ suggestion, không ghi KB)",
                                               "deprecated":  false,
                                               "file":  "commands/team-selfimprove.md"
                                           },
+                     "test-plan":  {
+                                       "agent":  "test-planner",
+                                       "description":  "Sinh toàn bộ kế hoạch test — Requirement → Test Matrix → Scenario → Boundary → Edge Case → Priority",
+                                       "deprecated":  false,
+                                       "file":  "commands/test-plan.md"
+                                   },
+                     "knowledge-explain":  {
+                                               "agent":  "knowledge-agent",
+                                               "description":  "Giải thích từng method của một file — class summary, method list, DI dependencies, lifecycle",
+                                               "deprecated":  false,
+                                               "file":  "commands/knowledge-explain.md"
+                                           },
+                     "knowledge-flow":  {
+                                            "agent":  "knowledge-agent",
+                                            "description":  "Mô tả workflow của một chức năng/màn hình — user flow, business flow, sinh mermaid sequence diagram",
+                                            "deprecated":  false,
+                                            "file":  "commands/knowledge-flow.md"
+                                        },
+                     "flow":  {
+                                  "agent":  "general",
+                                  "description":  "Sinh mô tả luồng hoạt động (sequence, mermaid) cho một nghiệp vụ hoặc màn hình — từ code thực tế",
+                                  "deprecated":  false,
+                                  "file":  "commands/flow.md"
+                              },
+                     "team-syncdocs":  {
+                                           "agent":  "general",
+                                           "description":  "System Evolution Engine — đồng bộ system docs + semantic diff + compatibility check + migration + self-healing + health score + simulation (runtime validation) + capability benchmark + stress test + evolution report. Chạy định kỳ để duy trì sức khỏe hệ thống.",
+                                           "deprecated":  false,
+                                           "file":  "commands/team-syncdocs.md"
+                                       },
+                     "why":  {
+                                 "agent":  "general",
+                                 "description":  "Giải thích lý do tồn tại / thiết kế của một component — từ tài liệu, git history, và code",
+                                 "deprecated":  false,
+                                 "file":  "commands/why.md"
+                             },
+                     "compare-doc":  {
+                                         "agent":  "general",
+                                         "description":  "So sánh code hiện tại với tài liệu thiết kế — phát hiện lệch pha, lỗi thời, và thay đổi chưa được tài liệu hóa",
+                                         "deprecated":  false,
+                                         "file":  "commands/compare-doc.md"
+                                     },
                      "team-build":  {
                                         "agent":  "builder",
                                         "description":  "Thực thi kế hoạch đã duyệt (dùng agent builder)",
@@ -456,12 +595,30 @@
                                         "deprecated":  false,
                                         "file":  "commands/test-audit.md"
                                     },
+                     "test-e2e":  {
+                                      "agent":  "general",
+                                      "description":  "Chạy pipeline E2E — Requirement → Playwright → Fixture → Run → Report. Sinh test Playwright tự động theo skill playwright-e2e",
+                                      "deprecated":  false,
+                                      "file":  "commands/test-e2e.md"
+                                  },
                      "team-ui-audit":  {
                                            "agent":  "ui-beautifier",
                                            "description":  "\u003e-",
                                            "deprecated":  false,
                                            "file":  "commands/team-ui-audit.md"
                                        },
+                     "knowledge-where":  {
+                                             "agent":  "knowledge-agent",
+                                             "description":  "Tìm toàn bộ nơi sử dụng một symbol/pattern — class, method, property, LocalStorage key",
+                                             "deprecated":  false,
+                                             "file":  "commands/knowledge-where.md"
+                                         },
+                     "team-explore":  {
+                                          "agent":  "codebase-explorer",
+                                          "description":  "[DEPRECATED] Explore step đã được gộp vào Analyze. Dùng team-analyze thay thế.",
+                                          "deprecated":  true,
+                                          "file":  "commands/team-explore.md"
+                                      },
                      "impeccable":  {
                                         "agent":  "ui-beautifier",
                                         "description":  "Design, redesign, shape, critique, audit, polish, or improve frontend UI. Sub-commands: init, shape, document, critique, audit, polish, bolder, quieter, distill, harden, onboard, animate, colorize, typeset, layout, delight, overdrive, clarify, adapt, optimize, live, hooks, doctor, extract.",
@@ -474,24 +631,30 @@
                                      "deprecated":  false,
                                      "file":  "commands/test-ui.md"
                                  },
-                     "test-evolve":  {
-                                         "agent":  "test-planner",
-                                         "description":  "Evolve test suite — so sánh thay đổi source code với test hiện có, xác định test cần cập nhật, test lỗi thời, sinh test mới cho chức năng mới",
-                                         "deprecated":  false,
-                                         "file":  "commands/test-evolve.md"
-                                     },
+                     "where":  {
+                                   "agent":  "general",
+                                   "description":  "Tìm toàn bộ nơi sử dụng một symbol (class, method, field, storage key, db object) trong codebase — kèm file:line và phân loại",
+                                   "deprecated":  false,
+                                   "file":  "commands/where.md"
+                               },
+                     "impact":  {
+                                    "agent":  "general",
+                                    "description":  "Phân tích ảnh hưởng khi sửa một component — sửa X ảnh hưởng API/Screen/Batch/Report/SP nào. Quan trọng nhất cho thay đổi an toàn",
+                                    "deprecated":  false,
+                                    "file":  "commands/impact.md"
+                                },
                      "approve-test":  {
                                           "agent":  "general",
                                           "description":  "Approve Test Gate — gate cuối trước merge. Chặn nếu coverage \u003c 80%, flaky, accessibility error, visual diff, failed E2E, broken responsive, missing critical scenario",
                                           "deprecated":  false,
                                           "file":  "commands/approve-test.md"
                                       },
-                     "doctor":  {
-                                    "agent":  "general",
-                                    "description":  "Doctor — kiểm tra sức khỏe hệ thống AI Agent Framework: Environment, Agents, Commands, Skills, Knowledge, Workflow, Contracts, Runtime (simulation), Capability (benchmark). Tích hợp health score, self-repair an toàn. Dùng /doctor hoặc /team-doctor.",
-                                    "deprecated":  false,
-                                    "file":  "commands/doctor.md"
-                                },
+                     "test-evolve":  {
+                                         "agent":  "test-planner",
+                                         "description":  "Evolve test suite — so sánh thay đổi source code với test hiện có, xác định test cần cập nhật, test lỗi thời, sinh test mới cho chức năng mới",
+                                         "deprecated":  false,
+                                         "file":  "commands/test-evolve.md"
+                                     },
                      "team":  {
                                   "agent":  "general",
                                   "description":  "Chạy toàn bộ team workflow: analyze → design/plan → review → backup → build → static analysis → ui audit → testplan → test → skill validation → complete",
@@ -525,6 +688,16 @@
                                    "file":  "scripts/doctor.ps1",
                                    "size":  9455
                                },
+                    "build-knowledge-index":  {
+                                                  "summary":  "Build/Update Knowledge Index - scan source code + docs to generate 7 index JSON files.",
+                                                  "file":  "scripts/build-knowledge-index.ps1",
+                                                  "size":  7791
+                                              },
+                    "knowledge-index":  {
+                                            "summary":  "Utility script",
+                                            "file":  "scripts/knowledge-index.ps1",
+                                            "size":  10339
+                                        },
                     "backup-utility":  {
                                            "summary":  "Backup Utility — backup, list và verify snapshot trước khi sửa file.",
                                            "file":  "scripts/backup-utility.ps1",
@@ -541,36 +714,55 @@
 
                                    ],
                        "command_to_agent":  {
-                                                "team-review":  "reviewer",
+                                                "team-test":  "tester",
                                                 "backup":  "backup-agent",
                                                 "team-analyze":  "analyst",
+                                                "knowledge-compare-doc":  "knowledge-agent",
                                                 "team-learn":  "learning-agent",
                                                 "test-accessibility":  "ui-beautifier",
                                                 "team-analyze-failure":  "failure-agent",
                                                 "team-plan":  "planner",
                                                 "team-syncdocs":  "general",
                                                 "team-ui-audit":  "ui-beautifier",
+                                                "knowledge":  "knowledge-agent",
+                                                "knowledge-trace":  "knowledge-agent",
                                                 "team-gitpush":  "pusher",
-                                                "team-test":  "tester",
+                                                "knowledge-impact":  "knowledge-agent",
+                                                "doctor-test":  "general",
                                                 "team-testplan":  "test-planner",
+                                                "trace":  "general",
+                                                "knowledge-explain":  "knowledge-agent",
                                                 "team-gitguard":  "guardian",
                                                 "test-bootstrap":  "general",
+                                                "knowledge-health":  "general",
+                                                "knowledge-ask":  "knowledge-agent",
                                                 "team":  "general",
                                                 "team-doctor":  "general",
                                                 "team-cleanup":  "cleaner",
-                                                "test-e2e":  "general",
+                                                "ask":  "general",
+                                                "knowledge-flow":  "knowledge-agent",
+                                                "knowledge-why":  "knowledge-agent",
+                                                "explain":  "general",
                                                 "team-root-cause":  "root-cause-agent",
                                                 "team-selfimprove":  "self-improver",
                                                 "test-plan":  "test-planner",
-                                                "team-explore":  "codebase-explorer",
+                                                "team-review":  "reviewer",
                                                 "test-visual":  "ui-beautifier",
+                                                "flow":  "general",
+                                                "why":  "general",
+                                                "compare-doc":  "general",
                                                 "team-build":  "builder",
                                                 "test-cross-browser":  "general",
-                                                "doctor-test":  "general",
+                                                "knowledge-index":  "general",
                                                 "test-audit":  "test-planner",
+                                                "test-e2e":  "general",
                                                 "test-regression":  "test-planner",
+                                                "knowledge-where":  "knowledge-agent",
+                                                "team-explore":  "codebase-explorer",
                                                 "impeccable":  "ui-beautifier",
                                                 "test-ui":  "ui-beautifier",
+                                                "where":  "general",
+                                                "impact":  "general",
                                                 "approve-test":  "general",
                                                 "doctor":  "general",
                                                 "test-evolve":  "test-planner"
@@ -579,12 +771,250 @@
 
                                    ],
                        "skill_to_commands":  {
+                                                 "dev-team":  [
+                                                                  {
+                                                                      "file":  ".opencode/commands/team-cleanup.md",
+                                                                      "command":  "team-cleanup"
+                                                                  },
+                                                                  {
+                                                                      "file":  ".opencode/commands/team-syncdocs.md",
+                                                                      "command":  "team-syncdocs"
+                                                                  },
+                                                                  {
+                                                                      "file":  ".opencode/commands/team.md",
+                                                                      "command":  "team"
+                                                                  }
+                                                              ],
+                                                 "test-data-generator":  [
+                                                                             {
+                                                                                 "file":  ".opencode/commands/test-regression.md",
+                                                                                 "command":  "test-regression"
+                                                                             },
+                                                                             {
+                                                                                 "file":  ".opencode/commands/test-plan.md",
+                                                                                 "command":  "test-plan"
+                                                                             }
+                                                                         ],
+                                                 "design-system-validator":  [
+                                                                                 {
+                                                                                     "file":  ".opencode/commands/test-ui.md",
+                                                                                     "command":  "test-ui"
+                                                                                 }
+                                                                             ],
                                                  "visual-regression":  [
                                                                            {
                                                                                "file":  ".opencode/commands/test-visual.md",
                                                                                "command":  "test-visual"
                                                                            }
                                                                        ],
+                                                 "git-history":  [
+                                                                     {
+                                                                         "file":  ".opencode/commands/knowledge-why.md",
+                                                                         "command":  "knowledge-why"
+                                                                     },
+                                                                     {
+                                                                         "file":  ".opencode/commands/why.md",
+                                                                         "command":  "why"
+                                                                     }
+                                                                 ],
+                                                 "answer-builder":  [
+                                                                        {
+                                                                            "file":  ".opencode/commands/knowledge-compare-doc.md",
+                                                                            "command":  "knowledge-compare-doc"
+                                                                        },
+                                                                        {
+                                                                            "file":  ".opencode/commands/knowledge-impact.md",
+                                                                            "command":  "knowledge-impact"
+                                                                        },
+                                                                        {
+                                                                            "file":  ".opencode/commands/knowledge-trace.md",
+                                                                            "command":  "knowledge-trace"
+                                                                        },
+                                                                        {
+                                                                            "file":  ".opencode/commands/knowledge-health.md",
+                                                                            "command":  "knowledge-health"
+                                                                        },
+                                                                        {
+                                                                            "file":  ".opencode/commands/knowledge-ask.md",
+                                                                            "command":  "knowledge-ask"
+                                                                        },
+                                                                        {
+                                                                            "file":  ".opencode/commands/ask.md",
+                                                                            "command":  "ask"
+                                                                        },
+                                                                        {
+                                                                            "file":  ".opencode/commands/knowledge-why.md",
+                                                                            "command":  "knowledge-why"
+                                                                        },
+                                                                        {
+                                                                            "file":  ".opencode/commands/knowledge-explain.md",
+                                                                            "command":  "knowledge-explain"
+                                                                        },
+                                                                        {
+                                                                            "file":  ".opencode/commands/knowledge-flow.md",
+                                                                            "command":  "knowledge-flow"
+                                                                        },
+                                                                        {
+                                                                            "file":  ".opencode/commands/knowledge-where.md",
+                                                                            "command":  "knowledge-where"
+                                                                        }
+                                                                    ],
+                                                 "screenshot-analyzer":  [
+                                                                             {
+                                                                                 "file":  ".opencode/commands/test-visual.md",
+                                                                                 "command":  "test-visual"
+                                                                             }
+                                                                         ],
+                                                 "workspace-cleaner":  [
+                                                                           {
+                                                                               "file":  ".opencode/commands/team-cleanup.md",
+                                                                               "command":  "team-cleanup"
+                                                                           },
+                                                                           {
+                                                                               "file":  ".opencode/commands/team-ui-audit.md",
+                                                                               "command":  "team-ui-audit"
+                                                                           },
+                                                                           {
+                                                                               "file":  ".opencode/commands/team.md",
+                                                                               "command":  "team"
+                                                                           }
+                                                                       ],
+                                                 "knowledge-assistant":  [
+                                                                             {
+                                                                                 "file":  ".opencode/commands/knowledge-index.md",
+                                                                                 "command":  "knowledge-index"
+                                                                             },
+                                                                             {
+                                                                                 "file":  ".opencode/commands/ask.md",
+                                                                                 "command":  "ask"
+                                                                             }
+                                                                         ],
+                                                 "flaky-test-detector":  [
+                                                                             {
+                                                                                 "file":  ".opencode/commands/doctor-test.md",
+                                                                                 "command":  "doctor-test"
+                                                                             },
+                                                                             {
+                                                                                 "file":  ".opencode/commands/test-audit.md",
+                                                                                 "command":  "test-audit"
+                                                                             },
+                                                                             {
+                                                                                 "file":  ".opencode/commands/test-evolve.md",
+                                                                                 "command":  "test-evolve"
+                                                                             }
+                                                                         ],
+                                                 "gitpush":  [
+                                                                 {
+                                                                     "file":  ".opencode/commands/team-gitpush.md",
+                                                                     "command":  "team-gitpush"
+                                                                 },
+                                                                 {
+                                                                     "file":  ".opencode/commands/doctor.md",
+                                                                     "command":  "doctor"
+                                                                 },
+                                                                 {
+                                                                     "file":  ".opencode/commands/team-gitguard.md",
+                                                                     "command":  "team-gitguard"
+                                                                 },
+                                                                 {
+                                                                     "file":  ".opencode/commands/approve-test.md",
+                                                                     "command":  "approve-test"
+                                                                 },
+                                                                 {
+                                                                     "file":  ".opencode/commands/team.md",
+                                                                     "command":  "team"
+                                                                 }
+                                                             ],
+                                                 "document-understanding":  [
+                                                                                {
+                                                                                    "file":  ".opencode/commands/knowledge-compare-doc.md",
+                                                                                    "command":  "knowledge-compare-doc"
+                                                                                },
+                                                                                {
+                                                                                    "file":  ".opencode/commands/ask.md",
+                                                                                    "command":  "ask"
+                                                                                },
+                                                                                {
+                                                                                    "file":  ".opencode/commands/knowledge-why.md",
+                                                                                    "command":  "knowledge-why"
+                                                                                },
+                                                                                {
+                                                                                    "file":  ".opencode/commands/why.md",
+                                                                                    "command":  "why"
+                                                                                },
+                                                                                {
+                                                                                    "file":  ".opencode/commands/compare-doc.md",
+                                                                                    "command":  "compare-doc"
+                                                                                }
+                                                                            ],
+                                                 "code-understanding":  [
+                                                                            {
+                                                                                "file":  ".opencode/commands/knowledge-compare-doc.md",
+                                                                                "command":  "knowledge-compare-doc"
+                                                                            },
+                                                                            {
+                                                                                "file":  ".opencode/commands/trace.md",
+                                                                                "command":  "trace"
+                                                                            },
+                                                                            {
+                                                                                "file":  ".opencode/commands/knowledge-ask.md",
+                                                                                "command":  "knowledge-ask"
+                                                                            },
+                                                                            {
+                                                                                "file":  ".opencode/commands/ask.md",
+                                                                                "command":  "ask"
+                                                                            },
+                                                                            {
+                                                                                "file":  ".opencode/commands/knowledge-why.md",
+                                                                                "command":  "knowledge-why"
+                                                                            },
+                                                                            {
+                                                                                "file":  ".opencode/commands/explain.md",
+                                                                                "command":  "explain"
+                                                                            },
+                                                                            {
+                                                                                "file":  ".opencode/commands/knowledge-explain.md",
+                                                                                "command":  "knowledge-explain"
+                                                                            },
+                                                                            {
+                                                                                "file":  ".opencode/commands/compare-doc.md",
+                                                                                "command":  "compare-doc"
+                                                                            }
+                                                                        ],
+                                                 "browser-compatibility":  [
+                                                                               {
+                                                                                   "file":  ".opencode/commands/test-cross-browser.md",
+                                                                                   "command":  "test-cross-browser"
+                                                                               }
+                                                                           ],
+                                                 "workflow-reader":  [
+                                                                         {
+                                                                             "file":  ".opencode/commands/knowledge-ask.md",
+                                                                             "command":  "knowledge-ask"
+                                                                         },
+                                                                         {
+                                                                             "file":  ".opencode/commands/ask.md",
+                                                                             "command":  "ask"
+                                                                         },
+                                                                         {
+                                                                             "file":  ".opencode/commands/knowledge-flow.md",
+                                                                             "command":  "knowledge-flow"
+                                                                         },
+                                                                         {
+                                                                             "file":  ".opencode/commands/flow.md",
+                                                                             "command":  "flow"
+                                                                         }
+                                                                     ],
+                                                 "playwright-component":  [
+                                                                              {
+                                                                                  "file":  ".opencode/commands/test-e2e.md",
+                                                                                  "command":  "test-e2e"
+                                                                              },
+                                                                              {
+                                                                                  "file":  ".opencode/commands/test-evolve.md",
+                                                                                  "command":  "test-evolve"
+                                                                              }
+                                                                          ],
                                                  "accessibility":  [
                                                                        {
                                                                            "file":  ".opencode/commands/test-accessibility.md",
@@ -611,128 +1041,16 @@
                                                                            "command":  "team"
                                                                        }
                                                                    ],
-                                                 "playwright-e2e":  [
-                                                                        {
-                                                                            "file":  ".opencode/commands/test-regression.md",
-                                                                            "command":  "test-regression"
-                                                                        },
-                                                                        {
-                                                                            "file":  ".opencode/commands/test-bootstrap.md",
-                                                                            "command":  "test-bootstrap"
-                                                                        },
-                                                                        {
-                                                                            "file":  ".opencode/commands/test-e2e.md",
-                                                                            "command":  "test-e2e"
-                                                                        },
-                                                                        {
-                                                                            "file":  ".opencode/commands/test-cross-browser.md",
-                                                                            "command":  "test-cross-browser"
-                                                                        },
-                                                                        {
-                                                                            "file":  ".opencode/commands/test-evolve.md",
-                                                                            "command":  "test-evolve"
-                                                                        }
-                                                                    ],
-                                                 "impeccable":  [
-                                                                    {
-                                                                        "file":  ".opencode/commands/team-ui-audit.md",
-                                                                        "command":  "team-ui-audit"
-                                                                    },
-                                                                    {
-                                                                        "file":  ".opencode/commands/impeccable.md",
-                                                                        "command":  "impeccable"
-                                                                    },
-                                                                    {
-                                                                        "file":  ".opencode/commands/team.md",
-                                                                        "command":  "team"
-                                                                    }
-                                                                ],
-                                                 "dev-team":  [
-                                                                  {
-                                                                      "file":  ".opencode/commands/team-syncdocs.md",
-                                                                      "command":  "team-syncdocs"
-                                                                  },
-                                                                  {
-                                                                      "file":  ".opencode/commands/team-cleanup.md",
-                                                                      "command":  "team-cleanup"
-                                                                  },
-                                                                  {
-                                                                      "file":  ".opencode/commands/team.md",
-                                                                      "command":  "team"
-                                                                  }
-                                                              ],
-                                                 "playwright-component":  [
-                                                                              {
-                                                                                  "file":  ".opencode/commands/test-e2e.md",
-                                                                                  "command":  "test-e2e"
-                                                                              },
-                                                                              {
-                                                                                  "file":  ".opencode/commands/test-evolve.md",
-                                                                                  "command":  "test-evolve"
-                                                                              }
-                                                                          ],
-                                                 "ui-review":  [
-                                                                   {
-                                                                       "file":  ".opencode/commands/test-ui.md",
-                                                                       "command":  "test-ui"
-                                                                   }
-                                                               ],
-                                                 "design-system-validator":  [
-                                                                                 {
-                                                                                     "file":  ".opencode/commands/test-ui.md",
-                                                                                     "command":  "test-ui"
-                                                                                 }
-                                                                             ],
-                                                 "browser-compatibility":  [
-                                                                               {
-                                                                                   "file":  ".opencode/commands/test-cross-browser.md",
-                                                                                   "command":  "test-cross-browser"
-                                                                               }
-                                                                           ],
-                                                 "gitpush":  [
-                                                                 {
-                                                                     "file":  ".opencode/commands/team-gitpush.md",
-                                                                     "command":  "team-gitpush"
-                                                                 },
-                                                                 {
-                                                                     "file":  ".opencode/commands/team-gitguard.md",
-                                                                     "command":  "team-gitguard"
-                                                                 },
-                                                                 {
-                                                                     "file":  ".opencode/commands/approve-test.md",
-                                                                     "command":  "approve-test"
-                                                                 },
-                                                                 {
-                                                                     "file":  ".opencode/commands/doctor.md",
-                                                                     "command":  "doctor"
-                                                                 },
-                                                                 {
-                                                                     "file":  ".opencode/commands/team.md",
-                                                                     "command":  "team"
-                                                                 }
-                                                             ],
-                                                 "screenshot-analyzer":  [
-                                                                             {
-                                                                                 "file":  ".opencode/commands/test-visual.md",
-                                                                                 "command":  "test-visual"
-                                                                             }
-                                                                         ],
-                                                 "test-data-generator":  [
-                                                                             {
-                                                                                 "file":  ".opencode/commands/test-regression.md",
-                                                                                 "command":  "test-regression"
-                                                                             },
-                                                                             {
-                                                                                 "file":  ".opencode/commands/test-plan.md",
-                                                                                 "command":  "test-plan"
-                                                                             }
-                                                                         ],
-                                                 "responsive-layout":  [
-                                                                           {
-                                                                               "file":  ".opencode/commands/test-ui.md",
-                                                                               "command":  "test-ui"
-                                                                           }
-                                                                       ],
+                                                 "database-reader":  [
+                                                                         {
+                                                                             "file":  ".opencode/commands/trace.md",
+                                                                             "command":  "trace"
+                                                                         },
+                                                                         {
+                                                                             "file":  ".opencode/commands/where.md",
+                                                                             "command":  "where"
+                                                                         }
+                                                                     ],
                                                  "gitguard":  [
                                                                   {
                                                                       "file":  ".opencode/commands/team-gitguard.md",
@@ -751,20 +1069,95 @@
                                                                       "command":  "team"
                                                                   }
                                                               ],
-                                                 "flaky-test-detector":  [
+                                                 "responsive-layout":  [
+                                                                           {
+                                                                               "file":  ".opencode/commands/test-ui.md",
+                                                                               "command":  "test-ui"
+                                                                           }
+                                                                       ],
+                                                 "dependency-analyzer":  [
                                                                              {
-                                                                                 "file":  ".opencode/commands/doctor-test.md",
-                                                                                 "command":  "doctor-test"
+                                                                                 "file":  ".opencode/commands/knowledge-impact.md",
+                                                                                 "command":  "knowledge-impact"
                                                                              },
                                                                              {
-                                                                                 "file":  ".opencode/commands/test-audit.md",
-                                                                                 "command":  "test-audit"
+                                                                                 "file":  ".opencode/commands/knowledge-trace.md",
+                                                                                 "command":  "knowledge-trace"
                                                                              },
                                                                              {
-                                                                                 "file":  ".opencode/commands/test-evolve.md",
-                                                                                 "command":  "test-evolve"
+                                                                                 "file":  ".opencode/commands/trace.md",
+                                                                                 "command":  "trace"
+                                                                             },
+                                                                             {
+                                                                                 "file":  ".opencode/commands/knowledge-ask.md",
+                                                                                 "command":  "knowledge-ask"
+                                                                             },
+                                                                             {
+                                                                                 "file":  ".opencode/commands/ask.md",
+                                                                                 "command":  "ask"
+                                                                             },
+                                                                             {
+                                                                                 "file":  ".opencode/commands/where.md",
+                                                                                 "command":  "where"
+                                                                             },
+                                                                             {
+                                                                                 "file":  ".opencode/commands/impact.md",
+                                                                                 "command":  "impact"
                                                                              }
                                                                          ],
+                                                 "impact-analyzer":  [
+                                                                         {
+                                                                             "file":  ".opencode/commands/knowledge-impact.md",
+                                                                             "command":  "knowledge-impact"
+                                                                         },
+                                                                         {
+                                                                             "file":  ".opencode/commands/ask.md",
+                                                                             "command":  "ask"
+                                                                         },
+                                                                         {
+                                                                             "file":  ".opencode/commands/impact.md",
+                                                                             "command":  "impact"
+                                                                         }
+                                                                     ],
+                                                 "playwright-e2e":  [
+                                                                        {
+                                                                            "file":  ".opencode/commands/test-regression.md",
+                                                                            "command":  "test-regression"
+                                                                        },
+                                                                        {
+                                                                            "file":  ".opencode/commands/test-bootstrap.md",
+                                                                            "command":  "test-bootstrap"
+                                                                        },
+                                                                        {
+                                                                            "file":  ".opencode/commands/test-cross-browser.md",
+                                                                            "command":  "test-cross-browser"
+                                                                        },
+                                                                        {
+                                                                            "file":  ".opencode/commands/test-e2e.md",
+                                                                            "command":  "test-e2e"
+                                                                        },
+                                                                        {
+                                                                            "file":  ".opencode/commands/test-evolve.md",
+                                                                            "command":  "test-evolve"
+                                                                        }
+                                                                    ],
+                                                 "architecture-reader":  [
+
+                                                                         ],
+                                                 "impeccable":  [
+                                                                    {
+                                                                        "file":  ".opencode/commands/team-ui-audit.md",
+                                                                        "command":  "team-ui-audit"
+                                                                    },
+                                                                    {
+                                                                        "file":  ".opencode/commands/impeccable.md",
+                                                                        "command":  "impeccable"
+                                                                    },
+                                                                    {
+                                                                        "file":  ".opencode/commands/team.md",
+                                                                        "command":  "team"
+                                                                    }
+                                                                ],
                                                  "test-report":  [
                                                                      {
                                                                          "file":  ".opencode/commands/test-accessibility.md",
@@ -779,10 +1172,6 @@
                                                                          "command":  "test-visual"
                                                                      },
                                                                      {
-                                                                         "file":  ".opencode/commands/test-e2e.md",
-                                                                         "command":  "test-e2e"
-                                                                     },
-                                                                     {
                                                                          "file":  ".opencode/commands/test-cross-browser.md",
                                                                          "command":  "test-cross-browser"
                                                                      },
@@ -795,24 +1184,46 @@
                                                                          "command":  "test-audit"
                                                                      },
                                                                      {
+                                                                         "file":  ".opencode/commands/test-e2e.md",
+                                                                         "command":  "test-e2e"
+                                                                     },
+                                                                     {
                                                                          "file":  ".opencode/commands/approve-test.md",
                                                                          "command":  "approve-test"
                                                                      }
                                                                  ],
-                                                 "workspace-cleaner":  [
-                                                                           {
-                                                                               "file":  ".opencode/commands/team-cleanup.md",
-                                                                               "command":  "team-cleanup"
-                                                                           },
-                                                                           {
-                                                                               "file":  ".opencode/commands/team-ui-audit.md",
-                                                                               "command":  "team-ui-audit"
-                                                                           },
-                                                                           {
-                                                                               "file":  ".opencode/commands/team.md",
-                                                                               "command":  "team"
-                                                                           }
-                                                                       ]
+                                                 "search-engine":  [
+                                                                       {
+                                                                           "file":  ".opencode/commands/knowledge-impact.md",
+                                                                           "command":  "knowledge-impact"
+                                                                       },
+                                                                       {
+                                                                           "file":  ".opencode/commands/knowledge-trace.md",
+                                                                           "command":  "knowledge-trace"
+                                                                       },
+                                                                       {
+                                                                           "file":  ".opencode/commands/ask.md",
+                                                                           "command":  "ask"
+                                                                       },
+                                                                       {
+                                                                           "file":  ".opencode/commands/flow.md",
+                                                                           "command":  "flow"
+                                                                       },
+                                                                       {
+                                                                           "file":  ".opencode/commands/knowledge-where.md",
+                                                                           "command":  "knowledge-where"
+                                                                       },
+                                                                       {
+                                                                           "file":  ".opencode/commands/where.md",
+                                                                           "command":  "where"
+                                                                       }
+                                                                   ],
+                                                 "ui-review":  [
+                                                                   {
+                                                                       "file":  ".opencode/commands/test-ui.md",
+                                                                       "command":  "test-ui"
+                                                                   }
+                                                               ]
                                              },
                        "agent_to_commands":  {
                                                  "backup-agent":  [
@@ -853,8 +1264,8 @@
                                                                           "team-root-cause"
                                                                       ],
                                                  "test-planner":  [
-                                                                      "test-regression",
                                                                       "team-testplan",
+                                                                      "test-regression",
                                                                       "test-plan",
                                                                       "test-audit",
                                                                       "test-evolve"
@@ -869,70 +1280,55 @@
                                                                        "team-analyze-failure"
                                                                    ],
                                                  "general":  [
-                                                                 "team-syncdocs",
+                                                                 "knowledge-index",
+                                                                 "doctor",
+                                                                 "trace",
                                                                  "test-bootstrap",
+                                                                 "knowledge-health",
                                                                  "team-doctor",
-                                                                 "test-e2e",
+                                                                 "ask",
+                                                                 "explain",
+                                                                 "flow",
+                                                                 "team-syncdocs",
+                                                                 "why",
+                                                                 "compare-doc",
                                                                  "test-cross-browser",
                                                                  "doctor-test",
+                                                                 "test-e2e",
+                                                                 "where",
+                                                                 "impact",
                                                                  "approve-test",
-                                                                 "doctor",
                                                                  "team"
                                                              ],
+                                                 "knowledge-agent":  [
+                                                                         "knowledge-compare-doc",
+                                                                         "knowledge-impact",
+                                                                         "knowledge",
+                                                                         "knowledge-trace",
+                                                                         "knowledge-ask",
+                                                                         "knowledge-why",
+                                                                         "knowledge-explain",
+                                                                         "knowledge-flow",
+                                                                         "knowledge-where"
+                                                                     ],
                                                  "cleaner":  [
                                                                  "team-cleanup"
                                                              ]
                                              }
                    },
-    "scanned_at":  "2026-08-01T10:00:32.7813417+07:00",
+    "scanned_at":  "2026-08-01T17:28:31.4397810+07:00",
     "skills":  {
-                   "visual-regression":  {
-                                             "schema_version":  "1.0",
-                                             "description":  "Visual regression testing — expect(page).toHaveScreenshot(), multi-viewport (Desktop/Tablet/Mobile/Dark/Light), pixel diff, threshold, ignore animation và dynamic content. Sử dụng câu lệnh /test-visual.",
-                                             "name":  "visual-regression",
-                                             "file":  "skills/visual-regression/SKILL.md"
-                                         },
-                   "accessibility":  {
-                                         "schema_version":  "1.0",
-                                         "description":  "Kiểm tra accessibility — ARIA, Tab Order, Screen Reader, Keyboard, Color Contrast, Alt, Label, Focus Ring. Sinh báo cáo WCAG AA/AAA. Sử dụng câu lệnh /test-accessibility.",
-                                         "name":  "accessibility",
-                                         "file":  "skills/accessibility/SKILL.md"
-                                     },
-                   "playwright-e2e":  {
-                                          "schema_version":  "1.0",
-                                          "description":  "Sinh test E2E Playwright hoàn chỉnh — Playwright Test, Page Object, Test Fixture, Mock API, Login Helper. Input: Screen/API/Requirement. Output: tests/, page-object/, fixtures/. Sử dụng câu lệnh /test-e2e.",
-                                          "name":  "playwright-e2e",
-                                          "file":  "skills/playwright-e2e/SKILL.md"
-                                      },
-                   "workspace-cleaner":  {
-                                             "schema_version":  "2.1",
-                                             "description":  "Dọn rác Workspace tự động — xóa build artifacts, backup cũ, temp files, cache không cần thiết. Tích hợp dry-run bắt buộc, backup trước khi xóa, confirmation gate, protected list cấu trúc, và output contract chi tiết. Sử dụng câu lệnh /team-cleanup.",
-                                             "name":  "workspace-cleaner",
-                                             "file":  "skills/workspace-cleaner/SKILL.md"
-                                         },
-                   "impeccable":  {
-                                      "schema_version":  "1.0",
-                                      "description":  "Use when the user wants to design, redesign, shape, critique, audit, polish, clarify, distill, harden, optimize, adapt, animate, colorize, extract, or otherwise improve a frontend interface. Covers websites, landing pages, dashboards, product UI, app shells, components, forms, settings, onboarding, and empty states. Handles UX review, visual hierarchy, information architecture, cognitive load, accessibility, performance, responsive behavior, theming, anti-patterns, typography, fonts, spacing, layout, alignment, color, motion, micro-interactions, UX copy, error states, edge cases, i18n, and reusable design systems or tokens. Also use for bland designs that need to become bolder or more delightful, loud designs that should become quieter, live browser iteration on UI elements, or ambitious visual effects that should feel technically extraordinary. Not for backend-only or non-UI tasks.",
-                                      "name":  "impeccable",
-                                      "file":  "skills/impeccable/SKILL.md"
-                                  },
                    "dev-team":  {
                                     "schema_version":  "3.2",
                                     "description":  "Hướng dẫn sử dụng Dev Agent Team gồm 12 agents (10 core + 2 support). Dùng khi cần phân tích, lập kế hoạch, đánh giá, code, kiểm thử một yêu cầu phát triển. Tích hợp cơ chế Self-Improvement với approval gate, Failure Learning System với Root Cause Analysis và Learning Pipeline. Sử dụng câu lệnh team hoặc team-*.",
                                     "name":  "dev-team",
                                     "file":  "skills/dev-team/SKILL.md"
                                 },
-                   "playwright-component":  {
-                                                "schema_version":  "1.0",
-                                                "description":  "Sinh test component-level cho FluentUI — button, textbox, dropdown, dialog, grid, form. Kiểm tra validation, keyboard, focus, tab order, shortcut. Dùng bUnit cho Blazor component. Sử dụng câu lệnh /test-e2e kèm --component.",
-                                                "name":  "playwright-component",
-                                                "file":  "skills/playwright-component/SKILL.md"
-                                            },
-                   "screenshot-analyzer":  {
+                   "test-data-generator":  {
                                                "schema_version":  "1.0",
-                                               "description":  "Đọc và phân tích screenshot — layout, alignment, color, missing icon, wrong font, blur, cropped, wrong spacing. Hỗ trợ Vision Model. Sử dụng câu lệnh /test-visual --analyze.",
-                                               "name":  "screenshot-analyzer",
-                                               "file":  "skills/screenshot-analyzer/SKILL.md"
+                                               "description":  "Sinh dữ liệu test — User, Customer, Order, Invoice, Large Dataset, Boundary Value, Invalid Data, Random Data. Không dùng credential/secret thật. Sử dụng trong /test-e2e, /test-plan.",
+                                               "name":  "test-data-generator",
+                                               "file":  "skills/test-data-generator/SKILL.md"
                                            },
                    "design-system-validator":  {
                                                    "schema_version":  "1.0",
@@ -940,53 +1336,155 @@
                                                    "name":  "design-system-validator",
                                                    "file":  "skills/design-system-validator/SKILL.md"
                                                },
-                   "browser-compatibility":  {
-                                                 "schema_version":  "1.0",
-                                                 "description":  "Kiểm tra tương thích trình duyệt — Chrome, Edge, Firefox, Safari + iPhone/Android. Phát hiện API/code không tương thích. Sử dụng câu lệnh /test-cross-browser.",
-                                                 "name":  "browser-compatibility",
-                                                 "file":  "skills/browser-compatibility/SKILL.md"
-                                             },
-                   "ui-review":  {
-                                     "schema_version":  "1.0",
-                                     "description":  "Đánh giá UI tĩnh (không chạy code) — đọc HTML, Razor, CSS, Tailwind, FluentUI. Kiểm tra spacing, padding, margin, alignment, font, icon, white space, consistency. Sử dụng câu lệnh /test-ui.",
-                                     "name":  "ui-review",
-                                     "file":  "skills/ui-review/SKILL.md"
-                                 },
+                   "visual-regression":  {
+                                             "schema_version":  "1.0",
+                                             "description":  "Visual regression testing — expect(page).toHaveScreenshot(), multi-viewport (Desktop/Tablet/Mobile/Dark/Light), pixel diff, threshold, ignore animation và dynamic content. Sử dụng câu lệnh /test-visual.",
+                                             "name":  "visual-regression",
+                                             "file":  "skills/visual-regression/SKILL.md"
+                                         },
+                   "git-history":  {
+                                       "schema_version":  "1.0",
+                                       "description":  "Truy vấn lịch sử git — ai sửa, khi nào, lý do, commit nào. Dùng git log/blame. Dùng trong /why, /ask.",
+                                       "name":  "git-history",
+                                       "file":  "skills/git-history/SKILL.md"
+                                   },
+                   "workflow-reader":  {
+                                           "schema_version":  "1.0",
+                                           "description":  "Đọc và mô tả luồng hoạt động — Flow, Diagram, Mermaid, Sequence, State Machine. Trả lời User Flow, Business Flow, API Flow. Dùng trong /flow, /trace.",
+                                           "name":  "workflow-reader",
+                                           "file":  "skills/workflow-reader/SKILL.md"
+                                       },
+                   "answer-builder":  {
+                                          "schema_version":  "1.0",
+                                          "description":  "Ghép toàn bộ thông tin từ các skill thành câu trả lời hoàn chỉnh — có nguồn, không suy đoán. Format: Nguồn → Phân tích → Kết luận. Dùng trong mọi command knowledge.",
+                                          "name":  "answer-builder",
+                                          "file":  "skills/answer-builder/SKILL.md"
+                                      },
+                   "screenshot-analyzer":  {
+                                               "schema_version":  "1.0",
+                                               "description":  "Đọc và phân tích screenshot — layout, alignment, color, missing icon, wrong font, blur, cropped, wrong spacing. Hỗ trợ Vision Model. Sử dụng câu lệnh /test-visual --analyze.",
+                                               "name":  "screenshot-analyzer",
+                                               "file":  "skills/screenshot-analyzer/SKILL.md"
+                                           },
+                   "workspace-cleaner":  {
+                                             "schema_version":  "2.1",
+                                             "description":  "Dọn rác Workspace tự động — xóa build artifacts, backup cũ, temp files, cache không cần thiết. Tích hợp dry-run bắt buộc, backup trước khi xóa, confirmation gate, protected list cấu trúc, và output contract chi tiết. Sử dụng câu lệnh /team-cleanup.",
+                                             "name":  "workspace-cleaner",
+                                             "file":  "skills/workspace-cleaner/SKILL.md"
+                                         },
+                   "knowledge-assistant":  {
+                                               "schema_version":  "1.0",
+                                               "description":  "Knowledge Assistant — điều phối pipeline trả lời mọi câu hỏi về codebase: Intent Analyzer → Knowledge Planner → Code/Doc Skill → Dependency → Search/Impact → Answer Builder. Hỗ trợ /ask, /where, /why, /flow, /impact, /explain, /trace, /compare-doc, /knowledge-health.",
+                                               "name":  "knowledge-assistant",
+                                               "file":  "skills/knowledge-assistant/SKILL.md"
+                                           },
+                   "flaky-test-detector":  {
+                                               "schema_version":  "1.0",
+                                               "description":  "Phân tích test flaky — retry, timeout, animation, network, wait, race condition. Đưa ra nguyên nhân gốc và cách khắc phục. Sử dụng trong /doctor-test, /test-audit.",
+                                               "name":  "flaky-test-detector",
+                                               "file":  "skills/flaky-test-detector/SKILL.md"
+                                           },
                    "gitpush":  {
                                    "schema_version":  "1.0",
                                    "description":  "Pre-push safety validation + git push execution — kiểm tra secret, convention, build, test, sau đó push lên remote với xác nhận từ user. Sử dụng câu lệnh /team-gitpush.",
                                    "name":  "gitpush",
                                    "file":  "skills/gitpush/SKILL.md"
                                },
-                   "test-data-generator":  {
-                                               "schema_version":  "1.0",
-                                               "description":  "Sinh dữ liệu test — User, Customer, Order, Invoice, Large Dataset, Boundary Value, Invalid Data, Random Data. Không dùng credential/secret thật. Sử dụng trong /test-e2e, /test-plan.",
-                                               "name":  "test-data-generator",
-                                               "file":  "skills/test-data-generator/SKILL.md"
-                                           },
-                   "responsive-layout":  {
-                                             "schema_version":  "1.0",
-                                             "description":  "Kiểm tra layout responsive — viewports 320/375/768/1024/1366/1920, overflow, horizontal scroll, hidden control, broken layout, flex, grid. Sử dụng câu lệnh /test-ui --responsive.",
-                                             "name":  "responsive-layout",
-                                             "file":  "skills/responsive-layout/SKILL.md"
-                                         },
+                   "document-understanding":  {
+                                                  "schema_version":  "1.0",
+                                                  "description":  "Đọc và hiểu tài liệu — README, SPEC, Design, Wiki, Markdown, PDF, Excel, Word. Trích xuất Requirement, Business Rule, Flow, Constraint, Decision. Dùng trong /why, /compare-doc, /knowledge-health.",
+                                                  "name":  "document-understanding",
+                                                  "file":  "skills/document-understanding/SKILL.md"
+                                              },
+                   "code-understanding":  {
+                                              "schema_version":  "1.0",
+                                              "description":  "Hiểu source code — đọc C#, Razor, VB, SQL, PL/SQL, JS, TS, CSS. Trả lời Class, Method, Call Graph, Dependency, Lifecycle, DI, Interface, Inheritance. Dùng trong /explain, /trace, /where.",
+                                              "name":  "code-understanding",
+                                              "file":  "skills/code-understanding/SKILL.md"
+                                          },
+                   "browser-compatibility":  {
+                                                 "schema_version":  "1.0",
+                                                 "description":  "Kiểm tra tương thích trình duyệt — Chrome, Edge, Firefox, Safari + iPhone/Android. Phát hiện API/code không tương thích. Sử dụng câu lệnh /test-cross-browser.",
+                                                 "name":  "browser-compatibility",
+                                                 "file":  "skills/browser-compatibility/SKILL.md"
+                                             },
+                   "accessibility":  {
+                                         "schema_version":  "1.0",
+                                         "description":  "Kiểm tra accessibility — ARIA, Tab Order, Screen Reader, Keyboard, Color Contrast, Alt, Label, Focus Ring. Sinh báo cáo WCAG AA/AAA. Sử dụng câu lệnh /test-accessibility.",
+                                         "name":  "accessibility",
+                                         "file":  "skills/accessibility/SKILL.md"
+                                     },
+                   "playwright-component":  {
+                                                "schema_version":  "1.0",
+                                                "description":  "Sinh test component-level cho FluentUI — button, textbox, dropdown, dialog, grid, form. Kiểm tra validation, keyboard, focus, tab order, shortcut. Dùng bUnit cho Blazor component. Sử dụng câu lệnh /test-e2e kèm --component.",
+                                                "name":  "playwright-component",
+                                                "file":  "skills/playwright-component/SKILL.md"
+                                            },
+                   "database-reader":  {
+                                           "schema_version":  "1.0",
+                                           "description":  "Đọc và phân tích database — Table, View, Package, Procedure, Trigger, Index, FK. Trả lời bảng dùng ở đâu, procedure gọi bởi ai, field nullable. Dùng trong /where, /impact, /trace.",
+                                           "name":  "database-reader",
+                                           "file":  "skills/database-reader/SKILL.md"
+                                       },
                    "gitguard":  {
                                     "schema_version":  "2.0",
                                     "description":  "Review source code trước khi push lên git — phát hiện secret, lỗi convention, lỗ hổng bảo mật, vi phạm quy tắc dự án. Tích hợp cơ chế blocking CRITICAL, cảnh báo MAJOR. Sử dụng câu lệnh /team-gitguard.",
                                     "name":  "gitguard",
                                     "file":  "skills/gitguard/SKILL.md"
                                 },
+                   "responsive-layout":  {
+                                             "schema_version":  "1.0",
+                                             "description":  "Kiểm tra layout responsive — viewports 320/375/768/1024/1366/1920, overflow, horizontal scroll, hidden control, broken layout, flex, grid. Sử dụng câu lệnh /test-ui --responsive.",
+                                             "name":  "responsive-layout",
+                                             "file":  "skills/responsive-layout/SKILL.md"
+                                         },
+                   "dependency-analyzer":  {
+                                               "schema_version":  "1.0",
+                                               "description":  "Xây dựng và phân tích dependency graph — Call Graph, Module Graph, Reference Graph, Database Graph, Service Graph (DI). Dùng trong /where, /impact, /trace.",
+                                               "name":  "dependency-analyzer",
+                                               "file":  "skills/dependency-analyzer/SKILL.md"
+                                           },
+                   "impact-analyzer":  {
+                                           "schema_version":  "1.0",
+                                           "description":  "Phân tích ảnh hưởng khi sửa component — sửa X ảnh hưởng API/Screen/Batch/Report/SP nào. Quan trọng nhất trong Knowledge Assistant. Dùng trong /impact.",
+                                           "name":  "impact-analyzer",
+                                           "file":  "skills/impact-analyzer/SKILL.md"
+                                       },
+                   "playwright-e2e":  {
+                                          "schema_version":  "1.0",
+                                          "description":  "Sinh test E2E Playwright hoàn chỉnh — Playwright Test, Page Object, Test Fixture, Mock API, Login Helper. Input: Screen/API/Requirement. Output: tests/, page-object/, fixtures/. Sử dụng câu lệnh /test-e2e.",
+                                          "name":  "playwright-e2e",
+                                          "file":  "skills/playwright-e2e/SKILL.md"
+                                      },
+                   "architecture-reader":  {
+                                               "schema_version":  "1.0",
+                                               "description":  "Hiểu kiến trúc hệ thống — Layer, DDD, Clean, CQRS, MVC, MVVM. Xác định module nằm layer nào, phát hiện vi phạm architecture. Dùng trong /ask, /explain.",
+                                               "name":  "architecture-reader",
+                                               "file":  "skills/architecture-reader/SKILL.md"
+                                           },
+                   "impeccable":  {
+                                      "schema_version":  "1.0",
+                                      "description":  "Use when the user wants to design, redesign, shape, critique, audit, polish, clarify, distill, harden, optimize, adapt, animate, colorize, extract, or otherwise improve a frontend interface. Covers websites, landing pages, dashboards, product UI, app shells, components, forms, settings, onboarding, and empty states. Handles UX review, visual hierarchy, information architecture, cognitive load, accessibility, performance, responsive behavior, theming, anti-patterns, typography, fonts, spacing, layout, alignment, color, motion, micro-interactions, UX copy, error states, edge cases, i18n, and reusable design systems or tokens. Also use for bland designs that need to become bolder or more delightful, loud designs that should become quieter, live browser iteration on UI elements, or ambitious visual effects that should feel technically extraordinary. Not for backend-only or non-UI tasks.",
+                                      "name":  "impeccable",
+                                      "file":  "skills/impeccable/SKILL.md"
+                                  },
                    "test-report":  {
                                        "schema_version":  "1.0",
                                        "description":  "Sinh báo cáo kiểm thử — HTML, Markdown, JSON, JUnit, Allure. Gồm coverage, failed, passed, skipped, screenshot, video, trace. Sử dụng trong /test-e2e, /doctor-test, /approve-test.",
                                        "name":  "test-report",
                                        "file":  "skills/test-report/SKILL.md"
                                    },
-                   "flaky-test-detector":  {
-                                               "schema_version":  "1.0",
-                                               "description":  "Phân tích test flaky — retry, timeout, animation, network, wait, race condition. Đưa ra nguyên nhân gốc và cách khắc phục. Sử dụng trong /doctor-test, /test-audit.",
-                                               "name":  "flaky-test-detector",
-                                               "file":  "skills/flaky-test-detector/SKILL.md"
-                                           }
+                   "search-engine":  {
+                                         "schema_version":  "1.0",
+                                         "description":  "Semantic search trong codebase — tìm đoạn xử lý, nơi dùng symbol, export/import. Kết hợp Knowledge Index + grep. Dùng trong /where, /ask.",
+                                         "name":  "search-engine",
+                                         "file":  "skills/search-engine/SKILL.md"
+                                     },
+                   "ui-review":  {
+                                     "schema_version":  "1.0",
+                                     "description":  "Đánh giá UI tĩnh (không chạy code) — đọc HTML, Razor, CSS, Tailwind, FluentUI. Kiểm tra spacing, padding, margin, alignment, font, icon, white space, consistency. Sử dụng câu lệnh /test-ui.",
+                                     "name":  "ui-review",
+                                     "file":  "skills/ui-review/SKILL.md"
+                                 }
                }
 }

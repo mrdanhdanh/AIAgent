@@ -1,6 +1,6 @@
 ﻿# System Evolution Report
 
-**Generated:** 2026-08-01 10:00:22
+**Generated:** 2026-08-01 17:28:47
 **Tool:** evolution-report.ps1 v1.0.0
 
 ---
@@ -11,13 +11,13 @@
 |------|-------|
 | Workflow changes | 0 |
 | Schema changes | 1 |
-| Compatibility issues | 0 |
+| Compatibility issues | 1 |
 | Migration tasks | 0 |
 | Deprecated knowledge | 0 |
 | Missing knowledge topics | 0 |
 | Auto-fixes applied | 0 |
 | Pending fixes | 0 |
-| Runtime errors (simulation) | 0 |
+| Runtime errors (simulation) | 1 |
 | Integration issues | 0 |
 
 ---
@@ -28,17 +28,31 @@
 
 ---
 
+## Suggestions
+
+- Compatibility score low (70/100) - check contract mismatches
+
+---
+
 ## Runtime Simulation (Sandbox)
 
 | Metric | Value |
 |--------|-------|
-| Runtime Health | 100/100 |
+| Runtime Health | 99/100 |
 | Verdict | STABLE |
-| Agents tested | 17 |
-| Skills tested | 17 |
-| Commands tested | 33 |
+| Agents tested | 18 |
+| Skills tested | 29 |
+| Commands tested | 52 |
 | Contracts tested | 13 |
-| Checks passed | 78/78 |
+| Checks passed | 109/110 |
+
+### Runtime Errors
+
+- [CRITICAL] SKILL_MISSING_FILE: Skill knowledge khong co SKILL.md
+
+### Suggested Actions (Learning)
+
+- Review loi SKILL_MISSING_FILE (1x)
 
 ---
 
@@ -46,7 +60,7 @@
 
 | Metric | Value |
 |--------|-------|
-| Capability Score | 84/100 |
+| Capability Score | 85/100 |
 | Verdict | STRONG |
 | Task simulation pass | 100% |
 
@@ -59,11 +73,11 @@
 | Testing | 91% |
 | Security | 90% |
 | Blazor | 88% |
-| Orchestration | 83% |
+| Orchestration | 82% |
 | UI/UX | 82% |
 | Scripting | 79% |
-| Docs | 76% |
-| Database | 68% |
+| Docs | 78% |
+| Database | 71% |
 
 ### Task Simulations
 
@@ -76,24 +90,24 @@
 - [PASS] Write documentation (best score 95)
 - [PASS] Orchestrate team workflow (best score 100)
 - [PASS] Write automation script (best score 100)
-- [PASS] Database migration (best score 80)
+- [PASS] Database migration (best score 90)
 
 ---
 
 ## Health Score
 
 | Agents          | 100/100 |
-| Capability      | 84/100 |
-| Compatibility   | 100/100 |
+| Capability      | 85/100 |
+| Compatibility   | 70/100 |
 | Knowledge       | 100/100 |
 | Learning        | 100/100 |
-| Runtime         | 100/100 |
+| Runtime         | 99/100 |
 | Scripts         | 100/100 |
 | Skills          | 100/100 |
 | Tests           | 100/100 |
 | Workflow        | 100/100 |
 |-----------------|--------|
-| **Overall**     | **99/100** |
+| **Overall**     | **95/100** |
 
 ---
 

@@ -1,0 +1,86 @@
+﻿[
+    {
+        "route":  "/",
+        "component":  "Home.razor",
+        "file":  ".opencode\\backup\\WF-20260728-001\\Pages\\Home.razor",
+        "has_params":  false
+    },
+    {
+        "route":  "/admin",
+        "component":  "Admin.razor",
+        "file":  "Pages\\Admin.razor",
+        "has_params":  false
+    },
+    {
+        "route":  "/alphabet/quiz",
+        "component":  "AlphabetQuiz.razor",
+        "file":  "Pages\\AlphabetQuiz.razor",
+        "has_params":  false
+    },
+    {
+        "route":  "/alphabet",
+        "component":  "AlphabetStudy.razor",
+        "file":  "Pages\\AlphabetStudy.razor",
+        "has_params":  false
+    },
+    {
+        "route":  "/grammar/{Id:int}",
+        "component":  "GrammarDetail.razor",
+        "file":  "Pages\\GrammarDetail.razor",
+        "has_params":  true
+    },
+    {
+        "route":  "/grammar",
+        "component":  "GrammarStudy.razor",
+        "file":  "Pages\\GrammarStudy.razor",
+        "has_params":  false
+    },
+    {
+        "route":  "/",
+        "component":  "Home.razor",
+        "file":  "Pages\\Home.razor",
+        "has_params":  false
+    },
+    {
+        "route":  "/kanji/{Id:int}",
+        "component":  "KanjiDetail.razor",
+        "file":  "Pages\\KanjiDetail.razor",
+        "has_params":  true
+    },
+    {
+        "route":  "/kanji/quiz",
+        "component":  "KanjiQuiz.razor",
+        "file":  "Pages\\KanjiQuiz.razor",
+        "has_params":  false
+    },
+    {
+        "route":  "/kanji",
+        "component":  "KanjiStudy.razor",
+        "file":  "Pages\\KanjiStudy.razor",
+        "has_params":  false
+    },
+    {
+        "route":  "/practice",
+        "component":  "Practice.razor",
+        "file":  "Pages\\Practice.razor",
+        "has_params":  false
+    },
+    {
+        "route":  "/practice/train",
+        "component":  "Training.razor",
+        "file":  "Pages\\Training.razor",
+        "has_params":  false
+    },
+    {
+        "route":  "/words/quiz",
+        "component":  "WordQuiz.razor",
+        "file":  "Pages\\WordQuiz.razor",
+        "has_params":  false
+    },
+    {
+        "route":  "/words",
+        "component":  "WordStudy.razor",
+        "file":  "Pages\\WordStudy.razor",
+        "has_params":  false
+    }
+]

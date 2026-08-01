@@ -91,6 +91,29 @@ Bộ QA commands (test E2E, màn hình, giao diện, màu sắc theo quy chuẩn
 
 **Lưu ý QA:** port 5173 hardcode trong `AppFixture.cs` (không đổi), browser path hardcoded `PlaywrightFixture.cs:24` (fail trên máy khác). Chạy unit test trước E2E.
 
+## Knowledge Assistant Commands
+
+Hỏi đáp về codebase bằng bằng chứng (evidence-based, kèm `file:line`). Trước khi dùng, chạy `/knowledge-index` để build chỉ mục (7 loại index trong `.opencode/knowledge-index/`), sau đó `/knowledge-index --update` mỗi khi source thay đổi:
+
+| Command | Mô tả | Skill liên quan |
+|---------|-------|-----------------|
+| `/ask <câu hỏi>` | Hỏi đáp tự do về module/API/screen/workflow | knowledge-assistant (pipeline tổng) |
+| `/where <symbol>` | Tìm toàn bộ nơi sử dụng symbol (class/method/storage key) | search-engine, dependency-analyzer |
+| `/why <component>` | Giải thích lý do thiết kế (doc + git history + code) | document-understanding, git-history |
+| `/flow <nghiệp vụ>` | Sinh sequence + mermaid cho luồng hoạt động | workflow-reader, search-engine |
+| `/impact <component>` | Sinh affected list (API/Screen/Batch/Report/SP/Model/Test) | impact-analyzer, dependency-analyzer |
+| `/explain <file>` | Giải thích từng method của file | code-understanding |
+| `/trace <chức năng>` | Truy vết UI → API → Service → Repository → DB → Response | dependency-analyzer, code-understanding, database-reader |
+| `/compare-doc <component>` | So sánh code hiện tại vs tài liệu thiết kế | document-understanding, code-understanding |
+| `/knowledge-health` | Đánh giá thiếu README/diagram/flow/ADR/comment (Health Score) | document-understanding, search-engine |
+| `/knowledge-index` | Build/update 7 loại index (`--update`, `--rebuild`, `--status`) | build-knowledge-index.ps1 |
+
+**Nguyên tắc Knowledge Assistant:**
+- Index = định vị nhanh; file gốc = bằng chứng — luôn đọc file gốc trước khi kết luận.
+- Mọi câu trả lời kèm nguồn `file:line`; không suy đoán; không biết → nói rõ.
+- Chạy `/knowledge-index --update` sau mỗi lần sửa source để index không lỗi thời.
+- Chi tiết: `.opencode/skills/knowledge-assistant/SKILL.md`, `.opencode/knowledge-index/README.md`
+
 ## CI / Deploy
 
 - GitHub Pages via `.github/workflows/deploy.yml` — triggers on push to `master`, publishes to `gh-pages` branch.

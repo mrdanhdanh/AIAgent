@@ -1,6 +1,6 @@
 ---
-last_updated: 2026-07-31
-total_lessons: 22
+last_updated: 2026-08-01
+total_lessons: 25
 ---
 
 # Lessons Learned
@@ -216,3 +216,27 @@ Kho bài học kinh nghiệm được tích lũy qua các workflow.
   observation: "Trong PowerShell 5.1, subexpression `$(if ...) { \"-a\", \"b\" }` trả về một string duy nhất (không phải array các argument) khi dùng làm argument list → health-score luôn nhận sai param và fallback score 50. Hệ quả: compatibility/knowledge/migration scores từ trước đến giờ KHÔNG BAO GIỜ nhận đúng report (pre-existing bug, mọi workflow trước dùng fallback)."
   action: "Chuyển sang hashtable splatting: tạo `@{}` chứa flag + value theo điều kiện, rồi `& script @hsArgs`. Verify bằng test: health-score phải trả real value (Compatibility=70, Knowledge=0) thay vì fallback 50. LƯU Ý: tương tự cho mọi call-site truyền optional flags theo điều kiện trong PowerShell."
   tags: ["powershell", "splatting", "argument-passing", "ps-5.1", "bug-fix", "suggestion-approved"]
+
+- lesson_id: LSN-023
+  type: "improvement"
+  workflow: "Knowledge Assistant (WF-20260801-002)"
+  situation: "Knowledge Assistant được xây dựng hoạt động độc lập (11 skills + 10 commands + Knowledge Index), chưa được tích hợp vào dev-team workflow"
+  observation: "Các command /ask, /impact, /where chỉ được gọi thủ công khi dev muốn hỏi codebase. Trong workflow /team, khi cần phân tích codebase (tìm nơi dùng symbol, impact analysis, trace luồng), các agent không được gợi ý dùng Knowledge Assistant → thiếu tận dụng khả năng evidence-based của nó."
+  action: "Tích hợp knowledge-assistant vào dev-team workflow như một capability phụ — các command /ask, /impact, /where nên được đề xuất khi cần phân tích codebase trong workflow /team. (Suggestion MEDIUM — user APPROVED)"
+  tags: ["opencode", "knowledge-assistant", "dev-team", "integration", "workflow", "suggestion-approved"]
+
+- lesson_id: LSN-024
+  type: "improvement"
+  workflow: "Knowledge Assistant (WF-20260801-002)"
+  situation: "Toàn bộ 10 command knowledge mới dùng schema_version 1.0, nhưng một số command cũ (test-e2e.md...) dùng schema_version khác"
+  observation: "Các command knowledge (ask.md, where.md, why.md, flow.md, impact.md, explain.md, trace.md, compare-doc.md, knowledge-health.md, knowledge-index.md) đồng nhất dùng schema_version 1.0. Tuy nhiên chưa có quy ước chung giữa các command trong hệ thống → dễ lệch lạc khi thêm command mới."
+  action: "Chuẩn hóa schema_version cho các command knowledge (1.0) — đồng bộ với test-e2e.md hiện có. (Suggestion LOW — auto-approve)"
+  tags: ["opencode", "schema-version", "command", "standardization", "suggestion-approved"]
+
+- lesson_id: LSN-025
+  type: "improvement"
+  workflow: "Knowledge Assistant (WF-20260801-002)"
+  situation: "cross-ref-validator.ps1 (nếu có) hiện chỉ quét QA commands khi validate cross-reference"
+  observation: "Bộ 10 command knowledge mới chưa được đưa vào phạm vi quét cross-reference validator → các file mới có thể không được kiểm tra cross-reference như QA commands."
+  action: "Cập nhật cross-ref-validator.ps1 để include các file knowledge mới trong quét cross-reference. (Suggestion LOW — auto-approve)"
+  tags: ["opencode", "cross-reference", "validator", "knowledge", "suggestion-approved"]

@@ -204,6 +204,18 @@
         "edit": "allow",
         "bash": "deny"
       }
+    },
+    "knowledge-agent": {
+      "description": "Intent Analyzer + Router cho Knowledge Assistant — phân loại câu hỏi, chọn skill pipeline, tổng hợp trả lời có nguồn. Bash allow để chạy git log (git-history) và knowledge-index.ps1.",
+      "mode": "subagent",
+      "model": "opencode/deepseek-v4-flash-free",
+      "permission": {
+        "read": "allow",
+        "grep": "allow",
+        "glob": "allow",
+        "bash": "allow",
+        "edit": "deny"
+      }
     }
   },
   "command": {
@@ -312,6 +324,61 @@
       "template": "Bạn là Doctor Agent. Kiểm tra sức khỏe hệ thống AI Agent Framework (alias của /doctor). Đọc hướng dẫn đầy đủ tại: .opencode/commands/doctor.md\n\nTham số: $ARGUMENTS\n\nHành động:\n1. Phân tích tham số (--quick, --full, --runtime, --workflow, --agent, --skill, --command, --knowledge, --contracts, --simulation, --benchmark, --repair, --force, --dry-run, --json)\n2. Map mode sang tham số -Mode của script: quick|full|runtime|workflow|agent|skill|command|knowledge|contracts|simulation|benchmark|repair\n3. Gọi script: & \".opencode\\scripts\\doctor.ps1\" -Mode <mode> [-Force] [-DryRun] [-Json]\n4. Output báo cáo YAML theo output contract trong doctor.md",
       "description": "Kiem tra suc khoe he thong AI Agent Framework (alias cua /doctor)",
       "agent": "general"
+    },
+    "knowledge": {
+      "template": "Bạn là Knowledge Agent. Hiển thị menu Knowledge Assistant + routing. Đọc hướng dẫn đầy đủ tại: .opencode/commands/knowledge.md\n\nTham số: $ARGUMENTS",
+      "description": "Help va routing cho Knowledge Assistant — liet ke 10 commands, intent mapping, vi du su dung",
+      "agent": "knowledge-agent"
+    },
+    "knowledge-ask": {
+      "template": "Bạn là Knowledge Agent. Trả lời câu hỏi mở về codebase. Đọc hướng dẫn đầy đủ tại: .opencode/commands/knowledge-ask.md\n\nCâu hỏi: $ARGUMENTS",
+      "description": "Hoi Knowledge Assistant — module/component/service nay hoat dong the nao, dung de lam gi",
+      "agent": "knowledge-agent"
+    },
+    "knowledge-where": {
+      "template": "Bạn là Knowledge Agent. Tìm toàn bộ nơi sử dụng symbol. Đọc hướng dẫn đầy đủ tại: .opencode/commands/knowledge-where.md\n\nSymbol: $ARGUMENTS",
+      "description": "Tim toan bo noi su dung mot symbol/pattern — class, method, property, LocalStorage key",
+      "agent": "knowledge-agent"
+    },
+    "knowledge-why": {
+      "template": "Bạn là Knowledge Agent. Giải thích lý do thiết kế. Đọc hướng dẫn đầy đủ tại: .opencode/commands/knowledge-why.md\n\nTarget: $ARGUMENTS",
+      "description": "Giai thich ly do ton tai cua mot symbol/thiet ke — doc tai lieu, git history, code context",
+      "agent": "knowledge-agent"
+    },
+    "knowledge-flow": {
+      "template": "Bạn là Knowledge Agent. Mô tả workflow của chức năng/màn hình. Đọc hướng dẫn đầy đủ tại: .opencode/commands/knowledge-flow.md\n\nChức năng: $ARGUMENTS",
+      "description": "Mo ta workflow cua mot chuc nang/man hinh — user flow, business flow, sinh mermaid sequence diagram",
+      "agent": "knowledge-agent"
+    },
+    "knowledge-impact": {
+      "template": "Bạn là Knowledge Agent. Phân tích ảnh hưởng khi sửa symbol/file. Đọc hướng dẫn đầy đủ tại: .opencode/commands/knowledge-impact.md\n\nTarget: $ARGUMENTS",
+      "description": "Phan tich anh huong khi sua mot symbol/file — affected screens, services, models, tests kem muc do",
+      "agent": "knowledge-agent"
+    },
+    "knowledge-explain": {
+      "template": "Bạn là Knowledge Agent. Giải thích từng method của file. Đọc hướng dẫn đầy đủ tại: .opencode/commands/knowledge-explain.md\n\nFile: $ARGUMENTS",
+      "description": "Giai thich tung method cua mot file — class summary, method list, DI dependencies, lifecycle",
+      "agent": "knowledge-agent"
+    },
+    "knowledge-trace": {
+      "template": "Bạn là Knowledge Agent. Trace luồng end-to-end. Đọc hướng dẫn đầy đủ tại: .opencode/commands/knowledge-trace.md\n\nChức năng: $ARGUMENTS",
+      "description": "Trace luong hoat dong end-to-end — UI -> Service -> Model -> LocalStorage, sinh chuoi trace dang cay",
+      "agent": "knowledge-agent"
+    },
+    "knowledge-compare-doc": {
+      "template": "Bạn là Knowledge Agent. So sánh code với tài liệu thiết kế. Đọc hướng dẫn đầy đủ tại: .opencode/commands/knowledge-compare-doc.md\n\nTarget: $ARGUMENTS",
+      "description": "So sanh code hien tai voi tai lieu thiet ke — phat hien lech lac giua code va docs",
+      "agent": "knowledge-agent"
+    },
+    "knowledge-health": {
+      "template": "Bạn là Knowledge Agent. Đánh giá sức khỏe kiến thức codebase. Đọc hướng dẫn đầy đủ tại: .opencode/commands/knowledge-health.md\n\nTham số: $ARGUMENTS",
+      "description": "Danh gia kien thuc codebase — thieu README, thieu diagram, thieu flow, thieu ADR, thieu comment, doc coverage",
+      "agent": "knowledge-agent"
+    },
+    "knowledge-index": {
+      "template": "Bạn là Knowledge Agent. Xây dựng/cập nhật Knowledge Index. Đọc hướng dẫn đầy đủ tại: .opencode/commands/knowledge-index.md\n\nTham số: $ARGUMENTS\n\nHành động:\n1. Phân tích tham số (--update, --status, --clean, hoặc build mặc định)\n2. Gọi script: & \".opencode\\scripts\\knowledge-index.ps1\" -Mode <mode> -ProjectRoot (Get-Location).Path\n3. Báo cáo kết quả: INDEX_BUILD, FILES_SCANNED, ROUTES_FOUND, SYMBOLS_FOUND",
+      "description": "Xay dung/cap nhat Knowledge Index — quet codebase, sinh chi muc JSON (route, symbol, service, data-model, dependency, document)",
+      "agent": "knowledge-agent"
     }
   },
   "skills": {

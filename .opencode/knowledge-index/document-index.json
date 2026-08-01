@@ -1,0 +1,232 @@
+﻿{
+    "generated_at":  "2026-08-01T17:28:13.9661402+07:00",
+    "documents":  [
+                      {
+                          "headings":  [
+                                           "Lessons Learned",
+                                           "Cáº¥u trÃºc entry",
+                                           "Danh sÃ¡ch bÃ i há»c"
+                                       ],
+                          "file":  ".opencode/knowledge/lessons.md",
+                          "size":  19556
+                      },
+                      {
+                          "headings":  [
+                                           "Knowledge Base â€” Japanese Learner",
+                                           "Cáº¥u trÃºc",
+                                           "CÃ¡ch tÃ¬m kiáº¿m",
+                                           "Quy táº¯c Ä‘Ã³ng gÃ³p",
+                                           "Thá»‘ng kÃª",
+                                           "Knowledge Index"
+                                       ],
+                          "file":  ".opencode/knowledge/README.md",
+                          "size":  3743
+                      },
+                      {
+                          "headings":  [
+                                           "Skills Learned",
+                                           "Cáº¥u trÃºc entry",
+                                           "Danh sÃ¡ch ká»¹ nÄƒng"
+                                       ],
+                          "file":  ".opencode/knowledge/skills-learned.md",
+                          "size":  14167
+                      },
+                      {
+                          "headings":  [
+                                           "Blazor Component Lifecycle \u0026 `@ref` Timing",
+                                           "Overview",
+                                           "Lifecycle Order",
+                                           "`@ref` Timing",
+                                           "Váº¥n Ä‘á»",
+                                           "NguyÃªn nhÃ¢n",
+                                           "Fix",
+                                           "StateHasChanged \u0026 Dispatcher",
+                                           "Tri-State Rendering Pattern",
+                                           "Lesson"
+                                       ],
+                          "file":  ".opencode/knowledge/framework/blazor/component-lifecycle.md",
+                          "size":  2570
+                      },
+                      {
+                          "headings":  [
+                                           "FluentUI Design Tokens",
+                                           "KhÃ¡i niá»‡m",
+                                           "FluentDesignTheme",
+                                           "Quy táº¯c"
+                                       ],
+                          "file":  ".opencode/knowledge/framework/fluentu/design-tokens.md",
+                          "size":  983
+                      },
+                      {
+                          "headings":  [
+                                           "FluentUI 4.14.3 â€” Blazor WASM",
+                                           "Tá»•ng quan",
+                                           "Component chÃ­nh",
+                                           "VÃ­ dá»¥",
+                                           "LÆ°u Ã½"
+                                       ],
+                          "file":  ".opencode/knowledge/framework/fluentu/fluentu.md",
+                          "size":  1245
+                      },
+                      {
+                          "headings":  [
+                                           "Knowledge Assistant",
+                                           "Kiáº¿n trÃºc",
+                                           "10 Skills",
+                                           "11 Commands",
+                                           "Knowledge Index",
+                                           "Stack Mapping (adapt)",
+                                           "Xem thÃªm"
+                                       ],
+                          "file":  ".opencode/knowledge/knowledge-assistant/README.md",
+                          "size":  2700
+                      },
+                      {
+                          "headings":  [
+                                           "Local Storage Patterns (Blazored.LocalStorage)",
+                                           "KhÃ¡i niá»‡m",
+                                           "Cache-first",
+                                           "VÃ­ dá»¥ khá»Ÿi táº¡o",
+                                           "LÆ°u Ã½"
+                                       ],
+                          "file":  ".opencode/knowledge/patterns/localstorage.md",
+                          "size":  962
+                      },
+                      {
+                          "headings":  [
+                                           "Seed Data Patterns",
+                                           "KhÃ¡i niá»‡m",
+                                           "Pattern cache-first + seed",
+                                           "GetAllAsync vá»›i progress",
+                                           "Quy táº¯c"
+                                       ],
+                          "file":  ".opencode/knowledge/patterns/seed-data-patterns.md",
+                          "size":  995
+                      },
+                      {
+                          "headings":  [
+                                           "Blazor WASM â€” GitHub Pages Deployment",
+                                           "Pattern",
+                                           "Problem",
+                                           "Solution",
+                                           "Files cáº§n táº¡o/sá»­a",
+                                           "Test checklist",
+                                           "Cross-reference",
+                                           "Related issues"
+                                       ],
+                          "file":  ".opencode/knowledge/project/japanese-learner/deployment.md",
+                          "size":  3722
+                      },
+                      {
+                          "headings":  [
+                                           "Common Patterns",
+                                           "Cáº¥u trÃºc entry",
+                                           "Danh sÃ¡ch patterns"
+                                       ],
+                          "file":  ".opencode/knowledge/skills/blazor/patterns.md",
+                          "size":  5505
+                      },
+                      {
+                          "headings":  [
+                                           "UI Audit Pipeline v3 â€” Knowledge Base",
+                                           "Overview",
+                                           "Pipeline Architecture",
+                                           "Mode Matrix",
+                                           "Phase Configuration",
+                                           "Phase 1: UI Audit Core",
+                                           "Phase 2: UI Critique",
+                                           "Phase 3: Security Check",
+                                           "Phase 4: Cleanup",
+                                           "Backward Compatibility",
+                                           "Skill Integration Points",
+                                           "Troubleshooting",
+                                           "Lessons Learned from v2 â†’ v3 Upgrade"
+                                       ],
+                          "file":  ".opencode/knowledge/skills/blazor/ui.md",
+                          "size":  3722
+                      },
+                      {
+                          "headings":  [
+                                           "Playwright E2E Testing",
+                                           "Tá»•ng quan",
+                                           "Cáº¥u trÃºc fixture",
+                                           "Quy táº¯c",
+                                           "QA Commands (WF-20260801-001)",
+                                           "Skills QA (12)"
+                                       ],
+                          "file":  ".opencode/knowledge/testing/playwright-e2e.md",
+                          "size":  2381
+                      },
+                      {
+                          "headings":  [
+                                           "xUnit + bUnit Testing",
+                                           "Tá»•ng quan",
+                                           "BunitTestBase",
+                                           "MockStorageService",
+                                           "Quy táº¯c"
+                                       ],
+                          "file":  ".opencode/knowledge/testing/xunit-bunit-testing.md",
+                          "size":  866
+                      },
+                      {
+                          "headings":  [
+                                           "Dark Mode Theming",
+                                           "Tá»•ng quan",
+                                           "ThemeService",
+                                           "Layout pattern",
+                                           "LÆ°u Ã½"
+                                       ],
+                          "file":  ".opencode/knowledge/ui/dark-mode-theming.md",
+                          "size":  1040
+                      },
+                      {
+                          "headings":  [
+                                           "Design System Tokens â€” FluentUI 4.14.3 + Project Overrides",
+                                           "1. FluentUI Standard Tokens (máº·c Ä‘á»‹nh cá»§a component)",
+                                           "2. Project Overrides â€” `JapaneseLearner/wwwroot/css/theme.css`",
+                                           "Radius (khÃ¡c FluentUI default!)",
+                                           "Shadow (tinted, thay tháº¿ elevation)",
+                                           "Spacing",
+                                           "Typography",
+                                           "Color â€” Brand (light theme)",
+                                           "Color â€” Dark theme (`[data-theme=\"dark\"]`)",
+                                           "3. Thang Validate Nhanh",
+                                           "4. File LiÃªn Quan"
+                                       ],
+                          "file":  ".opencode/knowledge/ui/design-system-tokens.md",
+                          "size":  4698
+                      },
+                      {
+                          "headings":  [
+                                           "FluentUI Components (Ä‘Ã£ dÃ¹ng trong project)",
+                                           "Danh sÃ¡ch component chÃ­nh",
+                                           "VÃ­ dá»¥ nav",
+                                           "LÆ°u Ã½"
+                                       ],
+                          "file":  ".opencode/knowledge/ui/fluentui-components.md",
+                          "size":  1208
+                      },
+                      {
+                          "headings":  [
+                                           "Tri-State Rendering",
+                                           "KhÃ¡i niá»‡m",
+                                           "Pattern",
+                                           "Quy táº¯c"
+                                       ],
+                          "file":  ".opencode/knowledge/ui/tri-state-rendering.md",
+                          "size":  900
+                      },
+                      {
+                          "headings":  [
+                                           "Validate GitHub Actions YAML trong workflow",
+                                           "Pattern",
+                                           "CÃ¡ch 1: DÃ¹ng action (recommended)",
+                                           "CÃ¡ch 2: DÃ¹ng yaml-lint",
+                                           "Integration",
+                                           "Cross-reference"
+                                       ],
+                          "file":  ".opencode/knowledge/workflow/validate-github-actions-yaml.md",
+                          "size":  879
+                      }
+                  ]
+}

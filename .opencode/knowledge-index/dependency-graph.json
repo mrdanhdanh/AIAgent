@@ -1,0 +1,168 @@
+﻿{
+    "generated_at":  "2026-08-01T17:28:13.9661402+07:00",
+    "edges":  [
+                  {
+                      "from":  "ICharService",
+                      "to":  "CharService",
+                      "type":  "DI_REGISTRATION"
+                  },
+                  {
+                      "from":  "IWordService",
+                      "to":  "WordService",
+                      "type":  "DI_REGISTRATION"
+                  },
+                  {
+                      "from":  "IKanjiService",
+                      "to":  "KanjiService",
+                      "type":  "DI_REGISTRATION"
+                  },
+                  {
+                      "from":  "IGrammarService",
+                      "to":  "GrammarService",
+                      "type":  "DI_REGISTRATION"
+                  },
+                  {
+                      "from":  "IThemeService",
+                      "to":  "ThemeService",
+                      "type":  "DI_REGISTRATION"
+                  }
+              ],
+    "nodes":  [
+                  {
+                      "name":  "JapaneseLearner/Program.cs",
+                      "type":  "FILE"
+                  },
+                  {
+                      "name":  "JapaneseLearner/Models/JapaneseChar.cs",
+                      "type":  "FILE"
+                  },
+                  {
+                      "name":  "JapaneseLearner/Models/JapaneseGrammar.cs",
+                      "type":  "FILE"
+                  },
+                  {
+                      "name":  "JapaneseLearner/Models/JapaneseKanji.cs",
+                      "type":  "FILE"
+                  },
+                  {
+                      "name":  "JapaneseLearner/Models/JapaneseWord.cs",
+                      "type":  "FILE"
+                  },
+                  {
+                      "name":  "JapaneseLearner/Services/CharService.cs",
+                      "type":  "FILE"
+                  },
+                  {
+                      "name":  "JapaneseLearner/Services/GrammarService.cs",
+                      "type":  "FILE"
+                  },
+                  {
+                      "name":  "JapaneseLearner/Services/ICharService.cs",
+                      "type":  "FILE"
+                  },
+                  {
+                      "name":  "JapaneseLearner/Services/IGrammarService.cs",
+                      "type":  "FILE"
+                  },
+                  {
+                      "name":  "JapaneseLearner/Services/IKanjiService.cs",
+                      "type":  "FILE"
+                  },
+                  {
+                      "name":  "JapaneseLearner/Services/IThemeService.cs",
+                      "type":  "FILE"
+                  },
+                  {
+                      "name":  "JapaneseLearner/Services/IWordService.cs",
+                      "type":  "FILE"
+                  },
+                  {
+                      "name":  "JapaneseLearner/Services/KanjiService.cs",
+                      "type":  "FILE"
+                  },
+                  {
+                      "name":  "JapaneseLearner/Services/ThemeService.cs",
+                      "type":  "FILE"
+                  },
+                  {
+                      "name":  "JapaneseLearner/Services/WordService.cs",
+                      "type":  "FILE"
+                  },
+                  {
+                      "name":  "JapaneseLearner/App.razor",
+                      "type":  "FILE"
+                  },
+                  {
+                      "name":  "JapaneseLearner/_Imports.razor",
+                      "type":  "FILE"
+                  },
+                  {
+                      "name":  "JapaneseLearner/.opencode/backup/WF-20260728-001/Layout/MainLayout.razor",
+                      "type":  "FILE"
+                  },
+                  {
+                      "name":  "JapaneseLearner/.opencode/backup/WF-20260728-001/Pages/Home.razor",
+                      "type":  "FILE"
+                  },
+                  {
+                      "name":  "JapaneseLearner/Layout/MainLayout.razor",
+                      "type":  "FILE"
+                  },
+                  {
+                      "name":  "JapaneseLearner/Pages/Admin.razor",
+                      "type":  "FILE"
+                  },
+                  {
+                      "name":  "JapaneseLearner/Pages/AlphabetQuiz.razor",
+                      "type":  "FILE"
+                  },
+                  {
+                      "name":  "JapaneseLearner/Pages/AlphabetStudy.razor",
+                      "type":  "FILE"
+                  },
+                  {
+                      "name":  "JapaneseLearner/Pages/GrammarDetail.razor",
+                      "type":  "FILE"
+                  },
+                  {
+                      "name":  "JapaneseLearner/Pages/GrammarStudy.razor",
+                      "type":  "FILE"
+                  },
+                  {
+                      "name":  "JapaneseLearner/Pages/Home.razor",
+                      "type":  "FILE"
+                  },
+                  {
+                      "name":  "JapaneseLearner/Pages/KanjiDetail.razor",
+                      "type":  "FILE"
+                  },
+                  {
+                      "name":  "JapaneseLearner/Pages/KanjiQuiz.razor",
+                      "type":  "FILE"
+                  },
+                  {
+                      "name":  "JapaneseLearner/Pages/KanjiStudy.razor",
+                      "type":  "FILE"
+                  },
+                  {
+                      "name":  "JapaneseLearner/Pages/Practice.razor",
+                      "type":  "FILE"
+                  },
+                  {
+                      "name":  "JapaneseLearner/Pages/Training.razor",
+                      "type":  "FILE"
+                  },
+                  {
+                      "name":  "JapaneseLearner/Pages/WordQuiz.razor",
+                      "type":  "FILE"
+                  },
+                  {
+                      "name":  "JapaneseLearner/Pages/WordStudy.razor",
+                      "type":  "FILE"
+                  },
+                  {
+                      "name":  "JapaneseLearner/JapaneseLearner.csproj",
+                      "type":  "FILE"
+                  }
+              ]
+}

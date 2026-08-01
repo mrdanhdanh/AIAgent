@@ -1,0 +1,549 @@
+﻿[
+    {
+        "document":  "lessons.md",
+        "sections":  [
+                         {
+                             "level":  1,
+                             "title":  "Lessons Learned"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "Cáº¥u trÃºc entry"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "Danh sÃ¡ch bÃ i há»c"
+                         }
+                     ]
+    },
+    {
+        "document":  "README.md",
+        "sections":  [
+                         {
+                             "level":  1,
+                             "title":  "Knowledge Base â€” Japanese Learner"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "Cáº¥u trÃºc"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "CÃ¡ch tÃ¬m kiáº¿m"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "Quy táº¯c Ä‘Ã³ng gÃ³p"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "Thá»‘ng kÃª"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "Knowledge Index"
+                         }
+                     ]
+    },
+    {
+        "document":  "skills-learned.md",
+        "sections":  [
+                         {
+                             "level":  1,
+                             "title":  "Skills Learned"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "Cáº¥u trÃºc entry"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "Danh sÃ¡ch ká»¹ nÄƒng"
+                         }
+                     ]
+    },
+    {
+        "document":  "framework\\blazor\\component-lifecycle.md",
+        "sections":  [
+                         {
+                             "level":  1,
+                             "title":  "Blazor Component Lifecycle \u0026 `@ref` Timing"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "Overview"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "Lifecycle Order"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "`@ref` Timing"
+                         },
+                         {
+                             "level":  3,
+                             "title":  "Váº¥n Ä‘á»"
+                         },
+                         {
+                             "level":  3,
+                             "title":  "NguyÃªn nhÃ¢n"
+                         },
+                         {
+                             "level":  3,
+                             "title":  "Fix"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "StateHasChanged \u0026 Dispatcher"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "Tri-State Rendering Pattern"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "Lesson"
+                         }
+                     ]
+    },
+    {
+        "document":  "framework\\fluentu\\design-tokens.md",
+        "sections":  [
+                         {
+                             "level":  1,
+                             "title":  "FluentUI Design Tokens"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "KhÃ¡i niá»‡m"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "FluentDesignTheme"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "Quy táº¯c"
+                         }
+                     ]
+    },
+    {
+        "document":  "framework\\fluentu\\fluentu.md",
+        "sections":  [
+                         {
+                             "level":  1,
+                             "title":  "FluentUI 4.14.3 â€” Blazor WASM"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "Tá»•ng quan"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "Component chÃ­nh"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "VÃ­ dá»¥"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "LÆ°u Ã½"
+                         }
+                     ]
+    },
+    {
+        "document":  "knowledge-assistant\\README.md",
+        "sections":  [
+                         {
+                             "level":  1,
+                             "title":  "Knowledge Assistant"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "Kiáº¿n trÃºc"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "10 Skills"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "11 Commands"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "Knowledge Index"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "Stack Mapping (adapt)"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "Xem thÃªm"
+                         }
+                     ]
+    },
+    {
+        "document":  "patterns\\localstorage.md",
+        "sections":  [
+                         {
+                             "level":  1,
+                             "title":  "Local Storage Patterns (Blazored.LocalStorage)"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "KhÃ¡i niá»‡m"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "Cache-first"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "VÃ­ dá»¥ khá»Ÿi táº¡o"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "LÆ°u Ã½"
+                         }
+                     ]
+    },
+    {
+        "document":  "patterns\\seed-data-patterns.md",
+        "sections":  [
+                         {
+                             "level":  1,
+                             "title":  "Seed Data Patterns"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "KhÃ¡i niá»‡m"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "Pattern cache-first + seed"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "GetAllAsync vá»›i progress"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "Quy táº¯c"
+                         }
+                     ]
+    },
+    {
+        "document":  "project\\japanese-learner\\deployment.md",
+        "sections":  [
+                         {
+                             "level":  1,
+                             "title":  "Blazor WASM â€” GitHub Pages Deployment"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "Pattern"
+                         },
+                         {
+                             "level":  3,
+                             "title":  "Problem"
+                         },
+                         {
+                             "level":  3,
+                             "title":  "Solution"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "Files cáº§n táº¡o/sá»­a"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "Test checklist"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "Cross-reference"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "Related issues"
+                         }
+                     ]
+    },
+    {
+        "document":  "skills\\blazor\\patterns.md",
+        "sections":  [
+                         {
+                             "level":  1,
+                             "title":  "Common Patterns"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "Cáº¥u trÃºc entry"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "Danh sÃ¡ch patterns"
+                         }
+                     ]
+    },
+    {
+        "document":  "skills\\blazor\\ui.md",
+        "sections":  [
+                         {
+                             "level":  1,
+                             "title":  "UI Audit Pipeline v3 â€” Knowledge Base"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "Overview"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "Pipeline Architecture"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "Mode Matrix"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "Phase Configuration"
+                         },
+                         {
+                             "level":  3,
+                             "title":  "Phase 1: UI Audit Core"
+                         },
+                         {
+                             "level":  3,
+                             "title":  "Phase 2: UI Critique"
+                         },
+                         {
+                             "level":  3,
+                             "title":  "Phase 3: Security Check"
+                         },
+                         {
+                             "level":  3,
+                             "title":  "Phase 4: Cleanup"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "Backward Compatibility"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "Skill Integration Points"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "Troubleshooting"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "Lessons Learned from v2 â†’ v3 Upgrade"
+                         }
+                     ]
+    },
+    {
+        "document":  "testing\\playwright-e2e.md",
+        "sections":  [
+                         {
+                             "level":  1,
+                             "title":  "Playwright E2E Testing"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "Tá»•ng quan"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "Cáº¥u trÃºc fixture"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "Quy táº¯c"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "QA Commands (WF-20260801-001)"
+                         },
+                         {
+                             "level":  3,
+                             "title":  "Skills QA (12)"
+                         }
+                     ]
+    },
+    {
+        "document":  "testing\\xunit-bunit-testing.md",
+        "sections":  [
+                         {
+                             "level":  1,
+                             "title":  "xUnit + bUnit Testing"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "Tá»•ng quan"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "BunitTestBase"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "MockStorageService"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "Quy táº¯c"
+                         }
+                     ]
+    },
+    {
+        "document":  "ui\\dark-mode-theming.md",
+        "sections":  [
+                         {
+                             "level":  1,
+                             "title":  "Dark Mode Theming"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "Tá»•ng quan"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "ThemeService"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "Layout pattern"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "LÆ°u Ã½"
+                         }
+                     ]
+    },
+    {
+        "document":  "ui\\design-system-tokens.md",
+        "sections":  [
+                         {
+                             "level":  1,
+                             "title":  "Design System Tokens â€” FluentUI 4.14.3 + Project Overrides"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "1. FluentUI Standard Tokens (máº·c Ä‘á»‹nh cá»§a component)"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "2. Project Overrides â€” `JapaneseLearner/wwwroot/css/theme.css`"
+                         },
+                         {
+                             "level":  3,
+                             "title":  "Radius (khÃ¡c FluentUI default!)"
+                         },
+                         {
+                             "level":  3,
+                             "title":  "Shadow (tinted, thay tháº¿ elevation)"
+                         },
+                         {
+                             "level":  3,
+                             "title":  "Spacing"
+                         },
+                         {
+                             "level":  3,
+                             "title":  "Typography"
+                         },
+                         {
+                             "level":  3,
+                             "title":  "Color â€” Brand (light theme)"
+                         },
+                         {
+                             "level":  3,
+                             "title":  "Color â€” Dark theme (`[data-theme=\"dark\"]`)"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "3. Thang Validate Nhanh"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "4. File LiÃªn Quan"
+                         }
+                     ]
+    },
+    {
+        "document":  "ui\\fluentui-components.md",
+        "sections":  [
+                         {
+                             "level":  1,
+                             "title":  "FluentUI Components (Ä‘Ã£ dÃ¹ng trong project)"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "Danh sÃ¡ch component chÃ­nh"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "VÃ­ dá»¥ nav"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "LÆ°u Ã½"
+                         }
+                     ]
+    },
+    {
+        "document":  "ui\\tri-state-rendering.md",
+        "sections":  [
+                         {
+                             "level":  1,
+                             "title":  "Tri-State Rendering"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "KhÃ¡i niá»‡m"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "Pattern"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "Quy táº¯c"
+                         }
+                     ]
+    },
+    {
+        "document":  "workflow\\validate-github-actions-yaml.md",
+        "sections":  [
+                         {
+                             "level":  1,
+                             "title":  "Validate GitHub Actions YAML trong workflow"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "Pattern"
+                         },
+                         {
+                             "level":  3,
+                             "title":  "CÃ¡ch 1: DÃ¹ng action (recommended)"
+                         },
+                         {
+                             "level":  3,
+                             "title":  "CÃ¡ch 2: DÃ¹ng yaml-lint"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "Integration"
+                         },
+                         {
+                             "level":  2,
+                             "title":  "Cross-reference"
+                         }
+                     ]
+    }
+]

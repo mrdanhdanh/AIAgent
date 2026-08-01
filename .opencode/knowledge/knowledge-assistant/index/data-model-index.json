@@ -1,0 +1,146 @@
+﻿[
+    {
+        "entity":  "JapaneseChar",
+        "file":  "Models\\JapaneseChar.cs",
+        "properties":  [
+                           {
+                               "name":  "JapaneseChar",
+                               "type":  "class"
+                           },
+                           {
+                               "name":  "Id",
+                               "type":  "int"
+                           },
+                           {
+                               "name":  "Character",
+                               "type":  "string"
+                           },
+                           {
+                               "name":  "Romaji",
+                               "type":  "string"
+                           },
+                           {
+                               "name":  "Type",
+                               "type":  "string"
+                           }
+                       ]
+    },
+    {
+        "entity":  "JapaneseGrammar",
+        "file":  "Models\\JapaneseGrammar.cs",
+        "properties":  [
+                           {
+                               "name":  "JapaneseGrammar",
+                               "type":  "class"
+                           },
+                           {
+                               "name":  "Id",
+                               "type":  "int"
+                           },
+                           {
+                               "name":  "Pattern",
+                               "type":  "string"
+                           },
+                           {
+                               "name":  "Meaning",
+                               "type":  "string"
+                           },
+                           {
+                               "name":  "Explanation",
+                               "type":  "string"
+                           },
+                           {
+                               "name":  "JLPTLevel",
+                               "type":  "string"
+                           },
+                           {
+                               "name":  "Examples",
+                               "type":  "List\u003cstring\u003e"
+                           }
+                       ]
+    },
+    {
+        "entity":  "JapaneseKanji",
+        "file":  "Models\\JapaneseKanji.cs",
+        "properties":  [
+                           {
+                               "name":  "JapaneseKanji",
+                               "type":  "class"
+                           },
+                           {
+                               "name":  "Id",
+                               "type":  "int"
+                           },
+                           {
+                               "name":  "Kanji",
+                               "type":  "string"
+                           },
+                           {
+                               "name":  "OnYomi",
+                               "type":  "string"
+                           },
+                           {
+                               "name":  "KunYomi",
+                               "type":  "string"
+                           },
+                           {
+                               "name":  "Romaji",
+                               "type":  "string"
+                           },
+                           {
+                               "name":  "Meaning",
+                               "type":  "string"
+                           },
+                           {
+                               "name":  "StrokeCount",
+                               "type":  "int"
+                           },
+                           {
+                               "name":  "JLPTLevel",
+                               "type":  "string"
+                           },
+                           {
+                               "name":  "Examples",
+                               "type":  "List\u003cstring\u003e"
+                           },
+                           {
+                               "name":  "Strokes",
+                               "type":  "List\u003cstring\u003e"
+                           }
+                       ]
+    },
+    {
+        "entity":  "JapaneseWord",
+        "file":  "Models\\JapaneseWord.cs",
+        "properties":  [
+                           {
+                               "name":  "JapaneseWord",
+                               "type":  "class"
+                           },
+                           {
+                               "name":  "Id",
+                               "type":  "int"
+                           },
+                           {
+                               "name":  "Characters",
+                               "type":  "string"
+                           },
+                           {
+                               "name":  "Romaji",
+                               "type":  "string"
+                           },
+                           {
+                               "name":  "Meaning",
+                               "type":  "string"
+                           },
+                           {
+                               "name":  "Type",
+                               "type":  "string"
+                           },
+                           {
+                               "name":  "Level",
+                               "type":  "string"
+                           }
+                       ]
+    }
+]

@@ -1,0 +1,161 @@
+﻿{
+    "generated_at":  "2026-08-01T17:28:13.9661402+07:00",
+    "apis":  [
+                 {
+                     "signature":  "public async Task\u003cList\u003cJapaneseChar\u003e\u003e GetAllAsync()",
+                     "name":  "GetAllAsync",
+                     "returnType":  "Task\u003cList\u003cJapaneseChar\u003e\u003e",
+                     "file":  "JapaneseLearner/Services/CharService.cs"
+                 },
+                 {
+                     "signature":  "public async Task\u003cList\u003cJapaneseChar\u003e\u003e GetByTypeAsync(string type)",
+                     "name":  "GetByTypeAsync",
+                     "returnType":  "Task\u003cList\u003cJapaneseChar\u003e\u003e",
+                     "file":  "JapaneseLearner/Services/CharService.cs"
+                 },
+                 {
+                     "signature":  "public async Task AddAsync(JapaneseChar c)",
+                     "name":  "AddAsync",
+                     "returnType":  "Task",
+                     "file":  "JapaneseLearner/Services/CharService.cs"
+                 },
+                 {
+                     "signature":  "public async Task UpdateAsync(JapaneseChar c)",
+                     "name":  "UpdateAsync",
+                     "returnType":  "Task",
+                     "file":  "JapaneseLearner/Services/CharService.cs"
+                 },
+                 {
+                     "signature":  "public async Task DeleteAsync(int id)",
+                     "name":  "DeleteAsync",
+                     "returnType":  "Task",
+                     "file":  "JapaneseLearner/Services/CharService.cs"
+                 },
+                 {
+                     "signature":  "public async Task\u003cList\u003cJapaneseGrammar\u003e\u003e GetAllAsync(IProgress\u003cint\u003e? progress = null)",
+                     "name":  "GetAllAsync",
+                     "returnType":  "Task\u003cList\u003cJapaneseGrammar\u003e\u003e",
+                     "file":  "JapaneseLearner/Services/GrammarService.cs"
+                 },
+                 {
+                     "signature":  "public async Task\u003cJapaneseGrammar?\u003e GetByIdAsync(int id)",
+                     "name":  "GetByIdAsync",
+                     "returnType":  "Task\u003cJapaneseGrammar?\u003e",
+                     "file":  "JapaneseLearner/Services/GrammarService.cs"
+                 },
+                 {
+                     "signature":  "public async Task\u003cList\u003cJapaneseGrammar\u003e\u003e GetByLevelAsync(string level)",
+                     "name":  "GetByLevelAsync",
+                     "returnType":  "Task\u003cList\u003cJapaneseGrammar\u003e\u003e",
+                     "file":  "JapaneseLearner/Services/GrammarService.cs"
+                 },
+                 {
+                     "signature":  "public async Task AddAsync(JapaneseGrammar g)",
+                     "name":  "AddAsync",
+                     "returnType":  "Task",
+                     "file":  "JapaneseLearner/Services/GrammarService.cs"
+                 },
+                 {
+                     "signature":  "public async Task UpdateAsync(JapaneseGrammar g)",
+                     "name":  "UpdateAsync",
+                     "returnType":  "Task",
+                     "file":  "JapaneseLearner/Services/GrammarService.cs"
+                 },
+                 {
+                     "signature":  "public async Task DeleteAsync(int id)",
+                     "name":  "DeleteAsync",
+                     "returnType":  "Task",
+                     "file":  "JapaneseLearner/Services/GrammarService.cs"
+                 },
+                 {
+                     "signature":  "public async Task\u003cList\u003cJapaneseKanji\u003e\u003e GetAllAsync(IProgress\u003cint\u003e? progress = null)",
+                     "name":  "GetAllAsync",
+                     "returnType":  "Task\u003cList\u003cJapaneseKanji\u003e\u003e",
+                     "file":  "JapaneseLearner/Services/KanjiService.cs"
+                 },
+                 {
+                     "signature":  "public async Task\u003cJapaneseKanji?\u003e GetByIdAsync(int id)",
+                     "name":  "GetByIdAsync",
+                     "returnType":  "Task\u003cJapaneseKanji?\u003e",
+                     "file":  "JapaneseLearner/Services/KanjiService.cs"
+                 },
+                 {
+                     "signature":  "public async Task\u003cList\u003cJapaneseKanji\u003e\u003e GetByLevelAsync(string level)",
+                     "name":  "GetByLevelAsync",
+                     "returnType":  "Task\u003cList\u003cJapaneseKanji\u003e\u003e",
+                     "file":  "JapaneseLearner/Services/KanjiService.cs"
+                 },
+                 {
+                     "signature":  "public async Task AddAsync(JapaneseKanji k)",
+                     "name":  "AddAsync",
+                     "returnType":  "Task",
+                     "file":  "JapaneseLearner/Services/KanjiService.cs"
+                 },
+                 {
+                     "signature":  "public async Task UpdateAsync(JapaneseKanji k)",
+                     "name":  "UpdateAsync",
+                     "returnType":  "Task",
+                     "file":  "JapaneseLearner/Services/KanjiService.cs"
+                 },
+                 {
+                     "signature":  "public async Task DeleteAsync(int id)",
+                     "name":  "DeleteAsync",
+                     "returnType":  "Task",
+                     "file":  "JapaneseLearner/Services/KanjiService.cs"
+                 },
+                 {
+                     "signature":  "public async Task\u003cbool\u003e GetCurrentModeAsync()",
+                     "name":  "GetCurrentModeAsync",
+                     "returnType":  "Task\u003cbool\u003e",
+                     "file":  "JapaneseLearner/Services/ThemeService.cs"
+                 },
+                 {
+                     "signature":  "public async Task ToggleAsync()",
+                     "name":  "ToggleAsync",
+                     "returnType":  "Task",
+                     "file":  "JapaneseLearner/Services/ThemeService.cs"
+                 },
+                 {
+                     "signature":  "public async Task\u003cList\u003cJapaneseWord\u003e\u003e GetAllAsync(IProgress\u003cint\u003e? progress = null)",
+                     "name":  "GetAllAsync",
+                     "returnType":  "Task\u003cList\u003cJapaneseWord\u003e\u003e",
+                     "file":  "JapaneseLearner/Services/WordService.cs"
+                 },
+                 {
+                     "signature":  "public async Task\u003cList\u003cJapaneseWord\u003e\u003e GetByTypeAsync(string type)",
+                     "name":  "GetByTypeAsync",
+                     "returnType":  "Task\u003cList\u003cJapaneseWord\u003e\u003e",
+                     "file":  "JapaneseLearner/Services/WordService.cs"
+                 },
+                 {
+                     "signature":  "public async Task AddAsync(JapaneseWord w)",
+                     "name":  "AddAsync",
+                     "returnType":  "Task",
+                     "file":  "JapaneseLearner/Services/WordService.cs"
+                 },
+                 {
+                     "signature":  "public async Task UpdateAsync(JapaneseWord w)",
+                     "name":  "UpdateAsync",
+                     "returnType":  "Task",
+                     "file":  "JapaneseLearner/Services/WordService.cs"
+                 },
+                 {
+                     "signature":  "public async Task DeleteAsync(int id)",
+                     "name":  "DeleteAsync",
+                     "returnType":  "Task",
+                     "file":  "JapaneseLearner/Services/WordService.cs"
+                 },
+                 {
+                     "signature":  "public void Dispose()",
+                     "name":  "Dispose",
+                     "returnType":  "void",
+                     "file":  "JapaneseLearner/.opencode/backup/WF-20260728-001/Layout/MainLayout.razor"
+                 },
+                 {
+                     "signature":  "public void Dispose()",
+                     "name":  "Dispose",
+                     "returnType":  "void",
+                     "file":  "JapaneseLearner/Layout/MainLayout.razor"
+                 }
+             ]
+}

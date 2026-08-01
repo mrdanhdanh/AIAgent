@@ -1,0 +1,69 @@
+{
+  "workflow": {
+    "id": "WF-20260801-001",
+    "created_at": "2026-08-01T17:15:00Z",
+    "completed_at": "2026-08-01T18:15:00Z",
+    "project": "JapaneseLearner",
+    "branch": "master",
+    "schema_version": "3.2",
+    "step": 13,
+    "step_name": "complete",
+    "status": "waiting_approval",
+    "retry": {
+      "review_count": 1,
+      "test_count": 0,
+      "max_review": 3,
+      "max_test": 3,
+      "skill_validation_count": 1
+    },
+    "user_intervention": false,
+    "backup_done": true,
+    "error_history": {
+      "review": ["CHANGES_REQUESTED: permission bash deny knowledge-agent (MAJOR, đã sửa)"],
+      "test_failures": ["T-004 false-fail do encoding UTF-8 (đã confirm PASS)"],
+      "build_failures": ["knowledge-index.ps1 lỗi encoding UTF-8 không BOM (đã sửa)"]
+    },
+    "same_error_count": 0,
+    "coverage": {
+      "thresholds": { "unit": 80, "integration": 60, "e2e": 50, "overall": 70 },
+      "mandatory": true
+    },
+    "current_data": {
+      "analysis": "01_analysis.md",
+      "design": "02_design.md",
+      "plan": "03_plan.md",
+      "review_result": "04_review.md (APPROVED round 2)",
+      "guardrail_result": "05_guardrail.md (10/10 PASS)",
+      "build_result": "07_build.md (PASS)",
+      "static_analysis_result": "08_static_analysis.md (PASS)",
+      "ui_audit_result": "09_ui_audit.md (PASS)",
+      "test_plan": "10_test_plan.md",
+      "test_result": "11_test.md (APPROVED 12/12)",
+      "skill_validation_result": "12_skill_validation.md (READY)",
+      "final_report": "13_final_report.md",
+      "checkpoint_snapshots": []
+    }
+  },
+  "artifacts": {
+    "01_analysis.md": "Phân tích yêu cầu Knowledge Assistant",
+    "02_design.md": "Thiết kế: 10 skills + 11 commands + Knowledge Index",
+    "03_plan.md": "Kế hoạch: 23 steps / 4 chunks",
+    "04_review.md": "Review v2: APPROVED (overall 8.8)",
+    "05_guardrail.md": "Guardrail: 10/10 PASS",
+    "05_backup_manifest.json": "Backup opencode.json + SYSTEM_MAP.md",
+    "07_build.md": "Build: 23/23 steps PASS",
+    "08_static_analysis.md": "Static: 0 errors",
+    "09_ui_audit.md": "UI Audit: PASS",
+    "10_test_plan.md": "Test plan: 12 cases",
+    "11_test.md": "Test: 12/12 PASS",
+    "12_skill_validation.md": "5 suggestions"
+  },
+  "deliverables": {
+    "agents": [".opencode/agents/knowledge-agent.md"],
+    "skills": [".opencode/skills/knowledge/*/SKILL.md (10 files)"],
+    "commands": [".opencode/commands/knowledge*.md (11 files)"],
+    "scripts": [".opencode/scripts/knowledge-index.ps1"],
+    "index": [".opencode/knowledge/knowledge-assistant/index/*.json (7 files)"],
+    "modified": ["opencode.json", ".opencode/SYSTEM_MAP.md"]
+  }
+}

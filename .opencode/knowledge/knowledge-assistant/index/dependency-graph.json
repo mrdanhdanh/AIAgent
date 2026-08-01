@@ -1,0 +1,200 @@
+﻿[
+    {
+        "from":  "MainLayout.razor",
+        "to":  "IThemeService",
+        "type":  "inject",
+        "file":  ".opencode\\backup\\WF-20260728-001\\Layout\\MainLayout.razor"
+    },
+    {
+        "from":  "Home.razor",
+        "to":  "ICharService",
+        "type":  "inject",
+        "file":  ".opencode\\backup\\WF-20260728-001\\Pages\\Home.razor"
+    },
+    {
+        "from":  "MainLayout.razor",
+        "to":  "IThemeService",
+        "type":  "inject",
+        "file":  "Layout\\MainLayout.razor"
+    },
+    {
+        "from":  "Admin.razor",
+        "to":  "ICharService",
+        "type":  "inject",
+        "file":  "Pages\\Admin.razor"
+    },
+    {
+        "from":  "Admin.razor",
+        "to":  "IWordService",
+        "type":  "inject",
+        "file":  "Pages\\Admin.razor"
+    },
+    {
+        "from":  "Admin.razor",
+        "to":  "IKanjiService",
+        "type":  "inject",
+        "file":  "Pages\\Admin.razor"
+    },
+    {
+        "from":  "Admin.razor",
+        "to":  "IGrammarService",
+        "type":  "inject",
+        "file":  "Pages\\Admin.razor"
+    },
+    {
+        "from":  "AlphabetQuiz.razor",
+        "to":  "ICharService",
+        "type":  "inject",
+        "file":  "Pages\\AlphabetQuiz.razor"
+    },
+    {
+        "from":  "AlphabetQuiz.razor",
+        "to":  "NavigationManager",
+        "type":  "inject",
+        "file":  "Pages\\AlphabetQuiz.razor"
+    },
+    {
+        "from":  "AlphabetStudy.razor",
+        "to":  "ICharService",
+        "type":  "inject",
+        "file":  "Pages\\AlphabetStudy.razor"
+    },
+    {
+        "from":  "AlphabetStudy.razor",
+        "to":  "NavigationManager",
+        "type":  "inject",
+        "file":  "Pages\\AlphabetStudy.razor"
+    },
+    {
+        "from":  "GrammarDetail.razor",
+        "to":  "IGrammarService",
+        "type":  "inject",
+        "file":  "Pages\\GrammarDetail.razor"
+    },
+    {
+        "from":  "GrammarDetail.razor",
+        "to":  "NavigationManager",
+        "type":  "inject",
+        "file":  "Pages\\GrammarDetail.razor"
+    },
+    {
+        "from":  "GrammarStudy.razor",
+        "to":  "IGrammarService",
+        "type":  "inject",
+        "file":  "Pages\\GrammarStudy.razor"
+    },
+    {
+        "from":  "GrammarStudy.razor",
+        "to":  "NavigationManager",
+        "type":  "inject",
+        "file":  "Pages\\GrammarStudy.razor"
+    },
+    {
+        "from":  "Home.razor",
+        "to":  "NavigationManager",
+        "type":  "inject",
+        "file":  "Pages\\Home.razor"
+    },
+    {
+        "from":  "KanjiDetail.razor",
+        "to":  "IKanjiService",
+        "type":  "inject",
+        "file":  "Pages\\KanjiDetail.razor"
+    },
+    {
+        "from":  "KanjiDetail.razor",
+        "to":  "NavigationManager",
+        "type":  "inject",
+        "file":  "Pages\\KanjiDetail.razor"
+    },
+    {
+        "from":  "KanjiQuiz.razor",
+        "to":  "NavigationManager",
+        "type":  "inject",
+        "file":  "Pages\\KanjiQuiz.razor"
+    },
+    {
+        "from":  "KanjiStudy.razor",
+        "to":  "IKanjiService",
+        "type":  "inject",
+        "file":  "Pages\\KanjiStudy.razor"
+    },
+    {
+        "from":  "KanjiStudy.razor",
+        "to":  "NavigationManager",
+        "type":  "inject",
+        "file":  "Pages\\KanjiStudy.razor"
+    },
+    {
+        "from":  "Practice.razor",
+        "to":  "ICharService",
+        "type":  "inject",
+        "file":  "Pages\\Practice.razor"
+    },
+    {
+        "from":  "Practice.razor",
+        "to":  "IWordService",
+        "type":  "inject",
+        "file":  "Pages\\Practice.razor"
+    },
+    {
+        "from":  "Practice.razor",
+        "to":  "NavigationManager",
+        "type":  "inject",
+        "file":  "Pages\\Practice.razor"
+    },
+    {
+        "from":  "Practice.razor",
+        "to":  "IJSRuntime",
+        "type":  "inject",
+        "file":  "Pages\\Practice.razor"
+    },
+    {
+        "from":  "Training.razor",
+        "to":  "ICharService",
+        "type":  "inject",
+        "file":  "Pages\\Training.razor"
+    },
+    {
+        "from":  "Training.razor",
+        "to":  "NavigationManager",
+        "type":  "inject",
+        "file":  "Pages\\Training.razor"
+    },
+    {
+        "from":  "Training.razor",
+        "to":  "IJSRuntime",
+        "type":  "inject",
+        "file":  "Pages\\Training.razor"
+    },
+    {
+        "from":  "Training.razor",
+        "to":  "HttpClient",
+        "type":  "inject",
+        "file":  "Pages\\Training.razor"
+    },
+    {
+        "from":  "WordQuiz.razor",
+        "to":  "IWordService",
+        "type":  "inject",
+        "file":  "Pages\\WordQuiz.razor"
+    },
+    {
+        "from":  "WordQuiz.razor",
+        "to":  "NavigationManager",
+        "type":  "inject",
+        "file":  "Pages\\WordQuiz.razor"
+    },
+    {
+        "from":  "WordStudy.razor",
+        "to":  "IWordService",
+        "type":  "inject",
+        "file":  "Pages\\WordStudy.razor"
+    },
+    {
+        "from":  "WordStudy.razor",
+        "to":  "NavigationManager",
+        "type":  "inject",
+        "file":  "Pages\\WordStudy.razor"
+    }
+]

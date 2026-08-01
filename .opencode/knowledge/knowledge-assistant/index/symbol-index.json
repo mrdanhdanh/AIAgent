@@ -1,0 +1,278 @@
+﻿[
+    {
+        "name":  "JapaneseChar",
+        "type":  "class",
+        "file":  "Models\\JapaneseChar.cs",
+        "line":  2
+    },
+    {
+        "name":  "JapaneseGrammar",
+        "type":  "class",
+        "file":  "Models\\JapaneseGrammar.cs",
+        "line":  2
+    },
+    {
+        "name":  "JapaneseKanji",
+        "type":  "class",
+        "file":  "Models\\JapaneseKanji.cs",
+        "line":  2
+    },
+    {
+        "name":  "JapaneseWord",
+        "type":  "class",
+        "file":  "Models\\JapaneseWord.cs",
+        "line":  2
+    },
+    {
+        "name":  "CharService",
+        "type":  "class",
+        "file":  "Services\\CharService.cs",
+        "line":  5
+    },
+    {
+        "name":  "GetCachedAsync",
+        "type":  "method",
+        "file":  "Services\\CharService.cs",
+        "line":  18
+    },
+    {
+        "name":  "GetAllAsync",
+        "type":  "method",
+        "file":  "Services\\CharService.cs",
+        "line":  37
+    },
+    {
+        "name":  "GetByTypeAsync",
+        "type":  "method",
+        "file":  "Services\\CharService.cs",
+        "line":  42
+    },
+    {
+        "name":  "AddAsync",
+        "type":  "method",
+        "file":  "Services\\CharService.cs",
+        "line":  50
+    },
+    {
+        "name":  "UpdateAsync",
+        "type":  "method",
+        "file":  "Services\\CharService.cs",
+        "line":  58
+    },
+    {
+        "name":  "DeleteAsync",
+        "type":  "method",
+        "file":  "Services\\CharService.cs",
+        "line":  69
+    },
+    {
+        "name":  "GetDefaultData",
+        "type":  "method",
+        "file":  "Services\\CharService.cs",
+        "line":  76
+    },
+    {
+        "name":  "GrammarService",
+        "type":  "class",
+        "file":  "Services\\GrammarService.cs",
+        "line":  5
+    },
+    {
+        "name":  "GetCachedAsync",
+        "type":  "method",
+        "file":  "Services\\GrammarService.cs",
+        "line":  18
+    },
+    {
+        "name":  "GetAllAsync",
+        "type":  "method",
+        "file":  "Services\\GrammarService.cs",
+        "line":  47
+    },
+    {
+        "name":  "GetByIdAsync",
+        "type":  "method",
+        "file":  "Services\\GrammarService.cs",
+        "line":  52
+    },
+    {
+        "name":  "GetByLevelAsync",
+        "type":  "method",
+        "file":  "Services\\GrammarService.cs",
+        "line":  58
+    },
+    {
+        "name":  "AddAsync",
+        "type":  "method",
+        "file":  "Services\\GrammarService.cs",
+        "line":  66
+    },
+    {
+        "name":  "UpdateAsync",
+        "type":  "method",
+        "file":  "Services\\GrammarService.cs",
+        "line":  74
+    },
+    {
+        "name":  "DeleteAsync",
+        "type":  "method",
+        "file":  "Services\\GrammarService.cs",
+        "line":  85
+    },
+    {
+        "name":  "GetDefaultData",
+        "type":  "method",
+        "file":  "Services\\GrammarService.cs",
+        "line":  92
+    },
+    {
+        "name":  "ICharService",
+        "type":  "interface",
+        "file":  "Services\\ICharService.cs",
+        "line":  4
+    },
+    {
+        "name":  "IGrammarService",
+        "type":  "interface",
+        "file":  "Services\\IGrammarService.cs",
+        "line":  4
+    },
+    {
+        "name":  "IKanjiService",
+        "type":  "interface",
+        "file":  "Services\\IKanjiService.cs",
+        "line":  4
+    },
+    {
+        "name":  "IThemeService",
+        "type":  "interface",
+        "file":  "Services\\IThemeService.cs",
+        "line":  2
+    },
+    {
+        "name":  "IWordService",
+        "type":  "interface",
+        "file":  "Services\\IWordService.cs",
+        "line":  4
+    },
+    {
+        "name":  "KanjiService",
+        "type":  "class",
+        "file":  "Services\\KanjiService.cs",
+        "line":  5
+    },
+    {
+        "name":  "GetCachedAsync",
+        "type":  "method",
+        "file":  "Services\\KanjiService.cs",
+        "line":  18
+    },
+    {
+        "name":  "GetAllAsync",
+        "type":  "method",
+        "file":  "Services\\KanjiService.cs",
+        "line":  47
+    },
+    {
+        "name":  "GetByIdAsync",
+        "type":  "method",
+        "file":  "Services\\KanjiService.cs",
+        "line":  52
+    },
+    {
+        "name":  "GetByLevelAsync",
+        "type":  "method",
+        "file":  "Services\\KanjiService.cs",
+        "line":  58
+    },
+    {
+        "name":  "AddAsync",
+        "type":  "method",
+        "file":  "Services\\KanjiService.cs",
+        "line":  66
+    },
+    {
+        "name":  "UpdateAsync",
+        "type":  "method",
+        "file":  "Services\\KanjiService.cs",
+        "line":  74
+    },
+    {
+        "name":  "DeleteAsync",
+        "type":  "method",
+        "file":  "Services\\KanjiService.cs",
+        "line":  85
+    },
+    {
+        "name":  "GetDefaultData",
+        "type":  "method",
+        "file":  "Services\\KanjiService.cs",
+        "line":  92
+    },
+    {
+        "name":  "ThemeService",
+        "type":  "class",
+        "file":  "Services\\ThemeService.cs",
+        "line":  4
+    },
+    {
+        "name":  "GetCurrentModeAsync",
+        "type":  "method",
+        "file":  "Services\\ThemeService.cs",
+        "line":  19
+    },
+    {
+        "name":  "ToggleAsync",
+        "type":  "method",
+        "file":  "Services\\ThemeService.cs",
+        "line":  25
+    },
+    {
+        "name":  "WordService",
+        "type":  "class",
+        "file":  "Services\\WordService.cs",
+        "line":  5
+    },
+    {
+        "name":  "GetCachedAsync",
+        "type":  "method",
+        "file":  "Services\\WordService.cs",
+        "line":  18
+    },
+    {
+        "name":  "GetAllAsync",
+        "type":  "method",
+        "file":  "Services\\WordService.cs",
+        "line":  47
+    },
+    {
+        "name":  "GetByTypeAsync",
+        "type":  "method",
+        "file":  "Services\\WordService.cs",
+        "line":  52
+    },
+    {
+        "name":  "AddAsync",
+        "type":  "method",
+        "file":  "Services\\WordService.cs",
+        "line":  60
+    },
+    {
+        "name":  "UpdateAsync",
+        "type":  "method",
+        "file":  "Services\\WordService.cs",
+        "line":  68
+    },
+    {
+        "name":  "DeleteAsync",
+        "type":  "method",
+        "file":  "Services\\WordService.cs",
+        "line":  79
+    },
+    {
+        "name":  "GetDefaultData",
+        "type":  "method",
+        "file":  "Services\\WordService.cs",
+        "line":  86
+    }
+]

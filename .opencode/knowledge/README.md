@@ -54,3 +54,24 @@ Theo category → framework → topic:
 
 - Tổng số file: 17
 - Categories: framework, skills, patterns, testing, ui, project, workflow
+
+## Knowledge Index
+
+Ngoài knowledge base này, hệ thống có **Knowledge Index** tại `.opencode/knowledge-index/` — 7 loại index JSON được sinh tự động từ source code + tài liệu:
+
+| Index | Nội dung | Phục vụ |
+|-------|----------|---------|
+| `code-index.json` | File → classes/methods/fields | `/explain`, `/trace` |
+| `symbol-index.json` | Symbol → files | `/where` |
+| `api-index.json` | Public methods → callers | `/impact`, `/trace` |
+| `database-index.json` | Storage keys / DB objects | `/where`, `/impact` |
+| `dependency-graph.json` | Nodes + edges (DI graph) | `/impact`, `/trace`, `/where` |
+| `document-index.json` | Docs → sections/headings | `/why`, `/compare-doc` |
+| `business-rule-index.json` | Business rules → sources | `/why`, `/compare-doc` |
+
+**Cách dùng:**
+- Build lần đầu: `/knowledge-index` hoặc `/knowledge-index --rebuild`
+- Cập nhật sau khi source thay đổi: `/knowledge-index --update`
+- Xem trạng thái: `/knowledge-index --status`
+
+**Nguyên tắc:** Index = định vị nhanh; knowledge base + file gốc = bằng chứng. Luôn đọc nguồn gốc trước khi kết luận. Chi tiết: `.opencode/knowledge-index/README.md`, script `.opencode/scripts/build-knowledge-index.ps1`.

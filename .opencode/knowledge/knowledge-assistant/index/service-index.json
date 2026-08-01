@@ -1,0 +1,22 @@
+﻿[
+    {
+        "interface_name":  "ICharService",
+        "impl_name":  "CharService"
+    },
+    {
+        "interface_name":  "IWordService",
+        "impl_name":  "WordService"
+    },
+    {
+        "interface_name":  "IKanjiService",
+        "impl_name":  "KanjiService"
+    },
+    {
+        "interface_name":  "IGrammarService",
+        "impl_name":  "GrammarService"
+    },
+    {
+        "interface_name":  "IThemeService",
+        "impl_name":  "ThemeService"
+    }
+]
