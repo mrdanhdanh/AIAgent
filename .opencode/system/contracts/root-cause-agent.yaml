@@ -1,0 +1,46 @@
+# Contract: Root Cause Agent
+# Schema version: 1.0
+# Description: Định nghĩa input/output contract cho Root Cause Agent (root cause analysis phase)
+
+contract_version: "1.0"
+agent: root-cause-agent
+type: analysis
+
+input:
+  from: failure-agent
+  schema_version: "1.0"
+  required_fields:
+    - error_analysis: "object — output từ failure-agent"
+    - context: "string — workflow/file bị lỗi"
+
+output:
+  schema_version: "1.0"
+  artifact: "root_cause_analysis.yaml"
+  fields:
+    - status: "READY | INCONCLUSIVE"
+    - summary: "string — tóm tắt phân tích root cause (2-3 câu)"
+    - input: "{error_hash, error_type, context}"
+    - hypotheses: "array[{id, description, mechanism, confidence, evidence[], fix_suggestion}]"
+    - conclusion: "{most_likely, rationale}"
+
+decision_rules:
+  INCONCLUSIVE:
+    conditions:
+      - "Không tìm thấy evidence trong codebase"
+      - "Error không rõ ràng (Unknown)"
+  READY:
+    conditions:
+      - "Đã tạo hypotheses với evidence kèm confidence score"
+
+supported_versions:
+  - "1.0"
+
+dependencies:
+  requires: ["failure-agent", "codebase-explorer"]
+  provides_to: ["learning-agent", "builder"]
+
+migration_rules:
+  none:
+    added: []
+    removed: []
+    breaking: false

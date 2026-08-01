@@ -1,5 +1,6 @@
 ---
 description: General-purpose orchestrator agent — điều phối workflow, triệu hồi sub-agents, quản lý state machine
+schema_version: "2.0"
 mode: subagent
 model: opencode/deepseek-v4-flash-free
 permission:
@@ -33,3 +34,32 @@ General Agent đóng vai trò orchestrator — chỉ đảm nhiệm orchestratio
 | `/doctor` | Kiểm tra sức khỏe hệ thống: Environment, System, Runtime, Capability + health score + self-repair (alias `/team-doctor`) |
 
 Xem thêm: `.opencode/commands/team.md`, `.opencode/commands/team-syncdocs.md`, `.opencode/commands/doctor.md`, `.opencode/skills/dev-team/SKILL.md`
+
+## OUTPUT CONTRACT
+
+```yaml
+status: "RUNNING | COMPLETE | FAILED | BLOCKED"
+summary: "string — tóm tắt tiến độ workflow (2-3 câu)"
+step: "string — bước hiện tại trong workflow"
+state:
+  workflow_id: "string"
+  retry_count: 0
+  max_retries: 3
+  error_history: []
+artifacts:
+  - step: "analysis"
+    file: "01_analysis.md"
+  - step: "plan"
+    file: "03_plan.md"
+decisions:
+  - action: "continue | retry | rollback | stop | ask_user"
+    reason: "string"
+```
+
+## QUY TẮC ORCHESTRATION
+
+- Mỗi bước nhận output bước trước làm input — không bao giờ bỏ qua context
+- Vòng lặp review/test-fix tối đa 3 lần; nếu same_error_count ≥ 2 → catastrophic → rollback
+- Luôn ghi workflow snapshot + backup trước khi build
+- Khi thiếu thông tin từ user → dừng và hỏi, không đoán
+- Báo `BLOCKED` khi gặp lỗi không tự xử lý được, kèm error_history chi tiết

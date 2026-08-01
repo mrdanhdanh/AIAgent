@@ -13,6 +13,8 @@ memory/
 │   └── README.md
 ├── lessons/blazor/        ← Bài học theo framework
 │   └── README.md
+├── lessons/powershell/    ← Bài học về PowerShell scripting
+│   └── README.md
 └── patterns/              ← Pattern phát hiện từ failures
     └── README.md
 ```

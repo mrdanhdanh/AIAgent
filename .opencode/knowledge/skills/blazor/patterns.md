@@ -56,11 +56,11 @@ Các pattern phát triển đã được xác nhận và tái sử dụng.
   related_skills: ["SK-004", "SK-006"]
 
 - pattern_id: PTN-005
-  name: "MudBlazor Layout Bootstrap Pattern"
+  name: "FluentUI Layout Bootstrap Pattern"
   category: "process"
-  description: "Layout MudBlazor app cần 3 component cốt lõi theo đúng thứ tự: 1) MudThemeProvider (theme config), 2) MudPopoverProvider (cho popover/dropdown), 3) MudLayout (container cho AppBar, Drawer, MainContent). Shadows phải dùng new Shadow() mặc định."
-  when_to_use: "Khi tạo mới hoặc sửa layout trong dự án MudBlazor Blazor WASM."
-  example_workflow: "Fix runtime missing MudPopoverProvider"
+  description: "Layout FluentUI app dùng 3 thành phần cốt lõi: 1) FluentDesignTheme (theme config, dark/light qua DesignThemeModes, persist qua StorageName), 2) header bar với FluentButton (Appearance.Lightweight) + FluentIcon (Icons.Regular.Size20.*), 3) FluentNavMenu chứa FluentNavLink cho navigation. Không dùng các component MudThemeProvider/MudPopoverProvider/MudLayout của framework UI cũ — project dùng FluentUI 4.14.3."
+  when_to_use: "Khi tạo mới hoặc sửa layout trong dự án FluentUI Blazor WASM."
+  example_workflow: "MainLayout.razor dark mode + nav drawer"
   related_skills: ["SK-002"]
 
 - pattern_id: PTN-006

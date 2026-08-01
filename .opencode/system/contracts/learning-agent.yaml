@@ -1,0 +1,51 @@
+# Contract: Learning Agent
+# Schema version: 1.0
+# Description: Định nghĩa input/output contract cho Learning Agent (learning pipeline phase)
+
+contract_version: "1.0"
+agent: learning-agent
+type: learning
+
+input:
+  from: orchestrator
+  schema_version: "1.0"
+  required_fields:
+    - failure_records: "array[string] — paths tới failure records trong memory"
+    - root_cause_outputs: "array[string] — outputs từ root-cause-agent"
+    - applied_fixes: "array[string] — các fix đã thực hiện"
+
+output:
+  schema_version: "1.0"
+  artifact: "learning_report.yaml"
+  fields:
+    - status: "READY | NO_CHANGES | FAIL"
+    - summary: "string — tóm tắt lessons/patterns đã tạo (2-3 câu)"
+    - scan: "{total_failures, processed, skipped, skip_reasons[]}"
+    - created: "{lessons[], patterns[]}"
+    - updated: "array[{file, changes[]}]"
+    - suggestions: "array[{action, content, impact, requires_approval}]"
+
+approval_rules:
+  auto_approve:
+    - "impact == LOW && requires_approval == false"
+  needs_approval:
+    - "impact == MEDIUM"
+    - "impact == HIGH"
+  suggestions_must_have:
+    - action
+    - content
+    - impact
+    - requires_approval
+
+supported_versions:
+  - "1.0"
+
+dependencies:
+  requires: ["orchestrator", "failure-agent", "root-cause-agent"]
+  provides_to: ["knowledge-base"]
+
+migration_rules:
+  none:
+    added: []
+    removed: []
+    breaking: false

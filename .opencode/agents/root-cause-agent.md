@@ -1,5 +1,6 @@
 ---
 description: "Chuyên gia phân tích nguyên nhân gốc (Root Cause Analysis) — nhận error đã normalized, tìm kiếm trong codebase, tạo hypotheses với confidence score, đề xuất hướng fix. Agent read + suggest."
+schema_version: "2.0"
 mode: subagent
 model: opencode/deepseek-v4-flash-free
 permission:

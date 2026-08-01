@@ -199,8 +199,10 @@ foreach ($sd in $skillDirs) {
     if ($fm.deprecated -eq "true") {
         Add-Error -Type "SKILL_DEPRECATED" -Severity "WARNING" -Detail "Skill $skillName dang bi deprecated"
     }
-    if ($scanContent -match '(?i)(deprecated|outdated|legacy)') {
-        Add-Error -Type "SKILL_DEPRECATED_CONTENT" -Severity "WARNING" -Detail "Skill $skillName chua tu 'deprecated/outdated/legacy' trong noi dung"
+    # Chi flag khi content tu khang dinh skill nay deprecated/superseded,
+    # khong flag khi chi nham toi tu deprecated/legacy trong documentation
+    elseif ($scanContent -match '(?i)(this\s+skill\s+is\s+(?:deprecated|outdated|legacy)|skill\s+no\s+longer\s+(?:maintained|used)|superseded\s+by\s+\S+)') {
+        Add-Error -Type "SKILL_DEPRECATED_CONTENT" -Severity "WARNING" -Detail "Skill $skillName content tu khang dinh deprecated"
     }
 
     # referenced files exist (location:, require:, load: paths) — bo qua code blocks
@@ -237,11 +239,25 @@ foreach ($sd in $skillDirs) {
     }
 
     # internal links #section must exist
+    # GitHub-style anchors: lowercase, spaces->hyphens, strip punctuation/diacritics
+    function ConvertTo-Anchors {
+        param([string]$HeadingsText)
+        $anchors = @()
+        foreach ($m in [regex]::Matches($HeadingsText, '(?im)^#{1,6}\s+(.+)$')) {
+            $h = $m.Groups[1].Value
+            $h = $h -replace '[^\w\s-]', ''
+            $h = $h -replace '\s', '-'
+            $h = $h.Trim('-').ToLower()
+            $anchors += $h
+        }
+        return $anchors
+    }
     $internalLinks = @([regex]::Matches($raw, '(?m)^.*\[[^\]]*\]\(#([a-z0-9-]+)\)') | ForEach-Object { $_.Groups[1].Value })
     if ($internalLinks.Count -gt 0) {
+        $sectionAnchors = @(ConvertTo-Anchors -HeadingsText $raw)
         $missingSections = @()
         foreach ($link in $internalLinks) {
-            if ($raw -notmatch "(?im)^#{1,6}\s+.*$([regex]::Escape($link))") {
+            if ($link -notin $sectionAnchors) {
                 $missingSections += $link
             }
         }

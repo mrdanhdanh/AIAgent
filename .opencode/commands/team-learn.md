@@ -2,6 +2,7 @@
 name: team-learn
 description: "Chạy Learning Pipeline — quét failure records, auto-generate lessons và patterns, cập nhật memory. Gọi learning-agent."
 trigger: learn
+agent: learning-agent
 args: "Optional: --force (xử lý lại tất cả failures kể cả đã có lesson), --framework <name> (chỉ xử lý failures của framework cụ thể)"
 output: |
   learning_report: YAML contract
@@ -51,3 +52,13 @@ suggestions:
 - Tự động chạy sau Bước 11b (Root Cause) khi fix thành công
 - Có thể chạy standalone với `/team-learn`
 - Nếu `suggestions[].requires_approval == true` → chờ user approve trước khi ghi KB
+
+## Flags
+
+**Flags:**
+
+| Flag | Mô tả |
+|------|-------|
+| `--force` | Xử lý lại tất cả failures kể cả đã có lesson |
+| `--framework <name>` | Chỉ xử lý failures của framework cụ thể |
+

@@ -191,3 +191,20 @@ details: "Chi tiết build (markdown)"
 - **Nếu plan ghi `action: MODIFY` và file đã tồn tại nhưng nội dung khác hẳn** → báo cáo, không tự ý ghi đè
 - Mỗi lỗi phải kèm **đầy đủ error fields**: `error_type`, `error_normalized`, `error_hash`, `retryable`
 - Output theo đúng YAML contract chuẩn hóa (gồm `changed_files`, `created_files`, `deleted_files`)
+
+## Flags
+
+**Flags:**
+
+Không có flag bổ sung — nhận kế hoạch đã duyệt từ `/team-review`.
+
+## Output Contract
+
+```yaml
+output:
+  status: "SUCCESS | PARTIAL | FAILED"
+  files_changed: [...]
+  errors: [...]
+  verification: "PASS | FAIL"
+```
+

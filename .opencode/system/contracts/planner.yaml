@@ -1,4 +1,4 @@
-# Contract: Planner Agent
+﻿# Contract: Planner Agent
 # Schema version: 1.0
 # Description: Định nghĩa input/output contract cho Planner Agent (Design + Plan phases)
 
@@ -20,6 +20,7 @@ input:
 
 output:
   schema_version: "3.2"
+  artifact: "03_plan.md"
   design_fields:
     - status: "READY | NEEDS_MORE_INFO"
     - effort: "Small | Medium | Large"

@@ -13,3 +13,7 @@ backups/
 **/backups/
 cleanup-report.json
 cleanup-report-final.json
+
+# Auto-generated doctor/evolution report artifacts
+.opencode/scripts/doctor/reports/
+.opencode/scripts/evolution/reports/

@@ -176,3 +176,23 @@ npx jest --testPathPattern="path/to/test" --verbose
 - **Nếu regression scope có regression_cases → chạy sau test cases mới**
 - **Coverage target phụ thuộc risk_level từ input contract**
 - **Input contract v3.0: Parse đầy đủ impact_analysis, requirements, existing_tests, risk_assessment, testability, coverage_matrix, regression_scope**
+
+## Flags
+
+**Flags:**
+
+| Flag | Mô tả |
+|------|-------|
+| `--testPathPattern` | Lọc test theo pattern (dotnet test) |
+| `--verbose` | In chi tiết kết quả test |
+
+## Output Contract
+
+```yaml
+output:
+  status: "PASS | FAIL | SKIPPED"
+  test_cases: { total: 0, passed: 0, failed: 0 }
+  coverage: "0%"
+  details: []
+```
+

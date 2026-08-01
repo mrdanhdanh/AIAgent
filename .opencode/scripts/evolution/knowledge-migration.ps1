@@ -56,17 +56,22 @@ foreach ($kf in $knowledgeFiles) {
     $lowerContent = $content.ToLower()
     
     # Check 1: MudBlazor reference (project uses FluentUI)
+    # Skip nếu nội dung đã đánh dấu rõ là historical/deprecated (pre-FluentUI migration)
     if ($lowerContent -match 'mudblazor') {
-        $results.deprecated_knowledge += @{
-            file = $entry.file
-            type = "DEPRECATED_FRAMEWORK"
-            old = "MudBlazor"
-            current = "FluentUI 4.14.3"
-            severity = "MAJOR"
-            detail = "Knowledge references MudBlazor but project uses FluentUI"
-            suggestion = "Update to FluentUI patterns"
+        if ($lowerContent -match '(historical|deprecated|migrated\s*to\s*fluent)' -and $lowerContent -match '(mudblazor|fluentu)') {
+            $results.pending_updates += "NOTE: $($entry.file) - historical MudBlazor knowledge marked deprecated (pre-FluentUI)"
+        } else {
+            $results.deprecated_knowledge += @{
+                file = $entry.file
+                type = "DEPRECATED_FRAMEWORK"
+                old = "MudBlazor"
+                current = "FluentUI 4.14.3"
+                severity = "MAJOR"
+                detail = "Knowledge references MudBlazor but project uses FluentUI"
+                suggestion = "Update to FluentUI patterns"
+            }
+            $results.score -= 15
         }
-        $results.score -= 15
     }
     
     # Check 2: Old .NET references

@@ -1,4 +1,4 @@
-﻿---
+---
 description: Tạo kế hoạch kiểm thử chi tiết — impact analysis, risk-based, validation rules (schema v3.0)
 agent: test-planner
 schema_version: "3.0"
@@ -185,3 +185,21 @@ validation:
 - Output theo YAML contract schema v3.0
 - Dùng glob/grep tìm file test hiện tại
 - Không đủ thông tin -> INCOMPLETE
+
+## Flags
+
+**Flags:**
+
+Không có flag bổ sung — nhận thông tin tính năng đã phát triển.
+
+## Output Contract
+
+```yaml
+output:
+  coverage:
+    - requirements: []
+      test_cases: []
+  risk_level: "LOW | MEDIUM | HIGH"
+  recommendation: "..."
+```
+

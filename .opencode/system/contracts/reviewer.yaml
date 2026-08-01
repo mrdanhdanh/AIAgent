@@ -1,4 +1,4 @@
-# Contract: Reviewer Agent
+﻿# Contract: Reviewer Agent
 # Schema version: 1.0
 # Description: Định nghĩa input/output contract cho Reviewer Agent
 
@@ -17,6 +17,7 @@ input:
 
 output:
   schema_version: "4.0"
+  artifact: "04_review.md"
   fields:
     - decision: "APPROVED | CHANGES_REQUESTED | REJECTED"
     - scores: "{completeness, accuracy, safety, efficiency, testability, overall}"

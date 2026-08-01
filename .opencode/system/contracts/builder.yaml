@@ -1,4 +1,4 @@
-# Contract: Builder Agent
+﻿# Contract: Builder Agent
 # Schema version: 1.0
 # Description: Định nghĩa input/output contract cho Builder Agent
 
@@ -16,6 +16,7 @@ input:
 
 output:
   schema_version: "3.1"
+  artifact: "06_build.md"
   fields:
     - status: "PASS | FAIL"
     - overall: "PASS | FAIL"

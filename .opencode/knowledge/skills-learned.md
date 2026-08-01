@@ -34,13 +34,15 @@ Mỗi kỹ năng được ghi nhận theo format:
   notes: "Cấu hình agent trong opencode.json dùng object với key là tên agent. Mỗi agent có mode: subagent, model, và permission object với 5 quyền: read, grep, glob, edit, bash."
 
 - skill_id: SK-002
-  name: "MudBlazor 9.x UI Framework"
+  name: "MudBlazor 9.x UI Framework (HISTORICAL — deprecated, migrated to FluentUI)"
   category: "framework"
   source_workflow: "Fix build lỗi Blazor WASM + runtime errors"
   usage_count: 4
-  confidence: "learning"
+  confidence: "historical"
+  status: "deprecated"
+  migrated_to: "FluentUI 4.14.3"
   related_files: ["JapaneseLearner/Program.cs", "JapaneseLearner/Layout/MainLayout.razor", "JapaneseLearner/_Imports.razor", "JapaneseLearner/JapaneseLearner.csproj"]
-  notes: "MudBlazor 9.7.0: FontWeight dùng string (\"400\", \"700\") thay vì int; Shadow.Elevation yêu cầu đúng 25 phần tử; cần MudPopoverProvider trong layout; Defaults.Classes namespace qua MudBlazor global using."
+  notes: "HISTORICAL: Dự án đã migrate từ MudBlazor sang FluentUI 4.14.3. Thông tin này giữ lại cho mục đích lịch sử — KHÔNG ÁP DỤNG cho codebase hiện tại. MudBlazor 9.7.0: FontWeight dùng string (\"400\", \"700\") thay vì int; Shadow.Elevation yêu cầu đúng 25 phần tử; cần MudPopoverProvider trong layout; Defaults.Classes namespace qua MudBlazor global using. Xem knowledge/ui/fluentui-components.md và knowledge/framework/fluentu/ cho pattern FluentUI hiện tại."
 
 - skill_id: SK-003
   name: "Blazor WebAssembly .NET 10"
@@ -88,13 +90,15 @@ Mỗi kỹ năng được ghi nhận theo format:
   notes: "Tách interface (ICharService, IWordService) và implementation. DI inject trong Program.cs với AddScoped. Helper local function pattern (void Add(...)) cho seed data."
 
 - skill_id: SK-008
-  name: "bUnit MudBlazor JSInterop mocking"
+  name: "bUnit MudBlazor JSInterop mocking (HISTORICAL — deprecated, migrated to FluentUI)"
   category: "framework"
   source_workflow: "Fix 14 skipped bUnit tests - JS interop giới hạn"
   usage_count: 1
-  confidence: "new"
+  confidence: "historical"
+  status: "deprecated"
+  migrated_to: "FluentUI 4.14.3"
   related_files: ["JapaneseLearner.Tests/TestHelpers/BunitTestBase.cs", "JapaneseLearner.Tests/HomeTests.cs", "JapaneseLearner.Tests/WordStudyTests.cs"]
-  notes: "MudBlazor 9.7 yêu cầu JSInterop.SetupVoid cho: mudInput.initialize/destroy, mudRipple.connect/disconnect, mudSelect.addScrollListener/removeScrollListener, mudInputElement.select/selectRange. Dùng cut.InvokeAsync() để gọi method chứa StateHasChanged() vì nó yêu cầu Blazor Dispatcher."
+  notes: "HISTORICAL: Dự án đã migrate sang FluentUI 4.14.3. BunitTestBase hiện setup FluentUI JSInterop mocks (9 modules) — xem AGENTS.md. Thông tin MudBlazor 9.7 (mudInput.initialize/destroy, mudRipple.connect, mudSelect.addScrollListener, mudInputElement.select) chỉ giữ để tham khảo lịch sử. Pattern chung vẫn đúng: dùng cut.InvokeAsync() để gọi method chứa StateHasChanged() vì yêu cầu Blazor Dispatcher."
 
 - skill_id: SK-009
   name: "Dev Agent Team workflow orchestration v2"

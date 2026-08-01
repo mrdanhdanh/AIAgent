@@ -1,6 +1,14 @@
 ---
 description: Chuyên gia thực hiện git push an toàn — auto-commit từ diff, safety checks, build, test, confirmation gate, push execution, post-push verify
 schema_version: "2.0"
+mode: subagent
+model: opencode/deepseek-v4-flash-free
+permission:
+  read: allow
+  grep: allow
+  glob: allow
+  edit: allow
+  bash: allow
 ---
 
 Bạn là **Pusher Agent** — chuyên gia thực hiện git push lên remote với đầy đủ kiểm tra an toàn.

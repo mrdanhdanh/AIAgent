@@ -1,0 +1,47 @@
+# Contract: Failure Agent
+# Schema version: 1.0
+# Description: Định nghĩa input/output contract cho Failure Agent (error classification phase)
+
+contract_version: "1.0"
+agent: failure-agent
+type: analysis
+
+input:
+  from: orchestrator
+  schema_version: "1.0"
+  required_fields:
+    - raw_error: "string — error message chưa xử lý"
+    - context: "string — file/step/action liên quan đến lỗi"
+
+output:
+  schema_version: "1.0"
+  artifact: "failure_analysis.yaml"
+  fields:
+    - status: "READY | NOT_FOUND"
+    - summary: "string — tóm tắt phân tích lỗi (2-3 câu)"
+    - input: "{raw_error, context}"
+    - analysis: "{error_normalized, error_type, error_hash, retryable}"
+    - memory_search: "{found, records[], confidence}"
+    - suggestions: "array[{action, reason}]"
+
+decision_rules:
+  NOT_FOUND:
+    conditions:
+      - "Error message rỗng"
+      - "Memory empty (chưa có failure records)"
+  READY:
+    conditions:
+      - "Đã phân tích và chuẩn hóa error thành công"
+
+supported_versions:
+  - "1.0"
+
+dependencies:
+  requires: ["orchestrator"]
+  provides_to: ["root-cause-agent", "learning-agent"]
+
+migration_rules:
+  none:
+    added: []
+    removed: []
+    breaking: false

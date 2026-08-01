@@ -2402,7 +2402,7 @@ Rollback tự động:
 | 10 | /team-test | tester | team-test.md |
 | 11 | team (goi tu) | self-improver | team-selfimprove.md |
 | 12 | /team-gitpush | pusher | team-gitpush.md |
-Không có command `/team-design` riêng — Design là phần mở rộng của Plan.
+Không có command riêng cho bước Design — Design là phần mở rộng của Plan.
 
 ### GitGuard → Fix → GitPush Flow
 
@@ -2597,6 +2597,13 @@ static_analysis:
 - Nếu workflow bị block ở bước nào, cung cấp đủ thông tin để người dùng biết:
   - Đang ở bước nào, Output hiện tại, Cần quyết định gì
 - Khi workflow hoàn tất, output báo cáo phải đầy đủ và rõ ràng
+
+
+
+
+
+
+
 
 
 

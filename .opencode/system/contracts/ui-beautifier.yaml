@@ -1,4 +1,4 @@
-# Contract: UI Beautifier Agent
+﻿# Contract: UI Beautifier Agent
 # Schema version: 1.0
 # Description: Định nghĩa input/output contract cho UI Beautifier Agent (ui_audit phase) — multi-phase pipeline v3.0
 

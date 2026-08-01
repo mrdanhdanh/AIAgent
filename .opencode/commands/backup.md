@@ -123,3 +123,12 @@ manifest: ".opencode/backup/WF-YYYYMMDD-NNN/backup_manifest.json"
 - Mặc định: không ghi đè file đã thay đổi từ lúc backup
 - Tự động snapshot trước rollback
 - `--force` chỉ khi user xác nhận
+
+## Flags
+
+**Flags:**
+
+| Flag | Mô tả |
+|------|-------|
+| `--force` | Thực thi backup không cần xác nhận lại |
+

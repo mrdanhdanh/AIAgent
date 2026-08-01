@@ -1,4 +1,10 @@
-﻿param(
+﻿<#
+.SYNOPSIS
+Cross-Reference Validator — kiểm tra tham chiếu chéo trong .opencode (agents, commands, skills, contracts).
+.DESCRIPTION
+Quét các tham chiếu giữa agents/commands/skills và báo cáo orphan/broken references.
+#>
+param(
     [Parameter(Mandatory = $false)]
     [string]$opencodeDir = ".opencode"
 )

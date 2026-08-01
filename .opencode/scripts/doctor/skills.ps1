@@ -62,9 +62,12 @@ function Get-DoctorSkills {
                 $skillIssues += @{ severity = "MAJOR"; group = "Skills"; message = "$($skillName): missing description" }
             }
 
-            # --- Deprecated contents ---
-            if ($content -match '(?i)(outdated|deprecated|legacy)') {
-                $skillIssues += @{ severity = "WARNING"; group = "Skills"; message = "$($skillName): contains deprecated/outdated markers" }
+            # --- Deprecated contents (strip code blocks, only flag self-declarations) ---
+            $scanContent = [regex]::Replace($content, '(?s)```.*?```', '')
+            $scanContent = [regex]::Replace($scanContent, '(?s)~~~.*?~~~', '')
+            $scanContent = [regex]::Replace($scanContent, '`[^`]*`', '')
+            if ($scanContent -match '(?i)(this\s+skill\s+is\s+(?:deprecated|outdated|legacy)|skill\s+no\s+longer\s+(?:maintained|used)|superseded\s+by\s+\S+)') {
+                $skillIssues += @{ severity = "WARNING"; group = "Skills"; message = "$($skillName): self-declares as deprecated/outdated" }
             }
 
             # --- Missing file references ---

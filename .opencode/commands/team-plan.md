@@ -205,3 +205,22 @@ validate:                                          # backward compatibility
 - Mỗi bước phải "có thể thực thi được" mà không cần suy luận thêm
 - Nếu không chắc chắn approach — ghi rõ 2 options kèm pro/con
 - **KHÔNG để Builder tự suy diễn thay đổi ngoài plan** — action, file, expected_result phải rõ ràng
+
+## Flags
+
+**Flags:**
+
+Không có flag bổ sung — nhận output từ `/team-analyze`.
+
+## Output Contract
+
+```yaml
+output:
+  solution: "..."
+  steps:
+    - id: 1
+      action: "..."
+      files: []
+  risks: []
+```
+

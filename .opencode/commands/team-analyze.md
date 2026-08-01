@@ -133,3 +133,23 @@ conclusion:
 - Nếu không đủ thông tin để phân tích: `conclusion.status: NEED_MORE_INFO`, kèm `missing_info` chi tiết
 - Nếu không chắc chắn, ghi rõ "Cần kiểm tra thêm: ..."
 - Luôn kết luận bằng conclusion.status READY hoặc NEED_MORE_INFO kèm reason
+
+## Flags
+
+**Flags:**
+
+Không có flag bổ sung — nhận yêu cầu phát triển trực tiếp.
+
+## Output Contract
+
+```yaml
+output:
+  summary: "Tóm tắt phân tích"
+  scope: [...]
+  risks: [...]
+  tasks:
+    - id: "TASK-001"
+      description: "Mô tả task"
+      effort: "S | M | L"
+```
+

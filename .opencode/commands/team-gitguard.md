@@ -236,3 +236,22 @@ code_quality.issues > 0:         → WARNING (MAJOR/MINOR)
 tests.status == FAIL:            → WARNING (MAJOR: test fail)
 không có vấn đề gì:              → PASS (✅ an toàn để push)
 ```
+
+## Flags
+
+**Flags:**
+
+| Flag | Mô tả |
+|------|-------|
+| `--full` | Scan toàn bộ codebase thay vì chỉ file thay đổi |
+
+## Output Contract
+
+```yaml
+output:
+  status: "PASS | BLOCKED | WARNING"
+  secrets: { found: 0, items: [] }
+  security: { vulnerabilities: [] }
+  final_verdict: "PASS | BLOCKED | WARNING"
+```
+

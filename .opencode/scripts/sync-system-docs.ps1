@@ -1,4 +1,12 @@
-﻿param(
+﻿<#
+.SYNOPSIS
+System Docs Sync — đồng bộ system docs + System Evolution Engine (9 engines).
+.DESCRIPTION
+Scan agents, commands, skills, scripts, knowledge → tạo SYSTEM_MAP.md, cập nhật team.md/SKILL.md,
+chạy Semantic Diff, Compatibility, Migration, Self-Healing, Knowledge Migration, Simulation,
+Benchmark, Health Score, Evolution Report. Xem .opencode/commands/team-syncdocs.md.
+#>
+param(
     [switch]$dryRun,
     [switch]$force,
     [switch]$evolve,              # Run full System Evolution Engine
@@ -858,7 +866,7 @@ if ($runEvolution -and -not $dryRun) {
         $msScript = "$evolutionDir\migration-system.ps1"
         if (Test-Path $msScript) {
             try {
-                $msResult = & $msScript -contractDir "$root\system\contracts" -outputDir $reportsDir
+                $msResult = & $msScript -contractDir "$root\system\contracts" -agentsDir "$root\agents" -outputDir $reportsDir
                 $evolutionResults["migration"] = $msResult
                 $evolutionSteps += "Migration: $($msResult.tasks.Count) tasks, $($msResult.affected_agents.Count) affected"
             } catch {

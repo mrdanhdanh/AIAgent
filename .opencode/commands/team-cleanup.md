@@ -20,3 +20,14 @@ agent: cleaner
 **Vị trí trong workflow:** Chạy standalone hoặc tích hợp vào dev-team workflow (bước 0 hoặc cuối).
 
 Xem thêm: `.opencode/skills/workspace-cleaner/SKILL.md`
+
+## Output Contract
+
+```yaml
+output:
+  status: "SUCCESS | PARTIAL | FAILED | CANCELLED"
+  mode: "dry-run | full | aggressive"
+  scan_report: { scanned_files: 0 }
+  cleanup_report: { deleted: 0, freed_bytes: 0 }
+```
+

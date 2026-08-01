@@ -9,9 +9,9 @@ model config, API config, permissions, knowledge folders, contract registry.
 
 # --- Helper: safe get version ------------------------------------
 function Get-ToolVersion {
-    param([string]$Command, [string[]]$Args)
+    param([string]$Command, [string[]]$Arguments)
     try {
-        $output = & $Command @Args 2>&1 | Out-String
+        $output = & $Command @Arguments 2>&1 | Out-String
         return ($output.Trim() -split "`n")[0].Trim()
     }
     catch { return $null }
@@ -29,7 +29,7 @@ function Get-DoctorEnvironment {
     $score = 100
 
     # 1. OpenCode version
-    $ocVersion = Get-ToolVersion -Command "opencode" -Args @("--version")
+    $ocVersion = Get-ToolVersion -Command "opencode" -Arguments @("--version")
     if ($ocVersion) {
         $checks += @{ name = "OpenCode"; status = "PASS"; detail = $ocVersion }
     }
@@ -86,7 +86,7 @@ function Get-DoctorEnvironment {
     $checks += @{ name = "PowerShell"; status = "PASS"; detail = $psVer }
 
     # 7. Python version
-    $pyVer = Get-ToolVersion -Command "python" -Args @("--version")
+    $pyVer = Get-ToolVersion -Command "python" -Arguments @("--version")
     if ($pyVer) { $checks += @{ name = "Python"; status = "PASS"; detail = $pyVer } }
     else {
         $score -= 5
@@ -95,7 +95,7 @@ function Get-DoctorEnvironment {
     }
 
     # 8. Git version
-    $gitVer = Get-ToolVersion -Command "git" -Args @("--version")
+    $gitVer = Get-ToolVersion -Command "git" -Arguments @("--version")
     if ($gitVer) { $checks += @{ name = "Git"; status = "PASS"; detail = $gitVer } }
     else {
         $score -= 10

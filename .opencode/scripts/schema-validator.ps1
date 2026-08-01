@@ -1,4 +1,10 @@
-﻿param(
+﻿<#
+.SYNOPSIS
+Schema Validator — validate YAML schema của agent definitions.
+.DESCRIPTION
+Kiểm tra frontmatter YAML và schema consistency của các file trong .opencode/agents. Hỗ trợ -fix.
+#>
+param(
     [Parameter(Mandatory = $false)]
     [string]$targetDir = ".opencode/agents",
 

@@ -1,3 +1,9 @@
+<#
+.SYNOPSIS
+Rollback Utility — rollback file từ backup snapshot khi catastrophic failure.
+.DESCRIPTION
+Khôi phục file từ .opencode/backup/{workflowId}/ dùng backup_manifest.json, verify SHA256 trước khi ghi đè.
+#>
 param(
     [Parameter(Mandatory = $true)]
     [string]$workflowId,

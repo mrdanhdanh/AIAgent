@@ -1,5 +1,6 @@
 ---
 description: "Design, redesign, shape, critique, audit, polish, or improve frontend UI. Sub-commands: init, shape, document, critique, audit, polish, bolder, quieter, distill, harden, onboard, animate, colorize, typeset, layout, delight, overdrive, clarify, adapt, optimize, live, hooks, doctor, extract."
+agent: ui-beautifier
 ---
 
 Bạn đang thực thi lệnh `/impeccable` với tham số: $ARGUMENTS
@@ -16,3 +17,27 @@ Bạn đang thực thi lệnh `/impeccable` với tham số: $ARGUMENTS
 ## Bước đầu tiên
 
 Chạy `node .opencode/skills/impeccable/scripts/context.mjs` với `--target` nếu có target path.
+
+## Flags
+
+**Flags:**
+
+| Flag | Mô tả |
+|------|-------|
+| `--target <path>` | Chỉ định target UI cần xử lý |
+
+Sub-commands: `init`, `shape`, `audit`, `critique`, `polish`, `bolder`, `quieter`, `animate`, `colorize`, `delight`, `layout`, `overdrive`, `typeset`, `adapt`, `clarify`, `distill`, `harden`, `onboard`, `optimize`, `document`, `extract`, `live`, `hooks`, `doctor`
+
+## Output Contract
+
+```yaml
+status: "SUCCESS | PARTIAL"
+output:
+  diagnosis: [...]
+  recommendations:
+    - severity: "CRITICAL | MAJOR | MINOR"
+      category: "UX | IA | VISUAL"
+      description: "Mô tả vấn đề"
+      suggestion: "Cách cải thiện"
+```
+

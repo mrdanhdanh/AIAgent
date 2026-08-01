@@ -2,6 +2,7 @@
 name: team-analyze-failure
 description: "Phân tích lỗi trong workflow. Thu thập raw error, normalize, classify, search failure memory, output phân tích. Gọi failure-agent."
 trigger: analyze-failure
+agent: failure-agent
 args: "Chuỗi error message hoặc file path chứa error log"
 output: |
   failure_analysis: YAML contract
@@ -37,3 +38,10 @@ memory: { found: true, failure_id: "BUG-0001" }
 
 - Error message too long (>10KB) → chỉ lấy first 10KB + "TRUNCATED"
 - File path không tồn tại → báo lỗi "FILE_NOT_FOUND"
+
+## Flags
+
+**Flags:**
+
+Không có flag bổ sung — nhận error message hoặc file path chứa error log trực tiếp.
+

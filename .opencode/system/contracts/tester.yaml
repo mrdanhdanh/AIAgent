@@ -15,6 +15,7 @@ input:
 
 output:
   schema_version: "1.0"
+  artifact: "06_test.md"
   fields:
     - status: "APPROVED | NEEDS_FIX"
     - coverage: "{unit: int, integration: int, e2e: int, overall: float, thresholds_met: bool}"

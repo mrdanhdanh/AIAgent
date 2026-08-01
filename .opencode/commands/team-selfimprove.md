@@ -86,3 +86,10 @@ summary: "Tổng quan self-improvement (2-3 câu)"
 - Chỉ ghi nhận kỹ năng có bằng chứng rõ ràng
 - Không tự sửa agent files — chỉ đề xuất
 - Nếu không tìm thấy gì mới → status: NO_SUGGESTIONS
+
+## Flags
+
+**Flags:**
+
+Không có flag bổ sung — nhận dữ liệu workflow đã chạy.
+

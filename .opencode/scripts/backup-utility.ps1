@@ -1,3 +1,9 @@
+<#
+.SYNOPSIS
+Backup Utility — backup, list và verify snapshot trước khi sửa file.
+.DESCRIPTION
+Lưu snapshot files với SHA256 manifest vào .opencode/backup/{workflowId}/. Hỗ trợ: save, list, verify.
+#>
 param(
     [Parameter(Mandatory = $true)]
     [ValidateSet("save", "list", "verify")]

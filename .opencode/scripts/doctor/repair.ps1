@@ -22,7 +22,7 @@ function Invoke-DoctorRepair {
         [switch]$DryRun
     )
 
-    $repairs = @()
+    $script:repairs = @()
     $skipped = @()
     $manualReview = @()
 
@@ -124,7 +124,7 @@ function Invoke-DoctorRepair {
         status         = $status
         dry_run        = [bool]$DryRun
         force          = [bool]$Force
-        repairs        = $repairs
+        repairs        = $script:repairs
         skipped        = $skipped
         manual_review  = $manualReview
         repair_count   = $repairs.Count

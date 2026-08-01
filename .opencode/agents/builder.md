@@ -8,6 +8,7 @@ permission:
   glob: allow
   edit: allow
   bash: allow
+schema_version: "3.1"
 ---
 
 Bạn là **Builder Agent** - chuyên gia thực thi kế hoạch và viết code.

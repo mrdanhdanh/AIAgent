@@ -1,7 +1,7 @@
 ﻿# He Thong .opencode - So Do Tong The
 
-> **Tu dong tao luc:** 2026-07-31 23:42:04
-> **Workflow ID:** WF-20260731-SYNC
+> **Tu dong tao luc:** 2026-08-01 01:06:45
+> **Workflow ID:** WF-20260801-SYNC
 > **Cap nhat:** Toan bo agents, commands, skills, scripts, knowledge
 
 ---
@@ -45,18 +45,18 @@
 | builder | Thực thi kế hoạch đã được đánh giá, viết code và thực hiện thay đổi | opencode/deepseek-v4-flash-free |  | team-build |
 | cleaner | Workspace Cleaner Agent v2.0 — quét rác theo tiêu chí cấu hình chi tiết, phân loại LOW/MEDIUM/HIGH, backup workflow-linked, dry-run bắt buộc, protected list 4 nhóm. | opencode/deepseek-v4-flash-free |  | team-cleanup |
 | codebase-explorer | Khám phá cấu trúc dự án, phân tích codebase, mapping dependencies và patterns. Agent read-only chạy trước khi thực hiện thay đổi. | opencode/deepseek-v4-flash-free |  | team-explore |
-| failure-agent | Chuyên gia phân tích và chuẩn hóa lỗi — classify error type, normalize error message, search failure memory, đề xuất lesson phù hợp. Read-only agent. | opencode/deepseek-v4-flash-free |  | --- |
+| failure-agent | Chuyên gia phân tích và chuẩn hóa lỗi — classify error type, normalize error message, search failure memory, đề xuất lesson phù hợp. Read-only agent. | opencode/deepseek-v4-flash-free |  | team-analyze-failure |
 | general | General-purpose orchestrator agent — điều phối workflow, triệu hồi sub-agents, quản lý state machine | opencode/deepseek-v4-flash-free |  | team-doctor, doctor, team, team-syncdocs |
-| guardian | Chuyên gia review source code trước khi push lên git — phát hiện secret, lỗi convention, lỗ hổng bảo mật, vi phạm quy tắc dự án | default |  | team-gitguard |
-| learning-agent | Chuyên gia Learning Pipeline — đọc failure records từ memory, phân tích patterns xuyên suốt, auto-generate lessons và patterns mới. Ghi trực tiếp vào memory/. Cần approval gate cho MEDIUM/HIGH impact. | opencode/deepseek-v4-flash-free |  | --- |
+| guardian | Chuyên gia review source code trước khi push lên git — phát hiện secret, lỗi convention, lỗ hổng bảo mật, vi phạm quy tắc dự án | opencode/deepseek-v4-flash-free |  | team-gitguard |
+| learning-agent | Chuyên gia Learning Pipeline — đọc failure records từ memory, phân tích patterns xuyên suốt, auto-generate lessons và patterns mới. Ghi trực tiếp vào memory/. Cần approval gate cho MEDIUM/HIGH impact. | opencode/deepseek-v4-flash-free |  | team-learn |
 | planner | Mở rộng: Thiết kế giải pháp + Lập kế hoạch thực thi chi tiết. Đảm nhiệm cả Design phase và Plan phase. | opencode/deepseek-v4-flash-free |  | team-plan |
-| pusher | Chuyên gia thực hiện git push an toàn — auto-commit từ diff, safety checks, build, test, confirmation gate, push execution, post-push verify | default |  | team-gitpush |
+| pusher | Chuyên gia thực hiện git push an toàn — auto-commit từ diff, safety checks, build, test, confirmation gate, push execution, post-push verify | opencode/deepseek-v4-flash-free |  | team-gitpush |
 | reviewer | Đánh giá kế hoạch thực thi, kiểm tra tính đúng đắn, đầy đủ và hiệu quả | opencode/deepseek-v4-flash-free |  | team-review |
-| root-cause-agent | Chuyên gia phân tích nguyên nhân gốc (Root Cause Analysis) — nhận error đã normalized, tìm kiếm trong codebase, tạo hypotheses với confidence score, đề xuất hướng fix. Agent read + suggest. | opencode/deepseek-v4-flash-free |  | --- |
+| root-cause-agent | Chuyên gia phân tích nguyên nhân gốc (Root Cause Analysis) — nhận error đã normalized, tìm kiếm trong codebase, tạo hypotheses với confidence score, đề xuất hướng fix. Agent read + suggest. | opencode/deepseek-v4-flash-free |  | team-root-cause |
 | self-improver | Sau khi workflow hoàn tất, đọc lại quá trình, phân tích kỹ năng đã dùng và thiếu, đề xuất cải tiến (chỉ suggestion, không ghi KB). Cần qua approval gate trước khi ghi knowledge base. | opencode/deepseek-v4-flash-free |  | team-selfimprove |
 | tester | Thực thi kiểm thử, validate tính năng và báo cáo kết quả kèm coverage (v3.0) | opencode/deepseek-v4-flash-free |  | team-test |
 | test-planner | Tạo kế hoạch kiểm thử chi tiết, chống overlap, có impact analysis, coverage matrix, risk-based testing | opencode/deepseek-v4-flash-free |  | team-testplan |
-| ui-beautifier | >- | opencode/deepseek-v4-flash-free |  | team-ui-audit |
+| ui-beautifier | >- | opencode/deepseek-v4-flash-free |  | impeccable, team-ui-audit |
 
 ---
 
@@ -66,20 +66,20 @@
 |---------|-------------|-------|------------|
 | /backup | Backup và rollback file dùng Backup Utility. Gọi khi cần backup trước khi sửa file, rollback lỗi, kiểm tra backup. | backup-agent |  |
 | /doctor | Doctor — kiểm tra sức khỏe hệ thống AI Agent Framework: Environment, Agents, Commands, Skills, Knowledge, Workflow, Contracts, Runtime (simulation), Capability (benchmark). Tích hợp health score, self-repair an toàn. Dùng /doctor hoặc /team-doctor. | general |  |
-| /impeccable | Design, redesign, shape, critique, audit, polish, or improve frontend UI. Sub-commands: init, shape, document, critique, audit, polish, bolder, quieter, distill, harden, onboard, animate, colorize, typeset, layout, delight, overdrive, clarify, adapt, optimize, live, hooks, doctor, extract. | --- |  |
+| /impeccable | Design, redesign, shape, critique, audit, polish, or improve frontend UI. Sub-commands: init, shape, document, critique, audit, polish, bolder, quieter, distill, harden, onboard, animate, colorize, typeset, layout, delight, overdrive, clarify, adapt, optimize, live, hooks, doctor, extract. | ui-beautifier |  |
 | /team | Chạy toàn bộ team workflow: analyze → design/plan → review → backup → build → static analysis → ui audit → testplan → test → skill validation → complete | general |  |
 | /team-analyze | Chỉ chạy bước phân tích yêu cầu (dùng agent analyst) | analyst |  |
-| /team-analyze-failure | Phân tích lỗi trong workflow. Thu thập raw error, normalize, classify, search failure memory, output phân tích. Gọi failure-agent. | --- |  |
+| /team-analyze-failure | Phân tích lỗi trong workflow. Thu thập raw error, normalize, classify, search failure memory, output phân tích. Gọi failure-agent. | failure-agent |  |
 | /team-build | Thực thi kế hoạch đã duyệt (dùng agent builder) | builder |  |
 | /team-cleanup | Dọn rác Workspace tự động — xóa build artifacts, backup cũ, temp files, cache. Tích hợp dry-run, backup trước khi xóa, confirmation gate. | cleaner |  |
 | /team-doctor | Doctor (alias /team-doctor) — kiểm tra sức khỏe hệ thống AI Agent Framework. Tương đương /doctor: Environment, System, Runtime, Capability, health score, self-repair an toàn. | general |  |
 | /team-explore | [DEPRECATED] Explore step đã được gộp vào Analyze. Dùng team-analyze thay thế. | codebase-explorer | Yes |
 | /team-gitguard | Review source code trước khi push lên git — phát hiện secret, lỗi convention, lỗ hổng bảo mật, vi phạm quy tắc dự án | guardian |  |
 | /team-gitpush | Auto-commit từ diff, pre-push safety validation + git push execution — kiểm tra secret, convention, build, test, xác nhận user, push lên remote | pusher |  |
-| /team-learn | Chạy Learning Pipeline — quét failure records, auto-generate lessons và patterns, cập nhật memory. Gọi learning-agent. | --- |  |
+| /team-learn | Chạy Learning Pipeline — quét failure records, auto-generate lessons và patterns, cập nhật memory. Gọi learning-agent. | learning-agent |  |
 | /team-plan | Mở rộng: Thiết kế (Design) + Lập kế hoạch (Plan) — dùng agent planner | planner |  |
 | /team-review | Đánh giá thiết kế hoặc kế hoạch (dùng agent reviewer) — nâng cấp v4.0: decision thresholds, score_rationale, blocking issues, consistency, edge cases | reviewer |  |
-| /team-root-cause | Phân tích nguyên nhân gốc từ failure analysis. Tìm evidence trong codebase, tạo hypotheses, đề xuất fix. Gọi root-cause-agent. | --- |  |
+| /team-root-cause | Phân tích nguyên nhân gốc từ failure analysis. Tìm evidence trong codebase, tạo hypotheses, đề xuất fix. Gọi root-cause-agent. | root-cause-agent |  |
 | /team-selfimprove | Phân tích workflow và đề xuất cải tiến (chỉ suggestion, không ghi KB) | self-improver |  |
 | /team-syncdocs | System Evolution Engine — đồng bộ system docs + semantic diff + compatibility check + migration + self-healing + health score + simulation (runtime validation) + capability benchmark + stress test + evolution report. Chạy định kỳ để duy trì sức khỏe hệ thống. | general |  |
 | /team-test | Thực thi kiểm thử theo kế hoạch (dùng agent tester, v3.0) | tester |  |
@@ -95,7 +95,7 @@
 | dev-team | dev-team | Hướng dẫn sử dụng Dev Agent Team gồm 12 agents (10 core + 2 support). Dùng khi cần phân tích, lập kế hoạch, đánh giá, code, kiểm thử một yêu cầu phát triển. Tích hợp cơ chế Self-Improvement với approval gate, Failure Learning System với Root Cause Analysis và Learning Pipeline. Sử dụng câu lệnh team hoặc team-*. | 3.2 |
 | gitguard | gitguard | Review source code trước khi push lên git — phát hiện secret, lỗi convention, lỗ hổng bảo mật, vi phạm quy tắc dự án. Tích hợp cơ chế blocking CRITICAL, cảnh báo MAJOR. Sử dụng câu lệnh /team-gitguard. | 2.0 |
 | gitpush | gitpush | Pre-push safety validation + git push execution — kiểm tra secret, convention, build, test, sau đó push lên remote với xác nhận từ user. Sử dụng câu lệnh /team-gitpush. | 1.0 |
-| impeccable | impeccable | Use when the user wants to design, redesign, shape, critique, audit, polish, clarify, distill, harden, optimize, adapt, animate, colorize, extract, or otherwise improve a frontend interface. Covers websites, landing pages, dashboards, product UI, app shells, components, forms, settings, onboarding, and empty states. Handles UX review, visual hierarchy, information architecture, cognitive load, accessibility, performance, responsive behavior, theming, anti-patterns, typography, fonts, spacing, layout, alignment, color, motion, micro-interactions, UX copy, error states, edge cases, i18n, and reusable design systems or tokens. Also use for bland designs that need to become bolder or more delightful, loud designs that should become quieter, live browser iteration on UI elements, or ambitious visual effects that should feel technically extraordinary. Not for backend-only or non-UI tasks. |  |
+| impeccable | impeccable | Use when the user wants to design, redesign, shape, critique, audit, polish, clarify, distill, harden, optimize, adapt, animate, colorize, extract, or otherwise improve a frontend interface. Covers websites, landing pages, dashboards, product UI, app shells, components, forms, settings, onboarding, and empty states. Handles UX review, visual hierarchy, information architecture, cognitive load, accessibility, performance, responsive behavior, theming, anti-patterns, typography, fonts, spacing, layout, alignment, color, motion, micro-interactions, UX copy, error states, edge cases, i18n, and reusable design systems or tokens. Also use for bland designs that need to become bolder or more delightful, loud designs that should become quieter, live browser iteration on UI elements, or ambitious visual effects that should feel technically extraordinary. Not for backend-only or non-UI tasks. | 1.0 |
 | workspace-cleaner | workspace-cleaner | Dọn rác Workspace tự động — xóa build artifacts, backup cũ, temp files, cache không cần thiết. Tích hợp dry-run bắt buộc, backup trước khi xóa, confirmation gate, protected list cấu trúc, và output contract chi tiết. Sử dụng câu lệnh /team-cleanup. | 2.1 |
 
 ---
@@ -106,7 +106,7 @@
 |--------|---------|------|
 | backup-utility | Utility script | 12 KB |
 | cross-ref-validator | Utility script | 6 KB |
-| doctor | Doctor v1.0 - System health checker for AI Agent Framework | 6 KB |
+| doctor | Doctor v2.0 - System health checker for AI Agent Framework | 9 KB |
 | gitpush-utility | GitPush Utility — thực hiện git push an toàn với auto-commit, safety checks, confirmation gate. | 18 KB |
 | rollback-utility | Utility script | 9 KB |
 | schema-validator | Utility script | 4 KB |
@@ -119,12 +119,21 @@
 | File | Size |
 |------|------|
 | knowledge/framework\blazor\component-lifecycle.md | 3 KB |
-| knowledge/lessons.md | 17 KB |
+| knowledge/framework\fluentu\design-tokens.md | 1 KB |
+| knowledge/framework\fluentu\fluentu.md | 1 KB |
+| knowledge/lessons.md | 19 KB |
+| knowledge/patterns\localstorage.md | 1 KB |
+| knowledge/patterns\seed-data-patterns.md | 1 KB |
 | knowledge/project\japanese-learner\deployment.md | 4 KB |
 | knowledge/README.md | 2 KB |
 | knowledge/skills\blazor\patterns.md | 5 KB |
 | knowledge/skills\blazor\ui.md | 4 KB |
-| knowledge/skills-learned.md | 13 KB |
+| knowledge/skills-learned.md | 14 KB |
+| knowledge/testing\playwright-e2e.md | 1 KB |
+| knowledge/testing\xunit-bunit-testing.md | 1 KB |
+| knowledge/ui\dark-mode-theming.md | 1 KB |
+| knowledge/ui\fluentui-components.md | 1 KB |
+| knowledge/ui\tri-state-rendering.md | 1 KB |
 | knowledge/workflow\validate-github-actions-yaml.md | 1 KB |
 
 ---
@@ -159,18 +168,18 @@
 | builder | team-build |
 | cleaner | team-cleanup |
 | codebase-explorer | team-explore |
-| failure-agent | Orphaned |
+| failure-agent | team-analyze-failure |
 | general | team-doctor, doctor, team, team-syncdocs |
 | guardian | team-gitguard |
-| learning-agent | Orphaned |
+| learning-agent | team-learn |
 | planner | team-plan |
 | pusher | team-gitpush |
 | reviewer | team-review |
-| root-cause-agent | Orphaned |
+| root-cause-agent | team-root-cause |
 | self-improver | team-selfimprove |
 | tester | team-test |
 | test-planner | team-testplan |
-| ui-beautifier | team-ui-audit |
+| ui-beautifier | impeccable, team-ui-audit |
 
 ---
 
@@ -289,11 +298,9 @@
 
 | # | Loai | Chi tiet |
 |---|------|----------|
-| 1 | ORPHAN_AGENT | agent=learning-agent |
-| 2 | ORPHAN_AGENT | agent=root-cause-agent |
-| 3 | ORPHAN_AGENT | agent=failure-agent |
+| --- | OK | Khong phat hien van de. He thong dong bo hoan chinh. |
 
 ---
 
-> **Tong so:** 17 agents . 21 commands . 5 skills . 7 scripts . 8 knowledge files
+> **Tong so:** 17 agents . 21 commands . 5 skills . 7 scripts . 17 knowledge files
 > **Sinh boi:** sync-system-docs.ps1

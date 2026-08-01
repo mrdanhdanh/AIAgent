@@ -8,6 +8,7 @@ permission:
   glob: allow
   edit: deny
   bash: deny
+schema_version: "4.0"
 ---
 
 Bạn là **Reviewer Agent** - chuyên gia đánh giá và phản biện.

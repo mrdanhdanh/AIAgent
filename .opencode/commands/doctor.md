@@ -28,9 +28,25 @@ Contracts, Runtime (giả lập vận hành) và Capability (benchmark).
 /doctor --repair --dry-run   # xem trước, không sửa
 /doctor --repair --force     # mở rộng phạm vi sửa (cross-references)
 /doctor --full --json   # full scan + lưu báo cáo JSON
+/doctor --compatibility # reuse evolution engine: compatibility checker
+/doctor --semanticdiff  # reuse evolution engine: semantic diff per contract
+/doctor --migration     # reuse evolution engine: migration system
+/doctor --knowledgemigrate # reuse evolution engine: knowledge migration
+/doctor --stress        # reuse evolution engine: stress test (mặc định 20 tasks)
+/doctor --stress --stress-count 50   # tăng số fake tasks
+/doctor --stress --stress-seed abc   # thay seed (mặc định 'fixed')
+/doctor --health        # reuse evolution engine: health-score tổng hợp
+/doctor --evolve        # TẤT CẢ evolution engines + stress test + health score
+/doctor --evolve --markdown  # evolve + xuất DOCTOR_REPORT.md
+/doctor --full --json --markdown  # full + JSON + markdown
 ```
 
 **Alias:** `/team-doctor` tương đương `/doctor`.
+
+> **Lưu ý:** Từ v2.0, các mode `compatibility`, `semanticdiff`, `migration`, `knowledgemigrate`,
+> `stress`, `health`, `evolve` **tái sử dụng trực tiếp các evolution engines** của `/team-syncdocs`
+> (`.opencode/scripts/evolution/`) — không duplicate logic. `--evolve` chạy toàn bộ pipeline tiến hóa
+> và nếu kèm `--markdown` sẽ sinh `.opencode/DOCTOR_REPORT.md`.
 
 **Khi nào chạy:**
 - Định kỳ (khuyến nghị mỗi tuần) — duy trì sức khỏe hệ thống
@@ -64,18 +80,30 @@ Contracts, Runtime (giả lập vận hành) và Capability (benchmark).
 │   └── team-doctor.md       # Alias
 ├── scripts/
 │   ├── doctor.ps1           # Orchestrator (entry point)
-│   └── doctor/              # Module checks
-│       ├── environment.ps1  # Environment pillar
-│       ├── agents.ps1       # Agent check
-│       ├── commands.ps1     # Command check
-│       ├── skills.ps1       # Skill check
-│       ├── workflows.ps1    # Workflow + Knowledge + Contracts
-│       ├── runtime.ps1      # Runtime check (fake task)
-│       ├── simulation.ps1   # 6 scenario simulation
-│       ├── benchmark.ps1    # Capability benchmark
-│       ├── repair.ps1       # Self repair (safe only)
-│       ├── report.ps1       # Health score + report
-│       └── reports/         # JSON report output
+│   ├── doctor/              # Module checks
+│   │   ├── environment.ps1  # Environment pillar
+│   │   ├── agents.ps1       # Agent check
+│   │   ├── commands.ps1     # Command check
+│   │   ├── skills.ps1       # Skill check
+│   │   ├── workflows.ps1    # Workflow + Knowledge + Contracts
+│   │   ├── runtime.ps1      # Runtime check (fake task)
+│   │   ├── simulation.ps1   # 6 scenario simulation
+│   │   ├── benchmark.ps1    # Capability benchmark
+│   │   ├── evolution.ps1    # Bridge sang evolution engines (v2.0)
+│   │   ├── repair.ps1       # Self repair (safe only)
+│   │   ├── report.ps1       # Health score + report + markdown
+│   │   └── reports/         # JSON report output
+│   └── evolution/           # Evolution engines (tái sử dụng bởi doctor)
+│       ├── semantic-diff.ps1
+│       ├── compatibility-checker.ps1
+│       ├── migration-system.ps1
+│       ├── knowledge-migration.ps1
+│       ├── simulation-engine.ps1
+│       ├── capability-benchmark.ps1
+│       ├── health-score.ps1
+│       ├── self-healing.ps1
+│       ├── evolution-report.ps1
+│       └── reports/         # JSON reports từ evolution engines
 ```
 
 ---
@@ -182,6 +210,21 @@ Angular ........70
 Testing .......80
 ```
 
+### Evolution Checks (v2.0 — reuse evolution engines)
+
+| Mode | Engine | Nội dung |
+|------|--------|----------|
+| `--compatibility` | `compatibility-checker.ps1` | dependency cycles, agent↔contract mapping, schema version |
+| `--semanticdiff` | `semantic-diff.ps1` | diff schema/workflow per agent contract, đếm breaking changes |
+| `--migration` | `migration-system.ps1` | lập migration plan cho agent bị ảnh hưởng |
+| `--knowledgemigrate` | `knowledge-migration.ps1` | deprecated knowledge + missing topics |
+| `--stress` | `sync-system-docs.ps1 -StressTest` | 20 fake tasks deterministic (seed `fixed`), đo success rate |
+| `--health` | `health-score.ps1` | tổng hợp 10 categories thành overall score |
+| `--evolve` | tất cả engines + stress | chạy toàn bộ pipeline tiến hóa, gộp vào báo cáo doctor |
+
+Các check này **đọc** kết quả JSON từ `.opencode/scripts/evolution/reports/` và
+**không sửa đổi** bất kỳ engine nào — chỉ reuse. `--evolve` không bao giờ tự `--apply` migration.
+
 ### Self Repair (`--repair`)
 Chỉ sửa các lỗi **an toàn**:
 
@@ -268,8 +311,8 @@ Hai command bổ sung cho nhau.
 
 ```yaml
 doctor:
-  version: "1.0.0"
-  mode: quick|full|runtime|workflow|agent|skill|command|knowledge|contracts|simulation|benchmark|repair
+  version: "2.0.0"
+  mode: quick|full|runtime|workflow|agent|skill|command|knowledge|contracts|simulation|benchmark|repair|compatibility|semanticdiff|migration|knowledgemigrate|stress|health|report|evolve
   timestamp: "..."
   pillars:
     environment:
@@ -312,6 +355,23 @@ doctor:
 
 # Repair thực thi (safe fixes + SYSTEM_MAP sync)
 & ".opencode\scripts\doctor.ps1" -Mode repair -Force
+
+# Evolution checks (v2.0)
+& ".opencode\scripts\doctor.ps1" -Mode compatibility   # reuse compatibility checker
+& ".opencode\scripts\doctor.ps1" -Mode semanticdiff    # reuse semantic diff
+& ".opencode\scripts\doctor.ps1" -Mode migration       # reuse migration system
+& ".opencode\scripts\doctor.ps1" -Mode knowledgemigrate
+& ".opencode\scripts\doctor.ps1" -Mode stress          # stress test 20 tasks
+& ".opencode\scripts\doctor.ps1" -Mode health          # health-score engine
+
+# Evolve: toàn bộ pipeline tiến hóa + JSON + Markdown
+& ".opencode\scripts\doctor.ps1" -Mode evolve -Json -Markdown
+
+# Stress test tùy chỉnh
+& ".opencode\scripts\doctor.ps1" -Mode stress -StressCount 50 -StressSeed "abc"
+
+# Report: tái tạo markdown từ JSON cached
+& ".opencode\scripts\doctor.ps1" -Mode report -Markdown
 ```
 
 ---

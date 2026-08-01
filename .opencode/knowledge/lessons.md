@@ -7,6 +7,12 @@ total_lessons: 22
 
 Kho bài học kinh nghiệm được tích lũy qua các workflow.
 
+> **LƯU Ý MIGRATION (HISTORICAL):** Các lesson LSN-001, LSN-002, LSN-003, LSN-006, LSN-008, LSN-009
+> mô tả lỗi và fix của framework **MudBlazor** — dự án đã migrate sang **FluentUI 4.14.3**.
+> Chúng được giữ lại với trạng thái `deprecated` cho mục đích lịch sử và KHÔNG được áp dụng
+> cho codebase hiện tại. Xem `knowledge/framework/fluentu/`, `knowledge/ui/fluentui-components.md`
+> và `knowledge/ui/dark-mode-theming.md` cho pattern FluentUI hiện tại.
+
 ## Cấu trúc entry
 
 ```yaml
@@ -23,6 +29,8 @@ Kho bài học kinh nghiệm được tích lũy qua các workflow.
 
 - lesson_id: LSN-001
   type: "failure"
+  status: "deprecated"
+  framework: "MudBlazor (historical — migrated to FluentUI 4.14.3)"
   workflow: "Fix build lỗi Blazor WASM"
   situation: "Build gặp 5 lỗi: FontWeight int→string, App type not found, Defaults namespace"
   observation: "MudBlazor 9.7.0 dùng string cho FontWeight thay vì int; Program.cs cần `using JapaneseLearner;` để tìm App type; `using MudBlazor;` cần thiết cho Defaults.Classes"
@@ -31,6 +39,8 @@ Kho bài học kinh nghiệm được tích lũy qua các workflow.
 
 - lesson_id: LSN-002
   type: "failure"
+  status: "deprecated"
+  framework: "MudBlazor (historical — migrated to FluentUI 4.14.3)"
   workflow: "Fix runtime IndexOutOfRangeException trong MudThemeProvider"
   situation: "App crash với System.IndexOutOfRangeException khi MudThemeProvider.GenerateTheme chạy"
   observation: "Shadow.Elevation array trong MudBlazor 9.7.0 phải có đúng 25 phần tử (index 0-24), nếu khai báo thiểu sẽ gây IndexOutOfRangeException vì MudBlazor truy cập tất cả indices để tạo CSS variables"
@@ -39,6 +49,8 @@ Kho bài học kinh nghiệm được tích lũy qua các workflow.
 
 - lesson_id: LSN-003
   type: "failure"
+  status: "deprecated"
+  framework: "MudBlazor (historical — migrated to FluentUI 4.14.3)"
   workflow: "Fix runtime missing MudPopoverProvider"
   situation: "PopoverService báo lỗi Missing <MudPopoverProvider /> trong render tree"
   observation: "MudBlazor yêu cầu <MudPopoverProvider /> trong layout để popover/dropdown hoạt động"
@@ -63,6 +75,8 @@ Kho bài học kinh nghiệm được tích lũy qua các workflow.
 
 - lesson_id: LSN-006
   type: "success"
+  status: "deprecated"
+  framework: "MudBlazor (historical — migrated to FluentUI 4.14.3)"
   workflow: "Thêm Word Study page + drawer navigation"
   situation: "Cần nâng cấp MainLayout từ layout đơn giản thành full drawer navigation với các nav link"
   observation: "MainLayout.razor cần thêm MudDrawer, MudNavMenu, MudNavLink và biến _drawerOpen để quản lý trạng thái drawer toggle. Home.razor cần icon button để mở drawer."
@@ -79,6 +93,8 @@ Kho bài học kinh nghiệm được tích lũy qua các workflow.
 
 - lesson_id: LSN-008
   type: "warning"
+  status: "deprecated"
+  framework: "MudBlazor (historical — migrated to FluentUI 4.14.3)"
   workflow: "Fix runtime IndexOutOfRangeException trong MudThemeProvider"
   situation: "App crash không rõ nguyên nhân khi load; không có stack trace chi tiết trong Blazor WASM release mode"
   observation: "Blazor WASM runtime errors (IndexOutOfRangeException, NullReferenceException) cần được debug bằng cách: 1) Chạy debug build, 2) Kiểm tra browser dev console, 3) Thử loại bỏ dần code để xác định nguyên nhân."
@@ -87,6 +103,8 @@ Kho bài học kinh nghiệm được tích lũy qua các workflow.
 
 - lesson_id: LSN-009
   type: "success"
+  status: "deprecated"
+  framework: "MudBlazor (historical — migrated to FluentUI 4.14.3)"
   workflow: "Fix 14 skipped bUnit tests - JS interop giới hạn"
   situation: "14 bUnit tests bị skip vì 'MudBlazor input interaction requires JS interop mock'"
   observation: "StateHasChanged() yêu cầu Blazor Dispatcher thread. Gọi private method qua reflection từ test thread gây InvalidOperationException. Cần dùng cut.InvokeAsync() để chạy code trên dispatcher. Wrong-answer path không gọi StateHasChanged() nên markup không tự render."

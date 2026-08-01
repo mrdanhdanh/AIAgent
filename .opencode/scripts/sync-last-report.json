@@ -1,30 +1,12 @@
 ﻿{
     "issues":  [
-                   "ORPHAN_AGENT: agent=learning-agent",
-                   "ORPHAN_AGENT: agent=root-cause-agent",
-                   "ORPHAN_AGENT: agent=failure-agent"
+
                ],
     "knowledge":  {
-                      "knowledge/lessons.md":  {
-                                                   "file":  "knowledge/lessons.md",
-                                                   "size":  17298
-                                               },
-                      "knowledge/workflow\\validate-github-actions-yaml.md":  {
-                                                                                  "file":  "knowledge/workflow\\validate-github-actions-yaml.md",
-                                                                                  "size":  879
-                                                                              },
-                      "knowledge/project\\japanese-learner\\deployment.md":  {
-                                                                                 "file":  "knowledge/project\\japanese-learner\\deployment.md",
-                                                                                 "size":  3722
-                                                                             },
-                      "knowledge/skills-learned.md":  {
-                                                          "file":  "knowledge/skills-learned.md",
-                                                          "size":  13519
-                                                      },
-                      "knowledge/skills\\blazor\\patterns.md":  {
-                                                                    "file":  "knowledge/skills\\blazor\\patterns.md",
-                                                                    "size":  5337
-                                                                },
+                      "knowledge/testing\\playwright-e2e.md":  {
+                                                                   "file":  "knowledge/testing\\playwright-e2e.md",
+                                                                   "size":  901
+                                                               },
                       "knowledge/skills\\blazor\\ui.md":  {
                                                               "file":  "knowledge/skills\\blazor\\ui.md",
                                                               "size":  3722
@@ -33,10 +15,62 @@
                                                                                   "file":  "knowledge/framework\\blazor\\component-lifecycle.md",
                                                                                   "size":  2570
                                                                               },
+                      "knowledge/ui\\fluentui-components.md":  {
+                                                                   "file":  "knowledge/ui\\fluentui-components.md",
+                                                                   "size":  1208
+                                                               },
+                      "knowledge/testing\\xunit-bunit-testing.md":  {
+                                                                        "file":  "knowledge/testing\\xunit-bunit-testing.md",
+                                                                        "size":  866
+                                                                    },
+                      "knowledge/framework\\fluentu\\fluentu.md":  {
+                                                                       "file":  "knowledge/framework\\fluentu\\fluentu.md",
+                                                                       "size":  1245
+                                                                   },
+                      "knowledge/skills-learned.md":  {
+                                                          "file":  "knowledge/skills-learned.md",
+                                                          "size":  14167
+                                                      },
+                      "knowledge/patterns\\seed-data-patterns.md":  {
+                                                                        "file":  "knowledge/patterns\\seed-data-patterns.md",
+                                                                        "size":  995
+                                                                    },
+                      "knowledge/ui\\tri-state-rendering.md":  {
+                                                                   "file":  "knowledge/ui\\tri-state-rendering.md",
+                                                                   "size":  900
+                                                               },
+                      "knowledge/framework\\fluentu\\design-tokens.md":  {
+                                                                             "file":  "knowledge/framework\\fluentu\\design-tokens.md",
+                                                                             "size":  983
+                                                                         },
+                      "knowledge/patterns\\localstorage.md":  {
+                                                                  "file":  "knowledge/patterns\\localstorage.md",
+                                                                  "size":  962
+                                                              },
                       "knowledge/README.md":  {
                                                   "file":  "knowledge/README.md",
-                                                  "size":  1590
-                                              }
+                                                  "size":  2448
+                                              },
+                      "knowledge/lessons.md":  {
+                                                   "file":  "knowledge/lessons.md",
+                                                   "size":  19556
+                                               },
+                      "knowledge/ui\\dark-mode-theming.md":  {
+                                                                 "file":  "knowledge/ui\\dark-mode-theming.md",
+                                                                 "size":  1040
+                                                             },
+                      "knowledge/workflow\\validate-github-actions-yaml.md":  {
+                                                                                  "file":  "knowledge/workflow\\validate-github-actions-yaml.md",
+                                                                                  "size":  879
+                                                                              },
+                      "knowledge/skills\\blazor\\patterns.md":  {
+                                                                    "file":  "knowledge/skills\\blazor\\patterns.md",
+                                                                    "size":  5505
+                                                                },
+                      "knowledge/project\\japanese-learner\\deployment.md":  {
+                                                                                 "file":  "knowledge/project\\japanese-learner\\deployment.md",
+                                                                                 "size":  3722
+                                                                             }
                   },
     "agents":  {
                    "backup-agent":  {
@@ -80,9 +114,9 @@
                                },
                    "guardian":  {
                                     "description":  "Chuyên gia review source code trước khi push lên git — phát hiện secret, lỗi convention, lỗ hổng bảo mật, vi phạm quy tắc dự án",
-                                    "model":  null,
+                                    "model":  "opencode/deepseek-v4-flash-free",
                                     "file":  "agents/guardian.md",
-                                    "mode":  null,
+                                    "mode":  "subagent",
                                     "permissions":  {
                                                         "grep":  "deny",
                                                         "bash":  "deny",
@@ -210,9 +244,9 @@
                                 },
                    "pusher":  {
                                   "description":  "Chuyên gia thực hiện git push an toàn — auto-commit từ diff, safety checks, build, test, confirmation gate, push execution, post-push verify",
-                                  "model":  null,
+                                  "model":  "opencode/deepseek-v4-flash-free",
                                   "file":  "agents/pusher.md",
-                                  "mode":  null,
+                                  "mode":  "subagent",
                                   "permissions":  {
                                                       "grep":  "deny",
                                                       "bash":  "deny",
@@ -251,7 +285,7 @@
                                    "description":  "Workspace Cleaner Agent v2.0 — quét rác theo tiêu chí cấu hình chi tiết, phân loại LOW/MEDIUM/HIGH, backup workflow-linked, dry-run bắt buộc, protected list 4 nhóm.",
                                    "model":  "opencode/deepseek-v4-flash-free",
                                    "file":  "agents/cleaner.md",
-                                   "mode":  null,
+                                   "mode":  "subagent",
                                    "permissions":  {
                                                        "grep":  "deny",
                                                        "bash":  "deny",
@@ -353,13 +387,13 @@
                                            "file":  "commands/team-syncdocs.md"
                                        },
                      "impeccable":  {
-                                        "agent":  null,
+                                        "agent":  "ui-beautifier",
                                         "description":  "Design, redesign, shape, critique, audit, polish, or improve frontend UI. Sub-commands: init, shape, document, critique, audit, polish, bolder, quieter, distill, harden, onboard, animate, colorize, typeset, layout, delight, overdrive, clarify, adapt, optimize, live, hooks, doctor, extract.",
                                         "deprecated":  false,
                                         "file":  "commands/impeccable.md"
                                     },
                      "team-root-cause":  {
-                                             "agent":  null,
+                                             "agent":  "root-cause-agent",
                                              "description":  "Phân tích nguyên nhân gốc từ failure analysis. Tìm evidence trong codebase, tạo hypotheses, đề xuất fix. Gọi root-cause-agent.",
                                              "deprecated":  false,
                                              "file":  "commands/team-root-cause.md"
@@ -371,7 +405,7 @@
                                        "file":  "commands/team-plan.md"
                                    },
                      "team-analyze-failure":  {
-                                                  "agent":  null,
+                                                  "agent":  "failure-agent",
                                                   "description":  "Phân tích lỗi trong workflow. Thu thập raw error, normalize, classify, search failure memory, output phân tích. Gọi failure-agent.",
                                                   "deprecated":  false,
                                                   "file":  "commands/team-analyze-failure.md"
@@ -383,7 +417,7 @@
                                            "file":  "commands/team-ui-audit.md"
                                        },
                      "team-learn":  {
-                                        "agent":  null,
+                                        "agent":  "learning-agent",
                                         "description":  "Chạy Learning Pipeline — quét failure records, auto-generate lessons và patterns, cập nhật memory. Gọi learning-agent.",
                                         "deprecated":  false,
                                         "file":  "commands/team-learn.md"
@@ -411,9 +445,9 @@
                                              "size":  4418
                                          },
                     "doctor":  {
-                                   "summary":  "Doctor v1.0 - System health checker for AI Agent Framework",
+                                   "summary":  "Doctor v2.0 - System health checker for AI Agent Framework",
                                    "file":  "scripts/doctor.ps1",
-                                   "size":  6216
+                                   "size":  9455
                                },
                     "backup-utility":  {
                                            "summary":  "Utility script",
@@ -427,6 +461,9 @@
                                          }
                 },
     "cross_refs":  {
+                       "orphans":  [
+
+                                   ],
                        "command_to_agent":  {
                                                 "team-selfimprove":  "self-improver",
                                                 "team-explore":  "codebase-explorer",
@@ -443,9 +480,16 @@
                                                 "team-testplan":  "test-planner",
                                                 "team-build":  "builder",
                                                 "team-syncdocs":  "general",
+                                                "impeccable":  "ui-beautifier",
+                                                "team-root-cause":  "root-cause-agent",
+                                                "team-learn":  "learning-agent",
                                                 "team-plan":  "planner",
+                                                "team-analyze-failure":  "failure-agent",
                                                 "team-ui-audit":  "ui-beautifier"
                                             },
+                       "missing":  [
+
+                                   ],
                        "skill_to_commands":  {
                                                  "workspace-cleaner":  [
                                                                            {
@@ -522,14 +566,6 @@
                                                                   }
                                                               ]
                                              },
-                       "orphans":  [
-                                       "Agent \u0027learning-agent\u0027 is not referenced by any command",
-                                       "Agent \u0027root-cause-agent\u0027 is not referenced by any command",
-                                       "Agent \u0027failure-agent\u0027 is not referenced by any command"
-                                   ],
-                       "missing":  [
-
-                                   ],
                        "agent_to_commands":  {
                                                  "backup-agent":  [
                                                                       "backup"
@@ -544,14 +580,24 @@
                                                                   "team-gitguard"
                                                               ],
                                                  "ui-beautifier":  [
+                                                                       "impeccable",
                                                                        "team-ui-audit"
                                                                    ],
                                                  "self-improver":  [
                                                                        "team-selfimprove"
                                                                    ],
+                                                 "learning-agent":  [
+                                                                        "team-learn"
+                                                                    ],
                                                  "planner":  [
                                                                  "team-plan"
                                                              ],
+                                                 "failure-agent":  [
+                                                                       "team-analyze-failure"
+                                                                   ],
+                                                 "root-cause-agent":  [
+                                                                          "team-root-cause"
+                                                                      ],
                                                  "test-planner":  [
                                                                       "team-testplan"
                                                                   ],
@@ -578,7 +624,7 @@
                                                              ]
                                              }
                    },
-    "scanned_at":  "2026-07-31T23:42:04.2482898+07:00",
+    "scanned_at":  "2026-08-01T01:06:44.5927659+07:00",
     "skills":  {
                    "dev-team":  {
                                     "schema_version":  "3.2",
@@ -599,7 +645,7 @@
                                              "file":  "skills/workspace-cleaner/SKILL.md"
                                          },
                    "impeccable":  {
-                                      "schema_version":  null,
+                                      "schema_version":  "1.0",
                                       "description":  "Use when the user wants to design, redesign, shape, critique, audit, polish, clarify, distill, harden, optimize, adapt, animate, colorize, extract, or otherwise improve a frontend interface. Covers websites, landing pages, dashboards, product UI, app shells, components, forms, settings, onboarding, and empty states. Handles UX review, visual hierarchy, information architecture, cognitive load, accessibility, performance, responsive behavior, theming, anti-patterns, typography, fonts, spacing, layout, alignment, color, motion, micro-interactions, UX copy, error states, edge cases, i18n, and reusable design systems or tokens. Also use for bland designs that need to become bolder or more delightful, loud designs that should become quieter, live browser iteration on UI elements, or ambitious visual effects that should feel technically extraordinary. Not for backend-only or non-UI tasks.",
                                       "name":  "impeccable",
                                       "file":  "skills/impeccable/SKILL.md"

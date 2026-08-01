@@ -143,3 +143,10 @@ next_step: "Hành động cụ thể cho orchestrator"
 - Ghi rõ issue nào **blocking** (chặn duyệt) vs **non-blocking** (chỉ cần cải thiện)
 - Ghi rõ `affected_phase` để orchestrator biết phase nào cần sửa
 - Output theo đúng YAML contract v4.0 (orchestrator sẽ parse decision)
+
+## Flags
+
+**Flags:**
+
+Không có flag bổ sung — nhận thiết kế/kế hoạch cần đánh giá.
+

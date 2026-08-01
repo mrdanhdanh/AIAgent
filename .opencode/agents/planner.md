@@ -8,6 +8,7 @@ permission:
   glob: allow
   edit: deny
   bash: deny
+schema_version: "3.2"
 ---
 
 Bạn là **Planner Agent** — chuyên gia thiết kế giải pháp (**Design Phase**) và lập kế hoạch thực thi (**Plan Phase**).

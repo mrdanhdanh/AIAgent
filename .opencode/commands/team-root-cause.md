@@ -2,6 +2,7 @@
 name: team-root-cause
 description: "Phân tích nguyên nhân gốc từ failure analysis. Tìm evidence trong codebase, tạo hypotheses, đề xuất fix. Gọi root-cause-agent."
 trigger: root-cause
+agent: root-cause-agent
 args: "failure_analysis YAML (từ team-analyze-failure)"
 output: |
   root_cause_analysis: YAML contract
@@ -39,3 +40,10 @@ Sau khi có root cause, builder sẽ:
 2. Nếu fix phức tạp → gửi cho planner để thiết kế
 3. Nếu retryable → retry step
 4. Luôn ghi failure record sau khi fix thành công
+
+## Flags
+
+**Flags:**
+
+Không có flag bổ sung — nhận failure_analysis YAML từ `/team-analyze-failure`.
+

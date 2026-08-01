@@ -2,7 +2,14 @@
 name: cleaner
 description: Workspace Cleaner Agent v2.0 — quét rác theo tiêu chí cấu hình chi tiết, phân loại LOW/MEDIUM/HIGH, backup workflow-linked, dry-run bắt buộc, protected list 4 nhóm.
 schema_version: "2.0"
+mode: subagent
 model: opencode/deepseek-v4-flash-free
+permission:
+  read: allow
+  grep: allow
+  glob: allow
+  edit: allow
+  bash: allow
 ---
 
 # Cleaner Agent — Workspace Garbage Collection v2.0

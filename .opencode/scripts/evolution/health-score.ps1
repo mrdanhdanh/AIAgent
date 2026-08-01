@@ -84,7 +84,10 @@ else {
             $ver = [version]$Matches[1]
             if ($ver -lt [version]"1.0") { $skScore -= 10 }
         }
-        if ($content -match '(?i)(deprecated|outdated)') { $skScore -= 15 }
+        # Chi tru diem khi skill tu khang dinh deprecated, khong phai chi nham toi tu trong docs
+        $cleanContent = [regex]::Replace($content, '(?s)```.*?```', '')
+        $cleanContent = [regex]::Replace($cleanContent, '`[^`]*`', '')
+        if ($content -match '(?i)deprecated\s*:\s*["'']?true' -or $cleanContent -match '(?i)(this\s+skill\s+is\s+(?:deprecated|outdated)|skill\s+no\s+longer\s+(?:maintained|used)|superseded\s+by\s+\S+)') { $skScore -= 15 }
     }
 }
 $skScore = [Math]::Max(0, $skScore)
@@ -123,7 +126,7 @@ else {
         $content = Get-Content -LiteralPath $af.FullName -Raw -Encoding utf8 -ErrorAction SilentlyContinue
         # Check for basic structure
         if ($content -notmatch '^---') { $agScore -= 5 }
-        if ($content -notmatch '(?i)agent:') { $agScore -= 5 }
+        if ($content -notmatch '(?i)(mode\s*:\s*(subagent|primary|agent)|description\s*:)') { $agScore -= 5 }
     }
     # Check contract coverage
     $contractCount = (Get-ChildItem -Path "$contractDir\*.yaml" -ErrorAction SilentlyContinue).Count
