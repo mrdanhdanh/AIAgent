@@ -71,11 +71,19 @@ agent: general
 ```
 .opencode/
 ├── system/
-│   └── contracts/           # Contract Registry (YAML)
+│   └── contracts/           # Contract Registry (YAML) — 13 contracts
+│       ├── analyst.yaml
 │       ├── planner.yaml
-│       ├── builder.yaml
 │       ├── reviewer.yaml
+│       ├── builder.yaml
 │       ├── tester.yaml
+│       ├── test-planner.yaml
+│       ├── ui-beautifier.yaml
+│       ├── guardian.yaml
+│       ├── failure-agent.yaml
+│       ├── root-cause-agent.yaml
+│       ├── learning-agent.yaml
+│       ├── self-improver.yaml
 │       └── workflow.yaml
 ├── scripts/
 │   ├── sync-system-docs.ps1  # Orchestrator (nâng cấp)
@@ -343,11 +351,19 @@ Phát hiện và tự vá:
 - Pending items nếu confidence < 95%
 
 ### Nâng cấp #5: Contract Registry (`system/contracts/`)
-5 contract files:
+13 contract files — mỗi agent core có 1 contract, cộng workflow:
+- `analyst.yaml` — Analyze phase
 - `planner.yaml` — Design + Plan phases
-- `builder.yaml` — Execution phase
 - `reviewer.yaml` — Evaluation phase
+- `builder.yaml` — Execution phase
 - `tester.yaml` — Verification phase
+- `test-planner.yaml` — Test planning phase
+- `ui-beautifier.yaml` — UI audit phase
+- `guardian.yaml` — Pre-push guardrail
+- `failure-agent.yaml` — Failure analysis
+- `root-cause-agent.yaml` — Root cause analysis
+- `learning-agent.yaml` — Learning pipeline
+- `self-improver.yaml` — Skill validation
 - `workflow.yaml` — Workflow state machine
 
 Mỗi contract gồm:

@@ -1,6 +1,6 @@
 ﻿# System Evolution Report
 
-**Generated:** 2026-08-01 01:07:02
+**Generated:** 2026-08-01 10:00:22
 **Tool:** evolution-report.ps1 v1.0.0
 
 ---
@@ -10,30 +10,21 @@
 | Type | Count |
 |------|-------|
 | Workflow changes | 0 |
-| Schema changes | 0 |
+| Schema changes | 1 |
 | Compatibility issues | 0 |
 | Migration tasks | 0 |
 | Deprecated knowledge | 0 |
 | Missing knowledge topics | 0 |
 | Auto-fixes applied | 0 |
-| Pending fixes | 4 |
+| Pending fixes | 0 |
 | Runtime errors (simulation) | 0 |
 | Integration issues | 0 |
 
 ---
 
-## Pending
-
-- TYPO_CANDIDATE: test-planner.md - 'recommendations' -> 'recommendation' (confidence: 93%)
-- TYPO_CANDIDATE: test-planner.md - 'recommendations' -> 'recommendation' (confidence: 93%)
-- TYPO_CANDIDATE: ui-beautifier.md - 'recommendations' -> 'recommendation' (confidence: 93%)
-- TYPO_CANDIDATE: ui-beautifier.md - 'recommendations' -> 'recommendation' (confidence: 93%)
-
----
-
 ## Learning
 
-- New pattern detected: 1 semantic changes in system
+- New pattern detected: 2 semantic changes in system
 
 ---
 
@@ -44,10 +35,10 @@
 | Runtime Health | 100/100 |
 | Verdict | STABLE |
 | Agents tested | 17 |
-| Skills tested | 5 |
-| Commands tested | 21 |
+| Skills tested | 17 |
+| Commands tested | 33 |
 | Contracts tested | 13 |
-| Checks passed | 54/54 |
+| Checks passed | 78/78 |
 
 ---
 
@@ -97,12 +88,12 @@
 | Knowledge       | 100/100 |
 | Learning        | 100/100 |
 | Runtime         | 100/100 |
-| Scripts         | 84/100 |
-| Skills          | 85/100 |
+| Scripts         | 100/100 |
+| Skills          | 100/100 |
 | Tests           | 100/100 |
 | Workflow        | 100/100 |
 |-----------------|--------|
-| **Overall**     | **96/100** |
+| **Overall**     | **99/100** |
 
 ---
 

@@ -17,7 +17,7 @@ param(
     [switch]$knowledgeMigrate,    # Run only Knowledge Migration
     [switch]$healthScore,         # Run only Health Score
     [switch]$evolutionReport,     # Run only Evolution Report
-    [string]$evolutionMode = "full", # full | scan | heal | report
+    [string]$evolutionMode = "full", # full | scan | heal | sandbox | quick | report
     [switch]$stressTest,          # Run stress test (fake tasks through 13-step workflow)
     [int]$stressCount = 20,       # Number of fake tasks (default 20)
     [string]$stressSeed = "fixed",# Seed for deterministic random (same seed -> same result)
@@ -807,15 +807,15 @@ if ($runEvolution -and -not $dryRun) {
     Write-Host "  SYSTEM EVOLUTION ENGINE" -ForegroundColor Magenta
     Write-Host "========================================" -ForegroundColor Magenta
     
-    $runSemantic = $semanticDiff -or ($evolutionMode -in @('full', 'scan')) -or $evolve
-    $runCompat = $compatibility -or ($evolutionMode -in @('full', 'scan')) -or $evolve
-    $runMigration = $migration -or ($evolutionMode -in @('full', 'scan')) -or $evolve
+    $runSemantic = $semanticDiff -or ($evolutionMode -in @('full', 'scan', 'heal', 'quick')) -or $evolve
+    $runCompat = $compatibility -or ($evolutionMode -in @('full', 'scan', 'heal', 'quick')) -or $evolve
+    $runMigration = $migration -or ($evolutionMode -in @('full', 'scan', 'heal')) -or $evolve
     $runHeal = $selfHeal -or ($evolutionMode -in @('full', 'heal')) -or $evolve
-    $runKnowledge = $knowledgeMigrate -or ($evolutionMode -in @('full', 'scan')) -or $evolve
+    $runKnowledge = $knowledgeMigrate -or ($evolutionMode -in @('full', 'scan', 'heal')) -or $evolve
     $runSimulation = $simulate -or ($evolutionMode -in @('full', 'sandbox')) -or $evolve
     $runBenchmark = $benchmark -or ($evolutionMode -in @('full', 'sandbox')) -or $evolve
-    $runHealth = $healthScore -or ($evolutionMode -in @('full')) -or $evolve
-    $runReport = $evolutionReport -or ($evolutionMode -in @('full')) -or $evolve
+    $runHealth = $healthScore -or ($evolutionMode -in @('full', 'quick')) -or $evolve
+    $runReport = $evolutionReport -or ($evolutionMode -in @('full', 'report')) -or $evolve
     
     $evolutionSteps = @()
     $evolutionIssues = @()
@@ -966,6 +966,14 @@ if ($runEvolution -and -not $dryRun) {
                     scriptsDir = "$root\scripts"
                     outputDir = $reportsDir
                 }
+                # Neu chua chay simulation/benchmark trong phien nay (mode quick/report),
+                # tim cache moi nhat de health-score co du lieu runtime + capability.
+                if (-not $lastSimulationReport) {
+                    $lastSimulationReport = Get-ChildItem -Path "$reportsDir\simulation-engine-*.json" -ErrorAction SilentlyContinue | Sort-Object LastWriteTime -Descending | Select-Object -First 1
+                }
+                if (-not $lastBenchmarkReport) {
+                    $lastBenchmarkReport = Get-ChildItem -Path "$reportsDir\capability-benchmark-*.json" -ErrorAction SilentlyContinue | Sort-Object LastWriteTime -Descending | Select-Object -First 1
+                }
                 if ($lastCompat) { $hsArgs.compatibilityReport = $lastCompat.FullName }
                 if ($lastKnowledge) { $hsArgs.knowledgeReport = $lastKnowledge.FullName }
                 if ($lastMigration) { $hsArgs.migrationReport = $lastMigration.FullName }
@@ -995,6 +1003,15 @@ if ($runEvolution -and -not $dryRun) {
                 $lastSH = Get-ChildItem -Path "$reportsDir\self-healing-*.json" | Sort-Object LastWriteTime -Descending | Select-Object -First 1
                 $lastKM = Get-ChildItem -Path "$reportsDir\knowledge-migration-*.json" | Sort-Object LastWriteTime -Descending | Select-Object -First 1
                 $lastHS = Get-ChildItem -Path "$reportsDir\health-score-*.json" | Sort-Object LastWriteTime -Descending | Select-Object -First 1
+
+                # Neu chua chay simulation/benchmark trong phien nay (vd: mode report tu cache),
+                # tim report moi nhat tu cache de du lieu day du.
+                if (-not $lastSimulationReport) {
+                    $lastSimulationReport = Get-ChildItem -Path "$reportsDir\simulation-engine-*.json" -ErrorAction SilentlyContinue | Sort-Object LastWriteTime -Descending | Select-Object -First 1
+                }
+                if (-not $lastBenchmarkReport) {
+                    $lastBenchmarkReport = Get-ChildItem -Path "$reportsDir\capability-benchmark-*.json" -ErrorAction SilentlyContinue | Sort-Object LastWriteTime -Descending | Select-Object -First 1
+                }
 
                 $reportPath = "$root\SYSTEM_EVOLUTION_REPORT.md"
 

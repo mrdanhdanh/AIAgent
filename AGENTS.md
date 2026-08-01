@@ -70,6 +70,27 @@ dotnet test JapaneseLearner.E2ETests\JapaneseLearner.E2ETests.csproj
 - Model: `opencode/deepseek-v4-flash-free`.
 - **`/doctor`**: kiểm tra sức khỏe hệ thống AI Agent Framework — Environment, Agents, Commands, Skills, Knowledge, Workflow, Contracts, Runtime (simulation), Capability (benchmark). Có health score + self-repair an toàn. Alias: `/team-doctor`. Chi tiết: `.opencode/commands/doctor.md`.
 
+## QA Testing Commands
+
+Bộ QA commands (test E2E, màn hình, giao diện, màu sắc theo quy chuẩn) — chia thành Skill (năng lực) + Command (quy trình), không dùng agent test đơn lẻ:
+
+| Command | Mô tả | Skill liên quan |
+|---------|-------|-----------------|
+| `/test-plan` | Sinh kế hoạch test: requirement → matrix → scenario → boundary → edge → priority | test-data-generator |
+| `/test-e2e` | Pipeline E2E: requirement → Playwright → fixture → run → report (`--component` cho bUnit) | playwright-e2e, playwright-component, test-report |
+| `/test-ui` | Review UI/UX/consistency/responsive/accessibility (`--validate`, `--responsive`, `--quick`) | ui-review, design-system-validator, responsive-layout, accessibility |
+| `/test-visual` | Visual regression: screenshot → compare → diff → report (`--update-snapshots`, `--analyze`, `--dark`) | visual-regression, screenshot-analyzer |
+| `/test-accessibility` | Axe scan → WCAG AA/AAA report → fix suggestion | accessibility |
+| `/test-cross-browser` | Chrome/Edge/Firefox/Safari + mobile (`--browsers`, `--mobile`) | browser-compatibility |
+| `/test-regression` | Chọn module ảnh hưởng → regression cases → run → report | test-data-generator |
+| `/doctor-test` | QA health: thiếu test, duplicate, flaky, timeout, coverage thấp, hardcode wait... (Health Score) | flaky-test-detector, test-report |
+| `/approve-test` | Gate cuối: coverage ≥80%, no flaky, no a11y error, no visual diff, no failed E2E | test-report |
+| `/test-bootstrap` | Phát hiện framework UI, sinh cấu hình Playwright + PO + fixture ban đầu | playwright-e2e |
+| `/test-evolve` | Diff source vs test hiện có → cập nhật/lỗi thời/sinh test mới | playwright-e2e, flaky-test-detector |
+| `/test-audit` | Đánh giá coverage/duplication/maintainability/runtime/flaky → improvement plan | flaky-test-detector, test-report |
+
+**Lưu ý QA:** port 5173 hardcode trong `AppFixture.cs` (không đổi), browser path hardcoded `PlaywrightFixture.cs:24` (fail trên máy khác). Chạy unit test trước E2E.
+
 ## CI / Deploy
 
 - GitHub Pages via `.github/workflows/deploy.yml` — triggers on push to `master`, publishes to `gh-pages` branch.

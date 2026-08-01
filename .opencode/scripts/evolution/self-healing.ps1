@@ -101,7 +101,7 @@ foreach ($af in $agentFiles) {
     foreach ($match in $fieldMatches) {
         $field = $match.Groups[1].Value
         if ($field -in $knownFields) { continue }
-        if ($field -match '^(order|description|action|file|logic|check|chunk|depends_on|id|severity|category|blocking|suggestion|type|size|summary|status|agent|command|skill|name|schema_version)$') { continue }
+        if ($field -match '^(order|description|action|file|logic|check|chunk|depends_on|id|severity|category|blocking|suggestion|type|size|summary|status|agent|command|skill|name|schema_version|recommendations)$') { continue }
         if ($field.Length -lt 3) { continue }
         
         # Find closest match

@@ -265,7 +265,7 @@ foreach ($cat in $sortedCats) {
     Write-Host "  $padded $score" -ForegroundColor $color
 }
 Write-Host "  " -NoNewline
-Write-Host "-" * 25
+Write-Host ("-" * 25)
 $overallColor = if ($results.overall -ge 80) { "Green" } elseif ($results.overall -ge 50) { "Yellow" } else { "Red" }
 Write-Host "  Overall         $($results.overall)/100" -ForegroundColor $overallColor
 Write-Host "============================" -ForegroundColor Cyan
