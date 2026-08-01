@@ -254,6 +254,11 @@
       "description": "Thuc thi ke hoach da duyet — tao/sua file code, kiem tra syntax/lint",
       "agent": "builder"
     },
+    "team-bugfix": {
+      "template": "Bạn là General Agent (Orchestrator). Chạy toàn bộ Bug-Fix Pipeline — nhận bug → tái hiện → root cause → đề xuất chỉnh sửa → kiểm tra sau sửa → test bUnit + E2E. Đọc hướng dẫn đầy đủ tại: .opencode/commands/team-bugfix.md\n\nMô tả bug: $ARGUMENTS",
+      "description": "Quy trinh nhan va fix bug — tai hien bug, root cause, de xuat chinh sua, kiem tra sau sua, test bUnit + E2E",
+      "agent": "general"
+    },
     "team-testplan": {
       "template": "Bạn là Test-Planner Agent. Tạo kế hoạch kiểm thử. Đọc hướng dẫn đầy đủ tại: .opencode/commands/team-testplan.md\n\nThông tin: $ARGUMENTS",
       "description": "Tao ke hoach kiem thu toan dien cho tinh nang da phat trien",

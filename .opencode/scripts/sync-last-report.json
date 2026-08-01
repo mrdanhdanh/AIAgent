@@ -101,7 +101,7 @@
                                                                },
                       "knowledge/lessons.md":  {
                                                    "file":  "knowledge/lessons.md",
-                                                   "size":  19556
+                                                   "size":  22047
                                                },
                       "knowledge/skills-learned.md":  {
                                                           "file":  "knowledge/skills-learned.md",
@@ -440,7 +440,7 @@
                                        "file":  "commands/team-test.md"
                                    },
                      "knowledge-index":  {
-                                             "agent":  "general",
+                                             "agent":  "knowledge-agent",
                                              "description":  "Build/update Knowledge Index — quét source code + tài liệu sinh 7 loại index (code, symbol, api, database, dependency, document, business-rule). Chạy sau mỗi lần source thay đổi",
                                              "deprecated":  false,
                                              "file":  "commands/knowledge-index.md"
@@ -470,7 +470,7 @@
                                             "file":  "commands/test-bootstrap.md"
                                         },
                      "knowledge-health":  {
-                                              "agent":  "general",
+                                              "agent":  "knowledge-agent",
                                               "description":  "Đánh giá sức khỏe kiến thức hệ thống — phát hiện thiếu README, diagram, flow, ADR, comment, tài liệu lỗi thời",
                                               "deprecated":  false,
                                               "file":  "commands/knowledge-health.md"
@@ -734,7 +734,7 @@
                                                 "knowledge-explain":  "knowledge-agent",
                                                 "team-gitguard":  "guardian",
                                                 "test-bootstrap":  "general",
-                                                "knowledge-health":  "general",
+                                                "knowledge-health":  "knowledge-agent",
                                                 "knowledge-ask":  "knowledge-agent",
                                                 "team":  "general",
                                                 "team-doctor":  "general",
@@ -753,7 +753,7 @@
                                                 "compare-doc":  "general",
                                                 "team-build":  "builder",
                                                 "test-cross-browser":  "general",
-                                                "knowledge-index":  "general",
+                                                "knowledge-index":  "knowledge-agent",
                                                 "test-audit":  "test-planner",
                                                 "test-e2e":  "general",
                                                 "test-regression":  "test-planner",
@@ -1280,11 +1280,9 @@
                                                                        "team-analyze-failure"
                                                                    ],
                                                  "general":  [
-                                                                 "knowledge-index",
                                                                  "doctor",
                                                                  "trace",
                                                                  "test-bootstrap",
-                                                                 "knowledge-health",
                                                                  "team-doctor",
                                                                  "ask",
                                                                  "explain",
@@ -1305,6 +1303,8 @@
                                                                          "knowledge-impact",
                                                                          "knowledge",
                                                                          "knowledge-trace",
+                                                                         "knowledge-index",
+                                                                         "knowledge-health",
                                                                          "knowledge-ask",
                                                                          "knowledge-why",
                                                                          "knowledge-explain",
@@ -1316,7 +1316,7 @@
                                                              ]
                                              }
                    },
-    "scanned_at":  "2026-08-01T17:28:31.4397810+07:00",
+    "scanned_at":  "2026-08-01T19:38:35.1742492+07:00",
     "skills":  {
                    "dev-team":  {
                                     "schema_version":  "3.2",

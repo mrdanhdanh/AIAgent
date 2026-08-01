@@ -1,0 +1,48 @@
+# Contract: Knowledge Agent
+# Schema version: 1.0
+# Description: Định nghĩa input/output contract cho Knowledge Agent (Knowledge Assistant — Intent Analyzer + Router)
+
+contract_version: "1.0"
+agent: knowledge-agent
+type: knowledge
+
+input:
+  from: user
+  schema_version: "1.0"
+  required_fields:
+    - question: "string — câu hỏi về codebase JapaneseLearner"
+    - intent: "string — ask | where | why | flow | impact | explain | trace | compare-doc | unknown"
+    - entity: "string — symbol/module/tên file được hỏi"
+
+output:
+  schema_version: "1.0"
+  artifact: "knowledge-answer"
+  fields:
+    - status: "READY | NO_RESULT"
+    - intent: "string — intent đã phân loại"
+    - entity: "string — symbol/module được hỏi"
+    - skills_selected: "array[string]"
+    - summary: "string — tóm tắt ngắn câu trả lời"
+    - evidence: "array[{file, line, snippet}]"
+    - answer: "string — câu trả lời markdown có nguồn"
+    - sources: "array[string] — dạng path/file.cs:line"
+    - suggested_commands: "array[string]"
+
+decision_rules:
+  NO_RESULT:
+    conditions:
+      - "Không tìm thấy evidence trong codebase"
+      - "Intent không khớp bảng mapping"
+  READY:
+    conditions:
+      - "Có đủ evidence và tổng hợp thành câu trả lời có nguồn"
+
+supported_versions:
+  - "1.0"
+
+dependencies:
+  requires: ["user"]
+  provides_to: ["general"]
+
+migration_rules:
+  none: null

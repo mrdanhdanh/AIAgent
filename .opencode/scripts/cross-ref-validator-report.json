@@ -1,10 +1,10 @@
 {
     "tool":  "cross-ref-validator.ps1",
     "version":  "1.0.0",
-    "timestamp":  "20260801_094325",
-    "checks_total":  167,
+    "timestamp":  "20260801_205502",
+    "checks_total":  234,
     "checks_fail":  0,
-    "checks_warn":  167,
+    "checks_warn":  234,
     "all_pass":  true,
     "checks":  [
                    {
@@ -59,6 +59,90 @@
                    {
                        "Check":  "skill-\u003eanchor",
                        "From":  "SKILL.md",
+                       "Target":  "#nguyên-t?c",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#c?u-trúc-câu-tr?-l?i",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#chu?i-ngu?n",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#output-contract",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#quy-t?c-b?t-bu?c",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#t?ng-quan",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#pattern-h?-tr?",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#phân-tích-layer",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#phát-hi?n-vi-ph?m",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#output-contract",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#quy-t?c-b?t-bu?c",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#t?ng-quan",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
                        "Target":  "#trình-duy?t-h?-tr?",
                        "Status":  "WARN",
                        "Message":  "Possible broken internal link"
@@ -95,6 +179,132 @@
                        "Check":  "skill-\u003eanchor",
                        "From":  "SKILL.md",
                        "Target":  "#d?nh-d?ng-d?u-ra",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#t?ng-quan",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#ngôn-ng?-h?-tr?",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#các-lo?i-phân-tích",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#quy-trình",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#output-contract",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#quy-t?c-b?t-bu?c",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#t?ng-quan",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#d?i-tu?ng-h?-tr?",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#phân-tích-usage",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#adapt-cho-d?-án-hi?n-t?i",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#output-contract",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#quy-t?c-b?t-bu?c",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#t?ng-quan",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#các-lo?i-graph",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#quy-trình",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#ví-d?",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#output-contract",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#quy-t?c-b?t-bu?c",
                        "Status":  "WARN",
                        "Message":  "Possible broken internal link"
                    },
@@ -493,6 +703,48 @@
                    {
                        "Check":  "skill-\u003eanchor",
                        "From":  "SKILL.md",
+                       "Target":  "#d?nh-d?ng-h?-tr?",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#lo?i-thông-tin-trích-xu?t",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#quy-trình",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#output-contract",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#quy-t?c-b?t-bu?c",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#t?ng-quan",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
                        "Target":  "#d?u-hi?u-flaky",
                        "Status":  "WARN",
                        "Message":  "Possible broken internal link"
@@ -515,6 +767,41 @@
                        "Check":  "skill-\u003eanchor",
                        "From":  "SKILL.md",
                        "Target":  "#d?nh-d?ng-d?u-ra",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#t?ng-quan",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#các-l?nh-chính",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#quy-trình",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#output-contract",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#quy-t?c-b?t-bu?c",
                        "Status":  "WARN",
                        "Message":  "Possible broken internal link"
                    },
@@ -646,6 +933,48 @@
                    },
                    {
                        "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#t?ng-quan",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#các-d?ng-?nh-hu?ng",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#quy-trình",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#ví-d?",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#output-contract",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#quy-t?c-b?t-bu?c",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
                        "From":  "critique.md",
                        "Target":  "#cognitive-load-assessment",
                        "Status":  "WARN",
@@ -732,6 +1061,62 @@
                        "Check":  "skill-\u003eanchor",
                        "From":  "document.md",
                        "Target":  "#fff",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#t?ng-quan",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#ki?n-trúc",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#intent-analyzer",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#knowledge-planner",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#pipeline",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#s?-d?ng-knowledge-index",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#output-contract",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#quy-t?c-b?t-bu?c",
                        "Status":  "WARN",
                        "Message":  "Possible broken internal link"
                    },
@@ -941,6 +1326,48 @@
                    {
                        "Check":  "skill-\u003eanchor",
                        "From":  "SKILL.md",
+                       "Target":  "#chi?n-lu?c-tìm",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#các-lo?i-tìm",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#quy-trình",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#output-contract",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#quy-t?c-b?t-bu?c",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#t?ng-quan",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
                        "Target":  "#lo?i-d?-li?u",
                        "Status":  "WARN",
                        "Message":  "Possible broken internal link"
@@ -1110,6 +1537,48 @@
                        "Check":  "skill-\u003eanchor",
                        "From":  "SKILL.md",
                        "Target":  "#d?nh-d?ng-d?u-ra",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#t?ng-quan",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#các-lo?i-flow",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#quy-trình",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#sinh-diagram",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#output-contract",
+                       "Status":  "WARN",
+                       "Message":  "Possible broken internal link"
+                   },
+                   {
+                       "Check":  "skill-\u003eanchor",
+                       "From":  "SKILL.md",
+                       "Target":  "#quy-t?c-b?t-bu?c",
                        "Status":  "WARN",
                        "Message":  "Possible broken internal link"
                    },

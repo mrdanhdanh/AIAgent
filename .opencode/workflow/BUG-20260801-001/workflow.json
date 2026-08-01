@@ -1,0 +1,46 @@
+{
+  "workflow_id": "BUG-20260801-001",
+  "created_at": "2026-08-01T20:10:00Z",
+  "project": "JapaneseLearner",
+  "branch": "main",
+  "schema_version": "1.0",
+  "request": "Tạo command quy trình nhận và fix bug — tái hiện bug, đề xuất chỉnh sửa, kiểm tra sau sửa, Xtest bUnit E2E",
+  "status": "COMPLETE",
+  "phases_completed": [
+    "analyze",
+    "design_plan",
+    "build",
+    "static_analysis",
+    "test"
+  ],
+  "artifacts": [
+    {
+      "type": "command_created",
+      "file": ".opencode/commands/team-bugfix.md",
+      "action": "CREATE"
+    },
+    {
+      "type": "registry_updated",
+      "file": "opencode.json",
+      "action": "MODIFY"
+    },
+    {
+      "type": "workflow_snapshot",
+      "file": ".opencode/workflow/BUG-20260801-001/workflow.json"
+    }
+  ],
+  "validation": {
+    "doctor_commands_score": 100,
+    "doctor_status": "PASS",
+    "cross_ref_all_pass": true,
+    "cross_ref_fail": 0,
+    "json_valid": true,
+    "frontmatter_valid": true,
+    "backtick_balanced": true
+  },
+  "test_results": {
+    "doctor_command_check": "PASS (100/100) — team-bugfix: PASS, 0 issues",
+    "cross_ref_validator": "PASS (all_pass=True, 0 fail)",
+    "opencode_json": "Valid, team-bugfix registered (agent: general)"
+  }
+}

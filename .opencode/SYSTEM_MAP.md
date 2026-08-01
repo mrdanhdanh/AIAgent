@@ -1,6 +1,6 @@
 ﻿# He Thong .opencode - So Do Tong The
 
-> **Tu dong tao luc:** 2026-08-01 17:28:32
+> **Tu dong tao luc:** 2026-08-01 19:38:36
 > **Workflow ID:** WF-20260801-SYNC
 > **Cap nhat:** Toan bo agents, commands, skills, scripts, knowledge
 
@@ -46,9 +46,9 @@
 | cleaner | Workspace Cleaner Agent v2.0 — quét rác theo tiêu chí cấu hình chi tiết, phân loại LOW/MEDIUM/HIGH, backup workflow-linked, dry-run bắt buộc, protected list 4 nhóm. | opencode/deepseek-v4-flash-free |  | team-cleanup |
 | codebase-explorer | Khám phá cấu trúc dự án, phân tích codebase, mapping dependencies và patterns. Agent read-only chạy trước khi thực hiện thay đổi. | opencode/deepseek-v4-flash-free |  | team-explore |
 | failure-agent | Chuyên gia phân tích và chuẩn hóa lỗi — classify error type, normalize error message, search failure memory, đề xuất lesson phù hợp. Read-only agent. | opencode/deepseek-v4-flash-free |  | team-analyze-failure |
-| general | General-purpose orchestrator agent — điều phối workflow, triệu hồi sub-agents, quản lý state machine | opencode/deepseek-v4-flash-free |  | knowledge-index, doctor, trace, test-bootstrap, knowledge-health, team-doctor, ask, explain, flow, team-syncdocs, why, compare-doc, test-cross-browser, doctor-test, test-e2e, where, impact, approve-test, team |
+| general | General-purpose orchestrator agent — điều phối workflow, triệu hồi sub-agents, quản lý state machine | opencode/deepseek-v4-flash-free |  | doctor, trace, test-bootstrap, team-doctor, ask, explain, flow, team-syncdocs, why, compare-doc, test-cross-browser, doctor-test, test-e2e, where, impact, approve-test, team |
 | guardian | Chuyên gia review source code trước khi push lên git — phát hiện secret, lỗi convention, lỗ hổng bảo mật, vi phạm quy tắc dự án | opencode/deepseek-v4-flash-free |  | team-gitguard |
-| knowledge-agent | Intent Analyzer + Router cho Knowledge Assistant — phân loại câu hỏi, chọn skill pipeline, tổng hợp trả lời có nguồn | opencode/deepseek-v4-flash-free |  | knowledge-compare-doc, knowledge-impact, knowledge, knowledge-trace, knowledge-ask, knowledge-why, knowledge-explain, knowledge-flow, knowledge-where |
+| knowledge-agent | Intent Analyzer + Router cho Knowledge Assistant — phân loại câu hỏi, chọn skill pipeline, tổng hợp trả lời có nguồn | opencode/deepseek-v4-flash-free |  | knowledge-compare-doc, knowledge-impact, knowledge, knowledge-trace, knowledge-index, knowledge-health, knowledge-ask, knowledge-why, knowledge-explain, knowledge-flow, knowledge-where |
 | learning-agent | Chuyên gia Learning Pipeline — đọc failure records từ memory, phân tích patterns xuyên suốt, auto-generate lessons và patterns mới. Ghi trực tiếp vào memory/. Cần approval gate cho MEDIUM/HIGH impact. | opencode/deepseek-v4-flash-free |  | team-learn |
 | planner | Mở rộng: Thiết kế giải pháp + Lập kế hoạch thực thi chi tiết. Đảm nhiệm cả Design phase và Plan phase. | opencode/deepseek-v4-flash-free |  | team-plan |
 | pusher | Chuyên gia thực hiện git push an toàn — auto-commit từ diff, safety checks, build, test, confirmation gate, push execution, post-push verify | opencode/deepseek-v4-flash-free |  | team-gitpush |
@@ -80,9 +80,9 @@
 | /knowledge-compare-doc | So sánh code hiện tại với tài liệu thiết kế — phát hiện lệch lạc giữa code và docs | knowledge-agent |  |
 | /knowledge-explain | Giải thích từng method của một file — class summary, method list, DI dependencies, lifecycle | knowledge-agent |  |
 | /knowledge-flow | Mô tả workflow của một chức năng/màn hình — user flow, business flow, sinh mermaid sequence diagram | knowledge-agent |  |
-| /knowledge-health | Đánh giá sức khỏe kiến thức hệ thống — phát hiện thiếu README, diagram, flow, ADR, comment, tài liệu lỗi thời | general |  |
+| /knowledge-health | Đánh giá sức khỏe kiến thức hệ thống — phát hiện thiếu README, diagram, flow, ADR, comment, tài liệu lỗi thời | knowledge-agent |  |
 | /knowledge-impact | Phân tích ảnh hưởng khi sửa một symbol/file — affected screens, services, models, tests kèm mức độ | knowledge-agent |  |
-| /knowledge-index | Build/update Knowledge Index — quét source code + tài liệu sinh 7 loại index (code, symbol, api, database, dependency, document, business-rule). Chạy sau mỗi lần source thay đổi | general |  |
+| /knowledge-index | Build/update Knowledge Index — quét source code + tài liệu sinh 7 loại index (code, symbol, api, database, dependency, document, business-rule). Chạy sau mỗi lần source thay đổi | knowledge-agent |  |
 | /knowledge-trace | Trace luồng hoạt động end-to-end — UI → Service → Model → LocalStorage, sinh chuỗi trace dạng cây | knowledge-agent |  |
 | /knowledge-where | Tìm toàn bộ nơi sử dụng một symbol/pattern — class, method, property, LocalStorage key | knowledge-agent |  |
 | /knowledge-why | Giải thích lý do tồn tại của một symbol/thiết kế — đọc tài liệu, git history, code context | knowledge-agent |  |
@@ -187,7 +187,7 @@
 | knowledge/knowledge-assistant\index\service-index.json | 0 KB |
 | knowledge/knowledge-assistant\index\symbol-index.json | 7 KB |
 | knowledge/knowledge-assistant\README.md | 3 KB |
-| knowledge/lessons.md | 19 KB |
+| knowledge/lessons.md | 22 KB |
 | knowledge/patterns\localstorage.md | 1 KB |
 | knowledge/patterns\seed-data-patterns.md | 1 KB |
 | knowledge/project\japanese-learner\deployment.md | 4 KB |
@@ -236,9 +236,9 @@
 | cleaner | team-cleanup |
 | codebase-explorer | team-explore |
 | failure-agent | team-analyze-failure |
-| general | knowledge-index, doctor, trace, test-bootstrap, knowledge-health, team-doctor, ask, explain, flow, team-syncdocs, why, compare-doc, test-cross-browser, doctor-test, test-e2e, where, impact, approve-test, team |
+| general | doctor, trace, test-bootstrap, team-doctor, ask, explain, flow, team-syncdocs, why, compare-doc, test-cross-browser, doctor-test, test-e2e, where, impact, approve-test, team |
 | guardian | team-gitguard |
-| knowledge-agent | knowledge-compare-doc, knowledge-impact, knowledge, knowledge-trace, knowledge-ask, knowledge-why, knowledge-explain, knowledge-flow, knowledge-where |
+| knowledge-agent | knowledge-compare-doc, knowledge-impact, knowledge, knowledge-trace, knowledge-index, knowledge-health, knowledge-ask, knowledge-why, knowledge-explain, knowledge-flow, knowledge-where |
 | learning-agent | team-learn |
 | planner | team-plan |
 | pusher | team-gitpush |
