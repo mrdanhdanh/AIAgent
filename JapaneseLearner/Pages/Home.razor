@@ -4,103 +4,117 @@
 <PageTitle>Japanese Learner — Học tiếng Nhật</PageTitle>
 
 <div class="home-container">
-    <div class="hero-section">
-        <div class="hero-icon" aria-hidden="true">
-            <FluentIcon Icon="@(Icons.Regular.Size48.BookContacts)" />
+    <section class="home-hero">
+        <div class="hero-copy">
+            <p class="hero-kicker">Hiragana · Katakana · Kanji · JLPT N5</p>
+            <h1 class="hero-title">
+                Japanese Learner<span class="hero-dot">.</span>
+            </h1>
+            <p class="hero-subtitle">
+                Ứng dụng học tiếng Nhật toàn diện — từ bảng chữ cái, từ vựng đến Kanji và ngữ pháp.
+                Luyện tập mỗi ngày để tiến bộ nhanh hơn.
+            </p>
+            <div class="hero-cta">
+                <FluentButton Appearance="@Appearance.Accent" Class="cta-primary" @onclick="@(() => Nav.NavigateTo("/alphabet"))">
+                    Bắt đầu học
+                </FluentButton>
+                <FluentButton Appearance="@Appearance.Lightweight" Class="cta-secondary" @onclick="@(() => Nav.NavigateTo("/words/quiz"))">
+                    Thử trắc nghiệm →
+                </FluentButton>
+            </div>
         </div>
-        <h1 class="hero-title">Japanese Learner</h1>
-        <p class="hero-subtitle">
-            Ứng dụng học tiếng Nhật toàn diện — từ bảng chữ cái, từ vựng đến Kanji.
-            Luyện tập mỗi ngày để tiến bộ nhanh hơn!
-        </p>
-    </div>
+        <div class="hero-glyph" aria-hidden="true">学</div>
+    </section>
 
     <div class="nav-grid">
-        <div class="nav-card" data-color="alphabet">
-            <div class="nav-card-icon">
-                <FluentIcon Icon="@(Icons.Regular.Size32.BookContacts)" />
+        <div class="nav-card featured" data-color="alphabet">
+            <div class="nav-card-icon" aria-hidden="true">
+                <FluentIcon Icon="@(Icons.Regular.Size28.BookContacts)" />
             </div>
-            <h2 class="nav-card-title">Bảng chữ cái</h2>
-            <p class="nav-card-desc">Học Hiragana và Katakana qua flashcard. Luyện gõ Romaji để ghi nhớ mặt chữ.</p>
+            <div class="nav-card-body">
+                <h2 class="nav-card-title">Bảng chữ cái</h2>
+                <p class="nav-card-desc">Học Hiragana và Katakana qua flashcard. Luyện gõ Romaji để ghi nhớ mặt chữ.</p>
+            </div>
             <FluentButton Appearance="@Appearance.Accent" Class="nav-card-btn" @onclick="@(() => Nav.NavigateTo("/alphabet"))">
                 Bắt đầu
             </FluentButton>
         </div>
 
         <div class="nav-card" data-color="words">
-            <div class="nav-card-icon">
-                <FluentIcon Icon="@(Icons.Regular.Size32.Document)" />
+            <div class="nav-card-icon" aria-hidden="true">
+                <FluentIcon Icon="@(Icons.Regular.Size24.Document)" />
             </div>
-            <h2 class="nav-card-title">Từ vựng</h2>
-            <p class="nav-card-desc">Học từ vựng tiếng Nhật theo chủ đề với flashcard và phiên âm chi tiết.</p>
-            <FluentButton Appearance="@Appearance.Accent" Class="nav-card-btn" @onclick="@(() => Nav.NavigateTo("/words"))">
-                Bắt đầu
+            <div class="nav-card-body">
+                <h2 class="nav-card-title">Từ vựng</h2>
+                <p class="nav-card-desc">Học từ vựng theo chủ đề với flashcard và phiên âm chi tiết.</p>
+            </div>
+            <FluentButton Appearance="@Appearance.Lightweight" Class="nav-card-btn" @onclick="@(() => Nav.NavigateTo("/words"))">
+                Mở →
             </FluentButton>
         </div>
 
         <div class="nav-card" data-color="practice">
-            <div class="nav-card-icon">
-                <FluentIcon Icon="@(Icons.Regular.Size32.Compose)" />
+            <div class="nav-card-icon" aria-hidden="true">
+                <FluentIcon Icon="@(Icons.Regular.Size24.Compose)" />
             </div>
-            <h2 class="nav-card-title">Luyện viết</h2>
-            <p class="nav-card-desc">Luyện viết tay chữ Nhật trên canvas. Vẽ chữ và nhận diện kết quả thông minh.</p>
-            <FluentButton Appearance="@Appearance.Accent" Class="nav-card-btn" @onclick="@(() => Nav.NavigateTo("/practice"))">
-                Bắt đầu
-            </FluentButton>
-        </div>
-
-        <div class="nav-card" data-color="train">
-            <div class="nav-card-icon">
-                <FluentIcon Icon="@(Icons.Regular.Size20.BookCompass)" />
+            <div class="nav-card-body">
+                <h2 class="nav-card-title">Luyện viết</h2>
+                <p class="nav-card-desc">Luyện viết tay trên canvas, nhận diện chữ bạn đã vẽ.</p>
             </div>
-            <h2 class="nav-card-title">Tập luyện</h2>
-            <p class="nav-card-desc">Vẽ và lưu mẫu chữ viết tay của bạn để cải thiện độ chính xác nhận diện.</p>
-            <FluentButton Appearance="@Appearance.Accent" Class="nav-card-btn" @onclick="@(() => Nav.NavigateTo("/practice/train"))">
-                Bắt đầu
+            <FluentButton Appearance="@Appearance.Lightweight" Class="nav-card-btn" @onclick="@(() => Nav.NavigateTo("/practice"))">
+                Mở →
             </FluentButton>
         </div>
 
         <div class="nav-card" data-color="quiz">
-            <div class="nav-card-icon">
-                <FluentIcon Icon="@(Icons.Regular.Size32.Target)" />
+            <div class="nav-card-icon" aria-hidden="true">
+                <FluentIcon Icon="@(Icons.Regular.Size24.Target)" />
             </div>
-            <h2 class="nav-card-title">Quiz từ vựng</h2>
-            <p class="nav-card-desc">Kiểm tra kiến thức từ vựng với câu hỏi trắc nghiệm nhiều lựa chọn.</p>
-            <FluentButton Appearance="@Appearance.Accent" Class="nav-card-btn" @onclick="@(() => Nav.NavigateTo("/words/quiz"))">
-                Bắt đầu
+            <div class="nav-card-body">
+                <h2 class="nav-card-title">Quiz từ vựng</h2>
+                <p class="nav-card-desc">Trắc nghiệm nhiều lựa chọn để củng cố vốn từ đã học.</p>
+            </div>
+            <FluentButton Appearance="@Appearance.Lightweight" Class="nav-card-btn" @onclick="@(() => Nav.NavigateTo("/words/quiz"))">
+                Mở →
             </FluentButton>
         </div>
 
         <div class="nav-card" data-color="kanji">
-            <div class="nav-card-icon">
-                <FluentIcon Icon="@(Icons.Regular.Size32.Compose)" />
+            <div class="nav-card-icon" aria-hidden="true">
+                <FluentIcon Icon="@(Icons.Regular.Size24.Compose)" />
             </div>
-            <h2 class="nav-card-title">Kanji</h2>
-            <p class="nav-card-desc">Tra cứu và học các chữ Kanji với âm đọc, nghĩa và ví dụ minh họa.</p>
-            <FluentButton Appearance="@Appearance.Accent" Class="nav-card-btn" @onclick="@(() => Nav.NavigateTo("/kanji"))">
-                Bắt đầu
+            <div class="nav-card-body">
+                <h2 class="nav-card-title">Kanji</h2>
+                <p class="nav-card-desc">Tra cứu và học chữ Kanji với âm On, âm Kun và ví dụ minh họa.</p>
+            </div>
+            <FluentButton Appearance="@Appearance.Lightweight" Class="nav-card-btn" @onclick="@(() => Nav.NavigateTo("/kanji"))">
+                Mở →
             </FluentButton>
         </div>
 
         <div class="nav-card" data-color="grammar">
-            <div class="nav-card-icon">
+            <div class="nav-card-icon" aria-hidden="true">
                 <FluentIcon Icon="@(Icons.Regular.Size24.TextGrammarWand)" />
             </div>
-            <h2 class="nav-card-title">Ngữ pháp N5</h2>
-            <p class="nav-card-desc">Học các mẫu ngữ pháp JLPT N5 với giải thích chi tiết và ví dụ minh họa.</p>
-            <FluentButton Appearance="@Appearance.Accent" Class="nav-card-btn" @onclick="@(() => Nav.NavigateTo("/grammar"))">
-                Bắt đầu
+            <div class="nav-card-body">
+                <h2 class="nav-card-title">Ngữ pháp N5</h2>
+                <p class="nav-card-desc">Các mẫu ngữ pháp JLPT N5 với giải thích và ví dụ minh họa.</p>
+            </div>
+            <FluentButton Appearance="@Appearance.Lightweight" Class="nav-card-btn" @onclick="@(() => Nav.NavigateTo("/grammar"))">
+                Mở →
             </FluentButton>
         </div>
 
         <div class="nav-card" data-color="admin">
-            <div class="nav-card-icon">
-                <FluentIcon Icon="@(Icons.Regular.Size32.Settings)" />
+            <div class="nav-card-icon" aria-hidden="true">
+                <FluentIcon Icon="@(Icons.Regular.Size24.Settings)" />
             </div>
-            <h2 class="nav-card-title">Quản trị</h2>
-            <p class="nav-card-desc">Quản lý dữ liệu: thêm, sửa, xóa chữ cái và từ vựng trong hệ thống.</p>
-            <FluentButton Appearance="@Appearance.Accent" Class="nav-card-btn" @onclick="@(() => Nav.NavigateTo("/admin"))">
-                Đi đến
+            <div class="nav-card-body">
+                <h2 class="nav-card-title">Quản trị</h2>
+                <p class="nav-card-desc">Quản lý dữ liệu: thêm, sửa, xóa chữ cái, từ vựng, Kanji và ngữ pháp.</p>
+            </div>
+            <FluentButton Appearance="@Appearance.Lightweight" Class="nav-card-btn" @onclick="@(() => Nav.NavigateTo("/admin"))">
+                Mở →
             </FluentButton>
         </div>
     </div>
@@ -108,82 +122,167 @@
 
 <style>
     .home-container {
-        max-width: 900px;
+        max-width: 1080px;
         margin: 0 auto;
-        padding: 2rem 1rem;
+        padding: 1.5rem 0 3rem;
     }
 
-    .hero-section {
-        text-align: center;
-        margin-bottom: 3rem;
+    .home-hero {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 40px;
+        padding: 48px 0 40px;
+        overflow: hidden;
     }
 
-    .hero-icon {
-        font-size: 3rem;
-        margin-bottom: 1rem;
-        color: var(--accent-fill-rest);
+    .hero-copy {
+        position: relative;
+        z-index: 1;
+        flex: 1;
+        min-width: 0;
+    }
+
+    .hero-kicker {
+        margin: 0 0 12px;
+        font-size: 0.78rem;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--accent-color);
     }
 
     .hero-title {
-        font-size: 2.5rem;
-        font-weight: 700;
-        margin: 0.5rem 0;
-        color: var(--neutral-foreground-rest);
+        margin: 0 0 16px;
+        font-size: clamp(2.6rem, 6vw, 4.2rem);
+        font-weight: 800;
+        line-height: 1.05;
+        letter-spacing: -0.03em;
+        color: var(--text-primary);
+    }
+
+    .hero-dot {
+        color: var(--accent-color);
     }
 
     .hero-subtitle {
-        font-size: 1.1rem;
-        color: var(--neutral-foreground-hint);
-        max-width: 600px;
-        margin: 1rem auto 0;
-        line-height: 1.6;
+        margin: 0 0 28px;
+        max-width: 56ch;
+        font-size: 1.05rem;
+        line-height: 1.7;
+        color: var(--text-secondary);
+    }
+
+    .hero-cta {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    .cta-primary {
+        min-width: 150px;
+    }
+
+    .hero-glyph {
+        position: absolute;
+        right: -8px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-family: var(--font-family);
+        font-size: clamp(9rem, 22vw, 17rem);
+        font-weight: 800;
+        line-height: 1;
+        color: var(--accent-color);
+        opacity: 0.07;
+        user-select: none;
+        pointer-events: none;
     }
 
     .nav-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 1.5rem;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
     }
 
     .nav-card {
-        background: var(--neutral-layer-3);
-        border-radius: 12px;
-        padding: 1.5rem;
         display: flex;
         flex-direction: column;
-        align-items: center;
-        text-align: center;
-        transition: transform 0.2s, box-shadow 0.2s;
-        border: 1px solid var(--neutral-stroke-divider-rest);
+        align-items: flex-start;
+        text-align: left;
+        background: var(--bg-card);
+        border-radius: var(--radius-lg);
+        padding: 24px;
+        box-shadow: var(--shadow-sm);
+        border: 1px solid var(--drawer-header-border);
+        transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
     }
 
     .nav-card:hover {
-        transform: translateY(-4px);
+        transform: translateY(-3px);
         box-shadow: var(--shadow-md);
+        border-color: color-mix(in srgb, var(--accent-color) 35%, transparent);
+    }
+
+    .nav-card.featured {
+        grid-column: span 2;
+        background:
+            radial-gradient(480px 220px at 92% -10%, var(--accent-soft) 0%, transparent 60%),
+            var(--bg-card);
     }
 
     .nav-card-icon {
-        font-size: 2rem;
-        margin-bottom: 1rem;
-        color: var(--accent-fill-rest);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 52px;
+        height: 52px;
+        border-radius: 14px;
+        margin-bottom: 16px;
+        color: var(--text-on-primary);
+        box-shadow: 0 4px 14px rgba(43, 33, 31, 0.14);
+    }
+
+    .nav-card[data-color="alphabet"] .nav-card-icon { background: var(--icon-hiragana-bg); }
+    .nav-card[data-color="words"] .nav-card-icon { background: var(--icon-word-bg); }
+    .nav-card[data-color="practice"] .nav-card-icon { background: var(--practice-icon-bg); }
+    .nav-card[data-color="quiz"] .nav-card-icon { background: var(--icon-hiragana-bg); }
+    .nav-card[data-color="kanji"] .nav-card-icon { background: var(--icon-kanji-bg); }
+    .nav-card[data-color="grammar"] .nav-card-icon { background: var(--icon-grammar-bg); }
+    .nav-card[data-color="admin"] .nav-card-icon { background: var(--icon-word-bg); }
+
+    .nav-card-body {
+        flex-grow: 1;
     }
 
     .nav-card-title {
-        font-size: 1.25rem;
-        font-weight: 600;
-        margin: 0 0 0.5rem;
-        color: var(--neutral-foreground-rest);
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin: 0 0 8px;
+        color: var(--text-primary);
+        letter-spacing: -0.01em;
     }
 
     .nav-card-desc {
         font-size: 0.9rem;
-        color: var(--neutral-foreground-hint);
-        margin: 0 0 1.25rem;
-        line-height: 1.5;
-        flex-grow: 1;
+        color: var(--text-secondary);
+        margin: 0 0 20px;
+        line-height: 1.6;
     }
 
     .nav-card-btn {
-        width: 100%;
+        min-width: 96px;
+    }
+
+    @@media (max-width: 720px) {
+        .nav-card.featured {
+            grid-column: span 1;
+        }
+        .home-hero {
+            padding-top: 24px;
+        }
+        .hero-glyph {
+            display: none;
+        }
     }
 </style>

@@ -20,11 +20,10 @@ public class HomeTests : BunitTestBase
     {
         var cut = Context.Render<JapaneseLearner.Pages.Home>();
 
-        // Should have 8 navigation cards
+        // Should have 7 navigation cards
         Assert.Contains("Bảng chữ cái", cut.Markup);
         Assert.Contains("Từ vựng", cut.Markup);
         Assert.Contains("Luyện viết", cut.Markup);
-        Assert.Contains("Tập luyện", cut.Markup);
         Assert.Contains("Quiz từ vựng", cut.Markup);
         Assert.Contains("Kanji", cut.Markup);
         Assert.Contains("Ngữ pháp N5", cut.Markup);
@@ -32,13 +31,14 @@ public class HomeTests : BunitTestBase
     }
 
     [Fact]
-    public void Render_HasEightNavButtons()
+    public void Render_HasNavigationButtons()
     {
         var cut = Context.Render<JapaneseLearner.Pages.Home>();
 
+        // 2 hero CTAs + 7 card buttons
         var buttons = cut.FindAll("fluent-button, button");
 
-        Assert.Equal(8, buttons.Count);
+        Assert.Equal(9, buttons.Count);
     }
 
     [Fact]
@@ -47,7 +47,8 @@ public class HomeTests : BunitTestBase
         var navMan = Context.Services.GetRequiredService<NavigationManager>();
         var cut = Context.Render<JapaneseLearner.Pages.Home>();
 
-        cut.FindAll("fluent-button, button")[0].Click();
+        var button = cut.FindAll("fluent-button, button").First(b => b.TextContent.Contains("Bắt đầu học"));
+        button.Click();
 
         Assert.EndsWith("/alphabet", navMan.Uri);
     }
@@ -58,7 +59,8 @@ public class HomeTests : BunitTestBase
         var navMan = Context.Services.GetRequiredService<NavigationManager>();
         var cut = Context.Render<JapaneseLearner.Pages.Home>();
 
-        cut.FindAll("fluent-button, button")[1].Click();
+        var wordsCard = cut.FindAll(".nav-card").First(c => c.TextContent.Contains("Từ vựng"));
+        wordsCard.QuerySelector("fluent-button")!.Click();
 
         Assert.EndsWith("/words", navMan.Uri);
     }
@@ -69,7 +71,8 @@ public class HomeTests : BunitTestBase
         var navMan = Context.Services.GetRequiredService<NavigationManager>();
         var cut = Context.Render<JapaneseLearner.Pages.Home>();
 
-        cut.FindAll("fluent-button, button")[5].Click();
+        var kanjiCard = cut.FindAll(".nav-card").First(c => c.TextContent.Contains("Kanji"));
+        kanjiCard.QuerySelector("fluent-button")!.Click();
 
         Assert.EndsWith("/kanji", navMan.Uri);
     }
@@ -80,7 +83,8 @@ public class HomeTests : BunitTestBase
         var navMan = Context.Services.GetRequiredService<NavigationManager>();
         var cut = Context.Render<JapaneseLearner.Pages.Home>();
 
-        cut.FindAll("fluent-button, button")[7].Click();
+        var adminCard = cut.FindAll(".nav-card").First(c => c.TextContent.Contains("Quản trị"));
+        adminCard.QuerySelector("fluent-button")!.Click();
 
         Assert.EndsWith("/admin", navMan.Uri);
     }

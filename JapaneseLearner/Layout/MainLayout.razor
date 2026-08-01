@@ -1,21 +1,20 @@
 ﻿@inherits LayoutComponentBase
 @implements IDisposable
 @inject IThemeService ThemeService
-@inject NavigationManager Navigation
 
-<FluentDesignTheme CustomColor="#E63946"
+<FluentDesignTheme CustomColor="#C5413B"
                    Mode="@(ThemeService.IsDarkMode ? DesignThemeModes.Dark : DesignThemeModes.Light)"
                    StorageName="japanese-learner-theme" />
+
+<a href="#main-content" class="skip-link">Bỏ qua điều hướng</a>
 
 <div class="app-layout" data-theme="@(ThemeService.IsDarkMode ? "dark" : "light")">
     <header class="app-bar">
         <div class="app-bar-inner">
-            <FluentButton Appearance="@Appearance.Lightweight" class="nav-btn home-btn" aria-label="Trang chủ" @onclick="@(() => Navigation.NavigateTo("/"))">
-                <FluentIcon Icon="@(Icons.Regular.Size20.BookContacts)" />
-            </FluentButton>
-            <h1 class="app-title">
-                <a href="." class="home-link">Japanese Learner</a>
-            </h1>
+            <a href="." class="brand" aria-label="Japanese Learner — Trang chủ">
+                <span class="brand-mark" aria-hidden="true">学</span>
+                <span class="brand-name">Japanese Learner</span>
+            </a>
             <div class="app-bar-spacer"></div>
             <FluentButton Appearance="@Appearance.Lightweight" class="nav-btn theme-btn" OnClick="ToggleTheme" Title="Chuyển đổi giao diện" aria-label="Chuyển đổi giao diện">
                 @if (ThemeService.IsDarkMode)
@@ -81,7 +80,7 @@
         </aside>
     }
 
-    <main class="page-wrapper">
+    <main class="page-wrapper" id="main-content">
         @Body
     </main>
 </div>

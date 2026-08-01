@@ -28,6 +28,7 @@ dotnet test JapaneseLearner.Tests\JapaneseLearner.Tests.csproj
 dotnet test JapaneseLearner.E2ETests\JapaneseLearner.E2ETests.csproj
 ```
 
+- E2E tests share a single `AppFixture` via the `E2E` xUnit collection (`DisableParallelization = true`) — one dev server per run.
 - E2E Playwright browser path hardcoded in `PlaywrightFixture.cs:24` — will fail on other machines.
 - `BunitTestBase` sets up **FluentUI** JSInterop mocks (9 modules). Use as base for bUnit component tests.
 - `MockStorageService` implements `ILocalStorageService` for service-layer tests without browser storage.
@@ -38,6 +39,7 @@ dotnet test JapaneseLearner.E2ETests\JapaneseLearner.E2ETests.csproj
 |------|-----------|-------------|
 | `/` | `Home.razor` | Landing page with nav cards |
 | `/alphabet` | `AlphabetStudy.razor` | Hiragana/Katakana flashcard quiz |
+| `/alphabet/quiz` | `AlphabetQuiz.razor` | Hiragana/Katakana quiz |
 | `/words` | `WordStudy.razor` | Vocabulary flashcard quiz (7 type tabs) |
 | `/words/quiz` | `WordQuiz.razor` | Multiple-choice word quiz |
 | `/kanji` | `KanjiStudy.razor` | Kanji study list |
@@ -45,6 +47,8 @@ dotnet test JapaneseLearner.E2ETests\JapaneseLearner.E2ETests.csproj
 | `/kanji/quiz` | `KanjiQuiz.razor` | Multiple-choice kanji quiz |
 | `/grammar` | `GrammarStudy.razor` | Grammar pattern study list |
 | `/grammar/{Id:int}` | `GrammarDetail.razor` | Single grammar detail |
+| `/practice` | `Practice.razor` | Practice hub |
+| `/practice/train` | `Training.razor` | Guided training |
 | `/admin` | `Admin.razor` | CRUD for chars, words, kanji, grammar (4-tab layout) |
 
 ## Architecture notes
@@ -52,7 +56,7 @@ dotnet test JapaneseLearner.E2ETests\JapaneseLearner.E2ETests.csproj
 - **FluentUI 4.14.3** — not MudBlazor. Main components: `FluentButton`, `FluentSelect<TOption>`, `FluentDialog`, `FluentProgressRing`, `FluentDesignTheme`, `FluentNavMenu`/`FluentNavLink`. Uses `Appearance` enum (`.Accent`, `.Lightweight`, `.Neutral`).
 - **Service-Interface DI**: `ICharService`/`CharService`, `IWordService`/`WordService`, `IKanjiService`/`KanjiService`, `IGrammarService`/`GrammarService`, `IThemeService`/`ThemeService` — `AddScoped` in `Program.cs`. Adding a new service requires touching `Program.cs`.
 - **Cache-first storage**: Services cache in-memory, persist to `Blazored.LocalStorage`. Seed data on first load. Write-through on every mutation.
-- **Progress reporting**: `WordService` and `KanjiService` accept optional `IProgress<int>` in `GetAllAsync` for large seed data loads.
+- **Progress reporting**: `WordService`, `KanjiService`, and `GrammarService` all accept optional `IProgress<int>` in `GetAllAsync` for large seed data loads.
 - **Tri-state rendering**: Each page handles Loading → Empty → Data via `isLoading` + `list.Count == 0`.
 - **CSS**: `MainLayout.razor.css` (CSS isolation for layout); all pages use inline `<style>` blocks.
 - **ThemeService**: dark mode toggle, persisted via `Blazored.LocalStorage`, uses `FluentDesignTheme` component.
@@ -69,7 +73,7 @@ dotnet test JapaneseLearner.E2ETests\JapaneseLearner.E2ETests.csproj
 ## CI / Deploy
 
 - GitHub Pages via `.github/workflows/deploy.yml` — triggers on push to `master`, publishes to `gh-pages` branch.
-- Deploy runs `dotnet publish -c Release`, copies output under `/JapaneseLearner/` subpath via `gh-pages-root/` wrapper.
+- Deploy runs `dotnet publish -c Release`, copies output under `/JapaneseLearner/` subpath, merges `gh-pages-root/` (`404.html`, `index.html`) over it, and rewrites `<base href>` to `/AIAgent/JapaneseLearner/`.
 - .NET 10 omits the unhashed `blazor.webassembly.js` copy; the workflow manually copies the hashed version.
 
 ## Pre-Push Review (GitGuard)
