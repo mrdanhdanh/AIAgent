@@ -65,9 +65,20 @@ dotnet test JapaneseLearner.E2ETests\JapaneseLearner.E2ETests.csproj
 
 ## .opencode conventions
 
-- Agent definitions in `.opencode/agents/` (Vietnamese). Dev-team workflow in `.opencode/skills/dev-team/SKILL.md`.
+- Agent definitions in `.opencode/agents/` (Vietnamese). Dev-team workflow runs via **Workflow Engine v4** (see below); `.opencode/skills/dev-team/SKILL.md` giữ bản 13 bước cũ làm reference.
 - Knowledge base at `.opencode/knowledge/` stores lessons and patterns from past workflows.
 - Model: `opencode/deepseek-v4-flash-free`.
+
+## Workflow Engine v4
+
+- **`/team`** là thin launcher chạy qua **Workflow Engine v4** (`.opencode/workflow-engine/` 8 modules: README, engine, loader, validator, executor, phase-runner, state-machine, recovery) thay cho body 13 bước cũ. Cách dùng: `/team <yêu cầu> [--workflow <default|bugfix|feature|ui|docs>]`.
+- **Definitions** tại `.opencode/workflow/definitions/*.yaml` — khai báo phase, agent/command, depends_on, retry. Schema contract tại `.opencode/workflow/schemas/workflow.schema.yaml` (v4.0, `default_workflow: default`).
+- **Runtime contexts** (`workflow.json`, `state.json`, artifacts) nằm trong `.opencode/workflow/WF-*/` — do engine tạo, KHÔNG sửa tay. `WF_CONTEXT_ROOT` env override root (cho smoke-test chạy trong `$env:TEMP`).
+- **Validator**: `.opencode/scripts/workflow-validator.ps1` (parser YAML subset, không dùng ConvertFrom-Yaml — module không available trên PS 5.1). Chạy PASS 5/5 definitions, exit 0. `schema-validator.ps1` là tool legacy false-positive — KHÔNG dùng làm gate cho engine docs.
+- **Error codes**: WF-ERR-001..009 (không viết `#` trước WF-ID/WF-ERR trong tài liệu).
+- **Quy ước file**: UTF-8 no-BOM, spaces (2-space indent) không tab, mọi .md có frontmatter (name, description, agent).
+- **Migration/rollback**: `.opencode/workflow/MIGRATION_GUIDE.md` — restore nhanh team.md + sync-system-docs.ps1 từ `.opencode/backup/<WF-ID>/`.
+- Các lệnh thành phần chạy riêng: `/team-analyze`, `/team-plan`, `/team-review`, `/team-build`, `/team-ui-audit`, `/team-testplan`, `/team-test`, `/team-selfimprove`, `/team-gitguard`, `/team-gitpush`, `/team-syncdocs`.
 - **`/doctor`**: kiểm tra sức khỏe hệ thống AI Agent Framework — Environment, Agents, Commands, Skills, Knowledge, Workflow, Contracts, Runtime (simulation), Capability (benchmark). Có health score + self-repair an toàn. Alias: `/team-doctor`. Chi tiết: `.opencode/commands/doctor.md`.
 
 ## QA Testing Commands

@@ -1,4 +1,4 @@
-﻿---
+---
 name: dev-team
 description: Hướng dẫn sử dụng Dev Agent Team gồm 12 agents (10 core + 2 support). Dùng khi cần phân tích, lập kế hoạch, đánh giá, code, kiểm thử một yêu cầu phát triển. Tích hợp cơ chế Self-Improvement với approval gate, Failure Learning System với Root Cause Analysis và Learning Pipeline. Sử dụng câu lệnh team hoặc team-*.
 schema_version: "3.2"
@@ -2597,6 +2597,8 @@ static_analysis:
 - Nếu workflow bị block ở bước nào, cung cấp đủ thông tin để người dùng biết:
   - Đang ở bước nào, Output hiện tại, Cần quyết định gì
 - Khi workflow hoàn tất, output báo cáo phải đầy đủ và rõ ràng
+
+
 
 
 

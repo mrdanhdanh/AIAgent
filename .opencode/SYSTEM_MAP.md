@@ -1,7 +1,7 @@
-﻿# He Thong .opencode - So Do Tong The
+# He Thong .opencode - So Do Tong The
 
-> **Tu dong tao luc:** 2026-08-01 19:38:36
-> **Workflow ID:** WF-20260801-SYNC
+> **Tu dong tao luc:** 2026-08-02 09:25:56
+> **Workflow ID:** WF-20260802-SYNC
 > **Cap nhat:** Toan bo agents, commands, skills, scripts, knowledge
 
 ---
@@ -25,9 +25,9 @@
 ```
 .opencode/
 |-- agents/           # 18 agent definitions
-|-- commands/         # 52 command templates
+|-- commands/         # 53 command templates
 |-- skills/           # 28 skill packages
-|-- scripts/          # 9 utility scripts
+|-- scripts/          # 10 utility scripts
 |-- knowledge/        # Knowledge base
 |-- backup/           # Backup artifacts
 |-- workflow/         # Workflow artifacts
@@ -46,9 +46,9 @@
 | cleaner | Workspace Cleaner Agent v2.0 — quét rác theo tiêu chí cấu hình chi tiết, phân loại LOW/MEDIUM/HIGH, backup workflow-linked, dry-run bắt buộc, protected list 4 nhóm. | opencode/deepseek-v4-flash-free |  | team-cleanup |
 | codebase-explorer | Khám phá cấu trúc dự án, phân tích codebase, mapping dependencies và patterns. Agent read-only chạy trước khi thực hiện thay đổi. | opencode/deepseek-v4-flash-free |  | team-explore |
 | failure-agent | Chuyên gia phân tích và chuẩn hóa lỗi — classify error type, normalize error message, search failure memory, đề xuất lesson phù hợp. Read-only agent. | opencode/deepseek-v4-flash-free |  | team-analyze-failure |
-| general | General-purpose orchestrator agent — điều phối workflow, triệu hồi sub-agents, quản lý state machine | opencode/deepseek-v4-flash-free |  | doctor, trace, test-bootstrap, team-doctor, ask, explain, flow, team-syncdocs, why, compare-doc, test-cross-browser, doctor-test, test-e2e, where, impact, approve-test, team |
+| general | General-purpose orchestrator agent — điều phối workflow, triệu hồi sub-agents, quản lý state machine | opencode/deepseek-v4-flash-free |  | team-syncdocs, team-doctor, doctor, team-bugfix, trace, test-bootstrap, ask, explain, flow, why, compare-doc, test-cross-browser, doctor-test, test-e2e, where, impact, approve-test, team |
 | guardian | Chuyên gia review source code trước khi push lên git — phát hiện secret, lỗi convention, lỗ hổng bảo mật, vi phạm quy tắc dự án | opencode/deepseek-v4-flash-free |  | team-gitguard |
-| knowledge-agent | Intent Analyzer + Router cho Knowledge Assistant — phân loại câu hỏi, chọn skill pipeline, tổng hợp trả lời có nguồn | opencode/deepseek-v4-flash-free |  | knowledge-compare-doc, knowledge-impact, knowledge, knowledge-trace, knowledge-index, knowledge-health, knowledge-ask, knowledge-why, knowledge-explain, knowledge-flow, knowledge-where |
+| knowledge-agent | Intent Analyzer + Router cho Knowledge Assistant — phân loại câu hỏi, chọn skill pipeline, tổng hợp trả lời có nguồn | opencode/deepseek-v4-flash-free |  | knowledge-compare-doc, knowledge, knowledge-trace, knowledge-impact, knowledge-health, knowledge-ask, knowledge-index, knowledge-why, knowledge-explain, knowledge-flow, knowledge-where |
 | learning-agent | Chuyên gia Learning Pipeline — đọc failure records từ memory, phân tích patterns xuyên suốt, auto-generate lessons và patterns mới. Ghi trực tiếp vào memory/. Cần approval gate cho MEDIUM/HIGH impact. | opencode/deepseek-v4-flash-free |  | team-learn |
 | planner | Mở rộng: Thiết kế giải pháp + Lập kế hoạch thực thi chi tiết. Đảm nhiệm cả Design phase và Plan phase. | opencode/deepseek-v4-flash-free |  | team-plan |
 | pusher | Chuyên gia thực hiện git push an toàn — auto-commit từ diff, safety checks, build, test, confirmation gate, push execution, post-push verify | opencode/deepseek-v4-flash-free |  | team-gitpush |
@@ -89,6 +89,7 @@
 | /team | Chạy toàn bộ team workflow: analyze → design/plan → review → backup → build → static analysis → ui audit → testplan → test → skill validation → complete | general |  |
 | /team-analyze | Chỉ chạy bước phân tích yêu cầu (dùng agent analyst) | analyst |  |
 | /team-analyze-failure | Phân tích lỗi trong workflow. Thu thập raw error, normalize, classify, search failure memory, output phân tích. Gọi failure-agent. | failure-agent |  |
+| /team-bugfix | Quy trình nhận và fix bug — nhận báo cáo → tái hiện bug → root cause → đề xuất chỉnh sửa → kiểm tra sau sửa → test bUnit + E2E → báo cáo. Dùng agent general (orchestrator) + agents chuyên biệt | general |  |
 | /team-build | Thực thi kế hoạch đã duyệt (dùng agent builder) | builder |  |
 | /team-cleanup | Dọn rác Workspace tự động — xóa build artifacts, backup cũ, temp files, cache. Tích hợp dry-run, backup trước khi xóa, confirmation gate. | cleaner |  |
 | /team-doctor | Doctor (alias /team-doctor) — kiểm tra sức khỏe hệ thống AI Agent Framework. Tương đương /doctor: Environment, System, Runtime, Capability, health score, self-repair an toàn. | general |  |
@@ -167,7 +168,8 @@
 | knowledge-index | Utility script | 10 KB |
 | rollback-utility | Rollback Utility — rollback file từ backup snapshot khi catastrophic failure. | 9 KB |
 | schema-validator | Schema Validator — validate YAML schema của agent definitions. | 5 KB |
-| sync-system-docs | System Docs Sync — đồng bộ system docs + System Evolution Engine (9 engines). | 50 KB |
+| sync-system-docs | System Docs Sync — đồng bộ system docs + System Evolution Engine (9 engines). | 51 KB |
+| workflow-validator | Workflow Validator v4 — validate 5 workflow definitions (.opencode/workflow/definitions/*.yaml). | 14 KB |
 
 ---
 
@@ -236,9 +238,9 @@
 | cleaner | team-cleanup |
 | codebase-explorer | team-explore |
 | failure-agent | team-analyze-failure |
-| general | doctor, trace, test-bootstrap, team-doctor, ask, explain, flow, team-syncdocs, why, compare-doc, test-cross-browser, doctor-test, test-e2e, where, impact, approve-test, team |
+| general | team-syncdocs, team-doctor, doctor, team-bugfix, trace, test-bootstrap, ask, explain, flow, why, compare-doc, test-cross-browser, doctor-test, test-e2e, where, impact, approve-test, team |
 | guardian | team-gitguard |
-| knowledge-agent | knowledge-compare-doc, knowledge-impact, knowledge, knowledge-trace, knowledge-index, knowledge-health, knowledge-ask, knowledge-why, knowledge-explain, knowledge-flow, knowledge-where |
+| knowledge-agent | knowledge-compare-doc, knowledge, knowledge-trace, knowledge-impact, knowledge-health, knowledge-ask, knowledge-index, knowledge-why, knowledge-explain, knowledge-flow, knowledge-where |
 | learning-agent | team-learn |
 | planner | team-plan |
 | pusher | team-gitpush |
@@ -370,5 +372,5 @@
 
 ---
 
-> **Tong so:** 18 agents . 52 commands . 28 skills . 9 scripts . 27 knowledge files
+> **Tong so:** 18 agents . 53 commands . 28 skills . 10 scripts . 27 knowledge files
 > **Sinh boi:** sync-system-docs.ps1
