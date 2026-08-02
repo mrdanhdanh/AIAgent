@@ -1,0 +1,67 @@
+# plugin.schema.yaml — Plugin Schema v1
+# Plugin = package hoàn chỉnh (Micro Framework), mở rộng AIOS không sửa Core.
+version: "11.0"
+schema: 1
+
+type: object
+required:
+  - id
+  - name
+  - version
+  - framework
+properties:
+  id: { type: string, description: namespace: oraclesupport / blazor } 
+  name: { type: string }
+  version: { type: string, description: semver }
+  author: { type: string }
+  framework: { type: string, description: ">=4.0" }
+
+  dependencies:
+    type: array
+    items: { type: string, description: "runtime>=1, capability>=1, blazor-plugin" }
+
+  exports:
+    type: object
+    properties:
+      agents: { type: array, items: { type: string } }
+      skills: { type: array, items: { type: string } }
+      commands: { type: array, items: { type: string } }
+      capabilities: { type: array, items: { type: string } }
+      workflows: { type: array, items: { type: string } }
+      knowledge: { type: array, items: { type: string } }
+      doctor_rules: { type: array, items: { type: string } }
+      events: { type: array, items: { type: string } }
+      widgets: { type: array, items: { type: string } }
+      policies: { type: array, items: { type: string } }
+
+  permissions:
+    type: array
+    items:
+      type: string
+      enum: [context.read, context.write, artifact.read, artifact.write,
+             knowledge.read, knowledge.write, event.publish, event.subscribe,
+             registry.read, registry.write, runtime.read, doctor.read,
+             workflow.execute, simulation.run]
+
+  # Plugin Manifest (nâng cấp)
+  manifest:
+    type: object
+    properties:
+      exports_count:
+        type: object
+        properties:
+          agents: { type: integer }
+          skills: { type: integer }
+          commands: { type: integer }
+          knowledge: { type: integer }
+          capabilities: { type: integer }
+          doctor_rules: { type: integer }
+          events: { type: integer }
+      certified: { type: boolean, default: false }
+      cert_level: { type: string, enum: [none, basic, certified] }
+
+# Quy ước:
+# - Plugin chỉ dùng SDK, không gọi Runtime trực tiếp.
+# - permissions khai báo rõ — Framework cấp quyền.
+# - Plugin thiếu dependency → không enable.
+# - framework không tương thích → reject.
