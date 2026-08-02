@@ -1,0 +1,74 @@
+# simulation.schema.yaml — Simulation Object Schema v1
+# Simulation là Execution Mode của Runtime — không phải engine song song.
+version: "7.0"
+schema: 1
+
+type: object
+required:
+  - id
+  - workflow
+  - mode
+  - risk_score
+  - status
+  - recommendation
+properties:
+  id: { type: string, description: "SIM-NNN" }
+  workflow: { type: string, description: tên workflow definition }
+  version: { type: string }
+  timestamp: { type: string, description: ISO8601 }
+
+  mode:
+    type: string
+    enum: [dry-run, mock, predict, replay, what-if]
+
+  risk_score:
+    type: number
+    minimum: 0
+    maximum: 100
+
+  confidence:
+    type: number
+    minimum: 0
+    maximum: 100
+    description: Confidence Score (Confidence Engine)
+
+  status:
+    type: string
+    enum: [pending, running, completed, failed]
+
+  steps:
+    type: array
+    items:
+      type: object
+      properties:
+        phase: { type: string }
+        capability: { type: string }
+        agent: { type: string }
+        risk: { type: number }
+        scenario: { type: string }
+
+  metrics:
+    type: object
+    properties:
+      estimated_tokens: { type: integer }
+      estimated_duration: { type: integer }
+      estimated_artifacts: { type: integer }
+      estimated_events: { type: integer }
+      scenarios: { type: integer }
+
+  recommendation:
+    type: string
+    enum: [proceed, proceed-with-warning, reject]
+
+  warnings:
+    type: array
+    items: { type: string }
+
+  report_path:
+    type: string
+    description: link tới simulation report
+
+# Quy ước:
+# - Simulation KHÔNG gọi AI, không sửa gì (dry-run/mock).
+# - Simulation chạy trên cùng Runtime core (scheduler, state machine, resolver) — chỉ khác mode.
+# - recommendation: proceed | proceed-with-warning | reject.
