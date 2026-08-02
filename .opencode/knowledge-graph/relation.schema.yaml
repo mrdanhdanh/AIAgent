@@ -1,0 +1,28 @@
+# relation.schema.yaml — Relation Schema v1
+# Relation = edge trong System Knowledge Graph.
+version: "9.0"
+
+type: object
+required:
+  - id
+  - type
+  - source
+  - target
+properties:
+  id: { type: string, description: "REL-NNN" }
+  type:
+    type: string
+    enum: [uses, depends_on, creates, consumes, implements, extends,
+           inherits, requires, references, similar_to, conflicts_with, part_of]
+  source: { type: string, description: entity id (ENT-NNN) }
+  target: { type: string, description: entity id (ENT-NNN) }
+  weight: { type: number, default: 1.0, description: độ mạnh quan hệ }
+  confidence: { type: number, default: 1.0 }
+  created_by: { type: string, description: indexer/agent tạo }
+  source_ref: { type: string, description: file/line nguồn sinh ra }
+
+# Quy ước:
+# - Relation nối 2 entity đã tồn tại (validate khi save).
+# - weight dùng cho ranking (semantic link).
+# - Không cycle (validator KG-006).
+# - Plugin thêm entity + relation mới không sửa lõi.
