@@ -1,0 +1,85 @@
+# output.schema.yaml — Agent Output Contracts
+# Chuẩn dữ liệu mà agent TRẢ. Runtime validate sau khi agent chạy.
+version: "4.0"
+
+outputs:
+  - id: planning-output
+    agent: planner
+    description: Kết quả planner — implementation plan
+    fields:
+      - name: tasks
+        type: array
+        required: true
+        description: danh sách task phân rã
+      - name: artifacts
+        type: array
+        required: false
+        description: file sinh ra (design.md, plan.md)
+      - name: metrics
+        type: array
+        required: false
+        description: ước lượng (effort, risk)
+
+  - id: build-output
+    agent: builder
+    description: Kết quả builder — source code
+    fields:
+      - name: source_code
+        type: array
+        required: true
+        description: list file đã tạo/sửa
+      - name: build_success
+        type: boolean
+        required: true
+      - name: test_pass_rate
+        type: number
+        required: false
+
+  - id: review-output
+    agent: reviewer
+    description: Kết quả reviewer — verdict + issues
+    fields:
+      - name: verdict
+        type: string
+        required: true
+        enum: [PASS, BLOCKED, WARNING]
+      - name: issues
+        type: array
+        required: false
+        description: list {severity, message}
+
+  - id: test-output
+    agent: tester
+    description: Kết quả tester — report + coverage
+    fields:
+      - name: passed
+        type: integer
+        required: true
+      - name: failed
+        type: integer
+        required: true
+      - name: coverage
+        type: number
+        required: false
+      - name: report_path
+        type: string
+        required: false
+
+  - id: analysis-output
+    agent: analyst
+    description: Kết quả phân tích — scope + risk
+    fields:
+      - name: scope
+        type: string
+        required: true
+      - name: risk_list
+        type: array
+        required: false
+      - name: tasks
+        type: array
+        required: false
+
+# Quy ước:
+# - Output contract = hợp đồng. Agent không được trả lời tự do ngoài contract.
+# - Runtime validate output (đủ required field, đúng type).
+# - Backward compatible khi thêm optional field.

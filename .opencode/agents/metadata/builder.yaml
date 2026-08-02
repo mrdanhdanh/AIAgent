@@ -1,0 +1,48 @@
+# builder.yaml — Agent Definition (4 lớp)
+# Identity + Capability + Behavior + Runtime
+# Schema: agent.schema.yaml
+
+# ===== Identity =====
+id: builder
+name: Builder Agent
+version: "2.0"
+schema: 1
+status: stable
+owner: core
+description: Viết code và thực hiện thay đổi
+replacement: null
+
+# ===== Capability =====
+capabilities:
+  supports: [implementation.code, implementation.refactor, implementation.fix]
+  requires: [planning.task]
+  priority: 90
+  tags: [code, csharp, blazor]
+
+# ===== Behavior =====
+behavior:
+  entry_prompt: prompt.md
+  contracts:
+    input: build-input
+    output: build-output
+  constraints:
+    requires_context: [plan, task, project]
+    forbidden_context: []
+
+# ===== Runtime =====
+runtime:
+  max_tokens: 16000
+  timeout: 600
+  retry: 2
+  parallel: false
+
+# ===== Manifest =====
+manifest:
+  id: builder
+  version: "2.0"
+  schema: 1
+  framework: "4.0"
+  compatibility:
+    - capability >= 1.0
+    - runtime >= 1.0
+    - contract >= 1.0

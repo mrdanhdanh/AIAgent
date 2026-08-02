@@ -1,0 +1,48 @@
+# planner.yaml — Agent Definition (4 lớp)
+# Identity + Capability + Behavior + Runtime
+# Schema: agent.schema.yaml
+
+# ===== Identity =====
+id: planner
+name: Planner Agent
+version: "2.0"
+schema: 1
+status: stable
+owner: core
+description: Thiết kế giải pháp + lập kế hoạch thực thi
+replacement: null
+
+# ===== Capability =====
+capabilities:
+  supports: [architecture.design, planning.task, planning.test]
+  requires: []
+  priority: 90
+  tags: [planning, design]
+
+# ===== Behavior =====
+behavior:
+  entry_prompt: prompt.md
+  contracts:
+    input: planning-input
+    output: planning-output
+  constraints:
+    requires_context: [task, project, design]
+    forbidden_context: [build_log]
+
+# ===== Runtime =====
+runtime:
+  max_tokens: 12000
+  timeout: 300
+  retry: 2
+  parallel: false
+
+# ===== Manifest =====
+manifest:
+  id: planner
+  version: "2.0"
+  schema: 1
+  framework: "4.0"
+  compatibility:
+    - capability >= 1.0
+    - runtime >= 1.0
+    - contract >= 1.0

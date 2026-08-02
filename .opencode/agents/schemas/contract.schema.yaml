@@ -1,0 +1,71 @@
+# contract.schema.yaml — Agent Contract Schema v1
+# Định nghĩa Input/Output contract mà agent phải tuân theo.
+# Runtime validate: input trước khi chạy, output sau khi chạy.
+version: "4.0"
+schema: 1
+
+type: object
+required:
+  - id
+  - version
+  - direction
+  - fields
+
+properties:
+  id:
+    type: string
+  version:
+    type: string
+    description: contract version (semver)
+  direction:
+    type: string
+    enum: [input, output]
+    description: input = dữ liệu agent nhận, output = dữ liệu agent trả
+  fields:
+    type: array
+    items:
+      type: object
+      required: [name]
+      properties:
+        name: { type: string }
+        type:
+          type: string
+          enum: [string, number, boolean, array, object]
+        required: { type: boolean, default: false }
+        description: { type: string }
+
+example:
+  - id: planning-input
+    version: "1.0"
+    direction: input
+    fields:
+      - name: requirements
+        type: string
+        required: true
+      - name: acceptance
+        type: array
+        required: true
+      - name: constraints
+        type: array
+        required: false
+  - id: planning-output
+    version: "1.0"
+    direction: output
+    fields:
+      - name: tasks
+        type: array
+        required: true
+      - name: artifacts
+        type: array
+        required: false
+      - name: metrics
+        type: array
+        required: false
+
+# Bảng contract chuẩn (định nghĩa trong contracts/)
+# - planning-input / planning-output  (planner)
+# - build-input / build-output        (builder)
+# - review-input / review-output      (reviewer)
+# - test-input / test-output          (tester)
+# - analysis-input / analysis-output  (analyst)
+# - e2e-input / e2e-output            (tester - e2e)

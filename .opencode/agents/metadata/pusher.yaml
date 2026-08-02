@@ -1,0 +1,47 @@
+# pusher.yaml — Agent Definition (4 lớp)
+# Schema: agent.schema.yaml
+
+# ===== Identity =====
+id: pusher
+name: Pusher Agent
+version: "2.0"
+schema: 1
+status: stable
+owner: core
+description: Git push an toàn
+replacement: null
+
+# ===== Capability =====
+capabilities:
+  supports: [deployment.git]
+  requires: [review.security]
+  priority: 70
+  tags: [git, deployment]
+
+# ===== Behavior =====
+behavior:
+  entry_prompt: prompt.md
+  contracts:
+    input: build-input
+    output: build-output
+  constraints:
+    requires_context: [git, project]
+    forbidden_context: []
+
+# ===== Runtime =====
+runtime:
+  max_tokens: 8000
+  timeout: 300
+  retry: 1
+  parallel: false
+
+# ===== Manifest =====
+manifest:
+  id: pusher
+  version: "2.0"
+  schema: 1
+  framework: "4.0"
+  compatibility:
+    - capability >= 1.0
+    - runtime >= 1.0
+    - contract >= 1.0
