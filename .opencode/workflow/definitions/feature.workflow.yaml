@@ -1,145 +1,75 @@
-id: feature
-name: Feature Workflow
-version: 1.0.0
-description: >
-  Workflow trung binh cho phat trien tinh nang: phan tich, thiet ke, lap ke
-  hoach, review, build, test, ui audit va hoan tat.
+# feature.workflow.yaml
+# Workflow: feature-development (chuẩn cho feature phát triển)
+# Schema: workflow.schema.yaml v1
+
+id: feature-development
+version: "1"
+description: Standard feature development workflow
+manifest:
+  schema: workflow.v1
+  entry_phase: analyze
+  supported_capabilities:
+    - analysis.requirement
+    - implementation.code
+    - review.code
+    - test.e2e
+  required_components:
+    - workflow-runtime
+  minimum_framework_version: 4.0.0
 
 phases:
   - id: analyze
-    title: Phan tich yeu cau tinh nang
-    description: Phan tich yeu cau tinh nang moi.
-    agent: analyst
-    command: team-analyze
-    depends_on: []
-    retry: 3
-    timeout_seconds: 120
-    continue_on_error: false
-    inputs: {}
-    outputs:
-      status: string
-      summary: string
-      requirements:
-        - string
-    expected_result: Hieu ro tinh nang can xay dung.
+    name: Analyze
+    description: Phân tích yêu cầu
+    capability: analysis.requirement
+    outputs: [analysis.md]
+    retry: 1
 
   - id: design
-    title: Thiet ke tinh nang
-    description: Thiet ke kien truc cho tinh nang.
-    agent: planner
-    command: team-plan
+    name: Design
+    description: Thiết kế giải pháp
     depends_on: [analyze]
-    retry: 3
-    timeout_seconds: 120
-    continue_on_error: false
-    inputs:
-      analysis: object
-    outputs:
-      status: string
-      architecture: string
-      components:
-        - string
-    expected_result: Thiet ke component ro rang.
-
-  - id: plan
-    title: Lap ke hoach thuc thi
-    description: Lap ke hoach buoc thuc thi tinh nang.
-    agent: planner
-    command: team-plan
-    depends_on: [design]
-    retry: 3
-    timeout_seconds: 120
-    continue_on_error: false
-    inputs:
-      design: object
-    outputs:
-      status: string
-      steps:
-        - order: int
-          description: string
-    expected_result: Ke hoach co it nhat 1 buoc.
+    capability: review.architecture
+    outputs: [design.md]
+    retry: 1
 
   - id: review
-    title: Danh gia ke hoach
-    description: Reviewer danh gia ke hoach truoc khi build.
-    agent: reviewer
-    command: team-review
-    depends_on: [plan]
-    retry: 3
-    timeout_seconds: 120
-    continue_on_error: false
-    inputs:
-      plan: object
-    outputs:
-      decision: string
-      scores:
-        overall: number
-    expected_result: Quyet dinh APPROVED hoac CHANGES_REQUESTED.
+    name: Review
+    description: Đánh giá kế hoạch
+    depends_on: [design]
+    capability: review.code
+    outputs: [review.md]
+    retry: 1
+
+  - id: backup
+    name: Backup
+    description: Backup trước khi build
+    depends_on: [review]
+    capability: ops.code
+    outputs: [backup.md]
+    retry: 2
+    optional: true
 
   - id: build
-    title: Thuc thi code
-    description: Builder thuc hien cac buoc xay dung tinh nang.
-    agent: builder
-    command: team-build
-    depends_on: [review]
-    retry: 3
-    timeout_seconds: 120
-    continue_on_error: false
-    inputs:
-      plan: object
-    outputs:
-      status: string
-      changed_files:
-        - string
-      created_files:
-        - string
-    expected_result: Tinh nang duoc code theo plan, build pass.
+    name: Build
+    description: Thực hiện code
+    depends_on: [backup, review]
+    capability: implementation.code
+    outputs: [artifact.code]
+    retry: 2
 
   - id: test
-    title: Chay kiem thu
-    description: Tester chay test cho tinh nang moi.
-    agent: tester
-    command: team-test
+    name: Test
+    description: Kiểm thử
     depends_on: [build]
-    retry: 3
-    timeout_seconds: 120
-    continue_on_error: false
-    inputs:
-      build_result: object
-    outputs:
-      status: string
-      coverage:
-        unit: number
-    expected_result: Tat ca test PASS.
-
-  - id: ui_audit
-    title: Kiem tra giao dien
-    description: Audit UI cua tinh nang moi.
-    agent: ui-beautifier
-    command: team-ui-audit
-    depends_on: [test]
-    retry: 3
-    timeout_seconds: 120
-    continue_on_error: false
-    inputs:
-      app_path: string
-    outputs:
-      status: string
-      phases:
-        - string
-    expected_result: Khong co CRITICAL/MAJOR issue.
+    capability: test.e2e
+    outputs: [test_report.md]
+    retry: 2
 
   - id: complete
-    title: Hoan tat tinh nang
-    description: Tong ket ket qua phat trien tinh nang.
-    agent: general
-    depends_on: [ui_audit]
-    retry: 3
-    timeout_seconds: 120
-    continue_on_error: false
-    inputs:
-      ui_audit_result: object
-    outputs:
-      status: string
-      final_report: string
-    expected_result: Workflow feature completed.
+    name: Complete
+    description: Tổng kết workflow
+    depends_on: [test]
+    capability: review.code
+    outputs: [summary.md]
+    retry: 0

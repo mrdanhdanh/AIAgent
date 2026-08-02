@@ -1,0 +1,61 @@
+# Workflow Definition Schema v1
+# Runtime load + validate theo schema này.
+# Reference: architecture/CONTRACTS.md, architecture/NAMING_CONVENTIONS.md
+
+type: object
+required:
+  - id
+  - version
+  - phases
+properties:
+  id:
+    type: string
+    pattern: '^[a-z][a-z0-9-]*$'   # feature-development
+  version:
+    type: string
+    default: '1'
+  description:
+    type: string
+  manifest:
+    type: object
+    properties:
+      schema: { type: string, default: workflow.v1 }
+      entry_phase: { type: string }
+      supported_capabilities:
+        type: array
+        items: { type: string }
+      required_components:
+        type: array
+        items: { type: string }
+      minimum_framework_version: { type: string, default: 4.0.0 }
+  variables:
+    type: object
+    additionalProperties: true
+  contracts:
+    type: object
+  metadata:
+    type: object
+    additionalProperties: true
+  phases:
+    type: array
+    minItems: 1
+    items:
+      type: object
+      required:
+        - id
+      properties:
+        id: { type: string }
+        name: { type: string }
+        description: { type: string }
+        depends_on:
+          type: array
+          items: { type: string }
+        agent: { type: string }
+        capability: { type: string }
+        inputs: { type: object }
+        outputs:
+          type: array
+          items: { type: string }
+        retry: { type: integer, default: 1 }
+        timeout: { type: integer }
+        optional: { type: boolean, default: false }

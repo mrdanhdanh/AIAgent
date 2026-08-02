@@ -1,109 +1,58 @@
-id: bugfix
-name: Bugfix Workflow
-version: 1.0.0
-description: >
-  Workflow rut gon cho viec sua loi (bug): phan tich loi, tim root cause,
-  lap ke hoach sua, build, test va hoan tat.
+# bugfix.workflow.yaml
+# Workflow: bugfix-development (sửa lỗi nhanh)
+# Schema: workflow.schema.yaml v1
+
+id: bugfix-development
+version: "1"
+description: Bug fix workflow
+manifest:
+  schema: workflow.v1
+  entry_phase: reproduce
+  supported_capabilities:
+    - analysis.requirement
+    - implementation.code
+    - review.code
+    - test.e2e
+  required_components:
+    - workflow-runtime
+  minimum_framework_version: 4.0.0
 
 phases:
-  - id: analyze
-    title: Phan tich bug
-    description: Phan tich mo ta bug, tai hien va xac dinh pham vi.
-    agent: analyst
-    command: team-analyze
-    depends_on: []
-    retry: 3
-    timeout_seconds: 120
-    continue_on_error: false
-    inputs: {}
-    outputs:
-      status: string
-      summary: string
-      bug_reproduction: string
-    expected_result: Hieu ro bug va cach tai hien.
+  - id: reproduce
+    name: Reproduce
+    description: Tái hiện lỗi
+    capability: analysis.requirement
+    outputs: [repro.md]
+    retry: 1
 
-  - id: root-cause
-    title: Tim nguyen nhan goc
-    description: Truy vet code de tim nguyen nhan goc cua bug.
-    agent: root-cause-agent
-    command: team-root-cause
-    depends_on: [analyze]
-    retry: 3
-    timeout_seconds: 120
-    continue_on_error: false
-    inputs:
-      analysis: object
-    outputs:
-      status: string
-      root_cause: string
-      affected_files:
-        - string
-    expected_result: Xac dinh nguyen nhan goc va file bi anh huong.
+  - id: diagnose
+    name: Diagnose
+    description: Xác định nguyên nhân gốc
+    depends_on: [reproduce]
+    capability: analysis.requirement
+    outputs: [rootcause.md]
+    retry: 1
 
-  - id: plan-fix
-    title: Lap ke hoach sua
-    description: Lap ke hoach cac thay doi de sua bug.
-    agent: planner
-    command: team-plan
-    depends_on: [root-cause]
-    retry: 3
-    timeout_seconds: 120
-    continue_on_error: false
-    inputs:
-      root_cause: object
-    outputs:
-      status: string
-      steps:
-        - order: int
-          description: string
-          file: string
-    expected_result: Ke hoach sua ro rang, co expected_result.
+  - id: fix
+    name: Fix
+    description: Sửa lỗi
+    depends_on: [diagnose]
+    capability: implementation.code
+    outputs: [fix.patch]
+    retry: 2
 
-  - id: build
-    title: Thuc hien sua code
-    description: Builder thuc hien cac thay doi theo ke hoach.
-    agent: builder
-    command: team-build
-    depends_on: [plan-fix]
-    retry: 3
-    timeout_seconds: 120
-    continue_on_error: false
-    inputs:
-      plan: object
-    outputs:
-      status: string
-      changed_files:
-        - string
-    expected_result: Bug duoc sua, build pass.
-
-  - id: test
-    title: Kiem thu loi da sua
-    description: Tester chay test xac nhan bug da het.
-    agent: tester
-    command: team-test
-    depends_on: [build]
-    retry: 3
-    timeout_seconds: 120
-    continue_on_error: false
-    inputs:
-      build_result: object
-    outputs:
-      status: string
-      regression_tests:
-        - string
-    expected_result: Bug khong con tai hien, regression test PASS.
+  - id: verify
+    name: Verify
+    description: Xác minh lỗi đã hết
+    depends_on: [fix]
+    capability: test.e2e
+    outputs: [verify.md]
+    retry: 2
 
   - id: complete
-    title: Hoan tat sua loi
-    description: Tong ket ket qua sua loi.
-    agent: general
-    depends_on: [test]
-    retry: 3
-    timeout_seconds: 120
-    continue_on_error: false
-    inputs:
-      test_result: object
-    outputs:
-      status: string
-      final_report: string
-    expected_result: Workflow bugfix completed.
+    name: Complete
+    description: Tổng kết
+    depends_on: [verify]
+    capability: review.code
+    outputs: [summary.md]
+    retry: 0
