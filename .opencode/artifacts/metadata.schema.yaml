@@ -1,0 +1,49 @@
+# metadata.schema.yaml — Artifact Metadata Schema v1
+# Chi tiết metadata cho từng artifact (không bao gồm content và lineage).
+# Reference: artifact.schema.yaml
+version: "5.0"
+
+type: object
+required:
+  - checksum
+  - size
+  - path
+properties:
+  checksum:
+    type: string
+    description: SHA256 của content
+  size:
+    type: integer
+    description: byte size
+  path:
+    type: string
+    description: file path (workflow/WF-{id}/artifacts/{type}/{PREFIX-NNN}_v{version}.md)
+  format:
+    type: string
+    enum: [md, yaml, json, txt]
+    default: md
+  owner:
+    type: string
+    enum: [core, plugin, community]
+    default: core
+  capability:
+    type: string
+    description: capability đã tạo artifact này
+  tags:
+    type: array
+    items: { type: string }
+  created_at:
+    type: string
+    description: ISO8601
+  updated_at:
+    type: string
+    description: ISO8601
+  workflow:
+    type: string
+    description: WF-ID
+  phase:
+    type: string
+    description: phase trong workflow
+  agent:
+    type: string
+    description: agent id tạo artifact
