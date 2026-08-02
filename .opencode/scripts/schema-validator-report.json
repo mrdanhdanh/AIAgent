@@ -1,11 +1,11 @@
 {
     "tool":  "schema-validator.ps1",
     "version":  "1.0.0",
-    "timestamp":  "20260731_230651",
+    "timestamp":  "20260802_094228",
     "target_dir":  ".opencode/agents",
-    "files_scanned":  17,
+    "files_scanned":  18,
     "files_passed":  0,
-    "files_failed":  17,
+    "files_failed":  18,
     "all_pass":  false,
     "results":  [
                     {
@@ -45,6 +45,11 @@
                     },
                     {
                         "File":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\agents\\guardian.md",
+                        "Status":  "FAIL",
+                        "Errors":  "FRONTMATTER: No YAML frontmatter found (--- ... ---); YAML: WARNING: ConvertFrom-Yaml not available (install powershell-yaml module)"
+                    },
+                    {
+                        "File":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\agents\\knowledge-agent.md",
                         "Status":  "FAIL",
                         "Errors":  "FRONTMATTER: No YAML frontmatter found (--- ... ---); YAML: WARNING: ConvertFrom-Yaml not available (install powershell-yaml module)"
                     },

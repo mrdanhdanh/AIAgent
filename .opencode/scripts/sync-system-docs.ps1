@@ -28,6 +28,12 @@ param(
 $ErrorActionPreference = "Stop"
 $root = ".opencode"
 
+# === HELPER: ghi file UTF-8 KHONG BOM (PS 5.1 Out-File utf8 them BOM) ===
+function Write-Utf8NoBom {
+    param([string]$Path, [string]$Content)
+    [System.IO.File]::WriteAllText($Path, $Content, (New-Object System.Text.UTF8Encoding($false)))
+}
+
 # === STRESS TEST ENGINE (--stressTest) ===
 # Khi bat -stressTest: chay stress test THAY VI sync/evolution thong thuong (log ro rang).
 # Gia lap $stressCount fake tasks qua 13-step state machine, deterministic theo seed.
@@ -221,7 +227,7 @@ if ($stressTest) {
         New-Item -ItemType Directory -Path $stressReportDir -Force | Out-Null
     }
     $stressJsonPath = "$stressReportDir\stress-test-$stamp.json"
-    $stressReport | ConvertTo-Json -Depth 6 | Out-File -FilePath $stressJsonPath -Encoding utf8
+    Write-Utf8NoBom -Path $stressJsonPath -Content ($stressReport | ConvertTo-Json -Depth 6)
     Write-Host "Stress test report saved: $stressJsonPath" -ForegroundColor Green
     exit 0
 }
@@ -708,7 +714,7 @@ $mapContent = $lines -join "`r`n"
 $mapPath = "$root\SYSTEM_MAP.md"
 
 if (-not $dryRun) {
-    $mapContent | Out-File -FilePath $mapPath -Encoding utf8
+    Write-Utf8NoBom -Path $mapPath -Content $mapContent
     Write-Host "OK SYSTEM_MAP.md generated at $mapPath" -ForegroundColor Green
 } else {
     Write-Host "DRY-RUN: Would generate SYSTEM_MAP.md" -ForegroundColor Yellow
@@ -738,19 +744,28 @@ $cmdTable += "| 12 | /team-gitpush | pusher | team-gitpush.md |"
 
 $newTable = $cmdTable -join "`r`n"
 
+# === GUARD: thin launcher team.md (Workflow Engine v4) ===
+# Neu team.md da la thin launcher (khong con bang '| Buoc | Command |' de update),
+# SKIP table update — khong them issue UPDATE_FAILED.
+$hasCmdTable = $teamContent -match '(?s)\| Buoc \| Command \| Agent \| File command \|'
+if ($teamContent -match 'thin launcher' -or -not $hasCmdTable) {
+    Write-Host "INFO: SKIP team.md — thin launcher (table update disabled)" -ForegroundColor Yellow
+}
+else {
     if ($teamContent -match '(?s)(\| Buoc \| Command \| Agent \| File command \|[\r\n]+\|------\|---------\|-------\|-------------[\|]*[\r\n]+)((?:\|[^\n]*\|[^\n]*\|[^\n]*\|[^\n]*\|[\r\n]*)+)') {
-    $fullMatch = $Matches[0]
-    $newSection = $newTable + "`r`n"
-    $newTeamContent = $teamContent -replace [regex]::Escape($fullMatch), $newSection
-    if (-not $dryRun) {
-        $newTeamContent | Out-File -LiteralPath $teamFilePath -Encoding utf8
-        Write-Host "OK team.md table updated" -ForegroundColor Green
+        $fullMatch = $Matches[0]
+        $newSection = $newTable + "`r`n"
+        $newTeamContent = $teamContent -replace [regex]::Escape($fullMatch), $newSection
+        if (-not $dryRun) {
+            Write-Utf8NoBom -Path $teamFilePath -Content $newTeamContent
+            Write-Host "OK team.md table updated" -ForegroundColor Green
+        } else {
+            Write-Host "DRY-RUN: Would update team.md table" -ForegroundColor Yellow
+        }
     } else {
-        Write-Host "DRY-RUN: Would update team.md table" -ForegroundColor Yellow
+        Write-Host "WARNING: Could not find table in team.md" -ForegroundColor Yellow
+        $report.issues += "UPDATE_FAILED: Cannot locate table in team.md"
     }
-} else {
-    Write-Host "WARNING: Could not find table in team.md" -ForegroundColor Yellow
-    $report.issues += "UPDATE_FAILED: Cannot locate table in team.md"
 }
 
 # === UPDATE SKILL.md ===
@@ -782,7 +797,7 @@ if (Test-Path $skillPath) {
         $newSection = $newSkillTable + "`r`n"
         $newSkillContent = $skillContent -replace [regex]::Escape($fullMatch), $newSection
         if (-not $dryRun) {
-            $newSkillContent | Out-File -LiteralPath $skillPath -Encoding utf8
+            Write-Utf8NoBom -Path $skillPath -Content $newSkillContent
             Write-Host "OK SKILL.md table updated" -ForegroundColor Green
         } else {
             Write-Host "DRY-RUN: Would update SKILL.md table" -ForegroundColor Yellow
@@ -1086,7 +1101,7 @@ if ($runEvolution -and $evolutionResults.health) {
     Write-Host "========================================" -ForegroundColor Cyan
 }
 
-$report | ConvertTo-Json -Depth 5 | Out-File -FilePath "$root\scripts\sync-last-report.json" -Encoding utf8
+Write-Utf8NoBom -Path "$root\scripts\sync-last-report.json" -Content ($report | ConvertTo-Json -Depth 5)
 Write-Host "Done!" -ForegroundColor Green
 
 # Return evolution report path if generated

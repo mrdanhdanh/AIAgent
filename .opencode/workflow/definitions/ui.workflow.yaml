@@ -1,0 +1,108 @@
+id: ui
+name: UI Workflow
+version: 1.0.0
+description: >
+  Workflow chuyen cho cong viec giao dien: phan tich UI hien tai, thiet ke,
+  audit UI, build UI, test va hoan tat.
+
+phases:
+  - id: analyze-ui
+    title: Phan tich UI hien tai
+    description: Phan tich trang thai UI hien tai va yeu cau cai thien.
+    agent: ui-beautifier
+    command: team-ui-audit
+    depends_on: []
+    retry: 3
+    timeout_seconds: 120
+    continue_on_error: false
+    inputs: {}
+    outputs:
+      status: string
+      summary: string
+      ui_issues:
+        - string
+    expected_result: Hieu ro UI hien tai va van de can sua.
+
+  - id: design
+    title: Thiet ke UI
+    description: Thiet ke giao dien moi theo yeu cau.
+    agent: planner
+    command: team-plan
+    depends_on: [analyze-ui]
+    retry: 3
+    timeout_seconds: 120
+    continue_on_error: false
+    inputs:
+      ui_analysis: object
+    outputs:
+      status: string
+      design_spec: string
+      components:
+        - string
+    expected_result: Co design spec va component list.
+
+  - id: ui-audit
+    title: Audit thiet ke UI
+    description: Audit thiet ke UI truoc khi build.
+    agent: ui-beautifier
+    command: team-ui-audit
+    depends_on: [design]
+    retry: 3
+    timeout_seconds: 120
+    continue_on_error: false
+    inputs:
+      design: object
+    outputs:
+      status: string
+      phases:
+        - string
+    expected_result: Khong co CRITICAL/MAJOR issue.
+
+  - id: build-ui
+    title: Thuc thi code UI
+    description: Builder thuc hien code giao dien theo thiet ke.
+    agent: builder
+    command: team-build
+    depends_on: [ui-audit]
+    retry: 3
+    timeout_seconds: 120
+    continue_on_error: false
+    inputs:
+      design: object
+    outputs:
+      status: string
+      changed_files:
+        - string
+    expected_result: Giao dien duoc code dung thiet ke.
+
+  - id: test
+    title: Kiem thu UI
+    description: Tester chay test cho giao dien moi.
+    agent: tester
+    command: team-test
+    depends_on: [build-ui]
+    retry: 3
+    timeout_seconds: 120
+    continue_on_error: false
+    inputs:
+      build_result: object
+    outputs:
+      status: string
+      test_cases:
+        - string
+    expected_result: Tat ca test PASS.
+
+  - id: complete
+    title: Hoan tat UI
+    description: Tong ket ket qua cong viec giao dien.
+    agent: general
+    depends_on: [test]
+    retry: 3
+    timeout_seconds: 120
+    continue_on_error: false
+    inputs:
+      test_result: object
+    outputs:
+      status: string
+      final_report: string
+    expected_result: Workflow ui completed.

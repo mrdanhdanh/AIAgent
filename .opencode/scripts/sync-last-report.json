@@ -1,4 +1,4 @@
-﻿{
+{
     "issues":  [
 
                ],
@@ -403,18 +403,24 @@
                                        "deprecated":  false,
                                        "file":  "commands/team-plan.md"
                                    },
-                     "knowledge-impact":  {
-                                              "agent":  "knowledge-agent",
-                                              "description":  "Phân tích ảnh hưởng khi sửa một symbol/file — affected screens, services, models, tests kèm mức độ",
-                                              "deprecated":  false,
-                                              "file":  "commands/knowledge-impact.md"
-                                          },
+                     "team-syncdocs":  {
+                                           "agent":  "general",
+                                           "description":  "System Evolution Engine — đồng bộ system docs + semantic diff + compatibility check + migration + self-healing + health score + simulation (runtime validation) + capability benchmark + stress test + evolution report. Chạy định kỳ để duy trì sức khỏe hệ thống.",
+                                           "deprecated":  false,
+                                           "file":  "commands/team-syncdocs.md"
+                                       },
                      "test-regression":  {
                                              "agent":  "test-planner",
                                              "description":  "Regression testing — tự động chọn module bị ảnh hưởng, sinh regression cases, chạy và báo cáo",
                                              "deprecated":  false,
                                              "file":  "commands/test-regression.md"
                                          },
+                     "team-doctor":  {
+                                         "agent":  "general",
+                                         "description":  "Doctor (alias /team-doctor) — kiểm tra sức khỏe hệ thống AI Agent Framework. Tương đương /doctor: Environment, System, Runtime, Capability, health score, self-repair an toàn.",
+                                         "deprecated":  false,
+                                         "file":  "commands/team-doctor.md"
+                                     },
                      "knowledge":  {
                                        "agent":  "knowledge-agent",
                                        "description":  "Help + routing cho Knowledge Assistant — liệt kê 10 commands, intent mapping, ví dụ sử dụng",
@@ -439,18 +445,24 @@
                                        "deprecated":  false,
                                        "file":  "commands/team-test.md"
                                    },
-                     "knowledge-index":  {
-                                             "agent":  "knowledge-agent",
-                                             "description":  "Build/update Knowledge Index — quét source code + tài liệu sinh 7 loại index (code, symbol, api, database, dependency, document, business-rule). Chạy sau mỗi lần source thay đổi",
-                                             "deprecated":  false,
-                                             "file":  "commands/knowledge-index.md"
-                                         },
+                     "knowledge-impact":  {
+                                              "agent":  "knowledge-agent",
+                                              "description":  "Phân tích ảnh hưởng khi sửa một symbol/file — affected screens, services, models, tests kèm mức độ",
+                                              "deprecated":  false,
+                                              "file":  "commands/knowledge-impact.md"
+                                          },
                      "doctor":  {
                                     "agent":  "general",
                                     "description":  "Doctor — kiểm tra sức khỏe hệ thống AI Agent Framework: Environment, Agents, Commands, Skills, Knowledge, Workflow, Contracts, Runtime (simulation), Capability (benchmark). Tích hợp health score, self-repair an toàn. Dùng /doctor hoặc /team-doctor.",
                                     "deprecated":  false,
                                     "file":  "commands/doctor.md"
                                 },
+                     "team-bugfix":  {
+                                         "agent":  "general",
+                                         "description":  "Quy trình nhận và fix bug — nhận báo cáo → tái hiện bug → root cause → đề xuất chỉnh sửa → kiểm tra sau sửa → test bUnit + E2E → báo cáo. Dùng agent general (orchestrator) + agents chuyên biệt",
+                                         "deprecated":  false,
+                                         "file":  "commands/team-bugfix.md"
+                                     },
                      "trace":  {
                                    "agent":  "general",
                                    "description":  "Truy vết luồng xử lý từ đầu đến cuối — UI → API → Service → Repository → DB → Response, kèm evidence từng bước",
@@ -487,12 +499,12 @@
                                            "deprecated":  false,
                                            "file":  "commands/knowledge-ask.md"
                                        },
-                     "team-doctor":  {
-                                         "agent":  "general",
-                                         "description":  "Doctor (alias /team-doctor) — kiểm tra sức khỏe hệ thống AI Agent Framework. Tương đương /doctor: Environment, System, Runtime, Capability, health score, self-repair an toàn.",
-                                         "deprecated":  false,
-                                         "file":  "commands/team-doctor.md"
-                                     },
+                     "knowledge-index":  {
+                                             "agent":  "knowledge-agent",
+                                             "description":  "Build/update Knowledge Index — quét source code + tài liệu sinh 7 loại index (code, symbol, api, database, dependency, document, business-rule). Chạy sau mỗi lần source thay đổi",
+                                             "deprecated":  false,
+                                             "file":  "commands/knowledge-index.md"
+                                         },
                      "team-cleanup":  {
                                           "agent":  "cleaner",
                                           "description":  "Dọn rác Workspace tự động — xóa build artifacts, backup cũ, temp files, cache. Tích hợp dry-run, backup trước khi xóa, confirmation gate.",
@@ -553,12 +565,6 @@
                                   "deprecated":  false,
                                   "file":  "commands/flow.md"
                               },
-                     "team-syncdocs":  {
-                                           "agent":  "general",
-                                           "description":  "System Evolution Engine — đồng bộ system docs + semantic diff + compatibility check + migration + self-healing + health score + simulation (runtime validation) + capability benchmark + stress test + evolution report. Chạy định kỳ để duy trì sức khỏe hệ thống.",
-                                           "deprecated":  false,
-                                           "file":  "commands/team-syncdocs.md"
-                                       },
                      "why":  {
                                  "agent":  "general",
                                  "description":  "Giải thích lý do tồn tại / thiết kế của một component — từ tài liệu, git history, và code",
@@ -671,7 +677,7 @@
                     "sync-system-docs":  {
                                              "summary":  "System Docs Sync — đồng bộ system docs + System Evolution Engine (9 engines).",
                                              "file":  "scripts/sync-system-docs.ps1",
-                                             "size":  51456
+                                             "size":  52208
                                          },
                     "gitpush-utility":  {
                                             "summary":  "GitPush Utility — thực hiện git push an toàn với auto-commit, safety checks, confirmation gate.",
@@ -703,6 +709,11 @@
                                            "file":  "scripts/backup-utility.ps1",
                                            "size":  12898
                                        },
+                    "workflow-validator":  {
+                                               "summary":  "Workflow Validator v4 — validate 5 workflow definitions (.opencode/workflow/definitions/*.yaml).",
+                                               "file":  "scripts/workflow-validator.ps1",
+                                               "size":  14070
+                                           },
                     "rollback-utility":  {
                                              "summary":  "Rollback Utility — rollback file từ backup snapshot khi catastrophic failure.",
                                              "file":  "scripts/rollback-utility.ps1",
@@ -730,6 +741,7 @@
                                                 "knowledge-impact":  "knowledge-agent",
                                                 "doctor-test":  "general",
                                                 "team-testplan":  "test-planner",
+                                                "team-bugfix":  "general",
                                                 "trace":  "general",
                                                 "knowledge-explain":  "knowledge-agent",
                                                 "team-gitguard":  "guardian",
@@ -773,12 +785,16 @@
                        "skill_to_commands":  {
                                                  "dev-team":  [
                                                                   {
-                                                                      "file":  ".opencode/commands/team-cleanup.md",
-                                                                      "command":  "team-cleanup"
-                                                                  },
-                                                                  {
                                                                       "file":  ".opencode/commands/team-syncdocs.md",
                                                                       "command":  "team-syncdocs"
+                                                                  },
+                                                                  {
+                                                                      "file":  ".opencode/commands/team-bugfix.md",
+                                                                      "command":  "team-bugfix"
+                                                                  },
+                                                                  {
+                                                                      "file":  ".opencode/commands/team-cleanup.md",
+                                                                      "command":  "team-cleanup"
                                                                   },
                                                                   {
                                                                       "file":  ".opencode/commands/team.md",
@@ -823,12 +839,12 @@
                                                                             "command":  "knowledge-compare-doc"
                                                                         },
                                                                         {
-                                                                            "file":  ".opencode/commands/knowledge-impact.md",
-                                                                            "command":  "knowledge-impact"
-                                                                        },
-                                                                        {
                                                                             "file":  ".opencode/commands/knowledge-trace.md",
                                                                             "command":  "knowledge-trace"
+                                                                        },
+                                                                        {
+                                                                            "file":  ".opencode/commands/knowledge-impact.md",
+                                                                            "command":  "knowledge-impact"
                                                                         },
                                                                         {
                                                                             "file":  ".opencode/commands/knowledge-health.md",
@@ -873,10 +889,6 @@
                                                                            {
                                                                                "file":  ".opencode/commands/team-ui-audit.md",
                                                                                "command":  "team-ui-audit"
-                                                                           },
-                                                                           {
-                                                                               "file":  ".opencode/commands/team.md",
-                                                                               "command":  "team"
                                                                            }
                                                                        ],
                                                  "knowledge-assistant":  [
@@ -1007,6 +1019,10 @@
                                                                      ],
                                                  "playwright-component":  [
                                                                               {
+                                                                                  "file":  ".opencode/commands/team-bugfix.md",
+                                                                                  "command":  "team-bugfix"
+                                                                              },
+                                                                              {
                                                                                   "file":  ".opencode/commands/test-e2e.md",
                                                                                   "command":  "test-e2e"
                                                                               },
@@ -1035,10 +1051,6 @@
                                                                        {
                                                                            "file":  ".opencode/commands/approve-test.md",
                                                                            "command":  "approve-test"
-                                                                       },
-                                                                       {
-                                                                           "file":  ".opencode/commands/team.md",
-                                                                           "command":  "team"
                                                                        }
                                                                    ],
                                                  "database-reader":  [
@@ -1052,6 +1064,10 @@
                                                                          }
                                                                      ],
                                                  "gitguard":  [
+                                                                  {
+                                                                      "file":  ".opencode/commands/team-bugfix.md",
+                                                                      "command":  "team-bugfix"
+                                                                  },
                                                                   {
                                                                       "file":  ".opencode/commands/team-gitguard.md",
                                                                       "command":  "team-gitguard"
@@ -1077,12 +1093,12 @@
                                                                        ],
                                                  "dependency-analyzer":  [
                                                                              {
-                                                                                 "file":  ".opencode/commands/knowledge-impact.md",
-                                                                                 "command":  "knowledge-impact"
-                                                                             },
-                                                                             {
                                                                                  "file":  ".opencode/commands/knowledge-trace.md",
                                                                                  "command":  "knowledge-trace"
+                                                                             },
+                                                                             {
+                                                                                 "file":  ".opencode/commands/knowledge-impact.md",
+                                                                                 "command":  "knowledge-impact"
                                                                              },
                                                                              {
                                                                                  "file":  ".opencode/commands/trace.md",
@@ -1125,6 +1141,10 @@
                                                                             "command":  "test-regression"
                                                                         },
                                                                         {
+                                                                            "file":  ".opencode/commands/team-bugfix.md",
+                                                                            "command":  "team-bugfix"
+                                                                        },
+                                                                        {
                                                                             "file":  ".opencode/commands/test-bootstrap.md",
                                                                             "command":  "test-bootstrap"
                                                                         },
@@ -1152,10 +1172,6 @@
                                                                     {
                                                                         "file":  ".opencode/commands/impeccable.md",
                                                                         "command":  "impeccable"
-                                                                    },
-                                                                    {
-                                                                        "file":  ".opencode/commands/team.md",
-                                                                        "command":  "team"
                                                                     }
                                                                 ],
                                                  "test-report":  [
@@ -1194,12 +1210,12 @@
                                                                  ],
                                                  "search-engine":  [
                                                                        {
-                                                                           "file":  ".opencode/commands/knowledge-impact.md",
-                                                                           "command":  "knowledge-impact"
-                                                                       },
-                                                                       {
                                                                            "file":  ".opencode/commands/knowledge-trace.md",
                                                                            "command":  "knowledge-trace"
+                                                                       },
+                                                                       {
+                                                                           "file":  ".opencode/commands/knowledge-impact.md",
+                                                                           "command":  "knowledge-impact"
                                                                        },
                                                                        {
                                                                            "file":  ".opencode/commands/ask.md",
@@ -1280,14 +1296,15 @@
                                                                        "team-analyze-failure"
                                                                    ],
                                                  "general":  [
+                                                                 "team-syncdocs",
+                                                                 "team-doctor",
                                                                  "doctor",
+                                                                 "team-bugfix",
                                                                  "trace",
                                                                  "test-bootstrap",
-                                                                 "team-doctor",
                                                                  "ask",
                                                                  "explain",
                                                                  "flow",
-                                                                 "team-syncdocs",
                                                                  "why",
                                                                  "compare-doc",
                                                                  "test-cross-browser",
@@ -1300,12 +1317,12 @@
                                                              ],
                                                  "knowledge-agent":  [
                                                                          "knowledge-compare-doc",
-                                                                         "knowledge-impact",
                                                                          "knowledge",
                                                                          "knowledge-trace",
-                                                                         "knowledge-index",
+                                                                         "knowledge-impact",
                                                                          "knowledge-health",
                                                                          "knowledge-ask",
+                                                                         "knowledge-index",
                                                                          "knowledge-why",
                                                                          "knowledge-explain",
                                                                          "knowledge-flow",
@@ -1316,7 +1333,7 @@
                                                              ]
                                              }
                    },
-    "scanned_at":  "2026-08-01T19:38:35.1742492+07:00",
+    "scanned_at":  "2026-08-02T09:25:54.8888208+07:00",
     "skills":  {
                    "dev-team":  {
                                     "schema_version":  "3.2",

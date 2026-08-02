@@ -1,0 +1,48 @@
+{
+    "scanned_at":  "2026-08-02T09:53:52.7472862+07:00",
+    "schema":  ".opencode/workflow/schemas/workflow.schema.yaml",
+    "files":  [
+                  {
+                      "status":  "PASS",
+                      "path":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\workflow\\definitions\\bugfix.workflow.yaml",
+                      "errors":  [
+
+                                 ],
+                      "file":  "bugfix.workflow.yaml"
+                  },
+                  {
+                      "status":  "PASS",
+                      "path":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\workflow\\definitions\\default.workflow.yaml",
+                      "errors":  [
+
+                                 ],
+                      "file":  "default.workflow.yaml"
+                  },
+                  {
+                      "status":  "PASS",
+                      "path":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\workflow\\definitions\\docs.workflow.yaml",
+                      "errors":  [
+
+                                 ],
+                      "file":  "docs.workflow.yaml"
+                  },
+                  {
+                      "status":  "PASS",
+                      "path":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\workflow\\definitions\\feature.workflow.yaml",
+                      "errors":  [
+
+                                 ],
+                      "file":  "feature.workflow.yaml"
+                  },
+                  {
+                      "status":  "PASS",
+                      "path":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\workflow\\definitions\\ui.workflow.yaml",
+                      "errors":  [
+
+                                 ],
+                      "file":  "ui.workflow.yaml"
+                  }
+              ],
+    "validator":  "workflow-validator.ps1",
+    "status":  "PASS"
+}

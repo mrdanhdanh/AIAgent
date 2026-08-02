@@ -1,0 +1,153 @@
+# workflow.schema.yaml — contract chinh thuc v4.
+# contracts/workflow.yaml (v1.0) giu nguyen deprecated, khong duoc su dung cho engine moi.
+# Quy uoc: YAML 2-space indent, spaces (khong tab), UTF-8 no-BOM.
+
+schema_version: "4.0"
+description: >
+  Contract chinh thuc cho Workflow Engine v4. Dinh nghia top-level workflow,
+  cac phase, quy tac phu thuoc, retry, timeout va trang thai hop le.
+  Doc chi tiet tai .opencode/workflow-engine/validator.md.
+default_workflow: default
+
+workflow:
+  type: object
+  required:
+    - id
+    - name
+    - version
+    - description
+    - phases
+  properties:
+    id:
+      type: string
+      description: Dinh danh duy nhat cua workflow (default, bugfix, feature, ui, docs).
+    name:
+      type: string
+      description: Ten hien thi cua workflow.
+    version:
+      type: string
+      description: Semver cua definition (vd 1.0.0).
+    description:
+      type: string
+      description: Mo ta day du muc dich va pham vi.
+    phases:
+      type: array
+      minItems: 1
+      items:
+        $ref: "#/definitions/phase"
+
+definitions:
+  phase:
+    type: object
+    required:
+      - id
+      - title
+    anyOf:
+      - required: [agent]
+      - required: [command]
+      - required: [agent, command]
+    properties:
+      id:
+        type: string
+        description: Ten phase (snake_case), duy nhat trong workflow.
+      title:
+        type: string
+        description: Tieu de hien thi cua phase.
+      description:
+        type: string
+        description: Mo ta noi dung phase.
+      agent:
+        type: string
+        description: >
+          Ten agent trong .opencode/agents/<name>.md (BaseName khong duoi).
+          Chi dispatch theo metadata, engine khong hieu noi dung agent.
+      command:
+        type: string
+        description: >
+          Ten command trong .opencode/commands/<name>.md (BaseName, bo dau '/').
+          Uu tien command khi phase co ca agent lan command.
+      depends_on:
+        type: array
+        items:
+          type: string
+        description: Cac phase id phai hoan tat truoc phase nay (topological order).
+      optional:
+        type: boolean
+        default: false
+        description: Neu true, phase fail se bi skip (khong block workflow).
+      retry:
+        type: integer
+        default: 3
+        minimum: 0
+        maximum: 3
+        description: So lan retry toi da cho phase.
+      timeout_seconds:
+        type: integer
+        default: 120
+        minimum: 1
+        description: Timeout cho moi lan chay phase.
+      continue_on_error:
+        type: boolean
+        default: false
+        description: Neu true, fail phase chi log warning va tiep tuc.
+      inputs:
+        type: object
+        description: Contract dau vao phase (do phase-runner parse tu output phase truoc).
+      outputs:
+        type: object
+        description: Contract dau ra phase (status, summary, artifacts).
+      expected_result:
+        type: string
+        description: Mo ta ket qua mong doi de kiem tra tinh hop le.
+
+  phase_status:
+    type: string
+    enum:
+      - pending
+      - ready
+      - running
+      - completed
+      - failed
+      - retry
+      - skipped
+      - cancelled
+      - rolled_back
+    description: >
+      Trang thai hop le cua phase. pending -> ready -> running ->
+      completed | failed | retry | skipped | cancelled | rolled_back.
+
+# ---- Sample YAML (parse duoc, minh hoa cau truc) ----
+sample:
+  schema_version: "4.0"
+  default_workflow: docs
+  workflow:
+    id: docs
+    name: Docs Workflow
+    version: 1.0.0
+    description: Quy trinh viet va validate tai lieu.
+    phases:
+      - id: analyze
+        title: Phan tich tai lieu can viet
+        agent: analyst
+        command: team-analyze
+        depends_on: []
+        retry: 3
+        timeout_seconds: 120
+        continue_on_error: false
+        inputs: {}
+        outputs:
+          status: string
+          summary: string
+        expected_result: Hieu ro pham vi tai lieu.
+      - id: write
+        title: Viet tai lieu
+        agent: general
+        depends_on: [analyze]
+        retry: 3
+        timeout_seconds: 120
+        continue_on_error: false
+        outputs:
+          status: string
+          artifacts:
+            - string
+        expected_result: File tai lieu duoc tao no-BOM.

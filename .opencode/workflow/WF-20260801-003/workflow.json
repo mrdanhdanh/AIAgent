@@ -1,0 +1,51 @@
+{
+  "workflow": {
+    "id": "WF-20260801-003",
+    "created_at": "2026-08-01T21:30:00Z",
+    "project": "JapaneseLearner",
+    "schema_version": "3.2",
+    "step": 1,
+    "step_name": "analyze",
+    "status": "waiting_user",
+    "retry": {
+      "review_count": 0,
+      "test_count": 0,
+      "max_review": 3,
+      "max_test": 3,
+      "skill_validation_count": 0
+    },
+    "user_intervention": true,
+    "backup_done": false,
+    "error_history": {
+      "review": [],
+      "test_failures": [],
+      "build_failures": []
+    },
+    "same_error_count": 0,
+    "current_data": {
+      "analysis": ".opencode/workflow/WF-20260801-003/01_analysis.md",
+      "design": null,
+      "plan": null,
+      "review_result": null,
+      "build_result": null,
+      "guardrail_result": null,
+      "static_analysis_result": null,
+      "ui_audit_result": null,
+      "test_plan": null,
+      "test_result": null,
+      "skill_validation_result": null,
+      "final_report": null,
+      "checkpoint_snapshots": [
+        {
+          "step": 1,
+          "step_name": "analyze",
+          "timestamp": "2026-08-01T21:30:00Z",
+          "status": "waiting_user"
+        }
+      ]
+    },
+    "artifacts": [
+      "01_analysis.md"
+    ]
+  }
+}

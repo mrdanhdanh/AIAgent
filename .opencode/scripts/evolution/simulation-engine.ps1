@@ -179,9 +179,18 @@ foreach ($sd in $skillDirs) {
     $skillFile = Join-Path $sd.FullName "SKILL.md"
     $group = "skill"
 
-    if (-not (Test-Path -LiteralPath $skillFile)) {
+    # Namespace container (vd: knowledge/) chua sub-skills, khong phai skill -> skip
+    $hasChildSkills = @(Get-ChildItem -Path $sd.FullName -Directory -ErrorAction SilentlyContinue | Where-Object { Test-Path -LiteralPath (Join-Path $_.FullName "SKILL.md") }).Count -gt 0
+
+    if (-not (Test-Path -LiteralPath $skillFile) -and -not $hasChildSkills) {
         Add-Check -Group $group -Check "exists_$skillName" -Status "FAIL" -Detail "Skill ${skillName}: thieu SKILL.md"
         Add-Error -Type "SKILL_MISSING_FILE" -Severity "CRITICAL" -Detail "Skill ${skillName} khong co SKILL.md"
+        continue
+    }
+
+    # Namespace container -> khong co SKILL.md, validate bo qua
+    if (-not (Test-Path -LiteralPath $skillFile)) {
+        Add-Check -Group $group -Check "namespace_$skillName" -Status "PASS" -Detail "Skill ${skillName}: namespace container (sub-skills: $($hasChildSkills))"
         continue
     }
 
