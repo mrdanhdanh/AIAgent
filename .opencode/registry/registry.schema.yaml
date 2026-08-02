@@ -1,14 +1,23 @@
 # registry.schema.yaml — Capability Registry v4.0
 # Contract cho capabilities.yaml, agent-registry.yaml, skill-registry.yaml, command-registry.yaml
+# Schema chi tiết capability object + manifest: capability.schema.yaml
 version: "4.0"
 
 capability:
-  required: [id, name, category]
+  required: [id, name, category, version]
   optional: [description, complexity, required_inputs, outputs,
               required_context, optional_context, required_artifacts,
-              produces_artifacts, success_metrics, tags, version, deprecated]
+              produces_artifacts, success_metrics, tags, deprecated,
+              owner, stability, replacement, visibility, since]
   id: "<category>.<specific>  (VD: implementation.code)"
   category: "Tên category phải khớp trong taxonomy"
+  # Capability Manifest (Phase 2):
+  #   version: semver (VD: 1.0.0)
+  #   owner: core | plugin | community
+  #   stability: experimental | stable | mature
+  #   deprecated: true/false (có replacement thì báo rõ)
+  #   replacement: id capability thay thế khi deprecated
+  #   since: framework version giới thiệu (VD: 4.0.0)
 
 agent:
   required: [id, capabilities, priority]

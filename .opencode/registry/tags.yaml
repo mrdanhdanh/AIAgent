@@ -1,0 +1,35 @@
+# tags.yaml — Capability Tags
+# Tag dùng để Resolver lọc capability theo công nghệ/miền. Không bắt buộc.
+version: "4.0"
+
+tags:
+  - id: csharp
+    description: Ngôn ngữ C#/.NET
+    capabilities: [analysis.codebase, implementation.code, implementation.refactor, implementation.fix, review.code, testing.unit, testing.e2e]
+  - id: blazor
+    description: Framework Blazor WebAssembly
+    capabilities: [implementation.ui, ui.design, ui.audit, implementation.code]
+  - id: fluentui
+    description: Design system FluentUI 4
+    capabilities: [implementation.ui, ui.audit]
+  - id: playwright
+    description: Test E2E Playwright
+    capabilities: [testing.e2e, testing.ui]
+  - id: xunit
+    description: Test đơn vị xUnit/bUnit + Moq
+    capabilities: [testing.unit]
+  - id: git
+    description: Git operations
+    capabilities: [deployment.git]
+  - id: oracle
+    description: Cơ sở dữ liệu Oracle (legacy)
+    capabilities: [analysis.codebase]
+  - id: accessibility
+    description: A11y / WCAG
+    capabilities: [testing.ui, ui.audit]
+  - id: visual-regression
+    description: Visual regression testing
+    capabilities: [testing.ui]
+  - id: security
+    description: Bảo mật, secret scan
+    capabilities: [review.security, security.audit]

@@ -1,0 +1,83 @@
+# capability.schema.yaml — Capability Object Schema v1
+# Contract cho từng capability trong capabilities.yaml + Capability Manifest.
+# Reference: registry.md, NAMING_CONVENTIONS.md
+
+type: object
+required:
+  - id
+  - name
+  - category
+  - version
+properties:
+  id:
+    type: string
+    pattern: '^[a-z]+\.[a-z-]+$'   # analysis.requirement, implementation.code
+  name:
+    type: string
+  description:
+    type: string
+  version:
+    type: string
+    default: 1.0.0
+  category:
+    type: string
+    enum: [analysis, architecture, planning, implementation, review, testing,
+           knowledge, memory, deployment, workspace, ui, security, documentation,
+           orchestration]
+  complexity:
+    type: string
+    enum: [low, medium, high]
+  inputs:
+    type: array
+    items: { type: string }
+    description: tên input contract
+  outputs:
+    type: array
+    items: { type: string }
+  contracts:
+    type: array
+    items: { type: string }
+    description: contract id trong contract-registry
+  requires:
+    type: array
+    items: { type: string }
+    description: capability phụ thuộc
+  requires_framework:
+    type: array
+    items: { type: string }
+    description: framework bắt buộc (blazor, fluentui...)
+  tags:
+    type: array
+    items: { type: string }
+  required_context:
+    type: array
+    items: { type: string }
+  produces_artifacts:
+    type: array
+    items: { type: string }
+  success_metrics:
+    type: array
+    items: { type: string }
+
+  # ===== Capability Manifest (nâng cấp Phase 2) =====
+  owner:
+    type: string
+    enum: [core, plugin, community]
+    default: core
+  stability:
+    type: string
+    enum: [experimental, stable, mature]
+    default: stable
+  deprecated:
+    type: boolean
+    default: false
+  replacement:
+    type: string
+    description: capability thay thế khi deprecated
+  visibility:
+    type: string
+    enum: [public, internal, private]
+    default: public
+  since:
+    type: string
+    description: framework version giới thiệu (4.0.0)

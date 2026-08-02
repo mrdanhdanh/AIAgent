@@ -1,0 +1,55 @@
+# dependency.yaml — Capability Dependency Graph
+# Quan hệ "requires" giữa các capability. Runtime biết thứ tự thực thi qua graph này.
+version: "4.0"
+
+dependencies:
+  # implementation phụ thuộc planning
+  - capability: implementation.code
+    requires: [planning.task]
+    reason: cần plan.md trước khi viết code
+
+  - capability: implementation.fix
+    requires: [analysis.root-cause]
+    reason: sửa lỗi cần hiểu nguyên nhân gốc
+
+  - capability: testing.e2e
+    requires: [implementation.code]
+    reason: test cần source code đã build
+
+  - capability: testing.unit
+    requires: [implementation.code]
+    reason: test cần source code
+
+  - capability: review.code
+    requires: [implementation.code]
+    reason: review cần code đã viết
+
+  - capability: architecture.impact
+    requires: [analysis.codebase]
+    reason: cần hiểu codebase trước khi phân tích ảnh hưởng
+
+  - capability: deployment.git
+    requires: [review.security]
+    reason: pre-push cần security scan trước
+
+  - capability: planning.test
+    requires: [analysis.requirement]
+    reason: cần yêu cầu để lập kế hoạch test
+
+  - capability: architecture.design
+    requires: [analysis.requirement]
+    reason: cần yêu cầu để thiết kế
+
+## Graph (tổng quan)
+
+```text
+analysis.requirement → architecture.design → planning.task → implementation.code → review.code → testing.* → deployment.git
+                                                    ↓
+                                    analysis.root-cause → implementation.fix → testing.*
+```
+
+## Quy tắc
+
+- Graph phải acyclic (validate bởi validator CR-007 mở rộng).
+- Runtime đọc dependency để biết capability nào phải chạy trước.
+- Dashboard (Phase 12) vẽ graph này.

@@ -1,0 +1,61 @@
+# category.yaml — Capability Categories
+# Taxonomy nhóm capability. Category phải khớp capability.schema.yaml enum.
+version: "4.0"
+
+categories:
+  - id: analysis
+    name: Analysis
+    description: Phân tích yêu cầu, codebase, lỗi, root-cause, risk
+    capabilities: [analysis.requirement, analysis.codebase, analysis.error, analysis.root-cause, analysis.bottleneck, analysis.risk]
+  - id: architecture
+    name: Architecture
+    description: Thiết kế, khám phá, phân tích ảnh hưởng kiến trúc
+    capabilities: [architecture.design, architecture.discovery, architecture.impact]
+  - id: planning
+    name: Planning
+    description: Lập kế hoạch task, test, rollback/migration
+    capabilities: [planning.task, planning.test, planning.rollback]
+  - id: implementation
+    name: Implementation
+    description: Tạo code, refactor, fix bug, UI implementation
+    capabilities: [implementation.code, implementation.refactor, implementation.fix, implementation.ui]
+  - id: review
+    name: Review
+    description: Đánh giá code, plan, architecture, security
+    capabilities: [review.code, review.plan, review.architecture, review.security]
+  - id: testing
+    name: Testing
+    description: Test unit, e2e, ui/visual, strategy
+    capabilities: [testing.unit, testing.e2e, testing.ui, testing.strategy]
+  - id: knowledge
+    name: Knowledge
+    description: Học, truy vấn, quản lý knowledge base
+    capabilities: [knowledge.learn, knowledge.retrieve, knowledge.management]
+  - id: memory
+    name: Memory
+    description: Ghi failure records, lessons, patterns
+    capabilities: [memory.record]
+  - id: deployment
+    name: Deployment
+    description: Git push, backup/rollback
+    capabilities: [deployment.git, deployment.backup]
+  - id: workspace
+    name: Workspace
+    description: Dọn dẹp workspace
+    capabilities: [workspace.cleanup]
+  - id: ui
+    name: UI/UX
+    description: Thiết kế, audit giao diện
+    capabilities: [ui.design, ui.audit]
+  - id: security
+    name: Security
+    description: Audit lỗ hổng bảo mật
+    capabilities: [security.audit]
+  - id: documentation
+    name: Documentation
+    description: Viết, review tài liệu
+    capabilities: [documentation.write, documentation.review]
+  - id: orchestration
+    name: Orchestration
+    description: Điều phối pipeline, fallback
+    capabilities: [orchestration.orchestrate, orchestration.fallback]
