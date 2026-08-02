@@ -1,0 +1,26 @@
+# cost.schema.yaml — AI Cost Manager Schema v1
+version: "28.0"
+schema: 1
+
+type: object
+required:
+  - records
+properties:
+  version: { type: string, const: "28.0" }
+  records:
+    type: array
+    items:
+      type: object
+      properties:
+        id: { type: string }
+        agent: { type: string }
+        model: { type: string }
+        tokens_in: { type: integer }
+        tokens_out: { type: integer }
+        cost: { type: number }
+        workflow: { type: string }
+        workspace: { type: string }
+        timestamp: { type: string }
+  rates:
+    type: object
+    description: key = model id, value = { input_rate, output_rate } per 1k

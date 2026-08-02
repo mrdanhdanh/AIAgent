@@ -1,0 +1,24 @@
+# trust.schema.yaml — Trust & Safety Schema v1
+version: "27.0"
+schema: 1
+
+type: object
+required:
+  - checks
+properties:
+  version: { type: string, const: "27.0" }
+  checks:
+    type: object
+    properties:
+      prompt_safety: { type: boolean, default: true }
+      output_validation: { type: boolean, default: true }
+      policy_check: { type: boolean, default: true }
+      sensitive_data: { type: boolean, default: true }
+  approval_rules:
+    type: array
+    items:
+      type: object
+      properties:
+        action_pattern: { type: string }
+        risk: { type: string, enum: [low, medium, high, critical] }
+        mode: { type: string, enum: [auto, human, auto-or-human] }
