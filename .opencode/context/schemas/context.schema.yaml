@@ -1,0 +1,81 @@
+# context.schema.yaml — Context Package Schema v1
+# Hợp đồng cho object Context Engine giao cho agent.
+version: "4.0"
+schema: 1
+
+type: object
+required:
+  - version
+  - agent_id
+  - procedure
+  - budget
+properties:
+  version: { type: string, const: "4.0" }
+  agent_id: { type: string }
+  procedure: { type: string, description: trigger context (workflow/index...) }
+
+  budget:
+    type: object
+    required: [limit, used]
+    properties:
+      limit: { type: integer, description: token budget }
+      used:  { type: integer, description: token đã dùng }
+
+  project:
+    type: object
+    properties:
+      id: { type: string }
+      framework: { type: array }
+      language: { type: array }
+      architecture: { type: array }
+      rules: { type: array }
+
+  workflow:
+    type: object
+    properties:
+      name: { type: string }
+      phase: { type: string }
+      state: { type: string }
+      retry: { type: integer }
+      variables: { type: object }
+
+  task:
+    type: object
+    required: [goal]
+    properties:
+      goal: { type: string }
+      requirements: { type: array }
+      acceptance: { type: array }
+      constraints: { type: array }
+
+  artifacts:
+    type: object
+    description: key = artifact id, value = artifact
+    additionalProperties: true
+
+  knowledge:
+    type: array
+    items: { type: string }
+
+  memory:
+    type: array
+    items:
+      type: object
+      properties:
+        id: { type: string }
+        type: { type: string }
+        summary: { type: string }
+        timestamp: { type: string }
+
+  runtime:
+    type: object
+    properties:
+      retry: { type: integer }
+      warnings: { type: array }
+      execution_time: { type: integer }
+      delivery_time: { type: integer }
+
+# Nguyên tắc:
+# - Agent chỉ nhận context package này, không tự đọc project.
+# - Mọi field optional trừ required ở trên.
+# - budget.used không vượt budget.limit (kiểm tra trong validator).

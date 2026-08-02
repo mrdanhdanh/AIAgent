@@ -1,0 +1,22 @@
+# profiles/tester.yaml — Context Profile cho Tester
+version: "4.0"
+agent: tester
+
+required:
+  - task
+  - artifact.code
+  - artifact.test_result
+  - project
+
+optional:
+  - workflow
+  - knowledge
+
+forbidden:
+  - build_log
+  - failure_history
+
+rank:
+  knowledge: 60
+
+# Budget dùng budget.schema.yaml (tester 6000).

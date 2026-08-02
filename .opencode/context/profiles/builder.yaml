@@ -1,0 +1,23 @@
+# profiles/builder.yaml — Context Profile cho Builder
+# Builder chỉ cần plan + task + project, không cần review/test/failure history.
+version: "4.0"
+agent: builder
+
+required:
+  - task
+  - artifact.plan
+  - project
+
+optional:
+  - artifact.design
+  - knowledge
+
+forbidden:
+  - review
+  - testing
+  - failure_history
+
+rank:
+  memory: 30
+
+# Budget dùng budget.schema.yaml (builder 8000).

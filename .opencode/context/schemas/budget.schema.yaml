@@ -1,0 +1,25 @@
+# budget.schema.yaml — Context Budget Schema v1
+# Token budget per agent. Engine không được vượt budget.limit.
+version: "4.0"
+
+default: 10000
+
+agents:
+  planner:  12000
+  builder:  8000
+  tester:   6000
+  analyst:  8000
+  reviewer: 6000
+  guardian: 6000
+  pusher:   4000
+  agent-general: 16000
+  knowledge-agent: 4000
+  codebase-explorer: 4000
+
+# Quy ước:
+# - Nếu agent không khai báo → dùng `defaults` 1000.
+# - `runtime.max_tokens` trong agents/metadata/*.yaml là trong, budget context là riêng.
+# - total = budget context + prompt fill không vượt max_tokens của model.
+# Rules:
+#  - used <= limit luôn đúng (validator kiểm tra).
+#  - Nếu vượt → Engine giảm context điểm thấp (Intelligence Layer) hoặc Compress.
