@@ -1,583 +1,386 @@
-Tôi nghĩ nên **đóng băng roadmap ngay bây giờ**. Sau này có thể thêm Phase mới, nhưng **không nên đổi thứ tự nữa**, vì mỗi Phase sẽ là nền tảng cho Phase tiếp theo.
+Theo tôi, **đừng bắt đầu bằng việc viết `README.md` của SPEC-000**.
 
-Tôi đề xuất roadmap chính thức của **Agent Framework v4.0** như sau.
+Đó là sai lầm mà rất nhiều dự án mắc phải.
+
+SPEC-000 là "Hiến pháp", nên phải được xây dựng từ **dưới lên**, không phải **trên xuống**.
 
 ---
 
-# Phase 0 — Baseline & Architecture Specification ⭐
+# Cách làm tôi đề xuất
 
-> Mục tiêu: Đóng băng v3 và thiết kế v4 trước khi bắt đầu.
-
-## 0.1 Baseline
-
-### Deliverables
+Chia thành 5 Sprint nhỏ.
 
 ```text
-SYSTEM_BASELINE.md
-ARCHITECTURE_MAP.md
-DEPENDENCY_GRAPH.md
-SYSTEM_STATISTICS.md
+Sprint 0
+    ↓
+Vocabulary
+
+Sprint 1
+    ↓
+Core Principles
+
+Sprint 2
+    ↓
+Architecture Principles
+
+Sprint 3
+    ↓
+Governance
+
+Sprint 4
+    ↓
+Consolidation
 ```
 
-### Công việc
-
-* Tag v3.x
-* Thống kê Agent/Skill/Command
-* Sinh Dependency Graph
-* Đánh giá kiến trúc hiện tại
-* Xác định Technical Debt
+Sau Sprint 4 mới sinh ra SPEC-000 hoàn chỉnh.
 
 ---
 
-## 0.2 Architecture Specification
+# Sprint 0 — Vocabulary (Khuyến nghị bắt đầu từ đây)
 
-Đây là phần mới tôi bổ sung.
+Đây là bước quan trọng nhất.
 
-### Deliverables
+Nếu thuật ngữ không thống nhất thì toàn bộ SPEC sau sẽ rối.
+
+Ví dụ:
 
 ```text
-ARCHITECTURE.md
-COMPONENTS.md
-DATA_MODEL.md
-SEQUENCE.md
-VERSIONING.md
+Agent là gì?
+
+Capability là gì?
+
+Workflow là gì?
+
+Phase là gì?
+
+Task là gì?
+
+Command là gì?
+
+Skill là gì?
+
+Artifact là gì?
+
+Context là gì?
+
+Knowledge là gì?
+
+Memory là gì?
+
+Runtime là gì?
 ```
 
-### Phải định nghĩa trước
+Mỗi thuật ngữ chỉ có **một nghĩa duy nhất**.
 
-```
-Workflow
-Phase
-Capability
-Agent
-Skill
-Command
-Context
-Artifact
-Event
+Ví dụ:
+
+```yaml
+Term: Agent
+
+Definition:
+Runtime execution unit responsible for fulfilling one or more capabilities.
+
+Owns:
+- Metadata
+
+Does not own:
+- Workflow
+- Context
+- State
 ```
 
-Nếu không làm bước này thì các Phase sau rất dễ phải sửa.
+Đây sẽ trở thành `glossary.md`.
 
 ---
 
-# Phase 1 — Workflow Runtime ⭐⭐⭐⭐⭐
+# Sprint 1 — Core Principles
 
-Đây là nền móng.
+Sau khi có thuật ngữ.
 
-## Mục tiêu
-
-Workflow không còn hardcode.
-
-### Deliverables
-
-```
-workflow-engine/
-
-Workflow Loader
-
-Workflow Validator
-
-Workflow Executor
-
-Phase Runner
-
-Recovery
-
-State Machine
-```
-
-### Thêm
-
-```
-workflow.schema.yaml
-
-feature.workflow.yaml
-
-bugfix.workflow.yaml
-
-ui.workflow.yaml
-
-doc.workflow.yaml
-```
-
-Sau Phase này
-
-```
-Command
-
-↓
-
-Workflow Runtime
-
-↓
-
-Phase
-
-↓
-
-Agent
-```
-
----
-
-# Phase 2 — Capability Registry ⭐⭐⭐⭐⭐
-
-Workflow Runtime không còn biết Agent.
-
-Nó chỉ biết Capability.
-
-### Deliverables
-
-```
-capabilities.yaml
-
-agent-registry.yaml
-
-skill-registry.yaml
-
-command-registry.yaml
-
-resolver
-
-matcher
-
-scorer
-```
-
-Thêm
-
-```
-Capability Coverage
-```
-
----
-
-# Phase 3 — Agent Definition System ⭐⭐⭐⭐☆
-
-Đây là nơi mô tả Agent.
-
-Không còn chỉ có prompt.
-
-### Deliverables
-
-```
-agent.yaml
-
-contracts
-
-constraints
-
-priority
-
-token budget
-
-supported languages
-
-supported frameworks
-
-lifecycle
-```
-
-Thêm
-
-```
-Agent State
-
-Created
-
-Loaded
-
-Ready
-
-Running
-
-Waiting
-
-Completed
-
-Retry
-
-Failed
-
-Disabled
-```
-
----
-
-# Phase 4 — Context Engine ⭐⭐⭐⭐⭐
-
-Sau khi Agent có metadata.
-
-Context Engine mới làm việc.
-
-### Deliverables
-
-```
-Project Context
-
-Workflow Context
-
-Task Context
-
-Artifact Context
-
-Knowledge Context
-
-Memory Context
-
-Runtime Context
-```
-
-Thêm
-
-```
-Context Cache
-
-Context Diff
-
-Context Compression
-
-Context Profile
-```
-
----
-
-# Phase 5 — Artifact Store ⭐⭐⭐⭐☆
-
-Hiện tại Artifact chỉ là file.
-
-Sau Phase này
-
-Artifact trở thành object.
-
-### Deliverables
-
-```
-artifact.schema.yaml
-
-artifact-index.json
-
-checksum
-
-dependency
-
-version
-
-history
-```
-
-Thêm
-
-```
-Artifact Graph
-```
-
----
-
-# Phase 6 — Event System ⭐⭐⭐⭐☆
-
-Workflow bắt đầu Event-driven.
+Viết khoảng **15–20 nguyên tắc**.
 
 Ví dụ
 
 ```
-PLAN_READY
+P001 Runtime First
 
-BUILD_STARTED
+P002 Contract First
 
-BUILD_FINISHED
+P003 Metadata First
 
-TEST_FAILED
+P004 Event Driven
 
-REVIEW_APPROVED
+P005 Stateless
+
+...
 ```
 
-Thêm
+Mỗi Principle chỉ khoảng 1 trang.
+
+Ví dụ:
 
 ```
-Event Bus
+ID
 
-Event Dispatcher
+Purpose
 
-Event Handler
+Statement
+
+Rationale
+
+Implications
+
+Exceptions
+
+Related Principles
 ```
+
+Không dài dòng.
 
 ---
 
-# Phase 7 — Simulation Framework ⭐⭐⭐⭐⭐
+# Sprint 2 — Architecture Principles
 
-Một trong những Phase quan trọng nhất.
+Lúc này mới bắt đầu nói tới kiến trúc.
 
-Command
-
-```
-/team-simulate
-```
-
-Mock
+Ví dụ
 
 ```
-Workflow
+Layer Model
 
-↓
+Dependency Rules
 
-Agent
+Execution Model
 
-↓
+Communication Model
 
-Artifact
-
-↓
-
-Contract
-
-↓
-
-Report
+Data Model
 ```
 
-Không sửa source.
+Nhưng vẫn **không nói implementation**.
 
 ---
 
-# Phase 8 — System Diagnostics ⭐⭐⭐⭐☆
+# Sprint 3 — Governance
 
-Doctor nâng cấp.
-
-Không chỉ
+Ví dụ
 
 ```
-Schema
-```
-
-Mà còn
-
-```
-Behavior
-
-Coverage
-
-Performance
-
-Token
-
-Workflow
-
-Capability
-
-Context
-
-Artifact
-```
-
----
-
-# Phase 9 — Knowledge Index & Graph ⭐⭐⭐⭐☆
-
-Knowledge trở thành searchable.
-
-### Deliverables
-
-```
-knowledge-index.json
-
-tag
-
-category
-
-references
-
-confidence
-
-graph
-```
-
----
-
-# Phase 10 — Evolution Engine ⭐⭐⭐⭐☆
-
-Workflow
-
-↓
-
-Metrics
-
-↓
-
-Suggestion
-
-↓
-
-Simulation
-
-↓
-
-Approval
-
-↓
-
-Migration
-
-↓
-
 Version
 
+Naming
+
+Compatibility
+
+Deprecation
+
+RFC
+
+ADR
+```
+
+---
+
+# Sprint 4 — Constitution
+
+Lúc này mới ghép lại thành
+
+```
+SPEC-000
+```
+
+---
+
+# Tôi còn muốn thêm Sprint -1
+
+Đây là bước mà gần như mọi framework đều bỏ qua.
+
+## AIOS Manifest
+
+Chỉ một file.
+
+Ví dụ
+
+```yaml
+name: AIOS
+
+purpose:
+
+vision:
+
+principles:
+
+quality_attributes:
+
+versioning:
+
+license:
+
+maturity:
+
+owners:
+```
+
+Chỉ khoảng 30 dòng.
+
+Nhưng là "CMND" của AIOS.
+
+---
+
+# Thư mục tôi muốn tạo ngay
+
+```
+docs/
+
+architecture/
+
+specs/
+
+adr/
+
+rfc/
+
+glossary/
+
+manifest/
+```
+
+Trong `glossary/`
+
+```
+README.md
+
+agent.md
+
+workflow.md
+
+artifact.md
+
+context.md
+
+runtime.md
+
+knowledge.md
+
+memory.md
+
+capability.md
+```
+
+---
+
+# Công việc đầu tiên
+
+**Đừng viết SPEC-000.**
+
+Hãy viết:
+
+```
+Glossary
+```
+
+Sau đó
+
 ↓
 
-Release
-
----
-
-# Phase 11 — Extension System ⭐⭐⭐☆☆
-
-Cho phép
-
 ```
-Plugin
-
-Agent
-
-Skill
-
-Command
-
-Workflow
+Manifest
 ```
 
-được cài từ bên ngoài.
+Sau đó
 
----
-
-# Phase 12 — Observability Dashboard ⭐⭐⭐☆☆
-
-Dashboard
-
-Hiển thị
+↓
 
 ```
-Workflow
+Core Principles
+```
 
-Capability
+Rồi mới
 
-Agent
+↓
 
-Context
-
-Artifact
-
-Knowledge
-
-Doctor
-
-Metrics
-
-Performance
-
-Token
+```
+SPEC-000
 ```
 
 ---
 
-# Sau Phase 12
+# Đây là kế hoạch chi tiết tôi muốn theo
 
-Framework đã ổn định.
-
-Lúc này mới nên phát triển
+## Tuần 1
 
 ```
-v5
-
-Multi Agent
-
-Parallel Execution
-
-Distributed Agent
-
-Cloud Runtime
-
-Remote Plugin
-
-Marketplace
-
-LLM Adapter
-
-MCP Adapter
-
-A2A Protocol
-
-Auto Benchmark
+✓ Glossary
+✓ Manifest
+✓ Core Principles
 ```
 
 ---
 
-# Roadmap tổng thể
+## Tuần 2
 
-```text
-Phase 0
-Baseline & Architecture Specification
-        │
-        ▼
-Phase 1
-Workflow Runtime
-        │
-        ▼
-Phase 2
-Capability Registry
-        │
-        ▼
-Phase 3
-Agent Definition System
-        │
-        ▼
-Phase 4
-Context Engine
-        │
-        ▼
-Phase 5
-Artifact Store
-        │
-        ▼
-Phase 6
-Event System
-        │
-        ▼
-Phase 7
-Simulation Framework
-        │
-        ▼
-Phase 8
-System Diagnostics
-        │
-        ▼
-Phase 9
-Knowledge Index & Graph
-        │
-        ▼
-Phase 10
-Evolution Engine
-        │
-        ▼
-Phase 11
-Extension System
-        │
-        ▼
-Phase 12
-Observability Dashboard
+```
+✓ Architecture Principles
+✓ Governance
+✓ Constitution
 ```
 
-## Khi nào bắt đầu?
+---
 
-**Bắt đầu ngay từ Phase 0.2 (Architecture Specification).**
+## Tuần 3
 
-Lý do là:
+```
+SPEC-001 Runtime
+```
 
-* Baseline (0.1) gần như bạn đã có.
-* Nếu triển khai Workflow Runtime (Phase 1) ngay mà chưa có **ARCHITECTURE.md**, **DATA_MODEL.md** và **COMPONENTS.md**, rất dễ phải thay đổi thiết kế khi sang Phase 2–5.
-* Chỉ cần dành khoảng 1–2 ngày để hoàn thiện đặc tả kiến trúc sẽ giúp toàn bộ các phase sau triển khai nhất quán và ít phải refactor.
+---
 
-Tôi khuyến nghị trình tự thực tế là:
+## Tuần 4
 
-1. Hoàn thiện **Phase 0.1** (nếu còn thiếu).
-2. Thực hiện **Phase 0.2** và khóa tài liệu kiến trúc.
-3. Bắt đầu phát triển **Phase 1 – Workflow Runtime** trên nền đặc tả đã thống nhất. Đây sẽ là nền móng cho toàn bộ Agent Framework v4.
+```
+SPEC-002 Workflow
+```
+
+...
+
+---
+
+# Đây là thay đổi duy nhất tôi muốn áp dụng
+
+Thay vì viết một tài liệu lớn ngay từ đầu, hãy xây dựng theo các **building block**:
+
+```
+Glossary
+      │
+      ▼
+Manifest
+      │
+      ▼
+Principles
+      │
+      ▼
+Architecture Rules
+      │
+      ▼
+Governance
+      │
+      ▼
+SPEC-000 Constitution
+```
+
+Như vậy mỗi bước đều có thể review, chỉnh sửa và "đóng băng" trước khi sang bước tiếp theo.
+
+## Tôi đề xuất trình tự cụ thể
+
+Nếu chúng ta cùng xây AIOS, tôi sẽ làm theo đúng thứ tự này:
+
+1. **Glossary** (định nghĩa toàn bộ thuật ngữ).
+2. **Manifest** (mục tiêu và phạm vi của AIOS).
+3. **Core Principles** (15–20 nguyên tắc bất biến).
+4. **Architecture Principles** (các quy tắc kiến trúc).
+5. **Governance** (versioning, ADR, RFC, naming...).
+6. **Ghép thành `SPEC-000 Constitution`**.
+7. **Architecture Freeze v1.0**.
+8. Mới bắt đầu **SPEC-001 Runtime**.
+
+Đây là cách giúp toàn bộ các SPEC sau có một nền tảng thống nhất và hạn chế tối đa việc phải sửa kiến trúc về sau.

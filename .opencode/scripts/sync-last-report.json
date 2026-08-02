@@ -115,8 +115,8 @@
     "agents":  {
                    "backup-agent":  {
                                         "description":  "Backup và rollback file dùng Backup Utility. Hỗ trợ: backup trước khi sửa file, rollback khi catastrophic failure, liệt kê backup history, verify backup integrity.",
-                                         "model":  "opencode/deepseek-v4-flash",
-                                         "file":  "agents/backup-agent.md",
+                                        "model":  "opencode-go/deepseek-v4-flash",
+                                        "file":  "agents/backup-agent.md",
                                         "mode":  "subagent",
                                         "permissions":  {
                                                             "grep":  "deny",
@@ -128,8 +128,8 @@
                                     },
                    "codebase-explorer":  {
                                              "description":  "Khám phá cấu trúc dự án, phân tích codebase, mapping dependencies và patterns. Agent read-only chạy trước khi thực hiện thay đổi.",
-                                              "model":  "opencode/deepseek-v4-flash",
-                                              "file":  "agents/codebase-explorer.md",
+                                             "model":  "opencode-go/deepseek-v4-flash",
+                                             "file":  "agents/codebase-explorer.md",
                                              "mode":  "subagent",
                                              "permissions":  {
                                                                  "grep":  "deny",
@@ -141,8 +141,8 @@
                                          },
                    "builder":  {
                                    "description":  "Thực thi kế hoạch đã được đánh giá, viết code và thực hiện thay đổi",
-                                    "model":  "opencode/deepseek-v4-flash",
-                                    "file":  "agents/builder.md",
+                                   "model":  "opencode-go/deepseek-v4-flash",
+                                   "file":  "agents/builder.md",
                                    "mode":  "subagent",
                                    "permissions":  {
                                                        "grep":  "deny",
@@ -154,8 +154,8 @@
                                },
                    "guardian":  {
                                     "description":  "Chuyên gia review source code trước khi push lên git — phát hiện secret, lỗi convention, lỗ hổng bảo mật, vi phạm quy tắc dự án",
-                                     "model":  "opencode/deepseek-v4-pro",
-                                     "file":  "agents/guardian.md",
+                                    "model":  "opencode-go/deepseek-v4-pro",
+                                    "file":  "agents/guardian.md",
                                     "mode":  "subagent",
                                     "permissions":  {
                                                         "grep":  "deny",
@@ -167,8 +167,8 @@
                                 },
                    "tester":  {
                                   "description":  "Thực thi kiểm thử, validate tính năng và báo cáo kết quả kèm coverage (v3.0)",
-                                   "model":  "opencode/deepseek-v4-flash",
-                                   "file":  "agents/tester.md",
+                                  "model":  "opencode-go/deepseek-v4-flash",
+                                  "file":  "agents/tester.md",
                                   "mode":  "subagent",
                                   "permissions":  {
                                                       "grep":  "deny",
@@ -180,8 +180,8 @@
                               },
                    "ui-beautifier":  {
                                          "description":  "\u003e-",
-                                          "model":  "opencode/deepseek-v4-pro",
-                                          "file":  "agents/ui-beautifier.md",
+                                         "model":  "opencode-go/deepseek-v4-pro",
+                                         "file":  "agents/ui-beautifier.md",
                                          "mode":  "subagent",
                                          "permissions":  {
                                                              "grep":  "deny",
@@ -193,8 +193,8 @@
                                      },
                    "self-improver":  {
                                          "description":  "Sau khi workflow hoàn tất, đọc lại quá trình, phân tích kỹ năng đã dùng và thiếu, đề xuất cải tiến (chỉ suggestion, không ghi KB). Cần qua approval gate trước khi ghi knowledge base.",
-                                          "model":  "opencode/deepseek-v4-pro",
-                                          "file":  "agents/self-improver.md",
+                                         "model":  "opencode-go/deepseek-v4-pro",
+                                         "file":  "agents/self-improver.md",
                                          "mode":  "subagent",
                                          "permissions":  {
                                                              "grep":  "deny",
@@ -206,8 +206,8 @@
                                      },
                    "learning-agent":  {
                                           "description":  "Chuyên gia Learning Pipeline — đọc failure records từ memory, phân tích patterns xuyên suốt, auto-generate lessons và patterns mới. Ghi trực tiếp vào memory/. Cần approval gate cho MEDIUM/HIGH impact.",
-                                           "model":  "opencode/deepseek-v4-pro",
-                                           "file":  "agents/learning-agent.md",
+                                          "model":  "opencode-go/deepseek-v4-pro",
+                                          "file":  "agents/learning-agent.md",
                                           "mode":  "subagent",
                                           "permissions":  {
                                                               "grep":  "deny",
@@ -219,8 +219,8 @@
                                       },
                    "planner":  {
                                    "description":  "Mở rộng: Thiết kế giải pháp + Lập kế hoạch thực thi chi tiết. Đảm nhiệm cả Design phase và Plan phase.",
-                                    "model":  "opencode/deepseek-v4-pro",
-                                    "file":  "agents/planner.md",
+                                   "model":  "opencode-go/deepseek-v4-pro",
+                                   "file":  "agents/planner.md",
                                    "mode":  "subagent",
                                    "permissions":  {
                                                        "grep":  "deny",
@@ -232,8 +232,8 @@
                                },
                    "root-cause-agent":  {
                                             "description":  "Chuyên gia phân tích nguyên nhân gốc (Root Cause Analysis) — nhận error đã normalized, tìm kiếm trong codebase, tạo hypotheses với confidence score, đề xuất hướng fix. Agent read + suggest.",
-                                             "model":  "opencode/deepseek-v4-pro",
-                                             "file":  "agents/root-cause-agent.md",
+                                            "model":  "opencode-go/deepseek-v4-pro",
+                                            "file":  "agents/root-cause-agent.md",
                                             "mode":  "subagent",
                                             "permissions":  {
                                                                 "grep":  "deny",
@@ -245,8 +245,8 @@
                                         },
                    "test-planner":  {
                                         "description":  "Tạo kế hoạch kiểm thử chi tiết, chống overlap, có impact analysis, coverage matrix, risk-based testing",
-                                         "model":  "opencode/deepseek-v4-pro",
-                                         "file":  "agents/test-planner.md",
+                                        "model":  "opencode-go/deepseek-v4-pro",
+                                        "file":  "agents/test-planner.md",
                                         "mode":  "subagent",
                                         "permissions":  {
                                                             "grep":  "deny",
@@ -258,8 +258,8 @@
                                     },
                    "analyst":  {
                                    "description":  "Phân tích yêu cầu người dùng, xác định phạm vi, rủi ro và các task cần thực hiện",
-                                    "model":  "opencode/deepseek-v4-pro",
-                                    "file":  "agents/analyst.md",
+                                   "model":  "opencode-go/deepseek-v4-pro",
+                                   "file":  "agents/analyst.md",
                                    "mode":  "subagent",
                                    "permissions":  {
                                                        "grep":  "deny",
@@ -271,8 +271,8 @@
                                },
                    "reviewer":  {
                                     "description":  "Đánh giá kế hoạch thực thi, kiểm tra tính đúng đắn, đầy đủ và hiệu quả",
-                                     "model":  "opencode/deepseek-v4-pro",
-                                     "file":  "agents/reviewer.md",
+                                    "model":  "opencode-go/deepseek-v4-pro",
+                                    "file":  "agents/reviewer.md",
                                     "mode":  "subagent",
                                     "permissions":  {
                                                         "grep":  "deny",
@@ -284,8 +284,8 @@
                                 },
                    "pusher":  {
                                   "description":  "Chuyên gia thực hiện git push an toàn — auto-commit từ diff, safety checks, build, test, confirmation gate, push execution, post-push verify",
-                                   "model":  "opencode/deepseek-v4-flash",
-                                   "file":  "agents/pusher.md",
+                                  "model":  "opencode-go/deepseek-v4-flash",
+                                  "file":  "agents/pusher.md",
                                   "mode":  "subagent",
                                   "permissions":  {
                                                       "grep":  "deny",
@@ -297,8 +297,8 @@
                               },
                    "failure-agent":  {
                                          "description":  "Chuyên gia phân tích và chuẩn hóa lỗi — classify error type, normalize error message, search failure memory, đề xuất lesson phù hợp. Read-only agent.",
-                                          "model":  "opencode/deepseek-v4-pro",
-                                          "file":  "agents/failure-agent.md",
+                                         "model":  "opencode-go/deepseek-v4-pro",
+                                         "file":  "agents/failure-agent.md",
                                          "mode":  "subagent",
                                          "permissions":  {
                                                              "grep":  "deny",
@@ -310,8 +310,8 @@
                                      },
                    "general":  {
                                    "description":  "General-purpose orchestrator agent — điều phối workflow, triệu hồi sub-agents, quản lý state machine",
-                                    "model":  "opencode/deepseek-v4-pro",
-                                    "file":  "agents/general.md",
+                                   "model":  "opencode-go/deepseek-v4-pro",
+                                   "file":  "agents/general.md",
                                    "mode":  "subagent",
                                    "permissions":  {
                                                        "grep":  "deny",
@@ -323,8 +323,8 @@
                                },
                    "knowledge-agent":  {
                                            "description":  "Intent Analyzer + Router cho Knowledge Assistant — phân loại câu hỏi, chọn skill pipeline, tổng hợp trả lời có nguồn",
-                                            "model":  "opencode/deepseek-v4-pro",
-                                            "file":  "agents/knowledge-agent.md",
+                                           "model":  "opencode-go/deepseek-v4-pro",
+                                           "file":  "agents/knowledge-agent.md",
                                            "mode":  "subagent",
                                            "permissions":  {
                                                                "grep":  "deny",
@@ -336,8 +336,8 @@
                                        },
                    "cleaner":  {
                                    "description":  "Workspace Cleaner Agent v2.0 — quét rác theo tiêu chí cấu hình chi tiết, phân loại LOW/MEDIUM/HIGH, backup workflow-linked, dry-run bắt buộc, protected list 4 nhóm.",
-                                    "model":  "opencode/deepseek-v4-flash",
-                                    "file":  "agents/cleaner.md",
+                                   "model":  "opencode-go/deepseek-v4-flash",
+                                   "file":  "agents/cleaner.md",
                                    "mode":  "subagent",
                                    "permissions":  {
                                                        "grep":  "deny",
@@ -367,6 +367,12 @@
                                           "deprecated":  false,
                                           "file":  "commands/team-analyze.md"
                                       },
+                     "team-runtime-benchmark":  {
+                                                    "agent":  "general",
+                                                    "description":  "Chạy benchmark Workflow Runtime — đo Compile/Execution/Retry/Recovery/Persistence/Validation. Không cần AI, dùng mock dispatcher. Output: benchmark report + cập nhật Runtime Certificate.",
+                                                    "deprecated":  false,
+                                                    "file":  "commands/team-runtime-benchmark.md"
+                                                },
                      "knowledge-compare-doc":  {
                                                    "agent":  "knowledge-agent",
                                                    "description":  "So sánh code hiện tại với tài liệu thiết kế — phát hiện lệch lạc giữa code và docs",
@@ -499,6 +505,12 @@
                                            "deprecated":  false,
                                            "file":  "commands/knowledge-ask.md"
                                        },
+                     "test-ui":  {
+                                     "agent":  "ui-beautifier",
+                                     "description":  "Review UI tổng hợp — đọc project, đánh giá UI/UX/Consistency/Responsive/Accessibility. Tích hợp skills ui-review, design-system-validator, responsive-layout, accessibility",
+                                     "deprecated":  false,
+                                     "file":  "commands/test-ui.md"
+                                 },
                      "knowledge-index":  {
                                              "agent":  "knowledge-agent",
                                              "description":  "Build/update Knowledge Index — quét source code + tài liệu sinh 7 loại index (code, symbol, api, database, dependency, document, business-rule). Chạy sau mỗi lần source thay đổi",
@@ -529,12 +541,12 @@
                                      "deprecated":  false,
                                      "file":  "commands/explain.md"
                                  },
-                     "team-root-cause":  {
-                                             "agent":  "root-cause-agent",
-                                             "description":  "Phân tích nguyên nhân gốc từ failure analysis. Tìm evidence trong codebase, tạo hypotheses, đề xuất fix. Gọi root-cause-agent.",
-                                             "deprecated":  false,
-                                             "file":  "commands/team-root-cause.md"
-                                         },
+                     "team-capabilities":  {
+                                               "agent":  "general",
+                                               "description":  "Khám phá năng lực System — liệt kê capability theo category, reset agent/skill/command maps từ capability. Là giao diện discovery của Capability Registry.",
+                                               "deprecated":  false,
+                                               "file":  "commands/team-capabilities.md"
+                                           },
                      "team-selfimprove":  {
                                               "agent":  "self-improver",
                                               "description":  "Phân tích workflow và đề xuất cải tiến (chỉ suggestion, không ghi KB)",
@@ -631,12 +643,12 @@
                                         "deprecated":  false,
                                         "file":  "commands/impeccable.md"
                                     },
-                     "test-ui":  {
-                                     "agent":  "ui-beautifier",
-                                     "description":  "Review UI tổng hợp — đọc project, đánh giá UI/UX/Consistency/Responsive/Accessibility. Tích hợp skills ui-review, design-system-validator, responsive-layout, accessibility",
-                                     "deprecated":  false,
-                                     "file":  "commands/test-ui.md"
-                                 },
+                     "team-root-cause":  {
+                                             "agent":  "root-cause-agent",
+                                             "description":  "Phân tích nguyên nhân gốc từ failure analysis. Tìm evidence trong codebase, tạo hypotheses, đề xuất fix. Gọi root-cause-agent.",
+                                             "deprecated":  false,
+                                             "file":  "commands/team-root-cause.md"
+                                         },
                      "where":  {
                                    "agent":  "general",
                                    "description":  "Tìm toàn bộ nơi sử dụng một symbol (class, method, field, storage key, db object) trong codebase — kèm file:line và phân loại",
@@ -669,6 +681,36 @@
                               }
                  },
     "scripts":  {
+                    "workflow-validator":  {
+                                               "summary":  "Workflow Validator v4 — validate 5 workflow definitions (.opencode/workflow/definitions/*.yaml).",
+                                               "file":  "scripts/workflow-validator.ps1",
+                                               "size":  14347
+                                           },
+                    "event-validator":  {
+                                            "summary":  "Validate Event System structure.",
+                                            "file":  "scripts/event-validator.ps1",
+                                            "size":  3016
+                                        },
+                    "gitpush-utility":  {
+                                            "summary":  "GitPush Utility — thực hiện git push an toàn với auto-commit, safety checks, confirmation gate.",
+                                            "file":  "scripts/gitpush-utility.ps1",
+                                            "size":  18565
+                                        },
+                    "knowledge-index":  {
+                                            "summary":  "Utility script",
+                                            "file":  "scripts/knowledge-index.ps1",
+                                            "size":  10339
+                                        },
+                    "doctor":  {
+                                   "summary":  "Doctor v2.0 - System health checker for AI Agent Framework",
+                                   "file":  "scripts/doctor.ps1",
+                                   "size":  9455
+                               },
+                    "baseline-scan":  {
+                                          "summary":  "Utility script",
+                                          "file":  "scripts/baseline-scan.ps1",
+                                          "size":  5361
+                                      },
                     "cross-ref-validator":  {
                                                 "summary":  "Cross-Reference Validator — kiểm tra tham chiếu chéo trong .opencode (agents, commands, skills, contracts).",
                                                 "file":  "scripts/cross-ref-validator.ps1",
@@ -679,46 +721,61 @@
                                              "file":  "scripts/sync-system-docs.ps1",
                                              "size":  52208
                                          },
-                    "gitpush-utility":  {
-                                            "summary":  "GitPush Utility — thực hiện git push an toàn với auto-commit, safety checks, confirmation gate.",
-                                            "file":  "scripts/gitpush-utility.ps1",
-                                            "size":  18565
+                    "agent-validator":  {
+                                            "summary":  "Validate Agent Definition packages (agents/metadata/*.yaml).",
+                                            "file":  "scripts/agent-validator.ps1",
+                                            "size":  4863
                                         },
-                    "schema-validator":  {
-                                             "summary":  "Schema Validator — validate YAML schema của agent definitions.",
-                                             "file":  "scripts/schema-validator.ps1",
-                                             "size":  4628
-                                         },
-                    "doctor":  {
-                                   "summary":  "Doctor v2.0 - System health checker for AI Agent Framework",
-                                   "file":  "scripts/doctor.ps1",
-                                   "size":  9455
-                               },
-                    "build-knowledge-index":  {
-                                                  "summary":  "Build/Update Knowledge Index - scan source code + docs to generate 7 index JSON files.",
-                                                  "file":  "scripts/build-knowledge-index.ps1",
-                                                  "size":  7791
-                                              },
-                    "knowledge-index":  {
+                    "artifact-validator":  {
+                                               "summary":  "Validate Artifact Store structure and schemas.",
+                                               "file":  "scripts/artifact-validator.ps1",
+                                               "size":  2915
+                                           },
+                    "catalog-builder":  {
                                             "summary":  "Utility script",
-                                            "file":  "scripts/knowledge-index.ps1",
-                                            "size":  10339
+                                            "file":  "scripts/catalog-builder.ps1",
+                                            "size":  5056
                                         },
                     "backup-utility":  {
                                            "summary":  "Backup Utility — backup, list và verify snapshot trước khi sửa file.",
                                            "file":  "scripts/backup-utility.ps1",
                                            "size":  12898
                                        },
-                    "workflow-validator":  {
-                                               "summary":  "Workflow Validator v4 — validate 5 workflow definitions (.opencode/workflow/definitions/*.yaml).",
-                                               "file":  "scripts/workflow-validator.ps1",
-                                               "size":  14070
-                                           },
                     "rollback-utility":  {
                                              "summary":  "Rollback Utility — rollback file từ backup snapshot khi catastrophic failure.",
                                              "file":  "scripts/rollback-utility.ps1",
                                              "size":  9294
-                                         }
+                                         },
+                    "simulation-validator":  {
+                                                 "summary":  "Validate Simulation Engine structure + schema.",
+                                                 "file":  "scripts/simulation-validator.ps1",
+                                                 "size":  2728
+                                             },
+                    "schema-validator":  {
+                                             "summary":  "Schema Validator — validate YAML schema của agent definitions.",
+                                             "file":  "scripts/schema-validator.ps1",
+                                             "size":  4628
+                                         },
+                    "doctor-validator":  {
+                                             "summary":  "Validate Doctor v2 structure + schema + rules.",
+                                             "file":  "scripts/doctor-validator.ps1",
+                                             "size":  3145
+                                         },
+                    "capability-validator":  {
+                                                 "summary":  "Validate Capability Registry (registry/) cho tính nhất quán + sinh coverage report.",
+                                                 "file":  "scripts/capability-validator.ps1",
+                                                 "size":  8835
+                                             },
+                    "build-knowledge-index":  {
+                                                  "summary":  "Build/Update Knowledge Index - scan source code + docs to generate 7 index JSON files.",
+                                                  "file":  "scripts/build-knowledge-index.ps1",
+                                                  "size":  7791
+                                              },
+                    "context-validator":  {
+                                              "summary":  "Validate Context Engine structure: profiles/, schemas/, budget.",
+                                              "file":  "scripts/context-validator.ps1",
+                                              "size":  3508
+                                          }
                 },
     "cross_refs":  {
                        "orphans":  [
@@ -728,6 +785,7 @@
                                                 "team-test":  "tester",
                                                 "backup":  "backup-agent",
                                                 "team-analyze":  "analyst",
+                                                "team-runtime-benchmark":  "general",
                                                 "knowledge-compare-doc":  "knowledge-agent",
                                                 "team-learn":  "learning-agent",
                                                 "test-accessibility":  "ui-beautifier",
@@ -738,6 +796,7 @@
                                                 "knowledge":  "knowledge-agent",
                                                 "knowledge-trace":  "knowledge-agent",
                                                 "team-gitpush":  "pusher",
+                                                "team-root-cause":  "root-cause-agent",
                                                 "knowledge-impact":  "knowledge-agent",
                                                 "doctor-test":  "general",
                                                 "team-testplan":  "test-planner",
@@ -755,7 +814,7 @@
                                                 "knowledge-flow":  "knowledge-agent",
                                                 "knowledge-why":  "knowledge-agent",
                                                 "explain":  "general",
-                                                "team-root-cause":  "root-cause-agent",
+                                                "team-capabilities":  "general",
                                                 "team-selfimprove":  "self-improver",
                                                 "test-plan":  "test-planner",
                                                 "team-review":  "reviewer",
@@ -1037,16 +1096,16 @@
                                                                            "command":  "test-accessibility"
                                                                        },
                                                                        {
+                                                                           "file":  ".opencode/commands/test-ui.md",
+                                                                           "command":  "test-ui"
+                                                                       },
+                                                                       {
                                                                            "file":  ".opencode/commands/test-e2e.md",
                                                                            "command":  "test-e2e"
                                                                        },
                                                                        {
                                                                            "file":  ".opencode/commands/team-ui-audit.md",
                                                                            "command":  "team-ui-audit"
-                                                                       },
-                                                                       {
-                                                                           "file":  ".opencode/commands/test-ui.md",
-                                                                           "command":  "test-ui"
                                                                        },
                                                                        {
                                                                            "file":  ".opencode/commands/approve-test.md",
@@ -1257,15 +1316,12 @@
                                                  "guardian":  [
                                                                   "team-gitguard"
                                                               ],
-                                                 "tester":  [
-                                                                "team-test"
-                                                            ],
                                                  "ui-beautifier":  [
                                                                        "test-accessibility",
                                                                        "test-visual",
+                                                                       "test-ui",
                                                                        "team-ui-audit",
-                                                                       "impeccable",
-                                                                       "test-ui"
+                                                                       "impeccable"
                                                                    ],
                                                  "self-improver":  [
                                                                        "team-selfimprove"
@@ -1276,6 +1332,9 @@
                                                  "planner":  [
                                                                  "team-plan"
                                                              ],
+                                                 "failure-agent":  [
+                                                                       "team-analyze-failure"
+                                                                   ],
                                                  "root-cause-agent":  [
                                                                           "team-root-cause"
                                                                       ],
@@ -1292,10 +1351,11 @@
                                                  "pusher":  [
                                                                 "team-gitpush"
                                                             ],
-                                                 "failure-agent":  [
-                                                                       "team-analyze-failure"
-                                                                   ],
+                                                 "tester":  [
+                                                                "team-test"
+                                                            ],
                                                  "general":  [
+                                                                 "team-runtime-benchmark",
                                                                  "team-syncdocs",
                                                                  "team-doctor",
                                                                  "doctor",
@@ -1304,6 +1364,7 @@
                                                                  "test-bootstrap",
                                                                  "ask",
                                                                  "explain",
+                                                                 "team-capabilities",
                                                                  "flow",
                                                                  "why",
                                                                  "compare-doc",
@@ -1333,7 +1394,7 @@
                                                              ]
                                              }
                    },
-    "scanned_at":  "2026-08-02T09:25:54.8888208+07:00",
+    "scanned_at":  "2026-08-02T22:25:02.8524214+07:00",
     "skills":  {
                    "dev-team":  {
                                     "schema_version":  "3.2",

@@ -1,6 +1,6 @@
 # He Thong .opencode - So Do Tong The
 
-> **Tu dong tao luc:** 2026-08-02 09:25:56
+> **Tu dong tao luc:** 2026-08-02 22:25:03
 > **Workflow ID:** WF-20260802-SYNC
 > **Cap nhat:** Toan bo agents, commands, skills, scripts, knowledge
 
@@ -25,9 +25,9 @@
 ```
 .opencode/
 |-- agents/           # 18 agent definitions
-|-- commands/         # 53 command templates
+|-- commands/         # 55 command templates
 |-- skills/           # 28 skill packages
-|-- scripts/          # 10 utility scripts
+|-- scripts/          # 19 utility scripts
 |-- knowledge/        # Knowledge base
 |-- backup/           # Backup artifacts
 |-- workflow/         # Workflow artifacts
@@ -40,24 +40,24 @@
 
 | Agent | Description | Model | Permissions | Commands |
 |-------|-------------|-------|-------------|----------|
-| analyst | Phân tích yêu cầu người dùng, xác định phạm vi, rủi ro và các task cần thực hiện | opencode/deepseek-v4-pro |  | team-analyze |
-| backup-agent | Backup và rollback file dùng Backup Utility. Hỗ trợ: backup trước khi sửa file, rollback khi catastrophic failure, liệt kê backup history, verify backup integrity. | opencode/deepseek-v4-flash |  | backup |
-| builder | Thực thi kế hoạch đã được đánh giá, viết code và thực hiện thay đổi | opencode/deepseek-v4-flash |  | team-build |
-| cleaner | Workspace Cleaner Agent v2.0 — quét rác theo tiêu chí cấu hình chi tiết, phân loại LOW/MEDIUM/HIGH, backup workflow-linked, dry-run bắt buộc, protected list 4 nhóm. | opencode/deepseek-v4-flash |  | team-cleanup |
-| codebase-explorer | Khám phá cấu trúc dự án, phân tích codebase, mapping dependencies và patterns. Agent read-only chạy trước khi thực hiện thay đổi. | opencode/deepseek-v4-flash |  | team-explore |
-| failure-agent | Chuyên gia phân tích và chuẩn hóa lỗi — classify error type, normalize error message, search failure memory, đề xuất lesson phù hợp. Read-only agent. | opencode/deepseek-v4-pro |  | team-analyze-failure |
-| general | General-purpose orchestrator agent — điều phối workflow, triệu hồi sub-agents, quản lý state machine | opencode/deepseek-v4-pro |  | team-syncdocs, team-doctor, doctor, team-bugfix, trace, test-bootstrap, ask, explain, flow, why, compare-doc, test-cross-browser, doctor-test, test-e2e, where, impact, approve-test, team |
-| guardian | Chuyên gia review source code trước khi push lên git — phát hiện secret, lỗi convention, lỗ hổng bảo mật, vi phạm quy tắc dự án | opencode/deepseek-v4-pro |  | team-gitguard |
-| knowledge-agent | Intent Analyzer + Router cho Knowledge Assistant — phân loại câu hỏi, chọn skill pipeline, tổng hợp trả lời có nguồn | opencode/deepseek-v4-pro |  | knowledge-compare-doc, knowledge, knowledge-trace, knowledge-impact, knowledge-health, knowledge-ask, knowledge-index, knowledge-why, knowledge-explain, knowledge-flow, knowledge-where |
-| learning-agent | Chuyên gia Learning Pipeline — đọc failure records từ memory, phân tích patterns xuyên suốt, auto-generate lessons và patterns mới. Ghi trực tiếp vào memory/. Cần approval gate cho MEDIUM/HIGH impact. | opencode/deepseek-v4-pro |  | team-learn |
-| planner | Mở rộng: Thiết kế giải pháp + Lập kế hoạch thực thi chi tiết. Đảm nhiệm cả Design phase và Plan phase. | opencode/deepseek-v4-pro |  | team-plan |
-| pusher | Chuyên gia thực hiện git push an toàn — auto-commit từ diff, safety checks, build, test, confirmation gate, push execution, post-push verify | opencode/deepseek-v4-flash |  | team-gitpush |
-| reviewer | Đánh giá kế hoạch thực thi, kiểm tra tính đúng đắn, đầy đủ và hiệu quả | opencode/deepseek-v4-pro |  | team-review |
-| root-cause-agent | Chuyên gia phân tích nguyên nhân gốc (Root Cause Analysis) — nhận error đã normalized, tìm kiếm trong codebase, tạo hypotheses với confidence score, đề xuất hướng fix. Agent read + suggest. | opencode/deepseek-v4-pro |  | team-root-cause |
-| self-improver | Sau khi workflow hoàn tất, đọc lại quá trình, phân tích kỹ năng đã dùng và thiếu, đề xuất cải tiến (chỉ suggestion, không ghi KB). Cần qua approval gate trước khi ghi knowledge base. | opencode/deepseek-v4-pro |  | team-selfimprove |
-| tester | Thực thi kiểm thử, validate tính năng và báo cáo kết quả kèm coverage (v3.0) | opencode/deepseek-v4-flash |  | team-test |
-| test-planner | Tạo kế hoạch kiểm thử chi tiết, chống overlap, có impact analysis, coverage matrix, risk-based testing | opencode/deepseek-v4-pro |  | team-testplan, test-regression, test-plan, test-audit, test-evolve |
-| ui-beautifier | >- | opencode/deepseek-v4-pro |  | test-accessibility, test-visual, team-ui-audit, impeccable, test-ui |
+| analyst | Phân tích yêu cầu người dùng, xác định phạm vi, rủi ro và các task cần thực hiện | opencode-go/deepseek-v4-pro |  | team-analyze |
+| backup-agent | Backup và rollback file dùng Backup Utility. Hỗ trợ: backup trước khi sửa file, rollback khi catastrophic failure, liệt kê backup history, verify backup integrity. | opencode-go/deepseek-v4-flash |  | backup |
+| builder | Thực thi kế hoạch đã được đánh giá, viết code và thực hiện thay đổi | opencode-go/deepseek-v4-flash |  | team-build |
+| cleaner | Workspace Cleaner Agent v2.0 — quét rác theo tiêu chí cấu hình chi tiết, phân loại LOW/MEDIUM/HIGH, backup workflow-linked, dry-run bắt buộc, protected list 4 nhóm. | opencode-go/deepseek-v4-flash |  | team-cleanup |
+| codebase-explorer | Khám phá cấu trúc dự án, phân tích codebase, mapping dependencies và patterns. Agent read-only chạy trước khi thực hiện thay đổi. | opencode-go/deepseek-v4-flash |  | team-explore |
+| failure-agent | Chuyên gia phân tích và chuẩn hóa lỗi — classify error type, normalize error message, search failure memory, đề xuất lesson phù hợp. Read-only agent. | opencode-go/deepseek-v4-pro |  | team-analyze-failure |
+| general | General-purpose orchestrator agent — điều phối workflow, triệu hồi sub-agents, quản lý state machine | opencode-go/deepseek-v4-pro |  | team-runtime-benchmark, team-syncdocs, team-doctor, doctor, team-bugfix, trace, test-bootstrap, ask, explain, team-capabilities, flow, why, compare-doc, test-cross-browser, doctor-test, test-e2e, where, impact, approve-test, team |
+| guardian | Chuyên gia review source code trước khi push lên git — phát hiện secret, lỗi convention, lỗ hổng bảo mật, vi phạm quy tắc dự án | opencode-go/deepseek-v4-pro |  | team-gitguard |
+| knowledge-agent | Intent Analyzer + Router cho Knowledge Assistant — phân loại câu hỏi, chọn skill pipeline, tổng hợp trả lời có nguồn | opencode-go/deepseek-v4-pro |  | knowledge-compare-doc, knowledge, knowledge-trace, knowledge-impact, knowledge-health, knowledge-ask, knowledge-index, knowledge-why, knowledge-explain, knowledge-flow, knowledge-where |
+| learning-agent | Chuyên gia Learning Pipeline — đọc failure records từ memory, phân tích patterns xuyên suốt, auto-generate lessons và patterns mới. Ghi trực tiếp vào memory/. Cần approval gate cho MEDIUM/HIGH impact. | opencode-go/deepseek-v4-pro |  | team-learn |
+| planner | Mở rộng: Thiết kế giải pháp + Lập kế hoạch thực thi chi tiết. Đảm nhiệm cả Design phase và Plan phase. | opencode-go/deepseek-v4-pro |  | team-plan |
+| pusher | Chuyên gia thực hiện git push an toàn — auto-commit từ diff, safety checks, build, test, confirmation gate, push execution, post-push verify | opencode-go/deepseek-v4-flash |  | team-gitpush |
+| reviewer | Đánh giá kế hoạch thực thi, kiểm tra tính đúng đắn, đầy đủ và hiệu quả | opencode-go/deepseek-v4-pro |  | team-review |
+| root-cause-agent | Chuyên gia phân tích nguyên nhân gốc (Root Cause Analysis) — nhận error đã normalized, tìm kiếm trong codebase, tạo hypotheses với confidence score, đề xuất hướng fix. Agent read + suggest. | opencode-go/deepseek-v4-pro |  | team-root-cause |
+| self-improver | Sau khi workflow hoàn tất, đọc lại quá trình, phân tích kỹ năng đã dùng và thiếu, đề xuất cải tiến (chỉ suggestion, không ghi KB). Cần qua approval gate trước khi ghi knowledge base. | opencode-go/deepseek-v4-pro |  | team-selfimprove |
+| tester | Thực thi kiểm thử, validate tính năng và báo cáo kết quả kèm coverage (v3.0) | opencode-go/deepseek-v4-flash |  | team-test |
+| test-planner | Tạo kế hoạch kiểm thử chi tiết, chống overlap, có impact analysis, coverage matrix, risk-based testing | opencode-go/deepseek-v4-pro |  | team-testplan, test-regression, test-plan, test-audit, test-evolve |
+| ui-beautifier | >- | opencode-go/deepseek-v4-pro |  | test-accessibility, test-visual, test-ui, team-ui-audit, impeccable |
 
 ---
 
@@ -91,6 +91,7 @@
 | /team-analyze-failure | Phân tích lỗi trong workflow. Thu thập raw error, normalize, classify, search failure memory, output phân tích. Gọi failure-agent. | failure-agent |  |
 | /team-bugfix | Quy trình nhận và fix bug — nhận báo cáo → tái hiện bug → root cause → đề xuất chỉnh sửa → kiểm tra sau sửa → test bUnit + E2E → báo cáo. Dùng agent general (orchestrator) + agents chuyên biệt | general |  |
 | /team-build | Thực thi kế hoạch đã duyệt (dùng agent builder) | builder |  |
+| /team-capabilities | Khám phá năng lực System — liệt kê capability theo category, reset agent/skill/command maps từ capability. Là giao diện discovery của Capability Registry. | general |  |
 | /team-cleanup | Dọn rác Workspace tự động — xóa build artifacts, backup cũ, temp files, cache. Tích hợp dry-run, backup trước khi xóa, confirmation gate. | cleaner |  |
 | /team-doctor | Doctor (alias /team-doctor) — kiểm tra sức khỏe hệ thống AI Agent Framework. Tương đương /doctor: Environment, System, Runtime, Capability, health score, self-repair an toàn. | general |  |
 | /team-explore | [DEPRECATED] Explore step đã được gộp vào Analyze. Dùng team-analyze thay thế. | codebase-explorer | Yes |
@@ -100,6 +101,7 @@
 | /team-plan | Mở rộng: Thiết kế (Design) + Lập kế hoạch (Plan) — dùng agent planner | planner |  |
 | /team-review | Đánh giá thiết kế hoặc kế hoạch (dùng agent reviewer) — nâng cấp v4.0: decision thresholds, score_rationale, blocking issues, consistency, edge cases | reviewer |  |
 | /team-root-cause | Phân tích nguyên nhân gốc từ failure analysis. Tìm evidence trong codebase, tạo hypotheses, đề xuất fix. Gọi root-cause-agent. | root-cause-agent |  |
+| /team-runtime-benchmark | Chạy benchmark Workflow Runtime — đo Compile/Execution/Retry/Recovery/Persistence/Validation. Không cần AI, dùng mock dispatcher. Output: benchmark report + cập nhật Runtime Certificate. | general |  |
 | /team-selfimprove | Phân tích workflow và đề xuất cải tiến (chỉ suggestion, không ghi KB) | self-improver |  |
 | /team-syncdocs | System Evolution Engine — đồng bộ system docs + semantic diff + compatibility check + migration + self-healing + health score + simulation (runtime validation) + capability benchmark + stress test + evolution report. Chạy định kỳ để duy trì sức khỏe hệ thống. | general |  |
 | /team-test | Thực thi kiểm thử theo kế hoạch (dùng agent tester, v3.0) | tester |  |
@@ -160,14 +162,23 @@
 
 | Script | Summary | Size |
 |--------|---------|------|
+| agent-validator | Validate Agent Definition packages (agents/metadata/*.yaml). | 5 KB |
+| artifact-validator | Validate Artifact Store structure and schemas. | 3 KB |
 | backup-utility | Backup Utility — backup, list và verify snapshot trước khi sửa file. | 13 KB |
+| baseline-scan | Utility script | 5 KB |
 | build-knowledge-index | Build/Update Knowledge Index - scan source code + docs to generate 7 index JSON files. | 8 KB |
+| capability-validator | Validate Capability Registry (registry/) cho tính nhất quán + sinh coverage report. | 9 KB |
+| catalog-builder | Utility script | 5 KB |
+| context-validator | Validate Context Engine structure: profiles/, schemas/, budget. | 3 KB |
 | cross-ref-validator | Cross-Reference Validator — kiểm tra tham chiếu chéo trong .opencode (agents, commands, skills, contracts). | 6 KB |
 | doctor | Doctor v2.0 - System health checker for AI Agent Framework | 9 KB |
+| doctor-validator | Validate Doctor v2 structure + schema + rules. | 3 KB |
+| event-validator | Validate Event System structure. | 3 KB |
 | gitpush-utility | GitPush Utility — thực hiện git push an toàn với auto-commit, safety checks, confirmation gate. | 18 KB |
 | knowledge-index | Utility script | 10 KB |
 | rollback-utility | Rollback Utility — rollback file từ backup snapshot khi catastrophic failure. | 9 KB |
 | schema-validator | Schema Validator — validate YAML schema của agent definitions. | 5 KB |
+| simulation-validator | Validate Simulation Engine structure + schema. | 3 KB |
 | sync-system-docs | System Docs Sync — đồng bộ system docs + System Evolution Engine (9 engines). | 51 KB |
 | workflow-validator | Workflow Validator v4 — validate 5 workflow definitions (.opencode/workflow/definitions/*.yaml). | 14 KB |
 
@@ -238,7 +249,7 @@
 | cleaner | team-cleanup |
 | codebase-explorer | team-explore |
 | failure-agent | team-analyze-failure |
-| general | team-syncdocs, team-doctor, doctor, team-bugfix, trace, test-bootstrap, ask, explain, flow, why, compare-doc, test-cross-browser, doctor-test, test-e2e, where, impact, approve-test, team |
+| general | team-runtime-benchmark, team-syncdocs, team-doctor, doctor, team-bugfix, trace, test-bootstrap, ask, explain, team-capabilities, flow, why, compare-doc, test-cross-browser, doctor-test, test-e2e, where, impact, approve-test, team |
 | guardian | team-gitguard |
 | knowledge-agent | knowledge-compare-doc, knowledge, knowledge-trace, knowledge-impact, knowledge-health, knowledge-ask, knowledge-index, knowledge-why, knowledge-explain, knowledge-flow, knowledge-where |
 | learning-agent | team-learn |
@@ -249,7 +260,7 @@
 | self-improver | team-selfimprove |
 | tester | team-test |
 | test-planner | team-testplan, test-regression, test-plan, test-audit, test-evolve |
-| ui-beautifier | test-accessibility, test-visual, team-ui-audit, impeccable, test-ui |
+| ui-beautifier | test-accessibility, test-visual, test-ui, team-ui-audit, impeccable |
 
 ---
 
@@ -372,5 +383,5 @@
 
 ---
 
-> **Tong so:** 18 agents . 53 commands . 28 skills . 10 scripts . 27 knowledge files
+> **Tong so:** 18 agents . 55 commands . 28 skills . 19 scripts . 27 knowledge files
 > **Sinh boi:** sync-system-docs.ps1

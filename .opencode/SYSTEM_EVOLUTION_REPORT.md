@@ -1,6 +1,6 @@
 ﻿# System Evolution Report
 
-**Generated:** 2026-08-02 09:26:27
+**Generated:** 2026-08-02 22:25:26
 **Tool:** evolution-report.ps1 v1.0.0
 
 ---
@@ -36,9 +36,9 @@
 | Verdict | STABLE |
 | Agents tested | 18 |
 | Skills tested | 29 |
-| Commands tested | 53 |
+| Commands tested | 55 |
 | Contracts tested | 14 |
-| Checks passed | 111/111 |
+| Checks passed | 113/113 |
 
 ---
 
@@ -88,7 +88,7 @@
 | Knowledge       | 100/100 |
 | Learning        | 100/100 |
 | Runtime         | 100/100 |
-| Scripts         | 100/100 |
+| Scripts         | 96/100 |
 | Skills          | 100/100 |
 | Tests           | 100/100 |
 | Workflow        | 100/100 |
