@@ -11,18 +11,19 @@ agent: general
 ## 1. Trách nhiệm
 
 ```text
-Compiled Workflow
+Compiled Workflow (execution_plan + DAG)
       ↓
- DAG (đã compile)
+ Scheduler → chọn step hiện tại (có thể nhiều phase song song)
       ↓
- Scheduler → chọn phase kế tiếp
+Trả về danh sách phase sẵn sàng để executor chạy
 ```
 
-- Dựa vào `depends_on` + trạng thái `completed` để chọn phase sẵn sàng.
-- Ưu tiên phase có tất cả dependency đã Completed.
-- Trả về một phase duy nhất để executor chạy (sau này Phase sau cho phép song song).
+- Dựa vào `execution_plan` (compiler) + trạng thái `completed` chọn step sẵn sàng.
+- **Mỗi step có thể chứa nhiều phase song song** (Phase DAG) — tiền đề Parallel Execution (v5).
+- Phase 1: scheduler trả từng phase một (tuần tự); v5 cho chạy cả step song song.
+- Trả về phase → executor chạy.
 
-## 2. Ví dụ
+## 2. Ví dụ (single-thread Phase 1)
 
 ```text
 feature.workflow.yaml
@@ -31,6 +32,8 @@ phases: analyze → design → review → backup → build → test → complete
 Nếu completed = [analyze, design]
 → next = review
 ```
+
+Step song song (nếu workflow có design + explore cùng step) — Phase 1 xử lý tuần tự từng một, v5 chạy song song.
 
 Retry:
 

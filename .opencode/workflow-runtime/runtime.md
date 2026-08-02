@@ -105,3 +105,15 @@ Input Contract → Execution → Output Contract
 - Không multi-agent song song (v5).
 - Không tự UI.
 - Không tự ghi knowledge/memory.
+
+## 10. Runtime Context (Phase 1.7)
+
+> KHÔNG phải Context Engine (Phase 4). Đây là **Runtime Context** — chỉ runtime dùng.
+
+```text
+Workflow ID · Current Phase · Retry · State · Metrics · Current Artifact
+```
+
+- Không cho AI/agent truy cập.
+- Lưu bởi `state-store.md`.
+- Lifecycle: Created → Loaded → Updated → Released.

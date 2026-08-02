@@ -1,69 +1,129 @@
 ---
 name: workflow-runtime-compiler
-description: compiler — Workflow Compiler (bổ sung): validate schema, resolve dependency, build DAG, detect cycle, sinh execution plan. Runtime chỉ thực thi.
+description: compiler — Workflow Compiler (Phase 1.3): Parser → Schema Validator → Resolver → DAG → Cycle → Execution Plan → compiled.workflow.json.
 agent: planner
 ---
 
 # compiler.md — Workflow Compiler
 
-> Thành phần bổ sung. Runtime không phân tích lại workflow mỗi lần — compiler làm trước.
+> **Compile một lần, chạy nhiều lần.** Runtime chỉ đọc `compiled.workflow.json`, không đọc yaml nữa.
 
-## 1. Pipeline compile
+## 1. Pipeline (Phase 1.3)
 
 ```text
 workflow.yaml
-        ↓
-Workflow Compiler
-   ├── Validate schema
-   ├── Resolve dependency
-   ├── Build DAG
-   ├── Detect cycle
-   └── Generate execution plan
-        ↓
+      ↓
+Parser              (yaml → definition object)
+      ↓
+Schema Validator    (workflow.schema.yaml / phase.schema.yaml)
+      ↓
+Dependency Resolver (resolve depends_on)
+      ↓
+Graph Builder       (dựng Phase DAG — Phase 1.4)
+      ↓
+Cycle Detector      (chặn loop)
+      ↓
+Execution Plan      (thứ tự + parallelism — Phase 1.5)
+      ↓
 Compiled Workflow
-        ↓
-Workflow Runtime (thực thi)
 ```
 
-## 2. Output: Compiled Workflow
-
-| Trường | Nguồn |
-|--------|-------|
-| id, version | definition |
-| DAG | dependency graph đã build |
-| execution_plan | thứ tự phase tối ưu |
-| cycle_free | DAG xích tố, đã detect |
-| manifest_compat | framework version hợp lệ |
-
-## 3. Khác nhau Runtime vs Compiler
-
-| Compiler (lúc load) | Runtime (mỗi phase) |
-|---------------------|---------------------|
-| build DAG | chọn phase kế (scheduler) |
-| detect cycle 1 lần | validate dependency Completed |
-| sinh plan | thực thi |
-
-→ Runtime không chứa logic DAG/cycle, đọc plan đã có.
-
-## 4. Manifest → threshold check
-
-Trước khi compile, compiler kiểm tra `manifest`:
-
-- `schema` đúng `workflow.v1`.
-- `minimum_framework_version` ≤ framework hiện tại.
-- `required_components` có mặt.
-- Không hợp → từ chối (WF-001).
-
-## 5. Execution Plan
+## 2. Output: compiled.workflow.json
 
 ```text
-[analyze, design, review, backup, build, test, complete]  # với depends_on xét
+workflow.yaml → compiled.workflow.json
 ```
 
-Compiler sắp xếp topological: phase nào đủ dependency đứng trước.
+Structure:
 
-## 6. Tương tác
+```json
+{
+  "id": "feature-development",
+  "version": "1",
+  "manifest": {
+    "schema": "workflow.v1",
+    "minimum_framework_version": "4.0.0",
+    "required_components": ["workflow-runtime"]
+  },
+  "dag": {
+    "analyze": [],
+    "design": ["analyze"],
+    "explore": ["analyze"],
+    "review": ["design", "explore"]
+  },
+  "execution_plan": [
+    {"step": 1, "phases": ["analyze"]},
+    {"step": 2, "phases": ["design", "explore"]},
+    {"step": 3, "phases": ["review"]}
+  ],
+  "cycle_free": true,
+  "entry_phase": "analyze",
+  "phase_defs": {}
+}
+```
 
-- Chạy sau `loader.md`, trước `validator.md` chạy kiểm tra sâu (hoặc compiler tự, dùng validator).
-- Output đưa cho `runtime.md` → CreateInstance.
-- Reference: `workflow.schema.yaml`, manifest (xem workflow definitions).
+**Workflow → Phase DAG → Execution Order → Metadata.**
+
+## 3. Phase DAG (Phase 1.4)
+
+Workflow là **Graph**, không phải List:
+
+```text
+         Analyze
+            │
+       ┌────┴────┐
+       │         │
+    Design    Explore
+       │         │
+       └────┬────┘
+            │
+         Review
+            │
+          Build
+```
+
+- Đỉnh = phase, cạnh = depends_on.
+- Scheduler đọc `execution_plan` để biết phase nào chạy **song song** (`design`, `explore` cùng step).
+- Đây là **tiền đề Parallel Execution (v5)**.
+
+## 4. Execution Plan (Phase 1.5)
+
+Compiler nhóm phase theo topo thành **steps**:
+
+```text
+Step 1: Analyze
+Step 2: Design, Explore     ← song song
+Step 3: Review
+Step 4: Build
+```
+
+Runtime chỉ **Execute** theo plan — không tự sắp xếp lại.
+
+## 5. Cycle Detector
+
+Nếu phát hiện vòng:
+
+```text
+design depends_on design → cycle
+```
+
+Compile fail, WF-001, không tạo plan. DAG phải `cycle_free`.
+
+## 6. Manifest threshold (kế thừa)
+
+Trước compile kiểm tra:
+
+- `schema == workflow.v1`
+- `minimum_framework_version <= framework hiện tại`
+- `required_components` có mặt
+- Không hợp → từ chối WF-001.
+
+## 7. Caching
+
+Compile một lần → lưu `compiled.workflow.json`. Lần chạy sau chỉ load compiled (nhanh, không parse lại yaml). Bản compiled versioned (VERSIONING.md).
+
+## 8. Tương tác
+
+- Chạy sau `loader.md`, dùng `validator.md` cho schema check sâu.
+- Output đưa cho `runtime.md` → `CreateInstance`.
+- Schema: `compiled.schema.yaml`, `workflow.schema.yaml`.

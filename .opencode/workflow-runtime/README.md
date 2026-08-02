@@ -49,23 +49,34 @@ Biến đổi thiết kế:
           Workflow Instance
 ```
 
-## 4. Mục lục
+## 4. Mục lục (24 thành phần)
 
-| File | Nội dung |
-|------|----------|
-| `runtime.md` | Thành phần trung tâm, API, event, metric, test |
-| `loader.md` | Thành phần 3 — Loader (parse → validate → object) |
-| `validator.md` | Thành phần 4 — Validator (schema/cycle/dependency/output) |
-| `scheduler.md` | Thành phần 5 — Scheduler (phase nào chạy tiếp) |
-| `dispatcher.md` | Thành phần 6 — Dispatcher (gọi Agent; Phase 2 thay bằng Capability Resolver) |
-| `executor.md` | Thành phần 7 — Executor (vòng chạy instance) |
-| `recovery.md` | Thành phần 8 — Recovery (retry/rollback/skip/abort) |
-| `persistence.md` | Thành phần 9 — Persistence (instance/history/state/log) |
-| `state-machine.md` | State machine Workflow + Phase |
-| `compiler.md` | Workflow Compiler (2 thành phần bổ sung) |
-| `workflow.schema.yaml` | Schema workflow definition |
-| `phase.schema.yaml` | Schema phase |
-| `instance.schema.yaml` | Schema workflow instance |
+| File | Nội dung | Phase |
+|------|----------|-------|
+| `ARCHITECTURE.md` | Kiến trúc tổng thể Runtime Core | 1.1 |
+| `runtime.md` | Thành phần trung tâm: API, event, metrics, test | 1.1+1.15 |
+| `kernel.md` | Runtime Kernel — 8 services | 1.2 |
+| `compiler.md` | Workflow Compiler (parse→DAG→plan→compiled.json) | 1.3+1.4+1.5 |
+| `loader.md` | Loader — parse yaml → object | 1.3 |
+| `validator.md` | Validator — schema/cycle/dependency/output | 1.3 |
+| `scheduler.md` | Scheduler — phase nào chạy tiếp (DAG/parallel) | 1.1 |
+| `dispatcher.md` | Dispatcher — adapter gọi agent (Phase 2 thay) | 1.1 |
+| `executor.md` | Executor — vòng chạy instance | 1.1 |
+| `repository.md` | Repository abstraction (File→DB→Cloud) | 1.6 |
+| `transaction.md` | Transaction như DB (lock/commit/rollback) | 1.8 |
+| `lock-manager.md` | Lock Workflow/Artifact/Context | 1.9 |
+| `recovery.md` | Recovery — Retry/Rollback/Skip/Resume/Abort/Escalate | 1.10 |
+| `state-machine.md` | State machine Workflow + Phase | 1.1 |
+| `state-store.md` | State Store atomically + snapshot | 1.2 |
+| `metrics.md` | Runtime Metrics đầy đủ | 1.11 |
+| `health.md` | Runtime Health (Healthy/Warning/Critical) | 1.12 |
+| `api.md` | Runtime API | 1.13 |
+| `sdk.md` | Runtime SDK (tầng public duy nhất) | 1.14 |
+| `persistence.md` | Persistence (instance/history/state/log) | 1.1 |
+| `workflow.schema.yaml` | Schema workflow definition | 1 |
+| `phase.schema.yaml` | Schema phase | 1 |
+| `instance.schema.yaml` | Schema workflow instance | 1 |
+| `compiled.schema.yaml` | Schema compiled.workflow.json | 1.6 |
 
 ## 5. Pipeline biên dịch
 
@@ -86,3 +97,33 @@ Runtime chỉ thực thi, không phân tích lại workflow mỗi lần.
 - **Phase 2** (Capability Registry) → thay `dispatcher.md` bằng Capability Resolver.
 - **Phase 4** (Context), **Phase 5** (Artifact), **Phase 6** (Event), **Phase 8** (Diagnostics/Doctor) → đọc/ghi qua Runtime API.
 - **Phase 12** (Dashboard) → đọc persistence.
+
+## 7. Workflow Runtime Acceptance Checklist
+
+> Chỉ khi **đạt toàn bộ** mới chuyển sang Phase 2 — Capability Registry.
+
+### Functional
+
+- [ ] Nạp được workflow từ definition.
+- [ ] Compiler tạo được execution plan hợp lệ (DAG + order, cycle-free).
+- [ ] Runtime thực thi theo state machine.
+- [ ] Hỗ trợ retry, rollback, pause, resume.
+- [ ] Lưu và khôi phục workflow instance (persistence).
+
+### Non-functional
+
+- [ ] Runtime không phụ thuộc tên Agent/Skill.
+- [ ] Runtime không chứa prompt AI.
+- [ ] Runtime không hard-code workflow cụ thể.
+- [ ] Mọi thao tác đều đi qua Runtime API (SDK).
+- [ ] Có test suite độc lập với AI.
+
+### Phụ (Runtime Core)
+
+- [ ] Compile 1 lần, chạy nhiều (compiled.workflow.json cache).
+- [ ] Transaction + Lock khi chạy phase.
+- [ ] Recovery nhiều strategy (retry/rollback/skip/resume/abort/escalate).
+- [ ] Metrics + Health đo được.
+- [ ] Repository abstraction (File→DB→Cloud sẵn).
+
+Khi đạt → **Workflow Runtime thành nền tảng độc lập**; Agent Framework chỉ là một hệ thống chạy trên nền Runtime.
