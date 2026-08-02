@@ -1,0 +1,114 @@
+# dashboard.schema.yaml — Dashboard Snapshot Schema v1
+# Snapshot = Read Model (CQRS). Dashboard chỉ đọc snapshot, không đọc Core.
+version: "12.0"
+schema: 1
+
+type: object
+required:
+  - version
+  - snapshot_id
+  - updated_at
+  - health
+properties:
+  version: { type: string, const: "12.0" }
+  snapshot_id: { type: string, description: "SNAP-NNN" }
+  updated_at: { type: string, description: ISO8601 }
+
+  health:
+    type: object
+    properties:
+      overall: { type: number }
+      architecture: { type: number }
+      runtime: { type: number }
+      context: { type: number }
+      workflow: { type: number }
+
+  overview:
+    type: object
+    properties:
+      framework_version: { type: string }
+      running_workflows: { type: integer }
+      plugins: { type: integer }
+      agents: { type: integer }
+      capabilities: { type: integer }
+      knowledge_nodes: { type: integer }
+
+  runtime:
+    type: object
+    properties:
+      running: { type: integer }
+      waiting: { type: integer }
+      completed: { type: integer }
+      failed: { type: integer }
+      avg_time: { type: integer }
+
+  workflows:
+    type: array
+    items:
+      type: object
+      properties:
+        id: { type: string }
+        phase: { type: string }
+        state: { type: string }
+
+  agents:
+    type: array
+    items:
+      type: object
+      properties:
+        id: { type: string }
+        status: { type: string, enum: [idle, running, waiting, completed, failed] }
+
+  capabilities:
+    type: object
+    properties:
+      registered: { type: integer }
+      used_today: { type: integer }
+      unused: { type: integer }
+
+  context:
+    type: object
+    properties:
+      avg_tokens: { type: integer }
+      cache_hit: { type: number }
+      compression: { type: number }
+
+  artifacts:
+    type: object
+    properties:
+      count: { type: integer }
+      orphan: { type: integer }
+      invalid: { type: integer }
+      latest_version: { type: integer }
+
+  events:
+    type: array
+    description: live event log
+    items:
+      type: object
+      properties:
+        id: { type: string }
+        type: { type: string }
+        timestamp: { type: string }
+
+  evolution:
+    type: object
+    properties:
+      proposals: { type: integer }
+      approved: { type: integer }
+      applied: { type: integer }
+
+  plugins:
+    type: array
+    items:
+      type: object
+      properties:
+        id: { type: string }
+        version: { type: string }
+        enabled: { type: boolean }
+        certified: { type: boolean }
+
+# Quy ước:
+# - Snapshot do Projection Engine build từ event stream (CQRS Read Side).
+# - Dashboard KHÔNG đọc Runtime/Artifact/Registry trực tiếp.
+# - Mỗi event → cập nhật snapshot (realtime, không refresh).
