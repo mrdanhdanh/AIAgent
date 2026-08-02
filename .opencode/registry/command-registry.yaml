@@ -60,6 +60,9 @@ commands:
   - id: team-capabilities
     supports: [orchestration.orchestrate, knowledge.retrieve]
     category: workflow
+  - id: team-runtime-benchmark
+    supports: [orchestration.orchestrate, analysis.codebase]
+    category: workflow
   - id: team-explore
     supports: [analysis.codebase]
     category: workflow

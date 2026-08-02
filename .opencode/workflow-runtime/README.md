@@ -77,6 +77,34 @@ Biến đổi thiết kế:
 | `phase.schema.yaml` | Schema phase | 1 |
 | `instance.schema.yaml` | Schema workflow instance | 1 |
 | `compiled.schema.yaml` | Schema compiled.workflow.json | 1.6 |
+| `extensions.md` | Extension Points — hook before/after/on-error | 1.16 |
+| `service-locator.md` | Service Locator (không new object trực tiếp) | 1.17 |
+| `configuration.md` | Runtime Configuration (không hard-code) | 1.18 |
+| `feature-flags.md` | Feature Flags (bật/tắt module) | 1.19 |
+| `manifest.md` | Runtime Manifest + Generator (runtime-manifest.json) | 1.20+1.23 |
+| `compatibility.md` | Compatibility Layer (workflow v3 → v4) | 1.21 |
+| `dependency-injection.md` | Dependency Injection (interface → impl) | 1.22 |
+| `benchmark.md` | Runtime Benchmark (/team-runtime-benchmark) | 1.24 |
+| `RUNTIME_ACCEPTANCE.md` | Runtime Acceptance Checklist | 1.25 |
+| `RUNTIME_CERTIFICATE.md` | Runtime Certification | 1.26 |
+| `runtime-manifest.yaml` | Runtime tự khai báo (mẫu) | 1.20 |
+
+## 5. Nguyên tắc khóa phạm vi (1.27)
+
+> **Workflow Runtime không được phụ thuộc vào bất kỳ khái niệm AI nào.**
+
+Runtime chỉ xử lý các khái niệm tổng quát:
+
+```text
+Workflow · Phase · State · Transition · Contract · Artifact · Execution · Persistence
+```
+
+Các khái niệm **Agent · Capability · Prompt · LLM · Skill** chỉ xuất hiện từ **Phase 2** qua adapter/service ngoài.
+
+Lợi ích:
+- Runtime tái sử dụng cho workflow không AI.
+- Core ổn định, đơn giản, dễ test.
+- Extension Points (1.16) là nơi AI gắn vào sau.
 
 ## 5. Pipeline biên dịch
 
