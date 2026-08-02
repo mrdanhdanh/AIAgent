@@ -18,7 +18,7 @@ agent: general
 | Git tag | untagged |
 | Repository | https://github.com/mrdanhdanh/AIAgent.git |
 | Branch | NewVersion |
-| Model | opencode/deepseek-v4-flash-free |
+| Model | opencode/deepseek-v4-pro (Planner/Architect/Reviewer/Analyst), opencode/deepseek-v4-flash (Coder/Tester/Routine) |
 
 ## 2. System Summary
 

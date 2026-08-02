@@ -115,8 +115,8 @@
     "agents":  {
                    "backup-agent":  {
                                         "description":  "Backup và rollback file dùng Backup Utility. Hỗ trợ: backup trước khi sửa file, rollback khi catastrophic failure, liệt kê backup history, verify backup integrity.",
-                                        "model":  "opencode/deepseek-v4-flash-free",
-                                        "file":  "agents/backup-agent.md",
+                                         "model":  "opencode/deepseek-v4-flash",
+                                         "file":  "agents/backup-agent.md",
                                         "mode":  "subagent",
                                         "permissions":  {
                                                             "grep":  "deny",
@@ -128,8 +128,8 @@
                                     },
                    "codebase-explorer":  {
                                              "description":  "Khám phá cấu trúc dự án, phân tích codebase, mapping dependencies và patterns. Agent read-only chạy trước khi thực hiện thay đổi.",
-                                             "model":  "opencode/deepseek-v4-flash-free",
-                                             "file":  "agents/codebase-explorer.md",
+                                              "model":  "opencode/deepseek-v4-flash",
+                                              "file":  "agents/codebase-explorer.md",
                                              "mode":  "subagent",
                                              "permissions":  {
                                                                  "grep":  "deny",
@@ -141,8 +141,8 @@
                                          },
                    "builder":  {
                                    "description":  "Thực thi kế hoạch đã được đánh giá, viết code và thực hiện thay đổi",
-                                   "model":  "opencode/deepseek-v4-flash-free",
-                                   "file":  "agents/builder.md",
+                                    "model":  "opencode/deepseek-v4-flash",
+                                    "file":  "agents/builder.md",
                                    "mode":  "subagent",
                                    "permissions":  {
                                                        "grep":  "deny",
@@ -154,8 +154,8 @@
                                },
                    "guardian":  {
                                     "description":  "Chuyên gia review source code trước khi push lên git — phát hiện secret, lỗi convention, lỗ hổng bảo mật, vi phạm quy tắc dự án",
-                                    "model":  "opencode/deepseek-v4-flash-free",
-                                    "file":  "agents/guardian.md",
+                                     "model":  "opencode/deepseek-v4-pro",
+                                     "file":  "agents/guardian.md",
                                     "mode":  "subagent",
                                     "permissions":  {
                                                         "grep":  "deny",
@@ -167,8 +167,8 @@
                                 },
                    "tester":  {
                                   "description":  "Thực thi kiểm thử, validate tính năng và báo cáo kết quả kèm coverage (v3.0)",
-                                  "model":  "opencode/deepseek-v4-flash-free",
-                                  "file":  "agents/tester.md",
+                                   "model":  "opencode/deepseek-v4-flash",
+                                   "file":  "agents/tester.md",
                                   "mode":  "subagent",
                                   "permissions":  {
                                                       "grep":  "deny",
@@ -180,8 +180,8 @@
                               },
                    "ui-beautifier":  {
                                          "description":  "\u003e-",
-                                         "model":  "opencode/deepseek-v4-flash-free",
-                                         "file":  "agents/ui-beautifier.md",
+                                          "model":  "opencode/deepseek-v4-pro",
+                                          "file":  "agents/ui-beautifier.md",
                                          "mode":  "subagent",
                                          "permissions":  {
                                                              "grep":  "deny",
@@ -193,8 +193,8 @@
                                      },
                    "self-improver":  {
                                          "description":  "Sau khi workflow hoàn tất, đọc lại quá trình, phân tích kỹ năng đã dùng và thiếu, đề xuất cải tiến (chỉ suggestion, không ghi KB). Cần qua approval gate trước khi ghi knowledge base.",
-                                         "model":  "opencode/deepseek-v4-flash-free",
-                                         "file":  "agents/self-improver.md",
+                                          "model":  "opencode/deepseek-v4-pro",
+                                          "file":  "agents/self-improver.md",
                                          "mode":  "subagent",
                                          "permissions":  {
                                                              "grep":  "deny",
@@ -206,8 +206,8 @@
                                      },
                    "learning-agent":  {
                                           "description":  "Chuyên gia Learning Pipeline — đọc failure records từ memory, phân tích patterns xuyên suốt, auto-generate lessons và patterns mới. Ghi trực tiếp vào memory/. Cần approval gate cho MEDIUM/HIGH impact.",
-                                          "model":  "opencode/deepseek-v4-flash-free",
-                                          "file":  "agents/learning-agent.md",
+                                           "model":  "opencode/deepseek-v4-pro",
+                                           "file":  "agents/learning-agent.md",
                                           "mode":  "subagent",
                                           "permissions":  {
                                                               "grep":  "deny",
@@ -219,8 +219,8 @@
                                       },
                    "planner":  {
                                    "description":  "Mở rộng: Thiết kế giải pháp + Lập kế hoạch thực thi chi tiết. Đảm nhiệm cả Design phase và Plan phase.",
-                                   "model":  "opencode/deepseek-v4-flash-free",
-                                   "file":  "agents/planner.md",
+                                    "model":  "opencode/deepseek-v4-pro",
+                                    "file":  "agents/planner.md",
                                    "mode":  "subagent",
                                    "permissions":  {
                                                        "grep":  "deny",
@@ -232,8 +232,8 @@
                                },
                    "root-cause-agent":  {
                                             "description":  "Chuyên gia phân tích nguyên nhân gốc (Root Cause Analysis) — nhận error đã normalized, tìm kiếm trong codebase, tạo hypotheses với confidence score, đề xuất hướng fix. Agent read + suggest.",
-                                            "model":  "opencode/deepseek-v4-flash-free",
-                                            "file":  "agents/root-cause-agent.md",
+                                             "model":  "opencode/deepseek-v4-pro",
+                                             "file":  "agents/root-cause-agent.md",
                                             "mode":  "subagent",
                                             "permissions":  {
                                                                 "grep":  "deny",
@@ -245,8 +245,8 @@
                                         },
                    "test-planner":  {
                                         "description":  "Tạo kế hoạch kiểm thử chi tiết, chống overlap, có impact analysis, coverage matrix, risk-based testing",
-                                        "model":  "opencode/deepseek-v4-flash-free",
-                                        "file":  "agents/test-planner.md",
+                                         "model":  "opencode/deepseek-v4-pro",
+                                         "file":  "agents/test-planner.md",
                                         "mode":  "subagent",
                                         "permissions":  {
                                                             "grep":  "deny",
@@ -258,8 +258,8 @@
                                     },
                    "analyst":  {
                                    "description":  "Phân tích yêu cầu người dùng, xác định phạm vi, rủi ro và các task cần thực hiện",
-                                   "model":  "opencode/deepseek-v4-flash-free",
-                                   "file":  "agents/analyst.md",
+                                    "model":  "opencode/deepseek-v4-pro",
+                                    "file":  "agents/analyst.md",
                                    "mode":  "subagent",
                                    "permissions":  {
                                                        "grep":  "deny",
@@ -271,8 +271,8 @@
                                },
                    "reviewer":  {
                                     "description":  "Đánh giá kế hoạch thực thi, kiểm tra tính đúng đắn, đầy đủ và hiệu quả",
-                                    "model":  "opencode/deepseek-v4-flash-free",
-                                    "file":  "agents/reviewer.md",
+                                     "model":  "opencode/deepseek-v4-pro",
+                                     "file":  "agents/reviewer.md",
                                     "mode":  "subagent",
                                     "permissions":  {
                                                         "grep":  "deny",
@@ -284,8 +284,8 @@
                                 },
                    "pusher":  {
                                   "description":  "Chuyên gia thực hiện git push an toàn — auto-commit từ diff, safety checks, build, test, confirmation gate, push execution, post-push verify",
-                                  "model":  "opencode/deepseek-v4-flash-free",
-                                  "file":  "agents/pusher.md",
+                                   "model":  "opencode/deepseek-v4-flash",
+                                   "file":  "agents/pusher.md",
                                   "mode":  "subagent",
                                   "permissions":  {
                                                       "grep":  "deny",
@@ -297,8 +297,8 @@
                               },
                    "failure-agent":  {
                                          "description":  "Chuyên gia phân tích và chuẩn hóa lỗi — classify error type, normalize error message, search failure memory, đề xuất lesson phù hợp. Read-only agent.",
-                                         "model":  "opencode/deepseek-v4-flash-free",
-                                         "file":  "agents/failure-agent.md",
+                                          "model":  "opencode/deepseek-v4-pro",
+                                          "file":  "agents/failure-agent.md",
                                          "mode":  "subagent",
                                          "permissions":  {
                                                              "grep":  "deny",
@@ -310,8 +310,8 @@
                                      },
                    "general":  {
                                    "description":  "General-purpose orchestrator agent — điều phối workflow, triệu hồi sub-agents, quản lý state machine",
-                                   "model":  "opencode/deepseek-v4-flash-free",
-                                   "file":  "agents/general.md",
+                                    "model":  "opencode/deepseek-v4-pro",
+                                    "file":  "agents/general.md",
                                    "mode":  "subagent",
                                    "permissions":  {
                                                        "grep":  "deny",
@@ -323,8 +323,8 @@
                                },
                    "knowledge-agent":  {
                                            "description":  "Intent Analyzer + Router cho Knowledge Assistant — phân loại câu hỏi, chọn skill pipeline, tổng hợp trả lời có nguồn",
-                                           "model":  "opencode/deepseek-v4-flash-free",
-                                           "file":  "agents/knowledge-agent.md",
+                                            "model":  "opencode/deepseek-v4-pro",
+                                            "file":  "agents/knowledge-agent.md",
                                            "mode":  "subagent",
                                            "permissions":  {
                                                                "grep":  "deny",
@@ -336,8 +336,8 @@
                                        },
                    "cleaner":  {
                                    "description":  "Workspace Cleaner Agent v2.0 — quét rác theo tiêu chí cấu hình chi tiết, phân loại LOW/MEDIUM/HIGH, backup workflow-linked, dry-run bắt buộc, protected list 4 nhóm.",
-                                   "model":  "opencode/deepseek-v4-flash-free",
-                                   "file":  "agents/cleaner.md",
+                                    "model":  "opencode/deepseek-v4-flash",
+                                    "file":  "agents/cleaner.md",
                                    "mode":  "subagent",
                                    "permissions":  {
                                                        "grep":  "deny",

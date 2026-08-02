@@ -1,7 +1,7 @@
 ---
 description: Đánh giá kế hoạch thực thi, kiểm tra tính đúng đắn, đầy đủ và hiệu quả
 mode: subagent
-model: opencode/deepseek-v4-flash-free
+model: opencode-go/deepseek-v4-pro
 permission:
   read: allow
   grep: allow

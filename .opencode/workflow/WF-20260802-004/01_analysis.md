@@ -20,7 +20,7 @@ Workflow Engine không còn hardcode `planner/builder/tester` nữa.
 
 | Loại | Số lượng | Vị trí |
 |------|---------|--------|
-| Agents | 18 | `.opencode/agents/*.md` (subagent, model deepseek-v4-flash-free) |
+| Agents | 18 | `.opencode/agents/*.md` (subagent, model pro/flash tiered) |
 | Commands | 53 | `.opencode/commands/*.md` |
 | Skills | 29 | `.opencode/skills/*/SKILL.md` |
 | Scripts | 11 | `.opencode/scripts/*.ps1` |

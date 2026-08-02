@@ -57,7 +57,7 @@ steps:
     file: ".opencode/agents/knowledge-agent.md"
     logic: |
       frontmatter: description (Intent Analyzer + Router cho Knowledge Assistant), mode: subagent,
-      model: opencode/deepseek-v4-flash-free, permission read/grep/glob/bash allow + edit deny,
+      model: opencode/deepseek-v4-pro, permission read/grep/glob/bash allow + edit deny,
       schema_version "1.0". (bash allow vì git-history chạy git log + knowledge-index chạy script;
       edit deny vì agent chỉ đọc, không sửa file.) Body: bảng intent mapping (ask/where/why/
       flow/impact/explain/trace/compare-doc → skill pipeline), quy trình xử lý 5 bước, output

@@ -1,6 +1,6 @@
 # AIAgent System — Tổng Quan
 
-Hệ thống AIAgent trong dự án Japanese Learner, quản lý qua **OpenCode** với model `opencode/deepseek-v4-flash-free`.
+Hệ thống AIAgent trong dự án Japanese Learner, quản lý qua **OpenCode** với hệ thống model phân tầng: `opencode/deepseek-v4-pro` (Planner/Architect/Reviewer/Analyst) và `opencode/deepseek-v4-flash` (Coder/Tester/Routine).
 
 ---
 

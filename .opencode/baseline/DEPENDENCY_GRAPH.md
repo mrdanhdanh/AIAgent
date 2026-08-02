@@ -31,7 +31,7 @@ Command (54)
 |-----------|----------------|
 | Command | Agent / Workflow / Skill |
 | Workflow Engine | definitions YAML, state.json, phase-runner |
-| Agent | Skill, Knowledge, Model (deepseek-v4-flash-free) |
+| Agent | Skill, Knowledge, Model (pro + flash tiered) |
 | Skill | Knowledge base, Scripts, Registry |
 | Scripts | (framework) can thiệp file |
 | Registry | capabilities.yaml (nguồn chân lý) |

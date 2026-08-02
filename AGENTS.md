@@ -67,7 +67,7 @@ dotnet test JapaneseLearner.E2ETests\JapaneseLearner.E2ETests.csproj
 
 - Agent definitions in `.opencode/agents/` (Vietnamese). Dev-team workflow runs via **Workflow Engine v4** (see below); `.opencode/skills/dev-team/SKILL.md` giữ bản 13 bước cũ làm reference.
 - Knowledge base at `.opencode/knowledge/` stores lessons and patterns from past workflows.
-- Model: `opencode/deepseek-v4-flash-free`.
+- Default model: `opencode-go/deepseek-v4-pro` (Planner/Architect/Reviewer/Analyst tiers); `opencode-go/deepseek-v4-flash` (Coder/Tester/Routine tiers).
 
 ## Workflow Engine v4
 

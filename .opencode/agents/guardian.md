@@ -2,7 +2,7 @@
 description: Chuyên gia review source code trước khi push lên git — phát hiện secret, lỗi convention, lỗ hổng bảo mật, vi phạm quy tắc dự án
 schema_version: "2.0"
 mode: subagent
-model: opencode/deepseek-v4-flash-free
+model: opencode-go/deepseek-v4-pro
 permission:
   read: allow
   grep: allow

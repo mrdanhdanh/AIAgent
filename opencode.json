@@ -4,7 +4,7 @@
     "analyst": {
       "description": "Phân tích yêu cầu người dùng, xác định phạm vi, rủi ro và các task cần thực hiện",
       "mode": "subagent",
-      "model": "opencode/deepseek-v4-flash-free",
+      "model": "opencode-go/deepseek-v4-pro",
       "permission": {
         "read": "allow",
         "grep": "allow",
@@ -16,7 +16,7 @@
     "planner": {
       "description": "Lên kế hoạch thực thi chi tiết dựa trên yêu cầu đã phân tích",
       "mode": "subagent",
-      "model": "opencode/deepseek-v4-flash-free",
+      "model": "opencode-go/deepseek-v4-pro",
       "permission": {
         "read": "allow",
         "grep": "allow",
@@ -28,7 +28,7 @@
     "reviewer": {
       "description": "Đánh giá kế hoạch thực thi, kiểm tra tính đúng đắn, đầy đủ và hiệu quả",
       "mode": "subagent",
-      "model": "opencode/deepseek-v4-flash-free",
+      "model": "opencode-go/deepseek-v4-pro",
       "permission": {
         "read": "allow",
         "grep": "allow",
@@ -40,7 +40,7 @@
     "builder": {
       "description": "Thực thi kế hoạch đã được đánh giá, viết code và thực hiện thay đổi",
       "mode": "subagent",
-      "model": "opencode/deepseek-v4-flash-free",
+      "model": "opencode-go/deepseek-v4-flash",
       "permission": {
         "read": "allow",
         "grep": "allow",
@@ -52,7 +52,7 @@
     "test-planner": {
       "description": "Tạo kế hoạch kiểm thử chi tiết cho tính năng đã phát triển",
       "mode": "subagent",
-      "model": "opencode/deepseek-v4-flash-free",
+      "model": "opencode-go/deepseek-v4-pro",
       "permission": {
         "read": "allow",
         "grep": "allow",
@@ -64,7 +64,7 @@
     "tester": {
       "description": "Thực thi kiểm thử, validate tính năng và báo cáo kết quả",
       "mode": "subagent",
-      "model": "opencode/deepseek-v4-flash-free",
+      "model": "opencode-go/deepseek-v4-flash",
       "permission": {
         "read": "allow",
         "grep": "allow",
@@ -76,7 +76,7 @@
     "codebase-explorer": {
       "description": "Khám phá cấu trúc dự án, phân tích codebase, mapping dependencies và patterns. Agent read-only chạy trước khi thực hiện thay đổi.",
       "mode": "subagent",
-      "model": "opencode/deepseek-v4-flash-free",
+      "model": "opencode-go/deepseek-v4-flash",
       "permission": {
         "read": "allow",
         "grep": "allow",
@@ -88,7 +88,7 @@
     "self-improver": {
       "description": "Sau khi workflow hoàn tất, đọc lại quá trình, phân tích kỹ năng đã dùng và thiếu, đề xuất bổ sung vào knowledge base",
       "mode": "subagent",
-      "model": "opencode/deepseek-v4-flash-free",
+      "model": "opencode-go/deepseek-v4-pro",
       "permission": {
         "read": "allow",
         "grep": "allow",
@@ -100,7 +100,7 @@
     "ui-beautifier": {
       "description": "Chuyên đánh giá và cải thiện giao diện người dùng cho Japanese Learner (Blazor WASM + FluentUI 4.14.3). Phân tích .razor files, phát hiện CSS issues, accessibility problems, và đề xuất cải tiến UI/UX.",
       "mode": "subagent",
-      "model": "opencode/deepseek-v4-flash-free",
+      "model": "opencode-go/deepseek-v4-pro",
       "permission": {
         "read": "allow",
         "grep": "allow",
@@ -112,7 +112,7 @@
     "backup-agent": {
       "description": "Backup và rollback file dùng Backup Utility. Hỗ trợ: backup trước khi sửa file, rollback khi catastrophic failure, liệt kê backup history, verify backup integrity.",
       "mode": "subagent",
-      "model": "opencode/deepseek-v4-flash-free",
+      "model": "opencode-go/deepseek-v4-flash",
       "permission": {
         "read": "allow",
         "grep": "allow",
@@ -124,7 +124,7 @@
     "guardian": {
       "description": "Chuyên gia review source code trước khi push lên git — phát hiện secret, lỗi convention, lỗ hổng bảo mật, vi phạm quy tắc dự án",
       "mode": "subagent",
-      "model": "opencode/deepseek-v4-flash-free",
+      "model": "opencode-go/deepseek-v4-pro",
       "permission": {
         "read": "allow",
         "grep": "allow",
@@ -136,7 +136,7 @@
     "pusher": {
       "description": "Chuyên gia thực hiện git push an toàn — safety checks, build, test, confirmation gate, push execution, post-push verify",
       "mode": "subagent",
-      "model": "opencode/deepseek-v4-flash-free",
+      "model": "opencode-go/deepseek-v4-flash",
       "permission": {
         "read": "allow",
         "grep": "allow",
@@ -148,7 +148,7 @@
     "cleaner": {
       "description": "Chuyên gia dọn rác Workspace — quét file rác, phân loại Cấp 1/2/3, backup trước khi xóa, dry-run, confirmation gate",
       "mode": "subagent",
-      "model": "opencode/deepseek-v4-flash-free",
+      "model": "opencode-go/deepseek-v4-flash",
       "permission": {
         "read": "allow",
         "grep": "allow",
@@ -160,7 +160,7 @@
     "general": {
       "description": "General-purpose orchestrator agent — điều phối workflow, triệu hồi sub-agents, quản lý state machine",
       "mode": "subagent",
-      "model": "opencode/deepseek-v4-flash-free",
+      "model": "opencode-go/deepseek-v4-pro",
       "permission": {
         "read": "allow",
         "grep": "allow",
@@ -172,7 +172,7 @@
     "failure-agent": {
       "description": "Chuyên gia phân tích và chuẩn hóa lỗi — classify error type, normalize error message, search failure memory, đề xuất lesson phù hợp. Read-only agent.",
       "mode": "subagent",
-      "model": "opencode/deepseek-v4-flash-free",
+      "model": "opencode-go/deepseek-v4-pro",
       "permission": {
         "read": "allow",
         "grep": "allow",
@@ -184,7 +184,7 @@
     "root-cause-agent": {
       "description": "Chuyên gia phân tích nguyên nhân gốc (Root Cause Analysis) — nhận error đã normalized, tìm kiếm trong codebase, tạo hypotheses với confidence score, đề xuất hướng fix.",
       "mode": "subagent",
-      "model": "opencode/deepseek-v4-flash-free",
+      "model": "opencode-go/deepseek-v4-pro",
       "permission": {
         "read": "allow",
         "grep": "allow",
@@ -196,7 +196,7 @@
     "learning-agent": {
       "description": "Chuyên gia Learning Pipeline — đọc failure records từ memory, phân tích patterns xuyên suốt, auto-generate lessons và patterns mới. Ghi trực tiếp vào memory/.",
       "mode": "subagent",
-      "model": "opencode/deepseek-v4-flash-free",
+      "model": "opencode-go/deepseek-v4-pro",
       "permission": {
         "read": "allow",
         "grep": "allow",
@@ -208,7 +208,7 @@
     "knowledge-agent": {
       "description": "Intent Analyzer + Router cho Knowledge Assistant — phân loại câu hỏi, chọn skill pipeline, tổng hợp trả lời có nguồn. Bash allow để chạy git log (git-history) và knowledge-index.ps1.",
       "mode": "subagent",
-      "model": "opencode/deepseek-v4-flash-free",
+      "model": "opencode-go/deepseek-v4-pro",
       "permission": {
         "read": "allow",
         "grep": "allow",

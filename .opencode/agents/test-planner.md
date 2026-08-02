@@ -1,7 +1,7 @@
 ---
 description: Tạo kế hoạch kiểm thử chi tiết, chống overlap, có impact analysis, coverage matrix, risk-based testing
 mode: subagent
-model: opencode/deepseek-v4-flash-free
+model: opencode-go/deepseek-v4-pro
 permission:
   read: allow
   grep: allow

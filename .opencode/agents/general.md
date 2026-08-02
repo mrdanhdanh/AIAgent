@@ -2,7 +2,7 @@
 description: General-purpose orchestrator agent — điều phối workflow, triệu hồi sub-agents, quản lý state machine
 schema_version: "2.0"
 mode: subagent
-model: opencode/deepseek-v4-flash-free
+model: opencode-go/deepseek-v4-pro
 permission:
   read: allow
   grep: allow
