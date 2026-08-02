@@ -1,0 +1,21 @@
+# policy.schema.yaml — Policy Engine Schema v1
+version: "15.0"
+schema: 1
+
+type: object
+required:
+  - policies
+properties:
+  version: { type: string, const: "15.0" }
+  policies:
+    type: object
+    description: key = subject (agent/plugin/workflow/role)
+    additionalProperties:
+      type: object
+      properties:
+        allow:
+          type: array
+          items: { type: string, description: "action pattern (planning.*)" }
+        deny:
+          type: array
+          items: { type: string }

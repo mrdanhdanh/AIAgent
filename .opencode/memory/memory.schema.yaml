@@ -1,0 +1,22 @@
+# memory.schema.yaml — Memory Engine Schema v1
+version: "19.0"
+schema: 1
+
+type: object
+required:
+  - id
+  - type
+properties:
+  version: { type: string, const: "19.0" }
+  id: { type: string }
+  type:
+    type: string
+    enum: [working, session, workflow, knowledge, failure, user, cache, embedding]
+  scope: { type: string }
+  ttl: { type: integer, description: ms, default: 0 = vĩnh viễn }
+  content:
+    type: object
+  tags: { type: array }
+  embedding_ref: { type: string }
+  created_at: { type: string }
+  source: { type: string }

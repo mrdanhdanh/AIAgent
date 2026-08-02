@@ -1,0 +1,29 @@
+# evaluation.schema.yaml — AI Evaluation Schema v1
+version: "21.0"
+schema: 1
+
+type: object
+required:
+  - eval_id
+  - model
+  - results
+properties:
+  version: { type: string, const: "21.0" }
+  eval_id: { type: string }
+  suite: { type: string }
+  model: { type: string }
+  prompt: { type: string }
+  results:
+    type: object
+    properties:
+      quality: { type: number }
+      consistency: { type: number }
+      hallucination: { type: number }
+      latency_ms: { type: number }
+      cost: { type: number }
+  baseline: { type: string, description: baseline eval_id }
+  regression:
+    type: object
+    properties:
+      quality_delta: { type: number }
+      passed: { type: boolean }

@@ -1,0 +1,32 @@
+# release.schema.yaml — Release Manager Schema v1
+version: "22.0"
+schema: 1
+
+type: object
+required:
+  - release_id
+  - version
+  - status
+properties:
+  version: { type: string, const: "22.0" }
+  release_id: { type: string }
+  version: { type: string, description: framework version mới }
+  proposal_ref: { type: string }
+  status:
+    type: string
+    enum: [planned, migrating, canary, ab-test, released, rolled-back, failed]
+  canary:
+    type: object
+    properties:
+      percentage: { type: number }
+      error_threshold: { type: number }
+  ab_test:
+    type: object
+    properties:
+      eval_ref: { type: string }
+      passed: { type: boolean }
+  rollback:
+    type: object
+    properties:
+      to_version: { type: string }
+      triggered: { type: boolean }

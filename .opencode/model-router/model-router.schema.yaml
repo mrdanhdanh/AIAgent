@@ -1,0 +1,28 @@
+# model-router.schema.yaml — Model Router Schema v1
+version: "17.0"
+schema: 1
+
+type: object
+required:
+  - models
+properties:
+  version: { type: string, const: "17.0" }
+  default:
+    type: string
+    description: model mặc định
+  models:
+    type: array
+    items:
+      type: object
+      required: [id, provider]
+      properties:
+        id: { type: string }
+        provider: { type: string, enum: [gpt, claude, gemini, qwen, deepseek, local] }
+        cost_per_1k: { type: number }
+        latency_ms: { type: integer }
+        context_limit: { type: integer }
+        quality: { type: number }
+        available: { type: boolean }
+  routing_policy:
+    type: object
+    description: key = capability pattern, value = model preference
