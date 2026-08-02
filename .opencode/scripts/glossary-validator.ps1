@@ -24,8 +24,9 @@ $warnings = @()
 $infos    = @()
 
 # ---------- GLS-001: files co ban ----------
-$terms = @('agent','capability','workflow','artifact','context','runtime',
-  'event','phase-task','knowledge-memory','command-skill-plugin')
+$terms = @('agent','capability','workflow','phase','task','command','skill',
+  'artifact','context','knowledge','memory','runtime','event','plugin',
+  'entity','state','status','contract','registry','kernel','metadata','lifecycle','version')
 foreach ($t in $terms) {
   if (-not (Test-Path (Join-Path $glossaryDir "$t.md"))) {
     $errors += "GLS-001: missing term file $t.md"

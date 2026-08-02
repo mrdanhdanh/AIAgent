@@ -24,17 +24,17 @@ Does not own:  # thứ thuật ngữ này KHÔNG sở hữu
 - ...
 ```
 
-## Index
+## Index — Core Terms
 
 | Thuật ngữ | File | Định nghĩa ngắn |
 |-----------|------|-----------------|
 | Agent | `agent.md` | thực thể thực thi capability; stateless |
 | Capability | `capability.md` | khả năng hệ thống; không phụ thuộc agent |
 | Workflow | `workflow.md` | chuỗi phase có trạng thái |
-| Phase | `phase.md` | bước trong workflow |
-| Task | `task.md` | đơn vị công việc |
+| Phase | `phase.md` | bước trong workflow, gắn 1 capability |
+| Task | `task.md` | đơn vị công việc trong phase |
 | Command | `command.md` | lệnh cài sẵn framework |
-| Skill | `skill.md` | kiến thức/kỹ năng cho agent |
+| Skill | `skill.md` | kiến thức/quy trình tái sử dụng |
 | Artifact | `artifact.md` | output versioned + checksum |
 | Context | `context.md` | package dữ liệu cho agent |
 | Knowledge | `knowledge.md` | lessons/patterns/graph |
@@ -43,8 +43,23 @@ Does not own:  # thứ thuật ngữ này KHÔNG sở hữu
 | Event | `event.md` | thông báo bất biến, có lineage |
 | Plugin | `plugin.md` | gói mở rộng |
 
+## Index — Supporting Terms
+
+| Thuật ngữ | File | Định nghĩa ngắn |
+|-----------|------|-----------------|
+| Entity | `entity.md` | thực thể cơ bản (id/type/version/status/metadata) |
+| State | `state.md` | trạng thái runtime, thuộc Runtime |
+| Status | `status.md` | mức trưởng thành khai báo |
+| Contract | `contract.md` | hợp đồng giao tiếp |
+| Registry | `registry.md` | nguồn đăng ký + khám phá |
+| Kernel | `kernel.md` | lõi điều phối Runtime |
+| Metadata | `metadata.md` | thông tin quản lý entity |
+| Lifecycle | `lifecycle.md` | vòng đời status |
+| Version | `version.md` | số hiệu phiên bản bất biến |
+
 ## Quy tắc
 
-- Không từ nào hiểu theo nhiều nghĩa.
+- **Không từ nào hiểu theo nhiều nghĩa.**
 - Mọi tài liệu khác (SPEC-000..020, ADR, RFC) phải dùng đúng glossary này.
 - Thêm thuật ngữ mới → cập nhật glossary trước, rồi mới dùng trong SPEC.
+- Sửa glossary → rà soát mọi SPEC tham chiếu (Consistency check).
