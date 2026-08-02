@@ -1,7 +1,7 @@
 {
     "version":  "3.0",
     "framework":  "v3",
-    "build_date":  "2026-08-02 10:35:43",
+    "build_date":  "2026-08-02 10:51:58",
     "git_commit":  "3d55b30",
     "git_tag":  "untagged",
     "repository":  "https://github.com/mrdanhdanh/AIAgent.git",
@@ -16,7 +16,7 @@
     "memory":  14,
     "workflows":  5,
     "contracts":  2,
-    "scripts":  12,
+    "scripts":  13,
     "registry_files":  10,
     "workflow_engine":  8
 }
