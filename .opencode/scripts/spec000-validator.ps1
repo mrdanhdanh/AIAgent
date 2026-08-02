@@ -77,6 +77,12 @@ if ($readme -notmatch 'Definition of Done') { $errors += "SPC-006: thieu Definit
 if ($readme -notmatch 'Decision Hierarchy') { $warnings += "SPC-006: thieu Decision Hierarchy" }
 if ($readme -notmatch 'Constitution') { $errors += "SPC-006: thieu thuong hieu Constitution" }
 
+# ---------- SPC-007: building blocks consolidation ----------
+$bbFile = Join-Path $s000 'building-blocks.md'
+if (-not (Test-Path $bbFile)) {
+  $warnings += "SPC-007: thieu building-blocks.md (Consolidation Sprint 4)"
+}
+
 # ---------- Output ----------
 if (-not $Silent) {
   ""

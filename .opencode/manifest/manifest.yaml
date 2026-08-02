@@ -1,0 +1,62 @@
+# AIOS Manifest — CMND của AIOS
+# Sprint -1. Một file duy nhất, ~30 dòng, định nghĩa AIOS là gì.
+# Tham chiếu: SPEC-000 Constitution.
+version: "1.0"
+schema: manifest-v1
+
+name: AIOS
+full_name: AI Operating System
+kind: platform
+maturity: ratified
+
+purpose: >
+  Nền tảng điều hành cho AI Agent. Runtime là trung tâm;
+  Agent chỉ là thành phần chạy trên Runtime.
+
+vision: >
+  AIOS trở thành tầng hạ tầng chuẩn để vận hành AI agent
+  ở quy mô enterprise, ổn định 5-10 năm, mở rộng qua extension.
+
+principles:
+  - P001 Runtime First
+  - P002 Contract First
+  - P003 Metadata First
+  - P004 Event Driven
+  - P005 Stateless Agents
+  - P006 Capability Driven
+  - P007 Discoverable
+  - P008 Observable
+  - P009 Versioned
+  - P010 Plugin First
+  - P011 Simulation Before Execution
+  - P012 Single Source of Truth
+  - P013 Immutable Artifacts
+  - P014 Least Privilege
+  - P015 Backward Compatible
+
+quality_attributes:
+  - Reliability
+  - Scalability
+  - Performance
+  - Maintainability
+  - Extensibility
+  - Security
+  - Testability
+  - Determinism
+
+versioning: semantic (MAJOR.MINOR.PATCH)
+license: proprietary
+owners:
+  - core:aios-team
+
+non_goals:
+  - IDE
+  - Source Control
+  - Database Engine
+  - Chat Platform
+  - LLM
+
+references:
+  constitution: spec/SPEC-000-constitution
+  architecture: AIOS_ARCHITECTURE.md
+  implementation: AIOS_IMPLEMENTATION.md
