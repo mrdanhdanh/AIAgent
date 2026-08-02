@@ -1,0 +1,48 @@
+# registry.schema.yaml — Capability Registry v4.0
+# Contract cho capabilities.yaml, agent-registry.yaml, skill-registry.yaml, command-registry.yaml
+version: "4.0"
+
+capability:
+  required: [id, name, category]
+  optional: [description, complexity, required_inputs, outputs,
+              required_context, optional_context, required_artifacts,
+              produces_artifacts, success_metrics, tags, version, deprecated]
+  id: "<category>.<specific>  (VD: implementation.code)"
+  category: "Tên category phải khớp trong taxonomy"
+
+agent:
+  required: [id, capabilities, priority]
+  optional: [name, version, enabled, icon, languages, frameworks, estimated_Tokens,
+             estimated_token, estimated_time, dependencies, assistant_not_allowed]
+  capabilities: "Danh sách id capability tồn tại trong capabilities.yaml"
+
+skill:
+  required: [id, supports, priority]
+  optional: [name, version, enabled]
+  supports: "Danh sách id capability"
+
+command:
+  required: [id, supports]
+  optional: [name, version, enabled, category]
+  supports: "Danh sách id capability"
+
+# Quy ước (giống v4):
+# - UTF-8 no-BOM, spaces 2-indent, không tab
+# - KHÔNG viết `#` trước WF-ID/WF-ERR/CR-xx
+# - Mọi id unique trên toàn vault
+
+categories:
+  - analysis
+  - architecture
+  - planning
+  - implementation
+  - review
+  - testing
+  - knowledge
+  - memory
+  - deployment
+  - workspace
+  - ui
+  - security
+  - documentation
+  - orchestration

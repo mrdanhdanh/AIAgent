@@ -1,0 +1,170 @@
+# command-registry.yaml — Command Capability Registry
+# 54 commands. supports phải tồn tại trong capabilities.yaml.
+version: "4.0"
+
+commands:
+  - id: team
+    supports: [orchestration.orchestrate]
+    category: workflow
+  - id: team-analyze
+    supports: [analysis.requirement]
+    category: workflow
+  - id: team-analyze-failure
+    supports: [analysis.error]
+    category: workflow
+  - id: team-plan
+    supports: [architecture.design, planning.task]
+    category: workflow
+  - id: team-review
+    supports: [review.plan]
+    category: workflow
+  - id: team-build
+    supports: [implementation.code]
+    category: workflow
+  - id: team-testplan
+    supports: [planning.test]
+    category: workflow
+  - id: team-test
+    supports: [testing.unit, testing.e2e, testing.ui]
+    category: workflow
+  - id: team-ui-audit
+    supports: [ui.audit]
+    category: workflow
+  - id: team-gitguard
+    supports: [review.security]
+    category: workflow
+  - id: team-gitpush
+    supports: [deployment.git]
+    category: workflow
+  - id: team-syncdocs
+    supports: [knowledge.learn, documentation.write]
+    category: workflow
+  - id: team-selfimprove
+    supports: [analysis.bottleneck]
+    category: workflow
+  - id: team-bugfix
+    supports: [analysis.root-cause, implementation.fix]
+    category: workflow
+  - id: team-root-cause
+    supports: [analysis.root-cause]
+    category: workflow
+  - id: team-learn
+    supports: [knowledge.learn, memory.record]
+    category: workflow
+  - id: team-cleanup
+    supports: [workspace.cleanup]
+    category: workflow
+  - id: team-doctor
+    supports: [analysis.codebase, orchestration.orchestrate]
+    category: workflow
+  - id: team-capabilities
+    supports: [orchestration.orchestrate, knowledge.retrieve]
+    category: workflow
+  - id: team-explore
+    supports: [analysis.codebase]
+    category: workflow
+  - id: backup
+    supports: [deployment.backup]
+    category: ops
+  - id: doctor
+    supports: [analysis.codebase, orchestration.orchestrate]
+    category: ops
+  - id: doctor-test
+    supports: [testing.strategy, analysis.root-cause]
+    category: qa
+  - id: approve-test
+    supports: [testing.ui, testing.e2e]
+    category: qa
+  # ===== Knowledge Assistant =====
+  - id: ask
+    supports: [knowledge.retrieve]
+    category: knowledge
+  - id: knowledge
+    supports: [knowledge.retrieve]
+    category: knowledge
+  - id: knowledge-ask
+    supports: [knowledge.retrieve]
+    category: knowledge
+  - id: knowledge-where
+    supports: [knowledge.retrieve, analysis.codebase]
+    category: knowledge
+  - id: knowledge-why
+    supports: [knowledge.retrieve, analysis.codebase]
+    category: knowledge
+  - id: knowledge-impact
+    supports: [analysis.codebase]
+    category: knowledge
+  - id: knowledge-explain
+    supports: [analysis.codebase]
+    category: knowledge
+  - id: knowledge-flow
+    supports: [analysis.codebase, orchestration.orchestrate]
+    category: knowledge
+  - id: knowledge-trace
+    supports: [analysis.codebase]
+    category: knowledge
+  - id: knowledge-compare-doc
+    supports: [documentation.review]
+    category: knowledge
+  - id: knowledge-health
+    supports: [documentation.review]
+    category: knowledge
+  - id: knowledge-index
+    supports: [knowledge.retrieve]
+    category: knowledge
+  - id: where
+    supports: [knowledge.retrieve, analysis.codebase]
+    category: knowledge
+  - id: why
+    supports: [knowledge.retrieve, analysis.codebase]
+    category: knowledge
+  - id: explain
+    supports: [analysis.codebase]
+    category: knowledge
+  - id: flow
+    supports: [analysis.codebase, orchestration.orchestrate]
+    category: knowledge
+  - id: impact
+    supports: [analysis.codebase]
+    category: knowledge
+  - id: trace
+    supports: [analysis.codebase]
+    category: knowledge
+  - id: compare-doc
+    supports: [documentation.review]
+    category: knowledge
+  # ===== QA Testing =====
+  - id: test-plan
+    supports: [planning.test, testing.strategy]
+    category: qa
+  - id: test-e2e
+    supports: [testing.e2e]
+    category: qa
+  - id: test-ui
+    supports: [testing.ui, ui.audit]
+    category: qa
+  - id: test-visual
+    supports: [testing.ui]
+    category: qa
+  - id: test-accessibility
+    supports: [testing.ui]
+    category: qa
+  - id: test-cross-browser
+    supports: [testing.ui, testing.e2e]
+    category: qa
+  - id: test-regression
+    supports: [testing.e2e, testing.ui]
+    category: qa
+  - id: test-bootstrap
+    supports: [testing.strategy]
+    category: qa
+  - id: test-evolve
+    supports: [testing.strategy]
+    category: qa
+  - id: test-audit
+    supports: [testing.strategy]
+    category: qa
+  # ===== UI =====
+  - id: impeccable
+    supports: [ui.design, implementation.ui]
+    category: ui
