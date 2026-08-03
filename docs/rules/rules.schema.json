@@ -1,14 +1,34 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "aios://rules.schema.json",
-  "title": "AIOS Architecture Rule",
-  "description": "JSON Schema cho frontmatter của từng rule file trong docs/rules/. Validator kiểm tra cấu trúc D004.",
+  "title": "AIOS Architecture Rule (D004)",
+  "description": "JSON Schema cho frontmatter của từng rule file trong docs/rules/. Validator kiểm tra template D004.",
   "type": "object",
-  "required": ["name", "description", "agent"],
+  "required": [
+    "id", "name", "status", "version", "category", "statement", "purpose",
+    "rules", "constraints", "examples", "related_principles", "related_rules", "verification"
+  ],
   "properties": {
-    "name": { "type": "string", "pattern": "^rule-[a-z-]+$" },
-    "description": { "type": "string" },
-    "agent": { "const": "general" }
+    "id": { "type": "string", "pattern": "^RULE-\\d{3}$" },
+    "name": { "type": "string" },
+    "status": { "enum": ["Draft", "Review", "Stable", "Deprecated"] },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "category": { "enum": ["Architecture", "Execution", "State", "Data", "Event", "Security", "Reliability"] },
+    "statement": { "type": "string" },
+    "purpose": { "type": "string" },
+    "rules": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "constraints": {
+      "type": "object",
+      "required": ["allowed", "forbidden"],
+      "properties": {
+        "allowed": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+        "forbidden": { "type": "array", "items": { "type": "string" }, "minItems": 1 }
+      }
+    },
+    "examples": { "type": "array", "items": { "type": "string" } },
+    "related_principles": { "type": "array", "items": { "type": "string", "pattern": "^P\\d{3}$" }, "minItems": 1 },
+    "related_rules": { "type": "array", "items": { "type": "string", "pattern": "^RULE-\\d{3}$" } },
+    "verification": { "type": "array", "items": { "type": "string" }, "minItems": 1 }
   },
   "additionalProperties": false
 }

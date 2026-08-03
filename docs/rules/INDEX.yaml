@@ -1,34 +1,85 @@
-# AIOS Rules INDEX
-# D004 — Doctor/Validator đọc file này để biết kiểm tra rule nào.
+# AIOS Architecture Rules INDEX
+# D004 — Doctor kiểm tra vi phạm rule, Dashboard hiển thị tuân thủ.
 ---
+version: "1.0"
 rules:
-  R-LAYER:
-    file: layering.md
-    summary: 5 tầng, phụ thuộc một chiều từ trên xuống.
-    principles: [P001]
-    sources: [A-001, A-002]
-  R-DEP:
-    file: dependency.md
-    summary: Không circular dependency. Core không phụ thuộc Plugin.
-    principles: [P012, P016]
-    sources: [A-002]
-  R-COMM:
-    file: communication.md
-    summary: Mọi giao tiếp qua Contract (P002) + Runtime (P001).
-    principles: [P001, P002]
-    sources: [A-004]
-  R-VER:
-    file: versioning.md
-    summary: Mọi entity versioned. Không ghi đè. Backward compatible.
+  RULE-001:
+    file: RULE-001-layering.md
+    name: Layering
+    category: Architecture
+    principles: [P001, P003]
+  RULE-002:
+    file: RULE-002-dependency.md
+    name: Dependency
+    category: Architecture
+    principles: [P011, P009]
+  RULE-003:
+    file: RULE-003-communication.md
+    name: Communication
+    category: Architecture
+    principles: [P002, P001, P017]
+  RULE-004:
+    file: RULE-004-execution.md
+    name: Execution
+    category: Execution
+    principles: [P001, P007]
+  RULE-005:
+    file: RULE-005-state.md
+    name: State
+    category: State
+    principles: [P001, P006, P009, P010]
+  RULE-006:
+    file: RULE-006-data-flow.md
+    name: Data Flow
+    category: Data
+    principles: [P009, P006]
+  RULE-007:
+    file: RULE-007-event.md
+    name: Event
+    category: Event
+    principles: [P005, P014]
+  RULE-008:
+    file: RULE-008-security.md
+    name: Security
+    category: Security
+    principles: [P016, P012]
+  RULE-009:
+    file: RULE-009-versioning.md
+    name: Versioning
+    category: Data
     principles: [P004, P010, P018]
-    sources: [G-001, G-003]
-  R-STATE:
-    file: state.md
-    summary: State thuộc Runtime. Agent stateless. Mọi state change phát Event.
-    principles: [P001, P005, P006, P009]
-    sources: [A-006]
-  R-SEC:
-    file: security.md
-    summary: Least privilege. Kiểm tra quyền trước khi thực thi.
-    principles: [P002, P005, P012, P016]
-    sources: [A-005]
+  RULE-010:
+    file: RULE-010-extension.md
+    name: Extension
+    category: Architecture
+    principles: [P012, P019]
+  RULE-011:
+    file: RULE-011-resource-ownership.md
+    name: Resource Ownership
+    category: Data
+    principles: [P009, P010, P008]
+  RULE-012:
+    file: RULE-012-failure-isolation.md
+    name: Failure Isolation
+    category: Reliability
+    principles: [P015, P005]
+  RULE-013:
+    file: RULE-013-deterministic-execution.md
+    name: Deterministic Execution
+    category: Reliability
+    principles: [P009, P011, P013]
+
+dependencies:
+  RULE-001: [RULE-002, RULE-004]
+  RULE-002: [RULE-001, RULE-003]
+  RULE-003: [RULE-007, RULE-002]
+  RULE-004: [RULE-001, RULE-013]
+  RULE-005: [RULE-011, RULE-006]
+  RULE-006: [RULE-005, RULE-011]
+  RULE-007: [RULE-003, RULE-004]
+  RULE-008: [RULE-010, RULE-012]
+  RULE-009: [RULE-005, RULE-013]
+  RULE-010: [RULE-002, RULE-008]
+  RULE-011: [RULE-005, RULE-006]
+  RULE-012: [RULE-008, RULE-004]
+  RULE-013: [RULE-004, RULE-009]

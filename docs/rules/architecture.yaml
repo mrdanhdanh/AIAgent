@@ -1,0 +1,63 @@
+# AIOS Architecture — Layers + Dependency
+# D004 — Doctor sinh Dependency Graph + Layer Diagram từ file này.
+---
+version: "1.0"
+
+layers:
+  Presentation:
+    depends_on:
+      - Command
+  Command:
+    depends_on:
+      - Workflow
+  Workflow:
+    depends_on:
+      - Runtime
+  Runtime:
+    depends_on:
+      - Capability
+  Capability:
+    depends_on:
+      - Registry
+  Registry:
+    depends_on:
+      - Agent
+  Agent:
+    depends_on:
+      - Skill
+  Skill:
+    depends_on:
+      - Infrastructure
+  Infrastructure:
+    depends_on: []
+
+# Layer order (từ trên xuống)
+layer_order:
+  - Presentation
+  - Command
+  - Workflow
+  - Runtime
+  - Capability
+  - Registry
+  - Agent
+  - Skill
+  - Infrastructure
+
+# Map glossary term → layer (Doctor/Validator dùng)
+term_layer:
+  TERM-007 Command: Command
+  TERM-002 Workflow: Workflow
+  TERM-003 Phase: Workflow
+  TERM-004 Task: Workflow
+  TERM-001 Runtime: Runtime
+  TERM-009 Context: Runtime
+  TERM-006 Capability: Capability
+  TERM-013 Registry: Registry
+  TERM-005 Agent: Agent
+  TERM-016 Skill: Skill
+  TERM-015 Plugin: Capability
+  TERM-014 Contract: Runtime
+  TERM-012 Event: Runtime
+  TERM-008 Artifact: Runtime
+  TERM-010 Memory: Runtime
+  TERM-011 Knowledge: Skill
