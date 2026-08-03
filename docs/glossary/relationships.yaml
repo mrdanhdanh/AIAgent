@@ -1,0 +1,118 @@
+# AIOS Glossary Relationships
+# D002 Domain Model — quan hệ giữa thực thể (cardinality) + ownership matrix.
+# Runtime/Doctor sinh dependency graph + kiểm tra nhất quán.
+---
+version: "1.0"
+
+# --- Ownership Matrix (ai sở hữu gì) ---
+ownership:
+  Runtime:
+    owns: [Workflow State, Context, Execution, Event Bus]
+    owns_nothing: false
+  Agent:
+    owns: []
+    owns_nothing: true
+  Workflow:
+    owns: [Phase Definition]
+    owns_nothing: false
+  Phase:
+    owns: [Task Definition]
+    owns_nothing: false
+  Registry:
+    owns: [Capability Registration, Agent Registration]
+    owns_nothing: false
+  Plugin:
+    owns: [Exported Capability, Exported Skill]
+    owns_nothing: false
+  Artifact:
+    owns: [Content (immutable)]
+    owns_nothing: false
+  Event:
+    owns: []
+    owns_nothing: true
+
+# --- Entity Relationship + Cardinality (UML) ---
+relationships:
+  User_uses_Command:
+    from: User
+    to: Command
+    cardinality: 1..*
+  Command_triggers_Workflow:
+    from: Command
+    to: Workflow
+    cardinality: 1..1
+  Workflow_contains_Phase:
+    from: Workflow
+    to: Phase
+    cardinality: 1..*
+  Phase_contains_Task:
+    from: Phase
+    to: Task
+    cardinality: 1..*
+  Runtime_executes_Task:
+    from: Runtime
+    to: Task
+    cardinality: 1..*
+  Task_assigned_to_Agent:
+    from: Task
+    to: Agent
+    cardinality: 1..1
+  Capability_resolved_by_Runtime:
+    from: Capability
+    to: Runtime
+    cardinality: N..1
+  Capability_implemented_by_Agent:
+    from: Capability
+    to: Agent
+    cardinality: 1..0..N
+  Agent_uses_Skill:
+    from: Agent
+    to: Skill
+    cardinality: 0..*
+  Agent_produces_Artifact:
+    from: Agent
+    to: Artifact
+    cardinality: 1..*
+  Agent_emits_Event:
+    from: Agent
+    to: Event
+    cardinality: 0..*
+  Registry_registers_Capability:
+    from: Registry
+    to: Capability
+    cardinality: 1..N
+  Plugin_exports_Capability:
+    from: Plugin
+    to: Capability
+    cardinality: 1..0..N
+  Context_lives_in_Runtime:
+    from: Context
+    to: Runtime
+    cardinality: 1..1
+  Memory_feeds_Knowledge:
+    from: Memory
+    to: Knowledge
+    cardinality: 0..*
+  Contract_governs_Workflow:
+    from: Contract
+    to: Workflow
+    cardinality: 1..*
+  Contract_governs_Runtime:
+    from: Contract
+    to: Runtime
+    cardinality: 1..*
+
+# --- Dòng chính (main flow) ---
+main_flow:
+  - User
+  - Command
+  - Workflow
+  - Phase
+  - Task
+  - Runtime
+  - Capability
+  - Registry
+  - Agent
+  - Skill
+  - Artifact
+  - Event

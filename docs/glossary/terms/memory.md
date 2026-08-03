@@ -1,13 +1,27 @@
 ---
-id: memory
+id: TERM-010
 name: Memory
+version: "1.0"
+since: "1.0"
 status: Draft
-category: data
+category: Data
+owner: Memory Store
+stability: Stable
+tags: [data, memory, learning]
+aliases: [Short-term Store]
+deprecated_aliases: [Cache]
 summary: Bộ nhớ tồn tại sau Runtime — working/session/failure.
 definition: >
   Memory tồn tại sau Runtime (vượt qua một lần chạy).
   Memory chứa working/session/failure để học hỏi.
 purpose: Lưu trữ trải nghiệm để cải thiện lần chạy sau.
+entity_type: Data
+normative:
+  MUST:
+    - Persist sau runtime
+    - Lưu failure records
+  MUST NOT:
+    - Chứa tri thức chuẩn hóa (thuộc Knowledge)
 responsibilities:
   - Lưu working memory
   - Lưu session memory
@@ -19,15 +33,21 @@ owned_by: Memory Store
 used_by:
   - Learning Agent
   - Doctor
+depends_on:
+  - TERM-001 Runtime
 inputs:
   - Failure
   - Session data
 outputs:
   - Lesson → Knowledge
 lifecycle: Created → Updated → Retired
+states: [Created, Updated, Retired]
+invariants:
+  - Memory tồn tại sau Runtime.
+  - Memory không phải Context.
 related:
-  - context
-  - knowledge
+  - TERM-009
+  - TERM-011
 examples:
   - Failure → Lesson → Knowledge
 references:
@@ -48,31 +68,17 @@ Lesson
 Knowledge
 ```
 
+## Normative
+
+- **MUST** Persist sau runtime.
+- **MUST NOT** Chứa tri thức chuẩn hóa.
+
 ## Responsibilities
 
 - Lưu working memory
 - Lưu session memory
 - Lưu failure records
 
-## Not Responsible
+## Invariant
 
-- Tri thức chuẩn hóa (thuộc Knowledge)
-- Chạy logic
-
-## Owner
-
-Memory Store
-
-## Used By
-
-- Learning Agent
-- Doctor
-
-## Input
-
-- Failure
-- Session data
-
-## Output
-
-- Lesson → Knowledge
+> Memory tồn tại sau Runtime.

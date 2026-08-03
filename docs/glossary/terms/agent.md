@@ -1,13 +1,32 @@
 ---
-id: agent
+id: TERM-005
 name: Agent
+version: "1.0"
+since: "1.0"
 status: Draft
-category: execution
+category: Execution
+owner: Core Runtime
+stability: Stable
+tags: [execution, agent, unit]
+aliases: [Execution Unit]
+deprecated_aliases: [Worker]
 summary: Execution Unit — chỉ implement Capability; không phải Workflow/Capability.
 definition: >
   Agent = Execution Unit. Agent không phải Workflow. Agent không phải Capability.
   Agent chỉ implement Capability.
 purpose: Thực thi Task được Runtime giao.
+entity_type: Execution
+normative:
+  MUST:
+    - Execute task
+    - Read context
+    - Produce artifact
+    - Emit events
+  MUST NOT:
+    - Gọi agent khác
+    - Sửa workflow
+    - Sửa runtime
+    - Giữ state
 responsibilities:
   - Execute Task
   - Read Context
@@ -21,19 +40,27 @@ owned_by: AIOS Kernel
 used_by:
   - Runtime
   - Scheduler
+depends_on:
+  - TERM-001 Runtime
+  - TERM-006 Capability
+  - TERM-009 Context
 inputs:
-  - Task
-  - Context
+  - TERM-004 Task
+  - TERM-009 Context
 outputs:
-  - Artifact
-  - Events
+  - TERM-008 Artifact
+  - TERM-012 Event
 lifecycle: Registered → Ready → Running → Completed
+states: [Registered, Ready, Running, Completed]
+invariants:
+  - Agent không giữ state.
+  - Agent không gọi agent khác trực tiếp.
 related:
-  - capability
-  - task
-  - context
-  - artifact
-  - event
+  - TERM-006
+  - TERM-004
+  - TERM-009
+  - TERM-008
+  - TERM-012
 examples:
   - Planner Agent
   - Builder Agent
@@ -68,6 +95,12 @@ Agent = Capability
 
 Agent chỉ implement Capability.
 
+## Normative
+
+- **MUST** Execute task.
+- **MUST NOT** Gọi agent khác.
+- **MUST NOT** Giữ state.
+
 ## Responsibilities
 
 - Execute Task
@@ -75,27 +108,6 @@ Agent chỉ implement Capability.
 - Produce Artifact
 - Emit Events
 
-## Not Responsible
+## Invariant
 
-- Gọi Agent khác
-- Sửa Workflow
-- Sửa Runtime
-
-## Owner
-
-AIOS Kernel
-
-## Used By
-
-- Runtime
-- Scheduler
-
-## Input
-
-- Task
-- Context
-
-## Output
-
-- Artifact
-- Events
+> Agent không giữ state.

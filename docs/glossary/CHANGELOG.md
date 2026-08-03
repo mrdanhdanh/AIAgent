@@ -6,6 +6,24 @@ agent: general
 
 # AIOS Glossary — Changelog
 
+## v3.0.0 (2026-08-03) — Domain Model
+
+### Added
+
+- **Taxonomy** (`taxonomy.yaml`) — 7 category: Core/Execution/EntryPoint/Data/Knowledge/Platform/Extension + entity_types.
+- **Relationships** (`relationships.yaml`) — ownership matrix + cardinality (UML) + main flow.
+- **CATALOG.md** — danh mục thuật ngữ đầy đủ (16 term, taxonomy, invariants).
+- **Domain Model template** — thêm vào mỗi term: `version`, `since`, `owner`, `stability`, `tags`, `aliases`, `deprecated_aliases`, `normative` (MUST/MUST NOT/SHOULD/MAY), `states`, `entity_type`, `invariants`, `depends_on`.
+- Mỗi term có `id: TERM-###` (TERM-001..TERM-016).
+
+### Changed
+
+- Đổi `id` từ slug (runtime) → **TERM-###**.
+- README.md giờ chỉ giới thiệu; danh mục chuyển sang **CATALOG.md**.
+- 16 term files chuyển vào `terms/` subfolder.
+- `related`/`depends_on` tham chiếu TERM-### thay vì slug.
+- Schema cập nhật theo template Domain Model.
+
 ## v2.0.0 (2026-08-03)
 
 ### Added

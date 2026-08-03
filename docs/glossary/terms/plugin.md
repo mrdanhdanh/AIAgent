@@ -1,12 +1,27 @@
 ---
-id: plugin
+id: TERM-015
 name: Plugin
+version: "1.0"
+since: "1.0"
 status: Draft
-category: platform
+category: Extension
+owner: Plugin Registry
+stability: Stable
+tags: [extension, plugin, modular]
+aliases: [Extension, Module]
+deprecated_aliases: [Addon]
 summary: Extension; không được sửa Core.
 definition: >
   Plugin là extension. Plugin không được sửa Core.
 purpose: Mở rộng AIOS (agent, capability, widget...) mà không đụng Core.
+entity_type: Extension
+normative:
+  MUST:
+    - Provide extension (capability, agent, skill, widget)
+    - Khai báo permission trong manifest
+  MUST NOT:
+    - Modify core
+    - Truy cập ngoài permission
 responsibilities:
   - Cung cấp extension (capability, agent, skill, widget)
   - Khai báo permission trong manifest
@@ -17,15 +32,21 @@ owned_by: Plugin Registry
 used_by:
   - Runtime
   - Registry
+depends_on:
+  - TERM-013 Registry
+  - TERM-014 Contract
 inputs:
   - Plugin manifest
 outputs:
   - Exported capability/agent/skill
 lifecycle: Installed → Enabled → Disabled → Uninstalled
+states: [Installed, Enabled, Disabled, Uninstalled]
+invariants:
+  - Plugin không được sửa Core.
 related:
-  - registry
-  - capability
-  - agent
+  - TERM-013
+  - TERM-006
+  - TERM-005
 examples:
   - External Plugin cung cấp capability Code Review
 references:
@@ -39,29 +60,16 @@ Plugin là extension.
 
 Plugin không được sửa Core.
 
+## Normative
+
+- **MUST** Provide extension.
+- **MUST NOT** Modify core.
+
 ## Responsibilities
 
 - Cung cấp extension (capability, agent, skill, widget)
 - Khai báo permission trong manifest
 
-## Not Responsible
+## Invariant
 
-- Sửa Core
-- Truy cập ngoài permission
-
-## Owner
-
-Plugin Registry
-
-## Used By
-
-- Runtime
-- Registry
-
-## Input
-
-- Plugin manifest
-
-## Output
-
-- Exported capability/agent/skill
+> Plugin không được sửa Core.

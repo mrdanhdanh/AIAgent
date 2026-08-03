@@ -1,13 +1,29 @@
 ---
-id: artifact
+id: TERM-008
 name: Artifact
+version: "1.0"
+since: "1.0"
 status: Draft
-category: data
+category: Data
+owner: Artifact Store
+stability: Stable
+tags: [data, artifact, output]
+aliases: [Output, Deliverable]
+deprecated_aliases: [Result]
 summary: Output versioned, immutable, không overwrite.
 definition: >
   Artifact là output của một Task/Agent. Artifact luôn immutable.
   Không overwrite.
 purpose: Lưu kết quả thực thi dưới dạng toàn vẹn, tái sử dụng được.
+entity_type: Data
+normative:
+  MUST:
+    - Be immutable
+    - Carry version
+    - Carry checksum
+  MUST NOT:
+    - Be overwritten
+    - Be modified sau publish
 responsibilities:
   - Lưu output (plan, report, diagram...)
   - Giữ version + checksum
@@ -19,15 +35,20 @@ used_by:
   - Agent
   - Doctor
   - Dashboard
+depends_on:
+  - TERM-001 Runtime
 inputs:
   - Output của Agent
 outputs:
   - Artifact versioned
 lifecycle: Created → Published → Immutable
+states: [Created, Published, Immutable]
+invariants:
+  - Artifact không được overwrite.
 related:
-  - agent
-  - event
-  - context
+  - TERM-005
+  - TERM-012
+  - TERM-009
 examples:
   - plan.md
   - review.md
@@ -52,30 +73,16 @@ Artifact luôn immutable.
 
 Không overwrite.
 
+## Normative
+
+- **MUST** Be immutable.
+- **MUST NOT** Be overwritten.
+
 ## Responsibilities
 
 - Lưu output (plan, report, diagram...)
 - Giữ version + checksum
 
-## Not Responsible
+## Invariant
 
-- Giữ state thay đổi
-- Chạy logic
-
-## Owner
-
-Artifact Store
-
-## Used By
-
-- Agent
-- Doctor
-- Dashboard
-
-## Input
-
-- Output của Agent
-
-## Output
-
-- Artifact versioned
+> Artifact không được overwrite.

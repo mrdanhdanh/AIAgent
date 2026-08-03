@@ -1,14 +1,35 @@
 ---
-id: runtime
+id: TERM-001
 name: Runtime
+version: "1.0"
+since: "1.0"
 status: Draft
-category: core
+category: Core
+owner: Core Runtime
+stability: Stable
+tags: [core, runtime, orchestration]
+aliases: [Execution Engine]
+deprecated_aliases: [Runner]
 summary: Thành phần trung tâm của AIOS, chịu trách nhiệm điều phối việc thực thi.
 definition: >
   Runtime là thành phần trung tâm của AIOS chịu trách nhiệm điều phối việc thực thi.
   Runtime không xử lý nghiệp vụ. Runtime không sinh code. Runtime không phân tích.
   Runtime chỉ điều phối.
 purpose: Điều phối tập trung mọi hoạt động của AIOS.
+entity_type: Service
+normative:
+  MUST:
+    - Orchestrate execution
+    - Resolve capability qua Registry
+    - Persist state
+  MUST NOT:
+    - Execute business logic
+    - Generate code
+    - Analyze data
+  SHOULD:
+    - Emit event cho mọi state change
+  MAY:
+    - Cache read-only metadata
 responsibilities:
   - Load Workflow
   - Resolve Capability
@@ -29,21 +50,27 @@ used_by:
   - Scheduler
   - Doctor
   - Simulation
+depends_on:
+  - TERM-013 Registry
+  - TERM-009 Context
+  - TERM-012 Event
 inputs:
-  - Workflow
-  - Context
-  - Runtime State
+  - TERM-002 Workflow
+  - TERM-009 Context
 outputs:
-  - Artifacts
-  - Events
-  - Execution Result
-lifecycle: Init → Running → Suspended → Terminated
+  - TERM-008 Artifact
+  - TERM-012 Event
+lifecycle: Draft → Stable → Deprecated
+states: [Draft, Stable, Deprecated]
+invariants:
+  - Luôn tồn tại đúng một Runtime trong một Execution Context.
+  - Runtime không chứa business logic.
 related:
-  - workflow
-  - context
-  - event
-  - artifact
-  - capability
+  - TERM-002
+  - TERM-009
+  - TERM-012
+  - TERM-008
+  - TERM-006
 examples:
   - Runtime nhận Workflow, resolve Capability, giao Task cho Agent.
 references:
@@ -67,6 +94,11 @@ Runtime không phân tích.
 
 Runtime chỉ điều phối.
 
+## Normative
+
+- **MUST** Orchestrate execution.
+- **MUST NOT** Execute business logic.
+
 ## Responsibilities
 
 - Load Workflow
@@ -85,25 +117,6 @@ Runtime chỉ điều phối.
 - Git
 - LLM
 
-## Owner
+## Invariant
 
-AIOS Kernel
-
-## Used By
-
-- Workflow Engine
-- Scheduler
-- Doctor
-- Simulation
-
-## Input
-
-- Workflow
-- Context
-- Runtime State
-
-## Output
-
-- Artifacts
-- Events
-- Execution Result
+> Luôn tồn tại đúng một Runtime trong một Execution Context.

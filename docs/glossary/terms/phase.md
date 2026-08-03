@@ -1,13 +1,28 @@
 ---
-id: phase
+id: TERM-003
 name: Phase
+version: "1.0"
+since: "1.0"
 status: Draft
-category: execution
+category: Execution
+owner: Core Runtime
+stability: Stable
+tags: [execution, phase, workflow]
+aliases: [Stage]
+deprecated_aliases: [Step]
 summary: Một nhóm Task trong Workflow (không phải Agent).
 definition: >
   Phase là một nhóm Task. Phase không phải Agent.
   Phase là một bước logic trong Workflow, gom các Task cùng mục tiêu.
 purpose: Gom Task thành bước logic để theo dõi tiến độ.
+entity_type: Definition
+normative:
+  MUST:
+    - Group task
+    - Define phase-level checkpoint
+  MUST NOT:
+    - Execute trực tiếp
+    - Chọn agent
 responsibilities:
   - Group tasks
   - Define phase-level checkpoint
@@ -18,14 +33,19 @@ owned_by: Workflow
 used_by:
   - Workflow
   - Runtime
+depends_on:
+  - TERM-002 Workflow
 inputs:
-  - Task
+  - TERM-004 Task
 outputs:
   - Task result
 lifecycle: Pending → Running → Completed
+states: [Pending, Running, Completed]
+invariants:
+  - Phase không phải Agent.
 related:
-  - workflow
-  - task
+  - TERM-002
+  - TERM-004
 examples:
   - Phase Analyze → Design → Build → Review → Test
 references:
@@ -53,29 +73,16 @@ Test
 
 Phase không phải Agent.
 
+## Normative
+
+- **MUST** Group tasks.
+- **MUST NOT** Execute trực tiếp.
+
 ## Responsibilities
 
 - Group tasks
 - Define phase-level checkpoint
 
-## Not Responsible
+## Invariant
 
-- Execution (thuộc Runtime)
-- Agent selection
-
-## Owner
-
-Workflow
-
-## Used By
-
-- Workflow
-- Runtime
-
-## Input
-
-- Task
-
-## Output
-
-- Task result
+> Phase không phải Agent.

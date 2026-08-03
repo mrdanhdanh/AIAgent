@@ -32,3 +32,10 @@ Muốn thay đổi/loại bỏ định nghĩa → **không sửa trực tiếp**
 2. Qua **Review + Approve**.
 3. Ghi **ADR** (quyết định + lý do).
 4. Mới cập nhật Glossary.
+
+## Rule 5 — Glossary là Domain Model, không chỉ từ điển
+
+- Glossary là **Domain Model**: taxonomy + relationships + cardinality + invariants là nguồn sự thật cho Runtime/Doctor/Dashboard.
+- Thêm thuật ngữ mới → cập nhật **đồng bộ 4 nơi**: `terms/<term>.md` + `taxonomy.yaml` + `relationships.yaml` + `CATALOG.md`.
+- Đổi `category`/`entity_type`/`invariants` → cập nhật taxonomy/relationships/schema tương ứng.
+- Mọi invariant là **luật bất biến** — Doctor kiểm tra được (P003 Metadata First).
