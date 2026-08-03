@@ -1,6 +1,6 @@
 ---
-last_updated: 2026-08-01
-total_lessons: 25
+last_updated: 2026-08-03
+total_lessons: 26
 ---
 
 # Lessons Learned
@@ -240,3 +240,11 @@ Kho bài học kinh nghiệm được tích lũy qua các workflow.
   observation: "Bộ 10 command knowledge mới chưa được đưa vào phạm vi quét cross-reference validator → các file mới có thể không được kiểm tra cross-reference như QA commands."
   action: "Cập nhật cross-ref-validator.ps1 để include các file knowledge mới trong quét cross-reference. (Suggestion LOW — auto-approve)"
   tags: ["opencode", "cross-reference", "validator", "knowledge", "suggestion-approved"]
+
+- lesson_id: LSN-026
+  type: "failure"
+  workflow: "Bug-Fix AIHub (BUG-20260803-001)"
+  situation: "AIHub không load được hoặc load toàn nội dung ra rỗng — data-fetch pipeline nuốt lỗi im lặng"
+  observation: "TrendingService trả list rỗng khi GitHub Search API 403 (rate-limit unauth 10 req/min) hoặc exception; Home.razor catch nuốt exception; HttpClient không có Timeout (mặc định 100s) → spinner treo lâu. Tri-state Loading→Empty→Data thiếu nhánh Error, không phân biệt được 'không có dữ liệu' vs 'load thất bại'."
+  action: "Thêm failure surfacing vào service (HasFailures/LastError/FailedSourceCount), không cache kết quả fail (để retry fetch lại), HttpClient Timeout 20s, Home.razor thêm error state + nút Retry. Áp dụng nguyên tắc Red→Green: viết failing test bUnit trước khi sửa, GREEN sau fix. Tạo test project AIHub.Tests (bUnit 2.7.2 + Moq) kèm MockHttpMessageHandler."
+  tags: ["aihub", "blazor", "error-handling", "rate-limit", "github-api", "retry", "tristate", "red-green"]

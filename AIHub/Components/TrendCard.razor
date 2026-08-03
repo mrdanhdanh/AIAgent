@@ -1,0 +1,229 @@
+@using Microsoft.FluentUI.AspNetCore.Components
+@using AIHub.Models
+@inject IJSRuntime JS
+
+<FluentCard class="@GetCardClass()"
+            style="@GetCardStyle()"
+            OnClick="@(() => HandleClick())"
+            role="link"
+            tabindex="0">
+    <div class="card-content @GetSizeClass()">
+        @if (Item.GetCardSize() != CardSize.Small)
+        {
+            <div class="card-avatar">
+                <img src="@Item.AvatarUrl" alt="@Item.Source" loading="lazy"
+                     onerror="this.style.display='none'" />
+            </div>
+        }
+        <div class="card-body">
+            <h3 class="card-title">@Item.Title</h3>
+            @if (Item.GetCardSize() != CardSize.Small)
+            {
+                <p class="card-description @(Item.GetCardSize() == CardSize.Medium ? "line-clamp-2" : "")">
+                    @Item.Description
+                </p>
+            }
+            <div class="card-meta">
+                @if (Item.GetCardSize() == CardSize.Small)
+                {
+                    <FluentBadge Appearance="Appearance.Accent" Class="star-badge">
+                        ⭐ @FormatNumber(Item.Stars)
+                    </FluentBadge>
+                }
+                else
+                {
+                    <span class="meta-item">⭐ @FormatNumber(Item.Stars)</span>
+                    @if (Item.GetCardSize() == CardSize.Large)
+                    {
+                        <span class="meta-item">🍴 @FormatNumber(Item.Forks)</span>
+                    }
+                    @if (!string.IsNullOrEmpty(Item.Language))
+                    {
+                        <span class="meta-lang">@Item.Language</span>
+                    }
+                    @if (Item.GetCardSize() == CardSize.Large)
+                    {
+                        <span class="meta-time">@Item.GetTimeAgo()</span>
+                    }
+                }
+            </div>
+            <div class="card-source">
+                <span class="source-label">@Item.Source</span>
+            </div>
+        </div>
+    </div>
+</FluentCard>
+
+@code {
+    [Parameter] public TrendingItem Item { get; set; } = new();
+    [Parameter] public int Index { get; set; }
+
+    private string GetCardClass()
+    {
+        var classes = new List<string> { "trend-card", $"size-{Item.GetCardSize().ToString().ToLower()}" };
+        return string.Join(" ", classes);
+    }
+
+    private string GetCardStyle()
+    {
+        return $"--delay: {Index * 50}ms";
+    }
+
+    private string GetSizeClass() => $"content-{Item.GetCardSize().ToString().ToLower()}";
+
+    private async Task HandleClick()
+    {
+        if (!string.IsNullOrEmpty(Item.Url))
+        {
+            await JS.InvokeVoidAsync("open", Item.Url, "_blank", "noopener,noreferrer");
+        }
+    }
+
+    private static string FormatNumber(int num)
+    {
+        return num switch
+        {
+            >= 1000000 => $"{(num / 1000000.0):F1}M",
+            >= 1000 => $"{(num / 1000.0):F1}K",
+            _ => num.ToString()
+        };
+    }
+}
+
+<style>
+.trend-card {
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    animation: fadeInUp 0.5s ease both;
+    animation-delay: var(--delay);
+    overflow: hidden;
+}
+
+.trend-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+}
+
+.card-content {
+    display: flex;
+    gap: 12px;
+    padding: 16px;
+}
+
+.content-small {
+    flex-direction: row;
+    align-items: center;
+    padding: 10px 14px;
+}
+
+.content-medium {
+    flex-direction: column;
+}
+
+.content-large {
+    flex-direction: column;
+}
+
+.card-avatar {
+    flex-shrink: 0;
+}
+
+.content-small .card-avatar { display: none; }
+.content-medium .card-avatar img,
+.content-large .card-avatar img {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+}
+.content-large .card-avatar img {
+    width: 48px;
+    height: 48px;
+}
+
+.card-body {
+    flex: 1;
+    min-width: 0;
+}
+
+.card-title {
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: 600;
+    line-height: 1.3;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.content-small .card-title {
+    font-size: 0.85rem;
+    -webkit-line-clamp: 1;
+}
+
+.content-large .card-title {
+    font-size: 1.05rem;
+}
+
+.card-description {
+    margin: 6px 0;
+    font-size: 0.82rem;
+    color: var(--neutral-foreground-rest, #666);
+    line-height: 1.4;
+}
+
+.line-clamp-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.card-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 6px;
+    font-size: 0.78rem;
+    color: var(--neutral-foreground-rest, #555);
+}
+
+.meta-lang {
+    background: var(--accent-fill-rest, #4f6bed);
+    color: white;
+    padding: 1px 8px;
+    border-radius: 10px;
+    font-size: 0.7rem;
+    font-weight: 500;
+}
+
+.meta-time {
+    margin-left: auto;
+    font-size: 0.72rem;
+    opacity: 0.7;
+}
+
+.card-source {
+    margin-top: 6px;
+    font-size: 0.72rem;
+    color: var(--neutral-foreground-rest, #888);
+}
+
+.source-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+@@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+</style>

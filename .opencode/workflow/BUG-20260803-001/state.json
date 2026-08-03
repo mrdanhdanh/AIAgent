@@ -1,0 +1,54 @@
+{
+  "workflow": {
+    "id": "BUG-20260803-001",
+    "created_at": "2026-08-03T00:00:00Z",
+    "project": "AIHub",
+    "branch": "NewVersion",
+    "phase": 6,
+    "phase_name": "report",
+    "status": "completed",
+    "retry": {
+      "reproduce_count": 1,
+      "test_count": 0,
+      "max_retry": 3
+    },
+    "user_intervention": true,
+    "backup_done": true,
+    "same_error_count": 0,
+    "error_history": {
+      "reproduce_failures": [
+        "RED confirmed: Home_WhenServiceThrows_ShowsErrorStateWithRetry FAIL — silent empty state (JSInterop FluentSearch module fixed in BunitTestBase)"
+      ],
+      "test_failures": [],
+      "build_failures": []
+    }
+  },
+  "current_data": {
+    "bug_report": {
+      "title": "AIHub không load được hoặc load toàn nội dung ra rỗng",
+      "module": "AIHub",
+      "screen": "/ (AIHub Home)",
+      "severity": "P1",
+      "expected": "App load và hiển thị danh sách trending items; khi API lỗi phải hiển thị error state + retry",
+      "actual": "Không load được (spinner treo) HOẶC empty state rỗng im lặng"
+    },
+    "reproduction_test": {
+      "file": "AIHub.Tests/HomeErrorStateTests.cs",
+      "test_name": "Home_WhenServiceThrows_ShowsErrorStateWithRetry"
+    },
+    "reproduce_result": "RED → GREEN (bug tái hiện bằng test trước, fix sau)",
+    "root_cause": "Data-fetch pipeline nuốt lỗi im lặng: không HTTP timeout, TrendingService trả empty khi 403/exception, Home.razor không error state/retry",
+    "fix_proposal": {
+      "hypothesis_confidence": 0.92,
+      "risk": "low",
+      "approved": true
+    },
+    "build_result": "PASS — AIHub build 0 warning 0 error",
+    "verify_result": "PASS — regression 11/11, không tác động phụ (ITrendingService chỉ 1 consumer)",
+    "test_result": {
+      "bunit": { "total": 11, "passed": 11, "failed": 0, "coverage_unit": 58.5 },
+      "e2e": { "exists": false, "note": "AIHub.E2ETests không tồn tại — SKIP" }
+    },
+    "final_report": "Xem artifacts/07_report.md"
+  }
+}

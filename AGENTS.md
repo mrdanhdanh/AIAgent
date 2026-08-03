@@ -16,7 +16,7 @@ dotnet build JapaneseLearner\JapaneseLearner.csproj
 dotnet run --project JapaneseLearner\JapaneseLearner.csproj --urls "http://localhost:5173"
 ```
 
-Default dev port is 5146 (launchSettings.json), but E2E tests hardcode 5173 in `AppFixture.cs`.
+Default dev port is 5146 (launchSettings.json), but E2E tests hardcode 5173 in `AppFixture.cs` — don't change that port.
 
 ## Tests
 
@@ -24,12 +24,16 @@ Default dev port is 5146 (launchSettings.json), but E2E tests hardcode 5173 in `
 # Unit tests (fast, no server needed)
 dotnet test JapaneseLearner.Tests\JapaneseLearner.Tests.csproj
 
+# Single unit test class/method (xUnit --filter)
+dotnet test JapaneseLearner.Tests\JapaneseLearner.Tests.csproj --filter "FullyQualifiedName~WordQuizTests"
+
 # E2E tests — AppFixture auto-starts the dev server (port 5173 hardcoded)
 dotnet test JapaneseLearner.E2ETests\JapaneseLearner.E2ETests.csproj
 ```
 
-- E2E tests share a single `AppFixture` via the `E2E` xUnit collection (`DisableParallelization = true`) — one dev server per run.
+- E2E tests share a single `AppFixture` via the `E2E` xUnit collection (`DisableParallelization = true`) — one dev server per run. Slow: `AppFixture` waits up to **90s** for the server to come up; a bad build fails loudly with the server's stderr.
 - E2E Playwright browser path hardcoded in `PlaywrightFixture.cs:24` — will fail on other machines.
+- E2E must run from a machine with Playwright browsers installed; unit tests need no server or browser.
 - `BunitTestBase` sets up **FluentUI** JSInterop mocks (9 modules). Use as base for bUnit component tests.
 - `MockStorageService` implements `ILocalStorageService` for service-layer tests without browser storage.
 
@@ -68,6 +72,7 @@ dotnet test JapaneseLearner.E2ETests\JapaneseLearner.E2ETests.csproj
 - Agent definitions in `.opencode/agents/` (Vietnamese). Dev-team workflow runs via **Workflow Engine v4** (see below); `.opencode/skills/dev-team/SKILL.md` giữ bản 13 bước cũ làm reference.
 - Knowledge base at `.opencode/knowledge/` stores lessons and patterns from past workflows.
 - Default model: `opencode-go/deepseek-v4-pro` (Planner/Architect/Reviewer/Analyst tiers); `opencode-go/deepseek-v4-flash` (Coder/Tester/Routine tiers).
+- **Free model toggle**: `/model-policy enable|disable|status` — bật/tắt `opencode-go/deepseek-v4-flash` cho toàn bộ agent. Nguồn sự thật: `.opencode/model-policy/settings.json` (`free_model_enabled`). Script `.opencode/scripts/model-policy.ps1` rewrite model trong `opencode.json` + `.opencode/agents/*.md`; phải restart opencode session sau khi đổi.
 
 ## Workflow Engine v4
 
@@ -127,7 +132,7 @@ Hỏi đáp về codebase bằng bằng chứng (evidence-based, kèm `file:line
 
 ## CI / Deploy
 
-- GitHub Pages via `.github/workflows/deploy.yml` — triggers on push to `master`, publishes to `gh-pages` branch.
+- GitHub Pages via `.github/workflows/deploy.yml` — triggers on push to `master`, publishes to `gh-pages` branch. Active dev work is on other branches (e.g. `NewVersion`); don't push directly to `master` unless a release is intended.
 - Deploy runs `dotnet publish -c Release`, copies output under `/JapaneseLearner/` subpath, merges `gh-pages-root/` (`404.html`, `index.html`) over it, and rewrites `<base href>` to `/AIAgent/JapaneseLearner/`.
 - .NET 10 omits the unhashed `blazor.webassembly.js` copy; the workflow manually copies the hashed version.
 

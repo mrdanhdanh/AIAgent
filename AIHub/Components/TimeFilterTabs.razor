@@ -1,0 +1,34 @@
+@using Microsoft.FluentUI.AspNetCore.Components
+@using AIHub.Models
+
+<div class="time-filter-tabs">
+    <FluentButton Appearance="@GetAppearance(TimeFilter.Last24Hours)"
+                  OnClick="@(() => OnFilterChanged.InvokeAsync(TimeFilter.Last24Hours))">
+        24h
+    </FluentButton>
+    <FluentButton Appearance="@GetAppearance(TimeFilter.Last7Days)"
+                  OnClick="@(() => OnFilterChanged.InvokeAsync(TimeFilter.Last7Days))">
+        7 days
+    </FluentButton>
+    <FluentButton Appearance="@GetAppearance(TimeFilter.Last30Days)"
+                  OnClick="@(() => OnFilterChanged.InvokeAsync(TimeFilter.Last30Days))">
+        30 days
+    </FluentButton>
+</div>
+
+@code {
+    [Parameter] public TimeFilter ActiveFilter { get; set; } = TimeFilter.Last24Hours;
+    [Parameter] public EventCallback<TimeFilter> OnFilterChanged { get; set; }
+
+    private Appearance GetAppearance(TimeFilter filter) =>
+        ActiveFilter == filter ? Appearance.Accent : Appearance.Neutral;
+}
+
+<style>
+.time-filter-tabs {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    padding: 12px 0;
+}
+</style>

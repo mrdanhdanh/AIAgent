@@ -1,0 +1,166 @@
+@using Microsoft.FluentUI.AspNetCore.Components
+@using AIHub.Models
+@inject IJSRuntime JS
+@implements IAsyncDisposable
+
+<div class="trend-grid-container">
+    <div class="trend-grid">
+        @foreach (var (item, index) in Items.Select((item, i) => (item, i)))
+        {
+            <div class="grid-item @(IsVisible(item) ? "visible" : "hidden")">
+                <TrendCard Item="item" Index="index" />
+            </div>
+        }
+    </div>
+
+    @if (IsLoading)
+    {
+        <div class="loading-indicator">
+            <FluentProgressRing />
+            <span>Loading more...</span>
+        </div>
+    }
+    else if (!HasMore && Items.Count > 0)
+    {
+        <div class="end-message">
+            <span>All caught up!</span>
+        </div>
+    }
+
+    <div @ref="_sentinel" class="sentinel"></div>
+</div>
+
+@code {
+    [Parameter] public List<TrendingItem> Items { get; set; } = new();
+    [Parameter] public string SearchQuery { get; set; } = string.Empty;
+    [Parameter] public EventCallback OnLoadMore { get; set; }
+    [Parameter] public bool IsLoading { get; set; }
+    [Parameter] public bool HasMore { get; set; } = true;
+
+    private ElementReference _sentinel;
+    private IJSObjectReference? _observerModule;
+    private DotNetObjectReference<TrendGrid>? _dotNetRef;
+    private bool _observerActive;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            _dotNetRef = DotNetObjectReference.Create(this);
+            await SetupObserverAsync();
+        }
+    }
+
+    private async Task SetupObserverAsync()
+    {
+        try
+        {
+            _observerModule = await JS.InvokeAsync<IJSObjectReference>("import",
+                "./js/intersection-observer.js");
+            await _observerModule.InvokeVoidAsync("observe", _sentinel, _dotNetRef);
+            _observerActive = true;
+        }
+        catch
+        {
+            // JS module not available — fallback: load all at once
+        }
+    }
+
+    [JSInvokable]
+    public async Task OnIntersect()
+    {
+        if (!IsLoading && HasMore && _observerActive)
+        {
+            await OnLoadMore.InvokeAsync();
+        }
+    }
+
+    private bool IsVisible(TrendingItem item)
+    {
+        if (string.IsNullOrEmpty(SearchQuery)) return true;
+
+        return item.Title.Contains(SearchQuery, StringComparison.OrdinalIgnoreCase) ||
+               (item.Description?.Contains(SearchQuery, StringComparison.OrdinalIgnoreCase) ?? false) ||
+               item.Source.Contains(SearchQuery, StringComparison.OrdinalIgnoreCase);
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        _observerActive = false;
+        if (_observerModule != null)
+        {
+            try
+            {
+                await _observerModule.InvokeVoidAsync("unobserve", _sentinel);
+                await _observerModule.DisposeAsync();
+            }
+            catch { }
+        }
+        _dotNetRef?.Dispose();
+    }
+}
+
+<style>
+.trend-grid-container {
+    width: 100%;
+}
+
+.trend-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    width: 100%;
+}
+
+.grid-item {
+    transition: opacity 0.35s ease, transform 0.35s ease, max-height 0.35s ease;
+    max-height: 500px;
+    overflow: hidden;
+}
+
+.grid-item.visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.grid-item.hidden {
+    opacity: 0;
+    transform: scale(0.95);
+    max-height: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.loading-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 32px;
+    color: var(--neutral-foreground-rest, #666);
+}
+
+.end-message {
+    text-align: center;
+    padding: 32px;
+    color: var(--neutral-foreground-rest, #888);
+    font-size: 0.9rem;
+}
+
+.sentinel {
+    height: 1px;
+    width: 100%;
+}
+
+@@media (max-width: 1024px) {
+    .trend-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@@media (max-width: 768px) {
+    .trend-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@@media (max-width: 480px) {
+    .trend-grid { grid-template-columns: 1fr; }
+}
+</style>

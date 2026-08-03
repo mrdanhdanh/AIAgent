@@ -1,0 +1,19 @@
+@using Microsoft.FluentUI.AspNetCore.Components
+
+<FluentDesignTheme @bind-Mode="@themeMode" StorageName="aihub-theme" />
+<Router AppAssembly="typeof(Program).Assembly">
+    <Found Context="routeData">
+        <RouteView RouteData="routeData" DefaultLayout="typeof(MainLayout)" />
+        <FocusOnNavigate RouteData="routeData" Selector="h1" />
+    </Found>
+    <NotFound>
+        <PageTitle>Not found</PageTitle>
+        <LayoutView Layout="typeof(MainLayout)">
+            <p role="alert">Sorry, the page you requested was not found.</p>
+        </LayoutView>
+    </NotFound>
+</Router>
+
+@code {
+    private DesignThemeModes themeMode = DesignThemeModes.System;
+}

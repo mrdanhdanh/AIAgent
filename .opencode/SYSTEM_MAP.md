@@ -1,7 +1,7 @@
 # He Thong .opencode - So Do Tong The
 
-> **Tu dong tao luc:** 2026-08-02 22:25:03
-> **Workflow ID:** WF-20260802-SYNC
+> **Tu dong tao luc:** 2026-08-03 01:04:38
+> **Workflow ID:** WF-20260803-SYNC
 > **Cap nhat:** Toan bo agents, commands, skills, scripts, knowledge
 
 ---
@@ -27,7 +27,7 @@
 |-- agents/           # 18 agent definitions
 |-- commands/         # 55 command templates
 |-- skills/           # 28 skill packages
-|-- scripts/          # 19 utility scripts
+|-- scripts/          # 47 utility scripts
 |-- knowledge/        # Knowledge base
 |-- backup/           # Backup artifacts
 |-- workflow/         # Workflow artifacts
@@ -163,24 +163,52 @@
 | Script | Summary | Size |
 |--------|---------|------|
 | agent-validator | Validate Agent Definition packages (agents/metadata/*.yaml). | 5 KB |
+| architecture-validator | Validate AIOS 7-layer architecture doc. | 3 KB |
 | artifact-validator | Validate Artifact Store structure and schemas. | 3 KB |
+| autonomous-validator | Utility script | 1 KB |
 | backup-utility | Backup Utility — backup, list và verify snapshot trước khi sửa file. | 13 KB |
 | baseline-scan | Utility script | 5 KB |
 | build-knowledge-index | Build/Update Knowledge Index - scan source code + docs to generate 7 index JSON files. | 8 KB |
 | capability-validator | Validate Capability Registry (registry/) cho tính nhất quán + sinh coverage report. | 9 KB |
 | catalog-builder | Utility script | 5 KB |
 | context-validator | Validate Context Engine structure: profiles/, schemas/, budget. | 3 KB |
+| cost-validator | Utility script | 1 KB |
 | cross-ref-validator | Cross-Reference Validator — kiểm tra tham chiếu chéo trong .opencode (agents, commands, skills, contracts). | 6 KB |
+| dashboard-validator | Validate Dashboard structure + schema. | 2 KB |
+| distributed-validator | Utility script | 1 KB |
 | doctor | Doctor v2.0 - System health checker for AI Agent Framework | 9 KB |
 | doctor-validator | Validate Doctor v2 structure + schema + rules. | 3 KB |
+| evaluation-validator | Utility script | 1 KB |
 | event-validator | Validate Event System structure. | 3 KB |
+| evolution-validator | Validate Evolution Engine structure + schema + policy + objectives. | 3 KB |
+| experiments-validator | Utility script | 1 KB |
 | gitpush-utility | GitPush Utility — thực hiện git push an toàn với auto-commit, safety checks, confirmation gate. | 18 KB |
+| glossary-validator | Validate AIOS Glossary. | 2 KB |
+| governance-validator | Utility script | 1 KB |
+| kernel-validator | Utility script | 1 KB |
+| knowledge-graph-validator | Validate System Knowledge Graph structure + schemas. | 3 KB |
 | knowledge-index | Utility script | 10 KB |
+| manifest-validator | Validate AIOS Manifest. | 2 KB |
+| marketplace-validator | Utility script | 1 KB |
+| memory-validator | Utility script | 1 KB |
+| model-router-validator | Utility script | 1 KB |
+| observability-validator | Utility script | 1 KB |
+| plugins-validator | Validate Plugin Architecture structure + schema + permissions. | 3 KB |
+| policy-validator | Utility script | 1 KB |
+| principles-validator | Validate AIOS Principles building blocks. | 2 KB |
+| prompts-validator | Utility script | 1 KB |
+| release-validator | Utility script | 1 KB |
+| resources-validator | Utility script | 1 KB |
 | rollback-utility | Rollback Utility — rollback file từ backup snapshot khi catastrophic failure. | 9 KB |
 | schema-validator | Schema Validator — validate YAML schema của agent definitions. | 5 KB |
+| sdk-validator | Validate AIOS SDK structure + schema. | 2 KB |
 | simulation-validator | Validate Simulation Engine structure + schema. | 3 KB |
+| spec000-validator | Validate SPEC-000 Constitution. | 4 KB |
+| spec-validator | Validate AIOS Implementation control file. | 2 KB |
 | sync-system-docs | System Docs Sync — đồng bộ system docs + System Evolution Engine (9 engines). | 51 KB |
+| trust-validator | Utility script | 1 KB |
 | workflow-validator | Workflow Validator v4 — validate 5 workflow definitions (.opencode/workflow/definitions/*.yaml). | 14 KB |
+| workspaces-validator | Utility script | 1 KB |
 
 ---
 
@@ -383,5 +411,5 @@
 
 ---
 
-> **Tong so:** 18 agents . 55 commands . 28 skills . 19 scripts . 27 knowledge files
+> **Tong so:** 18 agents . 55 commands . 28 skills . 47 scripts . 27 knowledge files
 > **Sinh boi:** sync-system-docs.ps1

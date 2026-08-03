@@ -1,0 +1,6 @@
+{
+    "free_model_enabled":  true,
+    "free_model":  "opencode-go/deepseek-v4-flash",
+    "default_model_registry":  "models.default.json",
+    "description":  "Khi free_model_enabled = true, toàn bộ agent/skill/command dùng free_model. Chạy /model-policy apply để áp dụng (cần restart opencode session)."
+}

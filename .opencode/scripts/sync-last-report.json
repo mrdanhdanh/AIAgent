@@ -681,101 +681,241 @@
                               }
                  },
     "scripts":  {
-                    "workflow-validator":  {
-                                               "summary":  "Workflow Validator v4 — validate 5 workflow definitions (.opencode/workflow/definitions/*.yaml).",
-                                               "file":  "scripts/workflow-validator.ps1",
-                                               "size":  14347
+                    "model-router-validator":  {
+                                                   "summary":  "Utility script",
+                                                   "file":  "scripts/model-router-validator.ps1",
+                                                   "size":  806
+                                               },
+                    "glossary-validator":  {
+                                               "summary":  "Validate AIOS Glossary.",
+                                               "file":  "scripts/glossary-validator.ps1",
+                                               "size":  2005
                                            },
-                    "event-validator":  {
-                                            "summary":  "Validate Event System structure.",
-                                            "file":  "scripts/event-validator.ps1",
-                                            "size":  3016
-                                        },
+                    "schema-validator":  {
+                                             "summary":  "Schema Validator — validate YAML schema của agent definitions.",
+                                             "file":  "scripts/schema-validator.ps1",
+                                             "size":  4628
+                                         },
                     "gitpush-utility":  {
                                             "summary":  "GitPush Utility — thực hiện git push an toàn với auto-commit, safety checks, confirmation gate.",
                                             "file":  "scripts/gitpush-utility.ps1",
                                             "size":  18565
                                         },
-                    "knowledge-index":  {
+                    "catalog-builder":  {
                                             "summary":  "Utility script",
-                                            "file":  "scripts/knowledge-index.ps1",
-                                            "size":  10339
+                                            "file":  "scripts/catalog-builder.ps1",
+                                            "size":  5056
                                         },
-                    "doctor":  {
-                                   "summary":  "Doctor v2.0 - System health checker for AI Agent Framework",
-                                   "file":  "scripts/doctor.ps1",
-                                   "size":  9455
-                               },
-                    "baseline-scan":  {
-                                          "summary":  "Utility script",
-                                          "file":  "scripts/baseline-scan.ps1",
-                                          "size":  5361
-                                      },
-                    "cross-ref-validator":  {
-                                                "summary":  "Cross-Reference Validator — kiểm tra tham chiếu chéo trong .opencode (agents, commands, skills, contracts).",
-                                                "file":  "scripts/cross-ref-validator.ps1",
-                                                "size":  6399
+                    "simulation-validator":  {
+                                                 "summary":  "Validate Simulation Engine structure + schema.",
+                                                 "file":  "scripts/simulation-validator.ps1",
+                                                 "size":  2728
+                                             },
+                    "workflow-validator":  {
+                                               "summary":  "Workflow Validator v4 — validate 5 workflow definitions (.opencode/workflow/definitions/*.yaml).",
+                                               "file":  "scripts/workflow-validator.ps1",
+                                               "size":  14347
+                                           },
+                    "trust-validator":  {
+                                            "summary":  "Utility script",
+                                            "file":  "scripts/trust-validator.ps1",
+                                            "size":  771
+                                        },
+                    "knowledge-graph-validator":  {
+                                                      "summary":  "Validate System Knowledge Graph structure + schemas.",
+                                                      "file":  "scripts/knowledge-graph-validator.ps1",
+                                                      "size":  2710
+                                                  },
+                    "resources-validator":  {
+                                                "summary":  "Utility script",
+                                                "file":  "scripts/resources-validator.ps1",
+                                                "size":  799
                                             },
                     "sync-system-docs":  {
                                              "summary":  "System Docs Sync — đồng bộ system docs + System Evolution Engine (9 engines).",
                                              "file":  "scripts/sync-system-docs.ps1",
                                              "size":  52208
                                          },
-                    "agent-validator":  {
-                                            "summary":  "Validate Agent Definition packages (agents/metadata/*.yaml).",
-                                            "file":  "scripts/agent-validator.ps1",
-                                            "size":  4863
+                    "plugins-validator":  {
+                                              "summary":  "Validate Plugin Architecture structure + schema + permissions.",
+                                              "file":  "scripts/plugins-validator.ps1",
+                                              "size":  2881
+                                          },
+                    "evolution-validator":  {
+                                                "summary":  "Validate Evolution Engine structure + schema + policy + objectives.",
+                                                "file":  "scripts/evolution-validator.ps1",
+                                                "size":  3135
+                                            },
+                    "event-validator":  {
+                                            "summary":  "Validate Event System structure.",
+                                            "file":  "scripts/event-validator.ps1",
+                                            "size":  3016
                                         },
-                    "artifact-validator":  {
-                                               "summary":  "Validate Artifact Store structure and schemas.",
-                                               "file":  "scripts/artifact-validator.ps1",
-                                               "size":  2915
-                                           },
-                    "catalog-builder":  {
-                                            "summary":  "Utility script",
-                                            "file":  "scripts/catalog-builder.ps1",
-                                            "size":  5056
-                                        },
-                    "backup-utility":  {
-                                           "summary":  "Backup Utility — backup, list và verify snapshot trước khi sửa file.",
-                                           "file":  "scripts/backup-utility.ps1",
-                                           "size":  12898
-                                       },
-                    "rollback-utility":  {
-                                             "summary":  "Rollback Utility — rollback file từ backup snapshot khi catastrophic failure.",
-                                             "file":  "scripts/rollback-utility.ps1",
-                                             "size":  9294
-                                         },
-                    "simulation-validator":  {
-                                                 "summary":  "Validate Simulation Engine structure + schema.",
-                                                 "file":  "scripts/simulation-validator.ps1",
-                                                 "size":  2728
+                    "release-validator":  {
+                                              "summary":  "Utility script",
+                                              "file":  "scripts/release-validator.ps1",
+                                              "size":  781
+                                          },
+                    "principles-validator":  {
+                                                 "summary":  "Validate AIOS Principles building blocks.",
+                                                 "file":  "scripts/principles-validator.ps1",
+                                                 "size":  2363
                                              },
-                    "schema-validator":  {
-                                             "summary":  "Schema Validator — validate YAML schema của agent definitions.",
-                                             "file":  "scripts/schema-validator.ps1",
-                                             "size":  4628
-                                         },
-                    "doctor-validator":  {
-                                             "summary":  "Validate Doctor v2 structure + schema + rules.",
-                                             "file":  "scripts/doctor-validator.ps1",
-                                             "size":  3145
+                    "sdk-validator":  {
+                                          "summary":  "Validate AIOS SDK structure + schema.",
+                                          "file":  "scripts/sdk-validator.ps1",
+                                          "size":  2179
+                                      },
+                    "cross-ref-validator":  {
+                                                "summary":  "Cross-Reference Validator — kiểm tra tham chiếu chéo trong .opencode (agents, commands, skills, contracts).",
+                                                "file":  "scripts/cross-ref-validator.ps1",
+                                                "size":  6399
+                                            },
+                    "doctor":  {
+                                   "summary":  "Doctor v2.0 - System health checker for AI Agent Framework",
+                                   "file":  "scripts/doctor.ps1",
+                                   "size":  9455
+                               },
+                    "kernel-validator":  {
+                                             "summary":  "Utility script",
+                                             "file":  "scripts/kernel-validator.ps1",
+                                             "size":  1003
                                          },
                     "capability-validator":  {
                                                  "summary":  "Validate Capability Registry (registry/) cho tính nhất quán + sinh coverage report.",
                                                  "file":  "scripts/capability-validator.ps1",
                                                  "size":  8835
                                              },
+                    "doctor-validator":  {
+                                             "summary":  "Validate Doctor v2 structure + schema + rules.",
+                                             "file":  "scripts/doctor-validator.ps1",
+                                             "size":  3145
+                                         },
+                    "evaluation-validator":  {
+                                                 "summary":  "Utility script",
+                                                 "file":  "scripts/evaluation-validator.ps1",
+                                                 "size":  807
+                                             },
                     "build-knowledge-index":  {
                                                   "summary":  "Build/Update Knowledge Index - scan source code + docs to generate 7 index JSON files.",
                                                   "file":  "scripts/build-knowledge-index.ps1",
                                                   "size":  7791
                                               },
+                    "rollback-utility":  {
+                                             "summary":  "Rollback Utility — rollback file từ backup snapshot khi catastrophic failure.",
+                                             "file":  "scripts/rollback-utility.ps1",
+                                             "size":  9294
+                                         },
+                    "spec000-validator":  {
+                                              "summary":  "Validate SPEC-000 Constitution.",
+                                              "file":  "scripts/spec000-validator.ps1",
+                                              "size":  4003
+                                          },
+                    "agent-validator":  {
+                                            "summary":  "Validate Agent Definition packages (agents/metadata/*.yaml).",
+                                            "file":  "scripts/agent-validator.ps1",
+                                            "size":  4863
+                                        },
+                    "backup-utility":  {
+                                           "summary":  "Backup Utility — backup, list và verify snapshot trước khi sửa file.",
+                                           "file":  "scripts/backup-utility.ps1",
+                                           "size":  12898
+                                       },
+                    "experiments-validator":  {
+                                                  "summary":  "Utility script",
+                                                  "file":  "scripts/experiments-validator.ps1",
+                                                  "size":  813
+                                              },
+                    "governance-validator":  {
+                                                 "summary":  "Utility script",
+                                                 "file":  "scripts/governance-validator.ps1",
+                                                 "size":  817
+                                             },
+                    "prompts-validator":  {
+                                              "summary":  "Utility script",
+                                              "file":  "scripts/prompts-validator.ps1",
+                                              "size":  789
+                                          },
+                    "workspaces-validator":  {
+                                                 "summary":  "Utility script",
+                                                 "file":  "scripts/workspaces-validator.ps1",
+                                                 "size":  807
+                                             },
+                    "dashboard-validator":  {
+                                                "summary":  "Validate Dashboard structure + schema.",
+                                                "file":  "scripts/dashboard-validator.ps1",
+                                                "size":  2376
+                                            },
+                    "distributed-validator":  {
+                                                  "summary":  "Utility script",
+                                                  "file":  "scripts/distributed-validator.ps1",
+                                                  "size":  808
+                                              },
+                    "observability-validator":  {
+                                                    "summary":  "Utility script",
+                                                    "file":  "scripts/observability-validator.ps1",
+                                                    "size":  830
+                                                },
+                    "autonomous-validator":  {
+                                                 "summary":  "Utility script",
+                                                 "file":  "scripts/autonomous-validator.ps1",
+                                                 "size":  802
+                                             },
+                    "memory-validator":  {
+                                             "summary":  "Utility script",
+                                             "file":  "scripts/memory-validator.ps1",
+                                             "size":  814
+                                         },
+                    "marketplace-validator":  {
+                                                  "summary":  "Utility script",
+                                                  "file":  "scripts/marketplace-validator.ps1",
+                                                  "size":  805
+                                              },
+                    "knowledge-index":  {
+                                            "summary":  "Utility script",
+                                            "file":  "scripts/knowledge-index.ps1",
+                                            "size":  10339
+                                        },
+                    "architecture-validator":  {
+                                                   "summary":  "Validate AIOS 7-layer architecture doc.",
+                                                   "file":  "scripts/architecture-validator.ps1",
+                                                   "size":  2584
+                                               },
+                    "manifest-validator":  {
+                                               "summary":  "Validate AIOS Manifest.",
+                                               "file":  "scripts/manifest-validator.ps1",
+                                               "size":  1588
+                                           },
+                    "spec-validator":  {
+                                           "summary":  "Validate AIOS Implementation control file.",
+                                           "file":  "scripts/spec-validator.ps1",
+                                           "size":  2472
+                                       },
+                    "artifact-validator":  {
+                                               "summary":  "Validate Artifact Store structure and schemas.",
+                                               "file":  "scripts/artifact-validator.ps1",
+                                               "size":  2915
+                                           },
+                    "cost-validator":  {
+                                           "summary":  "Utility script",
+                                           "file":  "scripts/cost-validator.ps1",
+                                           "size":  772
+                                       },
                     "context-validator":  {
                                               "summary":  "Validate Context Engine structure: profiles/, schemas/, budget.",
                                               "file":  "scripts/context-validator.ps1",
                                               "size":  3508
-                                          }
+                                          },
+                    "policy-validator":  {
+                                             "summary":  "Utility script",
+                                             "file":  "scripts/policy-validator.ps1",
+                                             "size":  793
+                                         },
+                    "baseline-scan":  {
+                                          "summary":  "Utility script",
+                                          "file":  "scripts/baseline-scan.ps1",
+                                          "size":  5361
+                                      }
                 },
     "cross_refs":  {
                        "orphans":  [
@@ -1394,7 +1534,7 @@
                                                              ]
                                              }
                    },
-    "scanned_at":  "2026-08-02T22:25:02.8524214+07:00",
+    "scanned_at":  "2026-08-03T01:04:37.6271971+07:00",
     "skills":  {
                    "dev-team":  {
                                     "schema_version":  "3.2",

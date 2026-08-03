@@ -8,7 +8,7 @@ description: >-
   accessibility problems, responsive lỗi, UX critique, security vulnerabilities,
   AI slop patterns, và đề xuất cải tiến UI/UX với multi-phase scoring.
 mode: subagent
-model: opencode-go/deepseek-v4-pro
+model: opencode-go/deepseek-v4-flash
 schema_version: "3.1"
 permission:
   read: allow

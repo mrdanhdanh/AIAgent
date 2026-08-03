@@ -1,0 +1,102 @@
+@inherits LayoutComponentBase
+@using Microsoft.FluentUI.AspNetCore.Components
+
+<div class="layout-root">
+    <header class="app-header">
+        <div class="header-content">
+            <a href="/" class="logo-link">
+                <span class="logo-icon">🤖</span>
+                <div class="logo-text">
+                    <h1>AIHub</h1>
+                    <span class="logo-subtitle">Trending AI Tools &amp; Repos</span>
+                </div>
+            </a>
+            <nav class="header-nav">
+                <FluentNavLink href="/" Match="NavLinkMatch.All">Home</FluentNavLink>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        @Body
+    </main>
+
+    <footer class="app-footer">
+        <span>AIHub © 2026 — Aggregated from GitHub &amp; open sources</span>
+    </footer>
+</div>
+
+<style>
+.layout-root {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: var(--neutral-layer-1, #f5f5f5);
+    color: var(--neutral-foreground-rest, #222);
+}
+
+.app-header {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: white;
+    padding: 16px 0;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+}
+
+.header-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: white;
+}
+
+.logo-icon {
+    font-size: 2rem;
+}
+
+.logo-text h1 {
+    margin: 0;
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.logo-subtitle {
+    font-size: 0.72rem;
+    opacity: 0.7;
+    font-weight: 400;
+}
+
+.header-nav {
+    display: flex;
+    gap: 8px;
+}
+
+.main-content {
+    flex: 1;
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 24px 40px;
+}
+
+.app-footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 0.8rem;
+    color: var(--neutral-foreground-rest, #888);
+    border-top: 1px solid var(--neutral-stroke-divider-rest, #e0e0e0);
+}
+</style>

@@ -1,7 +1,7 @@
 ---
 description: Phân tích yêu cầu người dùng, xác định phạm vi, rủi ro và các task cần thực hiện
 mode: subagent
-model: opencode-go/deepseek-v4-pro
+model: opencode-go/deepseek-v4-flash
 permission:
   read: allow
   grep: allow
