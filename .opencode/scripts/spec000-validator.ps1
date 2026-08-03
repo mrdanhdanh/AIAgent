@@ -15,7 +15,7 @@ param([switch]$Silent)
 $ErrorActionPreference = 'Stop'
 
 $root = Split-Path -Parent $PSScriptRoot
-$s000 = Join-Path $root 'spec\SPEC-000-constitution'
+$s000 = Join-Path $root '..\docs\specs\SPEC-000'
 
 if (-not (Test-Path $s000)) { Write-Error "SPEC-000-constitution not found"; exit 1 }
 

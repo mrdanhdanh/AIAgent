@@ -7,7 +7,7 @@
 .SYNOPSIS
   Validate AIOS Glossary.
 .DESCRIPTION
-  Kiem tra .opencode/glossary/ co du cac thu ngu co ban + format.
+  Kiem tra docs/glossary/ co du cac thu ngu co ban + format.
   Exit 0 = PASS.
 #>
 param([switch]$Silent)
@@ -15,7 +15,7 @@ param([switch]$Silent)
 $ErrorActionPreference = 'Stop'
 
 $root = Split-Path -Parent $PSScriptRoot
-$glossaryDir = Join-Path $root 'glossary'
+$glossaryDir = Join-Path $root '..\docs\glossary'
 
 if (-not (Test-Path $glossaryDir)) { Write-Error "glossary/ not found"; exit 1 }
 

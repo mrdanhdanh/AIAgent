@@ -15,7 +15,7 @@ param([switch]$Silent)
 $ErrorActionPreference = 'Stop'
 
 $root = Split-Path -Parent $PSScriptRoot
-$prinDir = Join-Path $root 'principles'
+$prinDir = Join-Path $root '..\docs\principles'
 
 if (-not (Test-Path $prinDir)) { Write-Error "principles/ not found"; exit 1 }
 

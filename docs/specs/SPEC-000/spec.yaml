@@ -1,0 +1,23 @@
+# SPEC-000 metadata
+# Mỗi SPEC = thư mục với spec.yaml + README.md.
+# SPEC-000 = ASSEMBLE (không viết mới) — README tham chiếu các thành phần.
+---
+id: SPEC-000
+title: AIOS Constitution
+status: Draft
+version: "1.0.0"
+
+depends_on: []
+
+references:
+  - MANIFEST
+  - GLOSSARY
+  - PRINCIPLES
+  - RULES
+  - GOVERNANCE
+
+implemented_by: []
+validated_by: []
+
+supersedes: []
+superseded_by: []

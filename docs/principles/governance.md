@@ -90,4 +90,4 @@ Code
 ## Tham chiếu
 
 - P009, P012, P015.
-- `SPEC-000-constitution/governance.md`.
+- `docs/specs/SPEC-000/governance.md`.

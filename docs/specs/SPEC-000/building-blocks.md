@@ -34,14 +34,15 @@ Architecture Freeze v1.0
 
 | Building block | Vị trí | Vào Constitution |
 |----------------|--------|------------------|
-| Glossary | `.opencode/glossary/` | Chương 5, Appendix A |
-| Manifest | `.opencode/manifest/manifest.yaml` | Preamble |
-| Core Principles | `.opencode/principles/principles.md` | Part II (P001–P015) |
-| Architecture | `.opencode/principles/architecture-principles.md` | Part III (Ch 6–11) |
-| Governance | `.opencode/principles/governance.md` | Part IV (Ch 12–16) |
-| Lifecycle | `.opencode/spec/SPEC-000-constitution/lifecycle.md` | Part V (Ch 17–20) |
-| Quality | `.opencode/spec/SPEC-000-constitution/quality.md` | Part VI (Ch 21–24) |
-| AI Native | `.opencode/spec/SPEC-000-constitution/ai-native.md` | Part VII (Ch 25–30) |
+| Glossary | `docs/glossary/` | Chương 5, Appendix A |
+| Manifest | `docs/manifest/AIOS_MANIFEST.yaml` | Preamble |
+| Core Principles | `docs/principles/principles.md` | Part II (P001–P015) |
+| Architecture | `docs/principles/architecture-principles.md` | Part III (Ch 6–11) |
+| Governance | `docs/principles/governance.md` | Part IV (Ch 12–16) |
+| Rules | `docs/rules/` | R-LAYER..R-SEC |
+| Lifecycle | `docs/specs/SPEC-000/lifecycle.md` | Part V (Ch 17–20) |
+| Quality | `docs/specs/SPEC-000/quality.md` | Part VI (Ch 21–24) |
+| AI Native | `docs/specs/SPEC-000/ai-native.md` | Part VII (Ch 25–30) |
 
 ## Quy tắc Consolidation
 

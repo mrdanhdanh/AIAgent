@@ -14,9 +14,9 @@ param([switch]$Silent)
 $ErrorActionPreference = 'Stop'
 
 $root = Split-Path -Parent $PSScriptRoot
-$manifestFile = Join-Path $root 'manifest\manifest.yaml'
+$manifestFile = Join-Path $root '..\docs\manifest\AIOS_MANIFEST.yaml'
 
-if (-not (Test-Path $manifestFile)) { Write-Error "manifest.yaml not found"; exit 1 }
+if (-not (Test-Path $manifestFile)) { Write-Error "AIOS_MANIFEST.yaml not found"; exit 1 }
 
 $errors   = @()
 $warnings = @()
@@ -24,7 +24,8 @@ $warnings = @()
 $text = Get-Content -LiteralPath $manifestFile -Raw -Encoding utf8
 
 # ---------- MNF-001: fields chinh ----------
-foreach ($f in @('name','purpose','vision','principles','quality_attributes','versioning','license','maturity','owners')) {
+foreach ($f in @('id','name','version','status','mission','vision','scope','goals',
+  'non_goals','quality_attributes','core_principles','owners','license','created','updated')) {
   if ($text -notmatch "(?m)^$f\s*:") { $errors += "MNF-001: thieu field '$f'" }
 }
 
@@ -34,8 +35,8 @@ for ($i = 1; $i -le 15; $i++) {
   if ($text -notmatch [regex]::Escape($p)) { $warnings += "MNF-002: thieu principle $p trong manifest" }
 }
 
-# ---------- MNF-003: name la AIOS ----------
-if ($text -notmatch '(?m)^name:\s*AIOS') { $errors += "MNF-003: name phai la AIOS" }
+# ---------- MNF-003: id la AIOS ----------
+if ($text -notmatch '(?m)^id:\s*AIOS') { $errors += "MNF-003: id phai la AIOS" }
 
 # ---------- Output ----------
 if (-not $Silent) {
