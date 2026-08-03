@@ -1,27 +1,79 @@
 ---
-name: glossary-event
-description: Thuật ngữ Event — thông báo bất biến, có lineage.
-agent: general
+id: event
+name: Event
+status: Draft
+category: eventing
+summary: Thông báo bất biến về state change, có lineage.
+definition: >
+  Event là thông báo bất biến về một state change.
+  Event immutable.
+purpose: Ghi lại mọi thay đổi để replay/simulate/audit.
+responsibilities:
+  - Thông báo state change
+  - Lưu lineage (event chain)
+does_not_responsible:
+  - Chứa state (chỉ thông báo thay đổi)
+  - Thực thi
+owned_by: Event Bus
+used_by:
+  - Runtime
+  - Doctor
+  - Dashboard
+  - Simulation
+inputs:
+  - State change
+outputs:
+  - Event immutable
+lifecycle: Created → Published → Immutable
+related:
+  - runtime
+  - artifact
+  - context
+examples:
+  - PLAN_READY
+  - BUILD_FINISHED
+  - TEST_FAILED
+  - DOCTOR_COMPLETED
+references:
+  - P004 Event Driven
 ---
 
-# Term: Event
+# Event
 
-**Definition**: An immutable notification of a state change, with lineage.
+Ví dụ:
 
-**Owns**:
-- payload
-- lineage (parent_event, correlation_id)
-- timestamp
+- PLAN_READY
+- BUILD_FINISHED
+- TEST_FAILED
+- DOCTOR_COMPLETED
 
-**Does not own**:
-- State (chỉ mô tả thay đổi)
-- Artifact content
+Event immutable.
 
-**Quan hệ**:
-- Mọi state change phát event (P004).
-- Event immutable, là nguồn sự thật (P012).
-- Event dùng cho observability/replay/simulation.
+## Responsibilities
 
-**Format**: `UPPER_SNAKE` — ví dụ `WORKFLOW_STARTED`.
+- Thông báo state change
+- Lưu lineage (event chain)
 
-**Tham chiếu**: P004, P008, P012.
+## Not Responsible
+
+- Chứa state (chỉ thông báo thay đổi)
+- Thực thi
+
+## Owner
+
+Event Bus
+
+## Used By
+
+- Runtime
+- Doctor
+- Dashboard
+- Simulation
+
+## Input
+
+- State change
+
+## Output
+
+- Event immutable

@@ -1,28 +1,81 @@
 ---
-name: glossary-artifact
-description: Thuật ngữ Artifact — output versioned + checksum + lineage.
-agent: general
+id: artifact
+name: Artifact
+status: Draft
+category: data
+summary: Output versioned, immutable, không overwrite.
+definition: >
+  Artifact là output của một Task/Agent. Artifact luôn immutable.
+  Không overwrite.
+purpose: Lưu kết quả thực thi dưới dạng toàn vẹn, tái sử dụng được.
+responsibilities:
+  - Lưu output (plan, report, diagram...)
+  - Giữ version + checksum
+does_not_responsible:
+  - Giữ state thay đổi
+  - Chạy logic
+owned_by: Artifact Store
+used_by:
+  - Agent
+  - Doctor
+  - Dashboard
+inputs:
+  - Output của Agent
+outputs:
+  - Artifact versioned
+lifecycle: Created → Published → Immutable
+related:
+  - agent
+  - event
+  - context
+examples:
+  - plan.md
+  - review.md
+  - test-report.md
+  - diagram.png
+references:
+  - P013 Immutable Artifacts
 ---
 
-# Term: Artifact
+# Artifact
 
-**Definition**: An immutable output object produced by an agent, with version, checksum, and lineage.
+Đây là output.
 
-**Owns**:
-- Content
-- Version
-- Checksum (SHA256)
-- Lineage (parent, derived_from)
+Ví dụ:
 
-**Does not own**:
-- State
-- Workflow
+- plan.md
+- review.md
+- test-report.md
+- diagram.png
 
-**Quan hệ**:
-- Agent **produces** artifact.
-- Artifact **immutable** (P013) — không sửa, chỉ tạo version.
-- Truy cập qua Artifact Store, không đọc file trực tiếp.
+Artifact luôn immutable.
 
-**Format**: `PREFIX-NNN` — ví dụ `PLAN-001`.
+Không overwrite.
 
-**Tham chiếu**: P003, P009, P013.
+## Responsibilities
+
+- Lưu output (plan, report, diagram...)
+- Giữ version + checksum
+
+## Not Responsible
+
+- Giữ state thay đổi
+- Chạy logic
+
+## Owner
+
+Artifact Store
+
+## Used By
+
+- Agent
+- Doctor
+- Dashboard
+
+## Input
+
+- Output của Agent
+
+## Output
+
+- Artifact versioned

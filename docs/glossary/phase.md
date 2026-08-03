@@ -1,28 +1,81 @@
 ---
-name: glossary-phase
-description: Thuật ngữ Phase — bước trong workflow, gắn với một capability.
-agent: general
+id: phase
+name: Phase
+status: Draft
+category: execution
+summary: Một nhóm Task trong Workflow (không phải Agent).
+definition: >
+  Phase là một nhóm Task. Phase không phải Agent.
+  Phase là một bước logic trong Workflow, gom các Task cùng mục tiêu.
+purpose: Gom Task thành bước logic để theo dõi tiến độ.
+responsibilities:
+  - Group tasks
+  - Define phase-level checkpoint
+does_not_responsible:
+  - Execution (thuộc Runtime)
+  - Agent selection
+owned_by: Workflow
+used_by:
+  - Workflow
+  - Runtime
+inputs:
+  - Task
+outputs:
+  - Task result
+lifecycle: Pending → Running → Completed
+related:
+  - workflow
+  - task
+examples:
+  - Phase Analyze → Design → Build → Review → Test
+references:
+  - P001 Runtime First
+  - P006 Capability Driven
 ---
 
-# Term: Phase
+# Phase
 
-**Definition**: A step within a workflow, mapped to a capability to be fulfilled.
+Phase là một nhóm Task.
 
-**Owns**:
-- capability reference
-- depends_on (phase trước)
-- inputs / outputs (artifact types)
+Ví dụ:
 
-**Does not own**:
-- State (thuộc workflow)
-- Agent (chọn bởi resolver)
-- Context (cấp riêng)
+```text
+Analyze
+    ↓
+Design
+    ↓
+Build
+    ↓
+Review
+    ↓
+Test
+```
 
-**Quan hệ**:
-- Workflow → Phase → Task (Object Model).
-- Mỗi phase liên kết đúng 1 capability (P006).
-- Phase có thể skip nếu điều kiện không thỏa.
+Phase không phải Agent.
 
-**Format**: `lowercase` — analysis, planning, implementation, review, testing.
+## Responsibilities
 
-**Tham chiếu**: P001, P006.
+- Group tasks
+- Define phase-level checkpoint
+
+## Not Responsible
+
+- Execution (thuộc Runtime)
+- Agent selection
+
+## Owner
+
+Workflow
+
+## Used By
+
+- Workflow
+- Runtime
+
+## Input
+
+- Task
+
+## Output
+
+- Task result

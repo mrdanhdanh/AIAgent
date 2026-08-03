@@ -1,25 +1,78 @@
 ---
-name: glossary-memory
-description: Thuật ngữ Memory — bộ nhớ ngắn/dài hạn của hệ thống.
-agent: general
+id: memory
+name: Memory
+status: Draft
+category: data
+summary: Bộ nhớ tồn tại sau Runtime — working/session/failure.
+definition: >
+  Memory tồn tại sau Runtime (vượt qua một lần chạy).
+  Memory chứa working/session/failure để học hỏi.
+purpose: Lưu trữ trải nghiệm để cải thiện lần chạy sau.
+responsibilities:
+  - Lưu working memory
+  - Lưu session memory
+  - Lưu failure records
+does_not_responsible:
+  - Tri thức chuẩn hóa (thuộc Knowledge)
+  - Chạy logic
+owned_by: Memory Store
+used_by:
+  - Learning Agent
+  - Doctor
+inputs:
+  - Failure
+  - Session data
+outputs:
+  - Lesson → Knowledge
+lifecycle: Created → Updated → Retired
+related:
+  - context
+  - knowledge
+examples:
+  - Failure → Lesson → Knowledge
+references:
+  - P008 Observable
 ---
 
-# Term: Memory
+# Memory
 
-**Definition**: Short- and long-term stored state of the system, scoped per working session or workflow.
+Memory tồn tại sau Runtime.
 
-**Owns**:
-- working memory
-- session memory
-- failure records
+Ví dụ:
 
-**Does not own**:
-- Knowledge (tách riêng)
-- Agent business logic
+```text
+Failure
+    ↓
+Lesson
+    ↓
+Knowledge
+```
 
-**Quan hệ**:
-- Context dùng working/cache memory.
-- Failure records giúp agent tránh lỗi lặp lại.
-- Memory có TTL, namespace theo scope.
+## Responsibilities
 
-**Tham chiếu**: P003, P005, P012.
+- Lưu working memory
+- Lưu session memory
+- Lưu failure records
+
+## Not Responsible
+
+- Tri thức chuẩn hóa (thuộc Knowledge)
+- Chạy logic
+
+## Owner
+
+Memory Store
+
+## Used By
+
+- Learning Agent
+- Doctor
+
+## Input
+
+- Failure
+- Session data
+
+## Output
+
+- Lesson → Knowledge

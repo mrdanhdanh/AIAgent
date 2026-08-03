@@ -1,24 +1,101 @@
 ---
-name: glossary-agent
-description: Thuật ngữ Agent — runtime execution unit cho một hoặc nhiều capability.
-agent: general
+id: agent
+name: Agent
+status: Draft
+category: execution
+summary: Execution Unit — chỉ implement Capability; không phải Workflow/Capability.
+definition: >
+  Agent = Execution Unit. Agent không phải Workflow. Agent không phải Capability.
+  Agent chỉ implement Capability.
+purpose: Thực thi Task được Runtime giao.
+responsibilities:
+  - Execute Task
+  - Read Context
+  - Produce Artifact
+  - Emit Events
+does_not_responsible:
+  - Gọi Agent khác
+  - Sửa Workflow
+  - Sửa Runtime
+owned_by: AIOS Kernel
+used_by:
+  - Runtime
+  - Scheduler
+inputs:
+  - Task
+  - Context
+outputs:
+  - Artifact
+  - Events
+lifecycle: Registered → Ready → Running → Completed
+related:
+  - capability
+  - task
+  - context
+  - artifact
+  - event
+examples:
+  - Planner Agent
+  - Builder Agent
+  - Reviewer Agent
+references:
+  - P001 Runtime First
+  - P005 Stateless Agents
+  - P006 Capability Driven
 ---
 
-# Term: Agent
+# Agent
 
-**Definition**: Runtime execution unit responsible for fulfilling one or more capabilities.
+Đây là thứ hiện tại hệ thống đang dùng.
 
-**Owns**:
-- Metadata (id, name, version, status)
+Định nghĩa mới:
 
-**Does not own**:
-- Workflow
+```text
+Agent = Execution Unit
+```
+
+Không phải:
+
+```text
+Agent = Workflow
+```
+
+Không phải:
+
+```text
+Agent = Capability
+```
+
+Agent chỉ implement Capability.
+
+## Responsibilities
+
+- Execute Task
+- Read Context
+- Produce Artifact
+- Emit Events
+
+## Not Responsible
+
+- Gọi Agent khác
+- Sửa Workflow
+- Sửa Runtime
+
+## Owner
+
+AIOS Kernel
+
+## Used By
+
+- Runtime
+- Scheduler
+
+## Input
+
+- Task
 - Context
-- State
 
-**Quan hệ**:
-- Agent thực thi **capability** (P006).
-- Agent nhận **context**, trả **artifact**, phát **event**.
-- Agent **stateless** (P005) — không giữ state giữa các lần gọi.
+## Output
 
-**Tham chiếu**: P001, P005, P006, P008.
+- Artifact
+- Events

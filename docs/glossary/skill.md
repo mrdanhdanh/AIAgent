@@ -1,24 +1,77 @@
 ---
-name: glossary-skill
-description: Thuật ngữ Skill — bộ kiến thức/quy trình tái sử dụng cho agent.
-agent: general
+id: skill
+name: Skill
+status: Draft
+category: knowledge
+summary: Thư viện tri thức tái sử dụng; không thực thi; không có state.
+definition: >
+  Skill là thư viện tri thức có thể tái sử dụng. Skill không thực thi.
+  Skill không có state.
+purpose: Cung cấp kiến thức/quy trình cho Agent dùng khi thực thi.
+responsibilities:
+  - Chứa tri thức tái sử dụng
+  - Được Agent tham chiếu khi cần
+does_not_responsible:
+  - Thực thi
+  - Giữ state
+owned_by: Skill Library
+used_by:
+  - Agent
+  - Command
+inputs:
+  - Không (static)
+outputs:
+  - Tri thức/quy trình
+lifecycle: Draft → Published → Deprecated
+related:
+  - agent
+  - knowledge
+  - command
+examples:
+  - Blazor Skill → Builder sử dụng
+references:
+  - P010 Plugin First
 ---
 
-# Term: Skill
+# Skill
 
-**Definition**: A reusable body of knowledge or procedure that an agent can employ.
+Skill là thư viện tri thức có thể tái sử dụng.
 
-**Owns**:
-- knowledge content
-- supports (capabilities)
+Skill không thực thi.
 
-**Does not own**:
+Ví dụ:
+
+```text
+Blazor Skill
+    ↓
+Builder sử dụng
+```
+
+Skill không có state.
+
+## Responsibilities
+
+- Chứa tri thức tái sử dụng
+- Được Agent tham chiếu khi cần
+
+## Not Responsible
+
+- Thực thi
+- Giữ state
+
+## Owner
+
+Skill Library
+
+## Used By
+
 - Agent
-- State
+- Command
 
-**Quan hệ**:
-- Skill cung cấp cách làm (how) cho capability.
-- Agent có thể dùng skill khi thực thi.
-- Skill discoverable qua Registry (P007).
+## Input
 
-**Tham chiếu**: P006, P007.
+- Không (static)
+
+## Output
+
+- Tri thức/quy trình

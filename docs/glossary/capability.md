@@ -1,26 +1,85 @@
 ---
-name: glossary-capability
-description: Thuật ngữ Capability — khả năng hệ thống, không phụ thuộc agent.
-agent: general
+id: capability
+name: Capability
+status: Draft
+category: execution
+summary: Khả năng của hệ thống; không phụ thuộc implementation; Runtime sẽ resolve.
+definition: >
+  Capability là khả năng (ability). Capability KHÔNG phải Agent.
+  Capability không phụ thuộc implementation. Runtime sẽ resolve.
+purpose: Tách "cần làm gì" khỏi "ai làm" (capability driven).
+responsibilities:
+  - Khai báo khả năng có thể thực hiện
+  - Được resolve thành Agent/Plugin bởi Runtime
+does_not_responsible:
+  - Implementation cụ thể
+  - Chạy trực tiếp
+owned_by: Registry
+used_by:
+  - Runtime (Capability Resolver)
+  - Agent
+  - Plugin
+inputs:
+  - Capability Request
+outputs:
+  - Resolved Capability
+lifecycle: Registered → Available → Deprecated → Removed
+related:
+  - registry
+  - agent
+  - plugin
+  - runtime
+examples:
+  - Code Review → Planner Agent | Review Agent | External Plugin
+references:
+  - P006 Capability Driven
+  - P007 Discoverable
 ---
 
-# Term: Capability
+# Capability
 
-**Definition**: A named, addressable ability of the system, independent of any specific agent.
+Đây là khái niệm rất quan trọng.
 
-**Owns**:
-- Metadata (id, category, version, owner)
+Capability KHÔNG phải Agent.
 
-**Does not own**:
+Capability là khả năng.
+
+Ví dụ:
+
+```text
+Code Review
+    ↓
+Planner Agent | Review Agent | External Plugin
+```
+
+Runtime sẽ resolve.
+
+Capability không phụ thuộc implementation.
+
+## Responsibilities
+
+- Khai báo khả năng có thể thực hiện
+- Được resolve thành Agent/Plugin bởi Runtime
+
+## Not Responsible
+
+- Implementation cụ thể
+- Chạy trực tiếp
+
+## Owner
+
+Registry
+
+## Used By
+
+- Runtime (Capability Resolver)
 - Agent
-- Implementation
-- State
+- Plugin
 
-**Quan hệ**:
-- Workflow gọi **capability** (P006), không gọi agent.
-- Agent là **implementation** của capability.
-- Capability discoverable qua Registry (P007).
+## Input
 
-**Format**: `<category>.<specific>` — ví dụ `implementation.code`.
+- Capability Request
 
-**Tham chiếu**: P002, P006, P007.
+## Output
+
+- Resolved Capability

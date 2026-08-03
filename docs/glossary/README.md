@@ -1,65 +1,80 @@
 ---
 name: glossary
 description: >
-  Glossary — nền tảng từ vựng AIOS (Sprint 0). Mỗi thuật ngữ MỘT nghĩa duy nhất.
-  Mọi SPEC/ADR/RFC phải dùng đúng thuật ngữ này. Đây là building block đầu tiên.
+  Glossary — nền tảng từ vựng AIOS (D002). Mỗi thuật ngữ MỘT nghĩa duy nhất.
+  Mọi SPEC/ADR/RFC phải dùng đúng thuật ngữ này. Quy tắc sử dụng xem RULES.md.
 agent: general
 ---
 
-# Glossary — Từ vựng AIOS
+# AIOS Glossary
 
-> Sprint 0. Nếu thuật ngữ không thống nhất, toàn bộ SPEC sau sẽ rối.
+> **D002** — tài liệu quan trọng nhất sau Manifest. Nếu thuật ngữ không thống nhất, toàn bộ SPEC sau sẽ mâu thuẫn.
 > Mỗi thuật ngữ chỉ có **một nghĩa duy nhất**.
 
-## Format
+## Template
 
-Mỗi thuật ngữ một file, theo cấu trúc:
+Mọi thuật ngữ dùng chung template (YAML frontmatter), không thêm field:
 
 ```yaml
-Term: <name>
-Definition: <định nghĩa chính xác>
-Owns:        # thứ thuật ngữ này sở hữu
-- ...
-Does not own:  # thứ thuật ngữ này KHÔNG sở hữu
-- ...
+id:
+name:
+status: Draft
+category:
+summary:
+definition:
+purpose:
+responsibilities:
+does_not_responsible:
+owned_by:
+used_by:
+inputs:
+outputs:
+lifecycle:
+related:
+examples:
+references:
 ```
 
-## Index — Core Terms
+## Index
 
-| Thuật ngữ | File | Định nghĩa ngắn |
-|-----------|------|-----------------|
-| Agent | `agent.md` | thực thể thực thi capability; stateless |
-| Capability | `capability.md` | khả năng hệ thống; không phụ thuộc agent |
-| Workflow | `workflow.md` | chuỗi phase có trạng thái |
-| Phase | `phase.md` | bước trong workflow, gắn 1 capability |
-| Task | `task.md` | đơn vị công việc trong phase |
-| Command | `command.md` | lệnh cài sẵn framework |
-| Skill | `skill.md` | kiến thức/quy trình tái sử dụng |
-| Artifact | `artifact.md` | output versioned + checksum |
-| Context | `context.md` | package dữ liệu cho agent |
-| Knowledge | `knowledge.md` | lessons/patterns/graph |
-| Memory | `memory.md` | working/session/failure |
-| Runtime | `runtime.md` | trung tâm điều phối |
-| Event | `event.md` | thông báo bất biến, có lineage |
-| Plugin | `plugin.md` | gói mở rộng |
+| # | Thuật ngữ | File | Category | Định nghĩa ngắn |
+|---|-----------|------|----------|-----------------|
+| 1 | Runtime | `runtime.md` | core | Trung tâm điều phối thực thi |
+| 2 | Workflow | `workflow.md` | execution | Kế hoạch thực thi (không phải Agent) |
+| 3 | Phase | `phase.md` | execution | Nhóm Task trong Workflow |
+| 4 | Task | `task.md` | execution | Đơn vị thực thi nhỏ nhất |
+| 5 | Capability | `capability.md` | execution | Khả năng; Runtime resolve |
+| 6 | Agent | `agent.md` | execution | Execution Unit; implement Capability |
+| 7 | Skill | `skill.md` | knowledge | Thư viện tri thức tái sử dụng |
+| 8 | Command | `command.md` | entrypoint | Entry point; khởi động Runtime |
+| 9 | Artifact | `artifact.md` | data | Output immutable, versioned |
+| 10 | Context | `context.md` | data | Execution Data; chỉ sống trong Runtime |
+| 11 | Memory | `memory.md` | data | Bộ nhớ sau Runtime (working/session/failure) |
+| 12 | Knowledge | `knowledge.md` | knowledge | Tri thức chuẩn hóa |
+| 13 | Event | `event.md` | eventing | Thông báo bất biến |
+| 14 | Registry | `registry.md` | platform | Nơi đăng ký; không phải Database |
+| 15 | Plugin | `plugin.md` | platform | Extension; không sửa Core |
+| 16 | Contract | `contract.md` | contract | Giao diện giữa hai thành phần |
 
-## Index — Supporting Terms
+## Quan hệ chính
 
-| Thuật ngữ | File | Định nghĩa ngắn |
-|-----------|------|-----------------|
-| Entity | `entity.md` | thực thể cơ bản (id/type/version/status/metadata) |
-| State | `state.md` | trạng thái runtime, thuộc Runtime |
-| Status | `status.md` | mức trưởng thành khai báo |
-| Contract | `contract.md` | hợp đồng giao tiếp |
-| Registry | `registry.md` | nguồn đăng ký + khám phá |
-| Kernel | `kernel.md` | lõi điều phối Runtime |
-| Metadata | `metadata.md` | thông tin quản lý entity |
-| Lifecycle | `lifecycle.md` | vòng đời status |
-| Version | `version.md` | số hiệu phiên bản bất biến |
+```text
+Command → Workflow → Phase → Task → Runtime → Agent → Artifact
+                      ↓                            ↑
+                  Capability ──────────────────────┘
+                     ↓
+                 Registry
+```
+
+```text
+Context (trong Runtime) ≠ Memory (sau Runtime) → Knowledge
+Event ── ghi mọi state change
+Contract ── mọi giao tiếp
+Plugin ── mở rộng qua Capability/Agent
+```
 
 ## Quy tắc
 
-- **Không từ nào hiểu theo nhiều nghĩa.**
-- Mọi tài liệu khác (SPEC-000..020, ADR, RFC) phải dùng đúng glossary này.
-- Thêm thuật ngữ mới → cập nhật glossary trước, rồi mới dùng trong SPEC.
-- Sửa glossary → rà soát mọi SPEC tham chiếu (Consistency check).
+- Xem **`RULES.md`** — 4 luật bắt buộc (một nghĩa, không đồng nghĩa, tham chiếu Glossary, đổi qua ADR+RFC).
+- Thêm thuật ngữ mới → thêm Glossary trước, rồi mới dùng trong SPEC.
+- Sửa Glossary → rà soát mọi SPEC tham chiếu (Consistency check).

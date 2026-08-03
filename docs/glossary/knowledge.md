@@ -1,28 +1,70 @@
 ---
-name: glossary-knowledge
-description: Thuật ngữ Knowledge — kiến thức bền vững, queryable (lessons/patterns/graph).
-agent: general
+id: knowledge
+name: Knowledge
+status: Draft
+category: knowledge
+summary: Tri thức chuẩn hóa, được Doctor và Agent sử dụng.
+definition: >
+  Knowledge là tri thức chuẩn hóa.
+  Knowledge được Doctor và Agent sử dụng.
+purpose: Lưu trữ bài học/pattern đã chuẩn hóa để tái sử dụng.
+responsibilities:
+  - Lưu lessons/patterns
+  - Cung cấp tri thức cho Doctor và Agent
+does_not_responsible:
+  - Lưu raw memory (thuộc Memory)
+  - Thực thi
+owned_by: Knowledge Base
+used_by:
+  - Doctor
+  - Agent
+  - Learning Agent
+inputs:
+  - Lesson từ Memory
+outputs:
+  - Tri thức chuẩn hóa
+lifecycle: Collected → Verified → Published
+related:
+  - memory
+  - agent
+  - doctor
+examples:
+  - Lessons/patterns từ failure records
+references:
+  - P008 Observable
+  - P012 Single Source of Truth
 ---
 
-# Term: Knowledge
+# Knowledge
 
-**Definition**: Persistent, queryable lessons, patterns, and relationships (graph) of the system.
+Knowledge là tri thức chuẩn hóa.
 
-**Owns**:
-- lessons
-- patterns
-- graph (entities + relations)
+Được Doctor và Agent sử dụng.
 
-**Does not own**:
-- Working state
-- Agent state
-- Session data
+## Responsibilities
 
-**Quan hệ**:
-- Knowledge queryable qua Knowledge Graph (P012).
-- Context truy vấn knowledge khi cần (không scan folder).
-- Học từ workflow (learning pipeline).
+- Lưu lessons/patterns
+- Cung cấp tri thức cho Doctor và Agent
 
-**Ví dụ**: lesson về cache-first, pattern DI.
+## Not Responsible
 
-**Tham chiếu**: P003, P012.
+- Lưu raw memory (thuộc Memory)
+- Thực thi
+
+## Owner
+
+Knowledge Base
+
+## Used By
+
+- Doctor
+- Agent
+- Learning Agent
+
+## Input
+
+- Lesson từ Memory
+
+## Output
+
+- Tri thức chuẩn hóa
