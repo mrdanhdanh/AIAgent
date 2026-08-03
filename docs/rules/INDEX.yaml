@@ -1,0 +1,34 @@
+# AIOS Rules INDEX
+# D004 — Doctor/Validator đọc file này để biết kiểm tra rule nào.
+---
+rules:
+  R-LAYER:
+    file: layering.md
+    summary: 5 tầng, phụ thuộc một chiều từ trên xuống.
+    principles: [P001]
+    sources: [A-001, A-002]
+  R-DEP:
+    file: dependency.md
+    summary: Không circular dependency. Core không phụ thuộc Plugin.
+    principles: [P012, P016]
+    sources: [A-002]
+  R-COMM:
+    file: communication.md
+    summary: Mọi giao tiếp qua Contract (P002) + Runtime (P001).
+    principles: [P001, P002]
+    sources: [A-004]
+  R-VER:
+    file: versioning.md
+    summary: Mọi entity versioned. Không ghi đè. Backward compatible.
+    principles: [P004, P010, P018]
+    sources: [G-001, G-003]
+  R-STATE:
+    file: state.md
+    summary: State thuộc Runtime. Agent stateless. Mọi state change phát Event.
+    principles: [P001, P005, P006, P009]
+    sources: [A-006]
+  R-SEC:
+    file: security.md
+    summary: Least privilege. Kiểm tra quyền trước khi thực thi.
+    principles: [P002, P005, P012, P016]
+    sources: [A-005]

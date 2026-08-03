@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aios://glossary.schema.json",
+  "title": "AIOS Glossary Term",
+  "description": "JSON Schema cho frontmatter của từng term file trong docs/glossary/. Validator kiểm tra cấu trúc template D002.",
+  "type": "object",
+  "required": [
+    "id", "name", "status", "category", "summary", "definition",
+    "purpose", "responsibilities", "does_not_responsible", "owned_by",
+    "used_by", "inputs", "outputs", "lifecycle", "related", "examples", "references"
+  ],
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z][a-z0-9_-]*$" },
+    "name": { "type": "string" },
+    "status": { "enum": ["Draft", "Review", "Approved", "Deprecated"] },
+    "category": { "type": "string" },
+    "summary": { "type": "string" },
+    "definition": { "type": "string" },
+    "purpose": { "type": "string" },
+    "responsibilities": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "does_not_responsible": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "owned_by": { "type": "string" },
+    "used_by": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "inputs": { "type": "array", "items": { "type": "string" } },
+    "outputs": { "type": "array", "items": { "type": "string" } },
+    "lifecycle": { "type": "string" },
+    "related": { "type": "array", "items": { "type": "string" } },
+    "examples": { "type": "array", "items": { "type": "string" } },
+    "references": { "type": "array", "items": { "type": "string" } }
+  },
+  "additionalProperties": false
+}

@@ -95,6 +95,11 @@ if (-not (Test-Path (Join-Path $prinDir 'README.md'))) {
   $errors += "PRN-005: missing README.md"
 }
 
+# ---------- PRN-006: schema + changelog ----------
+foreach ($f in @('principles.schema.json','CHANGELOG.md')) {
+  if (-not (Test-Path (Join-Path $prinDir $f))) { $errors += "PRN-006: thieu $f" }
+}
+
 # ---------- Output ----------
 if (-not $Silent) {
   ""

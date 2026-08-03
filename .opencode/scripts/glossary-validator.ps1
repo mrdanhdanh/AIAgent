@@ -74,6 +74,11 @@ foreach ($t in $terms) {
   if ($text -notmatch '^---\r?\n') { $warnings += "GLS-006: $t.md thieu frontmatter '---'" }
 }
 
+# ---------- GLS-007: schema + changelog ----------
+foreach ($f in @('glossary.schema.json','CHANGELOG.md')) {
+  if (-not (Test-Path (Join-Path $glossaryDir $f))) { $errors += "GLS-007: thieu $f" }
+}
+
 # ---------- Output ----------
 if (-not $Silent) {
   ""

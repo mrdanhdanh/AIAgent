@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aios://principles.schema.json",
+  "title": "AIOS Core Principle",
+  "description": "JSON Schema cho frontmatter của từng principle file trong docs/principles/. Validator kiểm tra template D003.",
+  "type": "object",
+  "required": [
+    "id", "name", "status", "category", "statement", "rationale",
+    "rules", "implications", "anti_patterns", "exceptions", "related", "examples",
+    "severity", "enforced_by", "implemented_in", "breaking_change"
+  ],
+  "properties": {
+    "id": { "type": "string", "pattern": "^P\\d{3}$" },
+    "name": { "type": "string" },
+    "status": { "enum": ["Draft", "Review", "Approved", "Deprecated"] },
+    "category": { "enum": ["Runtime", "Architecture", "Data", "Governance", "AI", "Quality"] },
+    "statement": { "type": "string" },
+    "rationale": { "type": "string" },
+    "rules": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "implications": { "type": "array", "items": { "type": "string" } },
+    "anti_patterns": { "type": "array", "items": { "type": "string" } },
+    "exceptions": { "type": "string" },
+    "related": { "type": "array", "items": { "type": "string", "pattern": "^P\\d{3}$" } },
+    "examples": { "type": "array", "items": { "type": "string" } },
+    "severity": { "enum": ["critical", "high", "medium", "low"] },
+    "enforced_by": { "type": "array", "items": { "type": "string" } },
+    "implemented_in": { "type": "array", "items": { "type": "string" } },
+    "breaking_change": { "type": "boolean" }
+  },
+  "additionalProperties": false
+}

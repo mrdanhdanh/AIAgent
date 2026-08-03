@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aios://rules.schema.json",
+  "title": "AIOS Architecture Rule",
+  "description": "JSON Schema cho frontmatter của từng rule file trong docs/rules/. Validator kiểm tra cấu trúc D004.",
+  "type": "object",
+  "required": ["name", "description", "agent"],
+  "properties": {
+    "name": { "type": "string", "pattern": "^rule-[a-z-]+$" },
+    "description": { "type": "string" },
+    "agent": { "const": "general" }
+  },
+  "additionalProperties": false
+}
