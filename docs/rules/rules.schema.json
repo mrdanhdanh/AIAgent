@@ -5,7 +5,8 @@
   "description": "JSON Schema cho frontmatter của từng rule file trong docs/rules/. Validator kiểm tra template D004.",
   "type": "object",
   "required": [
-    "id", "name", "status", "version", "category", "statement", "purpose",
+    "id", "name", "status", "version", "category", "policy_type", "severity",
+    "compliance", "enforcement", "statement", "purpose",
     "rules", "constraints", "examples", "related_principles", "related_rules", "verification"
   ],
   "properties": {
@@ -13,7 +14,20 @@
     "name": { "type": "string" },
     "status": { "enum": ["Draft", "Review", "Stable", "Deprecated"] },
     "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
-    "category": { "enum": ["Architecture", "Execution", "State", "Data", "Event", "Security", "Reliability"] },
+    "category": { "enum": ["Architecture", "Execution", "State", "Data", "Event", "Security", "Reliability", "Observability", "Compatibility"] },
+    "policy_type": { "enum": ["mandatory", "recommended", "informational"] },
+    "severity": { "enum": ["critical", "high", "medium", "low"] },
+    "compliance": { "enum": ["required", "recommended", "optional"] },
+    "enforcement": {
+      "type": "object",
+      "required": ["runtime", "doctor", "validator", "dashboard"],
+      "properties": {
+        "runtime": { "type": "boolean" },
+        "doctor": { "type": "boolean" },
+        "validator": { "type": "boolean" },
+        "dashboard": { "type": "boolean" }
+      }
+    },
     "statement": { "type": "string" },
     "purpose": { "type": "string" },
     "rules": { "type": "array", "items": { "type": "string" }, "minItems": 1 },

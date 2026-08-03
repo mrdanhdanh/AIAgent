@@ -68,6 +68,16 @@ rules:
     name: Deterministic Execution
     category: Reliability
     principles: [P009, P011, P013]
+  RULE-014:
+    file: RULE-014-observability-contract.md
+    name: Observability Contract
+    category: Observability
+    principles: [P014, P005]
+  RULE-015:
+    file: RULE-015-backward-compatibility.md
+    name: Backward Compatibility
+    category: Compatibility
+    principles: [P018, P004]
 
 dependencies:
   RULE-001: [RULE-002, RULE-004]
@@ -83,3 +93,5 @@ dependencies:
   RULE-011: [RULE-005, RULE-006]
   RULE-012: [RULE-008, RULE-004]
   RULE-013: [RULE-004, RULE-009]
+  RULE-014: [RULE-007, RULE-004]
+  RULE-015: [RULE-009, RULE-013]

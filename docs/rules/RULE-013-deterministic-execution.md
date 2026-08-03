@@ -4,6 +4,14 @@ name: Deterministic Execution
 status: Stable
 version: 1.0.0
 category: Reliability
+policy_type: mandatory
+severity: high
+compliance: required
+enforcement:
+  runtime: True
+  doctor: True
+  validator: False
+  dashboard: False
 statement: >
   Cùng Workflow + Context + Capability Version + Agent Version → cùng kết quả (hoặc sai khác trong giới hạn).
 purpose: >
@@ -65,6 +73,22 @@ Nền tảng cho Simulation, Replay, Regression Test, Doctor Behavioral Test.
 
 ```text
 Replay cùng Workflow/Context/Version → cùng kết quả
+```
+
+## Determinism Definition
+
+```text
+determinism:
+  required_inputs:
+    - WorkflowVersion
+    - CapabilityVersion
+    - AgentVersion
+    - ContextHash
+  allowed_variance:
+    - TextFormatting
+  forbidden_variance:
+    - ExecutionPath
+    - ArtifactSchema
 ```
 
 ## Related Principles

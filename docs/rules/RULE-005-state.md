@@ -4,6 +4,14 @@ name: State
 status: Stable
 version: 1.0.0
 category: State
+policy_type: mandatory
+severity: critical
+compliance: required
+enforcement:
+  runtime: True
+  doctor: True
+  validator: True
+  dashboard: False
 statement: >
   State chỉ tồn tại ở Runtime. Agent, Skill, Artifact không có state/mutable.
 purpose: >

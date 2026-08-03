@@ -4,6 +4,14 @@ name: Security
 status: Stable
 version: 1.0.0
 category: Security
+policy_type: mandatory
+severity: critical
+compliance: required
+enforcement:
+  runtime: True
+  doctor: True
+  validator: False
+  dashboard: False
 statement: >
   Quyền tối thiểu theo thành phần: Runtime Full, Agent Workspace Only, Plugin Sandbox, Skill Read Only.
 purpose: >
@@ -69,6 +77,24 @@ Least privilege, giảm diện tích tấn công.
 
 ```text
 Plugin chạy trong sandbox
+```
+
+## Permission Model
+
+```text
+permissions:
+  Runtime:
+    execute: true
+    write_state: true
+  Agent:
+    execute: true
+    write_state: false
+  Skill:
+    execute: false
+    read_only: true
+  Plugin:
+    execute: true (sandbox)
+    write_state: false
 ```
 
 ## Related Principles

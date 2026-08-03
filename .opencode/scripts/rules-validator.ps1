@@ -37,7 +37,9 @@ $rules = @(
   @{ id='RULE-010'; file='RULE-010-extension.md' },
   @{ id='RULE-011'; file='RULE-011-resource-ownership.md' },
   @{ id='RULE-012'; file='RULE-012-failure-isolation.md' },
-  @{ id='RULE-013'; file='RULE-013-deterministic-execution.md' }
+  @{ id='RULE-013'; file='RULE-013-deterministic-execution.md' },
+  @{ id='RULE-014'; file='RULE-014-observability-contract.md' },
+  @{ id='RULE-015'; file='RULE-015-backward-compatibility.md' }
 )
 foreach ($r in $rules) {
   if (-not (Test-Path (Join-Path $rulesDir $r.file))) {
@@ -46,7 +48,8 @@ foreach ($r in $rules) {
 }
 
 # ---------- RUL-002: template ----------
-$template = @('id','name','status','version','category','statement','purpose',
+$template = @('id','name','status','version','category','policy_type','severity',
+  'compliance','enforcement','statement','purpose',
   'rules','constraints','examples','related_principles','related_rules','verification')
 foreach ($r in $rules) {
   $f = Join-Path $rulesDir $r.file
@@ -58,20 +61,24 @@ foreach ($r in $rules) {
   if ($text -notmatch "(?m)^id:\s*$($r.id)\b") { $errors += "RUL-002: $($r.file) id phai la $($r.id)" }
   if ($text -notmatch '(?m)^  allowed:') { $errors += "RUL-002: $($r.file) thieu constraints.allowed" }
   if ($text -notmatch '(?m)^  forbidden:') { $errors += "RUL-002: $($r.file) thieu constraints.forbidden" }
+  if ($text -notmatch '(?m)^policy_type:\s*mandatory') { $warnings += "RUL-002: $($r.file) policy_type khong phai mandatory" }
+  if ($text -notmatch '(?m)^  runtime:') { $errors += "RUL-002: $($r.file) thieu enforcement.runtime" }
 }
 
-# ---------- RUL-003: architecture.yaml ----------
-$arch = Join-Path $rulesDir 'architecture.yaml'
+# ---------- RUL-003: architecture-registry.yaml ----------
+$arch = Join-Path $rulesDir 'architecture-registry.yaml'
 if (-not (Test-Path $arch)) {
-  $errors += "RUL-003: missing architecture.yaml"
+  $errors += "RUL-003: missing architecture-registry.yaml"
 } else {
   $at = Get-Content -LiteralPath $arch -Raw -Encoding utf8
-  if ($at -notmatch '(?m)^layers:') { $errors += "RUL-003: architecture.yaml thieu 'layers:'" }
+  if ($at -notmatch '(?m)^layers:') { $errors += "RUL-003: architecture-registry.yaml thieu 'layers:'" }
   foreach ($layer in @('Presentation','Command','Workflow','Runtime','Capability','Registry','Agent','Skill','Infrastructure')) {
-    if ($at -notmatch [regex]::Escape($layer)) { $errors += "RUL-003: architecture.yaml thieu layer '$layer'" }
+    if ($at -notmatch [regex]::Escape($layer)) { $errors += "RUL-003: architecture-registry.yaml thieu layer '$layer'" }
   }
-  if ($at -notmatch '(?m)^layer_order:') { $warnings += "RUL-003: thieu layer_order" }
-  if ($at -notmatch '(?m)^term_layer:') { $warnings += "RUL-003: thieu term_layer" }
+  if ($at -notmatch '(?m)^allowed_dependencies:') { $errors += "RUL-003: thieu allowed_dependencies" }
+  if ($at -notmatch '(?m)^forbidden_dependencies:') { $errors += "RUL-003: thieu forbidden_dependencies" }
+  if ($at -notmatch '(?m)^ownership:') { $errors += "RUL-003: thieu ownership" }
+  if ($at -notmatch '(?m)^interactions:') { $errors += "RUL-003: thieu interactions" }
 }
 
 # ---------- RUL-004: INDEX.yaml ----------

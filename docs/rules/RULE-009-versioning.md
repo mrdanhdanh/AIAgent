@@ -4,6 +4,14 @@ name: Versioning
 status: Stable
 version: 1.0.0
 category: Data
+policy_type: mandatory
+severity: high
+compliance: required
+enforcement:
+  runtime: True
+  doctor: True
+  validator: True
+  dashboard: False
 statement: >
   Mọi object có version. Không overwrite.
 purpose: >

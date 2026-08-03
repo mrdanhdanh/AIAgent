@@ -4,6 +4,14 @@ name: Failure Isolation
 status: Stable
 version: 1.0.0
 category: Reliability
+policy_type: mandatory
+severity: critical
+compliance: required
+enforcement:
+  runtime: True
+  doctor: True
+  validator: False
+  dashboard: False
 statement: >
   Một Agent lỗi không được làm sập Runtime. Runtime catch → Event → Rollback/Retry.
 purpose: >

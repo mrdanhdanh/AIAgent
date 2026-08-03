@@ -1,0 +1,186 @@
+# AIOS Architecture Registry
+# D004 — Registry kiến trúc: Layer + Dependency + Ownership + Communication + Capability.
+# Doctor/Dashboard đọc trực tiếp.
+---
+version: "1.0"
+
+# --- Layers (level từ trên xuống: Presentation=1 ... Infrastructure=9) ---
+layers:
+  Presentation:
+    level: 1
+    depends_on: [Command]
+    provides: [Dashboard, CLI]
+    consumes: [Command]
+    owns: [UI State]
+    emits: []
+    principles: [P001]
+    rules: [RULE-001]
+  Command:
+    level: 2
+    depends_on: [Workflow]
+    provides: [EntryPoint]
+    consumes: [Workflow]
+    owns: []
+    emits: [CommandInvoked]
+    principles: [P001]
+    rules: [RULE-001]
+  Workflow:
+    level: 3
+    depends_on: [Runtime]
+    provides: [Execution Plan]
+    consumes: [Runtime]
+    owns: [Workflow Definition]
+    emits: [WorkflowStarted, WorkflowCompleted]
+    principles: [P001, P003, P011]
+    rules: [RULE-001, RULE-002, RULE-004]
+  Runtime:
+    level: 4
+    depends_on: [Capability]
+    provides: [Execution, Scheduling, State Management]
+    consumes: [Workflow, Context]
+    owns: [RuntimeState, Context]
+    emits: [Event]
+    principles: [P001, P005, P006]
+    rules: [RULE-001, RULE-004, RULE-005, RULE-014]
+  Capability:
+    level: 5
+    depends_on: [Registry]
+    provides: [Resolvable Ability]
+    consumes: [Registry]
+    owns: [Capability Definition]
+    emits: []
+    principles: [P007]
+    rules: [RULE-001, RULE-010]
+  Registry:
+    level: 6
+    depends_on: [Agent]
+    provides: [Lookup, Registration]
+    consumes: [Agent]
+    owns: [Metadata, Registration]
+    emits: [Registered, Removed]
+    principles: [P007, P009]
+    rules: [RULE-001, RULE-002]
+  Agent:
+    level: 7
+    depends_on: [Skill]
+    provides: [Execution Unit]
+    consumes: [Skill, Context]
+    owns: []
+    emits: [Artifact, Event]
+    principles: [P006, P007, P008]
+    rules: [RULE-001, RULE-005, RULE-006, RULE-012]
+  Skill:
+    level: 8
+    depends_on: [Infrastructure]
+    provides: [Reusable Knowledge]
+    consumes: [Infrastructure]
+    owns: [Skill Content]
+    emits: []
+    principles: [P003]
+    rules: [RULE-001]
+  Infrastructure:
+    level: 9
+    depends_on: []
+    provides: [Storage, Network, Filesystem]
+    consumes: []
+    owns: [Raw Resources]
+    emits: []
+    principles: [P014]
+    rules: [RULE-001]
+
+# --- Layer order (từ trên xuống) ---
+layer_order:
+  - Presentation
+  - Command
+  - Workflow
+  - Runtime
+  - Capability
+  - Registry
+  - Agent
+  - Skill
+  - Infrastructure
+
+# --- Map glossary term → layer ---
+term_layer:
+  TERM-007 Command: Command
+  TERM-002 Workflow: Workflow
+  TERM-003 Phase: Workflow
+  TERM-004 Task: Workflow
+  TERM-001 Runtime: Runtime
+  TERM-009 Context: Runtime
+  TERM-006 Capability: Capability
+  TERM-013 Registry: Registry
+  TERM-005 Agent: Agent
+  TERM-016 Skill: Skill
+  TERM-015 Plugin: Capability
+  TERM-014 Contract: Runtime
+  TERM-012 Event: Runtime
+  TERM-008 Artifact: Runtime
+  TERM-010 Memory: Runtime
+  TERM-011 Knowledge: Skill
+
+# --- Allowed Dependencies Matrix ---
+allowed_dependencies:
+  Presentation: [Command]
+  Command: [Workflow]
+  Workflow: [Runtime]
+  Runtime: [Capability]
+  Capability: [Registry]
+  Registry: [Agent]
+  Agent: [Skill]
+  Skill: [Infrastructure]
+  Infrastructure: []
+
+# --- Forbidden Dependencies ---
+forbidden_dependencies:
+  Agent: [Runtime, Workflow, Registry]
+  Skill: [Runtime]
+  Plugin: [Core]
+  Command: [Agent]
+  Workflow: [Agent]
+
+# --- Ownership Matrix ---
+ownership:
+  Runtime:
+    owns: [RuntimeState, Context]
+    cannot_own: [Workflow Definition]
+  Workflow:
+    owns: [Workflow Definition]
+    cannot_own: [Context]
+  Agent:
+    owns: []
+    cannot_own: [State]
+  Artifact:
+    owns: [Immutable Content]
+    cannot_own: [Runtime]
+
+# --- Interaction Matrix ---
+interactions:
+  - from: Runtime
+    to: Registry
+    allowed: true
+    contract: Query
+  - from: Runtime
+    to: Agent
+    allowed: true
+    contract: Execute
+  - from: Agent
+    to: Agent
+    allowed: false
+    contract: "-"
+  - from: Workflow
+    to: Runtime
+    allowed: true
+    contract: ExecuteWorkflow
+  - from: Plugin
+    to: Runtime
+    allowed: false
+    contract: "-"
+  - from: Command
+    to: Workflow
+    allowed: true
+    contract: Trigger
+  - from: Runtime
+    to: Skill
+    allowed: true
+    contract: Read

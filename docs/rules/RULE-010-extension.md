@@ -4,6 +4,14 @@ name: Extension
 status: Stable
 version: 1.0.0
 category: Architecture
+policy_type: mandatory
+severity: critical
+compliance: required
+enforcement:
+  runtime: True
+  doctor: True
+  validator: True
+  dashboard: False
 statement: >
   Không sửa Core. Muốn mở rộng → Plugin. Plugin export Capability → Registry.
 purpose: >

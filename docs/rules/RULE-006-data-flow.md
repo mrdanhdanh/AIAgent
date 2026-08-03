@@ -4,6 +4,14 @@ name: Data Flow
 status: Stable
 version: 1.0.0
 category: Data
+policy_type: mandatory
+severity: high
+compliance: required
+enforcement:
+  runtime: False
+  doctor: True
+  validator: False
+  dashboard: False
 statement: >
   Data flow: Context→Agent→Artifact. Không Agent→Agent, không Agent→Memory.
 purpose: >

@@ -4,6 +4,14 @@ name: Communication
 status: Stable
 version: 1.0.0
 category: Architecture
+policy_type: mandatory
+severity: critical
+compliance: required
+enforcement:
+  runtime: True
+  doctor: True
+  validator: True
+  dashboard: True
 statement: >
   Mọi giao tiếp thông qua Contract. Có 4 loại: Command/Request, Contract, Event, Query.
 purpose: >

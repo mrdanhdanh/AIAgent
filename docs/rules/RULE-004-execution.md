@@ -4,6 +4,14 @@ name: Execution
 status: Stable
 version: 1.0.0
 category: Execution
+policy_type: mandatory
+severity: critical
+compliance: required
+enforcement:
+  runtime: True
+  doctor: True
+  validator: False
+  dashboard: True
 statement: >
   Execution theo sequence chuẩn: User→Command→Workflow→Phase→Task→Runtime→Capability→Registry→Agent→Artifact→Event→Done.
 purpose: >
@@ -61,6 +69,32 @@ Một đường thực thi chuẩn, dự đoán được, dễ theo dõi.
 
 ```text
 Sequence chuẩn toàn bộ execution
+```
+
+## Execution State Machine
+
+```text
+Created
+   │
+Validated
+   │
+Ready
+   │
+Running
+   │
+Completed
+```
+
+Khi lỗi:
+
+```text
+Running
+    ↓
+Failed
+    ↓
+Retry
+    ↓
+Completed
 ```
 
 ## Related Principles

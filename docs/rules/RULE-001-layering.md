@@ -4,6 +4,14 @@ name: Layering
 status: Stable
 version: 1.0.0
 category: Architecture
+policy_type: mandatory
+severity: critical
+compliance: required
+enforcement:
+  runtime: True
+  doctor: True
+  validator: True
+  dashboard: True
 statement: >
   Phân tầng một chiều từ trên xuống. Layer chỉ được gọi layer ngay dưới.
 purpose: >

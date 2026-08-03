@@ -4,6 +4,14 @@ name: Event
 status: Stable
 version: 1.0.0
 category: Event
+policy_type: mandatory
+severity: critical
+compliance: required
+enforcement:
+  runtime: True
+  doctor: True
+  validator: False
+  dashboard: True
 statement: >
   Mọi thay đổi phải phát Event. Event immutable.
 purpose: >
@@ -72,6 +80,20 @@ Replay, simulate, audit qua Event log.
 ```text
 Task Failed → Event phát ra
 ```
+
+## Event Taxonomy
+
+```text
+event_categories:
+  Workflow: [Started, Completed]
+  Task: [Started, Failed]
+  Artifact: [Created]
+  Doctor: [Completed]
+  Simulation: [Finished]
+  Runtime: [Init, Terminated]
+```
+
+Event Bus dựa vào taxonomy này.
 
 ## Related Principles
 

@@ -6,6 +6,19 @@ agent: general
 
 # AIOS Architecture Rules — Changelog
 
+## v2.1.0 (2026-08-03) — Policy Engine
+
+### Added
+
+- **Policy metadata** mỗi rule: `policy_type: mandatory`, `severity`, `compliance`, `enforcement` (runtime/doctor/validator/dashboard) — Rule thành **Policy**.
+- **RULE-014** Observability Contract — Runtime bắt buộc phát telemetry (Metrics→Logs→Events→Artifacts).
+- **RULE-015** Backward Compatibility — mỗi thay đổi khai báo backward/forward/migration.
+- **architecture-registry.yaml** (đổi tên từ architecture.yaml) — Architecture Registry: layers (level/depends_on/provides/consumes/owns/emits/principles/rules) + allowed_dependencies + forbidden_dependencies + ownership + interactions.
+- RULE-004: thêm **Execution State Machine** (Created→Validated→Ready→Running→Completed + Failed→Retry).
+- RULE-007: thêm **Event Taxonomy** (Workflow/Task/Artifact/Doctor/Simulation/Runtime).
+- RULE-008: thêm **Permission Model** (Runtime/Agent/Skill/Plugin permissions).
+- RULE-013: thêm **Determinism Definition** (required_inputs/allowed_variance/forbidden_variance).
+
 ## v2.0.0 (2026-08-03) — 13 Rules
 
 ### Added

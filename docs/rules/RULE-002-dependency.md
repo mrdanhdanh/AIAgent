@@ -4,6 +4,14 @@ name: Dependency
 status: Stable
 version: 1.0.0
 category: Architecture
+policy_type: mandatory
+severity: critical
+compliance: required
+enforcement:
+  runtime: True
+  doctor: True
+  validator: True
+  dashboard: True
 statement: >
   Mọi dependency phải explicit. Runtime chỉ đọc Registry, không tự scan.
 purpose: >

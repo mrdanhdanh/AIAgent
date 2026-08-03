@@ -4,6 +4,14 @@ name: Resource Ownership
 status: Stable
 version: 1.0.0
 category: Data
+policy_type: mandatory
+severity: high
+compliance: required
+enforcement:
+  runtime: False
+  doctor: True
+  validator: False
+  dashboard: False
 statement: >
   Mỗi thành phần chỉ sở hữu tài nguyên của chính mình.
 purpose: >
