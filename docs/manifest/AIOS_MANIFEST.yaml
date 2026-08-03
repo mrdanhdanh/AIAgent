@@ -1,13 +1,38 @@
-# AIOS Manifest — package.json của AIOS
-# Sprint 0.0 / Milestone 0 — file đầu tiên của toàn bộ Framework.
-# Trả lời: AIOS là gì? Tồn tại để làm gì? Giá trị gì? Mục tiêu dài hạn?
-# Tham chiếu: SPEC-000 Constitution (Assemble).
----
+# ============================================================
+# AIOS Manifest v1.0 Enterprise — Executable Specification
+# ============================================================
+# Đây là file đầu tiên của toàn bộ Framework.
+# Runtime/Doctor/Dashboard/Evolution đọc file này.
+# Con người đọc docs/manifest/README.md.
+# Validator kiểm tra bằng docs/manifest/manifest.schema.json.
+# ============================================================
+
+# --- Identity ---
 id: AIOS
 name: AI Operating System
+
+identity:
+  domain: ai-runtime
+  type: framework
+  architecture: modular
+  deployment:
+    - local
+    - hybrid
+    - cloud
+
+# --- Metadata ---
+kind: Manifest
+apiVersion: aios/v1
+manifestVersion: "1.0"
+specVersion: "1.0"
+constitution: SPEC-000
 version: "1.0.0"
 status: draft
+maturity:
+  current: Architecture
+  target: Enterprise
 
+# --- Mission & Vision ---
 mission: >
   Xây nền tảng điều hành cho AI Agent — Runtime là trung tâm,
   Agent chỉ là thành phần chạy trên Runtime.
@@ -16,27 +41,58 @@ vision: >
   AIOS trở thành tầng hạ tầng chuẩn để vận hành AI agent
   ở quy mô enterprise, ổn định 5-10 năm, mở rộng qua extension.
 
-scope: >
-  Runtime, Agent, Workflow, Registry, Context, Artifact, Event, Scheduler,
-  State Machine, Execution, Simulation, Doctor, Evaluation, Evolution,
-  Plugin, SDK, Dashboard.
+# --- Scope ---
+scope:
+  included:
+    - Runtime
+    - Agent
+    - Workflow
+    - Phase
+    - Task
+    - Capability
+    - Registry
+    - Context
+    - Artifact
+    - Memory
+    - Knowledge
+    - Event
+    - Scheduler
+    - State Machine
+    - Execution
+    - Simulation
+    - Doctor
+    - Evaluation
+    - Evolution
+    - Plugin
+    - SDK
+    - Dashboard
+  excluded:
+    - IDE
+    - Source Control
+    - Database Engine
+    - Chat Platform
+    - LLM
+    - CI/CD
 
+# --- Goals (không tham chiếu Principle — SPEC mới tham chiếu) ---
 goals:
-  - Runtime điều phối mọi hoạt động (P001)
-  - Giao tiếp qua Contract, có thể kiểm tra (P002)
-  - Mọi object có metadata, machine-readable (P003)
-  - Mọi object versioned (P004)
-  - Mọi state change phát Event (P005)
-  - Agent stateless, thay thế được (P006)
-  - Mở rộng qua Plugin, không sửa core (P012)
+  - Standardized Runtime
+  - Declarative Workflow
+  - Capability Routing
+  - AI Native
+  - Extensible Architecture
+  - Observable Execution
 
-non_goals:
-  - IDE
-  - Source Control
-  - Database Engine
-  - Chat Platform
-  - LLM
+# --- Design Values (văn hóa AIOS) ---
+design_values:
+  - Simplicity
+  - Explicitness
+  - Consistency
+  - Predictability
+  - Composability
+  - Reusability
 
+# --- Quality Attributes ---
 quality_attributes:
   - Reliability
   - Scalability
@@ -47,6 +103,35 @@ quality_attributes:
   - Testability
   - Determinism
 
+# --- Architecture Style ---
+architecture_style:
+  - Layered
+  - Event Driven
+  - Metadata Driven
+  - Capability Driven
+  - Plugin Oriented
+  - Contract First
+
+# --- Source of Truth (Runtime đọc luôn) ---
+source_of_truth:
+  constitution: docs/specs/SPEC-000
+  specifications: docs/specs
+  adr: docs/adr
+  rfc: docs/rfc
+  glossary: docs/glossary
+  principles: docs/principles
+  rules: docs/rules
+  governance: docs/governance
+
+# --- Deliverables (roadmap) ---
+deliverables:
+  - SPEC
+  - Runtime
+  - Doctor
+  - Dashboard
+  - Plugin SDK
+
+# --- Core Principles (tham chiếu, không lặp lại) ---
 core_principles:
   - P001 Runtime First
   - P002 Contract First
@@ -69,9 +154,39 @@ core_principles:
   - P019 Open Extension, Closed Core
   - P020 Constitution First
 
+# --- Repository Layout ---
+repository:
+  - docs/
+  - .opencode/
+  - plugins/
+  - sdk/
+  - runtime/
+
+# --- Lifecycle (mọi Entity dùng chung) ---
+lifecycle:
+  - Draft
+  - Review
+  - Approved
+  - Deprecated
+
+# --- Compatibility Policy (Evolution Engine đọc) ---
+compatibility:
+  backward: required
+  forward: preferred
+  breaking_change:
+    requires_adr: true
+
+# --- Governance ---
+governance:
+  rfc: docs/governance/rfc.md
+  adr: docs/governance/adr.md
+  release: docs/governance/release.md
+  review: docs/governance/review.md
+  approval: docs/governance/approval.md
+
+# --- Ownership ---
 owners:
   - core:aios-team
-
 license: proprietary
 
 created: "2026-08-03"
