@@ -30,7 +30,7 @@ examples:
   - Phase Analyze → Design → Build → Review → Test
 references:
   - P001 Runtime First
-  - P006 Capability Driven
+  - P007 Capability Driven
 ---
 
 # Phase

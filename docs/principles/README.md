@@ -1,65 +1,86 @@
 ---
 name: aios-principles
 description: >
-  AIOS Principles — index danh sách Core Principles (P001-P015), Architecture
-  Principles (A-001..006), Governance Principles (G-001..007). Mỗi principle
-  được định nghĩa chi tiết trong file riêng (P001-runtime-first.md...).
+  AIOS Core Principles (D003) — 20 nguyên tắc bất biến. Mỗi principle một file.
+  INDEX.yaml cho Doctor/Dashboard/Evolution. Đây là tài liệu quan trọng nhất của AIOS.
 agent: general
 ---
 
-# AIOS Principles
+# AIOS Core Principles
 
-> Sprint 0.0 / Milestone 0. Danh sách nguyên tắc bất biến của AIOS.
-> Mọi SPEC/ADR/Code phải tuân theo. Không mâu thuẫn.
-> Sau khi freeze, mỗi principle được viết chi tiết thành file riêng
-> (`P001-runtime-first.md`, `P002-contract-first.md`, ...).
+> **D003** — Manifest trả lời AIOS là gì. Glossary trả lời khái niệm là gì.
+> Core Principles trả lời **AIOS phải hoạt động theo quy luật nào**.
+> Đây là những luật **không được vi phạm**.
 
-## Core Principles (P001–P015)
+## Index (20 Principles)
 
-| ID | Tên | Mô tả ngắn |
-|----|-----|-----------|
-| P001 | Runtime First | Runtime là trung tâm điều phối; Agent không điều phối Agent |
-| P002 | Contract First | Mọi giao tiếp qua Contract, có thể kiểm tra |
-| P003 | Metadata First | Mọi object có metadata, machine-readable |
-| P004 | Event Driven | Mọi state change đều phát Event |
-| P005 | Stateless Agents | Agent không giữ state; state thuộc Runtime |
-| P006 | Capability Driven | Tách "cần làm gì" khỏi "ai làm" |
-| P007 | Discoverable | Không hard-code tham chiếu; tìm qua Registry |
-| P008 | Observable | Mọi hoạt động đo được |
-| P009 | Versioned | Không ghi đè; tạo version mới, rollback được |
-| P010 | Plugin First | Mở rộng qua Plugin, không sửa core |
-| P011 | Simulation Before Execution | Dự đoán trước khi chạy thật |
-| P012 | Single Source of Truth | Không duplicate state |
-| P013 | Immutable Artifacts | Artifact toàn vẹn + reproducible |
-| P014 | Least Privilege | An toàn, quyền tối thiểu |
-| P015 | Backward Compatible | Không phá consumer khi thay đổi |
+| ID | File | Statement |
+|----|------|-----------|
+| P001 | `P001-runtime-first.md` | Runtime là trung tâm; mọi hoạt động qua Runtime điều phối |
+| P002 | `P002-contract-first.md` | Không module nào giao tiếp trực tiếp; qua Contract |
+| P003 | `P003-metadata-first.md` | Mọi thực thể có metadata |
+| P004 | `P004-everything-is-versioned.md` | Không object nào không version |
+| P005 | `P005-event-driven.md` | Không notify trực tiếp; mọi state change phát Event |
+| P006 | `P006-stateless-agent.md` | Agent KHÔNG giữ state |
+| P007 | `P007-capability-driven.md` | Runtime chỉ biết Capability, không biết Agent |
+| P008 | `P008-single-responsibility.md` | Một Agent chỉ làm một việc |
+| P009 | `P009-single-source-of-truth.md` | Mỗi dữ liệu một nguồn duy nhất |
+| P010 | `P010-immutable-artifact.md` | Artifact sinh ra không sửa; sửa = version mới |
+| P011 | `P011-explicit-dependency.md` | Không dependency ẩn |
+| P012 | `P012-plugin-first.md` | Core không sửa; mở rộng qua Plugin |
+| P013 | `P013-simulation-before-execution.md` | Workflow mới qua Simulation trước Execute |
+| P014 | `P014-observability-first.md` | Mọi hoạt động sinh Event/Metrics/Logs/Artifacts |
+| P015 | `P015-fail-safe.md` | Lỗi → Rollback → Artifact → Audit |
+| P016 | `P016-human-approval.md` | AI không Merge/Release/Delete nếu chưa qua Policy |
+| P017 | `P017-ai-native.md` | Mọi thứ Machine Readable + Human Readable |
+| P018 | `P018-evolvable.md` | Mọi module hỗ trợ Migration/Compatibility/Versioning |
+| P019 | `P019-open-extension-closed-core.md` | Core bất biến; mở rộng bằng Plugin/SDK/Capability/Metadata |
+| P020 | `P020-constitution-first.md` | Constitution > ADR > SPEC > Contract > Implementation > Config |
 
-## Architecture Principles (A-001..A-006)
+## Template
 
-| ID | Tên | Mô tả ngắn |
-|----|-----|-----------|
-| A-001 | Layer Model | Phân tầng rõ ràng, phụ thuộc một chiều |
-| A-002 | Dependency Rules | Không vòng lặp dependency |
-| A-003 | Execution Model | Cơ chế thực thi thống nhất |
-| A-004 | Communication Model | Giao tiếp qua Runtime, không trực tiếp |
-| A-005 | Data Model | Metadata-first, data machine-readable |
-| A-006 | Object Model | Entity thống nhất (id/type/version/status) |
+Mọi principle dùng chung template (YAML frontmatter + body markdown):
 
-## Governance Principles (G-001..G-007)
+```yaml
+id:
+name:
+status:
+category:
+statement:
+rationale:
+rules:
+implications:
+anti_patterns:
+exceptions:
+related:
+examples:
+```
 
-| ID | Tên | Mô tả ngắn |
-|----|-----|-----------|
-| G-001 | Versioning | SemVer, backward compatible |
-| G-002 | Naming | Quy ước tên nhất quán |
-| G-003 | Compatibility | Không phá consumer |
-| G-004 | Deprecation | Có window, có replacement |
-| G-005 | RFC | Đề xuất thay đổi qua RFC |
-| G-006 | ADR | Quyết định kiến trúc ghi ADR |
-| G-007 | Decision Hierarchy | Thứ tự ưu tiên quyết định |
+Metadata bổ sung (Doctor/Dashboard/Evolution đọc):
+
+```yaml
+severity: critical | high
+enforced_by: [doctor, runtime, validator, ...]
+implemented_in: [SPEC-001, ...]
+related: [P002, ...]
+breaking_change: true|false
+```
+
+## Categories
+
+- **Runtime**: P001, P005, P006, P007
+- **Architecture**: P002, P008, P011, P012, P019
+- **Data**: P003, P004, P009, P010
+- **Governance**: P016, P020
+- **AI**: P013, P017
+- **Quality**: P014, P015, P018
+
+## Dependencies
+
+Xem `INDEX.yaml` — `dependencies` map P→deps, `categories` map nhóm→P.
 
 ## Tham chiếu
 
-- Chi tiết Core Principles: `principles.md`
-- Chi tiết Architecture: `architecture-principles.md`
-- Chi tiết Governance: `governance.md`
-- Manifest liệt kê P001–P015: `docs/manifest/AIOS_MANIFEST.yaml`
+- Manifest liệt kê P001–P020: `docs/manifest/AIOS_MANIFEST.yaml`
+- Glossary: `docs/glossary/`
+- INDEX cho Doctor: `INDEX.yaml`

@@ -40,8 +40,8 @@ examples:
   - Reviewer Agent
 references:
   - P001 Runtime First
-  - P005 Stateless Agents
-  - P006 Capability Driven
+  - P006 Stateless Agent
+  - P007 Capability Driven
 ---
 
 # Agent

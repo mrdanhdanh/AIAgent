@@ -32,8 +32,8 @@ examples:
   - Workflow → Runtime qua Contract
 references:
   - P002 Contract First
-  - P009 Versioned
-  - P015 Backward Compatible
+  - P004 Everything is Versioned
+  - P018 Evolvable
 ---
 
 # Contract

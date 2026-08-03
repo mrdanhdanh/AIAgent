@@ -32,8 +32,8 @@ related:
 examples:
   - Capability → Agent → Priority
 references:
-  - P007 Discoverable
-  - P012 Single Source of Truth
+  - P003 Metadata First
+  - P009 Single Source of Truth
 ---
 
 # Registry

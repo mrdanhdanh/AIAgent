@@ -30,7 +30,7 @@ related:
 examples:
   - Blazor Skill → Builder sử dụng
 references:
-  - P010 Plugin First
+  - P012 Plugin First
 ---
 
 # Skill

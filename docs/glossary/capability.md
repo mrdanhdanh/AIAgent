@@ -32,8 +32,8 @@ related:
 examples:
   - Code Review → Planner Agent | Review Agent | External Plugin
 references:
-  - P006 Capability Driven
-  - P007 Discoverable
+  - P007 Capability Driven
+  - P012 Plugin First
 ---
 
 # Capability

@@ -29,8 +29,8 @@ related:
 examples:
   - External Plugin cung cấp capability Code Review
 references:
-  - P010 Plugin First
-  - P014 Least Privilege
+  - P012 Plugin First
+  - P016 Human Approval
 ---
 
 # Plugin

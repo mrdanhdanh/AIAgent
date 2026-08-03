@@ -31,8 +31,8 @@ related:
 examples:
   - Lessons/patterns từ failure records
 references:
-  - P008 Observable
-  - P012 Single Source of Truth
+  - P014 Observability First
+  - P009 Single Source of Truth
 ---
 
 # Knowledge

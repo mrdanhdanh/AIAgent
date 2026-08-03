@@ -12,10 +12,10 @@ Mọi entity (Workflow, Agent, Artifact, Capability, Plugin, Contract) **bắt b
 
 ## Bắt buộc
 
-- Version bất biến sau khi publish — không ghi đè, tạo version mới (P009).
+- Version bất biến sau khi publish — không ghi đè, tạo version mới (P004).
 - SemVer (MAJOR.MINOR.PATCH) cho public interface (G-001).
-- Không phá consumer: backward compatible (P015).
-- Artifact immutable + checksum (P013).
+- Không phá consumer: backward compatible (P018).
+- Artifact immutable + checksum (P010).
 
 | Version | Thay đổi |
 |---------|----------|
@@ -28,4 +28,4 @@ Mọi entity (Workflow, Agent, Artifact, Capability, Plugin, Contract) **bắt b
 - Registry từ chối overwrite version đã tồn tại.
 - Doctor báo entity thiếu version.
 
-**Nguồn**: P009 · P013 · P015 · G-001 · G-003
+**Nguồn**: P004 · P010 · P018 · G-001 · G-003

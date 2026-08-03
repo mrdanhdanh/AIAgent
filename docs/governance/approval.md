@@ -21,9 +21,9 @@ Mỗi thay đổi có mức rủi ro tương ứng chuỗi phê duyệt.
 
 ## Nguyên tắc
 
-- **Principle bất biến (P001–P015) không thể đổi ở mức A1/A2** — phải RFC + ADR + A3/A4.
+- **Principle bất biến (P001–P020) không thể đổi ở mức A1/A2** — phải RFC + ADR + A3/A4.
 - Không bypass approval.
-- Mọi approval ghi lại (ai, khi nào, quyết định gì) để audit (P008).
+- Mọi approval ghi lại (ai, khi nào, quyết định gì) để audit (P014).
 
 ## Flow
 

@@ -33,7 +33,7 @@ examples:
   - Review Result
 references:
   - P001 Runtime First
-  - P005 Stateless Agents
+  - P006 Stateless Agent
 ---
 
 # Task

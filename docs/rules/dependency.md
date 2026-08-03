@@ -27,4 +27,4 @@ Presentation → Runtime → Infrastructure
 - Doctor phân tích call graph → báo vòng lặp / vi phạm hướng.
 - CI chặn nếu dependency graph có cycle.
 
-**Nguồn**: A-002 · P010 · P014
+**Nguồn**: A-002 · P012 · P016

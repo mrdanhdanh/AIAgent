@@ -17,7 +17,7 @@ Không thay đổi nào vào code/docs nếu chưa qua đánh giá.
 - [ ] Không chứa secret.
 - [ ] Validator tương ứng PASS.
 - [ ] Naming đúng (G-002).
-- [ ] Contract/version đúng (P002, P009).
+- [ ] Contract/version đúng (P002, P004).
 - [ ] Có test nếu là code.
 
 ## Mức Review

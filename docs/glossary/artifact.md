@@ -34,7 +34,7 @@ examples:
   - test-report.md
   - diagram.png
 references:
-  - P013 Immutable Artifacts
+  - P010 Immutable Artifact
 ---
 
 # Artifact

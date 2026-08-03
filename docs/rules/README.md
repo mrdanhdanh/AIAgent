@@ -20,14 +20,14 @@ agent: general
 | R-LAYER | `layering.md` | 5 tầng: Presentation → Extensions → Intelligence → Runtime → Infrastructure. Phụ thuộc một chiều từ trên xuống. |
 | R-DEP | `dependency.md` | Không circular dependency. Runtime không phụ thuộc Extension. Core không phụ thuộc Plugin. |
 | R-COMM | `communication.md` | Mọi giao tiếp qua Contract (P002) + Runtime (P001). Không gọi trực tiếp. |
-| R-VER | `versioning.md` | Mọi entity versioned (P009). Không ghi đè. Backward compatible (P015). |
-| R-STATE | `state.md` | State thuộc Runtime (P001, P005). Agent stateless. Mọi state change phát Event (P004). |
-| R-SEC | `security.md` | Least privilege (P014). Kiểm tra quyền trước khi thực thi. |
+| R-VER | `versioning.md` | Mọi entity versioned (P004). Không ghi đè. Backward compatible (P018). |
+| R-STATE | `state.md` | State thuộc Runtime (P001, P006). Agent stateless. Mọi state change phát Event (P005). |
+| R-SEC | `security.md` | Least privilege (P016). Kiểm tra quyền trước khi thực thi. |
 
 ## Nguồn
 
-- `docs/principles/architecture-principles.md` (A-001..A-006)
-- `docs/principles/principles.md` (P001–P015)
+- `docs/principles/P00*.md` (P001–P020)
+- `docs/principles/INDEX.yaml`
 
 ## Quy tắc
 

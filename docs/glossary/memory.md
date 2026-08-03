@@ -31,7 +31,7 @@ related:
 examples:
   - Failure → Lesson → Knowledge
 references:
-  - P008 Observable
+  - P014 Observability First
 ---
 
 # Memory

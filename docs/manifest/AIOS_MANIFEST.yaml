@@ -25,9 +25,10 @@ goals:
   - Runtime điều phối mọi hoạt động (P001)
   - Giao tiếp qua Contract, có thể kiểm tra (P002)
   - Mọi object có metadata, machine-readable (P003)
-  - Mọi state change phát Event, replay được (P004)
-  - Agent stateless, thay thế được (P005)
-  - Mở rộng qua Plugin, không sửa core (P010)
+  - Mọi object versioned (P004)
+  - Mọi state change phát Event (P005)
+  - Agent stateless, thay thế được (P006)
+  - Mở rộng qua Plugin, không sửa core (P012)
 
 non_goals:
   - IDE
@@ -50,18 +51,23 @@ core_principles:
   - P001 Runtime First
   - P002 Contract First
   - P003 Metadata First
-  - P004 Event Driven
-  - P005 Stateless Agents
-  - P006 Capability Driven
-  - P007 Discoverable
-  - P008 Observable
-  - P009 Versioned
-  - P010 Plugin First
-  - P011 Simulation Before Execution
-  - P012 Single Source of Truth
-  - P013 Immutable Artifacts
-  - P014 Least Privilege
-  - P015 Backward Compatible
+  - P004 Everything is Versioned
+  - P005 Event Driven
+  - P006 Stateless Agent
+  - P007 Capability Driven
+  - P008 Single Responsibility
+  - P009 Single Source of Truth
+  - P010 Immutable Artifact
+  - P011 Explicit Dependency
+  - P012 Plugin First
+  - P013 Simulation Before Execution
+  - P014 Observability First
+  - P015 Fail Safe
+  - P016 Human Approval
+  - P017 AI Native
+  - P018 Evolvable
+  - P019 Open Extension, Closed Core
+  - P020 Constitution First
 
 owners:
   - core:aios-team

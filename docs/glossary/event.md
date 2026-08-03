@@ -35,7 +35,7 @@ examples:
   - TEST_FAILED
   - DOCTOR_COMPLETED
 references:
-  - P004 Event Driven
+  - P005 Event Driven
 ---
 
 # Event

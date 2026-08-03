@@ -48,9 +48,9 @@ examples:
   - Runtime nhận Workflow, resolve Capability, giao Task cho Agent.
 references:
   - P001 Runtime First
-  - P004 Event Driven
-  - P005 Stateless Agents
-  - P012 Single Source of Truth
+  - P005 Event Driven
+  - P006 Stateless Agent
+  - P009 Single Source of Truth
 ---
 
 # Runtime
