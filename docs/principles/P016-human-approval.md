@@ -1,40 +1,72 @@
 ---
 id: P016
 name: Human Approval
-status: Draft
+status: Stable
+version: 1.0.0
+since: 1.0.0
 category: Governance
-severity: critical
+priority: Critical
+normative: MUST
 breaking_change: true
+owner: Governance Team
+requires_adr: true
+lifecycle: Draft → Review → Stable → Deprecated
+rationale_type: Governance
+affects:
+  - Release
+  - Merge
+  - Delete
+  - Policy
+verification:
+  doctor:
+    - approval-check
+  runtime:
+    - policy-gate
+  tests:
+    - human-approval-tests
+violation:
+  level: Critical
+  action:
+    - block_execution
+formal_rule: merge/release/delete -> policy.approved
+decision:
+  mandatory: true
+  runtime: true
+  doctor: true
+  dashboard: false
+requires:
+  - P013
+  - P020
+conflicts: []
+strengthens: []
 enforced_by:
-  - policy
+  - doctor
   - runtime
+  - validator
 implemented_in:
-  - SPEC-015
+  - SPEC-001
 related:
   - P013
   - P020
 statement: >
   AI không được Merge, Release, Delete nếu chưa qua Policy.
 rationale: >
-  Hành động không thể đảo ngược hoặc ảnh hưởng rộng phải có người duyệt.
-  Policy định nghĩa mức nào cần human approval.
+  Hành động không thể đảo ngược/ảnh hưởng rộng phải có người duyệt.
 rules:
   - Merge/Release/Delete phải qua Policy.
   - Mức rủi ro cao → human approval.
   - Không bypass approval.
 implications:
-  - AI tự quyết việc nội bộ; việc rủi ro cần người duyệt.
-  - Mọi approval ghi lại để audit (P014).
+  - Tuân thủ theo formal rule.
 anti_patterns:
-  - AI tự merge/release/delete.
-  - Bypass approval gate.
+  - Vi phạm formal rule.
 exceptions:
-  - Theo mức rủi ro định nghĩa trong Policy.
+  - Không có (bất biến tuyệt đối).
 examples:
-  - Release v2.0 → cần human approval.
+  - Áp dụng trong SPEC-001.
 references:
-  - P013 Simulation Before Execution
-  - P020 Constitution First
+  - P013
+  - P020
 ---
 
 # P016 — Human Approval
@@ -43,19 +75,40 @@ references:
 
 > AI không được Merge, Release, Delete nếu chưa qua Policy.
 
+## Formal Rule
+
+```text
+merge/release/delete -> policy.approved
+```
+
 ## Rules
 
-- Merge → Policy.
-- Release → Policy.
-- Delete → Policy.
-- Rủi ro cao → human approval.
+- Merge/Release/Delete phải qua Policy.
+- Mức rủi ro cao → human approval.
+- Không bypass approval.
 
-## Implications
+## Rationale
 
-- Việc nội bộ AI tự quyết.
-- Việc rủi ro cần người duyệt.
-- Mọi approval ghi lại để audit.
+Hành động không thể đảo ngược/ảnh hưởng rộng phải có người duyệt.
 
-## Anti Pattern
+## Normative
 
-❌ AI tự merge/release/delete.
+- **MUST** — bất biến, vi phạm là lỗi.
+
+## Affects
+
+- Release
+- Merge
+- Delete
+- Policy
+
+## Enforcement
+
+- Doctor: approval-check
+- Runtime: policy-gate
+- Tests: human-approval-tests
+
+## Violation
+
+- Level: Critical
+- Action: block_execution

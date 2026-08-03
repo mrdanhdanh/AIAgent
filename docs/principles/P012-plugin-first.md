@@ -1,42 +1,74 @@
 ---
 id: P012
 name: Plugin First
-status: Draft
-category: Architecture
-severity: critical
+status: Stable
+version: 1.0.0
+since: 1.0.0
+category: Platform
+priority: Critical
+normative: MUST
 breaking_change: true
+owner: Platform Team
+requires_adr: true
+lifecycle: Draft → Review → Stable → Deprecated
+rationale_type: Architecture
+affects:
+  - Core
+  - Plugin
+  - Registry
+  - SDK
+verification:
+  doctor:
+    - core-modification-check
+  runtime:
+    - plugin-sandbox
+  tests:
+    - plugin-first-tests
+violation:
+  level: Critical
+  action:
+    - stop_execution
+    - doctor_error
+formal_rule: core.modified == false (khi mo rong)
+decision:
+  mandatory: true
+  runtime: true
+  doctor: true
+  dashboard: false
+requires:
+  - P001
+  - P007
+conflicts: []
+strengthens:
+  - P019
 enforced_by:
   - doctor
   - runtime
+  - validator
 implemented_in:
-  - SPEC-018
+  - SPEC-001
 related:
   - P001
   - P007
-  - P019
 statement: >
   Core không sửa. Muốn mở rộng → Plugin.
 rationale: >
-  Core bất biến → ổn định, ít bug. Mở rộng qua Plugin → không đụng core.
-  Plugin chạy trong sandbox theo permission (P016 liên quan).
+  Core bất biến → ổn định, ít bug; plugin chạy sandbox theo permission.
 rules:
   - Không sửa core để thêm tính năng.
   - Mở rộng qua Plugin/SDK/Capability/Metadata.
   - Plugin không truy cập ngoài permission.
 implications:
-  - Muốn capability mới → Plugin cung cấp.
-  - Plugin đăng ký vào Registry.
+  - Tuân thủ theo formal rule.
 anti_patterns:
-  - Sửa core để thêm tính năng.
-  - Plugin truy cập trực tiếp core internals.
+  - Vi phạm formal rule.
 exceptions:
-  - Không có.
+  - Không có (bất biến tuyệt đối).
 examples:
-  - External Plugin cung cấp capability Code Review.
+  - Áp dụng trong SPEC-001.
 references:
-  - P001 Runtime First
-  - P007 Capability Driven
-  - P019 Open Extension, Closed Core
+  - P001
+  - P007
 ---
 
 # P012 — Plugin First
@@ -45,22 +77,40 @@ references:
 
 > Core không sửa. Muốn mở rộng → Plugin.
 
-## Rules
+## Formal Rule
 
 ```text
-Core
-không sửa.
-
-Muốn mở rộng
-    ↓
-Plugin.
+core.modified == false (khi mo rong)
 ```
 
-## Implications
+## Rules
 
-- Plugin cung cấp capability mới.
-- Plugin đăng ký vào Registry.
+- Không sửa core để thêm tính năng.
+- Mở rộng qua Plugin/SDK/Capability/Metadata.
+- Plugin không truy cập ngoài permission.
 
-## Anti Pattern
+## Rationale
 
-❌ Sửa core để thêm tính năng.
+Core bất biến → ổn định, ít bug; plugin chạy sandbox theo permission.
+
+## Normative
+
+- **MUST** — bất biến, vi phạm là lỗi.
+
+## Affects
+
+- Core
+- Plugin
+- Registry
+- SDK
+
+## Enforcement
+
+- Doctor: core-modification-check
+- Runtime: plugin-sandbox
+- Tests: plugin-first-tests
+
+## Violation
+
+- Level: Critical
+- Action: stop_execution, doctor_error

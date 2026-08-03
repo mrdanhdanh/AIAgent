@@ -1,38 +1,68 @@
 ---
 id: P008
 name: Single Responsibility
-status: Draft
+status: Stable
+version: 1.0.0
+since: 1.0.0
 category: Architecture
-severity: high
+priority: High
+normative: MUST
 breaking_change: true
+owner: Core Architecture Team
+requires_adr: true
+lifecycle: Draft → Review → Stable → Deprecated
+rationale_type: Architecture
+affects:
+  - Agent
+  - Capability
+verification:
+  doctor:
+    - responsibility-check
+  runtime: []
+  tests:
+    - single-responsibility-tests
+violation:
+  level: High
+  action:
+    - doctor_error
+formal_rule: agent.responsibilities == 1
+decision:
+  mandatory: true
+  runtime: false
+  doctor: true
+  dashboard: false
+requires:
+  - P001
+  - P007
+conflicts: []
+strengthens: []
 enforced_by:
   - doctor
+  - runtime
+  - validator
 implemented_in:
-  - SPEC-004
+  - SPEC-001
 related:
   - P001
   - P007
 statement: >
   Một Agent chỉ làm một việc.
 rationale: >
-  Một Agent một trách nhiệm → dễ kiểm thử, dễ thay thế, dễ resolve theo capability.
-  Chồng trách nhiệm làm Agent phình to, khó kiểm soát.
+  Một trách nhiệm → dễ kiểm thử, thay thế, resolve theo capability.
 rules:
   - Mỗi Agent implement một capability cốt lõi.
   - Agent không làm việc ngoài capability của mình.
 implications:
-  - Planner không được code/review/test.
-  - Builder không được review/test.
+  - Tuân thủ theo formal rule.
 anti_patterns:
-  - Agent vừa code vừa review vừa test.
-  - Một Agent đảm nhiệm nhiều capability không liên quan.
+  - Vi phạm formal rule.
 exceptions:
-  - Không có.
+  - Không có (bất biến tuyệt đối).
 examples:
-  - Planner: lập kế hoạch. Builder: code. Reviewer: review.
+  - Áp dụng trong SPEC-001.
 references:
-  - P001 Runtime First
-  - P007 Capability Driven
+  - P001
+  - P007
 ---
 
 # P008 — Single Responsibility
@@ -41,19 +71,37 @@ references:
 
 > Một Agent chỉ làm một việc.
 
+## Formal Rule
+
+```text
+agent.responsibilities == 1
+```
+
 ## Rules
 
 - Mỗi Agent implement một capability cốt lõi.
-- Agent không làm việc ngoài capability.
+- Agent không làm việc ngoài capability của mình.
 
-## Implications
+## Rationale
 
-Planner không được:
+Một trách nhiệm → dễ kiểm thử, thay thế, resolve theo capability.
 
-- code
-- review
-- test
+## Normative
 
-## Anti Pattern
+- **MUST** — bất biến, vi phạm là lỗi.
 
-❌ Agent vừa code vừa review vừa test.
+## Affects
+
+- Agent
+- Capability
+
+## Enforcement
+
+- Doctor: responsibility-check
+- Runtime: 
+- Tests: single-responsibility-tests
+
+## Violation
+
+- Level: High
+- Action: doctor_error

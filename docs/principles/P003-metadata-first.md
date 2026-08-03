@@ -1,41 +1,73 @@
 ---
 id: P003
 name: Metadata First
-status: Draft
+status: Stable
+version: 1.0.0
+since: 1.0.0
 category: Data
-severity: critical
+priority: Critical
+normative: MUST
 breaking_change: true
+owner: Core Data Team
+requires_adr: true
+lifecycle: Draft → Review → Stable → Deprecated
+rationale_type: Architecture
+affects:
+  - Workflow
+  - Agent
+  - Artifact
+  - Capability
+  - Plugin
+verification:
+  doctor:
+    - metadata-presence
+  runtime:
+    - entity-init-check
+  tests:
+    - metadata-first-tests
+violation:
+  level: Critical
+  action:
+    - doctor_error
+formal_rule: entity.metadata != null
+decision:
+  mandatory: true
+  runtime: true
+  doctor: true
+  dashboard: false
+requires:
+  - P002
+  - P009
+conflicts: []
+strengthens:
+  - P017
 enforced_by:
   - doctor
+  - runtime
   - validator
 implemented_in:
-  - SPEC-004
-  - SPEC-005
+  - SPEC-001
 related:
   - P002
   - P009
-  - P017
 statement: >
   Mọi thực thể đều phải có metadata.
 rationale: >
-  Metadata là nguồn cho resolver/scheduler/doctor/dashboard.
-  Không hard-code đặc tính trong code — đặc tính nằm ở metadata.
+  Metadata là nguồn cho resolver/scheduler/doctor/dashboard; không hard-code đặc tính.
 rules:
   - Mọi entity có id, version, owner, status, created, updated.
   - Không hard-code đặc tính thực thể trong code.
 implications:
-  - Agent, Workflow, Artifact, Capability, Plugin đều có metadata.
-  - Metadata machine-readable (P017).
+  - Tuân thủ theo formal rule.
 anti_patterns:
-  - Đặc tính thực thể nằm trong code, không nằm ở metadata.
-  - Entity thiếu id/version/status.
+  - Vi phạm formal rule.
 exceptions:
-  - Không có.
+  - Không có (bất biến tuyệt đối).
 examples:
-  - workflow.yaml có metadata id/version/status.
+  - Áp dụng trong SPEC-001.
 references:
-  - P009 Single Source of Truth
-  - P017 AI Native
+  - P002
+  - P009
 ---
 
 # P003 — Metadata First
@@ -44,29 +76,40 @@ references:
 
 > Mọi thực thể đều phải có metadata.
 
-## Rules
-
-Agent, Workflow, Artifact, Capability, Plugin đều phải có:
+## Formal Rule
 
 ```text
-id
-
-version
-
-owner
-
-status
-
-created
-
-updated
+entity.metadata != null
 ```
 
-## Implications
+## Rules
 
-- Metadata machine-readable.
-- Resolver/scheduler/doctor đọc metadata, không đọc code.
+- Mọi entity có id, version, owner, status, created, updated.
+- Không hard-code đặc tính thực thể trong code.
 
-## Anti Pattern
+## Rationale
 
-❌ Đặc tính thực thể hard-code trong code.
+Metadata là nguồn cho resolver/scheduler/doctor/dashboard; không hard-code đặc tính.
+
+## Normative
+
+- **MUST** — bất biến, vi phạm là lỗi.
+
+## Affects
+
+- Workflow
+- Agent
+- Artifact
+- Capability
+- Plugin
+
+## Enforcement
+
+- Doctor: metadata-presence
+- Runtime: entity-init-check
+- Tests: metadata-first-tests
+
+## Violation
+
+- Level: Critical
+- Action: doctor_error

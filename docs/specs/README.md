@@ -2,7 +2,7 @@
 name: aios-spec
 description: >
   AIOS Specification — index toàn bộ SPEC. Mỗi SPEC là một thư mục, 3 cấp độ
-  (Vision/Design/Implementation Contract). Bắt đầu từ SPEC-000 Core Principles.
+  (Vision/Design/Implementation Contract). Bắt đầu từ SPEC-000 Constitution Principles.
 agent: general
 ---
 

@@ -1,15 +1,51 @@
 ---
 id: P020
 name: Constitution First
-status: Draft
+status: Stable
+version: 1.0.0
+since: 1.0.0
 category: Governance
-severity: critical
+priority: Critical
+normative: MUST
 breaking_change: true
+owner: Governance Team
+requires_adr: true
+lifecycle: Draft → Review → Stable → Deprecated
+rationale_type: Governance
+affects:
+  - SPEC
+  - ADR
+  - RFC
+  - Code
+verification:
+  doctor:
+    - constitution-conflict-check
+  runtime: []
+  tests:
+    - constitution-first-tests
+violation:
+  level: Critical
+  action:
+    - doctor_error
+    - block_release
+formal_rule: hierarchy: Constitution > ADR > SPEC > Contract > Implementation > Config
+decision:
+  mandatory: true
+  runtime: false
+  doctor: true
+  dashboard: true
+requires:
+  - P001
+  - P002
+  - P016
+conflicts: []
+strengthens: []
 enforced_by:
   - doctor
+  - runtime
   - validator
 implemented_in:
-  - SPEC-000
+  - SPEC-001
 related:
   - P001
   - P002
@@ -17,48 +53,65 @@ related:
 statement: >
   Thứ tự ưu tiên: Constitution > ADR > SPEC > Contract > Implementation > Configuration.
 rationale: >
-  Nếu code trái SPEC → Code sai. Nếu SPEC trái Constitution → SPEC sai.
-  Mọi tài liệu phải tuân theo tầng trên.
+  Nếu code trái SPEC → Code sai; SPEC trái Constitution → SPEC sai.
 rules:
   - Mọi SPEC tham chiếu Constitution.
   - ADR giải thích quyết định dựa trên principle.
   - Code không mâu thuẫn SPEC.
 implications:
-  - Constitution là tầng tối cao.
-  - Không diễn giải lại Constitution.
+  - Tuân thủ theo formal rule.
 anti_patterns:
-  - SPEC tự định nghĩa lại thuật ngữ.
-  - Code vi phạm SPEC.
-  - Mâu thuẫn tầng dưới vs tầng trên.
+  - Vi phạm formal rule.
 exceptions:
-  - Không có.
+  - Không có (bất biến tuyệt đối).
 examples:
-  - Code trái SPEC → Code sai. SPEC trái Constitution → SPEC sai.
+  - Áp dụng trong SPEC-001.
 references:
-  - P001 Runtime First
-  - P002 Contract First
-  - P016 Human Approval
+  - P001
+  - P002
+  - P016
 ---
 
 # P020 — Constitution First
 
 ## Statement
 
-> Thứ tự ưu tiên:
->
-> Constitution → ADR → SPEC → Contract → Implementation → Configuration
+> Thứ tự ưu tiên: Constitution > ADR > SPEC > Contract > Implementation > Configuration.
+
+## Formal Rule
+
+```text
+hierarchy: Constitution > ADR > SPEC > Contract > Implementation > Config
+```
 
 ## Rules
 
-- Nếu code trái SPEC → Code sai.
-- Nếu SPEC trái Constitution → SPEC sai.
-- Nếu ADR trái Constitution → ADR sai.
+- Mọi SPEC tham chiếu Constitution.
+- ADR giải thích quyết định dựa trên principle.
+- Code không mâu thuẫn SPEC.
 
-## Implications
+## Rationale
 
-- Constitution là tầng tối cao.
-- Không diễn giải lại.
+Nếu code trái SPEC → Code sai; SPEC trái Constitution → SPEC sai.
 
-## Anti Pattern
+## Normative
 
-❌ SPEC tự định nghĩa lại thuật ngữ / Code mâu thuẫn SPEC.
+- **MUST** — bất biến, vi phạm là lỗi.
+
+## Affects
+
+- SPEC
+- ADR
+- RFC
+- Code
+
+## Enforcement
+
+- Doctor: constitution-conflict-check
+- Runtime: 
+- Tests: constitution-first-tests
+
+## Violation
+
+- Level: Critical
+- Action: doctor_error, block_release

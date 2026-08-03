@@ -1,10 +1,26 @@
 ---
 name: aios-principles-changelog
-description: Changelog của AIOS Core Principles.
+description: Changelog của AIOS Constitution Principles.
 agent: general
 ---
 
-# AIOS Core Principles — Changelog
+# AIOS Constitution Principles — Changelog
+
+## v3.0.0 (2026-08-03) — Policy Engine
+
+### Added
+
+- **Đổi tên**: Core Principles → **Constitution Principles** (gần như bất biến).
+- **Executable metadata** mỗi principle: `version`, `since`, `priority`, `normative`, `owner`, `requires_adr`, `rationale_type`, `affects`, `verification` (doctor/runtime/tests), `violation` (level/action), `formal_rule`, `decision` (mandatory/runtime/doctor/dashboard), `requires`/`conflicts`/`strengthens`.
+- **Policy Engine (D003.5)**: `INDEX.yaml` (registry-like), `registry.yaml`, `categories.yaml`, `dependencies.yaml`, `enforcement.yaml`.
+- **8 categories** mới: Core, Execution, Architecture, Platform, Data, Security, Governance, Evolution.
+- Mỗi principle có `formal_rule` (VD: `caller != Agent && callee == Runtime`).
+
+### Changed
+
+- Categories cũ (Runtime/Architecture/Data/AI/Quality) → 8 category mới.
+- INDEX.yaml → Registry-like (mỗi P: file/category/priority/owner/version/status/normative/requires/enforced_by/verification).
+- Schema + validator theo template Policy Engine.
 
 ## v2.0.0 (2026-08-03)
 

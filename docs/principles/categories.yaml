@@ -1,0 +1,29 @@
+# AIOS Constitution Principles — Categories
+# D003.5 — Mapping category → principle.
+---
+version: "1.0"
+categories:
+  Core:
+    description: Thành phần trung tâm bất biến.
+    principles: [P001]
+  Execution:
+    description: Cấu trúc và thực thi công việc.
+    principles: [P005, P006, P007]
+  Architecture:
+    description: Cách tổ chức kiến trúc.
+    principles: [P002, P008, P011, P019]
+  Platform:
+    description: Hạ tầng nền tảng.
+    principles: [P012, P014]
+  Data:
+    description: Dữ liệu và metadata.
+    principles: [P003, P004, P009, P010]
+  Security:
+    description: An toàn và phòng lỗi.
+    principles: [P015]
+  Governance:
+    description: Quyết định và phê duyệt.
+    principles: [P016, P020]
+  Evolution:
+    description: Tiến hóa và AI-native.
+    principles: [P013, P017, P018]

@@ -131,7 +131,7 @@ deliverables:
   - Dashboard
   - Plugin SDK
 
-# --- Core Principles (tham chiếu, không lặp lại) ---
+# --- Constitution Principles (tham chiếu, không lặp lại) ---
 core_principles:
   - P001 Runtime First
   - P002 Contract First

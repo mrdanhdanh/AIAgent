@@ -1,68 +1,111 @@
 ---
 id: P010
 name: Immutable Artifact
-status: Draft
+status: Stable
+version: 1.0.0
+since: 1.0.0
 category: Data
-severity: critical
+priority: Critical
+normative: MUST
 breaking_change: true
+owner: Artifact Team
+requires_adr: true
+lifecycle: Draft → Review → Stable → Deprecated
+rationale_type: Reliability
+affects:
+  - Artifact
+  - Runtime
+  - Doctor
+verification:
+  doctor:
+    - artifact-overwrite-check
+  runtime:
+    - immutability-check
+  tests:
+    - immutable-artifact-tests
+violation:
+  level: Critical
+  action:
+    - overwrite_blocked
+    - doctor_error
+formal_rule: Artifact.mutable == false
+decision:
+  mandatory: true
+  runtime: true
+  doctor: true
+  dashboard: false
+requires:
+  - P004
+conflicts: []
+strengthens:
+  - P015
 enforced_by:
   - doctor
-  - artifact_store
+  - runtime
+  - validator
 implemented_in:
-  - SPEC-007
+  - SPEC-001
 related:
   - P004
-  - P015
 statement: >
   Artifact sinh ra không sửa. Nếu sửa → version mới.
 rationale: >
   Immutable → toàn vẹn, reproducible, audit được.
-  Artifact là bằng chứng của một lần thực thi.
 rules:
   - Không sửa artifact sau khi sinh.
   - Thay đổi → tạo version mới.
   - Artifact có checksum.
 implications:
-  - plan.md v1 không bị thay bởi plan.md v2.
-  - Audit dựa trên artifact gốc.
+  - Tuân thủ theo formal rule.
 anti_patterns:
-  - Ghi đè artifact cũ.
-  - Sửa nội dung artifact sau publish.
+  - Vi phạm formal rule.
 exceptions:
-  - Không có.
+  - Không có (bất biến tuyệt đối).
 examples:
-  - Artifact v1, v2, v3 cùng tồn tại.
+  - Áp dụng trong SPEC-001.
 references:
-  - P004 Everything is Versioned
-  - P015 Fail Safe
+  - P004
 ---
 
 # P010 — Immutable Artifact
 
 ## Statement
 
-> Artifact sinh ra → không sửa. Nếu sửa → version mới.
+> Artifact sinh ra không sửa. Nếu sửa → version mới.
+
+## Formal Rule
+
+```text
+Artifact.mutable == false
+```
 
 ## Rules
 
-```text
-Artifact sinh ra
-    ↓
-không sửa
-```
+- Không sửa artifact sau khi sinh.
+- Thay đổi → tạo version mới.
+- Artifact có checksum.
 
-Nếu sửa:
+## Rationale
 
-```text
-↓
-version mới
-```
+Immutable → toàn vẹn, reproducible, audit được.
 
-## Implications
+## Normative
 
-- Toàn vẹn + reproducible.
-- Audit dựa trên artifact gốc.
+- **MUST** — bất biến, vi phạm là lỗi.
 
-## Anti Pattern
+## Affects
 
-❌ Ghi đè / sửa artifact sau publish.
+- Artifact
+- Runtime
+- Doctor
+
+## Enforcement
+
+- Doctor: artifact-overwrite-check
+- Runtime: immutability-check
+- Tests: immutable-artifact-tests
+
+## Violation
+
+- Level: Critical
+- Action: overwrite_blocked, doctor_error

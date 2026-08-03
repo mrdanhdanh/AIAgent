@@ -1,76 +1,117 @@
 ---
 id: P002
 name: Contract First
-status: Draft
+status: Stable
+version: 1.0.0
+since: 1.0.0
 category: Architecture
-severity: critical
+priority: Critical
+normative: MUST
 breaking_change: true
+owner: Core Architecture Team
+requires_adr: true
+lifecycle: Draft → Review → Stable → Deprecated
+rationale_type: Architecture
+affects:
+  - Workflow
+  - Runtime
+  - Agent
+  - Plugin
+verification:
+  doctor:
+    - direct-call-scan
+    - internal-object-leak
+  runtime:
+    - contract-validation
+  tests:
+    - contract-first-tests
+violation:
+  level: Critical
+  action:
+    - doctor_error
+    - contract_reject
+formal_rule: module.communication.direct == false
+decision:
+  mandatory: true
+  runtime: true
+  doctor: true
+  dashboard: false
+requires:
+  - P001
+  - P003
+conflicts: []
+strengthens:
+  - P018
 enforced_by:
   - doctor
+  - runtime
   - validator
 implemented_in:
   - SPEC-001
-  - SPEC-003
 related:
   - P001
   - P003
-  - P018
 statement: >
   Không module nào giao tiếp trực tiếp. Mọi giao tiếp qua Contract.
 rationale: >
-  Contract versioned, backward compatible → thay đổi không vỡ.
-  Giao tiếp kiểm tra được, không phụ thuộc implementation.
+  Contract versioned, backward compatible → thay đổi không vỡ, giao tiếp kiểm tra được.
 rules:
   - Không truyền object nội bộ.
   - Không phụ thuộc implementation.
   - Chỉ dùng Contract.
 implications:
-  - Đúng: Workflow → Contract → Runtime.
-  - Sai: Workflow → Runtime API (gọi thẳng implementation).
-  - Mọi interface khai báo input/output contract.
+  - Tuân thủ theo formal rule.
 anti_patterns:
-  - Gọi trực tiếp method của module khác.
-  - Truyền object nội bộ qua biên giới module.
-  - Phụ thuộc implementation chi tiết.
+  - Vi phạm formal rule.
 exceptions:
-  - Internal helper không qua biên giới module.
+  - Không có (bất biến tuyệt đối).
 examples:
-  - Runtime expose Capability Resolve qua Contract.
+  - Áp dụng trong SPEC-001.
 references:
-  - P001 Runtime First
-  - P018 Evolvable
+  - P001
+  - P003
 ---
 
 # P002 — Contract First
 
 ## Statement
 
-> Không module nào giao tiếp trực tiếp.
+> Không module nào giao tiếp trực tiếp. Mọi giao tiếp qua Contract.
+
+## Formal Rule
+
+```text
+module.communication.direct == false
+```
 
 ## Rules
-
-```text
-Workflow
-    ↓
-Contract
-    ↓
-Runtime
-```
-
-Không:
-
-```text
-Workflow
-    ↓
-Runtime API
-```
-
-## Rules (chi tiết)
 
 - Không truyền object nội bộ.
 - Không phụ thuộc implementation.
 - Chỉ dùng Contract.
 
-## Anti Pattern
+## Rationale
 
-❌ Gọi trực tiếp implementation của module khác.
+Contract versioned, backward compatible → thay đổi không vỡ, giao tiếp kiểm tra được.
+
+## Normative
+
+- **MUST** — bất biến, vi phạm là lỗi.
+
+## Affects
+
+- Workflow
+- Runtime
+- Agent
+- Plugin
+
+## Enforcement
+
+- Doctor: direct-call-scan, internal-object-leak
+- Runtime: contract-validation
+- Tests: contract-first-tests
+
+## Violation
+
+- Level: Critical
+- Action: doctor_error, contract_reject

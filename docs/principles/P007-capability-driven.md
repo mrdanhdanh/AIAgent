@@ -1,67 +1,114 @@
 ---
 id: P007
 name: Capability Driven
-status: Draft
-category: Runtime
-severity: critical
+status: Stable
+version: 1.0.0
+since: 1.0.0
+category: Execution
+priority: Critical
+normative: MUST
 breaking_change: true
+owner: Runtime Team
+requires_adr: true
+lifecycle: Draft → Review → Stable → Deprecated
+rationale_type: Architecture
+affects:
+  - Runtime
+  - Registry
+  - Agent
+  - Plugin
+  - Workflow
+verification:
+  doctor:
+    - capability-not-agent
+  runtime:
+    - capability-resolution
+  tests:
+    - capability-driven-tests
+violation:
+  level: Critical
+  action:
+    - doctor_error
+formal_rule: workflow.calls == capability (khong phai agent)
+decision:
+  mandatory: true
+  runtime: true
+  doctor: true
+  dashboard: false
+requires:
+  - P001
+conflicts: []
+strengthens:
+  - P012
 enforced_by:
   - doctor
   - runtime
-  - registry
+  - validator
 implemented_in:
-  - SPEC-003
-  - SPEC-005
+  - SPEC-001
 related:
   - P001
-  - P012
 statement: >
   Runtime không biết Agent cụ thể. Runtime chỉ biết Capability.
 rationale: >
-  Tách "cần làm gì" khỏi "ai làm". Capability không phụ thuộc implementation.
-  Registry resolve Capability → Agent/Plugin.
+  Tách "cần làm gì" khỏi "ai làm"; đổi Agent/Plugin không đổi Workflow.
 rules:
   - Không gọi Agent cụ thể — gọi Capability.
   - Capability không phụ thuộc implementation.
   - Runtime resolve qua Registry.
 implications:
-  - Runtime chỉ biết "Generate Code", không biết Builder.
-  - Builder Agent hoặc External Plugin đều hợp lệ.
+  - Tuân thủ theo formal rule.
 anti_patterns:
-  - Hard-code tên Agent trong Workflow.
-  - Runtime biết implementation chi tiết.
+  - Vi phạm formal rule.
 exceptions:
-  - Không có.
+  - Không có (bất biến tuyệt đối).
 examples:
-  - Generate Code → Registry → Builder Agent | External Plugin → Done.
+  - Áp dụng trong SPEC-001.
 references:
-  - P001 Runtime First
-  - P012 Plugin First
+  - P001
 ---
 
 # P007 — Capability Driven
 
 ## Statement
 
-> Runtime không biết Builder. Runtime chỉ biết "Generate Code".
+> Runtime không biết Agent cụ thể. Runtime chỉ biết Capability.
+
+## Formal Rule
+
+```text
+workflow.calls == capability (khong phai agent)
+```
 
 ## Rules
 
-```text
-Generate Code
-    ↓
-Registry
-    ↓
-Builder Agent | External Plugin
-    ↓
-Done
-```
-
-## Implications
-
+- Không gọi Agent cụ thể — gọi Capability.
 - Capability không phụ thuộc implementation.
-- Đổi Agent/Plugin không đổi Workflow.
+- Runtime resolve qua Registry.
 
-## Anti Pattern
+## Rationale
 
-❌ Hard-code tên Agent trong Workflow.
+Tách "cần làm gì" khỏi "ai làm"; đổi Agent/Plugin không đổi Workflow.
+
+## Normative
+
+- **MUST** — bất biến, vi phạm là lỗi.
+
+## Affects
+
+- Runtime
+- Registry
+- Agent
+- Plugin
+- Workflow
+
+## Enforcement
+
+- Doctor: capability-not-agent
+- Runtime: capability-resolution
+- Tests: capability-driven-tests
+
+## Violation
+
+- Level: Critical
+- Action: doctor_error

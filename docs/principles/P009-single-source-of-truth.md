@@ -1,49 +1,84 @@
 ---
 id: P009
 name: Single Source of Truth
-status: Draft
+status: Stable
+version: 1.0.0
+since: 1.0.0
 category: Data
-severity: critical
+priority: Critical
+normative: MUST
 breaking_change: true
+owner: Core Data Team
+requires_adr: true
+lifecycle: Draft → Review → Stable → Deprecated
+rationale_type: Architecture
+affects:
+  - Workflow
+  - Runtime
+  - Registry
+verification:
+  doctor:
+    - duplicate-check
+  runtime: []
+  tests:
+    - single-source-tests
+violation:
+  level: Critical
+  action:
+    - doctor_error
+formal_rule: count(source.of.truth) == 1
+decision:
+  mandatory: true
+  runtime: false
+  doctor: true
+  dashboard: false
+requires:
+  - P003
+  - P006
+conflicts: []
+strengthens:
+  - P014
 enforced_by:
   - doctor
+  - runtime
   - validator
 implemented_in:
   - SPEC-001
-  - SPEC-007
 related:
   - P003
   - P006
-  - P014
 statement: >
   Mỗi dữ liệu chỉ tồn tại một nguồn định nghĩa duy nhất.
 rationale: >
   Không copy, không duplicate → không mâu thuẫn, không lỗi đồng bộ.
-  State, định nghĩa, metadata đều một nguồn.
 rules:
-  - Workflow chỉ tồn tại 1 định nghĩa.
+  - Mỗi dữ liệu một nguồn.
   - Không copy, không duplicate.
-  - State nằm ở Runtime (P006).
+  - State nằm ở Runtime.
 implications:
-  - Sửa nguồn → mọi nơi tham chiếu đúng.
-  - Không có hai bản chạy khác nhau.
+  - Tuân thủ theo formal rule.
 anti_patterns:
-  - Copy định nghĩa workflow sang nơi khác.
-  - Duplicate state giữa các thành phần.
+  - Vi phạm formal rule.
 exceptions:
-  - Không có.
+  - Không có (bất biến tuyệt đối).
 examples:
-  - Workflow định nghĩa ở 1 nơi, mọi nơi tham chiếu id.
+  - Áp dụng trong SPEC-001.
 references:
-  - P003 Metadata First
-  - P006 Stateless Agent
+  - P003
+  - P006
 ---
 
 # P009 — Single Source of Truth
 
 ## Statement
 
-> Workflow chỉ tồn tại 1 định nghĩa. Không copy. Không duplicate.
+> Mỗi dữ liệu chỉ tồn tại một nguồn định nghĩa duy nhất.
+
+## Formal Rule
+
+```text
+count(source.of.truth) == 1
+```
 
 ## Rules
 
@@ -51,11 +86,27 @@ references:
 - Không copy, không duplicate.
 - State nằm ở Runtime.
 
-## Implications
+## Rationale
 
-- Sửa nguồn → mọi nơi tham chiếu đúng.
-- Không có hai bản chạy khác nhau.
+Không copy, không duplicate → không mâu thuẫn, không lỗi đồng bộ.
 
-## Anti Pattern
+## Normative
 
-❌ Copy định nghĩa / duplicate state.
+- **MUST** — bất biến, vi phạm là lỗi.
+
+## Affects
+
+- Workflow
+- Runtime
+- Registry
+
+## Enforcement
+
+- Doctor: duplicate-check
+- Runtime: 
+- Tests: single-source-tests
+
+## Violation
+
+- Level: Critical
+- Action: doctor_error

@@ -1,75 +1,112 @@
 ---
 id: P005
 name: Event Driven
-status: Draft
-category: Runtime
-severity: critical
+status: Stable
+version: 1.0.0
+since: 1.0.0
+category: Execution
+priority: Critical
+normative: MUST
 breaking_change: true
+owner: Runtime Team
+requires_adr: true
+lifecycle: Draft → Review → Stable → Deprecated
+rationale_type: Architecture
+affects:
+  - Runtime
+  - Agent
+  - Dashboard
+  - Doctor
+verification:
+  doctor:
+    - event-coverage
+  runtime:
+    - event-emission
+  tests:
+    - event-driven-tests
+violation:
+  level: Critical
+  action:
+    - doctor_error
+formal_rule: state_change -> event.emitted
+decision:
+  mandatory: true
+  runtime: true
+  doctor: true
+  dashboard: true
+requires:
+  - P001
+conflicts: []
+strengthens:
+  - P014
 enforced_by:
   - doctor
   - runtime
+  - validator
 implemented_in:
-  - SPEC-010
-  - SPEC-011
+  - SPEC-001
 related:
   - P001
-  - P014
 statement: >
   Không notify trực tiếp. Mọi state change phát Event.
 rationale: >
-  Event immutable + lineage → replay/simulate/audit không cần chạy lại.
-  Tách producer khỏi consumer.
+  Event immutable + lineage → replay/simulate/audit; tách producer khỏi consumer.
 rules:
   - Mọi state change đều phát Event.
   - Không gọi trực tiếp khi thông báo.
   - Event immutable, có lineage.
 implications:
-  - Sai: Planner → Builder (gọi trực tiếp).
-  - Đúng: Planner → PLAN_READY → Builder.
+  - Tuân thủ theo formal rule.
 anti_patterns:
-  - Notify trực tiếp qua method call.
-  - Sửa event sau khi publish.
+  - Vi phạm formal rule.
 exceptions:
-  - Không có.
+  - Không có (bất biến tuyệt đối).
 examples:
-  - PLAN_READY, BUILD_FINISHED, TEST_FAILED.
+  - Áp dụng trong SPEC-001.
 references:
-  - P001 Runtime First
-  - P014 Observability First
+  - P001
 ---
 
 # P005 — Event Driven
 
 ## Statement
 
-> Không notify trực tiếp.
+> Không notify trực tiếp. Mọi state change phát Event.
+
+## Formal Rule
+
+```text
+state_change -> event.emitted
+```
 
 ## Rules
 
-Sai:
+- Mọi state change đều phát Event.
+- Không gọi trực tiếp khi thông báo.
+- Event immutable, có lineage.
 
-```text
-Planner
-    ↓
-Builder
-```
+## Rationale
 
-Đúng:
+Event immutable + lineage → replay/simulate/audit; tách producer khỏi consumer.
 
-```text
-Planner
-    ↓
-PLAN_READY
-    ↓
-Builder
-```
+## Normative
 
-## Implications
+- **MUST** — bất biến, vi phạm là lỗi.
 
-- Event immutable.
-- Có lineage.
-- Replay/simulate/audit được.
+## Affects
 
-## Anti Pattern
+- Runtime
+- Agent
+- Dashboard
+- Doctor
 
-❌ Notify trực tiếp qua method call.
+## Enforcement
+
+- Doctor: event-coverage
+- Runtime: event-emission
+- Tests: event-driven-tests
+
+## Violation
+
+- Level: Critical
+- Action: doctor_error

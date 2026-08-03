@@ -1,60 +1,109 @@
 ---
 id: P011
 name: Explicit Dependency
-status: Draft
+status: Stable
+version: 1.0.0
+since: 1.0.0
 category: Architecture
-severity: high
+priority: High
+normative: MUST
 breaking_change: true
+owner: Core Architecture Team
+requires_adr: true
+lifecycle: Draft → Review → Stable → Deprecated
+rationale_type: Architecture
+affects:
+  - Workflow
+  - Simulation
+  - Doctor
+verification:
+  doctor:
+    - hidden-dependency
+  runtime: []
+  tests:
+    - explicit-dependency-tests
+violation:
+  level: High
+  action:
+    - doctor_error
+formal_rule: dependency.declared == true
+decision:
+  mandatory: true
+  runtime: false
+  doctor: true
+  dashboard: false
+requires:
+  - P001
+  - P013
+conflicts: []
+strengthens: []
 enforced_by:
   - doctor
+  - runtime
   - validator
 implemented_in:
-  - SPEC-002
+  - SPEC-001
 related:
   - P001
   - P013
 statement: >
   Không dependency ẩn. Mọi phụ thuộc khai báo rõ ràng.
 rationale: >
-  Dependency ẩn → khó hiểu, khó mô phỏng, khó kiểm soát thứ tự.
-  Khai báo rõ → Simulation/Doctor dự đoán chính xác.
+  Dependency ẩn → khó hiểu, khó mô phỏng; khai báo rõ → Simulation/Doctor dự đoán chính xác.
 rules:
   - Mọi phụ thuộc khai báo trong metadata (depends_on).
   - Không phụ thuộc ngầm định vào trạng thái bên ngoài.
 implications:
-  - Workflow khai báo depends_on: planner, reviewer.
-  - Simulation đọc depends_on để dựng đồ thị.
+  - Tuân thủ theo formal rule.
 anti_patterns:
-  - Phụ thuộc ngầm vào thứ tự chạy.
-  - Đọc dữ liệu không khai báo.
+  - Vi phạm formal rule.
 exceptions:
-  - Không có.
+  - Không có (bất biến tuyệt đối).
 examples:
-  - depends_on: [planner, reviewer].
+  - Áp dụng trong SPEC-001.
 references:
-  - P001 Runtime First
-  - P013 Simulation Before Execution
+  - P001
+  - P013
 ---
 
 # P011 — Explicit Dependency
 
 ## Statement
 
-> Không dependency ẩn.
+> Không dependency ẩn. Mọi phụ thuộc khai báo rõ ràng.
+
+## Formal Rule
+
+```text
+dependency.declared == true
+```
 
 ## Rules
 
-```text
-depends_on:
-  - planner
-  - reviewer
-```
+- Mọi phụ thuộc khai báo trong metadata (depends_on).
+- Không phụ thuộc ngầm định vào trạng thái bên ngoài.
 
-## Implications
+## Rationale
 
-- Mọi phụ thuộc khai báo rõ.
-- Simulation/Doctor đọc được đồ thị phụ thuộc.
+Dependency ẩn → khó hiểu, khó mô phỏng; khai báo rõ → Simulation/Doctor dự đoán chính xác.
 
-## Anti Pattern
+## Normative
 
-❌ Dependency ngầm / đọc dữ liệu không khai báo.
+- **MUST** — bất biến, vi phạm là lỗi.
+
+## Affects
+
+- Workflow
+- Simulation
+- Doctor
+
+## Enforcement
+
+- Doctor: hidden-dependency
+- Runtime: 
+- Tests: explicit-dependency-tests
+
+## Violation
+
+- Level: High
+- Action: doctor_error

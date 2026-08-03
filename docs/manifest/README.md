@@ -72,6 +72,6 @@ docs/manifest/
 ## Tham chiếu
 
 - Glossary: `docs/glossary/`
-- Core Principles: `docs/principles/`
+- Constitution Principles: `docs/principles/`
 - Constitution: `docs/specs/SPEC-000/`
 - Manifest schema: `manifest.schema.json`

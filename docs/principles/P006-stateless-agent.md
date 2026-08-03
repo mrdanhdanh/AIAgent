@@ -1,43 +1,72 @@
 ---
 id: P006
 name: Stateless Agent
-status: Draft
-category: Runtime
-severity: critical
+status: Stable
+version: 1.0.0
+since: 1.0.0
+category: Execution
+priority: Critical
+normative: MUST
 breaking_change: true
+owner: Runtime Team
+requires_adr: true
+lifecycle: Draft → Review → Stable → Deprecated
+rationale_type: Architecture
+affects:
+  - Agent
+  - Runtime
+verification:
+  doctor:
+    - agent-state-check
+  runtime:
+    - stateless-check
+  tests:
+    - stateless-agent-tests
+violation:
+  level: Critical
+  action:
+    - stop_execution
+    - doctor_error
+formal_rule: Agent.state == null
+decision:
+  mandatory: true
+  runtime: true
+  doctor: true
+  dashboard: false
+requires:
+  - P001
+  - P009
+conflicts: []
+strengthens: []
 enforced_by:
   - doctor
   - runtime
+  - validator
 implemented_in:
   - SPEC-001
-  - SPEC-004
 related:
   - P001
   - P009
 statement: >
   Agent KHÔNG giữ state.
 rationale: >
-  Stateless → replaceable, scalable, replayable.
-  Mọi state nằm ở Runtime → single source of truth (P009).
+  Stateless → replaceable, scalable, replayable; mọi state nằm ở Runtime.
 rules:
   - Agent không cache.
   - Agent không nhớ.
   - Agent không lưu session.
   - Mọi state nằm ở Runtime.
 implications:
-  - Agent có thể được thay thế bất kỳ lúc nào.
-  - State phục hồi từ Event log.
+  - Tuân thủ theo formal rule.
 anti_patterns:
-  - Agent cache nội bộ.
-  - Agent lưu session riêng.
-  - Agent duy trì state giữa các lần gọi.
+  - Vi phạm formal rule.
 exceptions:
-  - Không có.
+  - Không có (bất biến tuyệt đối).
 examples:
-  - Agent nhận Context, thực thi, trả Artifact — không giữ gì lại.
+  - Áp dụng trong SPEC-001.
 references:
-  - P001 Runtime First
-  - P009 Single Source of Truth
+  - P001
+  - P009
 ---
 
 # P006 — Stateless Agent
@@ -46,18 +75,39 @@ references:
 
 > Agent KHÔNG giữ state.
 
+## Formal Rule
+
+```text
+Agent.state == null
+```
+
 ## Rules
 
-- Không cache.
-- Không nhớ.
-- Không lưu session.
+- Agent không cache.
+- Agent không nhớ.
+- Agent không lưu session.
 - Mọi state nằm ở Runtime.
 
-## Implications
+## Rationale
 
-- Thay thế được bất kỳ lúc nào.
-- State phục hồi từ Event log.
+Stateless → replaceable, scalable, replayable; mọi state nằm ở Runtime.
 
-## Anti Pattern
+## Normative
 
-❌ Agent cache / lưu session / giữ state giữa các lần gọi.
+- **MUST** — bất biến, vi phạm là lỗi.
+
+## Affects
+
+- Agent
+- Runtime
+
+## Enforcement
+
+- Doctor: agent-state-check
+- Runtime: stateless-check
+- Tests: stateless-agent-tests
+
+## Violation
+
+- Level: Critical
+- Action: stop_execution, doctor_error
