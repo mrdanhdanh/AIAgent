@@ -178,11 +178,10 @@ compatibility:
 
 # --- Governance ---
 governance:
-  rfc: docs/governance/rfc.md
-  adr: docs/governance/adr.md
-  release: docs/governance/release.md
-  review: docs/governance/review.md
-  approval: docs/governance/approval.md
+  registry: docs/governance/governance-registry.yaml
+  policies: docs/governance/policies/
+  decisions: docs/governance/decisions/
+  templates: docs/governance/templates/
 
 # --- Ownership ---
 owners:

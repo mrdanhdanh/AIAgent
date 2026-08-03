@@ -1,0 +1,48 @@
+# AIOS Governance Registry
+# D005 — Registry trung tâm của Governance Framework.
+# Doctor/Dashboard kiểm tra tuân thủ từ đây.
+---
+id: GOVERNANCE
+name: AIOS Governance Framework
+version: "1.0.0"
+status: Stable
+owner: AIOS Governance Board
+
+policies:
+  approval: { required: true, gate: POLICY-001 }
+  versioning: { semantic: true, policy: POLICY-002 }
+  compatibility: { backward: required, forward: preferred, policy: POLICY-003 }
+  deprecation: { enforced: true, policy: POLICY-004 }
+  release: { gated: true, policy: POLICY-005 }
+  documentation: { mandatory: true, policy: POLICY-006 }
+  naming: { enforced: true, policy: POLICY-007 }
+  plugin: { sandboxed: true, policy: POLICY-008 }
+  security: { least_privilege: true, policy: POLICY-009 }
+  quality: { gated: true, policy: POLICY-010 }
+  traceability: { required: true, policy: POLICY-011 }
+  ownership: { required: true, policy: POLICY-012 }
+  change_impact: { required: true, policy: POLICY-013 }
+
+lifecycle:
+  entity: [Draft, Review, Approved, Deprecated, Removed]
+  workflow: [Created, Validated, Running, Completed]
+  plugin: [Installed, Validated, Enabled, Disabled, Removed]
+  artifact: [Created, Indexed, Consumed, Archived]
+  specification: [Draft, Review, Approved, Implemented, Verified, Stable]
+
+decision:
+  adr_required: [constitution, architecture, runtime]
+  rfc_required: [breaking_change, new_feature]
+  direct_change: [format, minor_fix]
+
+categories:
+  - Approval
+  - Versioning
+  - Compatibility
+  - Lifecycle
+  - Documentation
+  - Quality
+  - Security
+  - Release
+  - Plugin
+  - Decision

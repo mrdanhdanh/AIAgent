@@ -2,13 +2,13 @@
 name: aios-rfc
 description: >
   AIOS RFC — nơi lưu các Request for Comments (RFC-001, RFC-002...).
-  Quy trình viết RFC xem docs/governance/rfc.md.
+  Quy trình viết RFC xem docs/governance/decisions/RFC.md.
 agent: general
 ---
 
 # AIOS RFC
 
-Nơi lưu các **Request for Comments**. Quy trình: `docs/governance/rfc.md`.
+Nơi lưu các **Request for Comments**. Quy trình: `docs/governance/decisions/RFC.md`.
 
 ## Index
 
@@ -20,4 +20,4 @@ Nơi lưu các **Request for Comments**. Quy trình: `docs/governance/rfc.md`.
 
 - Mỗi RFC một file: `RFC-###.md`.
 - Vòng đời: Draft → Review → Approved/Rejected → Superseded.
-- Template xem `docs/governance/rfc.md`.
+- Template xem `docs/governance/templates/RFC-template.md`.
