@@ -3,7 +3,7 @@ id: TERM-007
 name: Command
 version: "1.0"
 since: "1.0"
-status: Draft
+status: Approved
 category: EntryPoint
 owner: AIOS Shell
 stability: Stable

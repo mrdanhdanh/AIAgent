@@ -32,6 +32,7 @@ forbidden:
 related_principles:
   - P016
   - P020
+  - P001
 examples:
   - Draft → Review → Approve → Implement → Validate → Release
 ---

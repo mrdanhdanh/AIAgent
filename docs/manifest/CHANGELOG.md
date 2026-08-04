@@ -6,6 +6,13 @@ agent: general
 
 # AIOS Manifest — Changelog
 
+## v1.0.1 (2026-08-03)
+
+### Changed
+
+- `status`: draft → **approved** (đạt DoD SPEC-000 #1).
+- `lifecycle`: thêm `Removed` (khớp Entity lifecycle chuẩn 5 trạng thái).
+
 ## v1.0.0 (2026-08-03)
 
 ### Added — nâng lên Enterprise

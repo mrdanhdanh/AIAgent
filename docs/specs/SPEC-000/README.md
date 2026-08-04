@@ -55,8 +55,13 @@ SPEC-000 là **Hiến pháp** của AIOS — bộ luật tối cao mà mọi SPE
 ## Decision Hierarchy
 
 ```text
-Constitution (SPEC-000) > SPEC-001..020 > ADR > RFC > Code
+Constitution (SPEC-000) > ADR > SPEC-001..020 > Contract > Implementation > Configuration
 ```
+
+- **Constitution** là tầng tối cao.
+- **ADR** ghi quyết định kiến trúc dựa trên Constitution — cao hơn SPEC.
+- **SPEC-001..020** tham chiếu Constitution + ADR, không định nghĩa lại.
+- Nếu code trái SPEC → Code sai. Nếu SPEC trái ADR/Constitution → SPEC sai.
 
 ## Machine-readable
 

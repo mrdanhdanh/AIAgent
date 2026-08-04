@@ -2,7 +2,7 @@
 name: aios-governance
 description: >
   AIOS Governance Framework (D005) — cách AIOS được quản lý, thay đổi, phát hành
-  và phát triển. 13 policies + 5 lifecycles + Decision Framework + Templates.
+  và phát triển. 14 policies + 6 lifecycles + Decision Framework + Templates.
   D005 không quản lý Runtime — quản lý toàn bộ AIOS.
 agent: general
 ---

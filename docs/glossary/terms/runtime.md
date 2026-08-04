@@ -3,7 +3,7 @@ id: TERM-001
 name: Runtime
 version: "1.0"
 since: "1.0"
-status: Draft
+status: Approved
 category: Core
 owner: Core Runtime
 stability: Stable

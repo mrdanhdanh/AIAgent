@@ -3,7 +3,7 @@ id: TERM-009
 name: Context
 version: "1.0"
 since: "1.0"
-status: Draft
+status: Approved
 category: Data
 owner: Runtime
 stability: Stable

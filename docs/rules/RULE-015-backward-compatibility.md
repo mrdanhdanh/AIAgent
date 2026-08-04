@@ -33,6 +33,7 @@ examples:
 related_principles:
   - P018
   - P004
+  - P020
 related_rules:
   - RULE-009
   - RULE-013

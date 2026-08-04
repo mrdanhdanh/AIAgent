@@ -30,6 +30,7 @@ forbidden:
 related_principles:
   - P016
   - P015
+  - P006
 examples:
   - Least Privilege + Sandbox + Audit + Approval
 ---

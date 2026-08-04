@@ -3,7 +3,7 @@ id: TERM-013
 name: Registry
 version: "1.0"
 since: "1.0"
-status: Draft
+status: Approved
 category: Platform
 owner: Registry Service
 stability: Stable

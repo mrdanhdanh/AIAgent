@@ -27,7 +27,7 @@ manifestVersion: "1.0"
 specVersion: "1.0"
 constitution: SPEC-000
 version: "1.0.0"
-status: draft
+status: approved
 maturity:
   current: Architecture
   target: Enterprise
@@ -162,12 +162,13 @@ repository:
   - sdk/
   - runtime/
 
-# --- Lifecycle (mọi Entity dùng chung) ---
+# --- Lifecycle (mọi Entity dùng chung, khớp Entity lifecycle chuẩn) ---
 lifecycle:
   - Draft
   - Review
   - Approved
   - Deprecated
+  - Removed
 
 # --- Compatibility Policy (Evolution Engine đọc) ---
 compatibility:

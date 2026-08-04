@@ -1,7 +1,7 @@
 ---
 name: aios-rules
 description: >
-  AIOS Architecture Rules (D004) — 13 rules kiến trúc bắt buộc (RULE-001..013).
+  AIOS Architecture Rules (D004) — 15 rules kiến trúc bắt buộc (RULE-001..015).
   Không mô tả implementation — chỉ luật: được phép / không được phép / phụ thuộc /
   giao tiếp. Đây là điểm bắt đầu của kiến trúc thực sự.
 agent: general

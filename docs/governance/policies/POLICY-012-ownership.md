@@ -28,6 +28,7 @@ forbidden:
 related_principles:
   - P016
   - P003
+  - P009
 examples:
   - owner: { team: Runtime, reviewer: Architecture Board }
 ---

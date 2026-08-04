@@ -3,7 +3,7 @@ id: TERM-012
 name: Event
 version: "1.0"
 since: "1.0"
-status: Draft
+status: Approved
 category: Platform
 owner: Event Bus
 stability: Stable

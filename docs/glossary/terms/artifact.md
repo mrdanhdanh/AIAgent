@@ -3,7 +3,7 @@ id: TERM-008
 name: Artifact
 version: "1.0"
 since: "1.0"
-status: Draft
+status: Approved
 category: Data
 owner: Artifact Store
 stability: Stable

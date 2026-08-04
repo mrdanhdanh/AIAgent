@@ -30,6 +30,7 @@ forbidden:
 related_principles:
   - P013
   - P016
+  - P005
 examples:
   - Simulation → Doctor → Validation → Approval → Release
 ---

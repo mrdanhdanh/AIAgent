@@ -29,6 +29,7 @@ forbidden:
 related_principles:
   - P018
   - P015
+  - P002
 examples:
   - compatibility: { backward: required, forward: preferred, breaking_change: { requires_rfc: true } }
 ---

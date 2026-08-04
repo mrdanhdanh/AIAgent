@@ -1,5 +1,7 @@
 # AIOS Architecture Rules INDEX
 # D004 — Doctor kiểm tra vi phạm rule, Dashboard hiển thị tuân thủ.
+# Lưu ý: field `dependencies` = related_rules (liên kết 2 chiều, KHÔNG phải DAG
+# thứ tự phụ thuộc — các liên kết vòng là bình thường, không vi phạm DoD).
 ---
 version: "1.0"
 rules:
@@ -77,7 +79,7 @@ rules:
     file: RULE-015-backward-compatibility.md
     name: Backward Compatibility
     category: Compatibility
-    principles: [P018, P004]
+    principles: [P018, P004, P020]
 
 dependencies:
   RULE-001: [RULE-002, RULE-004]

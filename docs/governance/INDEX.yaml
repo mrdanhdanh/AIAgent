@@ -7,7 +7,7 @@ policies:
     file: policies/POLICY-001-approval.md
     name: Approval
     category: Approval
-    principles: [P016, P020]
+    principles: [P016, P020, P001]
   POLICY-002:
     file: policies/POLICY-002-version.md
     name: Version
@@ -17,17 +17,17 @@ policies:
     file: policies/POLICY-003-compatibility.md
     name: Compatibility
     category: Compatibility
-    principles: [P018, P015]
+    principles: [P018, P015, P002]
   POLICY-004:
     file: policies/POLICY-004-deprecation.md
     name: Deprecation
     category: Lifecycle
-    principles: [P018]
+    principles: [P018, P010]
   POLICY-005:
     file: policies/POLICY-005-release.md
     name: Release
     category: Release
-    principles: [P013, P016]
+    principles: [P013, P016, P005]
   POLICY-006:
     file: policies/POLICY-006-documentation.md
     name: Documentation
@@ -42,12 +42,12 @@ policies:
     file: policies/POLICY-008-plugin.md
     name: Plugin
     category: Plugin
-    principles: [P012, P019]
+    principles: [P012, P019, P007]
   POLICY-009:
     file: policies/POLICY-009-security.md
     name: Security
     category: Security
-    principles: [P016, P015]
+    principles: [P016, P015, P006]
   POLICY-010:
     file: policies/POLICY-010-quality.md
     name: Quality
@@ -62,7 +62,7 @@ policies:
     file: policies/POLICY-012-ownership.md
     name: Ownership
     category: Decision
-    principles: [P016, P003]
+    principles: [P016, P003, P009]
   POLICY-013:
     file: policies/POLICY-013-change-impact-analysis.md
     name: Change Impact Analysis

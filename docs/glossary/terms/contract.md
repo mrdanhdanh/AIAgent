@@ -3,7 +3,7 @@ id: TERM-014
 name: Contract
 version: "1.0"
 since: "1.0"
-status: Draft
+status: Approved
 category: Platform
 owner: Contract Registry
 stability: Stable

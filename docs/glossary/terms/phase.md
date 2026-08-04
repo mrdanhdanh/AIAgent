@@ -3,7 +3,7 @@ id: TERM-003
 name: Phase
 version: "1.0"
 since: "1.0"
-status: Draft
+status: Approved
 category: Execution
 owner: Core Runtime
 stability: Stable

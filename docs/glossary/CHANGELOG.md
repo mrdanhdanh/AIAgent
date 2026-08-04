@@ -6,6 +6,12 @@ agent: general
 
 # AIOS Glossary — Changelog
 
+## v3.1.0 (2026-08-03)
+
+### Changed
+
+- Promote 16 term files từ `status: Draft` → **`status: Approved`** (đạt DoD SPEC-000 #1: D001-D005 Stable) — qua RFC + ADR theo RULES.md Rule 4.
+
 ## v3.0.0 (2026-08-03) — Domain Model
 
 ### Added

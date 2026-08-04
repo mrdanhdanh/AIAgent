@@ -28,6 +28,7 @@ forbidden:
   - Xóa trực tiếp không deprecation.
 related_principles:
   - P018
+  - P010
 examples:
   - Stable → Deprecated → Archived → Removed
 ---

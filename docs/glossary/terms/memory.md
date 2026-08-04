@@ -3,7 +3,7 @@ id: TERM-010
 name: Memory
 version: "1.0"
 since: "1.0"
-status: Draft
+status: Approved
 category: Data
 owner: Memory Store
 stability: Stable

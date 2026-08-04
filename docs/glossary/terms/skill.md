@@ -3,7 +3,7 @@ id: TERM-016
 name: Skill
 version: "1.0"
 since: "1.0"
-status: Draft
+status: Approved
 category: Knowledge
 owner: Skill Library
 stability: Stable

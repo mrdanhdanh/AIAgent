@@ -27,6 +27,7 @@ forbidden:
 related_principles:
   - P012
   - P019
+  - P007
 examples:
   - Install → Validate → Enable → Disable → Remove
 ---

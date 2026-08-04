@@ -6,7 +6,7 @@ agent: general
 
 # SPEC-000 — Changelog
 
-## 3.0.0 — 2026-08-03
+## 1.0.0 — 2026-08-03
 
 - **Chuyển sang mô hình Assemble hoàn toàn** — SPEC-000 không viết mới, chỉ lắp ráp D001-D005.
 - Xóa 7 part files cũ + appendices (foundation/architecture/governance/lifecycle/quality/ai-native/glossary/principles + SUMMARY + building-blocks).
@@ -20,7 +20,9 @@ agent: general
   - `constitution.schema.json` — validate SPEC.yaml.
 - 5 Foundational Registries: System/Domain/Policy/Architecture/Governance.
 
-## 2.0.0 — 2026-08-02
+> **Lưu ý**: Các mục dưới đây là lịch sử **kỷ nguyên 7-part cũ** (trước Assemble). Constitution Assemble hiện tại là **1.0.0**.
+
+## 2.0.0 — 2026-08-02 (kỷ nguyên 7-part cũ)
 
 - **Nâng cấp Enterprise Constitution**.
 - Cấu trúc 7 Part, 30 chương:
@@ -35,11 +37,11 @@ agent: general
 - Đổi tên thư mục: SPEC-000-core-principles → **SPEC-000-constitution**.
 - Đánh số lại principles: P001–P015 (bỏ P-xxx có dấu gạch).
 
-## 1.0.0 — 2026-08-02
+## 1.0.0 — 2026-08-02 (kỷ nguyên 7-part cũ)
 
 - Hiến pháp 6 Part, 23 chương.
 - 15 core principles.
 
-## 0.1.0 — 2026-08-02
+## 0.1.0 — 2026-08-02 (kỷ nguyên 7-part cũ)
 
 - Khởi tạo Core Principles, 7 nguyên tắc ban đầu.
