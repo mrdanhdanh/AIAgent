@@ -1,0 +1,49 @@
+---
+id: SPEC-001
+name: Runtime Kernel
+version: "1.0.0"
+status: Draft
+type: Kernel
+authority: High
+owner: Runtime Team
+description: >
+  Runtime Kernel — execution kernel thống nhất cho toàn bộ AIOS.
+  Mọi Workflow, Agent, Plugin, Extension chạy qua Runtime, không giao tiếp trực tiếp.
+dependencies:
+  - SPEC-000
+includes:
+  - S001
+  - S002
+  - S003
+  - S004
+  - S005
+  - S006
+  - S007
+  - S008
+  - S009
+  - S010
+  - S011
+  - S012
+  - S013
+  - S014
+  - S015
+  - S016
+  - S017
+  - S018
+  - S019
+  - S020
+outputs:
+  - Runtime Kernel
+  - Execution Context
+implements:
+  - Runtime
+authoritative: false
+breaking_change_requires:
+  - ADR
+  - RFC
+references:
+  constitution: ../SPEC-000
+  glossary: ../../glossary
+  principles: ../../principles
+  rules: ../../rules
+  governance: ../../governance

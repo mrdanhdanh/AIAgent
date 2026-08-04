@@ -40,7 +40,7 @@ specs/
 | SPEC | Chủ đề | Sprint | Trạng thái |
 |------|--------|--------|-----------|
 | SPEC-000 | Constitution (Assemble D001-D005) | Foundation | ✅ Frozen |
-| SPEC-001 | Runtime Kernel | A — Core | ⬜ |
+| SPEC-001 | Runtime Kernel | A — Core | 🚧 S001 |
 | SPEC-002 | Execution Engine | A — Core | ⬜ |
 | SPEC-003 | State Machine | A — Core | ⬜ |
 | SPEC-004 | Workflow Engine | A — Core | ⬜ |
