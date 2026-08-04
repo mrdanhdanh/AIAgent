@@ -2,16 +2,26 @@
 id: SPEC-000
 name: AIOS Constitution
 version: "1.0.0"
-status: Draft
+status: Stable
 type: Constitution
+authority: Highest
+owner: Architecture Board
+constitution_version: "1.0"
+frozen: true
 description: >
   Foundational specification governing the AI Operating System.
+dependencies: []
 includes:
-  - D001
-  - D002
-  - D003
-  - D004
-  - D005
+  - Manifest
+  - Glossary
+  - Principles
+  - Rules
+  - Governance
+outputs:
+  - Constitution
+  - Cross Reference
+  - Compliance Matrix
+  - Dependency Graph
 authoritative: true
 breaking_change_requires:
   - ADR

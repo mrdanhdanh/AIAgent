@@ -1,69 +1,86 @@
-# AIOS Constitution — Compliance Matrix
-# SPEC-000 — moi component -> principles / rules / policies. Doctor biet component thieu gi.
+# AIOS Constitution — Compliance Matrix (C005)
+# Moi component -> required (principles/rules/policies).
+# SPEC chi can implements: <component> -> Doctor biet thieu gi.
 ---
 version: "1.0"
 components:
-  TERM-001:
-    principles: [P001, P005, P006, P009]
-    rules: [RULE-001, RULE-004, RULE-005, RULE-014]
-    policies: [POLICY-001, POLICY-005, POLICY-009]
-  TERM-002:
-    principles: [P001, P003]
-    rules: [RULE-001, RULE-002, RULE-004]
-    policies: [POLICY-001, POLICY-002]
-  TERM-003:
-    principles: [P001, P007]
-    rules: [RULE-004]
-    policies: [POLICY-001]
-  TERM-004:
-    principles: [P001, P006]
-    rules: [RULE-004]
-    policies: [POLICY-001]
-  TERM-005:
-    principles: [P001, P006, P007]
-    rules: [RULE-001, RULE-005, RULE-006, RULE-012]
-    policies: [POLICY-009]
-  TERM-006:
-    principles: [P007, P012]
-    rules: [RULE-001, RULE-010]
-    policies: [POLICY-008]
-  TERM-007:
-    principles: [P001]
-    rules: [RULE-001, RULE-004]
-    policies: [POLICY-001]
-  TERM-008:
-    principles: [P010]
-    rules: [RULE-005, RULE-009]
-    policies: [POLICY-004, POLICY-010]
-  TERM-009:
-    principles: [P001]
-    rules: [RULE-006]
-    policies: [POLICY-001]
-  TERM-010:
-    principles: [P014]
-    rules: [RULE-006]
-    policies: [POLICY-009]
-  TERM-011:
-    principles: [P009, P014]
-    rules: [RULE-001]
-    policies: [POLICY-011]
-  TERM-012:
-    principles: [P005]
-    rules: [RULE-007]
-    policies: [POLICY-010]
-  TERM-013:
-    principles: [P007, P009]
-    rules: [RULE-001, RULE-002]
-    policies: [POLICY-012]
-  TERM-014:
-    principles: [P002, P004, P018]
-    rules: [RULE-003]
-    policies: [POLICY-003]
-  TERM-015:
-    principles: [P012, P016]
-    rules: [RULE-008, RULE-010]
-    policies: [POLICY-008]
-  TERM-016:
-    principles: [P012]
-    rules: [RULE-001]
-    policies: [POLICY-006]
+  Runtime:
+    required:
+      principles: [P001, P005, P006, P009, P013, P015, P020]
+      rules: [RULE-001, RULE-004, RULE-005, RULE-014, RULE-011, RULE-013]
+      policies: [POLICY-001, POLICY-005, POLICY-009, POLICY-013]
+  Workflow:
+    required:
+      principles: [P001, P003, P011]
+      rules: [RULE-001, RULE-002, RULE-004]
+      policies: [POLICY-001, POLICY-002]
+  Phase:
+    required:
+      principles: [P001, P007]
+      rules: [RULE-004]
+      policies: [POLICY-001]
+  Task:
+    required:
+      principles: [P001, P006]
+      rules: [RULE-004]
+      policies: [POLICY-001]
+  Agent:
+    required:
+      principles: [P001, P006, P007, P008]
+      rules: [RULE-001, RULE-005, RULE-006, RULE-012]
+      policies: [POLICY-009]
+  Capability:
+    required:
+      principles: [P007, P012]
+      rules: [RULE-001, RULE-010]
+      policies: [POLICY-008]
+  Command:
+    required:
+      principles: [P001]
+      rules: [RULE-001, RULE-004]
+      policies: [POLICY-001]
+  Artifact:
+    required:
+      principles: [P010]
+      rules: [RULE-005, RULE-009]
+      policies: [POLICY-004, POLICY-010]
+  Context:
+    required:
+      principles: [P001]
+      rules: [RULE-006]
+      policies: [POLICY-001]
+  Memory:
+    required:
+      principles: [P014]
+      rules: [RULE-006]
+      policies: [POLICY-009]
+  Knowledge:
+    required:
+      principles: [P014, P009]
+      rules: [RULE-001]
+      policies: [POLICY-011]
+  Event:
+    required:
+      principles: [P005]
+      rules: [RULE-007]
+      policies: [POLICY-010]
+  Registry:
+    required:
+      principles: [P007, P009, P017]
+      rules: [RULE-001, RULE-002]
+      policies: [POLICY-012, POLICY-007]
+  Contract:
+    required:
+      principles: [P002, P004, P018]
+      rules: [RULE-003, RULE-015]
+      policies: [POLICY-003]
+  Plugin:
+    required:
+      principles: [P012, P016, P019]
+      rules: [RULE-010, RULE-008]
+      policies: [POLICY-008, POLICY-014]
+  Skill:
+    required:
+      principles: [P012]
+      rules: [RULE-001]
+      policies: [POLICY-006]

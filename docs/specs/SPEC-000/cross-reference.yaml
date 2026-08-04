@@ -1,85 +1,101 @@
-# AIOS Constitution — Cross Reference
-# SPEC-000 — P### -> rules / policies / terms. Doctor tra cuu.
+# AIOS Constitution — Cross Reference (C003)
+# SPEC-000 — component -> defined_in / governed_by / rules / policies / specs.
 ---
 version: "1.0"
-cross_references:
-  P001:
-    rules: [RULE-001, RULE-003, RULE-004, RULE-005]
-    policies: [POLICY-001]
-    terms: [TERM-001, TERM-002, TERM-003, TERM-004, TERM-005, TERM-007, TERM-009]
-  P002:
-    rules: [RULE-003]
-    policies: [POLICY-003]
-    terms: [TERM-014]
-  P003:
-    rules: [RULE-001]
-    policies: [POLICY-006, POLICY-007, POLICY-011, POLICY-012]
-    terms: [TERM-002]
-  P004:
-    rules: [RULE-009, RULE-015]
-    policies: [POLICY-002]
-    terms: [TERM-014]
-  P005:
-    rules: [RULE-007, RULE-012, RULE-014]
-    policies: [POLICY-005]
-    terms: [TERM-001, TERM-012]
-  P006:
-    rules: [RULE-005, RULE-006]
-    policies: [POLICY-009]
-    terms: [TERM-001, TERM-004, TERM-005]
-  P007:
+components:
+  Runtime:
+    defined_in: Glossary
+    governed_by: [P001, P005, P006, P009, P013, P015, P020]
+    rules: [RULE-001, RULE-004, RULE-005, RULE-014, RULE-011, RULE-013]
+    policies: [POLICY-001, POLICY-005, POLICY-009, POLICY-013]
+    specs: [SPEC-001]
+  Workflow:
+    defined_in: Glossary
+    governed_by: [P001, P003, P011]
+    rules: [RULE-001, RULE-002, RULE-004]
+    policies: [POLICY-001, POLICY-002]
+    specs: [SPEC-002]
+  Phase:
+    defined_in: Glossary
+    governed_by: [P001, P007]
     rules: [RULE-004]
-    policies: [POLICY-008]
-    terms: [TERM-003, TERM-005, TERM-006, TERM-013]
-  P008:
-    rules: [RULE-011]
-    policies: [POLICY-011]
-    terms: []
-  P009:
-    rules: [RULE-002, RULE-005, RULE-006, RULE-011, RULE-013]
-    policies: [POLICY-012]
-    terms: [TERM-001, TERM-011, TERM-013]
-  P010:
-    rules: [RULE-005, RULE-009, RULE-011]
-    policies: [POLICY-004]
-    terms: [TERM-008]
-  P011:
-    rules: [RULE-002, RULE-013]
-    policies: [POLICY-013]
-    terms: []
-  P012:
-    rules: [RULE-008, RULE-010]
-    policies: [POLICY-008]
-    terms: [TERM-006, TERM-015, TERM-016]
-  P013:
-    rules: [RULE-013]
-    policies: [POLICY-005, POLICY-013]
-    terms: []
-  P014:
-    rules: [RULE-007, RULE-014]
-    policies: [POLICY-010]
-    terms: [TERM-010, TERM-011]
-  P015:
-    rules: [RULE-012]
-    policies: [POLICY-003, POLICY-009, POLICY-010, POLICY-014]
-    terms: []
-  P016:
-    rules: [RULE-008]
-    policies: [POLICY-001, POLICY-005, POLICY-009, POLICY-012]
-    terms: [TERM-015]
-  P017:
-    rules: [RULE-003]
-    policies: [POLICY-006]
-    terms: []
-  P018:
-    rules: [RULE-009, RULE-015]
-    policies: [POLICY-002, POLICY-003, POLICY-004, POLICY-014]
-    terms: [TERM-014]
-  P019:
-    rules: [RULE-010]
-    policies: [POLICY-008]
-    terms: []
-  P020:
-    rules: [RULE-015]
     policies: [POLICY-001]
-    terms: []
+    specs: [SPEC-002]
+  Task:
+    defined_in: Glossary
+    governed_by: [P001, P006]
+    rules: [RULE-004]
+    policies: [POLICY-001]
+    specs: [SPEC-002]
+  Agent:
+    defined_in: Glossary
+    governed_by: [P001, P006, P007, P008]
+    rules: [RULE-001, RULE-005, RULE-006, RULE-012]
+    policies: [POLICY-009]
+    specs: [SPEC-004]
+  Capability:
+    defined_in: Glossary
+    governed_by: [P007, P012]
+    rules: [RULE-001, RULE-010]
+    policies: [POLICY-008]
+    specs: [SPEC-003]
+  Command:
+    defined_in: Glossary
+    governed_by: [P001]
+    rules: [RULE-001, RULE-004]
+    policies: [POLICY-001]
+    specs: [SPEC-001]
+  Artifact:
+    defined_in: Glossary
+    governed_by: [P010]
+    rules: [RULE-005, RULE-009]
+    policies: [POLICY-004, POLICY-010]
+    specs: [SPEC-005]
+  Context:
+    defined_in: Glossary
+    governed_by: [P001]
+    rules: [RULE-006]
+    policies: [POLICY-001]
+    specs: [SPEC-004]
+  Memory:
+    defined_in: Glossary
+    governed_by: [P014]
+    rules: [RULE-006]
+    policies: [POLICY-009]
+    specs: [SPEC-004]
+  Knowledge:
+    defined_in: Glossary
+    governed_by: [P014, P009]
+    rules: [RULE-001]
+    policies: [POLICY-011]
+    specs: [SPEC-012]
+  Event:
+    defined_in: Glossary
+    governed_by: [P005]
+    rules: [RULE-007]
+    policies: [POLICY-010]
+    specs: [SPEC-006]
+  Registry:
+    defined_in: Glossary
+    governed_by: [P007, P009, P017]
+    rules: [RULE-001, RULE-002]
+    policies: [POLICY-012, POLICY-007]
+    specs: [SPEC-003]
+  Contract:
+    defined_in: Glossary
+    governed_by: [P002, P004, P018]
+    rules: [RULE-003, RULE-015]
+    policies: [POLICY-003]
+    specs: [SPEC-003]
+  Plugin:
+    defined_in: Glossary
+    governed_by: [P012, P016, P019]
+    rules: [RULE-010, RULE-008]
+    policies: [POLICY-008, POLICY-014]
+    specs: [SPEC-015]
+  Skill:
+    defined_in: Glossary
+    governed_by: [P012]
+    rules: [RULE-001]
+    policies: [POLICY-006]
+    specs: [SPEC-015]

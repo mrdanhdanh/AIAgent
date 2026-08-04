@@ -9,7 +9,7 @@ agent: general
 
 # SPEC-000 — AIOS Constitution
 
-> **Trạng thái**: Draft · **Version**: 1.0.0 · **Mô hình**: Assemble (không viết mới)
+> **Trạng thái**: Stable · **Version**: 1.0 · **Frozen**: 2026-08-03 · **Mô hình**: Assemble
 
 ## SPEC-000 là gì?
 

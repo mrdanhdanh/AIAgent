@@ -36,11 +36,11 @@ foreach ($f in $files) {
 $spec = Join-Path $s000 'SPEC.yaml'
 if (Test-Path $spec) {
   $text = Get-Content -LiteralPath $spec -Raw -Encoding utf8
-  foreach ($field in @('id','name','version','status','type','description','includes','authoritative','breaking_change_requires','references')) {
+  foreach ($field in @('id','name','version','status','type','authority','owner','description','dependencies','includes','outputs','authoritative','constitution_version','frozen','breaking_change_requires','references')) {
     if ($text -notmatch "(?m)^${field}:") { $errors += "SPC-002: SPEC.yaml thieu field '$field'" }
   }
   if ($text -notmatch '(?m)^id:\s*SPEC-000') { $errors += "SPC-002: id phai la SPEC-000" }
-  foreach ($d in @('D001','D002','D003','D004','D005')) {
+  foreach ($d in @('Manifest','Glossary','Principles','Rules','Governance')) {
     if ($text -notmatch [regex]::Escape($d)) { $errors += "SPC-002: includes thieu $d" }
   }
 }
@@ -82,8 +82,8 @@ if (Test-Path $cr) {
 $cm = Join-Path $s000 'compliance-matrix.yaml'
 if (Test-Path $cm) {
   $mt = Get-Content -LiteralPath $cm -Raw -Encoding utf8
-  for ($i = 1; $i -le 16; $i++) {
-    $t = "TERM-{0:D3}" -f $i
+  $comps = @('Runtime','Workflow','Phase','Task','Agent','Capability','Command','Artifact','Context','Memory','Knowledge','Event','Registry','Contract','Plugin','Skill')
+  foreach ($t in $comps) {
     if ($mt -notmatch [regex]::Escape($t)) { $warnings += "SPC-005: compliance-matrix thieu $t" }
   }
 }
