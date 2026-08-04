@@ -4,6 +4,15 @@ name: Release
 status: Stable
 version: 1.0.0
 category: Release
+scope:
+  applies_to:
+    - Runtime
+    - Plugin
+    - SPEC
+    - Deliverable
+  excludes:
+    - Example
+    - Playground
 statement: >
   Release phải qua Simulation→Doctor→Validation→Approval→Release.
 purpose: >

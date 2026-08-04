@@ -6,6 +6,21 @@ agent: general
 
 # AIOS Governance Framework — Changelog
 
+## v1.1.0 (2026-08-03) — Governance System
+
+### Added
+
+- **roles.yaml** — Governance Roles (Architecture Board / Core Owner / Runtime Owner / Plugin Owner / Spec Owner) + approval_matrix.
+- **compliance.yaml** — mandatory/recommended/optional + principles_mapping (14 policies).
+- **review-cycle.yaml** — principles yearly, rules quarterly, specifications monthly, plugins monthly, policies quarterly.
+- **metrics.yaml** — approval_time, policy_compliance, breaking_changes, deprecated_entities, plugin_quality.
+- **audit-policy.yaml** — audit_trail flow (Change→Reviewer→Decision→Artifact→History) + 8 governance events.
+- **POLICY-014** Exception — ngoại lệ có kiểm soát (approval + expiration + rationale, review 30d).
+- **policy-lifecycle.md** — Draft→Review→Approved→Active→Deprecated→Retired.
+- **scope** field cho mọi policy (applies_to / excludes).
+- **Emergency Path** trong DECISION_TREE (Critical Bug→Emergency Fix→Temporary Approval→Hotfix Release→Post Review ADR).
+- governance-registry.yaml: thêm metadata (owner/last_review/next_review) + emergency_path + events + policy lifecycle.
+
 ## v1.0.0 (2026-08-03)
 
 ### Added

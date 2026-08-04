@@ -68,6 +68,11 @@ policies:
     name: Change Impact Analysis
     category: Decision
     principles: [P011, P013]
+  POLICY-014:
+    file: policies/POLICY-014-exception.md
+    name: Exception
+    category: Decision
+    principles: [P018, P015]
 
 lifecycles:
   entity: lifecycle/entity-lifecycle.md
@@ -75,6 +80,14 @@ lifecycles:
   plugin: lifecycle/plugin-lifecycle.md
   artifact: lifecycle/artifact-lifecycle.md
   specification: lifecycle/specification-lifecycle.md
+  policy: lifecycle/policy-lifecycle.md
+
+registries:
+  roles: roles.yaml
+  compliance: compliance.yaml
+  review_cycle: review-cycle.yaml
+  metrics: metrics.yaml
+  audit_policy: audit-policy.yaml
 
 decisions:
   adr: decisions/ADR.md

@@ -4,6 +4,18 @@ name: Approval
 status: Stable
 version: 1.0.0
 category: Approval
+scope:
+  applies_to:
+    - Runtime
+    - Workflow
+    - Plugin
+    - SPEC
+    - Principle
+    - Rule
+    - Registry
+  excludes:
+    - Example
+    - Playground
 statement: >
   Không có thay đổi nào đi thẳng vào Core.
 purpose: >

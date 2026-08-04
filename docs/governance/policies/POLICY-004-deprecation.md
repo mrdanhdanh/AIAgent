@@ -4,6 +4,16 @@ name: Deprecation
 status: Stable
 version: 1.0.0
 category: Lifecycle
+scope:
+  applies_to:
+    - Entity
+    - Workflow
+    - Plugin
+    - Artifact
+    - SPEC
+  excludes:
+    - Example
+    - Playground
 statement: >
   Không xóa trực tiếp: Stable→Deprecated→Archived→Removed.
 purpose: >

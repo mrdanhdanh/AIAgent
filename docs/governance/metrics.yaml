@@ -1,0 +1,34 @@
+# AIOS Governance Metrics
+# D005 — Dashboard đọc để hiển thị mức độ tuân thủ governance.
+---
+version: "1.0"
+
+metrics:
+  approval_time:
+    description: Thời gian trung bình từ Draft đến Approved (giờ).
+    target: "< 48h"
+    source: governance_events
+  policy_compliance:
+    description: % policy mandatory được tuân thủ.
+    target: ">= 95%"
+    source: doctor
+  breaking_changes:
+    description: Số breaking change trong kỳ.
+    target: ">= 1 phải có RFC + ADR"
+    source: changelogs
+  deprecated_entities:
+    description: Số entity đang trong deprecation window.
+    target: "theo dõi"
+    source: registry
+  plugin_quality:
+    description: % plugin pass validation/security.
+    target: "100%"
+    source: doctor
+
+# Nguồn đo lường
+sources:
+  - governance_events
+  - doctor
+  - changelogs
+  - registry
+  - validators

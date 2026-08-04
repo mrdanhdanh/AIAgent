@@ -4,6 +4,14 @@ name: Ownership
 status: Stable
 version: 1.0.0
 category: Decision
+scope:
+  applies_to:
+    - Entity
+    - SPEC
+    - Plugin
+  excludes:
+    - Example
+    - Playground
 statement: >
   Mỗi Entity phải có Owner. Không Owner thì không Approved.
 purpose: >

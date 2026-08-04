@@ -4,6 +4,16 @@ name: Documentation
 status: Stable
 version: 1.0.0
 category: Documentation
+scope:
+  applies_to:
+    - SPEC
+    - Rule
+    - Policy
+    - Glossary
+    - Manifest
+  excludes:
+    - Example
+    - Playground
 statement: >
   Mọi Entity phải có Human Readable + Machine Readable.
 purpose: >

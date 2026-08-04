@@ -4,6 +4,15 @@ name: Security
 status: Stable
 version: 1.0.0
 category: Security
+scope:
+  applies_to:
+    - Runtime
+    - Agent
+    - Plugin
+    - Skill
+  excludes:
+    - Example
+    - Playground
 statement: >
   Áp dụng Least Privilege, Sandbox, Audit, Approval.
 purpose: >

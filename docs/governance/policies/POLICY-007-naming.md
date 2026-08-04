@@ -4,6 +4,16 @@ name: Naming
 status: Stable
 version: 1.0.0
 category: Naming
+scope:
+  applies_to:
+    - SPEC
+    - Rule
+    - Policy
+    - Artifact
+    - Entity
+  excludes:
+    - Example
+    - Playground
 statement: >
   Quy ước tên chuẩn: SPEC-001, RULE-001, P001, WF-YYYYMMDD-001, ART-0001.
 purpose: >

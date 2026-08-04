@@ -4,6 +4,13 @@ name: Plugin
 status: Stable
 version: 1.0.0
 category: Plugin
+scope:
+  applies_to:
+    - Plugin
+    - Capability
+  excludes:
+    - Example
+    - Playground
 statement: >
   Plugin: Install→Validate→Enable→Disable→Remove. Không sửa Core.
 purpose: >

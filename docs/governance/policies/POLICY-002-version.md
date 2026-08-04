@@ -4,6 +4,18 @@ name: Version
 status: Stable
 version: 1.0.0
 category: Versioning
+scope:
+  applies_to:
+    - Runtime
+    - Workflow
+    - Plugin
+    - SPEC
+    - Artifact
+    - Agent
+    - Capability
+  excludes:
+    - Example
+    - Playground
 statement: >
   Áp dụng Semantic Versioning (MAJOR.MINOR.PATCH).
 purpose: >

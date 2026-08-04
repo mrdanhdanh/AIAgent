@@ -4,6 +4,16 @@ name: Compatibility
 status: Stable
 version: 1.0.0
 category: Compatibility
+scope:
+  applies_to:
+    - Runtime
+    - Workflow
+    - Plugin
+    - SPEC
+    - Contract
+  excludes:
+    - Example
+    - Playground
 statement: >
   backward required, forward preferred. Breaking change requires RFC.
 purpose: >

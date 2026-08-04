@@ -4,6 +4,15 @@ name: Traceability
 status: Stable
 version: 1.0.0
 category: Decision
+scope:
+  applies_to:
+    - SPEC
+    - Implementation
+    - Test
+    - Artifact
+  excludes:
+    - Example
+    - Playground
 statement: >
   Mọi thành phần phải truy vết được: Requirement→SPEC→Implementation→Test→Artifact.
 purpose: >

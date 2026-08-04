@@ -4,6 +4,14 @@ name: Quality
 status: Stable
 version: 1.0.0
 category: Quality
+scope:
+  applies_to:
+    - Deliverable
+    - SPEC
+    - Plugin
+  excludes:
+    - Example
+    - Playground
 statement: >
   Mỗi Deliverable phải đạt: Validation Pass, Doctor Pass, Schema Pass, Cross Reference Pass.
 purpose: >

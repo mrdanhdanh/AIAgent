@@ -1,0 +1,30 @@
+# AIOS Governance Audit Policy
+# D005 — Mọi quyết định governance phải truy vết được. Doctor/Audit dùng.
+---
+version: "1.0"
+
+audit_trail:
+  required: true
+  flow: [Change, Reviewer, Decision, Artifact, History]
+
+# Governance Events — liên kết Event Bus (P005)
+events:
+  - Policy Approved
+  - Policy Updated
+  - ADR Created
+  - RFC Accepted
+  - Release Approved
+  - Deprecation Started
+  - Emergency Fix Applied
+  - Exception Granted
+
+# Audit bắt buộc ghi
+must_log:
+  - who (role)
+  - when (timestamp)
+  - what (decision/change)
+  - why (rationale)
+  - artifact_ref
+
+# Retention
+retention: 5 years

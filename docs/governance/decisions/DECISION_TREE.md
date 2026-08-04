@@ -49,6 +49,29 @@ Minor / internal / format?  ──── Yes ────► Direct change
 | Thay đổi nội bộ, không breaking | ADR |
 | Format / sửa lỗi nhỏ | Trực tiếp |
 
+## Emergency Path
+
+Trong môi trường enterprise, có trường hợp khẩn cấp cần xử lý nhanh:
+
+```text
+Critical Bug
+      │
+Emergency Fix
+      │
+Temporary Approval
+      │
+Hotfix Release
+      │
+Post Review (ADR bắt buộc)
+```
+
+### Quy tắc Emergency
+
+- **Temporary Approval** — người/role cấp phép tạm, có expiration.
+- **Hotfix Release** — chỉ khi Critical Bug ảnh hưởng production.
+- **Post Review bắt buộc** — sau hotfix phải viết ADR + RFC nếu breaking (P020).
+- Mọi emergency phải ghi audit trail (audit-policy.yaml).
+
 ## Quy tắc
 
 - Thay đổi Core/Constitution → luôn RFC + ADR (P020).

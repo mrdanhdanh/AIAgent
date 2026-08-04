@@ -5,7 +5,7 @@
   "description": "JSON Schema cho frontmatter của từng policy file trong docs/governance/policies/. Validator kiểm tra template D005.",
   "type": "object",
   "required": [
-    "id", "name", "status", "version", "category", "statement", "purpose",
+    "id", "name", "status", "version", "category", "scope", "statement", "purpose",
     "rules", "allowed", "forbidden", "related_principles", "examples"
   ],
   "properties": {
@@ -14,6 +14,14 @@
     "status": { "enum": ["Draft", "Review", "Stable", "Deprecated"] },
     "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
     "category": { "enum": ["Approval", "Versioning", "Compatibility", "Lifecycle", "Documentation", "Naming", "Plugin", "Security", "Quality", "Release", "Decision"] },
+    "scope": {
+      "type": "object",
+      "required": ["applies_to"],
+      "properties": {
+        "applies_to": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+        "excludes": { "type": "array", "items": { "type": "string" } }
+      }
+    },
     "statement": { "type": "string" },
     "purpose": { "type": "string" },
     "rules": { "type": "array", "items": { "type": "string" }, "minItems": 1 },

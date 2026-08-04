@@ -4,6 +4,14 @@ name: Change Impact Analysis
 status: Stable
 version: 1.0.0
 category: Decision
+scope:
+  applies_to:
+    - SPEC
+    - Runtime
+    - Rule
+  excludes:
+    - Example
+    - Playground
 statement: >
   Trước khi thay đổi: Change→Impact Analysis→Simulation→Approval→Implementation.
 purpose: >
