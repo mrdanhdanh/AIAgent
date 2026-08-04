@@ -1,9 +1,9 @@
 ---
 name: spec-000-constitution
 description: >
-  SPEC-000 — Hiến pháp AIOS. Đây là SPEC ĐƯỢC ASSEMBLE, không phải viết mới.
-  README này chỉ tham chiếu các thành phần (Manifest, Glossary, Principles,
-  Rules, Governance). Mọi SPEC/ADR/RFC/Code phải tuân theo các thành phần này.
+  SPEC-000 — Hiến pháp AIOS. SPEC được ASSEMBLE (không viết mới) từ D001-D005:
+  Manifest, Glossary, Principles, Rules, Governance. Mọi SPEC-001..020 phải
+  tham chiếu Constitution, không định nghĩa lại.
 agent: general
 ---
 
@@ -11,42 +11,46 @@ agent: general
 
 > **Trạng thái**: Draft · **Version**: 1.0.0 · **Mô hình**: Assemble (không viết mới)
 
-## Preamble
+## SPEC-000 là gì?
 
-AIOS là nền tảng điều hành cho AI Agent. **Runtime là trung tâm; Agent chỉ là thành phần chạy trên Runtime.**
-
-SPEC-000 là **Hiến pháp** — được **assembled** từ các building blocks sau, không phải tài liệu viết mới:
+SPEC-000 là **Hiến pháp** của AIOS — bộ luật tối cao mà mọi SPEC/ADR/RFC/Code phải tuân theo. Nó **không tạo kiến trúc mới**, chỉ **assemble** toàn bộ D001–D005 thành một bộ luật thống nhất.
 
 ```text
-SPEC-000
-  ↓
-Assemble (tham chiếu)
-  ↓
-Manifest + Glossary + Principles + Rules + Governance
+                SPEC-000 Constitution
+                       │
+      ┌────────────────┼────────────────┐
+      │                │                │
+   Manifest        Glossary       Principles
+      │                │                │
+      └────────────┬───┴────────────────┘
+                   │
+            Architecture Rules
+                   │
+             Governance Framework
 ```
 
-## Thành phần (building blocks)
+## Bao gồm gì?
 
-| Thành phần | Vị trí | Vai trò |
-|------------|--------|---------|
-| Manifest | `docs/manifest/AIOS_MANIFEST.yaml` | AIOS là gì, tồn tại để làm gì |
-| Glossary | `docs/glossary/` | Thuật ngữ — mỗi từ một nghĩa |
-| Principles | `docs/principles/` | P001–P015 + A-001..006 + G-001..007 |
-| Rules | `docs/rules/` | Luật kiến trúc bắt buộc (R-LAYER, R-DEP, ...) |
-| Governance | `docs/governance/` | ADR, RFC, Release, Naming, Review, Approval |
+| Phần | File | Nguồn |
+|------|------|-------|
+| 01 Manifest | `01-manifest.md` | `docs/manifest/` |
+| 02 Glossary | `02-glossary.md` | `docs/glossary/` |
+| 03 Principles | `03-principles.md` | `docs/principles/` |
+| 04 Rules | `04-rules.md` | `docs/rules/` |
+| 05 Governance | `05-governance.md` | `docs/governance/` |
 
-> **Quy tắc**: Mỗi thành phần là nguồn chính. Sửa thành phần → SPEC-000 thay đổi theo. SPEC-000 không có nội dung riêng tách biệt.
+## Không bao gồm gì?
 
-## Metadata
+- Không bao gồm **implementation** — không code, không chi tiết SPEC-001..020.
+- Không **định nghĩa lại** thuật ngữ/rule/policy — chỉ tham chiếu.
+- Không bao gồm **SPEC triển khai** (Runtime, Workflow, ...) — đó là SPEC-001+.
 
-Xem `spec.yaml` — `references: [MANIFEST, GLOSSARY, PRINCIPLES, RULES, GOVERNANCE]`.
+## Các SPEC khác phải sử dụng thế nào?
 
-## Điều khoản tham chiếu
-
-- **SPEC-001..020 không được mâu thuẫn** với các thành phần trên.
-- **ADR** phải trích dẫn principle/rule liên quan.
-- **RFC** phải chỉ rõ điều khoản nào bị ảnh hưởng.
-- **Doctor** kiểm tra SPEC/implementation có vi phạm không.
+- Mọi SPEC-001..020 **tham chiếu** Constitution, không định nghĩa lại khái niệm/rule.
+- Mọi SPEC khai báo `implements` component (VD: `implements: Runtime`).
+- Doctor dùng `compliance-matrix.yaml` để biết component còn thiếu gì.
+- Breaking change → ADR + RFC (SPEC.yaml `breaking_change_requires`).
 
 ## Decision Hierarchy
 
@@ -54,19 +58,28 @@ Xem `spec.yaml` — `references: [MANIFEST, GLOSSARY, PRINCIPLES, RULES, GOVERNA
 Constitution (SPEC-000) > SPEC-001..020 > ADR > RFC > Code
 ```
 
+## Machine-readable
+
+| File | Vai trò |
+|------|---------|
+| `SPEC.yaml` | Metadata (id/includes/authoritative/references) |
+| `INDEX.yaml` | Registry: documents/principles/rules/policies/glossary_terms |
+| `cross-reference.yaml` | P### → rules/policies/terms |
+| `dependency-map.yaml` | Manifest→Glossary→Principles→Rules→Governance |
+| `compliance-matrix.yaml` | Component → principles/rules/policies |
+| `constitution.schema.json` | Validate SPEC.yaml |
+
 ## Definition of Done
 
-SPEC-000 hoàn thành khi:
+- [ ] D001–D005 đều ở trạng thái Stable.
+- [ ] Không còn tham chiếu vòng (circular references).
+- [ ] Mọi Principle được ≥1 Rule và ≥1 Policy thực thi.
+- [ ] Mọi thuật ngữ Glossary dùng nhất quán.
+- [ ] Cross-reference, dependency-map, compliance-matrix sinh thành công.
+- [ ] Doctor validate toàn bộ Constitution không lỗi.
 
-- [ ] Manifest ratified.
-- [ ] Glossary đầy đủ, mỗi thuật ngữ một nghĩa.
-- [ ] 15–20 Core Principles list được review + freeze.
-- [ ] Architecture Rules list được review + freeze.
-- [ ] Governance process được review + freeze.
-- [ ] Validators PASS.
+## Tham chiếu
 
-## Xem thêm
-
-- `SUMMARY.md` — mục lục chi tiết (bản Assemble).
-- `building-blocks.md` — mapping building blocks.
-- `docs/specs/README.md` — index toàn bộ SPEC.
+- Metadata: `SPEC.yaml`
+- Registry: `INDEX.yaml`
+- Toàn bộ SPEC: `docs/specs/README.md`

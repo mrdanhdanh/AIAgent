@@ -45,7 +45,7 @@ spec/
 
 | SPEC | Chủ đề | Sprint | Trạng thái |
 |------|--------|--------|-----------|
-| SPEC-000 | Constitution (Hiến pháp) | Foundation | ✅ ratified |
+| SPEC-000 | Constitution (Assemble D001-D005) | Foundation | 📝 Draft |
 | SPEC-001 | Runtime | A | ⬜ |
 | SPEC-002 | Workflow | A | ⬜ |
 | SPEC-003 | Registry | A | ⬜ |

@@ -6,6 +6,20 @@ agent: general
 
 # SPEC-000 — Changelog
 
+## 3.0.0 — 2026-08-03
+
+- **Chuyển sang mô hình Assemble hoàn toàn** — SPEC-000 không viết mới, chỉ lắp ráp D001-D005.
+- Xóa 7 part files cũ + appendices (foundation/architecture/governance/lifecycle/quality/ai-native/glossary/principles + SUMMARY + building-blocks).
+- Cấu trúc mới:
+  - `SPEC.yaml` — metadata (includes D001-D005, authoritative, breaking_change_requires ADR+RFC).
+  - `INDEX.yaml` — Constitution Registry (documents/principles/rules/policies/glossary_terms).
+  - `01-manifest.md` → `05-governance.md` — 5 phần assemble tham chiếu.
+  - `cross-reference.yaml` — P### → rules/policies/terms.
+  - `dependency-map.yaml` — Manifest→Glossary→Principles→Rules→Governance.
+  - `compliance-matrix.yaml` — component → principles/rules/policies.
+  - `constitution.schema.json` — validate SPEC.yaml.
+- 5 Foundational Registries: System/Domain/Policy/Architecture/Governance.
+
 ## 2.0.0 — 2026-08-02
 
 - **Nâng cấp Enterprise Constitution**.

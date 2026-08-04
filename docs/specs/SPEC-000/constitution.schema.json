@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aios://constitution.schema.json",
+  "title": "AIOS Constitution (SPEC-000)",
+  "description": "JSON Schema cho cấu trúc SPEC-000. Validator kiểm tra assemble.",
+  "type": "object",
+  "required": ["id", "name", "version", "status", "type", "description", "includes", "authoritative", "breaking_change_requires", "references"],
+  "properties": {
+    "id": { "const": "SPEC-000" },
+    "name": { "const": "AIOS Constitution" },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "status": { "enum": ["Draft", "Review", "Approved", "Stable", "Deprecated"] },
+    "type": { "const": "Constitution" },
+    "description": { "type": "string" },
+    "includes": { "type": "array", "items": { "enum": ["D001", "D002", "D003", "D004", "D005"] }, "minItems": 5 },
+    "authoritative": { "const": true },
+    "breaking_change_requires": { "type": "array", "items": { "enum": ["ADR", "RFC"] }, "minItems": 2 },
+    "references": {
+      "type": "object",
+      "required": ["manifest", "glossary", "principles", "rules", "governance"],
+      "properties": {
+        "manifest": { "type": "string" },
+        "glossary": { "type": "string" },
+        "principles": { "type": "string" },
+        "rules": { "type": "string" },
+        "governance": { "type": "string" }
+      }
+    }
+  },
+  "additionalProperties": false
+}
