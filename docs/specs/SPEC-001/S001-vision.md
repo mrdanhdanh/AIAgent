@@ -77,6 +77,17 @@ Runtime được thiết kế theo các nguyên tắc:
 | High | Runtime hỗ trợ Simulation |
 | Medium | Runtime có khả năng Self-observation |
 
+## Design Constraints
+
+Runtime **phải** (ràng buộc bắt buộc, khác với Goals):
+
+- Stateless giữa các Execution.
+- Metadata-driven.
+- Platform-independent.
+- Deterministic.
+- Observable.
+- Extensible.
+
 ## Non Goals
 
 Runtime không chịu trách nhiệm:
@@ -103,6 +114,7 @@ Runtime **không được phép**:
 - Thực thi Business Logic
 - Truy cập Database trực tiếp
 - Thay đổi Workflow Definition
+- Sửa Artifact đã tạo (P010 Immutable Artifact)
 - Chứa tri thức nghiệp vụ
 
 ## Runtime Responsibilities
@@ -116,7 +128,8 @@ Runtime chỉ có các trách nhiệm sau:
 - Quản lý State.
 - Quản lý Context.
 - Quản lý Execution Lifecycle.
-- Quản lý Resource Lifecycle.
+- Allocate Execution Resources.
+- Release Execution Resources.
 - Sinh Event.
 - Thu thập Metrics.
 - Sinh Artifact.
@@ -139,6 +152,8 @@ Các điều bất biến:
 - Runtime luôn kết thúc Execution bằng một Terminal State.
 - Runtime không được phụ thuộc Agent cụ thể.
 - Runtime không được ghi trực tiếp vào Knowledge.
+- Runtime chỉ tồn tại trong phạm vi một Execution.
+- Runtime không chia sẻ Context giữa hai Execution.
 
 ## Out of Scope
 
@@ -154,25 +169,27 @@ Runtime **không định nghĩa**:
 
 ## Success Criteria
 
-Runtime được coi là hoàn thành khi có thể:
+Runtime được xem là **đạt Vision** khi:
 
-- Chạy một Workflow bất kỳ.
-- Resolve Capability qua Registry.
-- Điều phối nhiều Agent.
-- Sinh đầy đủ Event.
-- Sinh Artifact.
-- Hỗ trợ Simulation.
-- Hỗ trợ Replay.
-- Không vi phạm bất kỳ Principle P001–P020 nào.
+- Mọi Execution đều đi qua Runtime.
+- Runtime là Execution Coordinator duy nhất.
+- Runtime không vi phạm Constitution (SPEC-000).
+- Runtime có thể mở rộng mà không sửa Core.
 
-## Success Metrics
+> Các test cụ thể (chạy Workflow, resolve Capability, điều phối Agent, sinh Event/Artifact, Simulation, Replay) được định nghĩa tại **S020 — Acceptance Criteria**.
 
-Doctor đo được:
+## Success Metrics (KPI)
 
-- **Zero direct Agent coupling** — không coupling trực tiếp.
-- **100% Event Coverage** — mọi state change có Event.
-- **100% Capability Resolution** — mọi Capability resolve thành công.
-- **100% Workflow Traceability** — mọi Execution trace được.
+```yaml
+success_metrics:
+  execution_through_runtime: 100%
+  event_coverage: 100%
+  capability_resolution: 100%
+  direct_agent_coupling: 0
+  constitution_violations: 0
+```
+
+Doctor đo các KPI này.
 
 ## Architectural Promise
 
@@ -182,6 +199,7 @@ Runtime cam kết:
 - Không biết Agent cụ thể.
 - Không phá vỡ Constitution.
 - Có thể mở rộng mà không sửa Core.
+- Luôn có thể được thay thế implementation mà không ảnh hưởng Contract.
 
 ## Glossary Mapping
 
@@ -211,6 +229,15 @@ S001 chỉ nói **Vision**. Chi tiết ở các section sau:
 - S009 — State Machine
 - S010 — Execution Flow
 - S011 — Events
+- S012 — Errors
+- S013 — Configuration
+- S014 — Extension Points
+- S015 — Security
+- S016 — Performance
+- S017 — Observability
+- S018 — Testing
+- S019 — Compatibility
+- S020 — Acceptance Criteria
 
 ## Tham chiếu chuẩn hóa
 
