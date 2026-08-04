@@ -1,172 +1,305 @@
 # SPEC-001 S002 — Requirement Traceability
-# Ánh xạ Requirement → Principle → Rule → Test → Implementation.
-# Doctor kiểm tra: mọi requirement có ≥1 principle hoặc rule.
+# FR -> P -> RULE -> SPEC -> TEST -> DOCTOR. Doctor doc.
 ---
 version: "1.0"
-
 traceability:
   FR-001:
     principles: [P001, P003]
     rules: [RULE-004]
-    tests: [T-FR-001]
-    implementation: SPEC-001
+    spec: SPEC-001
+    test: T-FR-001
+    doctor: D-FR-001
   FR-002:
     principles: [P001, P011]
     rules: [RULE-004]
-    tests: [T-FR-002]
-    implementation: SPEC-001
+    spec: SPEC-001
+    test: T-FR-002
+    doctor: D-FR-002
   FR-003:
     principles: [P007]
     rules: [RULE-002]
-    tests: [T-FR-003]
-    implementation: SPEC-001
+    spec: SPEC-001
+    test: T-FR-003
+    doctor: D-FR-003
   FR-004:
     principles: [P001, P007]
     rules: [RULE-004]
-    tests: [T-FR-004]
-    implementation: SPEC-001
+    spec: SPEC-001
+    test: T-FR-004
+    doctor: D-FR-004
   FR-005:
     principles: [P001, P009]
     rules: [RULE-006]
-    tests: [T-FR-005]
-    implementation: SPEC-001
+    spec: SPEC-001
+    test: T-FR-005
+    doctor: D-FR-005
   FR-006:
     principles: [P001, P005, P009]
     rules: [RULE-005]
-    tests: [T-FR-006]
-    implementation: SPEC-001
+    spec: SPEC-001
+    test: T-FR-006
+    doctor: D-FR-006
   FR-007:
     principles: [P005, P014]
     rules: [RULE-007]
-    tests: [T-FR-007]
-    implementation: SPEC-001
+    spec: SPEC-001
+    test: T-FR-007
+    doctor: D-FR-007
   FR-008:
     principles: [P010, P013]
     rules: [RULE-009]
-    tests: [T-FR-008]
-    implementation: SPEC-001
+    spec: SPEC-001
+    test: T-FR-008
+    doctor: D-FR-008
   FR-009:
     principles: [P014]
     rules: [RULE-014]
-    tests: [T-FR-009]
-    implementation: SPEC-001
+    spec: SPEC-001
+    test: T-FR-009
+    doctor: D-FR-009
   FR-010:
     principles: [P013]
     rules: [RULE-004]
-    tests: [T-FR-010]
-    implementation: SPEC-001
+    spec: SPEC-001
+    test: T-FR-010
+    doctor: D-FR-010
   FR-011:
     principles: [P005, P013]
     rules: [RULE-013]
-    tests: [T-FR-011]
-    implementation: SPEC-001
+    spec: SPEC-001
+    test: T-FR-011
+    doctor: D-FR-011
   FR-012:
     principles: [P015]
     rules: [RULE-012]
-    tests: [T-FR-012]
-    implementation: SPEC-001
+    spec: SPEC-001
+    test: T-FR-012
+    doctor: D-FR-012
+  FR-013:
+    principles: [P011, P002]
+    rules: [RULE-002]
+    spec: SPEC-001
+    test: T-FR-013
+    doctor: D-FR-013
+  FR-014:
+    principles: [P002]
+    rules: [RULE-003]
+    spec: SPEC-001
+    test: T-FR-014
+    doctor: D-FR-014
+  FR-015:
+    principles: [P001, P005]
+    rules: [RULE-004]
+    spec: SPEC-001
+    test: T-FR-015
+    doctor: D-FR-015
+  FR-016:
+    principles: [P006, P009]
+    rules: [RULE-005]
+    spec: SPEC-001
+    test: T-FR-016
+    doctor: D-FR-016
+  FR-017:
+    principles: [P015]
+    rules: [RULE-012]
+    spec: SPEC-001
+    test: T-FR-017
+    doctor: D-FR-017
+  FR-018:
+    principles: [P015]
+    rules: [RULE-012]
+    spec: SPEC-001
+    test: T-FR-018
+    doctor: D-FR-018
+  FR-019:
+    principles: [P016]
+    rules: [RULE-004]
+    spec: SPEC-001
+    test: T-FR-019
+    doctor: D-FR-019
+  FR-020:
+    principles: [P010, P005]
+    rules: [RULE-009]
+    spec: SPEC-001
+    test: T-FR-020
+    doctor: D-FR-020
   NFR-001:
     principles: [P009, P011]
     rules: [RULE-013]
-    tests: [T-NFR-001]
-    implementation: SPEC-001
+    spec: SPEC-001
+    test: T-NFR-001
+    doctor: D-NFR-001
   NFR-002:
     principles: [P001, P006]
     rules: [RULE-005]
-    tests: [T-NFR-002]
-    implementation: SPEC-001
+    spec: SPEC-001
+    test: T-NFR-002
+    doctor: D-NFR-002
   NFR-003:
     principles: [P003]
     rules: [RULE-001]
-    tests: [T-NFR-003]
-    implementation: SPEC-001
+    spec: SPEC-001
+    test: T-NFR-003
+    doctor: D-NFR-003
   NFR-004:
     principles: [P012, P019]
     rules: [RULE-010]
-    tests: [T-NFR-004]
-    implementation: SPEC-001
+    spec: SPEC-001
+    test: T-NFR-004
+    doctor: D-NFR-004
   NFR-005:
     principles: [P014]
     rules: [RULE-014]
-    tests: [T-NFR-005]
-    implementation: SPEC-001
+    spec: SPEC-001
+    test: T-NFR-005
+    doctor: D-NFR-005
   NFR-006:
     principles: [P013]
     rules: []
-    tests: [T-NFR-006]
-    implementation: SPEC-001
+    spec: SPEC-001
+    test: T-NFR-006
+    doctor: D-NFR-006
   NFR-007:
     principles: [P004]
     rules: [RULE-009]
-    tests: [T-NFR-007]
-    implementation: SPEC-001
+    spec: SPEC-001
+    test: T-NFR-007
+    doctor: D-NFR-007
   NFR-008:
     principles: [P015]
     rules: [RULE-012]
-    tests: [T-NFR-008]
-    implementation: SPEC-001
+    spec: SPEC-001
+    test: T-NFR-008
+    doctor: D-NFR-008
+  NFR-009:
+    principles: [P016, P014]
+    rules: [RULE-008]
+    spec: SPEC-001
+    test: T-NFR-009
+    doctor: D-NFR-009
+  NFR-010:
+    principles: [P008, P014]
+    rules: [RULE-007]
+    spec: SPEC-001
+    test: T-NFR-010
+    doctor: D-NFR-010
+  NFR-011:
+    principles: [P018]
+    rules: [RULE-015]
+    spec: SPEC-001
+    test: T-NFR-011
+    doctor: D-NFR-011
+  NFR-012:
+    principles: [P003]
+    rules: [RULE-001]
+    spec: SPEC-001
+    test: T-NFR-012
+    doctor: D-NFR-012
+  NFR-013:
+    principles: [P017]
+    rules: [RULE-001]
+    spec: SPEC-001
+    test: T-NFR-013
+    doctor: D-NFR-013
+  NFR-014:
+    principles: [P014]
+    rules: [RULE-014]
+    spec: SPEC-001
+    test: T-NFR-014
+    doctor: D-NFR-014
+  NFR-015:
+    principles: [P015]
+    rules: [RULE-012]
+    spec: SPEC-001
+    test: T-NFR-015
+    doctor: D-NFR-015
   C-001:
     principles: [P001]
     rules: [RULE-001]
-    tests: [T-C-001]
-    implementation: SPEC-001
+    spec: SPEC-001
+    test: T-C-001
+    doctor: D-C-001
   C-002:
     principles: [P001]
     rules: [RULE-004]
-    tests: [T-C-002]
-    implementation: SPEC-001
+    spec: SPEC-001
+    test: T-C-002
+    doctor: D-C-002
   C-003:
     principles: [P007]
     rules: [RULE-002]
-    tests: [T-C-003]
-    implementation: SPEC-001
+    spec: SPEC-001
+    test: T-C-003
+    doctor: D-C-003
   C-004:
     principles: [P006, P009]
     rules: [RULE-005]
-    tests: [T-C-004]
-    implementation: SPEC-001
+    spec: SPEC-001
+    test: T-C-004
+    doctor: D-C-004
   C-005:
     principles: [P010]
     rules: [RULE-009]
-    tests: [T-C-005]
-    implementation: SPEC-001
+    spec: SPEC-001
+    test: T-C-005
+    doctor: D-C-005
   C-006:
     principles: [P002]
     rules: [RULE-003]
-    tests: [T-C-006]
-    implementation: SPEC-001
+    spec: SPEC-001
+    test: T-C-006
+    doctor: D-C-006
   C-007:
     principles: [P005, P014]
     rules: [RULE-007]
-    tests: [T-C-007]
-    implementation: SPEC-001
+    spec: SPEC-001
+    test: T-C-007
+    doctor: D-C-007
+  C-008:
+    principles: [P014]
+    rules: [RULE-008]
+    spec: SPEC-001
+    test: T-C-008
+    doctor: D-C-008
+  C-009:
+    principles: [P016]
+    rules: [RULE-008]
+    spec: SPEC-001
+    test: T-C-009
+    doctor: D-C-009
   AR-001:
     principles: [P001]
-    rules: [RULE-004]
-    tests: [T-AR-001]
-    implementation: SPEC-001
+    related: [FR-001, FR-002, FR-003]
+    spec: SPEC-001
+    test: T-AR-001
+    doctor: D-AR-001
   AR-002:
-    principles: [P001, P011]
-    rules: [RULE-004]
-    tests: [T-AR-002]
-    implementation: SPEC-001
+    principles: [P011]
+    related: [FR-013]
+    spec: SPEC-001
+    test: T-AR-002
+    doctor: D-AR-002
   AR-003:
     principles: [P005]
-    rules: [RULE-007]
-    tests: [T-AR-003]
-    implementation: SPEC-001
+    related: [FR-007]
+    spec: SPEC-001
+    test: T-AR-003
+    doctor: D-AR-003
   AR-004:
     principles: [P010]
-    rules: [RULE-009]
-    tests: [T-AR-004]
-    implementation: SPEC-001
+    related: [FR-008]
+    spec: SPEC-001
+    test: T-AR-004
+    doctor: D-AR-004
   AR-005:
     principles: [P015]
-    rules: [RULE-012]
-    tests: [T-AR-005]
-    implementation: SPEC-001
+    related: [FR-012]
+    spec: SPEC-001
+    test: T-AR-005
+    doctor: D-AR-005
   AR-006:
     principles: [P020]
-    rules: [RULE-015]
-    tests: [T-AR-006]
-    implementation: SPEC-001
+    related: [FR-019]
+    spec: SPEC-001
+    test: T-AR-006
+    doctor: D-AR-006
