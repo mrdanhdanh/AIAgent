@@ -1,0 +1,172 @@
+# SPEC-001 S002 — Requirement Traceability
+# Ánh xạ Requirement → Principle → Rule → Test → Implementation.
+# Doctor kiểm tra: mọi requirement có ≥1 principle hoặc rule.
+---
+version: "1.0"
+
+traceability:
+  FR-001:
+    principles: [P001, P003]
+    rules: [RULE-004]
+    tests: [T-FR-001]
+    implementation: SPEC-001
+  FR-002:
+    principles: [P001, P011]
+    rules: [RULE-004]
+    tests: [T-FR-002]
+    implementation: SPEC-001
+  FR-003:
+    principles: [P007]
+    rules: [RULE-002]
+    tests: [T-FR-003]
+    implementation: SPEC-001
+  FR-004:
+    principles: [P001, P007]
+    rules: [RULE-004]
+    tests: [T-FR-004]
+    implementation: SPEC-001
+  FR-005:
+    principles: [P001, P009]
+    rules: [RULE-006]
+    tests: [T-FR-005]
+    implementation: SPEC-001
+  FR-006:
+    principles: [P001, P005, P009]
+    rules: [RULE-005]
+    tests: [T-FR-006]
+    implementation: SPEC-001
+  FR-007:
+    principles: [P005, P014]
+    rules: [RULE-007]
+    tests: [T-FR-007]
+    implementation: SPEC-001
+  FR-008:
+    principles: [P010, P013]
+    rules: [RULE-009]
+    tests: [T-FR-008]
+    implementation: SPEC-001
+  FR-009:
+    principles: [P014]
+    rules: [RULE-014]
+    tests: [T-FR-009]
+    implementation: SPEC-001
+  FR-010:
+    principles: [P013]
+    rules: [RULE-004]
+    tests: [T-FR-010]
+    implementation: SPEC-001
+  FR-011:
+    principles: [P005, P013]
+    rules: [RULE-013]
+    tests: [T-FR-011]
+    implementation: SPEC-001
+  FR-012:
+    principles: [P015]
+    rules: [RULE-012]
+    tests: [T-FR-012]
+    implementation: SPEC-001
+  NFR-001:
+    principles: [P009, P011]
+    rules: [RULE-013]
+    tests: [T-NFR-001]
+    implementation: SPEC-001
+  NFR-002:
+    principles: [P001, P006]
+    rules: [RULE-005]
+    tests: [T-NFR-002]
+    implementation: SPEC-001
+  NFR-003:
+    principles: [P003]
+    rules: [RULE-001]
+    tests: [T-NFR-003]
+    implementation: SPEC-001
+  NFR-004:
+    principles: [P012, P019]
+    rules: [RULE-010]
+    tests: [T-NFR-004]
+    implementation: SPEC-001
+  NFR-005:
+    principles: [P014]
+    rules: [RULE-014]
+    tests: [T-NFR-005]
+    implementation: SPEC-001
+  NFR-006:
+    principles: [P013]
+    rules: []
+    tests: [T-NFR-006]
+    implementation: SPEC-001
+  NFR-007:
+    principles: [P004]
+    rules: [RULE-009]
+    tests: [T-NFR-007]
+    implementation: SPEC-001
+  NFR-008:
+    principles: [P015]
+    rules: [RULE-012]
+    tests: [T-NFR-008]
+    implementation: SPEC-001
+  C-001:
+    principles: [P001]
+    rules: [RULE-001]
+    tests: [T-C-001]
+    implementation: SPEC-001
+  C-002:
+    principles: [P001]
+    rules: [RULE-004]
+    tests: [T-C-002]
+    implementation: SPEC-001
+  C-003:
+    principles: [P007]
+    rules: [RULE-002]
+    tests: [T-C-003]
+    implementation: SPEC-001
+  C-004:
+    principles: [P006, P009]
+    rules: [RULE-005]
+    tests: [T-C-004]
+    implementation: SPEC-001
+  C-005:
+    principles: [P010]
+    rules: [RULE-009]
+    tests: [T-C-005]
+    implementation: SPEC-001
+  C-006:
+    principles: [P002]
+    rules: [RULE-003]
+    tests: [T-C-006]
+    implementation: SPEC-001
+  C-007:
+    principles: [P005, P014]
+    rules: [RULE-007]
+    tests: [T-C-007]
+    implementation: SPEC-001
+  AR-001:
+    principles: [P001]
+    rules: [RULE-004]
+    tests: [T-AR-001]
+    implementation: SPEC-001
+  AR-002:
+    principles: [P001, P011]
+    rules: [RULE-004]
+    tests: [T-AR-002]
+    implementation: SPEC-001
+  AR-003:
+    principles: [P005]
+    rules: [RULE-007]
+    tests: [T-AR-003]
+    implementation: SPEC-001
+  AR-004:
+    principles: [P010]
+    rules: [RULE-009]
+    tests: [T-AR-004]
+    implementation: SPEC-001
+  AR-005:
+    principles: [P015]
+    rules: [RULE-012]
+    tests: [T-AR-005]
+    implementation: SPEC-001
+  AR-006:
+    principles: [P020]
+    rules: [RULE-015]
+    tests: [T-AR-006]
+    implementation: SPEC-001

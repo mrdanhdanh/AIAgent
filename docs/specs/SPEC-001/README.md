@@ -10,6 +10,7 @@ agent: general
 
 > **Trạng thái**: Draft · **Version**: 1.0.0 · **Phụ thuộc**: SPEC-000 (Constitution)
 > **`implements: Runtime`** — xem compliance-matrix trong Constitution.
+> **S001 Vision: ✅ Frozen (2026-08-04)**
 
 ## Runtime tồn tại để làm gì?
 
@@ -21,8 +22,8 @@ agent: general
 
 | # | Bước | File | Trạng thái |
 |---|------|------|-----------|
-| S001 | Vision | `S001-vision.md` | ✅ Draft (chờ freeze) |
-| S002 | Requirements | `S002-requirements.md` | ⬜ |
+| S001 | Vision | `S001-vision.md` | ✅ Frozen |
+| S002 | Requirements | `S002/requirements.md` | ✅ Draft (chờ freeze) |
 | S003 | Responsibilities | `S003-responsibilities.md` | ⬜ |
 | S004 | Boundaries | `S004-boundaries.md` | ⬜ |
 | S005 | Architecture | `S005-architecture.md` | ⬜ |

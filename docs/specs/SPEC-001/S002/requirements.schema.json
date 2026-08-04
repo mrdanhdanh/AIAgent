@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aios://requirements.schema.json",
+  "title": "SPEC-001 Runtime Requirements (S002)",
+  "description": "JSON Schema cho requirements.yaml. Validator kiem tra cau truc.",
+  "type": "object",
+  "required": ["id", "name", "version", "status", "owner", "functional", "non_functional", "constraints", "assumptions", "dependencies", "external_interfaces", "quality_attributes", "acceptance"],
+  "properties": {
+    "id": { "const": "SPEC-001-S002" },
+    "name": { "const": "Runtime Requirements" },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "status": { "enum": ["Draft", "Review", "Approved", "Stable", "Deprecated"] },
+    "owner": { "type": "string" },
+    "functional": {
+      "type": "object",
+      "patternProperties": {
+        "^FR-\\d{3}$": {
+          "type": "object",
+          "required": ["name", "description", "priority", "principles"],
+          "properties": {
+            "name": { "type": "string" },
+            "description": { "type": "string" },
+            "priority": { "enum": ["Critical", "High", "Medium", "Low"] },
+            "principles": { "type": "array", "items": { "type": "string", "pattern": "^P\\d{3}$" } },
+            "rules": { "type": "array", "items": { "type": "string", "pattern": "^RULE-\\d{3}$" } }
+          }
+        }
+      }
+    },
+    "non_functional": {
+      "type": "object",
+      "patternProperties": {
+        "^NFR-\\d{3}$": { "type": "object" }
+      }
+    },
+    "constraints": {
+      "type": "object",
+      "patternProperties": {
+        "^C-\\d{3}$": { "type": "object" }
+      }
+    },
+    "assumptions": { "type": "object" },
+    "dependencies": { "type": "array", "items": { "type": "string" } },
+    "external_interfaces": { "type": "array", "items": { "type": "string" } },
+    "quality_attributes": { "type": "object" },
+    "acceptance": { "type": "object" }
+  },
+  "additionalProperties": false
+}
