@@ -1,0 +1,149 @@
+# SPEC-001 S003 — Runtime Responsibilities
+# Phân rã 20 FR thành 14 trách nhiệm kiến trúc.
+---
+id: SPEC-001-S003
+name: Runtime Responsibilities
+version: "1.0.0"
+status: Draft
+owner: Runtime Team
+responsibilities:
+  RESP-001:
+    name: Execution Initiation
+    description: Khởi tạo Execution Context và bắt đầu Execution
+    priority: Critical
+    category: Core
+    owner: Runtime
+    status: Draft
+    requirements: [FR-001, FR-015]
+    principles: [P001, P003]
+    rules: [RULE-004]
+  RESP-002:
+    name: Workflow Management
+    description: Nạp, validate và quản lý Workflow Definition
+    priority: Critical
+    category: Core
+    owner: Runtime
+    status: Draft
+    requirements: [FR-002, FR-013]
+    principles: [P001, P011]
+    rules: [RULE-004]
+  RESP-003:
+    name: Capability Resolution
+    description: Resolve và validate Capability/Contract
+    priority: Critical
+    category: Core
+    owner: Runtime
+    status: Draft
+    requirements: [FR-003, FR-014]
+    principles: [P007, P002]
+    rules: [RULE-002, RULE-003]
+  RESP-004:
+    name: Agent Orchestration
+    description: Điều phối Agent theo Capability đã resolve
+    priority: Critical
+    category: Execution
+    owner: Runtime
+    status: Draft
+    requirements: [FR-004]
+    principles: [P001, P007]
+    rules: [RULE-004]
+  RESP-005:
+    name: Context Management
+    description: Tạo/đọc/đóng Execution Context, cô lập giữa các Execution
+    priority: Critical
+    category: State
+    owner: Runtime
+    status: Draft
+    requirements: [FR-005, FR-016]
+    principles: [P001, P009, P006]
+    rules: [RULE-006, RULE-005]
+  RESP-006:
+    name: State Management
+    description: Quản lý state trong Execution, mọi thay đổi phát Event
+    priority: Critical
+    category: State
+    owner: Runtime
+    status: Draft
+    requirements: [FR-006]
+    principles: [P001, P005, P009]
+    rules: [RULE-005]
+  RESP-007:
+    name: Event Emission
+    description: Phát Event cho mọi state change
+    priority: High
+    category: Events
+    owner: Runtime
+    status: Draft
+    requirements: [FR-007]
+    principles: [P005, P014]
+    rules: [RULE-007]
+  RESP-008:
+    name: Artifact Production
+    description: Thu thập và công bố Artifact (kết quả Execution)
+    priority: High
+    category: Data
+    owner: Runtime
+    status: Draft
+    requirements: [FR-008, FR-020]
+    principles: [P010, P005]
+    rules: [RULE-009]
+  RESP-009:
+    name: Metrics Collection
+    description: Thu thập Metrics cho observability
+    priority: High
+    category: Observability
+    owner: Runtime
+    status: Draft
+    requirements: [FR-009]
+    principles: [P014]
+    rules: [RULE-014]
+  RESP-010:
+    name: Simulation Support
+    description: Chạy Simulation trước khi Execute
+    priority: Medium
+    category: Execution
+    owner: Runtime
+    status: Draft
+    requirements: [FR-010]
+    principles: [P013]
+    rules: [RULE-004]
+  RESP-011:
+    name: Replay Support
+    description: Replay Execution từ Event log
+    priority: Medium
+    category: Execution
+    owner: Runtime
+    status: Draft
+    requirements: [FR-011]
+    principles: [P005, P013]
+    rules: [RULE-013]
+  RESP-012:
+    name: Execution Control
+    description: Hủy an toàn, timeout, retry theo policy
+    priority: High
+    category: Execution
+    owner: Runtime
+    status: Draft
+    requirements: [FR-012, FR-017, FR-018]
+    principles: [P015]
+    rules: [RULE-012]
+  RESP-013:
+    name: Lifecycle Management
+    description: Quản lý vòng đời Execution (created→running→terminal)
+    priority: Critical
+    category: Execution
+    owner: Runtime
+    status: Draft
+    requirements: [FR-015]
+    principles: [P001, P005]
+    rules: [RULE-004]
+  RESP-014:
+    name: Governance Enforcement
+    description: Enforce approval gate và tuân thủ Constitution
+    priority: Medium
+    category: Governance
+    owner: Runtime
+    status: Draft
+    requirements: [FR-019]
+    principles: [P016, P020]
+    rules: [RULE-004, RULE-015]

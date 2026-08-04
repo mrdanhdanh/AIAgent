@@ -92,7 +92,34 @@ if (Test-Path $prFile) {
   }
 }
 
-# ---------- S1-006: SPEC.yaml ----------
+# ---------- S1-007: S003 responsibilities ----------
+$s003 = Join-Path $spec1 'S003'
+foreach ($f in @('responsibilities.md','responsibilities.yaml','responsibilities.schema.json','responsibility-traceability.yaml')) {
+  if (-not (Test-Path (Join-Path $s003 $f))) { $errors += "S1-007: missing S003/$f" }
+}
+$respYaml = Join-Path $s003 'responsibilities.yaml'
+if (Test-Path $respYaml) {
+  $resp = Get-Content -LiteralPath $respYaml -Raw -Encoding utf8
+  if ($resp -notmatch '(?m)^responsibilities:') { $errors += "S1-007: responsibilities.yaml thieu 'responsibilities:'" }
+  for ($i = 1; $i -le 14; $i++) {
+    $r = "RESP-{0:D3}" -f $i
+    if ($resp -notmatch [regex]::Escape($r)) { $errors += "S1-007: thieu $r" }
+  }
+}
+# traceability: moi RESP co requirement + principle
+$respTr = Join-Path $s003 'responsibility-traceability.yaml'
+if (Test-Path $respTr) {
+  $tr = Get-Content -LiteralPath $respTr -Raw -Encoding utf8
+  for ($i = 1; $i -le 14; $i++) {
+    $r = "RESP-{0:D3}" -f $i
+    $block = [regex]::Match($tr, "(?s)${r}:\s*requirements:\s*\[([^\]]*)\]\s*principles:\s*\[([^\]]*)\]")
+    if (-not $block.Success) { $errors += "S1-007: $r thieu requirements/principles" }
+    elseif ([string]::IsNullOrWhiteSpace($block.Groups[1].Value)) { $errors += "S1-007: $r khong co requirement nao" }
+    elseif ([string]::IsNullOrWhiteSpace($block.Groups[2].Value)) { $errors += "S1-007: $r khong co principle nao" }
+  }
+}
+
+# ---------- S1-008: SPEC.yaml ----------
 $specFile = Join-Path $spec1 'SPEC.yaml'
 if (Test-Path $specFile) {
   $st = Get-Content -LiteralPath $specFile -Raw -Encoding utf8

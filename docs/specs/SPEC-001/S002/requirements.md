@@ -8,7 +8,8 @@ agent: general
 
 # S002 — Runtime Requirements
 
-> **SPEC-001**: Runtime Kernel · **Version**: 1.0.0 · **Trạng thái**: Draft
+> **SPEC-001**: Runtime Kernel · **Version**: 1.0.0 · **Trạng thái**: ✅ Frozen (2026-08-04)
+> Không bổ sung requirement mới. Yêu cầu mới → RFC/ADR → version 1.1.0.
 
 ## Câu hỏi duy nhất
 
