@@ -1,0 +1,14 @@
+# SPEC-001 S009 — Task State Machine
+# RM-004 Task
+---
+version: "1.0"
+model: RM-004
+owner: Phase
+states: [Queued, Running, Completed, Failed]
+initial_state: Queued
+terminal_states: [Completed, Failed]
+transitions:
+  - from: Queued; to: Running; event: TASK_STARTED; guard: Agent được giao
+  - from: Running; to: Completed; event: TASK_COMPLETED; guard: Kết quả hợp lệ
+  - from: Running; to: Failed; event: TASK_FAILED; guard: Lỗi thực thi
+  - from: Failed; to: Running; event: TASK_RETRY; guard: Retry policy cho phép

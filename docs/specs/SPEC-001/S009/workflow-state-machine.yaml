@@ -1,0 +1,15 @@
+# SPEC-001 S009 — Workflow State Machine
+# RM-002 Workflow
+---
+version: "1.0"
+model: RM-002
+owner: Workflow
+states: [Draft, Approved, Running, Completed, Archived]
+initial_state: Draft
+terminal_states: [Completed, Archived]
+transitions:
+  - from: Draft; to: Approved; event: WORKFLOW_APPROVED; guard: Validation pass
+  - from: Approved; to: Running; event: WORKFLOW_STARTED; guard: Execution bắt đầu
+  - from: Running; to: Completed; event: WORKFLOW_COMPLETED; guard: Mọi Phase xong
+  - from: Running; to: Failed; event: WORKFLOW_FAILED; guard: Lỗi Execution
+  - from: Completed; to: Archived; event: WORKFLOW_ARCHIVED; guard: Chính sách lưu trữ

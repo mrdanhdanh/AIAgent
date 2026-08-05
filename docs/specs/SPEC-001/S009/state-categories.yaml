@@ -1,0 +1,9 @@
+# SPEC-001 S009 — State Categories (ST004)
+---
+version: "1.0"
+categories:
+  Initial: [Created]
+  PreExecution: [Validated, Ready]
+  Active: [Running, Paused, Resuming, Retrying]
+  Recovery: [Failed, Retrying]
+  Terminal: [Completed, Cancelled, Archived]

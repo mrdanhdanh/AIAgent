@@ -1,0 +1,12 @@
+# SPEC-001 S009 — State Machine Validation v2 (ST007)
+# Doctor kiem tra.
+---
+version: "1.0"
+validation:
+  - Mọi transition phát Event (P005).
+  - Mọi transition có Guard.
+  - Execution luôn kết thúc bằng Terminal State.
+  - Không có transition ngoài bảng.
+  - Retry phải qua recovery state (Failed -> Retrying -> Running).
+  - Context không được chia sẻ giữa hai Execution.
+  - State thuộc Runtime, Agent không giữ state (P006).

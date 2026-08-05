@@ -1,0 +1,12 @@
+# SPEC-001 S009 — State Machine Registry v2
+# Doctor/Dashboard doc mot file.
+---
+version: "1.0"
+state_machines:
+  Execution: { model: RM-001, owner: Runtime, states: 11, terminal: 3, recovery: 2 }
+  Task: { model: RM-004, owner: Phase, states: 4, terminal: 2, recovery: 1 }
+  Workflow: { model: RM-002, owner: Workflow, states: 5, terminal: 2, recovery: 0 }
+  Context: { model: RM-005, owner: Runtime, states: 3, terminal: 1, recovery: 0 }
+  Contract: { model: RM-009, owner: Component, states: 3, terminal: 1, recovery: 0 }
+  Artifact: { model: RM-008, owner: Runtime, states: 4, terminal: 1, recovery: 0 }
+  Capability: { model: RM-010, owner: Registry, states: 4, terminal: 1, recovery: 0 }

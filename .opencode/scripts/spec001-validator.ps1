@@ -259,13 +259,34 @@ if (Test-Path $comFile) {
   if ($edgeCount -lt 10) { $errors += "S1-015: communication-matrix chi co $edgeCount edges (can >=10)" }
 }
 
-# ---------- S1-016: SPEC.yaml ----------
+# ---------- S1-017: S009 state machine ----------
+$s009 = Join-Path $spec1 'S009'
+foreach ($f in @('state-machine.md','state-machine.yaml','state-machine.schema.json','execution-state-machine.yaml','task-state-machine.yaml','workflow-state-machine.yaml','context-state-machine.yaml','state-categories.yaml','state-events.yaml','state-machine-registry.yaml','state-machine-validation.yaml')) {
+  if (-not (Test-Path (Join-Path $s009 $f))) { $errors += "S1-017: missing S009/$f" }
+}
+$smYaml = Join-Path $s009 'state-machine.yaml'
+if (Test-Path $smYaml) {
+  $sm = Get-Content -LiteralPath $smYaml -Raw -Encoding utf8
+  if ($sm -notmatch '(?m)^state_machines:') { $errors += "S1-017: thieu 'state_machines:'" }
+  foreach ($m in @('Execution','Task','Workflow','Context','Contract','Artifact','Capability')) {
+    if ($sm -notmatch [regex]::Escape($m)) { $errors += "S1-017: thieu state machine $m" }
+  }
+  if ($sm -notmatch '(?m)^state_categories:') { $errors += "S1-017: thieu state_categories" }
+  # moi transition co event + guard
+  $execBlock = [regex]::Match($sm, "(?s)Execution:.*?transitions:")
+  if ($execBlock.Success) {
+    $trans = [regex]::Matches($sm, '(?m)^      - from: .*?event: (\S+)\s+guard: (.+)$')
+    if ($trans.Count -lt 5) { $errors += "S1-017: Execution transitions qua it ($($trans.Count))" }
+  }
+}
+
+# ---------- S1-018: SPEC.yaml ----------
 $specFile = Join-Path $spec1 'SPEC.yaml'
 if (Test-Path $specFile) {
   $st = Get-Content -LiteralPath $specFile -Raw -Encoding utf8
-  if ($st -notmatch '(?m)^id:\s*SPEC-001') { $errors += "S1-016: SPEC.yaml id phai la SPEC-001" }
-  if ($st -notmatch '(?m)^implements:') { $errors += "S1-016: SPEC.yaml thieu implements" }
-  foreach ($d in @('SPEC-000')) { if ($st -notmatch [regex]::Escape($d)) { $errors += "S1-016: thieu dependency $d" } }
+  if ($st -notmatch '(?m)^id:\s*SPEC-001') { $errors += "S1-018: SPEC.yaml id phai la SPEC-001" }
+  if ($st -notmatch '(?m)^implements:') { $errors += "S1-018: SPEC.yaml thieu implements" }
+  foreach ($d in @('SPEC-000')) { if ($st -notmatch [regex]::Escape($d)) { $errors += "S1-018: thieu dependency $d" } }
 }
 
 # ---------- Output ----------
