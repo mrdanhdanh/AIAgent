@@ -2,11 +2,21 @@
 # Doctor/Dashboard doc mot file.
 ---
 version: "1.0"
-state_machines:
-  Execution: { model: RM-001, owner: Runtime, states: 11, terminal: 3, recovery: 2 }
-  Task: { model: RM-004, owner: Phase, states: 4, terminal: 2, recovery: 1 }
-  Workflow: { model: RM-002, owner: Workflow, states: 5, terminal: 2, recovery: 0 }
-  Context: { model: RM-005, owner: Runtime, states: 3, terminal: 1, recovery: 0 }
-  Contract: { model: RM-009, owner: Component, states: 3, terminal: 1, recovery: 0 }
-  Artifact: { model: RM-008, owner: Runtime, states: 4, terminal: 1, recovery: 0 }
-  Capability: { model: RM-010, owner: Registry, states: 4, terminal: 1, recovery: 0 }
+canonical:
+  name: Runtime State Machine (Execution)
+  model: RM-001
+  owner: Runtime
+  states: 14
+  terminal: 6
+  active: 4
+  internal: 4
+  transitions: 18
+  initial: ST-001
+  terminal_states: [ST-008, ST-009, ST-010, ST-011, ST-012, ST-014]
+sub_machines:
+  Task: { model: RM-004, owner: Phase, states: 4, terminal: 2 }
+  Workflow: { model: RM-002, owner: Workflow, states: 5, terminal: 2 }
+  Context: { model: RM-005, owner: Runtime, states: 3, terminal: 1 }
+  Contract: { model: RM-009, owner: Component, states: 3, terminal: 1 }
+  Artifact: { model: RM-008, owner: Runtime, states: 4, terminal: 1 }
+  Capability: { model: RM-010, owner: Registry, states: 4, terminal: 1 }

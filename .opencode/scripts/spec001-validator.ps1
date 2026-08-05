@@ -261,22 +261,25 @@ if (Test-Path $comFile) {
 
 # ---------- S1-017: S009 state machine ----------
 $s009 = Join-Path $spec1 'S009'
-foreach ($f in @('state-machine.md','state-machine.yaml','state-machine.schema.json','execution-state-machine.yaml','task-state-machine.yaml','workflow-state-machine.yaml','context-state-machine.yaml','state-categories.yaml','state-events.yaml','state-machine-registry.yaml','state-machine-validation.yaml')) {
+foreach ($f in @('state-machine.md','state-machine.yaml','state.schema.json','states.yaml','transitions.yaml','transition-matrix.yaml','state-events.yaml','retry-model.yaml','replay-model.yaml','state-machine-registry.yaml','state-machine-validation.yaml')) {
   if (-not (Test-Path (Join-Path $s009 $f))) { $errors += "S1-017: missing S009/$f" }
 }
 $smYaml = Join-Path $s009 'state-machine.yaml'
 if (Test-Path $smYaml) {
   $sm = Get-Content -LiteralPath $smYaml -Raw -Encoding utf8
-  if ($sm -notmatch '(?m)^state_machines:') { $errors += "S1-017: thieu 'state_machines:'" }
-  foreach ($m in @('Execution','Task','Workflow','Context','Contract','Artifact','Capability')) {
-    if ($sm -notmatch [regex]::Escape($m)) { $errors += "S1-017: thieu state machine $m" }
+  if ($sm -notmatch '(?m)^states:') { $errors += "S1-017: thieu 'states:'" }
+  for ($i = 1; $i -le 14; $i++) {
+    $s = "ST-{0:D3}" -f $i
+    if ($sm -notmatch [regex]::Escape($s)) { $errors += "S1-017: thieu state $s" }
   }
-  if ($sm -notmatch '(?m)^state_categories:') { $errors += "S1-017: thieu state_categories" }
-  # moi transition co event + guard
-  $execBlock = [regex]::Match($sm, "(?s)Execution:.*?transitions:")
-  if ($execBlock.Success) {
-    $trans = [regex]::Matches($sm, '(?m)^      - from: .*?event: (\S+)\s+guard: (.+)$')
-    if ($trans.Count -lt 5) { $errors += "S1-017: Execution transitions qua it ($($trans.Count))" }
+  if ($sm -notmatch '(?m)^initial_state:') { $errors += "S1-017: thieu initial_state" }
+  if ($sm -notmatch '(?m)^terminal_states:') { $errors += "S1-017: thieu terminal_states" }
+  if ($sm -notmatch '(?m)^transitions:') { $errors += "S1-017: thieu transitions" }
+  # transition count
+  $trCount = ([regex]::Matches($sm, '(?m)^  - from:')).Count
+  if ($trCount -lt 10) { $errors += "S1-017: chi co $trCount transitions (can >=10)" }
+  foreach ($sec in @('philosophy','principles','invariants','ownership')) {
+    if ($sm -notmatch "(?m)^${sec}:") { $errors += "S1-017: thieu '$sec'" }
   }
 }
 

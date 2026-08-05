@@ -1,0 +1,11 @@
+# SPEC-001 S009 — Retry Model
+---
+version: "1.0"
+model:
+  Failed → Retrying → Running
+  condition: Retry policy cho phép (FR-018, RULE-012)
+  limits:
+    - max_retries
+    - backoff
+    - timeout_per_retry
+  note: Retry khong lam thay doi Lineage goc.

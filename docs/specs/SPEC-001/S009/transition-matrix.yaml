@@ -1,0 +1,26 @@
+# SPEC-001 S009 — Transition Matrix (From/To/Allowed)
+# Doctor doc bang nay.
+---
+version: "1.0"
+matrix:
+  - from: ST-001; to: ST-002; allowed: true
+  - from: ST-002; to: ST-003; allowed: true
+  - from: ST-002; to: ST-009; allowed: true
+  - from: ST-003; to: ST-004; allowed: true
+  - from: ST-004; to: ST-005; allowed: true
+  - from: ST-005; to: ST-004; allowed: true
+  - from: ST-004; to: ST-006; allowed: true
+  - from: ST-006; to: ST-004; allowed: true
+  - from: ST-004; to: ST-007; allowed: true
+  - from: ST-007; to: ST-010; allowed: true
+  - from: ST-004; to: ST-008; allowed: true
+  - from: ST-004; to: ST-009; allowed: true
+  - from: ST-004; to: ST-011; allowed: true
+  - from: ST-004; to: ST-014; allowed: true
+  - from: ST-009; to: ST-013; allowed: true
+  - from: ST-013; to: ST-004; allowed: true
+  - from: ST-008; to: ST-012; allowed: true
+  - from: ST-009; to: ST-012; allowed: true
+  - from: ST-001; to: ST-004; allowed: false
+  - from: ST-009; to: ST-004; allowed: false
+  - from: ST-008; to: ST-004; allowed: false

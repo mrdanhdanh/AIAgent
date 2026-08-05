@@ -1,5 +1,5 @@
-# SPEC-001 S009 — Runtime State Machine v2
-# Trai tim cua Runtime. Behavior truoc Data. Khong thiet ke enum — thiet ke hanh vi.
+# SPEC-001 S009 — Runtime State Machine v2 (Canonical)
+# Hien phap cua Execution. 14 states, 18 transitions.
 ---
 id: SPEC-001-S009
 name: Runtime State Machine
@@ -7,149 +7,115 @@ version: "1.0.0"
 status: Draft
 owner: Runtime Team
 philosophy:
-  - Khong thiet ke enum — thiet ke hanh vi (Behavior).
-  - State quyet dinh hanh vi.
-  - Moi transition phai co Event + Guard.
-  - Data la bieu dien cua State.
-canonical_models: [RM-001 Execution, RM-002 Workflow, RM-004 Task, RM-005 Context, RM-006 State, RM-009 Contract, RM-008 Artifact, RM-010 Capability]
-state_categories:
-  Initial: [Created]
-  PreExecution: [Validated, Ready]
-  Active: [Running, Paused, Resuming, Retrying]
-  Recovery: [Failed, Retrying]
-  Terminal: [Completed, Cancelled, Archived]
-state_machines:
-  Execution:
-    model: RM-001
-    owner: Runtime
-    states: [Created, Validated, Ready, Running, Paused, Resuming, Completed, Failed, Retrying, Cancelled, Archived]
-    initial_state: Created
-    terminal_states: [Completed, Cancelled, Archived]
-    recovery_states: [Failed, Retrying]
-    invariants:
-      - Execution luôn kết thúc bằng Terminal State.
-      - Mọi transition phát Event.
-      - Không có transition ngoài bảng.
-      - Retry phải có guard (Retry policy).
-    transitions:
-      - from: Created
-        to: Validated
-        event: EXECUTION_VALIDATED
-        guard: Workflow + Contract hợp lệ
-      - from: Validated
-        to: Ready
-        event: EXECUTION_READY
-        guard: Context được tạo
-      - from: Ready
-        to: Running
-        event: EXECUTION_STARTED
-        guard: Simulation pass (P013)
-      - from: Running
-        to: Paused
-        event: EXECUTION_PAUSED
-        guard: Pause theo yêu cầu
-      - from: Paused
-        to: Resuming
-        event: EXECUTION_RESUMING
-        guard: Resume hợp lệ
-      - from: Resuming
-        to: Running
-        event: EXECUTION_RESUMED
-        guard: Tài nguyên sẵn sàng
-      - from: Running
-        to: Failed
-        event: EXECUTION_FAILED
-        guard: Lỗi không retry được
-      - from: Failed
-        to: Retrying
-        event: EXECUTION_RETRYING
-        guard: Retry policy cho phép
-      - from: Retrying
-        to: Running
-        event: EXECUTION_RETRIED
-        guard: Retry attempt bắt đầu
-      - from: Running
-        to: Cancelled
-        event: EXECUTION_CANCELLED
-        guard: Cancel request hợp lệ
-      - from: Completed
-        to: Archived
-        event: EXECUTION_ARCHIVED
-        guard: Chính sách lưu trữ
-      - from: Failed
-        to: Archived
-        event: EXECUTION_ARCHIVED
-        guard: Hết retry, chính sách lưu trữ
-      - from: Cancelled
-        to: Archived
-        event: EXECUTION_ARCHIVED
-        guard: Chính sách lưu trữ
-  Task:
-    model: RM-004
-    owner: Phase
-    states: [Queued, Running, Completed, Failed]
-    initial_state: Queued
-    terminal_states: [Completed, Failed]
-    transitions:
-      - from: Queued; to: Running; event: TASK_STARTED; guard: Agent được giao
-      - from: Running; to: Completed; event: TASK_COMPLETED; guard: Kết quả hợp lệ
-      - from: Running; to: Failed; event: TASK_FAILED; guard: Lỗi thực thi
-      - from: Failed; to: Running; event: TASK_RETRY; guard: Retry policy cho phép
-  Workflow:
-    model: RM-002
-    owner: Workflow
-    states: [Draft, Approved, Running, Completed, Archived]
-    initial_state: Draft
-    terminal_states: [Completed, Archived]
-    transitions:
-      - from: Draft; to: Approved; event: WORKFLOW_APPROVED; guard: Validation pass
-      - from: Approved; to: Running; event: WORKFLOW_STARTED; guard: Execution bắt đầu
-      - from: Running; to: Completed; event: WORKFLOW_COMPLETED; guard: Mọi Phase xong
-      - from: Running; to: Failed; event: WORKFLOW_FAILED; guard: Lỗi Execution
-      - from: Completed; to: Archived; event: WORKFLOW_ARCHIVED; guard: Chính sách lưu trữ
-  Context:
-    model: RM-005
-    owner: Runtime
-    states: [Created, Active, Closed]
-    initial_state: Created
-    terminal_states: [Closed]
-    transitions:
-      - from: Created; to: Active; event: CONTEXT_ACTIVATED; guard: Execution khởi tạo
-      - from: Active; to: Closed; event: CONTEXT_CLOSED; guard: Execution kết thúc
-  Contract:
-    model: RM-009
-    owner: Component
-    states: [Draft, Published, Deprecated]
-    initial_state: Draft
-    terminal_states: [Deprecated]
-    transitions:
-      - from: Draft; to: Published; event: CONTRACT_PUBLISHED; guard: Approval pass
-      - from: Published; to: Deprecated; event: CONTRACT_DEPRECATED; guard: Có replacement
-  Artifact:
-    model: RM-008
-    owner: Runtime
-    states: [Created, Published, Consumed, Archived]
-    initial_state: Created
-    terminal_states: [Archived]
-    transitions:
-      - from: Created; to: Published; event: ARTIFACT_PUBLISHED; guard: Immutable + checksum
-      - from: Published; to: Consumed; event: ARTIFACT_CONSUMED; guard: Được đọc bởi consumer
-      - from: Consumed; to: Archived; event: ARTIFACT_ARCHIVED; guard: Chính sách lưu trữ
-  Capability:
-    model: RM-010
-    owner: Registry
-    states: [Registered, Available, Deprecated, Removed]
-    initial_state: Registered
-    terminal_states: [Removed]
-    transitions:
-      - from: Registered; to: Available; event: CAPABILITY_AVAILABLE; guard: Validate pass
-      - from: Available; to: Deprecated; event: CAPABILITY_DEPRECATED; guard: Có replacement
-      - from: Deprecated; to: Removed; event: CAPABILITY_REMOVED; guard: Hết window
-mapping:
-  component: State Manager (CMP-004)
-  contract: State Contract (CTR-007)
-  responsibilities: [RR-015, RR-016, RR-017, RR-018]
-  requirements: [FR-006]
-  boundary: B006-state
-  rule: RULE-005
-  principles: [P005, P009]
+  - Runtime luôn ở đúng một State.
+  - Một Execution chỉ có một Active State.
+  - State chỉ thay đổi qua Transition.
+  - Transition phải hợp lệ.
+  - Mọi Transition sinh Event.
+  - State không được sửa trực tiếp.
+principles:
+  - State là nguồn sự thật duy nhất về Execution.
+  - State độc lập implementation.
+  - State bất biến sau khi rời khỏi.
+  - Transition quyết định Lifecycle.
+  - Không được bỏ qua State.
+states:
+  ST-001: { name: Created, type: Initial }
+  ST-002: { name: Validating, type: Internal }
+  ST-003: { name: Prepared, type: Internal }
+  ST-004: { name: Running, type: Active }
+  ST-005: { name: Waiting, type: Active }
+  ST-006: { name: Suspended, type: Active }
+  ST-007: { name: Cancelling, type: Active }
+  ST-008: { name: Completed, type: Terminal }
+  ST-009: { name: Failed, type: Terminal }
+  ST-010: { name: Cancelled, type: Terminal }
+  ST-011: { name: TimedOut, type: Terminal }
+  ST-012: { name: Replayed, type: Terminal }
+  ST-013: { name: Retrying, type: Internal }
+  ST-014: { name: Aborted, type: Terminal }
+initial_state: ST-001
+terminal_states: [ST-008, ST-009, ST-010, ST-011, ST-012, ST-014]
+active_states: [ST-004, ST-005, ST-006, ST-007]
+transitions:
+  - from: ST-001
+    to: ST-002
+    event: EXECUTION_VALIDATING
+    guard: Workflow + Contract hợp lệ
+  - from: ST-002
+    to: ST-003
+    event: EXECUTION_PREPARED
+    guard: Validation pass
+  - from: ST-002
+    to: ST-009
+    event: EXECUTION_VALIDATION_FAILED
+    guard: Validation fail
+  - from: ST-003
+    to: ST-004
+    event: EXECUTION_STARTED
+    guard: Simulation pass (P013)
+  - from: ST-004
+    to: ST-005
+    event: EXECUTION_WAITING
+    guard: Cần approval/ngoại bộ
+  - from: ST-005
+    to: ST-004
+    event: EXECUTION_APPROVED
+    guard: Approval được duyệt
+  - from: ST-004
+    to: ST-006
+    event: EXECUTION_SUSPENDED
+    guard: Pause theo yêu cầu
+  - from: ST-006
+    to: ST-004
+    event: EXECUTION_RESUMED
+    guard: Resume hợp lệ
+  - from: ST-004
+    to: ST-007
+    event: EXECUTION_CANCELLING
+    guard: Cancel request hợp lệ
+  - from: ST-007
+    to: ST-010
+    event: EXECUTION_CANCELLED
+    guard: Hủy thành công
+  - from: ST-004
+    to: ST-008
+    event: EXECUTION_COMPLETED
+    guard: Mọi Task/Phase xong
+  - from: ST-004
+    to: ST-009
+    event: EXECUTION_FAILED
+    guard: Lỗi không retry được
+  - from: ST-004
+    to: ST-011
+    event: EXECUTION_TIMED_OUT
+    guard: Timeout policy
+  - from: ST-004
+    to: ST-014
+    event: EXECUTION_ABORTED
+    guard: System abort
+  - from: ST-009
+    to: ST-013
+    event: EXECUTION_RETRYING
+    guard: Retry policy cho phép
+  - from: ST-013
+    to: ST-004
+    event: EXECUTION_RETRIED
+    guard: Retry attempt
+  - from: ST-008
+    to: ST-012
+    event: EXECUTION_REPLAYED
+    guard: Replay được tạo
+  - from: ST-009
+    to: ST-012
+    event: EXECUTION_REPLAYED
+    guard: Replay được tạo
+invariants:
+  - Chỉ một Active State tại một thời điểm.
+  - Terminal State không đổi.
+  - Initial State chỉ một lần.
+  - Không quay ngược Lifecycle.
+  - Event luôn đi cùng Transition.
+ownership:
+  owner: Runtime
+  rule: Không Agent nào được đổi State.

@@ -1,0 +1,94 @@
+# SPEC-001 S009 — Transitions (pre/post conditions)
+---
+version: "1.0"
+transitions:
+  ST-001-ST-002:
+    event: EXECUTION_VALIDATING
+    guard: Workflow + Contract hợp lệ
+    precondition: Execution vừa tạo
+    postcondition: Validation bắt đầu
+  ST-002-ST-003:
+    event: EXECUTION_PREPARED
+    guard: Validation pass
+    precondition: Validation thành công
+    postcondition: Context được cấp
+  ST-002-ST-009:
+    event: EXECUTION_VALIDATION_FAILED
+    guard: Validation fail
+    precondition: Workflow không hợp lệ
+    postcondition: Failure Artifact
+  ST-003-ST-004:
+    event: EXECUTION_STARTED
+    guard: Simulation pass (P013)
+    precondition: Execution sẵn sàng
+    postcondition: Running bắt đầu
+  ST-004-ST-005:
+    event: EXECUTION_WAITING
+    guard: Cần approval/ngoại bộ
+    precondition: Approval gate kích hoạt
+    postcondition: Chờ quyết định
+  ST-005-ST-004:
+    event: EXECUTION_APPROVED
+    guard: Approval được duyệt
+    precondition: Quyết định hợp lệ
+    postcondition: Tiếp tục chạy
+  ST-004-ST-006:
+    event: EXECUTION_SUSPENDED
+    guard: Pause theo yêu cầu
+    precondition: Execution đang chạy
+    postcondition: Tạm dừng
+  ST-006-ST-004:
+    event: EXECUTION_RESUMED
+    guard: Resume hợp lệ
+    precondition: Tài nguyên sẵn sàng
+    postcondition: Tiếp tục chạy
+  ST-004-ST-007:
+    event: EXECUTION_CANCELLING
+    guard: Cancel request hợp lệ
+    precondition: Yêu cầu hủy
+    postcondition: Đang hủy
+  ST-007-ST-010:
+    event: EXECUTION_CANCELLED
+    guard: Hủy thành công
+    precondition: Hủy hoàn tất
+    postcondition: Cancelled Terminal
+  ST-004-ST-008:
+    event: EXECUTION_COMPLETED
+    guard: Mọi Task/Phase xong
+    precondition: Tất cả Task hoàn thành
+    postcondition: Result được publish
+  ST-004-ST-009:
+    event: EXECUTION_FAILED
+    guard: Lỗi không retry được
+    precondition: Lỗi thực thi
+    postcondition: Failure Artifact
+  ST-004-ST-011:
+    event: EXECUTION_TIMED_OUT
+    guard: Timeout policy
+    precondition: Vượt thời gian
+    postcondition: Timeout Artifact
+  ST-004-ST-014:
+    event: EXECUTION_ABORTED
+    guard: System abort
+    precondition: Lỗi hệ thống
+    postcondition: Abort Artifact
+  ST-009-ST-013:
+    event: EXECUTION_RETRYING
+    guard: Retry policy cho phép
+    precondition: Lỗi recoverable
+    postcondition: Chuẩn bị retry
+  ST-013-ST-004:
+    event: EXECUTION_RETRIED
+    guard: Retry attempt
+    precondition: Retry bắt đầu
+    postcondition: Chạy lại
+  ST-008-ST-012:
+    event: EXECUTION_REPLAYED
+    guard: Replay được tạo
+    precondition: Replay Execution mới
+    postcondition: Lineage giữ nguyên
+  ST-009-ST-012:
+    event: EXECUTION_REPLAYED
+    guard: Replay được tạo
+    precondition: Replay Execution mới
+    postcondition: Lineage giữ nguyên
