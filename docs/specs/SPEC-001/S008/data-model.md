@@ -9,7 +9,7 @@ agent: general
 
 # S008 — Runtime Data Model
 
-> **SPEC-001**: Runtime Kernel · **Version**: 1.0.0 · **Trạng thái**: Draft
+> **SPEC-001**: Runtime Kernel · **Version**: 1.0.0 · **Trạng thái**: ✅ Frozen (2026-08-04)
 > **Vị trí**: Dynamic Model của Runtime — tham chiếu Canonical Models (SPEC-001A) + State Machine (S009).
 
 ## Câu hỏi duy nhất

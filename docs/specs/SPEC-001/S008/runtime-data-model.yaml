@@ -2,6 +2,9 @@
 # Canonical Data Model — Single Source of Truth (P009).
 ---
 version: "1.0"
+status: Approved
+frozen: true
+frozen_date: "2026-08-04"
 aggregate_root: Execution
 aggregate_rules:
   - Execution là Aggregate Root duy nhất.

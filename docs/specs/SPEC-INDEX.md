@@ -27,7 +27,7 @@ SPEC-000 Constitution
 ## SPEC-001 — Runtime Kernel
 
 > **Trạng thái**: In progress · **Phụ thuộc**: SPEC-000
-> **Tier 1 Foundation: ✅ Frozen** · Tier 2 Behavior · Tier 3 Quality
+> **Tier 1 Foundation + S008: ✅ Frozen** · Tier 2 Behavior · Tier 3 Quality
 
 ```text
 SPEC-001 Runtime Kernel
@@ -43,16 +43,19 @@ SPEC-001 Runtime Kernel
 │   └── Appendix: Canonical Models   ✅
 │
 ├── Tier 2 — Runtime Behavior
-│   ├── S008 Runtime Data Model
-│   ├── S009 Runtime State Machine
+│   ├── S008 Runtime Data Model      ✅
+│   ├── S009 Runtime State Machine   🚧
 │   ├── S010 Runtime Execution Flow
-│   ├── S011 Runtime Event Model
-│   └── S012 Runtime Error Model
+│   ├── S011 Runtime Events
+│   └── S012 Runtime Error Handling
 │
 └── Tier 3 — Runtime Quality
     ├── S013 Runtime Observability
     ├── S014 Runtime Security
-    └── S015 Runtime Compliance & Verification
+    ├── S015 Runtime Extension Model
+    ├── S016 Runtime Validation & Doctor
+    ├── S017 Runtime Compliance Matrix
+    └── S018 Runtime Appendices
 ```
 
 ## SPEC-002 — Workflow Engine
