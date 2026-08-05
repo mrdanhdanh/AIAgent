@@ -4,7 +4,7 @@
   "title": "SPEC-001 Runtime Architecture (S005)",
   "description": "JSON Schema cho architecture.yaml. Validator kiem tra cau truc.",
   "type": "object",
-  "required": ["id", "name", "version", "status", "owner", "vision", "layers", "domains", "dependency_rules", "communication_rules", "invariants", "quality", "constraints", "validation", "mapping"],
+  "required": ["id", "name", "version", "status", "owner", "vision", "decisions", "layers", "domains", "dependency_rules", "communication_rules", "invariants", "views", "quality", "constraints", "stability", "metrics", "validation", "mapping"],
   "properties": {
     "id": { "const": "SPEC-001-S005" },
     "name": { "const": "Runtime Architecture" },
@@ -12,17 +12,22 @@
     "status": { "enum": ["Draft", "Review", "Approved", "Stable", "Deprecated"] },
     "owner": { "type": "string" },
     "vision": { "type": "string" },
+    "decisions": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
     "layers": {
       "type": "object",
       "patternProperties": {
-        "^(Command|Workflow|Execution|Coordination|Capability|Resolution|State|Event|Persistence)$": {
+        "^(Command|Workflow|Execution|Coordination|Capability|Resolution|State|Event|Publication)$": {
           "type": "object",
-          "required": ["level", "domain", "responsibility"],
+          "required": ["level", "domain", "responsibility", "invariant", "principle"],
           "properties": {
             "level": { "type": "integer", "minimum": 1, "maximum": 9 },
-            "domain": { "enum": ["Execution", "Coordination", "Capability", "State", "Observability", "Persistence"] },
+            "domain": { "enum": ["Execution", "Coordination", "Capability", "State", "Observability", "Publication"] },
+            "input": { "type": "string" },
+            "output": { "type": "string" },
             "responsibility": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
-            "not_responsibility": { "type": "array", "items": { "type": "string" } }
+            "not_responsibility": { "type": "array", "items": { "type": "string" } },
+            "invariant": { "type": "string" },
+            "principle": { "type": "string", "pattern": "^P\\d{3}$" }
           }
         }
       }
@@ -31,8 +36,11 @@
     "dependency_rules": { "type": "array", "items": { "type": "string" }, "minItems": 2 },
     "communication_rules": { "type": "array", "items": { "type": "string" }, "minItems": 4 },
     "invariants": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "views": { "type": "object" },
     "quality": { "type": "object" },
     "constraints": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "stability": { "type": "object" },
+    "metrics": { "type": "object" },
     "validation": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
     "mapping": { "type": "object" }
   },

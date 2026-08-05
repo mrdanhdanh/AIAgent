@@ -160,13 +160,13 @@ foreach ($f in @('architecture.md','architecture.yaml','architecture.schema.json
 $archYaml = Join-Path $s005 'architecture.yaml'
 if (Test-Path $archYaml) {
   $ar = Get-Content -LiteralPath $archYaml -Raw -Encoding utf8
-  foreach ($l in @('Command','Workflow','Execution','Coordination','Capability','Resolution','State','Event','Persistence')) {
+  foreach ($l in @('Command','Workflow','Execution','Coordination','Capability','Resolution','State','Event','Publication')) {
     if ($ar -notmatch [regex]::Escape($l)) { $errors += "S1-011: thieu layer $l" }
   }
-  foreach ($d in @('Execution','Coordination','Capability','State','Observability','Persistence')) {
+  foreach ($d in @('Execution','Coordination','Capability','State','Observability','Publication')) {
     if ($ar -notmatch [regex]::Escape($d)) { $errors += "S1-011: thieu domain $d" }
   }
-  foreach ($sec in @('dependency_rules','communication_rules','invariants','quality','constraints','validation','mapping')) {
+  foreach ($sec in @('decisions','dependency_rules','communication_rules','invariants','views','quality','constraints','stability','metrics','validation','mapping')) {
     if ($ar -notmatch "(?m)^${sec}:") { $errors += "S1-011: architecture.yaml thieu '$sec'" }
   }
 }

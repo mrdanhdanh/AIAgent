@@ -1,65 +1,120 @@
-# SPEC-001 S005 — Runtime Architecture (Blueprint)
-# Layer View + Domain View. Logical Architecture, khong implementation.
+# SPEC-001 S005 — Runtime Architecture (Blueprint v2)
+# Layer View + Domain View + Dependency/Data/Event Views. Logical, khong implementation.
 ---
 id: SPEC-001-S005
 name: Runtime Architecture
-version: "1.0.0"
+version: "1.1.0"
 status: Draft
 owner: Runtime Team
 vision: Execution Kernel theo kien truc phan tang. Moi tang mot trach nhiem, giao tiep qua Contract.
+decisions:
+  - Runtime là Orchestrator, không phải Executor.
+  - Runtime ưu tiên Metadata hơn Configuration.
+  - Runtime chỉ phụ thuộc Abstraction.
+  - Runtime không biết Implementation.
+  - Runtime không chứa Domain Logic.
+  - Runtime được thiết kế để Evolution mà không phá vỡ Core.
 layers:
   Command:
     level: 1
     domain: Execution
+    input: User Request
+    output: Workflow
     responsibility: [Entry Point, Khởi tạo Runtime]
     not_responsibility: [Nghiệp vụ]
+    invariant: Không chứa nghiệp vụ
+    principle: P001
   Workflow:
     level: 2
     domain: Execution
+    input: Workflow Definition
+    output: Execution Plan
     responsibility: [Workflow Definition, Phase, Task]
     not_responsibility: [Điều phối]
+    invariant: Không điều phối
+    principle: P001
   Execution:
     level: 3
     domain: Execution
+    input: Execution Plan
+    output: Coordination
     responsibility: [Execution Lifecycle, Execution Context]
     not_responsibility: [Business Logic]
+    invariant: Execution luôn có Context
+    principle: P001
   Coordination:
     level: 4
     domain: Coordination
+    input: Execution Context
+    output: Capability Request
     responsibility: [Orchestration, Scheduling, Retry, Timeout, Approval]
     not_responsibility: [Business Logic]
+    invariant: Không chứa Business Logic
+    principle: P001
   Capability:
     level: 5
     domain: Capability
+    input: Capability Request
+    output: Resolution Result
     responsibility: [Capability Resolution, Capability Mapping]
     not_responsibility: [Biết Agent]
+    invariant: Không biết Agent
+    principle: P007
   Resolution:
     level: 6
     domain: Capability
+    input: Registry
+    output: Agent Contract
     responsibility: [Registry Lookup, Contract Validation]
     not_responsibility: [Business Logic]
+    invariant: Không biết Agent/Plugin cụ thể
+    principle: P007
   State:
     level: 7
     domain: State
+    input: Execution State
+    output: Event
     responsibility: [State Machine, Context State, Execution State]
     not_responsibility: [Business State]
+    invariant: Không quản lý Business State
+    principle: P009
   Event:
     level: 8
     domain: Observability
+    input: State Change
+    output: Artifact
     responsibility: [Event, Metrics, Trace, Audit]
     not_responsibility: [Business Data]
-  Persistence:
+    invariant: Không chứa Business Data
+    principle: P014
+  Publication:
     level: 9
-    domain: Persistence
-    responsibility: [Artifact Metadata, Event Store, Metrics, Snapshot]
-    not_responsibility: [Business Data]
+    domain: Publication
+    input: Metadata
+    output: Snapshot
+    responsibility: [Publish Artifact, Publish Event, Publish Metrics, Snapshot, Handoff]
+    not_responsibility: [Lưu trữ (Persistence), Business Data]
+    invariant: Chỉ publish, không lưu trữ
+    principle: P010
 domains:
-  Execution: Runtime Domain
-  Coordination: Runtime Domain
-  Capability: Runtime Domain
-  State: Runtime Domain
-  Observability: Runtime Domain
-  Persistence: Runtime Domain
+  Execution:
+    owner: Runtime
+    contains_business_logic: false
+  Coordination:
+    owner: Runtime
+    contains_business_logic: false
+  Capability:
+    owner: Runtime
+    contains_business_logic: false
+  State:
+    owner: Runtime
+    contains_business_logic: false
+  Observability:
+    owner: Runtime
+    contains_business_logic: false
+  Publication:
+    owner: Runtime
+    contains_business_logic: false
 dependency_rules:
   - "Layer N -> Layer N+1: duoc phep"
   - "Layer N -> Layer N+2: khong duoc phep"
@@ -79,6 +134,11 @@ invariants:
   - Runtime luon Stateless giua cac Execution.
   - Runtime luon Event Driven.
   - Runtime luon Contract First.
+views:
+  layer_view: [Command, Workflow, Execution, Coordination, Capability, Resolution, State, Event, Publication]
+  dependency_view: [Workflow, Execution, Capability, Registry]
+  data_flow_view: [Context, Agent, Artifact]
+  event_flow_view: [Execution, State, Event, Metrics, Dashboard]
 quality:
   Modularity: Cao
   Coupling: Thap
@@ -95,6 +155,17 @@ constraints:
   - Direct Plugin Coupling
   - Business Logic trong Runtime
   note: Tat ca deu CAM.
+stability:
+  stable: [Layers, Domains]
+  evolvable: [Components, Contracts, Capabilities]
+  replaceable: [Agents, Plugins]
+metrics:
+  layer_count: 9
+  domain_count: 6
+  max_layer_dependency: 1
+  circular_dependency: 0
+  contract_violation: 0
+  hidden_dependency: 0
 validation:
   - Layering
   - Dependency

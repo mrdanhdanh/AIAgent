@@ -1,9 +1,12 @@
-# SPEC-001 S005 — Architecture Registry
-# Doctor/Dashboard doc mot file.
+# SPEC-001 S005 — Architecture Registry v2
 ---
-version: "1.0"
-layers: [Command, Workflow, Execution, Coordination, Capability, Resolution, State, Event, Persistence]
-domains: [Execution, Coordination, Capability, State, Observability, Persistence]
+version: "1.1"
+layers: [Command, Workflow, Execution, Coordination, Capability, Resolution, State, Event, Publication]
+domains: [Execution, Coordination, Capability, State, Observability, Publication]
+views:
+  dependency_view: [Workflow, Execution, Capability, Registry]
+  data_flow_view: [Context, Agent, Artifact]
+  event_flow_view: [Execution, State, Event, Metrics, Dashboard]
 principles_mapping:
   Layering: P008
   Contract: P002
