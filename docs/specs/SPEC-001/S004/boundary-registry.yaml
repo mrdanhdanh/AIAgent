@@ -1,0 +1,16 @@
+# SPEC-001 S004 — Boundary Registry
+# Doctor/Dashboard doc mot file.
+---
+version: "1.0"
+boundaries:
+  - B001-ownership
+  - B002-permission
+  - B003-delegation
+  - B004-dependency
+  - B005-interface
+  - B006-state
+  - B007-data
+  - B008-failure
+  - B009-security
+invariants_count: 6
+validation_checks: 7

@@ -1,0 +1,40 @@
+# SPEC-001 S004 — Boundary Matrix
+---
+version: "1.0"
+matrix:
+  B001:
+    boundary: Ownership
+    principle: P001
+    rule: RULE-001
+  B002:
+    boundary: Permission
+    principle: P002
+    rule: RULE-003
+  B003:
+    boundary: Delegation
+    principle: P007
+    rule: RULE-006
+  B004:
+    boundary: Dependency
+    principle: P011
+    rule: RULE-002
+  B005:
+    boundary: Interface
+    principle: P002
+    rule: RULE-003
+  B006:
+    boundary: State
+    principle: P009
+    rule: RULE-005
+  B007:
+    boundary: Data
+    principle: P010
+    rule: RULE-009
+  B008:
+    boundary: Failure
+    principle: P015
+    rule: RULE-012
+  B009:
+    boundary: Security
+    principle: P016
+    rule: RULE-008

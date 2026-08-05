@@ -25,7 +25,7 @@ agent: general
 | S001 | Vision | `S001-vision.md` | ✅ Frozen |
 | S002 | Requirements | `S002/requirements.md` | ✅ Frozen |
 | S003 | Responsibilities | `S003/responsibilities.md` | ✅ Frozen |
-| S004 | Boundaries | `S004-boundaries.md` | ⬜ |
+| S004 | Boundaries | `S004/boundaries.md` | 🚧 In progress |
 | S004 | Boundaries | `S004-boundaries.md` | ⬜ |
 | S005 | Architecture | `S005-architecture.md` | ⬜ |
 | S006 | Components | `S006-components.md` | ⬜ |

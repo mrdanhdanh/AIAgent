@@ -122,13 +122,29 @@ if (Test-Path $respMap) {
   }
 }
 
-# ---------- S1-008: SPEC.yaml ----------
+# ---------- S1-009: S004 boundaries ----------
+$s004 = Join-Path $spec1 'S004'
+foreach ($f in @('boundaries.md','boundaries.yaml','boundaries.schema.json','boundary-registry.yaml','ownership-boundary.yaml','delegation-boundary.yaml','dependency-boundary.yaml','interface-boundary.yaml','boundary-matrix.yaml')) {
+  if (-not (Test-Path (Join-Path $s004 $f))) { $errors += "S1-009: missing S004/$f" }
+}
+$bdYaml = Join-Path $s004 'boundaries.yaml'
+if (Test-Path $bdYaml) {
+  $bd = Get-Content -LiteralPath $bdYaml -Raw -Encoding utf8
+  foreach ($b in @('B001-ownership','B002-permission','B003-delegation','B004-dependency','B005-interface','B006-state','B007-data','B008-failure','B009-security')) {
+    if ($bd -notmatch [regex]::Escape($b)) { $errors += "S1-009: thieu $b" }
+  }
+  foreach ($sec in @('invariants','validation','mapping')) {
+    if ($bd -notmatch "(?m)^${sec}:") { $errors += "S1-009: boundaries.yaml thieu '$sec'" }
+  }
+}
+
+# ---------- S1-010: SPEC.yaml ----------
 $specFile = Join-Path $spec1 'SPEC.yaml'
 if (Test-Path $specFile) {
   $st = Get-Content -LiteralPath $specFile -Raw -Encoding utf8
-  if ($st -notmatch '(?m)^id:\s*SPEC-001') { $errors += "S1-006: SPEC.yaml id phai la SPEC-001" }
-  if ($st -notmatch '(?m)^implements:') { $errors += "S1-006: SPEC.yaml thieu implements" }
-  foreach ($d in @('SPEC-000')) { if ($st -notmatch [regex]::Escape($d)) { $errors += "S1-006: thieu dependency $d" } }
+  if ($st -notmatch '(?m)^id:\s*SPEC-001') { $errors += "S1-010: SPEC.yaml id phai la SPEC-001" }
+  if ($st -notmatch '(?m)^implements:') { $errors += "S1-010: SPEC.yaml thieu implements" }
+  foreach ($d in @('SPEC-000')) { if ($st -notmatch [regex]::Escape($d)) { $errors += "S1-010: thieu dependency $d" } }
 }
 
 # ---------- Output ----------

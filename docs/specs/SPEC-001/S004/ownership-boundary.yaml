@@ -1,0 +1,21 @@
+# SPEC-001 S004 — Ownership Boundary (B001)
+---
+version: "1.0"
+owns:
+  - Execution
+  - Execution Context
+  - Execution State
+  - Execution Lifecycle
+  - Coordination
+  - Event Publishing
+  - Metrics Collection
+  - Artifact Publication
+not_owns:
+  - Workflow Definition
+  - Agent
+  - Skill
+  - Plugin
+  - Knowledge
+  - Business Data
+  - UI
+  - Infrastructure Resource
