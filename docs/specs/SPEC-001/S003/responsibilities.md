@@ -9,7 +9,7 @@ agent: general
 
 # S003 — Runtime Responsibilities
 
-> **SPEC-001**: Runtime Kernel · **Version**: 1.0.0 · **Trạng thái**: Draft
+> **SPEC-001**: Runtime Kernel · **Version**: 1.0.0 · **Trạng thái**: ✅ Frozen (2026-08-04)
 
 ## Câu hỏi duy nhất
 
@@ -138,6 +138,52 @@ Implementation
 | RR-034 | Áp dụng Policy | Medium |
 | RR-035 | Từ chối Execution vi phạm | Critical |
 
+## R009 — Runtime Authorities
+
+**Authority** = được quyền làm gì (khác với Responsibility = phải làm gì).
+
+| RR | Responsibility | Authority |
+|----|----------------|-----------|
+| RR-001 | Khởi tạo Execution | Được tạo Execution Context |
+| RR-006 | Resolve Capability | Được đọc Registry |
+| RR-025 | Phát Event | Được ghi Event Store |
+| RR-031 | Không sửa Artifact | Bị cấm sửa Artifact |
+| RR-035 | Từ chối Execution vi phạm | Được từ chối Execution |
+
+> Đầy đủ 35 authority trong `responsibilities.yaml`. Security/Policy dựa vào đây.
+
+## Responsibility Invariants
+
+- Một Responsibility chỉ có một Owner.
+- Một Responsibility có thể delegate.
+- Owner không đổi trong một Execution.
+- Không Responsibility nào phụ thuộc vòng.
+
+## Delegation Boundaries
+
+Runtime **ủy quyền (delegate)**:
+
+```text
+Capability Resolution  →  Runtime
+Business Logic         →  Agent
+Knowledge Query        →  Skill
+Persistence            →  Infrastructure
+```
+
+## Responsibility Metrics
+
+Mỗi Responsibility có metric đo được (Doctor dùng):
+
+| RR | Metric |
+|----|--------|
+| RR-025 | Event Coverage |
+| RR-006 | Capability Resolution Rate |
+| RR-009 | Execution Traceability |
+| RR-031 | Mutation Violations |
+| RR-032 | Constitution Violations |
+
+> Đầy đủ 35 metric trong `responsibilities.yaml`.
+
 ## Runtime không chịu trách nhiệm
 
 Runtime **không được**:
@@ -153,7 +199,14 @@ Runtime **không được**:
 - Quản lý Plugin.
 - Quyết định nghiệp vụ.
 
-## Responsibility Ownership
+## Responsibility Ownership (2 chiều)
+
+```text
+Runtime
+owns          →  Execution Context, State, Execution Lifecycle
+depends_on    →  Workflow Definition, Registry
+exposes       →  Execution API, Event Stream, Artifact
+```
 
 | Responsibility Group | Owner |
 |----------------------|-------|
@@ -212,6 +265,22 @@ S003 được xem là hoàn thành khi:
 - Không Responsibility nào mâu thuẫn với Constitution.
 - Runtime không đảm nhận trách nhiệm thuộc Workflow, Agent, Plugin hoặc Knowledge.
 - Mọi Responsibility đều truy vết được tới Requirement trong S002.
+
+## Chuẩn bị cho S004
+
+```text
+Requirements
+    ↓
+Responsibilities
+    ↓
+Capabilities
+    ↓
+Components
+    ↓
+Contracts
+    ↓
+Execution
+```
 
 ## Tham chiếu
 

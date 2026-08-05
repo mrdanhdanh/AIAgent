@@ -16,13 +16,17 @@
       "patternProperties": {
         "^RR-\\d{3}$": {
           "type": "object",
-          "required": ["name", "group", "owner", "priority", "status", "requirements", "principles"],
+          "required": ["name", "group", "owner", "priority", "status", "authority", "input", "output", "metric", "requirements", "principles"],
           "properties": {
             "name": { "type": "string" },
             "group": { "enum": ["Core", "Execution", "Context", "State", "Coordination", "Observability", "Artifact", "Governance"] },
             "owner": { "type": "string" },
             "priority": { "enum": ["Critical", "High", "Medium", "Low"] },
             "status": { "enum": ["Draft", "Approved", "Implemented", "Verified", "Stable"] },
+            "authority": { "type": "string" },
+            "input": { "type": "string" },
+            "output": { "type": "string" },
+            "metric": { "type": "string" },
             "requirements": { "type": "array", "items": { "type": "string", "pattern": "^FR-\\d{3}$" } },
             "principles": { "type": "array", "items": { "type": "string", "pattern": "^P\\d{3}$" }, "minItems": 1 },
             "rules": { "type": "array", "items": { "type": "string", "pattern": "^RULE-\\d{3}$" } }

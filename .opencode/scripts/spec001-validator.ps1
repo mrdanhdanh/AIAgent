@@ -105,6 +105,9 @@ if (Test-Path $respYaml) {
     $r = "RR-{0:D3}" -f $i
     if ($resp -notmatch [regex]::Escape($r)) { $errors += "S1-007: thieu $r" }
   }
+  foreach ($field in @('invariants','delegation')) {
+    if ($resp -notmatch "(?m)^${field}:") { $warnings += "S1-007: responsibilities.yaml thieu '$field'" }
+  }
 }
 # mapping: moi RR co requirement + principle
 $respMap = Join-Path $s003 'responsibility-mapping.yaml'

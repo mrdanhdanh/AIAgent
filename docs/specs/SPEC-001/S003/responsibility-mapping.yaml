@@ -1,4 +1,4 @@
-# SPEC-001 S003 — Responsibility Mapping (RR -> Requirement -> Principle -> Rule)
+# SPEC-001 S003 — Responsibility Mapping (RR -> FR -> P -> RULE -> Component -> Contract)
 ---
 version: "1.0"
 mapping:
@@ -6,139 +6,209 @@ mapping:
     requirements: [FR-001, FR-015]
     principles: [P001, P003]
     rules: [RULE-004]
+    component: TBD (S006)
+    contract: TBD (S007)
   RR-002:
     requirements: [FR-020]
     principles: [P001, P005]
     rules: [RULE-004]
+    component: TBD (S006)
+    contract: TBD (S007)
   RR-003:
     requirements: [FR-015]
     principles: [P001, P005]
     rules: [RULE-004]
+    component: TBD (S006)
+    contract: TBD (S007)
   RR-004:
     requirements: [FR-004, FR-010]
     principles: [P001]
     rules: [RULE-004]
+    component: TBD (S006)
+    contract: TBD (S007)
   RR-005:
     requirements: [FR-002]
     principles: [P001, P011]
     rules: [RULE-004]
+    component: TBD (S006)
+    contract: TBD (S007)
   RR-006:
     requirements: [FR-003]
     principles: [P007]
     rules: [RULE-002]
+    component: TBD (S006)
+    contract: TBD (S007)
   RR-007:
     requirements: [FR-004]
     principles: [P007, P001]
     rules: [RULE-004]
+    component: TBD (S006)
+    contract: TBD (S007)
   RR-008:
     requirements: [FR-010]
     principles: [P001, P011]
     rules: [RULE-004]
+    component: TBD (S006)
+    contract: TBD (S007)
   RR-009:
     requirements: [FR-009, FR-011]
     principles: [P014, P005]
     rules: [RULE-014]
+    component: TBD (S006)
+    contract: TBD (S007)
   RR-010:
     requirements: [FR-012, FR-017]
     principles: [P015]
     rules: [RULE-012]
+    component: TBD (S006)
+    contract: TBD (S007)
   RR-011:
     requirements: [FR-005]
     principles: [P001, P009]
     rules: [RULE-006]
+    component: TBD (S006)
+    contract: TBD (S007)
   RR-012:
     requirements: [FR-005]
     principles: [P001, P006]
     rules: [RULE-006]
+    component: TBD (S006)
+    contract: TBD (S007)
   RR-013:
     requirements: [FR-005, FR-016]
     principles: [P009, P006]
     rules: [RULE-006]
+    component: TBD (S006)
+    contract: TBD (S007)
   RR-014:
     requirements: [FR-016]
     principles: [P006, P009]
     rules: [RULE-005]
+    component: TBD (S006)
+    contract: TBD (S007)
   RR-015:
     requirements: [FR-006]
     principles: [P001, P009]
     rules: [RULE-005]
+    component: TBD (S006)
+    contract: TBD (S007)
   RR-016:
     requirements: [FR-006]
     principles: [P001, P005]
     rules: [RULE-005]
+    component: TBD (S006)
+    contract: TBD (S007)
   RR-017:
     requirements: [FR-006]
     principles: [P005, P009]
     rules: [RULE-005]
+    component: TBD (S006)
+    contract: TBD (S007)
   RR-018:
     requirements: [FR-006, FR-015]
     principles: [P001, P005]
     rules: [RULE-004, RULE-005]
+    component: TBD (S006)
+    contract: TBD (S007)
   RR-019:
     requirements: [FR-004]
     principles: [P001, P007]
     rules: [RULE-004]
+    component: TBD (S006)
+    contract: TBD (S007)
   RR-020:
     requirements: [FR-003]
     principles: [P007]
     rules: [RULE-002]
+    component: TBD (S006)
+    contract: TBD (S007)
   RR-021:
     requirements: [FR-010]
     principles: [P001]
     rules: [RULE-004]
+    component: TBD (S006)
+    contract: TBD (S007)
   RR-022:
     requirements: [FR-018]
     principles: [P015]
     rules: [RULE-012]
+    component: TBD (S006)
+    contract: TBD (S007)
   RR-023:
     requirements: [FR-012]
     principles: [P015]
     rules: [RULE-012]
+    component: TBD (S006)
+    contract: TBD (S007)
   RR-024:
     requirements: [FR-019]
     principles: [P016]
     rules: [RULE-004]
+    component: TBD (S006)
+    contract: TBD (S007)
   RR-025:
     requirements: [FR-007]
     principles: [P005, P014]
     rules: [RULE-007]
+    component: TBD (S006)
+    contract: TBD (S007)
   RR-026:
     requirements: [FR-009]
     principles: [P014]
     rules: [RULE-014]
+    component: TBD (S006)
+    contract: TBD (S007)
   RR-027:
     requirements: [FR-009, FR-011]
     principles: [P014]
     rules: [RULE-014]
+    component: TBD (S006)
+    contract: TBD (S007)
   RR-028:
     requirements: [FR-007]
     principles: [P008, P014]
     rules: [RULE-007]
+    component: TBD (S006)
+    contract: TBD (S007)
   RR-029:
     requirements: [FR-008]
     principles: [P010]
     rules: [RULE-009]
+    component: TBD (S006)
+    contract: TBD (S007)
   RR-030:
     requirements: [FR-008, FR-020]
     principles: [P010, P005]
     rules: [RULE-009]
+    component: TBD (S006)
+    contract: TBD (S007)
   RR-031:
     requirements: [FR-008]
     principles: [P010]
     rules: [RULE-009]
+    component: TBD (S006)
+    contract: TBD (S007)
   RR-032:
     requirements: [FR-019]
     principles: [P020]
     rules: [RULE-015]
+    component: TBD (S006)
+    contract: TBD (S007)
   RR-033:
     requirements: [FR-014]
     principles: [P002]
     rules: [RULE-003]
+    component: TBD (S006)
+    contract: TBD (S007)
   RR-034:
     requirements: [FR-019]
     principles: [P016]
     rules: [RULE-004]
+    component: TBD (S006)
+    contract: TBD (S007)
   RR-035:
     requirements: [FR-013, FR-014]
     principles: [P020, P002]
     rules: [RULE-003, RULE-015]
+    component: TBD (S006)
+    contract: TBD (S007)

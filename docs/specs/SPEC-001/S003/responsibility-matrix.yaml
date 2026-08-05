@@ -1,28 +1,180 @@
-# SPEC-001 S003 — Responsibility Matrix (groups x owner/boundary)
+# SPEC-001 S003 — Responsibility Matrix (RR | Owner | Input | Output | Authority)
+# Dashboard tu sinh.
 ---
 version: "1.0"
 matrix:
-  Core:
+  RR-001:
     owner: Runtime
-    boundary: Runtime
-  Execution:
+    input: Workflow Definition
+    output: Execution Context
+    authority: Được tạo Execution Context
+  RR-002:
     owner: Runtime
-    boundary: Runtime
-  Context:
+    input: Terminal State
+    output: Execution Result
+    authority: Được kết thúc Execution
+  RR-003:
     owner: Runtime
-    boundary: Runtime
-  State:
+    input: Execution
+    output: Lifecycle Event
+    authority: Được chuyển state Execution
+  RR-004:
     owner: Runtime
-    boundary: Runtime
-  Coordination:
+    input: Workflow
+    output: Execution Flow
+    authority: Được điều phối luồng
+  RR-005:
     owner: Runtime
-    boundary: Runtime
-  Observability:
+    input: Workflow Store
+    output: Workflow Definition
+    authority: Được đọc Workflow Definition
+  RR-006:
     owner: Runtime
-    boundary: Runtime
-  Artifact:
+    input: Capability Request
+    output: Resolved Capability
+    authority: Được đọc Registry
+  RR-007:
     owner: Runtime
-    boundary: Runtime
-  Governance:
+    input: Capability
+    output: Agent Selection
+    authority: Được chọn Agent qua Capability
+  RR-008:
     owner: Runtime
-    boundary: Runtime
+    input: Workflow
+    output: Ordered Tasks
+    authority: Được sắp xếp thứ tự
+  RR-009:
+    owner: Runtime
+    input: Execution
+    output: Progress Event
+    authority: Được đọc Execution state
+  RR-010:
+    owner: Runtime
+    input: Cancel Request
+    output: Terminated Execution
+    authority: Được hủy Execution
+  RR-011:
+    owner: Runtime
+    input: Execution
+    output: Context
+    authority: Được tạo Context
+  RR-012:
+    owner: Runtime
+    input: Agent
+    output: Context Grant
+    authority: Được cấp Context
+  RR-013:
+    owner: Runtime
+    input: Execution
+    output: Closed Context
+    authority: Được thu hồi Context
+  RR-014:
+    owner: Runtime
+    input: Context
+    output: Isolated Context
+    authority: Được cô lập Context
+  RR-015:
+    owner: Runtime
+    input: Execution
+    output: Initial State
+    authority: Được tạo State
+  RR-016:
+    owner: Runtime
+    input: Execution
+    output: State Snapshot
+    authority: Được đọc State
+  RR-017:
+    owner: Runtime
+    input: State
+    output: New State + Event
+    authority: Được chuyển State hợp lệ
+  RR-018:
+    owner: Runtime
+    input: Execution
+    output: Terminal State
+    authority: Được kết thúc State
+  RR-019:
+    owner: Runtime
+    input: Task
+    output: Agent Invocation
+    authority: Được điều phối Agent
+  RR-020:
+    owner: Runtime
+    input: Capability Request
+    output: Capability Result
+    authority: Được gọi Capability
+  RR-021:
+    owner: Runtime
+    input: Execution
+    output: Synced State
+    authority: Được đồng bộ Execution
+  RR-022:
+    owner: Runtime
+    input: Failed Task
+    output: Retry Plan
+    authority: Được thực hiện Retry
+  RR-023:
+    owner: Runtime
+    input: Cancel Request
+    output: Cancelled Execution
+    authority: Được hủy Execution
+  RR-024:
+    owner: Runtime
+    input: Gate Request
+    output: Gate Decision
+    authority: Được chặn/duyệt Gate
+  RR-025:
+    owner: Runtime
+    input: State Change
+    output: Event
+    authority: Được ghi Event Store
+  RR-026:
+    owner: Runtime
+    input: Execution
+    output: Metrics
+    authority: Được ghi Metrics
+  RR-027:
+    owner: Runtime
+    input: Execution
+    output: Trace
+    authority: Được ghi Trace
+  RR-028:
+    owner: Runtime
+    input: Decision
+    output: Audit Record
+    authority: Được ghi Audit
+  RR-029:
+    owner: Runtime
+    input: Agent Output
+    output: Artifact
+    authority: Được tạo Artifact
+  RR-030:
+    owner: Runtime
+    input: Artifact
+    output: Artifact Metadata
+    authority: Được ghi Artifact metadata
+  RR-031:
+    owner: Runtime
+    input: Artifact
+    output: -
+    authority: Bị cấm sửa Artifact
+  RR-032:
+    owner: Runtime
+    input: Constitution
+    output: Enforcement
+    authority: Được thực thi Constitution
+  RR-033:
+    owner: Runtime
+    input: Contract
+    output: Validation
+    authority: Được kiểm tra Contract
+  RR-034:
+    owner: Runtime
+    input: Policy
+    output: Enforcement
+    authority: Được áp dụng Policy
+  RR-035:
+    owner: Runtime
+    input: Execution
+    output: Rejection
+    authority: Được từ chối Execution
