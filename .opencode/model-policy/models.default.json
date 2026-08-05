@@ -14,9 +14,9 @@
     "pusher": "opencode-go/deepseek-v4-flash",
     "cleaner": "opencode-go/deepseek-v4-flash",
     "general": "opencode-go/deepseek-v4-pro",
-    "failure-agent": "opencode-go/deepseek-v4-pro",
+    "failure-agent": "opencode-go/deepseek-v4-flash",
     "root-cause-agent": "opencode-go/deepseek-v4-pro",
-    "learning-agent": "opencode-go/deepseek-v4-pro",
+    "learning-agent": "opencode-go/deepseek-v4-flash",
     "knowledge-agent": "opencode-go/deepseek-v4-pro"
   }
 }

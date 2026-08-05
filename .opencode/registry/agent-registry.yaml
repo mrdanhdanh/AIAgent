@@ -107,11 +107,11 @@ agents:
     capabilities: [analysis.bottleneck, knowledge.learn]
     description: "Đề xuất cải tiến"
   - id: failure-agent
-    version: "1.0"
+    version: "2.0"
     priority: 45
     enabled: true
     capabilities: [analysis.error, memory.record]
-    description: "Chuẩn hóa lỗi"
+    description: "Chuẩn hóa + phân loại lỗi (deterministic hash qua failure-analyzer.ps1)"
   - id: root-cause-agent
     version: "1.0"
     priority: 55

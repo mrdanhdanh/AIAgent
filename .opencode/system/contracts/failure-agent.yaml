@@ -1,47 +1,96 @@
 # Contract: Failure Agent
-# Schema version: 1.0
+# Schema version: 2.0
 # Description: Định nghĩa input/output contract cho Failure Agent (error classification phase)
+# Thay đổi v2: thêm error_detail/same_error/artifact; error_normalized bắt buộc (từ failure-analyzer.ps1); single source of truth đồng bộ command+agent
 
-contract_version: "1.0"
+contract_version: "2.0"
 agent: failure-agent
 type: analysis
 
 input:
   from: orchestrator
-  schema_version: "1.0"
+  schema_version: "2.0"
   required_fields:
-    - raw_error: "string — error message chưa xử lý"
-    - context: "string — file/step/action liên quan đến lỗi"
+    - raw_error: "string — error message (đã truncate 10KB nếu cần)"
+    - error_normalized: "string — từ failure-analyzer.ps1 (deterministic)"
+    - error_hash: "string — SHA256(normalized) 16 hex đầu, từ script"
+    - context: "{workflow_id, step, phase, source}"
 
 output:
-  schema_version: "1.0"
-  artifact: "failure_analysis.yaml"
+  schema_version: "2.0"
+  artifact: "11a_failure_analysis.md"
   fields:
-    - status: "READY | NOT_FOUND"
-    - summary: "string — tóm tắt phân tích lỗi (2-3 câu)"
-    - input: "{raw_error, context}"
-    - analysis: "{error_normalized, error_type, error_hash, retryable}"
+    - status: "READY | NOT_FOUND | EMPTY | FILE_NOT_FOUND"
+    - summary: "string — tóm tắt phân tích lỗi"
+    - input: "{raw_error, truncated, context}"
+    - analysis: "{error_normalized, error_type, error_detail, error_hash, retryable, retry_reason, same_error}"
     - memory_search: "{found, records[], confidence}"
     - suggestions: "array[{action, reason}]"
+    - artifact: "string — tên artifact"
 
 decision_rules:
+  EMPTY:
+    conditions: ["Error message rỗng"]
+  FILE_NOT_FOUND:
+    conditions: ["File path không tồn tại"]
   NOT_FOUND:
-    conditions:
-      - "Error message rỗng"
-      - "Memory empty (chưa có failure records)"
+    conditions: ["Không match memory", "Script không chạy được"]
   READY:
-    conditions:
-      - "Đã phân tích và chuẩn hóa error thành công"
+    conditions: ["Đã classify + search memory thành công"]
+
+error_type_enum:
+  - SyntaxError
+  - BuildFailed
+  - TestFailed
+  - NullReferenceException
+  - FileNotFound
+  - BackupFailed
+  - ValidationFailed
+  - CoverageBelowThreshold
+  - Timeout
+  - NetworkError
+  - DIMissingRegistration
+  - StaleSkillContext
+  - FragmentedFileEdit
+  - AutomaticVariableShadowing
+  - PowerShellError
+  - Unknown
+
+retryable_table:
+  BuildFailed: true
+  TestFailed: true
+  Timeout: true
+  NetworkError: true
+  BackupFailed: true
+  CoverageBelowThreshold: true
+  StaleSkillContext: true
+  FragmentedFileEdit: true
+  SyntaxError: false
+  NullReferenceException: false
+  FileNotFound: false
+  ValidationFailed: false
+  DIMissingRegistration: false
+  AutomaticVariableShadowing: false
+  PowerShellError: false
+  Unknown: false
+
+deterministic_note: >
+  error_normalized + error_hash PHẢI do failure-analyzer.ps1 tính.
+  LLM không được tự tính hash. Engine dùng error_normalized để đếm same_error_count.
+
+dependencies:
+  requires: ["orchestrator", "failure-analyzer.ps1"]
+  provides_to: ["root-cause-agent", "learning-agent", "workflow-engine"]
 
 supported_versions:
   - "1.0"
-
-dependencies:
-  requires: ["orchestrator"]
-  provides_to: ["root-cause-agent", "learning-agent"]
+  - "2.0"
 
 migration_rules:
-  none:
-    added: []
+  v1_to_v2:
+    added: [error_detail, retry_reason, same_error, artifact, error_normalized (bắt buộc input)]
+    renamed:
+      - from: "analysis_status (command)"
+        to: "status"
     removed: []
-    breaking: false
+    breaking: true   # cần cập nhật command + dev-team SKILL.md song song

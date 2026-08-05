@@ -41,5 +41,5 @@ lessons: [L-041]
 ## 5. Tương tác
 
 - `knowledge-graph/` (Phase 9) — nodes.
-- `learning-agent` — viết knowledge.
-- `failure-agent` — viết failure.
+- `learning-agent` — VIẾT knowledge + failure records (edit:allow).
+- `failure-agent` — CHỈ phân tích lỗi (read-only): normalize/hash do `failure-analyzer.ps1`, search memory, đề xuất.

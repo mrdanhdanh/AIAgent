@@ -101,7 +101,7 @@
                                                                },
                       "knowledge/lessons.md":  {
                                                    "file":  "knowledge/lessons.md",
-                                                   "size":  22047
+                                                   "size":  23141
                                                },
                       "knowledge/skills-learned.md":  {
                                                           "file":  "knowledge/skills-learned.md",
@@ -154,7 +154,7 @@
                                },
                    "guardian":  {
                                     "description":  "Chuyên gia review source code trước khi push lên git — phát hiện secret, lỗi convention, lỗ hổng bảo mật, vi phạm quy tắc dự án",
-                                    "model":  "opencode-go/deepseek-v4-pro",
+                                    "model":  "opencode-go/deepseek-v4-flash",
                                     "file":  "agents/guardian.md",
                                     "mode":  "subagent",
                                     "permissions":  {
@@ -180,7 +180,7 @@
                               },
                    "ui-beautifier":  {
                                          "description":  "\u003e-",
-                                         "model":  "opencode-go/deepseek-v4-pro",
+                                         "model":  "opencode-go/deepseek-v4-flash",
                                          "file":  "agents/ui-beautifier.md",
                                          "mode":  "subagent",
                                          "permissions":  {
@@ -193,7 +193,7 @@
                                      },
                    "self-improver":  {
                                          "description":  "Sau khi workflow hoàn tất, đọc lại quá trình, phân tích kỹ năng đã dùng và thiếu, đề xuất cải tiến (chỉ suggestion, không ghi KB). Cần qua approval gate trước khi ghi knowledge base.",
-                                         "model":  "opencode-go/deepseek-v4-pro",
+                                         "model":  "opencode-go/deepseek-v4-flash",
                                          "file":  "agents/self-improver.md",
                                          "mode":  "subagent",
                                          "permissions":  {
@@ -206,7 +206,7 @@
                                      },
                    "learning-agent":  {
                                           "description":  "Chuyên gia Learning Pipeline — đọc failure records từ memory, phân tích patterns xuyên suốt, auto-generate lessons và patterns mới. Ghi trực tiếp vào memory/. Cần approval gate cho MEDIUM/HIGH impact.",
-                                          "model":  "opencode-go/deepseek-v4-pro",
+                                          "model":  "opencode-go/deepseek-v4-flash",
                                           "file":  "agents/learning-agent.md",
                                           "mode":  "subagent",
                                           "permissions":  {
@@ -219,7 +219,7 @@
                                       },
                    "planner":  {
                                    "description":  "Mở rộng: Thiết kế giải pháp + Lập kế hoạch thực thi chi tiết. Đảm nhiệm cả Design phase và Plan phase.",
-                                   "model":  "opencode-go/deepseek-v4-pro",
+                                   "model":  "opencode-go/deepseek-v4-flash",
                                    "file":  "agents/planner.md",
                                    "mode":  "subagent",
                                    "permissions":  {
@@ -232,7 +232,7 @@
                                },
                    "root-cause-agent":  {
                                             "description":  "Chuyên gia phân tích nguyên nhân gốc (Root Cause Analysis) — nhận error đã normalized, tìm kiếm trong codebase, tạo hypotheses với confidence score, đề xuất hướng fix. Agent read + suggest.",
-                                            "model":  "opencode-go/deepseek-v4-pro",
+                                            "model":  "opencode-go/deepseek-v4-flash",
                                             "file":  "agents/root-cause-agent.md",
                                             "mode":  "subagent",
                                             "permissions":  {
@@ -245,7 +245,7 @@
                                         },
                    "test-planner":  {
                                         "description":  "Tạo kế hoạch kiểm thử chi tiết, chống overlap, có impact analysis, coverage matrix, risk-based testing",
-                                        "model":  "opencode-go/deepseek-v4-pro",
+                                        "model":  "opencode-go/deepseek-v4-flash",
                                         "file":  "agents/test-planner.md",
                                         "mode":  "subagent",
                                         "permissions":  {
@@ -258,7 +258,7 @@
                                     },
                    "analyst":  {
                                    "description":  "Phân tích yêu cầu người dùng, xác định phạm vi, rủi ro và các task cần thực hiện",
-                                   "model":  "opencode-go/deepseek-v4-pro",
+                                   "model":  "opencode-go/deepseek-v4-flash",
                                    "file":  "agents/analyst.md",
                                    "mode":  "subagent",
                                    "permissions":  {
@@ -271,7 +271,7 @@
                                },
                    "reviewer":  {
                                     "description":  "Đánh giá kế hoạch thực thi, kiểm tra tính đúng đắn, đầy đủ và hiệu quả",
-                                    "model":  "opencode-go/deepseek-v4-pro",
+                                    "model":  "opencode-go/deepseek-v4-flash",
                                     "file":  "agents/reviewer.md",
                                     "mode":  "subagent",
                                     "permissions":  {
@@ -296,8 +296,8 @@
                                                   }
                               },
                    "failure-agent":  {
-                                         "description":  "Chuyên gia phân tích và chuẩn hóa lỗi — classify error type, normalize error message, search failure memory, đề xuất lesson phù hợp. Read-only agent.",
-                                         "model":  "opencode-go/deepseek-v4-pro",
+                                         "description":  "Chuyên gia phân tích và chuẩn hóa lỗi — normalize+hash do failure-analyzer.ps1 tính, agent chỉ classify, search failure/lesson/pattern memory, score và đề xuất. Read-only (bash chỉ chạy failure-analyzer.ps1).",
+                                         "model":  "opencode-go/deepseek-v4-flash",
                                          "file":  "agents/failure-agent.md",
                                          "mode":  "subagent",
                                          "permissions":  {
@@ -310,7 +310,7 @@
                                      },
                    "general":  {
                                    "description":  "General-purpose orchestrator agent — điều phối workflow, triệu hồi sub-agents, quản lý state machine",
-                                   "model":  "opencode-go/deepseek-v4-pro",
+                                   "model":  "opencode-go/deepseek-v4-flash",
                                    "file":  "agents/general.md",
                                    "mode":  "subagent",
                                    "permissions":  {
@@ -323,7 +323,7 @@
                                },
                    "knowledge-agent":  {
                                            "description":  "Intent Analyzer + Router cho Knowledge Assistant — phân loại câu hỏi, chọn skill pipeline, tổng hợp trả lời có nguồn",
-                                           "model":  "opencode-go/deepseek-v4-pro",
+                                           "model":  "opencode-go/deepseek-v4-flash",
                                            "file":  "agents/knowledge-agent.md",
                                            "mode":  "subagent",
                                            "permissions":  {
@@ -399,7 +399,7 @@
                                        },
                      "team-analyze-failure":  {
                                                   "agent":  "failure-agent",
-                                                  "description":  "Phân tích lỗi trong workflow. Thu thập raw error, normalize, classify, search failure memory, output phân tích. Gọi failure-agent.",
+                                                  "description":  "Phân tích lỗi trong workflow. Chạy failure-analyzer.ps1 (normalize+SHA256 deterministic) rồi gọi failure-agent classify + search failure memory. Output YAML contract v2.",
                                                   "deprecated":  false,
                                                   "file":  "commands/team-analyze-failure.md"
                                               },
@@ -421,6 +421,12 @@
                                              "deprecated":  false,
                                              "file":  "commands/test-regression.md"
                                          },
+                     "model-policy":  {
+                                          "agent":  "general",
+                                          "description":  "Bật/tắt free model (opencode-go/deepseek-v4-flash) cho toàn bộ agent/skill/command. Đọc setting từ .opencode/model-policy/settings.json",
+                                          "deprecated":  false,
+                                          "file":  "commands/model-policy.md"
+                                      },
                      "team-doctor":  {
                                          "agent":  "general",
                                          "description":  "Doctor (alias /team-doctor) — kiểm tra sức khỏe hệ thống AI Agent Framework. Tương đương /doctor: Environment, System, Runtime, Capability, health score, self-repair an toàn.",
@@ -681,15 +687,15 @@
                               }
                  },
     "scripts":  {
-                    "model-router-validator":  {
-                                                   "summary":  "Utility script",
-                                                   "file":  "scripts/model-router-validator.ps1",
-                                                   "size":  806
-                                               },
+                    "constitution-doctor":  {
+                                                "summary":  "Utility script",
+                                                "file":  "scripts/constitution-doctor.ps1",
+                                                "size":  5644
+                                            },
                     "glossary-validator":  {
                                                "summary":  "Validate AIOS Glossary.",
                                                "file":  "scripts/glossary-validator.ps1",
-                                               "size":  2005
+                                               "size":  4666
                                            },
                     "schema-validator":  {
                                              "summary":  "Schema Validator — validate YAML schema của agent definitions.",
@@ -701,6 +707,11 @@
                                             "file":  "scripts/gitpush-utility.ps1",
                                             "size":  18565
                                         },
+                    "evaluation-validator":  {
+                                                 "summary":  "Utility script",
+                                                 "file":  "scripts/evaluation-validator.ps1",
+                                                 "size":  807
+                                             },
                     "catalog-builder":  {
                                             "summary":  "Utility script",
                                             "file":  "scripts/catalog-builder.ps1",
@@ -716,11 +727,11 @@
                                                "file":  "scripts/workflow-validator.ps1",
                                                "size":  14347
                                            },
-                    "trust-validator":  {
-                                            "summary":  "Utility script",
-                                            "file":  "scripts/trust-validator.ps1",
-                                            "size":  771
-                                        },
+                    "spec001-validator":  {
+                                              "summary":  "Validate SPEC-001 Runtime Kernel.",
+                                              "file":  "scripts/spec001-validator.ps1",
+                                              "size":  4818
+                                          },
                     "knowledge-graph-validator":  {
                                                       "summary":  "Validate System Knowledge Graph structure + schemas.",
                                                       "file":  "scripts/knowledge-graph-validator.ps1",
@@ -731,6 +742,21 @@
                                                 "file":  "scripts/resources-validator.ps1",
                                                 "size":  799
                                             },
+                    "rules-validator":  {
+                                            "summary":  "Validate AIOS Architecture Rules.",
+                                            "file":  "scripts/rules-validator.ps1",
+                                            "size":  5256
+                                        },
+                    "spec000-validator":  {
+                                              "summary":  "Validate SPEC-000 Constitution.",
+                                              "file":  "scripts/spec000-validator.ps1",
+                                              "size":  5623
+                                          },
+                    "marketplace-validator":  {
+                                                  "summary":  "Utility script",
+                                                  "file":  "scripts/marketplace-validator.ps1",
+                                                  "size":  805
+                                              },
                     "sync-system-docs":  {
                                              "summary":  "System Docs Sync — đồng bộ system docs + System Evolution Engine (9 engines).",
                                              "file":  "scripts/sync-system-docs.ps1",
@@ -741,6 +767,11 @@
                                               "file":  "scripts/plugins-validator.ps1",
                                               "size":  2881
                                           },
+                    "trust-validator":  {
+                                            "summary":  "Utility script",
+                                            "file":  "scripts/trust-validator.ps1",
+                                            "size":  771
+                                        },
                     "evolution-validator":  {
                                                 "summary":  "Validate Evolution Engine structure + schema + policy + objectives.",
                                                 "file":  "scripts/evolution-validator.ps1",
@@ -757,15 +788,15 @@
                                               "size":  781
                                           },
                     "principles-validator":  {
-                                                 "summary":  "Validate AIOS Principles building blocks.",
+                                                 "summary":  "Validate AIOS Constitution Principles.",
                                                  "file":  "scripts/principles-validator.ps1",
-                                                 "size":  2363
+                                                 "size":  6500
                                              },
-                    "sdk-validator":  {
-                                          "summary":  "Validate AIOS SDK structure + schema.",
-                                          "file":  "scripts/sdk-validator.ps1",
-                                          "size":  2179
-                                      },
+                    "model-policy":  {
+                                         "summary":  "Utility script",
+                                         "file":  "scripts/model-policy.ps1",
+                                         "size":  10452
+                                     },
                     "cross-ref-validator":  {
                                                 "summary":  "Cross-Reference Validator — kiểm tra tham chiếu chéo trong .opencode (agents, commands, skills, contracts).",
                                                 "file":  "scripts/cross-ref-validator.ps1",
@@ -786,16 +817,21 @@
                                                  "file":  "scripts/capability-validator.ps1",
                                                  "size":  8835
                                              },
-                    "doctor-validator":  {
-                                             "summary":  "Validate Doctor v2 structure + schema + rules.",
-                                             "file":  "scripts/doctor-validator.ps1",
-                                             "size":  3145
+                    "failure-analyzer":  {
+                                             "summary":  "Utility script",
+                                             "file":  "scripts/failure-analyzer.ps1",
+                                             "size":  4029
                                          },
-                    "evaluation-validator":  {
-                                                 "summary":  "Utility script",
-                                                 "file":  "scripts/evaluation-validator.ps1",
-                                                 "size":  807
-                                             },
+                    "cost-validator":  {
+                                           "summary":  "Utility script",
+                                           "file":  "scripts/cost-validator.ps1",
+                                           "size":  772
+                                       },
+                    "sdk-validator":  {
+                                          "summary":  "Validate AIOS SDK structure + schema.",
+                                          "file":  "scripts/sdk-validator.ps1",
+                                          "size":  2179
+                                      },
                     "build-knowledge-index":  {
                                                   "summary":  "Build/Update Knowledge Index - scan source code + docs to generate 7 index JSON files.",
                                                   "file":  "scripts/build-knowledge-index.ps1",
@@ -806,11 +842,11 @@
                                              "file":  "scripts/rollback-utility.ps1",
                                              "size":  9294
                                          },
-                    "spec000-validator":  {
-                                              "summary":  "Validate SPEC-000 Constitution.",
-                                              "file":  "scripts/spec000-validator.ps1",
-                                              "size":  4003
-                                          },
+                    "model-router-validator":  {
+                                                   "summary":  "Utility script",
+                                                   "file":  "scripts/model-router-validator.ps1",
+                                                   "size":  806
+                                               },
                     "agent-validator":  {
                                             "summary":  "Validate Agent Definition packages (agents/metadata/*.yaml).",
                                             "file":  "scripts/agent-validator.ps1",
@@ -866,11 +902,16 @@
                                              "file":  "scripts/memory-validator.ps1",
                                              "size":  814
                                          },
-                    "marketplace-validator":  {
-                                                  "summary":  "Utility script",
-                                                  "file":  "scripts/marketplace-validator.ps1",
-                                                  "size":  805
-                                              },
+                    "governance-framework-validator":  {
+                                                           "summary":  "Validate AIOS Governance Framework (D005).",
+                                                           "file":  "scripts/governance-framework-validator.ps1",
+                                                           "size":  6101
+                                                       },
+                    "doctor-validator":  {
+                                             "summary":  "Validate Doctor v2 structure + schema + rules.",
+                                             "file":  "scripts/doctor-validator.ps1",
+                                             "size":  3145
+                                         },
                     "knowledge-index":  {
                                             "summary":  "Utility script",
                                             "file":  "scripts/knowledge-index.ps1",
@@ -884,7 +925,7 @@
                     "manifest-validator":  {
                                                "summary":  "Validate AIOS Manifest.",
                                                "file":  "scripts/manifest-validator.ps1",
-                                               "size":  1588
+                                               "size":  3302
                                            },
                     "spec-validator":  {
                                            "summary":  "Validate AIOS Implementation control file.",
@@ -896,11 +937,11 @@
                                                "file":  "scripts/artifact-validator.ps1",
                                                "size":  2915
                                            },
-                    "cost-validator":  {
-                                           "summary":  "Utility script",
-                                           "file":  "scripts/cost-validator.ps1",
-                                           "size":  772
-                                       },
+                    "constitution-validator":  {
+                                                   "summary":  "Utility script",
+                                                   "file":  "scripts/constitution-validator.ps1",
+                                                   "size":  4058
+                                               },
                     "context-validator":  {
                                               "summary":  "Validate Context Engine structure: profiles/, schemas/, budget.",
                                               "file":  "scripts/context-validator.ps1",
@@ -933,6 +974,7 @@
                                                 "team-plan":  "planner",
                                                 "team-syncdocs":  "general",
                                                 "team-ui-audit":  "ui-beautifier",
+                                                "model-policy":  "general",
                                                 "knowledge":  "knowledge-agent",
                                                 "knowledge-trace":  "knowledge-agent",
                                                 "team-gitpush":  "pusher",
@@ -1497,6 +1539,7 @@
                                                  "general":  [
                                                                  "team-runtime-benchmark",
                                                                  "team-syncdocs",
+                                                                 "model-policy",
                                                                  "team-doctor",
                                                                  "doctor",
                                                                  "team-bugfix",
@@ -1534,7 +1577,7 @@
                                                              ]
                                              }
                    },
-    "scanned_at":  "2026-08-03T01:04:37.6271971+07:00",
+    "scanned_at":  "2026-08-05T00:15:03.9486046+07:00",
     "skills":  {
                    "dev-team":  {
                                     "schema_version":  "3.2",

@@ -1,6 +1,6 @@
 ﻿# System Evolution Report
 
-**Generated:** 2026-08-03 01:04:52
+**Generated:** 2026-08-05 00:15:21
 **Tool:** evolution-report.ps1 v1.0.0
 
 ---
@@ -36,9 +36,9 @@
 | Verdict | STABLE |
 | Agents tested | 18 |
 | Skills tested | 29 |
-| Commands tested | 55 |
+| Commands tested | 56 |
 | Contracts tested | 14 |
-| Checks passed | 113/113 |
+| Checks passed | 114/114 |
 
 ---
 
@@ -46,7 +46,7 @@
 
 | Metric | Value |
 |--------|-------|
-| Capability Score | 85/100 |
+| Capability Score | 86/100 |
 | Verdict | STRONG |
 | Task simulation pass | 100% |
 
@@ -54,16 +54,16 @@
 
 | Domain | Score |
 |--------|-------|
+| Testing | 94% |
 | Git | 93% |
 | Planning | 93% |
-| Testing | 91% |
 | Security | 90% |
 | Blazor | 89% |
-| Orchestration | 82% |
+| Orchestration | 84% |
 | UI/UX | 82% |
-| Scripting | 79% |
-| Docs | 79% |
-| Database | 71% |
+| Scripting | 81% |
+| Docs | 81% |
+| Database | 72% |
 
 ### Task Simulations
 
@@ -83,7 +83,7 @@
 ## Health Score
 
 | Agents          | 100/100 |
-| Capability      | 85/100 |
+| Capability      | 86/100 |
 | Compatibility   | 100/100 |
 | Knowledge       | 100/100 |
 | Learning        | 100/100 |

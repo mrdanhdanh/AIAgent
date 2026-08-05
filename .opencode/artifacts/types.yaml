@@ -77,8 +77,8 @@ types:
     name: Failure Record
     description: Normalized error, RCA
     prefix: FAIL
-    produced_by: [failure-agent, root-cause-agent]
-    consumed_by: [learning-agent]
+    produced_by: [learning-agent]
+    consumed_by: [knowledge-agent, self-improver]
 
   - id: metrics
     name: Metrics
