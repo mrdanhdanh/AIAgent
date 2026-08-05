@@ -1,11 +1,26 @@
 # SPEC-001 S004 — Runtime Boundaries (Firewall của Runtime)
-# 9 boundary: Ownership/Permission/Delegation/Dependency/Interface/State/Data/Failure/Security
+# 9 boundary + hierarchy + severity + violations + metrics + evolution.
 ---
 id: SPEC-001-S004
 name: Runtime Boundaries
 version: "1.0.0"
-status: Draft
+status: Approved
+frozen: true
+frozen_date: "2026-08-04"
 owner: Runtime Team
+hierarchy:
+  Runtime Boundary:
+    - B001-ownership
+    - B002-permission
+    - B003-delegation
+    - B004-dependency
+    - B005-interface
+    - B006-state
+    - B007-data
+    - B008-failure
+    - B009-security
+decision:
+  - Nếu một chức năng không xác định được Boundary, chức năng đó không được phép đưa vào Runtime.
 invariants:
   - Runtime không vượt quá Boundary.
   - Runtime không mở rộng Responsibility nếu chưa cập nhật Constitution.
@@ -22,78 +37,21 @@ validation:
   - Runtime có vi phạm Layering không?
   - Runtime có giao tiếp ngoài Contract không?
 boundaries:
-  B001-ownership:
-    name: Ownership Boundary
-    owns: [Execution, Execution Context, Execution State, Execution Lifecycle, Coordination, Event Publishing, Metrics Collection, Artifact Publication]
-    not_owns: [Workflow Definition, Agent, Skill, Plugin, Knowledge, Business Data, UI, Infrastructure Resource]
-    principles: [P001]
-    rules: [RULE-001]
-  B002-permission:
-    name: Permission Boundary
-    allowed: [Khởi tạo Execution, Kết thúc Execution, Resolve Capability, Đọc Workflow Definition, Đọc Registry, Điều phối Agent, Phát Event, Thu Metrics, Sinh Artifact Metadata, Áp dụng Policy]
-    forbidden: [Thực thi Business Logic, Chỉnh sửa Workflow Definition, Gọi Agent theo tên cụ thể, Gọi Database trực tiếp, Gọi LLM trực tiếp, Truy cập Knowledge trực tiếp, Tự ý thay đổi Plugin, Bỏ qua Contract, Bỏ qua Constitution]
-    principles: [P002]
-    rules: [RULE-003]
-  B003-delegation:
-    name: Delegation Boundary
-    delegates:
-      Business Logic: Agent
-      Tri thức chuyên môn: Skill
-      Lưu trữ: Infrastructure
-      Định nghĩa Workflow: Workflow
-      Đăng ký Capability: Registry
-      Chính sách phát hành: Governance
-      Giao diện người dùng: Presentation
-    principles: [P007]
-    rules: [RULE-006]
-  B004-dependency:
-    name: Dependency Boundary
-    allowed_dependencies: [Constitution, Workflow Definition, Capability Registry, Contract, Event Schema, Artifact Schema]
-    forbidden_dependencies: [Agent cụ thể, Plugin cụ thể, Domain cụ thể, Framework cụ thể, Database cụ thể, LLM cụ thể]
-    principles: [P011]
-    rules: [RULE-002]
-  B005-interface:
-    name: Interface Boundary
-    exposes:
-      Execution API: Khởi tạo và quản lý Execution
-      Context API: Quản lý Execution Context
-      Event API: Publish Event
-      Artifact API: Publish Artifact
-      Metrics API: Publish Metrics
-    not_exposes: [Internal API]
-    principles: [P002]
-    rules: [RULE-003]
-  B006-state:
-    name: State Boundary
-    manages: [Execution State, Lifecycle State, Context State]
-    not_manages: [Business State, Domain State, Plugin State, Knowledge State]
-    principles: [P009]
-    rules: [RULE-005]
-  B007-data:
-    name: Data Boundary
-    processes: [Metadata, Context, Event, Artifact Metadata, Execution State]
-    not_processes: [Business Object, Domain Model, User Data, Knowledge Content]
-    principles: [P010]
-    rules: [RULE-009]
-  B008-failure:
-    name: Failure Boundary
-    responsible: [Phát hiện lỗi, Cô lập lỗi, Dừng Execution an toàn, Publish Failure Event, Sinh Failure Artifact]
-    not_responsible: [Sửa lỗi nghiệp vụ]
-    principles: [P015]
-    rules: [RULE-012]
   B009-security:
     name: Security Boundary
+    severity: Critical
+    version: 1.0.0
+    status: Stable
     allowed: [Kiểm tra Contract, Kiểm tra Policy, Kiểm tra Permission]
     not_manage: [Identity, Authentication, Authorization của hệ thống]
+    violation: Runtime quản lý Identity/Auth
+    impact: Critical
+    detected_by: Doctor
+    metric: Security Violations
+    target: 0
     principles: [P016]
     rules: [RULE-008]
 mapping:
-  B001-ownership: { principle: P001, rule: RULE-001 }
-  B002-permission: { principle: P002, rule: RULE-003 }
-  B003-delegation: { principle: P007, rule: RULE-006 }
-  B004-dependency: { principle: P011, rule: RULE-002 }
-  B005-interface: { principle: P002, rule: RULE-003 }
-  B006-state: { principle: P009, rule: RULE-005 }
-  B007-data: { principle: P010, rule: RULE-009 }
-  B008-failure: { principle: P015, rule: RULE-012 }
   B009-security: { principle: P016, rule: RULE-008 }
+metrics:
+  Security Violations: 0

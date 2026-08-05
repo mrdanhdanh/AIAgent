@@ -4,13 +4,15 @@
   "title": "SPEC-001 Runtime Boundaries (S004)",
   "description": "JSON Schema cho boundaries.yaml. Validator kiem tra cau truc.",
   "type": "object",
-  "required": ["id", "name", "version", "status", "owner", "invariants", "validation", "boundaries", "mapping"],
+  "required": ["id", "name", "version", "status", "owner", "hierarchy", "decision", "invariants", "validation", "boundaries", "mapping"],
   "properties": {
     "id": { "const": "SPEC-001-S004" },
     "name": { "const": "Runtime Boundaries" },
     "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
     "status": { "enum": ["Draft", "Review", "Approved", "Stable", "Deprecated"] },
     "owner": { "type": "string" },
+    "hierarchy": { "type": "object" },
+    "decision": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
     "invariants": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
     "validation": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
     "boundaries": {
@@ -18,11 +20,19 @@
       "patternProperties": {
         "^B\\d{3}-[a-z]+$": {
           "type": "object",
-          "required": ["name", "principles", "rules"],
+          "required": ["name", "severity", "version", "status", "principles", "rules", "violation", "impact", "detected_by", "metric", "target"],
           "properties": {
             "name": { "type": "string" },
+            "severity": { "enum": ["Critical", "High", "Medium", "Low"] },
+            "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+            "status": { "enum": ["Stable", "Experimental", "Deprecated"] },
             "principles": { "type": "array", "items": { "type": "string", "pattern": "^P\\d{3}$" }, "minItems": 1 },
             "rules": { "type": "array", "items": { "type": "string", "pattern": "^RULE-\\d{3}$" }, "minItems": 1 },
+            "violation": { "type": "string" },
+            "impact": { "enum": ["Critical", "High", "Medium", "Low"] },
+            "detected_by": { "type": "string" },
+            "metric": { "type": "string" },
+            "target": { "type": "string" },
             "owns": { "type": "array", "items": { "type": "string" } },
             "not_owns": { "type": "array", "items": { "type": "string" } },
             "allowed": { "type": "array", "items": { "type": "string" } },
@@ -42,7 +52,8 @@
         }
       }
     },
-    "mapping": { "type": "object" }
+    "mapping": { "type": "object" },
+    "metrics": { "type": "object" }
   },
   "additionalProperties": false
 }

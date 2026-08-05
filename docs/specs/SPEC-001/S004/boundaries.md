@@ -8,7 +8,7 @@ agent: general
 
 # S004 — Runtime Boundaries
 
-> **SPEC-001**: Runtime Kernel · **Version**: 1.0.0 · **Trạng thái**: Draft
+> **SPEC-001**: Runtime Kernel · **Version**: 1.0.0 · **Trạng thái**: ✅ Frozen (2026-08-04)
 
 ## Câu hỏi duy nhất
 
@@ -229,6 +229,104 @@ Doctor phải kiểm tra:
 | State | P009 | RULE-005 |
 | Data | P010 | RULE-009 |
 | Security | P016 | RULE-008 |
+
+## Boundary Hierarchy
+
+```text
+Runtime Boundary
+│
+├── B001 Ownership
+├── B002 Permission
+├── B003 Delegation
+├── B004 Dependency
+├── B005 Interface
+├── B006 State
+├── B007 Data
+├── B008 Failure
+└── B009 Security
+```
+
+## Boundary Severity
+
+| Boundary | Severity |
+|----------|----------|
+| B001 Ownership | Critical |
+| B002 Permission | Critical |
+| B003 Delegation | High |
+| B004 Dependency | High |
+| B005 Interface | High |
+| B006 State | High |
+| B007 Data | High |
+| B008 Failure | High |
+| B009 Security | Critical |
+
+> Doctor ưu tiên kiểm tra Critical trước.
+
+## Boundary Violations
+
+Mỗi Boundary có violation mẫu (Doctor sinh báo cáo):
+
+| Boundary | Violation | Impact | Detected By |
+|----------|-----------|--------|-------------|
+| B002 Permission | Business Logic xuất hiện trong Runtime | Critical | Doctor |
+| B004 Dependency | Runtime phụ thuộc implementation cụ thể | High | Doctor |
+| B007 Data | Runtime xử lý dữ liệu nghiệp vụ | High | Doctor |
+| B009 Security | Runtime quản lý Identity/Auth | Critical | Doctor |
+
+## Boundary Metrics (Dashboard)
+
+- Ownership Coverage: 100%
+- Contract Violations: 0
+- Direct Dependencies: 0
+- Delegation Coverage: 100%
+- State Ownership: 100%
+- Data Leak: 0
+- Failure Containment: 100%
+- Security Violations: 0
+
+## Boundary Evolution
+
+Mỗi Boundary có `version` + `status` (Evolution Engine theo dõi):
+
+```yaml
+boundary:
+  Permission (B002)
+  version: 1.0.0
+  status: Stable
+```
+
+## Boundary Decision
+
+> **Nếu một chức năng không xác định được Boundary, chức năng đó không được phép đưa vào Runtime.**
+
+Quy tắc này ngăn Runtime bị phình chức năng.
+
+## Boundary Ownership Matrix
+
+| Boundary | Runtime | Agent | Workflow | Registry |
+|----------|:-------:|:-----:|:--------:|:--------:|
+| B001 Ownership | ✔ | ✖ | ✖ | ✖ |
+| B003 Delegation | ✔ | ✔ | ✖ | ✖ |
+| B004 Dependency | ✔ | ✔ | ✔ | ✔ |
+| B005 Interface | ✔ | ✔ | ✔ | ✔ |
+| B007 Data | ✔ | ✔ | ✖ | ✖ |
+| B009 Security | ✔ | ✔ | ✔ | ✔ |
+
+> Dashboard dựng sơ đồ tự động.
+
+## Chuẩn bị cho S005
+
+```text
+Boundaries
+    ↓
+Architecture
+    ↓
+Components
+    ↓
+Contracts
+    ↓
+Runtime
+```
 
 ## Success Criteria
 

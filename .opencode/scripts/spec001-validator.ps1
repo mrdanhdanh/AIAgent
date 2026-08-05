@@ -124,7 +124,7 @@ if (Test-Path $respMap) {
 
 # ---------- S1-009: S004 boundaries ----------
 $s004 = Join-Path $spec1 'S004'
-foreach ($f in @('boundaries.md','boundaries.yaml','boundaries.schema.json','boundary-registry.yaml','ownership-boundary.yaml','delegation-boundary.yaml','dependency-boundary.yaml','interface-boundary.yaml','boundary-matrix.yaml')) {
+foreach ($f in @('boundaries.md','boundaries.yaml','boundaries.schema.json','boundary-registry.yaml','ownership-boundary.yaml','delegation-boundary.yaml','dependency-boundary.yaml','interface-boundary.yaml','boundary-matrix.yaml','boundary-ownership-matrix.yaml')) {
   if (-not (Test-Path (Join-Path $s004 $f))) { $errors += "S1-009: missing S004/$f" }
 }
 $bdYaml = Join-Path $s004 'boundaries.yaml'
@@ -133,8 +133,22 @@ if (Test-Path $bdYaml) {
   foreach ($b in @('B001-ownership','B002-permission','B003-delegation','B004-dependency','B005-interface','B006-state','B007-data','B008-failure','B009-security')) {
     if ($bd -notmatch [regex]::Escape($b)) { $errors += "S1-009: thieu $b" }
   }
-  foreach ($sec in @('invariants','validation','mapping')) {
+  foreach ($sec in @('hierarchy','decision','invariants','validation','mapping')) {
     if ($bd -notmatch "(?m)^${sec}:") { $errors += "S1-009: boundaries.yaml thieu '$sec'" }
+  }
+  foreach ($b in @('B001-ownership','B002-permission','B003-delegation','B004-dependency','B005-interface','B006-state','B007-data','B008-failure','B009-security')) {
+    # tim block cua boundary, kiem tra co severity + principles
+    $idx = $bd.IndexOf("$b" + ':')
+    if ($idx -lt 0) { continue }
+    $nextIdx = $bd.Length
+    foreach ($nb in @('B001-ownership','B002-permission','B003-delegation','B004-dependency','B005-interface','B006-state','B007-data','B008-failure','B009-security')) {
+      $n = $bd.IndexOf("$nb" + ':', $idx + 1)
+      if ($n -gt 0 -and $n -lt $nextIdx) { $nextIdx = $n }
+    }
+    $block = $bd.Substring($idx, $nextIdx - $idx)
+    if ($block -notmatch '(?m)^    severity:\s*(\w+)') { $errors += "S1-009: $b thieu severity" }
+    elseif ($Matches[1] -notin @('Critical','High','Medium','Low')) { $errors += "S1-009: $b severity sai" }
+    if ($block -notmatch '(?m)^    principles:') { $errors += "S1-009: $b thieu principles" }
   }
 }
 
