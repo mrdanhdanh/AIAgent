@@ -1,26 +1,187 @@
-# SPEC-001 Appendix — Runtime Canonical Models
-# Model chuan dung xuyen suot Runtime. S008/S009/S010 tham chieu, khong dinh nghia lai.
+# SPEC-001A — Runtime Canonical Domain Model (12 models)
+# Single Source of Truth (P009). Moi SPEC chi tham chieu, khong dinh nghia lai.
 ---
-version: "1.0"
+id: SPEC-001A
+name: Runtime Canonical Domain Model
+version: "1.0.0"
+status: Draft
+owner: Runtime Team
+rule: Khong SPEC nao duoc tu dinh nghia lai Execution/Context/Event/Artifact/Contract/Capability hay model chuan khac.
+model_template:
+  fields: [id, purpose, owner, lifecycle, invariants, relationships, fields, constraints, version, status]
 models:
-  Execution:
+  RM-001:
+    name: Execution
+    level: Core
+    purpose: Quản lý vòng đời thực thi
+    owner: Runtime
+    lifecycle: Created → Running → Completed → Archived
+    invariants: [Execution luôn có đúng 1 Runtime, Execution luôn có 1 Workflow, Execution luôn có 1 Context]
+    relationships:
+      Event: N
+      Workflow: 1
+      Execution Result: 1
+      State: 1
+      Context: 1
+      Artifact: N
     fields: [id, workflow_ref, status, context_ref, state_ref, started_at, ended_at, result_ref, events]
-    canonical: true
-  Context:
+    constraints: [Không chia sẻ Context giữa hai Execution]
+    identity: ExecutionID
+    version: 1.0.0
+    status: Stable
+  RM-002:
+    name: Workflow
+    level: Core
+    purpose: Định nghĩa kế hoạch thực thi
+    owner: Workflow
+    lifecycle: Draft → Approved → Running → Completed → Archived
+    invariants: [Workflow không tự thay đổi, Workflow không chứa Prompt/Logic]
+    relationships:
+      Execution: N
+      Phase: 1..N
+    fields: [id, name, version, phases, status]
+    constraints: [Workflow Definition thuộc Workflow, không thuộc Runtime]
+    identity: WorkflowID
+    version: 1.0.0
+    status: Stable
+  RM-003:
+    name: Phase
+    level: Core
+    purpose: Nhóm Task trong Workflow
+    owner: Workflow
+    lifecycle: Pending → Running → Completed
+    invariants: [Phase không phải Agent]
+    relationships:
+      Task: 1..N
+    fields: [id, name, tasks, status]
+    constraints: []
+    identity: PhaseID
+    version: 1.0.0
+    status: Stable
+  RM-004:
+    name: Task
+    level: Core
+    purpose: Đơn vị thực thi nhỏ nhất
+    owner: Phase
+    lifecycle: Queued → Running → Completed → Failed
+    invariants: [Task không tự điều phối Agent]
+    relationships:
+      Capability: 1
+    fields: [id, name, capability_ref, status]
+    constraints: [Task được Runtime giao cho Agent]
+    identity: TaskID
+    version: 1.0.0
+    status: Stable
+  RM-005:
+    name: Context
+    level: Core
+    purpose: Dữ liệu thực thi trong một lần chạy
+    owner: Runtime
+    lifecycle: Created → Active → Closed
+    invariants: [Context không chia sẻ giữa hai Execution, Context chỉ sống trong Runtime]
+    relationships:
+      Execution: 1
     fields: [id, execution_ref, data, allocated_to, created_at, closed_at, isolated]
-    canonical: true
-  Artifact:
-    fields: [id, type, version, checksum, owner, created_at, immutable, metadata]
-    canonical: true
-  Event:
+    constraints: [Context không phải Memory]
+    identity: ContextID
+    version: 1.0.0
+    status: Stable
+  RM-006:
+    name: State
+    level: Core
+    purpose: Trạng thái runtime của Execution
+    owner: Runtime
+    lifecycle: Created → Running → Terminal
+    invariants: [State thuộc Runtime, Mọi state change phát Event]
+    relationships:
+      Execution: 1
+      Event: N
+    fields: [id, execution_ref, status, transitions]
+    constraints: [Agent không giữ state]
+    identity: StateID
+    version: 1.0.0
+    status: Stable
+  RM-007:
+    name: Event
+    level: Core
+    purpose: Thông báo bất biến về state change
+    owner: Runtime
+    lifecycle: Created → Published → Immutable
+    invariants: [Event append-only, Event immutable, Event có lineage]
+    relationships:
+      Execution: 1
     fields: [id, type, execution_ref, state_from, state_to, timestamp, lineage, immutable]
-    canonical: true
-  Contract:
+    constraints: [Mọi state change có Event]
+    identity: EventID
+    version: 1.0.0
+    status: Stable
+  RM-008:
+    name: Artifact
+    level: Core
+    purpose: Output bất biến của Execution
+    owner: Runtime
+    lifecycle: Created → Published → Consumed → Archived
+    invariants: [Artifact immutable, Không overwrite]
+    relationships:
+      Execution: 1
+    fields: [id, type, version, checksum, owner, created_at, immutable, metadata]
+    constraints: [Thay đổi → version mới]
+    identity: ArtifactID
+    version: 1.0.0
+    status: Stable
+  RM-009:
+    name: Contract
+    level: Core
+    purpose: Giao diện giữa hai thành phần
+    owner: Component
+    lifecycle: Draft → Published → Deprecated
+    invariants: [Contract immutable sau Published, Contract không chứa Business Logic]
+    relationships:
+      Component: 1
     fields: [id, name, category, version, status, owner, direction, pattern, inputs, outputs]
-    canonical: true
-  Capability:
+    constraints: [Mọi giao tiếp qua Contract]
+    identity: ContractID
+    version: 1.0.0
+    status: Stable
+  RM-010:
+    name: Capability
+    level: Core
+    purpose: Khả năng, không phụ thuộc implementation
+    owner: Registry
+    lifecycle: Registered → Available → Deprecated → Removed
+    invariants: [Capability không chứa implementation, Runtime không biết Agent cụ thể]
+    relationships:
+      Agent: 0..N
     fields: [id, name, description, implementation_ref, status, version]
-    canonical: true
-  Metadata:
+    constraints: [Runtime resolve qua Registry]
+    identity: CapabilityID
+    version: 1.0.0
+    status: Stable
+  RM-011:
+    name: Metadata
+    level: Core
+    purpose: Thông tin quản lý của entity
+    owner: Varies
+    lifecycle: Draft → Published
+    invariants: [Mọi entity có metadata]
+    relationships:
     fields: [id, type, version, status, owner, created_at, updated_at, tags]
-    canonical: true
+    constraints: [Metadata machine-readable]
+    identity: MetadataID
+    version: 1.0.0
+    status: Stable
+  RM-012:
+    name: Execution Result
+    level: Core
+    purpose: Kết quả tổng hợp của Execution
+    owner: Runtime
+    lifecycle: Created → Published → Consumed → Archived
+    invariants: [Result immutable, Result tổng hợp từ Artifact + Metrics]
+    relationships:
+      Execution: 1
+      Artifact: 1..N
+    fields: [id, execution_ref, summary, artifacts, metrics, status]
+    constraints: [Result do Runtime công bố]
+    identity: ResultID
+    version: 1.0.0
+    status: Stable

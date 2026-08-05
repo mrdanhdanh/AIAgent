@@ -226,8 +226,19 @@ if (Test-Path $ctrYaml) {
 }
 # runtime-models
 $rmDir = Join-Path $spec1 'runtime-models'
-foreach ($f in @('README.md','runtime-models.yaml')) {
+foreach ($f in @('README.md','runtime-models.yaml','runtime-models.schema.json','runtime-model-registry.yaml','runtime-model-relationships.yaml','runtime-model-validation.yaml')) {
   if (-not (Test-Path (Join-Path $rmDir $f))) { $errors += "S1-015: missing runtime-models/$f" }
+}
+$rmYaml = Join-Path $rmDir 'runtime-models.yaml'
+if (Test-Path $rmYaml) {
+  $rm = Get-Content -LiteralPath $rmYaml -Raw -Encoding utf8
+  for ($i = 1; $i -le 12; $i++) {
+    $m = "RM-{0:D3}" -f $i
+    if ($rm -notmatch [regex]::Escape($m)) { $errors += "S1-015: runtime-models thieu $m" }
+  }
+  foreach ($n in @('Execution','Workflow','Phase','Task','Context','State','Event','Artifact','Contract','Capability','Metadata','Execution Result')) {
+    if ($rm -notmatch [regex]::Escape($n)) { $warnings += "S1-015: runtime-models thieu model '$n'" }
+  }
 }
 # mapping: moi CTR co component + principle
 $ctrMap = Join-Path $s007 'contract-mapping.yaml'

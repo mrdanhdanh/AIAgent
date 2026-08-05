@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aios://runtime-models.schema.json",
+  "title": "SPEC-001A Runtime Canonical Domain Model",
+  "description": "JSON Schema cho runtime-models.yaml. Validator kiem tra cau truc.",
+  "type": "object",
+  "required": ["id", "name", "version", "status", "owner", "rule", "model_template", "models"],
+  "properties": {
+    "id": { "const": "SPEC-001A" },
+    "name": { "const": "Runtime Canonical Domain Model" },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "status": { "enum": ["Draft", "Review", "Approved", "Stable", "Deprecated"] },
+    "owner": { "type": "string" },
+    "rule": { "type": "string" },
+    "model_template": { "type": "object" },
+    "models": {
+      "type": "object",
+      "patternProperties": {
+        "^RM-\\d{3}$": {
+          "type": "object",
+          "required": ["name", "level", "purpose", "owner", "lifecycle", "invariants", "relationships", "fields", "constraints", "identity", "version", "status"],
+          "properties": {
+            "name": { "type": "string" },
+            "level": { "enum": ["Core", "Supporting", "Extension"] },
+            "purpose": { "type": "string" },
+            "owner": { "type": "string" },
+            "lifecycle": { "type": "string" },
+            "invariants": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+            "relationships": { "type": "object" },
+            "fields": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+            "constraints": { "type": "array", "items": { "type": "string" } },
+            "identity": { "type": "string" },
+            "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+            "status": { "enum": ["Stable", "Experimental", "Deprecated"] }
+          }
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

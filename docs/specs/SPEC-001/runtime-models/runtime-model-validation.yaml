@@ -1,0 +1,12 @@
+# SPEC-001A — Model Validation
+# Doctor kiem tra.
+---
+version: "1.0"
+validation:
+  Execution: phải có [Workflow, Context, State]
+  Context: phải có [Execution]
+  Event: phải có [Execution, lineage]
+  Artifact: phải có [checksum, version]
+  Contract: phải có [owner, version]
+  Capability: phải có [implementation_ref]
+  Execution Result: phải có [Execution, Artifact]
