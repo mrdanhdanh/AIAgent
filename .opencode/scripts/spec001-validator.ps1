@@ -282,17 +282,17 @@ if (Test-Path $smYaml) {
 
 # ---------- S1-016: S008 data model ----------
 $s008 = Join-Path $spec1 'S008'
-foreach ($f in @('data-model.md','runtime-data-model.yaml','runtime-entities.yaml','runtime-relationships.yaml','runtime-lifecycle.yaml','runtime-ownership.yaml','runtime-references.yaml','runtime-validation.yaml','runtime-data.schema.json')) {
+foreach ($f in @('data-model.md','runtime-data-model.yaml','runtime-entities.yaml','runtime-relations.yaml','runtime-lifecycle.yaml','runtime-ownership.yaml','runtime-references.yaml','runtime-validation.yaml','runtime-identities.yaml','runtime-invariants.yaml','runtime-data.schema.json')) {
   if (-not (Test-Path (Join-Path $s008 $f))) { $errors += "S1-016: missing S008/$f" }
 }
 $entYaml = Join-Path $s008 'runtime-entities.yaml'
 if (Test-Path $entYaml) {
   $en = Get-Content -LiteralPath $entYaml -Raw -Encoding utf8
-  for ($i = 1; $i -le 12; $i++) {
+  for ($i = 1; $i -le 15; $i++) {
     $e = "ENT-{0:D3}" -f $i
     if ($en -notmatch [regex]::Escape($e)) { $errors += "S1-016: thieu $e" }
   }
-  foreach ($n in @('Execution','Execution Context','Execution State','Workflow Reference','Capability Reference','Agent Assignment','Event','Artifact','Metrics','Trace','Resource Allocation','Execution Result')) {
+  foreach ($n in @('Execution','Execution Context','Execution State','Workflow Reference','Capability Reference','Agent Assignment','Event','Artifact','Metrics','Trace','Resource Allocation','Execution Result','Execution Snapshot','Execution Lineage','Execution Metadata')) {
     if ($en -notmatch [regex]::Escape($n)) { $warnings += "S1-016: thieu entity '$n'" }
   }
 }
@@ -303,6 +303,13 @@ if (Test-Path $dmYaml) {
     if ($dm -notmatch "(?m)^${sec}:") { $errors += "S1-016: runtime-data-model thieu '$sec'" }
   }
   if ($dm -notmatch 'Execution') { $errors += "S1-016: aggregate_root phai la Execution" }
+}
+# validation: 20 rules
+$valYaml = Join-Path $s008 'runtime-validation.yaml'
+if (Test-Path $valYaml) {
+  $vl = Get-Content -LiteralPath $valYaml -Raw -Encoding utf8
+  $ruleCount = ([regex]::Matches($vl, '(?m)^  - ')).Count
+  if ($ruleCount -lt 15) { $errors += "S1-016: runtime-validation chi co $ruleCount rules (can >=15)" }
 }
 
 # ---------- S1-018: SPEC.yaml ----------

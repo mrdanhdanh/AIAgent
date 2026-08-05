@@ -1,0 +1,20 @@
+# SPEC-001 S008 — Data Invariants (D007) v2
+# Doctor kiem tra.
+---
+version: "1.0"
+invariants:
+  - Execution có đúng một Context.
+  - Execution có đúng một State.
+  - Event không thay đổi.
+  - Artifact immutable.
+  - Context isolated.
+  - Execution có duy nhất một Terminal State.
+  - Execution ID toàn cục.
+  - Execution luôn có Owner.
+  - Execution luôn có Metadata.
+  - Execution luôn có Version.
+  - Execution luôn có Lifecycle.
+  - Execution không đổi Identity.
+  - Context không đổi Owner.
+  - Artifact không đổi Checksum.
+  - Event không đổi Timestamp.

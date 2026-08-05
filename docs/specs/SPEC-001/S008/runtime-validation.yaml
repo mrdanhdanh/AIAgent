@@ -1,12 +1,25 @@
-# SPEC-001 S008 — Data Validation (D012)
+# SPEC-001 S008 — Data Validation (D012) v2 — 20 rules
 # Doctor kiem tra.
 ---
 version: "1.0"
 validation:
-  - Execution không có Context.
-  - Execution có nhiều State.
-  - Artifact bị sửa.
-  - Event bị sửa.
-  - Context chia sẻ.
-  - Reference hỏng.
-  - Version sai.
+  - Duplicate IDs
+  - Invalid References
+  - Broken Ownership
+  - Invalid Lifecycle
+  - Invalid State
+  - Missing Metadata
+  - Invalid Version
+  - Invalid Checksum
+  - Invalid Aggregate
+  - Context Leak
+  - Multiple Context
+  - Missing Result
+  - Event Ordering
+  - Circular Reference
+  - Missing Owner
+  - Missing Created Time
+  - Invalid Lineage
+  - Invalid Artifact
+  - Broken Trace
+  - Invalid Capability Reference

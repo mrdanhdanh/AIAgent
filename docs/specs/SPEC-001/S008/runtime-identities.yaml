@@ -1,0 +1,24 @@
+# SPEC-001 S008 — Identity Rules (D008) v2
+# Toan AIOS thong nhat identity.
+---
+version: "1.0"
+identities:
+  Execution: ExecutionID
+  Execution Context: Execution ContextID
+  Execution State: Execution StateID
+  Workflow Reference: Workflow ReferenceID
+  Capability Reference: Capability ReferenceID
+  Agent Assignment: Agent AssignmentID
+  Event: EventID
+  Artifact: ArtifactID
+  Metrics: MetricsID
+  Trace: TraceID
+  Resource Allocation: Resource AllocationID
+  Execution Result: Execution ResultID
+  Execution Snapshot: Execution SnapshotID
+  Execution Lineage: Execution LineageID
+  Execution Metadata: Execution MetadataID
+rules:
+  - Mọi Entity có ID duy nhất toàn cục.
+  - Identity không đổi trong vòng đời (P009).
+  - Không dùng GUID lẫn lộn giữa các loại entity.

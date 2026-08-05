@@ -1,8 +1,8 @@
-# SPEC-001 S008 — Entity Relationships
-# Execution la Aggregate Root.
+# SPEC-001 S008 — Entity Relations (D002) v2
+# Execution la Aggregate Root. Graph day du.
 ---
 version: "1.0"
-relationships:
+graph:
   Workflow → Execution: "1..N"
   Execution → Context: "1"
   Execution → State: "1"
@@ -10,5 +10,7 @@ relationships:
   Execution → Artifact: "N"
   Execution → Metrics: "N"
   Execution → Trace: "N"
-  Execution → Result: "1"
+  Execution → Resource Allocation: "N"
   Execution → Agent Assignment: "N"
+  Execution → Result: "1"
+  Capability Reference ← Registry: "1"
