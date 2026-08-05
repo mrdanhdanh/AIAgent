@@ -27,29 +27,32 @@ SPEC-000 Constitution
 ## SPEC-001 — Runtime Kernel
 
 > **Trạng thái**: In progress · **Phụ thuộc**: SPEC-000
+> **Tier 1 Foundation: ✅ Frozen** · Tier 2 Behavior · Tier 3 Quality
 
 ```text
 SPEC-001 Runtime Kernel
-├── S001 Runtime Vision        ✅
-├── S002 Runtime Requirements  ✅
-├── S003 Runtime Responsibilities ✅
-├── S004 Runtime Boundaries    ✅
-├── S005 Runtime Architecture  ✅
-├── S006 Runtime Components    🚧
-├── S007 Runtime Contracts
-├── S008 Runtime Data Model
-├── S009 Runtime State Machine
-├── S010 Runtime Execution Flow
-├── S011 Runtime Events
-├── S012 Runtime Context
-├── S013 Runtime Artifact Model
-├── S014 Runtime Metrics
-├── S015 Runtime Error Model
-├── S016 Runtime Configuration
-├── S017 Runtime Lifecycle
-├── S018 Runtime Extension Points
-├── S019 Runtime Security
-└── S020 Runtime Compliance
+│
+├── Tier 1 — Foundation ✅
+│   ├── S001 Runtime Vision          ✅
+│   ├── S002 Runtime Requirements    ✅
+│   ├── S003 Runtime Responsibilities ✅
+│   ├── S004 Runtime Boundaries      ✅
+│   ├── S005 Runtime Architecture    ✅
+│   ├── S006 Runtime Components      ✅
+│   ├── S007 Runtime Contracts       ✅
+│   └── Appendix: Canonical Models   ✅
+│
+├── Tier 2 — Runtime Behavior
+│   ├── S008 Runtime Data Model
+│   ├── S009 Runtime State Machine
+│   ├── S010 Runtime Execution Flow
+│   ├── S011 Runtime Event Model
+│   └── S012 Runtime Error Model
+│
+└── Tier 3 — Runtime Quality
+    ├── S013 Runtime Observability
+    ├── S014 Runtime Security
+    └── S015 Runtime Compliance & Verification
 ```
 
 ## SPEC-002 — Workflow Engine
@@ -127,4 +130,7 @@ Workflow → Capability → Registry → Agent → Context → Artifact → Even
 - Mọi SPEC tham chiếu Constitution (SPEC-000), không định nghĩa lại.
 - Hoàn thiện toàn bộ Runtime trước khi sang SPEC-002.
 - Mỗi SPEC theo chuỗi: Vision → Requirements → Responsibilities → Boundaries → Architecture → Components → Contracts → Data Model → State Machine → Execution Flow → Events.
+- **Behavior Before Data** — định nghĩa Behavior (State Machine/Flow) trước Data Model; Data là hệ quả của State và Flow.
 - Doctor/Dashboard/Evolution đọc file này để xây chỉ mục và kiểm tra tính đầy đủ.
+
+> **Ghi chú**: "Behavior Before Data" hiện là nguyên tắc thiết kế SPEC (đã áp dụng từ S008). Nếu muốn nâng thành Principle P021 trong Constitution → cần RFC + ADR (Constitution đã Frozen).

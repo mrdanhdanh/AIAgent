@@ -78,6 +78,12 @@ Vision → Design → Schema → API → Events → State Machine → Tests
 
 - **SPEC-000 bắt buộc trước** — mọi SPEC khác tuân theo.
 - **Kernel-first**: xây từ lõi ra, không để service phụ thuộc Runtime chưa định nghĩa.
+- **Behavior Before Data** ⭐ — không định nghĩa Data Model trước khi biết Behavior (State Machine, Execution Flow). Data chỉ là hệ quả của State và Flow (DDD, Event Sourcing, CQRS cũng tuân theo):
+
+```text
+Vision → Responsibilities → Architecture → Behavior → Data → Implementation
+```
+
 - Mọi SPEC **tham chiếu** Constitution + cross-reference, không định nghĩa lại.
 - SPEC khai báo `implements: <component>` — Doctor đọc compliance-matrix biết thiếu gì.
 - 80% thời gian Specification, 20% code.

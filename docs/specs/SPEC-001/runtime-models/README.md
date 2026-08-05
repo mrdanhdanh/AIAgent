@@ -8,7 +8,7 @@ agent: general
 
 # SPEC-001A — Runtime Canonical Domain Model
 
-> **SPEC-001** Appendix · **Version**: 1.0.0 · **Trạng thái**: Draft
+> **SPEC-001** Appendix · **Version**: 1.0.0 · **Trạng thái**: ✅ Frozen (2026-08-04)
 > **Quy tắc bất biến**:
 > **Không SPEC nào được phép tự định nghĩa lại `Execution`, `Context`, `Event`,
 > `Artifact`, `Contract`, `Capability` hay các model chuẩn khác. Mọi SPEC chỉ

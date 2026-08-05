@@ -4,7 +4,9 @@
 id: SPEC-001A
 name: Runtime Canonical Domain Model
 version: "1.0.0"
-status: Draft
+status: Approved
+frozen: true
+frozen_date: "2026-08-04"
 owner: Runtime Team
 rule: Khong SPEC nao duoc tu dinh nghia lai Execution/Context/Event/Artifact/Contract/Capability hay model chuan khac.
 model_template:
