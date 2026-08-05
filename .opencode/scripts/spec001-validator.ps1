@@ -152,13 +152,32 @@ if (Test-Path $bdYaml) {
   }
 }
 
-# ---------- S1-010: SPEC.yaml ----------
+# ---------- S1-011: S005 architecture ----------
+$s005 = Join-Path $spec1 'S005'
+foreach ($f in @('architecture.md','architecture.yaml','architecture.schema.json','architecture-registry.yaml','layer-model.yaml','dependency-rules.yaml','communication-rules.yaml','domain-model.yaml','architecture-matrix.yaml','architecture-decision-log.yaml')) {
+  if (-not (Test-Path (Join-Path $s005 $f))) { $errors += "S1-011: missing S005/$f" }
+}
+$archYaml = Join-Path $s005 'architecture.yaml'
+if (Test-Path $archYaml) {
+  $ar = Get-Content -LiteralPath $archYaml -Raw -Encoding utf8
+  foreach ($l in @('Command','Workflow','Execution','Coordination','Capability','Resolution','State','Event','Persistence')) {
+    if ($ar -notmatch [regex]::Escape($l)) { $errors += "S1-011: thieu layer $l" }
+  }
+  foreach ($d in @('Execution','Coordination','Capability','State','Observability','Persistence')) {
+    if ($ar -notmatch [regex]::Escape($d)) { $errors += "S1-011: thieu domain $d" }
+  }
+  foreach ($sec in @('dependency_rules','communication_rules','invariants','quality','constraints','validation','mapping')) {
+    if ($ar -notmatch "(?m)^${sec}:") { $errors += "S1-011: architecture.yaml thieu '$sec'" }
+  }
+}
+
+# ---------- S1-012: SPEC.yaml ----------
 $specFile = Join-Path $spec1 'SPEC.yaml'
 if (Test-Path $specFile) {
   $st = Get-Content -LiteralPath $specFile -Raw -Encoding utf8
-  if ($st -notmatch '(?m)^id:\s*SPEC-001') { $errors += "S1-010: SPEC.yaml id phai la SPEC-001" }
-  if ($st -notmatch '(?m)^implements:') { $errors += "S1-010: SPEC.yaml thieu implements" }
-  foreach ($d in @('SPEC-000')) { if ($st -notmatch [regex]::Escape($d)) { $errors += "S1-010: thieu dependency $d" } }
+  if ($st -notmatch '(?m)^id:\s*SPEC-001') { $errors += "S1-012: SPEC.yaml id phai la SPEC-001" }
+  if ($st -notmatch '(?m)^implements:') { $errors += "S1-012: SPEC.yaml thieu implements" }
+  foreach ($d in @('SPEC-000')) { if ($st -notmatch [regex]::Escape($d)) { $errors += "S1-012: thieu dependency $d" } }
 }
 
 # ---------- Output ----------

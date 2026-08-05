@@ -1,0 +1,14 @@
+# SPEC-001 S005 — Architecture Registry
+# Doctor/Dashboard doc mot file.
+---
+version: "1.0"
+layers: [Command, Workflow, Execution, Coordination, Capability, Resolution, State, Event, Persistence]
+domains: [Execution, Coordination, Capability, State, Observability, Persistence]
+principles_mapping:
+  Layering: P008
+  Contract: P002
+  Event: P005
+  Capability: P007
+  Metadata: P003
+  Plugin: P012
+  Constitution: P020

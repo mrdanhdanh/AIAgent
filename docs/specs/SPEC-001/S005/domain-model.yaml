@@ -1,0 +1,23 @@
+# SPEC-001 S005 — Domain Model (Domain View)
+# Moi Component (S006) thuoc 1 Domain va 1 Layer.
+---
+version: "1.0"
+domains:
+  Execution:
+    layers: [Command, Workflow, Execution]
+    contains_business_logic: false
+  Coordination:
+    layers: [Coordination]
+    contains_business_logic: false
+  Capability:
+    layers: [Capability, Resolution]
+    contains_business_logic: false
+  State:
+    layers: [State]
+    contains_business_logic: false
+  Observability:
+    layers: [Event]
+    contains_business_logic: false
+  Persistence:
+    layers: [Persistence]
+    contains_business_logic: false

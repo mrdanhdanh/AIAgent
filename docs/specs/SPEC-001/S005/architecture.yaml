@@ -1,0 +1,113 @@
+# SPEC-001 S005 — Runtime Architecture (Blueprint)
+# Layer View + Domain View. Logical Architecture, khong implementation.
+---
+id: SPEC-001-S005
+name: Runtime Architecture
+version: "1.0.0"
+status: Draft
+owner: Runtime Team
+vision: Execution Kernel theo kien truc phan tang. Moi tang mot trach nhiem, giao tiep qua Contract.
+layers:
+  Command:
+    level: 1
+    domain: Execution
+    responsibility: [Entry Point, Khởi tạo Runtime]
+    not_responsibility: [Nghiệp vụ]
+  Workflow:
+    level: 2
+    domain: Execution
+    responsibility: [Workflow Definition, Phase, Task]
+    not_responsibility: [Điều phối]
+  Execution:
+    level: 3
+    domain: Execution
+    responsibility: [Execution Lifecycle, Execution Context]
+    not_responsibility: [Business Logic]
+  Coordination:
+    level: 4
+    domain: Coordination
+    responsibility: [Orchestration, Scheduling, Retry, Timeout, Approval]
+    not_responsibility: [Business Logic]
+  Capability:
+    level: 5
+    domain: Capability
+    responsibility: [Capability Resolution, Capability Mapping]
+    not_responsibility: [Biết Agent]
+  Resolution:
+    level: 6
+    domain: Capability
+    responsibility: [Registry Lookup, Contract Validation]
+    not_responsibility: [Business Logic]
+  State:
+    level: 7
+    domain: State
+    responsibility: [State Machine, Context State, Execution State]
+    not_responsibility: [Business State]
+  Event:
+    level: 8
+    domain: Observability
+    responsibility: [Event, Metrics, Trace, Audit]
+    not_responsibility: [Business Data]
+  Persistence:
+    level: 9
+    domain: Persistence
+    responsibility: [Artifact Metadata, Event Store, Metrics, Snapshot]
+    not_responsibility: [Business Data]
+domains:
+  Execution: Runtime Domain
+  Coordination: Runtime Domain
+  Capability: Runtime Domain
+  State: Runtime Domain
+  Observability: Runtime Domain
+  Persistence: Runtime Domain
+dependency_rules:
+  - "Layer N -> Layer N+1: duoc phep"
+  - "Layer N -> Layer N+2: khong duoc phep"
+  - "Khong Circular Dependency"
+  - "Khong Skip Layer"
+communication_rules:
+  - Contract
+  - Context
+  - Event
+  - Artifact
+  note: Ngoai ra deu bi cam.
+invariants:
+  - Runtime luon Metadata Driven.
+  - Runtime khong biet Agent cu the.
+  - Runtime khong biet Plugin cu the.
+  - Runtime khong phu thuoc Framework.
+  - Runtime luon Stateless giua cac Execution.
+  - Runtime luon Event Driven.
+  - Runtime luon Contract First.
+quality:
+  Modularity: Cao
+  Coupling: Thap
+  Cohesion: Cao
+  Extensibility: Rat cao
+  Testability: Cao
+  Evolvability: Rat cao
+  Determinism: "100%"
+constraints:
+  - Circular Dependency
+  - Hidden Dependency
+  - Shared Mutable State
+  - Direct Agent Coupling
+  - Direct Plugin Coupling
+  - Business Logic trong Runtime
+  note: Tat ca deu CAM.
+validation:
+  - Layering
+  - Dependency
+  - Coupling
+  - Circular Dependency
+  - Contract Compliance
+  - Boundary Compliance
+  - Principle Compliance
+mapping:
+  Layering: P008
+  Contract: P002
+  Event: P005
+  Capability: P007
+  Metadata: P003
+  Plugin: P012
+  Constitution: P020

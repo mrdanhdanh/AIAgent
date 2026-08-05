@@ -1,0 +1,40 @@
+# SPEC-001 S005 — Architecture Matrix (Layer x Domain)
+---
+version: "1.0"
+matrix:
+  Command:
+    level: 1
+    domain: Execution
+    principle: P001
+  Workflow:
+    level: 2
+    domain: Execution
+    principle: P001
+  Execution:
+    level: 3
+    domain: Execution
+    principle: P001
+  Coordination:
+    level: 4
+    domain: Coordination
+    principle: P001
+  Capability:
+    level: 5
+    domain: Capability
+    principle: P007
+  Resolution:
+    level: 6
+    domain: Capability
+    principle: P007
+  State:
+    level: 7
+    domain: State
+    principle: P009
+  Event:
+    level: 8
+    domain: Observability
+    principle: P014
+  Persistence:
+    level: 9
+    domain: Persistence
+    principle: P010

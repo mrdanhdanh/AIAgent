@@ -1,0 +1,20 @@
+# SPEC-001 S005 — Architecture Decision Log
+# Ghi lai quyet dinh kien truc quan trong.
+---
+version: "1.0"
+decisions:
+  AD-001:
+    title: Runtime la Execution Kernel phan tang
+    decision: 9 layer logic, moi layer mot trach nhiem
+    rationale: Phan tang giu kien truc on dinh, de kiem tra
+    status: Accepted
+  AD-002:
+    title: Ket hop Layer View + Domain View
+    decision: Moi component thuoc 1 domain va 1 layer
+    rationale: Phan tich he thong da chieu khong doi kien truc
+    status: Accepted
+  AD-003:
+    title: Chi 4 kenh giao tiep
+    decision: Contract, Context, Event, Artifact
+    rationale: De kiem tra, tranh coupling
+    status: Accepted

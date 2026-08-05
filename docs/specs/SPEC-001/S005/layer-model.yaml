@@ -1,0 +1,50 @@
+# SPEC-001 S005 — Layer Model (Layer View)
+---
+version: "1.0"
+layer_order:
+  - Command
+  - Workflow
+  - Execution
+  - Coordination
+  - Capability
+  - Resolution
+  - State
+  - Event
+  - Persistence
+layers:
+  Command:
+    level: 1
+    responsibility: [Entry Point, Khởi tạo Runtime]
+    not_responsibility: [Nghiệp vụ]
+  Workflow:
+    level: 2
+    responsibility: [Workflow Definition, Phase, Task]
+    not_responsibility: [Điều phối]
+  Execution:
+    level: 3
+    responsibility: [Execution Lifecycle, Execution Context]
+    not_responsibility: [Business Logic]
+  Coordination:
+    level: 4
+    responsibility: [Orchestration, Scheduling, Retry, Timeout, Approval]
+    not_responsibility: [Business Logic]
+  Capability:
+    level: 5
+    responsibility: [Capability Resolution, Capability Mapping]
+    not_responsibility: [Biết Agent]
+  Resolution:
+    level: 6
+    responsibility: [Registry Lookup, Contract Validation]
+    not_responsibility: [Business Logic]
+  State:
+    level: 7
+    responsibility: [State Machine, Context State, Execution State]
+    not_responsibility: [Business State]
+  Event:
+    level: 8
+    responsibility: [Event, Metrics, Trace, Audit]
+    not_responsibility: [Business Data]
+  Persistence:
+    level: 9
+    responsibility: [Artifact Metadata, Event Store, Metrics, Snapshot]
+    not_responsibility: [Business Data]

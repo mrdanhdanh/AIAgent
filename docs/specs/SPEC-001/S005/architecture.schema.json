@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aios://architecture.schema.json",
+  "title": "SPEC-001 Runtime Architecture (S005)",
+  "description": "JSON Schema cho architecture.yaml. Validator kiem tra cau truc.",
+  "type": "object",
+  "required": ["id", "name", "version", "status", "owner", "vision", "layers", "domains", "dependency_rules", "communication_rules", "invariants", "quality", "constraints", "validation", "mapping"],
+  "properties": {
+    "id": { "const": "SPEC-001-S005" },
+    "name": { "const": "Runtime Architecture" },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "status": { "enum": ["Draft", "Review", "Approved", "Stable", "Deprecated"] },
+    "owner": { "type": "string" },
+    "vision": { "type": "string" },
+    "layers": {
+      "type": "object",
+      "patternProperties": {
+        "^(Command|Workflow|Execution|Coordination|Capability|Resolution|State|Event|Persistence)$": {
+          "type": "object",
+          "required": ["level", "domain", "responsibility"],
+          "properties": {
+            "level": { "type": "integer", "minimum": 1, "maximum": 9 },
+            "domain": { "enum": ["Execution", "Coordination", "Capability", "State", "Observability", "Persistence"] },
+            "responsibility": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+            "not_responsibility": { "type": "array", "items": { "type": "string" } }
+          }
+        }
+      }
+    },
+    "domains": { "type": "object" },
+    "dependency_rules": { "type": "array", "items": { "type": "string" }, "minItems": 2 },
+    "communication_rules": { "type": "array", "items": { "type": "string" }, "minItems": 4 },
+    "invariants": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "quality": { "type": "object" },
+    "constraints": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "validation": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "mapping": { "type": "object" }
+  },
+  "additionalProperties": false
+}
