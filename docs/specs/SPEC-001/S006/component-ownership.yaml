@@ -1,17 +1,17 @@
-# SPEC-001 S006 — Component Ownership (C010)
+# SPEC-001 S006 — Component Ownership (C010) v2
 # Moi component 1 owner. Khong chong cheo.
 ---
 version: "1.0"
 ownership:
   Execution Manager: Runtime
-  Workflow Loader: Runtime
-  Execution Coordinator: Runtime
-  Capability Resolver: Runtime
-  Registry Resolver: Runtime
+  Execution Orchestrator: Runtime
   Context Manager: Runtime
   State Manager: Runtime
+  Policy Engine: Runtime
+  Workflow Loader: Runtime
+  Capability Resolver: Runtime
+  Registry Resolver: Runtime
   Event Dispatcher: Runtime
   Artifact Dispatcher: Runtime
   Metrics Collector: Runtime
-  Policy Engine: Runtime
   Execution Resource Manager: Runtime

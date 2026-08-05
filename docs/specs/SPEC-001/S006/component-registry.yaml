@@ -1,19 +1,105 @@
-# SPEC-001 S006 — Component Registry (C013)
+# SPEC-001 S006 — Component Registry (C013) v2
 # Doctor/Dashboard doc mot file.
 ---
 version: "1.0"
 components:
-  CMP-001: { name: Execution Manager, layer: Execution, domain: Execution, contract: Execution Contract }
-  CMP-002: { name: Workflow Loader, layer: Workflow, domain: Execution, contract: Workflow Contract }
-  CMP-003: { name: Execution Coordinator, layer: Coordination, domain: Coordination, contract: Coordinator Contract }
-  CMP-004: { name: Capability Resolver, layer: Capability, domain: Capability, contract: Capability Contract }
-  CMP-005: { name: Registry Resolver, layer: Resolution, domain: Capability, contract: Registry Contract }
-  CMP-006: { name: Context Manager, layer: Execution, domain: Execution, contract: Context Contract }
-  CMP-007: { name: State Manager, layer: State, domain: State, contract: State Contract }
-  CMP-008: { name: Event Dispatcher, layer: Event, domain: Observability, contract: Event Contract }
-  CMP-009: { name: Artifact Dispatcher, layer: Publication, domain: Publication, contract: Artifact Contract }
-  CMP-010: { name: Metrics Collector, layer: Event, domain: Observability, contract: Metrics Contract }
-  CMP-011: { name: Policy Engine, layer: Coordination, domain: Coordination, contract: Policy Contract }
-  CMP-012: { name: Execution Resource Manager, layer: Execution, domain: Execution, contract: Resource Contract }
-layers: [Command, Workflow, Execution, Coordination, Capability, Resolution, State, Event, Publication]
-domains: [Execution, Coordination, Capability, State, Observability, Publication]
+  CMP-001:
+    name: Execution Manager
+    layer: Execution
+    domain: Execution
+    contracts: [Execution Contract]
+    capabilities: [execution-management]
+    owner: Runtime
+    status: Stable
+  CMP-002:
+    name: Execution Orchestrator
+    layer: Coordination
+    domain: Coordination
+    contracts: [Orchestrator Contract]
+    capabilities: [orchestration]
+    owner: Runtime
+    status: Stable
+  CMP-003:
+    name: Context Manager
+    layer: Execution
+    domain: Execution
+    contracts: [Context Contract]
+    capabilities: [context-management]
+    owner: Runtime
+    status: Stable
+  CMP-004:
+    name: State Manager
+    layer: State
+    domain: State
+    contracts: [State Contract]
+    capabilities: [state-management]
+    owner: Runtime
+    status: Stable
+  CMP-005:
+    name: Policy Engine
+    layer: Coordination
+    domain: Coordination
+    contracts: [Policy Contract]
+    capabilities: [policy-enforcement]
+    owner: Runtime
+    status: Stable
+  CMP-006:
+    name: Workflow Loader
+    layer: Workflow
+    domain: Execution
+    contracts: [Workflow Contract]
+    capabilities: [workflow-loading]
+    owner: Runtime
+    status: Stable
+  CMP-007:
+    name: Capability Resolver
+    layer: Capability
+    domain: Capability
+    contracts: [Capability Contract]
+    capabilities: [capability-resolution]
+    owner: Runtime
+    status: Stable
+  CMP-008:
+    name: Registry Resolver
+    layer: Resolution
+    domain: Capability
+    contracts: [Registry Contract]
+    capabilities: [registry-resolution]
+    owner: Runtime
+    status: Stable
+  CMP-009:
+    name: Event Dispatcher
+    layer: Event
+    domain: Observability
+    contracts: [Event Contract]
+    capabilities: [event-dispatching]
+    owner: Runtime
+    status: Stable
+  CMP-010:
+    name: Artifact Dispatcher
+    layer: Publication
+    domain: Publication
+    contracts: [Artifact Contract]
+    capabilities: [artifact-dispatching]
+    owner: Runtime
+    status: Stable
+  CMP-011:
+    name: Metrics Collector
+    layer: Event
+    domain: Observability
+    contracts: [Metrics Contract]
+    capabilities: [metrics-collection]
+    owner: Runtime
+    status: Stable
+  CMP-012:
+    name: Execution Resource Manager
+    layer: Execution
+    domain: Execution
+    contracts: [Resource Contract]
+    capabilities: [resource-management]
+    owner: Runtime
+    status: Stable
+groups:
+  Core: [Execution Manager, Execution Orchestrator, Context Manager, State Manager, Policy Engine]
+  Resolution: [Workflow Loader, Capability Resolver, Registry Resolver]
+  Infrastructure: [Event Dispatcher, Artifact Dispatcher, Metrics Collector, Execution Resource Manager]

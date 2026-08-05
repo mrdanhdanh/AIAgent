@@ -1,10 +1,10 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "aios://components.schema.json",
-  "title": "SPEC-001 Runtime Components (S006 v3)",
+  "title": "SPEC-001 Runtime Components (S006 v4)",
   "description": "JSON Schema cho components.yaml. Validator kiem tra cau truc.",
   "type": "object",
-  "required": ["id", "name", "version", "status", "owner", "philosophy", "principles", "component_model", "components", "not_in_runtime"],
+  "required": ["id", "name", "version", "status", "owner", "philosophy", "principles", "component_model", "groups", "lifecycles", "components", "not_in_runtime"],
   "properties": {
     "id": { "const": "SPEC-001-S006" },
     "name": { "const": "Runtime Components" },
@@ -14,22 +14,31 @@
     "philosophy": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
     "principles": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
     "component_model": { "type": "object" },
+    "groups": { "type": "object" },
+    "lifecycles": { "type": "object" },
     "components": {
       "type": "object",
       "patternProperties": {
         "^CMP-\\d{3}$": {
           "type": "object",
-          "required": ["name", "layer", "domain", "responsibility", "contract", "state", "owner", "replaceable", "metric", "responsibilities", "requirements", "principles"],
+          "required": ["name", "version", "status", "group", "layer", "domain", "responsibility", "capability", "contracts", "dependencies", "lifecycle", "owner", "replaceable", "metric", "boundary", "rule", "responsibilities", "requirements", "principles"],
           "properties": {
             "name": { "type": "string" },
+            "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+            "status": { "enum": ["Stable", "Experimental", "Deprecated"] },
+            "group": { "enum": ["Core", "Resolution", "Infrastructure"] },
             "layer": { "enum": ["Command", "Workflow", "Execution", "Coordination", "Capability", "Resolution", "State", "Event", "Publication"] },
             "domain": { "enum": ["Execution", "Coordination", "Capability", "State", "Observability", "Publication"] },
             "responsibility": { "type": "string" },
-            "contract": { "type": "string" },
-            "state": { "type": "string" },
+            "capability": { "type": "string" },
+            "contracts": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+            "dependencies": { "type": "array", "items": { "type": "string" } },
+            "lifecycle": { "enum": ["runtime", "execution"] },
             "owner": { "type": "string" },
             "replaceable": { "type": "boolean" },
             "metric": { "type": "string" },
+            "boundary": { "type": "string", "pattern": "^B\\d{3}-[a-z]+$" },
+            "rule": { "type": "string", "pattern": "^RULE-\\d{3}$" },
             "responsibilities": { "type": "array", "items": { "type": "string", "pattern": "^RR-\\d{3}$" }, "minItems": 1 },
             "requirements": { "type": "array", "items": { "type": "string", "pattern": "^FR-\\d{3}$" }, "minItems": 1 },
             "principles": { "type": "array", "items": { "type": "string", "pattern": "^P\\d{3}$" }, "minItems": 1 }

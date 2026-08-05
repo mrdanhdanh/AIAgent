@@ -184,8 +184,14 @@ if (Test-Path $cmpYaml) {
     $c = "CMP-{0:D3}" -f $i
     if ($cp -notmatch [regex]::Escape($c)) { $errors += "S1-013: thieu $c" }
   }
-  foreach ($n in @('Execution Manager','Workflow Loader','Execution Coordinator','Capability Resolver','Registry Resolver','Context Manager','State Manager','Event Dispatcher','Artifact Dispatcher','Metrics Collector','Policy Engine','Execution Resource Manager')) {
+  foreach ($n in @('Execution Manager','Execution Orchestrator','Context Manager','State Manager','Policy Engine','Workflow Loader','Capability Resolver','Registry Resolver','Event Dispatcher','Artifact Dispatcher','Metrics Collector','Execution Resource Manager')) {
     if ($cp -notmatch [regex]::Escape($n)) { $errors += "S1-013: thieu component '$n'" }
+  }
+  foreach ($g in @('Core','Resolution','Infrastructure')) {
+    if ($cp -notmatch [regex]::Escape($g)) { $errors += "S1-013: thieu group $g" }
+  }
+  foreach ($sec in @('groups','lifecycles','component_model','philosophy','principles')) {
+    if ($cp -notmatch "(?m)^${sec}:") { $errors += "S1-013: components.yaml thieu '$sec'" }
   }
   if ($cp -notmatch '(?m)^not_in_runtime:') { $errors += "S1-013: components.yaml thieu not_in_runtime" }
 }
@@ -195,7 +201,7 @@ if (Test-Path $cmpMap) {
   $cm = Get-Content -LiteralPath $cmpMap -Raw -Encoding utf8
   for ($i = 1; $i -le 12; $i++) {
     $c = "CMP-{0:D3}" -f $i
-    $block = [regex]::Match($cm, "(?s)${c}:\s*layer:\s*(\w+)\s*domain:\s*(\w+)\s*responsibilities:\s*\[([^\]]*)\]\s*requirements:\s*\[([^\]]*)\]")
+    $block = [regex]::Match($cm, "(?s)${c}:\s*layer:\s*(\w+)\s*domain:\s*(\w+).*?responsibilities:\s*\[([^\]]*)\]\s*requirements:\s*\[([^\]]*)\]")
     if (-not $block.Success) { $errors += "S1-013: $c thieu layer/domain/requirements" }
     elseif ([string]::IsNullOrWhiteSpace($block.Groups[4].Value)) { $errors += "S1-013: $c khong co requirement nao" }
   }
