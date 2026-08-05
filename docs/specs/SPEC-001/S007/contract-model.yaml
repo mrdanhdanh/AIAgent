@@ -1,0 +1,6 @@
+# SPEC-001 S007 — Contract Model (CT003)
+# Template chung cho toan AIOS, khong chi Runtime.
+---
+version: "1.0"
+model:
+  fields: [id, name, version, status, owner, layer, domain, purpose, responsibilities, inputs, outputs, preconditions, postconditions, invariants, dependencies, compatibility, lifecycle, metadata]

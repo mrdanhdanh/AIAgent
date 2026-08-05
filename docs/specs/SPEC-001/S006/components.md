@@ -9,7 +9,7 @@ agent: general
 
 # S006 — Runtime Components
 
-> **SPEC-001**: Runtime Kernel · **Version**: 1.0.0 · **Trạng thái**: Draft
+> **SPEC-001**: Runtime Kernel · **Version**: 1.0.0 · **Trạng thái**: ✅ Frozen (2026-08-04)
 > **Vị trí**: Kernel Internal Architecture — mọi implementation (C#, Go, Rust, Python...) phải tuân theo.
 
 ## Câu hỏi duy nhất

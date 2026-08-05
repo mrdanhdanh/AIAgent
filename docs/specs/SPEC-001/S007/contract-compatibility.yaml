@@ -1,0 +1,12 @@
+# SPEC-001 S007 — Contract Compatibility (CT007)
+# Nen tang cho Plugin.
+---
+version: "1.0"
+policy:
+  backward: required
+  forward: preferred
+  breaking_change: requires_rfc
+matrix:
+  "1.0": [1.x]
+  "1.1": [1.x]
+  "2.0": [2.x]

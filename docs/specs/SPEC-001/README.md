@@ -10,7 +10,7 @@ agent: general
 
 > **Trạng thái**: Draft · **Version**: 1.0.0 · **Phụ thuộc**: SPEC-000 (Constitution)
 > **`implements: Runtime`** — xem compliance-matrix trong Constitution.
-> **S001 Vision: ✅ Frozen** · **S002 Requirements: ✅ Frozen** · **S003 Responsibilities: ✅ Frozen** · **S004 Boundaries: ✅ Frozen** · **S005 Architecture: ✅ Frozen (2026-08-04)**
+> **S001-S006: ✅ Frozen (S006 2026-08-04)** · **S007 Contracts: 🚧 In progress**
 
 ## Runtime tồn tại để làm gì?
 
@@ -27,8 +27,8 @@ agent: general
 | S003 | Runtime Responsibilities | `S003/responsibilities.md` | ✅ Frozen |
 | S004 | Runtime Boundaries | `S004/boundaries.md` | ✅ Frozen |
 | S005 | Runtime Architecture | `S005/architecture.md` | ✅ Frozen |
-| S006 | Runtime Components | `S006/components.md` | 🚧 In progress |
-| S007 | Runtime Contracts | `S007-contracts.md` | ⬜ |
+| S006 | Runtime Components | `S006/components.md` | ✅ Frozen |
+| S007 | Runtime Contracts | `S007/contracts.md` | 🚧 In progress |
 | S008 | Runtime Data Model | `S008-data-model.md` | ⬜ |
 | S009 | Runtime State Machine | `S009-state-machine.md` | ⬜ |
 | S010 | Runtime Execution Flow | `S010-execution-flow.md` | ⬜ |

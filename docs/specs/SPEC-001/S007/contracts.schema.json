@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aios://contracts.schema.json",
+  "title": "SPEC-001 Runtime Contracts (S007)",
+  "description": "JSON Schema cho contracts.yaml. Validator kiem tra cau truc.",
+  "type": "object",
+  "required": ["id", "name", "version", "status", "owner", "contracts"],
+  "properties": {
+    "id": { "const": "SPEC-001-S007" },
+    "name": { "const": "Runtime Contracts" },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "status": { "enum": ["Draft", "Review", "Approved", "Stable", "Deprecated"] },
+    "owner": { "type": "string" },
+    "contracts": {
+      "type": "object",
+      "patternProperties": {
+        "^CTR-\\d{3}$": {
+          "type": "object",
+          "required": ["name", "version", "status", "owner", "layer", "domain", "purpose", "inputs", "outputs", "preconditions", "postconditions", "invariants", "dependencies"],
+          "properties": {
+            "name": { "type": "string" },
+            "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+            "status": { "enum": ["Stable", "Experimental", "Deprecated"] },
+            "owner": { "type": "string" },
+            "layer": { "enum": ["Command", "Workflow", "Execution", "Coordination", "Capability", "Resolution", "State", "Event", "Publication"] },
+            "domain": { "enum": ["Execution", "Coordination", "Capability", "State", "Observability", "Publication"] },
+            "purpose": { "type": "string" },
+            "inputs": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+            "outputs": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+            "preconditions": { "type": "array", "items": { "type": "string" } },
+            "postconditions": { "type": "array", "items": { "type": "string" } },
+            "invariants": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+            "dependencies": { "type": "array", "items": { "type": "string" } },
+            "capability": { "type": "string" },
+            "compatibility": { "type": "array", "items": { "type": "string" } }
+          }
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

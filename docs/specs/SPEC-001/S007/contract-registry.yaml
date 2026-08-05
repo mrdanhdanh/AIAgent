@@ -1,0 +1,65 @@
+# SPEC-001 S007 — Contract Registry (CT009)
+# Runtime va Doctor doc.
+---
+version: "1.0"
+contracts:
+  CTR-001:
+    name: Execution Contract
+    owner: Execution Manager
+    version: 1.0.0
+    dependencies: [Workflow Contract, Context Contract, State Contract]
+  CTR-002:
+    name: Workflow Contract
+    owner: Workflow Loader
+    version: 1.0.0
+    dependencies: []
+  CTR-003:
+    name: Coordination Contract
+    owner: Execution Orchestrator
+    version: 1.0.0
+    dependencies: [Capability Contract, Policy Contract]
+  CTR-004:
+    name: Capability Contract
+    owner: Capability Resolver
+    version: 1.0.0
+    dependencies: [Registry Contract]
+  CTR-005:
+    name: Registry Contract
+    owner: Registry Resolver
+    version: 1.0.0
+    dependencies: []
+  CTR-006:
+    name: Context Contract
+    owner: Context Manager
+    version: 1.0.0
+    dependencies: []
+  CTR-007:
+    name: State Contract
+    owner: State Manager
+    version: 1.0.0
+    dependencies: [Event Contract]
+  CTR-008:
+    name: Event Contract
+    owner: Event Dispatcher
+    version: 1.0.0
+    dependencies: []
+  CTR-009:
+    name: Artifact Contract
+    owner: Artifact Dispatcher
+    version: 1.0.0
+    dependencies: []
+  CTR-010:
+    name: Metrics Contract
+    owner: Metrics Collector
+    version: 1.0.0
+    dependencies: [Event Contract]
+  CTR-011:
+    name: Policy Contract
+    owner: Policy Engine
+    version: 1.0.0
+    dependencies: [Registry Contract]
+  CTR-012:
+    name: Resource Contract
+    owner: Execution Resource Manager
+    version: 1.0.0
+    dependencies: []

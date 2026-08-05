@@ -1,0 +1,47 @@
+# SPEC-001 S007 — Communication Matrix (CT011)
+# From -> To -> Contract. Doctor phat hien loi goi khong hop le.
+---
+version: "1.0"
+matrix:
+  - from: Execution Manager
+    to: Workflow Loader
+    contract: CTR-002
+  - from: Execution Manager
+    to: Context Manager
+    contract: CTR-006
+  - from: Execution Manager
+    to: State Manager
+    contract: CTR-007
+  - from: Execution Manager
+    to: Event Dispatcher
+    contract: CTR-008
+  - from: Execution Manager
+    to: Artifact Dispatcher
+    contract: CTR-009
+  - from: Execution Manager
+    to: Metrics Collector
+    contract: CTR-010
+  - from: Execution Manager
+    to: Execution Resource Manager
+    contract: CTR-012
+  - from: Execution Manager
+    to: Execution Orchestrator
+    contract: CTR-003
+  - from: Execution Orchestrator
+    to: Capability Resolver
+    contract: CTR-004
+  - from: Execution Orchestrator
+    to: Policy Engine
+    contract: CTR-011
+  - from: Capability Resolver
+    to: Registry Resolver
+    contract: CTR-005
+  - from: State Manager
+    to: Event Dispatcher
+    contract: CTR-008
+  - from: Policy Engine
+    to: Registry Resolver
+    contract: CTR-005
+  - from: Metrics Collector
+    to: Event Dispatcher
+    contract: CTR-008

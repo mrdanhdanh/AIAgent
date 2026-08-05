@@ -4,7 +4,9 @@
 id: SPEC-001-S006
 name: Runtime Components
 version: "1.0.0"
-status: Draft
+status: Approved
+frozen: true
+frozen_date: "2026-08-04"
 owner: Runtime Team
 philosophy:
   - Component càng ít càng tốt.

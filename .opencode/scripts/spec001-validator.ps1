@@ -207,13 +207,49 @@ if (Test-Path $cmpMap) {
   }
 }
 
-# ---------- S1-014: SPEC.yaml ----------
+# ---------- S1-015: S007 contracts ----------
+$s007 = Join-Path $spec1 'S007'
+foreach ($f in @('contracts.md','contracts.yaml','contracts.schema.json','contract-model.yaml','contract-registry.yaml','communication-matrix.yaml','contract-compatibility.yaml','contract-mapping.yaml')) {
+  if (-not (Test-Path (Join-Path $s007 $f))) { $errors += "S1-015: missing S007/$f" }
+}
+$ctrYaml = Join-Path $s007 'contracts.yaml'
+if (Test-Path $ctrYaml) {
+  $ct = Get-Content -LiteralPath $ctrYaml -Raw -Encoding utf8
+  if ($ct -notmatch '(?m)^contracts:') { $errors += "S1-015: contracts.yaml thieu 'contracts:'" }
+  for ($i = 1; $i -le 12; $i++) {
+    $c = "CTR-{0:D3}" -f $i
+    if ($ct -notmatch [regex]::Escape($c)) { $errors += "S1-015: thieu $c" }
+  }
+  foreach ($field in @('purpose','inputs','outputs','preconditions','postconditions','invariants','dependencies')) {
+    if ($ct -notmatch "(?m)^    ${field}:") { $warnings += "S1-015: contracts.yaml thieu field '$field'" }
+  }
+}
+# mapping: moi CTR co component + principle
+$ctrMap = Join-Path $s007 'contract-mapping.yaml'
+if (Test-Path $ctrMap) {
+  $cm = Get-Content -LiteralPath $ctrMap -Raw -Encoding utf8
+  for ($i = 1; $i -le 12; $i++) {
+    $c = "CTR-{0:D3}" -f $i
+    $block = [regex]::Match($cm, "(?s)${c}:\s*component:\s*(\w[\w ]*?)\s*layer:.*?principles:\s*\[([^\]]*)\]")
+    if (-not $block.Success) { $errors += "S1-015: $c thieu component/principles" }
+    elseif ([string]::IsNullOrWhiteSpace($block.Groups[1].Value)) { $errors += "S1-015: $c khong co component" }
+  }
+}
+# communication matrix: it nhat 10 edges
+$comFile = Join-Path $s007 'communication-matrix.yaml'
+if (Test-Path $comFile) {
+  $co = Get-Content -LiteralPath $comFile -Raw -Encoding utf8
+  $edgeCount = ([regex]::Matches($co, '(?m)^  - from:')).Count
+  if ($edgeCount -lt 10) { $errors += "S1-015: communication-matrix chi co $edgeCount edges (can >=10)" }
+}
+
+# ---------- S1-016: SPEC.yaml ----------
 $specFile = Join-Path $spec1 'SPEC.yaml'
 if (Test-Path $specFile) {
   $st = Get-Content -LiteralPath $specFile -Raw -Encoding utf8
-  if ($st -notmatch '(?m)^id:\s*SPEC-001') { $errors += "S1-014: SPEC.yaml id phai la SPEC-001" }
-  if ($st -notmatch '(?m)^implements:') { $errors += "S1-014: SPEC.yaml thieu implements" }
-  foreach ($d in @('SPEC-000')) { if ($st -notmatch [regex]::Escape($d)) { $errors += "S1-014: thieu dependency $d" } }
+  if ($st -notmatch '(?m)^id:\s*SPEC-001') { $errors += "S1-016: SPEC.yaml id phai la SPEC-001" }
+  if ($st -notmatch '(?m)^implements:') { $errors += "S1-016: SPEC.yaml thieu implements" }
+  foreach ($d in @('SPEC-000')) { if ($st -notmatch [regex]::Escape($d)) { $errors += "S1-016: thieu dependency $d" } }
 }
 
 # ---------- Output ----------
