@@ -1,17 +1,17 @@
-# SPEC-001 S006 — Component Contracts
-# Moi component expose contract — chi tiet tai S007.
+# SPEC-001 S006 — Component Contracts (C008)
+# Chi tiet tai S007.
 ---
 version: "1.0"
 contracts:
   Execution Manager: Execution Contract (S007)
-  Workflow Manager: Workflow Contract (S007)
+  Workflow Loader: Workflow Contract (S007)
+  Execution Coordinator: Coordinator Contract (S007)
+  Capability Resolver: Capability Contract (S007)
+  Registry Resolver: Registry Contract (S007)
   Context Manager: Context Contract (S007)
   State Manager: State Contract (S007)
-  Capability Resolver: Capability Contract (S007)
-  Registry Client: Registry Contract (S007)
-  Event Publisher: Event Contract (S007)
-  Artifact Publisher: Artifact Contract (S007)
+  Event Dispatcher: Event Contract (S007)
+  Artifact Dispatcher: Artifact Contract (S007)
   Metrics Collector: Metrics Contract (S007)
   Policy Engine: Policy Contract (S007)
-  Resource Manager: Resource Contract (S007)
-  Execution Coordinator: Coordinator Contract (S007)
+  Execution Resource Manager: Resource Contract (S007)

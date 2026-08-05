@@ -1,0 +1,16 @@
+# SPEC-001 S006 — Component Metrics (Dashboard)
+---
+version: "1.0"
+metrics:
+  Execution Manager: Execution Completion Rate
+  Workflow Loader: Workflow Load Rate
+  Execution Coordinator: Orchestration Coverage
+  Capability Resolver: Capability Resolution Rate
+  Registry Resolver: Registry Lookup Rate
+  Context Manager: Context Isolation
+  State Manager: Invalid Transitions
+  Event Dispatcher: Event Coverage
+  Artifact Dispatcher: Artifact Dispatch Rate
+  Metrics Collector: Metrics Emission
+  Policy Engine: Policy Compliance
+  Execution Resource Manager: Resource Leak

@@ -1,0 +1,12 @@
+# SPEC-001 S006 — Component Validation (C014)
+# Doctor kiem tra.
+---
+version: "1.0"
+validation:
+  - Component có đúng một Owner?
+  - Component có đúng một Contract?
+  - Component có đúng một Responsibility?
+  - Component có chứa Business Logic?
+  - Dependency có vòng lặp?
+  - Component có phụ thuộc ngoài Contract?
+  - Component có thuộc đúng Layer/Domain?

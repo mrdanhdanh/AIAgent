@@ -1,182 +1,242 @@
 ---
 name: spec-001-s006-components
 description: >
-  SPEC-001 S006 — Runtime Components. Trả lời: Runtime được cấu thành từ những
-  thành phần logic nào? 12 Core Components. Không phải class/project/thư mục.
+  SPEC-001 S006 — Runtime Components (Kernel Internal Architecture). Trả lời:
+  Runtime được cấu thành từ những thành phần logic nào? 15 sections C001-C015.
+  Không phải class/interface/package/namespace/project/source code.
 agent: general
 ---
 
 # S006 — Runtime Components
 
 > **SPEC-001**: Runtime Kernel · **Version**: 1.0.0 · **Trạng thái**: Draft
+> **Vị trí**: Kernel Internal Architecture — mọi implementation (C#, Go, Rust, Python...) phải tuân theo.
 
 ## Câu hỏi duy nhất
 
 > **Runtime được cấu thành từ những thành phần logic nào?**
 
-Không phải class.
+**Không trả lời:**
 
-Không phải project.
+- class
+- interface
+- package
+- namespace
+- project
+- source code
 
-Không phải thư mục.
+## C001 — Component Philosophy
 
-Mà là **Core Components**.
+- Component càng ít càng tốt.
+- Mỗi Component chỉ có **một trách nhiệm**.
+- Component có thể mở rộng bằng **Capability**, không mở rộng bằng thêm Component mới.
 
-## 12 Core Components
+## C002 — Component Principles
+
+Mỗi Component phải tuân thủ:
+
+- Một Responsibility.
+- Một Owner.
+- Một Contract.
+- Một Lifecycle.
+- Một Metadata.
+- Có thể thay thế.
+- Không chứa Business Logic.
+- Không phụ thuộc Component ngoài Contract.
+
+## C003 — Component Model
+
+```yaml
+component_model:
+  id: CMP-###
+  fields: [id, name, layer, domain, responsibility, contract, lifecycle, owner, metadata]
+```
+
+## C004 — Core Components (12)
 
 ```text
 Runtime
 │
 ├── Execution Manager
-├── Workflow Manager
+├── Workflow Loader
+├── Execution Coordinator
+├── Capability Resolver
+├── Registry Resolver
 ├── Context Manager
 ├── State Manager
-├── Capability Resolver
-├── Registry Client
-├── Event Publisher
-├── Artifact Publisher
+├── Event Dispatcher
+├── Artifact Dispatcher
 ├── Metrics Collector
 ├── Policy Engine
-├── Resource Manager
-└── Execution Coordinator
+└── Execution Resource Manager
 ```
 
 > Đây là **Core Runtime**. Không thêm nữa.
 
-## Chi tiết Components
+### Vì sao chỉ 12?
 
-| ID | Component | Layer | Domain | Trách nhiệm (RR) |
-|----|-----------|-------|--------|-------------------|
-| CMP-001 | Execution Manager | Execution | Execution | RR-001, 002, 003 |
-| CMP-002 | Workflow Manager | Workflow | Execution | RR-005 |
-| CMP-003 | Context Manager | Execution | Execution | RR-011..014 |
-| CMP-004 | State Manager | State | State | RR-015..018 |
-| CMP-005 | Capability Resolver | Capability | Capability | RR-006, 020 |
-| CMP-006 | Registry Client | Resolution | Capability | RR-006 |
-| CMP-007 | Event Publisher | Event | Observability | RR-025, 028 |
-| CMP-008 | Artifact Publisher | Publication | Publication | RR-029..031 |
-| CMP-009 | Metrics Collector | Event | Observability | RR-026, 027 |
-| CMP-010 | Policy Engine | Coordination | Coordination | RR-032..035 |
-| CMP-011 | Resource Manager | Execution | Execution | RR-001 |
-| CMP-012 | Execution Coordinator | Coordination | Coordination | RR-004, 019, 021..024 |
+- Component càng ít càng tốt.
+- Mỗi Component chỉ có một trách nhiệm.
+- Mở rộng bằng Capability, không bằng Component mới.
 
-### Mô tả ngắn
+## C005 — Component Responsibilities
 
-- **CMP-001 Execution Manager** — Khởi tạo, quản lý và kết thúc Execution.
-- **CMP-002 Workflow Manager** — Nạp và validate Workflow Definition, tạo Execution Plan.
-- **CMP-003 Context Manager** — Tạo/cấp/thu hồi Context, cô lập giữa các Execution.
-- **CMP-004 State Manager** — Khởi tạo, theo dõi, chuyển State, kết thúc Terminal State.
-- **CMP-005 Capability Resolver** — Resolve Capability và mapping Capability → Agent.
-- **CMP-006 Registry Client** — Registry Lookup và Contract Validation.
-- **CMP-007 Event Publisher** — Publish Event, ghi Audit Trail.
-- **CMP-008 Artifact Publisher** — Sinh và publish Artifact, không sửa Artifact đã sinh.
-- **CMP-009 Metrics Collector** — Thu Metrics, sinh Trace.
-- **CMP-010 Policy Engine** — Thực thi Constitution, kiểm tra Contract, áp dụng Policy, từ chối vi phạm.
-- **CMP-011 Resource Manager** — Allocate/Release Execution Resources, cô lập tài nguyên.
-- **CMP-012 Execution Coordinator** — Điều phối luồng, đồng bộ, retry, cancellation, approval gate.
+| Component | Responsibility |
+|-----------|----------------|
+| Execution Manager | Quản lý vòng đời Execution |
+| Workflow Loader | Đọc và chuẩn bị Workflow |
+| Execution Coordinator | Điều phối luồng thực thi |
+| Capability Resolver | Resolve Capability thành Agent |
+| Registry Resolver | Truy cập Registry qua Contract và resolve |
+| Context Manager | Quản lý Execution Context |
+| State Manager | Quản lý State Machine |
+| Event Dispatcher | Publish Event, hỗ trợ nhiều cơ chế |
+| Artifact Dispatcher | Bàn giao Artifact (không lưu trữ) |
+| Metrics Collector | Thu Metrics |
+| Policy Engine | Thực thi Policy/Governance |
+| Execution Resource Manager | Quản lý tài nguyên trong một Execution |
 
-## Các thành phần KHÔNG thuộc Runtime
+## C006 — Component Relationships
 
 ```text
-Agent
-Workflow Definition
-Registry
-Plugin
-Knowledge
-Doctor
-Dashboard
-Simulation
-Evolution
-SDK
+Execution Manager
+        │
+Workflow Loader
+        │
+Execution Coordinator
+        │
+Capability Resolver
+        │
+Registry Resolver
 ```
 
-> Runtime chỉ **sử dụng**, không **sở hữu**.
-
-## Layer Coverage
-
-| Layer | Components |
-|-------|-----------|
-| Command | (qua Execution Manager — khởi tạo) |
-| Workflow | CMP-002 Workflow Manager |
-| Execution | CMP-001, CMP-003, CMP-011 |
-| Coordination | CMP-010, CMP-012 |
-| Capability | CMP-005 |
-| Resolution | CMP-006 |
-| State | CMP-004 |
-| Event | CMP-007, CMP-009 |
-| Publication | CMP-008 |
-
-## Component Relationships
+và
 
 ```text
-Workflow Manager → Execution Manager → { Context Manager, State Manager,
-  Event Publisher, Artifact Publisher, Metrics Collector, Resource Manager }
-Execution Coordinator → { Execution Manager, Capability Resolver, Policy Engine }
-Capability Resolver → Registry Client
+Execution Coordinator
+        │
+├── Context Manager
+├── State Manager
+├── Event Dispatcher
+├── Artifact Dispatcher
+├── Metrics Collector
+├── Policy Engine
+└── Execution Resource Manager
 ```
 
-Chi tiết: `component-relationships.yaml`
-
-## Component Dependency Matrix
+## C007 — Component Dependencies
 
 | Component | Depends on |
 |-----------|-----------|
-| Execution Manager | Context, State, Event Publisher, Artifact Publisher, Metrics, Resource, Coordinator |
-| Workflow Manager | Execution Manager |
-| Context Manager | — |
-| State Manager | Event Publisher |
-| Capability Resolver | Registry Client |
-| Registry Client | — |
-| Event Publisher | — |
-| Artifact Publisher | — |
-| Metrics Collector | Event Publisher |
-| Policy Engine | Registry Client |
-| Resource Manager | — |
+| Execution Manager | Context, State, Event Dispatcher, Artifact Dispatcher, Metrics, Execution Resource Manager |
+| Workflow Loader | Execution Manager |
 | Execution Coordinator | Execution Manager, Capability Resolver, Policy Engine |
+| Capability Resolver | Registry Resolver |
+| Registry Resolver | — |
+| Context Manager | — |
+| State Manager | Event Dispatcher |
+| Event Dispatcher | — |
+| Artifact Dispatcher | — |
+| Metrics Collector | Event Dispatcher |
+| Policy Engine | Registry Resolver |
+| Execution Resource Manager | — |
 
-> Doctor validate DAG: không vòng, không ngược layer.
+> Quan hệ phải là **DAG (Directed Acyclic Graph)** — không được có vòng lặp. Doctor validate.
 
-## Component Lifecycle
+## C008 — Component Contracts
+
+| Component | Contract |
+|-----------|----------|
+| Execution Manager | Execution Contract (S007) |
+| Workflow Loader | Workflow Contract (S007) |
+| Execution Coordinator | Coordinator Contract (S007) |
+| Capability Resolver | Capability Contract (S007) |
+| Registry Resolver | Registry Contract (S007) |
+| Context Manager | Context Contract (S007) |
+| State Manager | State Contract (S007) |
+| Event Dispatcher | Event Contract (S007) |
+| Artifact Dispatcher | Artifact Contract (S007) |
+| Metrics Collector | Metrics Contract (S007) |
+| Policy Engine | Policy Contract (S007) |
+| Execution Resource Manager | Resource Contract (S007) |
+
+## C009 — Component Lifecycle
 
 ```text
 Defined → Instantiated → Registered → Active → Suspended → Terminated
 ```
 
-## Component Contracts
+## C010 — Component Ownership
 
-Mỗi component expose một contract (chi tiết tại S007):
+Mọi component thuộc **Runtime** — không Component nào có nhiều Owner.
 
-| Component | Contract |
-|-----------|----------|
-| Execution Manager | Execution Contract |
-| Workflow Manager | Workflow Contract |
-| Context Manager | Context Contract |
-| State Manager | State Contract |
-| Capability Resolver | Capability Contract |
-| Registry Client | Registry Contract |
-| Event Publisher | Event Contract |
-| Artifact Publisher | Artifact Contract |
-| Metrics Collector | Metrics Contract |
-| Policy Engine | Policy Contract |
-| Resource Manager | Resource Contract |
-| Execution Coordinator | Coordinator Contract |
+| Component | Owner |
+|-----------|-------|
+| Execution Manager | Runtime |
+| Workflow Loader | Runtime |
+| Execution Coordinator | Runtime |
+| Capability Resolver | Runtime |
+| Registry Resolver | Runtime |
+| Context Manager | Runtime |
+| State Manager | Runtime |
+| Event Dispatcher | Runtime |
+| Artifact Dispatcher | Runtime |
+| Metrics Collector | Runtime |
+| Policy Engine | Runtime |
+| Execution Resource Manager | Runtime |
 
-## Component Ownership
+## C011 — Component Communication
 
-Mọi component thuộc **Runtime Team** — không chồng chéo. Chi tiết: `component-ownership.yaml`
+- Component giao tiếp qua **Contract** (P002).
+- Không gọi trực tiếp implementation.
+- 4 kênh: Contract, Context, Event, Artifact (A004 S005).
+
+## C012 — Component State
+
+- Execution Manager: Active, Terminated
+- Context Manager: Created, Active, Closed
+- Execution Resource Manager: Allocated, Released
+- Component khác: Active
+
+> State của component thuộc component; State của Execution thuộc Runtime (S004 B006).
+
+## C013 — Component Registry
+
+- `component-registry.yaml` — registry tổng hợp (Doctor/Dashboard đọc một file).
+- Mỗi component: id, name, layer, domain, contract.
+
+## C014 — Component Validation
+
+Doctor kiểm tra:
+
+- Component có đúng một Owner?
+- Component có đúng một Contract?
+- Component có đúng một Responsibility?
+- Component có chứa Business Logic?
+- Dependency có vòng lặp?
+- Component có phụ thuộc ngoài Contract?
+- Component có thuộc đúng Layer/Domain?
+
+## C015 — Component Mapping
+
+```text
+CMP-### → Layer → Domain → RR (S003) → FR (S002) → P (Constitution)
+```
+
+Chi tiết: `component-mapping.yaml`
 
 ## Tham chiếu
 
 - `components.yaml` — nguồn dữ liệu chuẩn (12 components).
-- `component-registry.yaml` — registry tổng hợp.
-- `component-mapping.yaml` — CMP → Layer/Domain → RR → FR → P.
-- `component-relationships.yaml` — quan hệ giữa các component.
-- `component-dependency-matrix.yaml` — ma trận phụ thuộc (Doctor validate DAG).
-- `component-lifecycle.yaml` — vòng đời component.
-- `component-contracts.yaml` — contract mỗi component (S007).
-- `component-ownership.yaml` — chủ sở hữu mỗi component.
+- `component-model.yaml` — C003.
+- `component-registry.yaml` — C013.
+- `component-dependencies.yaml` — C007 (DAG).
+- `component-lifecycle.yaml` — C009.
+- `component-contracts.yaml` — C008.
+- `component-ownership.yaml` — C010.
+- `component-mapping.yaml` — C015.
+- `component-metrics.yaml` — Dashboard.
+- `component-validation.yaml` — C014.
 - `components.schema.json` — validate cấu trúc.
 - S005: `../S005/architecture.yaml`
-- S003: `../S003/responsibilities.yaml`
-- S002: `../S002/requirements.yaml`
 - Constitution: `docs/specs/SPEC-000/`

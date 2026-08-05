@@ -1,0 +1,24 @@
+# SPEC-001 S006 — Component Model (C003)
+---
+version: "1.0"
+model:
+  id: CMP-###
+  fields:
+    - id
+    - name
+    - layer
+    - domain
+    - responsibility
+    - contract
+    - lifecycle
+    - owner
+    - metadata
+rules:
+  - Một Responsibility.
+  - Một Owner.
+  - Một Contract.
+  - Một Lifecycle.
+  - Một Metadata.
+  - Có thể thay thế.
+  - Không chứa Business Logic.
+  - Không phụ thuộc Component ngoài Contract.

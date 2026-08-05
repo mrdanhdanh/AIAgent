@@ -173,7 +173,7 @@ if (Test-Path $archYaml) {
 
 # ---------- S1-013: S006 components ----------
 $s006 = Join-Path $spec1 'S006'
-foreach ($f in @('components.md','components.yaml','components.schema.json','component-registry.yaml','component-mapping.yaml','component-relationships.yaml','component-dependency-matrix.yaml','component-lifecycle.yaml','component-contracts.yaml','component-ownership.yaml')) {
+foreach ($f in @('components.md','components.yaml','components.schema.json','component-model.yaml','component-registry.yaml','component-dependencies.yaml','component-lifecycle.yaml','component-contracts.yaml','component-ownership.yaml','component-mapping.yaml','component-metrics.yaml','component-validation.yaml')) {
   if (-not (Test-Path (Join-Path $s006 $f))) { $errors += "S1-013: missing S006/$f" }
 }
 $cmpYaml = Join-Path $s006 'components.yaml'
@@ -184,10 +184,10 @@ if (Test-Path $cmpYaml) {
     $c = "CMP-{0:D3}" -f $i
     if ($cp -notmatch [regex]::Escape($c)) { $errors += "S1-013: thieu $c" }
   }
-  if ($cp -notmatch '(?m)^not_in_runtime:') { $errors += "S1-013: components.yaml thieu not_in_runtime" }
-  foreach ($n in @('Agent','Registry','Plugin','Knowledge','Doctor')) {
-    if ($cp -notmatch [regex]::Escape($n)) { $warnings += "S1-013: not_in_runtime thieu $n" }
+  foreach ($n in @('Execution Manager','Workflow Loader','Execution Coordinator','Capability Resolver','Registry Resolver','Context Manager','State Manager','Event Dispatcher','Artifact Dispatcher','Metrics Collector','Policy Engine','Execution Resource Manager')) {
+    if ($cp -notmatch [regex]::Escape($n)) { $errors += "S1-013: thieu component '$n'" }
   }
+  if ($cp -notmatch '(?m)^not_in_runtime:') { $errors += "S1-013: components.yaml thieu not_in_runtime" }
 }
 # mapping: moi CMP co layer + requirement + principle
 $cmpMap = Join-Path $s006 'component-mapping.yaml'

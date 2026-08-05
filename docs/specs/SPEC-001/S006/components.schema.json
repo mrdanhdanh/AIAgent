@@ -1,27 +1,35 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "aios://components.schema.json",
-  "title": "SPEC-001 Runtime Components (S006)",
+  "title": "SPEC-001 Runtime Components (S006 v3)",
   "description": "JSON Schema cho components.yaml. Validator kiem tra cau truc.",
   "type": "object",
-  "required": ["id", "name", "version", "status", "owner", "components", "not_in_runtime"],
+  "required": ["id", "name", "version", "status", "owner", "philosophy", "principles", "component_model", "components", "not_in_runtime"],
   "properties": {
     "id": { "const": "SPEC-001-S006" },
     "name": { "const": "Runtime Components" },
     "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
     "status": { "enum": ["Draft", "Review", "Approved", "Stable", "Deprecated"] },
     "owner": { "type": "string" },
+    "philosophy": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "principles": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "component_model": { "type": "object" },
     "components": {
       "type": "object",
       "patternProperties": {
         "^CMP-\\d{3}$": {
           "type": "object",
-          "required": ["name", "layer", "domain", "description", "responsibilities", "requirements", "principles"],
+          "required": ["name", "layer", "domain", "responsibility", "contract", "state", "owner", "replaceable", "metric", "responsibilities", "requirements", "principles"],
           "properties": {
             "name": { "type": "string" },
             "layer": { "enum": ["Command", "Workflow", "Execution", "Coordination", "Capability", "Resolution", "State", "Event", "Publication"] },
             "domain": { "enum": ["Execution", "Coordination", "Capability", "State", "Observability", "Publication"] },
-            "description": { "type": "string" },
+            "responsibility": { "type": "string" },
+            "contract": { "type": "string" },
+            "state": { "type": "string" },
+            "owner": { "type": "string" },
+            "replaceable": { "type": "boolean" },
+            "metric": { "type": "string" },
             "responsibilities": { "type": "array", "items": { "type": "string", "pattern": "^RR-\\d{3}$" }, "minItems": 1 },
             "requirements": { "type": "array", "items": { "type": "string", "pattern": "^FR-\\d{3}$" }, "minItems": 1 },
             "principles": { "type": "array", "items": { "type": "string", "pattern": "^P\\d{3}$" }, "minItems": 1 }
