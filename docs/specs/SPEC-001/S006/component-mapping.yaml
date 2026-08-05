@@ -1,0 +1,76 @@
+# SPEC-001 S006 — Component Mapping (CMP -> Layer/Domain -> RR -> FR -> P)
+---
+version: "1.0"
+mapping:
+  CMP-001:
+    layer: Execution
+    domain: Execution
+    responsibilities: [RR-001, RR-002, RR-003]
+    requirements: [FR-001, FR-015]
+    principles: [P001, P005]
+  CMP-002:
+    layer: Workflow
+    domain: Execution
+    responsibilities: [RR-005]
+    requirements: [FR-002, FR-013]
+    principles: [P001, P011]
+  CMP-003:
+    layer: Execution
+    domain: Execution
+    responsibilities: [RR-011, RR-012, RR-013, RR-014]
+    requirements: [FR-005, FR-016]
+    principles: [P001, P009, P006]
+  CMP-004:
+    layer: State
+    domain: State
+    responsibilities: [RR-015, RR-016, RR-017, RR-018]
+    requirements: [FR-006]
+    principles: [P005, P009]
+  CMP-005:
+    layer: Capability
+    domain: Capability
+    responsibilities: [RR-006, RR-020]
+    requirements: [FR-003]
+    principles: [P007]
+  CMP-006:
+    layer: Resolution
+    domain: Capability
+    responsibilities: [RR-006]
+    requirements: [FR-003, FR-014]
+    principles: [P007, P002]
+  CMP-007:
+    layer: Event
+    domain: Observability
+    responsibilities: [RR-025, RR-028]
+    requirements: [FR-007]
+    principles: [P005, P014]
+  CMP-008:
+    layer: Publication
+    domain: Publication
+    responsibilities: [RR-029, RR-030, RR-031]
+    requirements: [FR-008, FR-020]
+    principles: [P010, P005]
+  CMP-009:
+    layer: Event
+    domain: Observability
+    responsibilities: [RR-026, RR-027]
+    requirements: [FR-009]
+    principles: [P014]
+  CMP-010:
+    layer: Coordination
+    domain: Coordination
+    responsibilities: [RR-032, RR-033, RR-034, RR-035]
+    requirements: [FR-014, FR-019]
+    principles: [P016, P020]
+  CMP-011:
+    layer: Execution
+    domain: Execution
+    responsibilities: [RR-001]
+    requirements: [FR-015, FR-016]
+    principles: [P015]
+  CMP-012:
+    layer: Coordination
+    domain: Coordination
+    responsibilities: [RR-004, RR-019, RR-021, RR-022, RR-023, RR-024]
+    requirements: [FR-004, FR-010, FR-011, FR-012, FR-017, FR-018, FR-019]
+    principles: [P001]

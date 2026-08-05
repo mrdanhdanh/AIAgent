@@ -9,7 +9,7 @@ agent: general
 
 # S005 — Runtime Architecture
 
-> **SPEC-001**: Runtime Kernel · **Version**: 1.1.0 · **Trạng thái**: Draft
+> **SPEC-001**: Runtime Kernel · **Version**: 1.1.0 · **Trạng thái**: ✅ Frozen (2026-08-04)
 
 ## Câu hỏi duy nhất
 

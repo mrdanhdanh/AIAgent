@@ -4,7 +4,9 @@
 id: SPEC-001-S005
 name: Runtime Architecture
 version: "1.1.0"
-status: Draft
+status: Approved
+frozen: true
+frozen_date: "2026-08-04"
 owner: Runtime Team
 vision: Execution Kernel theo kien truc phan tang. Moi tang mot trach nhiem, giao tiep qua Contract.
 decisions:

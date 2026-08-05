@@ -171,13 +171,43 @@ if (Test-Path $archYaml) {
   }
 }
 
-# ---------- S1-012: SPEC.yaml ----------
+# ---------- S1-013: S006 components ----------
+$s006 = Join-Path $spec1 'S006'
+foreach ($f in @('components.md','components.yaml','components.schema.json','component-registry.yaml','component-mapping.yaml')) {
+  if (-not (Test-Path (Join-Path $s006 $f))) { $errors += "S1-013: missing S006/$f" }
+}
+$cmpYaml = Join-Path $s006 'components.yaml'
+if (Test-Path $cmpYaml) {
+  $cp = Get-Content -LiteralPath $cmpYaml -Raw -Encoding utf8
+  if ($cp -notmatch '(?m)^components:') { $errors += "S1-013: components.yaml thieu 'components:'" }
+  for ($i = 1; $i -le 12; $i++) {
+    $c = "CMP-{0:D3}" -f $i
+    if ($cp -notmatch [regex]::Escape($c)) { $errors += "S1-013: thieu $c" }
+  }
+  if ($cp -notmatch '(?m)^not_in_runtime:') { $errors += "S1-013: components.yaml thieu not_in_runtime" }
+  foreach ($n in @('Agent','Registry','Plugin','Knowledge','Doctor')) {
+    if ($cp -notmatch [regex]::Escape($n)) { $warnings += "S1-013: not_in_runtime thieu $n" }
+  }
+}
+# mapping: moi CMP co layer + requirement + principle
+$cmpMap = Join-Path $s006 'component-mapping.yaml'
+if (Test-Path $cmpMap) {
+  $cm = Get-Content -LiteralPath $cmpMap -Raw -Encoding utf8
+  for ($i = 1; $i -le 12; $i++) {
+    $c = "CMP-{0:D3}" -f $i
+    $block = [regex]::Match($cm, "(?s)${c}:\s*layer:\s*(\w+)\s*domain:\s*(\w+)\s*responsibilities:\s*\[([^\]]*)\]\s*requirements:\s*\[([^\]]*)\]")
+    if (-not $block.Success) { $errors += "S1-013: $c thieu layer/domain/requirements" }
+    elseif ([string]::IsNullOrWhiteSpace($block.Groups[4].Value)) { $errors += "S1-013: $c khong co requirement nao" }
+  }
+}
+
+# ---------- S1-014: SPEC.yaml ----------
 $specFile = Join-Path $spec1 'SPEC.yaml'
 if (Test-Path $specFile) {
   $st = Get-Content -LiteralPath $specFile -Raw -Encoding utf8
-  if ($st -notmatch '(?m)^id:\s*SPEC-001') { $errors += "S1-012: SPEC.yaml id phai la SPEC-001" }
-  if ($st -notmatch '(?m)^implements:') { $errors += "S1-012: SPEC.yaml thieu implements" }
-  foreach ($d in @('SPEC-000')) { if ($st -notmatch [regex]::Escape($d)) { $errors += "S1-012: thieu dependency $d" } }
+  if ($st -notmatch '(?m)^id:\s*SPEC-001') { $errors += "S1-014: SPEC.yaml id phai la SPEC-001" }
+  if ($st -notmatch '(?m)^implements:') { $errors += "S1-014: SPEC.yaml thieu implements" }
+  foreach ($d in @('SPEC-000')) { if ($st -notmatch [regex]::Escape($d)) { $errors += "S1-014: thieu dependency $d" } }
 }
 
 # ---------- Output ----------

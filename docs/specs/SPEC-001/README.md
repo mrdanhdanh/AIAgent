@@ -2,7 +2,7 @@
 name: spec-001-runtime-kernel
 description: >
   SPEC-001 — Runtime Kernel. Execution kernel thống nhất của AIOS.
-  Quy trình 20 bước (S001-S020), mỗi bước review + freeze trước khi sang bước tiếp.
+  Quy trình 15 bước (S001-S015), mỗi bước review + freeze trước khi sang bước tiếp.
 agent: general
 ---
 
@@ -10,7 +10,7 @@ agent: general
 
 > **Trạng thái**: Draft · **Version**: 1.0.0 · **Phụ thuộc**: SPEC-000 (Constitution)
 > **`implements: Runtime`** — xem compliance-matrix trong Constitution.
-> **S001 Vision: ✅ Frozen** · **S002 Requirements: ✅ Frozen** · **S003 Responsibilities: ✅ Frozen** · **S004 Boundaries: ✅ Frozen (2026-08-04)**
+> **S001 Vision: ✅ Frozen** · **S002 Requirements: ✅ Frozen** · **S003 Responsibilities: ✅ Frozen** · **S004 Boundaries: ✅ Frozen** · **S005 Architecture: ✅ Frozen (2026-08-04)**
 
 ## Runtime tồn tại để làm gì?
 
@@ -18,7 +18,7 @@ agent: general
 
 **Vision**: Runtime trở thành một Execution Kernel thống nhất cho toàn bộ AIOS.
 
-## Quy trình (20 bước — freeze từng bước)
+## Quy trình (15 bước — freeze từng bước)
 
 | # | Bước | File | Trạng thái |
 |---|------|------|-----------|
@@ -26,24 +26,17 @@ agent: general
 | S002 | Requirements | `S002/requirements.md` | ✅ Frozen |
 | S003 | Responsibilities | `S003/responsibilities.md` | ✅ Frozen |
 | S004 | Boundaries | `S004/boundaries.md` | ✅ Frozen |
-| S005 | Architecture | `S005/architecture.md` | 🚧 In progress |
-| S004 | Boundaries | `S004-boundaries.md` | ⬜ |
-| S005 | Architecture | `S005-architecture.md` | ⬜ |
-| S006 | Components | `S006-components.md` | ⬜ |
+| S005 | Architecture | `S005/architecture.md` | ✅ Frozen |
+| S006 | Components | `S006/components.md` | 🚧 In progress |
 | S007 | Contracts | `S007-contracts.md` | ⬜ |
 | S008 | Data Model | `S008-data-model.md` | ⬜ |
 | S009 | State Machine | `S009-state-machine.md` | ⬜ |
 | S010 | Execution Flow | `S010-execution-flow.md` | ⬜ |
 | S011 | Events | `S011-events.md` | ⬜ |
-| S012 | Errors | `S012-errors.md` | ⬜ |
-| S013 | Configuration | `S013-configuration.md` | ⬜ |
-| S014 | Extension Points | `S014-extension-points.md` | ⬜ |
-| S015 | Security | `S015-security.md` | ⬜ |
-| S016 | Performance | `S016-performance.md` | ⬜ |
-| S017 | Observability | `S017-observability.md` | ⬜ |
-| S018 | Testing | `S018-testing.md` | ⬜ |
-| S019 | Compatibility | `S019-compatibility.md` | ⬜ |
-| S020 | Acceptance Criteria | `S020-acceptance-criteria.md` | ⬜ |
+| S012 | Context | `S012-context.md` | ⬜ |
+| S013 | Artifacts | `S013-artifacts.md` | ⬜ |
+| S014 | Metrics | `S014-metrics.md` | ⬜ |
+| S015 | Errors | `S015-errors.md` | ⬜ |
 
 ## Quy tắc
 

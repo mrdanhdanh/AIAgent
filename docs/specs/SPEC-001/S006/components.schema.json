@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aios://components.schema.json",
+  "title": "SPEC-001 Runtime Components (S006)",
+  "description": "JSON Schema cho components.yaml. Validator kiem tra cau truc.",
+  "type": "object",
+  "required": ["id", "name", "version", "status", "owner", "components", "not_in_runtime"],
+  "properties": {
+    "id": { "const": "SPEC-001-S006" },
+    "name": { "const": "Runtime Components" },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "status": { "enum": ["Draft", "Review", "Approved", "Stable", "Deprecated"] },
+    "owner": { "type": "string" },
+    "components": {
+      "type": "object",
+      "patternProperties": {
+        "^CMP-\\d{3}$": {
+          "type": "object",
+          "required": ["name", "layer", "domain", "description", "responsibilities", "requirements", "principles"],
+          "properties": {
+            "name": { "type": "string" },
+            "layer": { "enum": ["Command", "Workflow", "Execution", "Coordination", "Capability", "Resolution", "State", "Event", "Publication"] },
+            "domain": { "enum": ["Execution", "Coordination", "Capability", "State", "Observability", "Publication"] },
+            "description": { "type": "string" },
+            "responsibilities": { "type": "array", "items": { "type": "string", "pattern": "^RR-\\d{3}$" }, "minItems": 1 },
+            "requirements": { "type": "array", "items": { "type": "string", "pattern": "^FR-\\d{3}$" }, "minItems": 1 },
+            "principles": { "type": "array", "items": { "type": "string", "pattern": "^P\\d{3}$" }, "minItems": 1 }
+          }
+        }
+      }
+    },
+    "not_in_runtime": { "type": "array", "items": { "type": "string" }, "minItems": 5 }
+  },
+  "additionalProperties": false
+}
