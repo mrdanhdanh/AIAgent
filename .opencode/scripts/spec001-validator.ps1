@@ -280,6 +280,31 @@ if (Test-Path $smYaml) {
   }
 }
 
+# ---------- S1-016: S008 data model ----------
+$s008 = Join-Path $spec1 'S008'
+foreach ($f in @('data-model.md','runtime-data-model.yaml','runtime-entities.yaml','runtime-relationships.yaml','runtime-lifecycle.yaml','runtime-ownership.yaml','runtime-references.yaml','runtime-validation.yaml','runtime-data.schema.json')) {
+  if (-not (Test-Path (Join-Path $s008 $f))) { $errors += "S1-016: missing S008/$f" }
+}
+$entYaml = Join-Path $s008 'runtime-entities.yaml'
+if (Test-Path $entYaml) {
+  $en = Get-Content -LiteralPath $entYaml -Raw -Encoding utf8
+  for ($i = 1; $i -le 12; $i++) {
+    $e = "ENT-{0:D3}" -f $i
+    if ($en -notmatch [regex]::Escape($e)) { $errors += "S1-016: thieu $e" }
+  }
+  foreach ($n in @('Execution','Execution Context','Execution State','Workflow Reference','Capability Reference','Agent Assignment','Event','Artifact','Metrics','Trace','Resource Allocation','Execution Result')) {
+    if ($en -notmatch [regex]::Escape($n)) { $warnings += "S1-016: thieu entity '$n'" }
+  }
+}
+$dmYaml = Join-Path $s008 'runtime-data-model.yaml'
+if (Test-Path $dmYaml) {
+  $dm = Get-Content -LiteralPath $dmYaml -Raw -Encoding utf8
+  foreach ($sec in @('aggregate_root','aggregate_rules','classification','invariants','consistency','dependencies')) {
+    if ($dm -notmatch "(?m)^${sec}:") { $errors += "S1-016: runtime-data-model thieu '$sec'" }
+  }
+  if ($dm -notmatch 'Execution') { $errors += "S1-016: aggregate_root phai la Execution" }
+}
+
 # ---------- S1-018: SPEC.yaml ----------
 $specFile = Join-Path $spec1 'SPEC.yaml'
 if (Test-Path $specFile) {

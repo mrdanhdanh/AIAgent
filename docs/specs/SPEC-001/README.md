@@ -58,7 +58,7 @@ S015 Compliance & Verification
 | S006 | Runtime Components | `S006/components.md` | 1 | ✅ Frozen |
 | S007 | Runtime Contracts | `S007/contracts.md` | 1 | ✅ Frozen |
 | — | Appendix: Canonical Models | `runtime-models/` | 1 | ✅ Frozen |
-| S008 | Runtime Data Model | `S008-data-model.md` | 2 | ⬜ |
+| S008 | Runtime Data Model | `S008/data-model.md` | 2 | 🚧 In progress |
 | S009 | Runtime State Machine | `S009/state-machine.md` | 2 | 🚧 In progress |
 | S010 | Runtime Execution Flow | `S010-execution-flow.md` | 2 | ⬜ |
 | S011 | Runtime Event Model | `S011-event-model.md` | 2 | ⬜ |

@@ -1,0 +1,14 @@
+# SPEC-001 S008 — Entity Relationships
+# Execution la Aggregate Root.
+---
+version: "1.0"
+relationships:
+  Workflow → Execution: "1..N"
+  Execution → Context: "1"
+  Execution → State: "1"
+  Execution → Event: "N"
+  Execution → Artifact: "N"
+  Execution → Metrics: "N"
+  Execution → Trace: "N"
+  Execution → Result: "1"
+  Execution → Agent Assignment: "N"

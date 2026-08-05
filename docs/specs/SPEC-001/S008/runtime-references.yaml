@@ -1,0 +1,10 @@
+# SPEC-001 S008 — Reference Rules (D009)
+# Runtime dung Reference thay vi Object Ownership.
+---
+version: "1.0"
+rules:
+  - Execution dùng Workflow Ref, không copy Definition.
+  - Execution dùng Capability Ref, không chứa implementation.
+  - Execution dùng Artifact Ref, không sở hữu content.
+  - Không copy object.
+  - Không duplicate data (P009).

@@ -1,0 +1,12 @@
+# SPEC-001 S008 — Data Validation (D012)
+# Doctor kiem tra.
+---
+version: "1.0"
+validation:
+  - Execution không có Context.
+  - Execution có nhiều State.
+  - Artifact bị sửa.
+  - Event bị sửa.
+  - Context chia sẻ.
+  - Reference hỏng.
+  - Version sai.

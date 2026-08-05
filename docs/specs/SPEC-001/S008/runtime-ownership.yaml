@@ -1,0 +1,16 @@
+# SPEC-001 S008 — Entity Ownership
+# Workflow/Registry chi tham chieu. Agent khong so huu.
+---
+version: "1.0"
+ownership:
+  Execution: Runtime
+  Context: Runtime
+  State: Runtime
+  Event: Runtime
+  Artifact: Runtime
+  Metrics: Runtime
+  Trace: Runtime
+  Result: Runtime
+  Workflow Reference: Workflow (tham chiếu)
+  Capability Reference: Registry (tham chiếu)
+  Agent Assignment: Runtime

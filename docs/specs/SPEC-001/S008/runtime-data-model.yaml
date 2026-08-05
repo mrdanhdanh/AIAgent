@@ -1,0 +1,32 @@
+# SPEC-001 S008 — Runtime Data Model
+# Canonical Data Model — Single Source of Truth (P009).
+---
+version: "1.0"
+aggregate_root: Execution
+aggregate_rules:
+  - Execution sở hữu [Context, State, Event, Metrics, Trace, Artifact Reference, Result]
+  - Không entity nào ngoài Runtime được phép sửa.
+classification:
+  manages: [Execution Data, Context, Metadata, Events, Metrics, Artifact Metadata]
+  not_manages: [Business Data, Knowledge, Plugin Data, User Data, Database Records]
+invariants:
+  - Execution có đúng một Context.
+  - Execution có đúng một State.
+  - Event không thay đổi.
+  - Artifact immutable.
+  - Context isolated.
+  - Execution có duy nhất một Terminal State.
+  - Execution ID toàn cục.
+consistency:
+  - State luôn hợp lệ.
+  - Context không bị chia sẻ.
+  - Artifact luôn immutable.
+  - Metrics chỉ append.
+  - Event chỉ append.
+dependencies:
+  - Execution → Context
+  - Execution → State
+  - Execution → Events
+  - Execution → Artifacts
+  - Execution → Metrics
+  note: Không dependency ngược.

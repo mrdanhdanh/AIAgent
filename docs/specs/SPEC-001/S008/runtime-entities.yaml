@@ -1,0 +1,125 @@
+# SPEC-001 S008 — Runtime Entities (12)
+# Tham chieu Canonical Models (SPEC-001A). Khong dinh nghia lai.
+---
+version: "1.0"
+entities:
+  ENT-001:
+    name: Execution
+    canonical_model: RM-001
+    owner: Runtime
+    lifecycle: Created → Prepared → Running → Completed → Archived
+    invariants: [Execution có đúng một Context, Execution có đúng một State, Execution có duy nhất một Terminal State, Execution ID toàn cục]
+    references: [Workflow Reference, Context, State, Event, Artifact, Metrics, Trace, Result]
+    identity: ExecutionID
+    version: 1.0.0
+    status: Stable
+  ENT-002:
+    name: Execution Context
+    canonical_model: RM-005
+    owner: Runtime
+    lifecycle: Allocated → Active → Released
+    invariants: [Context isolated, Không chia sẻ giữa hai Execution]
+    references: [Execution]
+    identity: Execution ContextID
+    version: 1.0.0
+    status: Stable
+  ENT-003:
+    name: Execution State
+    canonical_model: RM-006
+    owner: Runtime
+    lifecycle: Created → Running → Terminal
+    invariants: [State thuộc Runtime, Mọi state change phát Event]
+    references: [Execution]
+    identity: Execution StateID
+    version: 1.0.0
+    status: Stable
+  ENT-004:
+    name: Workflow Reference
+    canonical_model: RM-002
+    owner: Workflow
+    lifecycle: Draft → Approved → Running → Completed
+    invariants: [Workflow Reference không copy Definition, Workflow không tự thay đổi]
+    references: [Execution]
+    identity: Workflow ReferenceID
+    version: 1.0.0
+    status: Stable
+  ENT-005:
+    name: Capability Reference
+    canonical_model: RM-010
+    owner: Registry
+    lifecycle: Registered → Available → Deprecated
+    invariants: [Capability Reference không chứa implementation]
+    references: [Execution, Agent Assignment]
+    identity: Capability ReferenceID
+    version: 1.0.0
+    status: Stable
+  ENT-006:
+    name: Agent Assignment
+    canonical_model: (execution-specific)
+    owner: Runtime
+    lifecycle: Assigned → Active → Released
+    invariants: [Agent không sở hữu, Assignment theo Capability]
+    references: [Execution, Capability Reference]
+    identity: Agent AssignmentID
+    version: 1.0.0
+    status: Stable
+  ENT-007:
+    name: Event
+    canonical_model: RM-007
+    owner: Runtime
+    lifecycle: Created → Published → Immutable
+    invariants: [Event không thay đổi, Event chỉ append]
+    references: [Execution, State]
+    identity: EventID
+    version: 1.0.0
+    status: Stable
+  ENT-008:
+    name: Artifact
+    canonical_model: RM-008
+    owner: Runtime
+    lifecycle: Created → Published → Consumed → Archived
+    invariants: [Artifact immutable, Không overwrite]
+    references: [Execution]
+    identity: ArtifactID
+    version: 1.0.0
+    status: Stable
+  ENT-009:
+    name: Metrics
+    canonical_model: (execution-specific)
+    owner: Runtime
+    lifecycle: Collected → Emitted → Archived
+    invariants: [Metrics chỉ append, Không chứa Business Data]
+    references: [Execution]
+    identity: MetricsID
+    version: 1.0.0
+    status: Stable
+  ENT-010:
+    name: Trace
+    canonical_model: (execution-specific)
+    owner: Runtime
+    lifecycle: Created → Completed → Archived
+    invariants: [Trace chỉ append]
+    references: [Execution]
+    identity: TraceID
+    version: 1.0.0
+    status: Stable
+  ENT-011:
+    name: Resource Allocation
+    canonical_model: (execution-specific)
+    owner: Runtime
+    lifecycle: Allocated → Active → Released
+    invariants: [Không rò rỉ tài nguyên, Phạm vi một Execution]
+    references: [Execution]
+    identity: Resource AllocationID
+    version: 1.0.0
+    status: Stable
+  ENT-012:
+    name: Execution Result
+    canonical_model: RM-012
+    owner: Runtime
+    lifecycle: Created → Published → Consumed → Archived
+    invariants: [Result immutable, Result tổng hợp từ Artifact + Metrics]
+    references: [Execution, Artifact]
+    identity: Execution ResultID
+    version: 1.0.0
+    status: Stable

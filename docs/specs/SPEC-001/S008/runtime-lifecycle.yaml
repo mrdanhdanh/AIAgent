@@ -1,0 +1,11 @@
+# SPEC-001 S008 — Entity Lifecycle
+# Tham chieu S009 State Machine.
+---
+version: "1.0"
+lifecycles:
+  Execution: [Created, Prepared, Running, Completed, Archived]
+  Artifact: [Created, Published, Consumed, Archived]
+  Context: [Allocated, Active, Released]
+  Event: [Created, Published, Immutable]
+  State: [Created, Running, Terminal]
+  Result: [Created, Published, Consumed, Archived]
