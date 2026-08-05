@@ -24,14 +24,19 @@ jobs:
       - name: Publish
         run: dotnet publish JapaneseLearner/JapaneseLearner.csproj -c Release -o release --nologo
 
+      - name: Publish AIHub
+        run: dotnet publish AIHub/AIHub.csproj -c Release -o release-aihub --nologo
+
       - name: Add .nojekyll
-        run: touch release/wwwroot/.nojekyll
+        run: touch release/wwwroot/.nojekyll release-aihub/wwwroot/.nojekyll
 
       - name: Prepare deploy structure
         shell: bash
         run: |
           mkdir -p deploy/JapaneseLearner
           cp -r release/wwwroot/* deploy/JapaneseLearner/
+          mkdir -p deploy/AIHub
+          cp -r release-aihub/wwwroot/* deploy/AIHub/
           cp -r gh-pages-root/* deploy/
           # Copy hashed blazor.webassembly.<hash>.js to blazor.webassembly.js (.NET 10 omits unhashed copy)
           for f in deploy/JapaneseLearner/_framework/blazor.webassembly.*.js; do
@@ -40,8 +45,16 @@ jobs:
               break
             fi
           done
+          # Copy hashed blazor.webassembly.<hash>.js cho AIHub
+          for f in deploy/AIHub/_framework/blazor.webassembly.*.js; do
+            if [[ "$f" != *".gz" && "$f" != *".br" ]]; then
+              cp "$f" deploy/AIHub/_framework/blazor.webassembly.js
+              break
+            fi
+          done
           # Set correct base href for GitHub Pages subpath
           sed -i 's|<base href="/" />|<base href="/AIAgent/JapaneseLearner/" />|' deploy/JapaneseLearner/index.html
+          sed -i 's|<base href="/" />|<base href="/AIAgent/AIHub/" />|' deploy/AIHub/index.html
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
