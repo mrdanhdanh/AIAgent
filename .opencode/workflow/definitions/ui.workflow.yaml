@@ -1,10 +1,11 @@
 # ui.workflow.yaml
-# Workflow: ui-development (cải tiến UI/UX)
-# Schema: workflow.schema.yaml v1
+# Workflow: ui-development (cai tien UI/UX)
+# Schema: workflow.schema.yaml v4.0 (engine v4) + manifest workflow.v1 (runtime v1)
 
 id: ui-development
+name: UI Development Workflow
 version: "1"
-description: UI/UX improvement workflow
+description: UI/UX improvement workflow - audit giao dien, thiet ke, trien khai, kiem tra.
 manifest:
   schema: workflow.v1
   entry_phase: audit
@@ -19,40 +20,96 @@ manifest:
 
 phases:
   - id: audit
-    name: UI Audit
-    description: Đánh giá giao diện hiện tại
+    title: Danh gia giao dien
+    description: Audit UI/UX hien tai: accessibility, responsive, FluentUI consistency.
+    agent: ui-beautifier
+    command: team-ui-audit
     capability: review.ui
-    outputs: [audit.md]
+    depends_on: []
     retry: 1
+    timeout_seconds: 120
+    continue_on_error: false
+    inputs: {}
+    outputs:
+      status: string
+      phases:
+        - string
+    expected_result: Khong co CRITICAL/MAJOR issue o Phase 1 va 3.
+    optional: false
 
   - id: design
-    name: UI Design
-    description: Thiết kế cải tiến
-    depends_on: [audit]
+    title: Thiet ke cai tien
+    description: Thiet ke cai tien UI/UX dua tren ket qua audit.
+    agent: planner
+    command: team-plan
     capability: implementation.ui
-    outputs: [design.md]
+    depends_on: [audit]
     retry: 1
+    timeout_seconds: 120
+    continue_on_error: false
+    inputs:
+      audit_result: object
+    outputs:
+      status: string
+      architecture: string
+      components:
+        - string
+    expected_result: Co thiet ke cai tien UI ro rang.
+    optional: false
 
   - id: implement
-    name: UI Implement
-    description: Triển khai UI
-    depends_on: [design]
+    title: Trien khai UI
+    description: Builder trien khai thay doi UI theo thiet ke.
+    agent: builder
+    command: team-build
     capability: implementation.code
-    outputs: [artifact.code]
+    depends_on: [design]
     retry: 2
+    timeout_seconds: 120
+    continue_on_error: false
+    inputs:
+      design: object
+    outputs:
+      status: string
+      changed_files:
+        - string
+      created_files:
+        - string
+    expected_result: Thay doi UI dung theo thiet ke, build pass.
+    optional: false
 
   - id: verify
-    name: Verify
-    description: Kiểm tra giao diện + accessibility
-    depends_on: [implement]
+    title: Kiem tra giao dien + accessibility
+    description: Chay test UI, accessibility va responsive validation.
+    agent: tester
+    command: team-test
     capability: test.e2e
-    outputs: [verify.md]
+    depends_on: [implement]
     retry: 2
+    timeout_seconds: 120
+    continue_on_error: false
+    inputs:
+      build_result: object
+    outputs:
+      status: string
+      coverage:
+        unit: number
+    expected_result: Tat ca test PASS, khong loi accessibility.
+    optional: false
 
   - id: complete
-    name: Complete
-    description: Tổng kết
-    depends_on: [verify]
+    title: Tong ket
+    description: Tong hop ket qua va luu workflow.json snapshot.
+    agent: general
     capability: review.documentation
-    outputs: [summary.md]
+    depends_on: [verify]
     retry: 0
+    timeout_seconds: 120
+    continue_on_error: false
+    inputs:
+      all_outputs: object
+    outputs:
+      status: string
+      final_report: string
+    expected_result: Workflow completed, bao cao day du.
+    optional: false

@@ -25,6 +25,7 @@ coverage, skill validation suggestions, kèm artifacts trong `.opencode/workflow
 - `/team-testplan` — Lập kế hoạch test
 - `/team-test` — Chạy kiểm thử
 - `/team-selfimprove` — Đề xuất cải tiến
+- `/team-bug-learn` — Học từ bug vừa fix (Learning Pipeline 1 lệnh: failure record + lessons/patterns)
 - `/team-gitguard` — Review security trước push
 - `/team-gitpush` — Push an toàn lên git
 - `/team-syncdocs` — Đồng bộ system docs

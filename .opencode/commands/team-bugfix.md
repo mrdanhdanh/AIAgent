@@ -1,6 +1,7 @@
 ---
 description: Quy trình nhận và fix bug — nhận báo cáo → tái hiện bug → root cause → đề xuất chỉnh sửa → kiểm tra sau sửa → test bUnit + E2E → báo cáo. Dùng agent general (orchestrator) + agents chuyên biệt
 agent: general
+model: opencode-go/mimo-v2.5
 schema_version: "1.0"
 ---
 
@@ -25,6 +26,7 @@ schema_version: "1.0"
 - `/team-test` — Chạy kiểm thử (bUnit)
 - `/test-e2e` — Chạy/test E2E Playwright
 - `/team-gitguard` — Review security trước push (nếu commit)
+- `/team-bug-learn` — **Học từ bug vừa fix** (Learning Pipeline 1 lệnh: ghi failure record + sinh lessons/patterns) — chạy sau khi fix xong
 
 **Xem thêm:** `.opencode/skills/dev-team/SKILL.md`, `.opencode/skills/playwright-e2e/SKILL.md`, `.opencode/skills/playwright-component/SKILL.md`
 
@@ -326,8 +328,14 @@ dotnet test JapaneseLearner.E2ETests\JapaneseLearner.E2ETests.csproj
 
 **Hành động:**
 1. **Tổng hợp báo cáo fix bug** theo Output Contract (bên dưới)
-2. **Ghi failure record** (nếu có cơ chế): lưu root cause + fix vào `.opencode/knowledge/` hoặc `.opencode/memory/`
-3. **Đề xuất cải tiến** (nếu có): pattern lặp lại, anti-pattern
+2. **Ghi failure record + học từ bug** — gọi **`/team-bug-learn`** (1 lệnh duy nhất, tổng hợp failure → root-cause → learning → self-improve):
+   ```powershell
+   /team-bug-learn "<error message hoặc file log>" --task "<mô tả task>" --root-cause "<nguyên nhân>" --fix "<fix đã áp dụng>"
+   ```
+   - Lệnh này tự chạy `failure-analyzer.ps1` (deterministic hash) → ghi `BUG-{NNNN}.md` → sinh lessons/patterns → đề xuất cải tiến
+   - **Bắt buộc:** chạy `/team-bug-learn` sau khi fix thành công — đây là cơ chế tự học của hệ thống
+   - Nếu bug lặp lại (error_hash trùng) → lệnh dedup, cập nhật attempts thay vì tạo record mới
+3. **Đề xuất cải tiến** (nếu có): pattern lặp lại, anti-pattern (do `/team-bug-learn` STEP 4 trả về)
 4. **Set `status: completed`**, lưu `workflow.json` snapshot
 
 ---

@@ -45,9 +45,9 @@ jobs:
               break
             fi
           done
-          # Copy hashed blazor.webassembly.<hash>.js cho AIHub
+          # Copy hashed blazor.webassembly.<hash>.js cho AIHub (neu co; AIHub khong dung OverrideHtmlAssetPlaceholders nen giu san ban unhashed)
           for f in deploy/AIHub/_framework/blazor.webassembly.*.js; do
-            if [[ "$f" != *".gz" && "$f" != *".br" ]]; then
+            if [ -e "$f" ] && [[ "$f" != *".gz" && "$f" != *".br" ]]; then
               cp "$f" deploy/AIHub/_framework/blazor.webassembly.js
               break
             fi

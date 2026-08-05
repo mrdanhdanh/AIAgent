@@ -27,8 +27,8 @@ Doc va parse definition workflow thanh phase graph truoc khi validate/chay.
 ## 2. Resolve workflow id
 
 - Khong truyen `--workflow` -> dung `default_workflow` cua schema (mac dinh `default`).
-- `--workflow <invalid>` -> WF-ERR-009 kem danh sach 5 definitions:
-  `default, bugfix, feature, ui, docs`.
+- `--workflow <invalid>` -> WF-ERR-009 kem danh sach 6 definitions:
+  `default, bugfix, feature, ui, docs, documentation`.
 - KHONG tu fallback mu khi invalid — bao loi ro rang de user chon.
 
 ## 3. Bang loi

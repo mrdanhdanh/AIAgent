@@ -35,7 +35,7 @@ Validate definition workflow truoc khi chay. Checklist nay phai khop
 | WF-ERR-006 | cycle detected | CRITICAL | Dung |
 | WF-ERR-007 | agent khong ton tai | CRITICAL | Dung |
 | WF-ERR-008 | command khong ton tai | MAJOR | Dung (hoac bo qua phase) |
-| WF-ERR-009 | invalid --workflow id (kem danh sach 5 definitions) | MAJOR | Dung (engine) |
+| WF-ERR-009 | invalid --workflow id (kem danh sach 6 definitions) | MAJOR | Dung (engine) |
 
 Loi CRITICAL (001, 002, 004, 005, 006, 007) -> dung workflow ngay.
 

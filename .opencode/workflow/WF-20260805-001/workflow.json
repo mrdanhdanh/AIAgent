@@ -1,0 +1,45 @@
+{
+  "workflow_id": "WF-20260805-001",
+  "definition_id": "default",
+  "created_at": "2026-08-05T23:59:00+07:00",
+  "status": "completed",
+  "request": "2 trang JapaneseLearner + AIHub: them link AIHub vao landing page + public AIHub len Git Pages",
+  "phases": [
+    { "id": "analyze", "status": "completed", "retry_count": 0 },
+    { "id": "design", "status": "completed", "retry_count": 0 },
+    { "id": "plan", "status": "completed", "retry_count": 0 },
+    { "id": "review", "status": "completed", "retry_count": 0 },
+    { "id": "guardrail", "status": "completed", "retry_count": 0 },
+    { "id": "backup", "status": "completed", "retry_count": 0 },
+    { "id": "build", "status": "completed", "retry_count": 0 },
+    { "id": "static_analysis", "status": "completed", "retry_count": 0 },
+    { "id": "ui_audit", "status": "completed", "retry_count": 0 },
+    { "id": "testplan", "status": "completed", "retry_count": 0 },
+    { "id": "test", "status": "completed", "retry_count": 0 },
+    { "id": "skill_validation", "status": "completed", "retry_count": 0 },
+    { "id": "failure_analysis", "status": "completed", "retry_count": 0 },
+    { "id": "learning", "status": "completed", "retry_count": 0 },
+    { "id": "complete", "status": "completed", "retry_count": 0 }
+  ],
+  "artifacts": [
+    "01_analyze.md",
+    "02_design.md",
+    "03_plan.md",
+    "04_review.md",
+    "05_guardrail.md",
+    "06_backup.md",
+    "07_build.md",
+    "08_static_analysis.md",
+    "09_ui_audit.md",
+    "10_testplan.md",
+    "11_test.md",
+    "12_skill_validation.md",
+    "13_failure_analysis.md",
+    "14_learning.md",
+    "15_complete.md"
+  ],
+  "changed_files": [
+    "gh-pages-root/index.html",
+    ".github/workflows/deploy.yml"
+  ]
+}

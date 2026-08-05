@@ -220,11 +220,63 @@ phases:
         - category: string
     expected_result: Co de xuat cai tien hoac NO_SUGGESTIONS.
 
+  - id: failure_analysis
+    title: Phan tich loi (neu co)
+    description: >
+      Failure-agent normalize + classify loi tu test/build qua
+      failure-analyzer.ps1, search failure memory (optional, khong block).
+    agent: failure-agent
+    command: team-analyze-failure
+    depends_on: [test]
+    retry: 1
+    timeout_seconds: 120
+    continue_on_error: true
+    optional: true
+    inputs:
+      test_result: object
+    outputs:
+      status: string
+      analysis:
+        error_type: string
+        error_hash: string
+        retryable: boolean
+      memory_search:
+        found: boolean
+        records:
+          - failure_id: string
+    expected_result: Phan tich loi co error_hash + memory match, hoac NO_ERROR khi test pass.
+
+  - id: learning
+    title: Hoc tu failure records
+    description: >
+      Learning-agent quet .opencode/memory/failures/, sinh lessons va patterns
+      moi, cap nhat failure records (optional, khong block).
+    agent: learning-agent
+    command: team-learn
+    depends_on: [failure_analysis]
+    retry: 1
+    timeout_seconds: 120
+    continue_on_error: true
+    optional: true
+    inputs:
+      failure_analysis: object
+    outputs:
+      status: string
+      scan:
+        total_failures: number
+        processed: number
+      created:
+        lessons:
+          - id: string
+        patterns:
+          - id: string
+    expected_result: Failure records co lesson/pattern reference, hoac NO_CHANGES.
+
   - id: complete
     title: Hoan tat workflow
     description: Tong hop ket qua va luu workflow.json snapshot.
     agent: general
-    depends_on: [skill_validation]
+    depends_on: [skill_validation, learning]
     retry: 3
     timeout_seconds: 120
     continue_on_error: false

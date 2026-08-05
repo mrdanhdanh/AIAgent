@@ -1,6 +1,6 @@
 # He Thong .opencode - So Do Tong The
 
-> **Tu dong tao luc:** 2026-08-05 00:15:04
+> **Tu dong tao luc:** 2026-08-05 23:54:38
 > **Workflow ID:** WF-20260805-SYNC
 > **Cap nhat:** Toan bo agents, commands, skills, scripts, knowledge
 
@@ -25,7 +25,7 @@
 ```
 .opencode/
 |-- agents/           # 18 agent definitions
-|-- commands/         # 56 command templates
+|-- commands/         # 57 command templates
 |-- skills/           # 28 skill packages
 |-- scripts/          # 54 utility scripts
 |-- knowledge/        # Knowledge base
@@ -46,7 +46,7 @@
 | cleaner | Workspace Cleaner Agent v2.0 — quét rác theo tiêu chí cấu hình chi tiết, phân loại LOW/MEDIUM/HIGH, backup workflow-linked, dry-run bắt buộc, protected list 4 nhóm. | opencode-go/deepseek-v4-flash |  | team-cleanup |
 | codebase-explorer | Khám phá cấu trúc dự án, phân tích codebase, mapping dependencies và patterns. Agent read-only chạy trước khi thực hiện thay đổi. | opencode-go/deepseek-v4-flash |  | team-explore |
 | failure-agent | Chuyên gia phân tích và chuẩn hóa lỗi — normalize+hash do failure-analyzer.ps1 tính, agent chỉ classify, search failure/lesson/pattern memory, score và đề xuất. Read-only (bash chỉ chạy failure-analyzer.ps1). | opencode-go/deepseek-v4-flash |  | team-analyze-failure |
-| general | General-purpose orchestrator agent — điều phối workflow, triệu hồi sub-agents, quản lý state machine | opencode-go/deepseek-v4-flash |  | team-runtime-benchmark, team-syncdocs, model-policy, team-doctor, doctor, team-bugfix, trace, test-bootstrap, ask, explain, team-capabilities, flow, why, compare-doc, test-cross-browser, doctor-test, test-e2e, where, impact, approve-test, team |
+| general | General-purpose orchestrator agent — điều phối workflow, triệu hồi sub-agents, quản lý state machine | opencode-go/deepseek-v4-flash |  | team-runtime-benchmark, team-syncdocs, model-policy, team-doctor, doctor, team-bugfix, trace, team-bug-learn, test-bootstrap, ask, explain, team-capabilities, flow, why, compare-doc, impact, test-cross-browser, doctor-test, test-e2e, where, approve-test, team |
 | guardian | Chuyên gia review source code trước khi push lên git — phát hiện secret, lỗi convention, lỗ hổng bảo mật, vi phạm quy tắc dự án | opencode-go/deepseek-v4-flash |  | team-gitguard |
 | knowledge-agent | Intent Analyzer + Router cho Knowledge Assistant — phân loại câu hỏi, chọn skill pipeline, tổng hợp trả lời có nguồn | opencode-go/deepseek-v4-flash |  | knowledge-compare-doc, knowledge, knowledge-trace, knowledge-impact, knowledge-health, knowledge-ask, knowledge-index, knowledge-why, knowledge-explain, knowledge-flow, knowledge-where |
 | learning-agent | Chuyên gia Learning Pipeline — đọc failure records từ memory, phân tích patterns xuyên suốt, auto-generate lessons và patterns mới. Ghi trực tiếp vào memory/. Cần approval gate cho MEDIUM/HIGH impact. | opencode-go/deepseek-v4-flash |  | team-learn |
@@ -91,6 +91,7 @@
 | /team-analyze | Chỉ chạy bước phân tích yêu cầu (dùng agent analyst) | analyst |  |
 | /team-analyze-failure | Phân tích lỗi trong workflow. Chạy failure-analyzer.ps1 (normalize+SHA256 deterministic) rồi gọi failure-agent classify + search failure memory. Output YAML contract v2. | failure-agent |  |
 | /team-bugfix | Quy trình nhận và fix bug — nhận báo cáo → tái hiện bug → root cause → đề xuất chỉnh sửa → kiểm tra sau sửa → test bUnit + E2E → báo cáo. Dùng agent general (orchestrator) + agents chuyên biệt | general |  |
+| /team-bug-learn | Learning Pipeline 1 lệnh duy nhất sau khi fix bug — chuẩn hóa lỗi (failure-analyzer.ps1) → failure-agent classify + search memory → root-cause-agent (nếu cần) → learning-agent ghi failure record + sinh lessons/patterns → self-improver đề xuất. Gọi sau khi fix bug. | general |  |
 | /team-build | Thực thi kế hoạch đã duyệt (dùng agent builder) | builder |  |
 | /team-capabilities | Khám phá năng lực System — liệt kê capability theo category, reset agent/skill/command maps từ capability. Là giao diện discovery của Capability Registry. | general |  |
 | /team-cleanup | Dọn rác Workspace tự động — xóa build artifacts, backup cũ, temp files, cache. Tích hợp dry-run, backup trước khi xóa, confirmation gate. | cleaner |  |
@@ -174,7 +175,7 @@
 | catalog-builder | Utility script | 5 KB |
 | constitution-doctor | Utility script | 6 KB |
 | constitution-validator | Utility script | 4 KB |
-| context-validator | Validate Context Engine structure: profiles/, schemas/, budget. | 3 KB |
+| context-validator | Validate Context Engine structure: profiles/, schemas/, budget. | 4 KB |
 | cost-validator | Utility script | 1 KB |
 | cross-ref-validator | Cross-Reference Validator — kiểm tra tham chiếu chéo trong .opencode (agents, commands, skills, contracts). | 6 KB |
 | dashboard-validator | Validate Dashboard structure + schema. | 2 KB |
@@ -196,7 +197,7 @@
 | manifest-validator | Validate AIOS Manifest. | 3 KB |
 | marketplace-validator | Utility script | 1 KB |
 | memory-validator | Utility script | 1 KB |
-| model-policy | Utility script | 10 KB |
+| model-policy | Utility script | 11 KB |
 | model-router-validator | Utility script | 1 KB |
 | observability-validator | Utility script | 1 KB |
 | plugins-validator | Validate Plugin Architecture structure + schema + permissions. | 3 KB |
@@ -210,8 +211,8 @@
 | schema-validator | Schema Validator — validate YAML schema của agent definitions. | 5 KB |
 | sdk-validator | Validate AIOS SDK structure + schema. | 2 KB |
 | simulation-validator | Validate Simulation Engine structure + schema. | 3 KB |
-| spec000-validator | Validate SPEC-000 Constitution. | 5 KB |
-| spec001-validator | Validate SPEC-001 Runtime Kernel. | 5 KB |
+| spec000-validator | Validate SPEC-000 Constitution. | 6 KB |
+| spec001-validator | Validate SPEC-001 Runtime Kernel. | 18 KB |
 | spec-validator | Validate AIOS Implementation control file. | 2 KB |
 | sync-system-docs | System Docs Sync — đồng bộ system docs + System Evolution Engine (9 engines). | 51 KB |
 | trust-validator | Utility script | 1 KB |
@@ -285,7 +286,7 @@
 | cleaner | team-cleanup |
 | codebase-explorer | team-explore |
 | failure-agent | team-analyze-failure |
-| general | team-runtime-benchmark, team-syncdocs, model-policy, team-doctor, doctor, team-bugfix, trace, test-bootstrap, ask, explain, team-capabilities, flow, why, compare-doc, test-cross-browser, doctor-test, test-e2e, where, impact, approve-test, team |
+| general | team-runtime-benchmark, team-syncdocs, model-policy, team-doctor, doctor, team-bugfix, trace, team-bug-learn, test-bootstrap, ask, explain, team-capabilities, flow, why, compare-doc, impact, test-cross-browser, doctor-test, test-e2e, where, approve-test, team |
 | guardian | team-gitguard |
 | knowledge-agent | knowledge-compare-doc, knowledge, knowledge-trace, knowledge-impact, knowledge-health, knowledge-ask, knowledge-index, knowledge-why, knowledge-explain, knowledge-flow, knowledge-where |
 | learning-agent | team-learn |
@@ -419,5 +420,5 @@
 
 ---
 
-> **Tong so:** 18 agents . 56 commands . 28 skills . 54 scripts . 27 knowledge files
+> **Tong so:** 18 agents . 57 commands . 28 skills . 54 scripts . 27 knowledge files
 > **Sinh boi:** sync-system-docs.ps1

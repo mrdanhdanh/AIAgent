@@ -379,11 +379,11 @@
                                                    "deprecated":  false,
                                                    "file":  "commands/knowledge-compare-doc.md"
                                                },
-                     "team-learn":  {
-                                        "agent":  "learning-agent",
-                                        "description":  "Chạy Learning Pipeline — quét failure records, auto-generate lessons và patterns, cập nhật memory. Gọi learning-agent.",
+                     "team-build":  {
+                                        "agent":  "builder",
+                                        "description":  "Thực thi kế hoạch đã duyệt (dùng agent builder)",
                                         "deprecated":  false,
-                                        "file":  "commands/team-learn.md"
+                                        "file":  "commands/team-build.md"
                                     },
                      "test-accessibility":  {
                                                 "agent":  "ui-beautifier",
@@ -475,12 +475,24 @@
                                          "deprecated":  false,
                                          "file":  "commands/team-bugfix.md"
                                      },
+                     "team-learn":  {
+                                        "agent":  "learning-agent",
+                                        "description":  "Chạy Learning Pipeline — quét failure records, auto-generate lessons và patterns, cập nhật memory. Gọi learning-agent.",
+                                        "deprecated":  false,
+                                        "file":  "commands/team-learn.md"
+                                    },
                      "trace":  {
                                    "agent":  "general",
                                    "description":  "Truy vết luồng xử lý từ đầu đến cuối — UI → API → Service → Repository → DB → Response, kèm evidence từng bước",
                                    "deprecated":  false,
                                    "file":  "commands/trace.md"
                                },
+                     "team-bug-learn":  {
+                                            "agent":  "general",
+                                            "description":  "Learning Pipeline 1 lệnh duy nhất sau khi fix bug — chuẩn hóa lỗi (failure-analyzer.ps1) → failure-agent classify + search memory → root-cause-agent (nếu cần) → learning-agent ghi failure record + sinh lessons/patterns → self-improver đề xuất. Gọi sau khi fix bug.",
+                                            "deprecated":  false,
+                                            "file":  "commands/team-bug-learn.md"
+                                        },
                      "team-gitguard":  {
                                            "agent":  "guardian",
                                            "description":  "Review source code trước khi push lên git — phát hiện secret, lỗi convention, lỗ hổng bảo mật, vi phạm quy tắc dự án",
@@ -595,12 +607,12 @@
                                          "deprecated":  false,
                                          "file":  "commands/compare-doc.md"
                                      },
-                     "team-build":  {
-                                        "agent":  "builder",
-                                        "description":  "Thực thi kế hoạch đã duyệt (dùng agent builder)",
-                                        "deprecated":  false,
-                                        "file":  "commands/team-build.md"
-                                    },
+                     "impact":  {
+                                    "agent":  "general",
+                                    "description":  "Phân tích ảnh hưởng khi sửa một component — sửa X ảnh hưởng API/Screen/Batch/Report/SP nào. Quan trọng nhất cho thay đổi an toàn",
+                                    "deprecated":  false,
+                                    "file":  "commands/impact.md"
+                                },
                      "test-cross-browser":  {
                                                 "agent":  "general",
                                                 "description":  "Cross-browser testing — Chrome, Edge, Firefox, Safari + iPhone/Android. Tích hợp skill browser-compatibility",
@@ -661,12 +673,6 @@
                                    "deprecated":  false,
                                    "file":  "commands/where.md"
                                },
-                     "impact":  {
-                                    "agent":  "general",
-                                    "description":  "Phân tích ảnh hưởng khi sửa một component — sửa X ảnh hưởng API/Screen/Batch/Report/SP nào. Quan trọng nhất cho thay đổi an toàn",
-                                    "deprecated":  false,
-                                    "file":  "commands/impact.md"
-                                },
                      "approve-test":  {
                                           "agent":  "general",
                                           "description":  "Approve Test Gate — gate cuối trước merge. Chặn nếu coverage \u003c 80%, flaky, accessibility error, visual diff, failed E2E, broken responsive, missing critical scenario",
@@ -690,12 +696,12 @@
                     "constitution-doctor":  {
                                                 "summary":  "Utility script",
                                                 "file":  "scripts/constitution-doctor.ps1",
-                                                "size":  5644
+                                                "size":  5760
                                             },
                     "glossary-validator":  {
                                                "summary":  "Validate AIOS Glossary.",
                                                "file":  "scripts/glossary-validator.ps1",
-                                               "size":  4666
+                                               "size":  4781
                                            },
                     "schema-validator":  {
                                              "summary":  "Schema Validator — validate YAML schema của agent definitions.",
@@ -710,52 +716,52 @@
                     "evaluation-validator":  {
                                                  "summary":  "Utility script",
                                                  "file":  "scripts/evaluation-validator.ps1",
-                                                 "size":  807
+                                                 "size":  823
                                              },
                     "catalog-builder":  {
                                             "summary":  "Utility script",
                                             "file":  "scripts/catalog-builder.ps1",
-                                            "size":  5056
+                                            "size":  5180
                                         },
                     "simulation-validator":  {
                                                  "summary":  "Validate Simulation Engine structure + schema.",
                                                  "file":  "scripts/simulation-validator.ps1",
-                                                 "size":  2728
+                                                 "size":  2805
                                              },
                     "workflow-validator":  {
                                                "summary":  "Workflow Validator v4 — validate 5 workflow definitions (.opencode/workflow/definitions/*.yaml).",
                                                "file":  "scripts/workflow-validator.ps1",
-                                               "size":  14347
+                                               "size":  14692
                                            },
                     "spec001-validator":  {
                                               "summary":  "Validate SPEC-001 Runtime Kernel.",
                                               "file":  "scripts/spec001-validator.ps1",
-                                              "size":  4818
+                                              "size":  18468
                                           },
                     "knowledge-graph-validator":  {
                                                       "summary":  "Validate System Knowledge Graph structure + schemas.",
                                                       "file":  "scripts/knowledge-graph-validator.ps1",
-                                                      "size":  2710
+                                                      "size":  2785
                                                   },
                     "resources-validator":  {
                                                 "summary":  "Utility script",
                                                 "file":  "scripts/resources-validator.ps1",
-                                                "size":  799
+                                                "size":  815
                                             },
                     "rules-validator":  {
                                             "summary":  "Validate AIOS Architecture Rules.",
                                             "file":  "scripts/rules-validator.ps1",
-                                            "size":  5256
+                                            "size":  5376
                                         },
                     "spec000-validator":  {
                                               "summary":  "Validate SPEC-000 Constitution.",
                                               "file":  "scripts/spec000-validator.ps1",
-                                              "size":  5623
+                                              "size":  5749
                                           },
                     "marketplace-validator":  {
                                                   "summary":  "Utility script",
                                                   "file":  "scripts/marketplace-validator.ps1",
-                                                  "size":  805
+                                                  "size":  821
                                               },
                     "sync-system-docs":  {
                                              "summary":  "System Docs Sync — đồng bộ system docs + System Evolution Engine (9 engines).",
@@ -765,37 +771,37 @@
                     "plugins-validator":  {
                                               "summary":  "Validate Plugin Architecture structure + schema + permissions.",
                                               "file":  "scripts/plugins-validator.ps1",
-                                              "size":  2881
+                                              "size":  2960
                                           },
                     "trust-validator":  {
                                             "summary":  "Utility script",
                                             "file":  "scripts/trust-validator.ps1",
-                                            "size":  771
+                                            "size":  787
                                         },
                     "evolution-validator":  {
                                                 "summary":  "Validate Evolution Engine structure + schema + policy + objectives.",
                                                 "file":  "scripts/evolution-validator.ps1",
-                                                "size":  3135
+                                                "size":  3223
                                             },
                     "event-validator":  {
                                             "summary":  "Validate Event System structure.",
                                             "file":  "scripts/event-validator.ps1",
-                                            "size":  3016
+                                            "size":  3101
                                         },
                     "release-validator":  {
                                               "summary":  "Utility script",
                                               "file":  "scripts/release-validator.ps1",
-                                              "size":  781
+                                              "size":  797
                                           },
                     "principles-validator":  {
                                                  "summary":  "Validate AIOS Constitution Principles.",
                                                  "file":  "scripts/principles-validator.ps1",
-                                                 "size":  6500
+                                                 "size":  6639
                                              },
                     "model-policy":  {
                                          "summary":  "Utility script",
                                          "file":  "scripts/model-policy.ps1",
-                                         "size":  10452
+                                         "size":  10756
                                      },
                     "cross-ref-validator":  {
                                                 "summary":  "Cross-Reference Validator — kiểm tra tham chiếu chéo trong .opencode (agents, commands, skills, contracts).",
@@ -810,27 +816,27 @@
                     "kernel-validator":  {
                                              "summary":  "Utility script",
                                              "file":  "scripts/kernel-validator.ps1",
-                                             "size":  1003
+                                             "size":  1022
                                          },
                     "capability-validator":  {
                                                  "summary":  "Validate Capability Registry (registry/) cho tính nhất quán + sinh coverage report.",
                                                  "file":  "scripts/capability-validator.ps1",
-                                                 "size":  8835
+                                                 "size":  9038
                                              },
                     "failure-analyzer":  {
                                              "summary":  "Utility script",
                                              "file":  "scripts/failure-analyzer.ps1",
-                                             "size":  4029
+                                             "size":  4142
                                          },
                     "cost-validator":  {
                                            "summary":  "Utility script",
                                            "file":  "scripts/cost-validator.ps1",
-                                           "size":  772
+                                           "size":  788
                                        },
                     "sdk-validator":  {
                                           "summary":  "Validate AIOS SDK structure + schema.",
                                           "file":  "scripts/sdk-validator.ps1",
-                                          "size":  2179
+                                          "size":  2248
                                       },
                     "build-knowledge-index":  {
                                                   "summary":  "Build/Update Knowledge Index - scan source code + docs to generate 7 index JSON files.",
@@ -845,12 +851,12 @@
                     "model-router-validator":  {
                                                    "summary":  "Utility script",
                                                    "file":  "scripts/model-router-validator.ps1",
-                                                   "size":  806
+                                                   "size":  822
                                                },
                     "agent-validator":  {
                                             "summary":  "Validate Agent Definition packages (agents/metadata/*.yaml).",
                                             "file":  "scripts/agent-validator.ps1",
-                                            "size":  4863
+                                            "size":  4972
                                         },
                     "backup-utility":  {
                                            "summary":  "Backup Utility — backup, list và verify snapshot trước khi sửa file.",
@@ -860,57 +866,57 @@
                     "experiments-validator":  {
                                                   "summary":  "Utility script",
                                                   "file":  "scripts/experiments-validator.ps1",
-                                                  "size":  813
+                                                  "size":  829
                                               },
                     "governance-validator":  {
                                                  "summary":  "Utility script",
                                                  "file":  "scripts/governance-validator.ps1",
-                                                 "size":  817
+                                                 "size":  833
                                              },
                     "prompts-validator":  {
                                               "summary":  "Utility script",
                                               "file":  "scripts/prompts-validator.ps1",
-                                              "size":  789
+                                              "size":  805
                                           },
                     "workspaces-validator":  {
                                                  "summary":  "Utility script",
                                                  "file":  "scripts/workspaces-validator.ps1",
-                                                 "size":  807
+                                                 "size":  823
                                              },
                     "dashboard-validator":  {
                                                 "summary":  "Validate Dashboard structure + schema.",
                                                 "file":  "scripts/dashboard-validator.ps1",
-                                                "size":  2376
+                                                "size":  2447
                                             },
                     "distributed-validator":  {
                                                   "summary":  "Utility script",
                                                   "file":  "scripts/distributed-validator.ps1",
-                                                  "size":  808
+                                                  "size":  824
                                               },
                     "observability-validator":  {
                                                     "summary":  "Utility script",
                                                     "file":  "scripts/observability-validator.ps1",
-                                                    "size":  830
+                                                    "size":  846
                                                 },
                     "autonomous-validator":  {
                                                  "summary":  "Utility script",
                                                  "file":  "scripts/autonomous-validator.ps1",
-                                                 "size":  802
+                                                 "size":  818
                                              },
                     "memory-validator":  {
                                              "summary":  "Utility script",
                                              "file":  "scripts/memory-validator.ps1",
-                                             "size":  814
+                                             "size":  830
                                          },
                     "governance-framework-validator":  {
                                                            "summary":  "Validate AIOS Governance Framework (D005).",
                                                            "file":  "scripts/governance-framework-validator.ps1",
-                                                           "size":  6101
+                                                           "size":  6222
                                                        },
                     "doctor-validator":  {
                                              "summary":  "Validate Doctor v2 structure + schema + rules.",
                                              "file":  "scripts/doctor-validator.ps1",
-                                             "size":  3145
+                                             "size":  3237
                                          },
                     "knowledge-index":  {
                                             "summary":  "Utility script",
@@ -920,42 +926,42 @@
                     "architecture-validator":  {
                                                    "summary":  "Validate AIOS 7-layer architecture doc.",
                                                    "file":  "scripts/architecture-validator.ps1",
-                                                   "size":  2584
+                                                   "size":  2650
                                                },
                     "manifest-validator":  {
                                                "summary":  "Validate AIOS Manifest.",
                                                "file":  "scripts/manifest-validator.ps1",
-                                               "size":  3302
+                                               "size":  3382
                                            },
                     "spec-validator":  {
                                            "summary":  "Validate AIOS Implementation control file.",
                                            "file":  "scripts/spec-validator.ps1",
-                                           "size":  2472
+                                           "size":  2537
                                        },
                     "artifact-validator":  {
                                                "summary":  "Validate Artifact Store structure and schemas.",
                                                "file":  "scripts/artifact-validator.ps1",
-                                               "size":  2915
+                                               "size":  2996
                                            },
                     "constitution-validator":  {
                                                    "summary":  "Utility script",
                                                    "file":  "scripts/constitution-validator.ps1",
-                                                   "size":  4058
+                                                   "size":  4149
                                                },
                     "context-validator":  {
                                               "summary":  "Validate Context Engine structure: profiles/, schemas/, budget.",
                                               "file":  "scripts/context-validator.ps1",
-                                              "size":  3508
+                                              "size":  3594
                                           },
                     "policy-validator":  {
                                              "summary":  "Utility script",
                                              "file":  "scripts/policy-validator.ps1",
-                                             "size":  793
+                                             "size":  809
                                          },
                     "baseline-scan":  {
                                           "summary":  "Utility script",
                                           "file":  "scripts/baseline-scan.ps1",
-                                          "size":  5361
+                                          "size":  5475
                                       }
                 },
     "cross_refs":  {
@@ -985,6 +991,7 @@
                                                 "team-bugfix":  "general",
                                                 "trace":  "general",
                                                 "knowledge-explain":  "knowledge-agent",
+                                                "team-bug-learn":  "general",
                                                 "team-gitguard":  "guardian",
                                                 "test-bootstrap":  "general",
                                                 "knowledge-health":  "knowledge-agent",
@@ -1354,12 +1361,12 @@
                                                                                  "command":  "ask"
                                                                              },
                                                                              {
-                                                                                 "file":  ".opencode/commands/where.md",
-                                                                                 "command":  "where"
-                                                                             },
-                                                                             {
                                                                                  "file":  ".opencode/commands/impact.md",
                                                                                  "command":  "impact"
+                                                                             },
+                                                                             {
+                                                                                 "file":  ".opencode/commands/where.md",
+                                                                                 "command":  "where"
                                                                              }
                                                                          ],
                                                  "impact-analyzer":  [
@@ -1489,9 +1496,6 @@
                                                  "codebase-explorer":  [
                                                                            "team-explore"
                                                                        ],
-                                                 "analyst":  [
-                                                                 "team-analyze"
-                                                             ],
                                                  "builder":  [
                                                                  "team-build"
                                                              ],
@@ -1527,6 +1531,9 @@
                                                                       "test-audit",
                                                                       "test-evolve"
                                                                   ],
+                                                 "analyst":  [
+                                                                 "team-analyze"
+                                                             ],
                                                  "reviewer":  [
                                                                   "team-review"
                                                               ],
@@ -1544,6 +1551,7 @@
                                                                  "doctor",
                                                                  "team-bugfix",
                                                                  "trace",
+                                                                 "team-bug-learn",
                                                                  "test-bootstrap",
                                                                  "ask",
                                                                  "explain",
@@ -1551,11 +1559,11 @@
                                                                  "flow",
                                                                  "why",
                                                                  "compare-doc",
+                                                                 "impact",
                                                                  "test-cross-browser",
                                                                  "doctor-test",
                                                                  "test-e2e",
                                                                  "where",
-                                                                 "impact",
                                                                  "approve-test",
                                                                  "team"
                                                              ],
@@ -1577,7 +1585,7 @@
                                                              ]
                                              }
                    },
-    "scanned_at":  "2026-08-05T00:15:03.9486046+07:00",
+    "scanned_at":  "2026-08-05T23:54:37.4406344+07:00",
     "skills":  {
                    "dev-team":  {
                                     "schema_version":  "3.2",

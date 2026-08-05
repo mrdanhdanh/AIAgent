@@ -61,6 +61,7 @@ dotnet test JapaneseLearner.E2ETests\JapaneseLearner.E2ETests.csproj
 - **Service-Interface DI**: `ICharService`/`CharService`, `IWordService`/`WordService`, `IKanjiService`/`KanjiService`, `IGrammarService`/`GrammarService`, `IThemeService`/`ThemeService` — `AddScoped` in `Program.cs`. Adding a new service requires touching `Program.cs`.
 - **Cache-first storage**: Services cache in-memory, persist to `Blazored.LocalStorage`. Seed data on first load. Write-through on every mutation.
 - **Progress reporting**: `WordService`, `KanjiService`, and `GrammarService` all accept optional `IProgress<int>` in `GetAllAsync` for large seed data loads.
+- **Failure Learning System** (`.opencode/memory/`): failure records (`failures/BUG-*.md`) → lessons (`lessons/`) + patterns (`patterns/`). Pipeline 1 lệnh: `/team-bug-learn` (normalize+hash → classify → root cause → ghi record → sinh lessons/patterns → self-improve). Chạy sau mỗi lần fix bug; tự động gợi ý sau `/team-bugfix` Phase 6. Workflow engine chạy 2 phase tự động: `failure_analysis` (failure-agent) + `learning` (learning-agent) trong `default.workflow.yaml`.
 - **Tri-state rendering**: Each page handles Loading → Empty → Data via `isLoading` + `list.Count == 0`.
 - **CSS**: `MainLayout.razor.css` (CSS isolation for layout); all pages use inline `<style>` blocks.
 - **ThemeService**: dark mode toggle, persisted via `Blazored.LocalStorage`, uses `FluentDesignTheme` component.
@@ -76,10 +77,10 @@ dotnet test JapaneseLearner.E2ETests\JapaneseLearner.E2ETests.csproj
 
 ## Workflow Engine v4
 
-- **`/team`** là thin launcher chạy qua **Workflow Engine v4** (`.opencode/workflow-engine/` 8 modules: README, engine, loader, validator, executor, phase-runner, state-machine, recovery) thay cho body 13 bước cũ. Cách dùng: `/team <yêu cầu> [--workflow <default|bugfix|feature|ui|docs>]`.
+- **`/team`** là thin launcher chạy qua **Workflow Engine v4** (`.opencode/workflow-engine/` 8 modules: README, engine, loader, validator, executor, phase-runner, state-machine, recovery) thay cho body 13 bước cũ. Cách dùng: `/team <yêu cầu> [--workflow <default|bugfix|feature|ui|docs|documentation>]`.
 - **Definitions** tại `.opencode/workflow/definitions/*.yaml` — khai báo phase, agent/command, depends_on, retry. Schema contract tại `.opencode/workflow/schemas/workflow.schema.yaml` (v4.0, `default_workflow: default`).
 - **Runtime contexts** (`workflow.json`, `state.json`, artifacts) nằm trong `.opencode/workflow/WF-*/` — do engine tạo, KHÔNG sửa tay. `WF_CONTEXT_ROOT` env override root (cho smoke-test chạy trong `$env:TEMP`).
-- **Validator**: `.opencode/scripts/workflow-validator.ps1` (parser YAML subset, không dùng ConvertFrom-Yaml — module không available trên PS 5.1). Chạy PASS 5/5 definitions, exit 0. `schema-validator.ps1` là tool legacy false-positive — KHÔNG dùng làm gate cho engine docs.
+- **Validator**: `.opencode/scripts/workflow-validator.ps1` (parser YAML subset, không dùng ConvertFrom-Yaml — module không available trên PS 5.1). Chạy PASS 6/6 definitions (default, bugfix, feature, ui, docs, documentation), exit 0. `schema-validator.ps1` là tool legacy false-positive — KHÔNG dùng làm gate cho engine docs.
 - **Error codes**: WF-ERR-001..009 (không viết `#` trước WF-ID/WF-ERR trong tài liệu).
 - **Quy ước file**: UTF-8 no-BOM, spaces (2-space indent) không tab, mọi .md có frontmatter (name, description, agent).
 - **Migration/rollback**: `.opencode/workflow/MIGRATION_GUIDE.md` — restore nhanh team.md + sync-system-docs.ps1 từ `.opencode/backup/<WF-ID>/`.

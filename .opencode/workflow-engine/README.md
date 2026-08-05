@@ -54,11 +54,12 @@ Engine KHONG hieu noi dung agent — chi dispatch theo metadata trong definition
 
 | File | id | Phases |
 |------|----|--------|
-| `definitions/default.workflow.yaml` | default | 13 (analyze -> complete) |
-| `definitions/bugfix.workflow.yaml` | bugfix | 6 (analyze -> root-cause -> plan-fix -> build -> test -> complete) |
-| `definitions/feature.workflow.yaml` | feature | 8 (analyze -> design -> plan -> review -> build -> test -> ui_audit -> complete) |
-| `definitions/ui.workflow.yaml` | ui | 6 (analyze-ui -> design -> ui-audit -> build-ui -> test -> complete) |
+| `definitions/default.workflow.yaml` | default | 15 (analyze -> ... -> failure_analysis -> learning -> complete) |
+| `definitions/bugfix.workflow.yaml` | bugfix | 7 (reproduce -> diagnose -> fix -> verify -> failure_analysis -> learning -> complete) |
+| `definitions/feature.workflow.yaml` | feature | 7 (analyze -> design -> review -> backup -> build -> test -> complete) |
+| `definitions/ui.workflow.yaml` | ui | 5 (audit -> design -> implement -> verify -> complete) |
 | `definitions/docs.workflow.yaml` | docs | 5 (analyze -> write -> review -> validate -> complete) |
+| `definitions/documentation.workflow.yaml` | documentation | 4 (analyze -> write -> review -> complete) |
 
 Migrate team.md cu -> engine moi: xem `.opencode/workflow/MIGRATION_GUIDE.md`.
 

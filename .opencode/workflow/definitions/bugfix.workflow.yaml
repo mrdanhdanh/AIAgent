@@ -1,10 +1,11 @@
 # bugfix.workflow.yaml
-# Workflow: bugfix-development (sửa lỗi nhanh)
-# Schema: workflow.schema.yaml v1
+# Workflow: bugfix-development (sua loi nhanh)
+# Schema: workflow.schema.yaml v4.0 (engine v4) + manifest workflow.v1 (runtime v1)
 
 id: bugfix-development
+name: Bugfix Development Workflow
 version: "1"
-description: Bug fix workflow
+description: Bug fix workflow - tai hien loi, chan doan nguyen nhan goc, sua, kiem tra, hoc tu failure.
 manifest:
   schema: workflow.v1
   entry_phase: reproduce
@@ -19,40 +20,138 @@ manifest:
 
 phases:
   - id: reproduce
-    name: Reproduce
-    description: Tái hiện lỗi
+    title: Tai hien loi
+    description: Tai hien loi bang test that bai (RED) truoc khi sua.
+    agent: tester
+    command: team-testplan
     capability: analysis.requirement
-    outputs: [repro.md]
+    depends_on: []
     retry: 1
+    timeout_seconds: 120
+    continue_on_error: false
+    inputs: {}
+    outputs:
+      status: string
+      summary: string
+      reproduce_test: string
+    expected_result: Co failing test tai hien dung loi (RED).
+    optional: false
 
   - id: diagnose
-    name: Diagnose
-    description: Xác định nguyên nhân gốc
-    depends_on: [reproduce]
+    title: Chan doan nguyen nhan goc
+    description: Xac dinh nguyen nhan goc, sinh hypotheses co confidence.
+    agent: root-cause-agent
+    command: team-root-cause
     capability: analysis.requirement
-    outputs: [rootcause.md]
+    depends_on: [reproduce]
     retry: 1
+    timeout_seconds: 120
+    continue_on_error: false
+    inputs:
+      reproduce_result: object
+    outputs:
+      status: string
+      hypotheses_count: number
+      most_likely: string
+      fix_suggestion: string
+    expected_result: Root cause ro rang + de xuat fix.
+    optional: false
 
   - id: fix
-    name: Fix
-    description: Sửa lỗi
-    depends_on: [diagnose]
+    title: Sua loi
+    description: Builder thuc hien fix theo root cause, test tai hien chuyen GREEN.
+    agent: builder
+    command: team-build
     capability: implementation.code
-    outputs: [fix.patch]
+    depends_on: [diagnose]
     retry: 2
+    timeout_seconds: 120
+    continue_on_error: false
+    inputs:
+      root_cause: object
+    outputs:
+      status: string
+      changed_files:
+        - string
+    expected_result: Code da sua, test tai hien PASS (GREEN).
+    optional: false
 
   - id: verify
-    name: Verify
-    description: Xác minh lỗi đã hết
-    depends_on: [fix]
+    title: Xac minh loi da het
+    description: Chay regression + test bUnit/E2E de xac minh loi khong con.
+    agent: tester
+    command: team-test
     capability: test.e2e
-    outputs: [verify.md]
+    depends_on: [fix]
     retry: 2
+    timeout_seconds: 120
+    continue_on_error: false
+    inputs:
+      fix_result: object
+    outputs:
+      status: string
+      coverage:
+        unit: number
+    expected_result: Tat ca test PASS, coverage >= nguong.
+    optional: false
+
+  - id: failure_analysis
+    title: Phan tich loi (neu co)
+    description: Failure-agent normalize + classify loi qua failure-analyzer.ps1, search memory (optional).
+    agent: failure-agent
+    command: team-analyze-failure
+    depends_on: [verify]
+    retry: 1
+    timeout_seconds: 120
+    continue_on_error: true
+    inputs:
+      verify_result: object
+    outputs:
+      status: string
+      analysis:
+        error_type: string
+        error_hash: string
+      memory_search:
+        found: boolean
+    expected_result: Phan tich loi co error_hash + memory match, hoac NO_ERROR.
+    optional: true
+
+  - id: learning
+    title: Hoc tu failure records
+    description: Learning-agent quet memory/failures, sinh lessons/patterns, cap nhat records (optional).
+    agent: learning-agent
+    command: team-learn
+    depends_on: [failure_analysis]
+    retry: 1
+    timeout_seconds: 120
+    continue_on_error: true
+    inputs:
+      failure_analysis: object
+    outputs:
+      status: string
+      scan:
+        total_failures: number
+      created:
+        lessons:
+          - id: string
+        patterns:
+          - id: string
+    expected_result: Failure records co lesson/pattern reference, hoac NO_CHANGES.
+    optional: true
 
   - id: complete
-    name: Complete
-    description: Tổng kết
-    depends_on: [verify]
+    title: Tong ket
+    description: Tong hop ket qua fix bug + learning, luu workflow.json snapshot.
+    agent: general
     capability: review.code
-    outputs: [summary.md]
+    depends_on: [verify, learning]
     retry: 0
+    timeout_seconds: 120
+    continue_on_error: false
+    inputs:
+      all_outputs: object
+    outputs:
+      status: string
+      final_report: string
+    expected_result: Workflow completed, bao cao day du.
+    optional: false

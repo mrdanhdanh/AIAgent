@@ -64,7 +64,7 @@
     "tester": {
       "description": "Thực thi kiểm thử, validate tính năng và báo cáo kết quả",
       "mode": "subagent",
-      "model": "opencode-go/deepseek-v4-flash",
+      "model": "opencode-go/mimo-v2.5",
       "permission": {
         "read": "allow",
         "grep": "allow",
@@ -257,7 +257,8 @@
     "team-bugfix": {
       "template": "Bạn là General Agent (Orchestrator). Chạy toàn bộ Bug-Fix Pipeline — nhận bug → tái hiện → root cause → đề xuất chỉnh sửa → kiểm tra sau sửa → test bUnit + E2E. Đọc hướng dẫn đầy đủ tại: .opencode/commands/team-bugfix.md\n\nMô tả bug: $ARGUMENTS",
       "description": "Quy trinh nhan va fix bug — tai hien bug, root cause, de xuat chinh sua, kiem tra sau sua, test bUnit + E2E",
-      "agent": "general"
+      "agent": "general",
+      "model": "opencode-go/mimo-v2.5"
     },
     "team-testplan": {
       "template": "Bạn là Test-Planner Agent. Tạo kế hoạch kiểm thử. Đọc hướng dẫn đầy đủ tại: .opencode/commands/team-testplan.md\n\nThông tin: $ARGUMENTS",

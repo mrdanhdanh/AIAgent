@@ -1,10 +1,11 @@
 # documentation.workflow.yaml
-# Workflow: documentation-development (viết/cải thiện tài liệu)
-# Schema: workflow.schema.yaml v1
+# Workflow: documentation-development (viet/cai thien tai lieu)
+# Schema: workflow.schema.yaml v4.0 (engine v4) + manifest workflow.v1 (runtime v1)
 
 id: documentation-development
+name: Documentation Development Workflow
 version: "1"
-description: Documentation authoring workflow
+description: Documentation authoring workflow - xac dinh pham vi, viet, review, hoan tat.
 manifest:
   schema: workflow.v1
   entry_phase: analyze
@@ -18,32 +19,74 @@ manifest:
 
 phases:
   - id: analyze
-    name: Analyze
-    description: Xác định tài liệu cần viết
+    title: Xac dinh tai lieu can viet
+    description: Xac dinh pham vi va noi dung tai lieu can tao/cap nhat.
+    agent: analyst
+    command: team-analyze
     capability: analysis.documentation
-    outputs: [scope.md]
+    depends_on: []
     retry: 1
+    timeout_seconds: 120
+    continue_on_error: false
+    inputs: {}
+    outputs:
+      status: string
+      summary: string
+      doc_scope: string
+    expected_result: Hieu ro pham vi tai lieu can viet.
+    optional: false
 
   - id: write
-    name: Write
-    description: Viết tài liệu
-    depends_on: [analyze]
+    title: Viet tai lieu
+    description: Viet hoac cap nhat tai lieu theo scope.
+    agent: general
     capability: documentation.write
-    outputs: [doc.md]
+    depends_on: [analyze]
     retry: 2
+    timeout_seconds: 120
+    continue_on_error: false
+    inputs:
+      analysis: object
+    outputs:
+      status: string
+      artifacts:
+        - string
+    expected_result: File tai lieu duoc tao no-BOM, dung frontmatter.
+    optional: false
 
   - id: review
-    name: Review
-    description: Review tài liệu
-    depends_on: [write]
+    title: Review tai lieu
+    description: Reviewer kiem tra noi dung va format tai lieu.
+    agent: reviewer
     capability: review.documentation
-    outputs: [review.md]
+    depends_on: [write]
     retry: 1
+    timeout_seconds: 120
+    continue_on_error: false
+    inputs:
+      artifacts:
+        - string
+    outputs:
+      status: string
+      decision: string
+      issues:
+        - string
+    expected_result: Tai lieu dung noi dung, frontmatter, code block balance.
+    optional: false
 
   - id: complete
-    name: Complete
-    description: Tổng kết
-    depends_on: [review]
+    title: Tong ket
+    description: Tong hop ket qua va luu workflow.json snapshot.
+    agent: general
     capability: review.documentation
-    outputs: [summary.md]
+    depends_on: [review]
     retry: 0
+    timeout_seconds: 120
+    continue_on_error: false
+    inputs:
+      all_outputs: object
+    outputs:
+      status: string
+      final_report: string
+    expected_result: Workflow completed, bao cao day du.
+    optional: false

@@ -33,6 +33,8 @@ va dispatch. Agent tu thuc hien theo file agent md tuong ung.
 | ui / ui-audit | /team-ui-audit | ui-beautifier |
 | testplan | /team-testplan | test-planner |
 | test | /team-test | tester |
+| failure_analysis / failure-analysis | /team-analyze-failure | failure-agent |
+| learning / learn | /team-learn | learning-agent |
 | selfimprove / skill_validation | /team-selfimprove | self-improver |
 | guard / guardrail | /team-gitguard | guardian |
 | syncdocs / validate | /team-syncdocs | general |
@@ -64,7 +66,7 @@ phase_runner_output:
 ## 5. Checklist
 
 - [ ] Dispatcher dung: command -> chay command; agent -> trieu hoi agent; ca hai -> uu tien command.
-- [ ] Bang dispatch mau day du 10 dong.
+- [ ] Bang dispatch mau day du 12 dong (bao gom failure_analysis + learning).
 - [ ] Timeout 120s, retry theo phase.retry.
 - [ ] Output parse YAML theo contract — loi format -> WF-ERR-008.
 - [ ] Engine chi dispatch theo metadata, khong hieu noi dung.
