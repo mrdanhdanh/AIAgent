@@ -1,0 +1,21 @@
+# profiles/planner.yaml — Context Profile cho Planner
+version: "4.0"
+agent: planner
+
+required:
+  - project
+  - task
+  - workflow
+  - artifact.requirement
+
+optional:
+  - knowledge
+
+forbidden:
+  - build_log
+  - review
+
+rank:
+  knowledge: 70
+
+# Budget dùng budget.schema.yaml (planner 12000).

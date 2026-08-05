@@ -1,0 +1,239 @@
+# SPEC-001 S007 — Runtime Contracts (12 CTR)
+# Contract Logic — khong class/interface/API/method/DTO/protocol.
+---
+id: SPEC-001-S007
+name: Runtime Contracts
+version: "1.0.0"
+status: Approved
+frozen: true
+frozen_date: "2026-08-04"
+owner: Runtime Team
+contracts:
+  CTR-001:
+    name: Execution Contract
+    category: Execution
+    direction: Request/Response
+    pattern: Sync
+    version: 1.0.0
+    status: Stable
+    owner: Execution Manager
+    layer: Execution
+    domain: Execution
+    purpose: Quản lý vòng đời Execution
+    inputs: [Execution Request, Workflow Plan]
+    outputs: [Execution, Execution Result]
+    preconditions: [Workflow hợp lệ, Registry khả dụng]
+    postconditions: [Execution đạt Terminal State, Artifact + Event sinh ra]
+    invariants: [Execution luôn có Context, Execution kết thúc bằng Terminal State]
+    dependencies: [Workflow Contract, Context Contract, State Contract]
+    capability: execution-management
+    compatibility: [1.x]
+  CTR-002:
+    name: Workflow Contract
+    category: Execution
+    direction: Request/Response
+    pattern: Sync
+    version: 1.0.0
+    status: Stable
+    owner: Workflow Loader
+    layer: Workflow
+    domain: Execution
+    purpose: Nạp và validate Workflow Definition
+    inputs: [Workflow Reference]
+    outputs: [Workflow Definition, Execution Plan]
+    preconditions: [Workflow tồn tại]
+    postconditions: [Workflow validated, Plan tạo thành công]
+    invariants: [Workflow không tự thay đổi]
+    dependencies: []
+    capability: workflow-loading
+    compatibility: [1.x]
+  CTR-003:
+    name: Coordination Contract
+    category: Execution
+    direction: Request/Response
+    pattern: Sync/Async
+    version: 1.0.0
+    status: Stable
+    owner: Execution Orchestrator
+    layer: Coordination
+    domain: Coordination
+    purpose: Điều phối toàn bộ luồng thực thi
+    inputs: [Execution Plan]
+    outputs: [Orchestrated Execution]
+    preconditions: [Execution đã khởi tạo]
+    postconditions: [Luồng hoàn thành đúng thứ tự]
+    invariants: [Orchestrator không chứa Business Logic]
+    dependencies: [Capability Contract, Policy Contract]
+    capability: orchestration
+    compatibility: [1.x]
+  CTR-004:
+    name: Capability Contract
+    category: Registry
+    direction: Request/Response
+    pattern: Sync
+    version: 1.0.0
+    status: Stable
+    owner: Capability Resolver
+    layer: Capability
+    domain: Capability
+    purpose: Resolve Capability thành Agent
+    inputs: [Capability Request]
+    outputs: [Resolved Capability, Agent Selection]
+    preconditions: [Capability đã đăng ký]
+    postconditions: [Agent được chọn qua Registry]
+    invariants: [Capability không chứa implementation, Resolver không biết Agent cụ thể]
+    dependencies: [Registry Contract]
+    capability: capability-resolution
+    compatibility: [1.x]
+  CTR-005:
+    name: Registry Contract
+    category: Registry
+    direction: Read
+    pattern: Request/Response
+    version: 1.0.0
+    status: Stable
+    owner: Registry Resolver
+    layer: Resolution
+    domain: Capability
+    purpose: Truy cập Registry và resolve
+    inputs: [Lookup Request]
+    outputs: [Lookup Result]
+    preconditions: [Registry khả dụng]
+    postconditions: [Kết quả khớp metadata]
+    invariants: [Registry không phải Database]
+    dependencies: []
+    capability: registry-resolution
+    compatibility: [1.x]
+  CTR-006:
+    name: Context Contract
+    category: Data
+    direction: Read/Write
+    pattern: Read/Write
+    version: 1.0.0
+    status: Stable
+    owner: Context Manager
+    layer: Execution
+    domain: Execution
+    purpose: Quản lý Execution Context
+    inputs: [Execution]
+    outputs: [Context, Context Grant]
+    preconditions: [Execution tồn tại]
+    postconditions: [Context được cô lập, Context đóng sau Execution]
+    invariants: [Context chỉ sống trong Runtime, Không chia sẻ Context giữa hai Execution]
+    dependencies: []
+    capability: context-management
+    compatibility: [1.x]
+  CTR-007:
+    name: State Contract
+    category: Execution
+    direction: Request/Response
+    pattern: Sync
+    version: 1.0.0
+    status: Stable
+    owner: State Manager
+    layer: State
+    domain: State
+    purpose: Quản lý State Machine
+    inputs: [State Change]
+    outputs: [New State, Event]
+    preconditions: [Transition hợp lệ]
+    postconditions: [Terminal State đạt được, Event phát cho mọi change]
+    invariants: [State thuộc Runtime, Chuyển State hợp lệ]
+    dependencies: [Event Contract]
+    capability: state-management
+    compatibility: [1.x]
+  CTR-008:
+    name: Event Contract
+    category: Observability
+    direction: Publish
+    pattern: Event
+    version: 1.0.0
+    status: Stable
+    owner: Event Dispatcher
+    layer: Event
+    domain: Observability
+    purpose: Publish Event qua nhiều cơ chế
+    inputs: [State Change]
+    outputs: [Event]
+    preconditions: [Event schema hợp lệ]
+    postconditions: [Event immutable, Event có lineage]
+    invariants: [Event immutable, Mọi state change có Event]
+    dependencies: []
+    capability: event-dispatching
+    compatibility: [1.x]
+  CTR-009:
+    name: Artifact Contract
+    category: Data
+    direction: Publish
+    pattern: Fire-and-forget
+    version: 1.0.0
+    status: Stable
+    owner: Artifact Dispatcher
+    layer: Publication
+    domain: Publication
+    purpose: Bàn giao Artifact (không lưu trữ)
+    inputs: [Agent Output]
+    outputs: [Artifact, Artifact Metadata]
+    preconditions: [Artifact hoàn chỉnh]
+    postconditions: [Artifact metadata published, Không sửa Artifact]
+    invariants: [Artifact immutable, Dispatcher không lưu trữ]
+    dependencies: []
+    capability: artifact-dispatching
+    compatibility: [1.x]
+  CTR-010:
+    name: Metrics Contract
+    category: Observability
+    direction: Publish
+    pattern: Fire-and-forget
+    version: 1.0.0
+    status: Stable
+    owner: Metrics Collector
+    layer: Event
+    domain: Observability
+    purpose: Thu Metrics
+    inputs: [Execution]
+    outputs: [Metrics, Trace]
+    preconditions: [Metrics schema hợp lệ]
+    postconditions: [Metrics emitted]
+    invariants: [Metrics không chứa Business Data]
+    dependencies: [Event Contract]
+    capability: metrics-collection
+    compatibility: [1.x]
+  CTR-011:
+    name: Policy Contract
+    category: Governance
+    direction: Request/Response
+    pattern: Sync
+    version: 1.0.0
+    status: Stable
+    owner: Policy Engine
+    layer: Coordination
+    domain: Coordination
+    purpose: Thực thi Policy/Governance
+    inputs: [Execution, Contract, Permission Request]
+    outputs: [Decision, Enforcement]
+    preconditions: [Policy tồn tại]
+    postconditions: [Quyết định theo Policy, Vi phạm bị từ chối]
+    invariants: [Policy Engine không quản lý Identity, Không bypass Policy]
+    dependencies: [Registry Contract]
+    capability: policy-enforcement
+    compatibility: [1.x]
+  CTR-012:
+    name: Resource Contract
+    category: Execution
+    direction: Request/Response
+    pattern: Sync
+    version: 1.0.0
+    status: Stable
+    owner: Execution Resource Manager
+    layer: Execution
+    domain: Execution
+    purpose: Quản lý tài nguyên trong một Execution
+    inputs: [Execution, Resource Request]
+    outputs: [Allocated Resources, Released Resources]
+    preconditions: [Execution tồn tại]
+    postconditions: [Tài nguyên được giải phóng]
+    invariants: [Không rò rỉ tài nguyên, Phạm vi một Execution]
+    dependencies: []
+    capability: resource-management
+    compatibility: [1.x]

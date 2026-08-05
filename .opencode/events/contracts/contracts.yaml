@@ -1,0 +1,67 @@
+# contracts/ — Event Contract
+# Mỗi event type có payload contract — subscriber chỉ cần đọc contract.
+version: "6.0"
+
+contracts:
+  ARTIFACT_CREATED:
+    payload:
+      artifact_id: { type: string, required: true }
+      artifact_type: { type: string, required: true }
+      workflow_id: { type: string }
+      created_by: { type: string }
+      checksum: { type: string }
+
+  ARTIFACT_UPDATED:
+    payload:
+      artifact_id: { type: string, required: true }
+      version: { type: integer, required: true }
+      checksum: { type: string }
+      diff_from: { type: integer }
+
+  AGENT_COMPLETED:
+    payload:
+      agent_id: { type: string, required: true }
+      capability: { type: string, required: true }
+      duration: { type: integer }
+      artifact_ids: { type: array }
+      output_checksum: { type: string }
+
+  AGENT_FAILED:
+    payload:
+      agent_id: { type: string, required: true }
+      error_code: { type: string, required: true }
+      error_message: { type: string }
+      retry_count: { type: integer }
+      retry_max: { type: integer }
+
+  PHASE_COMPLETED:
+    payload:
+      phase: { type: string, required: true }
+      workflow_id: { type: string, required: true }
+      duration: { type: integer }
+      artifact_ids: { type: array }
+
+  WORKFLOW_COMPLETED:
+    payload:
+      workflow_id: { type: string, required: true }
+      total_phases: { type: integer }
+      total_duration: { type: integer }
+      artifact_ids: { type: array }
+
+  CONTEXT_DELIVERED:
+    payload:
+      agent_id: { type: string, required: true }
+      budget_used: { type: integer }
+      budget_limit: { type: integer }
+      cache_hit: { type: boolean }
+
+  PLUGIN_INSTALLED:
+    payload:
+      plugin_id: { type: string, required: true }
+      version: { type: string, required: true }
+      capabilities: { type: array }
+
+# Quy ước:
+# - Subscriber không hard-code payload; đọc từ contract này.
+# - Publisher phải tuân thủ contract cho event type.
+# - Mỗi contract version có thể có version riêng cho backward compat.

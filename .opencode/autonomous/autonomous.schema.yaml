@@ -1,0 +1,20 @@
+# autonomous.schema.yaml — Autonomous Mode Schema v1
+version: "30.0"
+schema: 1
+
+type: object
+required:
+  - level
+properties:
+  version: { type: string, const: "30.0" }
+  level:
+    type: string
+    enum: [manual, assisted, supervised, autonomous]
+  gates:
+    type: object
+    properties:
+      simulation: { type: boolean, default: true }
+      doctor_min_health: { type: number, default: 90 }
+      approval: { type: string, enum: [auto, human, auto-or-human] }
+  policy_ref: { type: string }
+  audit: { type: boolean, default: true }

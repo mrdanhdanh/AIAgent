@@ -1,0 +1,48 @@
+# reviewer.yaml — Agent Definition (4 lớp)
+# Identity + Capability + Behavior + Runtime
+# Schema: agent.schema.yaml
+
+# ===== Identity =====
+id: reviewer
+name: Reviewer Agent
+version: "2.0"
+schema: 1
+status: stable
+owner: core
+description: Đánh giá kế hoạch và mã nguồn
+replacement: null
+
+# ===== Capability =====
+capabilities:
+  supports: [review.code, review.plan]
+  requires: [implementation.code]
+  priority: 85
+  tags: [review]
+
+# ===== Behavior =====
+behavior:
+  entry_prompt: prompt.md
+  contracts:
+    input: review-input
+    output: review-output
+  constraints:
+    requires_context: [code, project]
+    forbidden_context: []
+
+# ===== Runtime =====
+runtime:
+  max_tokens: 10000
+  timeout: 300
+  retry: 1
+  parallel: false
+
+# ===== Manifest =====
+manifest:
+  id: reviewer
+  version: "2.0"
+  schema: 1
+  framework: "4.0"
+  compatibility:
+    - capability >= 1.0
+    - runtime >= 1.0
+    - contract >= 1.0

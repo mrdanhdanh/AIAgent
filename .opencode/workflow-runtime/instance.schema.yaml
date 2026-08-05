@@ -1,0 +1,53 @@
+# Workflow Instance Schema v1
+# Object sống do runtime sinh khi CreateInstance; lưu bởi persistence.
+# Reference: architecture/DATA_MODEL.md (Workflow instance), persistence.md
+
+type: object
+required:
+  - id
+  - workflow
+  - status
+properties:
+  id:
+    type: string
+    pattern: '^WF-\d{8}-\d{3}$'   # WF-20260802-001
+  workflow:
+    type: string
+    description: workflow definition id
+  workflow_version:
+    type: string
+  status:
+    type: string
+    enum: [created, validated, running, paused, retry, failed, completed, archived]
+  current_phase:
+    type: string
+  completed:
+    type: array
+    items: { type: string }
+    description: danh sách phase id đã hoàn thành
+  failed:
+    type: array
+    items: { type: string }
+    description: phase fail (nếu có)
+  skipped:
+    type: array
+    items: { type: string }
+  artifacts:
+    type: array
+    items: { type: string }
+    description: artifact id sinh ra
+  variables:
+    type: object
+    additionalProperties: true
+  metrics:
+    type: object
+    properties:
+      started: { type: string }
+      finished: { type: string }
+      duration: { type: integer }
+      retry_count: { type: integer }
+      error_count: { type: integer }
+      agent_count: { type: integer }
+      artifact_count: { type: integer }
+  created_at: { type: string }
+  updated_at: { type: string }

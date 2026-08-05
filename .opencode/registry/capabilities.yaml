@@ -1,0 +1,495 @@
+# capabilities.yaml — Capability Registry
+# Capability = việc hệ thống có thể làm, KHÔNG phụ thuộc agent.
+version: "4.0"
+
+capabilities:
+  # ===== analysis =====
+  - id: analysis.requirement
+    name: Requirement Analysis
+    description: Phân tích yêu cầu người dùng, xác định phạm vi, rủi ro, task cần làm
+    category: analysis
+    version: 1.0.0
+    owner: core
+    stability: stable
+    since: "4.0.0"
+    deprecated: false
+    complexity: medium
+    required_context: [task, project]
+    outputs: [scope, risk-list]
+    success_metrics: [correctness]
+    tags: [requirement, scope]
+  - id: analysis.codebase
+    name: Codebase Analysis
+    description: Đọc, hiểu, map cấu trúc và dependency mới trong codebase
+    category: analysis
+    version: 1.0.0
+    owner: core
+    stability: stable
+    since: "4.0.0"
+    deprecated: false
+    complexity: medium
+    required_context: [project]
+    required_artifacts: []
+    produces_artifacts: [dependency-graph, structure-map]
+    tags: [code, csharp, explorer]
+  - id: analysis.error
+    name: Error Analysis & Normalization
+    description: Phân tích và chuẩn hóa lỗi, phân loại error type
+    category: analysis
+    version: 1.0.0
+    owner: core
+    stability: stable
+    since: "4.0.0"
+    deprecated: false
+    complexity: medium
+    required_context: [error, logs]
+    produces_artifacts: [normalized-error]
+    tags: [error, failure]
+  - id: analysis.root-cause
+    name: Root Cause Analysis
+    description: Truy nguyên nguyên nhân gốc kèm hypothesis và confidence score
+    category: analysis
+    version: 1.0.0
+    owner: core
+    stability: stable
+    since: "4.0.0"
+    deprecated: false
+    complexity: high
+    required_context: [task, error]
+    produces_artifacts: [root-cause-report]
+    success_metrics: [rca_accuracy]
+  - id: analysis.bottleneck
+    name: Bottleneck / Improment Analysis
+    description: Đọc lại quy trình, chỉ ra kỹ năng thiếu và cải tiến
+    category: analysis
+    version: 1.0.0
+    owner: core
+    stability: stable
+    since: "4.0.0"
+    deprecated: false
+    complexity: medium
+    required_context: [workflow-history]
+    produces_artifacts: [improvement-plan]
+  - id: analysis.risk
+    name: Risk Analysis
+    description: Đánh giá rủi ro, xác định mức độ và đề xuất xử trí
+    category: analysis
+    version: 1.0.0
+    owner: core
+    stability: stable
+    since: "4.0.0"
+    deprecated: false
+    complexity: medium
+
+# ===== architecture =====
+  - id: architecture.design
+    name: Solution Design
+    description: Thiết kế giải pháp, kiến trúc module, Data Flow
+    category: architecture
+    version: 1.0.0
+    owner: core
+    stability: stable
+    since: "4.0.0"
+    deprecated: false
+    complexity: high
+    required_context: [task, project, knowledge]
+    required_artifacts: [design-doc]
+    produces_artifacts: [design.md, architecture.md]
+    success_metrics: [design_review]
+  - id: architecture.discovery
+    name: Architecture Discovery
+    description: Khám phá layer, module, phát hiện vi phạm architecture
+    category: architecture
+    version: 1.0.0
+    owner: core
+    stability: stable
+    since: "4.0.0"
+    deprecated: false
+    complexity: medium
+    required_context: [project]
+    produces_artifacts: [architecture-map]
+  - id: architecture.impact
+    name: Impact Analysis
+    description: Phân tích ảnh hưởng dây chuyền khi sửa một symbol/component
+    category: architecture
+    version: 1.0.0
+    owner: core
+    stability: stable
+    since: "4.0.0"
+    deprecated: false
+    complexity: medium
+    required_context: [code, component]
+    produces_artifacts: [affected-list]
+    success_metrics: [coverage]
+
+  # ===== planning =====
+  - id: planning.task
+    name: Task Planning
+    description: Chia nhỏ công việc thành task chi tiết, thứ tự ưu tiên
+    category: planning
+    version: 1.0.0
+    owner: core
+    stability: stable
+    since: "4.0.0"
+    deprecated: false
+    complexity: medium
+    required_context: [task, design]
+    required_artifacts: [design.md]
+    produces_artifacts: [plan.md]
+  - id: planning.test
+    name: Test Planning
+    description: Lập kế hoạch kiểm thử, coverage matrix, risk-based
+    category: planning
+    version: 1.0.0
+    owner: core
+    stability: stable
+    since: "4.0.0"
+    deprecated: false
+    complexity: medium
+    required_context: [task, code]
+    produces_artifacts: [test-plan.md]
+    success_metrics: [test_coverage]
+  - id: planning.rollback
+    name: Rollback / Migration Planning
+    description: Lập kế hoạch rollback, migration, backup
+    category: planning
+    version: 1.0.0
+    owner: core
+    stability: stable
+    since: "4.0.0"
+    deprecated: false
+    complexity: low
+    produces_artifacts: [migration-plan.md]
+
+  # ===== implementation =====
+  - id: implementation.code
+    name: Code Generation
+    description: Tạo/ghi code production-ready
+    category: implementation
+    version: 1.0.0
+    owner: core
+    stability: stable
+    since: "4.0.0"
+    deprecated: false
+    complexity: high
+    required_context: [task, project, knowledge]
+    required_artifacts: [plan.md]
+    produces_artifacts: [source-code]
+    success_metrics: [build_success, test_pass_rate]
+  - id: implementation.refactor
+    name: Refactor
+    description: Tái cấu trúc code không đổi hành vi
+    category: implementation
+    version: 1.0.0
+    owner: core
+    stability: stable
+    since: "4.0.0"
+    deprecated: false
+    complexity: medium
+    required_context: [project]
+    produces_artifacts: [source-code]
+    success_metrics: [build_success]
+  - id: implementation.fix
+    name: Bug Fix
+    description: Sửa lỗi dựa trên root-cause
+    category: implementation
+    version: 1.0.0
+    owner: core
+    stability: stable
+    since: "4.0.0"
+    deprecated: false
+    complexity: medium
+    required_context: [task, error, project]
+    produces_artifacts: [source-code]
+    success_metrics: [build_success, test_pass]
+  - id: implementation.ui
+    name: UI Implementation
+    description: Triển khai UI theo design
+    category: implementation
+    version: 1.0.0
+    owner: core
+    stability: stable
+    since: "4.0.0"
+    deprecated: false
+    complexity: medium
+    required_context: [design, project]
+    produces_artifacts: [source-code]
+
+  # ===== review =====
+  - id: review.code
+    name: Code Review
+    description: Đánh giá tính đúng đắn, đầy đủ, hiệu quả của code
+    category: review
+    version: 1.0.0
+    owner: core
+    stability: stable
+    since: "4.0.0"
+    deprecated: false
+    complexity: medium
+    required_context: [code, project]
+    produces_artifacts: [review-list]
+  - id: review.plan
+    name: Plan Review
+    description: Đánh giá kế hoạch thực thi
+    category: review
+    version: 1.0.0
+    owner: core
+    stability: stable
+    since: "4.0.0"
+    deprecated: false
+    complexity: medium
+    produces_artifacts: [review-report]
+  - id: review.architecture
+    name: Architecture Review
+    description: Đánh giá kiến trúc, phát hiện vi phạm layer
+    category: review
+    version: 1.0.0
+    owner: core
+    stability: stable
+    since: "4.0.0"
+    deprecated: false
+    complexity: medium
+    produces_artifacts: [architecture-review]
+  - id: review.security
+    name: Security Review
+    description: Rà soát secret, lỗ hổng bảo mật, vi phạm quy tắc
+    category: review
+    version: 1.0.0
+    owner: core
+    stability: stable
+    since: "4.0.0"
+    deprecated: false
+    complexity: high
+    required_context: [code, project]
+    produces_artifacts: [security-report]
+    success_metrics: [no_secret_leak]
+
+  # ===== testing =====
+  - id: testing.unit
+    name: Unit Testing
+    description: Sinh/chạy test đơn vị (bUnit/xUnit, Moq)
+    category: testing
+    version: 1.0.0
+    owner: core
+    stability: stable
+    since: "4.0.0"
+    deprecated: false
+    complexity: medium
+    produces_artifacts: [test-code, test-report]
+    success_metrics: [test_pass, coverage]
+  - id: testing.e2e
+    name: E2E Testing
+    description: Sinh/chạy test End-to-End Playwright
+    category: testing
+    version: 1.0.0
+    owner: core
+    stability: stable
+    since: "4.0.0"
+    deprecated: false
+    complexity: high
+    produces_artifacts: [e2e-tests, e2e-report]
+    success_metrics: [test_pass]
+  - id: testing.ui
+    name: UI / Visual Testing
+    description: Review UI, visual regression, responsive, accessibility
+    category: testing
+    version: 1.0.0
+    owner: core
+    stability: stable
+    since: "4.0.0"
+    deprecated: false
+    complexity: medium
+    produces_artifacts: [ui-report, screenshot]
+    success_metrics: [no_regression]
+  - id: testing.strategy
+    name: Test Strategy / Data Generation
+    description: Sinh dữ liệu test, thiết kế test case, boundary
+    category: testing
+    version: 1.0.0
+    owner: core
+    stability: stable
+    since: "4.0.0"
+    deprecated: false
+    complexity: medium
+    produces_artifacts: [test-data, test-case]
+
+  # ===== knowledge =====
+  - id: knowledge.learn
+    name: Knowledge Learn / Lesson Record
+    description: Học từ workflow, tự sinh lesson, lưu vào knowledge base
+    category: knowledge
+    version: 1.0.0
+    owner: core
+    stability: stable
+    since: "4.0.0"
+    deprecated: false
+    complexity: medium
+    produces_artifacts: [lesson.md, pattern.md]
+  - id: knowledge.retrieve
+    name: Knowledge Retrieval
+    description: Truy vấn/trả lời bằng chứng từ knowledge base (evidence-based)
+    category: knowledge
+    version: 1.0.0
+    owner: core
+    stability: stable
+    since: "4.0.0"
+    deprecated: false
+    complexity: medium
+    required_context: [question, knowledge]
+    produces_artifacts: [answer.md]
+    success_metrics: [accuracy]
+  - id: knowledge.management
+    name: Knowledge / System Docs Management
+    description: Đồng bộ system docs, indexes, quản lý knowledge base
+    category: knowledge
+    version: 1.0.0
+    owner: core
+    stability: stable
+    since: "4.0.0"
+    deprecated: false
+    complexity: medium
+    produces_artifacts: [system-map, index.json]
+
+  # ===== memory =====
+  - id: memory.record
+    name: Memory / Failure Record
+    description: Ghi failure records, patterns xuyên suốt, đọc lại quá trình
+    category: memory
+    version: 1.0.0
+    owner: core
+    stability: stable
+    since: "4.0.0"
+    deprecated: false
+    complexity: low
+    produces_artifacts: [memory.md, failure-record.json]
+
+  # ===== deployment =====
+  - id: deployment.git
+    name: Git Push
+    description: Auto-commit từ diff, pre-push safety, push remote, verify
+    category: deployment
+    version: 1.0.0
+    owner: core
+    stability: stable
+    since: "4.0.0"
+    deprecated: false
+    complexity: high
+    required_context: [git, project]
+    success_metrics: [pushed, remote_synced]
+  - id: deployment.backup
+    name: Backup / Rollback
+    description: Backup file trước khi sửa, rollback khi catastrophic
+    category: deployment
+    version: 1.0.0
+    owner: core
+    stability: stable
+    since: "4.0.0"
+    deprecated: false
+    complexity: medium
+    required_context: [file, manifest]
+    produces_artifacts: [backup_manifest.json]
+    success_metrics: [integrity]
+
+  # ===== workspace =====
+  - id: workspace.cleanup
+    name: Workspace Cleanup
+    description: Dọn rác workspace tự động, phân loại độ an toàn, dry-run
+    category: workspace
+    version: 1.0.0
+    owner: core
+    stability: stable
+    since: "4.0.0"
+    deprecated: false
+    complexity: low
+    produces_artifacts: [cleanup-report]
+    success_metrics: [no_protected_deleted]
+
+  # ===== ui =====
+  - id: ui.design
+    name: UI/UX Design
+    description: Thiết kế, chỉnh chu giao diện, áp design system, chống AI-slop
+    category: ui
+    version: 1.0.0
+    owner: core
+    stability: stable
+    since: "4.0.0"
+    deprecated: false
+    complexity: medium
+    required_context: [project, code]
+    produces_artifacts: [ui-design.md, design.md]
+  - id: ui.audit
+    name: UI/UX Audit
+    description: Đánh giá UI (spacing, consistency, responsive, accessibility)
+    category: ui
+    version: 1.0.0
+    owner: core
+    stability: stable
+    since: "4.0.0"
+    deprecated: false
+    complexity: medium
+    required_context: [project, code]
+    produces_artifacts: [ui-audit-report]
+    success_metrics: [no_critical_a11y]
+
+  # ===== security =====
+  - id: security.audit
+    name: Security Audit
+    description: Rà soát lỗ hổng, secret, XSS, SQL injection
+    category: security
+    version: 1.0.0
+    owner: core
+    stability: stable
+    since: "4.0.0"
+    deprecated: false
+    complexity: high
+    produces_artifacts: [security-report]
+    success_metrics: [no_secret_leak]
+
+  # ===== documentation =====
+  - id: documentation.write
+    name: Documentation Write
+    description: Viết README, guide, report, knowledge base
+    category: documentation
+    version: 1.0.0
+    owner: core
+    stability: stable
+    since: "4.0.0"
+    deprecated: false
+    complexity: low
+    produces_artifacts: [md-docs]
+  - id: documentation.review
+    name: Documentation Review
+    description: Đánh giá tính đầy đủ, đúng đắn của tài liệu
+    category: documentation
+    version: 1.0.0
+    owner: core
+    stability: stable
+    since: "4.0.0"
+    deprecated: false
+    complexity: low
+    produces_artifacts: [doc-review]
+
+  # ===== orchestration =====
+  - id: orchestration.orchestrate
+    name: Orchestration
+    description: Điều phối pipeline, triệu hồi sub-agents, quản lý state
+    category: orchestration
+    version: 1.0.0
+    owner: core
+    stability: stable
+    since: "4.0.0"
+    deprecated: false
+    complexity: high
+    required_context: [workflow, task]
+    produces_artifacts: [workflow.json, state.json]
+  - id: orchestration.fallback
+    name: General Fallback
+    description: Xử lý chung khi không có agent chuyên biệt khớp
+    category: orchestration
+    version: 1.0.0
+    owner: core
+    stability: stable
+    since: "4.0.0"
+    deprecated: false
+    complexity: low
+    produces_artifacts: [answer]

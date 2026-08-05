@@ -1,0 +1,77 @@
+# SPEC-001 S005 — Layer Model (Layer View) v2
+---
+version: "1.1"
+layer_order:
+  - Command
+  - Workflow
+  - Execution
+  - Coordination
+  - Capability
+  - Resolution
+  - State
+  - Event
+  - Publication
+layers:
+  Command:
+    level: 1
+    input: User Request
+    output: Workflow
+    responsibility: [Entry Point, Khởi tạo Runtime]
+    not_responsibility: [Nghiệp vụ]
+    invariant: Không chứa nghiệp vụ
+  Workflow:
+    level: 2
+    input: Workflow Definition
+    output: Execution Plan
+    responsibility: [Workflow Definition, Phase, Task]
+    not_responsibility: [Điều phối]
+    invariant: Không điều phối
+  Execution:
+    level: 3
+    input: Execution Plan
+    output: Coordination
+    responsibility: [Execution Lifecycle, Execution Context]
+    not_responsibility: [Business Logic]
+    invariant: Execution luôn có Context
+  Coordination:
+    level: 4
+    input: Execution Context
+    output: Capability Request
+    responsibility: [Orchestration, Scheduling, Retry, Timeout, Approval]
+    not_responsibility: [Business Logic]
+    invariant: Không chứa Business Logic
+  Capability:
+    level: 5
+    input: Capability Request
+    output: Resolution Result
+    responsibility: [Capability Resolution, Capability Mapping]
+    not_responsibility: [Biết Agent]
+    invariant: Không biết Agent
+  Resolution:
+    level: 6
+    input: Registry
+    output: Agent Contract
+    responsibility: [Registry Lookup, Contract Validation]
+    not_responsibility: [Business Logic]
+    invariant: Không biết Agent/Plugin cụ thể
+  State:
+    level: 7
+    input: Execution State
+    output: Event
+    responsibility: [State Machine, Context State, Execution State]
+    not_responsibility: [Business State]
+    invariant: Không quản lý Business State
+  Event:
+    level: 8
+    input: State Change
+    output: Artifact
+    responsibility: [Event, Metrics, Trace, Audit]
+    not_responsibility: [Business Data]
+    invariant: Không chứa Business Data
+  Publication:
+    level: 9
+    input: Metadata
+    output: Snapshot
+    responsibility: [Publish Artifact, Publish Event, Publish Metrics, Snapshot, Handoff]
+    not_responsibility: [Lưu trữ (Persistence), Business Data]
+    invariant: Chỉ publish, không lưu trữ

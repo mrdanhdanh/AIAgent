@@ -1,0 +1,113 @@
+# SPEC-001 S007 — Contract Mapping (CT010) v2
+# Contract -> Capability -> Execution -> Artifact -> Event -> Policy -> Rule -> Principle
+---
+version: "1.0"
+mapping:
+  CTR-001:
+    component: Execution Manager
+    capability: execution-management
+    execution: Execution (S008)
+    artifact: Artifact (S008)
+    event: Event (S011)
+    policy: POLICY-001
+    rule: RULE-003
+    principle: P002
+  CTR-002:
+    component: Workflow Loader
+    capability: workflow-loading
+    execution: Execution (S008)
+    artifact: Artifact (S008)
+    event: Event (S011)
+    policy: POLICY-001
+    rule: RULE-003
+    principle: P002
+  CTR-003:
+    component: Execution Orchestrator
+    capability: orchestration
+    execution: Execution (S008)
+    artifact: Artifact (S008)
+    event: Event (S011)
+    policy: POLICY-001
+    rule: RULE-003
+    principle: P002
+  CTR-004:
+    component: Capability Resolver
+    capability: capability-resolution
+    execution: Execution (S008)
+    artifact: Artifact (S008)
+    event: Event (S011)
+    policy: POLICY-001
+    rule: RULE-003
+    principle: P002
+  CTR-005:
+    component: Registry Resolver
+    capability: registry-resolution
+    execution: Execution (S008)
+    artifact: Artifact (S008)
+    event: Event (S011)
+    policy: POLICY-001
+    rule: RULE-003
+    principle: P002
+  CTR-006:
+    component: Context Manager
+    capability: context-management
+    execution: Execution (S008)
+    artifact: Artifact (S008)
+    event: Event (S011)
+    policy: POLICY-001
+    rule: RULE-003
+    principle: P002
+  CTR-007:
+    component: State Manager
+    capability: state-management
+    execution: Execution (S008)
+    artifact: Artifact (S008)
+    event: Event (S011)
+    policy: POLICY-001
+    rule: RULE-003
+    principle: P002
+  CTR-008:
+    component: Event Dispatcher
+    capability: event-dispatching
+    execution: Execution (S008)
+    artifact: Artifact (S008)
+    event: Event (S011)
+    policy: POLICY-001
+    rule: RULE-003
+    principle: P002
+  CTR-009:
+    component: Artifact Dispatcher
+    capability: artifact-dispatching
+    execution: Execution (S008)
+    artifact: Artifact (S008)
+    event: Event (S011)
+    policy: POLICY-001
+    rule: RULE-003
+    principle: P002
+  CTR-010:
+    component: Metrics Collector
+    capability: metrics-collection
+    execution: Execution (S008)
+    artifact: Artifact (S008)
+    event: Event (S011)
+    policy: POLICY-001
+    rule: RULE-003
+    principle: P002
+  CTR-011:
+    component: Policy Engine
+    capability: policy-enforcement
+    execution: Execution (S008)
+    artifact: Artifact (S008)
+    event: Event (S011)
+    policy: POLICY-001
+    rule: RULE-003
+    principle: P002
+  CTR-012:
+    component: Execution Resource Manager
+    capability: resource-management
+    execution: Execution (S008)
+    artifact: Artifact (S008)
+    event: Event (S011)
+    policy: POLICY-001
+    rule: RULE-003
+    principle: P002

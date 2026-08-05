@@ -1,0 +1,29 @@
+# SPEC-001 S005 — Domain Model (Domain View) v2
+# Moi Component (S006) thuoc 1 Domain va 1 Layer. Moi Domain 1 Owner.
+---
+version: "1.1"
+domains:
+  Execution:
+    owner: Runtime
+    layers: [Command, Workflow, Execution]
+    contains_business_logic: false
+  Coordination:
+    owner: Runtime
+    layers: [Coordination]
+    contains_business_logic: false
+  Capability:
+    owner: Runtime
+    layers: [Capability, Resolution]
+    contains_business_logic: false
+  State:
+    owner: Runtime
+    layers: [State]
+    contains_business_logic: false
+  Observability:
+    owner: Runtime
+    layers: [Event]
+    contains_business_logic: false
+  Publication:
+    owner: Runtime
+    layers: [Publication]
+    contains_business_logic: false

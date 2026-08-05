@@ -1,0 +1,11 @@
+# SPEC-001 S008 — Reference Rules (D009) v2
+---
+version: "1.0"
+reference_types:
+  Strong Reference: [Workflow Ref, Capability Ref]
+  Weak Reference: [Artifact Ref, Agent Ref]
+  External Reference: [Plugin Ref]
+rules:
+  - Execution dùng Reference thay vì Object Ownership.
+  - Không copy object.
+  - Không duplicate data (P009).

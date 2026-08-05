@@ -1,0 +1,49 @@
+# documentation.workflow.yaml
+# Workflow: documentation-development (viết/cải thiện tài liệu)
+# Schema: workflow.schema.yaml v1
+
+id: documentation-development
+version: "1"
+description: Documentation authoring workflow
+manifest:
+  schema: workflow.v1
+  entry_phase: analyze
+  supported_capabilities:
+    - analysis.documentation
+    - documentation.write
+    - review.documentation
+  required_components:
+    - workflow-runtime
+  minimum_framework_version: 4.0.0
+
+phases:
+  - id: analyze
+    name: Analyze
+    description: Xác định tài liệu cần viết
+    capability: analysis.documentation
+    outputs: [scope.md]
+    retry: 1
+
+  - id: write
+    name: Write
+    description: Viết tài liệu
+    depends_on: [analyze]
+    capability: documentation.write
+    outputs: [doc.md]
+    retry: 2
+
+  - id: review
+    name: Review
+    description: Review tài liệu
+    depends_on: [write]
+    capability: review.documentation
+    outputs: [review.md]
+    retry: 1
+
+  - id: complete
+    name: Complete
+    description: Tổng kết
+    depends_on: [review]
+    capability: review.documentation
+    outputs: [summary.md]
+    retry: 0

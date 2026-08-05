@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aios://manifest.schema.json",
+  "title": "AIOS Manifest v1.0",
+  "description": "JSON Schema cho AIOS_MANIFEST.yaml. Validator kiểm tra cấu trúc Manifest.",
+  "type": "object",
+  "required": [
+    "id", "name", "identity", "kind", "apiVersion", "manifestVersion",
+    "specVersion", "constitution", "version", "status", "maturity",
+    "mission", "vision", "scope", "goals", "design_values",
+    "quality_attributes", "architecture_style", "source_of_truth",
+    "deliverables", "core_principles", "repository", "lifecycle",
+    "compatibility", "governance", "owners", "license", "created", "updated"
+  ],
+  "properties": {
+    "id": { "const": "AIOS" },
+    "name": { "const": "AI Operating System" },
+    "identity": {
+      "type": "object",
+      "required": ["domain", "type", "architecture", "deployment"],
+      "properties": {
+        "domain": { "type": "string" },
+        "type": { "type": "string" },
+        "architecture": { "type": "string" },
+        "deployment": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "kind": { "const": "Manifest" },
+    "apiVersion": { "type": "string", "pattern": "^aios/v\\d+$" },
+    "manifestVersion": { "type": "string" },
+    "specVersion": { "type": "string" },
+    "constitution": { "const": "SPEC-000" },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "status": { "enum": ["draft", "review", "approved", "deprecated"] },
+    "maturity": {
+      "type": "object",
+      "required": ["current", "target"],
+      "properties": {
+        "current": { "type": "string" },
+        "target": { "type": "string" }
+      }
+    },
+    "mission": { "type": "string" },
+    "vision": { "type": "string" },
+    "scope": {
+      "type": "object",
+      "required": ["included", "excluded"],
+      "properties": {
+        "included": { "type": "array", "items": { "type": "string" } },
+        "excluded": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "goals": { "type": "array", "items": { "type": "string" } },
+    "design_values": { "type": "array", "items": { "type": "string" } },
+    "quality_attributes": { "type": "array", "items": { "type": "string" } },
+    "architecture_style": { "type": "array", "items": { "type": "string" } },
+    "source_of_truth": {
+      "type": "object",
+      "required": ["constitution", "specifications", "adr", "rfc"],
+      "properties": {
+        "constitution": { "type": "string" },
+        "specifications": { "type": "string" },
+        "adr": { "type": "string" },
+        "rfc": { "type": "string" },
+        "glossary": { "type": "string" },
+        "principles": { "type": "string" },
+        "rules": { "type": "string" },
+        "governance": { "type": "string" }
+      }
+    },
+    "deliverables": { "type": "array", "items": { "type": "string" } },
+    "core_principles": { "type": "array", "items": { "type": "string", "pattern": "^P\\d{3} " } },
+    "repository": { "type": "array", "items": { "type": "string" } },
+    "lifecycle": { "type": "array", "items": { "type": "string" } },
+    "compatibility": {
+      "type": "object",
+      "required": ["backward", "forward"],
+      "properties": {
+        "backward": { "enum": ["required", "preferred", "optional"] },
+        "forward": { "enum": ["required", "preferred", "optional"] },
+        "breaking_change": {
+          "type": "object",
+          "properties": {
+            "requires_adr": { "type": "boolean" }
+          }
+        }
+      }
+    },
+    "governance": {
+      "type": "object",
+      "properties": {
+        "rfc": { "type": "string" },
+        "adr": { "type": "string" },
+        "release": { "type": "string" },
+        "review": { "type": "string" },
+        "approval": { "type": "string" }
+      }
+    },
+    "owners": { "type": "array", "items": { "type": "string" } },
+    "license": { "type": "string" },
+    "created": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+    "updated": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" }
+  },
+  "additionalProperties": false
+}

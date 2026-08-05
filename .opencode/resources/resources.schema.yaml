@@ -1,0 +1,26 @@
+# resources.schema.yaml — Resource Budget Schema v1
+version: "16.0"
+schema: 1
+
+type: object
+required:
+  - default
+properties:
+  version: { type: string, const: "16.0" }
+  default:
+    type: object
+    properties:
+      max_tokens: { type: integer }
+      timeout_ms: { type: integer }
+      max_cost: { type: number }
+      max_memory_mb: { type: integer }
+  agents:
+    type: object
+    description: key = agent id, value = budget override
+    additionalProperties:
+      type: object
+      properties:
+        max_tokens: { type: integer }
+        timeout_ms: { type: integer }
+        max_cost: { type: number }
+        max_memory_mb: { type: integer }

@@ -1,0 +1,24 @@
+# profiles/default.yaml — Default Context Profile
+# Được dùng khi agent không có profile riêng.
+version: "4.0"
+
+required:
+  - project
+  - task
+  - workflow
+
+optional:
+  - knowledge
+  - runtime
+
+forbidden:
+  - build_log
+
+# rank override (cho Intelligence Layer)
+rank:
+  memory: 30
+  knowledge: 70
+
+# Quy ước:
+# - required/fobidden giữ nguyên không bị filter/loại.
+# - score mặc định lấy từ schemas/context-types.yaml, có thể ghi đè ở đây.

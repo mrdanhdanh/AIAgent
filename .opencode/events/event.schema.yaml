@@ -1,0 +1,58 @@
+# event.schema.yaml — Event Object Schema v1
+# Mỗi event là một object có id, type, version, lineage, contract.
+version: "6.0"
+schema: 1
+
+type: object
+required:
+  - id
+  - type
+  - version
+  - timestamp
+  - source
+properties:
+  id:
+    type: string
+    description: EVT-NNN hoặc UUID
+  type:
+    type: string
+    description: PLAN_COMPLETED, BUILD_STARTED...
+  version:
+    type: integer
+    minimum: 1
+  timestamp:
+    type: string
+    description: ISO8601
+  source:
+    type: string
+    description: agent id hoặc module name
+
+  workflow:
+    type: string
+    description: WF-ID nếu có
+  phase:
+    type: string
+    description: phase trong workflow
+  artifact:
+    type: string
+    description: artifact id liên quan
+
+  payload:
+    type: object
+    description: dữ liệu per event type (theo contract)
+
+  metadata:
+    type: object
+    properties:
+      duration: { type: integer, description: ms }
+      priority: { type: string, enum: [critical, high, normal, low] }
+      retry: { type: integer }
+      tags: { type: array }
+
+  # Lineage tracking
+  parent_event:
+    type: string
+    description: id event trước đó trong chain
+  correlation_id:
+    type: string
+    description: ID xuyên suốt chain (cùng workflow/phase)

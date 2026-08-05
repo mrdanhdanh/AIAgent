@@ -1,0 +1,24 @@
+# marketplace.schema.yaml — AI Marketplace Schema v1
+version: "25.0"
+schema: 1
+
+type: object
+required:
+  - packages
+properties:
+  version: { type: string, const: "25.0" }
+  packages:
+    type: array
+    items:
+      type: object
+      required: [id, type, version]
+      properties:
+        id: { type: string }
+        type:
+          type: string
+          enum: [agent, workflow, prompt, policy, knowledge, doctor-rules, simulation-pack]
+        version: { type: string }
+        author: { type: string }
+        certified: { type: boolean, default: false }
+        depends: { type: array }
+        checksum: { type: string }

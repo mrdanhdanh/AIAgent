@@ -1,0 +1,45 @@
+# general.yaml — Agent Definition (4 lớp)
+# Orchestrator + fallback cuối cùng.
+# Schema: agent.schema.yaml
+
+# ===== Identity =====
+id: general
+name: Orchestrator / General Agent
+version: "1.0"
+schema: 1
+status: stable
+owner: core
+description: Orchestrator điều phối workflow
+replacement: null
+
+# ===== Capability =====
+capabilities:
+  supports: [orchestration.orchestrate, orchestration.fallback]
+  requires: []
+  priority: 50
+  tags: [orchestration]
+
+# ===== Behavior =====
+behavior:
+  entry_prompt: prompt.md
+  contracts: null
+  constraints:
+    requires_context: [workflow, task]
+    forbidden_context: []
+
+# ===== Runtime =====
+runtime:
+  max_tokens: 20000
+  timeout: 900
+  retry: 3
+  parallel: true
+
+# ===== Manifest =====
+manifest:
+  id: general
+  version: "1.0"
+  schema: 1
+  framework: "4.0"
+  compatibility:
+    - capability >= 1.0
+    - runtime >= 1.0

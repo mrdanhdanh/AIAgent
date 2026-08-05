@@ -1,0 +1,23 @@
+# distributed.schema.yaml — Distributed Runtime Schema v1
+version: "24.0"
+schema: 1
+
+type: object
+required:
+  - node_id
+  - role
+properties:
+  version: { type: string, const: "24.0" }
+  node_id: { type: string }
+  role:
+    type: string
+    enum: [coordinator, worker, storage, observer]
+  capabilities:
+    type: array
+    items: { type: string }
+  healthy: { type: boolean, default: true }
+  endpoint: { type: string }
+  peers:
+    type: array
+    items: { type: string }
+  heartbeat_ms: { type: integer, default: 5000 }

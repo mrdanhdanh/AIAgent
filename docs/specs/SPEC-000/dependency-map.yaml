@@ -1,0 +1,26 @@
+# AIOS Constitution — Dependency Map
+# SPEC-000 — Thứ tự phụ thuộc của các thành phần. Không được ngược.
+---
+version: "1.0"
+
+dependency_chain:
+  - Manifest
+  - Glossary
+  - Principles
+  - Rules
+  - Governance
+
+# Mỗi thành phần phụ thuộc gì
+dependencies:
+  Manifest: []
+  Glossary: [Manifest]
+  Principles: [Manifest, Glossary]
+  Rules: [Manifest, Glossary, Principles]
+  Governance: [Manifest, Glossary, Principles, Rules]
+
+# Ràng buộc
+constraints:
+  - Không được dependency ngược.
+  - Rules không định nghĩa lại khái niệm (tham chiếu Glossary).
+  - Governance không định nghĩa lại rule (tham chiếu Rules).
+  - Mọi SPEC-001..020 phải nằm dưới Governance trong chuỗi.

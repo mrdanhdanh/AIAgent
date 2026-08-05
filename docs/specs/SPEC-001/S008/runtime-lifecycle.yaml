@@ -1,0 +1,23 @@
+# SPEC-001 S008 — Entity Lifecycle v2
+# Tham chieu S009 State Machine.
+---
+version: "1.0"
+lifecycles:
+  Execution: [Created, Prepared, Running, Completed, Archived]
+  Execution Context: [Allocated, Active, Released]
+  Execution State: [Created, Running, Terminal]
+  Workflow Reference: [Draft, Approved, Running, Completed]
+  Capability Reference: [Registered, Available, Deprecated]
+  Agent Assignment: [Assigned, Active, Released]
+  Event: [Created, Published, Immutable]
+  Artifact: [Created, Published, Consumed, Archived]
+  Metrics: [Collected, Emitted, Archived]
+  Trace: [Created, Completed, Archived]
+  Resource Allocation: [Allocated, Active, Released]
+  Execution Result: [Created, Published, Consumed, Archived]
+  Execution Snapshot: [Captured, Stored, Restored]
+  Execution Lineage: [Created, Completed]
+  Execution Metadata: [Created, Published]
+rules:
+  - Không Entity nào được quay ngược lifecycle.
+  - Completed → Running là bất hợp lệ.

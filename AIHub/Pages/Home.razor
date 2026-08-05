@@ -1,0 +1,276 @@
+@page "/"
+@using Microsoft.FluentUI.AspNetCore.Components
+@using AIHub.Models
+@using AIHub.Services
+@inject ITrendingService TrendingService
+
+<PageTitle>AIHub — Trending AI Tools &amp; Repos</PageTitle>
+
+<div class="home-page">
+    <SearchBar @bind-Value="_searchQuery" OnSearchChanged="OnSearchChangedAsync" />
+    <TimeFilterTabs ActiveFilter="_currentFilter" OnFilterChanged="OnFilterChangedAsync" />
+
+    @if (_isInitialLoading)
+    {
+        <div class="loading-state">
+            <FluentProgressRing />
+            <p>Fetching trending items...</p>
+        </div>
+    }
+    else if (_hasError)
+    {
+        <div class="error-state">
+            <div class="error-icon">⚠️</div>
+            <h2>Failed to load trending items</h2>
+            <p>@_errorMessage</p>
+            @if (!string.IsNullOrEmpty(_errorDetail))
+            {
+                <p class="error-detail">@_errorDetail</p>
+            }
+            <FluentButton Appearance="Appearance.Accent" OnClick="@RetryAsync">Retry</FluentButton>
+        </div>
+    }
+    else if (_allItems.Count == 0)
+    {
+        <div class="empty-state">
+            <div class="empty-icon">📭</div>
+            <h2>No trending items</h2>
+            <p>No trending repos or tools found for the selected time range. Try a different filter.</p>
+        </div>
+    }
+    else if (_filteredItems.Count == 0 && !string.IsNullOrEmpty(_searchQuery))
+    {
+        <div class="empty-state">
+            <div class="empty-icon">🔍</div>
+            <h2>No results for "@_searchQuery"</h2>
+            <p>Try a different keyword or clear the search.</p>
+            <FluentButton Appearance="Appearance.Accent" OnClick="@ClearSearchAsync">Clear Search</FluentButton>
+        </div>
+    }
+    else
+    {
+        <TrendGrid Items="@_filteredItems"
+                   SearchQuery="@_searchQuery"
+                   IsLoading="@_isLoadingMore"
+                   HasMore="_hasMore"
+                   OnLoadMore="LoadMoreAsync" />
+    }
+</div>
+
+@code {
+    private string _searchQuery = string.Empty;
+    private TimeFilter _currentFilter = TimeFilter.Last24Hours;
+    private List<TrendingItem> _allItems = new();
+    private List<TrendingItem> _filteredItems = new();
+    private int _currentPage = 1;
+    private bool _isInitialLoading = true;
+    private bool _isLoadingMore;
+    private bool _hasMore = true;
+    private bool _hasError;
+    private string _errorMessage = string.Empty;
+    private string _errorDetail = string.Empty;
+    private const int PageSize = 50;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadPageAsync(1);
+        _isInitialLoading = false;
+    }
+
+    private async Task LoadPageAsync(int page)
+    {
+        try
+        {
+            var items = await TrendingService.GetTrendingAsync(_currentFilter, page, PageSize);
+
+            if (page == 1)
+            {
+                _allItems = items;
+
+                if (items.Count == 0 && TrendingService.HasFailures)
+                {
+                    _hasError = true;
+                    _errorMessage = "We couldn't reach the external sources. Please try again.";
+                    _errorDetail = TrendingService.LastError ?? string.Empty;
+                }
+                else
+                {
+                    _hasError = false;
+                    _errorMessage = string.Empty;
+                    _errorDetail = string.Empty;
+                }
+            }
+            else
+            {
+                // Pagination: nếu có dữ liệu cũ thì giữ grid, chỉ dừng load thêm
+                if (items.Count == 0 && TrendingService.HasFailures)
+                    _hasMore = false;
+                _allItems.AddRange(items);
+            }
+
+            _hasMore = items.Count >= PageSize;
+            _currentPage = page;
+            ApplyFilter();
+        }
+        catch (Exception ex)
+        {
+            // BUG-20260803-001: không nuốt exception im lặng — hiển thị error state + retry
+            if (page == 1)
+            {
+                _hasError = true;
+                _errorMessage = "Failed to load trending items. Please check your connection and try again.";
+                _errorDetail = ex.Message;
+            }
+            _hasMore = false;
+        }
+    }
+
+    private async Task RetryAsync()
+    {
+        _isInitialLoading = true;
+        _hasError = false;
+        _errorMessage = string.Empty;
+        _errorDetail = string.Empty;
+        _hasMore = true;
+        StateHasChanged();
+
+        TrendingService.ResetErrorState();
+        await LoadPageAsync(1);
+        _isInitialLoading = false;
+    }
+
+    private async Task OnSearchChangedAsync(string query)
+    {
+        _searchQuery = query;
+        ApplyFilter();
+        await Task.CompletedTask;
+    }
+
+    private async Task OnFilterChangedAsync(TimeFilter filter)
+    {
+        _currentFilter = filter;
+        _currentPage = 1;
+        _hasMore = true;
+        _allItems.Clear();
+        _filteredItems.Clear();
+        _isInitialLoading = true;
+        _hasError = false;
+        _errorMessage = string.Empty;
+        _errorDetail = string.Empty;
+        StateHasChanged();
+
+        TrendingService.ClearCache();
+        TrendingService.ResetErrorState();
+        await LoadPageAsync(1);
+        _isInitialLoading = false;
+    }
+
+    private async Task LoadMoreAsync()
+    {
+        if (_isLoadingMore || !_hasMore) return;
+        _isLoadingMore = true;
+
+        await LoadPageAsync(_currentPage + 1);
+        _isLoadingMore = false;
+    }
+
+    private async Task ClearSearchAsync()
+    {
+        _searchQuery = string.Empty;
+        ApplyFilter();
+        await Task.CompletedTask;
+    }
+
+    private void ApplyFilter()
+    {
+        if (string.IsNullOrEmpty(_searchQuery))
+        {
+            _filteredItems = new List<TrendingItem>(_allItems);
+        }
+        else
+        {
+            _filteredItems = _allItems
+                .Where(i =>
+                    (i.Title?.Contains(_searchQuery, StringComparison.OrdinalIgnoreCase) ?? false) ||
+                    (i.Description?.Contains(_searchQuery, StringComparison.OrdinalIgnoreCase) ?? false) ||
+                    (i.Source?.Contains(_searchQuery, StringComparison.OrdinalIgnoreCase) ?? false))
+                .ToList();
+        }
+    }
+}
+
+<style>
+.home-page {
+    padding-top: 8px;
+}
+
+.loading-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 0;
+    gap: 16px;
+    color: var(--neutral-foreground-rest, #666);
+}
+
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 0;
+    gap: 8px;
+    text-align: center;
+}
+
+.empty-icon {
+    font-size: 3rem;
+    margin-bottom: 8px;
+}
+
+.error-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 0;
+    gap: 8px;
+    text-align: center;
+}
+
+.error-icon {
+    font-size: 3rem;
+    margin-bottom: 8px;
+}
+
+.error-state h2 {
+    margin: 0;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.error-state p {
+    margin: 0;
+    color: var(--neutral-foreground-rest, #888);
+    max-width: 400px;
+}
+
+.error-detail {
+    font-size: 0.75rem;
+    opacity: 0.6;
+    word-break: break-word;
+}
+
+.empty-state h2 {
+    margin: 0;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.empty-state p {
+    margin: 0;
+    color: var(--neutral-foreground-rest, #888);
+    max-width: 400px;
+}
+</style>

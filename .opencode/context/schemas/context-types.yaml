@@ -1,0 +1,50 @@
+# context-types.yaml — 7 Context Types
+# Chuẩn hóa type tham chiếu trong profile/resolver.
+version: "4.0"
+
+context_types:
+  - type: project
+    description: Thông tin cố định dự án
+    score_default: 88
+    providers: [project]
+    keys: [framework, language, architecture, rules]
+
+  - type: workflow
+    description: Trạng thái workflow hiện tại
+    score_default: 85
+    providers: [workflow]
+    keys: [name, phase, state, retry, variables]
+
+  - type: task
+    description: Mục tiêu, yêu cầu, tiêu chí chấp nhận, ràng buộc
+    score_default: 100
+    providers: [task]
+    keys: [goal, requirements, acceptance, constraints]
+
+  - type: artifact
+    description: Đầu ra trung gian của workflow
+    score_default: 95
+    providers: [artifact]
+    keys: [analysis, plan, review, code, test_result]
+
+  - type: knowledge
+    description: Best practices, patterns, lessons
+    score_default: 70
+    providers: [knowledge]
+    keys: [lessons, patterns, best_practices]
+
+  - type: memory
+    description: Failure history, previous success
+    score_default: 30
+    providers: [memory]
+    keys: [failure, history, previous_success]
+
+  - type: runtime
+    description: Thông tin execution runtime
+    score_default: 50
+    providers: [runtime]
+    keys: [retry, warnings, execution_time, budget]
+
+# Ghi chú:
+# - score_default là giá trị khi agent không định nghĩa riêng (context profile).
+# - Resolver khớp agent['requires_context'] với context_types[type].

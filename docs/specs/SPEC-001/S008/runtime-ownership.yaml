@@ -1,0 +1,23 @@
+# SPEC-001 S008 — Entity Ownership v2
+---
+version: "1.0"
+ownership:
+  Execution: Runtime
+  Execution Context: Runtime
+  Execution State: Runtime
+  Workflow Reference: Workflow
+  Capability Reference: Registry
+  Agent Assignment: Runtime
+  Event: Runtime
+  Artifact: Runtime
+  Metrics: Runtime
+  Trace: Runtime
+  Resource Allocation: Runtime
+  Execution Result: Runtime
+  Execution Snapshot: Runtime
+  Execution Lineage: Runtime
+  Execution Metadata: Runtime
+rules:
+  - Một Entity chỉ có một Owner.
+  - Owner duy nhất được phép thay đổi Entity.
+  - Các thành phần khác chỉ được tham chiếu.

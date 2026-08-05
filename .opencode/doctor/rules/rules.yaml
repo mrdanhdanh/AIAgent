@@ -1,0 +1,105 @@
+# rules.yaml — Doctor Rules
+# Rule Engine definitions. Thêm rule mới không cần sửa code.
+# Format: id, category, severity, condition, recommendation, penalty.
+version: "8.0"
+
+rules:
+  - id: CTX-001
+    category: context
+    severity: warning
+    condition: average_context_tokens > 8000
+    recommendation: enable_context_compression
+    penalty: 5
+
+  - id: REG-001
+    category: registry
+    severity: warning
+    condition: orphan_capabilities > 0
+    recommendation: add agent for orphan capability
+    penalty: 1
+
+  - id: REG-002
+    category: registry
+    severity: critical
+    condition: duplicate_capabilities > 0
+    recommendation: resolve duplicate capability ids
+    penalty: 2
+
+  - id: REG-003
+    category: registry
+    severity: info
+    condition: unused_capabilities > 0
+    recommendation: mark deprecated
+    penalty: 0.5
+
+  - id: AGT-001
+    category: agent
+    severity: warning
+    condition: agent_retry_rate > 0.2
+    recommendation: review agent prompt/contract
+    penalty: 5
+
+  - id: AGT-002
+    category: agent
+    severity: critical
+    condition: agent_success_rate < 0.7
+    recommendation: disable agent, review
+    penalty: 10
+
+  - id: ART-001
+    category: artifact
+    severity: warning
+    condition: orphan_artifacts > 0
+    recommendation: archive orphan artifacts
+    penalty: 1
+
+  - id: ART-002
+    category: artifact
+    severity: critical
+    condition: broken_dependencies > 0
+    recommendation: fix artifact dependency chain
+    penalty: 3
+
+  - id: EVT-001
+    category: event
+    severity: warning
+    condition: dropped_events > 0
+    recommendation: check queue overflow
+    penalty: 2
+
+  - id: EVT-002
+    category: event
+    severity: critical
+    condition: replay_errors > 0
+    recommendation: fix event history integrity
+    penalty: 5
+
+  - id: SIM-001
+    category: simulation
+    severity: warning
+    condition: prediction_accuracy < 0.85
+    recommendation: refine prediction model
+    penalty: 5
+
+  - id: SIM-002
+    category: simulation
+    severity: critical
+    condition: recommendation_reject_rate > 0.3
+    recommendation: review workflow definitions
+    penalty: 8
+
+  - id: WFL-001
+    category: workflow
+    severity: warning
+    condition: bottleneck_phase_retry_rate > 0.3
+    recommendation: review phase context/artifacts
+    penalty: 5
+
+  - id: DBT-001
+    category: debt
+    severity: info
+    condition: technical_debt > 50
+    recommendation: schedule debt cleanup
+    penalty: 0
+
+# Plugin có thể thêm rule với id riêng (namespace plugin).

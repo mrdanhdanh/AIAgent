@@ -1,0 +1,46 @@
+# Phase Definition Schema v1
+# Schema cho từng phase object trong workflow.schema.yaml.
+# Reference: architecture/DATA_MODEL.md (Phase)
+
+type: object
+required:
+  - id
+properties:
+  id:
+    type: string
+    description: phase id duy nhất trong workflow (P01, analyze, build)
+  name:
+    type: string
+  description:
+    type: string
+  depends_on:
+    type: array
+    items: { type: string }
+    description: danh sách phase id phải hoàn thành trước
+  agent:
+    type: string
+    description: (Phase 1) agent trực tiếp; Phase 2 thay bằng capability
+  capability:
+    type: string
+    description: (Phase 2) capability id, dispatcher resolve qua registry
+  inputs:
+    type: object
+    description: input contract
+  outputs:
+    type: array
+    items: { type: string }
+    description: artifact/sản phẩm sinh ra
+  retry:
+    type: integer
+    default: 1
+  retry_delay:
+    type: integer
+    default: 0
+    description: backoff giây
+  timeout:
+    type: integer
+    description: giới hạn thời gian (giây), 0 = không giới hạn
+  optional:
+    type: boolean
+    default: false
+    description: nếu fail và optional=true → skip; ngược lại → abort

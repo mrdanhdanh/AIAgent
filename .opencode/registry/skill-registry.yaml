@@ -1,0 +1,92 @@
+# skill-registry.yaml — Skill Capability Registry
+# 29 skills, mapping thủ công (explicit). supports phải tồn tại trong capabilities.yaml.
+version: "4.0"
+
+skills:
+  - id: accessibility
+    supports: [testing.ui, ui.audit, implementation.ui]
+    priority: 85
+  - id: answer-builder
+    supports: [knowledge.retrieve, documentation.write]
+    priority: 60
+  - id: architecture-reader
+    supports: [analysis.codebase, architecture.discovery, review.architecture]
+    priority: 70
+  - id: browser-compatibility
+    supports: [testing.ui, testing.e2e]
+    priority: 70
+  - id: code-understanding
+    supports: [analysis.codebase, implementation.refactor]
+    priority: 75
+  - id: database-reader
+    supports: [analysis.codebase, analysis.root-cause]
+    priority: 60
+  - id: data-model-reader
+    supports: [analysis.codebase]
+    priority: 55
+  - id: dependency-analyzer
+    supports: [analysis.codebase, architecture.discovery, architecture.impact]
+    priority: 60
+  - id: design-system-validator
+    supports: [ui.audit, review.architecture]
+    priority: 70
+  - id: dev-team
+    supports: [orchestration.orchestrate]
+    priority: 80
+  - id: document-understanding
+    supports: [analysis.requirement, knowledge.retrieve]
+    priority: 60
+  - id: flaky-test-detector
+    supports: [testing.strategy, analysis.root-cause]
+    priority: 70
+  - id: git-history
+    supports: [analysis.codebase, analysis.root-cause]
+    priority: 50
+  - id: gitguard
+    supports: [review.security, security.audit]
+    priority: 90
+  - id: gitpush
+    supports: [deployment.git]
+    priority: 85
+  - id: impact-analyzer
+    supports: [architecture.impact]
+    priority: 65
+  - id: impeccable
+    supports: [ui.design, implementation.ui, review.code]
+    priority: 95
+  - id: knowledge-assistant
+    supports: [knowledge.retrieve, knowledge.learn]
+    priority: 75
+  - id: playwright-component
+    supports: [testing.unit, testing.ui]
+    priority: 80
+  - id: playwright-e2e
+    supports: [testing.e2e, testing.ui]
+    priority: 85
+  - id: responsive-layout
+    supports: [testing.ui, ui.audit]
+    priority: 70
+  - id: screenshot-analyzer
+    supports: [testing.ui, ui.audit]
+    priority: 65
+  - id: search-engine
+    supports: [knowledge.retrieve, analysis.codebase]
+    priority: 60
+  - id: test-data-generator
+    supports: [testing.strategy]
+    priority: 75
+  - id: test-report
+    supports: [testing.unit, testing.e2e, testing.ui, documentation.review]
+    priority: 65
+  - id: ui-review
+    supports: [ui.audit, review.code]
+    priority: 75
+  - id: visual-regression
+    supports: [testing.ui]
+    priority: 80
+  - id: workflow-reader
+    supports: [orchestration.orchestrate, analysis.codebase]
+    priority: 55
+  - id: workspace-cleaner
+    supports: [workspace.cleanup]
+    priority: 85

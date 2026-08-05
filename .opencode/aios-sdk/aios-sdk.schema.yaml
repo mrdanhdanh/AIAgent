@@ -1,0 +1,38 @@
+# aios-sdk.schema.yaml — AIOS SDK Schema v1
+# SDK = lớp chính thức truy cập AIOS. Core không bị truy cập trực tiếp.
+version: "13.0"
+schema: 1
+
+type: object
+required:
+  - version
+  - components
+properties:
+  version: { type: string, const: "13.0" }
+  framework: { type: string, description: ">=12.0" }
+
+  components:
+    type: array
+    items:
+      type: string
+      enum: [agent, plugin, workflow, context, artifact, event,
+             registry, doctor, simulation, evolution, dashboard]
+
+  stability:
+    type: object
+    properties:
+      api_stability: { type: string, enum: [experimental, stable, frozen] }
+      versioning: { type: string, const: semver }
+
+  security:
+    type: object
+    properties:
+      permission_model: { type: string }
+      audit: { type: boolean }
+      key_required: { type: boolean }
+
+# Quy ước:
+# - Plugin/CLI/Dashboard/IDE Extension dùng chung API ổn định này.
+# - Thay đổi implementation bên trong không phá plugin (chỉ cần giữ contract).
+# - SDK version gắn framework version.
+# - Mỗi component là một SDK con (agent-sdk, plugin-sdk, ...).

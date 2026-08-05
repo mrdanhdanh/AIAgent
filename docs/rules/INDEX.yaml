@@ -1,0 +1,99 @@
+# AIOS Architecture Rules INDEX
+# D004 — Doctor kiểm tra vi phạm rule, Dashboard hiển thị tuân thủ.
+# Lưu ý: field `dependencies` = related_rules (liên kết 2 chiều, KHÔNG phải DAG
+# thứ tự phụ thuộc — các liên kết vòng là bình thường, không vi phạm DoD).
+---
+version: "1.0"
+rules:
+  RULE-001:
+    file: RULE-001-layering.md
+    name: Layering
+    category: Architecture
+    principles: [P001, P003]
+  RULE-002:
+    file: RULE-002-dependency.md
+    name: Dependency
+    category: Architecture
+    principles: [P011, P009]
+  RULE-003:
+    file: RULE-003-communication.md
+    name: Communication
+    category: Architecture
+    principles: [P002, P001, P017]
+  RULE-004:
+    file: RULE-004-execution.md
+    name: Execution
+    category: Execution
+    principles: [P001, P007]
+  RULE-005:
+    file: RULE-005-state.md
+    name: State
+    category: State
+    principles: [P001, P006, P009, P010]
+  RULE-006:
+    file: RULE-006-data-flow.md
+    name: Data Flow
+    category: Data
+    principles: [P009, P006]
+  RULE-007:
+    file: RULE-007-event.md
+    name: Event
+    category: Event
+    principles: [P005, P014]
+  RULE-008:
+    file: RULE-008-security.md
+    name: Security
+    category: Security
+    principles: [P016, P012]
+  RULE-009:
+    file: RULE-009-versioning.md
+    name: Versioning
+    category: Data
+    principles: [P004, P010, P018]
+  RULE-010:
+    file: RULE-010-extension.md
+    name: Extension
+    category: Architecture
+    principles: [P012, P019]
+  RULE-011:
+    file: RULE-011-resource-ownership.md
+    name: Resource Ownership
+    category: Data
+    principles: [P009, P010, P008]
+  RULE-012:
+    file: RULE-012-failure-isolation.md
+    name: Failure Isolation
+    category: Reliability
+    principles: [P015, P005]
+  RULE-013:
+    file: RULE-013-deterministic-execution.md
+    name: Deterministic Execution
+    category: Reliability
+    principles: [P009, P011, P013]
+  RULE-014:
+    file: RULE-014-observability-contract.md
+    name: Observability Contract
+    category: Observability
+    principles: [P014, P005]
+  RULE-015:
+    file: RULE-015-backward-compatibility.md
+    name: Backward Compatibility
+    category: Compatibility
+    principles: [P018, P004, P020]
+
+dependencies:
+  RULE-001: [RULE-002, RULE-004]
+  RULE-002: [RULE-001, RULE-003]
+  RULE-003: [RULE-007, RULE-002]
+  RULE-004: [RULE-001, RULE-013]
+  RULE-005: [RULE-011, RULE-006]
+  RULE-006: [RULE-005, RULE-011]
+  RULE-007: [RULE-003, RULE-004]
+  RULE-008: [RULE-010, RULE-012]
+  RULE-009: [RULE-005, RULE-013]
+  RULE-010: [RULE-002, RULE-008]
+  RULE-011: [RULE-005, RULE-006]
+  RULE-012: [RULE-008, RULE-004]
+  RULE-013: [RULE-004, RULE-009]
+  RULE-014: [RULE-007, RULE-004]
+  RULE-015: [RULE-009, RULE-013]

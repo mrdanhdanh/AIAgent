@@ -1,0 +1,17 @@
+# SPEC-001 S004 — Dependency Boundary (B004)
+---
+version: "1.0"
+allowed_dependencies:
+  - Constitution
+  - Workflow Definition
+  - Capability Registry
+  - Contract
+  - Event Schema
+  - Artifact Schema
+forbidden_dependencies:
+  - Agent cụ thể
+  - Plugin cụ thể
+  - Domain cụ thể
+  - Framework cụ thể
+  - Database cụ thể
+  - LLM cụ thể

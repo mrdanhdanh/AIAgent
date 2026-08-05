@@ -1,34 +1,48 @@
-# Failure Learning System — Memory
+---
+name: memory-engine
+description: >
+  Memory Engine v19.0 — thống nhất knowledge/ + memory/ thành một engine 8 loại.
+  Context Engine chỉ là một phần của Memory.
+agent: general
+---
 
-## Mục đích
+# Memory Engine v19.0
 
-Lưu trữ và tái sử dụng kiến thức từ các lỗi đã gặp trong workflow. Giúp agent không lặp lại cùng một lỗi hai lần.
+## 1. Vai trò
 
-## Cấu trúc
+Thống nhất bộ nhớ:
 
+```text
+Memory Engine
+├── Working Memory
+├── Session Memory
+├── Workflow Memory
+├── Knowledge Memory
+├── Failure Memory
+├── User Memory
+├── Cache
+└── Embedding Index
 ```
-memory/
-├── README.md              ← You are here
-├── failures/              ← Failure records (BUG-XXXX)
-│   └── README.md
-├── lessons/blazor/        ← Bài học theo framework
-│   └── README.md
-├── lessons/powershell/    ← Bài học về PowerShell scripting
-│   └── README.md
-└── patterns/              ← Pattern phát hiện từ failures
-    └── README.md
-```
 
-## Quy tắc
+Context Engine chỉ là một phần của Memory (Working + Cache).
 
-1. Mỗi failure record format BUG-XXXX
-2. error_hash = SHA256(error_normalized) 12 ký tự đầu
-3. Reference chéo: failures ↔ lessons ↔ patterns qua error_hash + failure_id
-4. Chỉ ghi record khi fix thành công (hoặc catastrophic failure)
+## 2. Memory types
 
-## Flow
+| Type | Scope | TTL |
+|------|-------|-----|
+| Working | task hiện tại | task end |
+| Session | phiên làm việc | session end |
+| Workflow | workflow instance | workflow end |
+| Knowledge | lessons/patterns | vĩnh viễn |
+| Failure | failure records | vĩnh viễn |
+| User | preferences | dài hạn |
+| Cache | context/artifact | TTL |
+| Embedding | vector index | vĩnh viễn |
 
-```
-Error → Normalize → Hash → Search memory → Found? → Apply lesson
-                                                 → Not found? → Root Cause → Fix → Record
-```
+## 3. Tương tác
+
+- `memory.schema.yaml`.
+- `working.md`, `knowledge.md`, `failure.md`, `cache.md`.
+- `context/` (Phase 4) — working/cache.
+- `knowledge-graph/` (Phase 9) — knowledge memory.
+- `knowledge/` + `memory/` hiện có — merge vào engine.

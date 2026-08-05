@@ -1,0 +1,72 @@
+# doctor.schema.yaml — Doctor Report Schema v1
+# Doctor v2 — Framework Diagnostics Platform output.
+version: "8.0"
+schema: 1
+
+type: object
+required:
+  - id
+  - timestamp
+  - mode
+  - scores
+  - recommendation
+properties:
+  id: { type: string, description: "DOC-NNN" }
+  timestamp: { type: string, description: ISO8601 }
+  mode:
+    type: string
+    enum: [quick, standard, deep, ci]
+
+  scores:
+    type: object
+    properties:
+      architecture: { type: number }
+      runtime: { type: number }
+      context: { type: number }
+      workflow: { type: number }
+      registry: { type: number }
+      agent: { type: number }
+      artifact: { type: number }
+      event: { type: number }
+      simulation: { type: number }
+      overall: { type: number }
+
+  technical_debt:
+    type: number
+    description: 0..100, thấp = ít nợ kỹ thuật
+
+  readiness:
+    type: object
+    properties:
+      production: { type: number }
+      plugin: { type: number }
+      evolution: { type: number }
+
+  summary:
+    type: string
+  warnings:
+    type: array
+    items: { type: string }
+  recommendations:
+    type: array
+    items: { type: string }
+  metrics:
+    type: object
+    properties:
+      scan_time: { type: integer }
+      files: { type: integer }
+      artifacts: { type: integer }
+      capabilities: { type: integer }
+      workflows: { type: integer }
+      agents: { type: integer }
+      coverage: { type: number }
+
+  recommendation:
+    type: string
+    enum: [pass, fail]
+
+# Quy ước:
+# - Doctor = Framework Diagnostics Platform (không chỉ check file).
+# - 3 analysis: Static (không chạy), Behavioral (history), Runtime (execution).
+# - scores per nhóm + overall.
+# - technical_debt + readiness là điểm nâng cao.

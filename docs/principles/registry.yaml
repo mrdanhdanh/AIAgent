@@ -1,0 +1,27 @@
+# AIOS Constitution Principles — Registry
+# D003.5 — Danh sách + metadata tổng hợp của toàn bộ principle.
+# Nguồn sự thật cho Policy Engine; mỗi P### đầy đủ trong file riêng.
+---
+version: "1.0"
+owner: AIOS Governance
+principles:
+  P001: { name: Runtime First, category: Core, priority: Critical, normative: MUST, owner: Runtime Team, version: 1.0.0, status: Stable }
+  P002: { name: Contract First, category: Architecture, priority: Critical, normative: MUST, owner: Core Architecture Team, version: 1.0.0, status: Stable }
+  P003: { name: Metadata First, category: Data, priority: Critical, normative: MUST, owner: Core Data Team, version: 1.0.0, status: Stable }
+  P004: { name: Everything is Versioned, category: Data, priority: High, normative: MUST, owner: Core Data Team, version: 1.0.0, status: Stable }
+  P005: { name: Event Driven, category: Execution, priority: Critical, normative: MUST, owner: Runtime Team, version: 1.0.0, status: Stable }
+  P006: { name: Stateless Agent, category: Execution, priority: Critical, normative: MUST, owner: Runtime Team, version: 1.0.0, status: Stable }
+  P007: { name: Capability Driven, category: Execution, priority: Critical, normative: MUST, owner: Runtime Team, version: 1.0.0, status: Stable }
+  P008: { name: Single Responsibility, category: Architecture, priority: High, normative: MUST, owner: Core Architecture Team, version: 1.0.0, status: Stable }
+  P009: { name: Single Source of Truth, category: Data, priority: Critical, normative: MUST, owner: Core Data Team, version: 1.0.0, status: Stable }
+  P010: { name: Immutable Artifact, category: Data, priority: Critical, normative: MUST, owner: Artifact Team, version: 1.0.0, status: Stable }
+  P011: { name: Explicit Dependency, category: Architecture, priority: High, normative: MUST, owner: Core Architecture Team, version: 1.0.0, status: Stable }
+  P012: { name: Plugin First, category: Platform, priority: Critical, normative: MUST, owner: Platform Team, version: 1.0.0, status: Stable }
+  P013: { name: Simulation Before Execution, category: Evolution, priority: High, normative: MUST, owner: Evolution Team, version: 1.0.0, status: Stable }
+  P014: { name: Observability First, category: Platform, priority: High, normative: MUST, owner: Platform Team, version: 1.0.0, status: Stable }
+  P015: { name: Fail Safe, category: Security, priority: Critical, normative: MUST, owner: Security Team, version: 1.0.0, status: Stable }
+  P016: { name: Human Approval, category: Governance, priority: Critical, normative: MUST, owner: Governance Team, version: 1.0.0, status: Stable }
+  P017: { name: AI Native, category: Evolution, priority: High, normative: MUST, owner: Evolution Team, version: 1.0.0, status: Stable }
+  P018: { name: Evolvable, category: Evolution, priority: High, normative: MUST, owner: Evolution Team, version: 1.0.0, status: Stable }
+  P019: { name: Open Extension, Closed Core, category: Architecture, priority: Critical, normative: MUST, owner: Core Architecture Team, version: 1.0.0, status: Stable }
+  P020: { name: Constitution First, category: Governance, priority: Critical, normative: MUST, owner: Governance Team, version: 1.0.0, status: Stable }

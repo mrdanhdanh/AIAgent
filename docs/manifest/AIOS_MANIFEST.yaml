@@ -1,0 +1,193 @@
+# ============================================================
+# AIOS Manifest v1.0 Enterprise — Executable Specification
+# ============================================================
+# Đây là file đầu tiên của toàn bộ Framework.
+# Runtime/Doctor/Dashboard/Evolution đọc file này.
+# Con người đọc docs/manifest/README.md.
+# Validator kiểm tra bằng docs/manifest/manifest.schema.json.
+# ============================================================
+
+# --- Identity ---
+id: AIOS
+name: AI Operating System
+
+identity:
+  domain: ai-runtime
+  type: framework
+  architecture: modular
+  deployment:
+    - local
+    - hybrid
+    - cloud
+
+# --- Metadata ---
+kind: Manifest
+apiVersion: aios/v1
+manifestVersion: "1.0"
+specVersion: "1.0"
+constitution: SPEC-000
+version: "1.0.0"
+status: approved
+maturity:
+  current: Architecture
+  target: Enterprise
+
+# --- Mission & Vision ---
+mission: >
+  Xây nền tảng điều hành cho AI Agent — Runtime là trung tâm,
+  Agent chỉ là thành phần chạy trên Runtime.
+
+vision: >
+  AIOS trở thành tầng hạ tầng chuẩn để vận hành AI agent
+  ở quy mô enterprise, ổn định 5-10 năm, mở rộng qua extension.
+
+# --- Scope ---
+scope:
+  included:
+    - Runtime
+    - Agent
+    - Workflow
+    - Phase
+    - Task
+    - Capability
+    - Registry
+    - Context
+    - Artifact
+    - Memory
+    - Knowledge
+    - Event
+    - Scheduler
+    - State Machine
+    - Execution
+    - Simulation
+    - Doctor
+    - Evaluation
+    - Evolution
+    - Plugin
+    - SDK
+    - Dashboard
+  excluded:
+    - IDE
+    - Source Control
+    - Database Engine
+    - Chat Platform
+    - LLM
+    - CI/CD
+
+# --- Goals (không tham chiếu Principle — SPEC mới tham chiếu) ---
+goals:
+  - Standardized Runtime
+  - Declarative Workflow
+  - Capability Routing
+  - AI Native
+  - Extensible Architecture
+  - Observable Execution
+
+# --- Design Values (văn hóa AIOS) ---
+design_values:
+  - Simplicity
+  - Explicitness
+  - Consistency
+  - Predictability
+  - Composability
+  - Reusability
+
+# --- Quality Attributes ---
+quality_attributes:
+  - Reliability
+  - Scalability
+  - Performance
+  - Maintainability
+  - Extensibility
+  - Security
+  - Testability
+  - Determinism
+
+# --- Architecture Style ---
+architecture_style:
+  - Layered
+  - Event Driven
+  - Metadata Driven
+  - Capability Driven
+  - Plugin Oriented
+  - Contract First
+
+# --- Source of Truth (Runtime đọc luôn) ---
+source_of_truth:
+  constitution: docs/specs/SPEC-000
+  specifications: docs/specs
+  adr: docs/adr
+  rfc: docs/rfc
+  glossary: docs/glossary
+  principles: docs/principles
+  rules: docs/rules
+  governance: docs/governance
+
+# --- Deliverables (roadmap) ---
+deliverables:
+  - SPEC
+  - Runtime
+  - Doctor
+  - Dashboard
+  - Plugin SDK
+
+# --- Constitution Principles (tham chiếu, không lặp lại) ---
+core_principles:
+  - P001 Runtime First
+  - P002 Contract First
+  - P003 Metadata First
+  - P004 Everything is Versioned
+  - P005 Event Driven
+  - P006 Stateless Agent
+  - P007 Capability Driven
+  - P008 Single Responsibility
+  - P009 Single Source of Truth
+  - P010 Immutable Artifact
+  - P011 Explicit Dependency
+  - P012 Plugin First
+  - P013 Simulation Before Execution
+  - P014 Observability First
+  - P015 Fail Safe
+  - P016 Human Approval
+  - P017 AI Native
+  - P018 Evolvable
+  - P019 Open Extension, Closed Core
+  - P020 Constitution First
+
+# --- Repository Layout ---
+repository:
+  - docs/
+  - .opencode/
+  - plugins/
+  - sdk/
+  - runtime/
+
+# --- Lifecycle (mọi Entity dùng chung, khớp Entity lifecycle chuẩn) ---
+lifecycle:
+  - Draft
+  - Review
+  - Approved
+  - Deprecated
+  - Removed
+
+# --- Compatibility Policy (Evolution Engine đọc) ---
+compatibility:
+  backward: required
+  forward: preferred
+  breaking_change:
+    requires_adr: true
+
+# --- Governance ---
+governance:
+  registry: docs/governance/governance-registry.yaml
+  policies: docs/governance/policies/
+  decisions: docs/governance/decisions/
+  templates: docs/governance/templates/
+
+# --- Ownership ---
+owners:
+  - core:aios-team
+license: proprietary
+
+created: "2026-08-03"
+updated: "2026-08-03"

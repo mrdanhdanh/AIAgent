@@ -200,7 +200,7 @@ design:
 ---
 description: Intent Analyzer + Router cho Knowledge Assistant — phân loại câu hỏi, chọn skill pipeline, tổng hợp trả lời
 mode: subagent
-model: opencode/deepseek-v4-flash-free
+model: opencode/deepseek-v4-pro
 permission: { read: allow, grep: allow, glob: allow, edit: deny, bash: deny }
 schema_version: "1.0"
 ---

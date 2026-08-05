@@ -1,0 +1,17 @@
+# SPEC-001 S002 — Requirement Metrics (Dashboard)
+---
+version: "1.0"
+metrics:
+  total_requirements: 50
+  functional: 20
+  non_functional: 15
+  constraints: 9
+  acceptance: 6
+  critical: 14
+  approved: 35
+  implemented: 0
+  verified: 0
+  stable: 0
+  coverage:
+    with_principle: 35
+    with_rule: 43

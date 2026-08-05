@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aios://runtime-data.schema.json",
+  "title": "SPEC-001 Runtime Data Model (S008)",
+  "description": "JSON Schema cho runtime-data-model.yaml. Validator kiem tra cau truc.",
+  "type": "object",
+  "required": ["version", "aggregate_root", "aggregate_rules", "classification", "invariants", "consistency", "dependencies"],
+  "properties": {
+    "version": { "type": "string" },
+    "aggregate_root": { "const": "Execution" },
+    "aggregate_rules": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "classification": {
+      "type": "object",
+      "required": ["manages", "not_manages"],
+      "properties": {
+        "manages": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+        "not_manages": { "type": "array", "items": { "type": "string" }, "minItems": 1 }
+      }
+    },
+    "invariants": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "consistency": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "dependencies": { "type": "array", "items": { "type": "string" }, "minItems": 1 }
+  },
+  "additionalProperties": false
+}

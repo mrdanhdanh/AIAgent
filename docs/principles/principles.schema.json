@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aios://principles.schema.json",
+  "title": "AIOS Constitution Principle (Executable)",
+  "description": "JSON Schema cho frontmatter của từng principle file trong docs/principles/. Validator kiểm tra template D003 Policy Engine.",
+  "type": "object",
+  "required": [
+    "id", "name", "status", "version", "since", "category", "priority", "normative",
+    "breaking_change", "owner", "requires_adr", "lifecycle", "rationale_type",
+    "affects", "verification", "violation", "formal_rule", "decision",
+    "requires", "conflicts", "strengthens", "enforced_by", "implemented_in",
+    "related", "statement", "rationale", "rules", "implications",
+    "anti_patterns", "exceptions", "examples", "references"
+  ],
+  "properties": {
+    "id": { "type": "string", "pattern": "^P\\d{3}$" },
+    "name": { "type": "string" },
+    "status": { "enum": ["Draft", "Review", "Stable", "Deprecated"] },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "since": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "category": { "enum": ["Core", "Execution", "Architecture", "Platform", "Data", "Security", "Governance", "Evolution"] },
+    "priority": { "enum": ["Critical", "High", "Medium", "Low"] },
+    "normative": { "enum": ["MUST", "SHOULD", "MAY"] },
+    "breaking_change": { "type": "boolean" },
+    "owner": { "type": "string" },
+    "requires_adr": { "type": "boolean" },
+    "lifecycle": { "type": "string" },
+    "rationale_type": { "enum": ["Architecture", "Security", "Governance", "Reliability", "Maintainability", "Operability", "Performance"] },
+    "affects": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "verification": {
+      "type": "object",
+      "required": ["doctor", "runtime", "tests"],
+      "properties": {
+        "doctor": { "type": "array", "items": { "type": "string" } },
+        "runtime": { "type": "array", "items": { "type": "string" } },
+        "tests": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "violation": {
+      "type": "object",
+      "required": ["level", "action"],
+      "properties": {
+        "level": { "enum": ["Critical", "High", "Medium", "Low"] },
+        "action": { "type": "array", "items": { "type": "string" }, "minItems": 1 }
+      }
+    },
+    "formal_rule": { "type": "string" },
+    "decision": {
+      "type": "object",
+      "required": ["mandatory", "runtime", "doctor", "dashboard"],
+      "properties": {
+        "mandatory": { "type": "boolean" },
+        "runtime": { "type": "boolean" },
+        "doctor": { "type": "boolean" },
+        "dashboard": { "type": "boolean" }
+      }
+    },
+    "requires": { "type": "array", "items": { "type": "string", "pattern": "^P\\d{3}$" } },
+    "conflicts": { "type": "array", "items": { "type": "string", "pattern": "^P\\d{3}$" } },
+    "strengthens": { "type": "array", "items": { "type": "string", "pattern": "^P\\d{3}$" } },
+    "enforced_by": { "type": "array", "items": { "type": "string" } },
+    "implemented_in": { "type": "array", "items": { "type": "string" } },
+    "related": { "type": "array", "items": { "type": "string", "pattern": "^P\\d{3}$" } },
+    "statement": { "type": "string" },
+    "rationale": { "type": "string" },
+    "rules": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "implications": { "type": "array", "items": { "type": "string" } },
+    "anti_patterns": { "type": "array", "items": { "type": "string" } },
+    "exceptions": { "type": "string" },
+    "examples": { "type": "array", "items": { "type": "string" } },
+    "references": { "type": "array", "items": { "type": "string" } }
+  },
+  "additionalProperties": false
+}

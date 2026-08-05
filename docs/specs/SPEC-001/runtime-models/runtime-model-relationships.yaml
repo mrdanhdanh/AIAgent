@@ -1,0 +1,20 @@
+# SPEC-001A — Model Relationships (cardinality)
+# Doctor dung de validate.
+---
+version: "1.0"
+relationships:
+  Execution:
+    workflow: "1"
+    context: "1"
+    state: "1"
+    events: "N"
+    artifacts: "N"
+    result: "1"
+  Workflow:
+    phases: "1..N"
+  Phase:
+    tasks: "1..N"
+  Task:
+    capability: "1"
+  Execution Result:
+    artifacts: "1..N"

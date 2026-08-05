@@ -1,4 +1,4 @@
-﻿---
+---
 description: >-
   Chuyên đánh giá và cải thiện giao diện người dùng cho Japanese Learner
   (Blazor WASM + FluentUI 4.14.3). V3.1: Multi-skill pipeline orchestration
@@ -8,7 +8,7 @@ description: >-
   accessibility problems, responsive lỗi, UX critique, security vulnerabilities,
   AI slop patterns, và đề xuất cải tiến UI/UX với multi-phase scoring.
 mode: subagent
-model: opencode/deepseek-v4-flash-free
+model: opencode-go/deepseek-v4-flash
 schema_version: "3.1"
 permission:
   read: allow

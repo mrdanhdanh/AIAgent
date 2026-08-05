@@ -1,0 +1,14 @@
+# SPEC-001 S003 — Responsibility Ownership (2 chieu)
+---
+version: "1.0"
+runtime_owns:
+  - Execution Context
+  - State
+  - Execution Lifecycle
+runtime_depends_on:
+  - Workflow Definition
+  - Registry
+runtime_exposes:
+  - Execution API
+  - Event Stream
+  - Artifact

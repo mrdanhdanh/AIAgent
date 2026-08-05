@@ -1,0 +1,37 @@
+# graph.schema.yaml — System Knowledge Graph Schema v1
+# Source of Truth cho toàn bộ hệ thống (AIOS).
+# Graph = Entities + Relations.
+version: "9.0"
+schema: 1
+
+type: object
+required:
+  - version
+  - entities
+  - relations
+properties:
+  version: { type: string, const: "9.0" }
+  updated_at: { type: string, description: ISO8601 }
+
+  entities:
+    type: array
+    items: { $ref: entity.schema.yaml }
+
+  relations:
+    type: array
+    items: { $ref: relation.schema.yaml }
+
+  # Chỉ số tổng hợp
+  stats:
+    type: object
+    properties:
+      entity_count: { type: integer }
+      relation_count: { type: integer }
+      by_type: { type: object }
+      avg_degree: { type: number }
+
+# Quy ước:
+# - Graph chứa MỌI thực thể framework (không chỉ knowledge).
+# - Entity có id unique, type chuẩn (entity.schema.yaml).
+# - Relation có source/target entity id.
+# - Graph là source of truth; Context/Doctor/Dashboard/Evolution truy vấn graph.

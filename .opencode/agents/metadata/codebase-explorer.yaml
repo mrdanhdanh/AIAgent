@@ -1,0 +1,45 @@
+# codebase-explorer.yaml — Agent Definition (4 lớp)
+# Read-only agent.
+# Schema: agent.schema.yaml
+
+# ===== Identity =====
+id: codebase-explorer
+name: Codebase Explorer Agent
+version: "1.0"
+schema: 1
+status: stable
+owner: core
+description: Khám phá cấu trúc dự án, read-only
+replacement: null
+
+# ===== Capability =====
+capabilities:
+  supports: [analysis.codebase, architecture.discovery]
+  requires: []
+  priority: 60
+  tags: [analysis, csharp]
+
+# ===== Behavior =====
+behavior:
+  entry_prompt: prompt.md
+  contracts: null
+  constraints:
+    requires_context: [project]
+    forbidden_context: []
+
+# ===== Runtime =====
+runtime:
+  max_tokens: 10000
+  timeout: 300
+  retry: 1
+  parallel: true
+
+# ===== Manifest =====
+manifest:
+  id: codebase-explorer
+  version: "1.0"
+  schema: 1
+  framework: "4.0"
+  compatibility:
+    - capability >= 1.0
+    - runtime >= 1.0

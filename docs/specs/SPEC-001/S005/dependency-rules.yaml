@@ -1,0 +1,9 @@
+# SPEC-001 S005 — Dependency Rules (A003)
+---
+version: "1.0"
+allowed:
+  - "Layer N -> Layer N+1"
+forbidden:
+  - "Layer N -> Layer N+2"
+  - Circular Dependency
+  - Skip Layer

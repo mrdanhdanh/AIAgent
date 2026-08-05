@@ -1,0 +1,477 @@
+# SPEC-001 S003 — Runtime Responsibilities (35 RR)
+# Mỗi responsibility đúng một Owner. Authority tách biệt.
+---
+id: SPEC-001-S003
+name: Runtime Responsibilities
+version: "1.0.0"
+status: Approved
+frozen: true
+frozen_date: "2026-08-04"
+owner: Runtime Team
+principle: Responsibility != Capability != Component
+invariants:
+  - Một Responsibility chỉ có một Owner.
+  - Một Responsibility có thể delegate.
+  - Owner không đổi trong một Execution.
+  - Không Responsibility nào phụ thuộc vòng.
+delegation:
+  Capability Resolution: Runtime
+  Business Logic: Agent
+  Knowledge Query: Skill
+  Persistence: Infrastructure
+responsibilities:
+  RR-001:
+    name: Khởi tạo Execution
+    group: Core
+    owner: Runtime
+    priority: Critical
+    status: Approved
+    authority: Được tạo Execution Context
+    input: Workflow Definition
+    output: Execution Context
+    metric: Execution Start Rate
+    requirements: [FR-001, FR-015]
+    principles: [P001, P003]
+    rules: [RULE-004]
+  RR-002:
+    name: Kết thúc Execution
+    group: Core
+    owner: Runtime
+    priority: Critical
+    status: Approved
+    authority: Được kết thúc Execution
+    input: Terminal State
+    output: Execution Result
+    metric: Execution Completion Rate
+    requirements: [FR-020]
+    principles: [P001, P005]
+    rules: [RULE-004]
+  RR-003:
+    name: Quản lý Execution Lifecycle
+    group: Core
+    owner: Runtime
+    priority: Critical
+    status: Approved
+    authority: Được chuyển state Execution
+    input: Execution
+    output: Lifecycle Event
+    metric: Lifecycle Coverage
+    requirements: [FR-015]
+    principles: [P001, P005]
+    rules: [RULE-004]
+  RR-004:
+    name: Điều phối luồng thực thi
+    group: Core
+    owner: Runtime
+    priority: Critical
+    status: Approved
+    authority: Được điều phối luồng
+    input: Workflow
+    output: Execution Flow
+    metric: Orchestration Coverage
+    requirements: [FR-004, FR-010]
+    principles: [P001]
+    rules: [RULE-004]
+  RR-005:
+    name: Đọc Workflow Definition
+    group: Execution
+    owner: Runtime
+    priority: Critical
+    status: Approved
+    authority: Được đọc Workflow Definition
+    input: Workflow Store
+    output: Workflow Definition
+    metric: Workflow Load Rate
+    requirements: [FR-002]
+    principles: [P001, P011]
+    rules: [RULE-004]
+  RR-006:
+    name: Resolve Capability
+    group: Execution
+    owner: Runtime
+    priority: Critical
+    status: Approved
+    authority: Được đọc Registry
+    input: Capability Request
+    output: Resolved Capability
+    metric: Capability Resolution Rate
+    requirements: [FR-003]
+    principles: [P007]
+    rules: [RULE-002]
+  RR-007:
+    name: Chọn Agent phù hợp
+    group: Execution
+    owner: Runtime
+    priority: Critical
+    status: Approved
+    authority: Được chọn Agent qua Capability
+    input: Capability
+    output: Agent Selection
+    metric: Agent Select Success
+    requirements: [FR-004]
+    principles: [P007, P001]
+    rules: [RULE-004]
+  RR-008:
+    name: Điều phối thứ tự thực thi
+    group: Execution
+    owner: Runtime
+    priority: High
+    status: Approved
+    authority: Được sắp xếp thứ tự
+    input: Workflow
+    output: Ordered Tasks
+    metric: Order Correctness
+    requirements: [FR-010]
+    principles: [P001, P011]
+    rules: [RULE-004]
+  RR-009:
+    name: Theo dõi tiến trình Execution
+    group: Execution
+    owner: Runtime
+    priority: High
+    status: Approved
+    authority: Được đọc Execution state
+    input: Execution
+    output: Progress Event
+    metric: Execution Traceability
+    requirements: [FR-009, FR-011]
+    principles: [P014, P005]
+    rules: [RULE-014]
+  RR-010:
+    name: Dừng Execution khi cần
+    group: Execution
+    owner: Runtime
+    priority: High
+    status: Approved
+    authority: Được hủy Execution
+    input: Cancel Request
+    output: Terminated Execution
+    metric: Cancel Success Rate
+    requirements: [FR-012, FR-017]
+    principles: [P015]
+    rules: [RULE-012]
+  RR-011:
+    name: Tạo Execution Context
+    group: Context
+    owner: Runtime
+    priority: Critical
+    status: Approved
+    authority: Được tạo Context
+    input: Execution
+    output: Context
+    metric: Context Create Rate
+    requirements: [FR-005]
+    principles: [P001, P009]
+    rules: [RULE-006]
+  RR-012:
+    name: Cấp Context cho Agent
+    group: Context
+    owner: Runtime
+    priority: Critical
+    status: Approved
+    authority: Được cấp Context
+    input: Agent
+    output: Context Grant
+    metric: Context Grant Rate
+    requirements: [FR-005]
+    principles: [P001, P006]
+    rules: [RULE-006]
+  RR-013:
+    name: Thu hồi Context
+    group: Context
+    owner: Runtime
+    priority: High
+    status: Approved
+    authority: Được thu hồi Context
+    input: Execution
+    output: Closed Context
+    metric: Context Close Rate
+    requirements: [FR-005, FR-016]
+    principles: [P009, P006]
+    rules: [RULE-006]
+  RR-014:
+    name: Cô lập Context giữa các Execution
+    group: Context
+    owner: Runtime
+    priority: Critical
+    status: Approved
+    authority: Được cô lập Context
+    input: Context
+    output: Isolated Context
+    metric: Isolation Violations
+    requirements: [FR-016]
+    principles: [P006, P009]
+    rules: [RULE-005]
+  RR-015:
+    name: Khởi tạo State
+    group: State
+    owner: Runtime
+    priority: Critical
+    status: Approved
+    authority: Được tạo State
+    input: Execution
+    output: Initial State
+    metric: State Init Rate
+    requirements: [FR-006]
+    principles: [P001, P009]
+    rules: [RULE-005]
+  RR-016:
+    name: Theo dõi State
+    group: State
+    owner: Runtime
+    priority: High
+    status: Approved
+    authority: Được đọc State
+    input: Execution
+    output: State Snapshot
+    metric: State Read Rate
+    requirements: [FR-006]
+    principles: [P001, P005]
+    rules: [RULE-005]
+  RR-017:
+    name: Chuyển State hợp lệ
+    group: State
+    owner: Runtime
+    priority: High
+    status: Approved
+    authority: Được chuyển State hợp lệ
+    input: State
+    output: New State + Event
+    metric: Invalid Transitions
+    requirements: [FR-006]
+    principles: [P005, P009]
+    rules: [RULE-005]
+  RR-018:
+    name: Kết thúc bằng Terminal State
+    group: State
+    owner: Runtime
+    priority: Critical
+    status: Approved
+    authority: Được kết thúc State
+    input: Execution
+    output: Terminal State
+    metric: Terminal State Rate
+    requirements: [FR-006, FR-015]
+    principles: [P001, P005]
+    rules: [RULE-004, RULE-005]
+  RR-019:
+    name: Điều phối Agent
+    group: Coordination
+    owner: Runtime
+    priority: Critical
+    status: Approved
+    authority: Được điều phối Agent
+    input: Task
+    output: Agent Invocation
+    metric: Orchestration Coverage
+    requirements: [FR-004]
+    principles: [P001, P007]
+    rules: [RULE-004]
+  RR-020:
+    name: Điều phối Capability
+    group: Coordination
+    owner: Runtime
+    priority: Critical
+    status: Approved
+    authority: Được gọi Capability
+    input: Capability Request
+    output: Capability Result
+    metric: Capability Resolution Rate
+    requirements: [FR-003]
+    principles: [P007]
+    rules: [RULE-002]
+  RR-021:
+    name: Đồng bộ Execution
+    group: Coordination
+    owner: Runtime
+    priority: Medium
+    status: Approved
+    authority: Được đồng bộ Execution
+    input: Execution
+    output: Synced State
+    metric: Sync Errors
+    requirements: [FR-010]
+    principles: [P001]
+    rules: [RULE-004]
+  RR-022:
+    name: Điều phối Retry
+    group: Coordination
+    owner: Runtime
+    priority: High
+    status: Approved
+    authority: Được thực hiện Retry
+    input: Failed Task
+    output: Retry Plan
+    metric: Retry Success Rate
+    requirements: [FR-018]
+    principles: [P015]
+    rules: [RULE-012]
+  RR-023:
+    name: Điều phối Cancellation
+    group: Coordination
+    owner: Runtime
+    priority: High
+    status: Approved
+    authority: Được hủy Execution
+    input: Cancel Request
+    output: Cancelled Execution
+    metric: Cancel Success Rate
+    requirements: [FR-012]
+    principles: [P015]
+    rules: [RULE-012]
+  RR-024:
+    name: Điều phối Approval Gate
+    group: Coordination
+    owner: Runtime
+    priority: Medium
+    status: Approved
+    authority: Được chặn/duyệt Gate
+    input: Gate Request
+    output: Gate Decision
+    metric: Gate Compliance
+    requirements: [FR-019]
+    principles: [P016]
+    rules: [RULE-004]
+  RR-025:
+    name: Phát Event
+    group: Observability
+    owner: Runtime
+    priority: High
+    status: Approved
+    authority: Được ghi Event Store
+    input: State Change
+    output: Event
+    metric: Event Coverage
+    requirements: [FR-007]
+    principles: [P005, P014]
+    rules: [RULE-007]
+  RR-026:
+    name: Thu Metrics
+    group: Observability
+    owner: Runtime
+    priority: High
+    status: Approved
+    authority: Được ghi Metrics
+    input: Execution
+    output: Metrics
+    metric: Metrics Emission
+    requirements: [FR-009]
+    principles: [P014]
+    rules: [RULE-014]
+  RR-027:
+    name: Sinh Trace
+    group: Observability
+    owner: Runtime
+    priority: Medium
+    status: Approved
+    authority: Được ghi Trace
+    input: Execution
+    output: Trace
+    metric: Trace Completeness
+    requirements: [FR-009, FR-011]
+    principles: [P014]
+    rules: [RULE-014]
+  RR-028:
+    name: Ghi Audit Trail
+    group: Observability
+    owner: Runtime
+    priority: High
+    status: Approved
+    authority: Được ghi Audit
+    input: Decision
+    output: Audit Record
+    metric: Audit Completeness
+    requirements: [FR-007]
+    principles: [P008, P014]
+    rules: [RULE-007]
+  RR-029:
+    name: Sinh Artifact
+    group: Artifact
+    owner: Runtime
+    priority: High
+    status: Approved
+    authority: Được tạo Artifact
+    input: Agent Output
+    output: Artifact
+    metric: Artifact Produce Rate
+    requirements: [FR-008]
+    principles: [P010]
+    rules: [RULE-009]
+  RR-030:
+    name: Publish Artifact Metadata
+    group: Artifact
+    owner: Runtime
+    priority: High
+    status: Approved
+    authority: Được ghi Artifact metadata
+    input: Artifact
+    output: Artifact Metadata
+    metric: Publish Completeness
+    requirements: [FR-008, FR-020]
+    principles: [P010, P005]
+    rules: [RULE-009]
+  RR-031:
+    name: Không sửa Artifact đã sinh
+    group: Artifact
+    owner: Runtime
+    priority: Critical
+    status: Approved
+    authority: Bị cấm sửa Artifact
+    input: Artifact
+    output: -
+    metric: Mutation Violations
+    requirements: [FR-008]
+    principles: [P010]
+    rules: [RULE-009]
+  RR-032:
+    name: Thực thi Constitution
+    group: Governance
+    owner: Runtime
+    priority: Critical
+    status: Approved
+    authority: Được thực thi Constitution
+    input: Constitution
+    output: Enforcement
+    metric: Constitution Violations
+    requirements: [FR-019]
+    principles: [P020]
+    rules: [RULE-015]
+  RR-033:
+    name: Kiểm tra Contract
+    group: Governance
+    owner: Runtime
+    priority: Critical
+    status: Approved
+    authority: Được kiểm tra Contract
+    input: Contract
+    output: Validation
+    metric: Contract Violations
+    requirements: [FR-014]
+    principles: [P002]
+    rules: [RULE-003]
+  RR-034:
+    name: Áp dụng Policy
+    group: Governance
+    owner: Runtime
+    priority: Medium
+    status: Approved
+    authority: Được áp dụng Policy
+    input: Policy
+    output: Enforcement
+    metric: Policy Compliance
+    requirements: [FR-019]
+    principles: [P016]
+    rules: [RULE-004]
+  RR-035:
+    name: Từ chối Execution vi phạm
+    group: Governance
+    owner: Runtime
+    priority: Critical
+    status: Approved
+    authority: Được từ chối Execution
+    input: Execution
+    output: Rejection
+    metric: Rejection Rate
+    requirements: [FR-013, FR-014]
+    principles: [P020, P002]
+    rules: [RULE-003, RULE-015]

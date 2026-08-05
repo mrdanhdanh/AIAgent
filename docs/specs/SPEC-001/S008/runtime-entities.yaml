@@ -1,0 +1,170 @@
+# SPEC-001 S008 — Runtime Entities (15) v2
+# Tham chieu Canonical Models (SPEC-001A).
+---
+version: "1.0"
+entities:
+  ENT-001:
+    name: Execution
+    canonical_model: RM-001
+    owner: Runtime
+    classification: Execution Data
+    lifecycle: Created → Prepared → Running → Completed → Archived
+    invariants: [Execution có đúng một Context, Execution có đúng một State, Execution có duy nhất một Terminal State, Execution ID toàn cục]
+    references: [Workflow Reference, Context, State, Event, Artifact, Metrics, Trace, Result]
+    identity: ExecutionID
+    version: 1.0.0
+    status: Stable
+  ENT-002:
+    name: Execution Context
+    canonical_model: RM-005
+    owner: Runtime
+    classification: Transient
+    lifecycle: Allocated → Active → Released
+    invariants: [Context isolated, Context không đổi Owner, Không chia sẻ giữa hai Execution]
+    references: [Execution]
+    identity: Execution ContextID
+    version: 1.0.0
+    status: Stable
+  ENT-003:
+    name: Execution State
+    canonical_model: RM-006
+    owner: Runtime
+    classification: Transient
+    lifecycle: Created → Running → Terminal
+    invariants: [State thuộc Runtime, Mọi state change phát Event, State luôn hợp lệ]
+    references: [Execution]
+    identity: Execution StateID
+    version: 1.0.0
+    status: Stable
+  ENT-004:
+    name: Workflow Reference
+    canonical_model: RM-002
+    owner: Workflow
+    classification: Reference Data
+    lifecycle: Draft → Approved → Running → Completed
+    invariants: [Workflow Reference không copy Definition, Workflow không tự thay đổi]
+    references: [Execution]
+    identity: Workflow ReferenceID
+    version: 1.0.0
+    status: Stable
+  ENT-005:
+    name: Capability Reference
+    canonical_model: RM-010
+    owner: Registry
+    classification: Reference Data
+    lifecycle: Registered → Available → Deprecated
+    invariants: [Capability Reference không chứa implementation, Invalid Capability Reference là lỗi]
+    references: [Execution, Agent Assignment]
+    identity: Capability ReferenceID
+    version: 1.0.0
+    status: Stable
+  ENT-006:
+    name: Agent Assignment
+    canonical_model: (execution-specific)
+    owner: Runtime
+    classification: Execution Data
+    lifecycle: Assigned → Active → Released
+    invariants: [Agent không sở hữu, Assignment theo Capability]
+    references: [Execution, Capability Reference]
+    identity: Agent AssignmentID
+    version: 1.0.0
+    status: Stable
+  ENT-007:
+    name: Event
+    canonical_model: RM-007
+    owner: Runtime
+    classification: Persistent Metadata
+    lifecycle: Created → Published → Immutable
+    invariants: [Event không thay đổi, Event không đổi Timestamp, Event chỉ append]
+    references: [Execution, State]
+    identity: EventID
+    version: 1.0.0
+    status: Stable
+  ENT-008:
+    name: Artifact
+    canonical_model: RM-008
+    owner: Runtime
+    classification: Persistent Metadata
+    lifecycle: Created → Published → Consumed → Archived
+    invariants: [Artifact immutable, Artifact không đổi Checksum, Không overwrite]
+    references: [Execution]
+    identity: ArtifactID
+    version: 1.0.0
+    status: Stable
+  ENT-009:
+    name: Metrics
+    canonical_model: (execution-specific)
+    owner: Runtime
+    classification: Persistent Metadata
+    lifecycle: Collected → Emitted → Archived
+    invariants: [Metrics chỉ append, Không chứa Business Data]
+    references: [Execution]
+    identity: MetricsID
+    version: 1.0.0
+    status: Stable
+  ENT-010:
+    name: Trace
+    canonical_model: (execution-specific)
+    owner: Runtime
+    classification: Persistent Metadata
+    lifecycle: Created → Completed → Archived
+    invariants: [Trace chỉ append, Broken Trace là lỗi]
+    references: [Execution]
+    identity: TraceID
+    version: 1.0.0
+    status: Stable
+  ENT-011:
+    name: Resource Allocation
+    canonical_model: (execution-specific)
+    owner: Runtime
+    classification: Execution Data
+    lifecycle: Allocated → Active → Released
+    invariants: [Không rò rỉ tài nguyên, Phạm vi một Execution]
+    references: [Execution]
+    identity: Resource AllocationID
+    version: 1.0.0
+    status: Stable
+  ENT-012:
+    name: Execution Result
+    canonical_model: RM-012
+    owner: Runtime
+    classification: Persistent Metadata
+    lifecycle: Created → Published → Consumed → Archived
+    invariants: [Result immutable, Result tổng hợp từ Artifact + Metrics, Missing Result là lỗi]
+    references: [Execution, Artifact]
+    identity: Execution ResultID
+    version: 1.0.0
+    status: Stable
+  ENT-013:
+    name: Execution Snapshot
+    canonical_model: (execution-specific)
+    owner: Runtime
+    classification: Persistent Metadata
+    lifecycle: Captured → Stored → Restored
+    invariants: [Snapshot immutable, Snapshot phục vụ Replay/Simulation/Resume]
+    references: [Execution, State, Context]
+    identity: Execution SnapshotID
+    version: 1.0.0
+    status: Stable
+  ENT-014:
+    name: Execution Lineage
+    canonical_model: (execution-specific)
+    owner: Runtime
+    classification: Persistent Metadata
+    lifecycle: Created → Completed
+    invariants: [Lineage chỉ append, Invalid Lineage là lỗi, Event Ordering theo Lineage]
+    references: [Execution, Event]
+    identity: Execution LineageID
+    version: 1.0.0
+    status: Stable
+  ENT-015:
+    name: Execution Metadata
+    canonical_model: RM-011
+    owner: Runtime
+    classification: Metadata
+    lifecycle: Created → Published
+    invariants: [Execution luôn có Metadata, Missing Metadata là lỗi]
+    references: [Execution]
+    identity: Execution MetadataID
+    version: 1.0.0
+    status: Stable

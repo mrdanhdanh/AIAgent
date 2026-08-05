@@ -1,0 +1,77 @@
+# SPEC-001A — Runtime Model Registry
+# Doctor/Dashboard doc mot file.
+---
+version: "1.0"
+models:
+  RM-001:
+    name: Execution
+    owner: Runtime
+    version: 1.0.0
+    status: Stable
+    lifecycle: Created → Running → Completed → Archived
+  RM-002:
+    name: Workflow
+    owner: Workflow
+    version: 1.0.0
+    status: Stable
+    lifecycle: Draft → Approved → Running → Completed → Archived
+  RM-003:
+    name: Phase
+    owner: Workflow
+    version: 1.0.0
+    status: Stable
+    lifecycle: Pending → Running → Completed
+  RM-004:
+    name: Task
+    owner: Phase
+    version: 1.0.0
+    status: Stable
+    lifecycle: Queued → Running → Completed → Failed
+  RM-005:
+    name: Context
+    owner: Runtime
+    version: 1.0.0
+    status: Stable
+    lifecycle: Created → Active → Closed
+  RM-006:
+    name: State
+    owner: Runtime
+    version: 1.0.0
+    status: Stable
+    lifecycle: Created → Running → Terminal
+  RM-007:
+    name: Event
+    owner: Runtime
+    version: 1.0.0
+    status: Stable
+    lifecycle: Created → Published → Immutable
+  RM-008:
+    name: Artifact
+    owner: Runtime
+    version: 1.0.0
+    status: Stable
+    lifecycle: Created → Published → Consumed → Archived
+  RM-009:
+    name: Contract
+    owner: Component
+    version: 1.0.0
+    status: Stable
+    lifecycle: Draft → Published → Deprecated
+  RM-010:
+    name: Capability
+    owner: Registry
+    version: 1.0.0
+    status: Stable
+    lifecycle: Registered → Available → Deprecated → Removed
+  RM-011:
+    name: Metadata
+    owner: Varies
+    version: 1.0.0
+    status: Stable
+    lifecycle: Draft → Published
+  RM-012:
+    name: Execution Result
+    owner: Runtime
+    version: 1.0.0
+    status: Stable
+    lifecycle: Created → Published → Consumed → Archived

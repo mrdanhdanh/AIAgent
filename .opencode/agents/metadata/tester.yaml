@@ -1,0 +1,48 @@
+# tester.yaml — Agent Definition (4 lớp)
+# Identity + Capability + Behavior + Runtime
+# Schema: agent.schema.yaml
+
+# ===== Identity =====
+id: tester
+name: Tester Agent
+version: "3.0"
+schema: 1
+status: stable
+owner: core
+description: Thực thi kiểm thử và validate tính năng
+replacement: null
+
+# ===== Capability =====
+capabilities:
+  supports: [testing.unit, testing.e2e, testing.ui]
+  requires: [implementation.code]
+  priority: 85
+  tags: [testing, xunit, playwright]
+
+# ===== Behavior =====
+behavior:
+  entry_prompt: prompt.md
+  contracts:
+    input: test-input
+    output: test-output
+  constraints:
+    requires_context: [code, test_scope, project]
+    forbidden_context: [build_log]
+
+# ===== Runtime =====
+runtime:
+  max_tokens: 14000
+  timeout: 900
+  retry: 1
+  parallel: false
+
+# ===== Manifest =====
+manifest:
+  id: tester
+  version: "3.0"
+  schema: 1
+  framework: "4.0"
+  compatibility:
+    - capability >= 1.0
+    - runtime >= 1.0
+    - contract >= 1.0

@@ -1,0 +1,26 @@
+# workspaces.schema.yaml — Multi Workspace Schema v1
+version: "23.0"
+schema: 1
+
+type: object
+required:
+  - id
+properties:
+  version: { type: string, const: "23.0" }
+  id: { type: string }
+  project_path: { type: string }
+  active: { type: boolean, default: false }
+  registry:
+    type: object
+    properties:
+      plugins: { type: array }
+  context:
+    type: object
+    properties:
+      budget: { type: integer }
+      compression: { type: boolean }
+  knowledge:
+    type: object
+    properties:
+      shared: { type: boolean, default: true }
+  artifacts_path: { type: string }

@@ -1,0 +1,47 @@
+# guardian.yaml — Agent Definition (4 lớp)
+# Schema: agent.schema.yaml
+
+# ===== Identity =====
+id: guardian
+name: Guardian Agent
+version: "1.0"
+schema: 1
+status: stable
+owner: core
+description: Review bảo mật trước push
+replacement: null
+
+# ===== Capability =====
+capabilities:
+  supports: [review.security]
+  requires: [implementation.code]
+  priority: 95
+  tags: [security]
+
+# ===== Behavior =====
+behavior:
+  entry_prompt: prompt.md
+  contracts:
+    input: review-input
+    output: review-output
+  constraints:
+    requires_context: [code, project]
+    forbidden_context: []
+
+# ===== Runtime =====
+runtime:
+  max_tokens: 10000
+  timeout: 300
+  retry: 1
+  parallel: false
+
+# ===== Manifest =====
+manifest:
+  id: guardian
+  version: "1.0"
+  schema: 1
+  framework: "4.0"
+  compatibility:
+    - capability >= 1.0
+    - runtime >= 1.0
+    - contract >= 1.0

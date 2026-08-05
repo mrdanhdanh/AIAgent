@@ -1,0 +1,25 @@
+# AIOS Governance Review Cycle
+# D005 — Evolution Engine tự nhắc review theo chu kỳ.
+---
+version: "1.0"
+
+review_cycle:
+  principles: yearly
+  rules: quarterly
+  specifications: monthly
+  plugins: monthly
+  policies: quarterly
+  manifest: yearly
+  glossary: yearly
+  governance: quarterly
+
+# Lần review gần nhất / kế tiếp
+last_review:
+  principles: "2026-08-03"
+  rules: "2026-08-03"
+  governance: "2026-08-03"
+
+next_review:
+  principles: "2027-08-03"
+  rules: "2026-11-03"
+  governance: "2026-11-03"

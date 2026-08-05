@@ -1,0 +1,55 @@
+# SPEC-001 S002 — Requirements Index
+# Registry nhanh cho Runtime/Doctor/Dashboard.
+---
+version: "1.0"
+requirements:
+  FR-001: { title: Initialize Execution, type: Functional, priority: Critical, category: Core, status: Approved }
+  FR-002: { title: Load Workflow, type: Functional, priority: Critical, category: Core, status: Approved }
+  FR-003: { title: Resolve Capability, type: Functional, priority: Critical, category: Core, status: Approved }
+  FR-004: { title: Orchestrate Agent, type: Functional, priority: Critical, category: Execution, status: Approved }
+  FR-005: { title: Manage Context, type: Functional, priority: Critical, category: State, status: Approved }
+  FR-006: { title: Manage State, type: Functional, priority: Critical, category: State, status: Approved }
+  FR-007: { title: Emit Event, type: Functional, priority: High, category: Events, status: Approved }
+  FR-008: { title: Produce Artifact, type: Functional, priority: High, category: Data, status: Approved }
+  FR-009: { title: Collect Metrics, type: Functional, priority: High, category: Observability, status: Approved }
+  FR-010: { title: Support Simulation, type: Functional, priority: Medium, category: Execution, status: Approved }
+  FR-011: { title: Support Replay, type: Functional, priority: Medium, category: Execution, status: Approved }
+  FR-012: { title: Support Cancellation, type: Functional, priority: Medium, category: Execution, status: Approved }
+  FR-013: { title: Validate Workflow, type: Functional, priority: Critical, category: Core, status: Approved }
+  FR-014: { title: Validate Contract, type: Functional, priority: Critical, category: Core, status: Approved }
+  FR-015: { title: Manage Execution Lifecycle, type: Functional, priority: Critical, category: Execution, status: Approved }
+  FR-016: { title: Isolate Execution, type: Functional, priority: High, category: Execution, status: Approved }
+  FR-017: { title: Support Timeout, type: Functional, priority: High, category: Execution, status: Approved }
+  FR-018: { title: Support Retry Policy, type: Functional, priority: High, category: Execution, status: Approved }
+  FR-019: { title: Support Approval Gate, type: Functional, priority: Medium, category: Governance, status: Approved }
+  FR-020: { title: Publish Execution Result, type: Functional, priority: High, category: Data, status: Approved }
+  NFR-001: { title: Deterministic Execution, type: NonFunctional, priority: Critical, category: Execution, status: Approved }
+  NFR-002: { title: Stateless across Executions, type: NonFunctional, priority: Critical, category: Core, status: Approved }
+  NFR-003: { title: Metadata Driven, type: NonFunctional, priority: Critical, category: Core, status: Approved }
+  NFR-004: { title: Extensible, type: NonFunctional, priority: High, category: Core, status: Approved }
+  NFR-005: { title: Observable, type: NonFunctional, priority: High, category: Observability, status: Approved }
+  NFR-006: { title: Testable, type: NonFunctional, priority: High, category: Core, status: Approved }
+  NFR-007: { title: Versioned, type: NonFunctional, priority: High, category: Data, status: Approved }
+  NFR-008: { title: Recoverable, type: NonFunctional, priority: High, category: Core, status: Approved }
+  NFR-009: { title: Security, type: NonFunctional, priority: Critical, category: Core, status: Approved }
+  NFR-010: { title: Auditability, type: NonFunctional, priority: High, category: Governance, status: Approved }
+  NFR-011: { title: Compatibility, type: NonFunctional, priority: High, category: Data, status: Approved }
+  NFR-012: { title: Configurability, type: NonFunctional, priority: High, category: Core, status: Approved }
+  NFR-013: { title: Portability, type: NonFunctional, priority: Medium, category: Core, status: Approved }
+  NFR-014: { title: Performance, type: NonFunctional, priority: High, category: Observability, status: Approved }
+  NFR-015: { title: Fault Isolation, type: NonFunctional, priority: Critical, category: Execution, status: Approved }
+  C-001: { name: No Business Logic, type: Constraint, group: Architectural, status: Approved }
+  C-002: { name: No Direct Agent Call, type: Constraint, group: Architectural, status: Approved }
+  C-003: { name: Only Resolve Capability, type: Constraint, group: Architectural, status: Approved }
+  C-004: { name: No Context After Execution, type: Constraint, group: Operational, status: Approved }
+  C-005: { name: No Artifact Mutation, type: Constraint, group: Operational, status: Approved }
+  C-006: { name: No Contract Skip, type: Constraint, group: Governance, status: Approved }
+  C-007: { name: No Event Skip, type: Constraint, group: Governance, status: Approved }
+  C-008: { name: No Knowledge Write, type: Constraint, group: Security, status: Approved }
+  C-009: { name: Least Privilege, type: Constraint, group: Security, status: Approved }
+  AR-001: { type: Acceptance, status: Approved }
+  AR-002: { type: Acceptance, status: Approved }
+  AR-003: { type: Acceptance, status: Approved }
+  AR-004: { type: Acceptance, status: Approved }
+  AR-005: { type: Acceptance, status: Approved }
+  AR-006: { type: Acceptance, status: Approved }

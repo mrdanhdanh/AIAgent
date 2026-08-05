@@ -1,0 +1,24 @@
+# runtime-manifest.yaml — Workflow Runtime tự khai báo (Phase 1.20)
+# Mẫu tham chiếu. runtime-manifest.json sinh tự động bởi manifest generator (1.23).
+
+runtime:
+  version: 4.0
+  schema: 1.0
+  supports:
+    - workflow
+    - compiler
+    - scheduler
+    - executor
+    - recovery
+    - persistence
+    - state-machine
+    - metrics
+  features:
+    workflow_compiler: true
+    recovery: true
+    metrics: true
+    events: false
+    simulation: false
+  dependencies:
+    - registry >= 1.0
+    - context >= 1.0

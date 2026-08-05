@@ -1,0 +1,246 @@
+# AIOS Constitution Principles — INDEX (Registry-like)
+# D003.5 — Đây là nguồn sự thật cho Policy Engine.
+# Doctor/Dashboard/Evolution đọc file này trước khi vào từng P###.
+---
+version: "1.0"
+principles:
+  P001:
+    file: P001-runtime-first.md
+    name: Runtime First
+    category: Core
+    priority: Critical
+    owner: Runtime Team
+    version: 1.0.0
+    status: Stable
+    normative: MUST
+    requires: [P002, P005, P007]
+    enforced_by: [doctor, runtime, validator]
+    verification: [runtime-direct-call, agent-chain]
+  P002:
+    file: P002-contract-first.md
+    name: Contract First
+    category: Architecture
+    priority: Critical
+    owner: Core Architecture Team
+    version: 1.0.0
+    status: Stable
+    normative: MUST
+    requires: [P001, P003]
+    enforced_by: [doctor, runtime, validator]
+    verification: [direct-call-scan, internal-object-leak]
+  P003:
+    file: P003-metadata-first.md
+    name: Metadata First
+    category: Data
+    priority: Critical
+    owner: Core Data Team
+    version: 1.0.0
+    status: Stable
+    normative: MUST
+    requires: [P002, P009]
+    enforced_by: [doctor, runtime, validator]
+    verification: [metadata-presence]
+  P004:
+    file: P004-everything-is-versioned.md
+    name: Everything is Versioned
+    category: Data
+    priority: High
+    owner: Core Data Team
+    version: 1.0.0
+    status: Stable
+    normative: MUST
+    requires: [P003, P010]
+    enforced_by: [doctor, runtime, validator]
+    verification: [version-presence]
+  P005:
+    file: P005-event-driven.md
+    name: Event Driven
+    category: Execution
+    priority: Critical
+    owner: Runtime Team
+    version: 1.0.0
+    status: Stable
+    normative: MUST
+    requires: [P001]
+    enforced_by: [doctor, runtime, validator]
+    verification: [event-coverage, event-emission]
+  P006:
+    file: P006-stateless-agent.md
+    name: Stateless Agent
+    category: Execution
+    priority: Critical
+    owner: Runtime Team
+    version: 1.0.0
+    status: Stable
+    normative: MUST
+    requires: [P001, P009]
+    enforced_by: [doctor, runtime, validator]
+    verification: [agent-state-check]
+  P007:
+    file: P007-capability-driven.md
+    name: Capability Driven
+    category: Execution
+    priority: Critical
+    owner: Runtime Team
+    version: 1.0.0
+    status: Stable
+    normative: MUST
+    requires: [P001]
+    enforced_by: [doctor, runtime, validator]
+    verification: [capability-not-agent]
+  P008:
+    file: P008-single-responsibility.md
+    name: Single Responsibility
+    category: Architecture
+    priority: High
+    owner: Core Architecture Team
+    version: 1.0.0
+    status: Stable
+    normative: MUST
+    requires: [P001, P007]
+    enforced_by: [doctor, validator]
+    verification: [responsibility-check]
+  P009:
+    file: P009-single-source-of-truth.md
+    name: Single Source of Truth
+    category: Data
+    priority: Critical
+    owner: Core Data Team
+    version: 1.0.0
+    status: Stable
+    normative: MUST
+    requires: [P003, P006]
+    enforced_by: [doctor, validator]
+    verification: [duplicate-check]
+  P010:
+    file: P010-immutable-artifact.md
+    name: Immutable Artifact
+    category: Data
+    priority: Critical
+    owner: Artifact Team
+    version: 1.0.0
+    status: Stable
+    normative: MUST
+    requires: [P004]
+    enforced_by: [doctor, runtime, validator]
+    verification: [artifact-overwrite-check]
+  P011:
+    file: P011-explicit-dependency.md
+    name: Explicit Dependency
+    category: Architecture
+    priority: High
+    owner: Core Architecture Team
+    version: 1.0.0
+    status: Stable
+    normative: MUST
+    requires: [P001, P013]
+    enforced_by: [doctor, validator]
+    verification: [hidden-dependency]
+  P012:
+    file: P012-plugin-first.md
+    name: Plugin First
+    category: Platform
+    priority: Critical
+    owner: Platform Team
+    version: 1.0.0
+    status: Stable
+    normative: MUST
+    requires: [P001, P007]
+    enforced_by: [doctor, runtime, validator]
+    verification: [core-modification-check, plugin-sandbox]
+  P013:
+    file: P013-simulation-before-execution.md
+    name: Simulation Before Execution
+    category: Evolution
+    priority: High
+    owner: Evolution Team
+    version: 1.0.0
+    status: Stable
+    normative: MUST
+    requires: [P011, P015, P016]
+    enforced_by: [doctor, runtime]
+    verification: [simulation-gate]
+  P014:
+    file: P014-observability-first.md
+    name: Observability First
+    category: Platform
+    priority: High
+    owner: Platform Team
+    version: 1.0.0
+    status: Stable
+    normative: MUST
+    requires: [P005, P009]
+    enforced_by: [doctor, runtime]
+    verification: [observability-check, metrics-emission]
+  P015:
+    file: P015-fail-safe.md
+    name: Fail Safe
+    category: Security
+    priority: Critical
+    owner: Security Team
+    version: 1.0.0
+    status: Stable
+    normative: MUST
+    requires: [P004, P010, P013]
+    enforced_by: [doctor, runtime]
+    verification: [error-handling-check, rollback-check]
+  P016:
+    file: P016-human-approval.md
+    name: Human Approval
+    category: Governance
+    priority: Critical
+    owner: Governance Team
+    version: 1.0.0
+    status: Stable
+    normative: MUST
+    requires: [P013, P020]
+    enforced_by: [doctor, runtime]
+    verification: [approval-check, policy-gate]
+  P017:
+    file: P017-ai-native.md
+    name: AI Native
+    category: Evolution
+    priority: High
+    owner: Evolution Team
+    version: 1.0.0
+    status: Stable
+    normative: MUST
+    requires: [P003, P020]
+    enforced_by: [doctor, validator]
+    verification: [machine-readable-check]
+  P018:
+    file: P018-evolvable.md
+    name: Evolvable
+    category: Evolution
+    priority: High
+    owner: Evolution Team
+    version: 1.0.0
+    status: Stable
+    normative: MUST
+    requires: [P002, P004]
+    enforced_by: [doctor, validator]
+    verification: [migration-check, compatibility-check]
+  P019:
+    file: P019-open-extension-closed-core.md
+    name: Open Extension, Closed Core
+    category: Architecture
+    priority: Critical
+    owner: Core Architecture Team
+    version: 1.0.0
+    status: Stable
+    normative: MUST
+    requires: [P003, P012]
+    enforced_by: [doctor, validator]
+    verification: [core-modification-check]
+  P020:
+    file: P020-constitution-first.md
+    name: Constitution First
+    category: Governance
+    priority: Critical
+    owner: Governance Team
+    version: 1.0.0
+    status: Stable
+    normative: MUST
+    requires: [P001, P002, P016]
+    enforced_by: [doctor, validator]
+    verification: [constitution-conflict-check]

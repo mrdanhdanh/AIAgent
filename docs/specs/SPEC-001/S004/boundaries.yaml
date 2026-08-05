@@ -1,0 +1,57 @@
+# SPEC-001 S004 — Runtime Boundaries (Firewall của Runtime)
+# 9 boundary + hierarchy + severity + violations + metrics + evolution.
+---
+id: SPEC-001-S004
+name: Runtime Boundaries
+version: "1.0.0"
+status: Approved
+frozen: true
+frozen_date: "2026-08-04"
+owner: Runtime Team
+hierarchy:
+  Runtime Boundary:
+    - B001-ownership
+    - B002-permission
+    - B003-delegation
+    - B004-dependency
+    - B005-interface
+    - B006-state
+    - B007-data
+    - B008-failure
+    - B009-security
+decision:
+  - Nếu một chức năng không xác định được Boundary, chức năng đó không được phép đưa vào Runtime.
+invariants:
+  - Runtime không vượt quá Boundary.
+  - Runtime không mở rộng Responsibility nếu chưa cập nhật Constitution.
+  - Runtime chỉ giao tiếp qua Contract.
+  - Runtime chỉ phụ thuộc vào Abstraction.
+  - Runtime không biết implementation của Agent.
+  - Runtime không biết implementation của Plugin.
+validation:
+  - Có Business Logic trong Runtime không?
+  - Runtime có gọi Agent cụ thể không?
+  - Runtime có phụ thuộc Plugin cụ thể không?
+  - Runtime có truy cập Database trực tiếp không?
+  - Runtime có ghi Knowledge không?
+  - Runtime có vi phạm Layering không?
+  - Runtime có giao tiếp ngoài Contract không?
+boundaries:
+  B009-security:
+    name: Security Boundary
+    severity: Critical
+    version: 1.0.0
+    status: Stable
+    allowed: [Kiểm tra Contract, Kiểm tra Policy, Kiểm tra Permission]
+    not_manage: [Identity, Authentication, Authorization của hệ thống]
+    violation: Runtime quản lý Identity/Auth
+    impact: Critical
+    detected_by: Doctor
+    metric: Security Violations
+    target: 0
+    principles: [P016]
+    rules: [RULE-008]
+mapping:
+  B009-security: { principle: P016, rule: RULE-008 }
+metrics:
+  Security Violations: 0

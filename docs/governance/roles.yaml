@@ -1,0 +1,51 @@
+# AIOS Governance Roles
+# D005 — Ai chịu trách nhiệm gì. Approval Policy dựa vào đây.
+---
+version: "1.0"
+
+roles:
+  architecture_board:
+    name: Architecture Board
+    responsibilities:
+      - approve_constitution
+      - approve_architecture
+      - approve_principles
+      - approve_rules
+    can_approve: [constitution, architecture, principles, rules]
+  core_owner:
+    name: Core Owner
+    responsibilities:
+      - core_spec
+      - core_evolution
+    can_approve: [core_spec, core_change]
+  runtime_owner:
+    name: Runtime Owner
+    responsibilities:
+      - runtime_spec
+      - runtime_release
+      - runtime_state
+    can_approve: [runtime_spec, runtime_release]
+  plugin_owner:
+    name: Plugin Owner
+    responsibilities:
+      - plugin_validation
+      - plugin_enable
+      - plugin_remove
+    can_approve: [plugin_enable, plugin_remove]
+  spec_owner:
+    name: Spec Owner
+    responsibilities:
+      - spec_maintenance
+      - spec_lifecycle
+    can_approve: [spec_review]
+
+# Ai approve gì (mapping chính)
+approval_matrix:
+  constitution: architecture_board
+  architecture: architecture_board
+  principles: architecture_board
+  rules: architecture_board
+  runtime_release: runtime_owner
+  plugin_enable: plugin_owner
+  spec_review: spec_owner
+  core_change: core_owner

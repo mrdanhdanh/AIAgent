@@ -1,0 +1,22 @@
+# SPEC-001 S006 — Component Dependencies (C007) v2
+# DAG: Orchestrator -> Services. Khong vong lap. Doctor validate.
+---
+version: "1.0"
+dependencies:
+  Execution Manager: [Workflow Loader, Context Manager, State Manager, Execution Resource Manager, Event Dispatcher, Artifact Dispatcher, Metrics Collector, Execution Orchestrator]
+  Execution Orchestrator: [Capability Resolver, Policy Engine]
+  Context Manager: []
+  State Manager: [Event Dispatcher]
+  Policy Engine: [Registry Resolver]
+  Workflow Loader: []
+  Capability Resolver: [Registry Resolver]
+  Registry Resolver: []
+  Event Dispatcher: []
+  Artifact Dispatcher: []
+  Metrics Collector: [Event Dispatcher]
+  Execution Resource Manager: []
+constraints:
+  - Phải là DAG.
+  - Không vòng lặp.
+  - Không phụ thuộc ngoài Contract.
+  - Higher orchestration depends on lower service.

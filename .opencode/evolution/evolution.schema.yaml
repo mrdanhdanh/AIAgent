@@ -1,0 +1,75 @@
+# evolution.schema.yaml — Evolution Proposal Object Schema v1
+# Proposal = object chuẩn (không phải Markdown) — Dashboard/Doctor/Simulation/Approval/Migration xử lý.
+version: "10.0"
+schema: 1
+
+type: object
+required:
+  - id
+  - category
+  - title
+  - status
+properties:
+  id: { type: string, description: "EVO-NNN" }
+  category:
+    type: string
+    enum: [performance, architecture, context, capability, workflow,
+           knowledge, runtime, quality]
+  title: { type: string }
+  priority:
+    type: string
+    enum: [low, medium, high, critical]
+  reason: { type: string, description: lý do từ pattern/analysis }
+
+  impact:
+    type: object
+    properties:
+      affected: { type: array, description: entity bị ảnh hưởng }
+      estimated_gain: { type: string, description: "-35% tokens" }
+      risk: { type: string, enum: [low, medium, high] }
+
+  migration:
+    type: object
+    properties:
+      steps: { type: array }
+      backward_compatible: { type: boolean }
+
+  simulation:
+    type: object
+    properties:
+      id: { type: string }
+      risk_score: { type: number }
+      confidence: { type: number }
+      result: { type: string, enum: [pass, fail] }
+
+  backtest:
+    type: object
+    properties:
+      replayed: { type: integer, description: số workflow backtest }
+      improved: { type: boolean }
+      gain_pct: { type: number }
+
+  approval:
+    type: object
+    properties:
+      required: { type: boolean, default: true }
+      approved_by: { type: string }
+      approved_at: { type: string }
+      decision: { type: string, enum: [approved, rejected] }
+
+  status:
+    type: string
+    enum: [proposed, under-review, approved, rejected, applied, failed]
+
+  version:
+    type: string
+    description: framework version sau khi apply
+
+  created_at: { type: string }
+  created_by: { type: string, description: engine/plugin/manual }
+
+# Quy ước:
+# - Proposal KHÔNG tự apply — luôn qua approval gate.
+# - Simulation bắt buộc; Backtest nâng cao trước khi apply.
+# - Learning loop: nếu applied mà không cải thiện → không đề xuất lại.
+# - Plugin có thể đăng ký proposal riêng (Phase 11).

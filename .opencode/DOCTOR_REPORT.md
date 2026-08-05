@@ -1,7 +1,7 @@
 ﻿# Doctor Report
 
-**Generated:** 2026-08-01 00:56:56
-**Mode:** evolve
+**Generated:** 2026-08-02 22:23:07
+**Mode:** full
 **Doctor:** v2.0.0
 
 ---
@@ -10,32 +10,32 @@
 
 | Category | Score | Status |
 |----------|-------|--------|
-| Agents | 100/100 | PASS |
-| CapabilityEngine | 84/100 | PASS |
-| Commands | 100/100 | PASS |
-| Compatibility | 70/100 | WARNING |
-| Contracts | 100/100 | PASS |
-| Environment | 90/100 | PASS |
-| HealthScore | 76/100 | WARNING |
+| Compatibility | 100/100 | PASS |
+| RuntimeEngine | 100/100 | PASS |
 | Knowledge | 90/100 | PASS |
-| KnowledgeMigrate | 70/100 | WARNING |
-| Migration | 10/100 | ERROR |
-| RuntimeEngine | 88/100 | WARNING |
-| SemanticDiff | 55/100 | WARNING |
-| Skills | 96/100 | PASS |
-| Stress | 50/100 | ERROR |
 | Workflow | 100/100 | PASS |
-| **OVERALL** | **87/100** | |
+| Commands | 100/100 | PASS |
+| Environment | 90/100 | PASS |
+| Agents | 100/100 | PASS |
+| CapabilityEngine | 85/100 | PASS |
+| Benchmark | 83/100 | PASS |
+| Runtime | 100/100 | PASS |
+| SemanticDiff | 55/100 | WARNING |
+| Contracts | 100/100 | PASS |
+| Skills | 80/100 | PASS |
+| KnowledgeMigrate | 100/100 | PASS |
+| Simulation | 100/100 | PASS |
+| Migration | 100/100 | PASS |
+| Stress | 50/100 | ERROR |
+| **OVERALL** | **93/100** | |
 
 ## Runtime Health (Simulation Engine)
 
 | Metric | Value |
 |--------|-------|
-| Runtime Health | 88/100 |
-| Verdict | WARNING |
+| Runtime Health | 100/100 |
+| Verdict | STABLE |
 
-- Review loi SKILL_DEPRECATED_CONTENT (2x)
-- Review loi COMMAND_TRIGGER_ROUTING (1x)
 
 ---
 
@@ -43,7 +43,7 @@
 
 | Metric | Value |
 |--------|-------|
-| Capability Score | 84/100 |
+| Capability Score | 85/100 |
 | Verdict | STRONG |
 | Task simulation pass | 100% |
 
@@ -53,14 +53,14 @@
 |--------|-------|--------|
 | Git | 93/100 | 3 |
 | Planning | 93/100 | 7 |
+| Testing | 91/100 | 5 |
 | Security | 90/100 | 4 |
-| Testing | 90/100 | 5 |
-| Blazor | 87/100 | 5 |
-| UI/UX | 83/100 | 7 |
-| Orchestration | 82/100 | 13 |
-| Scripting | 76/100 | 9 |
-| Docs | 74/100 | 7 |
-| Database | 67/100 | 8 |
+| Blazor | 89/100 | 6 |
+| Orchestration | 82/100 | 14 |
+| UI/UX | 82/100 | 8 |
+| Scripting | 79/100 | 8 |
+| Docs | 79/100 | 8 |
+| Database | 71/100 | 9 |
 
 ---
 
@@ -83,94 +83,101 @@
 
 ---
 
-## Evolution Health Score
-
-| Category | Score |
-|----------|-------|
-| Agents | 15/100 |
-| Capability | 84/100 |
-| Compatibility | 70/100 |
-| Knowledge | 70/100 |
-| Learning | 90/100 |
-| Runtime | 88/100 |
-| Scripts | 84/100 |
-| Skills | 85/100 |
-| Tests | 100/100 |
-| Workflow | 100/100 |
-| **Overall** | **76/100** |
-
-- Compatibility score low (70/100) - check contract mismatches
-
----
-
 ## Suggested Actions
 
 ### HIGH
 
-- Migration score low (10/100)
-- Migration tasks required - run /team-syncdocs --migration
+- knowledge: missing SKILL.md
 
 ### MEDIUM
 
 - SemanticDiff score moderate (55/100)
 - Stress score moderate (50/100)
-- KnowledgeMigrate score moderate (70/100)
-- Compatibility score moderate (70/100)
-- HealthScore score moderate (76/100)
-- MISSING_CONTRACT: Agent failure-agent has no contract definition
-- MISSING_CONTRACT: Agent learning-agent has no contract definition
-- MISSING_CONTRACT: Agent root-cause-agent has no contract definition
-- 9 migration task(s), 8 affected agent(s)
-- SKILL_DEPRECATED_CONTENT: Skill dev-team chua tu 'deprecated/outdated/legacy' trong noi dung
-- SKILL_DEPRECATED_CONTENT: Skill impeccable chua tu 'deprecated/outdated/legacy' trong noi dung
-- COMMAND_TRIGGER_ROUTING: Command /impeccable dung opencode.json agent 'ui-beautifier' thay cho frontmatter agent
 - Stress test success rate 40% (verdict UNSTABLE)
-- Runtime health 88/100 (WARNING)
-- Compatibility issues - run /team-syncdocs --compatibility for details
 
 ### LOW
 
-- Skills minor gaps (96/100)
+- Skills minor gaps (80/100)
+- Benchmark minor gaps (83/100)
 - Knowledge minor gaps (90/100)
-- RuntimeEngine minor gaps (88/100)
-- CapabilityEngine minor gaps (84/100)
+- CapabilityEngine minor gaps (85/100)
 - Environment minor gaps (90/100)
 - OpenCode version not detectable
 - No API keys in environment - check OpenCode auth
-- backup: no flags/modes documented
-- impeccable: no flags/modes documented
-- impeccable: no output contract section
-- team-analyze-failure: no flags/modes documented
-- team-analyze: no flags/modes documented
-- team-analyze: no output contract section
-- team-build: no flags/modes documented
-- team-build: no output contract section
-- team-cleanup: no output contract section
-- team-doctor: no flags/modes documented
-- team-doctor: no output contract section
-- team-explore: no flags/modes documented
-- team-explore: no output contract section
-- team-gitguard: no flags/modes documented
-- team-gitguard: no output contract section
-- team-gitpush: no flags/modes documented
-- team-gitpush: no output contract section
-- team-learn: no flags/modes documented
-- team-plan: no flags/modes documented
-- team-plan: no output contract section
-- team-review: no flags/modes documented
-- team-root-cause: no flags/modes documented
-- team-selfimprove: no flags/modes documented
-- team-test: no flags/modes documented
-- team-test: no output contract section
-- team-testplan: no flags/modes documented
-- team-testplan: no output contract section
-- dev-team: contains deprecated/outdated markers
-- impeccable: contains deprecated/outdated markers
+- approve-test: not registered in opencode.json
+- approve-test: no flags/modes documented
+- approve-test: no output contract section
+- ask: not registered in opencode.json
+- ask: no flags/modes documented
+- ask: no output contract section
+- compare-doc: not registered in opencode.json
+- compare-doc: no flags/modes documented
+- compare-doc: no output contract section
+- doctor-test: not registered in opencode.json
+- doctor-test: no flags/modes documented
+- doctor-test: no output contract section
+- explain: not registered in opencode.json
+- explain: no flags/modes documented
+- flow: not registered in opencode.json
+- flow: no flags/modes documented
+- flow: no output contract section
+- impact: not registered in opencode.json
+- impact: no flags/modes documented
+- impact: no output contract section
+- knowledge-ask: no flags/modes documented
+- knowledge-compare-doc: no flags/modes documented
+- knowledge-explain: no flags/modes documented
+- knowledge-flow: no flags/modes documented
+- knowledge-health: no flags/modes documented
+- knowledge-impact: no flags/modes documented
+- knowledge-trace: no flags/modes documented
+- knowledge-where: no flags/modes documented
+- knowledge-why: no flags/modes documented
+- knowledge: no flags/modes documented
+- team-capabilities: not registered in opencode.json
+- team-capabilities: no flags/modes documented
+- team-capabilities: no output contract section
+- team-runtime-benchmark: not registered in opencode.json
+- team-runtime-benchmark: no flags/modes documented
+- team: no flags/modes documented
+- team: no output contract section
+- test-accessibility: not registered in opencode.json
+- test-accessibility: no flags/modes documented
+- test-accessibility: no output contract section
+- test-audit: not registered in opencode.json
+- test-audit: no flags/modes documented
+- test-audit: no output contract section
+- test-bootstrap: not registered in opencode.json
+- test-bootstrap: no output contract section
+- test-cross-browser: not registered in opencode.json
+- test-cross-browser: no output contract section
+- test-e2e: not registered in opencode.json
+- test-e2e: no output contract section
+- test-evolve: not registered in opencode.json
+- test-evolve: no flags/modes documented
+- test-evolve: no output contract section
+- test-plan: not registered in opencode.json
+- test-plan: no flags/modes documented
+- test-plan: no output contract section
+- test-regression: not registered in opencode.json
+- test-regression: no flags/modes documented
+- test-regression: no output contract section
+- test-ui: not registered in opencode.json
+- test-ui: no output contract section
+- test-visual: not registered in opencode.json
+- test-visual: no output contract section
+- trace: not registered in opencode.json
+- trace: no flags/modes documented
+- trace: no output contract section
+- where: not registered in opencode.json
+- where: no flags/modes documented
+- where: no output contract section
+- why: not registered in opencode.json
+- why: no flags/modes documented
+- why: no output contract section
 - Missing topic coverage: react, angular, oracle, sql, python, git, dotnet, powerapps
 - 2 file(s) reference deprecated frameworks
-- 2 deprecated knowledge file(s)
-- Runtime suggestion: Review loi SKILL_DEPRECATED_CONTENT (2x)
-- Runtime suggestion: Review loi COMMAND_TRIGGER_ROUTING (1x)
+- Run /doctor --health for evolution-aligned Health Score
 
 ---
 
@@ -178,45 +185,45 @@
 
 - [WARNING] Environment: OpenCode version not detectable
 - [WARNING] Environment: No API keys in environment - check OpenCode auth
-- [WARNING] Commands: backup: no flags/modes documented
-- [WARNING] Commands: impeccable: no flags/modes documented
-- [WARNING] Commands: impeccable: no output contract section
-- [WARNING] Commands: team-analyze-failure: no flags/modes documented
-- [WARNING] Commands: team-analyze: no flags/modes documented
-- [WARNING] Commands: team-analyze: no output contract section
-- [WARNING] Commands: team-build: no flags/modes documented
-- [WARNING] Commands: team-build: no output contract section
-- [WARNING] Commands: team-cleanup: no output contract section
-- [WARNING] Commands: team-doctor: no flags/modes documented
-- [WARNING] Commands: team-doctor: no output contract section
-- [WARNING] Commands: team-explore: no flags/modes documented
-- [WARNING] Commands: team-explore: no output contract section
-- [WARNING] Commands: team-gitguard: no flags/modes documented
-- [WARNING] Commands: team-gitguard: no output contract section
-- [WARNING] Commands: team-gitpush: no flags/modes documented
-- [WARNING] Commands: team-gitpush: no output contract section
-- [WARNING] Commands: team-learn: no flags/modes documented
-- [WARNING] Commands: team-plan: no flags/modes documented
-- [WARNING] Commands: team-plan: no output contract section
-- [WARNING] Commands: team-review: no flags/modes documented
-- [WARNING] Commands: team-root-cause: no flags/modes documented
-- [WARNING] Commands: team-selfimprove: no flags/modes documented
-- [WARNING] Commands: team-test: no flags/modes documented
-- [WARNING] Commands: team-test: no output contract section
-- [WARNING] Commands: team-testplan: no flags/modes documented
-- [WARNING] Commands: team-testplan: no output contract section
-- [WARNING] Skills: dev-team: contains deprecated/outdated markers
-- [WARNING] Skills: impeccable: contains deprecated/outdated markers
-- [WARNING] Knowledge: Missing topic coverage: react, angular, oracle, sql, python, git, dotnet, powerapps
-- [WARNING] Knowledge: 2 file(s) reference deprecated frameworks
-- [MAJOR] Compatibility: MISSING_CONTRACT: Agent failure-agent has no contract definition
-- [MAJOR] Compatibility: MISSING_CONTRACT: Agent learning-agent has no contract definition
-- [MAJOR] Compatibility: MISSING_CONTRACT: Agent root-cause-agent has no contract definition
-- [MAJOR] Migration: 9 migration task(s), 8 affected agent(s)
-- [WARNING] KnowledgeMigrate: 2 deprecated knowledge file(s)
-- [MAJOR] RuntimeEngine: SKILL_DEPRECATED_CONTENT: Skill dev-team chua tu 'deprecated/outdated/legacy' trong noi dung
-- [MAJOR] RuntimeEngine: SKILL_DEPRECATED_CONTENT: Skill impeccable chua tu 'deprecated/outdated/legacy' trong noi dung
-- ... and 2 more
+- [WARNING] Commands: approve-test: not registered in opencode.json
+- [WARNING] Commands: approve-test: no flags/modes documented
+- [WARNING] Commands: approve-test: no output contract section
+- [WARNING] Commands: ask: not registered in opencode.json
+- [WARNING] Commands: ask: no flags/modes documented
+- [WARNING] Commands: ask: no output contract section
+- [WARNING] Commands: compare-doc: not registered in opencode.json
+- [WARNING] Commands: compare-doc: no flags/modes documented
+- [WARNING] Commands: compare-doc: no output contract section
+- [WARNING] Commands: doctor-test: not registered in opencode.json
+- [WARNING] Commands: doctor-test: no flags/modes documented
+- [WARNING] Commands: doctor-test: no output contract section
+- [WARNING] Commands: explain: not registered in opencode.json
+- [WARNING] Commands: explain: no flags/modes documented
+- [WARNING] Commands: flow: not registered in opencode.json
+- [WARNING] Commands: flow: no flags/modes documented
+- [WARNING] Commands: flow: no output contract section
+- [WARNING] Commands: impact: not registered in opencode.json
+- [WARNING] Commands: impact: no flags/modes documented
+- [WARNING] Commands: impact: no output contract section
+- [WARNING] Commands: knowledge-ask: no flags/modes documented
+- [WARNING] Commands: knowledge-compare-doc: no flags/modes documented
+- [WARNING] Commands: knowledge-explain: no flags/modes documented
+- [WARNING] Commands: knowledge-flow: no flags/modes documented
+- [WARNING] Commands: knowledge-health: no flags/modes documented
+- [WARNING] Commands: knowledge-impact: no flags/modes documented
+- [WARNING] Commands: knowledge-trace: no flags/modes documented
+- [WARNING] Commands: knowledge-where: no flags/modes documented
+- [WARNING] Commands: knowledge-why: no flags/modes documented
+- [WARNING] Commands: knowledge: no flags/modes documented
+- [WARNING] Commands: team-capabilities: not registered in opencode.json
+- [WARNING] Commands: team-capabilities: no flags/modes documented
+- [WARNING] Commands: team-capabilities: no output contract section
+- [WARNING] Commands: team-runtime-benchmark: not registered in opencode.json
+- [WARNING] Commands: team-runtime-benchmark: no flags/modes documented
+- [WARNING] Commands: team: no flags/modes documented
+- [WARNING] Commands: team: no output contract section
+- [WARNING] Commands: test-accessibility: not registered in opencode.json
+- ... and 37 more
 
 ---
 

@@ -1,0 +1,236 @@
+id: default
+name: Default Development Workflow
+version: 1.0.0
+description: >
+  Workflow day du cho phat trien tinh nang: phan tich yeu cau, thiet ke, lap ke
+  hoach, review, guardrail, backup, build, static analysis, ui audit, test plan,
+  test, skill validation va hoan tat. Dung cho cac task phat trien tong quat.
+default_workflow: default
+
+phases:
+  - id: analyze
+    title: Phan tich yeu cau
+    description: Phan tich yeu cau phat trien, xac dinh pham vi, rui ro.
+    agent: analyst
+    command: team-analyze
+    depends_on: []
+    retry: 3
+    timeout_seconds: 120
+    continue_on_error: false
+    inputs: {}
+    outputs:
+      status: string
+      summary: string
+      requirements:
+        - string
+    expected_result: Hieu ro yeu cau va pham vi truoc khi thiet ke.
+
+  - id: design
+    title: Thiet ke giai phap
+    description: Thiet ke kien truc va component cho giai phap.
+    agent: planner
+    command: team-plan
+    depends_on: [analyze]
+    retry: 3
+    timeout_seconds: 120
+    continue_on_error: false
+    inputs:
+      analysis: object
+    outputs:
+      status: string
+      architecture: string
+      components:
+        - string
+    expected_result: Co thiet ke component, luong du lieu, security concerns.
+
+  - id: plan
+    title: Lap ke hoach thuc thi
+    description: Lap ke hoach thuc thi chi tiet tung buoc.
+    agent: planner
+    command: team-plan
+    depends_on: [design]
+    retry: 3
+    timeout_seconds: 120
+    continue_on_error: false
+    inputs:
+      design: object
+    outputs:
+      status: string
+      steps:
+        - order: int
+          description: string
+          file: string
+    expected_result: Ke hoach co it nhat 1 buoc, co expected_result moi buoc.
+
+  - id: review
+    title: Danh gia ke hoach
+    description: Reviewer danh gia ke hoach va dua quyet dinh.
+    agent: reviewer
+    command: team-review
+    depends_on: [plan]
+    retry: 3
+    timeout_seconds: 120
+    continue_on_error: false
+    inputs:
+      plan: object
+    outputs:
+      decision: string
+      scores:
+        overall: number
+      issues:
+        - severity: string
+    expected_result: Quyet dinh APPROVED hoac CHANGES_REQUESTED ro rang.
+
+  - id: guardrail
+    title: Kiem tra guardrail truoc build
+    description: Kiem tra tinh hop le cua ke hoach truoc khi backup/build.
+    agent: guardian
+    command: team-gitguard
+    depends_on: [review]
+    retry: 3
+    timeout_seconds: 120
+    continue_on_error: false
+    inputs:
+      plan: object
+    outputs:
+      status: string
+      checks:
+        - string
+    expected_result: PASS / WARNING / BLOCKED dua tren 10 checks.
+
+  - id: backup
+    title: Backup truoc khi thay doi
+    description: Backup cac file cu truoc khi build theo plan.
+    command: backup
+    depends_on: [guardrail]
+    retry: 3
+    timeout_seconds: 120
+    continue_on_error: false
+    inputs:
+      plan: object
+    outputs:
+      status: string
+      backup_workflow_id: string
+    expected_result: Backup manifest duoc tao tai .opencode/backup/<WF-ID>/.
+
+  - id: build
+    title: Thuc thi code
+    description: Builder thuc hien cac buoc thay doi code theo ke hoach.
+    agent: builder
+    command: team-build
+    depends_on: [backup]
+    retry: 3
+    timeout_seconds: 120
+    continue_on_error: false
+    inputs:
+      plan: object
+    outputs:
+      status: string
+      changed_files:
+        - string
+      created_files:
+        - string
+    expected_result: Cac thay doi dung theo plan, build pass.
+
+  - id: static_analysis
+    title: Kiem tra tinh tinh
+    description: Kiem tra frontmatter, link, code block balance, YAML samples.
+    agent: general
+    depends_on: [build]
+    retry: 3
+    timeout_seconds: 120
+    continue_on_error: false
+    inputs:
+      changed_files:
+        - string
+    outputs:
+      status: string
+      issues:
+        - string
+    expected_result: Khong con loi tinh tinh nghiem trong.
+
+  - id: ui_audit
+    title: Kiem tra giao dien
+    description: Audit UI/UX, accessibility, responsive, FluentUI consistency.
+    agent: ui-beautifier
+    command: team-ui-audit
+    depends_on: [static_analysis]
+    retry: 3
+    timeout_seconds: 120
+    continue_on_error: false
+    inputs:
+      app_path: string
+    outputs:
+      status: string
+      phases:
+        - string
+    expected_result: Khong co CRITICAL/MAJOR issue o Phase 1 va 3.
+
+  - id: testplan
+    title: Lap ke hoach test
+    description: Lap ke hoach test cho cac thay doi.
+    agent: test-planner
+    command: team-testplan
+    depends_on: [ui_audit]
+    retry: 3
+    timeout_seconds: 120
+    continue_on_error: false
+    inputs:
+      plan: object
+    outputs:
+      status: string
+      test_types:
+        - string
+      test_cases:
+        - string
+    expected_result: Ke hoach test co unit/integration, coverage target.
+
+  - id: test
+    title: Chay kiem thu
+    description: Tester chay unit + integration tests, bao cao coverage.
+    agent: tester
+    command: team-test
+    depends_on: [testplan]
+    retry: 3
+    timeout_seconds: 120
+    continue_on_error: false
+    inputs:
+      test_plan: object
+    outputs:
+      status: string
+      coverage:
+        unit: number
+    expected_result: Tat ca test PASS, coverage >= nguong.
+
+  - id: skill_validation
+    title: De xuat cai tien skill
+    description: Self-improver de xuat cai tien skill/knowledge (optional).
+    agent: self-improver
+    command: team-selfimprove
+    depends_on: [test]
+    retry: 3
+    timeout_seconds: 120
+    continue_on_error: true
+    optional: true
+    inputs:
+      test_result: object
+    outputs:
+      status: string
+      suggestions:
+        - category: string
+    expected_result: Co de xuat cai tien hoac NO_SUGGESTIONS.
+
+  - id: complete
+    title: Hoan tat workflow
+    description: Tong hop ket qua va luu workflow.json snapshot.
+    agent: general
+    depends_on: [skill_validation]
+    retry: 3
+    timeout_seconds: 120
+    continue_on_error: false
+    inputs:
+      all_outputs: object
+    outputs:
+      status: string
+      final_report: string
+    expected_result: Workflow completed, bao cao day du.

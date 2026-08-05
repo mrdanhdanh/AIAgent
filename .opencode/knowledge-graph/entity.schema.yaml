@@ -1,0 +1,32 @@
+# entity.schema.yaml — Entity Schema v1
+# Entity = node trong System Knowledge Graph.
+version: "9.0"
+
+type: object
+required:
+  - id
+  - type
+  - name
+properties:
+  id: { type: string, description: "ENT-NNN hoặc ref id" }
+  type:
+    type: string
+    enum: [framework, language, pattern, component, service, capability,
+           workflow, artifact, agent, command, skill, contract, rule, lesson, failure]
+  name: { type: string }
+  source: { type: string, description: file/registry nguồn }
+  version: { type: string }
+  tags:
+    type: array
+    items: { type: string }
+  description: { type: string }
+
+  # metadata mở rộng theo type
+  properties:
+    type: object
+    description: key-value bổ sung (framework version, agent priority...)
+
+# Quy ước:
+# - Entity type chuẩn hóa — Context/Doctor dùng type để query.
+# - source trỏ về nơi sinh (registry/agents/metadata/...).
+# - tags dùng cho ranking + semantic link.

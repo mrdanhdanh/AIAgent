@@ -1,0 +1,11 @@
+# SPEC-001 S005 — Communication Rules (A004)
+---
+version: "1.0"
+allowed_channels:
+  - Contract
+  - Context
+  - Event
+  - Artifact
+forbidden:
+  - Truc tiep implementation
+  - Shared Mutable State

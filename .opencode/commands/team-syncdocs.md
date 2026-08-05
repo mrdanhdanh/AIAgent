@@ -287,8 +287,11 @@ issues:
 ## SCRIPT
 
 ```powershell
-# Quick sync (legacy mode — chỉ sync docs)
+# Default (no flag) = FULL System Evolution (sync + all 9 engines) — vì $evolutionMode default "full"
 & ".opencode\scripts\sync-system-docs.ps1"
+
+# Chỉ sync docs (legacy mode, không chạy evolution engines)
+& ".opencode\scripts\sync-system-docs.ps1" -evolutionMode none
 
 # Full System Evolution (sync + all 9 engines)
 & ".opencode\scripts\sync-system-docs.ps1" -evolve

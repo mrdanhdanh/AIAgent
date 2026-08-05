@@ -1,0 +1,56 @@
+# categories.yaml — 6 Event Categories + 24 Event Types
+version: "6.0"
+
+categories:
+  workflow:
+    events:
+      - WORKFLOW_CREATED
+      - WORKFLOW_STARTED
+      - WORKFLOW_PAUSED
+      - WORKFLOW_RESUMED
+      - WORKFLOW_COMPLETED
+      - WORKFLOW_FAILED
+
+  phase:
+    events:
+      - PHASE_STARTED
+      - PHASE_COMPLETED
+      - PHASE_SKIPPED
+      - PHASE_FAILED
+
+  agent:
+    events:
+      - AGENT_STARTED
+      - AGENT_COMPLETED
+      - AGENT_FAILED
+      - AGENT_RETRYING
+      - AGENT_DISABLED
+
+  artifact:
+    events:
+      - ARTIFACT_CREATED
+      - ARTIFACT_UPDATED
+      - ARTIFACT_VERSIONED
+      - ARTIFACT_ARCHIVED
+      - ARTIFACT_DELETED
+
+  context:
+    events:
+      - CONTEXT_CREATED
+      - CONTEXT_COMPRESSED
+      - CONTEXT_DELIVERED
+      - CONTEXT_FAILED
+
+  registry:
+    events:
+      - CAPABILITY_REGISTERED
+      - AGENT_REGISTERED
+      - PLUGIN_INSTALLED
+      - PLUGIN_REMOVED
+
+  diagnostic:
+    events:
+      - DIAGNOSTIC_STARTED
+      - DIAGNOSTIC_COMPLETED
+      - DIAGNOSTIC_WARNING
+      - DIAGNOSTIC_FAILED

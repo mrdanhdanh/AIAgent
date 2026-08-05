@@ -1,7 +1,7 @@
 ---
 description: Thực thi kế hoạch đã được đánh giá, viết code và thực hiện thay đổi
 mode: subagent
-model: opencode/deepseek-v4-flash-free
+model: opencode-go/deepseek-v4-flash
 permission:
   read: allow
   grep: allow

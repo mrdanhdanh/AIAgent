@@ -1,0 +1,49 @@
+# SPEC-001 S005 — Architecture Matrix (Layer x Domain x Principle x Boundary) v2
+---
+version: "1.1"
+matrix:
+  Command:
+    level: 1
+    domain: Execution
+    principle: P001
+    boundary: B005-interface
+  Workflow:
+    level: 2
+    domain: Execution
+    principle: P001
+    boundary: B003-delegation
+  Execution:
+    level: 3
+    domain: Execution
+    principle: P001
+    boundary: B001-ownership
+  Coordination:
+    level: 4
+    domain: Coordination
+    principle: P001
+    boundary: B002-permission
+  Capability:
+    level: 5
+    domain: Capability
+    principle: P007
+    boundary: B003-delegation
+  Resolution:
+    level: 6
+    domain: Capability
+    principle: P007
+    boundary: B004-dependency
+  State:
+    level: 7
+    domain: State
+    principle: P009
+    boundary: B006-state
+  Event:
+    level: 8
+    domain: Observability
+    principle: P014
+    boundary: B007-data
+  Publication:
+    level: 9
+    domain: Publication
+    principle: P010
+    boundary: B007-data

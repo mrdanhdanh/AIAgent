@@ -1,0 +1,374 @@
+{
+    "scanned_at":  "2026-08-05T00:19:02.5333115+07:00",
+    "schema":  ".opencode/workflow/schemas/workflow.schema.yaml",
+    "files":  [
+                  {
+                      "status":  "FAIL",
+                      "path":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\workflow\\definitions\\bugfix.workflow.yaml",
+                      "errors":  [
+                                     {
+                                         "code":  "WF-ERR-003",
+                                         "description":  "Thieu required top-level key: name",
+                                         "file":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\workflow\\definitions\\bugfix.workflow.yaml",
+                                         "suggestion":  "Them \u0027name\u0027 vao top-level",
+                                         "line":  null
+                                     },
+                                     {
+                                         "code":  "WF-ERR-003",
+                                         "description":  "Phase \u0027reproduce\u0027 thieu required key: title",
+                                         "file":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\workflow\\definitions\\bugfix.workflow.yaml",
+                                         "suggestion":  "Them \u0027title\u0027 cho phase",
+                                         "line":  21
+                                     },
+                                     {
+                                         "code":  "WF-ERR-003",
+                                         "description":  "Phase \u0027reproduce\u0027 phai co it nhat 1 trong agent|command",
+                                         "file":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\workflow\\definitions\\bugfix.workflow.yaml",
+                                         "suggestion":  "Them agent hoac command",
+                                         "line":  21
+                                     },
+                                     {
+                                         "code":  "WF-ERR-003",
+                                         "description":  "Phase \u0027diagnose\u0027 thieu required key: title",
+                                         "file":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\workflow\\definitions\\bugfix.workflow.yaml",
+                                         "suggestion":  "Them \u0027title\u0027 cho phase",
+                                         "line":  28
+                                     },
+                                     {
+                                         "code":  "WF-ERR-003",
+                                         "description":  "Phase \u0027diagnose\u0027 phai co it nhat 1 trong agent|command",
+                                         "file":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\workflow\\definitions\\bugfix.workflow.yaml",
+                                         "suggestion":  "Them agent hoac command",
+                                         "line":  28
+                                     },
+                                     {
+                                         "code":  "WF-ERR-003",
+                                         "description":  "Phase \u0027fix\u0027 thieu required key: title",
+                                         "file":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\workflow\\definitions\\bugfix.workflow.yaml",
+                                         "suggestion":  "Them \u0027title\u0027 cho phase",
+                                         "line":  36
+                                     },
+                                     {
+                                         "code":  "WF-ERR-003",
+                                         "description":  "Phase \u0027fix\u0027 phai co it nhat 1 trong agent|command",
+                                         "file":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\workflow\\definitions\\bugfix.workflow.yaml",
+                                         "suggestion":  "Them agent hoac command",
+                                         "line":  36
+                                     },
+                                     {
+                                         "code":  "WF-ERR-003",
+                                         "description":  "Phase \u0027verify\u0027 thieu required key: title",
+                                         "file":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\workflow\\definitions\\bugfix.workflow.yaml",
+                                         "suggestion":  "Them \u0027title\u0027 cho phase",
+                                         "line":  44
+                                     },
+                                     {
+                                         "code":  "WF-ERR-003",
+                                         "description":  "Phase \u0027verify\u0027 phai co it nhat 1 trong agent|command",
+                                         "file":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\workflow\\definitions\\bugfix.workflow.yaml",
+                                         "suggestion":  "Them agent hoac command",
+                                         "line":  44
+                                     },
+                                     {
+                                         "code":  "WF-ERR-003",
+                                         "description":  "Phase \u0027complete\u0027 thieu required key: title",
+                                         "file":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\workflow\\definitions\\bugfix.workflow.yaml",
+                                         "suggestion":  "Them \u0027title\u0027 cho phase",
+                                         "line":  52
+                                     },
+                                     {
+                                         "code":  "WF-ERR-003",
+                                         "description":  "Phase \u0027complete\u0027 phai co it nhat 1 trong agent|command",
+                                         "file":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\workflow\\definitions\\bugfix.workflow.yaml",
+                                         "suggestion":  "Them agent hoac command",
+                                         "line":  52
+                                     }
+                                 ],
+                      "file":  "bugfix.workflow.yaml"
+                  },
+                  {
+                      "status":  "PASS",
+                      "path":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\workflow\\definitions\\default.workflow.yaml",
+                      "errors":  [
+
+                                 ],
+                      "file":  "default.workflow.yaml"
+                  },
+                  {
+                      "status":  "PASS",
+                      "path":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\workflow\\definitions\\docs.workflow.yaml",
+                      "errors":  [
+
+                                 ],
+                      "file":  "docs.workflow.yaml"
+                  },
+                  {
+                      "status":  "FAIL",
+                      "path":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\workflow\\definitions\\documentation.workflow.yaml",
+                      "errors":  [
+                                     {
+                                         "code":  "WF-ERR-003",
+                                         "description":  "Thieu required top-level key: name",
+                                         "file":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\workflow\\definitions\\documentation.workflow.yaml",
+                                         "suggestion":  "Them \u0027name\u0027 vao top-level",
+                                         "line":  null
+                                     },
+                                     {
+                                         "code":  "WF-ERR-003",
+                                         "description":  "Phase \u0027analyze\u0027 thieu required key: title",
+                                         "file":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\workflow\\definitions\\documentation.workflow.yaml",
+                                         "suggestion":  "Them \u0027title\u0027 cho phase",
+                                         "line":  20
+                                     },
+                                     {
+                                         "code":  "WF-ERR-003",
+                                         "description":  "Phase \u0027analyze\u0027 phai co it nhat 1 trong agent|command",
+                                         "file":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\workflow\\definitions\\documentation.workflow.yaml",
+                                         "suggestion":  "Them agent hoac command",
+                                         "line":  20
+                                     },
+                                     {
+                                         "code":  "WF-ERR-003",
+                                         "description":  "Phase \u0027write\u0027 thieu required key: title",
+                                         "file":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\workflow\\definitions\\documentation.workflow.yaml",
+                                         "suggestion":  "Them \u0027title\u0027 cho phase",
+                                         "line":  27
+                                     },
+                                     {
+                                         "code":  "WF-ERR-003",
+                                         "description":  "Phase \u0027write\u0027 phai co it nhat 1 trong agent|command",
+                                         "file":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\workflow\\definitions\\documentation.workflow.yaml",
+                                         "suggestion":  "Them agent hoac command",
+                                         "line":  27
+                                     },
+                                     {
+                                         "code":  "WF-ERR-003",
+                                         "description":  "Phase \u0027review\u0027 thieu required key: title",
+                                         "file":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\workflow\\definitions\\documentation.workflow.yaml",
+                                         "suggestion":  "Them \u0027title\u0027 cho phase",
+                                         "line":  35
+                                     },
+                                     {
+                                         "code":  "WF-ERR-003",
+                                         "description":  "Phase \u0027review\u0027 phai co it nhat 1 trong agent|command",
+                                         "file":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\workflow\\definitions\\documentation.workflow.yaml",
+                                         "suggestion":  "Them agent hoac command",
+                                         "line":  35
+                                     },
+                                     {
+                                         "code":  "WF-ERR-003",
+                                         "description":  "Phase \u0027complete\u0027 thieu required key: title",
+                                         "file":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\workflow\\definitions\\documentation.workflow.yaml",
+                                         "suggestion":  "Them \u0027title\u0027 cho phase",
+                                         "line":  43
+                                     },
+                                     {
+                                         "code":  "WF-ERR-003",
+                                         "description":  "Phase \u0027complete\u0027 phai co it nhat 1 trong agent|command",
+                                         "file":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\workflow\\definitions\\documentation.workflow.yaml",
+                                         "suggestion":  "Them agent hoac command",
+                                         "line":  43
+                                     }
+                                 ],
+                      "file":  "documentation.workflow.yaml"
+                  },
+                  {
+                      "status":  "FAIL",
+                      "path":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\workflow\\definitions\\feature.workflow.yaml",
+                      "errors":  [
+                                     {
+                                         "code":  "WF-ERR-003",
+                                         "description":  "Thieu required top-level key: name",
+                                         "file":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\workflow\\definitions\\feature.workflow.yaml",
+                                         "suggestion":  "Them \u0027name\u0027 vao top-level",
+                                         "line":  null
+                                     },
+                                     {
+                                         "code":  "WF-ERR-003",
+                                         "description":  "Phase \u0027analyze\u0027 thieu required key: title",
+                                         "file":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\workflow\\definitions\\feature.workflow.yaml",
+                                         "suggestion":  "Them \u0027title\u0027 cho phase",
+                                         "line":  21
+                                     },
+                                     {
+                                         "code":  "WF-ERR-003",
+                                         "description":  "Phase \u0027analyze\u0027 phai co it nhat 1 trong agent|command",
+                                         "file":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\workflow\\definitions\\feature.workflow.yaml",
+                                         "suggestion":  "Them agent hoac command",
+                                         "line":  21
+                                     },
+                                     {
+                                         "code":  "WF-ERR-003",
+                                         "description":  "Phase \u0027design\u0027 thieu required key: title",
+                                         "file":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\workflow\\definitions\\feature.workflow.yaml",
+                                         "suggestion":  "Them \u0027title\u0027 cho phase",
+                                         "line":  28
+                                     },
+                                     {
+                                         "code":  "WF-ERR-003",
+                                         "description":  "Phase \u0027design\u0027 phai co it nhat 1 trong agent|command",
+                                         "file":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\workflow\\definitions\\feature.workflow.yaml",
+                                         "suggestion":  "Them agent hoac command",
+                                         "line":  28
+                                     },
+                                     {
+                                         "code":  "WF-ERR-003",
+                                         "description":  "Phase \u0027review\u0027 thieu required key: title",
+                                         "file":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\workflow\\definitions\\feature.workflow.yaml",
+                                         "suggestion":  "Them \u0027title\u0027 cho phase",
+                                         "line":  36
+                                     },
+                                     {
+                                         "code":  "WF-ERR-003",
+                                         "description":  "Phase \u0027review\u0027 phai co it nhat 1 trong agent|command",
+                                         "file":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\workflow\\definitions\\feature.workflow.yaml",
+                                         "suggestion":  "Them agent hoac command",
+                                         "line":  36
+                                     },
+                                     {
+                                         "code":  "WF-ERR-003",
+                                         "description":  "Phase \u0027backup\u0027 thieu required key: title",
+                                         "file":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\workflow\\definitions\\feature.workflow.yaml",
+                                         "suggestion":  "Them \u0027title\u0027 cho phase",
+                                         "line":  44
+                                     },
+                                     {
+                                         "code":  "WF-ERR-003",
+                                         "description":  "Phase \u0027backup\u0027 phai co it nhat 1 trong agent|command",
+                                         "file":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\workflow\\definitions\\feature.workflow.yaml",
+                                         "suggestion":  "Them agent hoac command",
+                                         "line":  44
+                                     },
+                                     {
+                                         "code":  "WF-ERR-003",
+                                         "description":  "Phase \u0027build\u0027 thieu required key: title",
+                                         "file":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\workflow\\definitions\\feature.workflow.yaml",
+                                         "suggestion":  "Them \u0027title\u0027 cho phase",
+                                         "line":  53
+                                     },
+                                     {
+                                         "code":  "WF-ERR-003",
+                                         "description":  "Phase \u0027build\u0027 phai co it nhat 1 trong agent|command",
+                                         "file":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\workflow\\definitions\\feature.workflow.yaml",
+                                         "suggestion":  "Them agent hoac command",
+                                         "line":  53
+                                     },
+                                     {
+                                         "code":  "WF-ERR-003",
+                                         "description":  "Phase \u0027test\u0027 thieu required key: title",
+                                         "file":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\workflow\\definitions\\feature.workflow.yaml",
+                                         "suggestion":  "Them \u0027title\u0027 cho phase",
+                                         "line":  61
+                                     },
+                                     {
+                                         "code":  "WF-ERR-003",
+                                         "description":  "Phase \u0027test\u0027 phai co it nhat 1 trong agent|command",
+                                         "file":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\workflow\\definitions\\feature.workflow.yaml",
+                                         "suggestion":  "Them agent hoac command",
+                                         "line":  61
+                                     },
+                                     {
+                                         "code":  "WF-ERR-003",
+                                         "description":  "Phase \u0027complete\u0027 thieu required key: title",
+                                         "file":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\workflow\\definitions\\feature.workflow.yaml",
+                                         "suggestion":  "Them \u0027title\u0027 cho phase",
+                                         "line":  69
+                                     },
+                                     {
+                                         "code":  "WF-ERR-003",
+                                         "description":  "Phase \u0027complete\u0027 phai co it nhat 1 trong agent|command",
+                                         "file":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\workflow\\definitions\\feature.workflow.yaml",
+                                         "suggestion":  "Them agent hoac command",
+                                         "line":  69
+                                     }
+                                 ],
+                      "file":  "feature.workflow.yaml"
+                  },
+                  {
+                      "status":  "FAIL",
+                      "path":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\workflow\\definitions\\ui.workflow.yaml",
+                      "errors":  [
+                                     {
+                                         "code":  "WF-ERR-003",
+                                         "description":  "Thieu required top-level key: name",
+                                         "file":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\workflow\\definitions\\ui.workflow.yaml",
+                                         "suggestion":  "Them \u0027name\u0027 vao top-level",
+                                         "line":  null
+                                     },
+                                     {
+                                         "code":  "WF-ERR-003",
+                                         "description":  "Phase \u0027audit\u0027 thieu required key: title",
+                                         "file":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\workflow\\definitions\\ui.workflow.yaml",
+                                         "suggestion":  "Them \u0027title\u0027 cho phase",
+                                         "line":  21
+                                     },
+                                     {
+                                         "code":  "WF-ERR-003",
+                                         "description":  "Phase \u0027audit\u0027 phai co it nhat 1 trong agent|command",
+                                         "file":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\workflow\\definitions\\ui.workflow.yaml",
+                                         "suggestion":  "Them agent hoac command",
+                                         "line":  21
+                                     },
+                                     {
+                                         "code":  "WF-ERR-003",
+                                         "description":  "Phase \u0027design\u0027 thieu required key: title",
+                                         "file":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\workflow\\definitions\\ui.workflow.yaml",
+                                         "suggestion":  "Them \u0027title\u0027 cho phase",
+                                         "line":  28
+                                     },
+                                     {
+                                         "code":  "WF-ERR-003",
+                                         "description":  "Phase \u0027design\u0027 phai co it nhat 1 trong agent|command",
+                                         "file":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\workflow\\definitions\\ui.workflow.yaml",
+                                         "suggestion":  "Them agent hoac command",
+                                         "line":  28
+                                     },
+                                     {
+                                         "code":  "WF-ERR-003",
+                                         "description":  "Phase \u0027implement\u0027 thieu required key: title",
+                                         "file":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\workflow\\definitions\\ui.workflow.yaml",
+                                         "suggestion":  "Them \u0027title\u0027 cho phase",
+                                         "line":  36
+                                     },
+                                     {
+                                         "code":  "WF-ERR-003",
+                                         "description":  "Phase \u0027implement\u0027 phai co it nhat 1 trong agent|command",
+                                         "file":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\workflow\\definitions\\ui.workflow.yaml",
+                                         "suggestion":  "Them agent hoac command",
+                                         "line":  36
+                                     },
+                                     {
+                                         "code":  "WF-ERR-003",
+                                         "description":  "Phase \u0027verify\u0027 thieu required key: title",
+                                         "file":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\workflow\\definitions\\ui.workflow.yaml",
+                                         "suggestion":  "Them \u0027title\u0027 cho phase",
+                                         "line":  44
+                                     },
+                                     {
+                                         "code":  "WF-ERR-003",
+                                         "description":  "Phase \u0027verify\u0027 phai co it nhat 1 trong agent|command",
+                                         "file":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\workflow\\definitions\\ui.workflow.yaml",
+                                         "suggestion":  "Them agent hoac command",
+                                         "line":  44
+                                     },
+                                     {
+                                         "code":  "WF-ERR-003",
+                                         "description":  "Phase \u0027complete\u0027 thieu required key: title",
+                                         "file":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\workflow\\definitions\\ui.workflow.yaml",
+                                         "suggestion":  "Them \u0027title\u0027 cho phase",
+                                         "line":  52
+                                     },
+                                     {
+                                         "code":  "WF-ERR-003",
+                                         "description":  "Phase \u0027complete\u0027 phai co it nhat 1 trong agent|command",
+                                         "file":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\workflow\\definitions\\ui.workflow.yaml",
+                                         "suggestion":  "Them agent hoac command",
+                                         "line":  52
+                                     }
+                                 ],
+                      "file":  "ui.workflow.yaml"
+                  }
+              ],
+    "validator":  "workflow-validator.ps1",
+    "status":  "FAIL"
+}

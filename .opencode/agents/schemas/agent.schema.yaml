@@ -1,0 +1,99 @@
+# agent.schema.yaml — Agent Definition Object Schema v1
+# Agent = Identity + Capability + Behavior + Runtime (4 lớp).
+# Reference: registry.md, capability.schema.yaml, contract.schema.yaml
+version: "4.0"
+schema: 1
+
+type: object
+required:
+  - id
+  - name
+  - version
+  - status
+  - owner
+  - priority
+supported_fields:
+  - entry_prompt
+  - prompt
+  - contracts
+  - capabilities
+  - supports
+  - requires
+  - frameworks
+  - languages
+  - max_tokens
+  - timeout
+  - retry
+  - parallel
+  - resources
+  - constraints
+  - quality
+  - knowledge
+  - skills
+  - compatibility
+  - manifest
+  - replacement
+  - deprecated
+
+identity:
+  id: string
+  name: string
+  version: semver
+  status: enum [draft, experimental, beta, stable, deprecated, disabled]
+  owner: enum [core, plugin, community]
+  replacement: string
+
+capability:
+  supports:
+    type: array
+    items: { type: string, description: id capability trong capabilities.yaml }
+  requires:
+    type: array
+    items: { type: string, description: capability phụ thuộc }
+  priority:
+    type: integer
+    description: 0..100, cao hơn được chọn trước
+  tags:
+    type: array
+
+behavior:
+  entry_prompt: string
+  contracts:
+    input: string
+    output: string
+  examples:
+    type: string
+  constraints:
+    requires_context: { type: array }
+    forbidden_context: { type: array }
+
+runtime:
+  max_tokens: integer
+  timeout: integer
+  retry: integer
+  parallel: boolean
+  resources:
+    max_tokens: integer
+    max_time: integer
+    memory_limit: integer
+    parallel: boolean
+
+compatibility:
+  runtime: string
+  capability: string
+  contract: string
+
+# ===== Agent Manifest =====
+manifest:
+  id: string
+  version: string
+  schema: integer
+  framework: string
+  compatibility:
+    - type: string
+      description: ">=1.0"
+
+# ===== Chú thích =====
+# Agent là một thực thể có cấu trúc, KHÔNG chỉ là prompt.
+# Prompt chỉ là entry_prompt (một phần Behavior).
+# Mỗi agent deploy như một package: prompt.md + agent.yaml + contracts/ + examples/ + tests/.

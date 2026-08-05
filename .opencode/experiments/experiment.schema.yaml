@@ -1,0 +1,39 @@
+# experiment.schema.yaml — Experiment Platform Schema v1
+version: "29.0"
+schema: 1
+
+type: object
+required:
+  - id
+  - type
+  - variants
+properties:
+  version: { type: string, const: "29.0" }
+  id: { type: string }
+  type:
+    type: string
+    enum: [prompt-ab, agent-ab, model-ab, workflow-ab]
+  variants:
+    type: array
+    items: { type: string }
+  metric:
+    type: array
+    items: { type: string, enum: [quality, cost, time, success_rate] }
+  split:
+    type: object
+    additionalProperties: { type: number }
+  samples: { type: integer }
+  status:
+    type: string
+    enum: [running, completed, cancelled]
+  results:
+    type: array
+    items:
+      type: object
+      properties:
+        variant: { type: string }
+        quality: { type: number }
+        cost: { type: number }
+        latency_ms: { type: number }
+        success_rate: { type: number }
+  winner: { type: string }

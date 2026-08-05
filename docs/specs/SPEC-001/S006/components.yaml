@@ -1,0 +1,285 @@
+# SPEC-001 S006 — Runtime Components (12 Core Components) v4
+# 3 nhom: Core / Resolution / Infrastructure. Moi component: version/status/capability/contracts/dependencies.
+---
+id: SPEC-001-S006
+name: Runtime Components
+version: "1.0.0"
+status: Approved
+frozen: true
+frozen_date: "2026-08-04"
+owner: Runtime Team
+philosophy:
+  - Component càng ít càng tốt.
+  - Mỗi Component chỉ có một trách nhiệm.
+  - Mở rộng bằng Capability, không mở rộng bằng thêm Component mới.
+principles:
+  - Một Responsibility.
+  - Một Owner.
+  - Một hoặc nhiều Contract.
+  - Một Lifecycle.
+  - Một Metadata.
+  - Có thể thay thế.
+  - Không chứa Business Logic.
+  - Không phụ thuộc Component ngoài Contract.
+component_model:
+  fields: [id, name, version, status, layer, domain, responsibility, capability, contracts, dependencies, lifecycle, owner, metadata]
+groups:
+  Core: [Execution Manager, Execution Orchestrator, Context Manager, State Manager, Policy Engine]
+  Resolution: [Workflow Loader, Capability Resolver, Registry Resolver]
+  Infrastructure: [Event Dispatcher, Artifact Dispatcher, Metrics Collector, Execution Resource Manager]
+lifecycles:
+  runtime: [Defined, Initialized, Ready, Active, Stopping, Disposed]
+  execution: [Idle, Assigned, Running, Completed]
+components:
+  CMP-001:
+    name: Execution Manager
+    version: 1.0.0
+    status: Stable
+    group: Core
+    layer: Execution
+    domain: Execution
+    responsibility: Quản lý vòng đời Execution
+    capability: execution-management
+    contracts: [Execution Contract]
+    dependencies: [Workflow Loader, Context Manager, State Manager, Execution Resource Manager, Event Dispatcher, Artifact Dispatcher, Metrics Collector, Execution Orchestrator]
+    lifecycle: runtime
+    owner: Runtime
+    replaceable: false
+    metric: Execution Completion Rate
+    boundary: B001-ownership
+    rule: RULE-004
+    responsibilities: [RR-001, RR-002, RR-003]
+    requirements: [FR-001, FR-015]
+    principles: [P001, P005]
+  CMP-002:
+    name: Execution Orchestrator
+    version: 1.0.0
+    status: Stable
+    group: Core
+    layer: Coordination
+    domain: Coordination
+    responsibility: Điều phối toàn bộ luồng thực thi
+    capability: orchestration
+    contracts: [Orchestrator Contract]
+    dependencies: [Capability Resolver, Policy Engine]
+    lifecycle: runtime
+    owner: Runtime
+    replaceable: false
+    metric: Orchestration Coverage
+    boundary: B002-permission
+    rule: RULE-004
+    responsibilities: [RR-004, RR-019, RR-021, RR-022, RR-023, RR-024]
+    requirements: [FR-004, FR-010, FR-011, FR-012, FR-017, FR-018, FR-019]
+    principles: [P001]
+  CMP-003:
+    name: Context Manager
+    version: 1.0.0
+    status: Stable
+    group: Core
+    layer: Execution
+    domain: Execution
+    responsibility: Quản lý Execution Context
+    capability: context-management
+    contracts: [Context Contract]
+    dependencies: []
+    lifecycle: runtime
+    owner: Runtime
+    replaceable: true
+    metric: Context Isolation
+    boundary: B006-state
+    rule: RULE-006
+    responsibilities: [RR-011, RR-012, RR-013, RR-014]
+    requirements: [FR-005, FR-016]
+    principles: [P001, P009, P006]
+  CMP-004:
+    name: State Manager
+    version: 1.0.0
+    status: Stable
+    group: Core
+    layer: State
+    domain: State
+    responsibility: Quản lý State Machine
+    capability: state-management
+    contracts: [State Contract]
+    dependencies: [Event Dispatcher]
+    lifecycle: runtime
+    owner: Runtime
+    replaceable: true
+    metric: Invalid Transitions
+    boundary: B006-state
+    rule: RULE-005
+    responsibilities: [RR-015, RR-016, RR-017, RR-018]
+    requirements: [FR-006]
+    principles: [P005, P009]
+  CMP-005:
+    name: Policy Engine
+    version: 1.0.0
+    status: Stable
+    group: Core
+    layer: Coordination
+    domain: Coordination
+    responsibility: Thực thi Policy/Governance
+    capability: policy-enforcement
+    contracts: [Policy Contract]
+    dependencies: [Registry Resolver]
+    lifecycle: runtime
+    owner: Runtime
+    replaceable: false
+    metric: Policy Compliance
+    boundary: B009-security
+    rule: RULE-008
+    responsibilities: [RR-032, RR-033, RR-034, RR-035]
+    requirements: [FR-014, FR-019]
+    principles: [P016, P020]
+  CMP-006:
+    name: Workflow Loader
+    version: 1.0.0
+    status: Stable
+    group: Resolution
+    layer: Workflow
+    domain: Execution
+    responsibility: Đọc và chuẩn bị Workflow
+    capability: workflow-loading
+    contracts: [Workflow Contract]
+    dependencies: []
+    lifecycle: runtime
+    owner: Runtime
+    replaceable: true
+    metric: Workflow Load Rate
+    boundary: B003-delegation
+    rule: RULE-004
+    responsibilities: [RR-005]
+    requirements: [FR-002, FR-013]
+    principles: [P001, P011]
+  CMP-007:
+    name: Capability Resolver
+    version: 1.0.0
+    status: Stable
+    group: Resolution
+    layer: Capability
+    domain: Capability
+    responsibility: Resolve Capability thành Agent
+    capability: capability-resolution
+    contracts: [Capability Contract]
+    dependencies: [Registry Resolver]
+    lifecycle: runtime
+    owner: Runtime
+    replaceable: true
+    metric: Capability Resolution Rate
+    boundary: B003-delegation
+    rule: RULE-002
+    responsibilities: [RR-006, RR-020]
+    requirements: [FR-003]
+    principles: [P007]
+  CMP-008:
+    name: Registry Resolver
+    version: 1.0.0
+    status: Stable
+    group: Resolution
+    layer: Resolution
+    domain: Capability
+    responsibility: Truy cập Registry qua Contract và resolve
+    capability: registry-resolution
+    contracts: [Registry Contract]
+    dependencies: []
+    lifecycle: runtime
+    owner: Runtime
+    replaceable: true
+    metric: Registry Lookup Rate
+    boundary: B004-dependency
+    rule: RULE-002
+    responsibilities: [RR-006]
+    requirements: [FR-003, FR-014]
+    principles: [P007, P002]
+  CMP-009:
+    name: Event Dispatcher
+    version: 1.0.0
+    status: Stable
+    group: Infrastructure
+    layer: Event
+    domain: Observability
+    responsibility: Publish Event, hỗ trợ nhiều cơ chế
+    capability: event-dispatching
+    contracts: [Event Contract]
+    dependencies: []
+    lifecycle: runtime
+    owner: Runtime
+    replaceable: true
+    metric: Event Coverage
+    boundary: B007-data
+    rule: RULE-007
+    responsibilities: [RR-025, RR-028]
+    requirements: [FR-007]
+    principles: [P005, P014]
+  CMP-010:
+    name: Artifact Dispatcher
+    version: 1.0.0
+    status: Stable
+    group: Infrastructure
+    layer: Publication
+    domain: Publication
+    responsibility: Bàn giao Artifact (không lưu trữ)
+    capability: artifact-dispatching
+    contracts: [Artifact Contract]
+    dependencies: []
+    lifecycle: runtime
+    owner: Runtime
+    replaceable: true
+    metric: Artifact Dispatch Rate
+    boundary: B007-data
+    rule: RULE-009
+    responsibilities: [RR-029, RR-030, RR-031]
+    requirements: [FR-008, FR-020]
+    principles: [P010, P005]
+  CMP-011:
+    name: Metrics Collector
+    version: 1.0.0
+    status: Stable
+    group: Infrastructure
+    layer: Event
+    domain: Observability
+    responsibility: Thu Metrics
+    capability: metrics-collection
+    contracts: [Metrics Contract]
+    dependencies: [Event Dispatcher]
+    lifecycle: runtime
+    owner: Runtime
+    replaceable: true
+    metric: Metrics Emission
+    boundary: B007-data
+    rule: RULE-014
+    responsibilities: [RR-026, RR-027]
+    requirements: [FR-009]
+    principles: [P014]
+  CMP-012:
+    name: Execution Resource Manager
+    version: 1.0.0
+    status: Stable
+    group: Infrastructure
+    layer: Execution
+    domain: Execution
+    responsibility: Quản lý tài nguyên trong một Execution
+    capability: resource-management
+    contracts: [Resource Contract]
+    dependencies: []
+    lifecycle: runtime
+    owner: Runtime
+    replaceable: true
+    metric: Resource Leak
+    boundary: B008-failure
+    rule: RULE-012
+    responsibilities: [RR-001]
+    requirements: [FR-015, FR-016]
+    principles: [P015]
+not_in_runtime:
+  - Agent
+  - Workflow Definition
+  - Registry
+  - Plugin
+  - Knowledge
+  - Doctor
+  - Dashboard
+  - Simulation
+  - Evolution
+  - SDK
+  note: Runtime chi su dung, khong so huu.

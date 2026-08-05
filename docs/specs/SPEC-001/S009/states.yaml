@@ -1,0 +1,18 @@
+# SPEC-001 S009 — Runtime States (ST catalog)
+---
+version: "1.0"
+states:
+  ST-001: { name: Created, type: Initial }
+  ST-002: { name: Validating, type: Internal }
+  ST-003: { name: Prepared, type: Internal }
+  ST-004: { name: Running, type: Active }
+  ST-005: { name: Waiting, type: Active }
+  ST-006: { name: Suspended, type: Active }
+  ST-007: { name: Cancelling, type: Active }
+  ST-008: { name: Completed, type: Terminal }
+  ST-009: { name: Failed, type: Terminal }
+  ST-010: { name: Cancelled, type: Terminal }
+  ST-011: { name: TimedOut, type: Terminal }
+  ST-012: { name: Replayed, type: Terminal }
+  ST-013: { name: Retrying, type: Internal }
+  ST-014: { name: Aborted, type: Terminal }

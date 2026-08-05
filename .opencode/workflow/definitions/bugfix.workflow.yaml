@@ -1,0 +1,58 @@
+# bugfix.workflow.yaml
+# Workflow: bugfix-development (sửa lỗi nhanh)
+# Schema: workflow.schema.yaml v1
+
+id: bugfix-development
+version: "1"
+description: Bug fix workflow
+manifest:
+  schema: workflow.v1
+  entry_phase: reproduce
+  supported_capabilities:
+    - analysis.requirement
+    - implementation.code
+    - review.code
+    - test.e2e
+  required_components:
+    - workflow-runtime
+  minimum_framework_version: 4.0.0
+
+phases:
+  - id: reproduce
+    name: Reproduce
+    description: Tái hiện lỗi
+    capability: analysis.requirement
+    outputs: [repro.md]
+    retry: 1
+
+  - id: diagnose
+    name: Diagnose
+    description: Xác định nguyên nhân gốc
+    depends_on: [reproduce]
+    capability: analysis.requirement
+    outputs: [rootcause.md]
+    retry: 1
+
+  - id: fix
+    name: Fix
+    description: Sửa lỗi
+    depends_on: [diagnose]
+    capability: implementation.code
+    outputs: [fix.patch]
+    retry: 2
+
+  - id: verify
+    name: Verify
+    description: Xác minh lỗi đã hết
+    depends_on: [fix]
+    capability: test.e2e
+    outputs: [verify.md]
+    retry: 2
+
+  - id: complete
+    name: Complete
+    description: Tổng kết
+    depends_on: [verify]
+    capability: review.code
+    outputs: [summary.md]
+    retry: 0

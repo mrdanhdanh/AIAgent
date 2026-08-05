@@ -1,0 +1,121 @@
+# SPEC-001 S009 — Runtime State Machine v2 (Canonical)
+# Hien phap cua Execution. 14 states, 18 transitions.
+---
+id: SPEC-001-S009
+name: Runtime State Machine
+version: "1.0.0"
+status: Draft
+owner: Runtime Team
+philosophy:
+  - Runtime luôn ở đúng một State.
+  - Một Execution chỉ có một Active State.
+  - State chỉ thay đổi qua Transition.
+  - Transition phải hợp lệ.
+  - Mọi Transition sinh Event.
+  - State không được sửa trực tiếp.
+principles:
+  - State là nguồn sự thật duy nhất về Execution.
+  - State độc lập implementation.
+  - State bất biến sau khi rời khỏi.
+  - Transition quyết định Lifecycle.
+  - Không được bỏ qua State.
+states:
+  ST-001: { name: Created, type: Initial }
+  ST-002: { name: Validating, type: Internal }
+  ST-003: { name: Prepared, type: Internal }
+  ST-004: { name: Running, type: Active }
+  ST-005: { name: Waiting, type: Active }
+  ST-006: { name: Suspended, type: Active }
+  ST-007: { name: Cancelling, type: Active }
+  ST-008: { name: Completed, type: Terminal }
+  ST-009: { name: Failed, type: Terminal }
+  ST-010: { name: Cancelled, type: Terminal }
+  ST-011: { name: TimedOut, type: Terminal }
+  ST-012: { name: Replayed, type: Terminal }
+  ST-013: { name: Retrying, type: Internal }
+  ST-014: { name: Aborted, type: Terminal }
+initial_state: ST-001
+terminal_states: [ST-008, ST-009, ST-010, ST-011, ST-012, ST-014]
+active_states: [ST-004, ST-005, ST-006, ST-007]
+transitions:
+  - from: ST-001
+    to: ST-002
+    event: EXECUTION_VALIDATING
+    guard: Workflow + Contract hợp lệ
+  - from: ST-002
+    to: ST-003
+    event: EXECUTION_PREPARED
+    guard: Validation pass
+  - from: ST-002
+    to: ST-009
+    event: EXECUTION_VALIDATION_FAILED
+    guard: Validation fail
+  - from: ST-003
+    to: ST-004
+    event: EXECUTION_STARTED
+    guard: Simulation pass (P013)
+  - from: ST-004
+    to: ST-005
+    event: EXECUTION_WAITING
+    guard: Cần approval/ngoại bộ
+  - from: ST-005
+    to: ST-004
+    event: EXECUTION_APPROVED
+    guard: Approval được duyệt
+  - from: ST-004
+    to: ST-006
+    event: EXECUTION_SUSPENDED
+    guard: Pause theo yêu cầu
+  - from: ST-006
+    to: ST-004
+    event: EXECUTION_RESUMED
+    guard: Resume hợp lệ
+  - from: ST-004
+    to: ST-007
+    event: EXECUTION_CANCELLING
+    guard: Cancel request hợp lệ
+  - from: ST-007
+    to: ST-010
+    event: EXECUTION_CANCELLED
+    guard: Hủy thành công
+  - from: ST-004
+    to: ST-008
+    event: EXECUTION_COMPLETED
+    guard: Mọi Task/Phase xong
+  - from: ST-004
+    to: ST-009
+    event: EXECUTION_FAILED
+    guard: Lỗi không retry được
+  - from: ST-004
+    to: ST-011
+    event: EXECUTION_TIMED_OUT
+    guard: Timeout policy
+  - from: ST-004
+    to: ST-014
+    event: EXECUTION_ABORTED
+    guard: System abort
+  - from: ST-009
+    to: ST-013
+    event: EXECUTION_RETRYING
+    guard: Retry policy cho phép
+  - from: ST-013
+    to: ST-004
+    event: EXECUTION_RETRIED
+    guard: Retry attempt
+  - from: ST-008
+    to: ST-012
+    event: EXECUTION_REPLAYED
+    guard: Replay được tạo
+  - from: ST-009
+    to: ST-012
+    event: EXECUTION_REPLAYED
+    guard: Replay được tạo
+invariants:
+  - Chỉ một Active State tại một thời điểm.
+  - Terminal State không đổi.
+  - Initial State chỉ một lần.
+  - Không quay ngược Lifecycle.
+  - Event luôn đi cùng Transition.
+ownership:
+  owner: Runtime
+  rule: Không Agent nào được đổi State.

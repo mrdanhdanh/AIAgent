@@ -1,0 +1,50 @@
+# SPEC-001 S004 — Boundary Ownership Matrix
+# Boundary x (Runtime/Agent/Workflow/Registry) — Dashboard duong so do.
+---
+version: "1.0"
+matrix:
+  B001-ownership:
+    Runtime: true
+    Agent: false
+    Workflow: false
+    Registry: false
+  B002-permission:
+    Runtime: true
+    Agent: false
+    Workflow: false
+    Registry: false
+  B003-delegation:
+    Runtime: true
+    Agent: true
+    Workflow: false
+    Registry: false
+  B004-dependency:
+    Runtime: true
+    Agent: true
+    Workflow: true
+    Registry: true
+  B005-interface:
+    Runtime: true
+    Agent: true
+    Workflow: true
+    Registry: true
+  B006-state:
+    Runtime: true
+    Agent: false
+    Workflow: false
+    Registry: false
+  B007-data:
+    Runtime: true
+    Agent: true
+    Workflow: false
+    Registry: false
+  B008-failure:
+    Runtime: true
+    Agent: true
+    Workflow: false
+    Registry: false
+  B009-security:
+    Runtime: true
+    Agent: true
+    Workflow: true
+    Registry: true

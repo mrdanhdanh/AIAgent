@@ -1,0 +1,26 @@
+# SPEC-001 S006 — Component Lifecycle (C009) v2
+# Hai lifecycle khac nhau: Runtime + Execution.
+---
+version: "1.0"
+runtime_lifecycle:
+  - Defined
+  - Initialized
+  - Ready
+  - Active
+  - Stopping
+  - Disposed
+execution_lifecycle:
+  - Idle
+  - Assigned
+  - Running
+  - Completed
+transitions_runtime:
+  "Defined -> Initialized": Khởi tạo component
+  "Initialized -> Ready": Sẵn sàng phục vụ
+  "Ready -> Active": Bắt đầu phục vụ
+  "Active -> Stopping": Đang dừng
+  "Stopping -> Disposed": Hủy bỏ
+transitions_execution:
+  "Idle -> Assigned": Được gán vào Execution
+  "Assigned -> Running": Bắt đầu chạy
+  "Running -> Completed": Kết thúc

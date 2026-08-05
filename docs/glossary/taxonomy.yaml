@@ -1,0 +1,35 @@
+# AIOS Glossary Taxonomy
+# D002 Domain Model — phân loại thuật ngữ. Runtime/Doctor/Dashboard đọc.
+---
+version: "1.0"
+
+categories:
+  Core:
+    description: Thành phần trung tâm, không thể thiếu.
+    terms: [TERM-001]
+  Execution:
+    description: Cấu trúc và thực thi công việc.
+    terms: [TERM-002, TERM-003, TERM-004, TERM-005, TERM-006]
+  EntryPoint:
+    description: Điểm vào của hệ thống.
+    terms: [TERM-007]
+  Data:
+    description: Dữ liệu thực thi và lưu trữ.
+    terms: [TERM-008, TERM-009, TERM-010]
+  Knowledge:
+    description: Tri thức tái sử dụng.
+    terms: [TERM-011, TERM-016]
+  Platform:
+    description: Hạ tầng nền tảng (registry, event, contract).
+    terms: [TERM-012, TERM-013, TERM-014]
+  Extension:
+    description: Mở rộng ngoài Core.
+    terms: [TERM-015]
+
+entity_types:
+  Service: "Thành phần chạy liên tục, cung cấp dịch vụ."
+  Definition: "Mô tả khai báo, không thực thi."
+  Execution: "Thực thi trực tiếp."
+  Data: "Dữ liệu được tạo/lưu/truyền."
+  Message: "Thông điệp bất biến."
+  Extension: "Gói mở rộng."

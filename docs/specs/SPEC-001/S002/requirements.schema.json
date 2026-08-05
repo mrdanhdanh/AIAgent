@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aios://requirements.schema.json",
+  "title": "SPEC-001 Runtime Requirements (S002 v2)",
+  "description": "JSON Schema cho requirements.yaml. Validator kiem tra cau truc.",
+  "type": "object",
+  "required": ["id", "name", "version", "status", "owner", "functional", "non_functional", "constraints", "assumptions", "dependencies", "external_interfaces", "quality_attributes", "acceptance"],
+  "properties": {
+    "id": { "const": "SPEC-001-S002" },
+    "name": { "const": "Runtime Requirements" },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "status": { "enum": ["Draft", "Review", "Approved", "Stable", "Deprecated"] },
+    "owner": { "type": "string" },
+    "functional": {
+      "type": "object",
+      "patternProperties": {
+        "^FR-\\d{3}$": {
+          "type": "object",
+          "required": ["title", "description", "priority", "category", "owner", "status", "source"],
+          "properties": {
+            "title": { "type": "string" },
+            "description": { "type": "string" },
+            "priority": { "enum": ["Critical", "High", "Medium", "Low"] },
+            "category": { "enum": ["Core", "Execution", "State", "Data", "Events", "Observability", "Governance"] },
+            "owner": { "type": "string" },
+            "status": { "enum": ["Draft", "Approved", "Implemented", "Verified", "Stable"] },
+            "source": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+            "rules": { "type": "array", "items": { "type": "string" } },
+            "verification": { "type": "array", "items": { "type": "string" } }
+          }
+        }
+      }
+    },
+    "non_functional": {
+      "type": "object",
+      "patternProperties": {
+        "^NFR-\\d{3}$": { "type": "object" }
+      }
+    },
+    "constraints": {
+      "type": "object",
+      "patternProperties": {
+        "^C-\\d{3}$": {
+          "type": "object",
+          "required": ["name", "type"],
+          "properties": {
+            "name": { "type": "string" },
+            "type": { "enum": ["Architectural", "Operational", "Security", "Governance"] },
+            "source": { "type": "array", "items": { "type": "string" } },
+            "rules": { "type": "array", "items": { "type": "string" } }
+          }
+        }
+      }
+    },
+    "assumptions": { "type": "object" },
+    "dependencies": {
+      "type": "object",
+      "required": ["logical", "runtime_services"],
+      "properties": {
+        "logical": { "type": "array", "items": { "type": "string" } },
+        "runtime_services": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "external_interfaces": { "type": "object" },
+    "quality_attributes": { "type": "object" },
+    "acceptance": { "type": "object" }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,88 @@
+# types.yaml — Chuẩn hóa 12 Artifact Types
+# Type dùng trong artifact.schema.yaml + indexing/ + doctor checks.
+version: "5.0"
+
+types:
+  - id: analysis
+    name: Analysis
+    description: Phân tích yêu cầu, codebase, lỗi
+    prefix: ANAL
+    produced_by: [analyst, failure-agent, root-cause-agent]
+    consumed_by: [planner]
+
+  - id: requirement
+    name: Requirement Analysis
+    description: Scope, risk, tasks
+    prefix: REQ
+    produced_by: [analyst]
+    consumed_by: [planner]
+
+  - id: design
+    name: Design
+    description: Architecture/solution design
+    prefix: DES
+    produced_by: [planner]
+    consumed_by: [builder]
+
+  - id: plan
+    name: Implementation Plan
+    description: Tasks, artifacts, metrics
+    prefix: PLAN
+    produced_by: [planner]
+    consumed_by: [builder, reviewer]
+
+  - id: code
+    name: Source Code
+    description: Production code
+    prefix: CODE
+    produced_by: [builder]
+    consumed_by: [reviewer, tester]
+
+  - id: review
+    name: Code/Plan Review
+    description: Review verdict + issues
+    prefix: REV
+    produced_by: [reviewer, guardian]
+    consumed_by: [builder, pusher]
+
+  - id: test
+    name: Test Result
+    description: Pass/fail, coverage, report
+    prefix: TEST
+    produced_by: [tester]
+    consumed_by: [reviewer, pusher]
+
+  - id: deployment
+    name: Deployment
+    description: Push result, backup manifest
+    prefix: DEP
+    produced_by: [pusher, backup-agent]
+    consumed_by: []
+
+  - id: report
+    name: Report
+    description: Doctor, metrics, audit report
+    prefix: RPT
+    produced_by: [doctor, reviewer]
+    consumed_by: []
+
+  - id: knowledge
+    name: Knowledge
+    description: Lessons, patterns, best practices
+    prefix: KNWL
+    produced_by: [learning-agent, self-improver]
+    consumed_by: [knowledge-agent]
+
+  - id: failure
+    name: Failure Record
+    description: Normalized error, RCA
+    prefix: FAIL
+    produced_by: [learning-agent]
+    consumed_by: [knowledge-agent, self-improver]
+
+  - id: metrics
+    name: Metrics
+    description: Token, cache, coverage stats
+    prefix: MTR
+    produced_by: [context-engine, metrics]
+    consumed_by: [doctor]

@@ -1,0 +1,56 @@
+# AIOS Constitution Principles — Enforcement
+# D003.5 — Doctor/Runtime/Validator enforce principle nào.
+# Doctor đọc file này thay vì hardcode.
+---
+version: "1.0"
+
+doctor:
+  P001: [runtime-direct-call, agent-chain]
+  P002: [direct-call-scan, internal-object-leak]
+  P003: [metadata-presence]
+  P004: [version-presence]
+  P005: [event-coverage]
+  P006: [agent-state-check]
+  P007: [capability-not-agent]
+  P008: [responsibility-check]
+  P009: [duplicate-check]
+  P010: [artifact-overwrite-check]
+  P011: [hidden-dependency]
+  P012: [core-modification-check]
+  P013: [simulation-gate]
+  P014: [observability-check]
+  P015: [error-handling-check]
+  P016: [approval-check]
+  P017: [machine-readable-check]
+  P018: [migration-check, compatibility-check]
+  P019: [core-modification-check]
+  P020: [constitution-conflict-check]
+
+runtime:
+  P001: [orchestration-check]
+  P002: [contract-validation]
+  P003: [entity-init-check]
+  P004: [version-check]
+  P005: [event-emission]
+  P006: [stateless-check]
+  P007: [capability-resolution]
+  P010: [immutability-check]
+  P012: [plugin-sandbox]
+  P013: [pre-execution-check]
+  P014: [metrics-emission]
+  P015: [rollback-check]
+  P016: [policy-gate]
+
+validator:
+  P001: [manifest-gate]
+  P002: [contract-schema]
+  P003: [frontmatter-gate]
+  P004: [version-schema]
+  P008: [frontmatter-gate]
+  P009: [single-source-gate]
+  P011: [dependency-schema]
+  P012: [manifest-gate]
+  P017: [ai-native-gate]
+  P018: [schema-version]
+  P019: [manifest-gate]
+  P020: [spec-constitution-gate]

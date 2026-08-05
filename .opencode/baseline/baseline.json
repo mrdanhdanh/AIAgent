@@ -1,0 +1,22 @@
+{
+    "version":  "3.0",
+    "framework":  "v3",
+    "build_date":  "2026-08-02 10:51:58",
+    "git_commit":  "3d55b30",
+    "git_tag":  "untagged",
+    "repository":  "https://github.com/mrdanhdanh/AIAgent.git",
+    "agents":  18,
+    "commands":  54,
+    "skills_registry":  29,
+    "skills_distinct":  28,
+    "skills_all":  38,
+    "knowledge_md":  19,
+    "knowledge_json":  8,
+    "knowledge":  27,
+    "memory":  14,
+    "workflows":  5,
+    "contracts":  2,
+    "scripts":  13,
+    "registry_files":  10,
+    "workflow_engine":  8
+}

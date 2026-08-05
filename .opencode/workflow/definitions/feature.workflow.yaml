@@ -1,0 +1,75 @@
+# feature.workflow.yaml
+# Workflow: feature-development (chuẩn cho feature phát triển)
+# Schema: workflow.schema.yaml v1
+
+id: feature-development
+version: "1"
+description: Standard feature development workflow
+manifest:
+  schema: workflow.v1
+  entry_phase: analyze
+  supported_capabilities:
+    - analysis.requirement
+    - implementation.code
+    - review.code
+    - test.e2e
+  required_components:
+    - workflow-runtime
+  minimum_framework_version: 4.0.0
+
+phases:
+  - id: analyze
+    name: Analyze
+    description: Phân tích yêu cầu
+    capability: analysis.requirement
+    outputs: [analysis.md]
+    retry: 1
+
+  - id: design
+    name: Design
+    description: Thiết kế giải pháp
+    depends_on: [analyze]
+    capability: review.architecture
+    outputs: [design.md]
+    retry: 1
+
+  - id: review
+    name: Review
+    description: Đánh giá kế hoạch
+    depends_on: [design]
+    capability: review.code
+    outputs: [review.md]
+    retry: 1
+
+  - id: backup
+    name: Backup
+    description: Backup trước khi build
+    depends_on: [review]
+    capability: ops.code
+    outputs: [backup.md]
+    retry: 2
+    optional: true
+
+  - id: build
+    name: Build
+    description: Thực hiện code
+    depends_on: [backup, review]
+    capability: implementation.code
+    outputs: [artifact.code]
+    retry: 2
+
+  - id: test
+    name: Test
+    description: Kiểm thử
+    depends_on: [build]
+    capability: test.e2e
+    outputs: [test_report.md]
+    retry: 2
+
+  - id: complete
+    name: Complete
+    description: Tổng kết workflow
+    depends_on: [test]
+    capability: review.code
+    outputs: [summary.md]
+    retry: 0

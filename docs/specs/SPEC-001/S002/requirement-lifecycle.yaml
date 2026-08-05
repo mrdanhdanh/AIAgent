@@ -1,0 +1,14 @@
+# SPEC-001 S002 — Requirement Lifecycle
+---
+version: "1.0"
+lifecycle:
+  - Draft
+  - Approved
+  - Implemented
+  - Verified
+  - Stable
+transitions:
+  Draft -> Approved: Approval pass (POLICY-001)
+  Approved -> Implemented: Có implementation (SPEC-001)
+  Implemented -> Verified: Doctor/Test pass
+  Verified -> Stable: Đóng băng

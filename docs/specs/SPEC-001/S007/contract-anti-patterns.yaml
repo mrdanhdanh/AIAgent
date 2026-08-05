@@ -1,0 +1,12 @@
+# SPEC-001 S007 — Contract Anti-patterns
+# Doctor dung de phat hien vi pham.
+---
+version: "1.0"
+anti_patterns:
+  - Component gọi trực tiếp Component.
+  - Contract chứa Business Logic.
+  - Contract không Version.
+  - Contract Circular Dependency.
+  - Contract biết Agent cụ thể.
+  - Contract biết Plugin cụ thể.
+  - Contract ghi Database.

@@ -1,0 +1,34 @@
+# kernel.schema.yaml — Kernel Schema v1
+version: "14.0"
+schema: 1
+
+type: object
+required:
+  - version
+  - state
+properties:
+  version: { type: string, const: "14.0" }
+  state:
+    type: object
+    properties:
+      active_tasks: { type: array }
+      resources:
+        type: object
+        properties:
+          tokens: { type: integer }
+          memory: { type: integer }
+          time: { type: integer }
+      events: { type: array }
+
+  scheduler:
+    type: object
+    properties:
+      queue_size: { type: integer }
+      concurrency: { type: integer }
+
+  transaction:
+    type: object
+    properties:
+      active: { type: array }
+      committed: { type: array }
+      rolled_back: { type: array }

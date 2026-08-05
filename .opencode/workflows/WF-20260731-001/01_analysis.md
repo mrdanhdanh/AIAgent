@@ -107,7 +107,7 @@ sức khỏe độc lập như Doctor yêu cầu.
 - Convention script: `<# .SYNOPSIS #>` header, `param()` khai báo rõ, output JSON/object
 - Output contract YAML cho command doc
 - Không phá vỡ workflow hiện tại (`team.md`, `team-syncdocs.md`)
-- Model: `opencode/deepseek-v4-flash-free`
+- Model: `opencode/deepseek-v4-pro` (Planner/Architect/Reviewer/Analyst), `opencode/deepseek-v4-flash` (Coder/Tester/Routine)
 
 ## Output Schema (Analyst)
 

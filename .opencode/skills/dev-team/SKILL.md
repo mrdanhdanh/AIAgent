@@ -1,4 +1,4 @@
-﻿---
+---
 name: dev-team
 description: Hướng dẫn sử dụng Dev Agent Team gồm 12 agents (10 core + 2 support). Dùng khi cần phân tích, lập kế hoạch, đánh giá, code, kiểm thử một yêu cầu phát triển. Tích hợp cơ chế Self-Improvement với approval gate, Failure Learning System với Root Cause Analysis và Learning Pipeline. Sử dụng câu lệnh team hoặc team-*.
 schema_version: "3.2"
@@ -1779,19 +1779,24 @@ Output: Contract YAML theo schema Tester.
 
 **Hành động:**
 1. Orchestrator thu thập raw error từ `test_result` (FAIL cases)
-2. Gọi failure-agent: truyền error message + context (test step, file)
-3. failure-agent trả về phân tích: error_hash, error_type, memory match
-4. Nếu memory.found == true → apply lesson, chuyển Bước 11b
-5. Nếu memory.found == false → chuyển Bước 11b (root cause tìm nguyên nhân mới)
+2. Orchestrator chạy `& .opencode/scripts/failure-analyzer.ps1` để có `error_normalized` + `error_hash` deterministic
+3. Gọi failure-agent: truyền raw error + normalized + hash + context `{workflow_id, step, phase, source}`
+4. failure-agent trả về: error_type, error_detail, retryable, same_error, memory match, suggestions
+5. Nếu memory.found == true → apply lesson, chuyển Bước 11b
+6. Nếu memory.found == false → chuyển Bước 11b (root cause tìm nguyên nhân mới)
+7. Nếu same_error.escalate == true → không retry, rollback/hỏi user
+8. Ghi artifact `11a_failure_analysis.md` (YAML contract v2)
 
 **Prompt:**
 ```
 Bạn là Failure Agent. Phân tích lỗi test sau đây.
 
 Error: {error_message}
+ErrorNormalized: {error_normalized}   (từ failure-analyzer.ps1 — KHÔNG tự tính hash)
+ErrorHash: {error_hash}
 Context: Test step, file {current_data.test_result}
 
-Output: Contract YAML theo schema Failure Agent.
+Output: Contract YAML v2 theo schema Failure Agent (status, analysis, memory_search, suggestions).
 ```
 
 **Output mẫu:**
@@ -1800,10 +1805,13 @@ status: READY
 summary: "Phân tích lỗi: TestFailed — assertion failed"
 analysis:
   error_type: "TestFailed"
-  error_hash: "a1b2c3d4e5f6"
+  error_detail: "quiz-next-assert"
+  error_hash: "a1b2c3d4e5f6a1b2"
   retryable: true
+  same_error: { count: 1, escalate: false }
 memory_search:
   found: false
+  confidence: "LOW"
 suggestions:
   - action: "consult_root_cause"
     reason: "Lần đầu gặp lỗi này"
@@ -2597,6 +2605,8 @@ static_analysis:
 - Nếu workflow bị block ở bước nào, cung cấp đủ thông tin để người dùng biết:
   - Đang ở bước nào, Output hiện tại, Cần quyết định gì
 - Khi workflow hoàn tất, output báo cáo phải đầy đủ và rõ ràng
+
+
 
 
 

@@ -1,0 +1,47 @@
+# analyst.yaml — Agent Definition (4 lớp)
+# Identity + Capability + Behavior + Runtime
+# Schema: agent.schema.yaml
+
+# ===== Identity =====
+id: analyst
+name: Analyst Agent
+version: "1.0"
+schema: 1
+status: stable
+owner: core
+description: Phân tích yêu cầu
+replacement: null
+
+# ===== Capability =====
+capabilities:
+  supports: [analysis.requirement, analysis.risk]
+  requires: []
+  priority: 75
+  tags: [analysis]
+
+# ===== Behavior =====
+behavior:
+  entry_prompt: prompt.md
+  contracts:
+    input: analysis-input
+    output: analysis-output
+  constraints:
+    requires_context: [task, project]
+    forbidden_context: [build_log]
+
+# ===== Runtime =====
+runtime:
+  max_tokens: 10000
+  timeout: 300
+  retry: 2
+  parallel: true
+
+# ===== Manifest =====
+manifest:
+  id: analyst
+  version: "1.0"
+  schema: 1
+  framework: "4.0"
+  compatibility:
+    - capability >= 1.0
+    - runtime >= 1.0

@@ -1,0 +1,11 @@
+# SPEC-001 S007 — Contract Categories
+# Dashboard thong ke theo category.
+---
+version: "1.0"
+categories:
+  Execution: [Execution Contract, Workflow Contract, Coordination Contract, State Contract, Resource Contract]
+  Registry: [Capability Contract, Registry Contract]
+  Data: [Context Contract, Artifact Contract]
+  Observability: [Event Contract, Metrics Contract]
+  Governance: [Policy Contract]
+  Extension: [Plugin Contract, SDK Contract, External Contract]

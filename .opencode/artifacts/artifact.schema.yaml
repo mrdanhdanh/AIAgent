@@ -1,0 +1,61 @@
+# artifact.schema.yaml — Artifact Object Schema v1
+# Artifact = Content + Metadata + Lineage (3 lớp).
+# Reference: architecture.md
+version: "5.0"
+schema: 1
+
+type: object
+required:
+  - id
+  - type
+  - version
+  - status
+  - path
+properties:
+  # ===== Identity =====
+  id: { type: string, description: "Unique ID (PLAN-001, REQ-001...)" }
+  type:
+    type: string
+    enum: [analysis, requirement, design, plan, code, review, test, deployment, report, knowledge, failure, metrics]
+  version: { type: integer, minimum: 1 }
+  status:
+    type: string
+    enum: [created, validated, published, consumed, archived, deleted]
+
+  # ===== Metadata =====
+  metadata:
+    type: object
+    required: [checksum, size, path]
+    properties:
+      checksum: { type: string, description: SHA256 của content }
+      size: { type: integer, description: byte }
+      path: { type: string, description: đường dẫn file storage }
+      format: { type: string, description: md/json/yaml/txt }
+      owner: { type: string, description: core/plugin/agent }
+      capability: { type: string }
+      tags: { type: array }
+      created_at: { type: string, description: ISO8601 }
+      updated_at: { type: string }
+
+  # ===== Lineage =====
+  lineage:
+    type: object
+    properties:
+      workflow: { type: string, description: WF-ID }
+      phase: { type: string }
+      created_by: { type: string, description: agent id }
+      parent: { type: string, description: id artifact cha }
+      derived_from: { type: array, description: artifact dẫn xuất }
+      consumed_by: { type: array, description: artifact tiêu thụ }
+      superseded_by: { type: string }
+
+  # ===== Dependency =====
+  depends_on:
+    type: array
+    items: { type: string, description: id artifact phụ thuộc }
+
+# Quy ước:
+# - id format: PREFIX-NNN (PLAN-001, CODE-042...)
+# - version increment mỗi lần update, không overwrite.
+# - lineage form DAG không cycle.
+# - Nội dung (content) lưu trong file path; metadata + lineage ở artifact-index.json.

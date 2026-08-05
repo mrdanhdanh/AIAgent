@@ -1,0 +1,84 @@
+@using Microsoft.FluentUI.AspNetCore.Components
+@using AIHub.Models
+@implements IAsyncDisposable
+
+<div class="search-wrapper">
+    <FluentSearch @bind-Value="@_searchText"
+                  @bind-Value:after="@OnInputChanged"
+                  Placeholder="Search repos, skills, agents..."
+                  class="search-input" />
+    @if (!string.IsNullOrEmpty(_searchText))
+    {
+        <FluentButton Appearance="Appearance.Lightweight"
+                      IconEnd="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Dismiss())"
+                      OnClick="@ClearSearch"
+                      Title="Clear search" />
+    }
+</div>
+
+@code {
+    [Parameter] public string Value { get; set; } = string.Empty;
+    [Parameter] public EventCallback<string> ValueChanged { get; set; }
+    [Parameter] public EventCallback<string> OnSearchChanged { get; set; }
+
+    private string _searchText = string.Empty;
+    private CancellationTokenSource? _debounceCts;
+
+    protected override void OnParametersSet()
+    {
+        if (_searchText != Value)
+            _searchText = Value;
+    }
+
+    private async Task OnInputChanged()
+    {
+        _debounceCts?.Cancel();
+        _debounceCts = new CancellationTokenSource();
+        var token = _debounceCts.Token;
+
+        try
+        {
+            await Task.Delay(300, token);
+            if (!token.IsCancellationRequested)
+            {
+                await OnSearchChanged.InvokeAsync(_searchText);
+                await ValueChanged.InvokeAsync(_searchText);
+            }
+        }
+        catch (TaskCanceledException) { }
+    }
+
+    private async Task ClearSearch()
+    {
+        _searchText = string.Empty;
+        await OnSearchChanged.InvokeAsync(string.Empty);
+        await ValueChanged.InvokeAsync(string.Empty);
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        _debounceCts?.Cancel();
+        _debounceCts?.Dispose();
+        await Task.CompletedTask;
+    }
+}
+
+<style>
+.search-wrapper {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 0;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.search-input {
+    flex: 1;
+    max-width: 640px;
+}
+</style>

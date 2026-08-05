@@ -1,0 +1,459 @@
+# SPEC-001 S002 — Runtime Requirements (v2)
+# Nguồn dữ liệu chuẩn cho Runtime, Doctor, Dashboard.
+---
+id: SPEC-001-S002
+name: Runtime Requirements
+version: "1.0.0"
+status: Approved
+frozen: true
+frozen_date: "2026-08-04"
+owner: Runtime Team
+functional:
+  FR-001:
+    title: Initialize Execution
+    description: Runtime khởi tạo Execution Context trước khi chạy
+    priority: Critical
+    category: Core
+    owner: Runtime
+    status: Approved
+    source: [P001, P003]
+    rules: [RULE-004]
+    verification: [Runtime Test, Doctor]
+  FR-002:
+    title: Load Workflow
+    description: Runtime nạp Workflow Definition
+    priority: Critical
+    category: Core
+    owner: Runtime
+    status: Approved
+    source: [P001, P011]
+    rules: [RULE-004]
+    verification: [Runtime Test, Doctor]
+  FR-003:
+    title: Resolve Capability
+    description: Runtime resolve Capability qua Registry
+    priority: Critical
+    category: Core
+    owner: Runtime
+    status: Approved
+    source: [P007]
+    rules: [RULE-002]
+    verification: [Runtime Test, Doctor]
+  FR-004:
+    title: Orchestrate Agent
+    description: Runtime điều phối Agent theo Capability đã resolve
+    priority: Critical
+    category: Execution
+    owner: Runtime
+    status: Approved
+    source: [P001, P007]
+    rules: [RULE-004]
+    verification: [Runtime Test, Doctor]
+  FR-005:
+    title: Manage Context
+    description: Runtime quản lý Execution Context (create/read/close)
+    priority: Critical
+    category: State
+    owner: Runtime
+    status: Approved
+    source: [P001, P009]
+    rules: [RULE-006]
+    verification: [Runtime Test, Doctor]
+  FR-006:
+    title: Manage State
+    description: Runtime quản lý state trong Execution
+    priority: Critical
+    category: State
+    owner: Runtime
+    status: Approved
+    source: [P001, P005, P009]
+    rules: [RULE-005]
+    verification: [Runtime Test, Doctor]
+  FR-007:
+    title: Emit Event
+    description: Runtime phát Event cho mọi state change
+    priority: High
+    category: Events
+    owner: Runtime
+    status: Approved
+    source: [P005, P014]
+    rules: [RULE-007]
+    verification: [Runtime Test, Doctor]
+  FR-008:
+    title: Produce Artifact
+    description: Runtime thu thập và sinh Artifact
+    priority: High
+    category: Data
+    owner: Runtime
+    status: Approved
+    source: [P010, P013]
+    rules: [RULE-009]
+    verification: [Runtime Test, Doctor]
+  FR-009:
+    title: Collect Metrics
+    description: Runtime thu thập Metrics cho observability
+    priority: High
+    category: Observability
+    owner: Runtime
+    status: Approved
+    source: [P014]
+    rules: [RULE-014]
+    verification: [Doctor]
+  FR-010:
+    title: Support Simulation
+    description: Runtime hỗ trợ chạy Simulation trước Execute
+    priority: Medium
+    category: Execution
+    owner: Runtime
+    status: Approved
+    source: [P013]
+    rules: [RULE-004]
+    verification: [Doctor]
+  FR-011:
+    title: Support Replay
+    description: Runtime hỗ trợ Replay Execution từ Event log
+    priority: Medium
+    category: Execution
+    owner: Runtime
+    status: Approved
+    source: [P005, P013]
+    rules: [RULE-013]
+    verification: [Doctor]
+  FR-012:
+    title: Support Cancellation
+    description: Runtime hỗ trợ hủy Execution an toàn
+    priority: Medium
+    category: Execution
+    owner: Runtime
+    status: Approved
+    source: [P015]
+    rules: [RULE-012]
+    verification: [Runtime Test, Doctor]
+  FR-013:
+    title: Validate Workflow
+    description: Runtime validate Workflow trước khi nạp
+    priority: Critical
+    category: Core
+    owner: Runtime
+    status: Approved
+    source: [P011, P002]
+    rules: [RULE-002]
+    verification: [Runtime Test, Doctor]
+  FR-014:
+    title: Validate Contract
+    description: Runtime validate Contract giao tiếp
+    priority: Critical
+    category: Core
+    owner: Runtime
+    status: Approved
+    source: [P002]
+    rules: [RULE-003]
+    verification: [Runtime Test, Doctor]
+  FR-015:
+    title: Manage Execution Lifecycle
+    description: Runtime quản lý vòng đời Execution (created→running→terminal)
+    priority: Critical
+    category: Execution
+    owner: Runtime
+    status: Approved
+    source: [P001, P005]
+    rules: [RULE-004]
+    verification: [Runtime Test, Doctor]
+  FR-016:
+    title: Isolate Execution
+    description: Runtime cô lập từng Execution, không chia sẻ Context
+    priority: High
+    category: Execution
+    owner: Runtime
+    status: Approved
+    source: [P006, P009]
+    rules: [RULE-005]
+    verification: [Runtime Test, Doctor]
+  FR-017:
+    title: Support Timeout
+    description: Runtime hỗ trợ timeout cho Execution/Task
+    priority: High
+    category: Execution
+    owner: Runtime
+    status: Approved
+    source: [P015]
+    rules: [RULE-012]
+    verification: [Runtime Test, Doctor]
+  FR-018:
+    title: Support Retry Policy
+    description: Runtime hỗ trợ retry theo policy
+    priority: High
+    category: Execution
+    owner: Runtime
+    status: Approved
+    source: [P015]
+    rules: [RULE-012]
+    verification: [Runtime Test, Doctor]
+  FR-019:
+    title: Support Approval Gate
+    description: Runtime hỗ trợ approval gate trong luồng
+    priority: Medium
+    category: Governance
+    owner: Runtime
+    status: Approved
+    source: [P016]
+    rules: [RULE-004]
+    verification: [Doctor]
+  FR-020:
+    title: Publish Execution Result
+    description: Runtime công bố kết quả Execution (Artifact + Event)
+    priority: High
+    category: Data
+    owner: Runtime
+    status: Approved
+    source: [P010, P005]
+    rules: [RULE-009]
+    verification: [Runtime Test, Doctor]
+non_functional:
+  NFR-001:
+    title: Deterministic Execution
+    description: Cùng input → cùng output
+    priority: Critical
+    category: Execution
+    owner: Runtime
+    status: Approved
+    source: [P009, P011]
+    rules: [RULE-013]
+  NFR-002:
+    title: Stateless across Executions
+    description: Runtime không giữ state giữa hai Execution
+    priority: Critical
+    category: Core
+    owner: Runtime
+    status: Approved
+    source: [P001, P006]
+    rules: [RULE-005]
+  NFR-003:
+    title: Metadata Driven
+    description: Runtime hoạt động dựa trên metadata, không hardcode
+    priority: Critical
+    category: Core
+    owner: Runtime
+    status: Approved
+    source: [P003]
+    rules: [RULE-001]
+  NFR-004:
+    title: Extensible
+    description: Runtime mở rộng qua Capability/Plugin, không sửa Core
+    priority: High
+    category: Core
+    owner: Runtime
+    status: Approved
+    source: [P012, P019]
+    rules: [RULE-010]
+  NFR-005:
+    title: Observable
+    description: Mọi hoạt động sinh Event/Metrics/Logs/Artifacts
+    priority: High
+    category: Observability
+    owner: Runtime
+    status: Approved
+    source: [P014]
+    rules: [RULE-014]
+  NFR-006:
+    title: Testable
+    description: Runtime có thể kiểm thử tự động
+    priority: High
+    category: Core
+    owner: Runtime
+    status: Approved
+    source: [P013]
+    rules: []
+  NFR-007:
+    title: Versioned
+    description: Mọi object Runtime có version
+    priority: High
+    category: Data
+    owner: Runtime
+    status: Approved
+    source: [P004]
+    rules: [RULE-009]
+  NFR-008:
+    title: Recoverable
+    description: Runtime phục hồi sau lỗi
+    priority: High
+    category: Core
+    owner: Runtime
+    status: Approved
+    source: [P015]
+    rules: [RULE-012]
+  NFR-009:
+    title: Security
+    description: Least privilege, sandbox, audit
+    priority: Critical
+    category: Core
+    owner: Runtime
+    status: Approved
+    source: [P016, P014]
+    rules: [RULE-008]
+  NFR-010:
+    title: Auditability
+    description: Mọi quyết định/quyền thay đổi có vết
+    priority: High
+    category: Governance
+    owner: Runtime
+    status: Approved
+    source: [P008, P014]
+    rules: [RULE-007]
+  NFR-011:
+    title: Compatibility
+    description: backward compatible, forward preferred
+    priority: High
+    category: Data
+    owner: Runtime
+    status: Approved
+    source: [P018]
+    rules: [RULE-015]
+  NFR-012:
+    title: Configurability
+    description: Hành vi cấu hình qua metadata, không hardcode
+    priority: High
+    category: Core
+    owner: Runtime
+    status: Approved
+    source: [P003]
+    rules: [RULE-001]
+  NFR-013:
+    title: Portability
+    description: Platform-independent
+    priority: Medium
+    category: Core
+    owner: Runtime
+    status: Approved
+    source: [P017]
+    rules: [RULE-001]
+  NFR-014:
+    title: Performance
+    description: Đáp ứng target hiệu năng
+    priority: High
+    category: Observability
+    owner: Runtime
+    status: Approved
+    source: [P014]
+    rules: [RULE-014]
+  NFR-015:
+    title: Fault Isolation
+    description: Agent lỗi không làm sập Runtime
+    priority: Critical
+    category: Execution
+    owner: Runtime
+    status: Approved
+    source: [P015]
+    rules: [RULE-012]
+constraints:
+  C-001:
+    name: No Business Logic
+    type: Architectural
+    source: [P001]
+    rules: [RULE-001]
+  C-002:
+    name: No Direct Agent Call
+    type: Architectural
+    source: [P001]
+    rules: [RULE-004]
+  C-003:
+    name: Only Resolve Capability
+    type: Architectural
+    source: [P007]
+    rules: [RULE-002]
+  C-004:
+    name: No Context After Execution
+    type: Operational
+    source: [P006, P009]
+    rules: [RULE-005]
+  C-005:
+    name: No Artifact Mutation
+    type: Operational
+    source: [P010]
+    rules: [RULE-009]
+  C-006:
+    name: No Contract Skip
+    type: Governance
+    source: [P002]
+    rules: [RULE-003]
+  C-007:
+    name: No Event Skip
+    type: Governance
+    source: [P005, P014]
+    rules: [RULE-007]
+  C-008:
+    name: No Knowledge Write
+    type: Security
+    source: [P014]
+    rules: [RULE-008]
+  C-009:
+    name: Least Privilege
+    type: Security
+    source: [P016]
+    rules: [RULE-008]
+assumptions:
+  A-001: Workflow hợp lệ
+  A-002: Registry khả dụng
+  A-003: Contract hợp lệ
+  A-004: Plugin đã validate
+  A-005: Agent implement đúng Capability
+  note: Nếu giả định sai, Runtime chỉ báo lỗi, không tự sửa.
+dependencies:
+  logical:
+    - Constitution
+    - Workflow Definition
+    - Registry
+  runtime_services:
+    - Event Store
+    - Artifact Store
+    - Metrics Collector
+external_interfaces:
+  Workflow: Input
+  Registry: Input
+  Context: Read/Write
+  Event: Publish
+  Artifact: Publish
+  Metrics: Publish
+quality_attributes:
+  Reliability:
+    target: "99.9%"
+    description: Không sập khi Agent lỗi
+  Availability:
+    target: "99.9%"
+  Scalability:
+    target: N Executions song song
+  Extensibility:
+    target: 100% qua Capability
+  Determinism:
+    target: "100%"
+  Traceability:
+    target: "100%"
+  Observability:
+    target: "100%"
+  Maintainability:
+    target: Thay đổi không sửa Core
+acceptance:
+  AR-001:
+    description: Runtime phải chạy được Workflow hợp lệ
+    related: [FR-001, FR-002, FR-003, P001]
+    verified_by: [Runtime Tests, Doctor]
+  AR-002:
+    description: Runtime phải từ chối Workflow không hợp lệ
+    related: [FR-013, P011]
+    verified_by: [Runtime Tests, Doctor]
+  AR-003:
+    description: Runtime phải sinh Event đầy đủ
+    related: [FR-007, P005]
+    verified_by: [Doctor]
+  AR-004:
+    description: Runtime phải sinh Artifact
+    related: [FR-008, P010]
+    verified_by: [Runtime Tests, Doctor]
+  AR-005:
+    description: Runtime phải dừng an toàn khi Agent lỗi
+    related: [FR-012, P015]
+    verified_by: [Runtime Tests, Doctor]
+  AR-006:
+    description: Runtime không được vi phạm Constitution
+    related: [P020, FR-019]
+    verified_by: [Doctor]

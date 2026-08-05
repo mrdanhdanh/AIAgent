@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aios://state.schema.json",
+  "title": "SPEC-001 Runtime State Machine (S009 v2)",
+  "description": "JSON Schema cho state-machine.yaml. Validator kiem tra cau truc.",
+  "type": "object",
+  "required": ["id", "name", "version", "status", "owner", "philosophy", "principles", "states", "initial_state", "terminal_states", "transitions", "invariants", "ownership"],
+  "properties": {
+    "id": { "const": "SPEC-001-S009" },
+    "name": { "const": "Runtime State Machine" },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "status": { "enum": ["Draft", "Review", "Approved", "Stable", "Deprecated"] },
+    "owner": { "type": "string" },
+    "philosophy": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "principles": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "states": { "type": "object" },
+    "initial_state": { "type": "string", "pattern": "^ST-\\d{3}$" },
+    "terminal_states": { "type": "array", "items": { "type": "string", "pattern": "^ST-\\d{3}$" }, "minItems": 1 },
+    "active_states": { "type": "array", "items": { "type": "string", "pattern": "^ST-\\d{3}$" } },
+    "transitions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["from", "to", "event", "guard"],
+        "properties": {
+          "from": { "type": "string", "pattern": "^ST-\\d{3}$" },
+          "to": { "type": "string", "pattern": "^ST-\\d{3}$" },
+          "event": { "type": "string" },
+          "guard": { "type": "string" }
+        }
+      },
+      "minItems": 5
+    },
+    "invariants": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "ownership": { "type": "object" }
+  },
+  "additionalProperties": false
+}

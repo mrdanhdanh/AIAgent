@@ -1,7 +1,7 @@
 ---
 description: Thực thi kiểm thử, validate tính năng và báo cáo kết quả kèm coverage (v3.0)
 mode: subagent
-model: opencode/deepseek-v4-flash-free
+model: opencode-go/deepseek-v4-flash
 permission:
   read: allow
   grep: allow

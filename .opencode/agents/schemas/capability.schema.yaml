@@ -1,0 +1,10 @@
+# capability.schema.yaml — (Tham chiếu)
+# Schema chuẩn của Capability Object đặt tại: .opencode/registry/capability.schema.yaml
+# File này chỉ để giữ cấu trúc thư mục Phase 3 (agents/schemas/) đồng bộ.
+# Không có bản sao — tránh drift. Mọi thay đổi sửa file gốc ở registry/.
+
+canonical: .opencode/registry/capability.schema.yaml
+summary: >
+  Capability = khả năng không phụ thuộc agent.
+  id <category>.<specific>, version, owner, stability, deprecated, since.
+  Agent chỉ là implementation của capability (supports/requires/priority).

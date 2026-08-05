@@ -1,0 +1,26 @@
+# observability.schema.yaml — Observability Schema v1
+version: "20.0"
+schema: 1
+
+type: object
+required:
+  - trace_id
+  - spans
+properties:
+  version: { type: string, const: "20.0" }
+  trace_id: { type: string }
+  workflow_id: { type: string }
+  spans:
+    type: array
+    items:
+      type: object
+      properties:
+        id: { type: string }
+        parent: { type: string }
+        agent: { type: string }
+        capability: { type: string }
+        duration_ms: { type: integer }
+        tokens: { type: integer }
+        cost: { type: number }
+        status: { type: string }
+        error_code: { type: string }

@@ -1,0 +1,40 @@
+# AIOS Governance Compliance
+# D005 — Mức độ bắt buộc của từng policy + scope. Dashboard đọc để hiển thị.
+---
+version: "1.0"
+
+compliance:
+  mandatory:
+    - POLICY-001   # Approval
+    - POLICY-002   # Version
+    - POLICY-003   # Compatibility
+    - POLICY-004   # Deprecation
+    - POLICY-005   # Release
+    - POLICY-006   # Documentation
+    - POLICY-007   # Naming
+    - POLICY-008   # Plugin
+    - POLICY-009   # Security
+    - POLICY-010   # Quality
+    - POLICY-012   # Ownership
+  recommended:
+    - POLICY-011   # Traceability
+  optional:
+    - POLICY-013   # Change Impact Analysis
+    - POLICY-014   # Exception
+
+# Principles mapping — mỗi policy thực thi principle nào (Doctor kiểm tra đầy đủ)
+principles_mapping:
+  POLICY-001: [P016, P020, P001]
+  POLICY-002: [P004, P018]
+  POLICY-003: [P018, P015, P002]
+  POLICY-004: [P018, P010]
+  POLICY-005: [P013, P016, P005]
+  POLICY-006: [P017, P003]
+  POLICY-007: [P003]
+  POLICY-008: [P012, P019, P007]
+  POLICY-009: [P016, P015, P006]
+  POLICY-010: [P014, P015]
+  POLICY-011: [P008, P003]
+  POLICY-012: [P016, P003, P009]
+  POLICY-013: [P011, P013]
+  POLICY-014: [P018, P015]

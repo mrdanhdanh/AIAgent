@@ -1,0 +1,53 @@
+# SPEC-001 S008 — Runtime Data Model v2
+# Canonical Data Model — Single Source of Truth (P009).
+---
+version: "1.0"
+status: Approved
+frozen: true
+frozen_date: "2026-08-04"
+aggregate_root: Execution
+aggregate_rules:
+  - Execution là Aggregate Root duy nhất.
+  - Execution owns: [Context, State, Resources, Metrics, Events, Trace, Result]
+  - Execution references: [Workflow, Capability, Agent, Artifact]
+  - Ownership và Reference khác nhau — không nhầm lẫn.
+classification:
+  Runtime Data: [Execution Data, Metadata]
+  Execution Data: [Execution, Agent Assignment, Resource Allocation]
+  Transient: [Context, Execution State]
+  Persistent Metadata: [Artifacts, Events, Metrics, Trace, Result, Snapshot, Lineage]
+  Reference Data: [Workflow Ref, Capability Ref]
+  not_manages: [Business Data, Knowledge, Plugin Data, User Data, Database Records]
+invariants:
+  - Execution có đúng một Context.
+  - Execution có đúng một State.
+  - Event không thay đổi.
+  - Artifact immutable.
+  - Context isolated.
+  - Execution có duy nhất một Terminal State.
+  - Execution ID toàn cục.
+  - Execution luôn có Owner.
+  - Execution luôn có Metadata.
+  - Execution luôn có Version.
+  - Execution luôn có Lifecycle.
+  - Execution không đổi Identity.
+  - Context không đổi Owner.
+  - Artifact không đổi Checksum.
+  - Event không đổi Timestamp.
+consistency:
+  levels: [Execution Consistency, Context Consistency, State Consistency, Artifact Consistency]
+  rules:
+    - State luôn hợp lệ.
+    - Context không bị chia sẻ.
+    - Artifact luôn immutable.
+    - Metrics chỉ append.
+    - Event chỉ append.
+dependencies:
+  - Workflow → Execution
+  - Execution → Context
+  - Execution → State
+  - Execution → Assignment
+  - Execution → Events
+  - Execution → Artifacts
+  - Execution → Result
+  note: Không dependency ngược.

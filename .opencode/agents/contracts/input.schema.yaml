@@ -1,0 +1,84 @@
+# input.schema.yaml — Agent Input Contracts
+# Chuẩn dữ liệu mà agent NHẬN. Contract schema: contract.schema.yaml
+version: "4.0"
+
+inputs:
+  - id: planning-input
+    agent: planner
+    description: Dữ liệu để planner thiết kế giải pháp + lập kế hoạch
+    fields:
+      - name: requirements
+        type: string
+        required: true
+        description: yêu cầu người dùng
+      - name: acceptance
+        type: array
+        required: true
+        description: tiêu chí chấp nhận
+      - name: constraints
+        type: array
+        required: false
+        description: ràng buộc (tech, time, scope)
+
+  - id: build-input
+    agent: builder
+    description: Dữ liệu để builder viết code
+    fields:
+      - name: plan
+        type: string
+        required: true
+        description: ref plan.md
+      - name: task
+        type: string
+        required: true
+        description: công việc cụ thể
+      - name: project
+        type: string
+        required: true
+        description: bối cảnh dự án
+
+  - id: review-input
+    agent: reviewer
+    description: Dữ liệu để reviewer đánh giá code/plan
+    fields:
+      - name: code
+        type: string
+        required: true
+      - name: project
+        type: string
+        required: true
+        description: bối cảnh dự án
+
+  - id: test-input
+    agent: tester
+    description: Dữ liệu để tester thực thi kiểm thử
+    fields:
+      - name: code
+        type: string
+        required: true
+      - name: test_scope
+        type: string
+        required: true
+        description: phạm vi test (unit/e2e/ui)
+      - name: project
+        type: string
+        required: true
+
+  - id: analysis-input
+    agent: analyst
+    description: Dữ liệu để analyst phân tích yêu cầu
+    fields:
+      - name: task
+        type: string
+        required: true
+      - name: project
+        type: string
+        required: true
+      - name: error
+        type: string
+        required: false
+
+# Quy ước:
+# - Contract không chứa dữ liệu, chỉ định nghĩa cấu trúc.
+# - Agent validator (validator.md) kiểm tra agent.trả đúng output contract.
+# - Phase 4 (Context Engine) đọc input contracts để nạp context cần thiết.

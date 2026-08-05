@@ -1,0 +1,126 @@
+# agent-registry.yaml — Agent Capability Registry
+# 18 agents. capabilities phải tồn tại trong capabilities.yaml.
+version: "4.0"
+
+agents:
+  - id: planner
+    version: "2.0"
+    priority: 80
+    enabled: true
+    capabilities: [architecture.design, planning.task, planning.test]
+    languages: [csharp]
+    frameworks: [blazor]
+    estimated: medium
+    assistant_not_allowed: false
+    description: "Thiết kế giải pháp + lập kế hoạch thực thi"
+  - id: builder
+    version: "2.0"
+    priority: 80
+    enabled: true
+    capabilities: [implementation.code, implementation.refactor, implementation.fix]
+    languages: [csharp]
+    frameworks: [blazor]
+    estimated: medium
+    description: "Viết code và thực hiện thay đổi"
+  - id: reviewer
+    version: "2.0"
+    priority: 75
+    enabled: true
+    capabilities: [review.code, review.plan]
+    languages: [csharp]
+    frameworks: [blazor]
+    estimated: medium
+    description: "Đánh giá kế hoạch và mã nguồn"
+  - id: tester
+    version: "3.0"
+    priority: 75
+    enabled: true
+    capabilities: [testing.unit, testing.e2e, testing.ui]
+    languages: [csharp, typescript]
+    frameworks: [blazor, playwright]
+    estimated: high
+    description: "Thực thi kiểm thử và validate tính năng"
+  - id: analyst
+    version: "1.0"
+    priority: 70
+    enabled: true
+    capabilities: [analysis.requirement, analysis.risk]
+    description: "Phân tích yêu cầu"
+  - id: codebase-explorer
+    version: "1.0"
+    priority: 50
+    enabled: true
+    capabilities: [analysis.codebase, architecture.discovery]
+    description: "Khám phá cấu trúc dự án, read-only"
+  - id: test-planner
+    version: "1.0"
+    priority: 70
+    enabled: true
+    capabilities: [planning.test, testing.strategy]
+    description: "Lập kế hoạch kiểm thử"
+  - id: guardian
+    version: "1.0"
+    priority: 85
+    enabled: true
+    capabilities: [review.security]
+    description: "Review bảo mật trước push"
+  - id: pusher
+    version: "2.0"
+    priority: 60
+    enabled: true
+    capabilities: [deployment.git]
+    description: "Git push an toàn"
+  - id: backup-agent
+    version: "1.0"
+    priority: 50
+    enabled: true
+    capabilities: [deployment.backup, planning.rollback]
+    description: "Backup/rollback file"
+  - id: cleaner
+    version: "2.0"
+    priority: 40
+    enabled: true
+    capabilities: [workspace.cleanup]
+    description: "Dọn rác workspace"
+  - id: ui-beautifier
+    version: "3.1"
+    priority: 90
+    enabled: true
+    capabilities: [ui.design, ui.audit, implementation.ui]
+    description: "Đánh giá và cải thiện UI/UX"
+- id: knowledge-agent
+    version: "1.0"
+    priority: 60
+    enabled: true
+    capabilities: [knowledge.retrieve, knowledge.management]
+    description: "Intent Analyzer + Router cho Knowledge Assistant"
+  - id: learning-agent
+    version: "1.0"
+    priority: 40
+    enabled: true
+    capabilities: [knowledge.learn, memory.record]
+    description: "Learning Pipeline"
+  - id: self-improver
+    version: "1.0"
+    priority: 30
+    enabled: true
+    capabilities: [analysis.bottleneck, knowledge.learn]
+    description: "Đề xuất cải tiến"
+  - id: failure-agent
+    version: "2.0"
+    priority: 45
+    enabled: true
+    capabilities: [analysis.error, memory.record]
+    description: "Chuẩn hóa + phân loại lỗi (deterministic hash qua failure-analyzer.ps1)"
+  - id: root-cause-agent
+    version: "1.0"
+    priority: 55
+    enabled: true
+    capabilities: [analysis.root-cause]
+    description: "Phân tích nguyên nhân gốc"
+  - id: general
+    version: "1.0"
+    priority: 10
+    enabled: true
+    capabilities: [orchestration.orchestrate, orchestration.fallback]
+    description: "Orchestrator điều phối workflow"

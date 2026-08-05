@@ -1,0 +1,31 @@
+# prompt-registry.yaml — Prompt Registry Index
+# id → prompt file + version. Agent ref qua id.
+version: "18.0"
+
+prompts:
+  - id: planner.v1
+    file: planner/v1.md
+    version: 1
+    status: archived
+  - id: planner.v7
+    file: planner/v7.md
+    version: 7
+    status: active
+    supersedes: planner.v6
+  - id: builder.v1
+    file: builder/v1.md
+    version: 1
+    status: active
+  - id: reviewer.v1
+    file: reviewer/v1.md
+    version: 1
+    status: active
+  - id: tester.v1
+    file: tester/v1.md
+    version: 1
+    status: active
+
+# Quy ước:
+# - Agent metadata ref: behavior.prompt = <id>.
+# - Prompt file immutable — thay đổi = version mới.
+# - Plugin override: namespace riêng (plugin.prompt_id).
