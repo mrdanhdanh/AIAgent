@@ -1,0 +1,28 @@
+# SPEC-001 S003 — Responsibility Matrix (groups x owner/boundary)
+---
+version: "1.0"
+matrix:
+  Core:
+    owner: Runtime
+    boundary: Runtime
+  Execution:
+    owner: Runtime
+    boundary: Runtime
+  Context:
+    owner: Runtime
+    boundary: Runtime
+  State:
+    owner: Runtime
+    boundary: Runtime
+  Coordination:
+    owner: Runtime
+    boundary: Runtime
+  Observability:
+    owner: Runtime
+    boundary: Runtime
+  Artifact:
+    owner: Runtime
+    boundary: Runtime
+  Governance:
+    owner: Runtime
+    boundary: Runtime

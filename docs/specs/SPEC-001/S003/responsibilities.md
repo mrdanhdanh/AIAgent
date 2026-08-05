@@ -2,8 +2,8 @@
 name: spec-001-s003-responsibilities
 description: >
   SPEC-001 S003 — Runtime Responsibilities. Trả lời: Runtime chịu trách nhiệm
-  về những gì? Phân rã 20 FR thành 14 trách nhiệm kiến trúc.
-  Vẫn chưa nói implementation/component/class.
+  về những gì và không chịu trách nhiệm về những gì. 35 trách nhiệm (RR-001..035),
+  8 nhóm. Không nói component/class/implementation.
 agent: general
 ---
 
@@ -15,135 +15,211 @@ agent: general
 
 > **Runtime chịu trách nhiệm về những gì?**
 
-- **S002** trả lời: *Runtime phải làm được gì?* (Requirements)
-- **S003** trả lời: *Runtime chịu trách nhiệm về những gì?* (Responsibilities)
+Không nói component.
 
-## Nguyên tắc phân rã
+Không nói class.
 
-- Mỗi trách nhiệm gom một nhóm Functional Requirement có cùng mục đích.
-- Mỗi trách nhiệm liên kết ≥1 Principle + Rule (Constitution).
-- Trách nhiệm **không** nói component/class — chỉ nói "Runtime chịu trách nhiệm X".
+Không nói implementation.
 
-## 14 Trách nhiệm
+Không nói workflow chi tiết.
 
-| ID | Responsibility | Priority | Category | Từ FR |
-|----|----------------|----------|----------|-------|
-| RESP-001 | Execution Initiation | Critical | Core | FR-001, FR-015 |
-| RESP-002 | Workflow Management | Critical | Core | FR-002, FR-013 |
-| RESP-003 | Capability Resolution | Critical | Core | FR-003, FR-014 |
-| RESP-004 | Agent Orchestration | Critical | Execution | FR-004 |
-| RESP-005 | Context Management | Critical | State | FR-005, FR-016 |
-| RESP-006 | State Management | Critical | State | FR-006 |
-| RESP-007 | Event Emission | High | Events | FR-007 |
-| RESP-008 | Artifact Production | High | Data | FR-008, FR-020 |
-| RESP-009 | Metrics Collection | High | Observability | FR-009 |
-| RESP-010 | Simulation Support | Medium | Execution | FR-010 |
-| RESP-011 | Replay Support | Medium | Execution | FR-011 |
-| RESP-012 | Execution Control | High | Execution | FR-012, FR-017, FR-018 |
-| RESP-013 | Lifecycle Management | Critical | Execution | FR-015 |
-| RESP-014 | Governance Enforcement | Medium | Governance | FR-019 |
+## Mục tiêu
 
-## Chi tiết trách nhiệm
+Xác định **ownership** của Runtime.
 
-### RESP-001 — Execution Initiation
-Runtime chịu trách nhiệm khởi tạo Execution Context và bắt đầu Execution.
-- Yêu cầu: FR-001, FR-015
-- Principle: P001, P003
-- Rule: RULE-004
+Một Responsibility phải có đúng **một Owner**.
 
-### RESP-002 — Workflow Management
-Runtime chịu trách nhiệm nạp, validate và quản lý Workflow Definition.
-- Yêu cầu: FR-002, FR-013
-- Principle: P001, P011
-- Rule: RULE-004
+Không Responsibility nào được giao cho hai thành phần.
 
-### RESP-003 — Capability Resolution
-Runtime chịu trách nhiệm resolve và validate Capability/Contract.
-- Yêu cầu: FR-003, FR-014
-- Principle: P007, P002
-- Rule: RULE-002, RULE-003
+## Nguyên tắc quan trọng
 
-### RESP-004 — Agent Orchestration
-Runtime chịu trách nhiệm điều phối Agent theo Capability đã resolve.
-- Yêu cầu: FR-004
-- Principle: P001, P007
-- Rule: RULE-004
+### Responsibility ≠ Capability ≠ Component
 
-### RESP-005 — Context Management
-Runtime chịu trách nhiệm tạo/đọc/đóng Execution Context, cô lập giữa các Execution.
-- Yêu cầu: FR-005, FR-016
-- Principle: P001, P009, P006
-- Rule: RULE-006, RULE-005
+Ba khái niệm phải tách biệt tuyệt đối:
 
-### RESP-006 — State Management
-Runtime chịu trách nhiệm quản lý state trong Execution; mọi thay đổi phát Event.
-- Yêu cầu: FR-006
-- Principle: P001, P005, P009
-- Rule: RULE-005
+| Khái niệm | Vai trò |
+|-----------|---------|
+| **Responsibility** | Runtime **phải chịu trách nhiệm** về điều gì (S003) |
+| **Capability** | Runtime **cần khả năng** gì để hoàn thành trách nhiệm (SPEC-003) |
+| **Component** | Runtime **được cấu thành bởi những phần nào** (S006) |
 
-### RESP-007 — Event Emission
-Runtime chịu trách nhiệm phát Event cho mọi state change.
-- Yêu cầu: FR-007
-- Principle: P005, P014
-- Rule: RULE-007
+Chuỗi quan hệ:
 
-### RESP-008 — Artifact Production
-Runtime chịu trách nhiệm thu thập và công bố Artifact (kết quả Execution).
-- Yêu cầu: FR-008, FR-020
-- Principle: P010, P005
-- Rule: RULE-009
+```text
+Requirement
+      ↓
+Responsibility
+      ↓
+Capability
+      ↓
+Component
+      ↓
+Contract
+      ↓
+Implementation
+```
 
-### RESP-009 — Metrics Collection
-Runtime chịu trách nhiệm thu thập Metrics cho observability.
-- Yêu cầu: FR-009
-- Principle: P014
-- Rule: RULE-014
+> Giữ chuỗi này xuyên suốt AIOS → tránh lẫn lộn giữa "việc phải làm", "khả năng cần có" và "cách hiện thực".
 
-### RESP-010 — Simulation Support
-Runtime chịu trách nhiệm chạy Simulation trước khi Execute.
-- Yêu cầu: FR-010
-- Principle: P013
-- Rule: RULE-004
+## R001 — Core Responsibilities
 
-### RESP-011 — Replay Support
-Runtime chịu trách nhiệm Replay Execution từ Event log.
-- Yêu cầu: FR-011
-- Principle: P005, P013
-- Rule: RULE-013
+| ID | Responsibility | Owner | Priority |
+|----|----------------|-------|----------|
+| RR-001 | Khởi tạo Execution | Runtime | Critical |
+| RR-002 | Kết thúc Execution | Runtime | Critical |
+| RR-003 | Quản lý Execution Lifecycle | Runtime | Critical |
+| RR-004 | Điều phối luồng thực thi | Runtime | Critical |
 
-### RESP-012 — Execution Control
-Runtime chịu trách nhiệm hủy an toàn, timeout, retry theo policy.
-- Yêu cầu: FR-012, FR-017, FR-018
-- Principle: P015
-- Rule: RULE-012
+## R002 — Execution Responsibilities
 
-### RESP-013 — Lifecycle Management
-Runtime chịu trách nhiệm quản lý vòng đời Execution (created→running→terminal).
-- Yêu cầu: FR-015
-- Principle: P001, P005
-- Rule: RULE-004
+| ID | Responsibility | Priority |
+|----|----------------|----------|
+| RR-005 | Đọc Workflow Definition | Critical |
+| RR-006 | Resolve Capability | Critical |
+| RR-007 | Chọn Agent phù hợp | Critical |
+| RR-008 | Điều phối thứ tự thực thi | High |
+| RR-009 | Theo dõi tiến trình Execution | High |
+| RR-010 | Dừng Execution khi cần | High |
 
-### RESP-014 — Governance Enforcement
-Runtime chịu trách nhiệm enforce approval gate và tuân thủ Constitution.
-- Yêu cầu: FR-019
-- Principle: P016, P020
-- Rule: RULE-004, RULE-015
+> Runtime điều phối, không thực hiện nghiệp vụ.
 
-## Nguồn trách nhiệm
+## R003 — Context Responsibilities
 
-| Responsibility | Nhóm FR |
-|----------------|---------|
-| RESP-001..003 | Core Initiation (FR-001,002,003,013,014,015) |
-| RESP-004,010,011,012,013 | Execution (FR-004,010,011,012,015,017,018) |
-| RESP-005,006 | State (FR-005,006,016) |
-| RESP-007 | Events (FR-007) |
-| RESP-008 | Data (FR-008,020) |
-| RESP-009 | Observability (FR-009) |
-| RESP-014 | Governance (FR-019) |
+| ID | Responsibility | Priority |
+|----|----------------|----------|
+| RR-011 | Tạo Execution Context | Critical |
+| RR-012 | Cấp Context cho Agent | Critical |
+| RR-013 | Thu hồi Context | High |
+| RR-014 | Cô lập Context giữa các Execution | Critical |
+
+## R004 — State Responsibilities
+
+| ID | Responsibility | Priority |
+|----|----------------|----------|
+| RR-015 | Khởi tạo State | Critical |
+| RR-016 | Theo dõi State | High |
+| RR-017 | Chuyển State hợp lệ | High |
+| RR-018 | Kết thúc bằng Terminal State | Critical |
+
+## R005 — Coordination Responsibilities
+
+| ID | Responsibility | Priority |
+|----|----------------|----------|
+| RR-019 | Điều phối Agent | Critical |
+| RR-020 | Điều phối Capability | Critical |
+| RR-021 | Đồng bộ Execution | Medium |
+| RR-022 | Điều phối Retry | High |
+| RR-023 | Điều phối Cancellation | High |
+| RR-024 | Điều phối Approval Gate | Medium |
+
+## R006 — Observability Responsibilities
+
+| ID | Responsibility | Priority |
+|----|----------------|----------|
+| RR-025 | Phát Event | High |
+| RR-026 | Thu Metrics | High |
+| RR-027 | Sinh Trace | Medium |
+| RR-028 | Ghi Audit Trail | High |
+
+## R007 — Artifact Responsibilities
+
+| ID | Responsibility | Priority |
+|----|----------------|----------|
+| RR-029 | Sinh Artifact | High |
+| RR-030 | Publish Artifact Metadata | High |
+| RR-031 | Không sửa Artifact đã sinh | Critical |
+
+## R008 — Governance Responsibilities
+
+| ID | Responsibility | Priority |
+|----|----------------|----------|
+| RR-032 | Thực thi Constitution | Critical |
+| RR-033 | Kiểm tra Contract | Critical |
+| RR-034 | Áp dụng Policy | Medium |
+| RR-035 | Từ chối Execution vi phạm | Critical |
+
+## Runtime không chịu trách nhiệm
+
+Runtime **không được**:
+
+- Thực thi Business Logic.
+- Hiểu Domain.
+- Biết Agent cụ thể.
+- Chứa Skill.
+- Truy cập Database trực tiếp.
+- Gọi LLM trực tiếp.
+- Chỉnh sửa Workflow.
+- Ghi Knowledge.
+- Quản lý Plugin.
+- Quyết định nghiệp vụ.
+
+## Responsibility Ownership
+
+| Responsibility Group | Owner |
+|----------------------|-------|
+| Execution | Runtime |
+| Context | Runtime |
+| State | Runtime |
+| Coordination | Runtime |
+| Observability | Runtime |
+| Artifact Publishing | Runtime |
+| Governance Enforcement | Runtime |
+
+Không nhóm nào có nhiều hơn một Owner.
+
+## Responsibility Boundaries
+
+Runtime chịu trách nhiệm:
+
+```text
+Execution
+Context
+State
+Coordination
+Events
+Metrics
+Artifacts
+```
+
+Runtime không chịu trách nhiệm:
+
+```text
+Workflow Authoring
+Business Logic
+Skill Content
+Knowledge
+UI
+Database
+Plugin Implementation
+```
+
+## Responsibility Principles Mapping
+
+| Responsibility | Principle |
+|----------------|-----------|
+| Execution | P001 |
+| Capability Resolution | P007 |
+| Event Publishing | P005 |
+| Artifact Publishing | P010 |
+| Constitution Enforcement | P020 |
+
+## Success Criteria
+
+S003 được xem là hoàn thành khi:
+
+- Mỗi Responsibility có đúng một Owner.
+- Không Responsibility nào chồng chéo.
+- Không Responsibility nào mâu thuẫn với Constitution.
+- Runtime không đảm nhận trách nhiệm thuộc Workflow, Agent, Plugin hoặc Knowledge.
+- Mọi Responsibility đều truy vết được tới Requirement trong S002.
 
 ## Tham chiếu
 
-- `responsibilities.yaml` — nguồn dữ liệu chuẩn (14 responsibilities).
-- `responsibility-traceability.yaml` — RESP → FR → P → RULE → SPEC → TEST → DOCTOR.
-- `requirements.yaml` — nguồn FR (S002).
+- `responsibilities.yaml` — nguồn dữ liệu chuẩn (35 RR).
+- `responsibility-registry.yaml` — registry tổng hợp (Doctor đọc một file).
+- `responsibility-mapping.yaml` — RR → Requirement → Principle → Rule.
+- `responsibility-matrix.yaml` — groups × owner × boundary.
+- `ownership.yaml` — Runtime owns / not owns.
+- `responsibilities.schema.json` — validate cấu trúc.
+- S002: `../S002/requirements.yaml`
 - Constitution: `docs/specs/SPEC-000/`

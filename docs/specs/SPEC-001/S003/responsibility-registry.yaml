@@ -1,0 +1,24 @@
+# SPEC-001 S003 — Responsibility Registry
+# Doctor/Dashboard doc mot file.
+---
+version: "1.0"
+groups:
+  Core: [RR-001, RR-002, RR-003, RR-004]
+  Execution: [RR-005, RR-006, RR-007, RR-008, RR-009, RR-010]
+  Context: [RR-011, RR-012, RR-013, RR-014]
+  State: [RR-015, RR-016, RR-017, RR-018]
+  Coordination: [RR-019, RR-020, RR-021, RR-022, RR-023, RR-024]
+  Observability: [RR-025, RR-026, RR-027, RR-028]
+  Artifact: [RR-029, RR-030, RR-031]
+  Governance: [RR-032, RR-033, RR-034, RR-035]
+owners:
+  - Runtime
+categories:
+  - Core
+  - Execution
+  - Context
+  - State
+  - Coordination
+  - Observability
+  - Artifact
+  - Governance

@@ -1,0 +1,20 @@
+# SPEC-001 S003 — Responsibility Ownership
+# Runtime chiu trach nhiem gi. Khong nhom nao co nhieu hon mot owner.
+---
+version: "1.0"
+runtime_owns:
+  - Execution
+  - Context
+  - State
+  - Coordination
+  - Events
+  - Metrics
+  - Artifacts
+runtime_not_owns:
+  - Workflow Authoring
+  - Business Logic
+  - Skill Content
+  - Knowledge
+  - UI
+  - Database
+  - Plugin Implementation

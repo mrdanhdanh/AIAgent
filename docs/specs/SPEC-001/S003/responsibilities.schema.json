@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "aios://responsibilities.schema.json",
-  "title": "SPEC-001 Runtime Responsibilities (S003)",
+  "title": "SPEC-001 Runtime Responsibilities (S003 v2)",
   "description": "JSON Schema cho responsibilities.yaml. Validator kiem tra cau truc.",
   "type": "object",
   "required": ["id", "name", "version", "status", "owner", "responsibilities"],
@@ -14,15 +14,14 @@
     "responsibilities": {
       "type": "object",
       "patternProperties": {
-        "^RESP-\\d{3}$": {
+        "^RR-\\d{3}$": {
           "type": "object",
-          "required": ["name", "description", "priority", "category", "owner", "status", "requirements", "principles"],
+          "required": ["name", "group", "owner", "priority", "status", "requirements", "principles"],
           "properties": {
             "name": { "type": "string" },
-            "description": { "type": "string" },
-            "priority": { "enum": ["Critical", "High", "Medium", "Low"] },
-            "category": { "enum": ["Core", "Execution", "State", "Data", "Events", "Observability", "Governance"] },
+            "group": { "enum": ["Core", "Execution", "Context", "State", "Coordination", "Observability", "Artifact", "Governance"] },
             "owner": { "type": "string" },
+            "priority": { "enum": ["Critical", "High", "Medium", "Low"] },
             "status": { "enum": ["Draft", "Approved", "Implemented", "Verified", "Stable"] },
             "requirements": { "type": "array", "items": { "type": "string", "pattern": "^FR-\\d{3}$" } },
             "principles": { "type": "array", "items": { "type": "string", "pattern": "^P\\d{3}$" }, "minItems": 1 },
