@@ -173,7 +173,7 @@ if (Test-Path $archYaml) {
 
 # ---------- S1-013: S006 components ----------
 $s006 = Join-Path $spec1 'S006'
-foreach ($f in @('components.md','components.yaml','components.schema.json','component-registry.yaml','component-mapping.yaml')) {
+foreach ($f in @('components.md','components.yaml','components.schema.json','component-registry.yaml','component-mapping.yaml','component-relationships.yaml','component-dependency-matrix.yaml','component-lifecycle.yaml','component-contracts.yaml','component-ownership.yaml')) {
   if (-not (Test-Path (Join-Path $s006 $f))) { $errors += "S1-013: missing S006/$f" }
 }
 $cmpYaml = Join-Path $s006 'components.yaml'

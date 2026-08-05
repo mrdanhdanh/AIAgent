@@ -1,0 +1,29 @@
+# SPEC-001 S006 — Component Dependency Matrix
+# Row depends_on Column. Doctor validate DAG (khong vong, khong nguoc layer).
+---
+version: "1.0"
+matrix:
+  Execution Manager:
+    depends_on: [Context Manager, State Manager, Event Publisher, Artifact Publisher, Metrics Collector, Resource Manager, Execution Coordinator]
+  Workflow Manager:
+    depends_on: [Execution Manager]
+  Context Manager:
+    depends_on: []
+  State Manager:
+    depends_on: [Event Publisher]
+  Capability Resolver:
+    depends_on: [Registry Client]
+  Registry Client:
+    depends_on: []
+  Event Publisher:
+    depends_on: []
+  Artifact Publisher:
+    depends_on: []
+  Metrics Collector:
+    depends_on: [Event Publisher]
+  Policy Engine:
+    depends_on: [Registry Client]
+  Resource Manager:
+    depends_on: []
+  Execution Coordinator:
+    depends_on: [Execution Manager, Capability Resolver, Policy Engine]

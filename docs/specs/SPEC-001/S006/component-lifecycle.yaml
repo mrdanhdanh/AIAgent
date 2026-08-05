@@ -1,0 +1,17 @@
+# SPEC-001 S006 — Component Lifecycle
+---
+version: "1.0"
+lifecycle:
+  - Defined
+  - Instantiated
+  - Registered
+  - Active
+  - Suspended
+  - Terminated
+transitions:
+  "Defined -> Instantiated": Khởi tạo component
+  "Instantiated -> Registered": Đăng ký vào Registry
+  "Registered -> Active": Bắt đầu phục vụ
+  "Active -> Suspended": Tạm dừng (lỗi/cấu hình)
+  "Suspended -> Active": Phục hồi
+  "Active -> Terminated": Kết thúc

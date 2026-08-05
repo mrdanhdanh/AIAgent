@@ -9,47 +9,58 @@ agent: general
 # AIOS — Master Specification Index
 
 > **Điểm vào duy nhất** cho toàn bộ SPEC của AIOS.
-> Cấu trúc: Core → Edge, không chồng chéo.
+> Cấu trúc: Kernel trước, subsystem sau — không chồng chéo.
 
 ## SPEC-000 — Constitution
 
 > **Trạng thái**: ✅ Frozen · **Mô hình**: Assemble
 
-- D001 Manifest
-- D002 Glossary
-- D003 Constitution Principles
-- D004 Architecture Rules
-- D005 Governance Framework
+```text
+SPEC-000 Constitution
+├── D001 Manifest
+├── D002 Glossary
+├── D003 Principles
+├── D004 Rules
+└── D005 Governance
+```
 
 ## SPEC-001 — Runtime Kernel
 
-> **Trạng thái**: In progress
+> **Trạng thái**: In progress · **Phụ thuộc**: SPEC-000
 
-- S001 Vision ✅ Frozen
-- S002 Requirements ✅ Frozen
-- S003 Responsibilities ✅ Frozen
-- S004 Boundaries ✅ Frozen
-- S005 Architecture ✅ Frozen
-- S006 Components 🚧
-- S007 Contracts
-- S008 Data Model
-- S009 State Machine
-- S010 Execution Flow
-- S011 Events
-- S012 Context
-- S013 Artifacts
-- S014 Metrics
-- S015 Errors
+```text
+SPEC-001 Runtime Kernel
+├── S001 Runtime Vision        ✅
+├── S002 Runtime Requirements  ✅
+├── S003 Runtime Responsibilities ✅
+├── S004 Runtime Boundaries    ✅
+├── S005 Runtime Architecture  ✅
+├── S006 Runtime Components    🚧
+├── S007 Runtime Contracts
+├── S008 Runtime Data Model
+├── S009 Runtime State Machine
+├── S010 Runtime Execution Flow
+├── S011 Runtime Events
+├── S012 Runtime Context
+├── S013 Runtime Artifact Model
+├── S014 Runtime Metrics
+├── S015 Runtime Error Model
+├── S016 Runtime Configuration
+├── S017 Runtime Lifecycle
+├── S018 Runtime Extension Points
+├── S019 Runtime Security
+└── S020 Runtime Compliance
+```
 
-## SPEC-002 — Workflow
+## SPEC-002 — Workflow Engine
+
+> **Trạng thái**: ⬜ · **Dùng**: SPEC-001
+
+## SPEC-003 — Capability System
 
 > **Trạng thái**: ⬜
 
-## SPEC-003 — Capability
-
-> **Trạng thái**: ⬜
-
-## SPEC-004 — Agent
+## SPEC-004 — Agent System
 
 > **Trạng thái**: ⬜
 
@@ -57,45 +68,63 @@ agent: general
 
 > **Trạng thái**: ⬜
 
-## SPEC-006 — Context
+## SPEC-006 — Context Engine
 
 > **Trạng thái**: ⬜
 
-## SPEC-007 — Artifact
+## SPEC-007 — Artifact Manager
 
 > **Trạng thái**: ⬜
 
-## SPEC-008 — Event
+## SPEC-008 — Event Bus
 
 > **Trạng thái**: ⬜
 
-## SPEC-009 — Plugin
+## SPEC-009 — Contract System
 
 > **Trạng thái**: ⬜
 
-## SPEC-010 — Doctor
+## SPEC-010 — Plugin Framework
 
 > **Trạng thái**: ⬜
 
-## SPEC-011 — Dashboard
+## SPEC-011 — Doctor
 
 > **Trạng thái**: ⬜
 
-## SPEC-012 — Simulation
+## SPEC-012 — Simulation Engine
 
 > **Trạng thái**: ⬜
 
-## SPEC-013 — Evolution
+## SPEC-013 — Evolution Engine
 
 > **Trạng thái**: ⬜
 
-## SPEC-014 — SDK
+## SPEC-014 — Dashboard
 
 > **Trạng thái**: ⬜
+
+## SPEC-015 — SDK
+
+> **Trạng thái**: ⬜
+
+## SPEC-016 — CLI & Commands
+
+> **Trạng thái**: ⬜
+
+## Thứ tự triển khai (Kernel-first)
+
+```text
+Constitution
+    ↓
+Runtime (SPEC-001, đầy đủ S001-S020)
+    ↓
+Workflow → Capability → Registry → Agent → Context → Artifact → Event → Plugin → ...
+```
 
 ## Quy tắc
 
 - Mọi SPEC tham chiếu Constitution (SPEC-000), không định nghĩa lại.
+- Hoàn thiện toàn bộ Runtime trước khi sang SPEC-002.
 - Mỗi SPEC theo chuỗi: Vision → Requirements → Responsibilities → Boundaries → Architecture → Components → Contracts → Data Model → State Machine → Execution Flow → Events.
-- Core (SPEC-000..001) → Edge (SPEC-002+): không chồng chéo.
 - Doctor/Dashboard/Evolution đọc file này để xây chỉ mục và kiểm tra tính đầy đủ.

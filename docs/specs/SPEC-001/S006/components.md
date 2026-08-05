@@ -106,11 +106,75 @@ SDK
 | Event | CMP-007, CMP-009 |
 | Publication | CMP-008 |
 
+## Component Relationships
+
+```text
+Workflow Manager → Execution Manager → { Context Manager, State Manager,
+  Event Publisher, Artifact Publisher, Metrics Collector, Resource Manager }
+Execution Coordinator → { Execution Manager, Capability Resolver, Policy Engine }
+Capability Resolver → Registry Client
+```
+
+Chi tiết: `component-relationships.yaml`
+
+## Component Dependency Matrix
+
+| Component | Depends on |
+|-----------|-----------|
+| Execution Manager | Context, State, Event Publisher, Artifact Publisher, Metrics, Resource, Coordinator |
+| Workflow Manager | Execution Manager |
+| Context Manager | — |
+| State Manager | Event Publisher |
+| Capability Resolver | Registry Client |
+| Registry Client | — |
+| Event Publisher | — |
+| Artifact Publisher | — |
+| Metrics Collector | Event Publisher |
+| Policy Engine | Registry Client |
+| Resource Manager | — |
+| Execution Coordinator | Execution Manager, Capability Resolver, Policy Engine |
+
+> Doctor validate DAG: không vòng, không ngược layer.
+
+## Component Lifecycle
+
+```text
+Defined → Instantiated → Registered → Active → Suspended → Terminated
+```
+
+## Component Contracts
+
+Mỗi component expose một contract (chi tiết tại S007):
+
+| Component | Contract |
+|-----------|----------|
+| Execution Manager | Execution Contract |
+| Workflow Manager | Workflow Contract |
+| Context Manager | Context Contract |
+| State Manager | State Contract |
+| Capability Resolver | Capability Contract |
+| Registry Client | Registry Contract |
+| Event Publisher | Event Contract |
+| Artifact Publisher | Artifact Contract |
+| Metrics Collector | Metrics Contract |
+| Policy Engine | Policy Contract |
+| Resource Manager | Resource Contract |
+| Execution Coordinator | Coordinator Contract |
+
+## Component Ownership
+
+Mọi component thuộc **Runtime Team** — không chồng chéo. Chi tiết: `component-ownership.yaml`
+
 ## Tham chiếu
 
 - `components.yaml` — nguồn dữ liệu chuẩn (12 components).
 - `component-registry.yaml` — registry tổng hợp.
 - `component-mapping.yaml` — CMP → Layer/Domain → RR → FR → P.
+- `component-relationships.yaml` — quan hệ giữa các component.
+- `component-dependency-matrix.yaml` — ma trận phụ thuộc (Doctor validate DAG).
+- `component-lifecycle.yaml` — vòng đời component.
+- `component-contracts.yaml` — contract mỗi component (S007).
+- `component-ownership.yaml` — chủ sở hữu mỗi component.
 - `components.schema.json` — validate cấu trúc.
 - S005: `../S005/architecture.yaml`
 - S003: `../S003/responsibilities.yaml`
