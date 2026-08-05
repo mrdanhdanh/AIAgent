@@ -1,125 +1,113 @@
-# SPEC-001 S007 — Contract Mapping (CT010)
-# Contract -> Component -> Layer -> Domain -> Capability -> RR -> FR -> Boundary -> Rule -> P
+# SPEC-001 S007 — Contract Mapping (CT010) v2
+# Contract -> Capability -> Execution -> Artifact -> Event -> Policy -> Rule -> Principle
 ---
 version: "1.0"
 mapping:
   CTR-001:
     component: Execution Manager
-    layer: Execution
-    domain: Execution
     capability: execution-management
-    responsibilities: [RR-001, RR-002, RR-003]
-    requirements: [FR-001, FR-015]
-    boundary: B001-ownership
-    rules: [RULE-004]
-    principles: [P001, P005]
+    execution: Execution (S008)
+    artifact: Artifact (S008)
+    event: Event (S011)
+    policy: POLICY-001
+    rule: RULE-003
+    principle: P002
   CTR-002:
     component: Workflow Loader
-    layer: Workflow
-    domain: Execution
     capability: workflow-loading
-    responsibilities: [RR-005]
-    requirements: [FR-002, FR-013]
-    boundary: B003-delegation
-    rules: [RULE-004]
-    principles: [P001, P011]
+    execution: Execution (S008)
+    artifact: Artifact (S008)
+    event: Event (S011)
+    policy: POLICY-001
+    rule: RULE-003
+    principle: P002
   CTR-003:
     component: Execution Orchestrator
-    layer: Coordination
-    domain: Coordination
     capability: orchestration
-    responsibilities: [RR-004, RR-019, RR-021, RR-022, RR-023, RR-024]
-    requirements: [FR-004, FR-010, FR-011, FR-012, FR-017, FR-018, FR-019]
-    boundary: B002-permission
-    rules: [RULE-004]
-    principles: [P001]
+    execution: Execution (S008)
+    artifact: Artifact (S008)
+    event: Event (S011)
+    policy: POLICY-001
+    rule: RULE-003
+    principle: P002
   CTR-004:
     component: Capability Resolver
-    layer: Capability
-    domain: Capability
     capability: capability-resolution
-    responsibilities: [RR-006, RR-020]
-    requirements: [FR-003]
-    boundary: B003-delegation
-    rules: [RULE-002]
-    principles: [P007]
+    execution: Execution (S008)
+    artifact: Artifact (S008)
+    event: Event (S011)
+    policy: POLICY-001
+    rule: RULE-003
+    principle: P002
   CTR-005:
     component: Registry Resolver
-    layer: Resolution
-    domain: Capability
     capability: registry-resolution
-    responsibilities: [RR-006]
-    requirements: [FR-003, FR-014]
-    boundary: B004-dependency
-    rules: [RULE-002]
-    principles: [P007, P002]
+    execution: Execution (S008)
+    artifact: Artifact (S008)
+    event: Event (S011)
+    policy: POLICY-001
+    rule: RULE-003
+    principle: P002
   CTR-006:
     component: Context Manager
-    layer: Execution
-    domain: Execution
     capability: context-management
-    responsibilities: [RR-011, RR-012, RR-013, RR-014]
-    requirements: [FR-005, FR-016]
-    boundary: B006-state
-    rules: [RULE-006]
-    principles: [P001, P009, P006]
+    execution: Execution (S008)
+    artifact: Artifact (S008)
+    event: Event (S011)
+    policy: POLICY-001
+    rule: RULE-003
+    principle: P002
   CTR-007:
     component: State Manager
-    layer: State
-    domain: State
     capability: state-management
-    responsibilities: [RR-015, RR-016, RR-017, RR-018]
-    requirements: [FR-006]
-    boundary: B006-state
-    rules: [RULE-005]
-    principles: [P005, P009]
+    execution: Execution (S008)
+    artifact: Artifact (S008)
+    event: Event (S011)
+    policy: POLICY-001
+    rule: RULE-003
+    principle: P002
   CTR-008:
     component: Event Dispatcher
-    layer: Event
-    domain: Observability
     capability: event-dispatching
-    responsibilities: [RR-025, RR-028]
-    requirements: [FR-007]
-    boundary: B007-data
-    rules: [RULE-007]
-    principles: [P005, P014]
+    execution: Execution (S008)
+    artifact: Artifact (S008)
+    event: Event (S011)
+    policy: POLICY-001
+    rule: RULE-003
+    principle: P002
   CTR-009:
     component: Artifact Dispatcher
-    layer: Publication
-    domain: Publication
     capability: artifact-dispatching
-    responsibilities: [RR-029, RR-030, RR-031]
-    requirements: [FR-008, FR-020]
-    boundary: B007-data
-    rules: [RULE-009]
-    principles: [P010, P005]
+    execution: Execution (S008)
+    artifact: Artifact (S008)
+    event: Event (S011)
+    policy: POLICY-001
+    rule: RULE-003
+    principle: P002
   CTR-010:
     component: Metrics Collector
-    layer: Event
-    domain: Observability
     capability: metrics-collection
-    responsibilities: [RR-026, RR-027]
-    requirements: [FR-009]
-    boundary: B007-data
-    rules: [RULE-014]
-    principles: [P014]
+    execution: Execution (S008)
+    artifact: Artifact (S008)
+    event: Event (S011)
+    policy: POLICY-001
+    rule: RULE-003
+    principle: P002
   CTR-011:
     component: Policy Engine
-    layer: Coordination
-    domain: Coordination
     capability: policy-enforcement
-    responsibilities: [RR-032, RR-033, RR-034, RR-035]
-    requirements: [FR-014, FR-019]
-    boundary: B009-security
-    rules: [RULE-008]
-    principles: [P016, P020]
+    execution: Execution (S008)
+    artifact: Artifact (S008)
+    event: Event (S011)
+    policy: POLICY-001
+    rule: RULE-003
+    principle: P002
   CTR-012:
     component: Execution Resource Manager
-    layer: Execution
-    domain: Execution
     capability: resource-management
-    responsibilities: [RR-001]
-    requirements: [FR-015, FR-016]
-    boundary: B008-failure
-    rules: [RULE-012]
-    principles: [P015]
+    execution: Execution (S008)
+    artifact: Artifact (S008)
+    event: Event (S011)
+    policy: POLICY-001
+    rule: RULE-003
+    principle: P002

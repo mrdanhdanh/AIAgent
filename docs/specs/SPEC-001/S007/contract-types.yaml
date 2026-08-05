@@ -1,0 +1,19 @@
+# SPEC-001 S007 — Contract Types
+# Toan AIOS — SPEC-005/007 khong dinh nghia lai.
+---
+version: "1.0"
+types:
+  - Execution Contract
+  - Workflow Contract
+  - Capability Contract
+  - Context Contract
+  - State Contract
+  - Event Contract
+  - Artifact Contract
+  - Metrics Contract
+  - Policy Contract
+  - Registry Contract
+  - Plugin Contract
+  - SDK Contract
+  - External Contract
+note: Runtime chi dinh nghia 12 contract dau; Plugin/SDK/External thuoc SPEC sau.

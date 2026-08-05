@@ -209,7 +209,7 @@ if (Test-Path $cmpMap) {
 
 # ---------- S1-015: S007 contracts ----------
 $s007 = Join-Path $spec1 'S007'
-foreach ($f in @('contracts.md','contracts.yaml','contracts.schema.json','contract-model.yaml','contract-registry.yaml','communication-matrix.yaml','contract-compatibility.yaml','contract-mapping.yaml')) {
+foreach ($f in @('contracts.md','contracts.yaml','contracts.schema.json','contract-model.yaml','contract-registry.yaml','communication-matrix.yaml','contract-compatibility.yaml','contract-mapping.yaml','contract-types.yaml','contract-categories.yaml','contract-anti-patterns.yaml','contract-quality.yaml')) {
   if (-not (Test-Path (Join-Path $s007 $f))) { $errors += "S1-015: missing S007/$f" }
 }
 $ctrYaml = Join-Path $s007 'contracts.yaml'
@@ -220,9 +220,14 @@ if (Test-Path $ctrYaml) {
     $c = "CTR-{0:D3}" -f $i
     if ($ct -notmatch [regex]::Escape($c)) { $errors += "S1-015: thieu $c" }
   }
-  foreach ($field in @('purpose','inputs','outputs','preconditions','postconditions','invariants','dependencies')) {
+  foreach ($field in @('purpose','inputs','outputs','preconditions','postconditions','invariants','dependencies','category','direction','pattern')) {
     if ($ct -notmatch "(?m)^    ${field}:") { $warnings += "S1-015: contracts.yaml thieu field '$field'" }
   }
+}
+# runtime-models
+$rmDir = Join-Path $spec1 'runtime-models'
+foreach ($f in @('README.md','runtime-models.yaml')) {
+  if (-not (Test-Path (Join-Path $rmDir $f))) { $errors += "S1-015: missing runtime-models/$f" }
 }
 # mapping: moi CTR co component + principle
 $ctrMap = Join-Path $s007 'contract-mapping.yaml'
@@ -230,7 +235,7 @@ if (Test-Path $ctrMap) {
   $cm = Get-Content -LiteralPath $ctrMap -Raw -Encoding utf8
   for ($i = 1; $i -le 12; $i++) {
     $c = "CTR-{0:D3}" -f $i
-    $block = [regex]::Match($cm, "(?s)${c}:\s*component:\s*(\w[\w ]*?)\s*layer:.*?principles:\s*\[([^\]]*)\]")
+    $block = [regex]::Match($cm, "(?s)${c}:\s*component:\s*(\w[\w ]*?)\s*capability:.*?principle:\s*([^\r\n]*)")
     if (-not $block.Success) { $errors += "S1-015: $c thieu component/principles" }
     elseif ([string]::IsNullOrWhiteSpace($block.Groups[1].Value)) { $errors += "S1-015: $c khong co component" }
   }

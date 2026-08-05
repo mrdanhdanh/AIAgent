@@ -9,6 +9,9 @@ owner: Runtime Team
 contracts:
   CTR-001:
     name: Execution Contract
+    category: Execution
+    direction: Request/Response
+    pattern: Sync
     version: 1.0.0
     status: Stable
     owner: Execution Manager
@@ -25,6 +28,9 @@ contracts:
     compatibility: [1.x]
   CTR-002:
     name: Workflow Contract
+    category: Execution
+    direction: Request/Response
+    pattern: Sync
     version: 1.0.0
     status: Stable
     owner: Workflow Loader
@@ -41,6 +47,9 @@ contracts:
     compatibility: [1.x]
   CTR-003:
     name: Coordination Contract
+    category: Execution
+    direction: Request/Response
+    pattern: Sync/Async
     version: 1.0.0
     status: Stable
     owner: Execution Orchestrator
@@ -57,6 +66,9 @@ contracts:
     compatibility: [1.x]
   CTR-004:
     name: Capability Contract
+    category: Registry
+    direction: Request/Response
+    pattern: Sync
     version: 1.0.0
     status: Stable
     owner: Capability Resolver
@@ -73,6 +85,9 @@ contracts:
     compatibility: [1.x]
   CTR-005:
     name: Registry Contract
+    category: Registry
+    direction: Read
+    pattern: Request/Response
     version: 1.0.0
     status: Stable
     owner: Registry Resolver
@@ -89,6 +104,9 @@ contracts:
     compatibility: [1.x]
   CTR-006:
     name: Context Contract
+    category: Data
+    direction: Read/Write
+    pattern: Read/Write
     version: 1.0.0
     status: Stable
     owner: Context Manager
@@ -105,6 +123,9 @@ contracts:
     compatibility: [1.x]
   CTR-007:
     name: State Contract
+    category: Execution
+    direction: Request/Response
+    pattern: Sync
     version: 1.0.0
     status: Stable
     owner: State Manager
@@ -121,6 +142,9 @@ contracts:
     compatibility: [1.x]
   CTR-008:
     name: Event Contract
+    category: Observability
+    direction: Publish
+    pattern: Event
     version: 1.0.0
     status: Stable
     owner: Event Dispatcher
@@ -137,6 +161,9 @@ contracts:
     compatibility: [1.x]
   CTR-009:
     name: Artifact Contract
+    category: Data
+    direction: Publish
+    pattern: Fire-and-forget
     version: 1.0.0
     status: Stable
     owner: Artifact Dispatcher
@@ -153,6 +180,9 @@ contracts:
     compatibility: [1.x]
   CTR-010:
     name: Metrics Contract
+    category: Observability
+    direction: Publish
+    pattern: Fire-and-forget
     version: 1.0.0
     status: Stable
     owner: Metrics Collector
@@ -169,6 +199,9 @@ contracts:
     compatibility: [1.x]
   CTR-011:
     name: Policy Contract
+    category: Governance
+    direction: Request/Response
+    pattern: Sync
     version: 1.0.0
     status: Stable
     owner: Policy Engine
@@ -185,6 +218,9 @@ contracts:
     compatibility: [1.x]
   CTR-012:
     name: Resource Contract
+    category: Execution
+    direction: Request/Response
+    pattern: Sync
     version: 1.0.0
     status: Stable
     owner: Execution Resource Manager

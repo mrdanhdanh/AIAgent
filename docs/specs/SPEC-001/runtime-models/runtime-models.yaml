@@ -1,0 +1,26 @@
+# SPEC-001 Appendix — Runtime Canonical Models
+# Model chuan dung xuyen suot Runtime. S008/S009/S010 tham chieu, khong dinh nghia lai.
+---
+version: "1.0"
+models:
+  Execution:
+    fields: [id, workflow_ref, status, context_ref, state_ref, started_at, ended_at, result_ref, events]
+    canonical: true
+  Context:
+    fields: [id, execution_ref, data, allocated_to, created_at, closed_at, isolated]
+    canonical: true
+  Artifact:
+    fields: [id, type, version, checksum, owner, created_at, immutable, metadata]
+    canonical: true
+  Event:
+    fields: [id, type, execution_ref, state_from, state_to, timestamp, lineage, immutable]
+    canonical: true
+  Contract:
+    fields: [id, name, category, version, status, owner, direction, pattern, inputs, outputs]
+    canonical: true
+  Capability:
+    fields: [id, name, description, implementation_ref, status, version]
+    canonical: true
+  Metadata:
+    fields: [id, type, version, status, owner, created_at, updated_at, tags]
+    canonical: true

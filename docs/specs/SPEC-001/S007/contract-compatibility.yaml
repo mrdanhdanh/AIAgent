@@ -1,5 +1,4 @@
-# SPEC-001 S007 — Contract Compatibility (CT007)
-# Nen tang cho Plugin.
+# SPEC-001 S007 — Contract Compatibility (CT007) v2
 ---
 version: "1.0"
 policy:
@@ -7,6 +6,63 @@ policy:
   forward: preferred
   breaking_change: requires_rfc
 matrix:
-  "1.0": [1.x]
-  "1.1": [1.x]
-  "2.0": [2.x]
+  CTR-001:
+    component: Execution Manager
+    version: 1.0.0
+    compatible: [1.x]
+    deprecated: false
+  CTR-002:
+    component: Workflow Loader
+    version: 1.0.0
+    compatible: [1.x]
+    deprecated: false
+  CTR-003:
+    component: Execution Orchestrator
+    version: 1.0.0
+    compatible: [1.x]
+    deprecated: false
+  CTR-004:
+    component: Capability Resolver
+    version: 1.0.0
+    compatible: [1.x]
+    deprecated: false
+  CTR-005:
+    component: Registry Resolver
+    version: 1.0.0
+    compatible: [1.x]
+    deprecated: false
+  CTR-006:
+    component: Context Manager
+    version: 1.0.0
+    compatible: [1.x]
+    deprecated: false
+  CTR-007:
+    component: State Manager
+    version: 1.0.0
+    compatible: [1.x]
+    deprecated: false
+  CTR-008:
+    component: Event Dispatcher
+    version: 1.0.0
+    compatible: [1.x]
+    deprecated: false
+  CTR-009:
+    component: Artifact Dispatcher
+    version: 1.0.0
+    compatible: [1.x]
+    deprecated: false
+  CTR-010:
+    component: Metrics Collector
+    version: 1.0.0
+    compatible: [1.x]
+    deprecated: false
+  CTR-011:
+    component: Policy Engine
+    version: 1.0.0
+    compatible: [1.x]
+    deprecated: false
+  CTR-012:
+    component: Execution Resource Manager
+    version: 1.0.0
+    compatible: [1.x]
+    deprecated: false

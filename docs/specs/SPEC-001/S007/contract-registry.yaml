@@ -1,65 +1,197 @@
-# SPEC-001 S007 — Contract Registry (CT009)
-# Runtime va Doctor doc.
+# SPEC-001 S007 — Contract Registry (CT009) v2
+# Doctor gan nhu chi can doc file nay.
 ---
 version: "1.0"
 contracts:
   CTR-001:
     name: Execution Contract
     owner: Execution Manager
+    layer: TBD
+    domain: TBD
     version: 1.0.0
-    dependencies: [Workflow Contract, Context Contract, State Contract]
+    status: Stable
+    category: Execution
+    direction: Request/Response
+    pattern: Sync
+    dependencies: []
+    compatibility: [1.x]
+    lifecycle: Published
+    metrics: Contract Quality (CT013)
+    related_principles: [P002]
+    related_rules: [RULE-003]
   CTR-002:
     name: Workflow Contract
     owner: Workflow Loader
+    layer: TBD
+    domain: TBD
     version: 1.0.0
+    status: Stable
+    category: Execution
+    direction: Request/Response
+    pattern: Sync
     dependencies: []
+    compatibility: [1.x]
+    lifecycle: Published
+    metrics: Contract Quality (CT013)
+    related_principles: [P002]
+    related_rules: [RULE-003]
   CTR-003:
     name: Coordination Contract
     owner: Execution Orchestrator
+    layer: TBD
+    domain: TBD
     version: 1.0.0
-    dependencies: [Capability Contract, Policy Contract]
+    status: Stable
+    category: Execution
+    direction: Request/Response
+    pattern: Sync/Async
+    dependencies: []
+    compatibility: [1.x]
+    lifecycle: Published
+    metrics: Contract Quality (CT013)
+    related_principles: [P002]
+    related_rules: [RULE-003]
   CTR-004:
     name: Capability Contract
     owner: Capability Resolver
+    layer: TBD
+    domain: TBD
     version: 1.0.0
-    dependencies: [Registry Contract]
+    status: Stable
+    category: Registry
+    direction: Request/Response
+    pattern: Sync
+    dependencies: []
+    compatibility: [1.x]
+    lifecycle: Published
+    metrics: Contract Quality (CT013)
+    related_principles: [P002]
+    related_rules: [RULE-003]
   CTR-005:
     name: Registry Contract
     owner: Registry Resolver
+    layer: TBD
+    domain: TBD
     version: 1.0.0
+    status: Stable
+    category: Registry
+    direction: Read
+    pattern: Request/Response
     dependencies: []
+    compatibility: [1.x]
+    lifecycle: Published
+    metrics: Contract Quality (CT013)
+    related_principles: [P002]
+    related_rules: [RULE-003]
   CTR-006:
     name: Context Contract
     owner: Context Manager
+    layer: TBD
+    domain: TBD
     version: 1.0.0
+    status: Stable
+    category: Data
+    direction: Read/Write
+    pattern: Read/Write
     dependencies: []
+    compatibility: [1.x]
+    lifecycle: Published
+    metrics: Contract Quality (CT013)
+    related_principles: [P002]
+    related_rules: [RULE-003]
   CTR-007:
     name: State Contract
     owner: State Manager
+    layer: TBD
+    domain: TBD
     version: 1.0.0
-    dependencies: [Event Contract]
+    status: Stable
+    category: Execution
+    direction: Request/Response
+    pattern: Sync
+    dependencies: []
+    compatibility: [1.x]
+    lifecycle: Published
+    metrics: Contract Quality (CT013)
+    related_principles: [P002]
+    related_rules: [RULE-003]
   CTR-008:
     name: Event Contract
     owner: Event Dispatcher
+    layer: TBD
+    domain: TBD
     version: 1.0.0
+    status: Stable
+    category: Observability
+    direction: Publish
+    pattern: Event
     dependencies: []
+    compatibility: [1.x]
+    lifecycle: Published
+    metrics: Contract Quality (CT013)
+    related_principles: [P002]
+    related_rules: [RULE-003]
   CTR-009:
     name: Artifact Contract
     owner: Artifact Dispatcher
+    layer: TBD
+    domain: TBD
     version: 1.0.0
+    status: Stable
+    category: Data
+    direction: Publish
+    pattern: Fire-and-forget
     dependencies: []
+    compatibility: [1.x]
+    lifecycle: Published
+    metrics: Contract Quality (CT013)
+    related_principles: [P002]
+    related_rules: [RULE-003]
   CTR-010:
     name: Metrics Contract
     owner: Metrics Collector
+    layer: TBD
+    domain: TBD
     version: 1.0.0
-    dependencies: [Event Contract]
+    status: Stable
+    category: Observability
+    direction: Publish
+    pattern: Fire-and-forget
+    dependencies: []
+    compatibility: [1.x]
+    lifecycle: Published
+    metrics: Contract Quality (CT013)
+    related_principles: [P002]
+    related_rules: [RULE-003]
   CTR-011:
     name: Policy Contract
     owner: Policy Engine
+    layer: TBD
+    domain: TBD
     version: 1.0.0
-    dependencies: [Registry Contract]
+    status: Stable
+    category: Governance
+    direction: Request/Response
+    pattern: Sync
+    dependencies: []
+    compatibility: [1.x]
+    lifecycle: Published
+    metrics: Contract Quality (CT013)
+    related_principles: [P002]
+    related_rules: [RULE-003]
   CTR-012:
     name: Resource Contract
     owner: Execution Resource Manager
+    layer: TBD
+    domain: TBD
     version: 1.0.0
+    status: Stable
+    category: Execution
+    direction: Request/Response
+    pattern: Sync
     dependencies: []
+    compatibility: [1.x]
+    lifecycle: Published
+    metrics: Contract Quality (CT013)
+    related_principles: [P002]
+    related_rules: [RULE-003]

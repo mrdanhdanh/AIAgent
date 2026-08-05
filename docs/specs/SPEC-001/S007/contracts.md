@@ -85,11 +85,57 @@ contract:
 
 > Mỗi Component chỉ sở hữu **một Primary Contract**.
 
+## Contract Types (toàn AIOS)
+
+```text
+Execution Contract   Workflow Contract   Capability Contract
+Context Contract     State Contract      Event Contract
+Artifact Contract    Metrics Contract    Policy Contract
+Registry Contract
+Plugin Contract      SDK Contract        External Contract
+```
+
+> Runtime định nghĩa 12 contract đầu; Plugin/SDK/External thuộc SPEC sau — không định nghĩa lại.
+
+## Contract Categories
+
+| Category | Contracts |
+|----------|-----------|
+| Execution | Execution, Workflow, Coordination, State, Resource |
+| Registry | Capability, Registry |
+| Data | Context, Artifact |
+| Observability | Event, Metrics |
+| Governance | Policy |
+| Extension | Plugin, SDK, External |
+
+## Contract Direction
+
+Mỗi contract có direction: Request / Response / Publish / Subscribe / Read / Write.
+
+> Doctor phát hiện `Write Contract → Read Component` là sai.
+
+## Contract Communication Pattern
+
+Mỗi contract có pattern: Sync / Async / Event / Fire-and-forget / Request-Response.
+
 ## CT005 — Contract Lifecycle
 
 ```text
-Draft → Versioned → Published → Deprecated → Retired
+Draft → Review → Approved → Published → Deprecated → Retired
 ```
+
+## Contract Ownership
+
+- Một Contract chỉ có đúng **một Owner**.
+- Không cho phép shared owner.
+
+## Contract Invariants
+
+- Contract luôn **immutable**.
+- Published Contract **không sửa**.
+- Contract **không chứa Business Logic**.
+- Contract **độc lập Implementation**.
+- Contract luôn **Versioned** (P004).
 
 ## CT006 — Contract Versioning (SemVer)
 
@@ -168,7 +214,17 @@ Contract → Component → Layer → Domain → Capability → Responsibility �
 - Không truyền object nội bộ qua Contract.
 - Contract bất biến sau Published — sửa → version mới.
 
-## CT013 — Contract Metrics (Dashboard)
+## CT013 — Contract Quality
+
+| Metric | Target |
+|--------|--------|
+| Completeness | 100% |
+| Traceability | 100% |
+| Version Coverage | 100% |
+| Compatibility | 100% |
+| Validation Coverage | 100% |
+
+## CT014 — Contract Metrics (Dashboard)
 
 ```yaml
 contract_count: 12
@@ -177,13 +233,26 @@ version_mismatch: 0
 unresolved_contract: 0
 ```
 
-## CT014 — Contract Governance
+## CT015 — Contract Governance
 
 - Contract thay đổi → RFC + ADR (breaking).
 - Contract versioned theo SemVer (POLICY-002).
 - Backward required, forward preferred (POLICY-003).
+- Contract lifecycle theo Governance (Draft→Review→Approved→Published→Deprecated→Retired).
 
-## CT015 — Success Criteria
+## CT016 — Contract Anti-patterns
+
+Doctor dùng danh sách này để phát hiện vi phạm:
+
+- Component gọi trực tiếp Component.
+- Contract chứa Business Logic.
+- Contract không Version.
+- Contract Circular Dependency.
+- Contract biết Agent cụ thể.
+- Contract biết Plugin cụ thể.
+- Contract ghi Database.
+
+## CT017 — Success Criteria
 
 - Mọi Component giao tiếp chỉ qua Contract.
 - Mọi Contract có đủ model (inputs/outputs/pre/post/invariants).
@@ -193,12 +262,16 @@ unresolved_contract: 0
 
 ## Tham chiếu
 
-- `contracts.yaml` — nguồn dữ liệu chuẩn (12 contracts).
+- `contracts.yaml` — nguồn dữ liệu chuẩn (12 contracts, category/direction/pattern).
 - `contract-model.yaml` — CT003.
-- `contract-registry.yaml` — CT009.
+- `contract-registry.yaml` — CT009 (metadata đầy đủ).
 - `communication-matrix.yaml` — CT011.
-- `contract-compatibility.yaml` — CT007.
-- `contract-mapping.yaml` — CT010 (ma trận truy vết).
+- `contract-compatibility.yaml` — CT007 (matrix Component→Contract→Version).
+- `contract-mapping.yaml` — CT010 (ma trận truy vết mở rộng).
+- `contract-types.yaml` — Contract Types (13).
+- `contract-categories.yaml` — Contract Categories (6).
+- `contract-anti-patterns.yaml` — CT016.
+- `contract-quality.yaml` — CT013.
 - `contracts.schema.json` — validate cấu trúc.
 - S006: `../S006/components.yaml`
 - S005: `../S005/architecture.yaml`

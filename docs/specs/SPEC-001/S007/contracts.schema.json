@@ -16,7 +16,7 @@
       "patternProperties": {
         "^CTR-\\d{3}$": {
           "type": "object",
-          "required": ["name", "version", "status", "owner", "layer", "domain", "purpose", "inputs", "outputs", "preconditions", "postconditions", "invariants", "dependencies"],
+          "required": ["name", "version", "status", "owner", "layer", "domain", "purpose", "inputs", "outputs", "preconditions", "postconditions", "invariants", "dependencies", "category", "direction", "pattern"],
           "properties": {
             "name": { "type": "string" },
             "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
@@ -32,6 +32,9 @@
             "invariants": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
             "dependencies": { "type": "array", "items": { "type": "string" } },
             "capability": { "type": "string" },
+            "category": { "enum": ["Execution", "Registry", "Data", "Observability", "Governance", "Extension"] },
+            "direction": { "enum": ["Request/Response", "Publish", "Subscribe", "Read", "Write", "Read/Write", "Fire-and-forget"] },
+            "pattern": { "enum": ["Sync", "Async", "Event", "Fire-and-forget", "Request/Response", "Sync/Async", "Read/Write"] },
             "compatibility": { "type": "array", "items": { "type": "string" } }
           }
         }
