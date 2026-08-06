@@ -9,8 +9,10 @@ scope:
   - Parent
   - Child
   - Correlation
+  - Causation
   - Lineage
 rules:
   - Trace chi append.
   - Trace luon truoc Metrics (S010 EF010).
   - Span cha-con qua parent_span_id.
+  - Correlation khac Causation: Correlation lien ket, Causation chi nguyen nhan.

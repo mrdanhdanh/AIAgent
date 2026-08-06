@@ -4,8 +4,16 @@
 version: "1.0"
 model:
   status: [Healthy, Degraded, Unhealthy]
+sources:
+  - Execution
+  - Resource
+  - Event
+  - Metrics
+  - Policy
 rules:
   - Runtime cong bo trang thai Health.
+  - Health duoc tinh tu Observability Data (sources).
+  - Khong noi cong thuc.
   - Khong tu sua loi (thuoc Recovery/Governance).
 doctor_checks:
   - Missing Event

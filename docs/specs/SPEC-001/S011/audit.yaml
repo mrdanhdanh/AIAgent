@@ -9,7 +9,13 @@ records:
   - khi nao (timestamp)
   - cai gi (action, target)
   - ket qua (result)
+properties:
+  - Append Only
+  - Immutable
+  - Ordered
+  - Time Consistent
 rules:
   - Ghi moi quyet dinh/quyen thay doi (P008).
   - Audit immutable (append-only).
   - Khong ghi Business Data.
+  - Doctor verify duoc 4 properties.

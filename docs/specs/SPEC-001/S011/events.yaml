@@ -7,9 +7,12 @@ model:
 event_type: [execution, workflow, capability, resource, policy, system]
 event_category: [state_change, failure, retry, approval, timeout, audit]
 event_severity: [info, warning, error, critical]
+event_level: [Debug, Info, Warning, Error, Critical]
+event_scope: [Runtime, Execution, Workflow, Capability, Resource, Policy]
 rules:
   - Event immutable (P005).
   - Event chi append.
   - Moi transition sinh Event (S009).
   - Event co correlation_id.
+  - Dashboard va Alerting dung truc tiep event_level + event_scope.
 lifecycle: [Created, Published, Consumed, Archived]

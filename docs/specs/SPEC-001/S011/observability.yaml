@@ -25,6 +25,21 @@ domains:
   - Trace
   - Audit
   - Health
+boundary:
+  observes:
+    - Execution
+    - State
+    - Context
+    - Event
+    - Artifact Metadata
+    - Metrics
+    - Trace
+  not_observes:
+    - Business Data
+    - User Data
+    - Knowledge Content
+    - Agent Internal State
+    - Plugin Internal State
 correlation_model:
   fields: [execution_id, correlation_id, lineage_id, parent_id]
   rules:
@@ -37,6 +52,34 @@ doctor_checks:
   - Broken Trace
   - Broken Lineage
   - Invalid Audit
+evolution_integration:
+  - Evolution chi doc: Event, Metrics, Trace, Audit.
+  - Evolution khong doc implementation.
+machine_readable:
+  - observability.yaml
+  - events.yaml
+  - metrics.yaml
+  - traces.yaml
+  - audit.yaml
+  - health.yaml
+  - dashboard.yaml
+  - correlation.yaml
+  - lineage.yaml
+  - observability-mapping.yaml
+  - observability.schema.json
+success_criteria:
+  - Moi Execution deu quan sat duoc.
+  - Moi Transition deu sinh Event.
+  - Moi Execution deu co Metrics.
+  - Moi Execution deu co Trace.
+  - Moi Execution deu Audit duoc.
+  - Dashboard va Doctor chi can doc machine-readable de dung toan bo trang thai Runtime.
+  - Khong phu thuoc bat ky nen tang quan sat cu the nao.
+  - Moi Event deu truy vet duoc toi Execution.
+  - Moi Metrics deu gan voi Execution hoac Runtime.
+  - Moi Trace deu co Correlation va Lineage.
+  - Audit luon append-only.
+  - Health duoc xac dinh tu Observability Data.
 traceability:
   - Execution
   - State

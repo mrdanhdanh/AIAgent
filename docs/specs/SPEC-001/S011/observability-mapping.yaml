@@ -1,0 +1,19 @@
+# SPEC-001 S011 - Observability Mapping
+# Ai dung gi - tranh dinh nghia lai o cac SPEC sau.
+---
+version: "1.0"
+mappings:
+  - domain: Events
+    used_by: [Dashboard, Doctor, Evolution, Simulation, Alerting]
+  - domain: Metrics
+    used_by: [Dashboard, Doctor, Evolution, S015 Quality Model]
+  - domain: Trace
+    used_by: [Dashboard, Doctor, Evolution]
+  - domain: Audit
+    used_by: [Doctor, Governance, Evolution]
+  - domain: Health
+    used_by: [Dashboard, Doctor, S016 Compliance]
+  - domain: Correlation
+    used_by: [Dashboard, Doctor, Evolution, Simulation]
+  - domain: Lineage
+    used_by: [Dashboard, Doctor, Evolution, Replay]

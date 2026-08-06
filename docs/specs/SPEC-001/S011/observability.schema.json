@@ -4,7 +4,7 @@
   "title": "SPEC-001 Execution Observability (S011)",
   "description": "JSON Schema cho observability.yaml. Validator kiem tra cau truc.",
   "type": "object",
-  "required": ["id", "name", "version", "status", "owner", "philosophy", "principles", "domains"],
+  "required": ["id", "name", "version", "status", "owner", "philosophy", "principles", "domains", "boundary"],
   "properties": {
     "id": { "const": "SPEC-001-S011" },
     "name": { "const": "Execution Observability" },
@@ -14,8 +14,19 @@
     "philosophy": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
     "principles": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
     "domains": { "type": "array", "items": { "type": "string" }, "minItems": 5 },
+    "boundary": {
+      "type": "object",
+      "required": ["observes", "not_observes"],
+      "properties": {
+        "observes": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+        "not_observes": { "type": "array", "items": { "type": "string" }, "minItems": 1 }
+      }
+    },
     "correlation_model": { "type": "object" },
     "doctor_checks": { "type": "array", "items": { "type": "string" } },
+    "evolution_integration": { "type": "array", "items": { "type": "string" } },
+    "machine_readable": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "success_criteria": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
     "traceability": { "type": "array", "items": { "type": "string" } }
   },
   "additionalProperties": false

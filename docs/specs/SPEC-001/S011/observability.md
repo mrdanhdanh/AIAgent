@@ -4,7 +4,7 @@ description: >
   SPEC-001 S011 — Execution Observability. Trả lời: Runtime được quan sát,
   theo dõi và truy vết như thế nào? Event/Metrics/Trace/Audit/Health —
   nền tảng cho Dashboard, Doctor, Evolution, Simulation.
-  16 sections OB001-OB016.
+  18 sections OB001-OB016 (kèm OB003A, OB011A).
 agent: general
 ---
 
@@ -12,6 +12,7 @@ agent: general
 
 > **SPEC-001**: Runtime Kernel · **Version**: 1.0.0 · **Trạng thái**: Draft
 > **Vị trí**: Nền tảng cho Dashboard, Doctor, Evolution, Simulation — nhiều phần S010 đã tham chiếu Event/Metrics/Trace nhưng chưa được đặc tả đầy đủ.
+> **Vai trò**: Nguồn chuẩn duy nhất (Single Source of Truth) cho toàn bộ Event, Metrics, Trace, Audit và Health — S015, S016, Dashboard, Doctor, Evolution, Simulation chỉ cần tham chiếu, không định nghĩa lại.
 
 ## Mục tiêu
 
@@ -51,6 +52,28 @@ Chỉ mô tả **Observability Model**.
 - Audit
 - Health
 
+## OB003A — Observability Boundary
+
+Runtime quan sát:
+
+- Execution
+- State
+- Context
+- Event
+- Artifact Metadata
+- Metrics
+- Trace
+
+Runtime không quan sát trực tiếp:
+
+- Business Data
+- User Data
+- Knowledge Content
+- Agent Internal State
+- Plugin Internal State
+
+> Đồng bộ với S004 (Boundary) và S008 (Data Model).
+
 ## OB004 — Event Model
 
 Chuẩn hóa:
@@ -58,9 +81,30 @@ Chuẩn hóa:
 - Event Type
 - Event Category
 - Event Severity
+- Event Level
+- Event Scope
 - Event Source
 - Event Timestamp
 - Event Lineage
+
+**Event Level:**
+
+- Debug
+- Info
+- Warning
+- Error
+- Critical
+
+**Event Scope:**
+
+- Runtime
+- Execution
+- Workflow
+- Capability
+- Resource
+- Policy
+
+> Dashboard và Alerting dùng trực tiếp Event Level + Event Scope.
 
 Tham chiếu:
 
@@ -70,16 +114,19 @@ Tham chiếu:
 
 ## OB005 — Metrics Model
 
-Các nhóm metrics:
+Phân cấp:
 
-- Execution
-- Workflow
-- Capability
-- Resource
-- Retry
-- Timeout
-- Failure
-- Performance
+```text
+Runtime Metrics
+├── Execution Metrics
+├── Resource Metrics
+├── Performance Metrics
+├── Reliability Metrics
+├── Policy Metrics
+└── Capability Metrics
+```
+
+> S015 Quality Model tham chiếu trực tiếp phân cấp này.
 
 ## OB006 — Trace Model
 
@@ -89,7 +136,10 @@ Trace bao gồm:
 - Parent
 - Child
 - Correlation
+- Causation
 - Lineage
+
+> **Correlation ≠ Causation** — Correlation liên kết dữ liệu, Causation chỉ nguyên nhân.
 
 Không phụ thuộc implementation.
 
@@ -101,6 +151,15 @@ Audit ghi nhận:
 - khi nào
 - cái gì
 - kết quả
+
+Audit:
+
+- Append Only
+- Immutable
+- Ordered
+- Time Consistent
+
+> Doctor verify được 4 properties.
 
 Không ghi Business Data.
 
@@ -121,6 +180,16 @@ Runtime công bố:
 - Degraded
 - Unhealthy
 
+Health được tính từ:
+
+- Execution
+- Resource
+- Event
+- Metrics
+- Policy
+
+> Không nói công thức.
+
 Không tự sửa lỗi.
 
 ## OB010 — Dashboard Model
@@ -131,6 +200,7 @@ Dashboard chỉ đọc:
 - Metrics
 - Trace
 - Audit
+- Health
 
 Không đọc implementation.
 
@@ -143,6 +213,19 @@ Doctor xác minh:
 - Broken Trace
 - Broken Lineage
 - Invalid Audit
+
+## OB011A — Evolution Integration
+
+Evolution chỉ đọc:
+
+- Event
+- Metrics
+- Trace
+- Audit
+
+Evolution không đọc implementation.
+
+> SPEC Evolution (sau này) không cần định nghĩa lại.
 
 ## OB012 — Event Lifecycle
 
@@ -192,8 +275,13 @@ traces.yaml
 audit.yaml
 health.yaml
 dashboard.yaml
+correlation.yaml
+lineage.yaml
+observability-mapping.yaml
 observability.schema.json
 ```
+
+> `correlation.yaml`, `lineage.yaml`, `observability-mapping.yaml` được Dashboard, Doctor và Evolution dùng chung.
 
 ## OB016 — Success Criteria
 
@@ -204,12 +292,18 @@ observability.schema.json
 - Mọi Execution đều Audit được.
 - Dashboard và Doctor chỉ cần đọc machine-readable để dựng toàn bộ trạng thái Runtime.
 - Không phụ thuộc bất kỳ nền tảng quan sát cụ thể nào.
+- Mọi Event đều truy vết được tới Execution.
+- Mọi Metrics đều gắn với Execution hoặc Runtime.
+- Mọi Trace đều có Correlation và Lineage.
+- Audit luôn append-only.
+- Health được xác định từ Observability Data.
 
 ## Tham chiếu
 
 - `observability.yaml` — nguồn dữ liệu chuẩn
 - `events.yaml` · `metrics.yaml` · `traces.yaml`
 - `audit.yaml` · `health.yaml` · `dashboard.yaml`
+- `correlation.yaml` · `lineage.yaml` · `observability-mapping.yaml`
 - `observability.schema.json`
 - S007: `../S007/contracts.md`
 - S008: `../S008/data-model.md`

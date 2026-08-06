@@ -1,0 +1,11 @@
+# SPEC-001 S011 - Correlation Model
+# File doc chung cho Dashboard, Doctor, Evolution.
+---
+version: "1.0"
+model:
+  fields: [execution_id, correlation_id, lineage_id, parent_id]
+rules:
+  - Sinh khi Execution Created.
+  - Gan vao: Event, Metrics, Trace, Audit.
+  - Khong doi trong vong doi (P009).
+  - Correlation lien ket du lieu; khac Causation.
