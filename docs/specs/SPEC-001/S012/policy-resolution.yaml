@@ -1,0 +1,14 @@
+# SPEC-001 S012 - Policy Resolution
+# Runtime chon policy nao de ap dung (S010 timeline: sau Validation).
+---
+version: "1.0"
+flow:
+  - Validate Execution
+  - Collect applicable policies (theo trigger)
+  - Sort theo priority
+  - Kiem tra guard
+  - Ap dung action
+rules:
+  - Chi policy co trigger khop moi duoc xet.
+  - Policy co priority cao hon thang.
+  - Guard sai -> bo qua policy, khong bao loi.

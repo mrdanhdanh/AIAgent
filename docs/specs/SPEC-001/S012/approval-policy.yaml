@@ -1,0 +1,11 @@
+# SPEC-001 S012 - POL-APPROVAL-001
+# Dieu khien Approval Gate (S010 EF015)
+---
+policy:
+  id: POL-APPROVAL-001
+  category: Governance
+  trigger: Approval gate (S009 TR-005/006)
+  guard: approval required
+  action: Waiting (ST-006)
+  priority: 50
+  version: "1.0"

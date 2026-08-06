@@ -1,0 +1,11 @@
+# SPEC-001 S012 - POL-TIMEOUT-001
+# Dieu khien Timeout Flow (S010 EF014)
+---
+policy:
+  id: POL-TIMEOUT-001
+  category: Control
+  trigger: Running (ST-004)
+  guard: timeout exceeded (S009 TR-013)
+  action: TimedOut (ST-011)
+  priority: 10
+  version: "1.0"

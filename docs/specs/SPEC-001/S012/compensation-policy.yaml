@@ -1,0 +1,11 @@
+# SPEC-001 S012 - POL-COMP-001
+# Dieu khien Rollback (S010 EF022)
+---
+policy:
+  id: POL-COMP-001
+  category: Recovery
+  trigger: Failure (ST-009)
+  guard: completed steps exist (S010 EF022)
+  action: Compensate (rollback)
+  priority: 60
+  version: "1.0"

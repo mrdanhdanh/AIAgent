@@ -1,0 +1,11 @@
+# SPEC-001 S012 - POL-ISOL-001
+# Dieu khien Context & Execution Isolation (S010 EF008)
+---
+policy:
+  id: POL-ISOL-001
+  category: Security
+  trigger: Execution start
+  guard: isolation required
+  action: Isolate Context & Execution
+  priority: 90
+  version: "1.0"

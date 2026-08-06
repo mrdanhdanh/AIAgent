@@ -1,0 +1,11 @@
+# SPEC-001 S012 - POL-RETRY-001
+# Dieu khien Retry Flow (S010 EF012)
+---
+policy:
+  id: POL-RETRY-001
+  category: Recovery
+  trigger: Failed (ST-009)
+  guard: retry_count < max_retry
+  action: Retry (S009 TR-015)
+  priority: 20
+  version: "1.0"

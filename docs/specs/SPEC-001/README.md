@@ -39,8 +39,8 @@ S010 Runtime Execution Flow 🚧
 ### Tier 3 — Runtime Operations
 
 ```text
-S011 Execution Observability 🚧
-S012 Runtime Policies
+S011 Execution Observability ✅ Draft
+S012 Runtime Policies       🚧
 S013 Runtime Governance
 S014 Runtime Extensibility
 S015 Runtime Quality Model
@@ -62,8 +62,8 @@ S016 Runtime Compliance
 | S008 | Runtime Data Model | `S008/data-model.md` | 2 | ✅ Frozen |
 | S009 | Runtime State Machine | `S009/state-machine.md` | 2 | 🚧 In progress |
 | S010 | Runtime Execution Flow | `S010/execution-flow.md` | 2 | 🚧 In progress |
-| S011 | Execution Observability | `S011/observability.md` | 3 | 🚧 In progress |
-| S012 | Runtime Policies | `S012/policies.md` | 3 | ⬜ |
+| S011 | Execution Observability | `S011/observability.md` | 3 | 🚧 Draft |
+| S012 | Runtime Policies | `S012/policies.md` | 3 | 🚧 In progress |
 | S013 | Runtime Governance | `S013/governance.md` | 3 | ⬜ |
 | S014 | Runtime Extensibility | `S014/extensibility.md` | 3 | ⬜ |
 | S015 | Runtime Quality Model | `S015/quality-model.md` | 3 | ⬜ |
@@ -80,7 +80,7 @@ S010 Execution Flow   🚧
     ↓
     S011 Observability 🚧 (Execution — Event/Metrics/Trace/Audit/Health)
     ↓
-S012 Policies → S013 Governance → S014 Extensibility
+S012 Policies 🚧 (Define) → S013 Governance (Enforce) → S014 Extensibility
     ↓
 S015 Quality Model → S016 Compliance
 ```

@@ -1,0 +1,11 @@
+# SPEC-001 S012 - POL-PARALLEL-001
+# Dieu khien Fan-out/Fan-in/Join (S010 EF021)
+---
+policy:
+  id: POL-PARALLEL-001
+  category: Orchestration
+  trigger: Parallel tasks (S010 EF021)
+  guard: join policy (ALL/ANY/QUORUM/CUSTOM)
+  action: Scatter/Gather
+  priority: 40
+  version: "1.0"

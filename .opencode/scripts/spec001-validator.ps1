@@ -367,7 +367,32 @@ if (Test-Path $obMd) {
   }
 }
 
-# ---------- S1-022: SPEC.yaml ----------
+# ---------- S1-022: S012 policies ----------
+$s012 = Join-Path $spec1 'S012'
+foreach ($f in @('policies.md','policies.yaml','policies.schema.json','retry-policy.yaml','timeout-policy.yaml','approval-policy.yaml','resource-policy.yaml','parallel-policy.yaml','compensation-policy.yaml','scheduling-policy.yaml','isolation-policy.yaml','security-policy.yaml','policy-resolution.yaml','policy-validation.yaml','policy-traceability.yaml')) {
+  if (-not (Test-Path (Join-Path $s012 $f))) { $errors += "S1-022: missing S012/$f" }
+}
+$poYaml = Join-Path $s012 'policies.yaml'
+if (Test-Path $poYaml) {
+  $po = Get-Content -LiteralPath $poYaml -Raw -Encoding utf8
+  foreach ($sec in @('philosophy','principles','policy_model','categories','policies','responsibility_chain')) {
+    if ($po -notmatch "(?m)^${sec}:") { $errors += "S1-022: policies thieu '$sec'" }
+  }
+  foreach ($polId in @('POL-RETRY-001','POL-TIMEOUT-001','POL-APPROVAL-001','POL-RES-001','POL-PARALLEL-001','POL-COMP-001','POL-SCHED-001','POL-ISOL-001','POL-SEC-001')) {
+    if ($po -notmatch [regex]::Escape($polId)) { $errors += "S1-022: thieu policy $polId" }
+  }
+}
+# md: 17 sections RP001-RP017
+$poMd = Join-Path $s012 'policies.md'
+if (Test-Path $poMd) {
+  $pm = Get-Content -LiteralPath $poMd -Raw -Encoding utf8
+  for ($i = 1; $i -le 17; $i++) {
+    $sec = "RP{0:D3}" -f $i
+    if ($pm -notmatch [regex]::Escape($sec)) { $errors += "S1-022: thieu section $sec" }
+  }
+}
+
+# ---------- S1-023: SPEC.yaml ----------
 $specFile = Join-Path $spec1 'SPEC.yaml'
 if (Test-Path $specFile) {
   $st = Get-Content -LiteralPath $specFile -Raw -Encoding utf8

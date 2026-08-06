@@ -1,0 +1,11 @@
+# SPEC-001 S012 - POL-RES-001
+# Dieu khien Resource Allocation (S010 EF020)
+---
+policy:
+  id: POL-RES-001
+  category: Resource
+  trigger: Allocate (S003 RR-001)
+  guard: resource available
+  action: Allocate / Queue
+  priority: 30
+  version: "1.0"

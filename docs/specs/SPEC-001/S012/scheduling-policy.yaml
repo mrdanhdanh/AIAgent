@@ -1,0 +1,11 @@
+# SPEC-001 S012 - POL-SCHED-001
+# Dieu khien thu tu thuc thi
+---
+policy:
+  id: POL-SCHED-001
+  category: Orchestration
+  trigger: Execution start
+  guard: ordering constraints
+  action: Order execution
+  priority: 40
+  version: "1.0"

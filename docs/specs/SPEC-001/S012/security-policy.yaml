@@ -1,0 +1,11 @@
+# SPEC-001 S012 - POL-SEC-001
+# Dieu khien Permission / Least Privilege
+---
+policy:
+  id: POL-SEC-001
+  category: Security
+  trigger: Access attempt
+  guard: permission granted (least privilege)
+  action: Allow / Deny
+  priority: 100
+  version: "1.0"
