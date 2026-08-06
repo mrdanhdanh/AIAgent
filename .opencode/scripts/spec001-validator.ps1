@@ -314,13 +314,35 @@ if (Test-Path $valYaml) {
   if ($ruleCount -lt 15) { $errors += "S1-016: runtime-validation chi co $ruleCount rules (can >=15)" }
 }
 
-# ---------- S1-018: SPEC.yaml ----------
+# ---------- S1-019: S010 execution flow ----------
+$s010 = Join-Path $spec1 'S010'
+foreach ($f in @('execution-flow.md','execution-flow.yaml','execution-flow.schema.json','end-to-end-flow.yaml','flow-definitions.yaml','execution-flow-registry.yaml')) {
+  if (-not (Test-Path (Join-Path $s010 $f))) { $errors += "S1-019: missing S010/$f" }
+}
+$efYaml = Join-Path $s010 'execution-flow.yaml'
+if (Test-Path $efYaml) {
+  $ef = Get-Content -LiteralPath $efYaml -Raw -Encoding utf8
+  foreach ($sec in @('philosophy','principles','stages','references')) {
+    if ($ef -notmatch "(?m)^${sec}:") { $errors += "S1-019: execution-flow thieu '$sec'" }
+  }
+  for ($i = 1; $i -le 4; $i++) { if ($ef -notmatch "STAGE-$i") { $errors += "S1-019: thieu STAGE-$i" } }
+}
+# 12 flows
+$fdYaml = Join-Path $s010 'flow-definitions.yaml'
+if (Test-Path $fdYaml) {
+  $fd = Get-Content -LiteralPath $fdYaml -Raw -Encoding utf8
+  foreach ($fl in @('workflow_resolution','capability_resolution','context','state','event','artifact','retry','timeout','cancellation','approval','replay','failure')) {
+    if ($fd -notmatch [regex]::Escape($fl)) { $errors += "S1-019: thieu flow $fl" }
+  }
+}
+
+# ---------- S1-020: SPEC.yaml ----------
 $specFile = Join-Path $spec1 'SPEC.yaml'
 if (Test-Path $specFile) {
   $st = Get-Content -LiteralPath $specFile -Raw -Encoding utf8
-  if ($st -notmatch '(?m)^id:\s*SPEC-001') { $errors += "S1-018: SPEC.yaml id phai la SPEC-001" }
-  if ($st -notmatch '(?m)^implements:') { $errors += "S1-018: SPEC.yaml thieu implements" }
-  foreach ($d in @('SPEC-000')) { if ($st -notmatch [regex]::Escape($d)) { $errors += "S1-018: thieu dependency $d" } }
+  if ($st -notmatch '(?m)^id:\s*SPEC-001') { $errors += "S1-020: SPEC.yaml id phai la SPEC-001" }
+  if ($st -notmatch '(?m)^implements:') { $errors += "S1-020: SPEC.yaml thieu implements" }
+  foreach ($d in @('SPEC-000')) { if ($st -notmatch [regex]::Escape($d)) { $errors += "S1-020: thieu dependency $d" } }
 }
 
 # ---------- Output ----------

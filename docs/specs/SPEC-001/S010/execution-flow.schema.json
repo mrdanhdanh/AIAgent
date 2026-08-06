@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aios://execution-flow.schema.json",
+  "title": "SPEC-001 Runtime Execution Flow (S010)",
+  "description": "JSON Schema cho execution-flow.yaml. Validator kiem tra cau truc.",
+  "type": "object",
+  "required": ["id", "name", "version", "status", "owner", "philosophy", "principles", "stages", "references"],
+  "properties": {
+    "id": { "const": "SPEC-001-S010" },
+    "name": { "const": "Runtime Execution Flow" },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "status": { "enum": ["Draft", "Review", "Approved", "Stable", "Deprecated"] },
+    "owner": { "type": "string" },
+    "philosophy": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "principles": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "stages": { "type": "object" },
+    "references": { "type": "object" }
+  },
+  "additionalProperties": false
+}

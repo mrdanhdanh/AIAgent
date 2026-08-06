@@ -1,0 +1,7 @@
+# SPEC-001 S010 — Execution Flow Registry
+# Doctor/Dashboard doc mot file.
+---
+version: "1.0"
+flows: [workflow_resolution, capability_resolution, context, state, event, artifact, retry, timeout, cancellation, approval, replay, failure]
+stages: 4
+end_to_end_steps: 11

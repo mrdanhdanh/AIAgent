@@ -63,7 +63,7 @@ S018 Appendices
 | — | Appendix: Canonical Models | `runtime-models/` | 1 | ✅ Frozen |
 | S008 | Runtime Data Model | `S008/data-model.md` | 2 | ✅ Frozen |
 | S009 | Runtime State Machine | `S009/state-machine.md` | 2 | 🚧 In progress |
-| S010 | Runtime Execution Flow | `S010-execution-flow.md` | 2 | ⬜ |
+| S010 | Runtime Execution Flow | `S010/execution-flow.md` | 2 | 🚧 In progress |
 | S011 | Runtime Events | `S011-events.md` | 2 | ⬜ |
 | S012 | Runtime Error Handling | `S012-error-handling.md` | 2 | ⬜ |
 | S013 | Runtime Observability | `S013-observability.md` | 3 | ⬜ |

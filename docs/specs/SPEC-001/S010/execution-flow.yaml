@@ -1,0 +1,29 @@
+# SPEC-001 S010 — Runtime Execution Flow (Execution Constitution)
+# Ket noi S002-S009 thanh mot chuoi thuc thi hoan chinh.
+---
+id: SPEC-001-S010
+name: Runtime Execution Flow
+version: "1.0.0"
+status: Draft
+owner: Runtime Team
+philosophy:
+  - Execution la mot chuoi thong nhat, co the quan sat.
+  - Moi buoc tham chieu State Machine (S009), khong dinh nghia lai state.
+  - Moi buoc chi thao tac tren Entity cua S008.
+  - Flow chi mo ta thu tu — khong dinh nghia lai state/transition.
+principles:
+  - Flow xac dinh boi State Machine.
+  - Moi buoc co Contract (S007).
+  - Moi buoc co Event (P005).
+  - Flow deterministic (P009).
+  - Khong bypass buoc.
+stages:
+  STAGE-1: [Initiation, Validate Workflow, Prepare Context]
+  STAGE-2: [Resolve Capability, Assign Agent, Execute Tasks]
+  STAGE-3: [Collect Artifacts, Emit Events, Finalize Result]
+  STAGE-4: [Archive, Publish Summary]
+references:
+  state_machine: S009 (ST-001..014, TR-001..019)
+  data_model: S008 (ENT-001..015)
+  contracts: S007 (CTR-001..012)
+  components: S006 (CMP-001..012)
