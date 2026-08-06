@@ -2,7 +2,7 @@
 name: spec-001-runtime-kernel
 description: >
   SPEC-001 — Runtime Kernel. Execution kernel thống nhất của AIOS.
-  3 tầng: Foundation (S001-S007+Appendix) / Behavior (S008-S012) / Quality (S013-S018).
+  3 tầng: Foundation (S001-S007+Appendix) / Behavior (S008-S010) / Operations (S011-S016).
   Mỗi bước review + freeze trước khi sang bước tiếp.
 agent: general
 ---
@@ -33,23 +33,21 @@ Components · Contracts · Canonical Models (Appendix)
 ```text
 S008 Runtime Data Model     ✅ Frozen
 S009 Runtime State Machine  🚧
-S010 Runtime Execution Flow
-S011 Runtime Events
-S012 Runtime Error Handling
+S010 Runtime Execution Flow 🚧
 ```
 
-### Tier 3 — Runtime Quality
+### Tier 3 — Runtime Operations
 
 ```text
-S013 Observability
-S014 Security
-S015 Extension Model
-S016 Validation & Doctor
-S017 Compliance Matrix
-S018 Appendices
+S011 Runtime Observability  🚧
+S012 Runtime Policies
+S013 Runtime Governance
+S014 Runtime Extensibility
+S015 Runtime Quality Model
+S016 Runtime Compliance
 ```
 
-## Quy trình (18 bước — freeze từng bước)
+## Quy trình (16 bước — freeze từng bước)
 
 | # | Bước | File | Tier | Trạng thái |
 |---|------|------|------|-----------|
@@ -64,14 +62,12 @@ S018 Appendices
 | S008 | Runtime Data Model | `S008/data-model.md` | 2 | ✅ Frozen |
 | S009 | Runtime State Machine | `S009/state-machine.md` | 2 | 🚧 In progress |
 | S010 | Runtime Execution Flow | `S010/execution-flow.md` | 2 | 🚧 In progress |
-| S011 | Runtime Events | `S011-events.md` | 2 | ⬜ |
-| S012 | Runtime Error Handling | `S012-error-handling.md` | 2 | ⬜ |
-| S013 | Runtime Observability | `S013-observability.md` | 3 | ⬜ |
-| S014 | Runtime Security | `S014-security.md` | 3 | ⬜ |
-| S015 | Runtime Extension Model | `S015-extension-model.md` | 3 | ⬜ |
-| S016 | Runtime Validation & Doctor | `S016-validation-doctor.md` | 3 | ⬜ |
-| S017 | Runtime Compliance Matrix | `S017-compliance-matrix.md` | 3 | ⬜ |
-| S018 | Runtime Appendices | `S018-appendices.md` | 3 | ⬜ |
+| S011 | Runtime Observability | `S011/observability.md` | 3 | 🚧 In progress |
+| S012 | Runtime Policies | `S012/policies.md` | 3 | ⬜ |
+| S013 | Runtime Governance | `S013/governance.md` | 3 | ⬜ |
+| S014 | Runtime Extensibility | `S014/extensibility.md` | 3 | ⬜ |
+| S015 | Runtime Quality Model | `S015/quality-model.md` | 3 | ⬜ |
+| S016 | Runtime Compliance | `S016/compliance.md` | 3 | ⬜ |
 
 ## Thứ tự viết (Behavior Before Data)
 
@@ -80,14 +76,13 @@ Foundation ✅ → Canonical Models ✅ → S008 Data Model ✅
     ↓
 S009 State Machine    🚧 (Behavior trước)
     ↓
-S010 Execution Flow
+S010 Execution Flow   🚧
     ↓
-S011 Events
+S011 Observability    🚧 (Event/Metrics/Trace/Audit — nền tảng Dashboard/Doctor)
     ↓
-S012 Error Handling
+S012 Policies → S013 Governance → S014 Extensibility
     ↓
-S013 Observability → S014 Security → S015 Extension → S016 Validation
-→ S017 Compliance → S018 Appendices
+S015 Quality Model → S016 Compliance
 ```
 
 ## Quy tắc

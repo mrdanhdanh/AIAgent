@@ -1,0 +1,12 @@
+# SPEC-001 S011 — Alerting Hooks
+---
+version: "1.0"
+hooks:
+  - on_failure: Failure Event → alert
+  - on_timeout: TimedOut → alert
+  - on_aborted: Aborted → alert
+  - on_approval_required: Waiting → notify
+  - on_sla_violation: duration > threshold → alert
+rules:
+  - Hook qua Contract (P002).
+  - Hook không chứa Business Logic.

@@ -1,0 +1,26 @@
+# SPEC-001 S011 — Runtime Observability
+# Event/Metrics/Trace/Audit la nen tang cho Dashboard/Doctor/Evolution/Simulation.
+---
+id: SPEC-001-S011
+name: Runtime Observability
+version: "1.0.0"
+status: Draft
+owner: Runtime Team
+philosophy:
+  - Mọi hoạt động đều sinh dữ liệu quan sát (P014).
+  - Không đo được thì không kiểm soát được.
+  - Observability phục vụ Dashboard, Doctor, Evolution, Simulation.
+principles:
+  - Event: state change (P005).
+  - Metrics: hiệu năng.
+  - Trace: luồng thực thi.
+  - Audit: quyết định/quyền thay đổi.
+  - Correlation ID: xuyên suốt.
+  - Lineage: nguồn gốc.
+models:
+  - Event Model
+  - Metrics Model
+  - Trace Model
+  - Audit Trail
+  - Correlation ID
+  - Lineage

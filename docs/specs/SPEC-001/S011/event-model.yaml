@@ -1,0 +1,10 @@
+# SPEC-001 S011 — Event Model (tham chieu S009 State Events + S010 EF010)
+---
+version: "1.0"
+model:
+  fields: [id, type, correlation_id, execution_id, state_from, state_to, timestamp, lineage, immutable]
+rules:
+  - Event immutable (P005).
+  - Event chỉ append.
+  - Mọi transition sinh Event (S009).
+  - Event có correlation_id.

@@ -1,0 +1,10 @@
+# SPEC-001 S011 — Doctor Integration
+# Doctor dung observability de kiem tra.
+---
+version: "1.0"
+checks:
+  - Event Coverage: mọi state change có Event.
+  - Trace Completeness: mọi operation có Trace.
+  - Audit Completeness: mọi quyết định có Audit.
+  - Correlation Coverage: mọi dữ liệu có correlation_id.
+  - Lineage Integrity: lineage đầy đủ, không vòng.

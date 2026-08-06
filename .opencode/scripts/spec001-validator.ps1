@@ -339,7 +339,32 @@ if (Test-Path $efMd) {
   }
 }
 
-# ---------- S1-020: SPEC.yaml ----------
+# ---------- S1-021: S011 observability ----------
+$s011 = Join-Path $spec1 'S011'
+foreach ($f in @('observability.md','observability.yaml','observability.schema.json','event-model.yaml','metrics-model.yaml','trace-model.yaml','audit-trail.yaml','correlation-id.yaml','lineage.yaml','log-principles.yaml','dashboard-metrics.yaml','doctor-integration.yaml','alerting-hooks.yaml')) {
+  if (-not (Test-Path (Join-Path $s011 $f))) { $errors += "S1-021: missing S011/$f" }
+}
+$obYaml = Join-Path $s011 'observability.yaml'
+if (Test-Path $obYaml) {
+  $ob = Get-Content -LiteralPath $obYaml -Raw -Encoding utf8
+  foreach ($sec in @('philosophy','principles','models')) {
+    if ($ob -notmatch "(?m)^${sec}:") { $errors += "S1-021: observability thieu '$sec'" }
+  }
+  foreach ($m in @('Event Model','Metrics Model','Trace Model','Audit Trail','Correlation ID','Lineage')) {
+    if ($ob -notmatch [regex]::Escape($m)) { $warnings += "S1-021: thieu model '$m'" }
+  }
+}
+# md: 16 sections OB001-OB016
+$obMd = Join-Path $s011 'observability.md'
+if (Test-Path $obMd) {
+  $om = Get-Content -LiteralPath $obMd -Raw -Encoding utf8
+  for ($i = 1; $i -le 16; $i++) {
+    $sec = "OB{0:D3}" -f $i
+    if ($om -notmatch [regex]::Escape($sec)) { $errors += "S1-021: thieu section $sec" }
+  }
+}
+
+# ---------- S1-022: SPEC.yaml ----------
 $specFile = Join-Path $spec1 'SPEC.yaml'
 if (Test-Path $specFile) {
   $st = Get-Content -LiteralPath $specFile -Raw -Encoding utf8

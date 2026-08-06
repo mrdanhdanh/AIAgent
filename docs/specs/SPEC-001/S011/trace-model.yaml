@@ -1,0 +1,9 @@
+# SPEC-001 S011 — Trace Model
+---
+version: "1.0"
+model:
+  fields: [trace_id, span_id, parent_span_id, correlation_id, execution_id, operation, started_at, ended_at, duration, status]
+rules:
+  - Trace chỉ append.
+  - Trace luôn trước Metrics (S010 EF010).
+  - Span cha-con qua parent_span_id.
