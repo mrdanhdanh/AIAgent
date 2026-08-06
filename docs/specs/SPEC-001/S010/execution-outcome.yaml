@@ -1,9 +1,10 @@
-# SPEC-001 S010 — Execution Outcome (EF024)
+# SPEC-001 S010 — Execution Outcome (EF024) v4
 # Outcome khac State — dung cho Dashboard/Analytics.
 ---
 version: "1.0"
 outcomes:
   Success: { state: ST-008 Completed, simulated: false }
+  Partial Success: { state: ST-008 Completed, note: Join Policy ANY/QUORUM — Task A OK, Task B Failed }
   Failure: { state: ST-009 Failed, simulated: false }
   Cancelled: { state: ST-010 Cancelled, simulated: false }
   Timeout: { state: ST-011 TimedOut, simulated: false }

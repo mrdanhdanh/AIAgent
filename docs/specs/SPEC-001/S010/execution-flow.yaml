@@ -1,4 +1,4 @@
-# SPEC-001 S010 — Execution Flow (Canonical) v3
+# SPEC-001 S010 — Execution Flow (Canonical) v4
 ---
 id: SPEC-001-S010
 name: Runtime Execution Flow
@@ -22,24 +22,26 @@ lifecycle_overview:
   - Command
   - Execution Created
   - Validation
+  - Policy Resolution
   - Preparation
   - Running
-  - Synchronization
+  - Coordination
   - Completion
 stages:
   Initialize: [Create Execution, Allocate Resource]
   Validate: [Workflow, Contract, Policy]
   Prepare: [Context, Capability Resolution]
   Execute: [Agent Coordination]
-  Synchronize: [Barrier, Fan-in, Join]
+  Coordinate: [Sequential, Parallel, Barrier, Approval, Waiting, Retry, Timeout]
   Finalize: [Result, Artifact, Metrics]
   Complete: [Terminal State]
 canonical_flow:
   - Command
   - Execution Created
   - Validation
+  - Policy Resolution
   - Preparation
   - Execution
-  - Synchronization
+  - Coordination
   - Finalization
   - Completion

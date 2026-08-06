@@ -1,0 +1,11 @@
+# SPEC-001 S010 — Workflow Resolution Flow (EF006) v4
+---
+version: "1.0"
+flow:
+  - Workflow
+  - Validation
+  - Normalization
+  - Execution Plan
+rules:
+  - Không sửa Workflow (chỉ Normalize thành Execution Plan).
+  - Normalization chuẩn hóa cấu trúc trước khi chạy.

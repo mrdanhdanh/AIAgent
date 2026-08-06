@@ -1,10 +1,10 @@
-# SPEC-001 S010 — Parallel Execution Flow (EF021) v3
-# Join Policy
+# SPEC-001 S010 — Parallel Execution Flow (EF021) v4
+# Scatter/Gather + Join Policy
 ---
 version: "1.0"
 patterns:
-  fan_out: Một Task → N Task con song song.
-  fan_in: N Task con → 1 Task cha.
+  scatter: Một Task → N Task con song song (fan-out).
+  gather: N Task con → 1 Task cha (fan-in).
   barrier: Chờ mọi Task con hoàn thành trước khi tiếp tục.
   join: Gộp kết quả N Task con.
 join_policy:

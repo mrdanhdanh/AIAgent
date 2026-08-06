@@ -1,4 +1,4 @@
-# SPEC-001 S010 — Execution Stages (EF004) v3
+# SPEC-001 S010 — Execution Stages (EF004) v4
 ---
 version: "1.0"
 stages:
@@ -6,6 +6,6 @@ stages:
   Validate: { includes: [Workflow, Contract, Policy], event: EXECUTION_VALIDATING }
   Prepare: { includes: [Context, Capability Resolution], event: EXECUTION_PREPARED }
   Execute: { includes: [Agent Coordination], event: EXECUTION_STARTED }
-  Synchronize: { includes: [Barrier, Fan-in, Join], event: EXECUTION_SYNCING }
+  Coordinate: { includes: [Sequential, Parallel, Barrier, Approval, Waiting, Retry, Timeout], event: EXECUTION_COORDINATING }
   Finalize: { includes: [Result, Artifact, Metrics], event: EXECUTION_FINALIZING }
   Complete: { includes: [Terminal State], event: EXECUTION_COMPLETED }

@@ -76,11 +76,11 @@ Completion
 | Validate | Workflow, Contract, Policy | EXECUTION_VALIDATING |
 | Prepare | Context, Capability Resolution | EXECUTION_PREPARED |
 | Execute | Agent Coordination | EXECUTION_STARTED |
-| Synchronize | Barrier, Fan-in, Join | EXECUTION_SYNCING |
+| Coordinate | Sequential, Parallel, Barrier, Approval, Waiting, Retry, Timeout | EXECUTION_COORDINATING |
 | Finalize | Result, Artifact, Metrics | EXECUTION_FINALIZING |
 | Complete | Terminal State | EXECUTION_COMPLETED |
 
-> **Synchronize** là nền tảng cho EF021 (Parallel).
+> **Coordinate** (không phải Synchronize) — bao gồm mọi hình thức điều phối: Sequential, Parallel, Barrier, Approval, Waiting, Retry, Timeout. EF021 là một loại Coordination.
 
 ## EF005 — Canonical Execution Flow (Timeline chuẩn)
 
@@ -91,28 +91,34 @@ Execution Created
     ↓
 Validation
     ↓
+Policy Resolution
+    ↓
 Preparation
     ↓
 Execution
     ↓
-Synchronization
+Coordination
     ↓
 Finalization
     ↓
 Completion
 ```
 
-> Dashboard vẽ timeline trực tiếp từ flow này.
+> Dashboard vẽ timeline trực tiếp từ flow này. Runtime luôn resolve Policy sau Validation.
 
 ## EF006 — Workflow Resolution
 
-Runtime:
+```text
+Workflow
+    ↓
+Validation
+    ↓
+Normalization
+    ↓
+Execution Plan
+```
 
-- đọc Workflow
-- validate
-- tạo Execution Plan
-
-> Không sửa Workflow.
+Runtime: đọc → validate → **normalize** → Execution Plan. Normalization chuẩn hóa cấu trúc trước khi chạy. Không sửa Workflow.
 
 ## EF007 — Capability Resolution
 
@@ -147,12 +153,14 @@ Distribute
     ↓
 Mutate
     ↓
+Merge
+    ↓
 Collect
     ↓
 Release
 ```
 
-Context luôn isolated. Agent có thể Mutate Context (trong phạm vi được cấp).
+Context luôn isolated. Agent có thể Mutate Context (trong phạm vi được cấp). **Merge** gộp Context con về Context cha (parallel).
 
 ## EF009 — State Flow
 
@@ -171,17 +179,19 @@ State Changed
     ↓
 Event
     ↓
-Metrics
-    ↓
 Trace
+    ↓
+Metrics
 ```
 
-Không bước nào thiếu Event (P005). Event + Metrics + Trace phát cùng lúc (P014).
+Không bước nào thiếu Event (P005). **Trace luôn trước Metrics** (P014).
 
 ## EF011 — Artifact Flow
 
 ```text
 Execution Output
+        ↓
+Checkpoint
         ↓
 Execution Result
         ↓
@@ -192,7 +202,7 @@ Publish
 Archive
 ```
 
-Artifact immutable (P010). Result tổng hợp từ Artifact + Metrics (S008 ENT-012).
+Artifact immutable (P010). **Checkpoint** dùng cho Replay (S009). Result tổng hợp từ Artifact + Metrics (S008 ENT-012).
 
 ## EF012 — Retry Flow
 
@@ -260,7 +270,7 @@ New Execution
 
 Replay **không** Resume.
 
-## EF017 — Failure Flow (4 loại)
+## EF017 — Failure Flow (5 loại)
 
 | Failure Type | States |
 |--------------|--------|
@@ -268,6 +278,9 @@ Replay **không** Resume.
 | Capability Failure | Resolution Failed → ST-009 |
 | Execution Failure | ST-004 → ST-009 |
 | System Failure | ST-004 → ST-014 |
+| **Policy Failure** | ST-004 → ST-014 (Aborted) |
+
+**Policy Failure** — Approval denied, Policy violated, Security violation — không phải Execution Failure.
 
 ```text
 Failure
@@ -290,6 +303,7 @@ execution-flow.yaml
 execution-stages.yaml
 execution-transitions.yaml
 execution-validation.yaml
+workflow-flow.yaml
 capability-flow.yaml
 context-flow.yaml
 event-flow.yaml
@@ -304,6 +318,7 @@ compensation-flow.yaml
 execution-lineage.yaml
 execution-outcome.yaml
 execution-policies.yaml
+execution-guarantees.yaml
 execution-flow.schema.json
 ```
 
@@ -339,16 +354,16 @@ Hoàn thành khi:
 
 ## EF021 — Parallel Execution Flow
 
-Fan-out / Fan-in, barrier, join:
+Scatter / Gather, barrier, join:
 
 ```text
 Task
   ↓
-Fan-out → Task A → Task B → Task C
+Scatter → Task A → Task B → Task C
                 ↓
               Barrier (chờ tất cả)
                 ↓
-              Fan-in (gộp kết quả)
+              Gather (gộp kết quả)
                 ↓
               Join → Task tiếp theo
 ```
@@ -360,7 +375,7 @@ Fan-out → Task A → Task B → Task C
 - **QUORUM** — cần đủ tỷ lệ Task con thành công.
 - **CUSTOM** — theo logic khai báo.
 
-**Rules:** Mỗi Task con là Task hợp lệ (S009); Barrier chờ mọi Task con đạt Terminal State; mỗi Task con phát Event riêng + lineage (EF023).
+**Rules:** Mỗi Task con là Task hợp lệ (S009); Barrier chờ mọi Task con đạt Terminal State; mỗi Task con phát Event riêng + lineage (EF023). Scatter/Gather là thuật ngữ chuẩn cho Fan-out/Fan-in.
 
 ## EF022 — Compensation Flow
 
@@ -388,14 +403,15 @@ Terminal State
 ```text
 Root Execution (không có parent)
       ├── Parent Execution
-      ├── Child Execution (fan-out)
+      ├── Child Execution (scatter)
       ├── Replay (Execution mới, lineage giữ nguyên)
       ├── Simulation (simulated: true)
-      ├── Clone (bản sao, cùng lineage gốc)
       └── Fork (phân nhánh từ một điểm)
 ```
 
 **Rules:** Lineage immutable (append-only); mỗi Execution có `lineage_ref`; Doctor/Dashboard/Evolution truy vết đầy đủ.
+
+> **Clone không phải Execution** — Clone là Operation, không thuộc Execution Lineage.
 
 ## EF024 — Execution Outcome (mới)
 
@@ -404,6 +420,7 @@ Outcome khác với State — hữu ích cho Dashboard và Analytics:
 | Outcome | State |
 |---------|-------|
 | Success | Completed (ST-008) |
+| **Partial Success** | Completed (ST-008) — Join Policy ANY/QUORUM: Task A OK, Task B Failed |
 | Failure | Failed (ST-009) |
 | Cancelled | Cancelled (ST-010) |
 | Timeout | TimedOut (ST-011) |
@@ -414,14 +431,45 @@ Outcome khác với State — hữu ích cho Dashboard và Analytics:
 
 ## EF025 — Execution Policies (mới)
 
-- Retry Policy — guard: retry_count < max_retry (S009 TR-015)
-- Timeout Policy — guard: timeout exceeded (S009 TR-013)
-- Approval Policy — guard: approval required (S009 TR-005/006)
-- Compensation Policy — guard: failure + completed steps (EF022)
-- Parallel Policy — guard: join policy (EF021)
-- Resource Policy — guard: resource available (S003 RR-001)
+Mỗi policy theo **cùng một model** — SPEC-012 (Policy Engine) chỉ cần tham chiếu:
+
+```yaml
+policy:
+  id:
+  category:
+  trigger:
+  guard:
+  action:
+  priority:
+  version:
+```
+
+| Policy | ID | Category | Trigger | Guard | Action |
+|--------|----|----------|---------|-------|--------|
+| Retry | POL-RETRY-001 | Recovery | Failed | retry_count < max_retry | Retry |
+| Timeout | POL-TIMEOUT-001 | Control | Running | timeout exceeded | TimedOut |
+| Approval | POL-APPROVAL-001 | Governance | Approval gate | approval required | Waiting |
+| Compensation | POL-COMP-001 | Recovery | Failure | completed steps exist | Compensate |
+| Parallel | POL-PARALLEL-001 | Orchestration | Parallel tasks | join policy | Scatter/Gather |
+| Resource | POL-RES-001 | Resource | Allocate | resource available | Allocate |
 
 > **Execution Flow chỉ áp dụng policy, không định nghĩa policy.**
+
+## EF026 — Execution Guarantees (mới)
+
+Runtime cam kết — khác với Requirements (S002) và Invariants (S001):
+
+- **Exactly one Active State.**
+- **Exactly one Terminal State.**
+- **At-least-once Event Publication.**
+- **Exactly-once Artifact Publication.**
+- **Context Isolation.**
+- **Deterministic Replay.**
+- **Immutable Lineage.**
+- **Immutable Artifact.**
+- **Contract-first Communication.**
+
+> Doctor / Dashboard / các Runtime implementation (C#, Go, Rust, Python...) dùng làm tiêu chí kiểm chứng.
 
 ## Tham chiếu
 
@@ -429,10 +477,10 @@ Outcome khác với State — hữu ích cho Dashboard và Analytics:
 - `execution-stages.yaml`
 - `execution-transitions.yaml`
 - `execution-validation.yaml`
-- `capability-flow.yaml` / `context-flow.yaml` / `event-flow.yaml` / `artifact-flow.yaml`
+- `workflow-flow.yaml` / `capability-flow.yaml` / `context-flow.yaml` / `event-flow.yaml` / `artifact-flow.yaml`
 - `retry-flow.yaml` / `approval-flow.yaml` / `timeout-flow.yaml` / `replay-flow.yaml` / `failure-flow.yaml`
 - `parallel-flow.yaml` / `compensation-flow.yaml` / `execution-lineage.yaml`
-- `execution-outcome.yaml` / `execution-policies.yaml`
+- `execution-outcome.yaml` / `execution-policies.yaml` / `execution-guarantees.yaml`
 - `execution-flow.schema.json`
 - S008 — Runtime Data Model
 - S009 — Runtime State Machine

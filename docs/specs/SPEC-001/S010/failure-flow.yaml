@@ -1,5 +1,5 @@
-# SPEC-001 S010 — Failure Flow (EF017) v3
-# 4 loai failure
+# SPEC-001 S010 — Failure Flow (EF017) v5
+# 5 loai failure
 ---
 version: "1.0"
 failure_types:
@@ -7,6 +7,11 @@ failure_types:
   Capability Failure: [Resolution Failed → ST-009]
   Execution Failure: [ST-004 → ST-009]
   System Failure: [ST-004 → ST-014]
+  Policy Failure: [ST-004 → ST-014]
+policy_failure_examples:
+  - Approval denied
+  - Policy violated
+  - Security violation
 flow:
   - Failure
   - Isolation
