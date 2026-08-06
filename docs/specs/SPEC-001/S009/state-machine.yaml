@@ -1,5 +1,5 @@
-# SPEC-001 S009 — Runtime State Machine v2 (Canonical)
-# Hien phap cua Execution. 14 states, 18 transitions.
+# SPEC-001 S009 — Runtime State Machine v3 (Canonical)
+# Hien phap cua Execution. 14 states, 19 transitions, 6 categories.
 ---
 id: SPEC-001-S009
 name: Runtime State Machine
@@ -19,97 +19,68 @@ principles:
   - State bất biến sau khi rời khỏi.
   - Transition quyết định Lifecycle.
   - Không được bỏ qua State.
+categories:
+  Initial: [ST-001]
+  Preparation: [ST-002, ST-003]
+  Active: [ST-004, ST-005, ST-006]
+  Control: [ST-007, ST-013]
+  Terminal: [ST-008, ST-009, ST-010, ST-011, ST-014]
+  Virtual: [ST-012]
 states:
-  ST-001: { name: Created, type: Initial }
-  ST-002: { name: Validating, type: Internal }
-  ST-003: { name: Prepared, type: Internal }
-  ST-004: { name: Running, type: Active }
-  ST-005: { name: Waiting, type: Active }
-  ST-006: { name: Suspended, type: Active }
-  ST-007: { name: Cancelling, type: Active }
-  ST-008: { name: Completed, type: Terminal }
-  ST-009: { name: Failed, type: Terminal }
-  ST-010: { name: Cancelled, type: Terminal }
-  ST-011: { name: TimedOut, type: Terminal }
-  ST-012: { name: Replayed, type: Terminal }
-  ST-013: { name: Retrying, type: Internal }
-  ST-014: { name: Aborted, type: Terminal }
+  ST-001: { name: Created, category: Initial, type: Initial, terminal: false, retryable: false }
+  ST-002: { name: Validating, category: Preparation, type: Internal, terminal: false, retryable: false }
+  ST-003: { name: Prepared, category: Preparation, type: Internal, terminal: false, retryable: false }
+  ST-004: { name: Running, category: Active, type: Active, terminal: false, retryable: false }
+  ST-005: { name: Waiting, category: Active, type: Active, terminal: false, retryable: false }
+  ST-006: { name: Suspended, category: Active, type: Active, terminal: false, retryable: false }
+  ST-007: { name: Cancelling, category: Control, type: Active, terminal: false, retryable: false }
+  ST-008: { name: Completed, category: Terminal, type: Terminal, terminal: true, retryable: false }
+  ST-009: { name: Failed, category: Terminal, type: Terminal, terminal: true, retryable: true }
+  ST-010: { name: Cancelled, category: Terminal, type: Terminal, terminal: true, retryable: false }
+  ST-011: { name: TimedOut, category: Terminal, type: Terminal, terminal: true, retryable: false }
+  ST-012: { name: Replayed, category: Virtual, type: Terminal, terminal: true, retryable: false }
+  ST-013: { name: Retrying, category: Control, type: Internal, terminal: false, retryable: false }
+  ST-014: { name: Aborted, category: Terminal, type: Terminal, terminal: true, retryable: false }
 initial_state: ST-001
 terminal_states: [ST-008, ST-009, ST-010, ST-011, ST-012, ST-014]
-active_states: [ST-004, ST-005, ST-006, ST-007]
+active_states: [ST-004, ST-005, ST-006]
+control_states: [ST-007, ST-013]
+concurrency_rules:
+  - Một Execution chỉ có một Active State.
+  - Không được Running + Waiting đồng thời.
+composite_states:
+  - Execution State ≠ Task State ≠ Phase State.
+  - Không được trộn lẫn các mức state.
+terminal_rules:
+  - Terminal không có transition ra.
+  - Ngoại lệ duy nhất: Replay (tạo Execution mới, không quay lại Execution cũ).
+triggers: [Runtime, Policy, User, Approval, Timeout, Event, Scheduler]
 transitions:
-  - from: ST-001
-    to: ST-002
-    event: EXECUTION_VALIDATING
-    guard: Workflow + Contract hợp lệ
-  - from: ST-002
-    to: ST-003
-    event: EXECUTION_PREPARED
-    guard: Validation pass
-  - from: ST-002
-    to: ST-009
-    event: EXECUTION_VALIDATION_FAILED
-    guard: Validation fail
-  - from: ST-003
-    to: ST-004
-    event: EXECUTION_STARTED
-    guard: Simulation pass (P013)
-  - from: ST-004
-    to: ST-005
-    event: EXECUTION_WAITING
-    guard: Cần approval/ngoại bộ
-  - from: ST-005
-    to: ST-004
-    event: EXECUTION_APPROVED
-    guard: Approval được duyệt
-  - from: ST-004
-    to: ST-006
-    event: EXECUTION_SUSPENDED
-    guard: Pause theo yêu cầu
-  - from: ST-006
-    to: ST-004
-    event: EXECUTION_RESUMED
-    guard: Resume hợp lệ
-  - from: ST-004
-    to: ST-007
-    event: EXECUTION_CANCELLING
-    guard: Cancel request hợp lệ
-  - from: ST-007
-    to: ST-010
-    event: EXECUTION_CANCELLED
-    guard: Hủy thành công
-  - from: ST-004
-    to: ST-008
-    event: EXECUTION_COMPLETED
-    guard: Mọi Task/Phase xong
-  - from: ST-004
-    to: ST-009
-    event: EXECUTION_FAILED
-    guard: Lỗi không retry được
-  - from: ST-004
-    to: ST-011
-    event: EXECUTION_TIMED_OUT
-    guard: Timeout policy
-  - from: ST-004
-    to: ST-014
-    event: EXECUTION_ABORTED
-    guard: System abort
-  - from: ST-009
-    to: ST-013
-    event: EXECUTION_RETRYING
-    guard: Retry policy cho phép
-  - from: ST-013
-    to: ST-004
-    event: EXECUTION_RETRIED
-    guard: Retry attempt
-  - from: ST-008
-    to: ST-012
-    event: EXECUTION_REPLAYED
-    guard: Replay được tạo
-  - from: ST-009
-    to: ST-012
-    event: EXECUTION_REPLAYED
-    guard: Replay được tạo
+  - from: ST-001; to: ST-002; event: EXECUTION_VALIDATING; guard: Workflow + Contract hợp lệ
+  - from: ST-002; to: ST-003; event: EXECUTION_PREPARED; guard: Validation pass
+  - from: ST-002; to: ST-009; event: EXECUTION_VALIDATION_FAILED; guard: Validation fail
+  - from: ST-003; to: ST-004; event: EXECUTION_STARTED; guard: Simulation pass (P013)
+  - from: ST-004; to: ST-005; event: EXECUTION_WAITING; guard: Cần approval
+  - from: ST-005; to: ST-004; event: EXECUTION_APPROVED; guard: Approval được duyệt
+  - from: ST-004; to: ST-006; event: EXECUTION_SUSPENDED; guard: Pause theo yêu cầu
+  - from: ST-006; to: ST-004; event: EXECUTION_RESUMED; guard: Resume hợp lệ
+  - from: ST-004; to: ST-007; event: EXECUTION_CANCELLING; guard: Cancel request hợp lệ
+  - from: ST-007; to: ST-010; event: EXECUTION_CANCELLED; guard: Hủy thành công
+  - from: ST-004; to: ST-008; event: EXECUTION_COMPLETED; guard: Mọi Task/Phase xong
+  - from: ST-004; to: ST-009; event: EXECUTION_FAILED; guard: Lỗi không retry được
+  - from: ST-004; to: ST-011; event: EXECUTION_TIMED_OUT; guard: Timeout policy
+  - from: ST-004; to: ST-014; event: EXECUTION_ABORTED; guard: System abort
+  - from: ST-009; to: ST-013; event: EXECUTION_RETRYING; guard: retry_count < policy.max_retry
+  - from: ST-013; to: ST-004; event: EXECUTION_RETRIED; guard: Retry attempt
+  - from: ST-013; to: ST-009; event: EXECUTION_FAILED; guard: Hết retry
+  - from: ST-008; to: ST-012; event: EXECUTION_REPLAYED; guard: Replay được tạo
+  - from: ST-009; to: ST-012; event: EXECUTION_REPLAYED; guard: Replay được tạo
+invalid_transitions:
+  - "Completed -> Running: khong hop le"
+  - "Cancelled -> Retrying: khong hop le"
+  - "Aborted -> Completed: khong hop le"
+  - "Created -> Running: khong hop le (bo qua Validating/Prepared)"
+  - "Failed -> Running: khong hop le (qua Retrying)"
 invariants:
   - Chỉ một Active State tại một thời điểm.
   - Terminal State không đổi.
@@ -118,4 +89,4 @@ invariants:
   - Event luôn đi cùng Transition.
 ownership:
   owner: Runtime
-  rule: Không Agent nào được đổi State.
+  rule: State chỉ Runtime được phép thay đổi. Agent/Workflow/Plugin/Policy không được sửa trực tiếp.
