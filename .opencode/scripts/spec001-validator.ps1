@@ -316,23 +316,26 @@ if (Test-Path $valYaml) {
 
 # ---------- S1-019: S010 execution flow ----------
 $s010 = Join-Path $spec1 'S010'
-foreach ($f in @('execution-flow.md','execution-flow.yaml','execution-flow.schema.json','end-to-end-flow.yaml','flow-definitions.yaml','execution-flow-registry.yaml')) {
+foreach ($f in @('execution-flow.md','execution-flow.yaml','execution-flow.schema.json','execution-stages.yaml','execution-transitions.yaml','execution-validation.yaml','retry-flow.yaml','approval-flow.yaml','timeout-flow.yaml','replay-flow.yaml','failure-flow.yaml','parallel-flow.yaml','compensation-flow.yaml','execution-lineage.yaml')) {
   if (-not (Test-Path (Join-Path $s010 $f))) { $errors += "S1-019: missing S010/$f" }
 }
 $efYaml = Join-Path $s010 'execution-flow.yaml'
 if (Test-Path $efYaml) {
   $ef = Get-Content -LiteralPath $efYaml -Raw -Encoding utf8
-  foreach ($sec in @('philosophy','principles','stages','references')) {
+  foreach ($sec in @('philosophy','principles','lifecycle_overview','stages','canonical_flow')) {
     if ($ef -notmatch "(?m)^${sec}:") { $errors += "S1-019: execution-flow thieu '$sec'" }
   }
-  for ($i = 1; $i -le 4; $i++) { if ($ef -notmatch "STAGE-$i") { $errors += "S1-019: thieu STAGE-$i" } }
+  foreach ($st in @('Initialize','Validate','Prepare','Execute','Finalize','Complete')) {
+    if ($ef -notmatch [regex]::Escape($st)) { $errors += "S1-019: thieu stage $st" }
+  }
 }
-# 12 flows
-$fdYaml = Join-Path $s010 'flow-definitions.yaml'
-if (Test-Path $fdYaml) {
-  $fd = Get-Content -LiteralPath $fdYaml -Raw -Encoding utf8
-  foreach ($fl in @('workflow_resolution','capability_resolution','context','state','event','artifact','retry','timeout','cancellation','approval','replay','failure')) {
-    if ($fd -notmatch [regex]::Escape($fl)) { $errors += "S1-019: thieu flow $fl" }
+# md: 23 sections EF001-EF023
+$efMd = Join-Path $s010 'execution-flow.md'
+if (Test-Path $efMd) {
+  $em = Get-Content -LiteralPath $efMd -Raw -Encoding utf8
+  for ($i = 1; $i -le 23; $i++) {
+    $sec = "EF{0:D3}" -f $i
+    if ($em -notmatch [regex]::Escape($sec)) { $errors += "S1-019: thieu section $sec" }
   }
 }
 

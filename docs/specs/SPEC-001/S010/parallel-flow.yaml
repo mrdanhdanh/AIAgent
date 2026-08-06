@@ -1,0 +1,13 @@
+# SPEC-001 S010 — Parallel Execution Flow (EF021)
+# Fan-out/Fan-in, barrier, join cho workflow song song.
+---
+version: "1.0"
+patterns:
+  fan_out: Một Task → N Task con song song.
+  fan_in: N Task con → 1 Task cha.
+  barrier: Chờ mọi Task con hoàn thành trước khi tiếp tục.
+  join: Gộp kết quả N Task con.
+rules:
+  - Mỗi Task con là một Task hợp lệ (S009 Task SM).
+  - Barrier chờ tất cả Task con đạt Terminal State.
+  - Mỗi Task con phát Event riêng.

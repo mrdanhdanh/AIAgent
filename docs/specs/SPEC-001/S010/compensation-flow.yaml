@@ -1,0 +1,14 @@
+# SPEC-001 S010 — Compensation Flow (EF022)
+# Rollback/compensation cho cac buoc da hoan thanh khi execution that bai.
+---
+version: "1.0"
+flow:
+  - Failure
+  - Identify Completed Steps
+  - Compensate (ngược thứ tự)
+  - Compensation Artifact
+  - Terminal State
+rules:
+  - Compensation theo thứ tự ngược của Execution.
+  - Mỗi compensation phát Event.
+  - Không sửa Artifact đã sinh (P010).

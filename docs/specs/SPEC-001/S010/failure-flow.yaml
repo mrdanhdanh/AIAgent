@@ -1,0 +1,12 @@
+# SPEC-001 S010 — Failure Flow (EF017)
+---
+version: "1.0"
+flow:
+  - Failure
+  - Isolation
+  - Failure Event
+  - Failure Artifact
+  - Terminal State
+rules:
+  - Không sửa lỗi nghiệp vụ (P015).
+  - Cô lập lỗi — Agent lỗi không làm sập Runtime (RULE-012).
