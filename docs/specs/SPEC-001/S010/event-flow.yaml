@@ -1,0 +1,13 @@
+# SPEC-001 S010 — Event Flow (EF010) v3
+---
+version: "1.0"
+flow:
+  - Before
+  - Action
+  - State Changed
+  - Event
+  - Metrics
+  - Trace
+rules:
+  - Không bước nào thiếu Event (P005).
+  - Event + Metrics + Trace phát cùng lúc (P014).

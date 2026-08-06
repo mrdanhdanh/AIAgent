@@ -1,4 +1,4 @@
-# SPEC-001 S010 — Execution Flow (Canonical)
+# SPEC-001 S010 — Execution Flow (Canonical) v3
 ---
 id: SPEC-001-S010
 name: Runtime Execution Flow
@@ -24,23 +24,22 @@ lifecycle_overview:
   - Validation
   - Preparation
   - Running
+  - Synchronization
   - Completion
 stages:
-  Initialize: Tạo Execution
-  Validate: Kiểm tra Workflow/Contract
-  Prepare: Chuẩn bị Context
-  Execute: Điều phối Agent
-  Finalize: Publish Artifact
-  Complete: Kết thúc
+  Initialize: [Create Execution, Allocate Resource]
+  Validate: [Workflow, Contract, Policy]
+  Prepare: [Context, Capability Resolution]
+  Execute: [Agent Coordination]
+  Synchronize: [Barrier, Fan-in, Join]
+  Finalize: [Result, Artifact, Metrics]
+  Complete: [Terminal State]
 canonical_flow:
   - Command
-  - Execution
-  - Workflow
+  - Execution Created
   - Validation
-  - Context
-  - Capability Resolution
-  - Agent Coordination
-  - State Update
-  - Event Publishing
-  - Artifact Publishing
+  - Preparation
+  - Execution
+  - Synchronization
+  - Finalization
   - Completion

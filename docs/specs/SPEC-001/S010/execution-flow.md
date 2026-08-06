@@ -3,7 +3,7 @@ name: spec-001-s010-execution-flow
 description: >
   SPEC-001 S010 — Runtime Execution Flow. Trả lời: Một Execution diễn ra
   theo trình tự nào? Chuẩn hóa luồng thực thi của Runtime từ Command đến
-  Completion. 23 sections EF001-EF023.
+  Completion. 25 sections EF001-EF025.
   Không mô tả implementation/class/code/API.
 agent: general
 ---
@@ -63,47 +63,46 @@ Preparation
     ↓
 Running
     ↓
+Synchronization
+    ↓
 Completion
 ```
 
-## EF004 — Execution Stages
+## EF004 — Execution Stages (7)
 
-| Stage | Purpose |
-|-------|---------|
-| Initialize | Tạo Execution |
-| Validate | Kiểm tra Workflow/Contract |
-| Prepare | Chuẩn bị Context |
-| Execute | Điều phối Agent |
-| Finalize | Publish Artifact |
-| Complete | Kết thúc |
+| Stage | Bao gồm | Event |
+|-------|---------|-------|
+| Initialize | Create Execution, Allocate Resource | EXECUTION_CREATED |
+| Validate | Workflow, Contract, Policy | EXECUTION_VALIDATING |
+| Prepare | Context, Capability Resolution | EXECUTION_PREPARED |
+| Execute | Agent Coordination | EXECUTION_STARTED |
+| Synchronize | Barrier, Fan-in, Join | EXECUTION_SYNCING |
+| Finalize | Result, Artifact, Metrics | EXECUTION_FINALIZING |
+| Complete | Terminal State | EXECUTION_COMPLETED |
 
-## EF005 — Canonical Execution Flow
+> **Synchronize** là nền tảng cho EF021 (Parallel).
+
+## EF005 — Canonical Execution Flow (Timeline chuẩn)
 
 ```text
 Command
     ↓
-Execution
-    ↓
-Workflow
+Execution Created
     ↓
 Validation
     ↓
-Context
+Preparation
     ↓
-Capability Resolution
+Execution
     ↓
-Agent Coordination
+Synchronization
     ↓
-State Update
-    ↓
-Event Publishing
-    ↓
-Artifact Publishing
+Finalization
     ↓
 Completion
 ```
 
-Đây là luồng chuẩn.
+> Dashboard vẽ timeline trực tiếp từ flow này.
 
 ## EF006 — Workflow Resolution
 
@@ -118,32 +117,42 @@ Runtime:
 ## EF007 — Capability Resolution
 
 ```text
-Task
-      ↓
 Capability
       ↓
 Registry
       ↓
 Resolved
+
+or
+
+Capability
+      ↓
+Resolution Failed
+      ↓
+Execution Failed
 ```
 
 Runtime chỉ resolve. Không biết Agent.
+
+> Resolve Failure → Execution Failed — Doctor trace được lỗi Capability.
 
 ## EF008 — Context Flow
 
 ```text
 Allocate
-      ↓
+    ↓
 Populate
-      ↓
+    ↓
 Distribute
-      ↓
+    ↓
+Mutate
+    ↓
 Collect
-      ↓
+    ↓
 Release
 ```
 
-Context luôn isolated.
+Context luôn isolated. Agent có thể Mutate Context (trong phạm vi được cấp).
 
 ## EF009 — State Flow
 
@@ -153,33 +162,37 @@ Execution Flow **không định nghĩa State mới**.
 
 ## EF010 — Event Flow
 
-Mỗi bước:
-
 ```text
 Before
     ↓
 Action
     ↓
-After
+State Changed
     ↓
 Event
+    ↓
+Metrics
+    ↓
+Trace
 ```
 
-Không bước nào thiếu Event.
+Không bước nào thiếu Event (P005). Event + Metrics + Trace phát cùng lúc (P014).
 
 ## EF011 — Artifact Flow
 
 ```text
-Execution
-      ↓
-Output
-      ↓
+Execution Output
+        ↓
+Execution Result
+        ↓
 Artifact
-      ↓
+        ↓
 Publish
+        ↓
+Archive
 ```
 
-Artifact immutable.
+Artifact immutable (P010). Result tổng hợp từ Artifact + Metrics (S008 ENT-012).
 
 ## EF012 — Retry Flow
 
@@ -247,7 +260,14 @@ New Execution
 
 Replay **không** Resume.
 
-## EF017 — Failure Flow
+## EF017 — Failure Flow (4 loại)
+
+| Failure Type | States |
+|--------------|--------|
+| Validation Failure | ST-002 → ST-009 |
+| Capability Failure | Resolution Failed → ST-009 |
+| Execution Failure | ST-004 → ST-009 |
+| System Failure | ST-004 → ST-014 |
 
 ```text
 Failure
@@ -270,6 +290,10 @@ execution-flow.yaml
 execution-stages.yaml
 execution-transitions.yaml
 execution-validation.yaml
+capability-flow.yaml
+context-flow.yaml
+event-flow.yaml
+artifact-flow.yaml
 retry-flow.yaml
 approval-flow.yaml
 timeout-flow.yaml
@@ -278,6 +302,8 @@ failure-flow.yaml
 parallel-flow.yaml
 compensation-flow.yaml
 execution-lineage.yaml
+execution-outcome.yaml
+execution-policies.yaml
 execution-flow.schema.json
 ```
 
@@ -311,9 +337,9 @@ Hoàn thành khi:
 - Doctor có thể xác minh toàn bộ Flow từ machine-readable.
 - Dashboard dựng được Execution Timeline mà không cần đọc implementation.
 
-## EF021 — Parallel Execution Flow (mở rộng)
+## EF021 — Parallel Execution Flow
 
-Fan-out / Fan-in, barrier, join cho workflow song song:
+Fan-out / Fan-in, barrier, join:
 
 ```text
 Task
@@ -327,16 +353,21 @@ Fan-out → Task A → Task B → Task C
               Join → Task tiếp theo
 ```
 
-**Rules:**
+**Join Policy:**
 
-- Mỗi Task con là một Task hợp lệ (S009 Task SM).
-- Barrier chờ tất cả Task con đạt Terminal State.
-- Mỗi Task con phát Event riêng.
-- Mỗi Task con có lineage (EF023).
+- **ALL** — chờ tất cả Task con thành công.
+- **ANY** — chỉ cần một Task con thành công.
+- **QUORUM** — cần đủ tỷ lệ Task con thành công.
+- **CUSTOM** — theo logic khai báo.
 
-## EF022 — Compensation Flow (mở rộng)
+**Rules:** Mỗi Task con là Task hợp lệ (S009); Barrier chờ mọi Task con đạt Terminal State; mỗi Task con phát Event riêng + lineage (EF023).
 
-Rollback/compensation cho các bước đã hoàn thành khi execution thất bại:
+## EF022 — Compensation Flow
+
+**Compensation ≠ Rollback:**
+
+- **Rollback** là mục tiêu (trở về trạng thái trước Execution).
+- **Compensation** là cách đạt được Rollback (bù trừ từng bước đã hoàn thành).
 
 ```text
 Failure
@@ -350,31 +381,47 @@ Compensation Artifact
 Terminal State
 ```
 
-**Rules:**
+**Rules:** Compensation theo thứ tự ngược; mỗi compensation phát Event; không sửa Artifact đã sinh (P010).
 
-- Compensation theo **thứ tự ngược** của Execution.
-- Mỗi compensation phát Event.
-- Không sửa Artifact đã sinh (P010).
-- Nền tảng cho Rollback (P015).
-
-## EF023 — Execution Lineage (mở rộng)
-
-Chuẩn hóa quan hệ Parent/Child/Replay/Retry/Simulation:
+## EF023 — Execution Lineage
 
 ```text
-Parent Execution
+Root Execution (không có parent)
+      ├── Parent Execution
       ├── Child Execution (fan-out)
       ├── Replay (Execution mới, lineage giữ nguyên)
-      └── Simulation (simulated: true)
-Retry: Cùng Execution, không tạo lineage mới.
+      ├── Simulation (simulated: true)
+      ├── Clone (bản sao, cùng lineage gốc)
+      └── Fork (phân nhánh từ một điểm)
 ```
 
-**Rules:**
+**Rules:** Lineage immutable (append-only); mỗi Execution có `lineage_ref`; Doctor/Dashboard/Evolution truy vết đầy đủ.
 
-- Lineage immutable (append-only).
-- Mỗi Execution có `lineage_ref`.
-- Doctor / Dashboard / Evolution truy vết đầy đủ.
-- Nền tảng cho orchestration phức tạp.
+## EF024 — Execution Outcome (mới)
+
+Outcome khác với State — hữu ích cho Dashboard và Analytics:
+
+| Outcome | State |
+|---------|-------|
+| Success | Completed (ST-008) |
+| Failure | Failed (ST-009) |
+| Cancelled | Cancelled (ST-010) |
+| Timeout | TimedOut (ST-011) |
+| Aborted | Aborted (ST-014) |
+| Simulation | Completed (simulation=true) |
+
+> Outcome được ghi vào Execution Result (S008 ENT-012).
+
+## EF025 — Execution Policies (mới)
+
+- Retry Policy — guard: retry_count < max_retry (S009 TR-015)
+- Timeout Policy — guard: timeout exceeded (S009 TR-013)
+- Approval Policy — guard: approval required (S009 TR-005/006)
+- Compensation Policy — guard: failure + completed steps (EF022)
+- Parallel Policy — guard: join policy (EF021)
+- Resource Policy — guard: resource available (S003 RR-001)
+
+> **Execution Flow chỉ áp dụng policy, không định nghĩa policy.**
 
 ## Tham chiếu
 
@@ -382,14 +429,10 @@ Retry: Cùng Execution, không tạo lineage mới.
 - `execution-stages.yaml`
 - `execution-transitions.yaml`
 - `execution-validation.yaml`
-- `retry-flow.yaml`
-- `approval-flow.yaml`
-- `timeout-flow.yaml`
-- `replay-flow.yaml`
-- `failure-flow.yaml`
-- `parallel-flow.yaml`
-- `compensation-flow.yaml`
-- `execution-lineage.yaml`
+- `capability-flow.yaml` / `context-flow.yaml` / `event-flow.yaml` / `artifact-flow.yaml`
+- `retry-flow.yaml` / `approval-flow.yaml` / `timeout-flow.yaml` / `replay-flow.yaml` / `failure-flow.yaml`
+- `parallel-flow.yaml` / `compensation-flow.yaml` / `execution-lineage.yaml`
+- `execution-outcome.yaml` / `execution-policies.yaml`
 - `execution-flow.schema.json`
 - S008 — Runtime Data Model
 - S009 — Runtime State Machine

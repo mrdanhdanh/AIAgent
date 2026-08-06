@@ -316,7 +316,7 @@ if (Test-Path $valYaml) {
 
 # ---------- S1-019: S010 execution flow ----------
 $s010 = Join-Path $spec1 'S010'
-foreach ($f in @('execution-flow.md','execution-flow.yaml','execution-flow.schema.json','execution-stages.yaml','execution-transitions.yaml','execution-validation.yaml','retry-flow.yaml','approval-flow.yaml','timeout-flow.yaml','replay-flow.yaml','failure-flow.yaml','parallel-flow.yaml','compensation-flow.yaml','execution-lineage.yaml')) {
+foreach ($f in @('execution-flow.md','execution-flow.yaml','execution-flow.schema.json','execution-stages.yaml','execution-transitions.yaml','execution-validation.yaml','capability-flow.yaml','context-flow.yaml','event-flow.yaml','artifact-flow.yaml','retry-flow.yaml','approval-flow.yaml','timeout-flow.yaml','replay-flow.yaml','failure-flow.yaml','parallel-flow.yaml','compensation-flow.yaml','execution-lineage.yaml','execution-outcome.yaml','execution-policies.yaml')) {
   if (-not (Test-Path (Join-Path $s010 $f))) { $errors += "S1-019: missing S010/$f" }
 }
 $efYaml = Join-Path $s010 'execution-flow.yaml'
@@ -325,15 +325,15 @@ if (Test-Path $efYaml) {
   foreach ($sec in @('philosophy','principles','lifecycle_overview','stages','canonical_flow')) {
     if ($ef -notmatch "(?m)^${sec}:") { $errors += "S1-019: execution-flow thieu '$sec'" }
   }
-  foreach ($st in @('Initialize','Validate','Prepare','Execute','Finalize','Complete')) {
+  foreach ($st in @('Initialize','Validate','Prepare','Execute','Synchronize','Finalize','Complete')) {
     if ($ef -notmatch [regex]::Escape($st)) { $errors += "S1-019: thieu stage $st" }
   }
 }
-# md: 23 sections EF001-EF023
+# md: 25 sections EF001-EF025
 $efMd = Join-Path $s010 'execution-flow.md'
 if (Test-Path $efMd) {
   $em = Get-Content -LiteralPath $efMd -Raw -Encoding utf8
-  for ($i = 1; $i -le 23; $i++) {
+  for ($i = 1; $i -le 25; $i++) {
     $sec = "EF{0:D3}" -f $i
     if ($em -notmatch [regex]::Escape($sec)) { $errors += "S1-019: thieu section $sec" }
   }

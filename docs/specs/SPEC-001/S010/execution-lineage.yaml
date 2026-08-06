@@ -1,13 +1,14 @@
-# SPEC-001 S010 — Execution Lineage (EF023)
-# Parent/Child/Replay/Retry/Simulation quan he.
+# SPEC-001 S010 — Execution Lineage (EF023) v3
 ---
 version: "1.0"
 lineage:
-  parent_execution: Execution gốc.
-  child_execution: Execution con (từ fan-out).
-  replay: Execution mới từ Execution cũ (lineage giữ nguyên).
-  retry: Cùng Execution, không tạo lineage mới.
-  simulation: Execution mô phỏng, đánh dấu simulated: true.
+  Root Execution: Execution gốc, không có parent.
+  Parent Execution: Execution cha.
+  Child Execution: Execution con (từ fan-out).
+  Replay: Execution mới từ Execution cũ (lineage giữ nguyên).
+  Simulation: Execution mô phỏng (simulated: true).
+  Clone: Bản sao Execution (cùng lineage gốc).
+  Fork: Execution phân nhánh từ một điểm.
 rules:
   - Lineage immutable (append-only).
   - Mỗi Execution có lineage_ref.

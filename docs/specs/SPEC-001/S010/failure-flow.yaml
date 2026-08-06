@@ -1,6 +1,12 @@
-# SPEC-001 S010 — Failure Flow (EF017)
+# SPEC-001 S010 — Failure Flow (EF017) v3
+# 4 loai failure
 ---
 version: "1.0"
+failure_types:
+  Validation Failure: [ST-002 → ST-009]
+  Capability Failure: [Resolution Failed → ST-009]
+  Execution Failure: [ST-004 → ST-009]
+  System Failure: [ST-004 → ST-014]
 flow:
   - Failure
   - Isolation

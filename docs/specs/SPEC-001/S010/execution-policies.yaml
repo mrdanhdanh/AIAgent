@@ -1,0 +1,12 @@
+# SPEC-001 S010 — Execution Policies (EF025)
+# Flow chi AP DUNG policy, khong DINH NGHIA policy.
+---
+version: "1.0"
+policies:
+  Retry Policy: { guard: retry_count < max_retry, source: S009 TR-015 }
+  Timeout Policy: { guard: timeout exceeded, source: S009 TR-013 }
+  Approval Policy: { guard: approval required, source: S009 TR-005/006 }
+  Compensation Policy: { guard: failure + completed steps, source: EF022 }
+  Parallel Policy: { guard: join policy, source: EF021 }
+  Resource Policy: { guard: resource available, source: S003 RR-001 }
+rule: Execution Flow chỉ áp dụng policy, không định nghĩa policy.

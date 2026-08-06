@@ -1,5 +1,5 @@
-# SPEC-001 S010 — Execution Transitions (tham chieu S009)
-# Flow khong dinh nghia state moi — chi mo ta thu tu.
+# SPEC-001 S010 — Execution Transitions v3 (tham chieu S009)
+# Flow khong dinh nghia state moi.
 ---
 version: "1.0"
 transitions:
@@ -7,6 +7,7 @@ transitions:
   - { stage: Validate, state: ST-002, event: EXECUTION_VALIDATING }
   - { stage: Prepare, state: ST-003, event: EXECUTION_PREPARED }
   - { stage: Execute, state: ST-004, event: EXECUTION_STARTED }
+  - { stage: Synchronize, state: ST-004, event: EXECUTION_SYNCING }
   - { stage: Finalize, state: ST-004, event: EXECUTION_FINALIZING }
   - { stage: Complete, state: ST-008, event: EXECUTION_COMPLETED }
 note: Moi stage anh xa state S009, khong dinh nghia state moi.

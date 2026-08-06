@@ -1,0 +1,12 @@
+# SPEC-001 S010 — Execution Outcome (EF024)
+# Outcome khac State — dung cho Dashboard/Analytics.
+---
+version: "1.0"
+outcomes:
+  Success: { state: ST-008 Completed, simulated: false }
+  Failure: { state: ST-009 Failed, simulated: false }
+  Cancelled: { state: ST-010 Cancelled, simulated: false }
+  Timeout: { state: ST-011 TimedOut, simulated: false }
+  Aborted: { state: ST-014 Aborted, simulated: false }
+  Simulation: { state: ST-008 Completed, simulated: true }
+note: Outcome phai duoc ghi vao Execution Result (S008 ENT-012).

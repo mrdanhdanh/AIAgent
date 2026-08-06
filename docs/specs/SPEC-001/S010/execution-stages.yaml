@@ -1,10 +1,11 @@
-# SPEC-001 S010 — Execution Stages (EF004)
+# SPEC-001 S010 — Execution Stages (EF004) v3
 ---
 version: "1.0"
 stages:
-  Initialize: { purpose: Tạo Execution, event: EXECUTION_CREATED }
-  Validate: { purpose: Kiểm tra Workflow/Contract, event: EXECUTION_VALIDATING }
-  Prepare: { purpose: Chuẩn bị Context, event: EXECUTION_PREPARED }
-  Execute: { purpose: Điều phối Agent, event: EXECUTION_STARTED }
-  Finalize: { purpose: Publish Artifact, event: EXECUTION_FINALIZING }
-  Complete: { purpose: Kết thúc, event: EXECUTION_COMPLETED }
+  Initialize: { includes: [Create Execution, Allocate Resource], event: EXECUTION_CREATED }
+  Validate: { includes: [Workflow, Contract, Policy], event: EXECUTION_VALIDATING }
+  Prepare: { includes: [Context, Capability Resolution], event: EXECUTION_PREPARED }
+  Execute: { includes: [Agent Coordination], event: EXECUTION_STARTED }
+  Synchronize: { includes: [Barrier, Fan-in, Join], event: EXECUTION_SYNCING }
+  Finalize: { includes: [Result, Artifact, Metrics], event: EXECUTION_FINALIZING }
+  Complete: { includes: [Terminal State], event: EXECUTION_COMPLETED }

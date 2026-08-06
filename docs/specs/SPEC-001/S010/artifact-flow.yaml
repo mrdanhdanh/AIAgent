@@ -1,0 +1,12 @@
+# SPEC-001 S010 — Artifact Flow (EF011) v3
+---
+version: "1.0"
+flow:
+  - Execution Output
+  - Execution Result
+  - Artifact
+  - Publish
+  - Archive
+rules:
+  - Artifact immutable (P010).
+  - Result tổng hợp từ Artifact + Metrics (S008 ENT-012).
