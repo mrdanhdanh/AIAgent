@@ -1,0 +1,13 @@
+# SPEC-001 S013 - Governance Metrics
+# Phan cap: Runtime Metrics > Reliability Metrics (S011 OB005).
+---
+version: "1.0"
+metrics:
+  violations: 0
+  denied: 0
+  warnings: 0
+  policy_usage: 0
+  contract_failures: 0
+  boundary_failures: 0
+rules:
+  - Moi violation sinh Metrics + Event + Audit (S011).

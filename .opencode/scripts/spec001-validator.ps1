@@ -395,7 +395,32 @@ if (Test-Path $poMd) {
   }
 }
 
-# ---------- S1-023: SPEC.yaml ----------
+# ---------- S1-023: S013 governance ----------
+$s013 = Join-Path $spec1 'S013'
+foreach ($f in @('governance.md','governance.yaml','governance.schema.json','constitution-enforcement.yaml','policy-enforcement.yaml','contract-enforcement.yaml','boundary-enforcement.yaml','permission-enforcement.yaml','governance-metrics.yaml')) {
+  if (-not (Test-Path (Join-Path $s013 $f))) { $errors += "S1-023: missing S013/$f" }
+}
+$gvYaml = Join-Path $s013 'governance.yaml'
+if (Test-Path $gvYaml) {
+  $gv = Get-Content -LiteralPath $gvYaml -Raw -Encoding utf8
+  foreach ($sec in @('philosophy','principles','scope','version_governance','compatibility_governance','validation_pipeline','decisions','traceability')) {
+    if ($gv -notmatch "(?m)^${sec}:") { $errors += "S1-023: governance thieu '$sec'" }
+  }
+  foreach ($e in @('Constitution','Policy','Contract','Boundary','Permission','Version Compatibility')) {
+    if ($gv -notmatch [regex]::Escape($e)) { $warnings += "S1-023: thieu enforces '$e'" }
+  }
+}
+# md: 18 sections GV001-GV018
+$gvMd = Join-Path $s013 'governance.md'
+if (Test-Path $gvMd) {
+  $gm = Get-Content -LiteralPath $gvMd -Raw -Encoding utf8
+  for ($i = 1; $i -le 18; $i++) {
+    $sec = "GV{0:D3}" -f $i
+    if ($gm -notmatch [regex]::Escape($sec)) { $errors += "S1-023: thieu section $sec" }
+  }
+}
+
+# ---------- S1-024: SPEC.yaml ----------
 $specFile = Join-Path $spec1 'SPEC.yaml'
 if (Test-Path $specFile) {
   $st = Get-Content -LiteralPath $specFile -Raw -Encoding utf8

@@ -1,0 +1,13 @@
+# SPEC-001 S013 - Contract Enforcement
+# Tham chieu S007 (define).
+---
+version: "1.0"
+enforcement:
+  - Validate Input
+  - Validate Output
+  - Validate Preconditions
+  - Validate Postconditions
+  - Validate Invariants
+rules:
+  - Contract failure -> Execution Failed (ST-009).
+  - Khong tua contract khi execution.

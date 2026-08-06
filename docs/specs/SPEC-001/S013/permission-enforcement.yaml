@@ -1,0 +1,11 @@
+# SPEC-001 S013 - Permission Enforcement
+# Runtime chi cho phep hanh dong hop le.
+---
+version: "1.0"
+sources:
+  - Policy (S012 POL-SEC-001, POL-RESACC-001)
+  - Contract (S007)
+  - Constitution (SPEC-000)
+rules:
+  - Allow / Deny theo least privilege.
+  - Deny mac dinh khi khong xac dinh permission.

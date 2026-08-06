@@ -1,0 +1,12 @@
+# SPEC-001 S013 - Constitution Enforcement
+# Tham chieu SPEC-000 Constitution.
+---
+version: "1.0"
+enforcement:
+  - Validate Constitution
+  - Reject vi pham
+  - Publish Constitution Event
+  - Ghi Audit
+rules:
+  - Vi pham Constitution -> Execution Aborted (ST-014).
+  - Khong the thoa hiep Constitution.
