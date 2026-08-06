@@ -1,0 +1,10 @@
+# SPEC-001 S012 - Policy Lifecycle
+# Dong bo voi Contract va Component lifecycle.
+---
+version: "1.0"
+lifecycle: [Draft, Validated, Published, Active, Deprecated, Retired]
+rules:
+  - Chi Validated moi Published.
+  - Chi Active moi duoc ap dung.
+  - Deprecated: khong ap dung moi, giu cu.
+  - Retired: khong ap dung, giu traceability.

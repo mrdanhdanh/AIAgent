@@ -1,0 +1,12 @@
+# SPEC-001 S012 - Policy Categories (taxonomy)
+---
+version: "1.0"
+categories:
+  - Recovery
+  - Control
+  - Orchestration
+  - Resource
+  - Governance
+  - Security
+  - Lifecycle
+note: Lifecycle Policy dung cho Suspend/Resume sau nay.

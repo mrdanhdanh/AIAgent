@@ -4,7 +4,7 @@
   "title": "SPEC-001 Runtime Policies (S012)",
   "description": "JSON Schema cho policies.yaml. Validator kiem tra cau truc.",
   "type": "object",
-  "required": ["id", "name", "version", "status", "owner", "philosophy", "principles", "policy_model", "categories", "policies"],
+  "required": ["id", "name", "version", "status", "owner", "philosophy", "principles", "policy_model", "lifecycle", "scopes", "categories", "policies"],
   "properties": {
     "id": { "const": "SPEC-001-S012" },
     "name": { "const": "Runtime Policies" },
@@ -17,11 +17,13 @@
       "type": "object",
       "required": ["fields"],
       "properties": {
-        "fields": { "type": "array", "items": { "type": "string" }, "minItems": 7 }
+        "fields": { "type": "array", "items": { "type": "string" }, "minItems": 13 }
       }
     },
-    "categories": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
-    "policies": { "type": "array", "items": { "type": "string" }, "minItems": 9 },
+    "lifecycle": { "type": "array", "items": { "type": "string" }, "minItems": 6 },
+    "scopes": { "type": "array", "items": { "type": "string" }, "minItems": 6 },
+    "categories": { "type": "array", "items": { "type": "string" }, "minItems": 7 },
+    "policies": { "type": "array", "items": { "type": "string" }, "minItems": 10 },
     "responsibility_chain": { "type": "array", "items": { "type": "string" }, "minItems": 3 }
   },
   "additionalProperties": false

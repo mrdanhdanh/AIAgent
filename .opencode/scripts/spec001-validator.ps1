@@ -369,25 +369,28 @@ if (Test-Path $obMd) {
 
 # ---------- S1-022: S012 policies ----------
 $s012 = Join-Path $spec1 'S012'
-foreach ($f in @('policies.md','policies.yaml','policies.schema.json','retry-policy.yaml','timeout-policy.yaml','approval-policy.yaml','resource-policy.yaml','parallel-policy.yaml','compensation-policy.yaml','scheduling-policy.yaml','isolation-policy.yaml','security-policy.yaml','policy-resolution.yaml','policy-validation.yaml','policy-traceability.yaml')) {
+foreach ($f in @('policies.md','policies.yaml','policies.schema.json','policy-model.yaml','policy-lifecycle.yaml','policy-categories.yaml','policy-conflicts.yaml','retry-policy.yaml','timeout-policy.yaml','approval-policy.yaml','resource-policy.yaml','parallel-policy.yaml','compensation-policy.yaml','scheduling-policy.yaml','isolation-policy.yaml','security-policy.yaml','resource-access-policy.yaml','policy-resolution.yaml','policy-validation.yaml','policy-traceability.yaml')) {
   if (-not (Test-Path (Join-Path $s012 $f))) { $errors += "S1-022: missing S012/$f" }
 }
 $poYaml = Join-Path $s012 'policies.yaml'
 if (Test-Path $poYaml) {
   $po = Get-Content -LiteralPath $poYaml -Raw -Encoding utf8
-  foreach ($sec in @('philosophy','principles','policy_model','categories','policies','responsibility_chain')) {
+  foreach ($sec in @('philosophy','principles','policy_model','lifecycle','scopes','categories','policies','responsibility_chain')) {
     if ($po -notmatch "(?m)^${sec}:") { $errors += "S1-022: policies thieu '$sec'" }
   }
-  foreach ($polId in @('POL-RETRY-001','POL-TIMEOUT-001','POL-APPROVAL-001','POL-RES-001','POL-PARALLEL-001','POL-COMP-001','POL-SCHED-001','POL-ISOL-001','POL-SEC-001')) {
+  foreach ($polId in @('POL-RETRY-001','POL-TIMEOUT-001','POL-APPROVAL-001','POL-RES-001','POL-PARALLEL-001','POL-COMP-001','POL-SCHED-001','POL-ISOL-001','POL-SEC-001','POL-RESACC-001')) {
     if ($po -notmatch [regex]::Escape($polId)) { $errors += "S1-022: thieu policy $polId" }
   }
 }
-# md: 17 sections RP001-RP017
+# md: 17 sections RP001-RP017 + RP002A + RP002B + RP012A + RP013A
 $poMd = Join-Path $s012 'policies.md'
 if (Test-Path $poMd) {
   $pm = Get-Content -LiteralPath $poMd -Raw -Encoding utf8
   for ($i = 1; $i -le 17; $i++) {
     $sec = "RP{0:D3}" -f $i
+    if ($pm -notmatch [regex]::Escape($sec)) { $errors += "S1-022: thieu section $sec" }
+  }
+  foreach ($sec in @('RP002A','RP002B','RP012A','RP013A')) {
     if ($pm -notmatch [regex]::Escape($sec)) { $errors += "S1-022: thieu section $sec" }
   }
 }

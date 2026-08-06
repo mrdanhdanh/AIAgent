@@ -1,6 +1,6 @@
 # SPEC-001 S012 - Runtime Policies
 # S010 apply, S012 define, S013 enforce.
-# Policy model: id/category/trigger/guard/action/priority/version (S010 EF025).
+# Canonical Policy Model 13 fields - moi Policy cua AIOS dung chung.
 ---
 id: SPEC-001-S012
 name: Runtime Policies
@@ -20,14 +20,23 @@ principles:
   - Traceable: moi policy instance truy vet ve dinh nghia.
   - Non-invasive: ap dung khong thay doi Execution chi phi.
 policy_model:
-  fields: [id, category, trigger, guard, action, priority, version]
+  fields: [id, name, category, version, status, owner, trigger, guard, action, priority, scope, lifecycle, metadata]
+lifecycle: [Draft, Validated, Published, Active, Deprecated, Retired]
+scopes:
+  - Runtime
+  - Execution
+  - Task
+  - Capability
+  - Resource
+  - Workflow
 categories:
   - Recovery
   - Control
-  - Governance
-  - Resource
   - Orchestration
+  - Resource
+  - Governance
   - Security
+  - Lifecycle
 policies:
   - POL-RETRY-001
   - POL-TIMEOUT-001
@@ -38,6 +47,7 @@ policies:
   - POL-SCHED-001
   - POL-ISOL-001
   - POL-SEC-001
+  - POL-RESACC-001
 responsibility_chain:
   - S010 Execution Flow: apply policy
   - S012 Runtime Policies: define policy

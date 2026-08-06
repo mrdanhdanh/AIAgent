@@ -1,11 +1,18 @@
-# SPEC-001 S012 - POL-COMP-001
-# Dieu khien Rollback (S010 EF022)
+# SPEC-001 S012 - POL-COMP-001 (Compensation Policy)
+# Canonic Policy Model 13 fields.
 ---
 policy:
   id: POL-COMP-001
+  name: Compensation Policy
   category: Recovery
+  version: "1.0"
+  status: Draft
+  owner: Runtime Team
   trigger: Failure (ST-009)
   guard: completed steps exist (S010 EF022)
   action: Compensate (rollback)
   priority: 60
-  version: "1.0"
+  scope: Execution
+  lifecycle: Draft
+  metadata:
+    controls: Rollback (S010 EF022)

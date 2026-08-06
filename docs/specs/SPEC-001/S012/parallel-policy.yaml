@@ -1,11 +1,18 @@
-# SPEC-001 S012 - POL-PARALLEL-001
-# Dieu khien Fan-out/Fan-in/Join (S010 EF021)
+# SPEC-001 S012 - POL-PARALLEL-001 (Parallel Policy)
+# Canonic Policy Model 13 fields.
 ---
 policy:
   id: POL-PARALLEL-001
+  name: Parallel Policy
   category: Orchestration
+  version: "1.0"
+  status: Draft
+  owner: Runtime Team
   trigger: Parallel tasks (S010 EF021)
   guard: join policy (ALL/ANY/QUORUM/CUSTOM)
   action: Scatter/Gather
   priority: 40
-  version: "1.0"
+  scope: Execution
+  lifecycle: Draft
+  metadata:
+    controls: Fan-out/Fan-in/Join (S010 EF021)

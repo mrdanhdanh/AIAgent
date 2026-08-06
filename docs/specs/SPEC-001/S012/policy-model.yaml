@@ -1,0 +1,10 @@
+# SPEC-001 S012 - Canonical Policy Model
+# Moi Policy cua AIOS deu dung chung model nay.
+---
+version: "1.0"
+model:
+  fields: [id, name, category, version, status, owner, trigger, guard, action, priority, scope, lifecycle, metadata]
+rules:
+  - Thieu bat ky field nao -> Invalid Policy.
+  - id duy nhat toan AIOS.
+  - metadata mo rong duoc, khong thay doi model.

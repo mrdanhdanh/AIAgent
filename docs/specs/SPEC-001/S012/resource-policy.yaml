@@ -1,11 +1,18 @@
-# SPEC-001 S012 - POL-RES-001
-# Dieu khien Resource Allocation (S010 EF020)
+# SPEC-001 S012 - POL-RES-001 (Resource Policy)
+# Canonic Policy Model 13 fields.
 ---
 policy:
   id: POL-RES-001
+  name: Resource Policy
   category: Resource
+  version: "1.0"
+  status: Draft
+  owner: Runtime Team
   trigger: Allocate (S003 RR-001)
   guard: resource available
   action: Allocate / Queue
   priority: 30
-  version: "1.0"
+  scope: Resource
+  lifecycle: Draft
+  metadata:
+    controls: Resource Allocation (S010 EF020)
