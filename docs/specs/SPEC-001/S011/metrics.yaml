@@ -1,0 +1,19 @@
+# SPEC-001 S011 - Metrics Model
+---
+version: "1.0"
+groups:
+  - Execution
+  - Workflow
+  - Capability
+  - Resource
+  - Retry
+  - Timeout
+  - Failure
+  - Performance
+model:
+  fields: [id, name, value, unit, correlation_id, execution_id, timestamp, tags]
+rules:
+  - Metrics chi append.
+  - Khong chua Business Data (S008 D006).
+  - Metrics phat sau Trace (S010 EF010).
+lifecycle: [Collected, Aggregated, Published]

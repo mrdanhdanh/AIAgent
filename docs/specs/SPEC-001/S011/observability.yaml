@@ -1,26 +1,46 @@
-# SPEC-001 S011 — Runtime Observability
-# Event/Metrics/Trace/Audit la nen tang cho Dashboard/Doctor/Evolution/Simulation.
+# SPEC-001 S011 - Execution Observability
+# Quan sat Execution: Event/Metrics/Trace/Audit/Health.
+# Khong mo ta implementation/framework/tool/protocol.
 ---
 id: SPEC-001-S011
-name: Runtime Observability
+name: Execution Observability
 version: "1.0.0"
 status: Draft
 owner: Runtime Team
 philosophy:
-  - Mọi hoạt động đều sinh dữ liệu quan sát (P014).
-  - Không đo được thì không kiểm soát được.
-  - Observability phục vụ Dashboard, Doctor, Evolution, Simulation.
+  - Runtime luon Observable.
+  - Khong co Execution "an".
+  - Moi hoat dong deu truy vet duoc.
+  - Quan sat khong lam thay doi Execution.
 principles:
-  - Event: state change (P005).
-  - Metrics: hiệu năng.
-  - Trace: luồng thực thi.
-  - Audit: quyết định/quyền thay đổi.
-  - Correlation ID: xuyên suốt.
-  - Lineage: nguồn gốc.
-models:
-  - Event Model
-  - Metrics Model
-  - Trace Model
-  - Audit Trail
-  - Correlation ID
-  - Lineage
+  - Event Driven
+  - Traceable
+  - Immutable
+  - Correlation First
+  - Metadata First
+  - Append Only
+domains:
+  - Events
+  - Metrics
+  - Trace
+  - Audit
+  - Health
+correlation_model:
+  fields: [execution_id, correlation_id, lineage_id, parent_id]
+  rules:
+    - Sinh khi Execution Created.
+    - Gan vao: Event, Metrics, Trace, Audit.
+    - Khong doi trong vong doi (P009).
+doctor_checks:
+  - Missing Event
+  - Missing Metrics
+  - Broken Trace
+  - Broken Lineage
+  - Invalid Audit
+traceability:
+  - Execution
+  - State
+  - Event
+  - Metrics
+  - Trace
+  - Audit

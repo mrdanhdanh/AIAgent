@@ -1,9 +1,0 @@
-# SPEC-001 S011 — Audit Trail
----
-version: "1.0"
-model:
-  fields: [id, actor, action, target, correlation_id, timestamp, rationale, artifact_ref]
-rules:
-  - Ghi mọi quyết định/quyền thay đổi (P008).
-  - Audit immutable (append-only).
-  - Retention: 5 năm (governance).

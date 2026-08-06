@@ -1,9 +1,0 @@
-# SPEC-001 S011 — Log Principles
----
-version: "1.0"
-principles:
-  - Structured log (machine-readable).
-  - Có correlation_id.
-  - Không log secret/key (P016).
-  - Levels: DEBUG, INFO, WARN, ERROR, FATAL.
-  - Không log Business Data (S008 D006).

@@ -48,7 +48,7 @@ SPEC-001 Runtime Kernel
 │   └── S010 Runtime Execution Flow  🚧
 │
 └── Tier 3 — Runtime Operations
-    ├── S011 Runtime Observability   🚧
+    ├── S011 Execution Observability 🚧
     ├── S012 Runtime Policies
     ├── S013 Runtime Governance
     ├── S014 Runtime Extensibility

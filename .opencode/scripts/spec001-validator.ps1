@@ -341,17 +341,17 @@ if (Test-Path $efMd) {
 
 # ---------- S1-021: S011 observability ----------
 $s011 = Join-Path $spec1 'S011'
-foreach ($f in @('observability.md','observability.yaml','observability.schema.json','event-model.yaml','metrics-model.yaml','trace-model.yaml','audit-trail.yaml','correlation-id.yaml','lineage.yaml','log-principles.yaml','dashboard-metrics.yaml','doctor-integration.yaml','alerting-hooks.yaml')) {
+foreach ($f in @('observability.md','observability.yaml','observability.schema.json','events.yaml','metrics.yaml','traces.yaml','audit.yaml','health.yaml','dashboard.yaml')) {
   if (-not (Test-Path (Join-Path $s011 $f))) { $errors += "S1-021: missing S011/$f" }
 }
 $obYaml = Join-Path $s011 'observability.yaml'
 if (Test-Path $obYaml) {
   $ob = Get-Content -LiteralPath $obYaml -Raw -Encoding utf8
-  foreach ($sec in @('philosophy','principles','models')) {
+  foreach ($sec in @('philosophy','principles','domains','correlation_model','doctor_checks','traceability')) {
     if ($ob -notmatch "(?m)^${sec}:") { $errors += "S1-021: observability thieu '$sec'" }
   }
-  foreach ($m in @('Event Model','Metrics Model','Trace Model','Audit Trail','Correlation ID','Lineage')) {
-    if ($ob -notmatch [regex]::Escape($m)) { $warnings += "S1-021: thieu model '$m'" }
+  foreach ($d in @('Events','Metrics','Trace','Audit','Health')) {
+    if ($ob -notmatch [regex]::Escape($d)) { $warnings += "S1-021: thieu domain '$d'" }
   }
 }
 # md: 16 sections OB001-OB016
