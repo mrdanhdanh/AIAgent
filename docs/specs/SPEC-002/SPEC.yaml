@@ -1,0 +1,52 @@
+---
+id: SPEC-002
+name: Workflow Engine
+version: "1.0.0"
+status: Draft
+type: Engine
+authority: High
+owner: Workflow Team
+description: >
+  Workflow Engine — lớp khai báo và điều phối luồng nghiệp vụ trên Runtime
+  Kernel. Mọi Workflow là Execution của SPEC-001, không tự chạy ngoài Runtime.
+dependencies:
+  - SPEC-000
+  - SPEC-001
+includes:
+  - W001
+  - W002
+  - W003
+  - W004
+  - W005
+  - W006
+  - W007
+  - W008
+  - W009
+  - W010
+  - W011
+  - W012
+  - W013
+  - W014
+  - W015
+  - W016
+  - W017
+  - W018
+  - W019
+  - W020
+outputs:
+  - Workflow Engine
+  - Workflow Definition
+  - Workflow Instance
+implements:
+  - Workflow
+authoritative: false
+breaking_change_requires:
+  - ADR
+  - RFC
+references:
+  constitution: ../SPEC-000
+  runtime: ../SPEC-001
+  glossary: ../../glossary
+  principles: ../../principles
+  rules: ../../rules
+  governance: ../../governance

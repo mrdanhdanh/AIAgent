@@ -69,6 +69,15 @@ foreach ($f in (Get-ChildItem -Path $spec2 -File)) {
   if ($text -match "`t") { $warnings += "W1-004: $($f.Name) co tab (dung 2-space)" }
 }
 
+# ---------- W1-005: SPEC.yaml ----------
+$specFile = Join-Path $spec2 'SPEC.yaml'
+if (Test-Path $specFile) {
+  $st = Get-Content -LiteralPath $specFile -Raw -Encoding utf8
+  if ($st -notmatch '(?m)^id:\s*SPEC-002') { $errors += "W1-005: SPEC.yaml id phai la SPEC-002" }
+  if ($st -notmatch '(?m)^implements:') { $errors += "W1-005: SPEC.yaml thieu implements" }
+  foreach ($d in @('SPEC-000','SPEC-001')) { if ($st -notmatch [regex]::Escape($d)) { $errors += "W1-005: thieu dependency $d" } }
+}
+
 # ---------- Output ----------
 if (-not $Silent) {
   ""
