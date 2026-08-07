@@ -1,0 +1,14 @@
+# SPEC-001 S013 - Governance Stack
+# Kien truc 6 tang. Doctor validate tung tang.
+---
+version: "1.0"
+stack:
+  - Constitution
+  - Boundary
+  - Contract
+  - Policy
+  - Permission
+  - Execution Decision
+rules:
+  - Tang tren quyet dinh tang duoi.
+  - Doctor validate tung tang.

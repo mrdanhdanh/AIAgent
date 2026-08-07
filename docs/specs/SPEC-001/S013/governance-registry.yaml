@@ -1,0 +1,18 @@
+# SPEC-001 S013 - Governance Registry
+# Dashboard doc mot file duy nhat.
+---
+version: "1.0"
+registry:
+  - governance.yaml
+  - governance-stack.yaml
+  - governance-matrix.yaml
+  - governance-events.yaml
+  - governance-decisions.yaml
+  - governance-lifecycle.yaml
+  - constitution-enforcement.yaml
+  - policy-enforcement.yaml
+  - contract-enforcement.yaml
+  - boundary-enforcement.yaml
+  - permission-enforcement.yaml
+  - governance-metrics.yaml
+note: Dashboard chi can doc registry de co toan bo Governance.

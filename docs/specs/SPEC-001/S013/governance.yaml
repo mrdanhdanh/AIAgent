@@ -50,3 +50,11 @@ traceability:
   - Contract
   - Boundary
   - Constitution
+mapping:
+  - Governance
+  - Policy
+  - Contract
+  - Boundary
+  - Requirement
+  - Principle
+  - Constitution

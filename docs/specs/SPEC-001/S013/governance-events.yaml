@@ -1,0 +1,15 @@
+# SPEC-001 S013 - Governance Event Types
+# S011 reuse truc tiep.
+---
+version: "1.0"
+event_types:
+  - CONSTITUTION_VALIDATED
+  - BOUNDARY_DENIED
+  - POLICY_APPLIED
+  - CONTRACT_VALIDATED
+  - PERMISSION_DENIED
+  - VERSION_CONFLICT
+  - COMPATIBILITY_FAILED
+rules:
+  - S011 reuse truc tiep (events.yaml).
+  - Moi event co correlation_id (S011).

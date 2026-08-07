@@ -1,0 +1,8 @@
+# SPEC-001 S013 - Governance Lifecycle
+---
+version: "1.0"
+lifecycle: [Resolved, Validated, Applied, Audited, Archived]
+rules:
+  - Chi Validated moi Applied.
+  - Moi decision phai qua du 5 trang thai.
+  - Archived giu traceability.

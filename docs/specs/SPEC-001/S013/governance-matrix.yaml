@@ -1,0 +1,27 @@
+# SPEC-001 S013 - Governance Decision Matrix + Priority + Failure Classification
+# Doctor chi can doc matrix.
+---
+version: "1.0"
+decision_matrix:
+  Constitution Fail: Abort
+  Boundary Fail: Deny
+  Contract Fail: Failed
+  Policy Invalid: Ignore
+  Permission Fail: Deny
+  Compatibility Fail: Suspend
+failure_classification:
+  Constitution: Abort
+  Boundary: Deny
+  Contract: Failed
+  Policy: Skip
+  Permission: Deny
+  Compatibility: Suspend
+decision_priority:
+  Constitution: 100
+  Boundary: 90
+  Contract: 80
+  Policy: 70
+  Permission: 60
+rules:
+  - Priority cao hon thang.
+  - Ket qua luon duy nhat (khong mo ho).
