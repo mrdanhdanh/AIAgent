@@ -44,25 +44,49 @@ SPEC-001 Runtime Kernel
 │
 ├── Tier 2 — Runtime Behavior
 │   ├── S008 Runtime Data Model      ✅
-│   ├── S009 Runtime State Machine   ✅
-│   └── S010 Runtime Execution Flow  🚧
+│   ├── S009 Runtime State Machine   🚧 Draft
+│   └── S010 Runtime Execution Flow  🚧 Draft
 │
 └── Tier 3 — Runtime Operations
-    ├── S011 Execution Observability 🚧 Draft
-    ├── S012 Runtime Policies       🚧 Draft
-    ├── S013 Runtime Governance     🚧 Draft
-    ├── S014 Runtime Registry       🚧 Draft
-    ├── S015 Runtime Resources      🚧 Draft
-    ├── S016 Runtime Compliance     🚧 Draft
-    ├── S017 Runtime Plugins        🚧 Draft
+    ├── S011 Execution Observability ✅ Draft
+    ├── S012 Runtime Policies       ✅ Draft
+    ├── S013 Runtime Governance     ✅ Draft
+    ├── S014 Runtime Registry       ✅ Draft
+    ├── S015 Runtime Resources      ✅ Draft
+    ├── S016 Runtime Compliance     ✅ Draft
+    ├── S017 Runtime Plugins        ✅ Draft
     ├── S018 Runtime Evolution      ✅ Draft
     ├── S019 Runtime Doctor         ✅ Draft
-    └── S020 Runtime Dashboard      🚧
+    └── S020 Runtime Dashboard      ✅ Draft
 ```
 
 ## SPEC-002 — Workflow Engine
 
-> **Trạng thái**: ⬜ · **Dùng**: SPEC-001
+> **Trạng thái**: 🚧 In progress · **Phụ thuộc**: SPEC-000, SPEC-001
+
+```text
+SPEC-002 Workflow Engine
+│
+├── Tier 1 — Foundation
+│   ├── W001 Workflow Vision          🚧
+│   ├── W002 Workflow Requirements    ⬜
+│   ├── W003 Workflow Responsibilities ⬜
+│   ├── W004 Workflow Boundaries      ⬜
+│   ├── W005 Workflow Architecture    ⬜
+│   ├── W006 Workflow Components      ⬜
+│   ├── W007 Workflow Contracts       ⬜
+│   └── Appendix: Canonical Models    ⬜
+│
+├── Tier 2 — Behavior
+│   ├── W008 Workflow Data Model      ⬜
+│   ├── W009 Workflow State Machine   ⬜
+│   └── W010 Workflow Execution Flow  ⬜
+│
+└── Tier 3 — Operations
+    ├── W011 Observability · W012 Policies · W013 Governance
+    ├── W014 Registry · W015 Resources · W016 Compliance
+    └── W017 Extensions · W018 Evolution · W019 Doctor · W020 Dashboard
+```
 
 ## SPEC-003 — Capability System
 
