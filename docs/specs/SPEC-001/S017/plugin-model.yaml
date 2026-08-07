@@ -1,0 +1,17 @@
+# SPEC-001 S017 - Canonical Plugin Model
+---
+version: "1.0"
+plugin:
+  id:
+  name:
+  version:
+  category:
+  status:
+  owner:
+  capabilities:
+  contracts:
+  dependencies:
+  metadata:
+rules:
+  - Thieu bat ky field nao -> Invalid Plugin.
+  - contracts bat buoc tro den Contract ton tai (S007).

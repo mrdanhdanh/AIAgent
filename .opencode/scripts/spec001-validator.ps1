@@ -501,7 +501,32 @@ if (Test-Path $cmMd) {
   }
 }
 
-# ---------- S1-027: SPEC.yaml ----------
+# ---------- S1-027: S017 plugins ----------
+$s017 = Join-Path $spec1 'S017'
+foreach ($f in @('plugins.md','plugins.yaml','plugins.schema.json','plugin-model.yaml','plugin-categories.yaml','plugin-lifecycle.yaml','plugin-installation.yaml','plugin-isolation.yaml','plugin-events.yaml','plugin-metrics.yaml','plugin-validation.yaml')) {
+  if (-not (Test-Path (Join-Path $s017 $f))) { $errors += "S1-027: missing S017/$f" }
+}
+$plYaml = Join-Path $s017 'plugins.yaml'
+if (Test-Path $plYaml) {
+  $pl = Get-Content -LiteralPath $plYaml -Raw -Encoding utf8
+  foreach ($sec in @('philosophy','principles','categories','plugin_model','lifecycle','installation','activation_rules','isolation','security','resources','compatibility','events','metrics')) {
+    if ($pl -notmatch "(?m)^${sec}:") { $errors += "S1-027: plugins thieu '$sec'" }
+  }
+  foreach ($cat in @('Capability Plugin','Workflow Plugin','Tool Plugin','Model Plugin','Integration Plugin','Provider Plugin')) {
+    if ($pl -notmatch [regex]::Escape($cat)) { $warnings += "S1-027: thieu category '$cat'" }
+  }
+}
+# md: 17 sections PL001-PL017
+$plMd = Join-Path $s017 'plugins.md'
+if (Test-Path $plMd) {
+  $pm = Get-Content -LiteralPath $plMd -Raw -Encoding utf8
+  for ($i = 1; $i -le 17; $i++) {
+    $sec = "PL{0:D3}" -f $i
+    if ($pm -notmatch [regex]::Escape($sec)) { $errors += "S1-027: thieu section $sec" }
+  }
+}
+
+# ---------- S1-028: SPEC.yaml ----------
 $specFile = Join-Path $spec1 'SPEC.yaml'
 if (Test-Path $specFile) {
   $st = Get-Content -LiteralPath $specFile -Raw -Encoding utf8

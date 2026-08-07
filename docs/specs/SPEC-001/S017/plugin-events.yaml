@@ -1,0 +1,11 @@
+# SPEC-001 S017 - Plugin Events
+# S011 reuse truc tiep.
+---
+version: "1.0"
+event_types:
+  - PLUGIN_REGISTERED
+  - PLUGIN_INSTALLED
+  - PLUGIN_ACTIVATED
+  - PLUGIN_DISABLED
+  - PLUGIN_FAILED
+  - PLUGIN_UNINSTALLED

@@ -1,0 +1,9 @@
+# SPEC-001 S017 - Plugin Lifecycle
+---
+version: "1.0"
+lifecycle: [Draft, Published, Installed, Active, Disabled, Retired]
+rules:
+  - Chi Published moi Install.
+  - Chi Installed moi Activate.
+  - Disabled khong nhan cuoc goi moi.
+  - Retired giu traceability.

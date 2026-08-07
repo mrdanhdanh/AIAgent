@@ -44,8 +44,9 @@ S012 Runtime Policies       ✅ Draft
 S013 Runtime Governance     ✅ Draft
 S014 Runtime Registry       ✅ Draft
 S015 Runtime Resources      ✅ Draft
-S016 Runtime Compliance     🚧
-S017+ Plugin / Evolution / Doctor / Dashboard (mở rộng sau)
+S016 Runtime Compliance     ✅ Draft
+S017 Runtime Plugins        🚧
+S018 Evolution · S019 Doctor · S020 Dashboard (mở rộng sau)
 ```
 
 ## Quy trình (16 bước — freeze từng bước)
@@ -68,7 +69,8 @@ S017+ Plugin / Evolution / Doctor / Dashboard (mở rộng sau)
 | S013 | Runtime Governance | `S013/governance.md` | 3 | ✅ Draft |
 | S014 | Runtime Registry | `S014/registry.md` | 3 | ✅ Draft |
 | S015 | Runtime Resources | `S015/resources.md` | 3 | ✅ Draft |
-| S016 | Runtime Compliance | `S016/compliance.md` | 3 | 🚧 In progress |
+| S016 | Runtime Compliance | `S016/compliance.md` | 3 | ✅ Draft |
+| S017 | Runtime Plugins | `S017/plugins.md` | 3 | 🚧 In progress |
 
 ## Thứ tự viết (Behavior Before Data)
 
@@ -83,9 +85,9 @@ S010 Execution Flow   🚧
     ↓
 S012 Policies ✅ Draft (Define) → S013 Governance ✅ Draft (Enforce) → S014 Registry ✅ Draft (Resolve)
     ↓
-S015 Resources ✅ Draft (Allocate) → S016 Compliance 🚧 (Verify)
+S015 Resources ✅ Draft (Allocate) → S016 Compliance ✅ Draft (Verify)
     ↓
-S017+ Plugin / Evolution / Doctor / Dashboard
+S017 Plugins 🚧 (Extend) → S018 Evolution · S019 Doctor · S020 Dashboard
 ```
 
 ## Quy tắc
