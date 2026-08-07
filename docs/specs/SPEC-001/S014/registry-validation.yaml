@@ -9,6 +9,11 @@ checks:
   - Invalid Version
   - Circular Reference
   - Invalid Owner
+  - Orphan Entry
+  - Dangling Reference
+  - Duplicate Active Version
+  - Missing Compatibility
+  - Invalid Lifecycle
 result:
   - Valid: Registry san sang Resolve.
   - Invalid: Entry bi chan, co Invalid Audit (S013).

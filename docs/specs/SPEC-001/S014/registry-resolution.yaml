@@ -1,15 +1,31 @@
 # SPEC-001 S014 - Registry Resolution
-# Capability Resolution (S010 EF007) di qua day.
+# Pipeline day du - lien ket S012 Policy + S013 Governance.
 ---
 version: "1.0"
 flow:
-  - Request (id + version constraint)
-  - Registry Lookup
-  - Candidate Selection (theo version_resolution)
-  - Compatibility Check (S013 GV010)
-  - Resolved (Entry Active)
+  - Request
+  - Normalize
+  - Lookup
+  - Candidate Selection
+  - Compatibility Check
+  - Policy Check (S012)
+  - Governance Check (S013)
+  - Resolved
+priority:
+  - Exact
+  - Compatible
+  - Latest Stable
+  - Latest
+  - Failure
+failure_classification:
+  NotFound: khong ton tai
+  Invalid: schema loi
+  Deprecated: het ho tro
+  Incompatible: version
+  Forbidden: governance
+  Ambiguous: nhieu candidate
 rules:
-  - Exact Version -> Compatible -> Latest Compatible -> Failure.
+  - Exact -> Compatible -> Latest Stable -> Latest -> Failure.
   - Entry Deprecated chi dung neu khong con Active.
   - Entry Invalid khong bao gio Resolve.
   - Moi resolution sinh Event + Metric + Trace (S011).

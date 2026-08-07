@@ -425,25 +425,28 @@ if (Test-Path $gvMd) {
 
 # ---------- S1-024: S014 registry ----------
 $s014 = Join-Path $spec1 'S014'
-foreach ($f in @('registry.md','registry.yaml','registry.schema.json','capability-registry.yaml','workflow-registry.yaml','contract-registry.yaml','policy-registry.yaml','plugin-registry.yaml','agent-registry.yaml','registry-validation.yaml','registry-resolution.yaml')) {
+foreach ($f in @('registry.md','registry.yaml','registry.schema.json','registry-model.yaml','registry-domains.yaml','registry-events.yaml','registry-lifecycle.yaml','registry-constraints.yaml','registry-traceability.yaml','registry-metrics.yaml','registry-registry.yaml','capability-registry.yaml','workflow-registry.yaml','contract-registry.yaml','policy-registry.yaml','plugin-registry.yaml','agent-registry.yaml','registry-validation.yaml','registry-resolution.yaml')) {
   if (-not (Test-Path (Join-Path $s014 $f))) { $errors += "S1-024: missing S014/$f" }
 }
 $rgYaml = Join-Path $s014 'registry.yaml'
 if (Test-Path $rgYaml) {
   $rg = Get-Content -LiteralPath $rgYaml -Raw -Encoding utf8
-  foreach ($sec in @('philosophy','principles','categories','entry_model','ownership','lifecycle','resolution','resolution_rules','version_resolution','relationships','events','metrics')) {
+  foreach ($sec in @('philosophy','principles','categories','domains','entry_model','ownership','lifecycle','governance','constraints','resolution','resolution_rules','resolution_priority','resolution_failures','version_resolution','relationships','dependency','traceability','events','metrics')) {
     if ($rg -notmatch "(?m)^${sec}:") { $errors += "S1-024: registry thieu '$sec'" }
   }
   foreach ($cat in @('Capability Registry','Workflow Registry','Contract Registry','Policy Registry','Plugin Registry','Agent Registry')) {
     if ($rg -notmatch [regex]::Escape($cat)) { $warnings += "S1-024: thieu category '$cat'" }
   }
 }
-# md: 15 sections RG001-RG015
+# md: 15 sections RG001-RG015 + RG003A + RG005A + RG005B + RG008A + RG009A + RG010A
 $rgMd = Join-Path $s014 'registry.md'
 if (Test-Path $rgMd) {
   $rm = Get-Content -LiteralPath $rgMd -Raw -Encoding utf8
   for ($i = 1; $i -le 15; $i++) {
     $sec = "RG{0:D3}" -f $i
+    if ($rm -notmatch [regex]::Escape($sec)) { $errors += "S1-024: thieu section $sec" }
+  }
+  foreach ($sec in @('RG003A','RG005A','RG005B','RG008A','RG009A','RG010A')) {
     if ($rm -notmatch [regex]::Escape($sec)) { $errors += "S1-024: thieu section $sec" }
   }
 }

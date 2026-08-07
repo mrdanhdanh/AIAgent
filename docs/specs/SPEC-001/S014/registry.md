@@ -2,10 +2,9 @@
 name: spec-001-s014-registry
 description: >
   SPEC-001 S014 — Runtime Registry. Trả lời: Runtime quản lý, khám phá và
-  phân giải (resolve) các đối tượng như thế nào? SSOT cho Runtime Metadata —
-  Capability Resolver (S006), Capability Resolution (S010), Registry Contract
-  (S007), Compatibility (S013), Capability Reference (S008).
-  15 sections RG001-RG015.
+  phân giải (resolve) các đối tượng như thế nào? SSOT cho Runtime Metadata.
+  Canonical Registry Model — nguồn chuẩn duy nhất cho Registry AIOS.
+  21 sections RG001-RG015 (kèm RG003A, RG005A, RG005B, RG008A, RG009A, RG010A).
 agent: general
 ---
 
@@ -72,37 +71,98 @@ Execution (S010)
 - Schema Registry
 - Template Registry
 
-## RG004 — Registry Entries
+## RG003A — Registry Domains
 
-Mọi Entry đều có:
+Phân tầng:
 
-- id
-- type
-- version
-- owner
-- status
-- metadata
-- tags
-- references
+```text
+Runtime Registry
+        │
+        ├── Runtime Domain
+        ├── Workflow Domain
+        ├── Capability Domain
+        ├── Plugin Domain
+        ├── Policy Domain
+        └── Schema Domain
+```
 
-## RG005 — Registry Resolution
+> Dashboard nhóm theo domain.
+
+## RG004 — Registry Entries (Canonical Registry Model)
+
+Mọi Entry theo **Canonical Registry Model** (chuẩn hóa giống Contract Model S007):
+
+```yaml
+registry_entry:
+  id:
+  type:
+  category:
+  version:
+  status:
+  owner:
+  references:
+  compatibility:
+  lifecycle:
+  metadata:
+```
+
+**Rules:** Thiếu bất kỳ field nào → Invalid Entry; metadata mở rộng được, không thay đổi model.
+
+## RG005 — Registry Resolution (Pipeline)
 
 ```text
 Request
     ↓
-Registry Lookup
+Normalize
+    ↓
+Lookup
     ↓
 Candidate Selection
     ↓
 Compatibility Check
     ↓
+Policy Check
+    ↓
+Governance Check
+    ↓
 Resolved
+```
+
+> Liên kết trực tiếp: **S012** (Policy Check) · **S013** (Governance Check).
+
+## RG005A — Resolution Failure
+
+| Failure | Meaning |
+|---------|---------|
+| NotFound | không tồn tại |
+| Invalid | schema lỗi |
+| Deprecated | hết hỗ trợ |
+| Incompatible | version |
+| Forbidden | governance |
+| Ambiguous | nhiều candidate |
+
+> Dashboard hiển thị theo loại.
+
+## RG005B — Resolution Priority
+
+Nhiều Candidate (vd Capability A v1/v2/v3) — ai thắng?
+
+```text
+Exact
+    ↓
+Compatible
+    ↓
+Latest Stable
+    ↓
+Latest
+    ↓
+Failure
 ```
 
 ## RG006 — Resolution Rules
 
 - Resolve theo ID.
-- Nếu nhiều Version → áp dụng Compatibility Rules (S013 GV010).
+- Nếu nhiều Version → áp dụng Resolution Priority (RG005B).
 - Không Resolve Entry Deprecated nếu có bản Active.
 - Không Resolve Entry Invalid.
 
@@ -117,14 +177,37 @@ Resolved
 
 ## RG008 — Registry Relationships
 
+Graph đầy đủ (Doctor kiểm tra graph):
+
 ```text
+Workflow
+      │
+      ▼
 Capability
-        │
-        ├── Contract
-        ├── Policy
-        ├── Plugin
-        └── Workflow
+      │
+      ▼
+Contract
+      │
+      ▼
+Policy
+      │
+      ▼
+Plugin
 ```
+
+## RG008A — Registry Dependency
+
+```text
+Workflow
+    ↓
+Capability
+    ↓
+Contract
+    ↓
+Schema
+```
+
+**Rules:** Không circular — mọi Dependency tạo thành **DAG**.
 
 ## RG009 — Registry Ownership
 
@@ -136,6 +219,18 @@ Capability
 | Workflow   | Runtime |
 | Plugin     | Runtime |
 | Agent      | Runtime |
+
+## RG009A — Registry Constraints
+
+Không được:
+
+- Duplicate ID
+- Duplicate Version
+- Broken Reference
+- Circular Reference
+- Orphan Entry
+- Multiple Active Version
+- Invalid Metadata
 
 ## RG010 — Registry Lifecycle
 
@@ -151,9 +246,27 @@ Retired
 
 > Published → Immutable.
 
+## RG010A — Registry Governance
+
+Registry cũng phải chịu Governance:
+
+```text
+Published
+    ↓
+Immutable
+    ↓
+Governance (S013)
+    ↓
+Deprecated
+    ↓
+Retired
+```
+
+**Rules:** Deprecated chỉ khi qua Governance (S013); Retired giữ traceability.
+
 ## RG011 — Registry Validation
 
-Doctor kiểm tra:
+Doctor kiểm tra (11 checks):
 
 - Missing Entry
 - Duplicate ID
@@ -161,17 +274,28 @@ Doctor kiểm tra:
 - Invalid Version
 - Circular Reference
 - Invalid Owner
+- Orphan Entry
+- Dangling Reference
+- Duplicate Active Version
+- Missing Compatibility
+- Invalid Lifecycle
 
 **Result:** Valid → sẵn sàng Resolve. Invalid → Entry bị chặn, có Invalid Audit (S013).
 
 ## RG012 — Registry Resolution Events
 
-Sinh Event:
+Sinh Event (10 loại):
 
 - REGISTRY_LOOKUP
 - REGISTRY_RESOLVED
 - REGISTRY_FAILED
 - REGISTRY_DEPRECATED
+- ENTRY_REGISTERED
+- ENTRY_UPDATED
+- ENTRY_DEPRECATED
+- ENTRY_RETIRED
+- RESOLUTION_FAILED
+- COMPATIBILITY_FAILED
 
 > S011 reuse trực tiếp.
 
@@ -183,11 +307,26 @@ Sinh Event:
 - resolution_time
 - failed_resolution
 - deprecated_usage
+- active_entries
+- deprecated_entries
+- resolution_success_rate
+- average_lookup_time
+- broken_reference
+- orphan_entries
+- duplicate_entries
 
 ## RG014 — Machine-readable
 
 ```text
 registry.yaml
+registry-model.yaml
+registry-domains.yaml
+registry-events.yaml
+registry-lifecycle.yaml
+registry-constraints.yaml
+registry-traceability.yaml
+registry-metrics.yaml
+registry-registry.yaml
 capability-registry.yaml
 workflow-registry.yaml
 contract-registry.yaml
@@ -199,6 +338,8 @@ registry-resolution.yaml
 registry.schema.json
 ```
 
+> `registry-registry.yaml` — Dashboard chỉ cần đọc một file.
+
 ## RG015 — Success Criteria
 
 - Runtime chỉ Resolve thông qua Registry.
@@ -206,6 +347,11 @@ registry.schema.json
 - Mọi Registry Entry đều versioned.
 - Mọi Resolution đều truy vết được.
 - Doctor xác minh toàn bộ Registry từ machine-readable.
+- Mỗi Registry Entry có đúng một Owner.
+- Không tồn tại Registry Entry mồ côi (Orphan).
+- Mọi Resolution đều xác định duy nhất một kết quả hoặc một loại lỗi chuẩn hóa.
+- Mọi Dependency giữa Registry Entries tạo thành DAG.
+- Dashboard và Doctor dựng được Registry Graph chỉ từ machine-readable.
 
 ## Nền tảng cho các SPEC sau
 
@@ -216,6 +362,9 @@ registry.schema.json
 ## Tham chiếu
 
 - `registry.yaml` — nguồn dữ liệu chuẩn
+- `registry-model.yaml` · `registry-domains.yaml` · `registry-events.yaml`
+- `registry-lifecycle.yaml` · `registry-constraints.yaml` · `registry-traceability.yaml`
+- `registry-metrics.yaml` · `registry-registry.yaml`
 - `capability-registry.yaml` · `workflow-registry.yaml` · `contract-registry.yaml`
 - `policy-registry.yaml` · `plugin-registry.yaml` · `agent-registry.yaml`
 - `registry-resolution.yaml` · `registry-validation.yaml`
@@ -224,5 +373,6 @@ registry.schema.json
 - S007: `../S007/contracts.md`
 - S008: `../S008/data-model.md`
 - S010: `../S010/execution-flow.md`
+- S012: `../S012/policies.md`
 - S013: `../S013/governance.md`
 - Constitution: `docs/specs/SPEC-000/`

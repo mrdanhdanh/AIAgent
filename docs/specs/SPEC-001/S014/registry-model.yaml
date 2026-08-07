@@ -1,0 +1,18 @@
+# SPEC-001 S014 - Canonical Registry Model
+# Chuan giong Contract Model (S007). Moi Entry deu theo model nay.
+---
+version: "1.0"
+registry_entry:
+  id:
+  type:
+  category:
+  version:
+  status:
+  owner:
+  references:
+  compatibility:
+  lifecycle:
+  metadata:
+rules:
+  - Thieu bat ky field nao -> Invalid Entry.
+  - metadata mo rong duoc, khong thay doi model.

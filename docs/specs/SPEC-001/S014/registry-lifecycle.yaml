@@ -1,0 +1,14 @@
+# SPEC-001 S014 - Registry Lifecycle + Governance
+---
+version: "1.0"
+lifecycle: [Draft, Published, Deprecated, Retired]
+governance:
+  - Published
+  - Immutable
+  - Governance (S013)
+  - Deprecated
+  - Retired
+rules:
+  - Published -> Immutable.
+  - Deprecated chi khi qua Governance (S013).
+  - Retired giu traceability.

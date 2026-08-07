@@ -1,0 +1,11 @@
+# SPEC-001 S014 - Registry Constraints
+---
+version: "1.0"
+constraints:
+  - Khong Duplicate ID.
+  - Khong Duplicate Version.
+  - Khong Broken Reference.
+  - Khong Circular Reference.
+  - Khong Orphan Entry.
+  - Khong Multiple Active Version.
+  - Khong Invalid Metadata.

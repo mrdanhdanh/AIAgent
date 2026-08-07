@@ -1,0 +1,21 @@
+# SPEC-001 S014 - Registry of Registries
+# Dashboard chi can doc mot file duy nhat.
+---
+version: "1.0"
+registries:
+  - capability-registry.yaml
+  - workflow-registry.yaml
+  - contract-registry.yaml
+  - policy-registry.yaml
+  - plugin-registry.yaml
+  - agent-registry.yaml
+  - registry-model.yaml
+  - registry-domains.yaml
+  - registry-events.yaml
+  - registry-lifecycle.yaml
+  - registry-constraints.yaml
+  - registry-traceability.yaml
+  - registry-metrics.yaml
+  - registry-resolution.yaml
+  - registry-validation.yaml
+  - registry.yaml
