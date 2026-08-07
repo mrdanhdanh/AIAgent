@@ -1,0 +1,33 @@
+# SPEC-002 W002 - Requirement Traceability
+# Moi requirement -> principle + rule (Constitution).
+---
+version: "1.0"
+traceability:
+  WFR-001: [P001, P011]
+  WFR-002: [P001, P011]
+  WFR-003: [P002, P011]
+  WFR-004: [P009]
+  WFR-005: [P007]
+  WFR-006: [P001]
+  WFR-007: [P001, P009]
+  WFR-008: [P001]
+  WFR-009: [P016]
+  WFR-010: [P015]
+  WFR-011: [P015]
+  WFR-012: [P015]
+  WFR-013: [P001]
+  WFR-014: [P009]
+  WFR-015: [P003]
+  WFR-016: [P005, P014]
+  WNFR-001: [P009]
+  WNFR-002: [P003]
+  WNFR-003: [P011]
+  WNFR-004: [P014]
+  WNFR-005: [P004]
+  WNFR-006: [P018]
+  WNFR-007: [P015]
+  WNFR-008: [P013]
+  WNFR-009: [P014]
+  WNFR-010: [P016]
+  WNFR-011: [P003]
+  WNFR-012: [P014]

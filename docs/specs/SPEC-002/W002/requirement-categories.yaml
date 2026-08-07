@@ -1,0 +1,10 @@
+# SPEC-002 W002 - Requirement Categories
+---
+version: "1.0"
+categories:
+  - Core
+  - Execution
+  - Governance
+  - Data
+  - Observability
+  - Validation

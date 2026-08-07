@@ -1,0 +1,116 @@
+# SPEC-002 W002 - Requirements Index
+---
+version: "1.0"
+index:
+  - id: WFR-001
+    title: Define Workflow
+    type: functional
+    status: Draft
+  - id: WFR-002
+    title: Load Workflow
+    type: functional
+    status: Draft
+  - id: WFR-003
+    title: Validate Workflow
+    type: functional
+    status: Draft
+  - id: WFR-004
+    title: Normalize Workflow
+    type: functional
+    status: Draft
+  - id: WFR-005
+    title: Resolve Steps
+    type: functional
+    status: Draft
+  - id: WFR-006
+    title: Execute Sequential
+    type: functional
+    status: Draft
+  - id: WFR-007
+    title: Execute Parallel
+    type: functional
+    status: Draft
+  - id: WFR-008
+    title: Support Barrier
+    type: functional
+    status: Draft
+  - id: WFR-009
+    title: Support Approval Gate
+    type: functional
+    status: Draft
+  - id: WFR-010
+    title: Support Retry
+    type: functional
+    status: Draft
+  - id: WFR-011
+    title: Support Timeout
+    type: functional
+    status: Draft
+  - id: WFR-012
+    title: Support Compensation
+    type: functional
+    status: Draft
+  - id: WFR-013
+    title: Support Conditional Branch
+    type: functional
+    status: Draft
+  - id: WFR-014
+    title: Pass Context
+    type: functional
+    status: Draft
+  - id: WFR-015
+    title: Register Workflow
+    type: functional
+    status: Draft
+  - id: WFR-016
+    title: Publish Workflow Events
+    type: functional
+    status: Draft
+  - id: WNFR-001
+    title: Deterministic Execution
+    type: non_functional
+    status: Draft
+  - id: WNFR-002
+    title: Declarative Only
+    type: non_functional
+    status: Draft
+  - id: WNFR-003
+    title: Validate Before Execute
+    type: non_functional
+    status: Draft
+  - id: WNFR-004
+    title: Observable
+    type: non_functional
+    status: Draft
+  - id: WNFR-005
+    title: Versioned
+    type: non_functional
+    status: Draft
+  - id: WNFR-006
+    title: Compatible
+    type: non_functional
+    status: Draft
+  - id: WNFR-007
+    title: Recoverable
+    type: non_functional
+    status: Draft
+  - id: WNFR-008
+    title: Testable
+    type: non_functional
+    status: Draft
+  - id: WNFR-009
+    title: Performant
+    type: non_functional
+    status: Draft
+  - id: WNFR-010
+    title: Governed
+    type: non_functional
+    status: Draft
+  - id: WNFR-011
+    title: Reusable
+    type: non_functional
+    status: Draft
+  - id: WNFR-012
+    title: Traceable
+    type: non_functional
+    status: Draft

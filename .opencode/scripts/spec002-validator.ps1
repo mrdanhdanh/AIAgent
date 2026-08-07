@@ -1,12 +1,12 @@
 ﻿# spec002-validator.ps1
 # Validator cho SPEC-002 — Workflow Engine
-# Checks W1-001..N (W001 vision, cau truc, traceability)
+# Checks W1-001..N (W001 vision, W002 requirements, cau truc, traceability)
 # ASCII-only (PS 5.1 ANSI). Exit 0 = PASS.
 <#
 .SYNOPSIS
   Validate SPEC-002 Workflow Engine.
 .DESCRIPTION
-  Kiem tra SPEC-002: README, W001-vision.md, va cac section theo roadmap.
+  Kiem tra SPEC-002: README, W001-vision.md, W002 requirements, va cac section.
   Exit 0 = PASS.
 #>
 param([switch]$Silent)
@@ -62,11 +62,67 @@ foreach ($md in $mdFiles) {
 }
 
 # ---------- W1-004: encoding (BOM/tab) ----------
-foreach ($f in (Get-ChildItem -Path $spec2 -File)) {
+foreach ($f in (Get-ChildItem -Path $spec2 -File -Recurse)) {
   $b = [System.IO.File]::ReadAllBytes($f.FullName)
   if ($b.Length -ge 3 -and $b[0] -eq 0xEF -and $b[1] -eq 0xBB) { $warnings += "W1-004: $($f.Name) co BOM" }
   $text = [System.Text.Encoding]::UTF8.GetString($b)
   if ($text -match "`t") { $warnings += "W1-004: $($f.Name) co tab (dung 2-space)" }
+}
+
+# ---------- W2-001: W002 requirements files ----------
+$w002 = Join-Path $spec2 'W002'
+foreach ($f in @('requirements.md','requirements.yaml','requirements.schema.json','requirement-categories.yaml','requirement-lifecycle.yaml','requirement-priority.yaml','requirement-traceability.yaml','requirement-metrics.yaml','requirements-index.yaml','CHANGELOG.md')) {
+  if (-not (Test-Path (Join-Path $w002 $f))) { $errors += "W2-001: missing W002/$f" }
+}
+
+# ---------- W2-002: requirements.yaml - FR/NFR/constraints/acceptance ----------
+$rt = Join-Path $w002 'requirements.yaml'
+if (Test-Path $rt) {
+  $r = Get-Content -LiteralPath $rt -Raw -Encoding utf8
+  foreach ($sec in @('functional','non_functional','constraints','assumptions','dependencies','external_interfaces','quality_attributes','acceptance')) {
+    if ($r -notmatch "(?m)^${sec}:") { $errors += "W2-002: requirements.yaml thieu '$sec'" }
+  }
+  foreach ($fr in @('WFR-001','WFR-003','WFR-006','WFR-014','WFR-016')) {
+    if ($r -notmatch [regex]::Escape($fr)) { $errors += "W2-002: thieu $fr" }
+  }
+  foreach ($nfr in @('WNFR-001','WNFR-002','WNFR-003','WNFR-010')) {
+    if ($r -notmatch [regex]::Escape($nfr)) { $errors += "W2-002: thieu $nfr" }
+  }
+  foreach ($c in @('WC-001','WC-002','WC-003')) {
+    if ($r -notmatch [regex]::Escape($c)) { $errors += "W2-002: thieu $c" }
+  }
+  foreach ($ar in @('WAR-001','WAR-002','WAR-006')) {
+    if ($r -notmatch [regex]::Escape($ar)) { $errors += "W2-002: thieu $ar" }
+  }
+}
+
+# ---------- W2-003: traceability - moi req co principle ----------
+$tr = Join-Path $w002 'requirement-traceability.yaml'
+if (Test-Path $tr) {
+  $tb = Get-Content -LiteralPath $tr -Raw -Encoding utf8
+  foreach ($id in @('WFR-001','WFR-016','WNFR-001','WNFR-012')) {
+    $block = [regex]::Match($tb, "(?m)^\s*${id}:\s*(\[.*\])")
+    if (-not $block.Success) { $errors += "W2-003: $id thieu principles trong traceability" }
+    elseif ([string]::IsNullOrWhiteSpace($block.Groups[1].Value)) { $errors += "W2-003: $id khong co principle nao" }
+  }
+}
+
+# ---------- W2-004: priority ----------
+$pr = Join-Path $w002 'requirement-priority.yaml'
+if (Test-Path $pr) {
+  $pp = Get-Content -LiteralPath $pr -Raw -Encoding utf8
+  foreach ($p in @('Critical','High','Medium')) {
+    if ($pp -notmatch [regex]::Escape($p)) { $warnings += "W2-004: priority thieu $p" }
+  }
+}
+
+# ---------- W2-005: requirements.md - sections ----------
+$rm = Join-Path $w002 'requirements.md'
+if (Test-Path $rm) {
+  $m = Get-Content -LiteralPath $rm -Raw -Encoding utf8
+  foreach ($sec in @('Functional Requirements','Non-Functional Requirements','Constraints','Assumptions','Quality Attributes','Acceptance Criteria','Machine-readable')) {
+    if ($m -notmatch [regex]::Escape("## $sec")) { $errors += "W2-005: requirements.md thieu section '$sec'" }
+  }
 }
 
 # ---------- W1-005: SPEC.yaml ----------

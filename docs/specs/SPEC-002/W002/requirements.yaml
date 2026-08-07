@@ -1,0 +1,371 @@
+# SPEC-002 W002 — Workflow Requirements
+# Nguon du lieu chuan cho Workflow Engine, Doctor, Dashboard.
+---
+id: SPEC-002-W002
+name: Workflow Requirements
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Workflow Team
+functional:
+  WFR-001:
+    title: Define Workflow
+    description: Workflow Engine nhan Workflow khai bao (YAML)
+    priority: Critical
+    category: Core
+    owner: Workflow
+    status: Draft
+    source: [P001, P011]
+    rules: [RULE-001]
+    verification: [Workflow Test, Doctor]
+  WFR-002:
+    title: Load Workflow
+    description: Workflow Engine nap Workflow tu Registry (S014 workflow-registry)
+    priority: Critical
+    category: Core
+    owner: Workflow
+    status: Draft
+    source: [P001, P011]
+    rules: [RULE-002]
+    verification: [Workflow Test, Doctor]
+  WFR-003:
+    title: Validate Workflow
+    description: Workflow Engine validate cau truc + tham chieu truoc khi chay
+    priority: Critical
+    category: Validation
+    owner: Workflow
+    status: Draft
+    source: [P002, P011]
+    rules: [RULE-002]
+    verification: [Workflow Test, Doctor]
+  WFR-004:
+    title: Normalize Workflow
+    description: Workflow Engine chuan hoa cau truc truoc khi chay (S010 EF006)
+    priority: High
+    category: Core
+    owner: Workflow
+    status: Draft
+    source: [P009]
+    rules: [RULE-001]
+    verification: [Workflow Test, Doctor]
+  WFR-005:
+    title: Resolve Steps
+    description: Workflow Engine resolve Capability cho tung step qua Registry (S014)
+    priority: Critical
+    category: Execution
+    owner: Workflow
+    status: Draft
+    source: [P007]
+    rules: [RULE-002]
+    verification: [Workflow Test, Doctor]
+  WFR-006:
+    title: Execute Sequential
+    description: Workflow Engine chay cac step tuan tu theo khai bao
+    priority: Critical
+    category: Execution
+    owner: Workflow
+    status: Draft
+    source: [P001]
+    rules: [RULE-004]
+    verification: [Workflow Test, Doctor]
+  WFR-007:
+    title: Execute Parallel
+    description: Workflow Engine chay cac step song song (Scatter/Gather, S010 EF021)
+    priority: High
+    category: Execution
+    owner: Workflow
+    status: Draft
+    source: [P001, P009]
+    rules: [RULE-004]
+    verification: [Workflow Test, Doctor]
+  WFR-008:
+    title: Support Barrier
+    description: Workflow Engine cho tat ca step con dat Terminal State (S010 EF021)
+    priority: High
+    category: Execution
+    owner: Workflow
+    status: Draft
+    source: [P001]
+    rules: [RULE-004]
+    verification: [Workflow Test, Doctor]
+  WFR-009:
+    title: Support Approval Gate
+    description: Workflow Engine ho tro approval gate (S009 TR-005/006, S012 POL-APPROVAL-001)
+    priority: Medium
+    category: Governance
+    owner: Workflow
+    status: Draft
+    source: [P016]
+    rules: [RULE-004]
+    verification: [Doctor]
+  WFR-010:
+    title: Support Retry
+    description: Workflow Engine ho tro retry step (S012 POL-RETRY-001)
+    priority: High
+    category: Execution
+    owner: Workflow
+    status: Draft
+    source: [P015]
+    rules: [RULE-012]
+    verification: [Workflow Test, Doctor]
+  WFR-011:
+    title: Support Timeout
+    description: Workflow Engine ho tro timeout step (S012 POL-TIMEOUT-001)
+    priority: High
+    category: Execution
+    owner: Workflow
+    status: Draft
+    source: [P015]
+    rules: [RULE-012]
+    verification: [Workflow Test, Doctor]
+  WFR-012:
+    title: Support Compensation
+    description: Workflow Engine ho tro rollback step da xong (S010 EF022, S012 POL-COMP-001)
+    priority: Medium
+    category: Execution
+    owner: Workflow
+    status: Draft
+    source: [P015]
+    rules: [RULE-012]
+    verification: [Doctor]
+  WFR-013:
+    title: Support Conditional Branch
+    description: Workflow Engine ho tro re nhanh theo dieu kien (if/switch)
+    priority: High
+    category: Execution
+    owner: Workflow
+    status: Draft
+    source: [P001]
+    rules: [RULE-004]
+    verification: [Workflow Test, Doctor]
+  WFR-014:
+    title: Pass Context
+    description: Workflow Engine chuyen Context giua cac step (S010 EF008)
+    priority: Critical
+    category: Data
+    owner: Workflow
+    status: Draft
+    source: [P009]
+    rules: [RULE-005]
+    verification: [Workflow Test, Doctor]
+  WFR-015:
+    title: Register Workflow
+    description: Workflow Engine dang ky Workflow trong Registry (S014 workflow-registry)
+    priority: High
+    category: Data
+    owner: Workflow
+    status: Draft
+    source: [P003]
+    rules: [RULE-001]
+    verification: [Workflow Test, Doctor]
+  WFR-016:
+    title: Publish Workflow Events
+    description: Workflow Engine phat Event cho moi state change (S011)
+    priority: High
+    category: Observability
+    owner: Workflow
+    status: Draft
+    source: [P005, P014]
+    rules: [RULE-007]
+    verification: [Workflow Test, Doctor]
+non_functional:
+  WNFR-001:
+    title: Deterministic Execution
+    description: Cung Workflow + input -> cung output
+    priority: Critical
+    category: Execution
+    owner: Workflow
+    status: Draft
+    source: [P009]
+    rules: [RULE-013]
+  WNFR-002:
+    title: Declarative Only
+    description: Workflow khai bao bang du lieu, khong code
+    priority: Critical
+    category: Core
+    owner: Workflow
+    status: Draft
+    source: [P003]
+    rules: [RULE-001]
+  WNFR-003:
+    title: Validate Before Execute
+    description: Workflow khong hop le khong bao gio chay
+    priority: Critical
+    category: Validation
+    owner: Workflow
+    status: Draft
+    source: [P011]
+    rules: [RULE-002]
+  WNFR-004:
+    title: Observable
+    description: Moi Workflow quan sat duoc qua S011
+    priority: High
+    category: Observability
+    owner: Workflow
+    status: Draft
+    source: [P014]
+    rules: [RULE-014]
+  WNFR-005:
+    title: Versioned
+    description: Moi Workflow co version (SemVer)
+    priority: High
+    category: Data
+    owner: Workflow
+    status: Draft
+    source: [P004]
+    rules: [RULE-009]
+  WNFR-006:
+    title: Compatible
+    description: Backward compatible, forward preferred
+    priority: High
+    category: Data
+    owner: Workflow
+    status: Draft
+    source: [P018]
+    rules: [RULE-015]
+  WNFR-007:
+    title: Recoverable
+    description: Workflow phuc hoi sau loi step (S010 EF017)
+    priority: High
+    category: Core
+    owner: Workflow
+    status: Draft
+    source: [P015]
+    rules: [RULE-012]
+  WNFR-008:
+    title: Testable
+    description: Workflow co the kiem thu tu dong
+    priority: High
+    category: Core
+    owner: Workflow
+    status: Draft
+    source: [P013]
+    rules: []
+  WNFR-009:
+    title: Performant
+    description: Dap ung target hieu nang dieu phoi
+    priority: High
+    category: Observability
+    owner: Workflow
+    status: Draft
+    source: [P014]
+    rules: [RULE-014]
+  WNFR-010:
+    title: Governed
+    description: Workflow chiu Governance cua Runtime (S013)
+    priority: Critical
+    category: Governance
+    owner: Workflow
+    status: Draft
+    source: [P016]
+    rules: [RULE-008]
+  WNFR-011:
+    title: Reusable
+    description: Workflow tai su dung duoc qua Registry (S014)
+    priority: Medium
+    category: Data
+    owner: Workflow
+    status: Draft
+    source: [P003]
+    rules: [RULE-001]
+  WNFR-012:
+    title: Traceable
+    description: Moi step truy vet duoc (S011)
+    priority: High
+    category: Observability
+    owner: Workflow
+    status: Draft
+    source: [P014]
+    rules: [RULE-007]
+constraints:
+  WC-001:
+    name: No Business Logic
+    type: Architectural
+    source: [P001]
+    rules: [RULE-001]
+  WC-002:
+    name: No Code in Workflow
+    type: Architectural
+    source: [P003]
+    rules: [RULE-001]
+  WC-003:
+    name: No Direct Agent Call
+    type: Architectural
+    source: [P001]
+    rules: [RULE-004]
+  WC-004:
+    name: No Redefine State Machine
+    type: Architectural
+    source: [P005]
+    rules: [RULE-005]
+  WC-005:
+    name: No Redefine Policy
+    type: Governance
+    source: [P015]
+    rules: [RULE-012]
+  WC-006:
+    name: Validate Before Execute
+    type: Governance
+    source: [P011]
+    rules: [RULE-002]
+assumptions:
+  WA-001: Workflow hop le (da validate)
+  WA-002: Registry kha dung (S014)
+  WA-003: Contract hop le (S007)
+  WA-004: Runtime kha dung (SPEC-001)
+  note: Neu gia dinh sai, Workflow Engine chi bao loi, khong tu sua.
+dependencies:
+  logical:
+    - Constitution
+    - Runtime (SPEC-001)
+    - Registry (S014)
+  runtime_services:
+    - Event Store (S011)
+    - Metrics Collector (S011)
+external_interfaces:
+  Workflow Definition: Input
+  Registry (S014): Read/Write
+  Context (S010 EF008): Read/Write
+  Event (S011): Publish
+  Policy (S012): Apply
+quality_attributes:
+  Determinism:
+    target: "100%"
+    description: Cung workflow + input -> cung output
+  Reliability:
+    target: "99.9%"
+  Availability:
+    target: "99.9%"
+  Extensibility:
+    target: 100% qua Workflow khai bao
+  Traceability:
+    target: "100%"
+  Observability:
+    target: "100%"
+  Maintainability:
+    target: Thay doi luong khong sua Core
+acceptance:
+  WAR-001:
+    description: Workflow Engine chay duoc Workflow hop le (sequential + parallel)
+    related: [WFR-001, WFR-006, WFR-007, P001]
+    verified_by: [Workflow Tests, Doctor]
+  WAR-002:
+    description: Workflow Engine tu choi Workflow khong hop le
+    related: [WFR-003, P011]
+    verified_by: [Workflow Tests, Doctor]
+  WAR-003:
+    description: Workflow Engine phat Event day du cho moi step
+    related: [WFR-016, P005]
+    verified_by: [Doctor]
+  WAR-004:
+    description: Workflow Engine dung an toan khi step loi (retry/timeout/compensation)
+    related: [WFR-010, WFR-011, WFR-012, P015]
+    verified_by: [Workflow Tests, Doctor]
+  WAR-005:
+    description: Workflow khong chua code va khong goi truc tiep Agent
+    related: [WC-002, WC-003, P003]
+    verified_by: [Doctor]
+  WAR-006:
+    description: Workflow Engine khong vi pham Constitution
+    related: [P020, WNFR-010]
+    verified_by: [Doctor]

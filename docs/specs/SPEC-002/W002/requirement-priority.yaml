@@ -1,0 +1,8 @@
+# SPEC-002 W002 - Requirement Priority
+---
+version: "1.0"
+levels: [Critical, High, Medium, Low]
+counts:
+  Critical: 6
+  High: 8
+  Medium: 2

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aios://workflow-requirements.schema.json",
+  "title": "SPEC-002 Workflow Requirements (W002)",
+  "description": "JSON Schema cho requirements.yaml. Validator kiem tra cau truc.",
+  "type": "object",
+  "required": ["id", "name", "version", "status", "frozen", "owner", "functional", "non_functional", "constraints", "assumptions", "dependencies", "external_interfaces", "quality_attributes", "acceptance"],
+  "properties": {
+    "id": { "const": "SPEC-002-W002" },
+    "name": { "const": "Workflow Requirements" },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "status": { "enum": ["Draft", "Review", "Approved", "Stable", "Deprecated"] },
+    "frozen": { "type": "boolean" },
+    "owner": { "type": "string" },
+    "functional": { "type": "object", "minProperties": 16 },
+    "non_functional": { "type": "object", "minProperties": 12 },
+    "constraints": { "type": "object", "minProperties": 6 },
+    "assumptions": { "type": "object" },
+    "dependencies": { "type": "object", "required": ["logical", "runtime_services"] },
+    "external_interfaces": { "type": "object" },
+    "quality_attributes": { "type": "object" },
+    "acceptance": { "type": "object", "minProperties": 6 }
+  },
+  "additionalProperties": false
+}
