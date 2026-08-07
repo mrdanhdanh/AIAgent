@@ -1,5 +1,5 @@
 # SPEC-001 S010 — Execution Policies (EF025) v4
-# Moi policy theo cung mot model — SPEC-012 (Policy Engine) chi can tham chieu.
+# Moi policy theo cung mot model — S012 (Runtime Policies) chi can tham chieu.
 ---
 version: "1.0"
 policy_model: [id, category, trigger, guard, action, priority, version]

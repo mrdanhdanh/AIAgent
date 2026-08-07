@@ -82,3 +82,132 @@ entries:
     finished: "2026-08-08T00:08:21"
     cascade_review: [S008, S010, S011, S012, S013, S015]
     report_path: docs/governance/reviews/REV-SPEC-001-S009-20260808-000821.md
+  - review_id: REV-20260808-004
+    spec: SPEC-001
+    item: S001
+    name: Runtime Vision
+    type: revfull
+    mode: revfull-as-health (inherited Frozen)
+    verdict: CONDITIONAL
+    note: >
+      revfull tren S001 (Frozen, inherited) — health semantics: giu nguyen 2 truc
+      (lifecycle Frozen, review.status Completed, count 2), khong tang count.
+      Phat hien 1 MAJOR (#01): Forward References S011-S020 dung ten section CU
+      (S011 Events, S012 Errors, S013 Configuration, S014 Extension Points,
+      S015 Security, S016 Performance, S017 Observability, S018 Testing,
+      S019 Compatibility, S020 Acceptance Criteria) trong khi cau truc hien hanh
+      (SPEC-INDEX + SPEC-001/README) la S011 Execution Observability, S012 Runtime
+      Policies, S013 Runtime Governance, S014 Runtime Registry, S015 Runtime
+      Resources, S016 Runtime Compliance, S017 Runtime Plugins, S018+ Evolution/
+      Doctor/Dashboard — cross-reference sai 10/19 muc, git blame xac nhan S001
+      dong bang refs 2026-08-05 truoc khi S011-S017 doi ten. Vi S001 Frozen, can
+      RFC/ADR (POLICY-002/006) truoc khi sua noi dung.
+    score:
+      coverage: 100
+      quality: 100
+      consistency: 87
+      governance: 97
+      overall: 96
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 1
+      MINOR: 2
+      INFO: 2
+    started: "2026-08-08T00:19:38"
+    finished: "2026-08-08T00:19:38"
+    cascade_review: [S002, S003, S004, S005, S006, S007, S008, S009, S010, S011, S012, S013, S014, S015, S016, S017]
+    report_path: docs/governance/reviews/REV-SPEC-001-S001-20260808-001938.md
+  - review_id: REV-20260808-005
+    spec: SPEC-001
+    item: S002
+    name: Runtime Requirements
+    type: revfull
+    mode: revfull-as-health (inherited Frozen)
+    verdict: CONDITIONAL
+    note: >
+      revfull tren S002 (Frozen, inherited) — health semantics: giu nguyen 2 truc
+      (lifecycle Frozen, review.status Completed, count 2), khong tang count.
+      Phat hien 1 MAJOR (#01 SCHEMA): requirements.yaml khai bao frozen + frozen_date
+      (line 8-9) nhung requirements.schema.json top-level additionalProperties: false
+      (line 68) khong khai bao 2 field do -> schema validation strict FAIL.
+      Xac nhan tich cuc: S002 KHONG bi lan MAJOR #01 cua S001 (forward refs
+      S011-S020 ten cu) — grep S01[1-9]|S020 trong S002 = 0 matches.
+      Vi S002 Frozen, can RFC/ADR (POLICY-002/006) truoc khi sua schema.
+    score:
+      coverage: 97
+      quality: 100
+      consistency: 97
+      governance: 87
+      overall: 95
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 1
+      MINOR: 2
+      INFO: 2
+    started: "2026-08-08T00:29:19"
+    finished: "2026-08-08T00:29:19"
+    cascade_review: [S003, S010]
+    report_path: docs/governance/reviews/REV-SPEC-001-S002-20260808-002919.md
+  - review_id: REV-20260808-006
+    spec: SPEC-001
+    item: S002
+    name: Runtime Requirements
+    type: health
+    mode: health (xac nhan fix sau ADR-002 PATCH 1.0.1)
+    verdict: PASS
+    note: >
+      Health xac nhan MAJOR #01 (schema) cua REV-20260808-005 da dong: 
+      requirements.schema.json them frozen + frozen_date vao properties (title v2.1,
+      giu additionalProperties: false) + jsonschema validate thuc te PASS
+      (requirements.yaml -> VALID). KHONG tang count (giu 2), KHONG doi status
+      (Completed), lifecycle giu Frozen — health semantics. MINOR/INFO con sot
+      (#02 version artifact 6 file, #03 AR-006 related, #04 NFR-006 rules trong,
+      #05 12 future considerations) khong block.
+    score:
+      coverage: 97
+      quality: 100
+      consistency: 97
+      governance: 97
+      overall: 98
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 0
+      MINOR: 2
+      INFO: 2
+    started: "2026-08-08T00:40:37"
+    finished: "2026-08-08T00:40:37"
+    cascade_review: [S003, S010]
+    report_path: docs/governance/reviews/REV-SPEC-001-S002-20260808-004037.md
+  - review_id: REV-20260808-007
+    spec: SPEC-001
+    item: S010
+    name: Runtime Execution Flow
+    type: rev1
+    mode: rev1 (review lan 1 — tinh count)
+    verdict: CONDITIONAL
+    note: >
+      rev1 tren S010 (Draft, NotReviewed, count 0, recheck_required tu cascade S009).
+      Phat hien 3 MAJOR: #01 SCHEMA — execution-flow.schema.json required 'references'
+      nhung YAML khong co key do + additionalProperties: false chan lifecycle_overview/
+      canonical_flow -> jsonschema thuc te INVALID (cung lop loi S002 #01 vua fix);
+      #02 CROSS-REF — 2 event EXECUTION_COORDINATING/FINALIZING (execution-transitions
+      + EF004) khong ton tai trong S009 state-events.yaml; #03 CROSS-REF — EF025 nham
+      "SPEC-012 (Policy Engine)" trong khi SPEC-012 = Simulation Engine, Policy Engine
+      = S012. Verdict CONDITIONAL -> tinh count: NotReviewed -> Rev1, count 0 -> 1,
+      lifecycle Draft -> Review. State map S009 (ST-002->ST-009, ST-004->ST-014...)
+      xac nhan dung. Cascade: S014/S017 gan recheck_required (S020 thieu entry tracker).
+    score:
+      coverage: 97
+      quality: 100
+      consistency: 77
+      governance: 87
+      overall: 90
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 3
+      MINOR: 3
+      INFO: 3
+    started: "2026-08-08T00:40:37"
+    finished: "2026-08-08T00:40:37"
+    cascade_review: [S008, S009, S011, S012, S013, S014, S015, S017, S020]
+    report_path: docs/governance/reviews/REV-SPEC-001-S010-20260808-004037.md

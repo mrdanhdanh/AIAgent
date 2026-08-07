@@ -169,6 +169,8 @@ Report (docs/governance/reviews/REV-*.md, append-only)
    ↓
 Tracker (review-tracker.yaml) + History (review-history.yaml)
    ↓
+Index (docs/specs/SPEC-INDEX.md — marker ✅/🚧/⬜ + dòng Trạng thái, /review đồng bộ sau mỗi lần review)
+   ↓
 Dashboard (trend, metrics) · Doctor (SLA, trigger, health) · Evolution (cải tiến)
 ```
 
@@ -202,6 +204,9 @@ P4 Chạy check theo matrix → findings (severity) → score + coverage
         │
         ▼
 P5 Decision Matrix → verdict → cascade_review → cập nhật tracker+history → ghi report
+        │
+        ▼
+P6 Đồng bộ docs/specs/SPEC-INDEX.md (marker mục ✅/🚧/⬜ + dòng Trạng thái SPEC)
         │
         ▼
 Output contract v2.0
@@ -247,6 +252,7 @@ agent: general
 ## 16. Quy tắc vận hành
 
 - Chỉ `/review` cập nhật tracker + history; mọi entry append-only.
+- Sau mỗi review, `/review` **bắt buộc đồng bộ** `docs/specs/SPEC-INDEX.md` (marker mục theo tracker: ✅ Frozen/Completed · 🚧 Draft/Rev1 · ⬜ chưa bắt đầu) + dòng `Trạng thái` của SPEC — index không bao giờ lệch tracker.
 - Review PASS/CONDITIONAL → tăng count (trừ `health`); FAIL → không đổi trạng thái.
 - Mục inherited (Frozen cũ) giữ nguyên 2 trục — revfull chỉ là health-check.
 - Verdict = Decision Matrix — không theo cảm tính reviewer.

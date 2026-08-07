@@ -76,11 +76,12 @@ Completion
 | Validate | Workflow, Contract, Policy | EXECUTION_VALIDATING |
 | Prepare | Context, Capability Resolution | EXECUTION_PREPARED |
 | Execute | Agent Coordination | EXECUTION_STARTED |
-| Coordinate | Sequential, Parallel, Barrier, Approval, Waiting, Retry, Timeout | EXECUTION_COORDINATING |
-| Finalize | Result, Artifact, Metrics | EXECUTION_FINALIZING |
+| Coordinate | Sequential, Parallel, Barrier, Approval, Waiting, Retry, Timeout | — |
+| Finalize | Result, Artifact, Metrics | — |
 | Complete | Terminal State | EXECUTION_COMPLETED |
 
 > **Coordinate** (không phải Synchronize) — bao gồm mọi hình thức điều phối: Sequential, Parallel, Barrier, Approval, Waiting, Retry, Timeout. EF021 là một loại Coordination.
+> **Event "—"**: Coordinate/Finalize nằm trong ST-004 (Running) — không có transition mới nên không có transition event S009 (P005: Mỗi Transition sinh Event). S009 không định nghĩa event nào cho 2 stage này.
 
 ## EF005 — Canonical Execution Flow (Timeline chuẩn)
 
@@ -431,7 +432,7 @@ Outcome khác với State — hữu ích cho Dashboard và Analytics:
 
 ## EF025 — Execution Policies (mới)
 
-Mỗi policy theo **cùng một model** — SPEC-012 (Policy Engine) chỉ cần tham chiếu:
+Mỗi policy theo **cùng một model** — S012 (Runtime Policies) chỉ cần tham chiếu:
 
 ```yaml
 policy:

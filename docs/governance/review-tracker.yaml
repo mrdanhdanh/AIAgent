@@ -5,7 +5,7 @@
 # Chỉ lệnh /review được phép cập nhật (append-only history). Schema: review.schema.json.
 ---
 version: "2.0"
-updated: "2026-08-07"
+updated: "2026-08-08"
 
 convention:
   review_ladder: [NotReviewed, Rev1, Completed]
@@ -65,6 +65,7 @@ items:
       name: Runtime Responsibilities
       lifecycle: Frozen
       created: "2026-08-04"
+      recheck_required: true
       review: { status: Completed, count: 2, inherited: true }
       history: []
     S004:
@@ -112,13 +113,21 @@ items:
           type: rev1
           verdict: CONDITIONAL
           date: "2026-08-08"
+        - review: REV-20260808-002
+          type: health
+          verdict: PASS
+          date: "2026-08-08"
     S010:
       name: Runtime Execution Flow
-      lifecycle: Draft
+      lifecycle: Review
       created: "2026-08-05"
       recheck_required: true
-      review: { status: NotReviewed, count: 0, inherited: false }
-      history: []
+      review: { status: Rev1, count: 1, inherited: false }
+      history:
+        - review: REV-20260808-007
+          type: rev1
+          verdict: CONDITIONAL
+          date: "2026-08-08"
     S011:
       name: Execution Observability
       lifecycle: Draft
@@ -144,6 +153,33 @@ items:
       name: Runtime Registry
       lifecycle: Draft
       created: "2026-08-05"
+      recheck_required: true
+      review: { status: NotReviewed, count: 0, inherited: false }
+      history: []
+    S015:
+      name: Runtime Resources
+      lifecycle: Draft
+      created: "2026-08-07"
+      recheck_required: true
+      review: { status: NotReviewed, count: 0, inherited: false }
+      history: []
+    S016:
+      name: Runtime Compliance
+      lifecycle: Draft
+      created: "2026-08-08"
+      review: { status: NotReviewed, count: 0, inherited: false }
+      history: []
+    S017:
+      name: Runtime Plugins
+      lifecycle: Draft
+      created: "2026-08-08"
+      recheck_required: true
+      review: { status: NotReviewed, count: 0, inherited: false }
+      history: []
+    S018:
+      name: Runtime Evolution
+      lifecycle: Draft
+      created: "2026-08-08"
       review: { status: NotReviewed, count: 0, inherited: false }
       history: []
 
@@ -151,10 +187,6 @@ items:
 
 # Mục chưa tồn tại trong SPEC-001 (SPEC.yaml includes S015-S020)
 missing_in_spec_001:
-  - S015
-  - S016
-  - S017
-  - S018
   - S019
   - S020
 

@@ -1,5 +1,6 @@
 ---
 name: spec-001-s001-vision
+version: "1.0.1"
 description: >
   SPEC-001 S001 — Runtime Vision. Trả lời: Runtime tồn tại để làm gì? Và Runtime
   là gì trong AIOS. Không nói implementation, không nói class, không nói code.
@@ -8,7 +9,7 @@ agent: general
 
 # S001 — Runtime Vision
 
-> **SPEC-001**: Runtime Kernel · **Version**: 1.0.0 · **Trạng thái**: Draft
+> **SPEC-001**: Runtime Kernel · **Version**: 1.0.1 · **Trạng thái**: ✅ Frozen (2026-08-04)
 
 ## Câu hỏi duy nhất
 
@@ -176,7 +177,7 @@ Runtime được xem là **đạt Vision** khi:
 - Runtime không vi phạm Constitution (SPEC-000).
 - Runtime có thể mở rộng mà không sửa Core.
 
-> Các test cụ thể (chạy Workflow, resolve Capability, điều phối Agent, sinh Event/Artifact, Simulation, Replay) được định nghĩa tại **S020 — Acceptance Criteria**.
+> Các test cụ thể (chạy Workflow, resolve Capability, điều phối Agent, sinh Event/Artifact, Simulation, Replay) được định nghĩa tại **S020 — Dashboard**.
 
 ## Success Metrics (KPI)
 
@@ -228,16 +229,16 @@ S001 chỉ nói **Vision**. Chi tiết ở các section sau:
 - S008 — Data Model
 - S009 — State Machine
 - S010 — Execution Flow
-- S011 — Events
-- S012 — Errors
-- S013 — Configuration
-- S014 — Extension Points
-- S015 — Security
-- S016 — Performance
-- S017 — Observability
-- S018 — Testing
-- S019 — Compatibility
-- S020 — Acceptance Criteria
+- S011 — Execution Observability
+- S012 — Runtime Policies
+- S013 — Runtime Governance
+- S014 — Runtime Registry
+- S015 — Runtime Resources
+- S016 — Runtime Compliance
+- S017 — Runtime Plugins
+- S018 — Runtime Evolution
+- S019 — Doctor
+- S020 — Dashboard
 
 ## Tham chiếu chuẩn hóa
 
@@ -247,6 +248,7 @@ S001 chỉ nói **Vision**. Chi tiết ở các section sau:
 - P005 Event Driven
 - P007 Capability Driven
 - P009 Single Source of Truth
+- P010 Immutable Artifact
 - P013 Simulation Before Execution
 
 ### Rules

@@ -4,7 +4,7 @@
   "title": "SPEC-001 Runtime Execution Flow (S010)",
   "description": "JSON Schema cho execution-flow.yaml. Validator kiem tra cau truc.",
   "type": "object",
-  "required": ["id", "name", "version", "status", "owner", "philosophy", "principles", "stages", "references"],
+  "required": ["id", "name", "version", "status", "owner", "philosophy", "principles", "stages"],
   "properties": {
     "id": { "const": "SPEC-001-S010" },
     "name": { "const": "Runtime Execution Flow" },
@@ -13,8 +13,9 @@
     "owner": { "type": "string" },
     "philosophy": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
     "principles": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "lifecycle_overview": { "type": "array", "items": { "type": "string" } },
     "stages": { "type": "object" },
-    "references": { "type": "object" }
+    "canonical_flow": { "type": "array", "items": { "type": "string" } }
   },
   "additionalProperties": false
 }

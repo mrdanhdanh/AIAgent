@@ -102,7 +102,15 @@ verdict:
    - Thêm entry vào `history[]`.
 4. **Cập nhật history** `review-history.yaml` — append 1 entry (review_id, spec, item, type, verdict, score, severity_counts, started/finished, cascade_review, report_path).
 5. **Ghi report** `docs/governance/reviews/REV-<SPEC>-<ITEM>-<YYYYMMDD-HHMMSS>.md` (template mục 15 `review-workflow.md`).
-6. Không tự sửa nội dung mục — chỉ report + gợi ý. Áp dụng fix chỉ khi được chấp thuận, sau đó chạy lại review.
+6. **Đồng bộ `docs/specs/SPEC-INDEX.md`** — BẮT BUỘC mỗi lần review kết thúc (kể cả `health`/`regression` nếu trạng thái tracker đổi, và `status`/`scan` chỉ đọc không đổi):
+   - Cập nhật **marker từng mục** trong cây SPEC theo tracker sau khi review (map từ `review-tracker.yaml`):
+     - `✅` = lifecycle Frozen/Approved hoặc `review.status: Completed` (kể cả inherited — giữ nguyên).
+     - `🚧` = lifecycle Draft/Review + `review.status: NotReviewed/Rev1` (đang làm).
+     - `⬜` = chưa khởi tạo / không tồn tại trong SPEC.
+   - Cập nhật dòng `> **Trạng thái**: ...` của SPEC tương ứng (chỉ mục vừa review): toàn bộ mục `✅` → `✅ <lifecycle tối đa>`; còn mục `🚧` → `In progress`; SPEC chưa khởi tạo → `⬜`.
+   - Mục inherited/Frozen **giữ nguyên marker** — chỉ đổi marker mục vừa review khi status/count thực sự thay đổi.
+   - Không sửa nội dung SPEC, không đổi quy ước/chú thích trong index — chỉ cập nhật trạng thái.
+7. Không tự sửa nội dung mục — chỉ report + gợi ý. Áp dụng fix chỉ khi được chấp thuận, sau đó chạy lại review.
 
 ## OUTPUT CONTRACT (v2.0)
 
@@ -166,6 +174,11 @@ sla: { draft_days: 12, stale_in_days: 168 }
 summary: "Tổng quan 2-3 câu"
 next_step: "Hành động cụ thể tiếp theo"
 report_path: "docs/governance/reviews/REV-SPEC-001-S010-<ts>.md"
+index_synced: true                       # đã đồng bộ docs/specs/SPEC-INDEX.md sau review
+index_changes:
+  - item: "SPEC-001/S010"
+    marker: "✅ | 🚧 | ⬜"                # marker cũ → mới trong cây index
+    spec_status: "In progress | ✅ Frozen | ⬜"   # dòng Trạng thái của SPEC
 ```
 
 ## QUY TẮC
@@ -175,7 +188,8 @@ report_path: "docs/governance/reviews/REV-SPEC-001-S010-<ts>.md"
 - Verdict = Decision Matrix — không theo cảm tính; CONDITIONAL phải kèm MAJOR + `next_step`.
 - `health` không tăng count, không đổi status; `revfull` phải đọc dependency chain + git history + system analysis trước khi kết luận.
 - Cascade gắn `recheck_required` — **không tự đổi** review.status của mục khác.
-- Không sửa nội dung mục khi review; sau khi cập nhật tracker/history → nhắc user chạy `/doctor` nếu cần kiểm tra health.
+- Khi review kết thúc → **bắt buộc cập nhật `docs/specs/SPEC-INDEX.md`** (marker mục + dòng Trạng thái SPEC) khớp tracker; không bỏ qua.
+- Không sửa nội dung mục khi review; sau khi cập nhật tracker/history/index → nhắc user chạy `/doctor` nếu cần kiểm tra health.
 
 ## Tham chiếu
 
