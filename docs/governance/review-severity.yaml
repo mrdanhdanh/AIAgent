@@ -1,0 +1,39 @@
+# AIOS Review Severity — chuẩn hóa mức độ + Decision Matrix (loại bỏ chủ quan).
+---
+version: "1.0"
+
+levels:
+  CRITICAL:
+    code: C
+    meaning: "Sai hướng, mâu thuẫn nền tảng, vi phạm Constitution/Policy bắt buộc, vỡ traceability"
+    verdict: FAIL
+  MAJOR:
+    code: M
+    meaning: "Thiếu sót đáng kể, cross-reference sai, metadata sai, chưa đạt chuẩn matrix"
+    verdict: CONDITIONAL
+  MINOR:
+    code: m
+    meaning: "Cải thiện nhỏ, không chặn"
+    verdict: PASS
+  INFO:
+    code: I
+    meaning: "Ghi nhận, gợi ý nâng cấp"
+    verdict: PASS
+
+decision_matrix:
+  - critical: 0
+    major: 0
+    verdict: PASS
+  - critical: 0
+    major: ">=1"
+    verdict: CONDITIONAL
+  - critical: ">=1"
+    major: "*"
+    verdict: FAIL
+
+deduction:
+  # Trừ điểm dimension score (xem review-score.yaml), floor 0
+  CRITICAL: 30
+  MAJOR: 10
+  MINOR: 3
+  INFO: 0

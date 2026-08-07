@@ -1,0 +1,22 @@
+version: "15.0"
+policies:
+  planner:
+    allow: [planning.*, architecture.design]
+    deny: [artifact.delete, event.publish]
+  reviewer:
+    allow: [review.*]
+    deny: [artifact.delete]
+  builder:
+    allow: [build.*, artifact.write, plan.execute]
+    deny: [policy.edit, governance.edit]
+  tester:
+    allow: [test.*, report.write]
+  guardian:
+    allow: [review.*, gitguard.*]
+    deny: [artifact.write]
+  general:
+    allow: ["*"]
+    deny: []
+  plugin-oracle:
+    allow: [knowledge.read, artifact.read]
+    deny: [knowledge.write]

@@ -1,0 +1,45 @@
+# AIOS Review Trigger — khi nào bắt buộc review lại.
+# Doctor đọc file này để tự tạo task review.
+---
+version: "1.0"
+
+triggers:
+  - id: TRG-001
+    event: "SPEC changed — nội dung mục bị sửa"
+    action: "Regression review chính mục đó"
+    type: regression
+  - id: TRG-002
+    event: "Dependency changed — upstream của mục bị đổi"
+    action: "Cascade regression — mọi mục phụ thuộc (sinh cascade_review)"
+    type: regression
+  - id: TRG-003
+    event: "Constitution changed — SPEC-000 bị sửa"
+    action: "Compliance review toàn bộ tài liệu"
+    type: compliance
+  - id: TRG-004
+    event: "Policy changed — POLICY-0xx bị sửa"
+    action: "Compliance review các mục chịu ảnh hưởng"
+    type: compliance
+  - id: TRG-005
+    event: "Schema changed — schema.json của mục bị đổi"
+    action: "Migration review cho mục + artifact liên quan"
+    type: migration
+  - id: TRG-006
+    event: "SLA vi phạm — Draft quá draft_max_days (30)"
+    action: "Review rev1 ngay"
+    type: rev1
+  - id: TRG-007
+    event: "Đến chu kỳ — Completed quá completed_review_cycle_days (180)"
+    action: "Health check định kỳ"
+    type: health
+  - id: TRG-008
+    event: "Migration cấu trúc — đổi thư mục/format tài liệu"
+    action: "Migration review cho nhóm tài liệu bị ảnh hưởng"
+    type: migration
+
+cascade:
+  rule: >
+    Review mục X → tìm mọi mục tham chiếu X (grep toàn hệ thống + SPEC.yaml dependencies
+    + thứ tự mục trong SPEC) → sinh cascade_review trong report.
+  mark: "Tracker gắn recheck_required: true cho mục bị cascade — Doctor lập task regression (TRG-002)."
+  not_auto: "Cascade KHÔNG tự đổi review.status — chỉ đánh dấu chờ regression."

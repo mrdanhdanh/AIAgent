@@ -3,6 +3,7 @@
 # Schema: workflow.schema.yaml v1
 
 id: feature-development
+name: Feature Development Workflow
 version: "1"
 description: Standard feature development workflow
 manifest:
@@ -19,57 +20,77 @@ manifest:
 
 phases:
   - id: analyze
+    title: Analyze
     name: Analyze
     description: Phân tích yêu cầu
+    agent: analyst
+    command: team-analyze
     capability: analysis.requirement
     outputs: [analysis.md]
     retry: 1
 
   - id: design
+    title: Design
     name: Design
     description: Thiết kế giải pháp
     depends_on: [analyze]
+    agent: planner
+    command: team-plan
     capability: review.architecture
     outputs: [design.md]
     retry: 1
 
   - id: review
+    title: Review
     name: Review
     description: Đánh giá kế hoạch
     depends_on: [design]
+    agent: reviewer
+    command: team-review
     capability: review.code
     outputs: [review.md]
     retry: 1
 
   - id: backup
+    title: Backup
     name: Backup
     description: Backup trước khi build
     depends_on: [review]
+    agent: backup-agent
+    command: backup
     capability: ops.code
     outputs: [backup.md]
     retry: 2
     optional: true
 
   - id: build
+    title: Build
     name: Build
     description: Thực hiện code
     depends_on: [backup, review]
+    agent: builder
+    command: team-build
     capability: implementation.code
     outputs: [artifact.code]
     retry: 2
 
   - id: test
+    title: Test
     name: Test
     description: Kiểm thử
     depends_on: [build]
+    agent: tester
+    command: team-test
     capability: test.e2e
     outputs: [test_report.md]
     retry: 2
 
   - id: complete
+    title: Complete
     name: Complete
     description: Tổng kết workflow
     depends_on: [test]
+    agent: general
     capability: review.code
     outputs: [summary.md]
     retry: 0

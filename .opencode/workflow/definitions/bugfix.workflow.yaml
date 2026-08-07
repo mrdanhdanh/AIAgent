@@ -3,6 +3,7 @@
 # Schema: workflow.schema.yaml v1
 
 id: bugfix-development
+name: Bugfix Development Workflow
 version: "1"
 description: Bug fix workflow
 manifest:
@@ -19,40 +20,54 @@ manifest:
 
 phases:
   - id: reproduce
+    title: Reproduce
     name: Reproduce
     description: Tái hiện lỗi
+    agent: analyst
+    command: team-analyze
     capability: analysis.requirement
     outputs: [repro.md]
     retry: 1
 
   - id: diagnose
+    title: Diagnose
     name: Diagnose
     description: Xác định nguyên nhân gốc
     depends_on: [reproduce]
+    agent: root-cause-agent
+    command: team-root-cause
     capability: analysis.requirement
     outputs: [rootcause.md]
     retry: 1
 
   - id: fix
+    title: Fix
     name: Fix
     description: Sửa lỗi
     depends_on: [diagnose]
+    agent: builder
+    command: team-build
     capability: implementation.code
     outputs: [fix.patch]
     retry: 2
 
   - id: verify
+    title: Verify
     name: Verify
     description: Xác minh lỗi đã hết
     depends_on: [fix]
+    agent: tester
+    command: team-test
     capability: test.e2e
     outputs: [verify.md]
     retry: 2
 
   - id: complete
+    title: Complete
     name: Complete
     description: Tổng kết
     depends_on: [verify]
+    agent: general
     capability: review.code
     outputs: [summary.md]
     retry: 0

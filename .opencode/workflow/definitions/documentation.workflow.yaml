@@ -3,6 +3,7 @@
 # Schema: workflow.schema.yaml v1
 
 id: documentation-development
+name: Documentation Development Workflow
 version: "1"
 description: Documentation authoring workflow
 manifest:
@@ -18,32 +19,43 @@ manifest:
 
 phases:
   - id: analyze
+    title: Analyze
     name: Analyze
     description: Xác định tài liệu cần viết
+    agent: analyst
+    command: team-analyze
     capability: analysis.documentation
     outputs: [scope.md]
     retry: 1
 
   - id: write
+    title: Write
     name: Write
     description: Viết tài liệu
     depends_on: [analyze]
+    agent: general
+    command: team-syncdocs
     capability: documentation.write
     outputs: [doc.md]
     retry: 2
 
   - id: review
+    title: Review
     name: Review
     description: Review tài liệu
     depends_on: [write]
+    agent: reviewer
+    command: team-review
     capability: review.documentation
     outputs: [review.md]
     retry: 1
 
   - id: complete
+    title: Complete
     name: Complete
     description: Tổng kết
     depends_on: [review]
+    agent: general
     capability: review.documentation
     outputs: [summary.md]
     retry: 0

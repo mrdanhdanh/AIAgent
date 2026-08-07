@@ -1,0 +1,84 @@
+# AIOS Review History — global log append-only.
+# Mỗi lần review /review ghi đúng 1 entry vào entries[] (không ghi đè, không xóa).
+# review_id format: REV-<YYYYMMDD>-<NNN> — NNN = entries.length + 1.
+---
+version: "1.0"
+entries:
+  - review_id: REV-20260807-001
+    spec: SPEC-001
+    item: S009
+    name: Runtime State Machine
+    type: rev1
+    mode: rev1
+    verdict: CONDITIONAL
+    backfilled: true
+    note: >
+      Backfill tu review-tracker.yaml (review lan 1 S009) — report goc
+      khong con ton tai. Score uoc luong tu lan review REV-20260808-001
+      (cung findings 4 MAJOR) — chi mang tinh tham khao.
+    score:
+      coverage: 84
+      quality: 87
+      consistency: 87
+      governance: 90
+      overall: 87
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 4
+      MINOR: 4
+      INFO: 3
+    started: "2026-08-07T00:00:00"
+    finished: "2026-08-07T00:00:00"
+    cascade_review: [S008, S010, S011, S012, S013, S015]
+    report_path: "(khong con — backfill tu tracker)"
+  - review_id: REV-20260808-001
+    spec: SPEC-001
+    item: S009
+    name: Runtime State Machine
+    type: rev1
+    mode: rev1
+    verdict: CONDITIONAL
+    score:
+      coverage: 84
+      quality: 87
+      consistency: 87
+      governance: 90
+      overall: 87
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 4
+      MINOR: 4
+      INFO: 3
+    started: "2026-08-08T00:01:21"
+    finished: "2026-08-08T00:01:21"
+    cascade_review: [S008, S010, S011, S012, S013, S015]
+    report_path: docs/governance/reviews/REV-SPEC-001-S009-20260808-000121.md
+  - review_id: REV-20260808-002
+    spec: SPEC-001
+    item: S009
+    name: Runtime State Machine
+    type: health
+    mode: re-review (sau fix REV-20260808-001)
+    verdict: PASS
+    note: >
+      Re-review xac nhan fix REV-20260808-001: 4 MAJOR (#01-#04) da duoc
+      verify FIXED (transition-matrix 19 true + 5 false, registry 19/3,
+      schema oneOf + 8 top-level keys, history backfill REV-20260807-001).
+      KHONG tang review count (giu 2), KHONG doi review.status (Completed),
+      lifecycle giu Review — health semantics. Verdict PASS (0 CRITICAL,
+      0 MAJOR). MINOR/INFO con sot (#05-#11) khong block — duoc phep giu.
+    score:
+      coverage: 94
+      quality: 97
+      consistency: 97
+      governance: 100
+      overall: 97
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 0
+      MINOR: 4
+      INFO: 3
+    started: "2026-08-08T00:08:21"
+    finished: "2026-08-08T00:08:21"
+    cascade_review: [S008, S010, S011, S012, S013, S015]
+    report_path: docs/governance/reviews/REV-SPEC-001-S009-20260808-000821.md

@@ -1,0 +1,180 @@
+# AIOS Governance Review Tracker — nguồn sự thật duy nhất.
+# v2.0: TÁCH document.lifecycle (vòng đời tài liệu) khỏi review.status (trạng thái review).
+# Mỗi mục: lifecycle thuộc trục Document (Draft→Review→Approved→Frozen→Deprecated→Archived),
+#          review.status thuộc trục Review (NotReviewed→Rev1→Completed).
+# Chỉ lệnh /review được phép cập nhật (append-only history). Schema: review.schema.json.
+---
+version: "2.0"
+updated: "2026-08-07"
+
+convention:
+  review_ladder: [NotReviewed, Rev1, Completed]
+  document_lifecycle: [Draft, Review, Approved, Frozen, Deprecated, Archived]
+  min_reviews: 2
+  review_types: [rev1, revfull, health, compliance, migration, regression]
+  non_counting_types: [health]
+  freeze_rule: "Completed → Approved → Frozen (không bao giờ trực tiếp)"
+
+items:
+  SPEC-000:
+    D001:
+      name: Manifest
+      lifecycle: Frozen
+      created: "2026-08-03"
+      review: { status: Completed, count: 2, inherited: true }
+      history: []
+    D002:
+      name: Glossary
+      lifecycle: Frozen
+      created: "2026-08-03"
+      review: { status: Completed, count: 2, inherited: true }
+      history: []
+    D003:
+      name: Principles
+      lifecycle: Frozen
+      created: "2026-08-03"
+      review: { status: Completed, count: 2, inherited: true }
+      history: []
+    D004:
+      name: Rules
+      lifecycle: Frozen
+      created: "2026-08-03"
+      review: { status: Completed, count: 2, inherited: true }
+      history: []
+    D005:
+      name: Governance
+      lifecycle: Frozen
+      created: "2026-08-03"
+      review: { status: Completed, count: 2, inherited: true }
+      history: []
+
+  SPEC-001:
+    S001:
+      name: Runtime Vision
+      lifecycle: Frozen
+      created: "2026-08-04"
+      review: { status: Completed, count: 2, inherited: true }
+      history: []
+    S002:
+      name: Runtime Requirements
+      lifecycle: Frozen
+      created: "2026-08-04"
+      review: { status: Completed, count: 2, inherited: true }
+      history: []
+    S003:
+      name: Runtime Responsibilities
+      lifecycle: Frozen
+      created: "2026-08-04"
+      review: { status: Completed, count: 2, inherited: true }
+      history: []
+    S004:
+      name: Runtime Boundaries
+      lifecycle: Frozen
+      created: "2026-08-04"
+      review: { status: Completed, count: 2, inherited: true }
+      history: []
+    S005:
+      name: Runtime Architecture
+      lifecycle: Frozen
+      created: "2026-08-04"
+      review: { status: Completed, count: 2, inherited: true }
+      history: []
+    S006:
+      name: Runtime Components
+      lifecycle: Frozen
+      created: "2026-08-04"
+      review: { status: Completed, count: 2, inherited: true }
+      history: []
+    S007:
+      name: Runtime Contracts
+      lifecycle: Frozen
+      created: "2026-08-04"
+      review: { status: Completed, count: 2, inherited: true }
+      history: []
+    S008:
+      name: Runtime Data Model
+      lifecycle: Frozen
+      created: "2026-08-04"
+      recheck_required: true
+      review: { status: Completed, count: 2, inherited: true }
+      history: []
+    S009:
+      name: Runtime State Machine
+      lifecycle: Review
+      created: "2026-08-05"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260807-001
+          type: rev1
+          verdict: CONDITIONAL
+          date: "2026-08-07"
+        - review: REV-20260808-001
+          type: rev1
+          verdict: CONDITIONAL
+          date: "2026-08-08"
+    S010:
+      name: Runtime Execution Flow
+      lifecycle: Draft
+      created: "2026-08-05"
+      recheck_required: true
+      review: { status: NotReviewed, count: 0, inherited: false }
+      history: []
+    S011:
+      name: Execution Observability
+      lifecycle: Draft
+      created: "2026-08-05"
+      recheck_required: true
+      review: { status: NotReviewed, count: 0, inherited: false }
+      history: []
+    S012:
+      name: Runtime Policies
+      lifecycle: Draft
+      created: "2026-08-05"
+      recheck_required: true
+      review: { status: NotReviewed, count: 0, inherited: false }
+      history: []
+    S013:
+      name: Runtime Governance
+      lifecycle: Draft
+      created: "2026-08-05"
+      recheck_required: true
+      review: { status: NotReviewed, count: 0, inherited: false }
+      history: []
+    S014:
+      name: Runtime Registry
+      lifecycle: Draft
+      created: "2026-08-05"
+      review: { status: NotReviewed, count: 0, inherited: false }
+      history: []
+
+# created = baseline estimate cho mục chưa review — /review sẽ hiệu chỉnh khi cần.
+
+# Mục chưa tồn tại trong SPEC-001 (SPEC.yaml includes S015-S020)
+missing_in_spec_001:
+  - S015
+  - S016
+  - S017
+  - S018
+  - S019
+  - S020
+
+# Toàn bộ SPEC chưa khởi tạo (roadmap docs/specs/README.md)
+not_started_specs:
+  - SPEC-002
+  - SPEC-003
+  - SPEC-004
+  - SPEC-005
+  - SPEC-006
+  - SPEC-007
+  - SPEC-008
+  - SPEC-009
+  - SPEC-010
+  - SPEC-011
+  - SPEC-012
+  - SPEC-013
+  - SPEC-014
+  - SPEC-015
+  - SPEC-016
+
+# Review log — mỗi review /review ghi 1 entry (append-only, đồng bộ review-history.yaml)
+review_log: []

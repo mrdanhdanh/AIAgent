@@ -65,6 +65,6 @@ public class GrammarStudyTests : E2ETestBase
         await using var pw = await GotoAsync($"{Fixture.ServerUrl}/grammar", ".grammar-card");
 
         var levelText = await GetCssVarAsync(pw.Page, ".grammar-level-badge", "--badge-level-text");
-        Assert.Equal("#8a6b15", levelText);
+        Assert.Equal("#66500d", levelText);
     }
 }

@@ -3,6 +3,7 @@
 # Schema: workflow.schema.yaml v1
 
 id: ui-development
+name: UI Development Workflow
 version: "1"
 description: UI/UX improvement workflow
 manifest:
@@ -19,40 +20,54 @@ manifest:
 
 phases:
   - id: audit
+    title: UI Audit
     name: UI Audit
     description: Đánh giá giao diện hiện tại
+    agent: ui-beautifier
+    command: team-ui-audit
     capability: review.ui
     outputs: [audit.md]
     retry: 1
 
   - id: design
+    title: UI Design
     name: UI Design
     description: Thiết kế cải tiến
     depends_on: [audit]
+    agent: ui-beautifier
+    command: team-ui-audit
     capability: implementation.ui
     outputs: [design.md]
     retry: 1
 
   - id: implement
+    title: UI Implement
     name: UI Implement
     description: Triển khai UI
     depends_on: [design]
+    agent: builder
+    command: team-build
     capability: implementation.code
     outputs: [artifact.code]
     retry: 2
 
   - id: verify
+    title: Verify
     name: Verify
     description: Kiểm tra giao diện + accessibility
     depends_on: [implement]
+    agent: tester
+    command: team-test
     capability: test.e2e
     outputs: [verify.md]
     retry: 2
 
   - id: complete
+    title: Complete
     name: Complete
     description: Tổng kết
     depends_on: [verify]
+    agent: general
     capability: review.documentation
     outputs: [summary.md]
     retry: 0

@@ -1,0 +1,21 @@
+# AIOS Review Metrics — định nghĩa metrics + quy tắc tổng hợp.
+# Dashboard đọc để hiển thị, Doctor đọc để cảnh báo, Evolution đọc để cải tiến.
+---
+version: "1.0"
+
+metrics:
+  reviewed_items: "Số mục review.status != NotReviewed (kể cả inherited)"
+  pending_reviews: "Số mục review.status in [NotReviewed, Rev1] và document.lifecycle in [Draft, Review]"
+  failed_reviews: "Số review FAIL trong 30 ngày gần nhất (từ history)"
+  average_score: "Trung bình overall score của review PASS/CONDITIONAL trong 30 ngày"
+  average_duration: "Trung bình thời lượng review (giờ) — từ timestamps trong history"
+  stale_reviews: "Số mục Completed quá completed_review_cycle_days (180) chưa health check"
+  overdue_drafts: "Số mục Draft quá draft_max_days (30)"
+
+aggregation:
+  sources: [review-tracker.yaml, review-history.yaml]
+  computed_by: "/review status · /review scan · Doctor"
+  sla: "review-rules.yaml"
+  thresholds:
+    draft_max_days: 30
+    completed_review_cycle_days: 180

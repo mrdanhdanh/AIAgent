@@ -1,0 +1,25 @@
+# AIOS Review Score — mô hình điểm 0-100 cho Dashboard trend.
+---
+version: "1.0"
+
+dimensions: [coverage, quality, consistency, governance]
+weights:
+  coverage: 25
+  quality: 25
+  consistency: 25
+  governance: 25
+
+overall: "round((coverage * 25 + quality * 25 + consistency * 25 + governance * 25) / 100)"
+
+# Ánh xạ score dimensions → check trong review-matrix.yaml
+mapping:
+  coverage: "matrix dimension coverage (scope + structure + content)"
+  quality: "chất lượng nội dung — kết quả check content/structure, độ rõ ràng"
+  consistency: "nhất quán hệ thống — trung bình traceability + dependency (cross-reference 2 chiều)"
+  governance: "matrix dimension governance (naming + version + policy compliance)"
+
+rules:
+  - "Mỗi dimension tính 0-100 từ kết quả các check thuộc matrix."
+  - "Áp deduction theo severity (review-severity.yaml): CRITICAL -30, MAJOR -10, MINOR -3, INFO 0 — floor 0."
+  - "Verdict quyết định bởi decision matrix (severity) — KHÔNG phải score."
+  - "Score dùng cho Dashboard hiển thị xu hướng (trend) + metrics.average_score."

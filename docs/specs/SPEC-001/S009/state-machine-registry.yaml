@@ -9,8 +9,8 @@ canonical:
   states: 14
   terminal: 6
   active: 4
-  internal: 4
-  transitions: 18
+  internal: 3
+  transitions: 19
   initial: ST-001
   terminal_states: [ST-008, ST-009, ST-010, ST-011, ST-012, ST-014]
 sub_machines:

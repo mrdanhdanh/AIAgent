@@ -1,0 +1,14 @@
+version: "26.0"
+rules:
+  naming:
+    agent_id: "^[a-z][a-z0-9-]*$"
+    capability_id: "^[a-z]+\.[a-z0-9-]+$"
+    workflow_id: "^[a-z][a-z0-9-]*$"
+    plugin_id: "^[a-z][a-z0-9-]*$"
+  lifecycle:
+    deprecated_requires_replacement: true
+  approval:
+    delete_gt_100_files: required
+  security:
+    plugin_signed: true
+    secret_scan: true

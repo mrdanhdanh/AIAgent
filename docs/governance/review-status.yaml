@@ -1,0 +1,73 @@
+# AIOS Review Status — định nghĩa 2 trục trạng thái tách biệt.
+# Trục 1: Document Lifecycle (vòng đời tài liệu). Trục 2: Review Lifecycle (trạng thái review).
+# Điều hành bởi /review. Doctor/Dashboard đọc file này để hiển thị + validate.
+---
+version: "1.0"
+
+document_lifecycle:
+  ladder: [Draft, Review, Approved, Frozen, Deprecated, Archived]
+  definition:
+    Draft: "Tạo xong, chưa được duyệt"
+    Review: "Đang trong vòng đánh giá (review hoặc approval)"
+    Approved: "Đã duyệt (POLICY-001) — bắt buộc review.status = Completed"
+    Frozen: "Đóng băng — chỉ đến từ Approved, KHÔNG bao giờ trực tiếp"
+    Deprecated: "Hết hiệu lực, còn tham chiếu cho lịch sử"
+    Archived: "Lưu trữ, không dùng nữa"
+  transitions:
+    - from: Draft
+      to: Review
+      condition: "Bắt đầu review (review.count >= 1)"
+    - from: Review
+      to: Approved
+      condition: "review.status = Completed + approval pass (POLICY-001)"
+    - from: Approved
+      to: Frozen
+      condition: "Quyết định freeze — không trực tiếp từ Draft/Review"
+    - from: Frozen
+      to: Deprecated
+      condition: "POLICY-004 Deprecation"
+    - from: Deprecated
+      to: Archived
+      condition: "Hết chu kỳ deprecation"
+
+review_lifecycle:
+  ladder: [NotReviewed, Rev1, Completed]
+  definition:
+    NotReviewed: "0 lần review"
+    Rev1: "Đã review lần 1 (1 lần) — bắt buộc review lần 2"
+    Completed: "Đã review lần 2 (>= 2 lần) — hoàn thành mục đó"
+  transitions:
+    - from: NotReviewed
+      to: Rev1
+      condition: "1 review PASS/CONDITIONAL (type tính count)"
+    - from: Rev1
+      to: Completed
+      condition: "2 review PASS/CONDITIONAL (type tính count)"
+  non_counting_types: [health]
+
+mapping:
+  - document: Draft
+    review: [NotReviewed, Rev1]
+    valid: true
+  - document: Review
+    review: [NotReviewed, Rev1, Completed]
+    valid: true
+  - document: Approved
+    review: [Completed]
+    valid: true
+  - document: Frozen
+    review: [Completed]
+    valid: true
+    note: "health/regression trên mục Frozen không thay đổi review.status"
+  - document: Deprecated
+    review: [Completed]
+    valid: true
+  - document: Archived
+    review: [Completed]
+    valid: true
+
+inheritance:
+  rule: >
+    Mục đã review/Freeze từ trước giữ nguyên CẢ HAI trạng thái
+    (document.lifecycle + review.status), ghi inherited: true.
+    Health check bằng revfull KHÔNG thay đổi trạng thái.

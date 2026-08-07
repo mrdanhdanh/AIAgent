@@ -164,7 +164,7 @@ Taxonomy:
 | scope | Execution |
 | trigger | Approval gate (S009 TR-005/006) |
 | guard | approval required |
-| action | Waiting (ST-006) |
+| action | Waiting (ST-005) |
 | priority | 50 |
 
 Điều khiển: **Approval Gate** (S010 EF015).

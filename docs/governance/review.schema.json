@@ -1,0 +1,182 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "docs/governance/review.schema.json",
+  "title": "AIOS Review Schema",
+  "description": "Schema cho review-tracker.yaml, review-history.yaml và review report metadata. Validate bằng /review, Doctor, Dashboard.",
+  "type": "object",
+  "definitions": {
+    "reviewStatus": {
+      "type": "string",
+      "enum": ["NotReviewed", "Rev1", "Completed"]
+    },
+    "documentLifecycle": {
+      "type": "string",
+      "enum": ["Draft", "Review", "Approved", "Frozen", "Deprecated", "Archived"]
+    },
+    "reviewType": {
+      "type": "string",
+      "enum": ["rev1", "revfull", "health", "compliance", "migration", "regression"]
+    },
+    "verdict": {
+      "type": "string",
+      "enum": ["PASS", "CONDITIONAL", "FAIL"]
+    },
+    "severity": {
+      "type": "string",
+      "enum": ["CRITICAL", "MAJOR", "MINOR", "INFO"]
+    },
+    "reviewId": {
+      "type": "string",
+      "pattern": "^REV-[0-9]{8}-[0-9]{3}$"
+    },
+    "reviewRef": {
+      "type": "string",
+      "pattern": "^REV-[0-9]{8}-[0-9]{3}$"
+    },
+    "score": {
+      "type": "object",
+      "properties": {
+        "coverage": { "type": "number", "minimum": 0, "maximum": 100 },
+        "quality": { "type": "number", "minimum": 0, "maximum": 100 },
+        "consistency": { "type": "number", "minimum": 0, "maximum": 100 },
+        "governance": { "type": "number", "minimum": 0, "maximum": 100 },
+        "overall": { "type": "number", "minimum": 0, "maximum": 100 }
+      },
+      "required": ["coverage", "quality", "consistency", "governance", "overall"]
+    },
+    "coverage": {
+      "type": "object",
+      "properties": {
+        "direct_reference": { "type": "number", "minimum": 0, "maximum": 100 },
+        "cross_reference": { "type": "number", "minimum": 0, "maximum": 100 },
+        "governance": { "type": "number", "minimum": 0, "maximum": 100 },
+        "schemas": { "type": "number", "minimum": 0, "maximum": 100 }
+      },
+      "required": ["direct_reference", "cross_reference", "governance", "schemas"]
+    },
+    "finding": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "pattern": "^#[0-9]+$" },
+        "severity": { "$ref": "#/definitions/severity" },
+        "category": {
+          "type": "string",
+          "enum": [
+            "CONTENT", "STRUCTURE", "CONSISTENCY", "TRACEABILITY",
+            "COMPLIANCE", "SECURITY", "STALE", "ARCHITECTURE", "DEPENDENCY", "SCHEMA"
+          ]
+        },
+        "location": { "type": "string" },
+        "description": { "type": "string" },
+        "suggestion": { "type": "string" }
+      },
+      "required": ["id", "severity", "category", "location", "description", "suggestion"]
+    },
+    "historyEntry": {
+      "type": "object",
+      "properties": {
+        "review": { "$ref": "#/definitions/reviewRef" },
+        "type": { "$ref": "#/definitions/reviewType" },
+        "verdict": { "$ref": "#/definitions/verdict" },
+        "date": { "type": "string", "format": "date" }
+      },
+      "required": ["review", "type", "verdict", "date"]
+    }
+  },
+  "allOf": [
+    {
+      "properties": {
+        "version": { "type": "string" },
+        "updated": { "type": "string", "format": "date" }
+      },
+      "required": ["version", "updated"]
+    }
+  ],
+  "oneOf": [
+    {
+      "title": "Review Tracker",
+      "description": "Cấu trúc docs/governance/review-tracker.yaml",
+      "properties": {
+        "convention": {
+          "type": "object",
+          "properties": {
+            "review_ladder": { "type": "array", "items": { "$ref": "#/definitions/reviewStatus" } },
+            "document_lifecycle": { "type": "array", "items": { "$ref": "#/definitions/documentLifecycle" } },
+            "min_reviews": { "type": "integer", "minimum": 2 },
+            "review_types": { "type": "array", "items": { "$ref": "#/definitions/reviewType" } },
+            "non_counting_types": { "type": "array", "items": { "$ref": "#/definitions/reviewType" } },
+            "freeze_rule": { "type": "string" }
+          },
+          "required": ["review_ladder", "document_lifecycle", "min_reviews", "review_types", "non_counting_types"]
+        },
+        "items": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "properties": {
+                "name": { "type": "string" },
+                "lifecycle": { "$ref": "#/definitions/documentLifecycle" },
+                "created": { "type": "string", "format": "date" },
+                "recheck_required": { "type": "boolean" },
+                "review": {
+                  "type": "object",
+                  "properties": {
+                    "status": { "$ref": "#/definitions/reviewStatus" },
+                    "count": { "type": "integer", "minimum": 0 },
+                    "inherited": { "type": "boolean" }
+                  },
+                  "required": ["status", "count", "inherited"]
+                },
+                "history": { "type": "array", "items": { "$ref": "#/definitions/historyEntry" } }
+              },
+              "required": ["name", "lifecycle", "review", "history"]
+            }
+          }
+        },
+        "missing_in_spec_001": { "type": "array", "items": { "type": "string" } },
+        "not_started_specs": { "type": "array", "items": { "type": "string" } },
+        "review_log": { "type": "array" }
+      },
+      "required": ["convention", "items", "review_log"]
+    },
+    {
+      "title": "Review History",
+      "description": "Cấu trúc docs/governance/review-history.yaml — global log append-only",
+      "properties": {
+        "entries": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "review_id": { "$ref": "#/definitions/reviewId" },
+              "spec": { "type": "string" },
+              "item": { "type": "string" },
+              "name": { "type": "string" },
+              "type": { "$ref": "#/definitions/reviewType" },
+              "mode": { "$ref": "#/definitions/reviewType" },
+              "verdict": { "$ref": "#/definitions/verdict" },
+              "score": { "$ref": "#/definitions/score" },
+              "severity_counts": {
+                "type": "object",
+                "properties": {
+                  "CRITICAL": { "type": "integer" },
+                  "MAJOR": { "type": "integer" },
+                  "MINOR": { "type": "integer" },
+                  "INFO": { "type": "integer" }
+                }
+              },
+              "started": { "type": "string", "format": "date-time" },
+              "finished": { "type": "string", "format": "date-time" },
+              "cascade_review": { "type": "array", "items": { "type": "string" } },
+              "report_path": { "type": "string" }
+            },
+            "required": ["review_id", "spec", "item", "type", "verdict", "score", "report_path"]
+          }
+        }
+      },
+      "required": ["entries"]
+    }
+  ]
+}

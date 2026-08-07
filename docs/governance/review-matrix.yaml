@@ -1,0 +1,40 @@
+# AIOS Review Matrix — ma trận check bắt buộc theo từng review type.
+# Doctor đọc rất nhanh để biết review nào cần check gì.
+---
+version: "1.0"
+
+dimensions:
+  - id: coverage
+    name: Coverage
+    checks: [scope, structure, content]
+  - id: governance
+    name: Governance
+    checks: [naming, version, quality_policy, traceability_policy]
+  - id: architecture
+    name: Architecture
+    checks: [tier_consistency, behavior_before_data, no_redefinition]
+  - id: traceability
+    name: Traceability
+    checks: [cross_reference, file_line, policy_011]
+  - id: dependency
+    name: Dependency
+    checks: [upstream, downstream, cascade_impact]
+  - id: schema
+    name: Schema
+    checks: [yaml_valid, schema_valid, metadata_consistent]
+
+required_by_type:
+  rev1: [coverage, governance]
+  revfull: [coverage, governance, architecture, traceability, dependency, schema]
+  health: [governance, architecture, dependency]
+  compliance: [coverage, governance, traceability, schema]
+  migration: [coverage, architecture, dependency, schema]
+  regression: [coverage, architecture, traceability, dependency]
+
+# Quy tắc:
+# - rev1: chuẩn, nhanh — coverage + governance cơ bản
+# - revfull: toàn diện — cả 6 dimension (dùng cho review cuối / mục quan trọng)
+# - health: kiểm tra sức khỏe định kỳ — không tăng review count
+# - compliance: đối chiếu policy/Constitution sau khi có thay đổi governance
+# - migration: sau khi đổi cấu trúc/format
+# - regression: sau khi SPEC/dependency/schema thay đổi

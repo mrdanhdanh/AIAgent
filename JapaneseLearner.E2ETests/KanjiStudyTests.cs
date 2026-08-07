@@ -84,7 +84,7 @@ public class KanjiStudyTests : E2ETestBase
         await using var pw = await GotoAsync($"{Fixture.ServerUrl}/kanji", ".kanji-study-container");
 
         var levelColor = await GetCssVarAsync(pw.Page, ".level-badge", "--badge-level-text");
-        Assert.Equal("#8a6b15", levelColor);
+        Assert.Equal("#66500d", levelColor);
 
         var textPrimary = await GetCssVarAsync(pw.Page, ".kanji-char", "--text-primary");
         Assert.Equal("#2b211f", textPrimary);
