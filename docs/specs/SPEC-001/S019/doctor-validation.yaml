@@ -1,0 +1,11 @@
+# SPEC-001 S019 - Doctor Validation
+# Kiem tra chinh Doctor.
+---
+version: "1.0"
+checks:
+  - Missing Evidence
+  - Invalid Report
+  - Repair Without Approval
+  - Repair Not Rollback-able
+  - Unauthorized Repair
+  - Stale Report

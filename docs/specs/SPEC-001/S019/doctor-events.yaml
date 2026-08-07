@@ -1,0 +1,10 @@
+# SPEC-001 S019 - Doctor Events
+# S011 reuse truc tiep.
+---
+version: "1.0"
+event_types:
+  - DOCTOR_RUN
+  - DOCTOR_PASSED
+  - DOCTOR_FAILED
+  - DOCTOR_REPORTED
+  - DOCTOR_REPAIRED

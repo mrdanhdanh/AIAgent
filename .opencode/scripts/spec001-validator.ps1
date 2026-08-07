@@ -551,7 +551,32 @@ if (Test-Path $evMd) {
   }
 }
 
-# ---------- S1-029: SPEC.yaml ----------
+# ---------- S1-029: S019 doctor ----------
+$s019 = Join-Path $spec1 'S019'
+foreach ($f in @('doctor.md','doctor.yaml','doctor.schema.json','doctor-scope.yaml','doctor-checks.yaml','doctor-pipeline.yaml','doctor-self-repair.yaml','doctor-report.yaml','doctor-events.yaml','doctor-metrics.yaml','doctor-validation.yaml')) {
+  if (-not (Test-Path (Join-Path $s019 $f))) { $errors += "S1-029: missing S019/$f" }
+}
+$drYaml = Join-Path $s019 'doctor.yaml'
+if (Test-Path $drYaml) {
+  $dr = Get-Content -LiteralPath $drYaml -Raw -Encoding utf8
+  foreach ($sec in @('philosophy','principles','scope','check_sources','health_score','pipeline','self_repair','report','events','metrics','traceability')) {
+    if ($dr -notmatch "(?m)^${sec}:") { $errors += "S1-029: doctor thieu '$sec'" }
+  }
+  foreach ($d in @('Constitution (SPEC-000)','Contracts (S007)','Policies (S012)','Governance (S013)','Registry (S014)','Resources (S015)','Compliance (S016)','Plugins (S017)','Observability (S011)')) {
+    if ($dr -notmatch [regex]::Escape($d)) { $warnings += "S1-029: thieu domain '$d'" }
+  }
+}
+# md: 16 sections DR001-DR016
+$drMd = Join-Path $s019 'doctor.md'
+if (Test-Path $drMd) {
+  $drm = Get-Content -LiteralPath $drMd -Raw -Encoding utf8
+  for ($i = 1; $i -le 16; $i++) {
+    $sec = "DR{0:D3}" -f $i
+    if ($drm -notmatch [regex]::Escape($sec)) { $errors += "S1-029: thieu section $sec" }
+  }
+}
+
+# ---------- S1-030: SPEC.yaml ----------
 $specFile = Join-Path $spec1 'SPEC.yaml'
 if (Test-Path $specFile) {
   $st = Get-Content -LiteralPath $specFile -Raw -Encoding utf8
