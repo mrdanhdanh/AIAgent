@@ -526,7 +526,32 @@ if (Test-Path $plMd) {
   }
 }
 
-# ---------- S1-028: SPEC.yaml ----------
+# ---------- S1-028: S018 evolution ----------
+$s018 = Join-Path $spec1 'S018'
+foreach ($f in @('evolution.md','evolution.yaml','evolution.schema.json','evolution-scope.yaml','evolution-pipeline.yaml','evolution-proposal.yaml','evolution-approval.yaml','evolution-events.yaml','evolution-metrics.yaml','evolution-validation.yaml')) {
+  if (-not (Test-Path (Join-Path $s018 $f))) { $errors += "S1-028: missing S018/$f" }
+}
+$evYaml = Join-Path $s018 'evolution.yaml'
+if (Test-Path $evYaml) {
+  $ev = Get-Content -LiteralPath $evYaml -Raw -Encoding utf8
+  foreach ($sec in @('philosophy','principles','scope','pipeline','proposal_model','proposal_status','approval','safety','application','traceability','events','metrics')) {
+    if ($ev -notmatch "(?m)^${sec}:") { $errors += "S1-028: evolution thieu '$sec'" }
+  }
+  foreach ($r in @('Event (S011)','Metrics (S011)','Trace (S011)','Audit (S011)','Compliance Report (S016)')) {
+    if ($ev -notmatch [regex]::Escape($r)) { $warnings += "S1-028: thieu reads '$r'" }
+  }
+}
+# md: 16 sections EV001-EV016
+$evMd = Join-Path $s018 'evolution.md'
+if (Test-Path $evMd) {
+  $evm = Get-Content -LiteralPath $evMd -Raw -Encoding utf8
+  for ($i = 1; $i -le 16; $i++) {
+    $sec = "EV{0:D3}" -f $i
+    if ($evm -notmatch [regex]::Escape($sec)) { $errors += "S1-028: thieu section $sec" }
+  }
+}
+
+# ---------- S1-029: SPEC.yaml ----------
 $specFile = Join-Path $spec1 'SPEC.yaml'
 if (Test-Path $specFile) {
   $st = Get-Content -LiteralPath $specFile -Raw -Encoding utf8

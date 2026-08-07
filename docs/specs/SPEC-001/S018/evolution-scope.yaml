@@ -1,0 +1,17 @@
+# SPEC-001 S018 - Evolution Scope
+# Dong bo S011 OB011A (Evolution Integration).
+---
+version: "1.0"
+reads:
+  - Event (S011)
+  - Metrics (S011)
+  - Trace (S011)
+  - Audit (S011)
+  - Compliance Report (S016)
+  - Registry (S014)
+not_reads:
+  - Implementation
+  - Business Data
+  - User Data
+  - Agent Internal State
+  - Plugin Internal State

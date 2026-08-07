@@ -1,0 +1,10 @@
+# SPEC-001 S018 - Evolution Events
+# S011 reuse truc tiep.
+---
+version: "1.0"
+event_types:
+  - EVOLUTION_PROPOSED
+  - EVOLUTION_APPROVED
+  - EVOLUTION_REJECTED
+  - EVOLUTION_APPLIED
+  - EVOLUTION_ROLLED_BACK
