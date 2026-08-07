@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aios://resources.schema.json",
+  "title": "SPEC-001 Runtime Resources (S015)",
+  "description": "JSON Schema cho resources.yaml. Validator kiem tra cau truc.",
+  "type": "object",
+  "required": ["id", "name", "version", "status", "owner", "philosophy", "principles", "categories", "resource_model", "lifecycle", "allocation", "access", "ownership", "constraints", "registry_reference", "traceability"],
+  "properties": {
+    "id": { "const": "SPEC-001-S015" },
+    "name": { "const": "Runtime Resources" },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "status": { "enum": ["Draft", "Review", "Approved", "Stable", "Deprecated"] },
+    "owner": { "type": "string" },
+    "philosophy": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "principles": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "categories": { "type": "array", "items": { "type": "string" }, "minItems": 10 },
+    "resource_model": {
+      "type": "object",
+      "required": ["fields"],
+      "properties": {
+        "fields": { "type": "array", "items": { "type": "string" }, "minItems": 10 }
+      }
+    },
+    "lifecycle": { "type": "array", "items": { "type": "string" }, "minItems": 6 },
+    "allocation": { "type": "array", "items": { "type": "string" }, "minItems": 5 },
+    "access": { "type": "array", "items": { "type": "string" }, "minItems": 3 },
+    "ownership": { "type": "object" },
+    "constraints": { "type": "array", "items": { "type": "string" }, "minItems": 5 },
+    "registry_reference": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "traceability": { "type": "array", "items": { "type": "string" }, "minItems": 4 },
+    "events": { "type": "array", "items": { "type": "string" } },
+    "metrics": { "type": "object" }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,82 @@
+# SPEC-001 S015 - Runtime Resources
+# Tai nguyen ma Registry (S014) tham chieu. Allocation qua Policy (S012) + Governance (S013).
+# Khong mo ta database/storage/API/implementation.
+---
+id: SPEC-001-S015
+name: Runtime Resources
+version: "1.0.0"
+status: Draft
+owner: Runtime Team
+philosophy:
+  - Resource la tai nguyen cua Runtime.
+  - Runtime khong hardcode tai nguyen.
+  - Moi Allocation di qua Policy (S012) va Governance (S013).
+  - Khong Resource nao bi Leak.
+principles:
+  - Allocated: moi tai nguyen phai cap phat tuong minh.
+  - Released: moi tai nguyen phai giai phong.
+  - Owned: moi tai nguyen co dung mot owner.
+  - Bounded: gioi han quota.
+  - Observable: moi tai nguyen quan sat duoc (S011).
+  - Traceable: moi allocation truy vet duoc.
+categories:
+  - Capability
+  - Execution
+  - Context
+  - Memory
+  - Storage
+  - Compute
+  - Network
+  - Quota
+  - Token
+  - Time
+resource_model:
+  fields: [id, type, category, owner, status, capacity, allocated, quota, references, metadata]
+lifecycle: [Draft, Available, Allocated, In Use, Released, Depleted]
+allocation:
+  - Request
+  - Policy Check (S012 POL-RES-001: guard resource available)
+  - Allocate
+  - Bind to Execution
+  - Track (S011)
+access:
+  - Request
+  - Policy Check (S012 POL-RESACC-001: permission + isolation)
+  - Grant / Deny
+ownership:
+  - Capability: Runtime
+  - Execution: Execution Owner
+  - Plugin: Plugin Owner
+  - Quota: Runtime
+constraints:
+  - Khong Double Allocation.
+  - Khong Resource Leak.
+  - Ton trong quota.
+  - Khong Orphan Resource.
+  - Release tren Terminal State (S009).
+registry_reference:
+  - Resource dang ky trong Registry (S014).
+  - Resource Entry tham chieu Contract (S007).
+traceability:
+  - Resource
+  - Allocation
+  - Execution
+  - Artifact
+events:
+  - RESOURCE_ALLOCATED
+  - RESOURCE_RELEASED
+  - RESOURCE_EXHAUSTED
+  - RESOURCE_LEAKED
+  - RESOURCE_DENIED
+  - RESOURCE_QUEUED
+  - RESOURCE_DEPLETED
+metrics:
+  allocation_count: 0
+  release_count: 0
+  active_resources: 0
+  leak_count: 0
+  exhaustion_count: 0
+  utilization: 0
+  wait_time: 0
+  queue_depth: 0
+  denied_count: 0

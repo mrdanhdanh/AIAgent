@@ -42,8 +42,8 @@ S010 Runtime Execution Flow 🚧
 S011 Execution Observability ✅ Draft
 S012 Runtime Policies       ✅ Draft
 S013 Runtime Governance     ✅ Draft
-S014 Runtime Registry       🚧
-S015 Runtime Resources
+S014 Runtime Registry       ✅ Draft
+S015 Runtime Resources      🚧
 S016 Runtime Compliance
 S017+ Plugin / Evolution / Doctor / Dashboard (mở rộng sau)
 ```
@@ -66,8 +66,8 @@ S017+ Plugin / Evolution / Doctor / Dashboard (mở rộng sau)
 | S011 | Execution Observability | `S011/observability.md` | 3 | 🚧 Draft |
 | S012 | Runtime Policies | `S012/policies.md` | 3 | ✅ Draft |
 | S013 | Runtime Governance | `S013/governance.md` | 3 | ✅ Draft |
-| S014 | Runtime Registry | `S014/registry.md` | 3 | 🚧 In progress |
-| S015 | Runtime Resources | `S015/resources.md` | 3 | ⬜ |
+| S014 | Runtime Registry | `S014/registry.md` | 3 | ✅ Draft |
+| S015 | Runtime Resources | `S015/resources.md` | 3 | 🚧 In progress |
 | S016 | Runtime Compliance | `S016/compliance.md` | 3 | ⬜ |
 
 ## Thứ tự viết (Behavior Before Data)
@@ -81,9 +81,9 @@ S010 Execution Flow   🚧
     ↓
     S011 Observability 🚧 (Execution — Event/Metrics/Trace/Audit/Health)
     ↓
-S012 Policies ✅ Draft (Define) → S013 Governance ✅ Draft (Enforce) → S014 Registry 🚧 (Resolve)
+S012 Policies ✅ Draft (Define) → S013 Governance ✅ Draft (Enforce) → S014 Registry ✅ Draft (Resolve)
     ↓
-S015 Resources → S016 Compliance (Verify)
+S015 Resources 🚧 (Allocate) → S016 Compliance (Verify)
     ↓
 S017+ Plugin / Evolution / Doctor / Dashboard
 ```

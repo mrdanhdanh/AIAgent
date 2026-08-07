@@ -1,0 +1,18 @@
+# SPEC-001 S015 - Canonical Resource Model
+# Moi Resource Entry deu theo model nay.
+---
+version: "1.0"
+resource:
+  id:
+  type:
+  category:
+  owner:
+  status:
+  capacity:
+  allocated:
+  quota:
+  references:
+  metadata:
+rules:
+  - Thieu bat ky field nao -> Invalid Resource.
+  - allocated khong duoc vuot capacity va quota.

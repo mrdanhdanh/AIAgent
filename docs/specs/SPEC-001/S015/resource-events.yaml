@@ -1,0 +1,12 @@
+# SPEC-001 S015 - Resource Events
+# S011 reuse truc tiep.
+---
+version: "1.0"
+event_types:
+  - RESOURCE_ALLOCATED
+  - RESOURCE_RELEASED
+  - RESOURCE_EXHAUSTED
+  - RESOURCE_LEAKED
+  - RESOURCE_DENIED
+  - RESOURCE_QUEUED
+  - RESOURCE_DEPLETED

@@ -51,8 +51,8 @@ SPEC-001 Runtime Kernel
     ├── S011 Execution Observability ✅ Draft
     ├── S012 Runtime Policies       ✅ Draft
     ├── S013 Runtime Governance     ✅ Draft
-    ├── S014 Runtime Registry       🚧
-    ├── S015 Runtime Resources
+    ├── S014 Runtime Registry       ✅ Draft
+    ├── S015 Runtime Resources      🚧
     └── S016 Runtime Compliance
 ```
 
@@ -127,6 +127,24 @@ Runtime (SPEC-001, đầy đủ S001-S020)
     ↓
 Workflow → Capability → Registry → Agent → Context → Artifact → Event → Plugin → ...
 ```
+
+## Quy ước trạng thái (Review Workflow v2.0 — chuẩn 2-pass, 2 trục)
+
+Mọi mục bắt buộc review **tối thiểu 2 lần** (chi tiết: `docs/governance/review-workflow.md`).
+
+**2 trục tách bạch:**
+
+```text
+Document Lifecycle:  Draft → Review → Approved → Frozen → Deprecated → Archived
+Review Lifecycle:    NotReviewed → (review 1) → Rev1 → (review 2) → Completed
+```
+
+- `NotReviewed` = chưa review · `Rev1` = đã review lần 1 · `Completed` = đã review lần 2 (hoàn thành).
+- Mục đã review/Freeze từ trước (✅ Frozen, kế thừa) **giữ nguyên cả 2 trạng thái** — không đổi.
+- Ký hiệu tại index này: ✅ = hoàn thành/Frozen · 🚧 = đang làm (Draft/Rev1) · ⬜ = chưa bắt đầu.
+- 6 review types: `rev1` · `revfull` · `health` (không tăng count) · `compliance` · `migration` · `regression`.
+- Trạng thái chi tiết theo từng mục: `docs/governance/review-tracker.yaml` (nguồn sự thật).
+- Điều hành: `/review <SPEC> <mục> [type]` · `/review status` · `/review scan`.
 
 ## Quy tắc
 

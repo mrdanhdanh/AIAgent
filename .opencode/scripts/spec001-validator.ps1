@@ -451,7 +451,32 @@ if (Test-Path $rgMd) {
   }
 }
 
-# ---------- S1-025: SPEC.yaml ----------
+# ---------- S1-025: S015 resources ----------
+$s015 = Join-Path $spec1 'S015'
+foreach ($f in @('resources.md','resources.yaml','resources.schema.json','resource-model.yaml','resource-categories.yaml','resource-lifecycle.yaml','resource-allocation.yaml','resource-access.yaml','resource-events.yaml','resource-metrics.yaml','resource-validation.yaml')) {
+  if (-not (Test-Path (Join-Path $s015 $f))) { $errors += "S1-025: missing S015/$f" }
+}
+$rsYaml = Join-Path $s015 'resources.yaml'
+if (Test-Path $rsYaml) {
+  $rs = Get-Content -LiteralPath $rsYaml -Raw -Encoding utf8
+  foreach ($sec in @('philosophy','principles','categories','resource_model','lifecycle','allocation','access','ownership','constraints','registry_reference','traceability','events','metrics')) {
+    if ($rs -notmatch "(?m)^${sec}:") { $errors += "S1-025: resources thieu '$sec'" }
+  }
+  foreach ($cat in @('Capability','Memory','Storage','Compute','Quota','Token')) {
+    if ($rs -notmatch [regex]::Escape($cat)) { $warnings += "S1-025: thieu category '$cat'" }
+  }
+}
+# md: 17 sections RS001-RS017
+$rsMd = Join-Path $s015 'resources.md'
+if (Test-Path $rsMd) {
+  $rm = Get-Content -LiteralPath $rsMd -Raw -Encoding utf8
+  for ($i = 1; $i -le 17; $i++) {
+    $sec = "RS{0:D3}" -f $i
+    if ($rm -notmatch [regex]::Escape($sec)) { $errors += "S1-025: thieu section $sec" }
+  }
+}
+
+# ---------- S1-026: SPEC.yaml ----------
 $specFile = Join-Path $spec1 'SPEC.yaml'
 if (Test-Path $specFile) {
   $st = Get-Content -LiteralPath $specFile -Raw -Encoding utf8

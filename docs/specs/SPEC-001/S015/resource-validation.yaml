@@ -1,0 +1,14 @@
+# SPEC-001 S015 - Resource Validation
+# Doctor kiem tra.
+---
+version: "1.0"
+checks:
+  - Double Allocation
+  - Resource Leak
+  - Orphan Resource
+  - Invalid Owner
+  - Quota Violation
+  - Undefined Resource
+result:
+  - Valid: Runtime khong leak, khong double allocation.
+  - Invalid: Resource bi chan, co Invalid Audit (S013).

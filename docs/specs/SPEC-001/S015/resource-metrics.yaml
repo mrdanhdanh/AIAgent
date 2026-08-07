@@ -1,0 +1,14 @@
+# SPEC-001 S015 - Resource Metrics
+# Phan cap: Runtime Metrics > Resource Metrics (S011 OB005).
+---
+version: "1.0"
+metrics:
+  allocation_count: 0
+  release_count: 0
+  active_resources: 0
+  leak_count: 0
+  exhaustion_count: 0
+  utilization: 0
+  wait_time: 0
+  queue_depth: 0
+  denied_count: 0
