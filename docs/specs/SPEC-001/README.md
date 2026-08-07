@@ -41,10 +41,11 @@ S010 Runtime Execution Flow 🚧
 ```text
 S011 Execution Observability ✅ Draft
 S012 Runtime Policies       ✅ Draft
-S013 Runtime Governance     🚧
-S014 Runtime Extensibility
-S015 Runtime Quality Model
+S013 Runtime Governance     ✅ Draft
+S014 Runtime Registry       🚧
+S015 Runtime Resources
 S016 Runtime Compliance
+S017+ Plugin / Evolution / Doctor / Dashboard (mở rộng sau)
 ```
 
 ## Quy trình (16 bước — freeze từng bước)
@@ -64,9 +65,9 @@ S016 Runtime Compliance
 | S010 | Runtime Execution Flow | `S010/execution-flow.md` | 2 | 🚧 In progress |
 | S011 | Execution Observability | `S011/observability.md` | 3 | 🚧 Draft |
 | S012 | Runtime Policies | `S012/policies.md` | 3 | ✅ Draft |
-| S013 | Runtime Governance | `S013/governance.md` | 3 | 🚧 In progress |
-| S014 | Runtime Extensibility | `S014/extensibility.md` | 3 | ⬜ |
-| S015 | Runtime Quality Model | `S015/quality-model.md` | 3 | ⬜ |
+| S013 | Runtime Governance | `S013/governance.md` | 3 | ✅ Draft |
+| S014 | Runtime Registry | `S014/registry.md` | 3 | 🚧 In progress |
+| S015 | Runtime Resources | `S015/resources.md` | 3 | ⬜ |
 | S016 | Runtime Compliance | `S016/compliance.md` | 3 | ⬜ |
 
 ## Thứ tự viết (Behavior Before Data)
@@ -80,9 +81,11 @@ S010 Execution Flow   🚧
     ↓
     S011 Observability 🚧 (Execution — Event/Metrics/Trace/Audit/Health)
     ↓
-S012 Policies ✅ Draft (Define) → S013 Governance 🚧 (Enforce) → S014 Extensibility
+S012 Policies ✅ Draft (Define) → S013 Governance ✅ Draft (Enforce) → S014 Registry 🚧 (Resolve)
     ↓
-S015 Quality Model → S016 Compliance
+S015 Resources → S016 Compliance (Verify)
+    ↓
+S017+ Plugin / Evolution / Doctor / Dashboard
 ```
 
 ## Quy tắc

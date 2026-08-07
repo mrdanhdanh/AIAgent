@@ -1,0 +1,15 @@
+# SPEC-001 S014 - Registry Resolution
+# Capability Resolution (S010 EF007) di qua day.
+---
+version: "1.0"
+flow:
+  - Request (id + version constraint)
+  - Registry Lookup
+  - Candidate Selection (theo version_resolution)
+  - Compatibility Check (S013 GV010)
+  - Resolved (Entry Active)
+rules:
+  - Exact Version -> Compatible -> Latest Compatible -> Failure.
+  - Entry Deprecated chi dung neu khong con Active.
+  - Entry Invalid khong bao gio Resolve.
+  - Moi resolution sinh Event + Metric + Trace (S011).

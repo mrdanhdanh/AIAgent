@@ -1,0 +1,71 @@
+# SPEC-001 S014 - Runtime Registry
+# SSOT cho Runtime Metadata. Capability Resolver (S006), Resolution (S010), Contract (S007).
+# Khong mo ta database/storage/API/implementation.
+---
+id: SPEC-001-S014
+name: Runtime Registry
+version: "1.0.0"
+status: Draft
+owner: Runtime Team
+philosophy:
+  - Registry la SSOT cho Runtime Metadata.
+  - Runtime khong hardcode bat ky Capability hay Plugin nao.
+  - Moi Resolution deu di qua Registry.
+  - Registry khong chua Business Logic.
+principles:
+  - Metadata First
+  - Contract First
+  - Versioned
+  - Discoverable
+  - Immutable (Published)
+  - Traceable
+categories:
+  - Capability Registry
+  - Workflow Registry
+  - Contract Registry
+  - Component Registry
+  - Policy Registry
+  - Plugin Registry
+  - Agent Registry
+  - Schema Registry
+  - Template Registry
+entry_model:
+  fields: [id, type, version, owner, status, metadata, tags, references]
+ownership:
+  Capability: Runtime
+  Contract: Runtime
+  Policy: Runtime
+  Workflow: Runtime
+  Plugin: Runtime
+  Agent: Runtime
+lifecycle: [Draft, Published, Deprecated, Retired]
+resolution:
+  - Request
+  - Registry Lookup
+  - Candidate Selection
+  - Compatibility Check
+  - Resolved
+resolution_rules:
+  - Resolve theo ID.
+  - Nhieu Version -> ap dung Compatibility Rules (S013 GV010).
+  - Khong Resolve Entry Deprecated neu co ban Active.
+  - Khong Resolve Entry Invalid.
+version_resolution:
+  - Exact Version
+  - Compatible Version
+  - Latest Compatible
+  - Failure
+relationships:
+  Capability: [Contract, Policy, Plugin, Workflow]
+events:
+  - REGISTRY_LOOKUP
+  - REGISTRY_RESOLVED
+  - REGISTRY_FAILED
+  - REGISTRY_DEPRECATED
+metrics:
+  registry_entries: 0
+  lookup_count: 0
+  cache_hit: 0
+  resolution_time: 0
+  failed_resolution: 0
+  deprecated_usage: 0

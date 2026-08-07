@@ -50,12 +50,13 @@ SPEC-001 Runtime Kernel
 └── Tier 3 — Runtime Operations
     ├── S011 Execution Observability ✅ Draft
     ├── S012 Runtime Policies       ✅ Draft
-    ├── S013 Runtime Governance     🚧
-    ├── S013 Runtime Governance
-    ├── S014 Runtime Extensibility
-    ├── S015 Runtime Quality Model
+    ├── S013 Runtime Governance     ✅ Draft
+    ├── S014 Runtime Registry       🚧
+    ├── S015 Runtime Resources
     └── S016 Runtime Compliance
 ```
+
+> S017+: Plugin / Evolution / Doctor / Dashboard (mở rộng sau)
 
 ## SPEC-002 — Workflow Engine
 

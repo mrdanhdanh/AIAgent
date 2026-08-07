@@ -1,0 +1,14 @@
+# SPEC-001 S014 - Registry Validation
+# Doctor kiem tra Registry.
+---
+version: "1.0"
+checks:
+  - Missing Entry
+  - Duplicate ID
+  - Broken Reference
+  - Invalid Version
+  - Circular Reference
+  - Invalid Owner
+result:
+  - Valid: Registry san sang Resolve.
+  - Invalid: Entry bi chan, co Invalid Audit (S013).
