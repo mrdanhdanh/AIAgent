@@ -576,7 +576,32 @@ if (Test-Path $drMd) {
   }
 }
 
-# ---------- S1-030: SPEC.yaml ----------
+# ---------- S1-030: S020 dashboard ----------
+$s020 = Join-Path $spec1 'S020'
+foreach ($f in @('dashboard.md','dashboard.yaml','dashboard.schema.json','dashboard-scope.yaml','dashboard-views.yaml','dashboard-read-model.yaml','dashboard-refresh.yaml','dashboard-events.yaml','dashboard-metrics.yaml','dashboard-validation.yaml')) {
+  if (-not (Test-Path (Join-Path $s020 $f))) { $errors += "S1-030: missing S020/$f" }
+}
+$dbYaml = Join-Path $s020 'dashboard.yaml'
+if (Test-Path $dbYaml) {
+  $db = Get-Content -LiteralPath $dbYaml -Raw -Encoding utf8
+  foreach ($sec in @('philosophy','principles','scope','views','read_model','refresh','events','metrics')) {
+    if ($db -notmatch "(?m)^${sec}:") { $errors += "S1-030: dashboard thieu '$sec'" }
+  }
+  foreach ($r in @('Events (S011)','Metrics (S011)','Trace (S011)','Audit (S011)','Health (S011)','Registry (S014)','Governance (S013)','Compliance (S016)','Doctor (S019)')) {
+    if ($db -notmatch [regex]::Escape($r)) { $warnings += "S1-030: thieu reads '$r'" }
+  }
+}
+# md: 16 sections DB001-DB016
+$dbMd = Join-Path $s020 'dashboard.md'
+if (Test-Path $dbMd) {
+  $dbm = Get-Content -LiteralPath $dbMd -Raw -Encoding utf8
+  for ($i = 1; $i -le 16; $i++) {
+    $sec = "DB{0:D3}" -f $i
+    if ($dbm -notmatch [regex]::Escape($sec)) { $errors += "S1-030: thieu section $sec" }
+  }
+}
+
+# ---------- S1-031: SPEC.yaml ----------
 $specFile = Join-Path $spec1 'SPEC.yaml'
 if (Test-Path $specFile) {
   $st = Get-Content -LiteralPath $specFile -Raw -Encoding utf8

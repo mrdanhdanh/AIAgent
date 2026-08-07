@@ -1,0 +1,8 @@
+# SPEC-001 S020 - Dashboard Events
+# S011 reuse truc tiep.
+---
+version: "1.0"
+event_types:
+  - DASHBOARD_VIEWED
+  - DASHBOARD_REFRESHED
+  - DASHBOARD_ERROR

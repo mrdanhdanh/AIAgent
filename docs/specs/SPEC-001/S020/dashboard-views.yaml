@@ -1,0 +1,25 @@
+# SPEC-001 S020 - Dashboard Views
+---
+version: "1.0"
+views:
+  - name: Execution View
+    source: S009/S010
+    content: state + outcome distribution
+  - name: Registry View
+    source: S014
+    content: registry-registry.yaml (mot file)
+  - name: Governance View
+    source: S013
+    content: governance-registry.yaml - graph
+  - name: Resource View
+    source: S015
+    content: resource metrics
+  - name: Health View
+    source: S011 + S016
+    content: health status + compliance score
+  - name: Compliance View
+    source: S016
+    content: compliance report + matrix
+  - name: Doctor View
+    source: S019
+    content: doctor report (checks, repair)

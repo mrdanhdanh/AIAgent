@@ -1,0 +1,8 @@
+# SPEC-001 S020 - Dashboard Read Model
+---
+version: "1.0"
+read_model:
+  fields: [id, timestamp, runtime_version, views, sources, refresh]
+rules:
+  - Read model la projection immutable (P010).
+  - Khong sua nguon khi view.

@@ -56,8 +56,8 @@ SPEC-001 Runtime Kernel
     ├── S016 Runtime Compliance     🚧 Draft
     ├── S017 Runtime Plugins        🚧 Draft
     ├── S018 Runtime Evolution      ✅ Draft
-    ├── S019 Runtime Doctor         🚧
-    └── S020 Runtime Dashboard (mở rộng sau)
+    ├── S019 Runtime Doctor         ✅ Draft
+    └── S020 Runtime Dashboard      🚧
 ```
 
 ## SPEC-002 — Workflow Engine

@@ -1,0 +1,61 @@
+# SPEC-001 S020 - Runtime Dashboard
+# Dashboard chi doc (S011 OB010) - view tu machine-readable.
+# Khong doc implementation. Khong ghi.
+---
+id: SPEC-001-S020
+name: Runtime Dashboard
+version: "1.0.0"
+status: Draft
+owner: Runtime Team
+philosophy:
+  - Dashboard la mat quan sat Runtime.
+  - Dashboard chi doc, khong ghi.
+  - Dashboard khong doc implementation.
+  - Moi view dung machine-readable.
+principles:
+  - Read Only
+  - Machine-readable First (S011)
+  - Event Driven (P005 - refresh theo event, khong polling)
+  - Single File (Registry S014 registry-registry.yaml)
+  - Least Privilege (S012 POL-SEC-001)
+  - Immutable Views (view la projection, khong sua nguon)
+scope:
+  reads:
+    - Events (S011)
+    - Metrics (S011)
+    - Trace (S011)
+    - Audit (S011)
+    - Health (S011)
+    - Registry (S014)
+    - Governance (S013)
+    - Compliance (S016)
+    - Doctor (S019)
+  not_reads:
+    - Implementation
+    - Business Data
+    - Agent Internal State
+    - Plugin Internal State
+views:
+  - Execution View (state + outcome distribution S009/S010)
+  - Registry View (S014 registry-registry.yaml)
+  - Governance View (S013 governance-registry.yaml - graph)
+  - Resource View (S015 metrics)
+  - Health View (S011 health + S016 score)
+  - Compliance View (S016 report + matrix)
+  - Doctor View (S019 report)
+read_model:
+  fields: [id, timestamp, runtime_version, views, sources, refresh]
+refresh:
+  - Event Driven (P005): refresh khi co event moi.
+  - Khong polling.
+  - View la projection immutable (P010).
+events:
+  - DASHBOARD_VIEWED
+  - DASHBOARD_REFRESHED
+  - DASHBOARD_ERROR
+metrics:
+  views_count: 0
+  widgets_count: 0
+  refresh_count: 0
+  source_errors: 0
+  avg_render_time: 0
