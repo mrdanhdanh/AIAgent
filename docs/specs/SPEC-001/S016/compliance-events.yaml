@@ -1,0 +1,10 @@
+# SPEC-001 S016 - Compliance Events
+# S011 reuse truc tiep.
+---
+version: "1.0"
+event_types:
+  - COMPLIANCE_PASSED
+  - COMPLIANCE_FAILED
+  - COMPLIANCE_REPORTED
+  - CERTIFICATION_GRANTED
+  - CERTIFICATION_REVOKED

@@ -1,0 +1,16 @@
+# SPEC-001 S016 - Health Score
+# Health duoc xac dinh tu Observability Data (S011 OB009).
+# Khong noi cong thuc.
+---
+version: "1.0"
+levels: [Healthy, Degraded, Unhealthy]
+sources:
+  - Execution (S009/S010)
+  - Resource (S015)
+  - Event (S011)
+  - Metrics (S011)
+  - Policy (S012)
+rules:
+  - CRITICAL violation -> Unhealthy.
+  - Chi warning -> Degraded.
+  - Khong vi pham -> Healthy.

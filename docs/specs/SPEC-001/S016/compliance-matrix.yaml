@@ -1,0 +1,21 @@
+# SPEC-001 S016 - Compliance Matrix
+# Doctor chi can doc matrix.
+---
+version: "1.0"
+matrix:
+  - source: Constitution (SPEC-000)
+    check: Constitution Violation
+  - source: Boundary (S004)
+    check: Boundary Violation
+  - source: Contract (S007)
+    check: Contract Failure
+  - source: Policy (S012)
+    check: Invalid Policy
+  - source: Governance (S013)
+    check: Missing Enforcement
+  - source: Registry (S014)
+    check: Broken Reference
+  - source: Resources (S015)
+    check: Resource Leak
+  - source: Observability (S011)
+    check: Missing Event

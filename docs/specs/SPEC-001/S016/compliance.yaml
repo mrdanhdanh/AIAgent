@@ -1,0 +1,88 @@
+# SPEC-001 S016 - Runtime Compliance
+# S016 verify - Doctor xac minh Runtime da thuc thi dung quy tac.
+# Khong dinh nghia lai quy tac (S004/S007/S012/S013 da dinh nghia).
+---
+id: SPEC-001-S016
+name: Runtime Compliance
+version: "1.0.0"
+status: Draft
+owner: Runtime Team
+philosophy:
+  - Compliance la xac minh, khong phai thuc thi.
+  - Doctor chi doc machine-readable (S011).
+  - Khong dinh nghia lai quy tac da co.
+  - Certification cho tung Runtime implementation.
+principles:
+  - Evidence Based
+  - Machine-readable First
+  - Deterministic
+  - Verifiable
+  - Non-invasive (verify khong thay doi Execution)
+  - Versioned (compliance report theo version)
+scope:
+  verifies:
+    - Constitution (SPEC-000)
+    - Boundary (S004)
+    - Contract (S007)
+    - Policy (S012)
+    - Governance (S013)
+    - Registry (S014)
+    - Resources (S015)
+    - Observability (S011)
+validation_rules:
+  - Missing Enforcement (S013)
+  - Invalid Policy (S013)
+  - Invalid Contract (S013)
+  - Boundary Violation (S013)
+  - Constitution Violation (S013)
+  - Version Conflict (S013)
+  - Missing Entry (S014)
+  - Duplicate ID (S014)
+  - Broken Reference (S014)
+  - Circular Reference (S014)
+  - Orphan Entry (S014)
+  - Dangling Reference (S014)
+  - Duplicate Active Version (S014)
+  - Missing Compatibility (S014)
+  - Invalid Lifecycle (S014)
+  - Double Allocation (S015)
+  - Resource Leak (S015)
+  - Quota Violation (S015)
+  - Missing Event (S011)
+  - Missing Metrics (S011)
+  - Broken Trace (S011)
+  - Broken Lineage (S011)
+  - Invalid Audit (S011)
+health_score: [Healthy, Degraded, Unhealthy]
+readiness_checklist:
+  - Constitution hop le.
+  - Registry hop le (khong orphan, khong circular).
+  - Resources khong leak, khong double allocation.
+  - Contracts hop le.
+  - Policies Active, khong conflict.
+  - Governance enforced day du.
+  - Observability day du (Event/Metrics/Trace/Audit).
+certification:
+  levels: [Not Certified, Certified, Revoked]
+  requirements:
+    - 100% validation rules Pass.
+    - Khong CRITICAL violation.
+    - Health Score = Healthy.
+pipeline:
+  - Collect Evidence (machine-readable)
+  - Validate Rules (compliance-matrix)
+  - Compute Score (health-score)
+  - Generate Report (compliance-report)
+events:
+  - COMPLIANCE_PASSED
+  - COMPLIANCE_FAILED
+  - COMPLIANCE_REPORTED
+  - CERTIFICATION_GRANTED
+  - CERTIFICATION_REVOKED
+metrics:
+  compliance_score: 0
+  passed_rules: 0
+  failed_rules: 0
+  warning_rules: 0
+  total_rules: 0
+  certification_count: 0

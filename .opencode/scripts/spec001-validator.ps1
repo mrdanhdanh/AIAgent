@@ -476,7 +476,32 @@ if (Test-Path $rsMd) {
   }
 }
 
-# ---------- S1-026: SPEC.yaml ----------
+# ---------- S1-026: S016 compliance ----------
+$s016 = Join-Path $spec1 'S016'
+foreach ($f in @('compliance.md','compliance.yaml','compliance.schema.json','validation-rules.yaml','compliance-matrix.yaml','health-score.yaml','readiness-checklist.yaml','runtime-certification.yaml','compliance-events.yaml','compliance-metrics.yaml','compliance-report.yaml')) {
+  if (-not (Test-Path (Join-Path $s016 $f))) { $errors += "S1-026: missing S016/$f" }
+}
+$cmYaml = Join-Path $s016 'compliance.yaml'
+if (Test-Path $cmYaml) {
+  $cm = Get-Content -LiteralPath $cmYaml -Raw -Encoding utf8
+  foreach ($sec in @('philosophy','principles','scope','validation_rules','health_score','readiness_checklist','certification','pipeline','events','metrics')) {
+    if ($cm -notmatch "(?m)^${sec}:") { $errors += "S1-026: compliance thieu '$sec'" }
+  }
+  foreach ($v in @('Constitution (SPEC-000)','Boundary (S004)','Contract (S007)','Policy (S012)','Governance (S013)','Registry (S014)','Resources (S015)','Observability (S011)')) {
+    if ($cm -notmatch [regex]::Escape($v)) { $warnings += "S1-026: thieu verifies '$v'" }
+  }
+}
+# md: 16 sections CM001-CM016
+$cmMd = Join-Path $s016 'compliance.md'
+if (Test-Path $cmMd) {
+  $cmm = Get-Content -LiteralPath $cmMd -Raw -Encoding utf8
+  for ($i = 1; $i -le 16; $i++) {
+    $sec = "CM{0:D3}" -f $i
+    if ($cmm -notmatch [regex]::Escape($sec)) { $errors += "S1-026: thieu section $sec" }
+  }
+}
+
+# ---------- S1-027: SPEC.yaml ----------
 $specFile = Join-Path $spec1 'SPEC.yaml'
 if (Test-Path $specFile) {
   $st = Get-Content -LiteralPath $specFile -Raw -Encoding utf8

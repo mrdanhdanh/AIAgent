@@ -1,0 +1,44 @@
+# SPEC-001 S016 - Validation Rules (tong hop tu cac SPEC)
+---
+version: "1.0"
+rules:
+  - id: VR-001
+    source: S013
+    rule: Missing Enforcement
+    severity: Critical
+  - id: VR-002
+    source: S013
+    rule: Constitution Violation
+    severity: Critical
+  - id: VR-003
+    source: S014
+    rule: Circular Reference
+    severity: Critical
+  - id: VR-004
+    source: S015
+    rule: Resource Leak
+    severity: Critical
+  - id: VR-005
+    source: S011
+    rule: Broken Lineage
+    severity: High
+  - id: VR-006
+    source: S014
+    rule: Orphan Entry
+    severity: High
+  - id: VR-007
+    source: S015
+    rule: Double Allocation
+    severity: High
+  - id: VR-008
+    source: S011
+    rule: Missing Event
+    severity: High
+  - id: VR-009
+    source: S014
+    rule: Missing Compatibility
+    severity: Medium
+  - id: VR-010
+    source: S011
+    rule: Invalid Audit
+    severity: Medium
