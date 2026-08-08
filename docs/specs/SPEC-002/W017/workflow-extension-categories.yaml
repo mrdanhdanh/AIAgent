@@ -1,0 +1,4 @@
+# SPEC-002 W017 - Extension Categories
+---
+version: "1.0"
+categories: [Step Extension, Gate Extension, Condition Extension, Formatter Extension, Binding Extension]

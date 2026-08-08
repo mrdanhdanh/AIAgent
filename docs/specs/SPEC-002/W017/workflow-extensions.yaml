@@ -1,0 +1,71 @@
+# SPEC-002 W017 - Workflow Extensions
+# Mo rong Workflow Engine qua Contract (W007), dang ky Registry (S014).
+# Khong sua Workflow Engine core.
+---
+id: SPEC-002-W017
+name: Workflow Extensions
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Workflow Team
+philosophy:
+  - Extension mo rong Workflow Engine qua Contract (W007).
+  - Extension khong sua Workflow Engine core.
+  - Moi Extension dang ky trong Registry (S014).
+  - Extension chi truy cap qua Capability + Contract.
+principles:
+  - Contract First (W007)
+  - Registry First (S014)
+  - Isolated (S012 POL-ISOL-001)
+  - Least Privilege (S012 POL-SEC-001)
+  - Versioned (SemVer)
+  - Verifiable (W016)
+categories:
+  - Step Extension
+  - Gate Extension
+  - Condition Extension
+  - Formatter Extension
+  - Binding Extension (W012)
+extension_model:
+  fields: [id, name, version, category, status, owner, capabilities, contracts, dependencies, metadata]
+lifecycle: [Draft, Published, Installed, Active, Disabled, Retired]
+installation:
+  - Register (S014 plugin-registry)
+  - Validate (Contract W007 + Compatibility W013)
+  - Install
+  - Activate
+activation_rules:
+  - Contract hop le (W007).
+  - Compatibility pass (W013).
+  - Governance allow (W013).
+  - Isolation dam bao (S012 POL-ISOL-001).
+isolation:
+  - Context isolated (S010 EF008).
+  - Resource bounded (W015 quota).
+  - Khong truy cap Agent Internal State (S011 OB003A).
+  - Khong truy cap Extension khac (goi qua Contract).
+security:
+  - Permission qua POL-SEC-001 (S012).
+  - Deny mac dinh (W013).
+resources:
+  - Extension owner resource (W015).
+  - Quota rieng cho moi Extension.
+compatibility:
+  - Contract (W013)
+  - Capability (W013)
+  - Workflow (W013)
+  - Registry compatibility check (W014)
+events:
+  - WORKFLOW_EXTENSION_REGISTERED
+  - WORKFLOW_EXTENSION_INSTALLED
+  - WORKFLOW_EXTENSION_ACTIVATED
+  - WORKFLOW_EXTENSION_DISABLED
+  - WORKFLOW_EXTENSION_FAILED
+  - WORKFLOW_EXTENSION_UNINSTALLED
+metrics:
+  active_extensions: 0
+  installed_extensions: 0
+  failed_extensions: 0
+  extension_calls: 0
+  extension_errors: 0
+  avg_extension_latency: 0

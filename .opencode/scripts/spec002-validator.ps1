@@ -770,6 +770,49 @@ if (Test-Path $cmmd) {
   }
 }
 
+# ---------- W17-001: W017 extensions ----------
+$w017 = Join-Path $spec2 'W017'
+foreach ($f in @('extensions.md','workflow-extensions.yaml','workflow-extensions.schema.json','workflow-extension-model.yaml','workflow-extension-categories.yaml','workflow-extension-lifecycle.yaml','workflow-extension-installation.yaml','workflow-extension-isolation.yaml','workflow-extension-events.yaml','workflow-extension-metrics.yaml','workflow-extension-validation.yaml')) {
+  if (-not (Test-Path (Join-Path $w017 $f))) { $errors += "W17-001: missing W017/$f" }
+}
+
+# ---------- W17-002: workflow-extensions.yaml ----------
+$ex17 = Join-Path $w017 'workflow-extensions.yaml'
+if (Test-Path $ex17) {
+  $ex = Get-Content -LiteralPath $ex17 -Raw -Encoding utf8
+  foreach ($sec in @('philosophy','principles','categories','extension_model','lifecycle','installation','activation_rules','isolation','security','resources','compatibility','events','metrics')) {
+    if ($ex -notmatch "(?m)^${sec}:") { $errors += "W17-002: thieu '$sec'" }
+  }
+  foreach ($cat in @('Step Extension','Gate Extension','Condition Extension','Formatter Extension','Binding Extension')) {
+    if ($ex -notmatch [regex]::Escape($cat)) { $errors += "W17-002: thieu category '$cat'" }
+  }
+}
+
+# ---------- W17-003: activation 4 dieu kien ----------
+if (Test-Path $ex17) {
+  $ex3 = Get-Content -LiteralPath $ex17 -Raw -Encoding utf8
+  if ($ex3 -notmatch 'Contract hop le') { $errors += "W17-003: activation thieu Contract hop le" }
+  if ($ex3 -notmatch 'Governance allow') { $errors += "W17-003: activation thieu Governance allow" }
+  if ($ex3 -notmatch 'Isolation dam bao') { $errors += "W17-003: activation thieu Isolation" }
+}
+
+# ---------- W17-004: isolation ----------
+if (Test-Path $ex17) {
+  $ex4 = Get-Content -LiteralPath $ex17 -Raw -Encoding utf8
+  if ($ex4 -notmatch 'Agent Internal State') { $errors += "W17-004: isolation thieu Agent Internal State" }
+  if ($ex4 -notmatch 'qua Contract') { $errors += "W17-004: isolation thieu goi qua Contract" }
+}
+
+# ---------- W17-005: extensions.md ----------
+$exmd = Join-Path $w017 'extensions.md'
+if (Test-Path $exmd) {
+  $exm = Get-Content -LiteralPath $exmd -Raw -Encoding utf8
+  for ($i = 1; $i -le 17; $i++) {
+    $sec = "WXE{0:D3}" -f $i
+    if ($exm -notmatch [regex]::Escape($sec)) { $errors += "W17-005: thieu section $sec" }
+  }
+}
+
 # ---------- W1-005: SPEC.yaml ----------
 $specFile = Join-Path $spec2 'SPEC.yaml'
 if (Test-Path $specFile) {
