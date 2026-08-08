@@ -1,0 +1,10 @@
+# SPEC-003 C017 - Extension Metrics
+---
+version: "1.0"
+metrics:
+  active_extensions: 0
+  installed_extensions: 0
+  failed_extensions: 0
+  extension_calls: 0
+  extension_errors: 0
+  avg_extension_latency: 0

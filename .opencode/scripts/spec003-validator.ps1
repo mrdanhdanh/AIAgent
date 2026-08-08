@@ -770,6 +770,49 @@ if (Test-Path $cmmd) {
   }
 }
 
+# ---------- C17-001: C017 extensions ----------
+$c017 = Join-Path $spec3 'C017'
+foreach ($f in @('extensions.md','capability-extensions.yaml','capability-extensions.schema.json','capability-extension-model.yaml','capability-extension-categories.yaml','capability-extension-lifecycle.yaml','capability-extension-installation.yaml','capability-extension-isolation.yaml','capability-extension-events.yaml','capability-extension-metrics.yaml','capability-extension-validation.yaml')) {
+  if (-not (Test-Path (Join-Path $c017 $f))) { $errors += "C17-001: missing C017/$f" }
+}
+
+# ---------- C17-002: capability-extensions.yaml ----------
+$ex17 = Join-Path $c017 'capability-extensions.yaml'
+if (Test-Path $ex17) {
+  $ex = Get-Content -LiteralPath $ex17 -Raw -Encoding utf8
+  foreach ($sec in @('philosophy','principles','categories','extension_model','lifecycle','installation','activation_rules','isolation','security','resources','compatibility','events','metrics')) {
+    if ($ex -notmatch "(?m)^${sec}:") { $errors += "C17-002: thieu '$sec'" }
+  }
+  foreach ($cat in @('Capability Type Extension','Binding Extension','Mapping Extension','Resolver Extension','Compatibility Extension')) {
+    if ($ex -notmatch [regex]::Escape($cat)) { $errors += "C17-002: thieu category '$cat'" }
+  }
+}
+
+# ---------- C17-003: activation 4 dieu kien ----------
+if (Test-Path $ex17) {
+  $ex3 = Get-Content -LiteralPath $ex17 -Raw -Encoding utf8
+  if ($ex3 -notmatch 'Contract hop le') { $errors += "C17-003: activation thieu Contract hop le" }
+  if ($ex3 -notmatch 'Governance allow') { $errors += "C17-003: activation thieu Governance allow" }
+  if ($ex3 -notmatch 'Isolation dam bao') { $errors += "C17-003: activation thieu Isolation" }
+}
+
+# ---------- C17-004: isolation ----------
+if (Test-Path $ex17) {
+  $ex4 = Get-Content -LiteralPath $ex17 -Raw -Encoding utf8
+  if ($ex4 -notmatch 'Agent Internal State') { $errors += "C17-004: isolation thieu Agent Internal State" }
+  if ($ex4 -notmatch 'qua Contract') { $errors += "C17-004: isolation thieu goi qua Contract" }
+}
+
+# ---------- C17-005: extensions.md ----------
+$exmd = Join-Path $c017 'extensions.md'
+if (Test-Path $exmd) {
+  $exm = Get-Content -LiteralPath $exmd -Raw -Encoding utf8
+  for ($i = 1; $i -le 17; $i++) {
+    $sec = "CXE{0:D3}" -f $i
+    if ($exm -notmatch [regex]::Escape($sec)) { $errors += "C17-005: thieu section $sec" }
+  }
+}
+
 # ---------- C1-005: SPEC.yaml ----------
 $specFile = Join-Path $spec3 'SPEC.yaml'
 if (Test-Path $specFile) {
