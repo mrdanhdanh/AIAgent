@@ -1,0 +1,21 @@
+# SPEC-002 W016 - Workflow Compliance Matrix
+# Doctor chi can doc matrix.
+---
+version: "1.0"
+matrix:
+  - source: Constitution (SPEC-000)
+    check: Constitution Violation
+  - source: Boundary (W004)
+    check: Boundary Violation
+  - source: Contract (W007)
+    check: Contract Failure
+  - source: Policy Binding (W012)
+    check: Invalid Binding
+  - source: Governance (W013)
+    check: Missing Enforcement
+  - source: Registry (W014)
+    check: Registry Violation
+  - source: Resources (W015)
+    check: Resource Leak
+  - source: Observability (W011)
+    check: Missing Workflow Event

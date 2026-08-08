@@ -728,6 +728,48 @@ if (Test-Path $rsmd) {
   }
 }
 
+# ---------- W16-001: W016 compliance ----------
+$w016 = Join-Path $spec2 'W016'
+foreach ($f in @('compliance.md','workflow-compliance.yaml','workflow-compliance.schema.json','workflow-validation-rules.yaml','workflow-compliance-matrix.yaml','workflow-health-score.yaml','workflow-readiness-checklist.yaml','workflow-certification.yaml','workflow-compliance-events.yaml','workflow-compliance-metrics.yaml','workflow-compliance-report.yaml')) {
+  if (-not (Test-Path (Join-Path $w016 $f))) { $errors += "W16-001: missing W016/$f" }
+}
+
+# ---------- W16-002: workflow-compliance.yaml ----------
+$cm16 = Join-Path $w016 'workflow-compliance.yaml'
+if (Test-Path $cm16) {
+  $cm = Get-Content -LiteralPath $cm16 -Raw -Encoding utf8
+  foreach ($sec in @('philosophy','principles','scope','validation_rules','health_score','readiness_checklist','certification','pipeline','events','metrics')) {
+    if ($cm -notmatch "(?m)^${sec}:") { $errors += "W16-002: thieu '$sec'" }
+  }
+  foreach ($v in @('Constitution (SPEC-000)','Boundary (W004)','Contract (W007)','Policy Binding (W012)','Governance (W013)','Registry (W014)','Resources (W015)','Observability (W011)')) {
+    if ($cm -notmatch [regex]::Escape($v)) { $errors += "W16-002: thieu verifies '$v'" }
+  }
+}
+
+# ---------- W16-003: validation_rules 12 ----------
+if (Test-Path $cm16) {
+  $cm3 = Get-Content -LiteralPath $cm16 -Raw -Encoding utf8
+  $ruleCount = ([regex]::Matches($cm3, '(?m)^  - ')).Count
+  if ($ruleCount -lt 12) { $errors += "W16-003: validation_rules chi co $ruleCount (can >=12)" }
+}
+
+# ---------- W16-004: certification ----------
+if (Test-Path $cm16) {
+  $cm4 = Get-Content -LiteralPath $cm16 -Raw -Encoding utf8
+  if ($cm4 -notmatch 'Not Certified') { $errors += "W16-004: certification thieu Not Certified" }
+  if ($cm4 -notmatch '100% validation rules Pass') { $errors += "W16-004: certification thieu 100% Pass" }
+}
+
+# ---------- W16-005: compliance.md ----------
+$cmmd = Join-Path $w016 'compliance.md'
+if (Test-Path $cmmd) {
+  $cmm = Get-Content -LiteralPath $cmmd -Raw -Encoding utf8
+  for ($i = 1; $i -le 16; $i++) {
+    $sec = "WMC{0:D3}" -f $i
+    if ($cmm -notmatch [regex]::Escape($sec)) { $errors += "W16-005: thieu section $sec" }
+  }
+}
+
 # ---------- W1-005: SPEC.yaml ----------
 $specFile = Join-Path $spec2 'SPEC.yaml'
 if (Test-Path $specFile) {

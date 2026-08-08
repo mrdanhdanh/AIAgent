@@ -1,0 +1,11 @@
+# SPEC-002 W016 - Workflow Readiness Checklist
+---
+version: "1.0"
+items:
+  - Workflow Definition Published (W009).
+  - Binding Active (W012).
+  - Registry hop le (W014).
+  - Resources khong leak (W015).
+  - Contracts hop le (W007).
+  - Governance enforced (W013).
+  - Observability day du (W011).
