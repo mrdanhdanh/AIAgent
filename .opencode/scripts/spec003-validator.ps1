@@ -728,6 +728,48 @@ if (Test-Path $rsmd) {
   }
 }
 
+# ---------- C16-001: C016 compliance ----------
+$c016 = Join-Path $spec3 'C016'
+foreach ($f in @('compliance.md','capability-compliance.yaml','capability-compliance.schema.json','capability-validation-rules.yaml','capability-compliance-matrix.yaml','capability-health-score.yaml','capability-readiness-checklist.yaml','capability-certification.yaml','capability-compliance-events.yaml','capability-compliance-metrics.yaml','capability-compliance-report.yaml')) {
+  if (-not (Test-Path (Join-Path $c016 $f))) { $errors += "C16-001: missing C016/$f" }
+}
+
+# ---------- C16-002: capability-compliance.yaml ----------
+$cm16 = Join-Path $c016 'capability-compliance.yaml'
+if (Test-Path $cm16) {
+  $cm = Get-Content -LiteralPath $cm16 -Raw -Encoding utf8
+  foreach ($sec in @('philosophy','principles','scope','validation_rules','health_score','readiness_checklist','certification','pipeline','events','metrics')) {
+    if ($cm -notmatch "(?m)^${sec}:") { $errors += "C16-002: thieu '$sec'" }
+  }
+  foreach ($v in @('Constitution (SPEC-000)','Boundary (C004)','Contract (C007)','Policy Binding (C012)','Governance (C013)','Registry (C014)','Resources (C015)','Observability (C011)')) {
+    if ($cm -notmatch [regex]::Escape($v)) { $errors += "C16-002: thieu verifies '$v'" }
+  }
+}
+
+# ---------- C16-003: validation_rules 12 ----------
+if (Test-Path $cm16) {
+  $cm3 = Get-Content -LiteralPath $cm16 -Raw -Encoding utf8
+  $ruleCount = ([regex]::Matches($cm3, '(?m)^  - ')).Count
+  if ($ruleCount -lt 12) { $errors += "C16-003: validation_rules chi co $ruleCount (can >=12)" }
+}
+
+# ---------- C16-004: certification ----------
+if (Test-Path $cm16) {
+  $cm4 = Get-Content -LiteralPath $cm16 -Raw -Encoding utf8
+  if ($cm4 -notmatch 'Not Certified') { $errors += "C16-004: certification thieu Not Certified" }
+  if ($cm4 -notmatch '100% validation rules Pass') { $errors += "C16-004: certification thieu 100% Pass" }
+}
+
+# ---------- C16-005: compliance.md ----------
+$cmmd = Join-Path $c016 'compliance.md'
+if (Test-Path $cmmd) {
+  $cmm = Get-Content -LiteralPath $cmmd -Raw -Encoding utf8
+  for ($i = 1; $i -le 16; $i++) {
+    $sec = "CMC{0:D3}" -f $i
+    if ($cmm -notmatch [regex]::Escape($sec)) { $errors += "C16-005: thieu section $sec" }
+  }
+}
+
 # ---------- C1-005: SPEC.yaml ----------
 $specFile = Join-Path $spec3 'SPEC.yaml'
 if (Test-Path $specFile) {

@@ -1,0 +1,52 @@
+# SPEC-003 C016 - Capability Validation Rules (12)
+---
+version: "1.0"
+rules:
+  - id: CVR-001
+    source: C009
+    rule: Invalid Capability
+    severity: Critical
+  - id: CVR-002
+    source: C012
+    rule: Invalid Binding
+    severity: Critical
+  - id: CVR-003
+    source: C004
+    rule: Boundary Violation
+    severity: Critical
+  - id: CVR-004
+    source: C014
+    rule: Registry Violation
+    severity: Critical
+  - id: CVR-005
+    source: C015
+    rule: Resource Leak
+    severity: Critical
+  - id: CVR-006
+    source: C007
+    rule: Contract Failure
+    severity: High
+  - id: CVR-007
+    source: C015
+    rule: Quota Violation
+    severity: High
+  - id: CVR-008
+    source: C011
+    rule: Missing Capability Event
+    severity: High
+  - id: CVR-009
+    source: C011
+    rule: Missing Capability Metrics
+    severity: Medium
+  - id: CVR-010
+    source: C011
+    rule: Broken Capability Trace
+    severity: Medium
+  - id: CVR-011
+    source: C011
+    rule: Invalid Audit
+    severity: Medium
+  - id: CVR-012
+    source: S013
+    rule: Constitution Violation
+    severity: Critical
