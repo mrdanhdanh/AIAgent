@@ -1,0 +1,16 @@
+# SPEC-003 C014 - Capability Registry of Registries
+# Dashboard chi can doc mot file duy nhat.
+---
+version: "1.0"
+registries:
+  - capability-registry.yaml
+  - capability-registry-model.yaml
+  - capability-registry-domains.yaml
+  - capability-registry-resolution.yaml
+  - capability-registry-events.yaml
+  - capability-registry-lifecycle.yaml
+  - capability-registry-constraints.yaml
+  - capability-registry-traceability.yaml
+  - capability-registry-metrics.yaml
+  - capability-registry-validation.yaml
+  - capability-registry.schema.json

@@ -1,0 +1,12 @@
+# SPEC-003 C014 - Capability Registry Validation
+# Doctor kiem tra.
+---
+version: "1.0"
+checks:
+  - Duplicate Capability ID
+  - Broken Reference (S014)
+  - Circular Reference (S014)
+  - Orphan Entry (S014)
+  - Duplicate Active Version
+  - Missing Compatibility
+  - Hardcode Mapping (CB007)

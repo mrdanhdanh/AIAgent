@@ -1,0 +1,20 @@
+# SPEC-003 C014 - Capability Registry Resolution (S014 RG005)
+---
+version: "1.0"
+flow:
+  - Request
+  - Normalize
+  - Lookup (S014)
+  - Candidate Selection
+  - Compatibility Check
+  - Policy Binding Check (C012)
+  - Governance Check (S013)
+  - Resolved
+priority: [Exact, Compatible, Latest Stable, Latest, Failure]
+failure_classification:
+  NotFound: khong ton tai
+  Invalid: schema loi
+  Deprecated: het ho tro
+  Incompatible: version
+  Forbidden: governance
+  Ambiguous: nhieu candidate

@@ -644,6 +644,49 @@ if (Test-Path $gvmd) {
   }
 }
 
+# ---------- C14-001: C014 registry ----------
+$c014 = Join-Path $spec3 'C014'
+foreach ($f in @('registry.md','capability-registry.yaml','capability-registry.schema.json','capability-registry-model.yaml','capability-registry-domains.yaml','capability-registry-resolution.yaml','capability-registry-events.yaml','capability-registry-lifecycle.yaml','capability-registry-constraints.yaml','capability-registry-traceability.yaml','capability-registry-metrics.yaml','capability-registry-validation.yaml','capability-registry-registry.yaml')) {
+  if (-not (Test-Path (Join-Path $c014 $f))) { $errors += "C14-001: missing C014/$f" }
+}
+
+# ---------- C14-002: capability-registry.yaml ----------
+$rg14 = Join-Path $c014 'capability-registry.yaml'
+if (Test-Path $rg14) {
+  $rg = Get-Content -LiteralPath $rg14 -Raw -Encoding utf8
+  foreach ($sec in @('philosophy','principles','categories','domains','entry_model','ownership','lifecycle','governance','constraints','resolution','resolution_rules','resolution_priority','resolution_failures','version_resolution','relationships','dependency','traceability','events','metrics')) {
+    if ($rg -notmatch "(?m)^${sec}:") { $errors += "C14-002: thieu '$sec'" }
+  }
+}
+
+# ---------- C14-003: resolution 8 buoc ----------
+if (Test-Path $rg14) {
+  $rg3 = Get-Content -LiteralPath $rg14 -Raw -Encoding utf8
+  foreach ($step in @('Request','Normalize','Lookup','Candidate Selection','Compatibility Check','Policy Binding Check','Governance Check','Resolved')) {
+    if ($rg3 -notmatch [regex]::Escape($step)) { $errors += "C14-003: resolution thieu $step" }
+  }
+}
+
+# ---------- C14-004: entry_model 10 fields ----------
+if (Test-Path $rg14) {
+  $rg4 = Get-Content -LiteralPath $rg14 -Raw -Encoding utf8
+  if ($rg4 -notmatch 'fields: \[id, type, category, version, status, owner, references, compatibility, lifecycle, metadata\]') { $errors += "C14-004: entry_model phai co 10 fields" }
+  if ($rg4 -notmatch 'Hardcode Mapping') { $errors += "C14-004: thieu constraint Hardcode Mapping (CB007)" }
+}
+
+# ---------- C14-005: registry.md ----------
+$rgmd = Join-Path $c014 'registry.md'
+if (Test-Path $rgmd) {
+  $rgm = Get-Content -LiteralPath $rgmd -Raw -Encoding utf8
+  for ($i = 1; $i -le 15; $i++) {
+    $sec = "CR{0:D3}" -f $i
+    if ($rgm -notmatch [regex]::Escape($sec)) { $errors += "C14-005: thieu section $sec" }
+  }
+  foreach ($sec in @('CR003A','CR005A','CR005B','CR008A','CR009A','CR010A')) {
+    if ($rgm -notmatch [regex]::Escape($sec)) { $errors += "C14-005: thieu section $sec" }
+  }
+}
+
 # ---------- C1-005: SPEC.yaml ----------
 $specFile = Join-Path $spec3 'SPEC.yaml'
 if (Test-Path $specFile) {

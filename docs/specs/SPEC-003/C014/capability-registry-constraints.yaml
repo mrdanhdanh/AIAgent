@@ -1,0 +1,11 @@
+# SPEC-003 C014 - Capability Registry Constraints (S014 RG009A)
+---
+version: "1.0"
+constraints:
+  - Khong Duplicate Capability ID.
+  - Khong Duplicate Version.
+  - Khong Broken Reference (S014).
+  - Khong Circular Reference (S014).
+  - Khong Orphan Entry (S014).
+  - Khong Multiple Active Version.
+  - Khong Hardcode Mapping (CB007).
