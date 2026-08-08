@@ -1,0 +1,9 @@
+# SPEC-002 W015 - Workflow Resource Access (S015 RS007)
+---
+version: "1.0"
+flow:
+  - Request
+  - Binding Check (W012 WPB-010 -> POL-RESACC-001)
+  - Grant / Deny
+rules:
+  - Deny mac dinh (S013).

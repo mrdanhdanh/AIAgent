@@ -687,6 +687,47 @@ if (Test-Path $rgmd) {
   }
 }
 
+# ---------- W15-001: W015 resources ----------
+$w015 = Join-Path $spec2 'W015'
+foreach ($f in @('resources.md','workflow-resources.yaml','workflow-resources.schema.json','workflow-resource-model.yaml','workflow-resource-categories.yaml','workflow-resource-lifecycle.yaml','workflow-resource-allocation.yaml','workflow-resource-access.yaml','workflow-resource-events.yaml','workflow-resource-metrics.yaml','workflow-resource-validation.yaml')) {
+  if (-not (Test-Path (Join-Path $w015 $f))) { $errors += "W15-001: missing W015/$f" }
+}
+
+# ---------- W15-002: workflow-resources.yaml ----------
+$rs15 = Join-Path $w015 'workflow-resources.yaml'
+if (Test-Path $rs15) {
+  $rs = Get-Content -LiteralPath $rs15 -Raw -Encoding utf8
+  foreach ($sec in @('philosophy','principles','categories','resource_model','lifecycle','allocation','access','ownership','constraints','registry_reference','traceability','events','metrics')) {
+    if ($rs -notmatch "(?m)^${sec}:") { $errors += "W15-002: thieu '$sec'" }
+  }
+  foreach ($cat in @('Capability','Memory','Compute','Quota','Token')) {
+    if ($rs -notmatch [regex]::Escape($cat)) { $warnings += "W15-002: thieu category '$cat'" }
+  }
+}
+
+# ---------- W15-003: allocation qua binding ----------
+if (Test-Path $rs15) {
+  $rs3 = Get-Content -LiteralPath $rs15 -Raw -Encoding utf8
+  if ($rs3 -notmatch 'WPB-004') { $errors += "W15-003: allocation thieu binding WPB-004 (POL-RES-001)" }
+  if ($rs3 -notmatch 'WPB-010') { $errors += "W15-003: access thieu binding WPB-010 (POL-RESACC-001)" }
+}
+
+# ---------- W15-004: resource_model 10 fields ----------
+if (Test-Path $rs15) {
+  $rs4 = Get-Content -LiteralPath $rs15 -Raw -Encoding utf8
+  if ($rs4 -notmatch 'fields: \[id, type, category, owner, status, capacity, allocated, quota, references, metadata\]') { $errors += "W15-004: resource_model phai co 10 fields" }
+}
+
+# ---------- W15-005: resources.md ----------
+$rsmd = Join-Path $w015 'resources.md'
+if (Test-Path $rsmd) {
+  $rsm = Get-Content -LiteralPath $rsmd -Raw -Encoding utf8
+  for ($i = 1; $i -le 17; $i++) {
+    $sec = "WRC{0:D3}" -f $i
+    if ($rsm -notmatch [regex]::Escape($sec)) { $errors += "W15-005: thieu section $sec" }
+  }
+}
+
 # ---------- W1-005: SPEC.yaml ----------
 $specFile = Join-Path $spec2 'SPEC.yaml'
 if (Test-Path $specFile) {

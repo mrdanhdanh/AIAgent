@@ -1,0 +1,78 @@
+# SPEC-002 W015 - Workflow Resources
+# Workflow dung Resource cua Runtime (S015) - binding khai bao quota (W012).
+# Khong mo ta database/storage/API/implementation.
+---
+id: SPEC-002-W015
+name: Workflow Resources
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Workflow Team
+philosophy:
+  - Workflow dung Resource cua Runtime (S015) - khong quan ly rieng.
+  - Quota khai bao qua binding (W012 WPB-004).
+  - Khong Resource nao bi Leak.
+  - Workflow khong hardcode tai nguyen.
+principles:
+  - Allocated: moi tai nguyen cap phat tuong minh (S015).
+  - Released: giai phong tren Terminal State (S015).
+  - Bounded: quota qua binding (W012).
+  - Observable: quan sat qua S011 (S015).
+  - Traceable: moi allocation truy vet (S015).
+categories:
+  note: Dung 10 categories cua S015 RS003.
+  - Capability
+  - Execution
+  - Context
+  - Memory
+  - Storage
+  - Compute
+  - Network
+  - Quota
+  - Token
+  - Time
+resource_model:
+  fields: [id, type, category, owner, status, capacity, allocated, quota, references, metadata]
+lifecycle: [Draft, Available, Allocated, In Use, Released, Depleted]
+allocation:
+  - Request (workflow step)
+  - Binding Check (W012 WPB-004 -> POL-RES-001)
+  - Allocate (S015 qua Runtime)
+  - Bind to Step
+  - Track (S011)
+access:
+  - Request
+  - Binding Check (W012 WPB-010 -> POL-RESACC-001)
+  - Grant / Deny
+ownership:
+  Workflow Execution: Workflow (qua Runtime S015)
+  Quota: Workflow Team (khai bao)
+  Resource: Runtime (S015)
+constraints:
+  - Khong Double Allocation (S015).
+  - Khong Resource Leak (S015).
+  - Ton trong quota binding (W012).
+  - Release tren Terminal State (S009).
+registry_reference:
+  - Resource dang ky trong Registry (S014).
+  - Binding tham chieu policy (S012).
+traceability:
+  - Workflow Step
+  - Allocation (S015)
+  - Execution (S008)
+  - Artifact
+events:
+  - WORKFLOW_RESOURCE_ALLOCATED
+  - WORKFLOW_RESOURCE_RELEASED
+  - WORKFLOW_RESOURCE_EXHAUSTED
+  - WORKFLOW_RESOURCE_LEAKED
+  - WORKFLOW_RESOURCE_DENIED
+  - WORKFLOW_RESOURCE_QUEUED
+metrics:
+  workflow_resource_allocations: 0
+  workflow_resource_releases: 0
+  active_workflow_resources: 0
+  leak_count: 0
+  exhaustion_count: 0
+  quota_utilization: 0
+  denied_count: 0
