@@ -1,0 +1,10 @@
+# SPEC-003 C007 - Contract Mapping (CCT -> Component)
+---
+version: "1.0"
+mapping:
+  CCT-001: [CCP-001]
+  CCT-002: [CCP-002]
+  CCT-003: [CCP-003]
+  CCT-004: [CCP-004]
+  CCT-005: [CCP-005, CCP-006]
+  CCT-006: [CCP-008]

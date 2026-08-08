@@ -1,0 +1,4 @@
+# SPEC-003 C007 - Contract Categories
+---
+version: "1.0"
+categories: [Execution, Data, Registry, Observability]

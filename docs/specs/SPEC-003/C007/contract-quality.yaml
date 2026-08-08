@@ -1,0 +1,8 @@
+# SPEC-003 C007 - Contract Quality
+---
+version: "1.0"
+quality:
+  - Deterministic: cung input -> cung output
+  - Versioned: semver
+  - Immutable: published khong doi
+  - Observable: moi goi co Event (S011)

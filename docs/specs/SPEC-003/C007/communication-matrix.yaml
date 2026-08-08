@@ -1,0 +1,14 @@
+# SPEC-003 C007 - Communication Matrix
+---
+version: "1.0"
+edges:
+  - [CCP-001, CCP-002, CCT-002]
+  - [CCP-001, CCP-003, CCT-003]
+  - [CCP-001, CCP-004, CCT-004]
+  - [CCP-001, CCP-005, CCT-005]
+  - [CCP-001, CCP-008, CCT-006]
+  - [CCP-003, CCP-002, CCT-002]
+  - [CCP-004, Registry, CCT-005]
+  - [CCP-005, Runtime, CCT-005]
+  - [CCP-006, Registry, CCT-005]
+  - [CCP-008, Event Store, CCT-006]
