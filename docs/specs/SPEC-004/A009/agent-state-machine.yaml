@@ -1,0 +1,66 @@
+# SPEC-004 A009 — Agent State Machine (Canonical)
+# 2 tang: Definition (AST-001..006) + Run (tham chieu S009, khong dinh nghia lai).
+---
+id: SPEC-004-A009
+name: Agent State Machine
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Agent Team
+philosophy:
+  - Agent luon co dung mot State.
+  - State chi thay doi qua Transition.
+  - Transition phai hop le.
+  - Moi Transition sinh Event.
+  - Agent Run dung State Machine cua Runtime (S009) - khong dinh nghia lai.
+principles:
+  - State la nguon su that duy nhat ve Agent.
+  - State doc lap implementation.
+  - State bat bien sau khi roi khoi.
+  - Transition quyet dinh Lifecycle.
+  - Khong duoc bo qua State.
+  - Run State Machine = S009 (Runtime).
+structure:
+  - Definition State Machine (AST-001..006)
+  - Run State Machine (tham chieu S009 ST-001..014)
+categories:
+  Initial: [AST-001]
+  Preparation: [AST-002]
+  Active: [AST-003]
+  Control: [AST-004]
+  Terminal: [AST-005, AST-006]
+states:
+  AST-001: { name: Draft, category: Initial, type: Initial, terminal: false }
+  AST-002: { name: Validating, category: Preparation, type: Internal, terminal: false }
+  AST-003: { name: Published, category: Active, type: Active, terminal: false }
+  AST-004: { name: Deprecated, category: Control, type: Active, terminal: false }
+  AST-005: { name: Retired, category: Terminal, type: Terminal, terminal: true }
+  AST-006: { name: Rejected, category: Terminal, type: Terminal, terminal: true }
+initial_state: AST-001
+terminal_states: [AST-005, AST-006]
+run_mapping:
+  note: Agent Run la Execution cua Runtime - dung S009 ST-001..014.
+  Agent Created: ST-001
+  Agent Validating: ST-002
+  Agent Prepared: ST-003
+  Agent Running: ST-004
+  Agent Waiting (Gate): ST-005
+  Agent Suspended: ST-006
+  Agent Cancelling: ST-007
+  Agent Completed: ST-008
+  Agent Failed: ST-009
+  Agent Cancelled: ST-010
+  Agent TimedOut: ST-011
+  Agent Aborted: ST-014
+terminal_rules:
+  - Terminal khong co transition ra.
+  - Ngoai le duy nhat: Replay (S009 ST-012).
+triggers: [Registry (S014), User, Governance (S013), Scheduler]
+transitions:
+  - "from: AST-001; to: AST-002; event: AGENT_VALIDATING; guard: Khai bao hop le (schema)"
+  - "from: AST-002; to: AST-003; event: AGENT_PUBLISHED; guard: Validate pass + Registry Entry (S014)"
+  - "from: AST-002; to: AST-006; event: AGENT_REJECTED; guard: Validate fail"
+  - "from: AST-003; to: AST-004; event: AGENT_DEPRECATED; guard: Governance (S013) cho phep"
+  - "from: AST-004; to: AST-003; event: AGENT_REACTIVATED; guard: Governance (S013) duyet"
+  - "from: AST-003; to: AST-005; event: AGENT_RETIRED; guard: Governance (S013)"
+  - "from: AST-004; to: AST-005; event: AGENT_RETIRED; guard: Khong con dung"

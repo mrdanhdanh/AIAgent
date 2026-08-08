@@ -1,0 +1,4 @@
+# SPEC-004 A009 - Agent Transition Types
+---
+version: "1.0"
+types: [Initial, Internal, Active, Terminal]

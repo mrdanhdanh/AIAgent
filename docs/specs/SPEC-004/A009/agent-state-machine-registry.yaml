@@ -1,0 +1,16 @@
+# SPEC-004 A009 - Agent State Machine Registry
+---
+version: "1.0"
+registries:
+  - agent-state-machine.yaml
+  - agent-states.yaml
+  - agent-transitions.yaml
+  - agent-transition-guards.yaml
+  - agent-transition-triggers.yaml
+  - agent-transition-types.yaml
+  - agent-transition-matrix.yaml
+  - agent-state-events.yaml
+  - agent-state-history.yaml
+  - agent-state-metrics.yaml
+  - agent-state-machine-validation.yaml
+  - agent.schema.json

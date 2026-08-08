@@ -1,0 +1,16 @@
+# SPEC-004 A009 - Agent Transition Guards
+---
+version: "1.0"
+guards:
+  - transition: AST-001 -> AST-002
+    guard: Khai bao hop le (schema, khong code AB001)
+  - transition: AST-002 -> AST-003
+    guard: Validate pass + Registry Entry (S014)
+  - transition: AST-002 -> AST-006
+    guard: Validate fail (co Invalid Audit S013)
+  - transition: AST-003 -> AST-004
+    guard: Governance (S013) cho phep
+  - transition: AST-004 -> AST-003
+    guard: Governance (S013) duyet
+  - transition: AST-003/004 -> AST-005
+    guard: Governance (S013) / khong con dung
