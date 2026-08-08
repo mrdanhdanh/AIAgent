@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aios://capability-state-machine.schema.json",
+  "title": "SPEC-003 Capability State Machine (C009)",
+  "description": "JSON Schema cho capability-state-machine.yaml. Validator kiem tra cau truc.",
+  "type": "object",
+  "required": ["id", "name", "version", "status", "frozen", "owner", "philosophy", "principles", "structure", "categories", "states", "initial_state", "terminal_states", "run_mapping", "terminal_rules", "triggers", "transitions"],
+  "properties": {
+    "id": { "const": "SPEC-003-C009" },
+    "name": { "const": "Capability State Machine" },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "status": { "enum": ["Draft", "Review", "Approved", "Stable", "Deprecated"] },
+    "frozen": { "type": "boolean" },
+    "owner": { "type": "string" },
+    "philosophy": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "principles": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "structure": { "type": "array", "items": { "type": "string" }, "minItems": 2 },
+    "categories": { "type": "object" },
+    "states": { "type": "object", "minProperties": 6 },
+    "initial_state": { "const": "CST-001" },
+    "terminal_states": { "type": "array", "items": { "type": "string" }, "minItems": 2 },
+    "run_mapping": { "type": "object" },
+    "terminal_rules": { "type": "array", "items": { "type": "string" }, "minItems": 2 },
+    "triggers": { "type": "array", "items": { "type": "string" }, "minItems": 4 },
+    "transitions": { "type": "array", "items": { "type": "string" }, "minItems": 7 }
+  },
+  "additionalProperties": false
+}

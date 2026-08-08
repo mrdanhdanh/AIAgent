@@ -1,0 +1,11 @@
+# SPEC-003 C009 - Capability Transition Triggers
+---
+version: "1.0"
+definition_triggers: [Registry (S014), User, Governance (S013), Scheduler]
+run_triggers:
+  note: Capability Run dung triggers cua S009 (Runtime).
+  - Runtime
+  - Policy (S012)
+  - User
+  - Approval
+  - Timeout

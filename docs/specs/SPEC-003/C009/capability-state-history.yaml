@@ -1,0 +1,7 @@
+# SPEC-003 C009 - Capability State History (S011)
+---
+version: "1.0"
+history:
+  fields: [capability_id, state_from, state_to, event, timestamp, correlation_id]
+rules:
+  - Append-only (S011).

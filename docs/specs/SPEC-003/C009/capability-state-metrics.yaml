@@ -1,0 +1,10 @@
+# SPEC-003 C009 - Capability State Metrics
+---
+version: "1.0"
+metrics:
+  capability_state_distribution: {}
+  invalid_transitions: 0
+  published_count: 0
+  rejected_count: 0
+  deprecated_count: 0
+  retired_count: 0

@@ -410,6 +410,52 @@ if (Test-Path $dmd8) {
   }
 }
 
+# ---------- C9-001: C009 state machine ----------
+$c009 = Join-Path $spec3 'C009'
+foreach ($f in @('state-machine.md','capability-state-machine.yaml','capability.schema.json','capability-states.yaml','capability-transitions.yaml','capability-transition-guards.yaml','capability-transition-triggers.yaml','capability-transition-types.yaml','capability-transition-matrix.yaml','capability-state-events.yaml','capability-state-history.yaml','capability-state-metrics.yaml','capability-state-machine-validation.yaml','capability-state-machine-registry.yaml')) {
+  if (-not (Test-Path (Join-Path $c009 $f))) { $errors += "C9-001: missing C009/$f" }
+}
+
+# ---------- C9-002: capability-state-machine.yaml ----------
+$sm9 = Join-Path $c009 'capability-state-machine.yaml'
+if (Test-Path $sm9) {
+  $sm = Get-Content -LiteralPath $sm9 -Raw -Encoding utf8
+  foreach ($sec in @('philosophy','principles','structure','categories','states','initial_state','terminal_states','run_mapping','terminal_rules','triggers','transitions')) {
+    if ($sm -notmatch "(?m)^${sec}:") { $errors += "C9-002: thieu '$sec'" }
+  }
+  foreach ($s in @('CST-001','CST-003','CST-005','CST-006')) {
+    if ($sm -notmatch [regex]::Escape($s)) { $errors += "C9-002: thieu state $s" }
+  }
+  if ($sm -notmatch '(?m)^initial_state:') { $errors += "C9-002: thieu initial_state" }
+  if ($sm -notmatch '(?m)^transitions:') { $errors += "C9-002: thieu transitions" }
+}
+
+# ---------- C9-003: run_mapping sang S009 ----------
+if (Test-Path $sm9) {
+  $sm3 = Get-Content -LiteralPath $sm9 -Raw -Encoding utf8
+  if ($sm3 -notmatch 'run_mapping') { $errors += "C9-003: thieu run_mapping (S009)" }
+  foreach ($st in @('ST-001','ST-008','ST-009','ST-014')) {
+    if ($sm3 -notmatch [regex]::Escape($st)) { $errors += "C9-003: run_mapping thieu $st" }
+  }
+}
+
+# ---------- C9-004: transitions >= 7 ----------
+if (Test-Path $sm9) {
+  $sm4 = Get-Content -LiteralPath $sm9 -Raw -Encoding utf8
+  $trCount = ([regex]::Matches($sm4, '(?m)^  - "?from:')).Count
+  if ($trCount -lt 7) { $errors += "C9-004: chi co $trCount transitions (can >=7)" }
+}
+
+# ---------- C9-005: state-machine.md ----------
+$smd9 = Join-Path $c009 'state-machine.md'
+if (Test-Path $smd9) {
+  $sm9m = Get-Content -LiteralPath $smd9 -Raw -Encoding utf8
+  for ($i = 1; $i -le 17; $i++) {
+    $sec = "CS{0:D3}" -f $i
+    if ($sm9m -notmatch [regex]::Escape($sec)) { $errors += "C9-005: thieu section $sec" }
+  }
+}
+
 # ---------- C1-005: SPEC.yaml ----------
 $specFile = Join-Path $spec3 'SPEC.yaml'
 if (Test-Path $specFile) {

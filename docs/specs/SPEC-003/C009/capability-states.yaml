@@ -1,0 +1,12 @@
+# SPEC-003 C009 - Capability Definition States (6)
+---
+version: "1.0"
+initial_state: CST-001
+terminal_states: [CST-005, CST-006]
+states:
+  CST-001: { name: Draft, category: Initial, type: Initial, terminal: false }
+  CST-002: { name: Validating, category: Preparation, type: Internal, terminal: false }
+  CST-003: { name: Published, category: Active, type: Active, terminal: false }
+  CST-004: { name: Deprecated, category: Control, type: Active, terminal: false }
+  CST-005: { name: Retired, category: Terminal, type: Terminal, terminal: true }
+  CST-006: { name: Rejected, category: Terminal, type: Terminal, terminal: true }
