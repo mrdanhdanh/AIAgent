@@ -456,6 +456,50 @@ if (Test-Path $smd9) {
   }
 }
 
+# ---------- C10-001: C010 execution flow ----------
+$c010 = Join-Path $spec3 'C010'
+foreach ($f in @('execution-flow.md','capability-execution-flow.yaml','capability-execution-flow.schema.json','capability-stages.yaml','capability-registration.yaml','capability-resolution.yaml','capability-fallback.yaml','capability-failure.yaml','capability-lineage.yaml','capability-outcome.yaml','capability-policies.yaml','capability-validation.yaml')) {
+  if (-not (Test-Path (Join-Path $c010 $f))) { $errors += "C10-001: missing C010/$f" }
+}
+
+# ---------- C10-002: capability-execution-flow.yaml ----------
+$ef10 = Join-Path $c010 'capability-execution-flow.yaml'
+if (Test-Path $ef10) {
+  $ef = Get-Content -LiteralPath $ef10 -Raw -Encoding utf8
+  foreach ($sec in @('philosophy','principles','stages','canonical_flow','capability_flows','rules')) {
+    if ($ef -notmatch "(?m)^${sec}:") { $errors += "C10-002: thieu '$sec'" }
+  }
+  foreach ($st in @('Initialize','Validate','Prepare','Execute','Coordinate','Finalize','Complete')) {
+    if ($ef -notmatch [regex]::Escape($st)) { $errors += "C10-002: thieu stage $st" }
+  }
+}
+
+# ---------- C10-003: canonical_flow 8 buoc ----------
+if (Test-Path $ef10) {
+  $ef3 = Get-Content -LiteralPath $ef10 -Raw -Encoding utf8
+  foreach ($step in @('Command','Declare','Validate','Register','Resolve','Execute','Finalize','Complete')) {
+    if ($ef3 -notmatch [regex]::Escape($step)) { $errors += "C10-003: canonical_flow thieu $step" }
+  }
+}
+
+# ---------- C10-004: capability_flows 7 loai ----------
+if (Test-Path $ef10) {
+  $ef4 = Get-Content -LiteralPath $ef10 -Raw -Encoding utf8
+  foreach ($fl in @('Registration','Resolution','Fallback','Gate','Retry','Timeout','Failure')) {
+    if ($ef4 -notmatch [regex]::Escape($fl)) { $errors += "C10-004: thieu flow $fl" }
+  }
+}
+
+# ---------- C10-005: execution-flow.md ----------
+$efmd = Join-Path $c010 'execution-flow.md'
+if (Test-Path $efmd) {
+  $efm = Get-Content -LiteralPath $efmd -Raw -Encoding utf8
+  for ($i = 1; $i -le 19; $i++) {
+    $sec = "CF{0:D3}" -f $i
+    if ($efm -notmatch [regex]::Escape($sec)) { $errors += "C10-005: thieu section $sec" }
+  }
+}
+
 # ---------- C1-005: SPEC.yaml ----------
 $specFile = Join-Path $spec3 'SPEC.yaml'
 if (Test-Path $specFile) {

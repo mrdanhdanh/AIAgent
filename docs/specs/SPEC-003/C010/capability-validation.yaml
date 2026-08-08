@@ -1,0 +1,10 @@
+# SPEC-003 C010 - Capability Flow Validation
+# Doctor kiem tra.
+---
+version: "1.0"
+checks:
+  - Capability khong dang ky trong S014.
+  - Capability System tu resolve ngoai Runtime (CB004).
+  - Thieu Event cho buoc nao do (S011).
+  - Hardcode mapping (CB007).
+  - Capability ket thuc khong bang Terminal State (S009).

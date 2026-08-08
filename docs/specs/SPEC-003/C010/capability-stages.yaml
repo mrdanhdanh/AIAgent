@@ -1,0 +1,5 @@
+# SPEC-003 C010 - Capability Stages (tham chieu S010 EF004)
+---
+version: "1.0"
+stages: [Initialize, Validate, Prepare, Execute, Coordinate, Finalize, Complete]
+note: Capability dung 7 stages cua S010 EF004 - khong dinh nghia lai.
