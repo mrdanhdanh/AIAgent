@@ -1,0 +1,13 @@
+# SPEC-004 A004 - Boundary Ownership Matrix
+---
+version: "1.0"
+ownership:
+  AB001-declaration: Agent
+  AB002-registry: Agent
+  AB003-validation: Agent
+  AB004-execution: Runtime (SPEC-001)
+  AB005-interface: Agent
+  AB006-dependency: Agent
+  AB007-capability: Capability System (SPEC-003)
+  AB008-policy: Runtime (S012)
+  AB009-governance: Runtime (S013)

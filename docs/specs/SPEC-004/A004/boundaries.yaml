@@ -1,0 +1,184 @@
+# SPEC-004 A004 — Agent Boundaries (Firewall cua Agent System)
+# 9 boundary + hierarchy + severity + violations + metrics.
+---
+id: SPEC-004-A004
+name: Agent Boundaries
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Agent Team
+hierarchy:
+  Agent Boundary:
+    - AB001-declaration
+    - AB002-registry
+    - AB003-validation
+    - AB004-execution
+    - AB005-interface
+    - AB006-dependency
+    - AB007-capability
+    - AB008-policy
+    - AB009-governance
+decision:
+  - Neu mot chuc nang khong xac dinh duoc Boundary, chuc nang do khong duoc phep dua vao Agent System.
+invariants:
+  - Agent System khong vuot qua Boundary.
+  - Agent System khong tu chay Agent - giao cho Runtime (SPEC-001).
+  - Agent System chi giao tiep qua Contract (S007).
+  - Agent System chi phu thuoc vao Abstraction.
+  - Agent System khong biet implementation cua Agent.
+  - Agent System khong biet implementation cua Plugin.
+validation:
+  - Co code trong Agent khong?
+  - Agent System co tu chay Agent khong?
+  - Agent System co goi Agent cu the truc tiep khong?
+  - Agent System co phu thuoc Plugin cu the khong?
+  - Agent System co hardcode capability mapping khong?
+  - Agent System co dinh nghia policy rieng khong?
+  - Agent System co giao tiep ngoai Contract khong?
+boundaries:
+  AB001-declaration:
+    name: Declaration Boundary
+    severity: Critical
+    version: 1.0.0
+    status: Draft
+    allowed: [Nhan khai bao Agent (metadata), Validate schema khai bao]
+    not_manage: [Code, Script, Executable]
+    violation: Agent System nhan code thay vi khai bao
+    impact: Critical
+    detected_by: Doctor
+    metric: Declaration Violations
+    target: 0
+    principles: [P003]
+    rules: [RULE-001]
+  AB002-registry:
+    name: Registry Boundary
+    severity: Critical
+    version: 1.0.0
+    status: Draft
+    allowed: [Dang ky trong Registry (S014 agent-registry), Doc Registry (S014)]
+    not_manage: [Agent tu nguon khac, Agent chua dang ky]
+    violation: Agent System dung Agent ngoai Registry
+    impact: Critical
+    detected_by: Doctor
+    metric: Registry Violations
+    target: 0
+    principles: [P003]
+    rules: [RULE-002]
+  AB003-validation:
+    name: Validation Boundary
+    severity: Critical
+    version: 1.0.0
+    status: Draft
+    allowed: [Validate cau truc, Validate tham chieu, Tu choi Agent khong hop le]
+    not_manage: [Chay Agent chua validate]
+    violation: Agent System chay Agent khong hop le
+    impact: Critical
+    detected_by: Doctor
+    metric: Validation Violations
+    target: 0
+    principles: [P011]
+    rules: [RULE-002]
+  AB004-execution:
+    name: Execution Boundary
+    severity: Critical
+    version: 1.0.0
+    status: Draft
+    allowed: [Chay Agent qua Runtime (SPEC-001), Dieu phoi qua Workflow (SPEC-002)]
+    not_manage: [Tu chay Agent, Tu goi Agent truc tiep]
+    violation: Agent System tu chay Agent ngoai Runtime
+    impact: Critical
+    detected_by: Doctor
+    metric: Execution Violations
+    target: 0
+    principles: [P001]
+    rules: [RULE-004]
+  AB005-interface:
+    name: Interface Boundary
+    severity: High
+    version: 1.0.0
+    status: Draft
+    allowed: [Giao tiep qua Contract (S007), Goi Capability da resolve]
+    not_manage: [Giao tiep truc tiep Agent/Plugin]
+    violation: Agent System goi truc tiep Agent
+    impact: High
+    detected_by: Doctor
+    metric: Interface Violations
+    target: 0
+    principles: [P002]
+    rules: [RULE-003]
+  AB006-dependency:
+    name: Dependency Boundary
+    severity: High
+    version: 1.0.0
+    status: Draft
+    allowed: [Phu thuoc Registry (S014), Phu thuoc Contract (S007)]
+    not_manage: [Phu thuoc Agent cu the, Phu thuoc Plugin cu the]
+    violation: Agent System phu thuoc Plugin cu the
+    impact: High
+    detected_by: Doctor
+    metric: Dependency Violations
+    target: 0
+    principles: [P012]
+    rules: [RULE-010]
+  AB007-capability:
+    name: Capability Boundary
+    severity: Critical
+    version: 1.0.0
+    status: Draft
+    allowed: [Mapping capability qua SPEC-003, Capability group hop le]
+    not_manage: [Hardcode capability mapping, Mapping truc tiep]
+    violation: Agent System hardcode capability mapping
+    impact: Critical
+    detected_by: Doctor
+    metric: Capability Violations
+    target: 0
+    principles: [P003]
+    rules: [RULE-002]
+  AB008-policy:
+    name: Policy Boundary
+    severity: High
+    version: 1.0.0
+    status: Draft
+    allowed: [Dung Policy cua Runtime (S012), Khai bao tham so cho policy]
+    not_manage: [Dinh nghia policy rieng]
+    violation: Agent System dinh nghia policy rieng
+    impact: High
+    detected_by: Doctor
+    metric: Policy Violations
+    target: 0
+    principles: [P015]
+    rules: [RULE-012]
+  AB009-governance:
+    name: Governance Boundary
+    severity: Critical
+    version: 1.0.0
+    status: Draft
+    allowed: [Chiu Governance (S013), Ghi Audit (S011)]
+    not_manage: [Bypass Governance, Tu phe duyet]
+    violation: Agent System bypass Governance
+    impact: Critical
+    detected_by: Doctor
+    metric: Governance Violations
+    target: 0
+    principles: [P016]
+    rules: [RULE-008]
+mapping:
+  AB001-declaration: { principle: P003, rule: RULE-001 }
+  AB002-registry: { principle: P003, rule: RULE-002 }
+  AB003-validation: { principle: P011, rule: RULE-002 }
+  AB004-execution: { principle: P001, rule: RULE-004 }
+  AB005-interface: { principle: P002, rule: RULE-003 }
+  AB006-dependency: { principle: P012, rule: RULE-010 }
+  AB007-capability: { principle: P003, rule: RULE-002 }
+  AB008-policy: { principle: P015, rule: RULE-012 }
+  AB009-governance: { principle: P016, rule: RULE-008 }
+metrics:
+  Declaration Violations: 0
+  Registry Violations: 0
+  Validation Violations: 0
+  Execution Violations: 0
+  Interface Violations: 0
+  Dependency Violations: 0
+  Capability Violations: 0
+  Policy Violations: 0
+  Governance Violations: 0
