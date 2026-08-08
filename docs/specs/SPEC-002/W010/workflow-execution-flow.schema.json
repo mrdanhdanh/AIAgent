@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aios://workflow-execution-flow.schema.json",
+  "title": "SPEC-002 Workflow Execution Flow (W010)",
+  "description": "JSON Schema cho workflow-execution-flow.yaml. Validator kiem tra cau truc.",
+  "type": "object",
+  "required": ["id", "name", "version", "status", "frozen", "owner", "philosophy", "principles", "stages", "canonical_flow", "workflow_flows", "rules"],
+  "properties": {
+    "id": { "const": "SPEC-002-W010" },
+    "name": { "const": "Workflow Execution Flow" },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "status": { "enum": ["Draft", "Review", "Approved", "Stable", "Deprecated"] },
+    "frozen": { "type": "boolean" },
+    "owner": { "type": "string" },
+    "philosophy": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "principles": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "stages": { "type": "array", "items": { "type": "string" }, "minItems": 7 },
+    "canonical_flow": { "type": "array", "items": { "type": "string" }, "minItems": 8 },
+    "workflow_flows": { "type": "array", "items": { "type": "string" }, "minItems": 7 },
+    "rules": { "type": "array", "items": { "type": "string" }, "minItems": 5 }
+  },
+  "additionalProperties": false
+}

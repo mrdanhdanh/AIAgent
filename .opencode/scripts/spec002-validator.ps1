@@ -457,6 +457,50 @@ if (Test-Path $smd9) {
   }
 }
 
+# ---------- W10-001: W010 execution flow ----------
+$w010 = Join-Path $spec2 'W010'
+foreach ($f in @('execution-flow.md','workflow-execution-flow.yaml','workflow-execution-flow.schema.json','workflow-stages.yaml','workflow-sequential.yaml','workflow-parallel.yaml','workflow-gate.yaml','workflow-retry.yaml','workflow-timeout.yaml','workflow-compensation.yaml','workflow-failure.yaml','workflow-lineage.yaml','workflow-outcome.yaml','workflow-policies.yaml','workflow-validation.yaml')) {
+  if (-not (Test-Path (Join-Path $w010 $f))) { $errors += "W10-001: missing W010/$f" }
+}
+
+# ---------- W10-002: workflow-execution-flow.yaml ----------
+$ef10 = Join-Path $w010 'workflow-execution-flow.yaml'
+if (Test-Path $ef10) {
+  $ef = Get-Content -LiteralPath $ef10 -Raw -Encoding utf8
+  foreach ($sec in @('philosophy','principles','stages','canonical_flow','workflow_flows','rules')) {
+    if ($ef -notmatch "(?m)^${sec}:") { $errors += "W10-002: thieu '$sec'" }
+  }
+  foreach ($st in @('Initialize','Validate','Prepare','Execute','Coordinate','Finalize','Complete')) {
+    if ($ef -notmatch [regex]::Escape($st)) { $errors += "W10-002: thieu stage $st" }
+  }
+}
+
+# ---------- W10-003: canonical_flow 8 buoc ----------
+if (Test-Path $ef10) {
+  $ef3 = Get-Content -LiteralPath $ef10 -Raw -Encoding utf8
+  foreach ($step in @('Command','Load','Validate','Normalize','Resolve Steps','Orchestrate','Finalize','Complete')) {
+    if ($ef3 -notmatch [regex]::Escape($step)) { $errors += "W10-003: canonical_flow thieu $step" }
+  }
+}
+
+# ---------- W10-004: workflow_flows 7 loai ----------
+if (Test-Path $ef10) {
+  $ef4 = Get-Content -LiteralPath $ef10 -Raw -Encoding utf8
+  foreach ($fl in @('Sequential','Parallel','Gate','Retry','Timeout','Compensation','Failure')) {
+    if ($ef4 -notmatch [regex]::Escape($fl)) { $errors += "W10-004: thieu flow $fl" }
+  }
+}
+
+# ---------- W10-005: execution-flow.md ----------
+$efmd = Join-Path $w010 'execution-flow.md'
+if (Test-Path $efmd) {
+  $efm = Get-Content -LiteralPath $efmd -Raw -Encoding utf8
+  for ($i = 1; $i -le 19; $i++) {
+    $sec = "FL{0:D3}" -f $i
+    if ($efm -notmatch [regex]::Escape($sec)) { $errors += "W10-005: thieu section $sec" }
+  }
+}
+
 # ---------- W1-005: SPEC.yaml ----------
 $specFile = Join-Path $spec2 'SPEC.yaml'
 if (Test-Path $specFile) {

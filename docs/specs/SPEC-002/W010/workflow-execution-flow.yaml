@@ -1,0 +1,52 @@
+# SPEC-002 W010 — Workflow Execution Flow
+# Workflow chay qua Runtime (SPEC-001 S010) - Workflow Engine chi dieu phoi lop khai bao.
+---
+id: SPEC-002-W010
+name: Workflow Execution Flow
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Workflow Team
+philosophy:
+  - Workflow chay nhu Execution cua Runtime (SPEC-001).
+  - Workflow Engine dieu phoi, Runtime thuc thi (WB004).
+  - Moi step la Capability da resolve (S014).
+  - Khong buoc nao thieu Event (S011).
+principles:
+  - Declarative: luong khai bao truoc, khong hardcode.
+  - Validate truoc khi chay (WFR-003).
+  - Normalize truoc khi dieu phoi (EF006).
+  - Delegate thuc thi cho Runtime (WB004).
+  - Moi step co trace + event (S011).
+stages:
+  note: Workflow dung 7 stages cua S010 EF004 (qua Runtime).
+  - Initialize
+  - Validate
+  - Prepare
+  - Execute
+  - Coordinate
+  - Finalize
+  - Complete
+canonical_flow:
+  - Command
+  - Load (Registry S014)
+  - Validate
+  - Normalize (EF006)
+  - Resolve Steps (S014)
+  - Orchestrate (delegate Runtime S010)
+  - Finalize
+  - Complete
+workflow_flows:
+  - Sequential
+  - Parallel (Scatter/Gather EF021)
+  - Gate (approval)
+  - Retry (POL-RETRY-001)
+  - Timeout (POL-TIMEOUT-001)
+  - Compensation (EF022)
+  - Failure (EF017)
+rules:
+  - Moi step phai resolve Capability truoc khi chay (S014).
+  - Moi step chay qua Runtime - khong tu chay (WB004).
+  - Moi buoc sinh Event + Trace + Metric (S011).
+  - Gate can approval (S012 POL-APPROVAL-001).
+  - Workflow ket thuc bang Terminal State (S009).

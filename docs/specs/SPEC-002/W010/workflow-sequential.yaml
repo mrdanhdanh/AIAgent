@@ -1,0 +1,10 @@
+# SPEC-002 W010 - Sequential Flow
+---
+version: "1.0"
+flow:
+  - Step 1 (Capability A)
+  - Step 2 (Capability B)
+  - Step 3 (Capability C)
+rules:
+  - Step sau chi chay khi step truoc Terminal (S009).
+  - Context chuyen giua cac step (EF008).

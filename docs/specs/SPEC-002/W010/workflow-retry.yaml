@@ -1,0 +1,12 @@
+# SPEC-002 W010 - Retry Flow (S012 POL-RETRY-001)
+---
+version: "1.0"
+flow:
+  - Step Failed (S009 ST-009)
+  - Retry (guard: retry_count < max_retry)
+  - Retrying (S009 ST-013)
+  - Success -> step tiep
+  - Het retry -> Failure
+rules:
+  - Delegate Runtime (S010 EF012).
+  - Moi retry sinh Event (S011).
