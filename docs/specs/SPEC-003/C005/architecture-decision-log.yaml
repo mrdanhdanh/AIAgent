@@ -1,0 +1,13 @@
+# SPEC-003 C005 - Architecture Decision Log
+---
+version: "1.0"
+decisions:
+  - id: CAD-001
+    decision: Capability System la Declarator + Resolver, khong phai Executor
+    reason: Capability resolve qua Runtime (S010 EF007)
+  - id: CAD-002
+    decision: Khong lap lai Execution/State/Event layer cua Runtime
+    reason: Tranh trung lap, Capability chi khai bao nang luc
+  - id: CAD-003
+    decision: Resolution delegate toan bo cho Runtime
+    reason: Runtime co san EF007 resolution pipeline

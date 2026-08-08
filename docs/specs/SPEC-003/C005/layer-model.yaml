@@ -1,0 +1,25 @@
+# SPEC-003 C005 - Layer Model
+---
+version: "1.0"
+layers:
+  - name: Command
+    level: 1
+    domain: Execution
+  - name: Declaration
+    level: 2
+    domain: Definition
+  - name: Definition
+    level: 3
+    domain: Definition
+  - name: Validation
+    level: 4
+    domain: Validation
+  - name: Registration
+    level: 5
+    domain: Mapping
+  - name: Resolution
+    level: 6
+    domain: Capability
+  - name: Publication
+    level: 7
+    domain: Observability
