@@ -10,7 +10,7 @@ agent: general
 
 # S010 — Runtime Execution Flow
 
-> **SPEC-001**: Runtime Kernel · **Version**: 1.0.0 · **Trạng thái**: Draft
+> **SPEC-001**: Runtime Kernel · **Version**: 1.0.0 · **Trạng thái**: ✅ Review (2026-08-08)
 > **Vị trí**: Chuẩn hóa toàn bộ Execution Lifecycle của Runtime.
 
 ## Mục tiêu

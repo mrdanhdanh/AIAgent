@@ -158,7 +158,7 @@ Event Dispatcher Artifact Dispatcher Metrics Collector
 | Component | Contract |
 |-----------|----------|
 | Execution Manager | Execution Contract (S007) |
-| Execution Orchestrator | Orchestrator Contract (S007) |
+| Execution Orchestrator | Coordination Contract (S007) |
 | Context Manager | Context Contract (S007) |
 | State Manager | State Contract (S007) |
 | Policy Engine | Policy Contract (S007) |

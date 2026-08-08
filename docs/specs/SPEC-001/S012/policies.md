@@ -152,7 +152,7 @@ Taxonomy:
 | action | TimedOut (ST-011) |
 | priority | 10 |
 
-Điều khiển: **Timeout Flow** (S010 EF014).
+Điều khiển: **Timeout Flow** (S010 EF013).
 
 ## RP006 — Approval Policy
 
@@ -177,12 +177,12 @@ Taxonomy:
 | name | Resource Policy |
 | category | Resource |
 | scope | Resource |
-| trigger | Allocate (S003 RR-001) |
+| trigger | Allocate (S010 EF004) |
 | guard | resource available |
 | action | Allocate / Queue |
 | priority | 30 |
 
-Điều khiển: **Resource Allocation** (S010 EF020).
+Điều khiển: **Resource Allocation** (S010 EF004).
 
 ## RP008 — Parallel Policy
 

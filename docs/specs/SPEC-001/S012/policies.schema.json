@@ -12,7 +12,7 @@
     "status": { "enum": ["Draft", "Review", "Approved", "Stable", "Deprecated"] },
     "owner": { "type": "string" },
     "philosophy": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
-    "principles": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "principles": { "type": "array", "items": { "type": "object", "additionalProperties": { "type": "string" } }, "minItems": 1 },
     "policy_model": {
       "type": "object",
       "required": ["fields"],
@@ -24,7 +24,7 @@
     "scopes": { "type": "array", "items": { "type": "string" }, "minItems": 6 },
     "categories": { "type": "array", "items": { "type": "string" }, "minItems": 7 },
     "policies": { "type": "array", "items": { "type": "string" }, "minItems": 10 },
-    "responsibility_chain": { "type": "array", "items": { "type": "string" }, "minItems": 3 }
+    "responsibility_chain": { "type": "array", "items": { "type": "object", "additionalProperties": { "type": "string" } }, "minItems": 3 }
   },
   "additionalProperties": false
 }

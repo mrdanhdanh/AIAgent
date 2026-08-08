@@ -13,7 +13,7 @@ failure_classification:
   Constitution: Abort
   Boundary: Deny
   Contract: Failed
-  Policy: Skip
+  Policy: Ignore
   Permission: Deny
   Compatibility: Suspend
 decision_priority:

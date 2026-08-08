@@ -6,7 +6,7 @@ mappings:
   - domain: Events
     used_by: [Dashboard, Doctor, Evolution, Simulation, Alerting]
   - domain: Metrics
-    used_by: [Dashboard, Doctor, Evolution, S015 Quality Model]
+    used_by: [Dashboard, Doctor, Evolution, S015 Resource Metrics]
   - domain: Trace
     used_by: [Dashboard, Doctor, Evolution]
   - domain: Audit

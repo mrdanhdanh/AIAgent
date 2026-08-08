@@ -15,4 +15,4 @@ policy:
   scope: Execution
   lifecycle: Draft
   metadata:
-    controls: Timeout Flow (S010 EF014)
+    controls: Timeout Flow (S010 EF013)

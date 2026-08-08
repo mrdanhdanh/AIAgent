@@ -156,7 +156,7 @@ matrix:
   RR-031:
     owner: Runtime
     input: Artifact
-    output: -
+    output: "-"
     authority: Bị cấm sửa Artifact
   RR-032:
     owner: Runtime

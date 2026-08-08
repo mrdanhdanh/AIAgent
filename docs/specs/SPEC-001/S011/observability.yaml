@@ -53,7 +53,7 @@ doctor_checks:
   - Broken Lineage
   - Invalid Audit
 evolution_integration:
-  - Evolution chi doc: Event, Metrics, Trace, Audit.
+  - "Evolution chi doc: Event, Metrics, Trace, Audit."
   - Evolution khong doc implementation.
 machine_readable:
   - observability.yaml

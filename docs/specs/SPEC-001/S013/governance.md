@@ -242,7 +242,7 @@ decision:
   severity:
 ```
 
-**Decision chỉ có:** Allow · Deny · Suspend · Retry · Escalate.
+**Decision chỉ có:** Allow · Deny · Suspend · Retry · Escalate · Abort · Failed · Ignore.
 
 **Decision Priority** (khi nhiều rule conflict):
 
@@ -274,7 +274,7 @@ decision:
 | Constitution | Abort |
 | Boundary | Deny |
 | Contract | Failed |
-| Policy | Skip |
+| Policy | Ignore |
 | Permission | Deny |
 | Compatibility | Suspend |
 
@@ -302,7 +302,7 @@ Sinh:
 - Audit
 - Metrics
 
-**Governance Event Types** (S011 reuse trực tiếp):
+**Governance Event Types** (S013 định nghĩa — S011 cung cấp event model: fields, correlation_id):
 
 - CONSTITUTION_VALIDATED
 - BOUNDARY_DENIED

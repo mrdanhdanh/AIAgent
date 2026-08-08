@@ -4,7 +4,7 @@
 id: SPEC-001-S009
 name: Runtime State Machine
 version: "1.0.0"
-status: Draft
+status: Review
 owner: Runtime Team
 philosophy:
   - Runtime luôn ở đúng một State.

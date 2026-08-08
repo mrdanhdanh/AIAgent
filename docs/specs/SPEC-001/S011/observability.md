@@ -126,7 +126,7 @@ Runtime Metrics
 └── Capability Metrics
 ```
 
-> S015 Quality Model tham chiếu trực tiếp phân cấp này.
+> S015 Resource Metrics tham chiếu trực tiếp phân cấp này.
 
 ## OB006 — Trace Model
 

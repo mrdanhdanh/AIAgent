@@ -32,8 +32,8 @@ Components · Contracts · Canonical Models (Appendix)
 
 ```text
 S008 Runtime Data Model     ✅ Frozen
-S009 Runtime State Machine  🚧
-S010 Runtime Execution Flow 🚧
+S009 Runtime State Machine  🚧 Review
+S010 Runtime Execution Flow 🚧 Review
 ```
 
 ### Tier 3 — Runtime Operations
@@ -64,8 +64,8 @@ S020 Runtime Dashboard      🚧
 | S007 | Runtime Contracts | `S007/contracts.md` | 1 | ✅ Frozen |
 | — | Appendix: Canonical Models | `runtime-models/` | 1 | ✅ Frozen |
 | S008 | Runtime Data Model | `S008/data-model.md` | 2 | ✅ Frozen |
-| S009 | Runtime State Machine | `S009/state-machine.md` | 2 | 🚧 In progress |
-| S010 | Runtime Execution Flow | `S010/execution-flow.md` | 2 | 🚧 In progress |
+| S009 | Runtime State Machine | `S009/state-machine.md` | 2 | 🚧 Review |
+| S010 | Runtime Execution Flow | `S010/execution-flow.md` | 2 | 🚧 Review |
 | S011 | Execution Observability | `S011/observability.md` | 3 | 🚧 Draft |
 | S012 | Runtime Policies | `S012/policies.md` | 3 | ✅ Draft |
 | S013 | Runtime Governance | `S013/governance.md` | 3 | ✅ Draft |

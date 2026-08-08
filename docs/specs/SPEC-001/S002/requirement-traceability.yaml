@@ -6,120 +6,140 @@ traceability:
   FR-001:
     principles: [P001, P003]
     rules: [RULE-004]
+    responsibilities: [RR-001]
     spec: SPEC-001
     test: T-FR-001
     doctor: D-FR-001
   FR-002:
     principles: [P001, P011]
     rules: [RULE-004]
+    responsibilities: [RR-005]
     spec: SPEC-001
     test: T-FR-002
     doctor: D-FR-002
   FR-003:
     principles: [P007]
     rules: [RULE-002]
+    responsibilities: [RR-006, RR-020]
     spec: SPEC-001
     test: T-FR-003
     doctor: D-FR-003
   FR-004:
     principles: [P001, P007]
     rules: [RULE-004]
+    responsibilities: [RR-004, RR-007, RR-019]
     spec: SPEC-001
     test: T-FR-004
     doctor: D-FR-004
   FR-005:
     principles: [P001, P009]
     rules: [RULE-006]
+    responsibilities: [RR-011, RR-012, RR-013]
     spec: SPEC-001
     test: T-FR-005
     doctor: D-FR-005
   FR-006:
     principles: [P001, P005, P009]
     rules: [RULE-005]
+    responsibilities: [RR-015, RR-016, RR-017, RR-018]
     spec: SPEC-001
     test: T-FR-006
     doctor: D-FR-006
   FR-007:
     principles: [P005, P014]
     rules: [RULE-007]
+    responsibilities: [RR-025, RR-028]
     spec: SPEC-001
     test: T-FR-007
     doctor: D-FR-007
   FR-008:
     principles: [P010, P013]
     rules: [RULE-009]
+    responsibilities: [RR-029, RR-030, RR-031]
     spec: SPEC-001
     test: T-FR-008
     doctor: D-FR-008
   FR-009:
     principles: [P014]
     rules: [RULE-014]
+    responsibilities: [RR-009, RR-026, RR-027]
     spec: SPEC-001
     test: T-FR-009
     doctor: D-FR-009
   FR-010:
     principles: [P013]
     rules: [RULE-004]
+    responsibilities: [RR-004, RR-008, RR-021]
     spec: SPEC-001
     test: T-FR-010
     doctor: D-FR-010
   FR-011:
     principles: [P005, P013]
     rules: [RULE-013]
+    responsibilities: [RR-009, RR-027]
     spec: SPEC-001
     test: T-FR-011
     doctor: D-FR-011
   FR-012:
     principles: [P015]
     rules: [RULE-012]
+    responsibilities: [RR-010, RR-023]
     spec: SPEC-001
     test: T-FR-012
     doctor: D-FR-012
   FR-013:
     principles: [P011, P002]
     rules: [RULE-002]
+    responsibilities: [RR-035]
     spec: SPEC-001
     test: T-FR-013
     doctor: D-FR-013
   FR-014:
     principles: [P002]
     rules: [RULE-003]
+    responsibilities: [RR-033, RR-035]
     spec: SPEC-001
     test: T-FR-014
     doctor: D-FR-014
   FR-015:
     principles: [P001, P005]
     rules: [RULE-004]
+    responsibilities: [RR-001, RR-003, RR-018]
     spec: SPEC-001
     test: T-FR-015
     doctor: D-FR-015
   FR-016:
     principles: [P006, P009]
     rules: [RULE-005]
+    responsibilities: [RR-013, RR-014]
     spec: SPEC-001
     test: T-FR-016
     doctor: D-FR-016
   FR-017:
     principles: [P015]
     rules: [RULE-012]
+    responsibilities: [RR-010]
     spec: SPEC-001
     test: T-FR-017
     doctor: D-FR-017
   FR-018:
     principles: [P015]
     rules: [RULE-012]
+    responsibilities: [RR-022]
     spec: SPEC-001
     test: T-FR-018
     doctor: D-FR-018
   FR-019:
     principles: [P016]
     rules: [RULE-004]
+    responsibilities: [RR-024, RR-032, RR-034]
     spec: SPEC-001
     test: T-FR-019
     doctor: D-FR-019
   FR-020:
     principles: [P010, P005]
     rules: [RULE-009]
+    responsibilities: [RR-002, RR-030]
     spec: SPEC-001
     test: T-FR-020
     doctor: D-FR-020

@@ -8,11 +8,11 @@ policy:
   version: "1.0"
   status: Draft
   owner: Runtime Team
-  trigger: Allocate (S003 RR-001)
+  trigger: Allocate (S010 EF004)
   guard: resource available
   action: Allocate / Queue
   priority: 30
   scope: Resource
   lifecycle: Draft
   metadata:
-    controls: Resource Allocation (S010 EF020)
+    controls: Resource Allocation (S010 EF004)

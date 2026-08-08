@@ -1,5 +1,5 @@
 # SPEC-001 S013 - Governance Event Types
-# S011 reuse truc tiep.
+# S013 dinh nghia 7 event types rieng (GV013) — S011 cung cap event model (fields, correlation_id).
 ---
 version: "1.0"
 event_types:
@@ -11,5 +11,5 @@ event_types:
   - VERSION_CONFLICT
   - COMPATIBILITY_FAILED
 rules:
-  - S011 reuse truc tiep (events.yaml).
-  - Moi event co correlation_id (S011).
+  - S013 dinh nghia event types (GV013); S011 tham chieu khi can.
+  - Moi event theo event model S011 (fields, correlation_id).

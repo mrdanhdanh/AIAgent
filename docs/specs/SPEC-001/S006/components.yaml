@@ -60,7 +60,7 @@ components:
     domain: Coordination
     responsibility: Điều phối toàn bộ luồng thực thi
     capability: orchestration
-    contracts: [Orchestrator Contract]
+    contracts: [Coordination Contract]
     dependencies: [Capability Resolver, Policy Engine]
     lifecycle: runtime
     owner: Runtime
@@ -282,4 +282,4 @@ not_in_runtime:
   - Simulation
   - Evolution
   - SDK
-  note: Runtime chi su dung, khong so huu.
+note: Runtime chi su dung, khong so huu.

@@ -4,7 +4,7 @@
 version: "1.0"
 model:
   fields: [id, execution, rule, result, reason, timestamp, severity]
-result: [Allow, Deny, Suspend, Retry, Escalate]
+result: [Allow, Deny, Suspend, Retry, Escalate, Abort, Failed, Ignore]
 modes:
   - Strict
   - Compatible

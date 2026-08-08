@@ -43,7 +43,7 @@ validation_pipeline:
   - Contract
   - Policy
   - Execution
-decisions: [Allow, Deny, Suspend, Retry, Escalate]
+decisions: [Allow, Deny, Suspend, Retry, Escalate, Abort, Failed, Ignore]
 traceability:
   - Execution
   - Policy

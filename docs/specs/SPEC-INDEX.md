@@ -44,20 +44,20 @@ SPEC-001 Runtime Kernel
 │
 ├── Tier 2 — Runtime Behavior
 │   ├── S008 Runtime Data Model      ✅
-│   ├── S009 Runtime State Machine   🚧 Draft
-│   └── S010 Runtime Execution Flow  🚧 Draft
+│   ├── S009 Runtime State Machine   🚧 Review
+│   └── S010 Runtime Execution Flow  🚧 Review
 │
 └── Tier 3 — Runtime Operations
-    ├── S011 Execution Observability ✅ Draft
-    ├── S012 Runtime Policies       ✅ Draft
-    ├── S013 Runtime Governance     ✅ Draft
-    ├── S014 Runtime Registry       ✅ Draft
-    ├── S015 Runtime Resources      ✅ Draft
-    ├── S016 Runtime Compliance     ✅ Draft
-    ├── S017 Runtime Plugins        ✅ Draft
-    ├── S018 Runtime Evolution      ✅ Draft
-    ├── S019 Runtime Doctor         ✅ Draft
-    └── S020 Runtime Dashboard      ✅ Draft
+    ├── S011 Execution Observability 🚧 Review
+    ├── S012 Runtime Policies       🚧 Review
+    ├── S013 Runtime Governance     🚧 Review
+    ├── S014 Runtime Registry       🚧 Draft
+    ├── S015 Runtime Resources      🚧 Draft
+    ├── S016 Runtime Compliance     🚧 Draft
+    ├── S017 Runtime Plugins        🚧 Draft
+    ├── S018 Runtime Evolution      🚧 Draft
+    ├── S019 Runtime Doctor         🚧 Draft
+    └── S020 Runtime Dashboard      🚧 Draft
 ```
 
 ## SPEC-002 — Workflow Engine

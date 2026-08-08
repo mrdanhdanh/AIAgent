@@ -84,12 +84,14 @@ items:
       name: Runtime Components
       lifecycle: Frozen
       created: "2026-08-04"
+      recheck_required: true
       review: { status: Completed, count: 2, inherited: true }
       history: []
     S007:
       name: Runtime Contracts
       lifecycle: Frozen
       created: "2026-08-04"
+      recheck_required: true
       review: { status: Completed, count: 2, inherited: true }
       history: []
     S008:
@@ -103,6 +105,7 @@ items:
       name: Runtime State Machine
       lifecycle: Review
       created: "2026-08-05"
+      recheck_required: true
       review: { status: Completed, count: 2, inherited: false }
       history:
         - review: REV-20260807-001
@@ -122,33 +125,60 @@ items:
       lifecycle: Review
       created: "2026-08-05"
       recheck_required: true
-      review: { status: Rev1, count: 1, inherited: false }
+      review: { status: Completed, count: 2, inherited: false }
       history:
         - review: REV-20260808-007
           type: rev1
           verdict: CONDITIONAL
           date: "2026-08-08"
+        - review: REV-20260808-009
+          type: rev1
+          verdict: PASS
+          date: "2026-08-08"
     S011:
       name: Execution Observability
-      lifecycle: Draft
+      lifecycle: Review
       created: "2026-08-05"
       recheck_required: true
-      review: { status: NotReviewed, count: 0, inherited: false }
-      history: []
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260808-011
+          type: rev1
+          verdict: CONDITIONAL
+          date: "2026-08-08"
+        - review: REV-20260808-015
+          type: rev1
+          verdict: PASS
+          date: "2026-08-08"
     S012:
       name: Runtime Policies
-      lifecycle: Draft
+      lifecycle: Review
       created: "2026-08-05"
-      recheck_required: true
-      review: { status: NotReviewed, count: 0, inherited: false }
-      history: []
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260808-010
+          type: regression
+          verdict: CONDITIONAL
+          date: "2026-08-08"
+        - review: REV-20260808-013
+          type: rev1
+          verdict: PASS
+          date: "2026-08-08"
     S013:
       name: Runtime Governance
-      lifecycle: Draft
+      lifecycle: Review
       created: "2026-08-05"
       recheck_required: true
-      review: { status: NotReviewed, count: 0, inherited: false }
-      history: []
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260808-012
+          type: rev1
+          verdict: CONDITIONAL
+          date: "2026-08-08"
+        - review: REV-20260808-014
+          type: rev1
+          verdict: PASS
+          date: "2026-08-08"
     S014:
       name: Runtime Registry
       lifecycle: Draft
@@ -167,6 +197,7 @@ items:
       name: Runtime Compliance
       lifecycle: Draft
       created: "2026-08-08"
+      recheck_required: true
       review: { status: NotReviewed, count: 0, inherited: false }
       history: []
     S017:
@@ -182,13 +213,25 @@ items:
       created: "2026-08-08"
       review: { status: NotReviewed, count: 0, inherited: false }
       history: []
+    S019:
+      name: Runtime Doctor
+      lifecycle: Draft
+      created: "2026-08-08"
+      recheck_required: true
+      review: { status: NotReviewed, count: 0, inherited: false }
+      history: []
+    S020:
+      name: Runtime Dashboard
+      lifecycle: Draft
+      created: "2026-08-08"
+      recheck_required: true
+      review: { status: NotReviewed, count: 0, inherited: false }
+      history: []
 
 # created = baseline estimate cho mục chưa review — /review sẽ hiệu chỉnh khi cần.
 
 # Mục chưa tồn tại trong SPEC-001 (SPEC.yaml includes S015-S020)
-missing_in_spec_001:
-  - S019
-  - S020
+missing_in_spec_001: []
 
 # Toàn bộ SPEC chưa khởi tạo (roadmap docs/specs/README.md)
 not_started_specs:
@@ -209,4 +252,68 @@ not_started_specs:
   - SPEC-016
 
 # Review log — mỗi review /review ghi 1 entry (append-only, đồng bộ review-history.yaml)
-review_log: []
+review_log:
+  - review: REV-20260808-008
+    spec: SPEC-001
+    item: S003
+    type: revfull
+    mode: revfull-as-health (inherited Frozen)
+    verdict: FAIL
+    date: "2026-08-08"
+    note: "1 CRITICAL (#01 YAML invalid output:-) + 1 MAJOR (#02 schema additionalProperties) — giữ nguyên 2 trục; cascade S006/S007/S012 recheck_required."
+  - review: REV-20260808-010
+    spec: SPEC-001
+    item: S012
+    type: regression
+    mode: cascade regression (TRG-002 — sau S003 fix ADR-003/004)
+    verdict: CONDITIONAL
+    date: "2026-08-08"
+    note: "Fix #06 (S003->S010 EF004) DUNG va HET: grep S003|RR-0 toan S012 = 0 matches; YAML 18/18 parse OK; S009/S010 refs phan lon dung. Phat hien 2 MAJOR con treo: #01 Timeout Flow ref nham S010 EF014 (phai EF013 — EF014 = Cancellation Flow), #02 policies.yaml responsibility_chain list mapping vs schema items string -> jsonschema FAIL. CONDITIONAL -> count 0->1 (NotReviewed->Rev1), lifecycle Draft->Review. GIU recheck_required (con MAJOR chua fix). Khong cascade moi (S010 danh so dung)."
+  - review: REV-20260808-011
+    spec: SPEC-001
+    item: S011
+    type: rev1
+    mode: rev1 (review lan 1 — tinh count)
+    verdict: CONDITIONAL
+    date: "2026-08-08"
+    note: "3 MAJOR (#01 schema evolution_integration mapping vs string FAIL, #02 S015 Quality Model dangling, #03 audit.yaml P008 sai) + 4 MINOR. Count 0->1, NotReviewed->Rev1, lifecycle Draft->Review. Cascade: S016 recheck_required moi (S019/S020 thieu entry tracker)."
+  - review: REV-20260808-015
+    spec: SPEC-001
+    item: S011
+    type: rev1
+    mode: rev1 (review lan 2 — tinh count)
+    verdict: PASS
+    date: "2026-08-08"
+    note: "rev1 lan 2 tren S011 (Review/Rev1/count 1/recheck_required). Xac nhan 3 MAJOR REV-20260808-011 da FIXED: #01 schema — observability.yaml:56 quoted string + jsonschema validate thuc te PASS; #02 — ca 3 vi tri doi thanh 'S015 Resource Metrics', S015 resource-metrics.yaml tham chieu nguoc S011 OB005 (2 chieu khop); #03 — audit.yaml P008->P014. Verdict PASS -> tinh count: Rev1 -> Completed, count 1 -> 2, lifecycle giu Review. Con 4 MINOR ke thua (#04 vocab/casing, #05 P005, #06 P009, #07 version 1.0) + INFO #08/#09 khong chan. #10 (INFO): report S013 (REV-20260808-012) da duoc session song song dang ky (S013 Completed count 2, entries 012+014) — khong con orphan. id_note: review nay ban dau 013 nhung trung S012 (session song song chiem 013) — doi sang 015 de dam bao unique. Khong cascade moi (0 MAJOR)."
+  - review: REV-20260808-013
+    spec: SPEC-001
+    item: S012
+    type: rev1
+    mode: rev1 (review lan 2 — tinh count, sau fix REV-20260808-010)
+    verdict: PASS
+    date: "2026-08-08"
+    note: "Xac nhan 2 MAJOR REV-20260808-010 da FIXED: #01 Timeout Flow -> EF013 (policies.md:155 + timeout-policy.yaml:18; S010 EF013 = Timeout Flow, EF014 = Cancellation, grep EF014 toan S012 = 0 matches); #02 schema -> policies.schema.json:27 responsibility_chain + principles items object, jsonschema thuc te PASS (policies.yaml VALID, 13 fields). YAML 18/18 parse OK, 10 policy 13-field canonical OK, 21 RP sections day du, S009 ST/TR 8/8 + S010 EF 8/8 ton tai, grep S003|RR-0 = 0 matches (fix #06 giu sach). Phat hien 3 MINOR moi (#01 policy-validation 7 vs 13 fields ke thua, #02 version 1.0 vs 1.0.0 o 10 policy yaml, #03 priority 40 trung trong category Orchestration POL-PARALLEL/SCHED vi pham RP014) + 1 INFO (#01 frontmatter status Draft vs lifecycle Review — theo tien le S009 #11). Verdict PASS (0 CRITICAL, 0 MAJOR) -> tinh count: Rev1 -> Completed, count 1 -> 2, lifecycle giu Review (Approved chi qua POLICY-001). Go recheck_required S012 (hoan tat TRG-002). Khong cascade moi. (ID doi REV-20260808-012 -> 013: trung voi review S013 chay song song.)"
+  - review: REV-20260808-012
+    spec: SPEC-001
+    item: S013
+    type: rev1
+    mode: rev1 (review lan 1 — tinh count)
+    verdict: CONDITIONAL
+    date: "2026-08-08"
+    note: "2 MAJOR: #01 GV013 claim 'S011 reuse truc tiep' 7 event types nhung S011 events.yaml khong dinh nghia event nao (grep 0 matches — chi ton tai trong S013); #02 Decision Model mau thuan noi tai (decision set Allow/Deny/Suspend/Retry/Escalate khong phu ket qua matrix Abort/Failed/Ignore; Policy 'Ignore' vs 'Skip' giua 2 bang) — vi pham GV018 khong mo ho. 4 MINOR (#03 traceability YAML vs GV014/GV014A, #04 version 1.0.0 vs 1.0 x 12 artifact, #05 registry thieu schema.json vs GV016 14 file, #06 modes khong enum) + 2 INFO. YAML 13/13 parse OK, jsonschema VALID, moi ref upstream/downstream ton tai. Count 0->1, NotReviewed->Rev1, lifecycle Draft->Review. GIU recheck_required (con MAJOR chua fix). Cascade: S011/S016 da co recheck_required."
+  - review: REV-20260808-016
+    spec: SPEC-001
+    item: S006
+    type: regression
+    mode: cascade regression (TRG-002 — sau S003 fix ADR-003/004)
+    verdict: FAIL
+    date: "2026-08-08"
+    note: "S003 fix (quote output \"-\" + schema 5 key + frozen_date) KHONG anh huong S006: 31 RR refs S006->S003 deu ton tai, grep S003 literal toan S006 = 0, khong breaking. Nhung phat hien S006 defect noi tai chua tung machine-validated: #01 CRITICAL components.yaml:274-285 not_in_runtime list + note cung indent -> PyYAML ParserError (cung lop S003 #01); #02 MAJOR components.schema.json additionalProperties:false chan frozen/frozen_date/note -> jsonschema FAIL (cung lop S003 #02); #03 MAJOR 'Orchestrator Contract' x4 (components.yaml:63, component-contracts.yaml:7, component-registry.yaml:18, components.md:161) nhung S007 dinh nghia 'Coordination Contract' (CTR-003, 0 occurrence) -> ref hong toi S007. 2 MINOR (#04 average_dependency 1.3 vs 1.17, #05 RR-007..010 chua map 31/35) + 2 INFO (#06 TBD giu nguyen, #07 S003 fix sach). Verdict FAIL (1 CRITICAL) -> giu nguyen Frozen/Completed/count 2 (inherited, regression khong doi trang thai; FAIL khong tang count). GIU recheck_required (con CRITICAL chua fix). Khong cascade moi (S003/S007 da co san). Can ADR mo Frozen S006 de fix (precedent ADR-003). (id_note: ban dau 014 nhung trung S013 rev1 lan 2 session song song chiem 014 — doi sang 016 de dam bao unique.)"
+  - review: REV-20260808-014
+    spec: SPEC-001
+    item: S013
+    type: rev1
+    mode: rev1 (review lan 2 — tinh count)
+    verdict: PASS
+    date: "2026-08-08"
+    note: "Xac nhan 2 MAJOR REV-20260808-012 da FIXED: #01 — governance-events.yaml + GV013 bo tuyen bo 'S011 reuse truc tiep' (grep reuse toan S013 = 0 matches); event types khai bao ro S013 dinh nghia, S011 chi cung cap event model (fields/correlation_id). #02 — Decision Model thong nhat 8 gia tri result [Allow, Deny, Suspend, Retry, Escalate, Abort, Failed, Ignore] (governance.yaml + governance-decisions.yaml) phu toan bo outcome matrix; failure_classification Policy: Ignore (thay Skip) dong nhat voi decision_matrix; GV012 md cap nhat 8 gia tri + bang Failure Classification Ignore. Kiem chung may: outcome decision_matrix/failure_classification deu subset decision set — khong con outcome ngoai tap, GV018 thoa. Verdict PASS -> tinh count: Rev1 -> Completed, count 1 -> 2, lifecycle giu Review. Con 4 MINOR ke thua (#03 traceability YAML, #04 version, #05 registry schema, #06 modes enum) + 2 INFO khong chan. Khong cascade moi (fix trong pham vi S013)."

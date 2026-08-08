@@ -15,7 +15,7 @@ properties:
   - Ordered
   - Time Consistent
 rules:
-  - Ghi moi quyet dinh/quyen thay doi (P008).
+  - Ghi moi quyet dinh/quyen thay doi (P014).
   - Audit immutable (append-only).
   - Khong ghi Business Data.
   - Doctor verify duoc 4 properties.

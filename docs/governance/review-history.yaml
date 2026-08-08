@@ -211,3 +211,369 @@ entries:
     finished: "2026-08-08T00:40:37"
     cascade_review: [S008, S009, S011, S012, S013, S014, S015, S017, S020]
     report_path: docs/governance/reviews/REV-SPEC-001-S010-20260808-004037.md
+  - review_id: REV-20260808-008
+    spec: SPEC-001
+    item: S003
+    name: Runtime Responsibilities
+    type: revfull
+    mode: revfull-as-health (inherited Frozen)
+    verdict: FAIL
+    note: >
+      revfull tren S003 (Frozen, inherited) — health semantics: giu nguyen 2 truc
+      (lifecycle Frozen, review.status Completed, count 2), khong tang count.
+      Phat hien 1 CRITICAL (#01 SCHEMA): responsibilities.yaml:421 + responsibility-matrix.yaml:159
+      RR-031 output: - chua quote -> YAML ScannerError "sequence entries are not allowed here" —
+      ca 2 artifact canonical KHONG parse duoc; git blame xac nhan loi co tu commit 2226123
+      (2026-08-05 Freeze S003 v3) — file hong ngay tu luc freeze, chua tung duoc validate bang may.
+      1 MAJOR (#02 SCHEMA): responsibilities.schema.json additionalProperties: false chặn 5 key
+      top-level (frozen, frozen_date, principle, invariants, delegation) -> strict validation FAIL
+      (cung lop loi S002 #01 da fix bang ADR-002). MINOR/INFO: #03 schema title "v2" con cu (hien v3),
+      #04 frozen_date 08-04 truoc commit cuoi 08-05, #05 traceability 1 chieu S002 khong trace nguoc,
+      #06 S012 policies.md:180 "Allocate (S003 RR-001)" sai (RR-001 = Initialize Execution),
+      #07 TBD component/contract theo thiet ke. Xac nhan tich cuc: 35 RR / 8 nhom / registry-mapping-
+      matrix khop 100% / 35 FR + P001-P020 + RULE hop le / 1 Owner Runtime. Verdict FAIL -> giu nguyen
+      recheck_required, khong doi status. Cascade: S006/S007/S012 gan recheck_required.
+    score:
+      coverage: 95
+      quality: 70
+      consistency: 57
+      governance: 84
+      overall: 77
+    severity_counts:
+      CRITICAL: 1
+      MAJOR: 1
+      MINOR: 3
+      INFO: 2
+    started: "2026-08-08T08:58:11"
+    finished: "2026-08-08T08:58:11"
+    cascade_review: [S006, S007, S012]
+    report_path: docs/governance/reviews/REV-SPEC-001-S003-20260808-085811.md
+  - review_id: REV-20260808-009
+    spec: SPEC-001
+    item: S010
+    name: Runtime Execution Flow
+    type: rev1
+    mode: rev1 (review lan 2 — tinh count)
+    verdict: PASS
+    note: >
+      rev1 lan 2 tren S010 (Review/Rev1/count 1/recheck_required). Xac nhan 3 MAJOR
+      REV-20260808-007 da FIXED (commit b5543ad 2026-08-08 00:49): #01 schema —
+      jsonschema validate thuc te PASS (bo references khoi required, them lifecycle_
+      overview/canonical_flow vao properties); #02 events — Coordinate/Finalize dung
+      event "—" (ST-004 Running, khong transition moi, dung P005), 5 event con lai
+      deu ton tai trong S009 states.yaml; #03 — EF025 + execution-policies.yaml ghi
+      dung "S012 (Runtime Policies)". Verdict PASS -> tinh count: Rev1 -> Completed,
+      count 1 -> 2, lifecycle giu Review. Con 3 MINOR ke thua (#01 version 1.0 vs
+      1.0.0, #02 frontmatter 25 vs 26 sections, #03 failure-flow label) khong chan.
+      Phat hien moi #04 (INFO, upstream S009): state-events.yaml thieu EXECUTION_
+      CREATED + duplicate EXECUTION_REPLAYED -> gan recheck_required S009. Cascade:
+      S008/S009/S011/S012/S014/S015/S017/S020 + SPEC-002 (S019/S020 thieu entry tracker).
+    score:
+      coverage: 97
+      quality: 100
+      consistency: 97
+      governance: 97
+      overall: 98
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 0
+      MINOR: 3
+      INFO: 2
+    started: "2026-08-08T09:01:56"
+    finished: "2026-08-08T09:01:56"
+    cascade_review: [S008, S009, S011, S012, S014, S015, S017, S020]
+    report_path: docs/governance/reviews/REV-SPEC-001-S010-20260808-090156.md
+  - review_id: REV-20260808-010
+    spec: SPEC-001
+    item: S012
+    name: Runtime Policies
+    type: regression
+    mode: cascade regression (TRG-002 — sau S003 fix ADR-003/004)
+    verdict: CONDITIONAL
+    note: >
+      Cascade regression S012 sau S003 fix (ADR-003 + ADR-004). Xac nhan fix #06
+      (REV-20260808-008 finding #06) DUNG va HET: 4 vi tri (policies.md:180/185 +
+      resource-policy.yaml:11/18) deu EF004, EF004 = Initialize chua "Allocate Resource"
+      (execution-flow.md:75); grep S003|RR-0 toan S012 = 0 matches. YAML parse 18/18 OK;
+      S009 refs (ST-004/005/009/011, TR-005/006/013/015) + S010 refs (EF012/015/021/022/
+      008/025) deu ton tai. 10 policy YAML du 13-field canonical, md <-> yaml khop.
+      Phat hien 2 MAJOR con treo: #01 Traceability — policies.md:155 + timeout-policy.yaml:18
+      ghi "Timeout Flow (S010 EF014)" nhung S010 EF013 = Timeout Flow, EF014 = Cancellation
+      Flow (execution-flow.md:222/234, timeout-flow.yaml:1) -> ref hong toi S010 (nhiem vu 2
+      chua dat); #02 Schema — policies.yaml:51-54 responsibility_chain la list mapping nhung
+      policies.schema.json:27 items type string -> jsonschema thuc te FAIL (cung lop S002 #01/
+      S003 #02). 1 MINOR (#03 policy-validation.yaml:6 chi 7 fields vs canonical 13) + 1 INFO
+      (#04 EF008 isolation chap nhan duoc). Verdict CONDITIONAL (0 CRITICAL, 2 MAJOR) -> tinh
+      count: NotReviewed -> Rev1, count 0 -> 1, lifecycle Draft -> Review. GIU recheck_required
+      (con MAJOR #01/#02 chua fix — "con gi treo"). Khong cascade moi: EF013/014 sai la loi cua
+      S012, S010 danh so dung.
+    score:
+      coverage: 97
+      quality: 95
+      consistency: 87
+      governance: 90
+      overall: 92
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 2
+      MINOR: 1
+      INFO: 1
+    started: "2026-08-08T09:13:39"
+    finished: "2026-08-08T09:13:39"
+    cascade_review: []
+    report_path: docs/governance/reviews/REV-SPEC-001-S012-REGRESSION-20260808-091339.md
+  - review_id: REV-20260808-011
+    spec: SPEC-001
+    item: S011
+    name: Execution Observability
+    type: rev1
+    mode: rev1 (review lan 1 — tinh count)
+    verdict: CONDITIONAL
+    note: >
+      rev1 tren S011 (Draft, NotReviewed, count 0, recheck_required tu cascade S009/S010).
+      Phat hien 3 MAJOR: #01 SCHEMA — observability.yaml evolution_integration[0]
+      "- Evolution chi doc: ..." parse thanh mapping {key: value} thay vi string ->
+      jsonschema validate thuc te FAIL (cung lop loi S002 #01 da fix bang ADR-002);
+      #02 TRACEABILITY — "S015 Quality Model" dangling (observability.md OB005:129,
+      metrics.yaml:19, observability-mapping.yaml:9) trong khi S015 khong co Quality
+      Model (grep toan S015 = 0 matches; S015 chi co Resource Metrics va tham chieu
+      nguoc S011 OB005); #03 COMPLIANCE — audit.yaml:18 "Ghi moi quyet dinh/quyen
+      thay doi (P008)" nhung P008 = Single Responsibility (khong lien quan) — dung
+      P014 Observability First / P016 Human Approval. MINOR #04 events.yaml
+      vocabulary/casing (system vs Runtime, lowercase vs Title), #05 events.yaml P005
+      immutable nen la P010, #06 correlation.yaml P009 immutable nen la P010,
+      #07 version "1.0" vs "1.0.0" o 9 artifact. INFO #08 chi 1 schema cho 11
+      artifact, #09 upstream S009 state-events.yaml thieu EXECUTION_CREATED (da flag
+      REV-20260808-009 #04). Xac nhan tich cuc: 10/10 YAML parse PASS, schema
+      top-level keys khop 100%, EF010/EF023/S007/S008/S009 refs hop le, machine-
+      readable 11 files ton tai, naming nhat quan. Verdict CONDITIONAL -> tinh count:
+      NotReviewed -> Rev1, count 0 -> 1, lifecycle Draft -> Review.
+    score:
+      coverage: 97
+      quality: 90
+      consistency: 80
+      governance: 87
+      overall: 89
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 3
+      MINOR: 4
+      INFO: 2
+    started: "2026-08-08T09:15:15"
+    finished: "2026-08-08T09:15:15"
+    cascade_review: [S007, S008, S009, S010, S015, S016, S017, S019, S020, SPEC-002]
+    report_path: docs/governance/reviews/REV-SPEC-001-S011-20260808-091515.md
+  - review_id: REV-20260808-015
+    spec: SPEC-001
+    item: S011
+    name: Execution Observability
+    type: rev1
+    mode: rev1 (review lan 2 — tinh count)
+    verdict: PASS
+    note: >
+      rev1 lan 2 tren S011 (Review/Rev1/count 1/recheck_required). Xac nhan 3 MAJOR
+      REV-20260808-011 da FIXED trong working tree (git diff + jsonschema thuc te):
+      #01 schema — observability.yaml:56 quoted string, Draft202012Validator thuc te
+      VALIDATION PASS (truoc FAIL); #02 — ca 3 vi tri (observability.md:129, metrics.yaml:19,
+      observability-mapping.yaml:9) doi thanh "S015 Resource Metrics", S015 resource-metrics.yaml:2
+      tham chieu nguoc S011 OB005 -> 2 chieu khop; #03 — audit.yaml:18 (P008)->(P014).
+      Verdict PASS (0 CRITICAL, 0 MAJOR) -> tinh count: Rev1 -> Completed, count 1 -> 2,
+      lifecycle giu Review. 4 MINOR ke thua khong chan (#04 events.yaml vocab/casing, #05 P005,
+      #06 P009, #07 version 1.0 o 9 artifact) + INFO #08 (1 schema cho 11 artifact) + INFO #09
+      (upstream S009 state-events.yaml thieu EXECUTION_CREATED + duplicate EXECUTION_REPLAYED).
+      Phat hien moi #10 (INFO, governance): report REV-SPEC-001-S013-20260808-092039.md ton tai
+      tren dia ghi review_id REV-20260808-012 nhung luc do tracker S013 van NotReviewed count 0
+      va history chua co entry — da duoc session song song dang ky sau (S013 Completed count 2,
+      entries 012+014). id_note: review nay ban dau du dinh 013 nhung bi trung voi S012 (session
+      song song chiem 013 truoc, report 092247) — doi sang 015 (so tiep theo chua dung) de dam
+      bao review_id unique toan cuc. Khong cascade moi (0 MAJOR).
+    score:
+      coverage: 97
+      quality: 100
+      consistency: 97
+      governance: 91
+      overall: 96
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 0
+      MINOR: 4
+      INFO: 3
+    started: "2026-08-08T09:25:29"
+    finished: "2026-08-08T09:25:29"
+    cascade_review: [S007, S008, S009, S010, S015, S016, S017, S019, S020, SPEC-002]
+    report_path: docs/governance/reviews/REV-SPEC-001-S011-20260808-092529.md
+  - review_id: REV-20260808-013
+    spec: SPEC-001
+    item: S012
+    name: Runtime Policies
+    type: rev1
+    mode: rev1 (review lan 2 — tinh count, sau fix REV-20260808-010)
+    verdict: PASS
+    note: >
+      rev1 lan 2 tren S012 (Review/Rev1/count 1/recheck_required). Xac nhan 2 MAJOR
+      REV-20260808-010 da FIXED bang may: #01 Traceability — policies.md:155 +
+      timeout-policy.yaml:18 ghi dung "Timeout Flow (S010 EF013)" (S010 EF013 = Timeout
+      Flow, EF014 = Cancellation — execution-flow.md:222/234, timeout-flow.yaml EF013);
+      grep EF014 toan S012 = 0 matches. #02 Schema — policies.schema.json:27
+      responsibility_chain items doi sang object + principles items doi sang object
+      (6 principle deu la mapping), jsonschema strict thuc te PASS (policies.yaml
+      VALID, responsibility_chain 3 dict, principles 6 dict, policy_model.fields 13).
+      YAML parse 18/18 PASS; 10 policy YAML du 13-field canonical; 21 RP sections
+      (RP001..RP017 + RP002A/B, RP012A, RP013A) day du; cross-reference S009 ST/TR
+      8/8 + S010 EF 8/8 deu ton tai; grep S003|RR-0 toan S012 = 0 matches (fix #06
+      REV-20260808-008 giu sach). Phat hien 3 MINOR moi (#01 ke thua REV-20260808-010
+      #03 policy-validation.yaml chi 7 fields vs canonical 13 — khong bat buoc;
+      #02 version "1.0" o 10 policy yaml vs "1.0.0" top-level, RP014 semver;
+      #03 POL-PARALLEL-001 va POL-SCHED-001 cung category Orchestration + priority 40
+      vi pham RP014 "khong trung trong cung category" — RP013A cho phep deterministic
+      nen khong chan) + 1 INFO (#01 frontmatter status Draft vs lifecycle Review —
+      theo tien le S009 #11). Verdict PASS (0 CRITICAL, 0 MAJOR) -> tinh count:
+      Rev1 -> Completed, count 1 -> 2, lifecycle giu Review (Approved chi qua
+      POLICY-001 approval — review-workflow.md:14 + specification-lifecycle.md:35,
+      tien le S009/S010). GO recheck_required S012 (hoan tat TRG-002). Khong cascade
+      moi (MINOR noi tai S012, khong anh huong cheo).
+    score:
+      coverage: 100
+      quality: 97
+      consistency: 97
+      governance: 97
+      overall: 98
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 0
+      MINOR: 3
+      INFO: 1
+    started: "2026-08-08T09:22:47"
+    finished: "2026-08-08T09:22:47"
+    cascade_review: []
+    report_path: docs/governance/reviews/REV-SPEC-001-S012-20260808-092247.md
+  - review_id: REV-20260808-012
+    spec: SPEC-001
+    item: S013
+    name: Runtime Governance
+    type: rev1
+    mode: rev1 (review lan 1 — tinh count)
+    verdict: CONDITIONAL
+    note: >
+      rev1 tren S013 (Draft, NotReviewed, count 0, recheck_required tu cascade S009/S010).
+      Phat hien 2 MAJOR: #01 TRACEABILITY — GV013 (governance.md:305-313) + governance-events.yaml
+      claim "S011 reuse truc tiep" 7 event types (CONSTITUTION_VALIDATED, BOUNDARY_DENIED,
+      POLICY_APPLIED, CONTRACT_VALIDATED, PERMISSION_DENIED, VERSION_CONFLICT,
+      COMPATIBILITY_FAILED) nhung S011 events.yaml khong dinh nghia event type cu the nao
+      (chi model + taxonomy execution/workflow/...; grep toan S011 = 0 matches) — 7 event chi
+      ton tai trong chinh S013, tuyen bo reuse khong kiem chung duoc (cung lop S010 #02/S011 #02);
+      #02 CONSISTENCY — Decision Model mau thuan noi tai: GV012 "Decision chi co Allow/Deny/
+      Suspend/Retry/Escalate" nhung Decision Matrix tra Abort/Failed/Ignore (ngoai tap) +
+      Policy "Ignore" (decision_matrix) vs "Skip" (failure_classification) — vi pham GV018
+      "khong Decision mo ho". 4 MINOR: #03 governance.yaml traceability (Execution->Policy->
+      Contract->Boundary->Constitution) khong khop GV014/GV014A; #04 version 1.0.0 (governance
+      .yaml/md) vs 1.0 (12 artifact con lai); #05 governance-registry.yaml thieu governance
+      .schema.json so voi GV016 (14 file); #06 governance-decisions.yaml modes la string list
+      khong enum. 2 INFO: #07 upstream S009 state-events.yaml duplicate EXECUTION_REPLAYED
+      (da flag REV-20260808-009 #04, khong phai loi S013); #08 tich cuc — 13/13 YAML parse OK,
+      jsonschema VALID, S012 RP013/RP013A/RP014/RP015/RP002B + POL-SEC-001 + POL-RESACC-001 +
+      ST-014/ST-009 + S004/S007/SPEC-000 deu ton tai, downstream S015-S020 ref dung, frontmatter
+      23 sections khop. Verdict CONDITIONAL (0 CRITICAL, 2 MAJOR) -> tinh count: NotReviewed ->
+      Rev1, count 0 -> 1, lifecycle Draft -> Review. GIU recheck_required (con MAJOR chua fix).
+      Cascade: S011/S016 da co recheck_required tu truoc — giu nguyen.
+    score:
+      coverage: 97
+      quality: 92
+      consistency: 78
+      governance: 90
+      overall: 89
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 2
+      MINOR: 4
+      INFO: 2
+    started: "2026-08-08T09:20:39"
+    finished: "2026-08-08T09:20:39"
+    cascade_review: [S011, S016]
+    report_path: docs/governance/reviews/REV-SPEC-001-S013-20260808-092039.md
+  - review_id: REV-20260808-016
+    spec: SPEC-001
+    item: S006
+    name: Runtime Components
+    type: regression
+    mode: cascade regression (TRG-002 — sau S003 fix ADR-003/004)
+    verdict: FAIL
+    note: >
+      Cascade regression S006 sau S003 fix (ADR-003 + ADR-004). Xac nhan S003 fix KHONG anh huong
+      S006: chi quote YAML (output "-" 2 file) + schema (5 key) + frozen_date 2026-08-08 — khong doi
+      contract du lieu; grep S003 literal toan S006 = 0 matches; 31 RR refs S006->S003 deu ton tai
+      (FR 20/20, B 8/8, P 13/13, RULE 9/9, DAG acyclic, md<->yaml deps 12/12). NHUNG phat hien defect
+      noi tai S006 chua tung machine-validated (freeze 2026-08-04, truoc chuan validate bang may):
+      #01 CRITICAL — components.yaml:274-285 not_in_runtime block sequence + note cung indent ->
+      PyYAML ParserError, file canonical khong parse duoc (cung lop S003 CRITICAL #01 REV-20260808-008);
+      #02 MAJOR — components.schema.json additionalProperties:false chan frozen/frozen_date/note top-level
+      -> jsonschema strict FAIL (cung lop S002 #01/S003 #02); #03 MAJOR — S006 dung "Orchestrator
+      Contract" (components.yaml:63, component-contracts.yaml:7, component-registry.yaml:18,
+      components.md:161) nhung S007 dinh nghia "Coordination Contract" (CTR-003), grep 0 occurrence ->
+      ref hong toi S007. 2 MINOR (#04 component-metrics average_dependency 1.3 vs 1.17 thuc te,
+      #05 RR-007/008/009/010 chua map component — 31/35) + 2 INFO (#06 TBD S003 responsibility-mapping
+      giu nguyen placeholder — S006 co data resolve 31/35 nhung components.yaml dang hu, can ADR;
+      #07 S003 fix sach khong breaking). Verdict FAIL (1 CRITICAL >= 1) -> giu nguyen 2 truc:
+      lifecycle Frozen, review.status Completed, count 2 (inherited: true — regression tren Frozen/
+      Completed khong doi trang thai; FAIL khong tang count). GIU recheck_required S006 (con CRITICAL
+      chua fix — "con gi treo"). Khong cascade moi: S003/S007 da co recheck_required tu REV-20260808-008.
+      Next: ADR mo Frozen S006 (precedent ADR-003) fix #01/#02/#03 -> re-freeze -> regression lan 2.
+      (id_note: ban dau 014 nhung trung S013 rev1 lan 2 (session song song chiem 014) — doi sang 016
+      de dam bao unique.)
+    score:
+      coverage: 97
+      quality: 70
+      consistency: 87
+      governance: 90
+      overall: 86
+    severity_counts:
+      CRITICAL: 1
+      MAJOR: 2
+      MINOR: 2
+      INFO: 2
+    started: "2026-08-08T09:30:16"
+    finished: "2026-08-08T09:30:16"
+    cascade_review: []
+    report_path: docs/governance/reviews/REV-SPEC-001-S006-REGRESSION-20260808-093016.md
+  - review_id: REV-20260808-014
+    spec: SPEC-001
+    item: S013
+    name: Runtime Governance
+    type: rev1
+    mode: rev1 (review lan 2 — tinh count)
+    verdict: PASS
+    note: >
+      rev1 lan 2 tren S013 (Review/Rev1/count 1/recheck_required). Xac nhan 2 MAJOR
+      REV-20260808-012 da FIXED: #01 TRACEABILITY — governance-events.yaml + governance.md
+      GV013 bo toan bo tuyen bo "S011 reuse truc tiep" (grep 'reuse' toan S013 = 0 matches);
+      event types khai bao ro "S013 dinh nghia 7 event types (GV013) — S011 tham chieu khi
+      can" + "Moi event theo event model S011 (fields, correlation_id)" — S011 events.yaml
+      dung nghia event model, khong con claim sai. #02 CONSISTENCY — Decision Model thong
+      nhat 1 tap ket qua: governance.yaml + governance-decisions.yaml result = [Allow, Deny,
+      Suspend, Retry, Escalate, Abort, Failed, Ignore] (8 gia tri phu toan bo outcome matrix);
+      governance-matrix.yaml failure_classification Policy: Ignore (thay Skip) dong nhat voi
+      decision_matrix "Policy Invalid: Ignore"; GV012 md cap nhat "Decision chi co" 8 gia tri
+      + bang Failure Classification Policy | Ignore. Kiem chung may: outcome decision_matrix
+      {Abort, Deny, Failed, Ignore, Suspend} subset decision set ✓, outcome failure_
+      classification subset decision set ✓ — khong con outcome ngoai tap, khong con "Decision
+      mo ho" (GV018 thoa). Verdict PASS (0 CRITICAL, 0 MAJOR) -> tinh count: Rev1 -> Completed,
+      count 1 -> 2, lifecycle giu Review. Con 4 MINOR ke thua (#03 traceability YAML vs
+      GV014/GV014A, #04 version 1.0.0 vs 1.0 x 12 artifact, #05 registry thieu governance
+      .schema.json so voi GV016, #06 modes string list khong enum) + 2 INFO (#07 upstream S009
+      duplicate EXECUTION_REPLAYED, #08 tich cuc) khong chan. Khong cascade moi (fix chi trong
+      pham vi S013).
+    score:
+      coverage: 97
+      quality: 97
+      consistency: 97
+      governance: 97
+      overall: 97
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 0
+      MINOR: 4
+      INFO: 2
+    started: "2026-08-08T09:26:28"
+    finished: "2026-08-08T09:26:28"
+    cascade_review: []
+    report_path: docs/governance/reviews/REV-SPEC-001-S013-20260808-092628.md

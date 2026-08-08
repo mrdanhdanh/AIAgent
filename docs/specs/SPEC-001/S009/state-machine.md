@@ -9,7 +9,7 @@ agent: general
 
 # S009 — Runtime State Machine
 
-> **SPEC-001**: Runtime Kernel · **Version**: 1.0.0 · **Trạng thái**: Draft
+> **SPEC-001**: Runtime Kernel · **Version**: 1.0.0 · **Trạng thái**: ✅ Review (2026-08-08)
 > **Vị trí**: Hiến pháp của Execution — Retry, Timeout, Cancellation, Replay, Approval, Rollback, Doctor đều là transition hợp lệ.
 
 ## Mục tiêu
