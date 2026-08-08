@@ -443,7 +443,7 @@ if (Test-Path $sm9) {
 # ---------- W9-004: transitions >= 7 ----------
 if (Test-Path $sm9) {
   $sm4 = Get-Content -LiteralPath $sm9 -Raw -Encoding utf8
-  $trCount = ([regex]::Matches($sm4, '(?m)^  - from:')).Count
+  $trCount = ([regex]::Matches($sm4, '(?m)^\s*- "?from:')).Count
   if ($trCount -lt 7) { $errors += "W9-004: chi co $trCount transitions (can >=7)" }
 }
 

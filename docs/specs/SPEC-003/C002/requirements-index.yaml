@@ -1,0 +1,88 @@
+# SPEC-003 C002 - Requirements Index
+---
+version: "1.0"
+index:
+  - id: CFR-001
+    type: functional
+    status: Draft
+  - id: CFR-002
+    type: functional
+    status: Draft
+  - id: CFR-003
+    type: functional
+    status: Draft
+  - id: CFR-004
+    type: functional
+    status: Draft
+  - id: CFR-005
+    type: functional
+    status: Draft
+  - id: CFR-006
+    type: functional
+    status: Draft
+  - id: CFR-007
+    type: functional
+    status: Draft
+  - id: CFR-008
+    type: functional
+    status: Draft
+  - id: CFR-009
+    type: functional
+    status: Draft
+  - id: CFR-010
+    type: functional
+    status: Draft
+  - id: CFR-011
+    type: functional
+    status: Draft
+  - id: CFR-012
+    type: functional
+    status: Draft
+  - id: CFR-013
+    type: functional
+    status: Draft
+  - id: CFR-014
+    type: functional
+    status: Draft
+  - id: CFR-015
+    type: functional
+    status: Draft
+  - id: CFR-016
+    type: functional
+    status: Draft
+  - id: CNFR-001
+    type: non_functional
+    status: Draft
+  - id: CNFR-002
+    type: non_functional
+    status: Draft
+  - id: CNFR-003
+    type: non_functional
+    status: Draft
+  - id: CNFR-004
+    type: non_functional
+    status: Draft
+  - id: CNFR-005
+    type: non_functional
+    status: Draft
+  - id: CNFR-006
+    type: non_functional
+    status: Draft
+  - id: CNFR-007
+    type: non_functional
+    status: Draft
+  - id: CNFR-008
+    type: non_functional
+    status: Draft
+  - id: CNFR-009
+    type: non_functional
+    status: Draft
+  - id: CNFR-010
+    type: non_functional
+    status: Draft
+  - id: CNFR-011
+    type: non_functional
+    status: Draft
+  - id: CNFR-012
+    type: non_functional
+    status: Draft
