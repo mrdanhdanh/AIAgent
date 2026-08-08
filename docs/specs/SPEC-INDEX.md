@@ -26,7 +26,7 @@ SPEC-000 Constitution
 
 ## SPEC-001 — Runtime Kernel
 
-> **Trạng thái**: ✅ Hoàn thành review (S001-S020 Completed) · **Phụ thuộc**: SPEC-000
+> **Trạng thái**: ✅ Frozen (S001-S020, 2026-08-08) · **Phụ thuộc**: SPEC-000
 > **Tier 1 Foundation + S008: ✅ Frozen · Tier 2 Behavior · Tier 3 Operations
 
 ```text
@@ -62,23 +62,23 @@ SPEC-001 Runtime Kernel
 
 ## SPEC-002 — Workflow Engine
 
-> **Trạng thái**: ✅ COMPLETE (20/20 Draft) · **Phụ thuộc**: SPEC-000, SPEC-001
+> **Trạng thái**: In progress (20/20 Draft — W001-W007 Rev1, W008-W020 NotReviewed) · **Phụ thuộc**: SPEC-000, SPEC-001
 
 ```text
 SPEC-002 Workflow Engine
 │
 ├── Tier 1 — Foundation ✅
-│   ├── W001 Workflow Vision          ✅ Draft
-│   ├── W002 Workflow Requirements    ✅ Draft
-│   ├── W003 Workflow Responsibilities ✅ Draft
-│   ├── W004 Workflow Boundaries      ✅ Draft
-│   ├── W005 Workflow Architecture    ✅ Draft
-│   ├── W006 Workflow Components      ✅ Draft
-│   ├── W007 Workflow Contracts       ✅ Draft
+│   ├── W001 Workflow Vision          🚧 Draft
+│   ├── W002 Workflow Requirements    🚧 Draft
+│   ├── W003 Workflow Responsibilities 🚧 Draft
+│   ├── W004 Workflow Boundaries      🚧 Draft
+│   ├── W005 Workflow Architecture    🚧 Draft
+│   ├── W006 Workflow Components      🚧 Draft
+│   ├── W007 Workflow Contracts       🚧 Draft
 │   └── Appendix: Canonical Models    ✅ Draft
 │
 ├── Tier 2 — Behavior ✅
-│   ├── W008 Workflow Data Model      ✅ Draft
+│   ├── W008 Workflow Data Model      🚧 Draft
 │   ├── W009 Workflow State Machine   ✅ Draft
 │   └── W010 Workflow Execution Flow  ✅ Draft
 │
@@ -89,7 +89,30 @@ SPEC-002 Workflow Engine
 
 ## SPEC-003 — Capability System
 
-> **Trạng thái**: ⬜
+> **Trạng thái**: 🚧 In progress · **Phụ thuộc**: SPEC-000, SPEC-001, SPEC-002
+
+```text
+SPEC-003 Capability System
+│
+├── Tier 1 — Foundation
+│   ├── C001 Capability Vision          🚧
+│   ├── C002 Capability Requirements    ⬜
+│   ├── C003 Capability Responsibilities ⬜
+│   ├── C004 Capability Boundaries      ⬜
+│   ├── C005 Capability Architecture    ⬜
+│   ├── C006 Capability Components      ⬜
+│   ├── C007 Capability Contracts       ⬜
+│   └── Appendix: Canonical Models      ⬜
+│
+├── Tier 2 — Behavior
+│   ├── C008 Capability Data Model      ⬜
+│   ├── C009 Capability State Machine   ⬜
+│   └── C010 Capability Execution Flow  ⬜
+│
+└── Tier 3/4 — Operations + Experience
+    ├── C011-C016 Operations            ⬜
+    └── C017-C020 Experience            ⬜
+```
 
 ## SPEC-004 — Agent System
 

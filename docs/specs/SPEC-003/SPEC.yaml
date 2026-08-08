@@ -1,0 +1,55 @@
+---
+id: SPEC-003
+name: Capability System
+version: "1.0.0"
+status: Draft
+type: System
+authority: High
+owner: Capability Team
+description: >
+  Capability System — khai báo, đăng ký và phân giải năng lực của Agents và
+  Plugins trên Runtime Kernel. Mọi capability resolve qua Registry (S014),
+  không hardcode.
+dependencies:
+  - SPEC-000
+  - SPEC-001
+  - SPEC-002
+includes:
+  - C001
+  - C002
+  - C003
+  - C004
+  - C005
+  - C006
+  - C007
+  - C008
+  - C009
+  - C010
+  - C011
+  - C012
+  - C013
+  - C014
+  - C015
+  - C016
+  - C017
+  - C018
+  - C019
+  - C020
+outputs:
+  - Capability Declaration
+  - Capability Registration
+  - Capability Resolution
+implements:
+  - Capability
+authoritative: false
+breaking_change_requires:
+  - ADR
+  - RFC
+references:
+  constitution: ../SPEC-000
+  runtime: ../SPEC-001
+  workflow: ../SPEC-002
+  glossary: ../../glossary
+  principles: ../../principles
+  rules: ../../rules
+  governance: ../../governance
