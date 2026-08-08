@@ -1,0 +1,184 @@
+# SPEC-002 W004 — Workflow Boundaries (Firewall cua Workflow Engine)
+# 9 boundary + hierarchy + severity + violations + metrics.
+---
+id: SPEC-002-W004
+name: Workflow Boundaries
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Workflow Team
+hierarchy:
+  Workflow Boundary:
+    - WB001-declaration
+    - WB002-registry
+    - WB003-validation
+    - WB004-execution
+    - WB005-interface
+    - WB006-dependency
+    - WB007-state
+    - WB008-policy
+    - WB009-governance
+decision:
+  - Neu mot chuc nang khong xac dinh duoc Boundary, chuc nang do khong duoc phep dua vao Workflow Engine.
+invariants:
+  - Workflow Engine khong vuot qua Boundary.
+  - Workflow Engine khong tu chay - giao cho Runtime (SPEC-001).
+  - Workflow Engine chi giao tiep qua Contract (S007).
+  - Workflow Engine chi phu thuoc vao Abstraction.
+  - Workflow Engine khong biet implementation cua Agent.
+  - Workflow Engine khong biet implementation cua Plugin.
+validation:
+  - Co code trong Workflow khong?
+  - Workflow Engine co tu chay step khong?
+  - Workflow Engine co goi Agent cu the khong?
+  - Workflow Engine co phu thuoc Plugin cu the khong?
+  - Workflow Engine co dinh nghia state rieng khong?
+  - Workflow Engine co dinh nghia policy rieng khong?
+  - Workflow Engine co giao tiep ngoai Contract khong?
+boundaries:
+  WB001-declaration:
+    name: Declaration Boundary
+    severity: Critical
+    version: 1.0.0
+    status: Draft
+    allowed: [Nhan Workflow khai bao (YAML), Validate schema khai bao]
+    not_manage: [Code, Script, Executable]
+    violation: Workflow Engine nhan code thay vi khai bao
+    impact: Critical
+    detected_by: Doctor
+    metric: Declaration Violations
+    target: 0
+    principles: [P003]
+    rules: [RULE-001]
+  WB002-registry:
+    name: Registry Boundary
+    severity: Critical
+    version: 1.0.0
+    status: Draft
+    allowed: [Nap Workflow tu Registry (S014), Ghi Workflow Entry (S014)]
+    not_manage: [Workflow tu nguon khac, Workflow chua dang ky]
+    violation: Workflow Engine nap Workflow ngoai Registry
+    impact: Critical
+    detected_by: Doctor
+    metric: Registry Violations
+    target: 0
+    principles: [P003]
+    rules: [RULE-002]
+  WB003-validation:
+    name: Validation Boundary
+    severity: Critical
+    version: 1.0.0
+    status: Draft
+    allowed: [Validate cau truc, Validate tham chieu, Tu choi Workflow khong hop le]
+    not_manage: [Chay Workflow chua validate]
+    violation: Workflow Engine chay Workflow khong hop le
+    impact: Critical
+    detected_by: Doctor
+    metric: Validation Violations
+    target: 0
+    principles: [P011]
+    rules: [RULE-002]
+  WB004-execution:
+    name: Execution Boundary
+    severity: Critical
+    version: 1.0.0
+    status: Draft
+    allowed: [Dieu phoi step qua Runtime (SPEC-001), Toi uu thu tu]
+    not_manage: [Tu chay step, Tu goi Agent]
+    violation: Workflow Engine tu chay step ngoai Runtime
+    impact: Critical
+    detected_by: Doctor
+    metric: Execution Violations
+    target: 0
+    principles: [P001]
+    rules: [RULE-004]
+  WB005-interface:
+    name: Interface Boundary
+    severity: High
+    version: 1.0.0
+    status: Draft
+    allowed: [Giao tiep qua Contract (S007), Goi Capability da resolve]
+    not_manage: [Giao tiep truc tiep Agent/Plugin]
+    violation: Workflow Engine goi truc tiep Agent
+    impact: High
+    detected_by: Doctor
+    metric: Interface Violations
+    target: 0
+    principles: [P002]
+    rules: [RULE-003]
+  WB006-dependency:
+    name: Dependency Boundary
+    severity: High
+    version: 1.0.0
+    status: Draft
+    allowed: [Phu thuoc Registry (S014), Phu thuoc Contract (S007)]
+    not_manage: [Phu thuoc Agent cu the, Phu thuoc Plugin cu the]
+    violation: Workflow Engine phu thuoc Plugin cu the
+    impact: High
+    detected_by: Doctor
+    metric: Dependency Violations
+    target: 0
+    principles: [P012]
+    rules: [RULE-010]
+  WB007-state:
+    name: State Boundary
+    severity: Critical
+    version: 1.0.0
+    status: Draft
+    allowed: [Dung State Machine (S009), Tham chieu state hop le]
+    not_manage: [Dinh nghia state rieng]
+    violation: Workflow Engine dinh nghia state rieng
+    impact: Critical
+    detected_by: Doctor
+    metric: State Violations
+    target: 0
+    principles: [P005]
+    rules: [RULE-005]
+  WB008-policy:
+    name: Policy Boundary
+    severity: High
+    version: 1.0.0
+    status: Draft
+    allowed: [Dung Policy cua Runtime (S012), Khai bao tham so cho policy]
+    not_manage: [Dinh nghia policy rieng]
+    violation: Workflow Engine dinh nghia policy rieng
+    impact: High
+    detected_by: Doctor
+    metric: Policy Violations
+    target: 0
+    principles: [P015]
+    rules: [RULE-012]
+  WB009-governance:
+    name: Governance Boundary
+    severity: Critical
+    version: 1.0.0
+    status: Draft
+    allowed: [Chiu Governance (S013), Ghi Audit (S011)]
+    not_manage: [Bypass Governance, Tu phe duyet]
+    violation: Workflow Engine bypass Governance
+    impact: Critical
+    detected_by: Doctor
+    metric: Governance Violations
+    target: 0
+    principles: [P016]
+    rules: [RULE-008]
+mapping:
+  WB001-declaration: { principle: P003, rule: RULE-001 }
+  WB002-registry: { principle: P003, rule: RULE-002 }
+  WB003-validation: { principle: P011, rule: RULE-002 }
+  WB004-execution: { principle: P001, rule: RULE-004 }
+  WB005-interface: { principle: P002, rule: RULE-003 }
+  WB006-dependency: { principle: P012, rule: RULE-010 }
+  WB007-state: { principle: P005, rule: RULE-005 }
+  WB008-policy: { principle: P015, rule: RULE-012 }
+  WB009-governance: { principle: P016, rule: RULE-008 }
+metrics:
+  Declaration Violations: 0
+  Registry Violations: 0
+  Validation Violations: 0
+  Execution Violations: 0
+  Interface Violations: 0
+  Dependency Violations: 0
+  State Violations: 0
+  Policy Violations: 0
+  Governance Violations: 0

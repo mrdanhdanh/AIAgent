@@ -1,0 +1,6 @@
+# SPEC-002 W004 - Boundary Matrix (Boundary x Severity)
+---
+version: "1.0"
+matrix:
+  Critical: [WB001-declaration, WB002-registry, WB003-validation, WB004-execution, WB007-state, WB009-governance]
+  High: [WB005-interface, WB006-dependency, WB008-policy]

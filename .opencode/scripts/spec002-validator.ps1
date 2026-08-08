@@ -172,6 +172,51 @@ if (Test-Path $rm) {
   }
 }
 
+# ---------- W4-001: W004 boundaries ----------
+$w004 = Join-Path $spec2 'W004'
+foreach ($f in @('boundaries.md','boundaries.yaml','boundaries.schema.json','boundary-matrix.yaml','boundary-ownership-matrix.yaml','boundary-registry.yaml','declaration-boundary.yaml','execution-boundary.yaml','state-boundary.yaml','policy-boundary.yaml')) {
+  if (-not (Test-Path (Join-Path $w004 $f))) { $errors += "W4-001: missing W004/$f" }
+}
+
+# ---------- W4-002: boundaries.yaml ----------
+$bw = Join-Path $w004 'boundaries.yaml'
+if (Test-Path $bw) {
+  $bd = Get-Content -LiteralPath $bw -Raw -Encoding utf8
+  foreach ($sec in @('hierarchy','decision','invariants','validation','boundaries','mapping','metrics')) {
+    if ($bd -notmatch "(?m)^${sec}:") { $errors += "W4-002: boundaries.yaml thieu '$sec'" }
+  }
+  foreach ($b in @('WB001-declaration','WB002-registry','WB003-validation','WB004-execution','WB005-interface','WB006-dependency','WB007-state','WB008-policy','WB009-governance')) {
+    if ($bd -notmatch [regex]::Escape($b)) { $errors += "W4-002: thieu $b" }
+  }
+}
+
+# ---------- W4-003: moi boundary co severity + principles ----------
+foreach ($b in @('WB001-declaration','WB004-execution','WB007-state','WB009-governance')) {
+  $block = [regex]::Match($bd, "(?ms)^  ${b}:.*?^    rules:.*$")
+  if (-not $block.Success) { $errors += "W4-003: $b thieu block" }
+  else {
+    if ($block.Value -notmatch '(?m)^    severity:\s*(\w+)') { $errors += "W4-003: $b thieu severity" }
+    elseif ($Matches[1] -notin @('Critical','High','Medium','Low')) { $errors += "W4-003: $b severity sai" }
+    if ($block.Value -notmatch '(?m)^    principles:') { $errors += "W4-003: $b thieu principles" }
+  }
+}
+
+# ---------- W4-004: mapping ----------
+$mp4 = Join-Path $w004 'boundaries.yaml'
+if (Test-Path $mp4) {
+  $m4 = Get-Content -LiteralPath $mp4 -Raw -Encoding utf8
+  if ($m4 -notmatch '(?m)^mapping:') { $errors += "W4-004: thieu mapping" }
+}
+
+# ---------- W4-005: boundaries.md ----------
+$bmd = Join-Path $w004 'boundaries.md'
+if (Test-Path $bmd) {
+  $bm = Get-Content -LiteralPath $bmd -Raw -Encoding utf8
+  foreach ($sec in @('Hierarchy','Decision','Invariants','Validation','Boundaries','Mapping','Metrics','Machine-readable')) {
+    if ($bm -notmatch [regex]::Escape("## $sec")) { $errors += "W4-005: boundaries.md thieu section '$sec'" }
+  }
+}
+
 # ---------- W1-005: SPEC.yaml ----------
 $specFile = Join-Path $spec2 'SPEC.yaml'
 if (Test-Path $specFile) {

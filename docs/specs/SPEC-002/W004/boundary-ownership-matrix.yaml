@@ -1,0 +1,13 @@
+# SPEC-002 W004 - Boundary Ownership Matrix
+---
+version: "1.0"
+ownership:
+  WB001-declaration: Workflow
+  WB002-registry: Workflow
+  WB003-validation: Workflow
+  WB004-execution: Runtime (SPEC-001)
+  WB005-interface: Workflow
+  WB006-dependency: Workflow
+  WB007-state: Runtime (S009)
+  WB008-policy: Runtime (S012)
+  WB009-governance: Runtime (S013)

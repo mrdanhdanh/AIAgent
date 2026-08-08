@@ -1,0 +1,16 @@
+# SPEC-002 W004 - Declaration Boundary (WB001)
+---
+version: "1.0"
+name: Declaration Boundary
+severity: Critical
+allowed:
+  - Nhan Workflow khai bao (YAML)
+  - Validate schema khai bao
+not_allowed:
+  - Nhan code thay vi khai bao
+  - Nhan script thuc thi
+violation: Workflow Engine nhan code thay vi khai bao
+impact: Critical
+detected_by: Doctor
+principles: [P003]
+rules: [RULE-001]

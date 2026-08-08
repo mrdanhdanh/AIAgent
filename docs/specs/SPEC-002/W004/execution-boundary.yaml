@@ -1,0 +1,16 @@
+# SPEC-002 W004 - Execution Boundary (WB004)
+---
+version: "1.0"
+name: Execution Boundary
+severity: Critical
+allowed:
+  - Dieu phoi step qua Runtime (SPEC-001)
+  - Toi uu thu tu thuc thi
+not_allowed:
+  - Tu chay step
+  - Tu goi Agent
+violation: Workflow Engine tu chay step ngoai Runtime
+impact: Critical
+detected_by: Doctor
+principles: [P001]
+rules: [RULE-004]
