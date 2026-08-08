@@ -1,0 +1,10 @@
+# SPEC-004 A005 - Domain Model
+---
+version: "1.0"
+domains:
+  Definition: { owner: Agent, business_logic: false }
+  Validation: { owner: Agent, business_logic: false }
+  Mapping: { owner: Agent, business_logic: false }
+  Orchestration: { owner: Workflow Engine (SPEC-002), business_logic: false }
+  Execution: { owner: Runtime (SPEC-001), business_logic: false }
+  Observability: { owner: Runtime (S011), business_logic: false }
