@@ -6,5 +6,5 @@ flow:
   - Timeout exceeded (guard)
   - TimedOut (S009 ST-011)
 rules:
-  - Delegate Runtime (S010 EF014).
+  - Delegate Runtime (S010 EF013).
   - Moi timeout sinh Event + Audit (S011).

@@ -10,7 +10,7 @@ agent: general
 
 # S016 — Runtime Compliance
 
-> **SPEC-001**: Runtime Kernel · **Version**: 1.0.0 · **Trạng thái**: ✅ Review (2026-08-08)
+> **SPEC-001**: Runtime Kernel · **Version**: 1.0.0 · **Trạng thái**: ✅ Frozen (2026-08-08)
 > **Vai trò**: Chặn cuối chuỗi **Define → Enforce → Verify** — Doctor xác minh Runtime đã thực thi đúng các quy tắc hay chưa, không định nghĩa lại quy tắc.
 
 ## Mục tiêu

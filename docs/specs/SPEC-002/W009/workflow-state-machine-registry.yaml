@@ -1,6 +1,6 @@
 # SPEC-002 W009 - Workflow State Machine Registry
 ---
-version: "1.0"
+version: "1.0.0"
 registries:
   - workflow-state-machine.yaml
   - workflow-states.yaml
@@ -13,4 +13,5 @@ registries:
   - workflow-state-history.yaml
   - workflow-state-metrics.yaml
   - workflow-state-machine-validation.yaml
+  - workflow-state-machine-registry.yaml
   - workflow.schema.json

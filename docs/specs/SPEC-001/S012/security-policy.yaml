@@ -5,7 +5,7 @@ policy:
   id: POL-SEC-001
   name: Security Policy
   category: Security
-  version: "1.0"
+  version: "1.0.0"
   status: Draft
   owner: Runtime Team
   trigger: Access attempt

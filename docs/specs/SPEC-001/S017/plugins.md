@@ -9,7 +9,7 @@ agent: general
 
 # S017 — Runtime Plugins
 
-> **SPEC-001**: Runtime Kernel · **Version**: 1.0.0 · **Trạng thái**: Draft
+> **SPEC-001**: Runtime Kernel · **Version**: 1.0.0 · **Trạng thái**: ✅ Frozen (2026-08-08)
 > **Vai trò**: Định nghĩa Plugin — cơ chế mở rộng Runtime duy nhất, không sửa Runtime core.
 
 ## Mục tiêu

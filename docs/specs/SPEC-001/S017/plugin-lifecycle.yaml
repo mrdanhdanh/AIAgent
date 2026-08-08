@@ -1,6 +1,6 @@
 # SPEC-001 S017 - Plugin Lifecycle
 ---
-version: "1.0"
+version: "1.0.0"
 lifecycle: [Draft, Published, Installed, Active, Disabled, Retired]
 rules:
   - Chi Published moi Install.

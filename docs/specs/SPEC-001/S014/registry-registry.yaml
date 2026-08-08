@@ -1,7 +1,7 @@
 # SPEC-001 S014 - Registry of Registries
 # Dashboard chi can doc mot file duy nhat.
 ---
-version: "1.0"
+version: "1.0.0"
 registries:
   - capability-registry.yaml
   - workflow-registry.yaml

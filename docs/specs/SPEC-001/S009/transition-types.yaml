@@ -3,7 +3,7 @@
 version: "1.0.0"
 types:
   Forward: Transition theo lifecycle thuận.
-  Backward: Transition ngược lifecycle (không hợp lệ trừ Replay).
-  Recovery: Failed -> Retrying -> Running.
+  Backward: Transition ngược lifecycle (chỉ hợp lệ cho Replay tạo Execution mới).
+  Recovery: Failed -> Retrying -> Running (recovery từ terminal ST-009 qua ST-013).
   Terminal: -> Terminal State.
   Virtual: -> Replayed (Execution mới).

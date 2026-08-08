@@ -10,7 +10,7 @@ document_lifecycle:
     Draft: "Tạo xong, chưa được duyệt"
     Review: "Đang trong vòng đánh giá (review hoặc approval)"
     Approved: "Đã duyệt (POLICY-001) — bắt buộc review.status = Completed"
-    Frozen: "Đóng băng — chỉ đến từ Approved, KHÔNG bao giờ trực tiếp"
+    Frozen: "Đóng băng — đến từ revfull PASS + Completed (auto-freeze) hoặc Approved"
     Deprecated: "Hết hiệu lực, còn tham chiếu cho lịch sử"
     Archived: "Lưu trữ, không dùng nữa"
   transitions:
@@ -19,7 +19,10 @@ document_lifecycle:
       condition: "Bắt đầu review (review.count >= 1)"
     - from: Review
       to: Approved
-      condition: "review.status = Completed + approval pass (POLICY-001)"
+      condition: "review.status = Completed + approval pass (POLICY-001) — thay thế bởi auto-freeze nếu revfull PASS"
+    - from: Review
+      to: Frozen
+      condition: "revfull PASS + review.status = Completed (auto-freeze, không cần Approved)"
     - from: Approved
       to: Frozen
       condition: "Quyết định freeze — không trực tiếp từ Draft/Review"

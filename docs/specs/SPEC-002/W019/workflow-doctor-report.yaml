@@ -4,4 +4,4 @@ version: "1.0"
 report:
   fields: [id, timestamp, workflow_version, checks, score, status, repair, evidence]
 rules:
-  - Report immutable (P005).
+  - Report immutable (P010).

@@ -1,6 +1,6 @@
 # SPEC-001 S015 - Resource Lifecycle
 ---
-version: "1.0"
+version: "1.0.0"
 lifecycle: [Draft, Available, Allocated, In Use, Released, Depleted]
 rules:
   - Chi Available moi Allocated.

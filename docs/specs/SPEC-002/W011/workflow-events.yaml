@@ -1,18 +1,19 @@
-# SPEC-002 W011 - Workflow Events (S011 reuse)
-# Definition-level: WORKFLOW_*. Run-level: EXECUTION_* (S011).
+# SPEC-002 W011 - Workflow Events (W009 dinh nghia 6 event types WORKFLOW_* — S011 cung cap event model fields, correlation_id)
+# Definition-level: WORKFLOW_* (W009). Run-level: EXECUTION_* (S009).
 ---
 version: "1.0"
 definition_events:
-  - WORKFLOW_VALIDATING
-  - WORKFLOW_PUBLISHED
-  - WORKFLOW_REJECTED
-  - WORKFLOW_DEPRECATED
-  - WORKFLOW_REACTIVATED
-  - WORKFLOW_RETIRED
+  - WORKFLOW_VALIDATING (W009)
+  - WORKFLOW_PUBLISHED (W009)
+  - WORKFLOW_REJECTED (W009)
+  - WORKFLOW_DEPRECATED (W009)
+  - WORKFLOW_REACTIVATED (W009)
+  - WORKFLOW_RETIRED (W009)
 run_events:
-  note: Workflow Run dung EXECUTION_* cua S011 (Runtime).
+  # note: Workflow Run dung EXECUTION_* cua S009 (Runtime State Machine).
+  - EXECUTION_*
 rules:
-  - Event immutable (P005).
+  - Event immutable (P010).
   - Event chi append.
   - Moi transition sinh Event (W009).
   - Event co correlation_id.

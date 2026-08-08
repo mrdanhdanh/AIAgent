@@ -1,7 +1,7 @@
 # SPEC-001 S013 - Governance Stack
 # Kien truc 6 tang. Doctor validate tung tang.
 ---
-version: "1.0"
+version: "1.0.0"
 stack:
   - Constitution
   - Boundary

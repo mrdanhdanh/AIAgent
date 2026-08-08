@@ -1,7 +1,7 @@
 # SPEC-001 S015 - Canonical Resource Model
 # Moi Resource Entry deu theo model nay.
 ---
-version: "1.0"
+version: "1.0.0"
 resource:
   id:
   type:

@@ -1,7 +1,7 @@
 # SPEC-001 S013 - Permission Enforcement
 # Runtime chi cho phep hanh dong hop le.
 ---
-version: "1.0"
+version: "1.0.0"
 sources:
   - Policy (S012 POL-SEC-001, POL-RESACC-001)
   - Contract (S007)

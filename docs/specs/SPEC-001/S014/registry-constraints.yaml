@@ -1,6 +1,6 @@
 # SPEC-001 S014 - Registry Constraints
 ---
-version: "1.0"
+version: "1.0.0"
 constraints:
   - Khong Duplicate ID.
   - Khong Duplicate Version.

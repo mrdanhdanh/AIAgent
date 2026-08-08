@@ -1,4 +1,4 @@
-# SPEC-002 W017 - Extension Events (S011 reuse)
+# SPEC-002 W017 - Workflow Extension Events (6 event types WORKFLOW_EXTENSION_* — S011 cung cap event model fields, correlation_id)
 ---
 version: "1.0"
 event_types:

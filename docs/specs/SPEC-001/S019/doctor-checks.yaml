@@ -23,3 +23,6 @@ groups:
   - source: S018 Evolution
     count: 6
     ref: EV014
+  - source: S020 Dashboard
+    count: 5
+    ref: DB013

@@ -1,7 +1,7 @@
 # SPEC-001 S011 - Health Model
 # Runtime cong bo Health. Khong tu sua loi.
 ---
-version: "1.0"
+version: "1.0.0"
 model:
   status: [Healthy, Degraded, Unhealthy]
 sources:

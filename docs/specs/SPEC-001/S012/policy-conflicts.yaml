@@ -1,6 +1,6 @@
 # SPEC-001 S012 - Policy Conflict Resolution
 ---
-version: "1.0"
+version: "1.0.0"
 resolution_order:
   - Trigger
   - Scope

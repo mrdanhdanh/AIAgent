@@ -1,0 +1,44 @@
+{
+  "workflow_id": "WF-20260808-001",
+  "definition_id": "default",
+  "request": "Tao 1 trang web Template: rong Chau A bay luon dau trang, scroll xuong thi rong di chuyen theo va bao boc container, scroll toi/lui muot ma, click than rong thi thoat ra bay luon roi quay lai, cuoi trang rong bay vao goc phai duoi cuon tron ngu",
+  "status": "completed",
+  "phases": [
+    { "id": "analyze", "status": "completed", "retry_count": 0, "error_history": [] },
+    { "id": "design", "status": "completed", "retry_count": 0, "error_history": [] },
+    { "id": "plan", "status": "completed", "retry_count": 0, "error_history": [] },
+    { "id": "review", "status": "completed", "retry_count": 0, "error_history": [] },
+    { "id": "guardrail", "status": "completed", "retry_count": 0, "error_history": [] },
+    { "id": "backup", "status": "completed", "retry_count": 0, "error_history": [] },
+    { "id": "governance_check", "status": "completed", "retry_count": 0, "error_history": [] },
+    { "id": "build", "status": "completed", "retry_count": 0, "error_history": [] },
+    { "id": "static_analysis", "status": "completed", "retry_count": 0, "error_history": [] },
+    { "id": "ui_audit", "status": "completed", "retry_count": 0, "error_history": [] },
+    { "id": "testplan", "status": "completed", "retry_count": 0, "error_history": [] },
+    { "id": "test", "status": "completed", "retry_count": 0, "error_history": [] },
+    { "id": "skill_validation", "status": "completed", "retry_count": 0, "error_history": [] },
+    { "id": "complete", "status": "completed", "retry_count": 0, "error_history": [] }
+  ],
+  "artifacts": [
+    "01_analyze.md",
+    "02_design.md",
+    "03_plan.md",
+    "04_review.md",
+    "05_guardrail.md",
+    "06_backup.md",
+    "07_governance_check.md",
+    "08_build.md",
+    "09_static_analysis.md",
+    "10_ui_audit.md",
+    "11_testplan.md",
+    "12_test.md",
+    "13_skill_validation.md"
+  ],
+  "final_report": "WF-20260808-001: Dragon-website template completed. 4 files tao moi tai templates/dragon-website/ (index.html, style.css, script.js, README.md). E2E smoke test 10/10 PASS. F1-F5 all verified.",
+  "created_files": [
+    "templates/dragon-website/index.html",
+    "templates/dragon-website/style.css",
+    "templates/dragon-website/script.js",
+    "templates/dragon-website/README.md"
+  ]
+}

@@ -2,6 +2,6 @@
 # Capability: khai bao nang luc cua Runtime va Plugin (S006 CMP).
 ---
 registry: Capability Registry
-version: "1.0"
+version: "1.0.0"
 owner: Runtime
 entries: []

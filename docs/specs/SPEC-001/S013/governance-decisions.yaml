@@ -1,15 +1,16 @@
 # SPEC-001 S013 - Governance Decision Model
 # Dashboard doc truc tiep.
 ---
-version: "1.0"
+version: "1.0.0"
 model:
   fields: [id, execution, rule, result, reason, timestamp, severity]
 result: [Allow, Deny, Suspend, Retry, Escalate, Abort, Failed, Ignore]
 modes:
-  - Strict
-  - Compatible
-  - Simulation
-  - Audit Only
+  enum:
+    - Strict
+    - Compatible
+    - Simulation
+    - Audit Only
 rules:
   - Moi decision duy nhat.
   - Khong decision mo ho hoac khong xac dinh.

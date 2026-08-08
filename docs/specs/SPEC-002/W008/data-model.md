@@ -48,9 +48,9 @@ agent: general
 | ENT-W002 | WorkflowDefinition | Entity | Workflow | ✅ |
 | ENT-W003 | WorkflowVersion | Entity | Workflow | ✅ |
 | ENT-W004 | WorkflowStep | Value | Workflow | ✅ |
-| ENT-W005 | StepCondition | Value | Workflow | ✅ |
-| ENT-W006 | StepGate | Value | Workflow | ✅ |
-| ENT-W007 | StepContext | Transient | Workflow | — |
+| ENT-W005 | Branch | Value | Workflow | ✅ |
+| ENT-W006 | Gate | Value | Workflow | ✅ |
+| ENT-W007 | WorkflowContext | Transient | Workflow | — |
 | ENT-W008 | WorkflowResult | Entity | Workflow | ✅ |
 | ENT-W009 | WorkflowEvent | Ref (S011) | Runtime | ✅ |
 | ENT-W010 | WorkflowMetric | Ref (S011) | Runtime | ✅ |

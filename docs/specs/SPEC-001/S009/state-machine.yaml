@@ -4,7 +4,7 @@
 id: SPEC-001-S009
 name: Runtime State Machine
 version: "1.0.0"
-status: Review
+status: Approved
 owner: Runtime Team
 philosophy:
   - Runtime luôn ở đúng một State.
@@ -54,6 +54,7 @@ composite_states:
 terminal_rules:
   - Terminal không có transition ra.
   - "Ngoại lệ duy nhất: Replay (tạo Execution mới, không quay lại Execution cũ)."
+  - "Retry recovery (Failed → Retrying → Running) cũng ra từ terminal ST-009 nhưng qua ST-013 trung gian."
 triggers: [Runtime, Policy, User, Approval, Timeout, Event, Scheduler]
 transitions:
   - { from: ST-001, to: ST-002, event: EXECUTION_VALIDATING, guard: "Workflow + Contract hợp lệ" }

@@ -1,6 +1,6 @@
 # SPEC-001 S014 - Registry Metrics
 ---
-version: "1.0"
+version: "1.0.0"
 metrics:
   registry_entries: 0
   lookup_count: 0

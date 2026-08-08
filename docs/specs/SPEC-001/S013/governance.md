@@ -11,7 +11,7 @@ agent: general
 
 # S013 — Runtime Governance
 
-> **SPEC-001**: Runtime Kernel · **Version**: 1.0.0 · **Trạng thái**: Draft
+> **SPEC-001**: Runtime Kernel · **Version**: 1.0.0 · **Trạng thái**: ✅ Frozen (2026-08-08)
 > **Vai trò**: Nơi duy nhất **thực thi (enforce)** — Constitution, Boundary, Contract, Policy đều được định nghĩa ở nơi khác.
 > **SSOT**: "Cảnh sát" của Runtime — Dashboard, Doctor, S016 chỉ cần tham chiếu, không định nghĩa lại.
 

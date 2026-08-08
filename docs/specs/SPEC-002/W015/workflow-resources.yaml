@@ -14,13 +14,13 @@ philosophy:
   - Khong Resource nao bi Leak.
   - Workflow khong hardcode tai nguyen.
 principles:
-  - Allocated: moi tai nguyen cap phat tuong minh (S015).
-  - Released: giai phong tren Terminal State (S015).
-  - Bounded: quota qua binding (W012).
-  - Observable: quan sat qua S011 (S015).
-  - Traceable: moi allocation truy vet (S015).
+  - "Allocated: moi tai nguyen cap phat tuong minh (S015)."
+  - "Released: giai phong tren Terminal State (S015)."
+  - "Bounded: quota qua binding (W012)."
+  - "Observable: quan sat qua S011 (S015)."
+  - "Traceable: moi allocation truy vet (S015)."
 categories:
-  note: Dung 10 categories cua S015 RS003.
+  # note: Dung 10 categories cua S015 RS003.
   - Capability
   - Execution
   - Context

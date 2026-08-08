@@ -42,7 +42,7 @@ correlation_model:
   rules:
     - Sinh khi Workflow Created.
     - Gan vao: Event, Metrics, Trace, Audit.
-    - Khong doi trong vong doi (P009).
+    - Khong doi trong vong doi (P010).
 doctor_checks:
   - Missing Workflow Event
   - Missing Workflow Metrics
@@ -50,7 +50,7 @@ doctor_checks:
   - Broken Lineage (S011)
   - Invalid Audit (S011)
 evolution_integration:
-  - Evolution chi doc: Workflow Event, Metrics, Trace, Audit.
+  - "Evolution chi doc: Workflow Event, Metrics, Trace, Audit."
   - Evolution khong doc implementation.
 machine_readable:
   - workflow-observability.yaml

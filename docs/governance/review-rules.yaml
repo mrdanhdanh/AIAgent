@@ -14,8 +14,10 @@ counting:
   - "Review PASS/CONDITIONAL tăng count và advance review.status theo thang NotReviewed → Rev1 → Completed"
 
 freeze_rule:
-  - "Frozen chỉ đến từ Approved (review.status = Completed + POLICY-001 + quyết định freeze)"
-  - "Không bao giờ freeze trực tiếp từ Draft/Review"
+  - "revfull PASS + review.status = Completed (đủ 2-pass) → auto-freeze: lifecycle về Frozen TRỰC TIẾP (không cần Approved/POLICY-001)"
+  - "revfull PASS chưa đủ 2-pass → chỉ advance count/status bình thường, KHÔNG freeze"
+  - "revfull trên mục đã Frozen (inherited) → health-check, giữ nguyên 2 trục"
+  - "Các type khác (rev1/health/compliance/migration/regression) KHÔNG auto-freeze"
 
 inheritance_rule:
   - "Mục đã review/Freeze từ trước giữ nguyên document.lifecycle + review.status (inherited: true)"

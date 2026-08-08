@@ -1,7 +1,7 @@
 # SPEC-001 S013 - Governance Decision Matrix + Priority + Failure Classification
 # Doctor chi can doc matrix.
 ---
-version: "1.0"
+version: "1.0.0"
 decision_matrix:
   Constitution Fail: Abort
   Boundary Fail: Deny

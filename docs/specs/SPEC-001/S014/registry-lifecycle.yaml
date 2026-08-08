@@ -1,6 +1,6 @@
 # SPEC-001 S014 - Registry Lifecycle + Governance
 ---
-version: "1.0"
+version: "1.0.0"
 lifecycle: [Draft, Published, Deprecated, Retired]
 governance:
   - Published

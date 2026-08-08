@@ -80,14 +80,14 @@ W020 Workflow Dashboard
 | W008 | Workflow Data Model | `W008/data-model.md` | 2 | ✅ Draft |
 | W009 | Workflow State Machine | `W009/state-machine.md` | 2 | ✅ Draft |
 | W010 | Workflow Execution Flow | `W010/execution-flow.md` | 2 | ✅ Draft |
-| W011 | Workflow Observability | `W011/observability.md` | 3 | ✅ Draft |
+| W011 | Workflow Observability | `W011/observability.md` | 3 | 🚧 Draft |
 | W012 | Workflow Policies | `W012/policies.md` | 3 | ✅ Draft |
 | W013 | Workflow Governance | `W013/governance.md` | 3 | ✅ Draft |
 | W014 | Workflow Registry | `W014/registry.md` | 3 | ✅ Draft |
 | W015 | Workflow Resources | `W015/resources.md` | 3 | ✅ Draft |
 | W016 | Workflow Compliance | `W016/compliance.md` | 3 | ✅ Draft |
 | W017 | Workflow Extensions | `W017/extensions.md` | 4 | ✅ Draft |
-| W018 | Workflow Evolution | `W018/evolution.md` | 4 | ✅ Draft |
+| W018 | Workflow Evolution | `W018/evolution.md` | 4 | 🚧 Draft |
 | W019 | Workflow Doctor | `W019/doctor.md` | 4 | ✅ Draft |
 | W020 | Workflow Dashboard | `W020/dashboard.md` | 4 | ✅ Draft |
 

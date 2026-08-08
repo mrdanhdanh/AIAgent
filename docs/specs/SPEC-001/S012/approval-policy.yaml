@@ -5,7 +5,7 @@ policy:
   id: POL-APPROVAL-001
   name: Approval Policy
   category: Governance
-  version: "1.0"
+  version: "1.0.0"
   status: Draft
   owner: Runtime Team
   trigger: Approval gate (S009 TR-005/006)

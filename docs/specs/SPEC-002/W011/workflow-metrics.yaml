@@ -1,4 +1,4 @@
-# SPEC-002 W011 - Workflow Metrics (S011 reuse)
+# SPEC-002 W011 - Workflow Metrics (S011 cung cap metric model — append only)
 ---
 version: "1.0"
 metrics:

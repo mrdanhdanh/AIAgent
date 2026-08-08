@@ -5,7 +5,7 @@
 id: SPEC-001-S017
 name: Runtime Plugins
 version: "1.0.0"
-status: Draft
+status: Approved
 owner: Runtime Team
 philosophy:
   - Plugin mo rong Runtime qua Contract (S007).
@@ -44,6 +44,7 @@ isolation:
   - Resource bounded (S015 quota).
   - Khong truy cap Agent Internal State (S011 OB003A).
   - Khong truy cap Plugin khac.
+  - Vi pham -> PLUGIN_FAILED + Disabled.
 security:
   - Permission qua POL-SEC-001 (S012).
   - Resource Access qua POL-RESACC-001 (S012).

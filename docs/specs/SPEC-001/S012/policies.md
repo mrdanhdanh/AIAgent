@@ -12,7 +12,7 @@ agent: general
 
 # S012 — Runtime Policies
 
-> **SPEC-001**: Runtime Kernel · **Version**: 1.0.0 · **Trạng thái**: Draft
+> **SPEC-001**: Runtime Kernel · **Version**: 1.0.0 · **Trạng thái**: ✅ Frozen (2026-08-08)
 > **Vai trò**: Nơi duy nhất **định nghĩa (define)** Policy — thống nhất model chuẩn từ S010 EF025, tránh chồng chéo với S010 (apply) và S013 (enforce).
 > **SSOT**: Mọi Policy của AIOS — Governance, Doctor, Dashboard — chỉ cần tham chiếu, không định nghĩa lại.
 
@@ -225,7 +225,7 @@ Taxonomy:
 | trigger | Execution start |
 | guard | ordering constraints |
 | action | Order execution |
-| priority | 40 |
+| priority | 41 |
 
 Điều khiển: **Thứ tự thực thi**.
 

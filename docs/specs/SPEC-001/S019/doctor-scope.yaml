@@ -11,6 +11,7 @@ checks_domains:
   - Compliance (S016)
   - Plugins (S017)
   - Observability (S011)
+  - Dashboard (S020)
 not_reads:
   - Implementation
   - Business Data

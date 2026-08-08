@@ -9,7 +9,7 @@ agent: general
 
 # S020 — Runtime Dashboard
 
-> **SPEC-001**: Runtime Kernel · **Version**: 1.0.0 · **Trạng thái**: Draft
+> **SPEC-001**: Runtime Kernel · **Version**: 1.0.0 · **Trạng thái**: ✅ Frozen (2026-08-08)
 > **Vai trò**: Mắt quan sát Runtime — SPEC cuối cùng của SPEC-001, tổng hợp view từ mọi SPEC trước.
 
 ## Mục tiêu

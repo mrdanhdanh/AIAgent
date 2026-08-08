@@ -1,7 +1,7 @@
 # SPEC-001 S014 - Canonical Registry Model
 # Chuan giong Contract Model (S007). Moi Entry deu theo model nay.
 ---
-version: "1.0"
+version: "1.0.0"
 registry_entry:
   id:
   type:

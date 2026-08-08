@@ -50,9 +50,9 @@ agent: general
 ## WO004 — Workflow Events
 
 - **Definition-level**: WORKFLOW_VALIDATING · WORKFLOW_PUBLISHED · WORKFLOW_REJECTED · WORKFLOW_DEPRECATED · WORKFLOW_REACTIVATED · WORKFLOW_RETIRED (W009).
-- **Run-level**: EXECUTION_* (S011 — Runtime).
+- **Run-level**: EXECUTION_* (S009 — Runtime State Machine).
 
-**Rules:** Event immutable (P005); chỉ append; mọi transition sinh Event (W009); có correlation_id.
+**Rules:** Event immutable (P010); chỉ append; mọi transition sinh Event (W009); có correlation_id.
 
 ## WO005 — Workflow Metrics
 
@@ -69,7 +69,7 @@ Scope: Workflow · Step · Parent (workflow gọi workflow) · Child (sub-workfl
 ## WO007 — Workflow Audit
 
 - **Append Only · Immutable · Ordered · Time Consistent** (S011).
-- Ghi mọi quyết định (gate, deprecate, reject) (P008).
+- Ghi mọi quyết định (gate, deprecate, reject) (P014).
 - Không ghi Business Data.
 
 ## WO008 — Correlation
@@ -81,7 +81,7 @@ model:
 
 - Sinh khi Workflow Created.
 - Gắn vào: Event, Metrics, Trace, Audit.
-- Không đổi trong vòng đời (P009).
+- Không đổi trong vòng đời (P010).
 
 ## WO009 — Health
 
@@ -108,7 +108,7 @@ Kiểm tra: Missing Workflow Event · Missing Workflow Metrics · Broken Workflo
 Created → Published → Consumed → Archived
 ```
 
-(S011 reuse)
+(S011 cung cấp event model — fields, correlation_id)
 
 ## WO013 — Metrics Lifecycle
 
@@ -116,7 +116,7 @@ Created → Published → Consumed → Archived
 Collected → Aggregated → Published
 ```
 
-(S011 reuse)
+(S011 cung cấp metric model)
 
 ## WO014 — Traceability
 

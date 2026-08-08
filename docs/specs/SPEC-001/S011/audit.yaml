@@ -1,7 +1,7 @@
 # SPEC-001 S011 - Audit Model
 # Ghi nhan: ai, khi nao, cai gi, ket qua. Khong ghi Business Data.
 ---
-version: "1.0"
+version: "1.0.0"
 model:
   fields: [id, actor, action, target, result, correlation_id, timestamp, rationale, artifact_ref]
 records:

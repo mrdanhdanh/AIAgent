@@ -7,8 +7,8 @@ frozen: false
 aggregate_root: Workflow
 aggregate_rules:
   - Workflow la Aggregate Root duy nhat.
-  - Workflow owns: [Definition, Context, Result, Events, Metrics]
-  - Workflow references: [Execution (S008), Capability, Registry Entry]
+  - "Workflow owns: [Definition, Context, Result, Events, Metrics]"
+  - "Workflow references: [Execution (S008), Capability, Registry Entry]"
   - Ownership va Reference khac nhau - khong nham lan.
 classification:
   Workflow Data: [Definition Data, Execution Data]
@@ -47,4 +47,4 @@ dependencies:
   - Step → Gate
   - Workflow → Context
   - Workflow → Result
-  note: Khong dependency nguoc.
+  # note: Khong dependency nguoc.

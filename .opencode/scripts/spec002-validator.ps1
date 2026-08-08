@@ -459,7 +459,7 @@ if (Test-Path $smd9) {
 
 # ---------- W10-001: W010 execution flow ----------
 $w010 = Join-Path $spec2 'W010'
-foreach ($f in @('execution-flow.md','workflow-execution-flow.yaml','workflow-execution-flow.schema.json','workflow-stages.yaml','workflow-sequential.yaml','workflow-parallel.yaml','workflow-gate.yaml','workflow-retry.yaml','workflow-timeout.yaml','workflow-compensation.yaml','workflow-failure.yaml','workflow-lineage.yaml','workflow-outcome.yaml','workflow-policies.yaml','workflow-validation.yaml')) {
+foreach ($f in @('execution-flow.md','workflow-execution-flow.yaml','workflow-execution-flow.schema.json','workflow-stages.yaml','workflow-sequential.yaml','workflow-parallel.yaml','workflow-gate.yaml','workflow-retry.yaml','workflow-timeout.yaml','workflow-compensation.yaml','workflow-failure.yaml','workflow-lineage.yaml','workflow-outcome.yaml','workflow-validation.yaml')) {
   if (-not (Test-Path (Join-Path $w010 $f))) { $errors += "W10-001: missing W010/$f" }
 }
 
@@ -877,7 +877,7 @@ if (Test-Path $dr19) {
 # ---------- W19-003: check_sources 7 nguon ----------
 if (Test-Path $dr19) {
   $dr3 = Get-Content -LiteralPath $dr19 -Raw -Encoding utf8
-  $srcCount = ([regex]::Matches($dr3, '(?m)^  - W\d{3} ')).Count
+  $srcCount = ([regex]::Matches($dr3, '(?m)^  - "?W\d{3} ')).Count
   if ($srcCount -lt 7) { $errors += "W19-003: check_sources chi co $srcCount (can >=7)" }
 }
 

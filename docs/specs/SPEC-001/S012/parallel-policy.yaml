@@ -5,7 +5,7 @@ policy:
   id: POL-PARALLEL-001
   name: Parallel Policy
   category: Orchestration
-  version: "1.0"
+  version: "1.0.0"
   status: Draft
   owner: Runtime Team
   trigger: Parallel tasks (S010 EF021)

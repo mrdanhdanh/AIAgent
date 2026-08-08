@@ -1,4 +1,4 @@
-# SPEC-002 W018 - Workflow Evolution Events (S011 reuse)
+# SPEC-002 W018 - Workflow Evolution Events (5 event types WORKFLOW_EVOLUTION_* — S011 cung cap event model fields, correlation_id)
 ---
 version: "1.0"
 event_types:

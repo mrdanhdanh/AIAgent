@@ -1,4 +1,4 @@
-# SPEC-002 W019 - Workflow Doctor Events (S011 reuse)
+# SPEC-002 W019 - Workflow Doctor Events (5 event types WORKFLOW_DOCTOR_* — S011 cung cap event model fields, correlation_id)
 ---
 version: "1.0"
 event_types:

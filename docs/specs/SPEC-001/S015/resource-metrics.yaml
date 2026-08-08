@@ -1,7 +1,7 @@
 # SPEC-001 S015 - Resource Metrics
 # Phan cap: Runtime Metrics > Resource Metrics (S011 OB005).
 ---
-version: "1.0"
+version: "1.0.0"
 metrics:
   allocation_count: 0
   release_count: 0

@@ -135,7 +135,7 @@ Step Failed (ST-009) → Retry (guard: retry_count < max_retry)
 Step Running (ST-004) → Timeout exceeded → TimedOut (ST-011)
 ```
 
-- Delegate Runtime (S010 EF014, POL-TIMEOUT-001).
+- Delegate Runtime (S010 EF013, POL-TIMEOUT-001).
 - Mỗi timeout sinh Event + Audit (S011).
 
 ## FL013 — Compensation Flow
@@ -192,7 +192,6 @@ workflow-compensation.yaml
 workflow-failure.yaml
 workflow-lineage.yaml
 workflow-outcome.yaml
-workflow-policies.yaml
 workflow-validation.yaml
 workflow-execution-flow.schema.json
 ```

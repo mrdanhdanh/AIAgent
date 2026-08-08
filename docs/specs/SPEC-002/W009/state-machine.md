@@ -80,7 +80,8 @@ Workflow Run là Execution của Runtime — mọi state của Run = S009:
 Workflow Created → ST-001 · Validating → ST-002 · Prepared → ST-003
 Running → ST-004 · Waiting (Gate) → ST-005 · Suspended → ST-006
 Cancelling → ST-007 · Completed → ST-008 · Failed → ST-009
-Cancelled → ST-010 · TimedOut → ST-011 · Aborted → ST-014
+Cancelled → ST-010 · TimedOut → ST-011 · Replayed → ST-012
+Retrying → ST-013 · Aborted → ST-014
 ```
 
 > **Không định nghĩa lại** — chỉ mapping.
@@ -111,7 +112,7 @@ Cancelled → ST-010 · TimedOut → ST-011 · Aborted → ST-014
 
 - WORKFLOW_VALIDATING · WORKFLOW_PUBLISHED · WORKFLOW_REJECTED · WORKFLOW_DEPRECATED · WORKFLOW_REACTIVATED · WORKFLOW_RETIRED.
 - Run dùng events EXECUTION_* của S009.
-- S011 reuse trực tiếp.
+- W009 định nghĩa 6 event types WORKFLOW_* — S011 cung cấp event model (fields, correlation_id).
 
 ## WS012 — State History
 

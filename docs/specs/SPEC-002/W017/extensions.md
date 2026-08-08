@@ -106,7 +106,7 @@ Chỉ Activate khi:
 
 - WORKFLOW_EXTENSION_REGISTERED · INSTALLED · ACTIVATED · DISABLED · FAILED · UNINSTALLED.
 
-> S011 reuse trực tiếp.
+> W017 định nghĩa 6 event types WORKFLOW_EXTENSION_* — S011 cung cấp event model (fields, correlation_id).
 
 ## WXE015 — Extension Metrics
 

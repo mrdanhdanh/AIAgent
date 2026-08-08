@@ -1,7 +1,7 @@
 # SPEC-001 S011 - Lineage
 # File doc chung cho Dashboard, Doctor, Evolution. Tham chieu S010 EF023.
 ---
-version: "1.0"
+version: "1.0.0"
 model:
   fields: [execution_id, root_id, parent_id, lineage_type, created_at]
 lineage_types: [root, parent, child, replay, simulation, fork]

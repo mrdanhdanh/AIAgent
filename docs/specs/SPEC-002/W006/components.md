@@ -56,7 +56,7 @@ Mỗi component: `capability` / `contracts` / `dependencies` / `lifecycle` / `ow
 Thuộc Runtime (SPEC-001 S006) — dùng qua Runtime, không lặp lại:
 
 - Execution Manager (CMP-001) · Execution Orchestrator (CMP-002)
-- Context Manager (CMP-003) · State Manager (CMP-004) · Policy Engine (CMP-006)
+- Context Manager (CMP-003) · State Manager (CMP-004) · Policy Engine (CMP-005)
 
 ## Contracts
 

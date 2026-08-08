@@ -1,7 +1,7 @@
 # SPEC-001 S017 - Plugin Validation
 # Doctor kiem tra.
 ---
-version: "1.0"
+version: "1.0.0"
 checks:
   - Missing Contract
   - Invalid Version

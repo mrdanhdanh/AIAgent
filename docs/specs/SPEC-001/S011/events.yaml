@@ -1,16 +1,16 @@
 # SPEC-001 S011 - Event Model
 # Tham chieu: S007 Event Contract, S008 Event Entity, S009 State Events
 ---
-version: "1.0"
+version: "1.0.0"
 model:
   fields: [id, type, category, severity, source, correlation_id, execution_id, state_from, state_to, timestamp, lineage]
-event_type: [execution, workflow, capability, resource, policy, system]
+event_type: [Execution, Workflow, Capability, Resource, Policy, System]
 event_category: [state_change, failure, retry, approval, timeout, audit]
 event_severity: [info, warning, error, critical]
 event_level: [Debug, Info, Warning, Error, Critical]
 event_scope: [Runtime, Execution, Workflow, Capability, Resource, Policy]
 rules:
-  - Event immutable (P005).
+  - Event immutable (P010).
   - Event chi append.
   - Moi transition sinh Event (S009).
   - Event co correlation_id.

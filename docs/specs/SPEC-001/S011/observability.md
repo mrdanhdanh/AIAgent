@@ -10,7 +10,7 @@ agent: general
 
 # S011 — Execution Observability
 
-> **SPEC-001**: Runtime Kernel · **Version**: 1.0.0 · **Trạng thái**: Draft
+> **SPEC-001**: Runtime Kernel · **Version**: 1.0.0 · **Trạng thái**: ✅ Frozen (2026-08-08)
 > **Vị trí**: Nền tảng cho Dashboard, Doctor, Evolution, Simulation — nhiều phần S010 đã tham chiếu Event/Metrics/Trace nhưng chưa được đặc tả đầy đủ.
 > **Vai trò**: Nguồn chuẩn duy nhất (Single Source of Truth) cho toàn bộ Event, Metrics, Trace, Audit và Health — S015, S016, Dashboard, Doctor, Evolution, Simulation chỉ cần tham chiếu, không định nghĩa lại.
 

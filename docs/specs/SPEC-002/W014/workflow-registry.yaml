@@ -21,7 +21,7 @@ principles:
   - Immutable (Published)
   - Traceable
 categories:
-  note: Workflow Registry la 1 category cua S014 (workflow-registry).
+  # note: Workflow Registry la 1 category cua S014 (workflow-registry).
   - Workflow Definition
   - Workflow Version
   - Workflow Binding (W012)
@@ -98,10 +98,10 @@ traceability:
 events:
   - WORKFLOW_REGISTERED
   - WORKFLOW_UPDATED
-  - WORKFLOW_DEPRECATED
-  - WORKFLOW_RETIRED
+  - WORKFLOW_REGISTRY_DEPRECATED
+  - WORKFLOW_REGISTRY_RETIRED
   - WORKFLOW_RESOLUTION_FAILED
-  - WORKFLOW_COMPATIBILITY_FAILED
+  - WORKFLOW_REGISTRY_COMPATIBILITY_FAILED
 metrics:
   workflow_entries: 0
   active_workflows: 0

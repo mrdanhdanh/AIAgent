@@ -1,4 +1,4 @@
-# SPEC-002 W020 - Workflow Dashboard Events (S011 reuse)
+# SPEC-002 W020 - Workflow Dashboard Events (3 event types WORKFLOW_DASHBOARD_* — S011 cung cap event model fields, correlation_id)
 ---
 version: "1.0"
 event_types:

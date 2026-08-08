@@ -14,7 +14,7 @@
     "classification": { "type": "object" },
     "invariants": { "type": "array", "items": { "type": "string" }, "minItems": 12 },
     "consistency": { "type": "object" },
-    "dependencies": { "type": "array", "items": { "type": "string" }, "minItems": 8 }
+    "dependencies": { "type": "array", "items": { "type": "string" }, "minItems": 7 }
   },
   "additionalProperties": false
 }

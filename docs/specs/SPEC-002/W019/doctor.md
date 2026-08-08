@@ -88,13 +88,13 @@ report:
   fields: [id, timestamp, workflow_version, checks, score, status, repair, evidence]
 ```
 
-Report immutable (P005).
+Report immutable (P010).
 
 ## WDR010 — Doctor Events
 
 - WORKFLOW_DOCTOR_RUN · PASSED · FAILED · REPORTED · REPAIRED.
 
-> S011 reuse trực tiếp.
+> W019 định nghĩa 5 event types WORKFLOW_DOCTOR_* — S011 cung cấp event model (fields, correlation_id).
 
 ## WDR011 — Doctor Metrics
 
@@ -140,7 +140,7 @@ Workflow Doctor Report → Checks → Evidence (W011) → SPEC source (W0xx)
 - Health Score xác định được từ Observability Data.
 - Self-repair chỉ Low impact, có rollback, có Audit.
 - Doctor không bypass Governance (W013).
-- Report immutable (P005).
+- Report immutable (P010).
 
 ## Tham chiếu
 

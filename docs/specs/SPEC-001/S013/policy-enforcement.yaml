@@ -1,7 +1,7 @@
 # SPEC-001 S013 - Policy Enforcement
 # Tham chieu S012 (define) - o day chi enforce.
 ---
-version: "1.0"
+version: "1.0.0"
 enforcement:
   - Resolve Policy (S012 RP013)
   - Validate (S012 RP014)

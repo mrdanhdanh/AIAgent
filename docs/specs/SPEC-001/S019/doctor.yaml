@@ -1,11 +1,11 @@
 # SPEC-001 S019 - Runtime Doctor
-# Kiem tra suc khoe Runtime - tong hop checks tu S011..S018.
+# Kiem tra suc khoe Runtime - tong hop checks tu S011..S020.
 # Khong dinh nghia lai quy tac (S016 da tong hop).
 ---
 id: SPEC-001-S019
 name: Runtime Doctor
 version: "1.0.0"
-status: Draft
+status: Approved
 owner: Runtime Team
 philosophy:
   - Doctor la co che kiem tra suc khoe Runtime.
@@ -30,6 +30,7 @@ scope:
     - Compliance (S016)
     - Plugins (S017)
     - Observability (S011)
+    - Dashboard (S020)
   not_reads:
     - Implementation
     - Business Data
@@ -43,6 +44,7 @@ check_sources:
   - "S016 Compliance: 23 rules"
   - "S017 Plugins: 6 checks"
   - "S018 Evolution: 6 checks"
+  - "S020 Dashboard: 5 checks"
 health_score: [Healthy, Degraded, Unhealthy]
 pipeline:
   - Collect (machine-readable)
@@ -56,6 +58,7 @@ self_repair:
   - Co rollback.
   - Ghi Audit (S011).
   - Khong sua implementation.
+  - Khong Repair vi pham CRITICAL - bao cao len nguoi.
 report:
   fields: [id, timestamp, runtime_version, checks, score, status, repair, evidence]
 events:

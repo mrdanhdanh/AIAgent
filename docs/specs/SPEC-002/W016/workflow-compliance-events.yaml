@@ -1,4 +1,4 @@
-# SPEC-002 W016 - Workflow Compliance Events (S011 reuse)
+# SPEC-002 W016 - Workflow Compliance Events (5 event types WORKFLOW_COMPLIANCE_*/CERTIFICATION_* — S011 cung cap event model fields, correlation_id)
 ---
 version: "1.0"
 event_types:

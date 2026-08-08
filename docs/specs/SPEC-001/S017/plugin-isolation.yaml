@@ -1,7 +1,7 @@
 # SPEC-001 S017 - Plugin Isolation
 # Tham chieu S012 POL-ISOL-001, S010 EF008.
 ---
-version: "1.0"
+version: "1.0.0"
 rules:
   - Context isolated (S010 EF008).
   - Resource bounded (S015 quota).

@@ -1,4 +1,4 @@
-# SPEC-002 W011 - Workflow Audit (S011 reuse)
+# SPEC-002 W011 - Workflow Audit (S011 cung cap audit model — append only)
 ---
 version: "1.0"
 properties:
@@ -7,5 +7,5 @@ properties:
   - Ordered
   - Time Consistent
 rules:
-  - Ghi moi quyet dinh (gate, deprecate, reject) (P008).
+  - Ghi moi quyet dinh (gate, deprecate, reject) (P014).
   - Khong ghi Business Data.

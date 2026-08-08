@@ -2,6 +2,6 @@
 # Agent: agent dang ky nang luc.
 ---
 registry: Agent Registry
-version: "1.0"
+version: "1.0.0"
 owner: Runtime
 entries: []

@@ -5,7 +5,7 @@
 id: SPEC-001-S011
 name: Execution Observability
 version: "1.0.0"
-status: Draft
+status: Approved
 owner: Runtime Team
 philosophy:
   - Runtime luon Observable.
@@ -45,7 +45,7 @@ correlation_model:
   rules:
     - Sinh khi Execution Created.
     - Gan vao: Event, Metrics, Trace, Audit.
-    - Khong doi trong vong doi (P009).
+    - Khong doi trong vong doi (P010).
 doctor_checks:
   - Missing Event
   - Missing Metrics

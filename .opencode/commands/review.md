@@ -36,7 +36,8 @@ Mục đã review/Freeze (vd: SPEC-000, S001–S008) **giữ nguyên cả hai tr
 **Luật:**
 - Review PASS/CONDITIONAL → tăng count (trừ `health`) → `NotReviewed → Rev1 → Completed`.
 - Review FAIL → không đổi trạng thái.
-- Frozen chỉ đến từ Approved (Completed review + POLICY-001) — không bao giờ trực tiếp.
+- **revfull PASS → auto-freeze**: nếu `review.status = Completed` (đủ 2-pass) và verdict PASS → `lifecycle` về `Frozen` **ngay lập tức** (bỏ qua Approved/POLICY-001). revfull PASS khi chưa đủ 2-pass → chỉ advance count/status bình thường.
+- revfull trên mục đã Frozen (inherited) → vẫn là health-check, giữ nguyên 2 trục.
 - Cascade: mục bị ảnh hưởng được đánh dấu `recheck_required` — KHÔNG tự đổi review.status.
 - Tracker `review-tracker.yaml` + History `review-history.yaml` = nguồn sự thật (chỉ /review cập nhật).
 
@@ -99,6 +100,7 @@ verdict:
 3. **Cập nhật tracker** (chỉ khi type tính count và verdict PASS/CONDITIONAL):
    - count + 1; status: NotReviewed → Rev1 → Completed (theo ladder).
    - lifecycle: tự động Draft → Review khi count ≥ 1 (giữ nguyên nếu đã Approved/Frozen).
+   - **Auto-freeze (revfull)**: nếu type = `revfull`, verdict = `PASS` và review.status mới = `Completed` → lifecycle đặt **Frozen** trực tiếp (không qua Approved/POLICY-001). Nếu verdict CONDITIONAL/FAIL hoặc chưa đủ 2-pass → giữ Review, không freeze.
    - Thêm entry vào `history[]`.
 4. **Cập nhật history** `review-history.yaml` — append 1 entry (review_id, spec, item, type, verdict, score, severity_counts, started/finished, cascade_review, report_path).
 5. **Ghi report** `docs/governance/reviews/REV-<SPEC>-<ITEM>-<YYYYMMDD-HHMMSS>.md` (template mục 15 `review-workflow.md`).
@@ -121,8 +123,8 @@ target: "SPEC-001/S010"
 target_file: "docs/specs/SPEC-001/S010/execution-flow.md"
 
 document:
-  lifecycle_before: "Draft"
-  lifecycle_after: "Review | giữ nguyên"
+  lifecycle_before: "Draft | Review | Frozen(inherited)"
+  lifecycle_after: "Review | Frozen (revfull PASS + Completed) | giữ nguyên"
 review:
   status_before: "NotReviewed | Rev1 | Completed | Completed(inherited)"
   status_after: "Rev1 | Completed | giữ nguyên"
@@ -185,6 +187,7 @@ index_changes:
 
 - **Bắt buộc 2 lần review** — tracker + history là nguồn sự thật duy nhất (append-only).
 - Mục inherited (Frozen/Approved cũ) → **giữ nguyên 2 trục trạng thái**.
+- **revfull PASS + review.status = Completed → auto-freeze (Frozen trực tiếp, không cần Approved/POLICY-001).** revfull PASS chưa đủ 2-pass → chỉ advance thường.
 - Verdict = Decision Matrix — không theo cảm tính; CONDITIONAL phải kèm MAJOR + `next_step`.
 - `health` không tăng count, không đổi status; `revfull` phải đọc dependency chain + git history + system analysis trước khi kết luận.
 - Cascade gắn `recheck_required` — **không tự đổi** review.status của mục khác.

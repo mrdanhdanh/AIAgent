@@ -9,21 +9,21 @@ frozen: false
 owner: Workflow Team
 philosophy:
   - Policy la luat cua Runtime (S012) - Workflow khong dinh nghia lai (WB008).
-  - Workflow khai bao Binding: policy_ref + parameters + scope.
+  - "Workflow khai bao Binding: policy_ref + parameters + scope."
   - Binding hop le thi moi duoc apply.
   - Workflow khong chua Policy Logic.
 principles:
-  - Reference Only: chi tro den POL-* (S012).
-  - Parameterized: khai bao tham so, khong dinh nghia hanh vi.
-  - Scoped: binding theo Workflow hoac Step.
-  - Versioned: binding theo version policy (S012).
-  - Validated: binding phai hop le truoc khi chay.
-  - Traceable: moi binding apply co Event + Audit (S011).
+  - "Reference Only: chi tro den POL-* (S012)."
+  - "Parameterized: khai bao tham so, khong dinh nghia hanh vi."
+  - "Scoped: binding theo Workflow hoac Step."
+  - "Versioned: binding theo version policy (S012)."
+  - "Validated: binding phai hop le truoc khi chay."
+  - "Traceable: moi binding apply co Event + Audit (S011)."
 binding_model:
   fields: [id, workflow, step, policy_ref, parameters, scope, version, status, lifecycle, metadata]
 lifecycle: [Draft, Validated, Published, Active, Deprecated, Retired]
 categories:
-  note: Dung 7 categories cua S012 RP003.
+  # note: Dung 7 categories cua S012 RP003.
   - Recovery
   - Control
   - Orchestration
@@ -43,6 +43,6 @@ bindings:
   - WPB-009 Security Binding -> POL-SEC-001
   - WPB-010 Resource Access Binding -> POL-RESACC-001
 responsibility_chain:
-  - S012 Runtime Policies: define policy
-  - S013 Runtime Governance: enforce policy
-  - W012 Workflow Policies: bind policy vao workflow
+  - "S012 Runtime Policies: define policy"
+  - "S013 Runtime Governance: enforce policy"
+  - "W012 Workflow Policies: bind policy vao workflow"

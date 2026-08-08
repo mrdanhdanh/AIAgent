@@ -2,15 +2,15 @@
 name: spec-001-s019-doctor
 description: >
   SPEC-001 S019 — Runtime Doctor. Trả lời: Doctor kiểm tra sức khỏe Runtime
-  như thế nào? Tổng hợp checks từ S011..S018, Health Score, self-repair an
+  như thế nào? Tổng hợp checks từ S011..S020, Health Score, self-repair an
   toàn. 16 sections DR001-DR016.
 agent: general
 ---
 
 # S019 — Runtime Doctor
 
-> **SPEC-001**: Runtime Kernel · **Version**: 1.0.0 · **Trạng thái**: Draft
-> **Vai trò**: Kiểm tra sức khỏe Runtime — tổng hợp toàn bộ checks từ S011..S018, không định nghĩa lại quy tắc (S016 đã tổng hợp).
+> **SPEC-001**: Runtime Kernel · **Version**: 1.0.0 · **Trạng thái**: ✅ Frozen (2026-08-08)
+> **Vai trò**: Kiểm tra sức khỏe Runtime — tổng hợp toàn bộ checks từ S011..S020, không định nghĩa lại quy tắc (S016 đã tổng hợp).
 
 ## Mục tiêu
 
@@ -42,7 +42,7 @@ Chỉ mô tả **Doctor Model** — Doctor chỉ đọc machine-readable (S011).
 
 ## DR003 — Doctor Scope
 
-**Kiểm tra 9 domain:**
+**Kiểm tra 10 domain:**
 
 - Constitution (SPEC-000)
 - Contracts (S007)
@@ -53,6 +53,7 @@ Chỉ mô tả **Doctor Model** — Doctor chỉ đọc machine-readable (S011).
 - Compliance (S016)
 - Plugins (S017)
 - Observability (S011)
+- Dashboard (S020)
 
 **Không đọc:**
 
@@ -72,8 +73,9 @@ Chỉ mô tả **Doctor Model** — Doctor chỉ đọc machine-readable (S011).
 | S016 Compliance | 23 | CM004 |
 | S017 Plugins | 6 | PL016 |
 | S018 Evolution | 6 | EV014 |
+| S020 Dashboard | 5 | DB013 |
 
-> Tổng: 63 checks — tham chiếu, không định nghĩa lại.
+> Tổng: 68 checks — tham chiếu, không định nghĩa lại.
 
 ## DR005 — Health Score
 
@@ -101,7 +103,7 @@ Repair (nếu an toàn, self-repair)
 
 ## DR007 — Doctor Checks
 
-Doctor chạy 63 checks từ 7 nguồn (DR004). Mỗi check:
+Doctor chạy 68 checks từ 8 nguồn (DR004). Mỗi check:
 
 - Có evidence (S011).
 - Có SPEC source.
@@ -153,7 +155,7 @@ report:
 
 ## DR013 — Doctor Registry
 
-- Doctor kiểm tra Registry (S014) là một trong 9 domain.
+- Doctor kiểm tra Registry (S014) là một trong 10 domain.
 - Doctor đăng ký kết quả vào Registry nếu cần (S014 entry).
 - Certification (S016) dựa trên Doctor Report.
 
@@ -181,13 +183,13 @@ Checks
     ↓
 Evidence (S011)
     ↓
-SPEC source (S007..S018)
+SPEC source (S007..S020)
 ```
 
 ## DR016 — Success Criteria
 
 - Doctor chỉ đọc machine-readable.
-- Tổng hợp 63 checks từ 7 nguồn — không định nghĩa lại.
+- Tổng hợp 68 checks từ 8 nguồn — không định nghĩa lại.
 - Health Score xác định được từ Observability Data.
 - Self-repair chỉ Low impact, có rollback, có Audit.
 - Doctor không bypass Governance (S013).
@@ -208,4 +210,5 @@ SPEC source (S007..S018)
 - S016 CM004: `../S016/compliance.md`
 - S017: `../S017/plugins.md`
 - S018: `../S018/evolution.md`
+- S020 DB013: `../S020/dashboard.md`
 - Constitution: `docs/specs/SPEC-000/`

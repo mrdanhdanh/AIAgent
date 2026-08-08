@@ -102,7 +102,7 @@ Không evidence → Rejected.
 
 - WORKFLOW_EVOLUTION_PROPOSED · APPROVED · REJECTED · APPLIED · ROLLED_BACK.
 
-> S011 reuse trực tiếp.
+> W018 định nghĩa 5 event types WORKFLOW_EVOLUTION_* — S011 cung cấp event model (fields, correlation_id).
 
 ## WVE012 — Evolution Metrics
 

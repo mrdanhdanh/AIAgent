@@ -1,7 +1,7 @@
 # SPEC-001 S013 - Boundary Enforcement
 # Tham chieu S004 (define).
 ---
-version: "1.0"
+version: "1.0.0"
 checks:
   - Ownership
   - Dependency

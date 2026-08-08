@@ -154,7 +154,7 @@ Resolved → Validated → Applied → Audited → Archived
 ## WG013 — Governance Events
 
 - WORKFLOW_GOVERNANCE_VALIDATED · WORKFLOW_BOUNDARY_DENIED · WORKFLOW_BINDING_APPLIED · WORKFLOW_CONTRACT_VALIDATED · WORKFLOW_PERMISSION_DENIED · WORKFLOW_VERSION_CONFLICT · WORKFLOW_COMPATIBILITY_FAILED.
-- S011 reuse trực tiếp.
+- W013 định nghĩa 7 event types WORKFLOW_* — S011 cung cấp event model (fields, correlation_id).
 
 ## WG014 — Governance Traceability
 

@@ -1,7 +1,7 @@
 # SPEC-001 S015 - Resource Access
 # Tham chieu S012 POL-RESACC-001.
 ---
-version: "1.0"
+version: "1.0.0"
 flow:
   - Request
   - Policy Check (S012 POL-RESACC-001: permission + isolation)

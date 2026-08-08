@@ -62,29 +62,39 @@ SPEC-001 Runtime Kernel
 
 ## SPEC-002 — Workflow Engine
 
-> **Trạng thái**: In progress (20/20 — W001-W008 Rev1, W009-W010 Completed, W011 Rev1, W012 Completed, W013 Completed, W014 Rev1, W015 Rev1, W016 Rev1, W017 Rev1, W018-W020 NotReviewed) · **Phụ thuộc**: SPEC-000, SPEC-001
+> **Trạng thái**: ✅ Frozen (20/20, 2026-08-08) · **Phụ thuộc**: SPEC-000, SPEC-001
 
 ```text
 SPEC-002 Workflow Engine
 │
 ├── Tier 1 — Foundation ✅
-│   ├── W001 Workflow Vision          🚧 Draft
-│   ├── W002 Workflow Requirements    🚧 Draft
-│   ├── W003 Workflow Responsibilities 🚧 Draft
-│   ├── W004 Workflow Boundaries      🚧 Draft
-│   ├── W005 Workflow Architecture    🚧 Draft
-│   ├── W006 Workflow Components      🚧 Draft
-│   ├── W007 Workflow Contracts       🚧 Draft
-│   └── Appendix: Canonical Models    ✅ Draft
+│   ├── W001 Workflow Vision          ✅ Frozen
+│   ├── W002 Workflow Requirements    ✅ Frozen
+│   ├── W003 Workflow Responsibilities ✅ Frozen
+│   ├── W004 Workflow Boundaries      ✅ Frozen
+│   ├── W005 Workflow Architecture    ✅ Frozen
+│   ├── W006 Workflow Components      ✅ Frozen
+│   ├── W007 Workflow Contracts       ✅ Frozen
+│   └── Appendix: Canonical Models    ✅ Frozen
 │
 ├── Tier 2 — Behavior ✅
-│   ├── W008 Workflow Data Model      🚧 Draft
-│   ├── W009 Workflow State Machine   ✅ Draft
-│   └── W010 Workflow Execution Flow  ✅ Draft
+│   ├── W008 Workflow Data Model      ✅ Frozen
+│   ├── W009 Workflow State Machine   ✅ Frozen
+│   └── W010 Workflow Execution Flow  ✅ Frozen
 │
-└── Tier 3/4 — Operations + Experience ✅
-    ├── W011-W016 Operations          🚧 Draft
-    └── W017-W020 Experience          🚧 Draft
+├── Tier 3 — Operations
+│   ├── W011 Workflow Observability   ✅ Frozen
+│   ├── W012 Workflow Policies        ✅ Frozen
+│   ├── W013 Workflow Governance      ✅ Frozen
+│   ├── W014 Workflow Registry        ✅ Frozen
+│   ├── W015 Workflow Resources       ✅ Frozen
+│   └── W016 Workflow Compliance      ✅ Frozen
+│
+└── Tier 4 — Experience ✅
+    ├── W017 Workflow Extensions      ✅ Frozen
+    ├── W018 Workflow Evolution       ✅ Frozen
+    ├── W019 Workflow Doctor          ✅ Frozen
+    └── W020 Workflow Dashboard       ✅ Frozen
 ```
 
 ## SPEC-003 — Capability System
@@ -116,7 +126,30 @@ SPEC-003 Capability System
 
 ## SPEC-004 — Agent System
 
-> **Trạng thái**: ⬜
+> **Trạng thái**: 🚧 In progress · **Phụ thuộc**: SPEC-000, SPEC-001, SPEC-002, SPEC-003
+
+```text
+SPEC-004 Agent System
+│
+├── Tier 1 — Foundation
+│   ├── A001 Agent Vision              🚧
+│   ├── A002 Agent Requirements        ⬜
+│   ├── A003 Agent Responsibilities    ⬜
+│   ├── A004 Agent Boundaries          ⬜
+│   ├── A005 Agent Architecture        ⬜
+│   ├── A006 Agent Components          ⬜
+│   ├── A007 Agent Contracts           ⬜
+│   └── Appendix: Canonical Models     ⬜
+│
+├── Tier 2 — Behavior
+│   ├── A008 Agent Data Model          ⬜
+│   ├── A009 Agent State Machine       ⬜
+│   └── A010 Agent Execution Flow      ⬜
+│
+└── Tier 3/4 — Operations + Experience
+    ├── A011-A016 Operations           ⬜
+    └── A017-A020 Experience           ⬜
+```
 
 ## SPEC-005 — Registry
 

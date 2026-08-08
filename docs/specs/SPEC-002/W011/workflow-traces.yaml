@@ -1,4 +1,4 @@
-# SPEC-002 W011 - Workflow Trace (S011 reuse)
+# SPEC-002 W011 - Workflow Trace (S011 cung cap trace model — correlation_id)
 ---
 version: "1.0"
 scope:

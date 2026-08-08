@@ -1,7 +1,7 @@
 # SPEC-001 S014 - Registry Resolution
 # Pipeline day du - lien ket S012 Policy + S013 Governance.
 ---
-version: "1.0"
+version: "1.0.0"
 flow:
   - Request
   - Normalize

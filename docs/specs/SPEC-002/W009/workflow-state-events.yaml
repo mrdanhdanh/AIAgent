@@ -1,6 +1,6 @@
-# SPEC-002 W009 - Workflow State Events (S011 reuse)
+# SPEC-002 W009 - Workflow State Events (6 event types — S011 cung cap event model fields, correlation_id)
 ---
-version: "1.0"
+version: "1.0.0"
 events:
   - WORKFLOW_VALIDATING
   - WORKFLOW_PUBLISHED

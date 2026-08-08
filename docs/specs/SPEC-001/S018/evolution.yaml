@@ -5,7 +5,7 @@
 id: SPEC-001-S018
 name: Runtime Evolution
 version: "1.0.0"
-status: Draft
+status: Approved
 owner: Runtime Team
 philosophy:
   - Evolution hoc tu du lieu quan sat (S011).

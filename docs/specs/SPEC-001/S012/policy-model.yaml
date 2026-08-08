@@ -1,7 +1,7 @@
 # SPEC-001 S012 - Canonical Policy Model
 # Moi Policy cua AIOS deu dung chung model nay.
 ---
-version: "1.0"
+version: "1.0.0"
 model:
   fields: [id, name, category, version, status, owner, trigger, guard, action, priority, scope, lifecycle, metadata]
 rules:

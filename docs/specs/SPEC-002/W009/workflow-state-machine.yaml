@@ -51,16 +51,18 @@ run_mapping:
   Workflow Failed: ST-009
   Workflow Cancelled: ST-010
   Workflow TimedOut: ST-011
+  Workflow Replayed: ST-012
+  Workflow Retrying: ST-013
   Workflow Aborted: ST-014
 terminal_rules:
   - Terminal khong co transition ra.
-  - Ngoai le duy nhat: Replay (S009 ST-012).
+  - "Ngoai le duy nhat: Replay (S009 ST-012)."
 triggers: [Registry (S014), User, Governance (S013), Scheduler]
 transitions:
-  - from: WST-001; to: WST-002; event: WORKFLOW_VALIDATING; guard: Khai bao hop le (schema)
-  - from: WST-002; to: WST-003; event: WORKFLOW_PUBLISHED; guard: Validate pass + Registry Entry (S014)
-  - from: WST-002; to: WST-006; event: WORKFLOW_REJECTED; guard: Validate fail
-  - from: WST-003; to: WST-004; event: WORKFLOW_DEPRECATED; guard: Governance (S013) cho phep
-  - from: WST-004; to: WST-003; event: WORKFLOW_REACTIVATED; guard: Governance (S013) duyet
-  - from: WST-003; to: WST-005; event: WORKFLOW_RETIRED; guard: Governance (S013)
-  - from: WST-004; to: WST-005; event: WORKFLOW_RETIRED; guard: Khong con dung
+  - "from: WST-001; to: WST-002; event: WORKFLOW_VALIDATING; guard: Khai bao hop le (schema)"
+  - "from: WST-002; to: WST-003; event: WORKFLOW_PUBLISHED; guard: Validate pass + Registry Entry (S014)"
+  - "from: WST-002; to: WST-006; event: WORKFLOW_REJECTED; guard: Validate fail"
+  - "from: WST-003; to: WST-004; event: WORKFLOW_DEPRECATED; guard: Governance (S013) cho phep"
+  - "from: WST-004; to: WST-003; event: WORKFLOW_REACTIVATED; guard: Governance (S013) duyet"
+  - "from: WST-003; to: WST-005; event: WORKFLOW_RETIRED; guard: Governance (S013)"
+  - "from: WST-004; to: WST-005; event: WORKFLOW_RETIRED; guard: Khong con dung"

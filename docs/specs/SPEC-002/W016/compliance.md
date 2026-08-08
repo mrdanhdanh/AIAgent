@@ -111,7 +111,7 @@ Generate Report (workflow-compliance-report)
 
 - WORKFLOW_COMPLIANCE_PASSED · FAILED · REPORTED · WORKFLOW_CERTIFICATION_GRANTED · REVOKED.
 
-> S011 reuse trực tiếp.
+> W016 định nghĩa 5 event types WORKFLOW_COMPLIANCE_*/WORKFLOW_CERTIFICATION_* — S011 cung cấp event model (fields, correlation_id).
 
 ## WMC011 — Compliance Metrics
 
@@ -129,7 +129,7 @@ report:
   fields: [id, timestamp, workflow_version, matrix, score, status, certification, evidence]
 ```
 
-Report immutable (P005).
+Report immutable (P010).
 
 ## WMC014 — Machine-readable
 

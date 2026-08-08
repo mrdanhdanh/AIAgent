@@ -10,7 +10,7 @@ agent: general
 
 # S014 — Runtime Registry
 
-> **SPEC-001**: Runtime Kernel · **Version**: 1.0.0 · **Trạng thái**: Draft
+> **SPEC-001**: Runtime Kernel · **Version**: 1.0.0 · **Trạng thái**: ✅ Frozen (2026-08-08)
 > **Vai trò**: Mắt xích còn thiếu — mọi SPEC trước đều tham chiếu Registry (S006 Resolver, S007 Contract, S008 Reference, S010 Resolution, S013 Compatibility) nhưng chưa ai định nghĩa.
 
 ## Câu hỏi duy nhất
@@ -181,18 +181,13 @@ Graph đầy đủ (Doctor kiểm tra graph):
 
 ```text
 Workflow
-      │
-      ▼
-Capability
-      │
-      ▼
-Contract
-      │
-      ▼
-Policy
-      │
-      ▼
-Plugin
+    │
+    ▼
+Capability ──────→ Contract ──→ Schema
+    │
+    ├─────────────→ Policy ──→ Plugin
+    │
+    └─────────────→ Plugin
 ```
 
 ## RG008A — Registry Dependency
@@ -205,6 +200,9 @@ Capability
 Contract
     ↓
 Schema
+
+Policy  ──→ Contract
+Plugin  ──→ Contract
 ```
 
 **Rules:** Không circular — mọi Dependency tạo thành **DAG**.

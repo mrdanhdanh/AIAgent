@@ -100,7 +100,7 @@ Deny mặc định (S013).
 
 - WORKFLOW_RESOURCE_ALLOCATED · RELEASED · EXHAUSTED · LEAKED · DENIED · QUEUED.
 
-> S011 reuse trực tiếp.
+> W015 định nghĩa 6 event types WORKFLOW_RESOURCE_* — S011 cung cấp event model (fields, correlation_id).
 
 ## WRC012 — Resource Metrics
 

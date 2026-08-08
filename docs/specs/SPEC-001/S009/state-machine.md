@@ -9,7 +9,7 @@ agent: general
 
 # S009 — Runtime State Machine
 
-> **SPEC-001**: Runtime Kernel · **Version**: 1.0.0 · **Trạng thái**: ✅ Review (2026-08-08)
+> **SPEC-001**: Runtime Kernel · **Version**: 1.0.0 · **Trạng thái**: ✅ Frozen (2026-08-08)
 > **Vị trí**: Hiến pháp của Execution — Retry, Timeout, Cancellation, Replay, Approval, Rollback, Doctor đều là transition hợp lệ.
 
 ## Mục tiêu
@@ -184,6 +184,7 @@ Guard: retry_count < policy.max_retry
 
 - Terminal **không có transition ra**.
 - **Ngoại lệ duy nhất**: Replay (tạo Execution mới, không quay lại Execution cũ).
+- **Retry recovery** (Failed → Retrying → Running) cũng ra từ terminal ST-009 nhưng qua ST-013 trung gian.
 
 ## SM014 — Failure States
 
@@ -269,22 +270,22 @@ state-history.yaml
 state-metrics.yaml
 retry-model.yaml
 replay-model.yaml
+state-machine-validation.yaml
+state-machine-registry.yaml
 state.schema.json
 ```
 
-## Validation (SM015 cũ → mở rộng)
+## Validation (state-machine-validation.yaml — 7 rules)
 
-Doctor kiểm tra:
+Doctor kiểm tra (nguồn chuẩn: `state-machine-validation.yaml`):
 
-- Invalid Transition.
-- Multiple Active State.
-- Missing Initial.
-- Missing Terminal.
-- Circular Transition.
-- Dead State.
-- Unreachable State.
-- Missing Event.
-- Invalid Guard.
+- Mọi transition phát Event (P005).
+- Mọi transition có Guard.
+- Execution luôn kết thúc bằng Terminal State.
+- Không có transition ngoài bảng (`transition-matrix.yaml`).
+- Retry phải qua recovery state (Failed → Retrying → Running).
+- Context không được chia sẻ giữa hai Execution.
+- State thuộc Runtime, Agent không giữ state (P006).
 
 ## Success Criteria
 

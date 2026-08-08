@@ -10,7 +10,7 @@ agent: general
 
 # S015 — Runtime Resources
 
-> **SPEC-001**: Runtime Kernel · **Version**: 1.0.0 · **Trạng thái**: Draft
+> **SPEC-001**: Runtime Kernel · **Version**: 1.0.0 · **Trạng thái**: ✅ Frozen (2026-08-08)
 > **Vai trò**: Định nghĩa tài nguyên Runtime — mắt xích giữa **Registry (S014)** (metadata) và **Execution (S010)** (sử dụng).
 
 ## Mục tiêu

@@ -1,7 +1,7 @@
 # SPEC-001 S015 - Resource Validation
 # Doctor kiem tra.
 ---
-version: "1.0"
+version: "1.0.0"
 checks:
   - Double Allocation
   - Resource Leak

@@ -1,7 +1,7 @@
 # SPEC-001 S014 - Registry Traceability
 # Evolution se dung.
 ---
-version: "1.0"
+version: "1.0.0"
 traceability:
   - Registry
   - Capability

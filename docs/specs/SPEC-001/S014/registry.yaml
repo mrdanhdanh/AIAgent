@@ -4,7 +4,7 @@
 id: SPEC-001-S014
 name: Runtime Registry
 version: "1.0.0"
-status: Draft
+status: Approved
 owner: Runtime Team
 philosophy:
   - Registry la SSOT cho Runtime Metadata.
@@ -94,7 +94,7 @@ version_resolution:
 relationships:
   Workflow: [Capability]
   Capability: [Contract, Policy, Plugin]
-  Contract: [Policy, Schema]
+  Contract: [Schema]
   Policy: [Plugin]
   Plugin: []
 dependency:

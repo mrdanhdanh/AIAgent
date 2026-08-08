@@ -1,6 +1,6 @@
 # SPEC-002 W009 - Workflow Definition States (6)
 ---
-version: "1.0"
+version: "1.0.0"
 initial_state: WST-001
 terminal_states: [WST-005, WST-006]
 states:

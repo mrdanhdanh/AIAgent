@@ -1,7 +1,7 @@
 # SPEC-001 S011 - Observability Mapping
 # Ai dung gi - tranh dinh nghia lai o cac SPEC sau.
 ---
-version: "1.0"
+version: "1.0.0"
 mappings:
   - domain: Events
     used_by: [Dashboard, Doctor, Evolution, Simulation, Alerting]

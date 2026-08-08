@@ -5,7 +5,7 @@ policy:
   id: POL-TIMEOUT-001
   name: Timeout Policy
   category: Control
-  version: "1.0"
+  version: "1.0.0"
   status: Draft
   owner: Runtime Team
   trigger: Running (ST-004)

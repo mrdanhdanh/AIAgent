@@ -5,7 +5,7 @@
 id: SPEC-001-S013
 name: Runtime Governance
 version: "1.0.0"
-status: Draft
+status: Approved
 owner: Runtime Team
 philosophy:
   - Governance la co che thuc thi luat.
@@ -46,9 +46,9 @@ validation_pipeline:
 decisions: [Allow, Deny, Suspend, Retry, Escalate, Abort, Failed, Ignore]
 traceability:
   - Execution
-  - Policy
-  - Contract
-  - Boundary
+  - Governance Decision
+  - Policy Instance
+  - Rule
   - Constitution
 mapping:
   - Governance

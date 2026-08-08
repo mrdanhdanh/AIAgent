@@ -3,7 +3,7 @@
 id: SPEC-001-S010
 name: Runtime Execution Flow
 version: "1.0.0"
-status: Review
+status: Approved
 owner: Runtime Team
 philosophy:
   - Execution là đơn vị thực thi chuẩn của AIOS.

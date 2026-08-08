@@ -1,6 +1,6 @@
 # SPEC-002 W009 - Workflow Transition Matrix
 ---
-version: "1.0"
+version: "1.0.0"
 matrix:
   - [WST-001, WST-002, WORKFLOW_VALIDATING]
   - [WST-002, WST-003, WORKFLOW_PUBLISHED]

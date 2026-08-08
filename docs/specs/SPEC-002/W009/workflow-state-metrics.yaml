@@ -1,6 +1,6 @@
 # SPEC-002 W009 - Workflow State Metrics
 ---
-version: "1.0"
+version: "1.0.0"
 metrics:
   workflow_state_distribution: {}
   invalid_transitions: 0

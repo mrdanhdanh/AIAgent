@@ -5,13 +5,13 @@ policy:
   id: POL-SCHED-001
   name: Scheduling Policy
   category: Orchestration
-  version: "1.0"
+  version: "1.0.0"
   status: Draft
   owner: Runtime Team
   trigger: Execution start
   guard: ordering constraints
   action: Order execution
-  priority: 40
+  priority: 41
   scope: Workflow
   lifecycle: Draft
   metadata:

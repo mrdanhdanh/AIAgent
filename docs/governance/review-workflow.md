@@ -36,7 +36,7 @@ items:
 
 **Quan hệ (mapping):**
 - `lifecycle: Approved` → bắt buộc `review.status: Completed` (tiền đề).
-- `lifecycle: Frozen` → chỉ đến từ Approved, **không bao giờ trực tiếp** từ Draft/Review.
+- `lifecycle: Frozen` → đến từ **revfull PASS + Completed (auto-freeze)** hoặc từ Approved — không trực tiếp khi chưa đủ 2-pass.
 - Mục inherited (Freeze từ trước) giữ nguyên **cả hai** trạng thái — health check không đổi gì.
 
 ## 2. Review Types (6)
@@ -44,7 +44,7 @@ items:
 | Type | Tính count | Dùng khi | Matrix |
 |------|-----------|----------|--------|
 | `rev1` | ✔ | Mặc định, review lần 1 | coverage + governance |
-| `revfull` | ✔ | Review cuối / mục quan trọng — deep research | cả 6 dimension |
+| `revfull` | ✔ | Review cuối / mục quan trọng — deep research. **PASS + Completed → auto-freeze** | cả 6 dimension |
 | `health` | ✘ | Kiểm tra định kỳ (TRG-007) — **không tăng count, không đổi status** | governance + architecture + dependency |
 | `compliance` | ✔ | Constitution/Policy thay đổi (TRG-003/004) | coverage + governance + traceability + schema |
 | `migration` | ✔ | Đổi cấu trúc/format (TRG-005/008) | coverage + architecture + dependency + schema |
@@ -126,10 +126,14 @@ Tracker: recheck_required: true (các mục bị ảnh hưởng) → Doctor lậ
 ## 9. Freeze Rule
 
 ```text
+Review Completed + revfull PASS ──► Frozen (auto-freeze, không cần Approved)
 Review Completed ──► POLICY-001 approval ──► Approved ──► Quyết định freeze ──► Frozen
 ```
 
-Freeze **không bao giờ trực tiếp** — phải qua Approved. (Mục đã Frozen từ trước = inherited, giữ nguyên.)
+- **Auto-freeze**: review `revfull` verdict PASS + `review.status = Completed` → lifecycle về **Frozen trực tiếp** (bỏ qua Approved/POLICY-001).
+- revfull PASS chưa đủ 2-pass → chỉ advance count/status, không freeze.
+- revfull trên mục đã Frozen (inherited) → health-check, giữ nguyên 2 trục.
+- Các type khác (rev1/health/compliance/migration/regression) không auto-freeze; đường Approved → Frozen cũ vẫn giữ cho quyết định freeze thủ công.
 
 ## 10. Review Trigger + SLA
 
@@ -254,6 +258,7 @@ agent: general
 - Chỉ `/review` cập nhật tracker + history; mọi entry append-only.
 - Sau mỗi review, `/review` **bắt buộc đồng bộ** `docs/specs/SPEC-INDEX.md` (marker mục theo tracker: ✅ Frozen/Completed · 🚧 Draft/Rev1 · ⬜ chưa bắt đầu) + dòng `Trạng thái` của SPEC — index không bao giờ lệch tracker.
 - Review PASS/CONDITIONAL → tăng count (trừ `health`); FAIL → không đổi trạng thái.
+- revfull PASS + Completed → **auto-freeze** (Frozen trực tiếp, không qua Approved/POLICY-001).
 - Mục inherited (Frozen cũ) giữ nguyên 2 trục — revfull chỉ là health-check.
 - Verdict = Decision Matrix — không theo cảm tính reviewer.
 - Tracker + history + metrics nhất quán — Doctor validate theo `review.schema.json` (POLICY-010).

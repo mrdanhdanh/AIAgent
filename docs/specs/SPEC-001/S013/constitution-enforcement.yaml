@@ -1,7 +1,7 @@
 # SPEC-001 S013 - Constitution Enforcement
 # Tham chieu SPEC-000 Constitution.
 ---
-version: "1.0"
+version: "1.0.0"
 enforcement:
   - Validate Constitution
   - Reject vi pham

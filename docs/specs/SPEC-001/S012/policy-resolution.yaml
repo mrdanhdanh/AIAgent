@@ -1,7 +1,7 @@
 # SPEC-001 S012 - Policy Resolution
 # Runtime chon policy nao de ap dung (S010 timeline: sau Validation).
 ---
-version: "1.0"
+version: "1.0.0"
 flow:
   - Validate Execution
   - Collect applicable policies (theo trigger)

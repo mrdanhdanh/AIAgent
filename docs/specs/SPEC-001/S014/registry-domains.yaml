@@ -1,7 +1,7 @@
 # SPEC-001 S014 - Registry Domains
 # Phan tang Registry. Dashboard nhom theo domain.
 ---
-version: "1.0"
+version: "1.0.0"
 domains:
   - Runtime Domain
   - Workflow Domain

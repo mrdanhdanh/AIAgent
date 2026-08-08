@@ -88,7 +88,7 @@ Read model là projection immutable (P010).
 
 - WORKFLOW_DASHBOARD_VIEWED · REFRESHED · ERROR.
 
-> S011 reuse trực tiếp.
+> W020 định nghĩa 3 event types WORKFLOW_DASHBOARD_* — S011 cung cấp event model (fields, correlation_id).
 
 ## WDB010 — Dashboard Metrics
 

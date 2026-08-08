@@ -196,5 +196,5 @@ not_in_runtime:
   - Execution Orchestrator (SPEC-001 S006 CMP-002)
   - Context Manager (SPEC-001 S006 CMP-003)
   - State Manager (SPEC-001 S006 CMP-004)
-  - Policy Engine (SPEC-001 S006 CMP-006)
-  note: Workflow Engine dung qua Runtime (SPEC-001) - khong lap lai.
+  - Policy Engine (SPEC-001 S006 CMP-005)
+  # note: Workflow Engine dung qua Runtime (SPEC-001) - khong lap lai.

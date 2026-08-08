@@ -23,7 +23,7 @@ Draft ──► Review ──► Approved ──► Frozen ──► Deprecated 
 | `Draft` | Tạo xong, chưa được duyệt |
 | `Review` | Đang trong vòng đánh giá (review hoặc approval) |
 | `Approved` | Đã duyệt (POLICY-001) |
-| `Frozen` | Đóng băng — **chỉ đến từ Approved**, không bao giờ trực tiếp |
+| `Frozen` | Đóng băng — đến từ **revfull PASS + Completed (auto-freeze)** hoặc Approved |
 | `Deprecated` | Hết hiệu lực, còn tham chiếu (POLICY-004) |
 | `Archived` | Lưu trữ, không dùng nữa |
 
@@ -33,6 +33,7 @@ Draft ──► Review ──► Approved ──► Frozen ──► Deprecated 
 |------|-----|-----------|
 | Draft | Review | Bắt đầu review (review.count ≥ 1) |
 | Review | Approved | **review.status = Completed** (2 lần review) + approval pass (POLICY-001) |
+| Review | Frozen | **revfull PASS + review.status = Completed** — auto-freeze, không cần Approved |
 | Approved | Frozen | Quyết định freeze — không trực tiếp từ Draft/Review |
 | Frozen | Deprecated | POLICY-004 Deprecation |
 | Deprecated | Archived | Hết chu kỳ deprecation |
@@ -49,7 +50,7 @@ NotReviewed ──► (review 1) ──► Rev1 ──► (review 2) ──► C
 ## Quy tắc
 
 - `lifecycle: Approved` → bắt buộc `review.status: Completed`.
-- `lifecycle: Frozen` không bao giờ trực tiếp từ Draft/Review.
+- `lifecycle: Frozen` từ **revfull PASS + Completed** (auto-freeze) hoặc từ Approved — không trực tiếp từ Draft/Review khi chưa đủ 2-pass.
 - Trạng thái 2 trục ghi trong `review-tracker.yaml` (nguồn sự thật duy nhất) — chỉ `/review` cập nhật.
 - Mỗi SPEC có `SPEC.yaml` (metadata, status, implemented_by).
 - Không mâu thuẫn SPEC-000 Constitution (P020).
