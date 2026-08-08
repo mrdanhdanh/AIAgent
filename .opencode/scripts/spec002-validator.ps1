@@ -501,6 +501,54 @@ if (Test-Path $efmd) {
   }
 }
 
+# ---------- W11-001: W011 observability ----------
+$w011 = Join-Path $spec2 'W011'
+foreach ($f in @('observability.md','workflow-observability.yaml','workflow-observability.schema.json','workflow-events.yaml','workflow-metrics.yaml','workflow-traces.yaml','workflow-audit.yaml','workflow-correlation.yaml','workflow-health.yaml','workflow-dashboard.yaml','workflow-observability-mapping.yaml')) {
+  if (-not (Test-Path (Join-Path $w011 $f))) { $errors += "W11-001: missing W011/$f" }
+}
+
+# ---------- W11-002: workflow-observability.yaml ----------
+$ob11 = Join-Path $w011 'workflow-observability.yaml'
+if (Test-Path $ob11) {
+  $ob = Get-Content -LiteralPath $ob11 -Raw -Encoding utf8
+  foreach ($sec in @('philosophy','principles','domains','boundary','correlation_model','doctor_checks','evolution_integration','machine_readable','success_criteria')) {
+    if ($ob -notmatch "(?m)^${sec}:") { $errors += "W11-002: thieu '$sec'" }
+  }
+  foreach ($d in @('Events','Metrics','Trace','Audit','Health')) {
+    if ($ob -notmatch [regex]::Escape($d)) { $warnings += "W11-002: thieu domain '$d'" }
+  }
+}
+
+# ---------- W11-003: boundary ----------
+if (Test-Path $ob11) {
+  $ob3 = Get-Content -LiteralPath $ob11 -Raw -Encoding utf8
+  if ($ob3 -notmatch '(?m)^  observes:') { $errors += "W11-003: thieu observes" }
+  if ($ob3 -notmatch '(?m)^  not_observes:') { $errors += "W11-003: thieu not_observes" }
+  if ($ob3 -notmatch 'Business Data') { $errors += "W11-003: thieu not_observes Business Data" }
+}
+
+# ---------- W11-004: events ----------
+$ev11 = Join-Path $w011 'workflow-events.yaml'
+if (Test-Path $ev11) {
+  $ev = Get-Content -LiteralPath $ev11 -Raw -Encoding utf8
+  foreach ($e in @('WORKFLOW_VALIDATING','WORKFLOW_PUBLISHED','WORKFLOW_REJECTED','WORKFLOW_DEPRECATED','WORKFLOW_REACTIVATED','WORKFLOW_RETIRED')) {
+    if ($ev -notmatch [regex]::Escape($e)) { $errors += "W11-004: thieu event $e" }
+  }
+}
+
+# ---------- W11-005: observability.md ----------
+$obmd = Join-Path $w011 'observability.md'
+if (Test-Path $obmd) {
+  $obm = Get-Content -LiteralPath $obmd -Raw -Encoding utf8
+  for ($i = 1; $i -le 16; $i++) {
+    $sec = "WO{0:D3}" -f $i
+    if ($obm -notmatch [regex]::Escape($sec)) { $errors += "W11-005: thieu section $sec" }
+  }
+  foreach ($sec in @('WO003A','WO011A')) {
+    if ($obm -notmatch [regex]::Escape($sec)) { $errors += "W11-005: thieu section $sec" }
+  }
+}
+
 # ---------- W1-005: SPEC.yaml ----------
 $specFile = Join-Path $spec2 'SPEC.yaml'
 if (Test-Path $specFile) {

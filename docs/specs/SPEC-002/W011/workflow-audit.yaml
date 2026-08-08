@@ -1,0 +1,11 @@
+# SPEC-002 W011 - Workflow Audit (S011 reuse)
+---
+version: "1.0"
+properties:
+  - Append Only
+  - Immutable
+  - Ordered
+  - Time Consistent
+rules:
+  - Ghi moi quyet dinh (gate, deprecate, reject) (P008).
+  - Khong ghi Business Data.

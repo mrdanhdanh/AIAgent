@@ -1,0 +1,9 @@
+# SPEC-002 W011 - Workflow Correlation (S011 reuse)
+---
+version: "1.0"
+model:
+  fields: [workflow_id, execution_id, correlation_id, lineage_id, parent_id]
+rules:
+  - Sinh khi Workflow Created.
+  - Gan vao: Event, Metrics, Trace, Audit.
+  - Khong doi trong vong doi (P009).

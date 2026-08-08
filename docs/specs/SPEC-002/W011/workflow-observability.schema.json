@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aios://workflow-observability.schema.json",
+  "title": "SPEC-002 Workflow Observability (W011)",
+  "description": "JSON Schema cho workflow-observability.yaml. Validator kiem tra cau truc.",
+  "type": "object",
+  "required": ["id", "name", "version", "status", "frozen", "owner", "philosophy", "principles", "domains", "boundary", "correlation_model", "doctor_checks", "evolution_integration", "machine_readable", "success_criteria"],
+  "properties": {
+    "id": { "const": "SPEC-002-W011" },
+    "name": { "const": "Workflow Observability" },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "status": { "enum": ["Draft", "Review", "Approved", "Stable", "Deprecated"] },
+    "frozen": { "type": "boolean" },
+    "owner": { "type": "string" },
+    "philosophy": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "principles": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "domains": { "type": "array", "items": { "type": "string" }, "minItems": 5 },
+    "boundary": { "type": "object", "required": ["observes", "not_observes"] },
+    "correlation_model": { "type": "object" },
+    "doctor_checks": { "type": "array", "items": { "type": "string" }, "minItems": 5 },
+    "evolution_integration": { "type": "array", "items": { "type": "string" }, "minItems": 2 },
+    "machine_readable": { "type": "array", "items": { "type": "string" }, "minItems": 10 },
+    "success_criteria": { "type": "array", "items": { "type": "string" }, "minItems": 5 }
+  },
+  "additionalProperties": false
+}

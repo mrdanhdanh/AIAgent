@@ -275,7 +275,7 @@ if (Test-Path $smYaml) {
   if ($sm -notmatch '(?m)^initial_state:') { $errors += "S1-017: thieu initial_state" }
   if ($sm -notmatch '(?m)^terminal_states:') { $errors += "S1-017: thieu terminal_states" }
   if ($sm -notmatch '(?m)^transitions:') { $errors += "S1-017: thieu transitions" }
-  $trCount = ([regex]::Matches($sm, '(?m)^  - from:')).Count
+  $trCount = ([regex]::Matches($sm, '(?m)^\s*- \{?\s*from:')).Count
   if ($trCount -lt 10) { $errors += "S1-017: chi co $trCount transitions (can >=10)" }
   foreach ($sec in @('philosophy','principles','categories','concurrency_rules','composite_states','terminal_rules','triggers','invalid_transitions','invariants','ownership')) {
     if ($sm -notmatch "(?m)^${sec}:") { $errors += "S1-017: thieu '$sec'" }

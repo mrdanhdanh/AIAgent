@@ -1,0 +1,14 @@
+# SPEC-002 W011 - Workflow Observability Mapping
+---
+version: "1.0"
+mappings:
+  - domain: Events
+    used_by: [Dashboard, Doctor, Evolution]
+  - domain: Metrics
+    used_by: [Dashboard, Doctor, Evolution, S015 Quality]
+  - domain: Trace
+    used_by: [Dashboard, Doctor, Evolution]
+  - domain: Audit
+    used_by: [Doctor, Governance (S013)]
+  - domain: Health
+    used_by: [Dashboard, Doctor, S016 Compliance]

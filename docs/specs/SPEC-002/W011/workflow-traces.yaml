@@ -1,0 +1,15 @@
+# SPEC-002 W011 - Workflow Trace (S011 reuse)
+---
+version: "1.0"
+scope:
+  - Workflow
+  - Step
+  - Parent (workflow goi workflow)
+  - Child (sub-workflow)
+  - Correlation
+  - Causation
+  - Lineage
+rules:
+  - Trace chi append (S011).
+  - Correlation khac Causation (S011 OB006).
+  - Delegate Runtime (S011).
