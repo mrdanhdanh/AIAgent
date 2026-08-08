@@ -1,0 +1,16 @@
+# SPEC-003 C004 - Mapping Boundary (CB007)
+---
+version: "1.0"
+name: Mapping Boundary
+severity: Critical
+allowed:
+  - Mapping qua Registry (S014)
+  - Capability group hop le
+not_allowed:
+  - Hardcode mapping Agent
+  - Mapping truc tiep
+violation: Capability System hardcode mapping Agent
+impact: Critical
+detected_by: Doctor
+principles: [P003]
+rules: [RULE-002]

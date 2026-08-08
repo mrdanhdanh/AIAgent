@@ -1,0 +1,13 @@
+# SPEC-003 C004 - Boundary Ownership Matrix
+---
+version: "1.0"
+ownership:
+  CB001-declaration: Capability
+  CB002-registry: Capability
+  CB003-validation: Capability
+  CB004-resolution: Runtime (S010 EF007)
+  CB005-interface: Capability
+  CB006-dependency: Capability
+  CB007-mapping: Capability
+  CB008-policy: Runtime (S012)
+  CB009-governance: Runtime (S013)

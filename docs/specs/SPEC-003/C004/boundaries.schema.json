@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aios://capability-boundaries.schema.json",
+  "title": "SPEC-003 Capability Boundaries (C004)",
+  "description": "JSON Schema cho boundaries.yaml. Validator kiem tra cau truc.",
+  "type": "object",
+  "required": ["id", "name", "version", "status", "frozen", "owner", "hierarchy", "decision", "invariants", "validation", "boundaries", "mapping", "metrics"],
+  "properties": {
+    "id": { "const": "SPEC-003-C004" },
+    "name": { "const": "Capability Boundaries" },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "status": { "enum": ["Draft", "Review", "Approved", "Stable", "Deprecated"] },
+    "frozen": { "type": "boolean" },
+    "owner": { "type": "string" },
+    "hierarchy": { "type": "object" },
+    "decision": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "invariants": { "type": "array", "items": { "type": "string" }, "minItems": 6 },
+    "validation": { "type": "array", "items": { "type": "string" }, "minItems": 7 },
+    "boundaries": { "type": "object", "minProperties": 9 },
+    "mapping": { "type": "object", "minProperties": 9 },
+    "metrics": { "type": "object", "minProperties": 9 }
+  },
+  "additionalProperties": false
+}

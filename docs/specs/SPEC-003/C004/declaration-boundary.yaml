@@ -1,0 +1,15 @@
+# SPEC-003 C004 - Declaration Boundary (CB001)
+---
+version: "1.0"
+name: Declaration Boundary
+severity: Critical
+allowed:
+  - Nhan khai bao nang luc (metadata)
+  - Validate schema khai bao
+not_allowed:
+  - Nhan code thay vi khai bao
+violation: Capability System nhan code thay vi khai bao
+impact: Critical
+detected_by: Doctor
+principles: [P003]
+rules: [RULE-001]
