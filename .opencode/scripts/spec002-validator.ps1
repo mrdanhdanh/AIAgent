@@ -856,6 +856,48 @@ if (Test-Path $evmd) {
   }
 }
 
+# ---------- W19-001: W019 doctor ----------
+$w019 = Join-Path $spec2 'W019'
+foreach ($f in @('doctor.md','workflow-doctor.yaml','workflow-doctor.schema.json','workflow-doctor-scope.yaml','workflow-doctor-checks.yaml','workflow-doctor-pipeline.yaml','workflow-doctor-self-repair.yaml','workflow-doctor-report.yaml','workflow-doctor-events.yaml','workflow-doctor-metrics.yaml','workflow-doctor-validation.yaml')) {
+  if (-not (Test-Path (Join-Path $w019 $f))) { $errors += "W19-001: missing W019/$f" }
+}
+
+# ---------- W19-002: workflow-doctor.yaml ----------
+$dr19 = Join-Path $w019 'workflow-doctor.yaml'
+if (Test-Path $dr19) {
+  $dr = Get-Content -LiteralPath $dr19 -Raw -Encoding utf8
+  foreach ($sec in @('philosophy','principles','scope','check_sources','health_score','pipeline','self_repair','report','events','metrics','traceability')) {
+    if ($dr -notmatch "(?m)^${sec}:") { $errors += "W19-002: thieu '$sec'" }
+  }
+  foreach ($d in @('Constitution (SPEC-000)','Contracts (W007)','Policy Binding (W012)','Governance (W013)','Registry (W014)','Resources (W015)','Compliance (W016)','Extensions (W017)','Observability (W011)')) {
+    if ($dr -notmatch [regex]::Escape($d)) { $errors += "W19-002: thieu domain '$d'" }
+  }
+}
+
+# ---------- W19-003: check_sources 7 nguon ----------
+if (Test-Path $dr19) {
+  $dr3 = Get-Content -LiteralPath $dr19 -Raw -Encoding utf8
+  $srcCount = ([regex]::Matches($dr3, '(?m)^  - W\d{3} ')).Count
+  if ($srcCount -lt 7) { $errors += "W19-003: check_sources chi co $srcCount (can >=7)" }
+}
+
+# ---------- W19-004: self_repair ----------
+if (Test-Path $dr19) {
+  $dr4 = Get-Content -LiteralPath $dr19 -Raw -Encoding utf8
+  if ($dr4 -notmatch 'Chi Low impact') { $errors += "W19-004: self_repair thieu Low impact" }
+  if ($dr4 -notmatch 'Khong sua implementation') { $errors += "W19-004: self_repair thieu khong sua implementation" }
+}
+
+# ---------- W19-005: doctor.md ----------
+$drmd = Join-Path $w019 'doctor.md'
+if (Test-Path $drmd) {
+  $drm = Get-Content -LiteralPath $drmd -Raw -Encoding utf8
+  for ($i = 1; $i -le 16; $i++) {
+    $sec = "WDR{0:D3}" -f $i
+    if ($drm -notmatch [regex]::Escape($sec)) { $errors += "W19-005: thieu section $sec" }
+  }
+}
+
 # ---------- W1-005: SPEC.yaml ----------
 $specFile = Join-Path $spec2 'SPEC.yaml'
 if (Test-Path $specFile) {

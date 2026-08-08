@@ -1,0 +1,18 @@
+# SPEC-002 W019 - Workflow Doctor Checks (tham chieu, khong dinh nghia lai)
+---
+version: "1.0"
+groups:
+  - source: W011 Observability
+    count: 5
+  - source: W013 Governance
+    count: 6
+  - source: W014 Registry
+    count: 6
+  - source: W015 Resources
+    count: 5
+  - source: W016 Compliance
+    count: 12
+  - source: W017 Extensions
+    count: 6
+  - source: W018 Evolution
+    count: 6

@@ -1,0 +1,11 @@
+# SPEC-002 W019 - Workflow Doctor Pipeline
+---
+version: "1.0"
+pipeline:
+  - Collect (machine-readable)
+  - Validate (checks per domain)
+  - Score (health - W016 WMC006)
+  - Report (workflow-doctor-report)
+  - Repair (neu an toan, self-repair)
+rules:
+  - Moi lan chay sinh WORKFLOW_DOCTOR_RUN + Audit (W011).

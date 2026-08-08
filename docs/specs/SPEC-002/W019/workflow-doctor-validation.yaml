@@ -1,0 +1,10 @@
+# SPEC-002 W019 - Workflow Doctor Validation
+---
+version: "1.0"
+checks:
+  - Missing Evidence
+  - Invalid Report
+  - Repair Without Approval (W013)
+  - Repair Not Rollback-able
+  - Unauthorized Repair
+  - Stale Report

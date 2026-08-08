@@ -1,0 +1,10 @@
+# SPEC-002 W019 - Workflow Doctor Self-Repair
+---
+version: "1.0"
+rules:
+  - Chi Low impact.
+  - Qua Approval (W013) hoac auto cho quen thuoc.
+  - Co rollback.
+  - Ghi Audit (W011).
+  - Khong sua implementation.
+  - Khong Repair vi pham CRITICAL - bao cao len nguoi.
