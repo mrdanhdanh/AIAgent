@@ -265,6 +265,53 @@ if (Test-Path $amd) {
   }
 }
 
+# ---------- W6-001: W006 components ----------
+$w006 = Join-Path $spec2 'W006'
+foreach ($f in @('components.md','components.yaml','components.schema.json','component-model.yaml','component-lifecycle.yaml','component-ownership.yaml','component-contracts.yaml','component-dependencies.yaml','component-mapping.yaml','component-metrics.yaml','component-validation.yaml','component-registry.yaml')) {
+  if (-not (Test-Path (Join-Path $w006 $f))) { $errors += "W6-001: missing W006/$f" }
+}
+
+# ---------- W6-002: components.yaml ----------
+$cw = Join-Path $w006 'components.yaml'
+if (Test-Path $cw) {
+  $cp = Get-Content -LiteralPath $cw -Raw -Encoding utf8
+  foreach ($sec in @('philosophy','principles','component_model','groups','lifecycles','components','not_in_runtime')) {
+    if ($cp -notmatch "(?m)^${sec}:") { $errors += "W6-002: components thieu '$sec'" }
+  }
+  foreach ($c in @('WCP-001','WCP-004','WCP-006','WCP-008')) {
+    if ($cp -notmatch [regex]::Escape($c)) { $errors += "W6-002: thieu $c" }
+  }
+  foreach ($n in @('Workflow Engine','Definition Manager','Validation Engine','Workflow Orchestrator','Workflow Loader','Step Resolver','Workflow Registrar','Workflow Event Dispatcher')) {
+    if ($cp -notmatch [regex]::Escape($n)) { $errors += "W6-002: thieu component '$n'" }
+  }
+}
+
+# ---------- W6-003: moi component co layer/domain/requirements ----------
+foreach ($c in @('WCP-001','WCP-004','WCP-006')) {
+  $block = [regex]::Match($cp, "(?ms)^  ${c}:.*?^    principles:.*$")
+  if (-not $block.Success) { $errors += "W6-003: $c thieu block" }
+  else {
+    if ($block.Value -notmatch '(?m)^    layer:') { $errors += "W6-003: $c thieu layer" }
+    if ($block.Value -notmatch '(?m)^    domain:') { $errors += "W6-003: $c thieu domain" }
+    if ($block.Value -notmatch '(?m)^    requirements:') { $errors += "W6-003: $c thieu requirements" }
+  }
+}
+
+# ---------- W6-004: not_in_runtime ----------
+if (Test-Path $cw) {
+  $cp4 = Get-Content -LiteralPath $cw -Raw -Encoding utf8
+  if ($cp4 -notmatch '(?m)^not_in_runtime:') { $errors += "W6-004: thieu not_in_runtime" }
+}
+
+# ---------- W6-005: components.md ----------
+$cmd = Join-Path $w006 'components.md'
+if (Test-Path $cmd) {
+  $cm = Get-Content -LiteralPath $cmd -Raw -Encoding utf8
+  foreach ($sec in @('Philosophy','Principles','Groups','Components','Not in Workflow Engine','Contracts','Dependencies','Lifecycles','Validation','Machine-readable')) {
+    if ($cm -notmatch [regex]::Escape("## $sec")) { $errors += "W6-005: components.md thieu section '$sec'" }
+  }
+}
+
 # ---------- W1-005: SPEC.yaml ----------
 $specFile = Join-Path $spec2 'SPEC.yaml'
 if (Test-Path $specFile) {

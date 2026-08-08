@@ -1,0 +1,12 @@
+# SPEC-002 W006 - Component Dependencies
+---
+version: "1.0"
+dependencies:
+  WCP-001: [WCP-002, WCP-003, WCP-004, WCP-005, WCP-007, WCP-008]
+  WCP-002: []
+  WCP-003: [WCP-005]
+  WCP-004: [WCP-006, Runtime (SPEC-001)]
+  WCP-005: [Registry (S014)]
+  WCP-006: [Registry (S014)]
+  WCP-007: [Registry (S014)]
+  WCP-008: [Event Store (S011)]

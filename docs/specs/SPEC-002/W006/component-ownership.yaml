@@ -1,0 +1,12 @@
+# SPEC-002 W006 - Component Ownership
+---
+version: "1.0"
+ownership:
+  WCP-001: Workflow
+  WCP-002: Workflow
+  WCP-003: Workflow
+  WCP-004: Workflow
+  WCP-005: Workflow
+  WCP-006: Workflow
+  WCP-007: Workflow
+  WCP-008: Workflow

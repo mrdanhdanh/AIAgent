@@ -1,0 +1,12 @@
+# SPEC-002 W006 - Component Mapping (WCP -> Layer -> Domain)
+---
+version: "1.0"
+mapping:
+  WCP-001: { layer: Command, domain: Execution }
+  WCP-002: { layer: Declaration, domain: Definition }
+  WCP-003: { layer: Validation, domain: Validation }
+  WCP-004: { layer: Orchestration, domain: Coordination }
+  WCP-005: { layer: Definition, domain: Definition }
+  WCP-006: { layer: Resolution, domain: Capability }
+  WCP-007: { layer: Definition, domain: Definition }
+  WCP-008: { layer: Publication, domain: Observability }

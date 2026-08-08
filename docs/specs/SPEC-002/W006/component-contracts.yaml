@@ -1,0 +1,10 @@
+# SPEC-002 W006 - Component Contracts
+---
+version: "1.0"
+contracts:
+  Workflow Contract: [WCP-001]
+  Definition Contract: [WCP-002]
+  Validation Contract: [WCP-003]
+  Orchestrator Contract: [WCP-004]
+  Registry Contract: [WCP-005, WCP-006, WCP-007]
+  Event Contract: [WCP-008]
