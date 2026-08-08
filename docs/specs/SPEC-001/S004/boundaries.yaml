@@ -6,7 +6,7 @@ name: Runtime Boundaries
 version: "1.0.0"
 status: Approved
 frozen: true
-frozen_date: "2026-08-04"
+frozen_date: "2026-08-08"
 owner: Runtime Team
 hierarchy:
   Runtime Boundary:
@@ -37,21 +37,159 @@ validation:
   - Runtime có vi phạm Layering không?
   - Runtime có giao tiếp ngoài Contract không?
 boundaries:
+  B001-ownership:
+    name: Ownership Boundary
+    severity: Critical
+    version: 1.0.0
+    status: Stable
+    owns: [Execution, Execution Context, Execution State, Execution Lifecycle, Coordination, Event Publishing, Metrics Collection, Artifact Publication]
+    not_owns: [Workflow Definition, Agent, Skill, Plugin, Knowledge, Business Data, UI, Infrastructure Resource]
+    violation: Runtime sở hữu tài nguyên ngoài danh sách cho phép
+    impact: Critical
+    detected_by: Doctor
+    metric: Ownership Coverage
+    target: "100"
+    principles: [P001]
+    rules: [RULE-001]
+  B002-permission:
+    name: Permission Boundary
+    severity: Critical
+    version: 1.0.0
+    status: Stable
+    allowed: [Khởi tạo Execution, Kết thúc Execution, Resolve Capability, Đọc Workflow Definition, Đọc Registry, Điều phối Agent, Phát Event, Thu Metrics, Sinh Artifact Metadata, Áp dụng Policy]
+    forbidden: [Thực thi Business Logic, Chỉnh sửa Workflow Definition, Gọi Agent theo tên cụ thể, Gọi Database trực tiếp, Gọi LLM trực tiếp, Truy cập Knowledge trực tiếp, Tự ý thay đổi Plugin, Bỏ qua Contract, Bỏ qua Constitution]
+    violation: Business Logic xuất hiện trong Runtime
+    impact: Critical
+    detected_by: Doctor
+    metric: Contract Violations
+    target: "0"
+    principles: [P002]
+    rules: [RULE-003]
+  B003-delegation:
+    name: Delegation Boundary
+    severity: High
+    version: 1.0.0
+    status: Stable
+    delegates:
+      Business Logic: Agent
+      Tri thức chuyên môn: Skill
+      Lưu trữ: Infrastructure
+      Định nghĩa Workflow: Workflow
+      Đăng ký Capability: Registry
+      Chính sách phát hành: Governance
+      Giao diện người dùng: Presentation
+    violation: Runtime thực hiện chức năng thuộc delegate thay vì ủy quyền
+    impact: High
+    detected_by: Doctor
+    metric: Delegation Coverage
+    target: "100"
+    principles: [P007]
+    rules: [RULE-006]
+  B004-dependency:
+    name: Dependency Boundary
+    severity: High
+    version: 1.0.0
+    status: Stable
+    allowed_dependencies: [Constitution, Workflow Definition, Capability Registry, Contract, Event Schema, Artifact Schema]
+    forbidden_dependencies: [Agent cụ thể, Plugin cụ thể, Domain cụ thể, Framework cụ thể, Database cụ thể, LLM cụ thể]
+    violation: Runtime phụ thuộc implementation cụ thể
+    impact: High
+    detected_by: Doctor
+    metric: Direct Dependencies
+    target: "0"
+    principles: [P011]
+    rules: [RULE-002]
+  B005-interface:
+    name: Interface Boundary
+    severity: High
+    version: 1.0.0
+    status: Stable
+    exposes:
+      Execution API: Khởi tạo và quản lý Execution
+      Context API: Quản lý Execution Context
+      Event API: Publish Event
+      Artifact API: Publish Artifact
+      Metrics API: Publish Metrics
+    not_exposes: [Internal API]
+    violation: Runtime công khai API nội bộ
+    impact: High
+    detected_by: Doctor
+    metric: Contract Violations
+    target: "0"
+    principles: [P002]
+    rules: [RULE-003]
+  B006-state:
+    name: State Boundary
+    severity: High
+    version: 1.0.0
+    status: Stable
+    manages: [Execution State, Lifecycle State, Context State]
+    not_manages: [Business State, Domain State, Plugin State, Knowledge State]
+    violation: Runtime quản lý State ngoài danh sách cho phép
+    impact: High
+    detected_by: Doctor
+    metric: State Ownership
+    target: "100"
+    principles: [P009]
+    rules: [RULE-005]
+  B007-data:
+    name: Data Boundary
+    severity: High
+    version: 1.0.0
+    status: Stable
+    processes: [Metadata, Context, Event, Artifact Metadata, Execution State]
+    not_processes: [Business Object, Domain Model, User Data, Knowledge Content]
+    violation: Runtime xử lý dữ liệu nghiệp vụ
+    impact: High
+    detected_by: Doctor
+    metric: Data Leak
+    target: "0"
+    principles: [P010]
+    rules: [RULE-009]
+  B008-failure:
+    name: Failure Boundary
+    severity: High
+    version: 1.0.0
+    status: Stable
+    responsible: [Phát hiện lỗi, Cô lập lỗi, Dừng Execution an toàn, Publish Failure Event, Sinh Failure Artifact]
+    not_responsible: [Sửa lỗi nghiệp vụ]
+    violation: Runtime sửa lỗi nghiệp vụ
+    impact: High
+    detected_by: Doctor
+    metric: Failure Containment
+    target: "100"
+    principles: [P015]
+    rules: [RULE-012]
   B009-security:
     name: Security Boundary
     severity: Critical
     version: 1.0.0
     status: Stable
     allowed: [Kiểm tra Contract, Kiểm tra Policy, Kiểm tra Permission]
-    not_manage: [Identity, Authentication, Authorization của hệ thống]
+    not_manages: [Identity, Authentication, Authorization của hệ thống]
     violation: Runtime quản lý Identity/Auth
     impact: Critical
     detected_by: Doctor
     metric: Security Violations
-    target: 0
+    target: "0"
     principles: [P016]
     rules: [RULE-008]
 mapping:
+  B001-ownership: { principle: P001, rule: RULE-001 }
+  B002-permission: { principle: P002, rule: RULE-003 }
+  B003-delegation: { principle: P007, rule: RULE-006 }
+  B004-dependency: { principle: P011, rule: RULE-002 }
+  B005-interface: { principle: P002, rule: RULE-003 }
+  B006-state: { principle: P009, rule: RULE-005 }
+  B007-data: { principle: P010, rule: RULE-009 }
+  B008-failure: { principle: P015, rule: RULE-012 }
   B009-security: { principle: P016, rule: RULE-008 }
 metrics:
+  Ownership Coverage: 100
+  Contract Violations: 0
+  Direct Dependencies: 0
+  Delegation Coverage: 100
+  State Ownership: 100
+  Data Leak: 0
+  Failure Containment: 100
   Security Violations: 0

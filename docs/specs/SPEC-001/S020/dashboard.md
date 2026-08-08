@@ -109,7 +109,7 @@ read_model:
 - **Event Driven** (P005): refresh khi có event mới.
 - **Không polling.**
 - View là projection immutable (P010).
-- Mỗi refresh sinh DASHBOARD_REFRESHED (S011).
+- Mỗi refresh sinh DASHBOARD_REFRESHED (DB009 — S020 định nghĩa; S011 cung cấp event model).
 
 ## DB009 — Dashboard Events
 
@@ -117,7 +117,7 @@ read_model:
 - DASHBOARD_REFRESHED
 - DASHBOARD_ERROR
 
-> S011 reuse trực tiếp.
+> S020 định nghĩa 3 event types (DB009) — S011 cung cấp event model (fields, correlation_id).
 
 ## DB010 — Dashboard Metrics
 

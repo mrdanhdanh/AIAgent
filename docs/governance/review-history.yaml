@@ -577,3 +577,1982 @@ entries:
     finished: "2026-08-08T09:26:28"
     cascade_review: []
     report_path: docs/governance/reviews/REV-SPEC-001-S013-20260808-092628.md
+  - review_id: REV-20260808-017
+    spec: SPEC-001
+    item: S014
+    name: Runtime Registry
+    type: rev1
+    mode: rev1 (review lan 1 — tinh count)
+    verdict: CONDITIONAL
+    note: >
+      rev1 tren S014 (Draft, NotReviewed, count 0, recheck_required tu cascade S009/S010).
+      Phat hien 2 MAJOR: #01 TRACEABILITY — registry.md:300 + registry-events.yaml:2 tuyen bo
+      "S011 reuse truc tiep" cho 10 event types (RG012: REGISTRY_LOOKUP, REGISTRY_RESOLVED,
+      REGISTRY_FAILED, REGISTRY_DEPRECATED, ENTRY_REGISTERED, ENTRY_UPDATED, ENTRY_DEPRECATED,
+      ENTRY_RETIRED, RESOLUTION_FAILED, COMPATIBILITY_FAILED) nhung S011 events.yaml khong dinh
+      nghia event type cu the nao (chi model fields + taxonomy execution/workflow/capability/
+      resource/policy/system) — grep toan S011 = 0 matches REGISTRY_/ENTRY_; 10 event chi ton tai
+      trong chinh S014 (cung lop S013 MAJOR #01 REV-20260808-012 da fix REV-20260808-014);
+      #02 CONSISTENCY — COMPATIBILITY_FAILED trung ten event do S013 GV013 so huu (governance-
+      events.yaml:12, governance.md:313) — 1 event bus 1 namespace, 2 SPEC cung dinh nghia 1 ten
+      event = vi pham single-definition. 2 MINOR: #03 RG008 md tu goi "Graph day du" (registry.md:180)
+      nhung thieu canh so voi relationships yaml (Capability->Policy, Capability->Plugin,
+      Contract->Schema) + RG008A md thieu Policy: Contract + Plugin: Contract; #04 version "1.0.0"
+      (registry.yaml/md) vs "1.0" o 17 artifact con lai. 2 INFO: #05 frontmatter registry.md:13
+      status Draft se lech lifecycle Review sau review nay (tien le S009 #11); #06 S011 event_type
+      taxonomy thieu "registry" (REGISTRY_* chua map type) + upstream S009 thieu EXECUTION_CREATED
+      (da flag truoc). Xac nhan tich cuc: YAML 17/17 parse PASS; jsonschema strict thuc te
+      VALIDATION PASS (registry.schema.json khai bao events/metrics trong properties — khong loi
+      additionalProperties nhu S002 #01/S003 #02/S006 #02); RG014 18 file machine khớp thuc te;
+      21 sections RG001-RG015 (+ RG003A/RG005A/RG005B/RG008A/RG009A/RG010A) dung claim;
+      entry_model 10 fields khop RG004; resolution pipeline 8 steps khop RG005; md <-> yaml noi bo
+      khop (categories 9, domains 6, events 10, metrics 13, traceability 5); dependency DAG khong
+      circular; upstream refs S006 Resolver (components.md:75 Registry Resolver), S007 Contract,
+      S008 Reference, S010 Resolution, S012/S013 ton tai; downstream SPEC-002 (W001-W009) +
+      S015/S016/S017/S019/S020 tham chieu S014 day du. Verdict CONDITIONAL (0 CRITICAL, 2 MAJOR)
+      -> tinh count: NotReviewed -> Rev1, count 0 -> 1, lifecycle Draft -> Review. GIU recheck_required
+      (con MAJOR chua fix). Cascade: S011/S013/S015/S016/S017/S019/S020 da co recheck_required tu
+      truoc — giu nguyen, khong doi status (SPEC-002 chua co entry tracker).
+    score:
+      coverage: 97
+      quality: 90
+      consistency: 82
+      governance: 90
+      overall: 90
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 2
+      MINOR: 2
+      INFO: 2
+    started: "2026-08-08T10:03:20"
+    finished: "2026-08-08T10:03:20"
+    cascade_review: [S011, S013, S015, S016, S017, S019, S020, SPEC-002]
+    report_path: docs/governance/reviews/REV-SPEC-001-S014-20260808-100320.md
+  - review_id: REV-20260808-019
+    spec: SPEC-001
+    item: S004
+    name: Runtime Boundaries
+    type: revfull
+    mode: revfull-as-health (inherited Frozen)
+    verdict: CONDITIONAL
+    note: >
+      revfull tren S004 (Frozen, inherited) — health semantics: giu nguyen 2 truc
+      (lifecycle Frozen, review.status Completed, count 2), khong tang count.
+      Kiem chung may: YAML parse 8/8 PASS; jsonschema strict FAIL 2 loi — #01 SCHEMA
+      boundaries.schema.json additionalProperties:false chan frozen/frozen_date top-level
+      (cung lop S002#01 da fix ADR-002 / S003#02 / S006#02); #02 SCHEMA boundaries.yaml:51
+      B009 target: 0 integer vs schema type string. #03 MAJOR CONTENT: boundaries.yaml
+      canonical chi dinh nghia B009-security (1/9) trong khi hierarchy/registry/comment khai
+      bao 9 — B001-B008 khong co severity/violation/impact/detected_by/metric/target/
+      principles/rules machine-readable (B001/B003/B004/B005 chi co file rieng partial;
+      B002/B006/B007/B008 khong co artifact YAML nao) — Success Criteria boundaries.md:339
+      "Doctor tu dong kiem tra moi Boundary" khong dat 8/9. MINOR: #04 md Boundary Mapping
+      7/9 (thieu B005/B008), #05 md Ownership Matrix 6/9 (thieu B002/B006/B008) + Violations
+      4/9, #06 version "1.0" o 7 artifact vs "1.0.0", #07 frozen_date 08-04 truoc commit freeze
+      cdd1ca6 08-05 (cung lop S003 #04). Xac nhan tich cuc: 16/16 principles/rules ton tai
+      (P001/P002/P007/P009/P010/P011/P015/P016 + RULE-001/002/003/005/006/008/009/012), registry
+      9/9, S005/S006/S011/S013/S016/SPEC-002-W004 refs khong vo, khong bi lan MAJOR cua S001
+      (forward refs). Verdict CONDITIONAL (0 CRITICAL, 3 MAJOR) -> giu nguyen 2 truc
+      (inherited Frozen, khong tang count). Khong cascade moi: findings noi bo S004, khong doi
+      key B00x nao — downstream refs van dung. Next: ADR mo Frozen S004 (precedent ADR-002/003)
+      fix #01/#02/#03 -> re-freeze -> regression TRG-001, co the gop voi S006 (cung lop loi
+      schema/parse dang cho ADR).
+    score:
+      coverage: 90
+      quality: 84
+      consistency: 93
+      governance: 90
+      overall: 89
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 3
+      MINOR: 4
+      INFO: 2
+    started: "2026-08-08T10:03:02"
+    finished: "2026-08-08T10:03:02"
+    cascade_review: [S005, S006, S007, S008, S009, S011, S013, S016, SPEC-002/W004]
+    report_path: docs/governance/reviews/REV-SPEC-001-S004-20260808-100302.md
+  - review_id: REV-20260808-018
+    spec: SPEC-001
+    item: S005
+    name: Runtime Architecture
+    type: revfull
+    mode: revfull-as-health (inherited Frozen)
+    verdict: FAIL
+    note: >
+      revfull tren S005 (Frozen, inherited) — health semantics: giu nguyen 2 truc
+      (lifecycle Frozen, review.status Completed, count 2), khong tang count. Phat
+      hien 1 CRITICAL (#01 SCHEMA/YAML): architecture.yaml:125-130 communication_rules
+      + :152-159 constraints — block sequence + key note: cung indent -> PyYAML
+      ParserError "expected <block end>, but found '?'" — artifact canonical
+      (architecture.yaml = "nguon du lieu chuan" theo architecture.md:326) KHONG parse
+      duoc (7/8 YAML con lai OK); git blame xac nhan loi co tu commit cacce422
+      (2026-08-05 22:19, v2) va co trong ban freeze 6a18636 (2026-08-05 22:28) — file
+      hong ngay tu luc freeze, chua tung duoc validate bang may (cung lop S003 #01
+      REV-20260808-008 / S006 #01 REV-20260808-016). 2 MAJOR: #02 SCHEMA —
+      architecture.schema.json additionalProperties: false chan frozen/frozen_date
+      top-level -> jsonschema thuc te FAIL (da xac minh bang may tren ban YAML da sua
+      cu phap: "Additional properties are not allowed ('frozen', 'frozen_date')" —
+      cung lop S002 #01 da fix ADR-002 / S003 #02); #03 TRACEABILITY — architecture.md:280
+      claim "Layer x Responsibility, Layer x Requirement xem architecture-registry.yaml"
+      nhung registry (17 dong) khong chua 2 mapping do (chi version/layers/domains/views/
+      principles_mapping) -> dangling claim, POLICY-011. 3 MINOR: #04 version 1.1.0
+      (yaml/md) vs 1.1 (registry/layer-model/domain-model/matrix) vs 1.0 (dependency-rules/
+      communication-rules/decision-log) khong nhat quan 8 artifact; #05 architecture.yaml
+      domains thieu key layers so voi domain-model.yaml + md A005; #06 frozen_date
+      08-04 truoc commit freeze cuoi 08-05 (cung lop S003 #04). 3 INFO: #07 dependency_view
+      "Registry" khong phai layer (9-layer) — input Resolution layer / S014; #08 forward
+      ref S020 Dashboard intentional; #09 A009 "Services" khong thuoc 9 layers/6 domains
+      — cho S006/S007 xac nhan. Xac nhan tich cuc: 9 layers/6 domains/4 views day du,
+      Layer x Principle + Layer x Boundary khop 100% md<->architecture.yaml<->
+      architecture-matrix.yaml, P001/P002/P003/P005/P007/P008/P009/P010/P012/P014/P020 deu
+      ton tai SPEC-000, B001-B007 deu ton tai S004, 7/8 YAML parse OK, schema keys/layers
+      pattern/principle pattern/status enum hop le, metrics khop thuc te, khong circular
+      dependency. Verdict FAIL (1 CRITICAL >= 1) -> giu nguyen 2 truc: lifecycle Frozen,
+      review.status Completed, count 2 (inherited: true — revfull-as-health tren Frozen
+      khong doi trang thai; FAIL khong tang count). GAN recheck_required S005 (con
+      CRITICAL chua fix — "con gi treo", cho regression TRG-002). Khong cascade moi:
+      S006 (components.md:265 ref ../S005/architecture.yaml) + S007 (contracts.md:277)
+      da co recheck_required san; SPEC-002/W005 mirror S005 — chua start tracker. Next:
+      ADR mo Frozen S005 (precedent ADR-002/003/004) fix #01/#02 -> re-freeze ->
+      regression. (id_note: ban dau 017 nhung trung S014 rev1 lan 1 + S004 revfull
+      (session song song chiem 017, 2 entry trung ID) — doi sang 018 de dam bao unique.)
+    score:
+      coverage: 95
+      quality: 60
+      consistency: 81
+      governance: 90
+      overall: 82
+    severity_counts:
+      CRITICAL: 1
+      MAJOR: 2
+      MINOR: 3
+      INFO: 3
+    started: "2026-08-08T10:03:44"
+    finished: "2026-08-08T10:03:44"
+    cascade_review: [S006, S007, SPEC-002/W005]
+    report_path: docs/governance/reviews/REV-SPEC-001-S005-20260808-100344.md
+  - review_id: REV-20260808-020
+    spec: SPEC-001
+    item: S014
+    name: Runtime Registry
+    type: rev1
+    mode: rev1 (review lan 2 — tinh count, sau fix REV-20260808-017)
+    verdict: PASS
+    note: >
+      rev1 lan 2 tren S014 (Review/Rev1/count 1/recheck_required). Xac nhan 2 MAJOR
+      REV-20260808-017 da FIXED bang may: #01 TRACEABILITY — registry.md:300 +
+      registry-events.yaml:2 bo toan bo tuyen bo "S011 reuse truc tiep" (grep 'reuse'
+      toan S014 = 0 matches); claim moi "S014 dinh nghia 10 event types (RG012) — S011
+      cung cap event model (fields, correlation_id)" chinh xac: S011 events.yaml
+      model.fields = [id, type, category, severity, source, correlation_id,
+      execution_id, state_from, state_to, timestamp, lineage] — co correlation_id
+      (theo tien le S013 REV-20260808-014). #02 CONSISTENCY — event
+      COMPATIBILITY_FAILED doi ten thanh REGISTRY_COMPATIBILITY_FAILED dong nhat
+      3 noi (registry.md:298, registry.yaml:123, registry-events.yaml:15); grep
+      'COMPATIBILITY_FAILED' toan S014 = 3 matches, tat ca deu la
+      REGISTRY_COMPATIBILITY_FAILED — khong con ten thuan; S013 van giu
+      COMPATIBILITY_FAILED (governance-events.yaml:12, governance.md:313 — S013 so
+      huu) — het collision single-definition. Kiem chung may: YAML 17/17 parse PASS;
+      jsonschema strict thuc te VALIDATION PASS (registry.yaml VALID); 10 event types
+      khop 3 noi (md RG012 = yaml events = events.yaml); RG014 18 file khop thuc te.
+      Verdict PASS (0 CRITICAL, 0 MAJOR) -> tinh count: Rev1 -> Completed, count 1 -> 2,
+      lifecycle giu Review. Con 2 MINOR ke thua khong chan (#03 RG008 md 'Graph day du'
+      thieu canh Capability->Policy/Plugin, Contract->Schema + RG008A thieu Policy:
+      Contract/Plugin:Contract so voi registry.yaml relationships/dependency; #04
+      version 1.0.0 o registry.yaml:6 + registry.md:13 vs 1.0 o 17 artifact con lai)
+      + 2 INFO (#05 frontmatter registry.md:13 status Draft vs lifecycle Review — theo
+      tien le S009 #11; #06 S011 event_type taxonomy [execution, workflow, capability,
+      resource, policy, system] thieu 'registry' — REGISTRY_* chua map type, thuoc S011
+      khong phai loi S014). GO recheck_required S014 (hoan tat 2 MAJOR). Cascade moi:
+      S018 (Runtime Evolution — evolution.md:40/53/69/85/120/129/159/171/195/208 +
+      evolution.yaml + evolution-pipeline.yaml:10 + evolution-scope.yaml:11 tham chieu
+      Registry S014 nhieu noi) gan recheck_required: true trong tracker; S011/S013/
+      S015/S016/S017/S019/S020 da co san tu REV-20260808-017 — giu nguyen, khong doi
+      status (SPEC-002 chua co entry tracker).
+    score:
+      coverage: 97
+      quality: 97
+      consistency: 97
+      governance: 90
+      overall: 95
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 0
+      MINOR: 2
+      INFO: 2
+    started: "2026-08-08T10:09:11"
+    finished: "2026-08-08T10:09:11"
+    cascade_review: [S011, S013, S015, S016, S017, S018, S019, S020, SPEC-002]
+    report_path: docs/governance/reviews/REV-SPEC-001-S014-20260808-100911.md
+  - review_id: REV-20260808-021
+    spec: SPEC-001
+    item: S005
+    name: Runtime Architecture
+    type: health
+    mode: health check sau fix ADR-007 (inherited Frozen)
+    verdict: PASS
+    note: >
+      Health xac nhan fix ADR-007 cho REV-20260808-018 (FAIL: 1 CRITICAL + 2 MAJOR).
+      Verify may: #01 CRITICAL — architecture.yaml:130 (communication_rules) + :159
+      (constraints) 2 key note: -> comment (# Ngoai ra deu bi cam. / # Tat ca deu CAM.),
+      PyYAML 6.0.3 safe_load OK (het ParserError); #02 MAJOR — architecture.schema.json
+      them frozen (boolean) + frozen_date (string/date) vao properties, giu
+      additionalProperties:false, title (S005 v1.1.1), jsonschema Draft202012 strict
+      VALID 0 errors. frozen_date 2026-08-04 -> 2026-08-08 (resolve #06 REV-20260808-018).
+      8/8 YAML artifact S005 parse OK, khong file nao bi anh huong. #03 MAJOR
+      (architecture.md:280 claim Layer x Responsibility/Requirement nhung registry 17
+      dong thieu 2 mapping — POLICY-011) CON TREO — ngoai pham vi ADR-007 (chi cover
+      #01/#02 + metadata), MINOR-level cho health nay, KHONG chan health PASS.
+      3 MINOR (#04 version 1.1.0/1.1/1.0, #05 domains thieu layers, #10 md:12 header
+      Frozen 2026-08-04 vs yaml 2026-08-08) + 3 INFO (#07 Registry view, #08 S020
+      intentional, #09 A009 Services) khong block. Verdict PASS (0 CRITICAL, 0 MAJOR
+      chan) -> GO recheck_required S005 (hoan tat TRG-002 cho S005). KHONG tang count
+      (giu 2), KHONG doi 2 truc (lifecycle Frozen, review.status Completed, inherited)
+      — health semantics. Cascade S006/S007 (components.md:265, contracts.md:277) doc
+      ../S005/architecture.yaml — fix khong doi contract du lieu nen giu nguyen
+      recheck_required (loi rieng cua chung, cho regression TRG-002 qua /doctor).
+      id_note: REV-20260808-021 = entries.length 20 + 1, grep toan docs khong ai chiem.
+    score:
+      coverage: 97
+      quality: 97
+      consistency: 94
+      governance: 97
+      overall: 96
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 0
+      MINOR: 4
+      INFO: 3
+    started: "2026-08-08T10:12:36"
+    finished: "2026-08-08T10:12:36"
+    cascade_review: [S006, S007]
+    report_path: docs/governance/reviews/REV-SPEC-001-S005-HEALTH-20260808-101236.md
+  - review_id: REV-20260808-022
+    spec: SPEC-001
+    item: S004
+    name: Runtime Boundaries
+    type: regression
+    mode: regression (TRG-001 — sau ADR-007 fix 3 MAJOR REV-20260808-019)
+    verdict: PASS
+    note: >
+      Regression S004 sau ADR-007 (unfreeze -> fix -> re-freeze 2026-08-08). Xac nhan
+      bang may (PyYAML 6.0.3 + jsonschema 4.26.0): #01 schema — boundaries.schema.json
+      properties them frozen (boolean) + frozen_date (date), giu additionalProperties:
+      false, title (S004 v2.1) -> jsonschema strict Draft202012 VALID 0 errors (truoc
+      FAIL); #02 target — ca 9 boundary target deu string ("100"/"0") -> VALID; #03 —
+      canonical boundaries: map = 9 (B001-ownership..B009-security), registry 9 = map 9
+      = mapping 9 = boundary-matrix 9 = ownership-matrix 9, hierarchy 9, metrics 8,
+      16/16 P/RULE (P001/P002/P007/P009/P010/P011/P015/P016 + RULE-001/002/003/005/006/
+      008/009/012) ton tai SPEC-000; #04 md Boundary Mapping 9/9; #05 md Ownership
+      Matrix 9/9 + Violations 9/9 + Severity 9/9; #06 version "1.0.0" dong nhat 8
+      artifact + per-boundary; #07 frozen_date 2026-08-08 (boundaries.yaml:9 +
+      boundaries.md:11 ✅ Frozen 2026-08-08). No regression: key B00x giu nguyen 9/9
+      dinh danh, 8/8 YAML parse PASS, schema patternProperties khop; downstream refs
+      khong vo (S005 18, S006 25, S011 11, S013 1, S016 2, SPEC-002-W004 24 — full-key
+      ALL VALID 9/9). Verdict PASS (0 CRITICAL, 0 MAJOR, 0 MINOR, 0 INFO) -> regression
+      tren Frozen/Completed khong doi 2 truc: lifecycle Frozen, review.status Completed,
+      count 2 (inherited). KHONG tang count. Khong cascade moi: fix trong pham vi S004,
+      khong doi hop dong key B00x -> cascade_review []; S004 khong co recheck_required
+      (giu nguyen). SLA: Frozen -> TRG-006 khong ap; TRG-007 con 176 ngay. id_note:
+      REV-20260808-021 da bi session song song chiem (health S005 101236) -> dung 022
+      (entries.length 21 + 1) de dam bao unique.
+    score:
+      coverage: 97
+      quality: 100
+      consistency: 100
+      governance: 97
+      overall: 98
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 0
+      MINOR: 0
+      INFO: 0
+    started: "2026-08-08T10:14:57"
+    finished: "2026-08-08T10:14:57"
+    cascade_review: []
+    report_path: docs/governance/reviews/REV-SPEC-001-S004-20260808-101457.md
+  - review_id: REV-20260808-024
+    spec: SPEC-001
+    item: S015
+    name: Runtime Resources
+    type: rev1
+    mode: rev1 (review lan 1 — tinh count)
+    verdict: CONDITIONAL
+    note: >
+      rev1 tren S015 (Draft, NotReviewed, count 0, recheck_required tu cascade S009/S010/S013/S014).
+      Phat hien 3 MAJOR: #01 SCHEMA — jsonschema strict FAIL 9 errors: principles 6 items la mapping
+      {Allocated:...} vs schema items type string (6 errors), allocation[1]+access[1] chuoi chua ':'
+      bi PyYAML parse thanh mapping thay vi string (2 errors), ownership la list mappings vs schema
+      type object (1 error) — cung lop S011#01/S012#02 da fix; #02 TRACEABILITY — 'S010 EF020 (Resource
+      Allocation)' sai (resources.md:128 + resource-allocation.yaml:2): EF020 = Success Criteria
+      (execution-flow.md:344), dung la EF004 Execution Stages (md:75 Allocate Resource; S012
+      resource-policy.yaml:11/18 da dung EF004); #03 TRACEABILITY — 'S011 reuse truc tiep' 7 event
+      RESOURCE_* (resources.md:177 + resource-events.yaml:2) nhung S011 events.yaml khong dinh nghia
+      event type cu the nao (chi taxonomy [execution, workflow, capability, resource, policy, system]
+      + model fields), grep RESOURCE_ toan S011 = 0 matches — cung lop S013#01/S014#01 da fix.
+      1 MINOR (#04 version 1.0.0 vs 1.0 x 8 artifact) + 2 INFO (#05 frontmatter Draft vs lifecycle
+      Review, #06 S009 thieu EXECUTION_CREATED — da flag truoc). Xac nhan tich cuc: YAML 9/9 parse
+      PASS; POL-RES-001/POL-RESACC-001/POL-ISOL-001 (S012), Terminal State (S009), Invalid Audit
+      (S013), Resource Contract (S007), OB005 Resource Metrics (S011) deu ton tai; 2 chieu S015<->
+      S011 metrics khop; downstream S014/S016/S017/S019/S020 ref dung. Verdict CONDITIONAL
+      (0 CRITICAL, 3 MAJOR) -> tinh count: NotReviewed -> Rev1, count 0 -> 1, lifecycle Draft ->
+      Review. GIU recheck_required (con MAJOR chua fix). Cascade: S011/S014/S016/S017/S019/S020 da
+      co recheck_required san — giu nguyen, khong doi status. id_note: 022 (S004) + 023 (S006) bi
+      session song song chiem — dung 024 de dam bao unique.
+    score:
+      coverage: 97
+      quality: 90
+      consistency: 78
+      governance: 87
+      overall: 88
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 3
+      MINOR: 1
+      INFO: 2
+    started: "2026-08-08T10:16:49"
+    finished: "2026-08-08T10:16:49"
+    cascade_review: [S011, S014, S016, S017, S019, S020]
+    report_path: docs/governance/reviews/REV-SPEC-001-S015-20260808-101649.md
+  - review_id: REV-20260808-023
+    spec: SPEC-001
+    item: S006
+    name: Runtime Components
+    type: regression
+    mode: cascade regression (TRG-002 — sau ADR-006 fix S006 + ADR-007 fix S005)
+    verdict: PASS
+    note: >
+      Regression S006 sau ADR-006 (fix 3 loi REV-20260808-016) + ADR-007 (S005 cascade).
+      Verify may (PyYAML 6.0.3 + jsonschema 4.26.0 + grep): #01 CRITICAL FIXED —
+      components.yaml note: thanh key top-level (L285), PyYAML 10/10 YAML S006 parse OK
+      (het ParserError — truoc FAIL); #02 MAJOR FIXED — components.schema.json them
+      frozen (boolean) + frozen_date (date) + note (string) vao properties, giu
+      additionalProperties:false, title (S006 v4.1), jsonschema Draft202012 strict VALID
+      0 errors (truoc FAIL), 12 components, note top-level, not_in_runtime 10; #03 MAJOR
+      FIXED — grep 'Orchestrator Contract' toan S006 = 0 matches (truoc 4), 4 vi tri deu
+      'Coordination Contract' (components.yaml:63, components.md:161,
+      component-contracts.yaml:7, component-registry.yaml:18), S007 CTR-003 ton tai
+      (contracts.yaml:51, contract-registry.yaml:39, contracts.md:75/200,
+      contract-categories.yaml:6), 12/12 contract S006 khop ten chuan S007 — khong
+      missing. Cascade S005 (ADR-007): components.md:265 ref ../S005/architecture.yaml
+      ton tai + parse OK, 9 layers/6 domains/4 views giu nguyen, communication_rules 4,
+      constraints 6, frozen_date 2026-08-08, 8/8 YAML S005 OK — fix khong doi contract
+      du lieu, khong breaking. Cross-ref S006->S003: 33 RR refs (31 unique) 0 missing,
+      DAG acyclic khong dangling, FR/B/P/RULE refs deu ton tai. Con treo MINOR #04
+      (component-metrics average_dependency 1.3 vs 1.17 thuc te) + MINOR #05 (RR-007..
+      010 chua map component — 31/35) + INFO #06 (S003 responsibility-mapping TBD giu
+      nguyen) + INFO #07 (S003 fix ADR-003/004 sach khong breaking) + INFO moi #08
+      (SPEC-002 W006/W007 tu dinh nghia WCT-004 'Orchestrator Contract' rieng — khong
+      phai ref toi S006/S007, ngoai pham vi, khong phai loi) — khong chan PASS (tien le
+      REV-20260808-016). Verdict PASS (0 CRITICAL, 0 MAJOR chan) -> GO recheck_required
+      S006 (hoan tat TRG-002 cho S006). KHONG tang count (giu 2), KHONG doi 2 truc
+      (lifecycle Frozen, review.status Completed, inherited) — regression semantics.
+      Khong cascade moi (cascade_review []). SLA: Frozen -> TRG-006 khong ap; TRG-007
+      con 176 ngay. id_note: 022 bi session song song (S004 regression, report 101457)
+      chiem truoc — doi sang 023 (entries.length 22 + 1) de dam bao unique (precedent
+      REV-20260808-015/016/018).
+    score:
+      coverage: 97
+      quality: 97
+      consistency: 97
+      governance: 97
+      overall: 97
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 0
+      MINOR: 2
+      INFO: 3
+    started: "2026-08-08T10:16:50"
+    finished: "2026-08-08T10:16:50"
+    cascade_review: []
+    report_path: docs/governance/reviews/REV-SPEC-001-S006-REGRESSION-20260808-101650.md
+  - review_id: REV-20260808-025
+    spec: SPEC-001
+    item: S016
+    name: Runtime Compliance
+    type: rev1
+    mode: rev1 (review lan 1 — tinh count)
+    verdict: CONDITIONAL
+    note: >
+      rev1 tren S016 (Draft, NotReviewed, count 0, recheck_required tu cascade S011/S013/S014/S015).
+      Phat hien 2 MAJOR: #01 TRACEABILITY — claim "S011 reuse truc tiep" 5 event COMPLIANCE_*/
+      CERTIFICATION_* (compliance.md:159 + compliance-events.yaml:2) nhung S011 events.yaml khong
+      dinh nghia event type cu the nao (chi taxonomy [execution, workflow, capability, resource,
+      policy, system] + model fields), grep COMPLIANCE_|CERTIFICATION_ toan S011 = 0 matches —
+      cung lop S013#01/S014#01/S015#03 da fix; #02 CONTENT — validation-rules.yaml chi co 10 rules
+      (VR-001..VR-010) trong khi CM004 + compliance.yaml validation_rules (23 items) + S019
+      doctor.md:72 ("S016 Compliance | 23 | CM004") deu claim 23 — thieu 13 rules machine-readable
+      (Invalid Policy, Invalid Contract, Boundary Violation, Version Conflict, Missing Entry,
+      Duplicate ID, Broken Reference, Dangling Reference, Duplicate Active Version, Invalid
+      Lifecycle, Quota Violation, Missing Metrics, Broken Trace) + source khong co section (CM016
+      chua dat). 2 MINOR: #03 compliance-report.yaml:8 "Report immutable (P005)" — P005 = Event
+      Driven, immutable = P010 (cung lop S011#05); #04 compliance-matrix.yaml "Contract Failure"
+      vs chuoi rule "Invalid Contract" + source "Boundary (S004)" vs rule source S013 (naming
+      khong nhat quan). 2 INFO: #05 frontmatter Draft vs lifecycle Review (tien le S009#11); #06
+      S011 event_type taxonomy thieu 'compliance' — thuoc S011 (tien le S014#06). 1 INFO tich cuc
+      (#07). Xac nhan may: YAML 9/9 parse PASS (het ParserError — khac lop S003/S005/S006
+      CRITICAL); jsonschema Draft202012 strict VALID 0 errors (validation_rules 23, health_score 3,
+      readiness 7, pipeline 4, scope.verifies 8); S011 OB009 Health Model ton tai (observability.
+      md:175-193), sources khop health-score.yaml 100% (Execution/Resource/Event/Metrics/Policy);
+      matrix 8 rows = CM005, events 5 = CM010, metrics 6 = CM011, readiness 7 = CM007,
+      certification 3 levels + 3 requirements = CM008, report fields 8 = CM013; 2 chieu S016<->
+      S014 khop (S016 CM008 -> S014, S014 registry.md:359 -> S016); downstream S017 plugins.md:54,
+      S018 evolution.md, S019 doctor.md, S020 dashboard.md, SPEC-002 README:116 ref dung; S001
+      vision.md:237 "S016 Runtime Compliance" dung ten (khong lan MAJOR S001). Verdict CONDITIONAL
+      (0 CRITICAL, 2 MAJOR) -> tinh count: NotReviewed -> Rev1, count 0 -> 1, lifecycle Draft ->
+      Review. GIU recheck_required (con MAJOR chua fix). Cascade: S014 (registry.md:359 ref S016,
+      chua co recheck_required) gan recheck_required: true; S011/S013/S017/S018/S019/S020 da co
+      san — giu nguyen, khong doi status (SPEC-002 chua co entry tracker). id_note:
+      REV-20260808-025 = entries.length 24 + 1, grep toan docs khong ai chiem.
+    score:
+      coverage: 92
+      quality: 92
+      consistency: 87
+      governance: 94
+      overall: 91
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 2
+      MINOR: 2
+      INFO: 3
+    started: "2026-08-08T10:25:37"
+    finished: "2026-08-08T10:25:37"
+    cascade_review: [S011, S013, S014, S017, S018, S019, S020, SPEC-002]
+    report_path: docs/governance/reviews/REV-SPEC-001-S016-20260808-102537.md
+  - review_id: REV-20260808-026
+    spec: SPEC-001
+    item: S015
+    name: Runtime Resources
+    type: rev1
+    mode: rev1 (review lan 2 — tinh count, sau fix REV-20260808-024)
+    verdict: PASS
+    note: >
+      rev1 lan 2 tren S015 (Review/Rev1/count 1/recheck_required). Xac nhan 3 MAJOR
+      REV-20260808-024 da FIXED bang may (PyYAML 6.0.3 + jsonschema 4.26.0 + grep):
+      #01 SCHEMA — jsonschema strict Draft202012 VALIDATION PASS 0 errors (truoc FAIL 9
+      errors): principles 6 items la string (quoted), ownership la dict (khong phai list
+      mappings), allocation[1]+access[1] la string (quoted ':' khong bi parse thanh
+      mapping), YAML 9/9 parse OK; #02 TRACEABILITY — resources.md:128 +
+      resource-allocation.yaml:2 ghi dung "S010 EF004 (Resource Allocation)" (EF004 =
+      Execution Stages, execution-flow.md:71, Initialize: Allocate Resource :75; EF020 =
+      Success Criteria :344; S012 resource-policy.yaml:11/18 cung dung EF004); #03
+      TRACEABILITY — resource-events.yaml:2 + resources.md:177 claim moi "S015 dinh
+      nghia 7 event types rieng (RS011) — S011 cung cap event model (fields,
+      correlation_id)" chinh xac: S011 events.yaml model.fields co correlation_id (theo
+      tien le S013 REV-20260808-014 / S014 REV-20260808-020); grep 'reuse' toan S015 = 0
+      matches. Phat hien moi #07 (MINOR, du tan cua #02): resources.md:257 phan Tham
+      chieu van ghi "- S010 EF020: ../S010/execution-flow.md" — nhan EF020 thua/gay hieu
+      lam (EF020 = Success Criteria khong lien quan Resource Allocation; tien le S014
+      registry.md:375 chi ghi "- S010: ../S010/execution-flow.md") — khong chan. Verdict
+      PASS (0 CRITICAL, 0 MAJOR) -> tinh count: Rev1 -> Completed, count 1 -> 2,
+      lifecycle giu Review. Con 2 MINOR ke thua (#04 version 1.0.0 vs 1.0 x 8 artifact,
+      #07 moi) + 2 INFO (#05 frontmatter Draft, #06 S009 EXECUTION_CREATED — da flag
+      truoc) khong chan. GO recheck_required S015 (hoan tat 2-pass). Cascade:
+      S011/S014/S016/S017/S019/S020 da co recheck_required san tu REV-20260808-024 —
+      giu nguyen, khong doi status. id_note: 025 (S016 rev1 lan 1, session song song)
+      chiem truoc — dung 026 de dam bao unique (precedent REV-20260808-015/016/018/024).
+    score:
+      coverage: 97
+      quality: 97
+      consistency: 97
+      governance: 90
+      overall: 95
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 0
+      MINOR: 2
+      INFO: 2
+    started: "2026-08-08T10:27:43"
+    finished: "2026-08-08T10:27:43"
+    cascade_review: [S011, S014, S016, S017, S019, S020]
+    report_path: docs/governance/reviews/REV-SPEC-001-S015-20260808-102743.md
+  - review_id: REV-20260808-028
+    spec: SPEC-001
+    item: S007
+    name: Runtime Contracts
+    type: regression
+    mode: cascade regression (TRG-002 — sau ADR-007 fix S005 + ADR-006 fix S006 + ADR-003/004 fix S003)
+    verdict: CONDITIONAL
+    note: >
+      Regression S007 sau ADR-007 (S005) + ADR-006 (S006) + ADR-003/004 (S003) — S007 inherited Frozen,
+      recheck_required: true cho TRG-002. Verify may (PyYAML 6.0.3 + jsonschema 4.26.0 + grep):
+      #01 S005-cascade — contracts.md:277 ref ../S005/architecture.yaml ton tai + parse OK, 9 layers/6
+      domains/4 views giu nguyen, communication_rules 4, constraints 6, frozen_date 2026-08-08 — ADR-007
+      khong doi contract du lieu, KHONG breaking S007; #02 S006-rename — 'Coordination Contract' (CTR-003)
+      ton tai trong S007 (contracts.yaml:51, contract-registry.yaml:39, contracts.md:75/200,
+      contract-categories.yaml:6), grep 'Orchestrator Contract' toan S007 = 0 matches, 12/12 contract S006
+      khop ten chuan S007 (REV-20260808-023 da xac nhan) — S007 la nguon ten, khong can doi gi; #03
+      S003-cascade — grep S003|RR-0 toan S007 = 0 matches, ADR-003/004 khong anh huong. YAML 10/10 S007
+      parse OK (khong ParserError — khac lop S003/S005/S006 CRITICAL); 12 contract inner VALID (schema
+      properties.contracts 0 errors); cross-ref 12/12 CTR layer/domain ton tai trong S005; communication
+      matrix 14 edges deu trỏ contract hop le. Phat hien MAJOR #01 moi (SCHEMA): contracts.schema.json
+      additionalProperties:false (L44) chan frozen/frozen_date (contracts.yaml:8-9) -> jsonschema
+      Draft202012 strict FAIL 1 error — cung lop S002#01 (ADR-002)/S003#02 (ADR-003)/S005#02 (ADR-007)/
+      S006#02 (ADR-006) da fix, S007 chua tung machine-validated (freeze 08-04/05 truoc chuan validate may).
+      3 MINOR (#02 version '1.0.0' contracts.yaml/md vs '1.0' x9 artifact con lai; #03 contract-registry
+      layer/domain = TBD x12 trong khi contracts.yaml co layer/domain thuc; #04 contract-registry
+      dependencies [] x12 trong khi contracts.yaml co dependencies thuc 6/12 CTR-001/003/004/007/010/011)
+      + 2 INFO (#05 contracts.md:5 frontmatter '15 sections CT001-CT015' nhung file co 17 sections
+      CT001-CT017; #06 frozen_date '2026-08-04' vs commit freeze 5c6eee1 ngay 2026-08-05 — cung lop
+      S003#04/S004#07/S005#06). Xac nhan tich cuc: 3 cascade OK khong breaking; S007 la nguon ten chuan
+      Coordination Contract; cross-ref day du. Verdict CONDITIONAL (0 CRITICAL, 1 MAJOR) -> GIU
+      recheck_required: true (chi go khi PASS), regression tren Frozen/Completed KHONG doi 2 truc
+      (lifecycle Frozen, review.status Completed, count 2, inherited), KHONG tang count. Khong cascade
+      moi: finding noi tai S007, khong doi key CTR-00x -> downstream S006/S011/S015 ref theo ten van dung.
+      Next: ADR moi (precedent ADR-002/003/006/007) unfreeze S007 fix schema #01 (+ tuy chon registry
+      #03/#04) -> re-freeze -> regression lan 2 go recheck_required. id_note: 024 (S015 rev1, session song
+      song) + 025 (S016 rev1) + 026 (S015 rev1 lan 2) + 027 (S017 rev1 — chiem ca tracker lan history)
+      — dung 028 (entries.length 27 + 1) de dam bao unique.
+    score:
+      coverage: 95
+      quality: 87
+      consistency: 91
+      governance: 90
+      overall: 91
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 1
+      MINOR: 3
+      INFO: 2
+    started: "2026-08-08T10:33:18"
+    finished: "2026-08-08T10:33:18"
+    cascade_review: []
+    report_path: docs/governance/reviews/REV-SPEC-001-S007-REGRESSION-20260808-103318.md
+  - review_id: REV-20260808-030
+    spec: SPEC-001
+    item: S006
+    name: Runtime Components
+    type: revfull
+    mode: revfull-as-health (inherited Frozen)
+    verdict: PASS
+    note: >
+      revfull tren S006 (Frozen, inherited) — health semantics: giu nguyen 2 truc
+      (lifecycle Frozen, review.status Completed, count 2, inherited), KHONG tang count.
+      Verify may (PyYAML 6.0.3 + jsonschema 4.26.0 + grep): #01 CRITICAL REV-20260808-016
+      FIXED — components.yaml note: la key top-level (L285), YAML 10/10 parse PASS; #02
+      MAJOR FIXED — components.schema.json co frozen/frozen_date/note trong properties
+      (title S006 v4.1, giu additionalProperties:false), jsonschema Draft202012 strict
+      VALID 0 errors, 12 components, not_in_runtime 10; #03 MAJOR FIXED — grep
+      'Orchestrator Contract' toan S006 = 0 matches, 4 vi tri deu 'Coordination Contract',
+      S007 CTR-003 ton tai, 12/12 contract S006 khop ten chuan S007. Cross-ref dependency
+      chain: RR 31/31 (S003 35, 0 missing; RR-007..010 chua map = MINOR ke thua), FR
+      20/20 (S002), Boundary 8/8 (S004 9), Principle 12/12 + Rule 9/9 (SPEC-000), Layer
+      8/8 + Domain 6/6 (S005), DAG acyclic 0 dangling, max_dependency_depth 4 = claim,
+      orphan 0 = claim. Downstream 31 file ref S006 deu dung (khong doi key CMP-0xx) —
+      fix khong breaking. Git history: ADR-006 trong commit 0246994 (2026-08-08 09:57) da
+      verify FIXED; working tree S006 sach (git diff 0). 4 MINOR (#01 average_dependency
+      1.3 vs 1.17, #02 RR-007..010 chua map, #03 frozen_date 08-04 khong phan anh
+      re-freeze ADR-006 08-08 + lech commit freeze 1188981 08-05 — cung lop S003 #04/S005
+      #06, #04 version 1.0 x 9 artifact) + 2 INFO (#05 15 sections day du, #06 SPEC-002
+      WCT-004 ngoai pham vi) + INFO moi #10 (SPEC-002/W006 components.yaml:195 co YAML
+      ParserError rieng cua SPEC-002 — chua start tracker, ngoai pham vi S006). Verdict
+      PASS (0 CRITICAL, 0 MAJOR) -> revfull-as-health tren inherited Frozen: giu nguyen
+      lifecycle Frozen, review.status Completed, count 2, inherited: true — KHONG tang
+      count, KHONG doi 2 truc. S006 khong co recheck_required (da go sau REV-20260808-023)
+      — giu nguyen. Khong cascade moi (0 MAJOR, cascade_review []). SLA: Frozen -> TRG-006
+      khong ap; TRG-007 con ~176 ngay. id_note: 027 (S017) + 028 (S007) + 029 (S016 lan 2)
+      bi session song song chiem — doi sang 030 de dam bao unique (precedent
+      REV-20260808-015/016/018/024).
+    score:
+      coverage: 97
+      quality: 97
+      consistency: 97
+      governance: 90
+      overall: 95
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 0
+      MINOR: 4
+      INFO: 3
+    started: "2026-08-08T10:34:35"
+    finished: "2026-08-08T10:34:35"
+    cascade_review: []
+    report_path: docs/governance/reviews/REV-SPEC-001-S006-20260808-103435.md
+  - review_id: REV-20260808-027
+    spec: SPEC-001
+    item: S017
+    name: Runtime Plugins
+    type: rev1
+    mode: rev1 (review lan 1 — tinh count)
+    verdict: CONDITIONAL
+    note: >
+      rev1 tren S017 (Draft, NotReviewed, count 0, recheck_required tu cascade
+      S009/S010/S011/S014/S015/S016). Phat hien 1 MAJOR: #01 TRACEABILITY —
+      claim "S011 reuse truc tiep" 6 event PLUGIN_* (plugins.md:173 +
+      plugin-events.yaml:2) nhung S011 events.yaml khong dinh nghia event type
+      cu the nao (chi taxonomy [execution, workflow, capability, resource,
+      policy, system] + model fields), grep PLUGIN_ toan S011 = 0 matches —
+      cung lop S013#01/S014#01/S015#03/S016#01 da fix. 1 MINOR (#02 version
+      "1.0.0" plugins.yaml:7 vs "1.0" o 8 artifact YAML con lai) + 3 INFO
+      (#03 frontmatter plugins.md:12 status Draft vs lifecycle Review sau
+      review nay — tien le S009#11; #04 S011 event_type taxonomy thieu
+      'plugin' — REGISTRY_*/RESOURCE_*/COMPLIANCE_* da flag, thuoc S011 khong
+      phai loi S017; #05 tich cuc — YAML 9/9 parse PASS, jsonschema strict
+      VALID 0 errors). Xac nhan tich cuc: POL-ISOL-001/POL-SEC-001/
+      POL-RESACC-001 (S012), GV010 (S013), EF008 (S010), OB003A/OB005 (S011),
+      RG005 + plugin-registry/capability-registry (S014), S015 quota/Plugin
+      Owner, S016 Verifiable deu ton tai; PL016 10 file machine khop thuc te
+      (plugins.yaml + 9 artifact + schema.json = 10); S019 doctor.md:73
+      'S017 Plugins | 6 | PL016' khop plugin-validation.yaml 6 checks;
+      S001 vision.md:238 'S017 — Runtime Plugins' dung ten (khong lan MAJOR
+      S001); downstream S018/S019/S020 ref S017 dung. Verdict CONDITIONAL
+      (0 CRITICAL, 1 MAJOR) -> tinh count: NotReviewed -> Rev1, count 0 -> 1,
+      lifecycle Draft -> Review. GIU recheck_required (con MAJOR chua fix).
+      Cascade: S018/S019/S020 da co recheck_required san tu truoc — giu
+      nguyen, khong doi status (SPEC-002 chua co entry tracker). id_note:
+      REV-20260808-027 = entries.length 26 + 1, grep toan docs khong ai chiem.
+    score:
+      coverage: 97
+      quality: 92
+      consistency: 87
+      governance: 90
+      overall: 92
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 1
+      MINOR: 1
+      INFO: 3
+    started: "2026-08-08T10:34:01"
+    finished: "2026-08-08T10:34:01"
+    cascade_review: [S018, S019, S020]
+    report_path: docs/governance/reviews/REV-SPEC-001-S017-20260808-103401.md
+  - review_id: REV-20260808-029
+    spec: SPEC-001
+    item: S016
+    name: Runtime Compliance
+    type: rev1
+    mode: rev1 (review lan 2 — tinh count, sau fix REV-20260808-025)
+    verdict: PASS
+    note: >
+      rev1 lan 2 tren S016 (Review/Rev1/count 1/recheck_required). Xac nhan 6 phan hoi
+      REV-20260808-025 da FIXED bang may (PyYAML 6.0.3 + jsonschema 4.26.0 + grep):
+      #01 TRACEABILITY — grep 'reuse' toan S016 = 0 matches; compliance.md:159 +
+      compliance-events.yaml:2 ghi dung "S016 dinh nghia 5 event types (CM010) — S011
+      cung cap event model (fields, correlation_id)" (S011 events.yaml model.fields co
+      correlation_id — theo tien le S013/S014/S015); #02 CONTENT — validation-rules.yaml
+      du 23 rules VR-001..VR-023 contiguous (sources S013 x6 GV004/GV005/GV006/GV007/
+      GV009/GV011, S014 x9 RG011, S015 x3 RS014, S011 x5 OB004/OB005/OB006/OB007/OB014
+      — moi section ton tai) = compliance.yaml 23 = CM004 md 23 = S019 doctor.md:72
+      '23/CM004', ten rule khop 100% 3 nguon; #03 COMPLIANCE — compliance-report.yaml:8
+      + compliance.md CM013 'Report immutable (P010)' (P010 Immutable Artifact ton tai
+      SPEC-000/03-principles.md:36); #04 CONSISTENCY — compliance-matrix.yaml check
+      'Invalid Contract' (het 'Contract Failure'), 8 rows = CM005 md 8 rows, rule refs
+      VR-001/002/004/008/011/012/013/017 deu ton tai + check names khop validation rule
+      names 8/8; #05 VERSION — version '1.0.0' dong nhat 9 YAML + compliance.md (het
+      '1.0'); #06 header compliance.md:13 '✅ Review (2026-08-08)' + compliance.yaml
+      status Review (het Draft). Kiem chung may: YAML 9/9 parse PASS; jsonschema
+      Draft202012 strict VALID 0 errors (validation_rules minItems 23 thoa); CM014 10
+      file khop thuc te; S016 5 event types unique khong trung S011/S013/S014/S015 (S013
+      giu COMPATIBILITY_FAILED — het collision). Verdict PASS (0 CRITICAL, 0 MAJOR, 0
+      MINOR) -> tinh count: Rev1 -> Completed, count 1 -> 2, lifecycle giu Review. Con
+      3 INFO (#01 S011 taxonomy thieu 'compliance' — thuoc S011; #02 matrix source =
+      domain Define vs rule source = detector Enforce, lien ket qua rule ref, nhat quan
+      CM005 md; #03 tich cuc) khong chan. GO recheck_required S016 (hoan tat 2-pass).
+      Cascade: S011/S013/S014/S017/S018/S019/S020 da co recheck_required san tu
+      REV-20260808-025 — giu nguyen, khong doi status (fix khong doi contract du lieu).
+      id_note: 027 bi session song song chiem 2 lan (S006 revfull + S017 rev1, duplicate
+      trong history) + 028 (S007 regression) — dung 029 (entries.length 28 + 1) de dam
+      bao unique.
+    score:
+      coverage: 97
+      quality: 97
+      consistency: 97
+      governance: 97
+      overall: 97
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 0
+      MINOR: 0
+      INFO: 3
+    started: "2026-08-08T10:34:43"
+    finished: "2026-08-08T10:34:43"
+    cascade_review: [S011, S013, S014, S017, S018, S019, S020, SPEC-002]
+    report_path: docs/governance/reviews/REV-SPEC-001-S016-20260808-103443.md
+  - review_id: REV-20260808-031
+    spec: SPEC-001
+    item: S007
+    name: Runtime Contracts
+    type: regression
+    mode: cascade regression lan 2 (TRG-002 — sau fix ADR-008 unfreeze S007 schema)
+    verdict: PASS
+    note: >
+      Regression lan 2 tren S007 (inherited Frozen, recheck_required: true) sau ADR-008 —
+      unfreeze -> fix contracts.schema.json -> re-freeze 2026-08-08. Xac nhan MAJOR #01
+      REV-20260808-028 da FIXED bang may (PyYAML 6.0.3 + jsonschema 4.26.0 + grep):
+      contracts.schema.json properties them frozen (boolean) + frozen_date (string, format
+      date), giu additionalProperties: false, title (S007 v1.0.1) -> jsonschema Draft202012
+      strict VALID 0 errors (truoc FAIL 1 error 'Additional properties are not allowed
+      (frozen, frozen_date)'). YAML 10/10 S007 parse PASS (khong ParserError); inner 12
+      contracts VALID 0 errors (schema properties.contracts). Cascade xac nhan lai toan bo:
+      #S005-cascade — contracts.md:277 ref ../S005/architecture.yaml ton tai + parse OK,
+      cross-ref 12/12 CTR layer/domain -> S005 OK (9 layers/6 domains giu nguyen, ADR-007
+      khong doi contract du lieu, khong breaking); #S006-rename — 'Coordination Contract'
+      (CTR-003) ton tai trong S007 5 matches (contracts.yaml:51, contract-registry.yaml:39,
+      contracts.md:75/200, contract-categories.yaml:6), grep 'Orchestrator Contract' toan
+      S007 = 0 — S007 la nguon ten chuan, 12/12 contract S006 khop (REV-20260808-023/030 da
+      xac nhan); #S003-cascade — grep S003|RR-0 toan S007 = 0 matches, ADR-003/004 khong
+      anh huong. Communication matrix 14 edges deu trỏ contract hop le (ALL VALID). Con
+      treo 3 MINOR (#02 version '1.0.0' contracts.yaml:6 vs '1.0' o 9 artifact con lai;
+      #03 contract-registry layer/domain TBD x12; #04 contract-registry dependencies [] x12
+      vs contracts.yaml dependencies thuc 6/12) + 2 INFO (#05 contracts.md:5 frontmatter 15
+      sections CT001-CT015 vs thuc te 17 CT001-CT017; #06 frozen_date '2026-08-04' vs commit
+      freeze 5c6eee1 2026-08-05) — ngoai pham vi ADR-008, ghi nhan, khong chan PASS (tien
+      le REV-20260808-023/030). Verdict PASS (0 CRITICAL, 0 MAJOR) -> GO recheck_required
+      S007 (hoan tat TRG-002 cho S007). Regression tren Frozen/Completed KHONG doi 2 truc:
+      lifecycle Frozen, review.status Completed, count 2 (inherited), KHONG tang count.
+      Khong cascade moi (fix schema noi tai S007, khong doi key CTR-00x -> downstream
+      S006/S011/S015 ref theo ten van dung). SLA: Frozen -> TRG-006 khong ap; TRG-007 con
+      ~176 ngay. id_note: max history REV-20260808-030 (30 entries, khong duplicate) —
+      dung 031 de dam bao unique.
+    score:
+      coverage: 95
+      quality: 97
+      consistency: 91
+      governance: 100
+      overall: 96
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 0
+      MINOR: 3
+      INFO: 2
+    started: "2026-08-08T10:40:04"
+    finished: "2026-08-08T10:40:04"
+    cascade_review: []
+    report_path: docs/governance/reviews/REV-SPEC-001-S007-REGRESSION-20260808-104004.md
+  - review_id: REV-20260808-032
+    spec: SPEC-001
+    item: S017
+    name: Runtime Plugins
+    type: rev1
+    mode: rev1 (review lan 2 — tinh count, sau fix REV-20260808-027)
+    verdict: PASS
+    note: >
+      rev1 lan 2 tren S017 (Review/Rev1/count 1/recheck_required). Xac nhan MAJOR #01
+      REV-20260808-027 da FIXED bang may (PyYAML 6.0.3 + jsonschema 4.26.0 + grep):
+      grep 'reuse' toan S017 = 0 matches; plugins.md:173 + plugin-events.yaml:2 ghi dung
+      "S017 dinh nghia 6 event types (PL014) — S011 cung cap event model (fields,
+      correlation_id)" (S011 events.yaml:6 model.fields co correlation_id — theo tien le
+      S013 REV-20260808-014 / S014 REV-20260808-020 / S015 REV-20260808-026 / S016
+      REV-20260808-029); grep PLUGIN_ toan S011 = 0 matches — het claim reuse khong kiem
+      chung. Kiem chung may: YAML 9/9 parse PASS; jsonschema Draft202012 strict VALID 0
+      errors (plugins.yaml VALID, required 16 keys, additionalProperties: false); events
+      6/6 khop 3 nguon (plugins.yaml events = plugin-events.yaml event_types = plugins.md
+      PL014); PL016 10 file machine khop thuc te; S019 doctor.md:73 "S017 Plugins | 6 |
+      PL016" khop plugin-validation.yaml 6 checks; upstream refs deu ton tai (GV010 S013
+      governance.md:198, EF008 S010 execution-flow.md:146 + context-flow.yaml, OB003A
+      observability.md:55 + OB005 observability.md:115, RG005 S014 registry.md:111 +
+      plugin-registry.yaml/capability-registry.yaml, POL-ISOL-001/POL-SEC-001/
+      POL-RESACC-001 S012, quota S015, Verifiable S016). Con 1 MINOR ke thua (#02 version
+      "1.0.0" plugins.yaml:7 vs "1.0" o 8 artifact con lai) + 2 INFO (#03 frontmatter
+      plugins.md:12 + plugins.yaml:8 status Draft vs lifecycle Review — theo tien le
+      S009#11; #04 S011 event_type taxonomy thieu 'plugin' — thuoc S011 khong phai loi
+      S017) + 1 INFO tich cuc (#05 may) khong chan. Ghi nhan INFO #06 moi: S018
+      evolution-events.yaml:2 + S020 dashboard-events.yaml:2 van ghi "S011 reuse truc
+      tiep." — cung lop MAJOR #01 S017, nhung S018/S020 la Draft NotReviewed (count 0)
+      chua co entry tracker rieng — se xu ly trong review cua chinh chung. Verdict PASS
+      (0 CRITICAL, 0 MAJOR) -> tinh count: Rev1 -> Completed, count 1 -> 2, lifecycle
+      giu Review (Approved chi qua POLICY-001). GO recheck_required S017 (hoan tat
+      2-pass). Cascade: S018/S019/S020 da co recheck_required san tu truoc — giu nguyen,
+      khong doi status (SPEC-002 chua co entry tracker). SLA: draft_days = 0 (created
+      2026-08-08) — khong trigger; TRG-007 chua ap (con ~176 ngay). id_note: max history
+      REV-20260808-031 (31 entries) — dung 032 de dam bao unique.
+    score:
+      coverage: 97
+      quality: 97
+      consistency: 97
+      governance: 90
+      overall: 95
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 0
+      MINOR: 1
+      INFO: 4
+    started: "2026-08-08T10:47:24"
+    finished: "2026-08-08T10:47:24"
+    cascade_review: [S018, S019, S020]
+    report_path: docs/governance/reviews/REV-SPEC-001-S017-20260808-104724.md
+  - review_id: REV-20260808-034
+    spec: SPEC-001
+    item: S008
+    name: Runtime Data Model
+    type: regression
+    mode: cascade regression (TRG-002 — sau S009 fix REV-20260808-001 + ADR-002..008 S002/S003/S005/S006/S007 fixes) + lan dau machine-validate S008
+    verdict: FAIL
+    note: >
+      Regression S008 (Frozen inherited, recheck_required: true tu REV-20260807-001
+      cascade [S008, S010, S011, S012, S013, S015]) sau loat fixes upstream. Verify may
+      (PyYAML 6.0.3 + jsonschema 4.26.0 + grep): 3 cascade deu OK khong breaking —
+      #S009-cascade S008 refs S009 theo TEN lifecycle (runtime-lifecycle.yaml + data-model.md
+      D005/D018, khong dung ST-/TR- ID: grep 0 matches) -> S009 doi state/event khong vo ref
+      S008; S009 state-history.yaml:9 ref ENT-014 (Execution Lineage) ton tai
+      (runtime-entities.yaml:150) 2 chieu OK; #S002-S007-cascade S008 refs SPEC-000
+      P003/P004/P009/P010/P017 deu ton tai, RM-0xx 9/9 (RM-001/002/005/006/007/008/010/011/012)
+      ton tai runtime-models.yaml (12 models), khong ref S002-S007 bang ID (EF/OB/POL/GV/RG =
+      0 matches). NHUNG phat hien defect noi tai S008 chua tung machine-validated (freeze
+      2026-08-05 truoc chuan validate may — cung lop S002/S003/S005/S006/S007): #01 CRITICAL —
+      runtime-data-model.yaml:45-53 dependencies block sequence + note: cung indent -> PyYAML
+      ParserError 'expected <block end>, but found ?' (canonical file KHONG parse duoc;
+      git blame xac nhan loi co tu commit 65d8b61 va nam trong ban freeze 08cc1fa 2026-08-05 —
+      cung lop S003#01 REV-20260808-008 / S005#01 REV-20260808-018 / S006#01 REV-20260808-016);
+      #02 MAJOR — runtime-data.schema.json loi thoi vs YAML v2: jsonschema strict FAIL 5 errors
+      (verify tren ban YAML da fix cu phap in-memory): additionalProperties:false chan
+      frozen/frozen_date/status (runtime-data-model.yaml:5-7 — cung lop S002#01 ADR-002 /
+      S003#02 ADR-003 / S005#02 ADR-007 / S006#02 ADR-006 / S007#01 ADR-008 da fix), 
+      aggregate_rules[1]+[2] mapping {Execution owns/references: [...]} vs schema items string
+      (2 errors — cung lop S011#01/S012#02/S015#01), classification thieu key 'manages' (schema
+      required [manages, not_manages] nhung YAML dung 5 loai phan loai + not_manages), 
+      consistency object {levels, rules} vs schema type array. 2 MINOR: #03 version '1.0'
+      runtime-data-model.yaml:4 vs '1.0.0' data-model.md:12 (cung lop version 1.0 vs 1.0.0 cac
+      muc khac); #04 frozen_date '2026-08-04' vs commit freeze 08cc1fa ngay 2026-08-05 (cung lop
+      S003#04/S004#07/S005#06/S007#06). 2 INFO: #05 frontmatter data-model.md '18 sections
+      D001-D018' dung thuc te (regex 18 matches); #06 S008 Execution lifecycle [Created, Prepared,
+      Running, Completed, Archived] — 'Archived' khong nam trong S009 states [Created, Validating,
+      Prepared, Running, Waiting, Suspended, Cancelling, Completed, Failed, Cancelled, TimedOut,
+      Replayed, Retrying, Aborted]; S008 lifecycle muc Data rut gon != S009 state machine chi tiet
+      (khong phai loi breaking — S008 refs theo ten), ghi nhan cho S009 hoan thien. Xac nhan tich
+      cuc: 15/15 entities ENT-001..015 khop runtime-entities.yaml vs data-model.md D001, 9/9 RM-0xx
+      ton tai, 9/10 YAML con lai parse OK. Verdict FAIL (1 CRITICAL >= 1, Decision Matrix) -> GIU
+      recheck_required: true (chi go khi PASS — hoan tat TRG-002 cho S008 con treo). Regression
+      tren Frozen/Completed KHONG doi 2 truc: lifecycle Frozen, review.status Completed, count 2
+      (inherited: true), KHONG tang count. Khong cascade moi (findings noi tai S008, khong doi key
+      ENT-0xx/RM-0xx -> downstream S009/S010/S011/S014/S015/SPEC-002-W008 ref theo ten van dung).
+      Next: ADR moi (precedent ADR-002/003/006/007/008) unfreeze S008 fix #01 (note: -> comment/
+      quote, giong ADR-007 S005) + #02 (schema them status/frozen/frozen_date, sua aggregate_rules
+      oneOf [string, object], classification bo required manages, consistency object) + tuy chon
+      #03/#04 -> re-freeze -> regression lan 2 go recheck_required. SLA: Frozen -> TRG-006 khong
+      ap; TRG-007 con ~176 ngay. id_note: history co 33 entries (001-033); 032 (S017 rev1 lan 2)
+      + 033 (S003 regression) bi session song song chiem truoc — dung 034 de dam bao unique
+      (grep toan docs xac nhan chua ai chiem).
+    score:
+      coverage: 90
+      quality: 60
+      consistency: 90
+      governance: 90
+      overall: 83
+    severity_counts:
+      CRITICAL: 1
+      MAJOR: 1
+      MINOR: 2
+      INFO: 2
+    started: "2026-08-08T10:50:10"
+    finished: "2026-08-08T10:50:10"
+    cascade_review: []
+    report_path: docs/governance/reviews/REV-SPEC-001-S008-REGRESSION-20260808-105010.md
+  - review_id: REV-20260808-033
+    spec: SPEC-001
+    item: S003
+    name: Runtime Responsibilities
+    type: regression
+    mode: regression (TRG-001 — sau fix ADR-003 + ADR-004)
+    verdict: PASS
+    note: >
+      Regression S003 sau ADR-003 (fix CRITICAL #01 + MAJOR #02 REV-20260808-008) +
+      ADR-004 (frozen_date). Xac nhan bang may (PyYAML 6.0.3 + jsonschema 4.26.0):
+      #01 CRITICAL FIXED — responsibilities.yaml:421 + responsibility-matrix.yaml:159
+      RR-031 output: "-" (string quoted) -> PyYAML safe_load 5/5 YAML artifact S003
+      parse PASS (het ScannerError 'sequence entries are not allowed here'); #02 MAJOR
+      FIXED — responsibilities.schema.json properties du 5 key (frozen boolean,
+      frozen_date date, principle string, invariants array string, delegation object),
+      giu additionalProperties: false, title (S003 v3.1) -> jsonschema Draft202012
+      strict VALID 0 errors (truoc FAIL 1 error 'Additional properties are not
+      allowed'); ADR-004 FIXED — frozen_date 2026-08-08 (responsibilities.yaml:9).
+      Cross-reference nhanh (verify lai REV-20260808-008): 35 RR contiguous
+      RR-001..RR-035, 8 nhom, registry group == canonical group 0 mismatch, mapping
+      (requirements/principles/rules) 0 mismatch, matrix (owner/input/output/authority)
+      0 mismatch, owner duy nhat Runtime, FR 20 unique 0 missing / P 14 unique 0
+      missing / RULE 10 unique 0 missing, frozen: true status: Approved version 1.0.0.
+      Traceability 1 chieu (MINOR #05 cu) da cai thien: S002 requirement-traceability
+      .yaml co responsibilities: [RR-0xx] (grep 20 matches) — ngoai pham vi ADR, ghi
+      nhan khong chan. Con INFO #07 TBD component/contract placeholder theo thiet ke —
+      khong chan. Downstream da xac nhan truoc khong breaking (S006 REV-20260808-023/
+      030, S007 REV-20260808-028/031, S012 REV-20260808-010/013) — chi nhac lai, khong
+      review lai. Verdict PASS (0 CRITICAL, 0 MAJOR) -> GO recheck_required S003
+      (hoan tat TRG-001 cho S003). Regression tren Frozen/Completed KHONG doi 2 truc:
+      lifecycle Frozen, review.status Completed, count 2 (inherited), KHONG tang count.
+      Khong cascade moi (fix noi tai S003, khong doi key RR-0xx -> cascade_review []).
+      SLA: Frozen -> TRG-006 khong ap; TRG-007 con ~176 ngay. id_note: max history
+      REV-20260808-031 (31 entries, khong duplicate); 032 bi session S008 regression
+      song song (S017 rev1 lan 2) chiem ca tracker lan history (REV-20260808-032 =
+      S017) -> dung 033 de dam bao unique (precedent REV-20260808-015/016/018/024/026).
+    score:
+      coverage: 97
+      quality: 97
+      consistency: 97
+      governance: 97
+      overall: 97
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 0
+      MINOR: 0
+      INFO: 2
+    started: "2026-08-08T10:47:47"
+    finished: "2026-08-08T10:47:47"
+    cascade_review: []
+    report_path: docs/governance/reviews/REV-SPEC-001-S003-REGRESSION-20260808-104747.md
+  - review_id: REV-20260808-035
+    spec: SPEC-001
+    item: S003
+    name: Runtime Responsibilities
+    type: revfull
+    mode: revfull-as-health (inherited Frozen)
+    verdict: PASS
+    note: >
+      revfull tren S003 (Frozen, inherited) — health semantics: giu nguyen 2 truc
+      (lifecycle Frozen, review.status Completed, count 2, inherited), KHONG tang count.
+      Verify may (PyYAML 6.0.3 + jsonschema 4.26.0 + grep): #01 CRITICAL REV-20260808-008
+      FIXED — output: "-" quoted (responsibilities.yaml:421 + responsibility-matrix.yaml:159),
+      YAML 5/5 parse PASS (het ScannerError 'sequence entries are not allowed here'); #02
+      MAJOR FIXED — responsibilities.schema.json properties du 5 key (frozen boolean,
+      frozen_date date, principle string, invariants array string, delegation object), giu
+      additionalProperties: false, title (S003 v3.1) -> jsonschema Draft202012 strict VALID
+      0 errors (truoc FAIL 1 error); #03 MINOR FIXED title v3.1; #04 MINOR FIXED frozen_date
+      2026-08-08 (ADR-004). Cross-reference: 35 RR contiguous RR-001..RR-035, 8 nhom (Core 4/
+      Execution 6/Context 4/State 4/Coordination 6/Observability 4/Artifact 3/Governance 4),
+      registry=canonical group 0 mismatch, mapping req/pri/rules 0 mismatch, matrix owner/
+      input/output/authority 0 mismatch, owner duy nhat Runtime, FR 20 unique 0 missing, P 14
+      unique 0 missing, RULE 10 unique 0 missing (S002 requirements-index + SPEC-000 03/04).
+      Traceability 2 chieu S002 cai thien: requirement-traceability.yaml co responsibilities:
+      [RR-0xx] (grep 20 matches) — MINOR #05 cu da cai thien, ghi nhan khong chan. S012 grep
+      S003|RR-0 = 0 matches (INFO #06 cu da don). S006 component-mapping responsibilities
+      [RR-0xx] hop le (12 component). Con 2 MINOR moi (#01 version "1.0" o matrix/mapping/
+      registry/ownership vs "1.0.0" responsibilities.yaml:6 + md:12; #02 responsibilities.md:12
+      header "Frozen (2026-08-04)" vs frozen_date 08-08) + 3 INFO (#03 TBD component/contract
+      x35 placeholder — S006/S007 da Frozen, co the resolve P2; #04 reverse traceability da bo
+      sung; #05 tich cuc may) khong chan PASS (tien le REV-20260808-030/031). Verdict PASS
+      (0 CRITICAL, 0 MAJOR) -> revfull-as-health tren inherited Frozen: giu nguyen lifecycle
+      Frozen, review.status Completed, count 2, inherited: true — KHONG tang count, KHONG doi
+      2 truc. recheck_required S003 da go boi REV-20260808-033 (regression PASS, id 033) —
+      giu nguyen sach, khong doi lai. Khong cascade moi (fix noi tai, khong doi key RR-0xx ->
+      cascade_review []). SLA: Frozen -> TRG-006 khong ap; TRG-007 con ~176 ngay. id_note:
+      max history REV-20260808-034 (34 entries; 034 = S008 regression session song song, 032 =
+      S017 rev1 lan 2, 033 = S003 regression) — dung 035 de dam bao unique (precedent
+      REV-20260808-015/016/018/024/026).
+    score:
+      coverage: 97
+      quality: 97
+      consistency: 94
+      governance: 97
+      overall: 96
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 0
+      MINOR: 2
+      INFO: 3
+    started: "2026-08-08T10:49:50"
+    finished: "2026-08-08T10:49:50"
+    cascade_review: []
+    report_path: docs/governance/reviews/REV-SPEC-001-S003-20260808-104950.md
+  - review_id: REV-20260808-036
+    spec: SPEC-001
+    item: S018
+    name: Runtime Evolution
+    type: rev1
+    mode: rev1 (review lan 1 — tinh count)
+    verdict: CONDITIONAL
+    note: >
+      rev1 tren S018 (Draft, NotReviewed, count 0, recheck_required tu cascade
+      S009/S010/S014/S016/S017). Phat hien 2 MAJOR: #01 TRACEABILITY — 2 claim "S011 reuse
+      truc tiep." (evolution.md:139 + evolution-events.yaml:2) cho 5 event EVOLUTION_*
+      (EV011) nhung S011 events.yaml khong dinh nghia event type cu the nao (chi taxonomy
+      [execution, workflow, capability, resource, policy, system] + model fields), grep
+      EVOLUTION_ toan S011 = 0 matches — cung lop S013#01/S014#01/S015#03/S016#01/S017#01
+      da fix (INFO #06 REV-20260808-032 xac nhan con sot, xu ly trong review nay); #02
+      SCHEMA (moi) — evolution.yaml approval items 0-2 chua dau ':' chua quote ("- Low
+      impact: auto-approve (Strict rules).") bi PyYAML parse thanh mapping thay vi string
+      -> jsonschema Draft202012 strict FAIL 3 errors so voi evolution.schema.json:20
+      approval.items.type string — cung lop S011#01 (observability.yaml:56) / S015#01
+      (allocation[1]+access[1]) da fix bang quoted string. 1 MINOR (#03 version "1.0.0"
+      evolution.yaml:7 + evolution.md:12 vs "1.0" o 7 artifact YAML con lai) + 2 INFO
+      (#04 frontmatter evolution.md:12 + evolution.yaml:8 status Draft vs lifecycle Review
+      sau review nay — tien le S009#11; #05 S011 event_type taxonomy thieu 'evolution' —
+      thuoc S011, tien le S014#06/S015#06/S016#06/S017#04) + 1 INFO tich cuc (#06 may).
+      Xac nhan tich cuc: YAML 8/8 parse PASS (khong ParserError — khac lop S003/S005/S006
+      CRITICAL); events 5/5 khop 3 nguon (evolution.md EV011 = evolution.yaml events =
+      evolution-events.yaml event_types); metrics 6/6 khop 2 nguon (EV012 = evolution.yaml
+      metrics = evolution-metrics.yaml); EV014 6 checks khop S019 doctor.md:74 + doctor-
+      checks.yaml:23-25 + doctor.yaml:45 ("S018 Evolution | 6 | EV014"); EV015 machine-
+      readable 9 file khop thuc te (8 YAML + schema.json); upstream refs deu ton tai
+      (S011 OB011A observability.md:217-228 — Evolution chi doc Event/Metrics/Trace/Audit
+      khop EV003; S013 GV011A Simulation governance.md:221-228 + governance-decisions.yaml
+      :11/16 — khop EV008/EV010; S012 policies.md; S014 registry.md; S016 compliance.md;
+      SPEC-000); S001 vision.md:239 "S018 — Runtime Evolution" dung ten; S014 registry.md
+      :360 tham chieu Evolution dung; S011 events.yaml:6 model.fields co correlation_id —
+      nen tang cho claim fix #01 (tien le S013/S014/S015/S016/S017). Verdict CONDITIONAL
+      (0 CRITICAL, 2 MAJOR) -> tinh count: NotReviewed -> Rev1, count 0 -> 1, lifecycle
+      Draft -> Review. GIU recheck_required (con MAJOR chua fix). Cascade: S019
+      (doctor.md:74/184/210 + doctor-checks.yaml:23 + doctor.yaml:45 tham chieu S018 EV014)
+      da co recheck_required san — giu nguyen, khong doi status (S001 vision.md:239 +
+      S014 registry.md:360 chi ref ten, khong doi; SPEC-002 chua co entry tracker).
+      SLA: draft_days = 0 (created 2026-08-08) — khong trigger TRG-006; TRG-007 chua ap
+      (con ~176 ngay). id_note: max history REV-20260808-035 (35 entries; 034 = S008
+      regression, 035 = S003 revfull — session song song) — dung 036 de dam bao unique
+      (precedent REV-20260808-015/016/018/024/026).
+    score:
+      coverage: 94
+      quality: 88
+      consistency: 78
+      governance: 90
+      overall: 88
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 2
+      MINOR: 1
+      INFO: 3
+    started: "2026-08-08T10:52:38"
+    finished: "2026-08-08T10:52:38"
+    cascade_review: [S019]
+    report_path: docs/governance/reviews/REV-SPEC-001-S018-20260808-105238.md
+  - review_id: REV-20260808-037
+    spec: SPEC-001
+    item: S008
+    name: Runtime Data Model
+    type: regression
+    mode: cascade regression lan 2 (TRG-002 — sau fix ADR-009 unfreeze S008 data model)
+    verdict: PASS
+    note: >
+      Regression lan 2 tren S008 (Frozen inherited, recheck_required: true tu
+      REV-20260807-001 cascade) sau ADR-009 (unfreeze -> fix YAML + schema -> re-freeze
+      2026-08-08). Verify may (PyYAML 6.0.3 + jsonschema 4.26.0 + grep): #01 CRITICAL
+      REV-20260808-034 FIXED — runtime-data-model.yaml:53 note: -> comment
+      '# Khong dependency nguoc.' (dependencies giu nguyen 8 muc, khong doi du lieu),
+      PyYAML safe_load 9/9 YAML artifact S008 parse PASS (het ParserError 'expected
+      <block end>, but found ?'); #02 MAJOR FIXED — runtime-data.schema.json properties
+      du status (string) + frozen (boolean) + frozen_date (string, format date),
+      aggregate_rules items oneOf [string, object], classification bo required manages +
+      additionalProperties array string (giu not_manages), consistency object
+      {levels, rules}, title (S008 v2.1), giu additionalProperties:false ->
+      jsonschema Draft202012 strict VALID 0 errors (truoc FAIL 5 errors); ADR-009 FIXED
+      #03/#04 — version '1.0.0' (runtime-data-model.yaml:4) + frozen_date '2026-08-08'
+      (runtime-data-model.yaml:7). Cascade xac nhan lai khong breaking: S008 refs S009
+      theo TEN (grep ST-/TR- toan S008 = 0 matches) -> S009 doi state/event khong vo ref
+      S008; S009 state-history.yaml:9 ref ENT-014 (Execution Lineage) ton tai
+      (runtime-entities.yaml:149) 2 chieu OK; ENT-0xx 15/15 khop (runtime-entities.yaml
+      vs data-model.md D001); RM-0xx 9/9 (RM-001/002/005/006/007/008/010/011/012) ton
+      tai runtime-entities.yaml canonical_model; SPEC-000 P003/P004/P009/P010/P017 khong
+      doi. Con 2 INFO ghi nhan khong chan: #05 frontmatter data-model.md '18 sections
+      D001-D018' dung thuc te (regex 18 matches — INFO tich cuc); #06 S008 Execution
+      lifecycle [Created, Prepared, Running, Completed, Archived] — 'Archived' khong nam
+      trong S009 states, lifecycle muc Data rut gon != S009 state machine chi tiet,
+      khong breaking (S008 refs theo ten) — ghi nhan cho S009 hoan thien. Verdict PASS
+      (0 CRITICAL, 0 MAJOR, 0 MINOR, 2 INFO — Decision Matrix) -> GO recheck_required
+      S008 (hoan tat TRG-002 cho S008). Regression tren Frozen/Completed KHONG doi 2
+      truc: lifecycle Frozen, review.status Completed, count 2 (inherited: true), KHONG
+      tang count. Khong cascade moi (fix noi tai S008, khong doi key ENT-0xx/RM-0xx ->
+      cascade_review []). SLA: Frozen -> TRG-006 khong ap; TRG-007 con ~176 ngay.
+      id_note: history co 36 entries (001-036); 036 (S018 rev1) + 035 (S003 revfull) +
+      034 (S008 regression lan 1) + 033 (S003 regression) + 032 (S017 rev1 lan 2) bi
+      session song song chiem — dung 037 de dam bao unique (grep toan docs xac nhan chua
+      ai chiem; precedent REV-20260808-015/016/018/024/026).
+    score:
+      coverage: 97
+      quality: 100
+      consistency: 97
+      governance: 97
+      overall: 98
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 0
+      MINOR: 0
+      INFO: 2
+    started: "2026-08-08T10:55:09"
+    finished: "2026-08-08T10:55:09"
+    cascade_review: []
+    report_path: docs/governance/reviews/REV-SPEC-001-S008-REGRESSION-20260808-105509.md
+  - review_id: REV-20260808-038
+    spec: SPEC-001
+    item: S018
+    name: Runtime Evolution
+    type: rev1
+    mode: rev1 (review lan 2 — tinh count, sau fix REV-20260808-036)
+    verdict: PASS
+    note: >
+      rev1 lan 2 tren S018 (Review/Rev1/count 1/recheck_required). Xac nhan 2 MAJOR
+      REV-20260808-036 da FIXED bang may (PyYAML 6.0.3 + jsonschema 4.26.0 + grep):
+      #01 TRACEABILITY — grep 'reuse' toan S018 = 0 matches; evolution.md:139 +
+      evolution-events.yaml:2 ghi dung "S018 dinh nghia 5 event types (EV011) — S011
+      cung cap event model (fields, correlation_id)" (S011 events.yaml:6 model.fields
+      co correlation_id — theo tien le S013 REV-20260808-014 / S014 REV-20260808-020 /
+      S015 REV-20260808-026 / S016 REV-20260808-029 / S017 REV-20260808-032); grep
+      EVOLUTION_ toan S011 = 0 matches — het claim reuse khong kiem chung. #02 SCHEMA —
+      evolution.yaml:46-49 approval 4 items deu string (quoted ':' khong bi PyYAML
+      parse thanh mapping), YAML 8/8 parse PASS, jsonschema Draft202012 strict VALID 0
+      errors (truoc FAIL 3 errors — cung lop S011#01/S015#01 da fix bang quoted string).
+      Kiem chung may: events 5/5 khop 3 nguon (md EV011 = evolution.yaml events =
+      evolution-events.yaml event_types); metrics 6/6 khop 2 nguon (EV012 evolution.yaml
+      metrics = evolution-metrics.yaml); EV014 6 checks khop S019 doctor.md:74 "S018
+      Evolution | 6 | EV014" + doctor-checks.yaml:22-24 (source S018 Evolution count 6
+      ref EV014) + doctor.yaml:45 + evolution-validation.yaml 6 checks; EV015 machine-
+      readable 9 file khop thuc te (8 YAML + schema.json); upstream refs deu ton tai
+      (S011 OB011A observability.md:217-228 Evolution Integration, S013 GV011A
+      governance.md:221-228 + governance-decisions.yaml:11/16, S012 policies.md,
+      S014 registry.md:360, S016 compliance.md, SPEC-000); S001 vision.md:239 "S018 —
+      Runtime Evolution" dung ten; S014 registry.md:360 tham chieu Evolution dung; S011
+      events.yaml:6 model.fields co correlation_id — nen tang cho fix #01. Con 1 MINOR
+      ke thua (#03 version "1.0.0" evolution.yaml:7 + evolution.md:12 vs "1.0" o 7
+      artifact YAML con lai) + 3 INFO (#04 frontmatter evolution.md:12 + evolution.yaml:8
+      status Draft vs lifecycle Review — tien le S009#11; #05 S011 event_type taxonomy
+      thieu 'evolution' — thuoc S011, tien le S014#06/S015#06/S016#06/S017#04; #06 tich
+      cuc may) khong chan. Verdict PASS (0 CRITICAL, 0 MAJOR) -> tinh count: Rev1 ->
+      Completed, count 1 -> 2, lifecycle giu Review (Approved chi qua POLICY-001). GO
+      recheck_required S018 (hoan tat 2-pass). Cascade: S019 (doctor.md:74/184/210 +
+      doctor-checks.yaml:23 + doctor.yaml:45 tham chieu S018 EV014) da co
+      recheck_required san tu REV-20260808-036 — giu nguyen, khong doi status.
+      SLA: draft_days = 0 (created 2026-08-08) — khong trigger TRG-006; TRG-007 chua ap
+      (con ~176 ngay). id_note: max history REV-20260808-037 (37 entries; 037 = S008
+      regression session song song) — dung 038 de dam bao unique (precedent
+      REV-20260808-015/016/018/024/026/033).
+    score:
+      coverage: 97
+      quality: 97
+      consistency: 97
+      governance: 90
+      overall: 95
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 0
+      MINOR: 1
+      INFO: 3
+    started: "2026-08-08T10:59:34"
+    finished: "2026-08-08T10:59:34"
+    cascade_review: [S019]
+    report_path: docs/governance/reviews/REV-SPEC-001-S018-20260808-105934.md
+  - review_id: REV-20260808-039
+    spec: SPEC-001
+    item: S019
+    name: Runtime Doctor
+    type: rev1
+    mode: rev1 (review lan 1 — tinh count)
+    verdict: CONDITIONAL
+    note: >
+      rev1 tren S019 (Draft, NotReviewed, count 0, recheck_required tu cascade
+      S009/S010/S011/S014/S015/S016/S017/S018). Phat hien 2 MAJOR: #01 TRACEABILITY —
+      2 claim "S011 reuse truc tiep." (doctor.md:136 + doctor-events.yaml:2) cho 5 event
+      DOCTOR_* (DR010) nhung S011 events.yaml khong dinh nghia event type cu the nao
+      (chi taxonomy [execution, workflow, capability, resource, policy, system] + model
+      fields), grep DOCTOR_ toan S011 = 0 matches event (chi doctor_checks field data
+      health.yaml:18 + observability.yaml:49, khong phai event type) — cung lop
+      S013#01/S014#01/S015#03/S016#01/S017#01/S018#01 da fix; #02 SCHEMA (moi) —
+      doctor.yaml:38-45 check_sources 7 items dang "S011 Observability: 5 checks" chua
+      dau ':' chua quote bi PyYAML parse thanh mapping thay vi string -> jsonschema
+      Draft202012 strict FAIL 7 errors (doctor.schema.json:17 check_sources.items type
+      string) — cung lop S011#01 (observability.yaml:56) / S015#01 (allocation[1]) /
+      S018#02 (evolution.yaml approval) da fix bang quoted string. 3 MINOR: #03
+      doctor.md:194 "DR017 checks" dangling — file chi co 16 sections DR001-DR016
+      (frontmatter xac nhan), y dung la doctor-validation.yaml 6 checks; #04 version
+      "1.0.0" doctor.yaml:7 + doctor.md:12 vs "1.0" o 8 artifact YAML con lai; #05
+      "Report immutable (P005)" doctor-report.yaml:9 + doctor.md:126/195 — P005 = Event
+      Driven, immutable = P010 (SPEC-000/03-principles.md:36), cung lop S011#05/S016#03
+      da fix. 2 INFO: #06 frontmatter doctor.md:12 + doctor.yaml:8 status Draft vs
+      lifecycle Review sau review nay — tien le S009#11; #07 S011 event_type taxonomy
+      thieu 'doctor' — thuoc S011, tien le S014#06/S015#06/S016#06/S017#04/S018#05.
+      1 INFO tich cuc (#08 may). Xac nhan tich cuc: YAML 9/9 parse PASS (khong
+      ParserError — khac lop S003/S005/S006 CRITICAL); upstream refs deu ton tai (OB011
+      S011 observability.md:207 Doctor Integration, GV017 S013 governance.md:384, RG011
+      S014 registry.md:267, RS014 S015 resources.md:199, CM004 S016 compliance.md:71 +
+      CM006 Health Score :99 khop DR005, PL016 S017 plugins.md:184, EV014 S018
+      evolution.md:162); 63 checks = 5+6+11+6+23+6+6 khop DR004 md = doctor.yaml
+      check_sources = doctor-checks.yaml groups; events 5/5 khop 3 nguon (md DR010 =
+      doctor.yaml events = doctor-events.yaml event_types); metrics 6/6 khop 2 nguon
+      (DR011 = doctor.yaml metrics = doctor-metrics.yaml); scope 9 domain khop 2 nguon
+      (DR003 = doctor-scope.yaml) + not_reads 4; pipeline 5 steps khop; report fields 8
+      khop 2 nguon; self-repair 6 rules khop (md DR008 = doctor-self-repair.yaml);
+      DR016 Success Criteria 7 items day du. Downstream: S020 dashboard (dashboard.md:55/
+      75/85/173/201 + dashboard.yaml:32/45 + dashboard-scope.yaml:14 + dashboard-views.
+      yaml:24 source S019) ref dung — da co recheck_required san tu REV-20260808-017/020;
+      S001 vision.md:240 "S019 - Doctor" + SPEC-001 README + SPEC-002 W019 chi ref ten,
+      khong doi. Verdict CONDITIONAL (0 CRITICAL, 2 MAJOR) -> tinh count: NotReviewed ->
+      Rev1, count 0 -> 1, lifecycle Draft -> Review. GIU recheck_required (con MAJOR
+      chua fix). Cascade: S020 da co recheck_required san — giu nguyen, khong doi status
+      (SPEC-002 chua co entry tracker). SLA: draft_days = 0 (created 2026-08-08) —
+      khong trigger TRG-006; TRG-007 chua ap (con ~176 ngay). id_note: max history
+      REV-20260808-038 (38 entries; 038 = S018 rev1 lan 2 session song song chiem ca
+      tracker + history + report REV-SPEC-001-S018-20260808-105934) — dung 039 de dam
+      bao unique (grep toan docs xac nhan chua ai chiem; precedent
+      REV-20260808-015/016/018/024/026/033).
+    score:
+      coverage: 94
+      quality: 88
+      consistency: 78
+      governance: 90
+      overall: 88
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 2
+      MINOR: 3
+      INFO: 3
+    started: "2026-08-08T11:01:39"
+    finished: "2026-08-08T11:01:39"
+    cascade_review: [S020]
+    report_path: docs/governance/reviews/REV-SPEC-001-S019-20260808-110139.md
+  - review_id: REV-20260808-040
+    spec: SPEC-001
+    item: S009
+    name: Runtime State Machine
+    type: regression
+    mode: cascade regression (TRG-002 — sau chuoi fix ADR-002..009) + xu ly INFO #06 (REV-20260808-037) + lan dau machine-validate S009 bang PyYAML thuc te
+    verdict: FAIL
+    note: >
+      Regression S009 (Review/Completed/count 2, recheck_required: true treo lau) sau
+      chuoi fix he thong ADR-002..009. Lan dau chay PyYAML 6.0.3 + jsonschema 4.26.0
+      thuc te tren 14/14 YAML artifact S009 (REV-20260808-002 health chi pattern-match
+      text, khong parse): #01 CRITICAL — 6/14 artifact KHONG parse duoc: state-machine
+      .yaml:59-77 (19 dong transition "- from: ST-001; to: ST-002; event: ..." plain
+      scalar chua ': ' -> ParserError 'mapping values are not allowed here'), transitions
+      .yaml 23 cho 'policy: -'/'timeout: -' ('sequence entries are not allowed here'),
+      transition-matrix.yaml:6-29 (24 dong), retry-model.yaml:6 (condition: ... (FR-018,
+      RULE-012)), replay-model.yaml:8 (States: ...), state-history.yaml:7 (History: ...)
+      — cung lop S008#01 (ADR-009)/S003#01 (ADR-003)/S005#01 (ADR-007)/S006#01 (ADR-006)
+      da fix, S009 chua bao gio machine-validated; #02 MAJOR — state-machine.yaml:56
+      "- Ngoai le duy nhat: Replay (...)" parse thanh mapping thay vi string -> jsonschema
+      Draft202012 strict FAIL 1 error (terminal_rules[1] is not of type 'string') ngay ca
+      tren ban in-memory fixed cu phap (cung lop S011#01/S015#01 da fix bang quoted
+      string); #03 MINOR — version '1.0' o 13 artifact vs canonical '1.0.0' (state-machine
+      .yaml:6). INFO #06 (REV-20260808-037) XAC NHAN SACH, khong mau thuan: S009
+      'Deprecated' chi xuat hien o state.schema.json:12 status enum (thang document
+      status), khong phai state; S008 'Archived' (runtime-lifecycle.yaml:6) la lifecycle
+      muc Data rut gon, khong nam trong S009 state catalog — grep 0 state Deprecated/
+      Archived trong S009. Xac nhan tich cuc: consistency noi dung 14 states/6 categories/
+      19 transitions khop md<->yaml<->registry (pairs 19/19, events 19/19, triggers
+      19/19, guards 19/19, matrix 19 true + 5 false = 5 invalid_transitions); cross-
+      reference 2 chieu KHONG vo sau ADR-002..009 — upstream (ENT-014 S008 2 chieu,
+      P005/P006/P013 SPEC-000, FR-018 S002, RULE-012 S003, RM-001 runtime-models) +
+      downstream (S010/S013/S016/S018/S020/SPEC-002-W009 moi ST-/TR- ref ton tai, 0 bad).
+      Verdict FAIL (1 CRITICAL, 1 MAJOR) -> GIU recheck_required: true (FAIL khong go).
+      Regression KHONG doi 2 truc: lifecycle Review, review.status Completed, count 2
+      (khong tang count, khong doi status). Khong cascade moi (cascade_review [] — fix
+      noi tai S009: quote YAML, khong doi key ST-/TR-). SLA: draft_days = 3 (created
+      2026-08-05) — TRG-006/007 khong ap (chua Approved/Frozen). id_note: 038 (S018 rev1
+      lan 2) + 039 (S019 rev1) bi session song song chiem trong luc chay — dung 040 de
+      dam bao unique (precedent race 027/029/030/036/037; grep 040/041 toan docs = 0).
+    score:
+      coverage: 70
+      quality: 90
+      consistency: 100
+      governance: 97
+      overall: 89
+    severity_counts:
+      CRITICAL: 1
+      MAJOR: 1
+      MINOR: 1
+      INFO: 1
+    started: "2026-08-08T11:03:30"
+    finished: "2026-08-08T11:03:30"
+    cascade_review: []
+    report_path: docs/governance/reviews/REV-SPEC-001-S009-REGRESSION-20260808-110330.md
+  - review_id: REV-20260808-041
+    spec: SPEC-001
+    item: S020
+    name: Runtime Dashboard
+    type: rev1
+    mode: rev1 (review lan 1 — tinh count)
+    verdict: CONDITIONAL
+    note: >
+      rev1 tren S020 (Draft, NotReviewed, count 0, recheck_required tu cascade
+      S017/S018/S019). Phat hien 2 MAJOR: #01 TRACEABILITY — 4 claim "S011 reuse
+      truc tiep."/"Moi refresh sinh DASHBOARD_REFRESHED (S011)" (dashboard.md:112/120
+      + dashboard-events.yaml:2 + dashboard-refresh.yaml:8) cho 3 event DASHBOARD_*
+      (DB009) nhung S011 events.yaml khong dinh nghia event type cu the nao (chi
+      taxonomy [execution, workflow, capability, resource, policy, system] + model
+      fields), grep DASHBOARD_ toan S011 = 0 matches — cung lop S013#01/S014#01/
+      S015#03/S016#01/S017#01/S018#01/S019#01 da fix; #02 SCHEMA — dashboard.yaml:49
+      refresh[0] "Event Driven (P005): refresh khi co event moi." chua dau ':' chua
+      quote bi PyYAML parse thanh mapping thay vi string -> jsonschema Draft202012
+      strict FAIL 1 error (dashboard.schema.json:19 refresh.items string) — cung lop
+      S011#01 (observability.yaml:56)/S015#01 (allocation[1])/S018#02 (evolution.yaml
+      approval)/S019#02 (doctor.yaml check_sources) da fix bang quoted string;
+      dashboard-refresh.yaml:5 cung chuoi chua quote (khong bi schema validate — ghi
+      nhan khong chan). 1 MINOR (#03 version "1.0.0" dashboard.yaml:7 + dashboard.md:12
+      vs "1.0" o 7 artifact YAML con lai — cung lop version pho bien) + 3 INFO (#04
+      frontmatter dashboard.md:12 + dashboard.yaml:8 status Draft vs lifecycle Review
+      sau review nay — tien le S009#11; #05 S011 event_type taxonomy thieu 'dashboard'
+      — thuoc S011, tien le S014#06/S015#06/S016#06/S017#04/S018#05/S019#07; #06 tich
+      cuc may). Xac nhan tich cuc: YAML 8/8 parse PASS (khong ParserError — khac lop
+      S003/S005/S006 CRITICAL); jsonschema chi fail refresh[0] (1 error) con lai VALID;
+      events 3/3 khop 3 nguon (md DB009 = dashboard.yaml events = dashboard-events.yaml
+      event_types); metrics 5/5 khop 2 nguon (DB010 = dashboard.yaml metrics =
+      dashboard-metrics.yaml); scope 9 reads + 4 not_reads khop 2 nguon (DB003 =
+      dashboard.yaml = dashboard-scope.yaml); views 7/7 khop 2 nguon (DB005 =
+      dashboard.yaml views = dashboard-views.yaml 7 views); read_model 6 fields khop
+      2 nguon (DB007 = dashboard.yaml = dashboard-read-model.yaml); refresh 3 rules
+      khop; validation 5 checks khop (DB013 = dashboard-validation.yaml); DB014
+      machine-readable 9 file khop thuc te (8 YAML + schema.json); upstream refs deu
+      ton tai (S011 OB010 observability.md:195 Dashboard Model, S013 governance-registry
+      .yaml, S014 registry-registry.yaml, S015 resource-metrics.yaml, S016 compliance-
+      report.yaml + compliance-matrix.yaml, S019 doctor-report.yaml, S012 POL-SEC-001
+      policies.yaml:49 + security-policy.yaml:5, S010 EF024 execution-outcome.yaml +
+      execution-flow.md:417, S009 state machine, P005/P010 SPEC-000 03-principles.md:31/36).
+      Verdict CONDITIONAL (0 CRITICAL, 2 MAJOR) -> tinh count: NotReviewed -> Rev1,
+      count 0 -> 1, lifecycle Draft -> Review. GIU recheck_required (con MAJOR chua
+      fix). Cascade: S020 la leaf (SPEC cuoi, "mat quan sat Runtime") — grep toan he
+      thong chi S001 vision.md:180/241 + SPEC-001 README ref ten S020 (khong co
+      dependency theo ID), S019 doctor.md KHONG ref S020 (grep 0 matches — Doctor la
+      nguon cua Dashboard, chieu 1 chieu) -> cascade_review [] (khong mục nao ref S020
+      theo ID). SLA: draft_days = 0 (created 2026-08-08) — khong trigger TRG-006;
+      TRG-007 chua ap. id_note: max history REV-20260808-040 (S009 regression session
+      song song da append ca tracker + history) — dung 041 de dam bao unique (grep
+      041 toan docs = 0 matches; precedent REV-20260808-015/016/018/024/026/033).
+    score:
+      coverage: 94
+      quality: 88
+      consistency: 78
+      governance: 90
+      overall: 88
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 2
+      MINOR: 1
+      INFO: 3
+    started: "2026-08-08T11:06:51"
+    finished: "2026-08-08T11:06:51"
+    cascade_review: []
+    report_path: docs/governance/reviews/REV-SPEC-001-S020-20260808-110651.md
+  - review_id: REV-20260808-042
+    spec: SPEC-001
+    item: S019
+    name: Runtime Doctor
+    type: rev1
+    mode: rev1 (review lan 2 — tinh count, verify fix REV-20260808-039)
+    verdict: CONDITIONAL
+    note: >
+      rev1 lan 2 tren S019 (Review/Rev1/count 1/recheck_required). 2 MAJOR
+      REV-20260808-039 CHUA FIXED (git status S019 = 0 file modified): #01
+      TRACEABILITY — grep 'reuse' toan S019 van 2 matches (doctor.md:136 "S011
+      reuse truc tiep." + doctor-events.yaml:2) cho 5 event DOCTOR_* (DR010),
+      S011 events.yaml khong dinh nghia event type cu the nao (chi taxonomy
+      [execution, workflow, capability, resource, policy, system] + model
+      fields), grep DOCTOR_ toan S011 = 0 matches event (chi doctor_checks
+      field data health.yaml:18 + observability.yaml:49, khong phai event type)
+      — cung lop S013#01/S014#01/S015#03/S016#01/S017#01/S018#01 da fix, S019
+      chua fix; #02 SCHEMA — machine xac nhan (PyYAML 6.0.3 + jsonschema 4.26.0)
+      doctor.yaml:38-45 check_sources 7/7 items van parse thanh mapping
+      {'S011 Observability': '5 checks', ...} (chua quote ':') -> jsonschema
+      Draft202012 strict FAIL 7 errors (check_sources/0..6 "is not of type
+      'string'") — cung lop S011#01 (observability.yaml:56) / S015#01
+      (allocation[1]) / S018#02 (evolution.yaml approval) da fix bang quoted
+      string, S019 chua fix. 3 MINOR ke thua (#03 doctor.md:194 "DR017 checks"
+      dangling — file chi 16 sections DR001-DR016, y dung la doctor-validation
+      .yaml 6 checks; #04 version "1.0.0" doctor.yaml:7 + doctor.md:12 vs "1.0"
+      o 8 artifact YAML (events/checks/metrics/pipeline/report/scope/self-repair/
+      validation); #05 "Report immutable (P005)" doctor-report.yaml:9 + doctor.md
+      :126/195 — P005 = Event Driven, immutable = P010 (SPEC-000/03-principles
+      .md:36), cung lop S011#05/S016#03 da fix) + 3 INFO (#06 frontmatter doctor
+      .md:12 + doctor.yaml:8 status Draft vs lifecycle Review — tien le S009#11;
+      #07 S011 event_type taxonomy thieu 'doctor' — thuoc S011, tien le
+      S014#06/S015#06/S016#06/S017#04/S018#05; #08 tich cuc may). Xac nhan tich
+      cuc (machine re-verify lan 2): YAML 9/9 parse PASS (khong ParserError —
+      khac lop S003/S005/S006 CRITICAL); jsonschema chi fail check_sources (7
+      items mapping) con lai VALID (events/metrics/health_score/pipeline/
+      self_repair/report/traceability/scope minItems thoa); events 5/5 khop 3
+      nguon (md DR010 = doctor.yaml events = doctor-events.yaml event_types);
+      metrics 6/6 khop 2 nguon (doctor.yaml metrics = doctor-metrics.yaml);
+      scope 9 domains + 4 not_reads khop 2 nguon (doctor.yaml = doctor-scope.yaml
+      = md DR003); pipeline 5 steps; report fields 8; self-repair 6 rules
+      (doctor-self-repair.yaml); doctor-checks.yaml 7 groups = 63 checks
+      (5+6+11+6+23+6+6) khop DR004 md = doctor.yaml check_sources (7); health_
+      score 3 = DR005; upstream refs deu ton tai (OB011 S011 observability.md
+      :207 Doctor Integration, GV017 S013 governance.md:384, RG011 S014
+      registry.md:267, RS014 S015 resources.md:199, CM004 S016 compliance.md:71
+      + CM006 Health Score :99 khop DR005, PL016 S017 plugins.md:184, EV014 S018
+      evolution.md:162); doctor.md:73 'S017 Plugins | 6 | PL016' khop plugin-
+      validation.yaml 6 checks (REV-20260808-032), doctor.md:74 'S018 Evolution
+      | 6 | EV014' khop evolution-validation.yaml 6 checks (REV-20260808-038);
+      DR016 7 items. Verdict CONDITIONAL (0 CRITICAL, 2 MAJOR) -> tinh count
+      (PASS/CONDITIONAL tang count — review-rules.yaml counting + review-status
+      .yaml transitions): Rev1 -> Completed, count 1 -> 2, lifecycle giu Review
+      (Approved chi qua POLICY-001). GIU recheck_required: true (MAJOR #01/#02
+      chua fix — 'con gi treo', tien le S009 Completed count 2 van giu
+      recheck_required). Cascade: S020 (dashboard.md:55/75/85/173/201 +
+      dashboard.yaml:32/45 + dashboard-scope.yaml:14 + dashboard-views.yaml:24
+      source S019) da co recheck_required san tu REV-20260808-017/020 + session
+      S020 vua review REV-20260808-041 (CONDITIONAL, van recheck_required) —
+      giu nguyen, khong doi status; S001 vision.md:240 + SPEC-001 README +
+      SPEC-002 W019 chi ref ten, khong doi. SLA: draft_days = 0 (created
+      2026-08-08) — TRG-006 khong trigger; TRG-007 chua ap (con ~176 ngay).
+      id_note: max history REV-20260808-041 (041 = S020 rev1 lan 1 session song
+      song da append ca tracker + history + report REV-SPEC-001-S020-20260808
+      -110651) — dung 042 de dam bao unique (grep 042 toan docs = 0 matches;
+      precedent REV-20260808-015/016/018/024/026/033/039).
+    score:
+      coverage: 94
+      quality: 88
+      consistency: 78
+      governance: 90
+      overall: 88
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 2
+      MINOR: 3
+      INFO: 3
+    started: "2026-08-08T11:09:24"
+    finished: "2026-08-08T11:09:24"
+    cascade_review: [S020]
+    report_path: docs/governance/reviews/REV-SPEC-001-S019-20260808-110924.md
+  - review_id: REV-20260808-045
+    spec: SPEC-001
+    item: S009
+    name: Runtime State Machine
+    type: regression
+    mode: "regression lan 2 (TRG-002 — sau fix REV-20260808-040: quote YAML + version 1.0.0)"
+    verdict: PASS
+    note: >
+      Regression lan 2 tren S009 (Review, Completed, count 2, recheck_required:
+      true treo tu REV-20260808-040 FAIL) sau fix quote YAML + version 1.0.0.
+      Verify may (PyYAML 6.0.3 + jsonschema 4.26.0 + grep): #01 CRITICAL FIXED —
+      PyYAML safe_load 14/14 YAML artifact S009 parse PASS, 0 ParserError (truoc
+      6/14 hong: state-machine.yaml:59-77 flow mappings {from,to,event,guard},
+      transitions.yaml 23 cho policy:/timeout: '-' quoted, transition-matrix.yaml
+      24 dong flow mappings {from,to,allowed}, retry-model/replay-model/state-history
+      restructure model block); #02 MAJOR FIXED — state-machine.yaml:56
+      '- "Ngoai le duy nhat: Replay (...)"' quoted string -> jsonschema Draft202012
+      strict VALID 0 errors (truoc FAIL 1 error terminal_rules[1]); #03 MINOR FIXED
+      — version 1.0.0 dong nhat 14/14 YAML + state-machine.md. Consistency 28/28
+      checks PASS: states 14 / categories 6 / terminal 6 / transitions 19
+      (TR-001..019 contiguous) / matrix 24 (19 true + 5 false) / state-events 18
+      == transitions events 17 + EXECUTION_CREATED / registry 14-6-4-3-19 khop.
+      Cross-reference 2 chieu OK: S009->S011 event model (correlation_id +
+      taxonomy 'execution'), upstream FR-018/RULE-012/P013/ENT-014 ton tai,
+      downstream S010/S013/S016/S018/S020/SPEC-002-W009 0 bad. No-regression:
+      ST-001..014, TR-001..019, 17 EXECUTION_* event names GIU NGUYEN. Verdict
+      PASS (0 CRITICAL, 0 MAJOR) -> GO recheck_required S009 (xoa recheck_required:
+      true — hoan tat TRG-002 cho S009). Regression KHONG doi 2 truc: lifecycle
+      Review, review.status Completed, count 2, KHONG tang count. Khong cascade moi
+      (cascade_review []). SLA: draft_days 3 — TRG-006/007 khong ap. id_note: 043
+      va 044 bi session song song chiem (043 = S007 regression, 044 = S007/S010
+      collision) — renumber sang 045 de dam bao unique.
+    score:
+      coverage: 100
+      quality: 100
+      consistency: 100
+      governance: 100
+      overall: 100
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 0
+      MINOR: 0
+      INFO: 3
+    started: "2026-08-08T11:12:42"
+    finished: "2026-08-08T11:12:42"
+    cascade_review: []
+    report_path: docs/governance/reviews/REV-SPEC-001-S009-REGRESSION-20260808-111242.md
+  - review_id: REV-20260808-046
+    spec: SPEC-001
+    item: S007
+    name: Runtime Contracts
+    type: revfull
+    mode: revfull-as-health (inherited Frozen) — verify ADR-008 schema v1.0.1 + danh gia toan dien 6 dimension
+    verdict: PASS
+    note: >
+      revfull tren S007 (Frozen, inherited) — health semantics: giu nguyen 2 truc
+      (lifecycle Frozen, review.status Completed, count 2, inherited), KHONG tang count.
+      Verify may (PyYAML 6.0.3 + jsonschema 4.26.0 + grep): YAML 10/10 parse PASS (khong
+      ParserError); jsonschema Draft202012 strict VALID 0 errors (contracts.schema.json
+      v1.0.1 — ADR-008 da them frozen + frozen_date, giu additionalProperties:false);
+      inner 12 contracts VALID 0 errors; communication matrix 14 edges ALL VALID (moi
+      contract: CTR-0xx ton tai trong contracts.yaml); CTR dependencies 0 BAD (moi
+      dependency resolve toi contract da dinh nghia); layer/domain 12/12 khop S005 (9
+      layers/6 domains architecture.yaml); 'Coordination Contract' (CTR-003) = 5 matches
+      (contracts.yaml:51, contract-registry.yaml:39, contracts.md:75/200, contract-
+      categories.yaml:6), grep 'Orchestrator Contract' toan S007 = 0 — S007 la nguon ten
+      chuan. Git history: freeze 5c6eee1 08-05, v2 ac049de 08-05, schema fix ADR-008
+      trong working tree (CHUA commit — git status M contracts.schema.json). Con 3 MINOR
+      ke thua (#01 version '1.0.0' contracts.yaml:6 + contracts.md:12 vs '1.0' x9 artifact;
+      #02 contract-registry layer/domain TBD x12 vs contracts.yaml thuc; #03 contract-
+      registry dependencies [] x12 vs contracts.yaml 6/12 thuc) + 3 INFO (#04 frontmatter
+      contracts.md:5 '15 sections CT001-CT015' vs thuc te 17 CT001-CT017; #05 frozen_date
+      '2026-08-04' vs commit freeze 5c6eee1 08-05; #06 schema v1.0.1 working tree chua
+      commit — P1) khong chan PASS (tien le REV-20260808-030/031/035). Verdict PASS
+      (0 CRITICAL, 0 MAJOR) -> revfull-as-health tren inherited Frozen: giu nguyen
+      lifecycle Frozen, review.status Completed, count 2, inherited: true — KHONG tang
+      count, KHONG doi 2 truc. recheck_required S007 da go boi REV-20260808-031 (regression
+      PASS) — giu nguyen sach. Khong cascade moi (0 MAJOR, khong doi key CTR-00x ->
+      cascade_review []). SLA: Frozen -> TRG-006 khong ap; TRG-007 con ~176 ngay.
+      id_note: 043 (S009 regression lan 2) + 044 (S010 regression lan 1, session song song
+      chiem 044 sau khi S007 da ghi) + 045 (S009 regression lan 3) bi session song song
+      chiem — dung 046 de dam bao unique (precedent REV-20260808-015/016/018/024/026/033/
+      039/043; grep 046 toan docs = 0).
+    score:
+      coverage: 97
+      quality: 97
+      consistency: 91
+      governance: 97
+      overall: 96
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 0
+      MINOR: 3
+      INFO: 3
+    started: "2026-08-08T11:12:00"
+    finished: "2026-08-08T11:12:00"
+    cascade_review: []
+    report_path: docs/governance/reviews/REV-SPEC-001-S007-20260808-111200.md
+  - review_id: REV-20260808-044
+    spec: SPEC-001
+    item: S010
+    name: Runtime Execution Flow
+    type: regression
+    mode: cascade regression (TRG-002 — sau chuoi fix ADR-002..009 upstream S008/S009/S003/S005/S006/S007) + lan dau machine-validate S010 bang PyYAML thuc te
+    verdict: FAIL
+    note: >
+      Regression S010 (Review, Completed, count 2, recheck_required: true treo tu
+      REV-20260808-009) sau chuoi fix ADR-002..009 + S009 fix REV-20260808-040/043.
+      Lan dau chay PyYAML 6.0.3 thuc te tren toan bo 20/20 YAML artifact S010
+      (REV-20260808-009 chi jsonschema-validate canonical execution-flow.yaml, khong
+      parse 19 file phu): #01 CRITICAL — execution-lineage.yaml:10 "Simulation:
+      Execution mô phỏng (simulated: true)." plain scalar chua ': ' -> PyYAML
+      ScannerError "mapping values are not allowed here" (19/20 parse PASS, 1 FAIL)
+      — cung lop S009#01 (REV-20260808-040)/S008#01 (034)/S003#01 (008)/S005#01
+      (018)/S006#01 (016) da fix bang ADR, S010 chua bao gio machine-validated
+      toan bo; #02 MINOR ke thua — version "1.0.0" execution-flow.yaml:5 + md:13
+      vs "1.0" o 19 file artifact phu (REV-20260808-009 #01 chua fix); #03 MINOR ke
+      thua — frontmatter execution-flow.md:6 "25 sections EF001-EF025" vs thuc te
+      26 (EF026 Execution Guarantees, REV-20260808-009 #02 chua fix); #04 MINOR ke
+      thua — failure-flow.yaml:7 "Capability Failure: [Resolution Failed → ST-009]"
+      label stage lan state S009 (REV-20260808-009 #03 chua fix). Xac nhan tich
+      cuc (machine re-verify): canonical execution-flow.yaml vs execution-flow.
+      schema.json jsonschema Draft202012 strict VALID 0 errors; 19/20 YAML parse
+      PASS khong ParserError; cross-reference 2 chieu OK khong vo sau ADR-002..009
+      — upstream ST-001/002/003/004/008/009/010/011/014 (9/9 ton tai S009 states.
+      yaml), TR-015 (S009), ENT-012 (S008 runtime-entities.yaml:127), POL-RETRY-001
+      ..POL-RES-001 (6/6 S012), P005/P006/P007/P010/P014/P015 (SPEC-000), RULE-012
+      (S003) deu ton tai; downstream S013 (0 ID ref — khong anh huong)/S016 (1 name
+      ref)/S018 (0 ID ref)/S020 (4 refs: S009/S010 name + EF024)/SPEC-002 (README
+      + W001 EF006) — EF006/EF024 ton tai, 0 bad; S009 regression REV-20260808-043
+      PASS giu ST-001..014/TR-001..019/17 EXECUTION_* nguyen — khong vo S010; INFO
+      #04 REV-20260808-009 (state-events.yaml S009 thieu EXECUTION_CREATED +
+      duplicate REPLAYED) da FIXED boi S009 (state-events 18 events co
+      EXECUTION_CREATED, het duplicate — REV-20260808-043 xac nhan state-events 18
+      == transitions 17 + entry event). Verdict FAIL (1 CRITICAL >= 1 -> Decision
+      Matrix FAIL) -> GIU recheck_required: true (FAIL khong go — chi go khi PASS).
+      Regression KHONG doi 2 truc: lifecycle Review, review.status Completed, count
+      2, KHONG tang count. Khong cascade moi (cascade_review [] — fix noi tai S010
+      quote YAML execution-lineage.yaml, khong doi key EF-/ST-/TR- -> downstream
+      khong vo). SLA: draft_days 3 (created 2026-08-05 -> 2026-08-08) — TRG-006/
+      007 khong ap (chua Approved/Frozen). id_note: max history REV-20260808-043
+      (043 bi session song song chiem 2 lan — S009 regression lan 2 + S007 revfull
+      duplicate ID race) — dung 044 de dam bao unique (grep REV-20260808-044 toan
+      docs = 0 matches truoc khi ghi; precedent REV-20260808-015/016/018/024/026/
+      033/039/042).
+    score:
+      coverage: 70
+      quality: 90
+      consistency: 100
+      governance: 97
+      overall: 89
+    severity_counts:
+      CRITICAL: 1
+      MAJOR: 0
+      MINOR: 3
+      INFO: 4
+    started: "2026-08-08T11:15:33"
+    finished: "2026-08-08T11:15:33"
+    cascade_review: []
+    report_path: docs/governance/reviews/REV-SPEC-001-S010-REGRESSION-20260808-111533.md
+  - review_id: REV-20260808-047
+    spec: SPEC-001
+    item: S011
+    name: Execution Observability
+    type: regression
+    mode: cascade regression (TRG-002 — sau chuoi fix ADR-002..009 + S009 regression REV-20260808-040/043/045 + S010 regression REV-20260808-044) + lan dau machine-validate toan bo S011 bang PyYAML 6.0.3 + jsonschema 4.26.0
+    verdict: PASS
+    note: >
+      Regression S011 (Review, Completed, count 2, recheck_required: true treo tu
+      REV-20260808-015) sau chuoi fix ADR-002..009 + S009 regression (040/043/045)
+      + S010 regression (044). Lan dau chay PyYAML 6.0.3 thuc te tren toan bo 10/10
+      YAML artifact S011 (REV-20260808-011/015 chi jsonschema-validate canonical
+      observability.yaml, khong parse 9 file phu): parse PASS het — 0 ParserError,
+      S011 SACH lop CRITICAL 'plain scalar chua : ' (khac S008#01 REV-20260808-034/
+      S009#01 040/S010#01 044/S003#01 008/S005#01 018/S006#01 016 da fix bang ADR);
+      observability.yaml vs observability.schema.json jsonschema Draft202012 strict
+      VALID 0 errors (additionalProperties:false, required 9 keys) + schema
+      self-check VALID. Cascade upstream sau ADR-002..009 KHONG vo: S007 CTR-008
+      Event Contract (contracts.md:80), S008 Event entity (runtime-entities.yaml:73)
+      + D006 Data Classification (data-model.md:112), S009 state-events 18 events
+      unique co EXECUTION_CREATED + het duplicate (REV-20260808-043/045 giu nguyen),
+      S010 EF010 Event Flow (execution-flow.md:172) + EF023 Execution Lineage
+      (:402), P005/P009/P014 (SPEC-000 03-principles.md:31/35/40) deu ton tai.
+      Consistency md<->yaml<->registry: 18 sections OB001-OB016 + OB003A + OB011A
+      khop frontmatter (observability.md:7 '18 sections'); machine_readable 11 file
+      khop thuc te (observability.yaml:58-69); tracker Completed/count 2 khop
+      history (REV-20260808-011/015). Downstream S013-S020/SPEC-002 ref theo ID
+      OB- deu ton tai: OB003A (S017 plugin-isolation.yaml:8 + plugins.md:140),
+      OB005 (S013 governance-metrics.yaml:2 + S015 resource-metrics.yaml:2 +
+      resources.md:191), OB009 (S016 health-score.yaml:2 + compliance.md:105),
+      OB010 (S020 dashboard.md:196 + dashboard.yaml:2), OB011 (S019 doctor.md:204),
+      OB011A (S018 evolution.md:205 + evolution.yaml:2) + S016 validation-rules.yaml
+      (OB004/005/006/007/014:43/113/118/28/53 deu khop section); S013-S018 claim
+      'S011 cung cap event model (fields, correlation_id)' chinh xac — S011
+      events.yaml:6 model.fields co correlation_id (tien le REV-20260808-032 INFO
+      #06; xac nhan lai lan nay). 4 MINOR ke thua khong chan (#01 version '1.0' o 9
+      artifact phu vs '1.0.0' observability.yaml:7 + md:13 — REV-20260808-011 #07/
+      015 #07 chua fix; #02 events.yaml:8/10 vocab/casing event_type lowercase vs
+      event_scope Title — REV-20260808-011 #04; #03 events.yaml:13 'Event immutable
+      (P005)' — P005 = Event Driven, immutable = P010 — REV-20260808-011 #05;
+      #04 correlation.yaml:10 'Khong doi trong vong doi (P009)' — P009 = Single
+      Source of Truth, immutable = P010 — REV-20260808-011 #06) + 4 INFO (#05 S011
+      event_type taxonomy [execution, workflow, capability, resource, policy,
+      system] thieu registry/compliance/plugin/evolution/doctor/dashboard — thuoc
+      S011, S013-S020 da dinh nghia event types rieng (khong phai loi S011, tien le
+      S014 #06/S015 #06/S016 #06/S017 #04/S018 #05/S019 #07/S020 #05); #06 tich cuc
+      may — S011 lan dau machine-validated toan bo, SACH CRITICAL + jsonschema
+      VALID, khac phan lon cac mục khac cung chu ky phai fix bang ADR; #07 S019
+      doctor-events.yaml:2 + S020 dashboard-events.yaml:2 van ghi 'S011 reuse truc
+      tiep' — cung lop MAJOR #01 da fix o S013-S018, thuoc S019/S020 (da flag
+      REV-20260808-039/041), KHONG phai loi S011, ghi nhan de Doctor theo doi;
+      #08 S010 tracker items history thieu entry REV-20260808-044 (chi co review_log
+      append, items.history S010 chi co 007/009) — ghi nhan de Doctor dong bo, khong
+      anh huong verdict S011). Verdict PASS (0 CRITICAL, 0 MAJOR -> Decision Matrix
+      PASS) -> GO recheck_required S011 (xoa recheck_required: true — hoan tat
+      TRG-002 cho S011). Regression KHONG doi 2 truc: lifecycle Review, review.
+      status Completed, count 2, KHONG tang count. Khong cascade moi (cascade_review
+      [] — S011 la nguon event model, fix noi tai neu co khong doi key OB-/
+      correlation_id -> downstream S013-S020/SPEC-002 khong vo). SLA: draft_days 3
+      (created 2026-08-05 -> 2026-08-08) — TRG-006/007 khong ap (chua Approved/
+      Frozen). id_note: max history REV-20260808-046 (043/044/045/046 bi session
+      song song chiem) — dung 047 de dam bao unique (grep REV-20260808-047 toan
+      docs = 0 matches truoc khi ghi; precedent REV-20260808-044/045/046).
+    score:
+      coverage: 97
+      quality: 100
+      consistency: 95
+      governance: 94
+      overall: 97
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 0
+      MINOR: 4
+      INFO: 4
+    started: "2026-08-08T11:21:35"
+    finished: "2026-08-08T11:21:35"
+    cascade_review: []
+    report_path: docs/governance/reviews/REV-SPEC-001-S011-REGRESSION-20260808-112135.md
+  - review_id: REV-20260808-048
+    spec: SPEC-001
+    item: S013
+    name: Runtime Governance
+    type: regression
+    mode: cascade regression (TRG-002 — sau chuoi fix ADR-002..009 + S009 regression REV-20260808-040/043/045 + S010 regression REV-20260808-044) + lan dau machine-validate toan bo S013 bang PyYAML 6.0.3 + jsonschema 4.26.0
+    verdict: PASS
+    note: >
+      Regression S013 (Review, Completed, count 2, recheck_required: true treo tu
+      REV-20260808-012/014) sau chuoi fix ADR-002..009 + S009 regression (040/043/045)
+      + S010 regression (044). Lan dau chay PyYAML 6.0.3 thuc te tren toan bo 13/13
+      YAML artifact S013 (REV-20260808-012/014 chi jsonschema-validate canonical
+      governance.yaml, khong parse 12 file phu): parse PASS het — 0 ParserError, S013
+      SACH lop CRITICAL 'plain scalar chua : ' (khac S008#01 REV-20260808-034/S009#01
+      040/S010#01 044/S003#01 008/S005#01 018/S006#01 016 da fix bang ADR);
+      governance.yaml vs governance.schema.json jsonschema Draft202012 strict VALID 0
+      errors (additionalProperties:false, required 15 keys) + schema self-check VALID.
+      Cascade upstream sau ADR-002..009 KHONG vo: ST-014/ST-009 (S009 state-machine.
+      yaml:43/38 Aborted/Failed), RP013/RP013A/RP014/RP015/RP002B (S012 policies.md:
+      279/301/324/336/89), POL-SEC-001/POL-RESACC-001 (S012 security-policy.yaml:5 +
+      resource-access-policy.yaml:5), GV011A (S018 evolution.md:207 + evolution.yaml:
+      52), GV017 (S019 doctor-checks.yaml:10 + doctor.md:69/205), governance-registry
+      (S020 dashboard.md:71 + dashboard-views.yaml:12) deu ton tai. Consistency md<->
+      yaml<->registry: 23 sections GV001-GV018 + GV003A/GV005A/GV011A/GV012A/GV014A
+      khop frontmatter (governance.md:8); decision set 8 gia tri (governance.yaml:46 =
+      governance-decisions.yaml:7) phu toan bo outcomes decision_matrix + failure_
+      classification (Policy dung nhat 'Ignore'); 7 event types GV013 (governance.md:
+      307-313 = governance-events.yaml:5-12) S013 so huu, S011 events.yaml 0 matches
+      (khong collision, khong claim reuse — grep reuse toan S013 = 0); GV015 metrics 11
+      = governance-metrics.yaml:6-16; GV016 14 file machine = 13 YAML + schema.json
+      khop thuc te; tracker Completed/count 2 khop history (REV-20260808-012/014).
+      Downstream S014/S016/S018/S019/S020/SPEC-002 ref theo ID GV- deu ton tai (0 bad):
+      S016 validation-rules.yaml 6 rules (GV004/GV005/GV006/GV007/GV009/GV011:8/13/58/
+      63/68/73), S017 GV010 (governance.md:198), S018 GV011A, S019 GV017, S020
+      governance-registry.yaml, S014 registry-lifecycle.yaml:8/13 + registry-resolution.
+      yaml:12, SPEC-002 W002 requirements.yaml:255/W003 responsibilities.yaml:235/
+      W004 boundaries.yaml:156/W009 workflow-state-machine.yaml:58-65/W010 workflow-
+      lineage.yaml:8; COMPATIBILITY_FAILED khong collision — S014 da doi REGISTRY_
+      COMPATIBILITY_FAILED (registry.yaml:123 + registry-events.yaml:15), S013 giu
+      COMPATIBILITY_FAILED (governance-events.yaml:12 + md:313). Fix #01 (bo claim
+      'S011 reuse truc tiep' — REV-20260808-014 da fix) + #02 (decision model thong
+      nhat 8 gia tri, Policy dung nhat 'Ignore') VAN SACH — xac nhan lai bang may.
+      4 MINOR ke thua khong chan (#03 traceability governance.yaml:47-52 chua phan
+      anh GV014/GV014A, #04 version 1.0.0 governance.yaml:7 + md:14 vs 1.0 x 12
+      artifact, #05 governance-registry.yaml thieu schema.json vs GV016 14 file, #06
+      governance-decisions.yaml modes string list khong enum JSON) + 2 INFO (#07 tich
+      cuc may — S013 lan dau machine-validated toan bo 13/13 YAML, SACH CRITICAL +
+      jsonschema VALID, khac phan lon cac mục cung chu ky phai fix bang ADR; #08 S010
+      tracker items.history thieu entry REV-20260808-044 — da flag REV-20260808-047
+      #08, ghi nhan de Doctor dong bo, khong anh huong verdict S013). Verdict PASS
+      (0 CRITICAL, 0 MAJOR -> Decision Matrix PASS) -> GO recheck_required S013 (xoa
+      recheck_required: true — hoan tat TRG-002 cho S013). Regression KHONG doi 2
+      truc: lifecycle Review, review.status Completed, count 2, KHONG tang count.
+      Khong cascade moi (cascade_review [] — fix noi tai cac mục upstream khong doi
+      key GV-/ST-/RP-/POL-, downstream khong vo). SLA: draft_days 3 (created 2026-08-05
+      -> 2026-08-08) — TRG-006/007 khong ap (chua Approved/Frozen). id_note: max
+      history REV-20260808-047 — dung 048 de dam bao unique (grep REV-20260808-048
+      toan docs = 0 matches truoc khi ghi; precedent REV-20260808-044/045/046/047).
+    score:
+      coverage: 100
+      quality: 100
+      consistency: 94
+      governance: 94
+      overall: 97
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 0
+      MINOR: 4
+      INFO: 2
+    started: "2026-08-08T11:28:27"
+    finished: "2026-08-08T11:28:27"
+    cascade_review: []
+    report_path: docs/governance/reviews/REV-SPEC-001-S013-REGRESSION-20260808-112827.md
+  - review_id: REV-20260808-049
+    spec: SPEC-001
+    item: S014
+    name: Runtime Registry
+    type: regression
+    mode: cascade regression (TRG-002 - sau chuoi fix ADR-002..009 + S009 regression REV-20260808-040/043/045 + S010 regression REV-20260808-044) + lan dau machine-validate toan bo S014 bang PyYAML 6.0.3 + jsonschema 4.26.0
+    verdict: PASS
+    note: >
+      Regression S014 (Review, Completed, count 2, recheck_required: true tu cascade
+      S016 REV-20260808-025) sau chuoi fix ADR-002..009 + S009 regression (040/043/045)
+      + S010 regression (044). Lan dau chay PyYAML 6.0.3 thuc te tren toan bo 17/17
+      YAML artifact S014 (REV-20260808-017/020 chi jsonschema-validate canonical
+      registry.yaml, khong parse 16 file phu): parse PASS het - 0 ParserError, S014
+      SACH lop CRITICAL 'plain scalar chua : ' (khac S008#01 REV-20260808-034/S009#01
+      040/S010#01 044 da fix bang ADR); registry.yaml vs registry.schema.json jsonschema
+      Draft202012 strict VALID 0 errors (additionalProperties:false, required 23 keys)
+      + schema self-check VALID. Cascade upstream sau ADR-002..009 KHONG vo: S006/S007/
+      S008/S009/S010 ref theo ten file/section (registry.md:372-375), S012 Policy Check
+      + S013 Governance Check ref ton tai (registry.md:131/258 + registry-resolution.
+      yaml:11/12 + registry-lifecycle.yaml:8); fix quote YAML S009/S010 khong doi
+      section name S014 tham chieu. Consistency md<->yaml<->registry khop 100%: 21
+      sections RG001-RG015 + RG003A/RG005A/RG005B/RG008A/RG009A/RG010A khop frontmatter
+      (registry.md:7); events RG012 10/10 = registry.yaml = registry-events.yaml
+      (REGISTRY_COMPATIBILITY_FAILED dong nhat 3 noi registry.md:298/registry.yaml:123/
+      registry-events.yaml:15, S013 giu COMPATIBILITY_FAILED governance-events.yaml:12 -
+      het collision 1 bus 1 namespace); metrics RG013 13/13 = registry.yaml =
+      registry-metrics.yaml; resolution pipeline 8 buoc / priority 5 / failure 6 /
+      lifecycle 4 / governance 5 / constraints 7 / ownership 6 / entry_model 10 fields
+      / categories 9 / domains 6 deu khop 2-3 nguon; RG011 11 checks =
+      registry-validation.yaml = S019 doctor.md:70 'S014 Registry | 11 | RG011' =
+      doctor.yaml:41 'S014 Registry: 11 checks'; tracker Completed/count 2 khop history
+      (REV-20260808-017/020). Downstream S016/S017/S018/S019/S020/SPEC-002 ref theo ID
+      RG- deu ton tai (0 bad): S016 validation-rules.yaml:18/33 section RG011, S017
+      plugins.md:128 RG005 + plugin-registry.yaml/capability-registry.yaml, S018
+      evolution.md:208 ../S014/registry.md, S019 doctor-checks.yaml:13 ref RG011 +
+      doctor.md:206, S020 dashboard.md:72 registry-registry.yaml + dashboard-views.
+      yaml:10, SPEC-002 W001-vision.md:65/84 workflow-registry. Fix #01 (bo claim
+      'S011 reuse truc tiep' - grep reuse toan S014 = 0) + #02 (COMPATIBILITY_FAILED
+      doi thanh REGISTRY_COMPATIBILITY_FAILED) REV-20260808-020 VAN SACH - xac nhan
+      lai bang may. 2 MINOR ke thua khong chan (#03 RG008 md 'Graph day du' registry.
+      md:178-196 thieu canh Capability->Policy/Plugin, Contract->Schema vs
+      registry.yaml:94-99 relationships; #04 version 1.0.0 registry.yaml:6 + md:13 vs
+      1.0 o 16 artifact) + 1 MINOR moi (#05 machine-verify: union relationships
+      registry.yaml:97 Contract->Policy + dependency :104 Policy->Contract tao 2-cycle
+      Contract<->Policy trong union graph; dependency graph (RG008A) rieng van acyclic
+      + la graph mang rang buoc DAG (md:210) nen hien khong vi pham, nhung can lam ro
+      graph nao RG011 check Circular Reference (md:275) validate de tranh Doctor bao
+      cycle vs RG009A (md:230)/RG015 (md:353)) + 2 INFO (#06 frontmatter registry.md:13
+      + registry.yaml:7 status Draft vs lifecycle Review - tien le S009#11; #07 S011
+      event_type taxonomy thieu 'registry' - thuoc S011) + 2 INFO moi (#08 tich cuc may
+      - S014 lan dau machine-validated toan bo 17/17 YAML, SACH CRITICAL + jsonschema
+      VALID, cung S013 la 1 trong 2 muc sach ngay lan dau cua chuoi S011-S020; #09 S010
+      execution-lineage.yaml:10 CRITICAL REV-20260808-044 van chua fix - khong anh
+      huong S014 (S014 khong ref execution-lineage.yaml), ghi nhan de Doctor theo doi).
+      Verdict PASS (0 CRITICAL, 0 MAJOR -> Decision Matrix PASS) -> GO recheck_required
+      S014 (xoa recheck_required: true - hoan tat TRG-002 cho S014). Regression KHONG
+      doi 2 truc: lifecycle Review, review.status Completed, count 2, KHONG tang count.
+      Khong cascade moi (cascade_review [] - fix noi tai cac muc upstream khong doi key
+      RG-/REGISTRY_* ma S014 so huu hay tham chieu, downstream khong vo). SLA:
+      draft_days 3 (created 2026-08-05 -> 2026-08-08) - TRG-006/007 khong ap (chua
+      Approved/Frozen). id_note: max history/tracker REV-20260808-048 (session song
+      song chiem lien tuc 043-048) - dung 049 de dam bao unique (grep REV-20260808-049
+      toan docs = 0 matches truoc khi ghi; precedent REV-20260808-044/045/046/047/048).
+    score:
+      coverage: 100
+      quality: 100
+      consistency: 94
+      governance: 94
+      overall: 97
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 0
+      MINOR: 3
+      INFO: 4
+    started: "2026-08-08T11:35:33"
+    finished: "2026-08-08T11:35:33"
+    cascade_review: []
+    report_path: docs/governance/reviews/REV-SPEC-001-S014-REGRESSION-20260808-113533.md
+  - review_id: REV-20260808-050
+    spec: SPEC-001
+    item: S010
+    name: Runtime Execution Flow
+    type: regression
+    mode: regression lan 2 (TRG-002 — sau ADR-010 fix CRITICAL #01 REV-20260808-044)
+    verdict: PASS
+    note: >
+      Regression lan 2 tren S010 (Review, Completed, count 2, recheck_required: true
+      treo tu REV-20260808-044 FAIL) sau ADR-010 fix CRITICAL #01 (quote 'Simulation:'
+      execution-lineage.yaml:10 thanh string) + MINOR #02 version 1.0 -> 1.0.0 (:4).
+      Verify may (PyYAML 6.0.3 + jsonschema 4.26.0 + grep + git diff): #01 CRITICAL
+      FIXED — PyYAML safe_load 20/20 YAML artifact S010 parse PASS, 0 ParserError
+      (truoc 19/20, execution-lineage.yaml:10 ScannerError 'mapping values are not
+      allowed here'); Simulation la string 'Execution mo phong (simulated: true).',
+      lineage giu nguyen 6 muc (Root/Parent/Child/Replay/Simulation/Fork); version
+      '1.0.0' dong nhat canonical + lineage. jsonschema Draft202012 strict:
+      execution-flow.yaml vs execution-flow.schema.json VALID 0 errors + schema
+      self-check VALID. No-regression: fix chi sua cu phap YAML 2 dong (git diff
+      --stat = 1 file, 2 insertions 2 deletions), KHONG doi key EF-/ST-/TR- ->
+      cross-ref 2 chieu 0 broken: upstream ST-001/002/003/004/008/009/010/011/014
+      (9/9) + TR-015 ton tai S009, ENT-012 ton tai S008, POL-APPROVAL/COMP/PARALLEL/
+      RES/RETRY/TIMEOUT-001 (6/6) ton tai S012, P005/P006/P007/P010/P014/P015 ton tai
+      SPEC-000, RULE-012 ton tai S003; downstream EF006 (SPEC-002 W001-vision.md:64)
+      + EF024 (S020 dashboard.md:90) ton tai execution-flow.md EF006/EF024 — 0 bad.
+      Consistency md<->yaml: 26 sections EF001-EF026 khop, lineage 6 muc giu nguyen
+      noi dung (ADR-010). 3 MINOR ke thua khong chan (P2/P3): #02 version '1.0.0'
+      canonical + lineage vs '1.0' o 18 artifact phu (truoc 19 — ADR-010 da fix 1),
+      #03 frontmatter execution-flow.md:6 '25 sections EF001-EF025' vs thuc te 26,
+      #04 failure-flow.yaml:7 'Capability Failure: [Resolution Failed -> ST-009]'
+      label stage lan state. Verdict PASS (0 CRITICAL, 0 MAJOR -> Decision Matrix) ->
+      GO recheck_required S010 (xoa recheck_required: true — hoan tat TRG-002 cho
+      S010, sau REV-20260808-044 FAIL). Regression KHONG doi 2 truc: lifecycle Review,
+      review.status Completed, count 2, KHONG tang count. Khong cascade moi
+      (cascade_review [] — fix noi tai S010 khong doi key). SLA: draft_days 3
+      (created 2026-08-05 -> 2026-08-08) — TRG-006/007 khong ap (chua Approved/Frozen).
+      id_note: max history/tracker REV-20260808-049 (session song song chiem lien tuc
+      043-049, REV-20260808-043 duplicate race) — dung 050, grep REV-20260808-050
+      toan docs = 0 matches NGAY TRUOC khi ghi (nha lai ADR-010); precedent
+      REV-20260808-044/045/046/047/048/049.
+    score:
+      coverage: 100
+      quality: 97
+      consistency: 100
+      governance: 94
+      overall: 98
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 0
+      MINOR: 3
+      INFO: 3
+    started: "2026-08-08T16:10:21"
+    finished: "2026-08-08T16:10:21"
+    cascade_review: []
+    report_path: docs/governance/reviews/REV-SPEC-001-S010-REGRESSION-2-20260808-161021.md
+  - review_id: REV-20260808-051
+    spec: SPEC-001
+    item: S019
+    name: Runtime Doctor
+    type: regression
+    mode: "regression (TRG-002/TRG-001 — verify 5 findings REV-20260808-042 sau fix cua user: bo claim reuse S011, quote check_sources, bo DR017, version 1.0.0, P005->P010)"
+    verdict: PASS
+    note: >
+      Regression S019 (Review, Completed, count 2, recheck_required: true treo tu
+      REV-20260808-042) sau user fix 5 findings. Verify may (PyYAML 6.0.3 +
+      jsonschema 4.26.0 + grep): #01 MAJOR TRACEABILITY FIXED — grep 'reuse' |
+      'S011 reuse' | 'reuse truc tiep' | 'reuse trực tiếp' toan S019 = 0 matches;
+      doctor.md:136 + doctor-events.yaml:2 ghi dung 'S019 dinh nghia 5 event types
+      (DR010) — S011 cung cap event model (fields, correlation_id)' chinh xac
+      (S011 events.yaml:6 model.fields co correlation_id — verified); #02 MAJOR
+      SCHEMA FIXED — doctor.yaml:38-45 check_sources 7/7 items deu string (quoted
+      ':'), YAML 9/9 parse PASS, jsonschema Draft202012 strict VALID 0 errors
+      (truoc FAIL 7) + schema self-check VALID; #03 MINOR FIXED — grep DR017 toan
+      S019 = 0, doctor.md:194 dung 'doctor-validation.yaml 6 checks'
+      (doctor-validation.yaml co 6 checks); #04 MINOR FIXED — version '1.0.0'
+      dong nhat 9/9 YAML + doctor.md:12 (grep 'version: 1.0' = 0); #05 MINOR FIXED
+      — grep P005 toan S019 = 0, P010 dung 3 cho (doctor-report.yaml:7 +
+      doctor.md:126/195), P010 = Immutable Artifact (SPEC-000/03-principles.md:36).
+      Re-run tich cuc: 63 checks = 5+6+11+6+23+6+6 khop 3 nguon (DR004 md =
+      doctor.yaml check_sources = doctor-checks.yaml groups); events 5/5 khop 3
+      nguon (md DR010 = doctor.yaml = doctor-events.yaml); metrics 6/6 khop 2
+      nguon; scope 9 domains + 4 not_reads khop 2 nguon; pipeline 5 steps; report
+      8 fields; self-repair 6 rules (doctor-self-repair.yaml); validation 6 checks;
+      upstream refs 7/7 ton tai (OB011 S011 observability.md, GV017 S013
+      governance.md, RG011 S014 registry.md, RS014 S015 resources.md, CM004 S016
+      compliance.md, PL016 S017 plugins.md, EV014 S018 evolution.md). Con 2 INFO
+      ke thua khong chan (#06 frontmatter doctor.md:12 + doctor.yaml:8 status Draft
+      vs lifecycle Review — tien le S009#11; #07 S011 event_type taxonomy thieu
+      'doctor' — thuoc S011) + 1 INFO moi (#08 doctor.yaml:53-58 self_repair 5
+      items vs doctor-self-repair.yaml 6 rules — thieu 'Khong Repair vi pham
+      CRITICAL', khong chan, ghi nhan). Verdict PASS (0 CRITICAL, 0 MAJOR ->
+      Decision Matrix) -> GO recheck_required S019 (xoa recheck_required: true —
+      hoan tat TRG-002 cho S019). Regression KHONG doi 2 truc: lifecycle Review,
+      review.status Completed, count 2, KHONG tang count. Khong cascade moi
+      (cascade_review [] — fix noi tai S019, khong doi key DR-/DOCTOR_* ->
+      downstream S020 ref theo ten van dung, S020 da co recheck_required san tu
+      REV-20260808-041). SLA: draft_days = 0 (created 2026-08-08) — TRG-006/007
+      khong ap. id_note: max history/tracker REV-20260808-050 (S010 regression lan
+      2 session song song chiem 050 trong luc chay) — dung 051 de dam bao unique
+      (grep REV-20260808-051 toan docs = 0 matches truoc khi ghi; precedent
+      REV-20260808-044/045/046/047/048/049).
+    score:
+      coverage: 100
+      quality: 100
+      consistency: 97
+      governance: 94
+      overall: 98
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 0
+      MINOR: 0
+      INFO: 3
+    started: "2026-08-08T16:11:29"
+    finished: "2026-08-08T16:11:29"
+    cascade_review: []
+    report_path: docs/governance/reviews/REV-SPEC-001-S019-regression-20260808-161129.md
+  - review_id: REV-20260808-052
+    spec: SPEC-001
+    item: S020
+    type: rev1
+    mode: rev1
+    verdict: PASS
+    note: >
+      rev1 lan 2 tren S020 (Review/Rev1/count 1/recheck_required: true treo tu
+      REV-20260808-041) sau user fix 3 findings. Verify may (PyYAML 6.0.3 +
+      jsonschema 4.26.0 + grep + git diff): #01 MAJOR TRACEABILITY FIXED — grep
+      'reuse' toan S020 = 0 matches; dashboard.md:112/120 + dashboard-events.yaml:2
+      + dashboard-refresh.yaml:8 ghi dung 'S020 dinh nghia 3 event types (DB009) —
+      S011 cung cap event model (fields, correlation_id)' chinh xac (S011
+      events.yaml:6 model.fields co correlation_id — verified; theo tien le
+      S013-S019); grep DASHBOARD_ toan S011 = 0 matches — het claim reuse khong
+      kiem chung; #02 MAJOR SCHEMA FIXED — dashboard.yaml:49 refresh[0] la string
+      (quoted ':'), YAML 8/8 parse PASS, jsonschema Draft202012 strict VALID 0
+      errors (truoc FAIL 1 error refresh[0]) + schema self-check VALID; #03 MINOR
+      FIXED — version '1.0.0' dong nhat 8/8 YAML + dashboard.md:12 (het '1.0').
+      Re-run tich cuc: events 3/3 khop 3 nguon (md DB009 = dashboard.yaml events =
+      dashboard-events.yaml event_types); metrics 5/5 khop 2 nguon (DB010 =
+      dashboard.yaml = dashboard-metrics.yaml); scope 9 reads + 4 not_reads khop 2
+      nguon (DB003 = dashboard.yaml = dashboard-scope.yaml); views 7/7 khop 2 nguon
+      (DB005 = dashboard.yaml views = dashboard-views.yaml); read_model 6 fields
+      khop 2 nguon (DB007 = dashboard.yaml = dashboard-read-model.yaml); refresh 3
+      rules khop (dashboard.yaml = dashboard-refresh.yaml); validation 5 checks
+      khop (DB013 = dashboard-validation.yaml); DB014 machine-readable 9 file khop
+      thuc te (8 YAML + schema.json); 16 sections DB001-DB016 khop frontmatter
+      (dashboard.md:6); upstream refs deu ton tai (S011 OB010 observability.md:195
+      Dashboard Model, S013 governance-registry.yaml, S014 registry-registry.yaml,
+      S015 resources.md, S016 compliance-report.yaml + compliance-matrix.yaml, S019
+      doctor-report.yaml, S012 POL-SEC-001, S010 EF024 execution-flow.md:417, S009
+      terminal states, P005/P010 SPEC-000 03-principles.md:31/36). No-regression:
+      git diff chi sua comment/version/quote/wording (9 file, 13 insertions 13
+      deletions), KHONG doi key DASHBOARD_*/DB-* -> downstream 0 bad (S020 la leaf,
+      khong muc nao ref theo ID — cascade_review []). Con 2 INFO ke thua khong chan
+      (#04 frontmatter dashboard.md:12 + dashboard.yaml:8 status Draft vs lifecycle
+      Review — se tu khop sau review nay, tien le S009#11; #05 S011 event_type
+      taxonomy thieu 'dashboard' — thuoc S011 khong phai loi S020). Verdict PASS
+      (0 CRITICAL, 0 MAJOR -> Decision Matrix) -> tinh count: Rev1 -> Completed,
+      count 1 -> 2, lifecycle giu Review (Approved chi qua POLICY-001). GO
+      recheck_required S020 (xoa recheck_required: true — hoan tat 2-pass cho S020).
+      Cascade: S020 la leaf — cascade_review [] (khong muc nao ref S020 theo ID;
+      fix noi tai khong doi key DB-*/DASHBOARD_*). SLA: draft_days = 0 (created
+      2026-08-08) — TRG-006/007 khong ap. id_note: max history/tracker
+      REV-20260808-051 — dung 052, grep REV-20260808-052 toan docs = 0 matches NGAY
+      TRUOC khi ghi (session song song chiem lien tuc 043-051; precedent
+      REV-20260808-044/045/046/047/048/049/050/051).
+    score:
+      coverage: 100
+      quality: 100
+      consistency: 98
+      governance: 96
+      overall: 98
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 0
+      MINOR: 0
+      INFO: 2
+    started: "2026-08-08T16:18:32"
+    finished: "2026-08-08T16:18:32"
+    cascade_review: []
+    report_path: docs/governance/reviews/REV-SPEC-001-S020-20260808-161832.md

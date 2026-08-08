@@ -1,7 +1,7 @@
 # SPEC-001 S016 - Runtime Certification
 # Cert cho tung implementation (C#, Go, Rust, Python...).
 ---
-version: "1.0"
+version: "1.0.0"
 levels: [Not Certified, Certified, Revoked]
 requirements:
   - 100% validation rules Pass.

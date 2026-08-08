@@ -1,6 +1,6 @@
 # SPEC-001 S019 - Doctor Checks (tham chieu, khong dinh nghia lai)
 ---
-version: "1.0"
+version: "1.0.0"
 groups:
   - source: S011 Observability
     count: 5

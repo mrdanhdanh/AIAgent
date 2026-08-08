@@ -1,7 +1,7 @@
 # SPEC-001 S016 - Compliance Events
-# S011 reuse truc tiep.
+# S016 dinh nghia 5 event types (CM010) - S011 cung cap event model (fields, correlation_id).
 ---
-version: "1.0"
+version: "1.0.0"
 event_types:
   - COMPLIANCE_PASSED
   - COMPLIANCE_FAILED

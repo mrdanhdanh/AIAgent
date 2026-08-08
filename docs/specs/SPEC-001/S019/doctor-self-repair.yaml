@@ -1,7 +1,7 @@
 # SPEC-001 S019 - Doctor Self-Repair
 # Repair an toan, co gioi han.
 ---
-version: "1.0"
+version: "1.0.0"
 rules:
   - Chi Low impact.
   - Qua Approval (S013) hoac auto cho quen thuoc.

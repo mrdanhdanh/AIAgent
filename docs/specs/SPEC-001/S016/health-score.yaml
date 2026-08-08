@@ -2,7 +2,7 @@
 # Health duoc xac dinh tu Observability Data (S011 OB009).
 # Khong noi cong thuc.
 ---
-version: "1.0"
+version: "1.0.0"
 levels: [Healthy, Degraded, Unhealthy]
 sources:
   - Execution (S009/S010)

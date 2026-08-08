@@ -136,7 +136,7 @@ impact: [Low, Medium, High, Breaking]
 - EVOLUTION_APPLIED
 - EVOLUTION_ROLLED_BACK
 
-> S011 reuse trực tiếp.
+> S018 định nghĩa 5 event types (EV011) — S011 cung cấp event model (fields, correlation_id).
 
 ## EV012 — Evolution Metrics
 

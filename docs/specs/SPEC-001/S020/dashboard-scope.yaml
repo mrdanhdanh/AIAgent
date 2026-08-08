@@ -1,7 +1,7 @@
 # SPEC-001 S020 - Dashboard Scope
 # Dong bo S011 OB010 (Dashboard Model).
 ---
-version: "1.0"
+version: "1.0.0"
 reads:
   - Events (S011)
   - Metrics (S011)

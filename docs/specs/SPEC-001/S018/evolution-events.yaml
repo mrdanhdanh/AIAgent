@@ -1,5 +1,5 @@
 # SPEC-001 S018 - Evolution Events
-# S011 reuse truc tiep.
+# S018 dinh nghia 5 event types rieng (EV011) — S011 cung cap event model (fields, correlation_id).
 ---
 version: "1.0"
 event_types:

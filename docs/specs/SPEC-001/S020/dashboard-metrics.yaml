@@ -1,6 +1,6 @@
 # SPEC-001 S020 - Dashboard Metrics
 ---
-version: "1.0"
+version: "1.0.0"
 metrics:
   views_count: 0
   widgets_count: 0

@@ -1,8 +1,8 @@
 # SPEC-001 S019 - Doctor Report
 ---
-version: "1.0"
+version: "1.0.0"
 report:
   fields: [id, timestamp, runtime_version, checks, score, status, repair, evidence]
 rules:
-  - Report immutable (P005).
+  - Report immutable (P010).
   - Moi report sinh DOCTOR_REPORTED (S011).

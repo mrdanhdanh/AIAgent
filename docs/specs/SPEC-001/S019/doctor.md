@@ -123,7 +123,7 @@ report:
   fields: [id, timestamp, runtime_version, checks, score, status, repair, evidence]
 ```
 
-**Rules:** Report immutable (P005); mỗi report sinh DOCTOR_REPORTED (S011).
+**Rules:** Report immutable (P010); mỗi report sinh DOCTOR_REPORTED (S011).
 
 ## DR010 — Doctor Events
 
@@ -133,7 +133,7 @@ report:
 - DOCTOR_REPORTED
 - DOCTOR_REPAIRED
 
-> S011 reuse trực tiếp.
+> S019 định nghĩa 5 event types (DR010) — S011 cung cấp event model (fields, correlation_id).
 
 ## DR011 — Doctor Metrics
 
@@ -191,8 +191,8 @@ SPEC source (S007..S018)
 - Health Score xác định được từ Observability Data.
 - Self-repair chỉ Low impact, có rollback, có Audit.
 - Doctor không bypass Governance (S013).
-- Doctor xác minh chính mình (DR017 checks).
-- Report immutable (P005).
+- Doctor xác minh chính mình (doctor-validation.yaml 6 checks).
+- Report immutable (P010).
 
 ## Tham chiếu
 

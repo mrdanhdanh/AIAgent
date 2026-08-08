@@ -1,6 +1,6 @@
 # SPEC-001 S009 — Transition Types
 ---
-version: "1.0"
+version: "1.0.0"
 types:
   Forward: Transition theo lifecycle thuận.
   Backward: Transition ngược lifecycle (không hợp lệ trừ Replay).

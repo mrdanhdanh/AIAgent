@@ -1,7 +1,7 @@
 # SPEC-001 S009 — State Events
 # Moi transition sinh Event (P005).
 ---
-version: "1.0"
+version: "1.0.0"
 events:
   - EXECUTION_CREATED
   - EXECUTION_VALIDATING

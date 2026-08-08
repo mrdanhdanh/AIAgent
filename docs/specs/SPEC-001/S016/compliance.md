@@ -10,7 +10,7 @@ agent: general
 
 # S016 — Runtime Compliance
 
-> **SPEC-001**: Runtime Kernel · **Version**: 1.0.0 · **Trạng thái**: Draft
+> **SPEC-001**: Runtime Kernel · **Version**: 1.0.0 · **Trạng thái**: ✅ Review (2026-08-08)
 > **Vai trò**: Chặn cuối chuỗi **Define → Enforce → Verify** — Doctor xác minh Runtime đã thực thi đúng các quy tắc hay chưa, không định nghĩa lại quy tắc.
 
 ## Mục tiêu
@@ -87,7 +87,7 @@ Doctor xác minh:
 |-------|----------|
 | Constitution (SPEC-000) | Constitution Violation |
 | Boundary (S004) | Boundary Violation |
-| Contract (S007) | Contract Failure |
+| Contract (S007) | Invalid Contract |
 | Policy (S012) | Invalid Policy |
 | Governance (S013) | Missing Enforcement |
 | Registry (S014) | Broken Reference |
@@ -156,7 +156,7 @@ Generate Report (compliance-report)
 - CERTIFICATION_GRANTED
 - CERTIFICATION_REVOKED
 
-> S011 reuse trực tiếp.
+> S016 định nghĩa 5 event types (CM010) — S011 cung cấp event model (fields, correlation_id).
 
 ## CM011 — Compliance Metrics
 
@@ -180,7 +180,7 @@ report:
   fields: [id, timestamp, runtime_version, matrix, score, status, certification, evidence]
 ```
 
-**Rules:** Report immutable (P005); mỗi report sinh COMPLIANCE_REPORTED; evidence trỏ đến machine-readable cụ thể.
+**Rules:** Report immutable (P010); mỗi report sinh COMPLIANCE_REPORTED; evidence trỏ đến machine-readable cụ thể.
 
 ## CM014 — Machine-readable
 

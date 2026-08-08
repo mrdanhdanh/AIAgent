@@ -120,7 +120,7 @@ events:
   - ENTRY_DEPRECATED
   - ENTRY_RETIRED
   - RESOLUTION_FAILED
-  - COMPATIBILITY_FAILED
+  - REGISTRY_COMPATIBILITY_FAILED
 metrics:
   registry_entries: 0
   lookup_count: 0

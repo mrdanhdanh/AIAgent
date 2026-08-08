@@ -36,13 +36,13 @@ scope:
     - Agent Internal State
     - Plugin Internal State
 check_sources:
-  - S011 Observability: 5 checks
-  - S013 Governance: 6 checks
-  - S014 Registry: 11 checks
-  - S015 Resources: 6 checks
-  - S016 Compliance: 23 rules
-  - S017 Plugins: 6 checks
-  - S018 Evolution: 6 checks
+  - "S011 Observability: 5 checks"
+  - "S013 Governance: 6 checks"
+  - "S014 Registry: 11 checks"
+  - "S015 Resources: 6 checks"
+  - "S016 Compliance: 23 rules"
+  - "S017 Plugins: 6 checks"
+  - "S018 Evolution: 6 checks"
 health_score: [Healthy, Degraded, Unhealthy]
 pipeline:
   - Collect (machine-readable)

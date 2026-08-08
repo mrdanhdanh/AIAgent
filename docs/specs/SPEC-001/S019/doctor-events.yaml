@@ -1,7 +1,7 @@
 # SPEC-001 S019 - Doctor Events
-# S011 reuse truc tiep.
+# S019 dinh nghia 5 event types rieng (DR010) — S011 cung cap event model (fields, correlation_id).
 ---
-version: "1.0"
+version: "1.0.0"
 event_types:
   - DOCTOR_RUN
   - DOCTOR_PASSED

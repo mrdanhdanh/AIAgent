@@ -295,9 +295,9 @@ Sinh Event (10 loại):
 - ENTRY_DEPRECATED
 - ENTRY_RETIRED
 - RESOLUTION_FAILED
-- COMPATIBILITY_FAILED
+- REGISTRY_COMPATIBILITY_FAILED
 
-> S011 reuse trực tiếp.
+> S014 định nghĩa 10 event types (RG012) — S011 cung cấp event model (fields, correlation_id).
 
 ## RG013 — Registry Metrics
 

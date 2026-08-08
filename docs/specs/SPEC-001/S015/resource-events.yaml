@@ -1,5 +1,5 @@
 # SPEC-001 S015 - Resource Events
-# S011 reuse truc tiep.
+# S015 dinh nghia 7 event types rieng (RS011) — S011 cung cap event model (fields, correlation_id).
 ---
 version: "1.0"
 event_types:

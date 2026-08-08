@@ -125,7 +125,7 @@ Track (S011: Event + Metric + Trace)
 
 **Rules:** Không Double Allocation; Release bắt buộc trên Terminal State (S009); Queue khi không có sẵn (S012 POL-RES-001 action).
 
-> Tham chiếu S010 EF020 (Resource Allocation).
+> Tham chiếu S010 EF004 (Resource Allocation).
 
 ## RS007 — Resource Access
 
@@ -174,7 +174,7 @@ Không được:
 - RESOURCE_QUEUED
 - RESOURCE_DEPLETED
 
-> S011 reuse trực tiếp.
+> S015 định nghĩa 7 event types (RS011) — S011 cung cấp event model (fields, correlation_id).
 
 ## RS012 — Resource Metrics
 
@@ -254,7 +254,7 @@ Artifact
 - `resource-events.yaml` · `resource-metrics.yaml` · `resource-validation.yaml`
 - `resources.schema.json`
 - S009: `../S009/state-machine.yaml`
-- S010 EF020: `../S010/execution-flow.md`
+- S010: `../S010/execution-flow.md`
 - S011: `../S011/observability.md`
 - S012: `../S012/policies.md`
 - S013: `../S013/governance.md`

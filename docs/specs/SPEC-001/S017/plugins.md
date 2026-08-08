@@ -170,7 +170,7 @@ Chỉ Activate khi:
 - PLUGIN_FAILED
 - PLUGIN_UNINSTALLED
 
-> S011 reuse trực tiếp.
+> S017 định nghĩa 6 event types (PL014) — S011 cung cấp event model (fields, correlation_id).
 
 ## PL015 — Plugin Metrics
 

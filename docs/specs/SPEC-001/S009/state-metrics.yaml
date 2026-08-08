@@ -1,6 +1,6 @@
 # SPEC-001 S009 — State Metrics (Dashboard)
 ---
-version: "1.0"
+version: "1.0.0"
 metrics:
   state_distribution: {}
   average_duration: 0

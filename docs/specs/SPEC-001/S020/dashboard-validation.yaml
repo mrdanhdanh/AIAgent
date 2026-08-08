@@ -1,7 +1,7 @@
 # SPEC-001 S020 - Dashboard Validation
 # Doctor kiem tra Dashboard.
 ---
-version: "1.0"
+version: "1.0.0"
 checks:
   - Missing Source
   - Stale Data

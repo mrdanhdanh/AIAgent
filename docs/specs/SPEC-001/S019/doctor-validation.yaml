@@ -1,7 +1,7 @@
 # SPEC-001 S019 - Doctor Validation
 # Kiem tra chinh Doctor.
 ---
-version: "1.0"
+version: "1.0.0"
 checks:
   - Missing Evidence
   - Invalid Report

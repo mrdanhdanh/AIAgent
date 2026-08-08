@@ -1,5 +1,5 @@
 # SPEC-001 S017 - Plugin Events
-# S011 reuse truc tiep.
+# S017 dinh nghia 6 event types rieng (PL014) — S011 cung cap event model (fields, correlation_id).
 ---
 version: "1.0"
 event_types:

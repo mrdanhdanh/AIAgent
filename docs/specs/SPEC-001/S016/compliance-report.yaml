@@ -1,10 +1,10 @@
 # SPEC-001 S016 - Compliance Report
 # Dashboard doc truc tiep.
 ---
-version: "1.0"
+version: "1.0.0"
 report:
   fields: [id, timestamp, runtime_version, matrix, score, status, certification, evidence]
 rules:
-  - Report immutable (P005).
+  - Report immutable (P010).
   - Moi report sinh COMPLIANCE_REPORTED.
   - Evidence tro den machine-readable cu the.

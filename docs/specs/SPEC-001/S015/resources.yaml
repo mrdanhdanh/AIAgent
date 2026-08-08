@@ -13,12 +13,12 @@ philosophy:
   - Moi Allocation di qua Policy (S012) va Governance (S013).
   - Khong Resource nao bi Leak.
 principles:
-  - Allocated: moi tai nguyen phai cap phat tuong minh.
-  - Released: moi tai nguyen phai giai phong.
-  - Owned: moi tai nguyen co dung mot owner.
-  - Bounded: gioi han quota.
-  - Observable: moi tai nguyen quan sat duoc (S011).
-  - Traceable: moi allocation truy vet duoc.
+  - "Allocated: moi tai nguyen phai cap phat tuong minh."
+  - "Released: moi tai nguyen phai giai phong."
+  - "Owned: moi tai nguyen co dung mot owner."
+  - "Bounded: gioi han quota."
+  - "Observable: moi tai nguyen quan sat duoc (S011)."
+  - "Traceable: moi allocation truy vet duoc."
 categories:
   - Capability
   - Execution
@@ -35,19 +35,19 @@ resource_model:
 lifecycle: [Draft, Available, Allocated, In Use, Released, Depleted]
 allocation:
   - Request
-  - Policy Check (S012 POL-RES-001: guard resource available)
+  - "Policy Check (S012 POL-RES-001: guard resource available)"
   - Allocate
   - Bind to Execution
   - Track (S011)
 access:
   - Request
-  - Policy Check (S012 POL-RESACC-001: permission + isolation)
+  - "Policy Check (S012 POL-RESACC-001: permission + isolation)"
   - Grant / Deny
 ownership:
-  - Capability: Runtime
-  - Execution: Execution Owner
-  - Plugin: Plugin Owner
-  - Quota: Runtime
+  Capability: Runtime
+  Execution: Execution Owner
+  Plugin: Plugin Owner
+  Quota: Runtime
 constraints:
   - Khong Double Allocation.
   - Khong Resource Leak.

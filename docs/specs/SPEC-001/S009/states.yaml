@@ -1,6 +1,6 @@
 # SPEC-001 S009 — Runtime States v2 (catalog + metadata)
 ---
-version: "1.0"
+version: "1.0.0"
 state_template: [id, name, category, type, owner, enter_conditions, exit_conditions, allowed_transitions, events, terminal, retryable, metadata]
 states:
   ST-001:

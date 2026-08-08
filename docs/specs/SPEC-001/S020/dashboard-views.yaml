@@ -1,6 +1,6 @@
 # SPEC-001 S020 - Dashboard Views
 ---
-version: "1.0"
+version: "1.0.0"
 views:
   - name: Execution View
     source: S009/S010

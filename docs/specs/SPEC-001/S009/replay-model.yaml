@@ -1,9 +1,10 @@
 # SPEC-001 S009 — Replay Model
 ---
-version: "1.0"
+version: "1.0.0"
 model:
-  Replay không phải Resume.
-  Replay tạo Execution mới.
-  Lineage giữ nguyên.
-  States: Completed/Failed → Replayed (terminal)
+  rules:
+    - Replay không phải Resume.
+    - Replay tạo Execution mới.
+    - Lineage giữ nguyên.
+    - "States: Completed/Failed → Replayed (terminal)"
   note: Phục vụ Simulation/Doctor/Evolution.

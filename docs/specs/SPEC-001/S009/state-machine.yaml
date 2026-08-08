@@ -53,28 +53,28 @@ composite_states:
   - Không được trộn lẫn các mức state.
 terminal_rules:
   - Terminal không có transition ra.
-  - Ngoại lệ duy nhất: Replay (tạo Execution mới, không quay lại Execution cũ).
+  - "Ngoại lệ duy nhất: Replay (tạo Execution mới, không quay lại Execution cũ)."
 triggers: [Runtime, Policy, User, Approval, Timeout, Event, Scheduler]
 transitions:
-  - from: ST-001; to: ST-002; event: EXECUTION_VALIDATING; guard: Workflow + Contract hợp lệ
-  - from: ST-002; to: ST-003; event: EXECUTION_PREPARED; guard: Validation pass
-  - from: ST-002; to: ST-009; event: EXECUTION_VALIDATION_FAILED; guard: Validation fail
-  - from: ST-003; to: ST-004; event: EXECUTION_STARTED; guard: Simulation pass (P013)
-  - from: ST-004; to: ST-005; event: EXECUTION_WAITING; guard: Cần approval
-  - from: ST-005; to: ST-004; event: EXECUTION_APPROVED; guard: Approval được duyệt
-  - from: ST-004; to: ST-006; event: EXECUTION_SUSPENDED; guard: Pause theo yêu cầu
-  - from: ST-006; to: ST-004; event: EXECUTION_RESUMED; guard: Resume hợp lệ
-  - from: ST-004; to: ST-007; event: EXECUTION_CANCELLING; guard: Cancel request hợp lệ
-  - from: ST-007; to: ST-010; event: EXECUTION_CANCELLED; guard: Hủy thành công
-  - from: ST-004; to: ST-008; event: EXECUTION_COMPLETED; guard: Mọi Task/Phase xong
-  - from: ST-004; to: ST-009; event: EXECUTION_FAILED; guard: Lỗi không retry được
-  - from: ST-004; to: ST-011; event: EXECUTION_TIMED_OUT; guard: Timeout policy
-  - from: ST-004; to: ST-014; event: EXECUTION_ABORTED; guard: System abort
-  - from: ST-009; to: ST-013; event: EXECUTION_RETRYING; guard: retry_count < policy.max_retry
-  - from: ST-013; to: ST-004; event: EXECUTION_RETRIED; guard: Retry attempt
-  - from: ST-013; to: ST-009; event: EXECUTION_FAILED; guard: Hết retry
-  - from: ST-008; to: ST-012; event: EXECUTION_REPLAYED; guard: Replay được tạo
-  - from: ST-009; to: ST-012; event: EXECUTION_REPLAYED; guard: Replay được tạo
+  - { from: ST-001, to: ST-002, event: EXECUTION_VALIDATING, guard: "Workflow + Contract hợp lệ" }
+  - { from: ST-002, to: ST-003, event: EXECUTION_PREPARED, guard: Validation pass }
+  - { from: ST-002, to: ST-009, event: EXECUTION_VALIDATION_FAILED, guard: Validation fail }
+  - { from: ST-003, to: ST-004, event: EXECUTION_STARTED, guard: "Simulation pass (P013)" }
+  - { from: ST-004, to: ST-005, event: EXECUTION_WAITING, guard: Cần approval }
+  - { from: ST-005, to: ST-004, event: EXECUTION_APPROVED, guard: "Approval được duyệt" }
+  - { from: ST-004, to: ST-006, event: EXECUTION_SUSPENDED, guard: "Pause theo yêu cầu" }
+  - { from: ST-006, to: ST-004, event: EXECUTION_RESUMED, guard: "Resume hợp lệ" }
+  - { from: ST-004, to: ST-007, event: EXECUTION_CANCELLING, guard: "Cancel request hợp lệ" }
+  - { from: ST-007, to: ST-010, event: EXECUTION_CANCELLED, guard: "Hủy thành công" }
+  - { from: ST-004, to: ST-008, event: EXECUTION_COMPLETED, guard: "Mọi Task/Phase xong" }
+  - { from: ST-004, to: ST-009, event: EXECUTION_FAILED, guard: "Lỗi không retry được" }
+  - { from: ST-004, to: ST-011, event: EXECUTION_TIMED_OUT, guard: "Timeout policy" }
+  - { from: ST-004, to: ST-014, event: EXECUTION_ABORTED, guard: "System abort" }
+  - { from: ST-009, to: ST-013, event: EXECUTION_RETRYING, guard: "retry_count < policy.max_retry" }
+  - { from: ST-013, to: ST-004, event: EXECUTION_RETRIED, guard: "Retry attempt" }
+  - { from: ST-013, to: ST-009, event: EXECUTION_FAILED, guard: "Hết retry" }
+  - { from: ST-008, to: ST-012, event: EXECUTION_REPLAYED, guard: "Replay được tạo" }
+  - { from: ST-009, to: ST-012, event: EXECUTION_REPLAYED, guard: "Replay được tạo" }
 invalid_transitions:
   - "Completed -> Running: khong hop le"
   - "Cancelled -> Retrying: khong hop le"

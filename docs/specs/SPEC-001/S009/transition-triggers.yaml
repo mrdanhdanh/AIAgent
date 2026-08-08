@@ -1,6 +1,6 @@
 # SPEC-001 S009 — Transition Triggers
 ---
-version: "1.0"
+version: "1.0.0"
 triggers:
   Runtime: [TR-001, TR-002, TR-003, TR-004, TR-010, TR-011, TR-012, TR-014]
   Policy: [TR-015, TR-017]

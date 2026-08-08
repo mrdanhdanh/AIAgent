@@ -44,9 +44,9 @@ proposal_model:
   fields: [id, source, evidence, change, impact, status, approval]
 proposal_status: [Draft, Submitted, Approved, Rejected, Applied, Rolled Back]
 approval:
-  - Low impact: auto-approve (Strict rules).
-  - Medium impact: Agent approval.
-  - High impact / Breaking: Human approval bat buoc.
+  - "Low impact: auto-approve (Strict rules)."
+  - "Medium impact: Agent approval."
+  - "High impact / Breaking: Human approval bat buoc."
   - Quyet dinh ghi Audit (S011).
 safety:
   - Simulation truoc (S013 GV011A mode).

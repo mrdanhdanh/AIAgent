@@ -1,7 +1,7 @@
 # SPEC-001 S009 — Transitions v2 (first-class entity)
 # Transition: id/from/to/trigger/preconditions/postconditions/generated_events/policy/timeout
 ---
-version: "1.0"
+version: "1.0.0"
 transitions:
   TR-001:
     from: ST-001
@@ -11,8 +11,8 @@ transitions:
     preconditions: [Execution vừa tạo]
     postconditions: [Validation bắt đầu]
     generated_events: [EXECUTION_VALIDATING]
-    policy: -
-    timeout: -
+    policy: "-"
+    timeout: "-"
   TR-002:
     from: ST-002
     to: ST-003
@@ -21,8 +21,8 @@ transitions:
     preconditions: [Validation thành công]
     postconditions: [Context được cấp]
     generated_events: [EXECUTION_PREPARED]
-    policy: -
-    timeout: -
+    policy: "-"
+    timeout: "-"
   TR-003:
     from: ST-002
     to: ST-009
@@ -31,8 +31,8 @@ transitions:
     preconditions: [Workflow không hợp lệ]
     postconditions: [Failure Artifact]
     generated_events: [EXECUTION_VALIDATION_FAILED]
-    policy: -
-    timeout: -
+    policy: "-"
+    timeout: "-"
   TR-004:
     from: ST-003
     to: ST-004
@@ -41,8 +41,8 @@ transitions:
     preconditions: [Execution sẵn sàng]
     postconditions: [Running bắt đầu]
     generated_events: [EXECUTION_STARTED]
-    policy: -
-    timeout: -
+    policy: "-"
+    timeout: "-"
   TR-005:
     from: ST-004
     to: ST-005
@@ -62,7 +62,7 @@ transitions:
     postconditions: [Tiếp tục chạy]
     generated_events: [EXECUTION_APPROVED]
     policy: Approval Policy
-    timeout: -
+    timeout: "-"
   TR-007:
     from: ST-004
     to: ST-006
@@ -71,8 +71,8 @@ transitions:
     preconditions: [Execution đang chạy]
     postconditions: [Tạm dừng]
     generated_events: [EXECUTION_SUSPENDED]
-    policy: -
-    timeout: -
+    policy: "-"
+    timeout: "-"
   TR-008:
     from: ST-006
     to: ST-004
@@ -81,8 +81,8 @@ transitions:
     preconditions: [Tài nguyên sẵn sàng]
     postconditions: [Tiếp tục chạy]
     generated_events: [EXECUTION_RESUMED]
-    policy: -
-    timeout: -
+    policy: "-"
+    timeout: "-"
   TR-009:
     from: ST-004
     to: ST-007
@@ -101,8 +101,8 @@ transitions:
     preconditions: [Hủy hoàn tất]
     postconditions: [Cancelled Terminal]
     generated_events: [EXECUTION_CANCELLED]
-    policy: -
-    timeout: -
+    policy: "-"
+    timeout: "-"
   TR-011:
     from: ST-004
     to: ST-008
@@ -111,8 +111,8 @@ transitions:
     preconditions: [Tất cả Task hoàn thành]
     postconditions: [Result được publish]
     generated_events: [EXECUTION_COMPLETED]
-    policy: -
-    timeout: -
+    policy: "-"
+    timeout: "-"
   TR-012:
     from: ST-004
     to: ST-009
@@ -122,7 +122,7 @@ transitions:
     postconditions: [Failure Artifact]
     generated_events: [EXECUTION_FAILED]
     policy: Retry Policy
-    timeout: -
+    timeout: "-"
   TR-013:
     from: ST-004
     to: ST-011
@@ -142,7 +142,7 @@ transitions:
     postconditions: [Abort Artifact]
     generated_events: [EXECUTION_ABORTED]
     policy: Fail Safe Policy
-    timeout: -
+    timeout: "-"
   TR-015:
     from: ST-009
     to: ST-013
@@ -162,7 +162,7 @@ transitions:
     postconditions: [Chạy lại]
     generated_events: [EXECUTION_RETRIED]
     policy: Retry Policy
-    timeout: -
+    timeout: "-"
   TR-017:
     from: ST-013
     to: ST-009
@@ -172,7 +172,7 @@ transitions:
     postconditions: [Failed Terminal]
     generated_events: [EXECUTION_FAILED]
     policy: Retry Policy
-    timeout: -
+    timeout: "-"
   TR-018:
     from: ST-008
     to: ST-012
@@ -182,7 +182,7 @@ transitions:
     postconditions: [Lineage giữ nguyên]
     generated_events: [EXECUTION_REPLAYED]
     policy: Replay Policy
-    timeout: -
+    timeout: "-"
   TR-019:
     from: ST-009
     to: ST-012
@@ -192,4 +192,4 @@ transitions:
     postconditions: [Lineage giữ nguyên]
     generated_events: [EXECUTION_REPLAYED]
     policy: Replay Policy
-    timeout: -
+    timeout: "-"
