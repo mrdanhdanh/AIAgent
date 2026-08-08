@@ -1,0 +1,11 @@
+# SPEC-002 W013 - Workflow Governance Stack
+# Kien truc 6 tang (tham chieu S013 GV003A).
+---
+version: "1.0"
+stack:
+  - Constitution
+  - Boundary (W004)
+  - Contract (W007)
+  - Policy Binding (W012)
+  - Permission
+  - Execution Decision

@@ -597,6 +597,54 @@ if (Test-Path $plmd) {
   }
 }
 
+# ---------- W13-001: W013 governance ----------
+$w013 = Join-Path $spec2 'W013'
+foreach ($f in @('governance.md','workflow-governance.yaml','workflow-governance.schema.json','workflow-governance-stack.yaml','workflow-binding-enforcement.yaml','workflow-governance-matrix.yaml','workflow-governance-events.yaml','workflow-governance-decisions.yaml','workflow-governance-lifecycle.yaml','workflow-governance-metrics.yaml','workflow-governance-registry.yaml')) {
+  if (-not (Test-Path (Join-Path $w013 $f))) { $errors += "W13-001: missing W013/$f" }
+}
+
+# ---------- W13-002: workflow-governance.yaml ----------
+$gv13 = Join-Path $w013 'workflow-governance.yaml'
+if (Test-Path $gv13) {
+  $gv = Get-Content -LiteralPath $gv13 -Raw -Encoding utf8
+  foreach ($sec in @('philosophy','principles','scope','version_governance','compatibility_governance','validation_pipeline','decisions','traceability')) {
+    if ($gv -notmatch "(?m)^${sec}:") { $errors += "W13-002: thieu '$sec'" }
+  }
+  foreach ($e in @('Constitution (SPEC-000)','Policy Binding (W012)','Contract (W007)','Boundary (W004)','Permission (S013)','Version Compatibility')) {
+    if ($gv -notmatch [regex]::Escape($e)) { $errors += "W13-002: thieu enforces '$e'" }
+  }
+}
+
+# ---------- W13-003: validation_pipeline 5 buoc ----------
+if (Test-Path $gv13) {
+  $gv3 = Get-Content -LiteralPath $gv13 -Raw -Encoding utf8
+  foreach ($step in @('Constitution','Boundary (W004)','Contract (W007)','Policy Binding (W012)','Execution (Runtime S010)')) {
+    if ($gv3 -notmatch [regex]::Escape($step)) { $errors += "W13-003: pipeline thieu $step" }
+  }
+}
+
+# ---------- W13-004: binding enforcement ----------
+$be13 = Join-Path $w013 'workflow-binding-enforcement.yaml'
+if (Test-Path $be13) {
+  $be = Get-Content -LiteralPath $be13 -Raw -Encoding utf8
+  if ($be -notmatch 'Resolve binding') { $errors += "W13-004: thieu resolve binding" }
+  if ($be -notmatch 'Apply') { $errors += "W13-004: thieu apply" }
+  if ($be -notmatch 'Audit') { $errors += "W13-004: thieu audit" }
+}
+
+# ---------- W13-005: governance.md ----------
+$gvmd = Join-Path $w013 'governance.md'
+if (Test-Path $gvmd) {
+  $gvm = Get-Content -LiteralPath $gvmd -Raw -Encoding utf8
+  for ($i = 1; $i -le 18; $i++) {
+    $sec = "WG{0:D3}" -f $i
+    if ($gvm -notmatch [regex]::Escape($sec)) { $errors += "W13-005: thieu section $sec" }
+  }
+  foreach ($sec in @('WG003A','WG005A','WG011A','WG012A','WG014A')) {
+    if ($gvm -notmatch [regex]::Escape($sec)) { $errors += "W13-005: thieu section $sec" }
+  }
+}
+
 # ---------- W1-005: SPEC.yaml ----------
 $specFile = Join-Path $spec2 'SPEC.yaml'
 if (Test-Path $specFile) {
