@@ -1,0 +1,9 @@
+# SPEC-003 C011 - Capability Correlation (S011 reuse)
+---
+version: "1.0"
+model:
+  fields: [capability_id, execution_id, correlation_id, lineage_id, parent_id]
+rules:
+  - Sinh khi Capability Created.
+  - Gan vao: Event, Metrics, Trace, Audit.
+  - Khong doi trong vong doi (P009).

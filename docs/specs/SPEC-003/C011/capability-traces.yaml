@@ -1,0 +1,14 @@
+# SPEC-003 C011 - Capability Trace (S011 reuse)
+---
+version: "1.0"
+scope:
+  - Capability
+  - Resolution (EF007)
+  - Parent (workflow dung capability)
+  - Child (capability goi capability)
+  - Correlation
+  - Causation
+  - Lineage
+rules:
+  - Trace chi append (S011).
+  - Correlation khac Causation (S011).

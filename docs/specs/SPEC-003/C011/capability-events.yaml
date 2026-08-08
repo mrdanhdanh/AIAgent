@@ -1,0 +1,17 @@
+# SPEC-003 C011 - Capability Events (S011 reuse)
+---
+version: "1.0"
+definition_events:
+  - CAPABILITY_VALIDATING
+  - CAPABILITY_PUBLISHED
+  - CAPABILITY_REJECTED
+  - CAPABILITY_DEPRECATED
+  - CAPABILITY_REACTIVATED
+  - CAPABILITY_RETIRED
+run_events:
+  note: Capability Run dung EXECUTION_* cua S011 (Runtime).
+rules:
+  - Event immutable (P005).
+  - Event chi append.
+  - Moi transition sinh Event (C009).
+  - Event co correlation_id.

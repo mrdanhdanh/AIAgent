@@ -1,0 +1,71 @@
+# SPEC-003 C011 - Capability Observability
+# Capability dung Observability cua Runtime (S011) - chi them Definition-level.
+---
+id: SPEC-003-C011
+name: Capability Observability
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Capability Team
+philosophy:
+  - Moi hoat dong deu sinh du lieu quan sat (P014).
+  - Khong do duoc thi khong kiem soat duoc.
+  - Capability dung S011 (Runtime) - khong dinh nghia lai.
+principles:
+  - Event Driven (S011)
+  - Traceable (S011)
+  - Immutable (S011)
+  - Correlation First (S011)
+  - Metadata First (S011)
+  - Append Only (S011)
+domains:
+  - Events
+  - Metrics
+  - Trace
+  - Audit
+  - Health
+boundary:
+  observes:
+    - Capability Definition
+    - Capability Mapping
+    - Capability Binding
+    - Capability Event
+    - Capability Result
+  not_observes:
+    - Business Data
+    - User Data
+    - Knowledge Content
+    - Agent Internal State
+    - Plugin Internal State
+correlation_model:
+  fields: [capability_id, execution_id, correlation_id, lineage_id, parent_id]
+  rules:
+    - Sinh khi Capability Created.
+    - Gan vao: Event, Metrics, Trace, Audit.
+    - Khong doi trong vong doi (P009).
+doctor_checks:
+  - Missing Capability Event
+  - Missing Capability Metrics
+  - Broken Capability Trace
+  - Broken Lineage (S011)
+  - Invalid Audit (S011)
+evolution_integration:
+  - Evolution chi doc: Capability Event, Metrics, Trace, Audit.
+  - Evolution khong doc implementation.
+machine_readable:
+  - capability-observability.yaml
+  - capability-events.yaml
+  - capability-metrics.yaml
+  - capability-traces.yaml
+  - capability-audit.yaml
+  - capability-correlation.yaml
+  - capability-health.yaml
+  - capability-dashboard.yaml
+  - capability-observability-mapping.yaml
+  - capability-observability.schema.json
+success_criteria:
+  - Moi Capability deu quan sat duoc.
+  - Moi Transition deu sinh Event (C009).
+  - Moi Capability deu co Metrics + Trace + Audit.
+  - Dashboard va Doctor chi can doc machine-readable.
+  - Khong phu thuoc nen tang quan sat cu the.

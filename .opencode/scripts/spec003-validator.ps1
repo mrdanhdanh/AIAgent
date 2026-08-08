@@ -500,6 +500,54 @@ if (Test-Path $efmd) {
   }
 }
 
+# ---------- C11-001: C011 observability ----------
+$c011 = Join-Path $spec3 'C011'
+foreach ($f in @('observability.md','capability-observability.yaml','capability-observability.schema.json','capability-events.yaml','capability-metrics.yaml','capability-traces.yaml','capability-audit.yaml','capability-correlation.yaml','capability-health.yaml','capability-dashboard.yaml','capability-observability-mapping.yaml')) {
+  if (-not (Test-Path (Join-Path $c011 $f))) { $errors += "C11-001: missing C011/$f" }
+}
+
+# ---------- C11-002: capability-observability.yaml ----------
+$ob11 = Join-Path $c011 'capability-observability.yaml'
+if (Test-Path $ob11) {
+  $ob = Get-Content -LiteralPath $ob11 -Raw -Encoding utf8
+  foreach ($sec in @('philosophy','principles','domains','boundary','correlation_model','doctor_checks','evolution_integration','machine_readable','success_criteria')) {
+    if ($ob -notmatch "(?m)^${sec}:") { $errors += "C11-002: thieu '$sec'" }
+  }
+  foreach ($d in @('Events','Metrics','Trace','Audit','Health')) {
+    if ($ob -notmatch [regex]::Escape($d)) { $warnings += "C11-002: thieu domain '$d'" }
+  }
+}
+
+# ---------- C11-003: boundary ----------
+if (Test-Path $ob11) {
+  $ob3 = Get-Content -LiteralPath $ob11 -Raw -Encoding utf8
+  if ($ob3 -notmatch '(?m)^  observes:') { $errors += "C11-003: thieu observes" }
+  if ($ob3 -notmatch '(?m)^  not_observes:') { $errors += "C11-003: thieu not_observes" }
+  if ($ob3 -notmatch 'Business Data') { $errors += "C11-003: thieu not_observes Business Data" }
+}
+
+# ---------- C11-004: events ----------
+$ev11 = Join-Path $c011 'capability-events.yaml'
+if (Test-Path $ev11) {
+  $ev = Get-Content -LiteralPath $ev11 -Raw -Encoding utf8
+  foreach ($e in @('CAPABILITY_VALIDATING','CAPABILITY_PUBLISHED','CAPABILITY_REJECTED','CAPABILITY_DEPRECATED','CAPABILITY_REACTIVATED','CAPABILITY_RETIRED')) {
+    if ($ev -notmatch [regex]::Escape($e)) { $errors += "C11-004: thieu event $e" }
+  }
+}
+
+# ---------- C11-005: observability.md ----------
+$obmd = Join-Path $c011 'observability.md'
+if (Test-Path $obmd) {
+  $obm = Get-Content -LiteralPath $obmd -Raw -Encoding utf8
+  for ($i = 1; $i -le 16; $i++) {
+    $sec = "CO{0:D3}" -f $i
+    if ($obm -notmatch [regex]::Escape($sec)) { $errors += "C11-005: thieu section $sec" }
+  }
+  foreach ($sec in @('CO003A','CO011A')) {
+    if ($obm -notmatch [regex]::Escape($sec)) { $errors += "C11-005: thieu section $sec" }
+  }
+}
+
 # ---------- C1-005: SPEC.yaml ----------
 $specFile = Join-Path $spec3 'SPEC.yaml'
 if (Test-Path $specFile) {
