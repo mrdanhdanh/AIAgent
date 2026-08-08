@@ -10,7 +10,7 @@ agent: general
 
 # SPEC-002 — Workflow Engine
 
-> **Trạng thái**: In progress · **Version**: 1.0.0
+> **Trạng thái**: ✅ COMPLETE (20/20 sections Draft) · **Version**: 1.0.0
 > **Phụ thuộc**: SPEC-000 (Constitution) · SPEC-001 (Runtime Kernel)
 > **Vai trò**: Workflow Engine định nghĩa, validate, chạy và điều phối Workflow trên nền Runtime Kernel — mọi Execution của Workflow là Execution của SPEC-001.
 
@@ -69,27 +69,27 @@ W020 Workflow Dashboard
 
 | # | Bước | File | Tier | Trạng thái |
 |---|------|------|------|-----------|
-| W001 | Workflow Vision | `W001-vision.md` | 1 | 🚧 In progress |
-| W002 | Workflow Requirements | `W002/requirements.md` | 1 | ⬜ |
-| W003 | Workflow Responsibilities | `W003/responsibilities.md` | 1 | ⬜ |
-| W004 | Workflow Boundaries | `W004/boundaries.md` | 1 | ⬜ |
-| W005 | Workflow Architecture | `W005/architecture.md` | 1 | ⬜ |
-| W006 | Workflow Components | `W006/components.md` | 1 | ⬜ |
-| W007 | Workflow Contracts | `W007/contracts.md` | 1 | ⬜ |
-| — | Appendix: Canonical Models | `workflow-models/` | 1 | ⬜ |
-| W008 | Workflow Data Model | `W008/data-model.md` | 2 | ⬜ |
-| W009 | Workflow State Machine | `W009/state-machine.md` | 2 | ⬜ |
-| W010 | Workflow Execution Flow | `W010/execution-flow.md` | 2 | ⬜ |
-| W011 | Workflow Observability | `W011/observability.md` | 3 | ⬜ |
-| W012 | Workflow Policies | `W012/policies.md` | 3 | ⬜ |
-| W013 | Workflow Governance | `W013/governance.md` | 3 | ⬜ |
-| W014 | Workflow Registry | `W014/registry.md` | 3 | ⬜ |
-| W015 | Workflow Resources | `W015/resources.md` | 3 | ⬜ |
-| W016 | Workflow Compliance | `W016/compliance.md` | 3 | ⬜ |
-| W017 | Workflow Extensions | `W017/extensions.md` | 4 | ⬜ |
-| W018 | Workflow Evolution | `W018/evolution.md` | 4 | ⬜ |
-| W019 | Workflow Doctor | `W019/doctor.md` | 4 | ⬜ |
-| W020 | Workflow Dashboard | `W020/dashboard.md` | 4 | ⬜ |
+| W001 | Workflow Vision | `W001-vision.md` | 1 | ✅ Draft |
+| W002 | Workflow Requirements | `W002/requirements.md` | 1 | ✅ Draft |
+| W003 | Workflow Responsibilities | `W003/responsibilities.md` | 1 | ✅ Draft |
+| W004 | Workflow Boundaries | `W004/boundaries.md` | 1 | ✅ Draft |
+| W005 | Workflow Architecture | `W005/architecture.md` | 1 | ✅ Draft |
+| W006 | Workflow Components | `W006/components.md` | 1 | ✅ Draft |
+| W007 | Workflow Contracts | `W007/contracts.md` | 1 | ✅ Draft |
+| — | Appendix: Canonical Models | `workflow-models/` | 1 | ✅ Draft |
+| W008 | Workflow Data Model | `W008/data-model.md` | 2 | ✅ Draft |
+| W009 | Workflow State Machine | `W009/state-machine.md` | 2 | ✅ Draft |
+| W010 | Workflow Execution Flow | `W010/execution-flow.md` | 2 | ✅ Draft |
+| W011 | Workflow Observability | `W011/observability.md` | 3 | ✅ Draft |
+| W012 | Workflow Policies | `W012/policies.md` | 3 | ✅ Draft |
+| W013 | Workflow Governance | `W013/governance.md` | 3 | ✅ Draft |
+| W014 | Workflow Registry | `W014/registry.md` | 3 | ✅ Draft |
+| W015 | Workflow Resources | `W015/resources.md` | 3 | ✅ Draft |
+| W016 | Workflow Compliance | `W016/compliance.md` | 3 | ✅ Draft |
+| W017 | Workflow Extensions | `W017/extensions.md` | 4 | ✅ Draft |
+| W018 | Workflow Evolution | `W018/evolution.md` | 4 | ✅ Draft |
+| W019 | Workflow Doctor | `W019/doctor.md` | 4 | ✅ Draft |
+| W020 | Workflow Dashboard | `W020/dashboard.md` | 4 | ✅ Draft |
 
 ## Thứ tự viết (Behavior Before Data)
 

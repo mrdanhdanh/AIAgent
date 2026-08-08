@@ -1,0 +1,25 @@
+# SPEC-002 W020 - Workflow Dashboard Views
+---
+version: "1.0"
+views:
+  - name: Workflow View
+    source: W009/W010
+    content: state + outcome distribution
+  - name: Definition View
+    source: W012
+    content: definition version + binding
+  - name: Registry View
+    source: W014
+    content: workflow-registry-registry.yaml (mot file)
+  - name: Governance View
+    source: W013
+    content: governance graph
+  - name: Resource View
+    source: W015
+    content: resource metrics
+  - name: Health View
+    source: W011 + W016
+    content: health status + compliance score
+  - name: Compliance + Doctor View
+    source: W016 + W019
+    content: compliance report + doctor report

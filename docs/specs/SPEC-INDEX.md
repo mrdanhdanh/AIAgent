@@ -62,30 +62,29 @@ SPEC-001 Runtime Kernel
 
 ## SPEC-002 — Workflow Engine
 
-> **Trạng thái**: 🚧 In progress · **Phụ thuộc**: SPEC-000, SPEC-001
+> **Trạng thái**: ✅ COMPLETE (20/20 Draft) · **Phụ thuộc**: SPEC-000, SPEC-001
 
 ```text
 SPEC-002 Workflow Engine
 │
-├── Tier 1 — Foundation
-│   ├── W001 Workflow Vision          🚧
-│   ├── W002 Workflow Requirements    ⬜
-│   ├── W003 Workflow Responsibilities ⬜
-│   ├── W004 Workflow Boundaries      ⬜
-│   ├── W005 Workflow Architecture    ⬜
-│   ├── W006 Workflow Components      ⬜
-│   ├── W007 Workflow Contracts       ⬜
-│   └── Appendix: Canonical Models    ⬜
+├── Tier 1 — Foundation ✅
+│   ├── W001 Workflow Vision          ✅ Draft
+│   ├── W002 Workflow Requirements    ✅ Draft
+│   ├── W003 Workflow Responsibilities ✅ Draft
+│   ├── W004 Workflow Boundaries      ✅ Draft
+│   ├── W005 Workflow Architecture    ✅ Draft
+│   ├── W006 Workflow Components      ✅ Draft
+│   ├── W007 Workflow Contracts       ✅ Draft
+│   └── Appendix: Canonical Models    ✅ Draft
 │
-├── Tier 2 — Behavior
-│   ├── W008 Workflow Data Model      ⬜
-│   ├── W009 Workflow State Machine   ⬜
-│   └── W010 Workflow Execution Flow  ⬜
+├── Tier 2 — Behavior ✅
+│   ├── W008 Workflow Data Model      ✅ Draft
+│   ├── W009 Workflow State Machine   ✅ Draft
+│   └── W010 Workflow Execution Flow  ✅ Draft
 │
-└── Tier 3 — Operations
-    ├── W011 Observability · W012 Policies · W013 Governance
-    ├── W014 Registry · W015 Resources · W016 Compliance
-    └── W017 Extensions · W018 Evolution · W019 Doctor · W020 Dashboard
+└── Tier 3/4 — Operations + Experience ✅
+    ├── W011-W016 Operations          ✅ Draft
+    └── W017-W020 Experience          ✅ Draft
 ```
 
 ## SPEC-003 — Capability System

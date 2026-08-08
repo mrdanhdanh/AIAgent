@@ -1,0 +1,18 @@
+# SPEC-002 W020 - Workflow Dashboard Scope (S011 OB010)
+---
+version: "1.0"
+reads:
+  - Workflow Events (W011)
+  - Workflow Metrics (W011)
+  - Workflow Trace (W011)
+  - Workflow Audit (W011)
+  - Health (W011)
+  - Registry (W014)
+  - Governance (W013)
+  - Compliance (W016)
+  - Doctor (W019)
+not_reads:
+  - Implementation
+  - Business Data
+  - Agent Internal State
+  - Plugin Internal State

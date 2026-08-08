@@ -898,6 +898,49 @@ if (Test-Path $drmd) {
   }
 }
 
+# ---------- W20-001: W020 dashboard ----------
+$w020 = Join-Path $spec2 'W020'
+foreach ($f in @('dashboard.md','workflow-dashboard.yaml','workflow-dashboard.schema.json','workflow-dashboard-scope.yaml','workflow-dashboard-views.yaml','workflow-dashboard-read-model.yaml','workflow-dashboard-refresh.yaml','workflow-dashboard-events.yaml','workflow-dashboard-metrics.yaml','workflow-dashboard-validation.yaml')) {
+  if (-not (Test-Path (Join-Path $w020 $f))) { $errors += "W20-001: missing W020/$f" }
+}
+
+# ---------- W20-002: workflow-dashboard.yaml ----------
+$db20 = Join-Path $w020 'workflow-dashboard.yaml'
+if (Test-Path $db20) {
+  $db = Get-Content -LiteralPath $db20 -Raw -Encoding utf8
+  foreach ($sec in @('philosophy','principles','scope','views','read_model','refresh','events','metrics')) {
+    if ($db -notmatch "(?m)^${sec}:") { $errors += "W20-002: thieu '$sec'" }
+  }
+  foreach ($r in @('Workflow Events (W011)','Workflow Metrics (W011)','Workflow Trace (W011)','Workflow Audit (W011)','Health (W011)','Registry (W014)','Governance (W013)','Compliance (W016)','Doctor (W019)')) {
+    if ($db -notmatch [regex]::Escape($r)) { $warnings += "W20-002: thieu reads '$r'" }
+  }
+}
+
+# ---------- W20-003: views 7 ----------
+if (Test-Path $db20) {
+  $db3 = Get-Content -LiteralPath $db20 -Raw -Encoding utf8
+  foreach ($v in @('Workflow View','Definition View','Registry View','Governance View','Resource View','Health View','Compliance + Doctor View')) {
+    if ($db3 -notmatch [regex]::Escape($v)) { $errors += "W20-003: thieu view '$v'" }
+  }
+}
+
+# ---------- W20-004: refresh event-driven ----------
+if (Test-Path $db20) {
+  $db4 = Get-Content -LiteralPath $db20 -Raw -Encoding utf8
+  if ($db4 -notmatch 'Event Driven') { $errors += "W20-004: refresh thieu Event Driven" }
+  if ($db4 -notmatch 'Khong polling') { $errors += "W20-004: refresh thieu khong polling" }
+}
+
+# ---------- W20-005: dashboard.md ----------
+$dbmd = Join-Path $w020 'dashboard.md'
+if (Test-Path $dbmd) {
+  $dbm = Get-Content -LiteralPath $dbmd -Raw -Encoding utf8
+  for ($i = 1; $i -le 16; $i++) {
+    $sec = "WDB{0:D3}" -f $i
+    if ($dbm -notmatch [regex]::Escape($sec)) { $errors += "W20-005: thieu section $sec" }
+  }
+}
+
 # ---------- W1-005: SPEC.yaml ----------
 $specFile = Join-Path $spec2 'SPEC.yaml'
 if (Test-Path $specFile) {
