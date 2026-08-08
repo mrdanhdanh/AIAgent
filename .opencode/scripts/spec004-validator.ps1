@@ -23,7 +23,7 @@ $warnings = @()
 $infos    = @()
 
 function Strip-Diacritics([string]$s) {
-  $s = $s.Replace([char]0x0111, 'd').Replace([char]0x0110, 'D')
+  $s = $s.Replace([char]0x0111, 'd').Replace([char]0x0110, 'D').Replace([char]0x2014, '-')
   $s = $s.Normalize([Text.NormalizationForm]::FormD)
   $sb = New-Object System.Text.StringBuilder
   foreach ($ch in $s.ToCharArray()) {
