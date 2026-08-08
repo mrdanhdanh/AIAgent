@@ -69,6 +69,62 @@ foreach ($f in (Get-ChildItem -Path $spec4 -File -Recurse)) {
   if ($text -match "`t") { $warnings += "A1-004: $($f.Name) co tab (dung 2-space)" }
 }
 
+# ---------- A2-001: A002 requirements files ----------
+$a002 = Join-Path $spec4 'A002'
+foreach ($f in @('requirements.md','requirements.yaml','requirements.schema.json','requirement-categories.yaml','requirement-lifecycle.yaml','requirement-priority.yaml','requirement-traceability.yaml','requirement-metrics.yaml','requirements-index.yaml','CHANGELOG.md')) {
+  if (-not (Test-Path (Join-Path $a002 $f))) { $errors += "A2-001: missing A002/$f" }
+}
+
+# ---------- A2-002: requirements.yaml - FR/NFR/constraints/acceptance ----------
+$rt2 = Join-Path $a002 'requirements.yaml'
+if (Test-Path $rt2) {
+  $r2 = Get-Content -LiteralPath $rt2 -Raw -Encoding utf8
+  foreach ($sec in @('functional','non_functional','constraints','assumptions','dependencies','external_interfaces','quality_attributes','acceptance')) {
+    if ($r2 -notmatch "(?m)^${sec}:") { $errors += "A2-002: requirements.yaml thieu '$sec'" }
+  }
+  foreach ($fr in @('AFR-001','AFR-002','AFR-003','AFR-004','AFR-006','AFR-016')) {
+    if ($r2 -notmatch [regex]::Escape($fr)) { $errors += "A2-002: thieu $fr" }
+  }
+  foreach ($nfr in @('ANFR-001','ANFR-002','ANFR-003','ANFR-010')) {
+    if ($r2 -notmatch [regex]::Escape($nfr)) { $errors += "A2-002: thieu $nfr" }
+  }
+  foreach ($c in @('AC-001','AC-002','AC-003')) {
+    if ($r2 -notmatch [regex]::Escape($c)) { $errors += "A2-002: thieu $c" }
+  }
+  foreach ($ar in @('AAR-001','AAR-002','AAR-006')) {
+    if ($r2 -notmatch [regex]::Escape($ar)) { $errors += "A2-002: thieu $ar" }
+  }
+}
+
+# ---------- A2-003: traceability - moi req co principle ----------
+$tr2 = Join-Path $a002 'requirement-traceability.yaml'
+if (Test-Path $tr2) {
+  $tb2 = Get-Content -LiteralPath $tr2 -Raw -Encoding utf8
+  foreach ($id in @('AFR-001','AFR-016','ANFR-001','ANFR-012')) {
+    $block = [regex]::Match($tb2, "(?m)^\s*${id}:\s*(\[.*\])")
+    if (-not $block.Success) { $errors += "A2-003: $id thieu principles trong traceability" }
+    elseif ([string]::IsNullOrWhiteSpace($block.Groups[1].Value)) { $errors += "A2-003: $id khong co principle nao" }
+  }
+}
+
+# ---------- A2-004: priority ----------
+$pr2 = Join-Path $a002 'requirement-priority.yaml'
+if (Test-Path $pr2) {
+  $pp2 = Get-Content -LiteralPath $pr2 -Raw -Encoding utf8
+  foreach ($p in @('Critical','High','Medium')) {
+    if ($pp2 -notmatch [regex]::Escape($p)) { $warnings += "A2-004: priority thieu $p" }
+  }
+}
+
+# ---------- A2-005: requirements.md - sections ----------
+$rm2 = Join-Path $a002 'requirements.md'
+if (Test-Path $rm2) {
+  $m2 = Get-Content -LiteralPath $rm2 -Raw -Encoding utf8
+  foreach ($sec in @('Functional Requirements','Non-Functional Requirements','Constraints','Assumptions','Quality Attributes','Acceptance Criteria','Machine-readable')) {
+    if ($m2 -notmatch [regex]::Escape("## $sec")) { $errors += "A2-005: requirements.md thieu section '$sec'" }
+  }
+}
+
 # ---------- A1-005: SPEC.yaml ----------
 $specFile = Join-Path $spec4 'SPEC.yaml'
 if (Test-Path $specFile) {

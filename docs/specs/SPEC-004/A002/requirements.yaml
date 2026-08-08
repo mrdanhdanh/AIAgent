@@ -1,0 +1,375 @@
+# SPEC-004 A002 — Agent Requirements
+# Nguon du lieu chuan cho Agent System, Doctor, Dashboard.
+---
+id: SPEC-004-A002
+name: Agent Requirements
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Agent Team
+functional:
+  AFR-001:
+    title: Declare Agent
+    description: Agent System nhan khai bao Agent (metadata)
+    priority: Critical
+    category: Core
+    owner: Agent
+    status: Draft
+    source: [P003, P011]
+    rules: [RULE-001]
+    verification: [Agent Test, Doctor]
+  AFR-002:
+    title: Register Agent
+    description: Agent System dang ky Agent trong Registry (S014 agent-registry)
+    priority: Critical
+    category: Core
+    owner: Agent
+    status: Draft
+    source: [P003]
+    rules: [RULE-002]
+    verification: [Agent Test, Doctor]
+  AFR-003:
+    title: Map Capability
+    description: Agent System gan Agent voi Capability (SPEC-003)
+    priority: Critical
+    category: Core
+    owner: Agent
+    status: Draft
+    source: [P007, P001]
+    rules: [RULE-004]
+    verification: [Agent Test, Doctor]
+  AFR-004:
+    title: Run Agent
+    description: Agent System chay Agent qua Runtime (SPEC-001)
+    priority: Critical
+    category: Execution
+    owner: Agent
+    status: Draft
+    source: [P001]
+    rules: [RULE-004]
+    verification: [Agent Test, Doctor]
+  AFR-005:
+    title: Orchestrate Agent
+    description: Agent System dieu phoi Agent qua Workflow (SPEC-002)
+    priority: High
+    category: Execution
+    owner: Agent
+    status: Draft
+    source: [P001]
+    rules: [RULE-004]
+    verification: [Agent Test, Doctor]
+  AFR-006:
+    title: Validate Agent
+    description: Agent System validate khai bao truoc khi dang ky
+    priority: Critical
+    category: Validation
+    owner: Agent
+    status: Draft
+    source: [P011, P002]
+    rules: [RULE-002]
+    verification: [Agent Test, Doctor]
+  AFR-007:
+    title: Version Agent
+    description: Agent System quan ly version Agent (SemVer)
+    priority: High
+    category: Data
+    owner: Agent
+    status: Draft
+    source: [P004]
+    rules: [RULE-009]
+    verification: [Agent Test, Doctor]
+  AFR-008:
+    title: Bind Policy
+    description: Agent System khai bao tham so Policy (S012 binding)
+    priority: High
+    category: Governance
+    owner: Agent
+    status: Draft
+    source: [P015]
+    rules: [RULE-012]
+    verification: [Agent Test, Doctor]
+  AFR-009:
+    title: Check Compatibility
+    description: Agent System kiem tra tuong thich (S013 GV010)
+    priority: High
+    category: Validation
+    owner: Agent
+    status: Draft
+    source: [P018]
+    rules: [RULE-015]
+    verification: [Agent Test, Doctor]
+  AFR-010:
+    title: Enforce Permission
+    description: Agent System thuc thi permission (S012 POL-SEC-001)
+    priority: Critical
+    category: Governance
+    owner: Agent
+    status: Draft
+    source: [P016]
+    rules: [RULE-008]
+    verification: [Agent Test, Doctor]
+  AFR-011:
+    title: Track Agent Usage
+    description: Agent System theo doi su dung Agent (S011)
+    priority: High
+    category: Observability
+    owner: Agent
+    status: Draft
+    source: [P014]
+    rules: [RULE-014]
+    verification: [Doctor]
+  AFR-012:
+    title: Publish Agent Events
+    description: Agent System phat Event cho moi state change (S011)
+    priority: High
+    category: Observability
+    owner: Agent
+    status: Draft
+    source: [P005, P014]
+    rules: [RULE-007]
+    verification: [Agent Test, Doctor]
+  AFR-013:
+    title: Support Discovery
+    description: Agent System cho phep kham pha Agent qua Registry (S014)
+    priority: High
+    category: Data
+    owner: Agent
+    status: Draft
+    source: [P003]
+    rules: [RULE-002]
+    verification: [Agent Test, Doctor]
+  AFR-014:
+    title: Support Deprecation
+    description: Agent System ho tro lifecycle deprecation (S014 RG010)
+    priority: Medium
+    category: Data
+    owner: Agent
+    status: Draft
+    source: [P018]
+    rules: [RULE-015]
+    verification: [Doctor]
+  AFR-015:
+    title: Support Agent Groups
+    description: Agent System ho tro nhom Agent (group)
+    priority: Medium
+    category: Core
+    owner: Agent
+    status: Draft
+    source: [P001]
+    rules: [RULE-004]
+    verification: [Agent Test]
+  AFR-016:
+    title: Manage Agent Lifecycle
+    description: Agent System quan ly vong doi Agent (created -> running -> terminal)
+    priority: Critical
+    category: Execution
+    owner: Agent
+    status: Draft
+    source: [P001, P005]
+    rules: [RULE-004]
+    verification: [Agent Test, Doctor]
+non_functional:
+  ANFR-001:
+    title: Deterministic Execution
+    description: Cung agent + input -> cung output
+    priority: Critical
+    category: Execution
+    owner: Agent
+    status: Draft
+    source: [P009]
+    rules: [RULE-013]
+  ANFR-002:
+    title: Metadata Driven
+    description: Agent khai bao bang metadata, khong hardcode
+    priority: Critical
+    category: Core
+    owner: Agent
+    status: Draft
+    source: [P003]
+    rules: [RULE-001]
+  ANFR-003:
+    title: Registry First
+    description: Agent dang ky truoc khi chay (S014)
+    priority: Critical
+    category: Core
+    owner: Agent
+    status: Draft
+    source: [P003]
+    rules: [RULE-002]
+  ANFR-004:
+    title: Observable
+    description: Moi agent quan sat duoc qua S011
+    priority: High
+    category: Observability
+    owner: Agent
+    status: Draft
+    source: [P014]
+    rules: [RULE-014]
+  ANFR-005:
+    title: Versioned
+    description: Moi agent co version (SemVer)
+    priority: High
+    category: Data
+    owner: Agent
+    status: Draft
+    source: [P004]
+    rules: [RULE-009]
+  ANFR-006:
+    title: Compatible
+    description: Backward compatible, forward preferred
+    priority: High
+    category: Data
+    owner: Agent
+    status: Draft
+    source: [P018]
+    rules: [RULE-015]
+  ANFR-007:
+    title: Recoverable
+    description: Agent phuc hoi sau loi (S010 EF017)
+    priority: High
+    category: Core
+    owner: Agent
+    status: Draft
+    source: [P015]
+    rules: [RULE-012]
+  ANFR-008:
+    title: Testable
+    description: Agent co the kiem thu tu dong
+    priority: High
+    category: Core
+    owner: Agent
+    status: Draft
+    source: [P013]
+    rules: []
+  ANFR-009:
+    title: Performant
+    description: Dap ung target hieu nang dieu phoi
+    priority: High
+    category: Observability
+    owner: Agent
+    status: Draft
+    source: [P014]
+    rules: [RULE-014]
+  ANFR-010:
+    title: Governed
+    description: Agent chiu Governance cua Runtime (S013)
+    priority: Critical
+    category: Governance
+    owner: Agent
+    status: Draft
+    source: [P016]
+    rules: [RULE-008]
+  ANFR-011:
+    title: Reusable
+    description: Agent tai su dung qua Registry (S014)
+    priority: Medium
+    category: Data
+    owner: Agent
+    status: Draft
+    source: [P003]
+    rules: [RULE-001]
+  ANFR-012:
+    title: Traceable
+    description: Moi agent truy vet duoc (S011)
+    priority: High
+    category: Observability
+    owner: Agent
+    status: Draft
+    source: [P014]
+    rules: [RULE-007]
+constraints:
+  AC-001:
+    name: No Business Logic
+    type: Architectural
+    source: [P001]
+    rules: [RULE-001]
+  AC-002:
+    name: No Hardcoded Agent
+    type: Architectural
+    source: [P003]
+    rules: [RULE-001]
+  AC-003:
+    name: No Direct Agent Call
+    type: Architectural
+    source: [P001]
+    rules: [RULE-004]
+  AC-004:
+    name: No Redefine Capability (SPEC-003)
+    type: Architectural
+    source: [P007]
+    rules: [RULE-002]
+  AC-005:
+    name: No Redefine Policy (S012)
+    type: Governance
+    source: [P015]
+    rules: [RULE-012]
+  AC-006:
+    name: Register Before Run
+    type: Governance
+    source: [P011]
+    rules: [RULE-002]
+assumptions:
+  AA-001: Agent hop le (da validate)
+  AA-002: Registry kha dung (S014)
+  AA-003: Capability da dang ky (SPEC-003)
+  AA-004: Runtime kha dung (SPEC-001)
+  note: Neu gia dinh sai, Agent System chi bao loi, khong tu sua.
+dependencies:
+  logical:
+    - Constitution
+    - Runtime (SPEC-001)
+    - Workflow Engine (SPEC-002)
+    - Capability System (SPEC-003)
+    - Registry (S014)
+  runtime_services:
+    - Event Store (S011)
+    - Metrics Collector (S011)
+external_interfaces:
+  Agent Declaration: Input
+  Registry (S014): Read/Write
+  Capability (SPEC-003): Mapping
+  Runtime (SPEC-001): Execution
+  Workflow (SPEC-002): Orchestration
+  Event (S011): Publish
+  Policy (S012): Apply
+quality_attributes:
+  Determinism:
+    target: "100%"
+    description: Cung agent + input -> cung output
+  Reliability:
+    target: "99.9%"
+  Availability:
+    target: "99.9%"
+  Extensibility:
+    target: 100% qua khai bao Agent
+  Traceability:
+    target: "100%"
+  Observability:
+    target: "100%"
+  Maintainability:
+    target: Them Agent khong sua Core
+acceptance:
+  AAR-001:
+    description: Agent System dang ky va chay duoc Agent hop le
+    related: [AFR-001, AFR-002, AFR-004, P001]
+    verified_by: [Agent Tests, Doctor]
+  AAR-002:
+    description: Agent System tu choi khai bao khong hop le
+    related: [AFR-006, P011]
+    verified_by: [Agent Tests, Doctor]
+  AAR-003:
+    description: Agent System phat Event day du cho moi state change
+    related: [AFR-012, P005]
+    verified_by: [Doctor]
+  AAR-004:
+    description: Agent dung an toan khi loi (retry/timeout - Runtime)
+    related: [AFR-016, ANFR-007, P015]
+    verified_by: [Agent Tests, Doctor]
+  AAR-005:
+    description: Khong Agent nao hardcode - moi Agent qua Registry + Capability
+    related: [AC-002, P003]
+    verified_by: [Doctor]
+  AAR-006:
+    description: Agent System khong vi pham Constitution
+    related: [P020, ANFR-010]
+    verified_by: [Doctor]
