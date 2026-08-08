@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aios://capability-resources.schema.json",
+  "title": "SPEC-003 Capability Resources (C015)",
+  "type": "object",
+  "required": ["id", "name", "version", "status", "frozen", "owner", "philosophy", "principles", "categories", "resource_model", "lifecycle", "allocation", "access", "ownership", "constraints", "registry_reference", "traceability"],
+  "properties": {
+    "id": { "const": "SPEC-003-C015" },
+    "name": { "const": "Capability Resources" },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "status": { "enum": ["Draft", "Review", "Approved", "Stable", "Deprecated"] },
+    "frozen": { "type": "boolean" },
+    "owner": { "type": "string" },
+    "philosophy": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "principles": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "categories": { "type": "array", "items": { "type": "string" }, "minItems": 10 },
+    "resource_model": { "type": "object", "required": ["fields"] },
+    "lifecycle": { "type": "array", "items": { "type": "string" }, "minItems": 6 },
+    "allocation": { "type": "array", "items": { "type": "string" }, "minItems": 5 },
+    "access": { "type": "array", "items": { "type": "string" }, "minItems": 3 },
+    "ownership": { "type": "object" },
+    "constraints": { "type": "array", "items": { "type": "string" }, "minItems": 4 },
+    "registry_reference": { "type": "array", "items": { "type": "string" }, "minItems": 2 },
+    "traceability": { "type": "array", "items": { "type": "string" }, "minItems": 4 },
+    "events": { "type": "array", "items": { "type": "string" } },
+    "metrics": { "type": "object" }
+  },
+  "additionalProperties": false
+}
