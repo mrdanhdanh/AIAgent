@@ -1,0 +1,25 @@
+# SPEC-003 C020 - Capability Dashboard Views
+---
+version: "1.0"
+views:
+  - name: Capability View
+    source: C009/C010
+    content: state + outcome distribution
+  - name: Definition View
+    source: C012
+    content: definition version + binding
+  - name: Registry View
+    source: C014
+    content: capability-registry-registry.yaml (mot file)
+  - name: Governance View
+    source: C013
+    content: governance graph
+  - name: Resource View
+    source: C015
+    content: resource metrics
+  - name: Health View
+    source: C011 + C016
+    content: health status + compliance score
+  - name: Compliance + Doctor View
+    source: C016 + C019
+    content: compliance report + doctor report

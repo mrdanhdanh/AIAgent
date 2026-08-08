@@ -1,0 +1,7 @@
+# SPEC-003 C020 - Capability Dashboard Events (S011 reuse)
+---
+version: "1.0"
+event_types:
+  - CAPABILITY_DASHBOARD_VIEWED
+  - CAPABILITY_DASHBOARD_REFRESHED
+  - CAPABILITY_DASHBOARD_ERROR

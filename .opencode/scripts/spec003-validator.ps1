@@ -813,6 +813,89 @@ if (Test-Path $exmd) {
   }
 }
 
+# ---------- C18-001: C018 evolution ----------
+$c018 = Join-Path $spec3 'C018'
+foreach ($f in @('evolution.md','capability-evolution.yaml','capability-evolution.schema.json','capability-evolution-scope.yaml','capability-evolution-pipeline.yaml','capability-evolution-proposal.yaml','capability-evolution-approval.yaml','capability-evolution-events.yaml','capability-evolution-metrics.yaml','capability-evolution-validation.yaml')) {
+  if (-not (Test-Path (Join-Path $c018 $f))) { $errors += "C18-001: missing C018/$f" }
+}
+$ev18 = Join-Path $c018 'capability-evolution.yaml'
+if (Test-Path $ev18) {
+  $ev = Get-Content -LiteralPath $ev18 -Raw -Encoding utf8
+  foreach ($sec in @('philosophy','principles','scope','pipeline','proposal_model','proposal_status','approval','safety','application','traceability','events','metrics')) {
+    if ($ev -notmatch "(?m)^${sec}:") { $errors += "C18-002: thieu '$sec'" }
+  }
+  foreach ($r in @('Capability Event (C011)','Capability Metrics (C011)','Capability Trace (C011)','Capability Audit (C011)','Compliance Report (C016)','Registry (C014)')) {
+    if ($ev -notmatch [regex]::Escape($r)) { $warnings += "C18-002: thieu reads '$r'" }
+  }
+  foreach ($step in @('Collect','Analyze','Learn','Propose','Approval Gate','Apply')) {
+    if ($ev -notmatch [regex]::Escape($step)) { $errors += "C18-003: pipeline thieu $step" }
+  }
+  if ($ev -notmatch 'Human approval bat buoc') { $errors += "C18-004: approval thieu Human bat buoc" }
+}
+$evmd = Join-Path $c018 'evolution.md'
+if (Test-Path $evmd) {
+  $evm = Get-Content -LiteralPath $evmd -Raw -Encoding utf8
+  for ($i = 1; $i -le 16; $i++) {
+    $sec = "CVE{0:D3}" -f $i
+    if ($evm -notmatch [regex]::Escape($sec)) { $errors += "C18-005: thieu section $sec" }
+  }
+}
+
+# ---------- C19-001: C019 doctor ----------
+$c019 = Join-Path $spec3 'C019'
+foreach ($f in @('doctor.md','capability-doctor.yaml','capability-doctor.schema.json','capability-doctor-scope.yaml','capability-doctor-checks.yaml','capability-doctor-pipeline.yaml','capability-doctor-self-repair.yaml','capability-doctor-report.yaml','capability-doctor-events.yaml','capability-doctor-metrics.yaml','capability-doctor-validation.yaml')) {
+  if (-not (Test-Path (Join-Path $c019 $f))) { $errors += "C19-001: missing C019/$f" }
+}
+$dr19 = Join-Path $c019 'capability-doctor.yaml'
+if (Test-Path $dr19) {
+  $dr = Get-Content -LiteralPath $dr19 -Raw -Encoding utf8
+  foreach ($sec in @('philosophy','principles','scope','check_sources','health_score','pipeline','self_repair','report','events','metrics','traceability')) {
+    if ($dr -notmatch "(?m)^${sec}:") { $errors += "C19-002: thieu '$sec'" }
+  }
+  foreach ($d in @('Constitution (SPEC-000)','Contracts (C007)','Policy Binding (C012)','Governance (C013)','Registry (C014)','Resources (C015)','Compliance (C016)','Extensions (C017)','Observability (C011)')) {
+    if ($dr -notmatch [regex]::Escape($d)) { $errors += "C19-002: thieu domain '$d'" }
+  }
+  $srcCount = ([regex]::Matches($dr, '(?m)^  - C\d{3} ')).Count
+  if ($srcCount -lt 7) { $errors += "C19-003: check_sources chi co $srcCount (can >=7)" }
+  if ($dr -notmatch 'Chi Low impact') { $errors += "C19-004: self_repair thieu Low impact" }
+}
+$drmd = Join-Path $c019 'doctor.md'
+if (Test-Path $drmd) {
+  $drm = Get-Content -LiteralPath $drmd -Raw -Encoding utf8
+  for ($i = 1; $i -le 16; $i++) {
+    $sec = "CDR{0:D3}" -f $i
+    if ($drm -notmatch [regex]::Escape($sec)) { $errors += "C19-005: thieu section $sec" }
+  }
+}
+
+# ---------- C20-001: C020 dashboard ----------
+$c020 = Join-Path $spec3 'C020'
+foreach ($f in @('dashboard.md','capability-dashboard.yaml','capability-dashboard.schema.json','capability-dashboard-scope.yaml','capability-dashboard-views.yaml','capability-dashboard-read-model.yaml','capability-dashboard-refresh.yaml','capability-dashboard-events.yaml','capability-dashboard-metrics.yaml','capability-dashboard-validation.yaml')) {
+  if (-not (Test-Path (Join-Path $c020 $f))) { $errors += "C20-001: missing C020/$f" }
+}
+$db20 = Join-Path $c020 'capability-dashboard.yaml'
+if (Test-Path $db20) {
+  $db = Get-Content -LiteralPath $db20 -Raw -Encoding utf8
+  foreach ($sec in @('philosophy','principles','scope','views','read_model','refresh','events','metrics')) {
+    if ($db -notmatch "(?m)^${sec}:") { $errors += "C20-002: thieu '$sec'" }
+  }
+  foreach ($r in @('Capability Events (C011)','Capability Metrics (C011)','Capability Trace (C011)','Capability Audit (C011)','Health (C011)','Registry (C014)','Governance (C013)','Compliance (C016)','Doctor (C019)')) {
+    if ($db -notmatch [regex]::Escape($r)) { $warnings += "C20-002: thieu reads '$r'" }
+  }
+  foreach ($v in @('Capability View','Definition View','Registry View','Governance View','Resource View','Health View','Compliance + Doctor View')) {
+    if ($db -notmatch [regex]::Escape($v)) { $errors += "C20-003: thieu view '$v'" }
+  }
+  if ($db -notmatch 'Event Driven') { $errors += "C20-004: refresh thieu Event Driven" }
+}
+$dbmd = Join-Path $c020 'dashboard.md'
+if (Test-Path $dbmd) {
+  $dbm = Get-Content -LiteralPath $dbmd -Raw -Encoding utf8
+  for ($i = 1; $i -le 16; $i++) {
+    $sec = "CDB{0:D3}" -f $i
+    if ($dbm -notmatch [regex]::Escape($sec)) { $errors += "C20-005: thieu section $sec" }
+  }
+}
+
 # ---------- C1-005: SPEC.yaml ----------
 $specFile = Join-Path $spec3 'SPEC.yaml'
 if (Test-Path $specFile) {

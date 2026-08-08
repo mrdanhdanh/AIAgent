@@ -1,0 +1,16 @@
+# SPEC-003 C018 - Capability Evolution Scope (C011 reuse)
+---
+version: "1.0"
+reads:
+  - Capability Event (C011)
+  - Capability Metrics (C011)
+  - Capability Trace (C011)
+  - Capability Audit (C011)
+  - Compliance Report (C016)
+  - Registry (C014)
+not_reads:
+  - Implementation
+  - Business Data
+  - User Data
+  - Agent Internal State
+  - Plugin Internal State

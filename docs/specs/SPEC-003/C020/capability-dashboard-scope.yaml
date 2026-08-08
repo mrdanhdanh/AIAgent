@@ -1,0 +1,18 @@
+# SPEC-003 C020 - Capability Dashboard Scope (S011 OB010)
+---
+version: "1.0"
+reads:
+  - Capability Events (C011)
+  - Capability Metrics (C011)
+  - Capability Trace (C011)
+  - Capability Audit (C011)
+  - Health (C011)
+  - Registry (C014)
+  - Governance (C013)
+  - Compliance (C016)
+  - Doctor (C019)
+not_reads:
+  - Implementation
+  - Business Data
+  - Agent Internal State
+  - Plugin Internal State

@@ -62,7 +62,7 @@ SPEC-001 Runtime Kernel
 
 ## SPEC-002 — Workflow Engine
 
-> **Trạng thái**: In progress (20/20 Draft — W001-W007 Rev1, W008-W020 NotReviewed) · **Phụ thuộc**: SPEC-000, SPEC-001
+> **Trạng thái**: In progress (20/20 — W001-W008 Rev1, W009-W010 Completed, W011 Rev1, W012 Completed, W013 Completed, W014 Rev1, W015 Rev1, W016 Rev1, W017 Rev1, W018-W020 NotReviewed) · **Phụ thuộc**: SPEC-000, SPEC-001
 
 ```text
 SPEC-002 Workflow Engine
@@ -83,35 +83,35 @@ SPEC-002 Workflow Engine
 │   └── W010 Workflow Execution Flow  ✅ Draft
 │
 └── Tier 3/4 — Operations + Experience ✅
-    ├── W011-W016 Operations          ✅ Draft
-    └── W017-W020 Experience          ✅ Draft
+    ├── W011-W016 Operations          🚧 Draft
+    └── W017-W020 Experience          🚧 Draft
 ```
 
 ## SPEC-003 — Capability System
 
-> **Trạng thái**: 🚧 In progress · **Phụ thuộc**: SPEC-000, SPEC-001, SPEC-002
+> **Trạng thái**: ✅ COMPLETE (20/20 Draft) · **Phụ thuộc**: SPEC-000, SPEC-001, SPEC-002
 
 ```text
 SPEC-003 Capability System
 │
-├── Tier 1 — Foundation
-│   ├── C001 Capability Vision          🚧
-│   ├── C002 Capability Requirements    ⬜
-│   ├── C003 Capability Responsibilities ⬜
-│   ├── C004 Capability Boundaries      ⬜
-│   ├── C005 Capability Architecture    ⬜
-│   ├── C006 Capability Components      ⬜
-│   ├── C007 Capability Contracts       ⬜
-│   └── Appendix: Canonical Models      ⬜
+├── Tier 1 — Foundation ✅
+│   ├── C001 Capability Vision          ✅ Draft
+│   ├── C002 Capability Requirements    ✅ Draft
+│   ├── C003 Capability Responsibilities ✅ Draft
+│   ├── C004 Capability Boundaries      ✅ Draft
+│   ├── C005 Capability Architecture    ✅ Draft
+│   ├── C006 Capability Components      ✅ Draft
+│   ├── C007 Capability Contracts       ✅ Draft
+│   └── Appendix: Canonical Models      ✅ Draft
 │
-├── Tier 2 — Behavior
-│   ├── C008 Capability Data Model      ⬜
-│   ├── C009 Capability State Machine   ⬜
-│   └── C010 Capability Execution Flow  ⬜
+├── Tier 2 — Behavior ✅
+│   ├── C008 Capability Data Model      ✅ Draft
+│   ├── C009 Capability State Machine   ✅ Draft
+│   └── C010 Capability Execution Flow  ✅ Draft
 │
-└── Tier 3/4 — Operations + Experience
-    ├── C011-C016 Operations            ⬜
-    └── C017-C020 Experience            ⬜
+└── Tier 3/4 — Operations + Experience ✅
+    ├── C011-C016 Operations            ✅ Draft
+    └── C017-C020 Experience            ✅ Draft
 ```
 
 ## SPEC-004 — Agent System

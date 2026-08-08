@@ -1,0 +1,10 @@
+# SPEC-003 C019 - Capability Doctor Validation
+---
+version: "1.0"
+checks:
+  - Missing Evidence
+  - Invalid Report
+  - Repair Without Approval (C013)
+  - Repair Not Rollback-able
+  - Unauthorized Repair
+  - Stale Report
