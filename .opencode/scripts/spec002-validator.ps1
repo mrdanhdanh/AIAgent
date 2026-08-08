@@ -813,6 +813,49 @@ if (Test-Path $exmd) {
   }
 }
 
+# ---------- W18-001: W018 evolution ----------
+$w018 = Join-Path $spec2 'W018'
+foreach ($f in @('evolution.md','workflow-evolution.yaml','workflow-evolution.schema.json','workflow-evolution-scope.yaml','workflow-evolution-pipeline.yaml','workflow-evolution-proposal.yaml','workflow-evolution-approval.yaml','workflow-evolution-events.yaml','workflow-evolution-metrics.yaml','workflow-evolution-validation.yaml')) {
+  if (-not (Test-Path (Join-Path $w018 $f))) { $errors += "W18-001: missing W018/$f" }
+}
+
+# ---------- W18-002: workflow-evolution.yaml ----------
+$ev18 = Join-Path $w018 'workflow-evolution.yaml'
+if (Test-Path $ev18) {
+  $ev = Get-Content -LiteralPath $ev18 -Raw -Encoding utf8
+  foreach ($sec in @('philosophy','principles','scope','pipeline','proposal_model','proposal_status','approval','safety','application','traceability','events','metrics')) {
+    if ($ev -notmatch "(?m)^${sec}:") { $errors += "W18-002: thieu '$sec'" }
+  }
+  foreach ($r in @('Workflow Event (W011)','Workflow Metrics (W011)','Workflow Trace (W011)','Workflow Audit (W011)','Compliance Report (W016)','Registry (W014)')) {
+    if ($ev -notmatch [regex]::Escape($r)) { $warnings += "W18-002: thieu reads '$r'" }
+  }
+}
+
+# ---------- W18-003: pipeline 6 buoc ----------
+if (Test-Path $ev18) {
+  $ev3 = Get-Content -LiteralPath $ev18 -Raw -Encoding utf8
+  foreach ($step in @('Collect','Analyze','Learn','Propose','Approval Gate','Apply')) {
+    if ($ev3 -notmatch [regex]::Escape($step)) { $errors += "W18-003: pipeline thieu $step" }
+  }
+}
+
+# ---------- W18-004: approval 4 muc ----------
+if (Test-Path $ev18) {
+  $ev4 = Get-Content -LiteralPath $ev18 -Raw -Encoding utf8
+  if ($ev4 -notmatch 'auto-approve') { $errors += "W18-004: approval thieu auto-approve" }
+  if ($ev4 -notmatch 'Human approval bat buoc') { $errors += "W18-004: approval thieu Human bat buoc" }
+}
+
+# ---------- W18-005: evolution.md ----------
+$evmd = Join-Path $w018 'evolution.md'
+if (Test-Path $evmd) {
+  $evm = Get-Content -LiteralPath $evmd -Raw -Encoding utf8
+  for ($i = 1; $i -le 16; $i++) {
+    $sec = "WVE{0:D3}" -f $i
+    if ($evm -notmatch [regex]::Escape($sec)) { $errors += "W18-005: thieu section $sec" }
+  }
+}
+
 # ---------- W1-005: SPEC.yaml ----------
 $specFile = Join-Path $spec2 'SPEC.yaml'
 if (Test-Path $specFile) {
