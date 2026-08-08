@@ -1,0 +1,12 @@
+# SPEC-004 A006 - Component Dependencies
+---
+version: "1.0"
+dependencies:
+  ACP-001: [ACP-002, ACP-003, ACP-004, ACP-005, ACP-008]
+  ACP-002: []
+  ACP-003: [ACP-002]
+  ACP-004: [Registry (S014), Capability System (SPEC-003)]
+  ACP-005: [Workflow Engine (SPEC-002), Runtime (SPEC-001)]
+  ACP-006: [Registry (S014)]
+  ACP-007: [Policy (S012)]
+  ACP-008: [Event Store (S011)]

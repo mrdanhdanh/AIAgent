@@ -1,0 +1,203 @@
+# SPEC-004 A006 — Agent Components (8 Components)
+# 3 nhom: Core / Resolution / Infrastructure.
+# Execution/State/Context thuoc Runtime (SPEC-001) - khong lap lai.
+---
+id: SPEC-004-A006
+name: Agent Components
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Agent Team
+philosophy:
+  - Component cang it cang tot.
+  - Moi Component chi co mot trach nhiem.
+  - Mo rong bang Capability, khong mo rong bang them Component moi.
+principles:
+  - Mot Responsibility.
+  - Mot Owner.
+  - Mot hoac nhieu Contract.
+  - Mot Lifecycle.
+  - Mot Metadata.
+  - Co the thay the.
+  - Khong chua Business Logic.
+  - Khong phu thuoc Component ngoai Contract.
+component_model:
+  fields: [id, name, version, status, layer, domain, responsibility, capability, contracts, dependencies, lifecycle, owner, metadata]
+groups:
+  Core: [Agent Engine, Declaration Manager, Validation Engine, Registration Manager, Orchestration Provider]
+  Resolution: [Discovery Provider]
+  Infrastructure: [Binding Registrar, Agent Event Dispatcher]
+lifecycles:
+  runtime: [Defined, Initialized, Ready, Active, Stopping, Disposed]
+  agent: [Idle, Assigned, Running, Completed]
+components:
+  ACP-001:
+    name: Agent Engine
+    version: 1.0.0
+    status: Draft
+    group: Core
+    layer: Command
+    domain: Execution
+    responsibility: Quan ly vong doi Agent
+    capability: agent-management
+    contracts: [Agent Contract]
+    dependencies: [Declaration Manager, Validation Engine, Registration Manager, Orchestration Provider, Agent Event Dispatcher]
+    lifecycle: runtime
+    owner: Agent
+    replaceable: false
+    metric: Agent Completion Rate
+    boundary: AB004-execution
+    rule: RULE-004
+    responsibilities: [ARR-001, ARR-002, ARR-016]
+    requirements: [AFR-001, AFR-002, AFR-016]
+    principles: [P001, P011]
+  ACP-002:
+    name: Declaration Manager
+    version: 1.0.0
+    status: Draft
+    group: Core
+    layer: Declaration
+    domain: Definition
+    responsibility: Quan ly Agent Definition + Version
+    capability: agent-declaration
+    contracts: [Declaration Contract]
+    dependencies: []
+    lifecycle: runtime
+    owner: Agent
+    replaceable: true
+    metric: Declaration Coverage
+    boundary: AB001-declaration
+    rule: RULE-001
+    responsibilities: [ARR-001, ARR-004]
+    requirements: [AFR-001, AFR-007]
+    principles: [P003, P004]
+  ACP-003:
+    name: Validation Engine
+    version: 1.0.0
+    status: Draft
+    group: Core
+    layer: Validation
+    domain: Validation
+    responsibility: Validate + Compatibility Check (S013 GV010)
+    capability: agent-validation
+    contracts: [Validation Contract]
+    dependencies: [Declaration Manager]
+    lifecycle: runtime
+    owner: Agent
+    replaceable: true
+    metric: Invalid Agents
+    boundary: AB003-validation
+    rule: RULE-002
+    responsibilities: [ARR-003, ARR-009]
+    requirements: [AFR-006, AFR-009]
+    principles: [P011, P018]
+  ACP-004:
+    name: Registration Manager
+    version: 1.0.0
+    status: Draft
+    group: Core
+    layer: Registration
+    domain: Mapping
+    responsibility: Dang ky S014 + Capability Mapping (SPEC-003)
+    capability: agent-registration
+    contracts: [Registry Contract]
+    dependencies: [Registry (S014), Capability System (SPEC-003)]
+    lifecycle: runtime
+    owner: Agent
+    replaceable: false
+    metric: Registration Rate
+    boundary: AB007-capability
+    rule: RULE-002
+    responsibilities: [ARR-002, ARR-005]
+    requirements: [AFR-002, AFR-003]
+    principles: [P003, P007]
+  ACP-005:
+    name: Orchestration Provider
+    version: 1.0.0
+    status: Draft
+    group: Core
+    layer: Orchestration
+    domain: Orchestration
+    responsibility: Dieu phoi qua Workflow (SPEC-002) + delegate Runtime (SPEC-001)
+    capability: agent-orchestration
+    contracts: [Orchestration Contract]
+    dependencies: [Workflow Engine (SPEC-002), Runtime (SPEC-001)]
+    lifecycle: runtime
+    owner: Agent
+    replaceable: false
+    metric: Orchestration Coverage
+    boundary: AB004-execution
+    rule: RULE-004
+    responsibilities: [ARR-007, ARR-016]
+    requirements: [AFR-005, AFR-016]
+    principles: [P001]
+  ACP-006:
+    name: Discovery Provider
+    version: 1.0.0
+    status: Draft
+    group: Resolution
+    layer: Registration
+    domain: Mapping
+    responsibility: Kham pha Agent qua Registry (S014)
+    capability: agent-discovery
+    contracts: [Registry Contract]
+    dependencies: [Registry (S014)]
+    lifecycle: runtime
+    owner: Agent
+    replaceable: true
+    metric: Discovery Rate
+    boundary: AB002-registry
+    rule: RULE-002
+    responsibilities: [ARR-013]
+    requirements: [AFR-013]
+    principles: [P003]
+  ACP-007:
+    name: Binding Registrar
+    version: 1.0.0
+    status: Draft
+    group: Infrastructure
+    layer: Registration
+    domain: Mapping
+    responsibility: Khai bao tham so Policy (S012 binding)
+    capability: agent-binding
+    contracts: [Binding Contract]
+    dependencies: [Policy (S012)]
+    lifecycle: runtime
+    owner: Agent
+    replaceable: true
+    metric: Binding Coverage
+    boundary: AB008-policy
+    rule: RULE-012
+    responsibilities: [ARR-008]
+    requirements: [AFR-008]
+    principles: [P015]
+  ACP-008:
+    name: Agent Event Dispatcher
+    version: 1.0.0
+    status: Draft
+    group: Infrastructure
+    layer: Publication
+    domain: Observability
+    responsibility: Publish Event/Metrics/Trace/Audit (S011)
+    capability: agent-observability
+    contracts: [Event Contract]
+    dependencies: [Event Store (S011)]
+    lifecycle: runtime
+    owner: Agent
+    replaceable: true
+    metric: Event Coverage
+    boundary: AB009-governance
+    rule: RULE-007
+    responsibilities: [ARR-011, ARR-012]
+    requirements: [AFR-011, AFR-012]
+    principles: [P005, P014]
+not_in_runtime:
+  - Execution Manager (SPEC-001 S006 CMP-001)
+  - Execution Orchestrator (SPEC-001 S006 CMP-002)
+  - Context Manager (SPEC-001 S006 CMP-003)
+  - State Manager (SPEC-001 S006 CMP-004)
+  - Policy Engine (SPEC-001 S006 CMP-006)
+  - Registry (S014)
+  - Runtime Resolver (S010 EF007)
+  - Capability System (SPEC-003)
+  note: Agent System dung qua Runtime (SPEC-001) - khong lap lai.

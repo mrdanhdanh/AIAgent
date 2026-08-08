@@ -1,0 +1,12 @@
+# SPEC-004 A006 - Component Ownership
+---
+version: "1.0"
+ownership:
+  ACP-001: Agent
+  ACP-002: Agent
+  ACP-003: Agent
+  ACP-004: Agent
+  ACP-005: Agent
+  ACP-006: Agent
+  ACP-007: Agent
+  ACP-008: Agent
