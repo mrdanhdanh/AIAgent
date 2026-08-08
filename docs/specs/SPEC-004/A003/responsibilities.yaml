@@ -1,0 +1,255 @@
+# SPEC-004 A003 — Agent Responsibilities (18 ARR)
+# Moi responsibility dung mot Owner. Authority tach biet.
+---
+id: SPEC-004-A003
+name: Agent Responsibilities
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Agent Team
+principle: Responsibility != Capability != Component
+invariants:
+  - Mot Responsibility chi co mot Owner.
+  - Mot Responsibility co the delegate.
+  - Owner khong doi trong mot Agent vong doi.
+  - Khong Responsibility nao phu thuoc vong.
+delegation:
+  Agent Execution: Runtime (SPEC-001)
+  Capability Mapping: Capability System (SPEC-003)
+  Orchestration: Workflow Engine (SPEC-002)
+  Policy: Runtime (S012)
+responsibilities:
+  ARR-001:
+    name: Khai bao Agent
+    group: Core
+    owner: Agent
+    priority: Critical
+    status: Draft
+    authority: Duoc nhan khai bao Agent (metadata)
+    input: Agent Declaration
+    output: Agent Definition
+    metric: Agent Declare Rate
+    requirements: [AFR-001]
+    principles: [P003, P011]
+    rules: [RULE-001]
+  ARR-002:
+    name: Dang ky Agent
+    group: Core
+    owner: Agent
+    priority: Critical
+    status: Draft
+    authority: Duoc ghi Registry (S014)
+    input: Agent Definition
+    output: Registry Entry
+    metric: Registration Rate
+    requirements: [AFR-002]
+    principles: [P003]
+    rules: [RULE-002]
+  ARR-003:
+    name: Validate Agent
+    group: Validation
+    owner: Agent
+    priority: Critical
+    status: Draft
+    authority: Duoc kiem tra Agent
+    input: Agent Definition
+    output: Validation Result
+    metric: Invalid Agents
+    requirements: [AFR-006]
+    principles: [P011, P002]
+    rules: [RULE-002]
+  ARR-004:
+    name: Version Agent
+    group: Data
+    owner: Agent
+    priority: High
+    status: Draft
+    authority: Duoc quan ly version (SemVer)
+    input: Agent Definition
+    output: Versioned Agent
+    metric: Version Coverage
+    requirements: [AFR-007]
+    principles: [P004]
+    rules: [RULE-009]
+  ARR-005:
+    name: Map Capability
+    group: Mapping
+    owner: Agent
+    priority: Critical
+    status: Draft
+    authority: Duoc gan Capability (SPEC-003)
+    input: Agent + Capability
+    output: Capability Mapping
+    metric: Mapping Coverage
+    requirements: [AFR-003]
+    principles: [P007, P001]
+    rules: [RULE-004]
+  ARR-006:
+    name: Chay Agent
+    group: Execution
+    owner: Agent
+    priority: Critical
+    status: Draft
+    authority: Duoc chay qua Runtime (SPEC-001)
+    input: Agent Request
+    output: Agent Execution
+    metric: Agent Run Rate
+    requirements: [AFR-004]
+    principles: [P001]
+    rules: [RULE-004]
+  ARR-007:
+    name: Dieu phoi Agent
+    group: Execution
+    owner: Agent
+    priority: High
+    status: Draft
+    authority: Duoc dieu phoi qua Workflow (SPEC-002)
+    input: Workflow Step
+    output: Orchestrated Agent
+    metric: Orchestration Coverage
+    requirements: [AFR-005]
+    principles: [P001]
+    rules: [RULE-004]
+  ARR-008:
+    name: Bind Policy
+    group: Governance
+    owner: Agent
+    priority: High
+    status: Draft
+    authority: Duoc khai bao tham so Policy (S012)
+    input: Agent + Policy
+    output: Policy Binding
+    metric: Binding Coverage
+    requirements: [AFR-008]
+    principles: [P015]
+    rules: [RULE-012]
+  ARR-009:
+    name: Kiem tra Compatibility
+    group: Validation
+    owner: Agent
+    priority: High
+    status: Draft
+    authority: Duoc kiem tra tuong thich (S013 GV010)
+    input: Agent + Version
+    output: Compatibility Result
+    metric: Compatibility Coverage
+    requirements: [AFR-009]
+    principles: [P018]
+    rules: [RULE-015]
+  ARR-010:
+    name: Thuc thi Permission
+    group: Governance
+    owner: Agent
+    priority: Critical
+    status: Draft
+    authority: Duoc thuc thi permission (POL-SEC-001)
+    input: Agent Request
+    output: Allow / Deny
+    metric: Permission Violations
+    requirements: [AFR-010]
+    principles: [P016]
+    rules: [RULE-008]
+  ARR-011:
+    name: Theo doi Usage
+    group: Observability
+    owner: Agent
+    priority: High
+    status: Draft
+    authority: Duoc ghi Metrics (S011)
+    input: Agent Usage
+    output: Usage Metrics
+    metric: Usage Coverage
+    requirements: [AFR-011]
+    principles: [P014]
+    rules: [RULE-014]
+  ARR-012:
+    name: Phat Agent Events
+    group: Observability
+    owner: Agent
+    priority: High
+    status: Draft
+    authority: Duoc ghi Event Store (S011)
+    input: State Change
+    output: Agent Event
+    metric: Event Coverage
+    requirements: [AFR-012]
+    principles: [P005, P014]
+    rules: [RULE-007]
+  ARR-013:
+    name: Ho tro Discovery
+    group: Data
+    owner: Agent
+    priority: High
+    status: Draft
+    authority: Duoc kham pha qua Registry (S014)
+    input: Discovery Query
+    output: Agent List
+    metric: Discovery Rate
+    requirements: [AFR-013]
+    principles: [P003]
+    rules: [RULE-002]
+  ARR-014:
+    name: Quan ly Deprecation
+    group: Data
+    owner: Agent
+    priority: Medium
+    status: Draft
+    authority: Duoc deprecate Agent (S014 RG010)
+    input: Agent
+    output: Deprecated Entry
+    metric: Deprecation Coverage
+    requirements: [AFR-014]
+    principles: [P018]
+    rules: [RULE-015]
+  ARR-015:
+    name: Quan ly Agent Groups
+    group: Core
+    owner: Agent
+    priority: Medium
+    status: Draft
+    authority: Duoc nhom Agent
+    input: Agent List
+    output: Agent Group
+    metric: Group Coverage
+    requirements: [AFR-015]
+    principles: [P001]
+    rules: [RULE-004]
+  ARR-016:
+    name: Quan ly Agent Lifecycle
+    group: Execution
+    owner: Agent
+    priority: Critical
+    status: Draft
+    authority: Duoc quan ly vong doi (created -> running -> terminal)
+    input: Agent
+    output: Lifecycle Event
+    metric: Lifecycle Coverage
+    requirements: [AFR-016]
+    principles: [P001, P005]
+    rules: [RULE-004]
+  ARR-017:
+    name: Thuc thi Agent Governance
+    group: Governance
+    owner: Agent
+    priority: Critical
+    status: Draft
+    authority: Duoc thuc thi Governance (S013)
+    input: Agent
+    output: Enforcement
+    metric: Governance Violations
+    requirements: [ANFR-010]
+    principles: [P016]
+    rules: [RULE-008]
+  ARR-018:
+    name: Tu choi Agent khong hop le
+    group: Governance
+    owner: Agent
+    priority: Critical
+    status: Draft
+    authority: Duoc tu choi Agent
+    input: Invalid Agent
+    output: Rejection + Audit (S011)
+    metric: Rejection Rate
+    requirements: [AFR-006]
+    principles: [P011, P002]
+    rules: [RULE-002, RULE-003]

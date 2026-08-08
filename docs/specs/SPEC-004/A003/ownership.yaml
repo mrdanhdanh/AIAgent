@@ -1,0 +1,10 @@
+# SPEC-004 A003 - Agent Ownership
+---
+version: "1.0"
+owners:
+  Agent System: Agent Team
+  Agent Definition: Agent Team
+  Registry Entry (S014): Agent Team
+  Capability Mapping (SPEC-003): Capability Team
+  Execution: Runtime (SPEC-001)
+  Policy: Runtime (S012)

@@ -1,0 +1,11 @@
+# SPEC-004 A003 - Responsibility Matrix (ARR x Group)
+---
+version: "1.0"
+groups:
+  Core: [ARR-001, ARR-002, ARR-015]
+  Validation: [ARR-003, ARR-009]
+  Mapping: [ARR-005]
+  Execution: [ARR-006, ARR-007, ARR-016]
+  Data: [ARR-004, ARR-013, ARR-014]
+  Observability: [ARR-011, ARR-012]
+  Governance: [ARR-008, ARR-010, ARR-017, ARR-018]

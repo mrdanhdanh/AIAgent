@@ -125,6 +125,53 @@ if (Test-Path $rm2) {
   }
 }
 
+# ---------- A3-001: A003 responsibilities ----------
+$a003 = Join-Path $spec4 'A003'
+foreach ($f in @('responsibilities.md','responsibilities.yaml','responsibilities.schema.json','ownership.yaml','responsibility-mapping.yaml','responsibility-matrix.yaml','responsibility-registry.yaml')) {
+  if (-not (Test-Path (Join-Path $a003 $f))) { $errors += "A3-001: missing A003/$f" }
+}
+
+# ---------- A3-002: responsibilities.yaml ----------
+$rw3 = Join-Path $a003 'responsibilities.yaml'
+if (Test-Path $rw3) {
+  $resp3 = Get-Content -LiteralPath $rw3 -Raw -Encoding utf8
+  if ($resp3 -notmatch '(?m)^responsibilities:') { $errors += "A3-002: responsibilities.yaml thieu 'responsibilities:'" }
+  foreach ($r in @('ARR-001','ARR-002','ARR-005','ARR-006','ARR-010','ARR-017')) {
+    if ($resp3 -notmatch [regex]::Escape($r)) { $errors += "A3-002: thieu $r" }
+  }
+  foreach ($field in @('name','group','owner','authority','input','output','metric','requirements','principles')) {
+    if ($resp3 -notmatch "(?m)^    ${field}:") { $warnings += "A3-002: responsibilities.yaml thieu field '$field'" }
+  }
+}
+
+# ---------- A3-003: moi ARR co requirements + principles ----------
+foreach ($r in @('ARR-001','ARR-005','ARR-010','ARR-012','ARR-018')) {
+  $block = [regex]::Match($resp3, "(?ms)^  ${r}:.*?^    rules:.*$")
+  if (-not $block.Success) { $errors += "A3-003: $r thieu block" }
+  else {
+    if ($block.Value -notmatch '(?m)^    requirements:') { $errors += "A3-003: $r thieu requirements" }
+    if ($block.Value -notmatch '(?m)^    principles:') { $errors += "A3-003: $r thieu principles" }
+  }
+}
+
+# ---------- A3-004: mapping ----------
+$mp3 = Join-Path $a003 'responsibility-mapping.yaml'
+if (Test-Path $mp3) {
+  $m3 = Get-Content -LiteralPath $mp3 -Raw -Encoding utf8
+  foreach ($r in @('ARR-001','ARR-016','ARR-018')) {
+    if ($m3 -notmatch [regex]::Escape($r)) { $errors += "A3-004: mapping thieu $r" }
+  }
+}
+
+# ---------- A3-005: responsibilities.md ----------
+$rm3 = Join-Path $a003 'responsibilities.md'
+if (Test-Path $rm3) {
+  $mm3 = Get-Content -LiteralPath $rm3 -Raw -Encoding utf8
+  foreach ($sec in @('Invariants','Delegation','Responsibilities','Machine-readable')) {
+    if ($mm3 -notmatch [regex]::Escape("## $sec")) { $errors += "A3-005: responsibilities.md thieu section '$sec'" }
+  }
+}
+
 # ---------- A1-005: SPEC.yaml ----------
 $specFile = Join-Path $spec4 'SPEC.yaml'
 if (Test-Path $specFile) {
