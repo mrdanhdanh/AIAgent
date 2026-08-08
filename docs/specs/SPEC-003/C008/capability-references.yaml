@@ -1,0 +1,9 @@
+# SPEC-003 C008 - Capability References
+---
+version: "1.0"
+references:
+  Capability → Agent: AgentRef (SPEC-004)
+  Capability → Plugin: PluginRef (S017)
+  Capability → Execution: ExecutionRef (S008)
+  Capability → Registry: CapabilityRegistryEntry (S014)
+  Capability → Event: CapabilityEvent (S011)

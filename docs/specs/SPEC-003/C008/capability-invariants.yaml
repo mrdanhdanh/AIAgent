@@ -1,0 +1,16 @@
+# SPEC-003 C008 - Capability Invariants (12)
+---
+version: "1.0"
+invariants:
+  - Capability co dung mot Definition.
+  - Capability dang ky trong Registry (S014).
+  - Mapping qua Registry - khong hardcode (CB007).
+  - CapabilityResult immutable.
+  - Event khong thay doi.
+  - Capability ID toan cuc.
+  - Capability luon co Owner.
+  - Capability luon co Version.
+  - Capability luon co Lifecycle.
+  - Capability khong doi Identity.
+  - Definition khong doi khi Published.
+  - Binding khong doi khi Published.

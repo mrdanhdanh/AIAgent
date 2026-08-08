@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aios://capability-models.schema.json",
+  "title": "SPEC-003 Capability Canonical Models",
+  "type": "object",
+  "required": ["version", "status", "aggregate_root", "models"],
+  "properties": {
+    "version": { "type": "string" },
+    "status": { "enum": ["Draft", "Review", "Approved", "Stable", "Deprecated"] },
+    "aggregate_root": { "const": "Capability" },
+    "models": { "type": "object", "minProperties": 8 }
+  },
+  "additionalProperties": false
+}

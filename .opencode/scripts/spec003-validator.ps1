@@ -359,6 +359,57 @@ if (Test-Path $cmd7) {
   }
 }
 
+# ---------- C8-001: appendix capability-models ----------
+$cm8 = Join-Path $spec3 'capability-models'
+foreach ($f in @('README.md','capability-models.yaml','capability-model-registry.yaml','capability-model-relationships.yaml','capability-model-validation.yaml','capability-models.schema.json')) {
+  if (-not (Test-Path (Join-Path $cm8 $f))) { $errors += "C8-001: missing capability-models/$f" }
+}
+$cmYaml = Join-Path $cm8 'capability-models.yaml'
+if (Test-Path $cmYaml) {
+  $cmy = Get-Content -LiteralPath $cmYaml -Raw -Encoding utf8
+  if ($cmy -notmatch '(?m)^aggregate_root:\s*Capability') { $errors += "C8-001: aggregate_root phai la Capability" }
+  foreach ($m in @('CM-001','CM-002','CM-004','CM-008')) {
+    if ($cmy -notmatch [regex]::Escape($m)) { $errors += "C8-001: thieu model $m" }
+  }
+}
+
+# ---------- C8-002: C008 data model files ----------
+$c008 = Join-Path $spec3 'C008'
+foreach ($f in @('data-model.md','capability-data-model.yaml','capability-data.schema.json','capability-entities.yaml','capability-identities.yaml','capability-invariants.yaml','capability-lifecycle.yaml','capability-ownership.yaml','capability-references.yaml','capability-relations.yaml','capability-validation.yaml')) {
+  if (-not (Test-Path (Join-Path $c008 $f))) { $errors += "C8-002: missing C008/$f" }
+}
+
+# ---------- C8-003: capability-data-model.yaml ----------
+$dm8 = Join-Path $c008 'capability-data-model.yaml'
+if (Test-Path $dm8) {
+  $dm = Get-Content -LiteralPath $dm8 -Raw -Encoding utf8
+  foreach ($sec in @('aggregate_root','aggregate_rules','classification','invariants','consistency','dependencies')) {
+    if ($dm -notmatch "(?m)^${sec}:") { $errors += "C8-003: capability-data-model thieu '$sec'" }
+  }
+  if ($dm -notmatch 'Capability') { $errors += "C8-003: aggregate_root phai la Capability" }
+}
+
+# ---------- C8-004: entities ----------
+$en8 = Join-Path $c008 'capability-entities.yaml'
+if (Test-Path $en8) {
+  $en = Get-Content -LiteralPath $en8 -Raw -Encoding utf8
+  $entCount = ([regex]::Matches($en, '(?m)^  ENT-C\d+:')).Count
+  if ($entCount -lt 15) { $errors += "C8-004: capability-entities chi co $entCount (can >=15)" }
+  foreach ($e in @('ENT-C001','ENT-C002','ENT-C008','ENT-C014')) {
+    if ($en -notmatch [regex]::Escape($e)) { $errors += "C8-004: thieu $e" }
+  }
+}
+
+# ---------- C8-005: data-model.md ----------
+$dmd8 = Join-Path $c008 'data-model.md'
+if (Test-Path $dmd8) {
+  $dm8m = Get-Content -LiteralPath $dmd8 -Raw -Encoding utf8
+  for ($i = 1; $i -le 15; $i++) {
+    $sec = "CDM{0:D3}" -f $i
+    if ($dm8m -notmatch [regex]::Escape($sec)) { $errors += "C8-005: thieu section $sec" }
+  }
+}
+
 # ---------- C1-005: SPEC.yaml ----------
 $specFile = Join-Path $spec3 'SPEC.yaml'
 if (Test-Path $specFile) {
