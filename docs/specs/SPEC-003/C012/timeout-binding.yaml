@@ -1,0 +1,10 @@
+# SPEC-003 C012 - Timeout Binding (CPB-002 -> POL-TIMEOUT-001)
+---
+version: "1.0"
+binding:
+  id: CPB-002
+  policy_ref: POL-TIMEOUT-001 (S012)
+  scope: Resolution
+  parameters:
+    timeout_ms: 30000
+  status: Draft

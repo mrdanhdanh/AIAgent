@@ -1,0 +1,11 @@
+# SPEC-003 C012 - Approval Binding (CPB-003 -> POL-APPROVAL-001)
+---
+version: "1.0"
+binding:
+  id: CPB-003
+  policy_ref: POL-APPROVAL-001 (S012)
+  scope: Capability
+  parameters:
+    approver: owner
+    timeout_ms: 86400000
+  status: Draft

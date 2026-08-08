@@ -548,6 +548,54 @@ if (Test-Path $obmd) {
   }
 }
 
+# ---------- C12-001: C012 policies ----------
+$c012 = Join-Path $spec3 'C012'
+foreach ($f in @('policies.md','capability-policies.yaml','capability-policies.schema.json','capability-policy-model.yaml','capability-policy-lifecycle.yaml','capability-policy-categories.yaml','capability-policy-resolution.yaml','capability-policy-validation.yaml','capability-policy-traceability.yaml','retry-binding.yaml','timeout-binding.yaml','approval-binding.yaml')) {
+  if (-not (Test-Path (Join-Path $c012 $f))) { $errors += "C12-001: missing C012/$f" }
+}
+
+# ---------- C12-002: capability-policies.yaml ----------
+$pl12 = Join-Path $c012 'capability-policies.yaml'
+if (Test-Path $pl12) {
+  $pl = Get-Content -LiteralPath $pl12 -Raw -Encoding utf8
+  foreach ($sec in @('philosophy','principles','binding_model','lifecycle','categories','bindings','responsibility_chain')) {
+    if ($pl -notmatch "(?m)^${sec}:") { $errors += "C12-002: thieu '$sec'" }
+  }
+  foreach ($b in @('CPB-001','CPB-005','CPB-010')) {
+    if ($pl -notmatch [regex]::Escape($b)) { $errors += "C12-002: thieu $b" }
+  }
+}
+
+# ---------- C12-003: moi binding tro den POL-* ----------
+if (Test-Path $pl12) {
+  $pl3 = Get-Content -LiteralPath $pl12 -Raw -Encoding utf8
+  foreach ($pol in @('POL-RETRY-001','POL-TIMEOUT-001','POL-APPROVAL-001','POL-RES-001','POL-PARALLEL-001','POL-COMP-001','POL-SCHED-001','POL-ISOL-001','POL-SEC-001','POL-RESACC-001')) {
+    if ($pl3 -notmatch [regex]::Escape($pol)) { $errors += "C12-003: thieu binding toi $pol" }
+  }
+}
+
+# ---------- C12-004: binding model ----------
+$bm12 = Join-Path $c012 'capability-policy-model.yaml'
+if (Test-Path $bm12) {
+  $bm = Get-Content -LiteralPath $bm12 -Raw -Encoding utf8
+  if ($bm -notmatch 'policy_ref') { $errors += "C12-004: binding model thieu policy_ref" }
+  if ($bm -notmatch 'parameters') { $errors += "C12-004: binding model thieu parameters" }
+  if ($bm -notmatch 'scope') { $errors += "C12-004: binding model thieu scope" }
+}
+
+# ---------- C12-005: policies.md ----------
+$plmd = Join-Path $c012 'policies.md'
+if (Test-Path $plmd) {
+  $plm = Get-Content -LiteralPath $plmd -Raw -Encoding utf8
+  for ($i = 1; $i -le 17; $i++) {
+    $sec = "CP{0:D3}" -f $i
+    if ($plm -notmatch [regex]::Escape($sec)) { $errors += "C12-005: thieu section $sec" }
+  }
+  foreach ($sec in @('CP002A','CP002B')) {
+    if ($plm -notmatch [regex]::Escape($sec)) { $errors += "C12-005: thieu section $sec" }
+  }
+}
+
 # ---------- C1-005: SPEC.yaml ----------
 $specFile = Join-Path $spec3 'SPEC.yaml'
 if (Test-Path $specFile) {
