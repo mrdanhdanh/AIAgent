@@ -1,0 +1,9 @@
+# SPEC-002 W003 - Workflow Ownership
+---
+version: "1.0"
+owners:
+  Workflow Engine: Workflow Team
+  Workflow Definition: Workflow Team
+  Registry Entry (S014): Workflow Team
+  Step Execution: Runtime (SPEC-001)
+  Policy: Runtime (S012)
