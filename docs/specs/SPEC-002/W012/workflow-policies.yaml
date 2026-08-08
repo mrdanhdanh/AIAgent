@@ -1,0 +1,48 @@
+# SPEC-002 W012 - Workflow Policies
+# Workflow khong dinh nghia policy (WB008) - chi khai bao BINDING toi S012.
+---
+id: SPEC-002-W012
+name: Workflow Policies
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Workflow Team
+philosophy:
+  - Policy la luat cua Runtime (S012) - Workflow khong dinh nghia lai (WB008).
+  - Workflow khai bao Binding: policy_ref + parameters + scope.
+  - Binding hop le thi moi duoc apply.
+  - Workflow khong chua Policy Logic.
+principles:
+  - Reference Only: chi tro den POL-* (S012).
+  - Parameterized: khai bao tham so, khong dinh nghia hanh vi.
+  - Scoped: binding theo Workflow hoac Step.
+  - Versioned: binding theo version policy (S012).
+  - Validated: binding phai hop le truoc khi chay.
+  - Traceable: moi binding apply co Event + Audit (S011).
+binding_model:
+  fields: [id, workflow, step, policy_ref, parameters, scope, version, status, lifecycle, metadata]
+lifecycle: [Draft, Validated, Published, Active, Deprecated, Retired]
+categories:
+  note: Dung 7 categories cua S012 RP003.
+  - Recovery
+  - Control
+  - Orchestration
+  - Resource
+  - Governance
+  - Security
+  - Lifecycle
+bindings:
+  - WPB-001 Retry Binding -> POL-RETRY-001
+  - WPB-002 Timeout Binding -> POL-TIMEOUT-001
+  - WPB-003 Approval Binding -> POL-APPROVAL-001
+  - WPB-004 Resource Binding -> POL-RES-001
+  - WPB-005 Parallel Binding -> POL-PARALLEL-001
+  - WPB-006 Compensation Binding -> POL-COMP-001
+  - WPB-007 Scheduling Binding -> POL-SCHED-001
+  - WPB-008 Isolation Binding -> POL-ISOL-001
+  - WPB-009 Security Binding -> POL-SEC-001
+  - WPB-010 Resource Access Binding -> POL-RESACC-001
+responsibility_chain:
+  - S012 Runtime Policies: define policy
+  - S013 Runtime Governance: enforce policy
+  - W012 Workflow Policies: bind policy vao workflow

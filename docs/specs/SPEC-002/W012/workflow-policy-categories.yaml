@@ -1,0 +1,4 @@
+# SPEC-002 W012 - Workflow Policy Categories (S012 RP003)
+---
+version: "1.0"
+categories: [Recovery, Control, Orchestration, Resource, Governance, Security, Lifecycle]

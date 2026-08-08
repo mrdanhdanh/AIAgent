@@ -1,0 +1,11 @@
+# SPEC-002 W012 - Approval Binding (WPB-003 -> POL-APPROVAL-001)
+---
+version: "1.0"
+binding:
+  id: WPB-003
+  policy_ref: POL-APPROVAL-001 (S012)
+  scope: Workflow
+  parameters:
+    approver: owner
+    timeout_ms: 86400000
+  status: Draft

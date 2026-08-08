@@ -549,6 +549,54 @@ if (Test-Path $obmd) {
   }
 }
 
+# ---------- W12-001: W012 policies ----------
+$w012 = Join-Path $spec2 'W012'
+foreach ($f in @('policies.md','workflow-policies.yaml','workflow-policies.schema.json','workflow-policy-model.yaml','workflow-policy-lifecycle.yaml','workflow-policy-categories.yaml','workflow-policy-resolution.yaml','workflow-policy-validation.yaml','workflow-policy-traceability.yaml','retry-binding.yaml','timeout-binding.yaml','approval-binding.yaml')) {
+  if (-not (Test-Path (Join-Path $w012 $f))) { $errors += "W12-001: missing W012/$f" }
+}
+
+# ---------- W12-002: workflow-policies.yaml ----------
+$pl12 = Join-Path $w012 'workflow-policies.yaml'
+if (Test-Path $pl12) {
+  $pl = Get-Content -LiteralPath $pl12 -Raw -Encoding utf8
+  foreach ($sec in @('philosophy','principles','binding_model','lifecycle','categories','bindings','responsibility_chain')) {
+    if ($pl -notmatch "(?m)^${sec}:") { $errors += "W12-002: thieu '$sec'" }
+  }
+  foreach ($b in @('WPB-001','WPB-005','WPB-010')) {
+    if ($pl -notmatch [regex]::Escape($b)) { $errors += "W12-002: thieu $b" }
+  }
+}
+
+# ---------- W12-003: moi binding tro den POL-* ----------
+if (Test-Path $pl12) {
+  $pl3 = Get-Content -LiteralPath $pl12 -Raw -Encoding utf8
+  foreach ($pol in @('POL-RETRY-001','POL-TIMEOUT-001','POL-APPROVAL-001','POL-RES-001','POL-PARALLEL-001','POL-COMP-001','POL-SCHED-001','POL-ISOL-001','POL-SEC-001','POL-RESACC-001')) {
+    if ($pl3 -notmatch [regex]::Escape($pol)) { $errors += "W12-003: thieu binding toi $pol" }
+  }
+}
+
+# ---------- W12-004: binding model ----------
+$bm12 = Join-Path $w012 'workflow-policy-model.yaml'
+if (Test-Path $bm12) {
+  $bm = Get-Content -LiteralPath $bm12 -Raw -Encoding utf8
+  if ($bm -notmatch 'policy_ref') { $errors += "W12-004: binding model thieu policy_ref" }
+  if ($bm -notmatch 'parameters') { $errors += "W12-004: binding model thieu parameters" }
+  if ($bm -notmatch 'scope') { $errors += "W12-004: binding model thieu scope" }
+}
+
+# ---------- W12-005: policies.md ----------
+$plmd = Join-Path $w012 'policies.md'
+if (Test-Path $plmd) {
+  $plm = Get-Content -LiteralPath $plmd -Raw -Encoding utf8
+  for ($i = 1; $i -le 17; $i++) {
+    $sec = "WP{0:D3}" -f $i
+    if ($plm -notmatch [regex]::Escape($sec)) { $errors += "W12-005: thieu section $sec" }
+  }
+  foreach ($sec in @('WP002A','WP002B')) {
+    if ($plm -notmatch [regex]::Escape($sec)) { $errors += "W12-005: thieu section $sec" }
+  }
+}
+
 # ---------- W1-005: SPEC.yaml ----------
 $specFile = Join-Path $spec2 'SPEC.yaml'
 if (Test-Path $specFile) {
