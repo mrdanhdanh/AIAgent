@@ -855,7 +855,7 @@ if (Test-Path $dr19) {
   foreach ($d in @('Constitution (SPEC-000)','Contracts (C007)','Policy Binding (C012)','Governance (C013)','Registry (C014)','Resources (C015)','Compliance (C016)','Extensions (C017)','Observability (C011)')) {
     if ($dr -notmatch [regex]::Escape($d)) { $errors += "C19-002: thieu domain '$d'" }
   }
-  $srcCount = ([regex]::Matches($dr, '(?m)^  - C\d{3} ')).Count
+  $srcCount = ([regex]::Matches($dr, '(?m)^  - "?C\d{3} ')).Count
   if ($srcCount -lt 7) { $errors += "C19-003: check_sources chi co $srcCount (can >=7)" }
   if ($dr -notmatch 'Chi Low impact') { $errors += "C19-004: self_repair thieu Low impact" }
 }

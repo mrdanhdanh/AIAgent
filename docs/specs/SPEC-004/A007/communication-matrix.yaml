@@ -1,0 +1,15 @@
+# SPEC-004 A007 - Communication Matrix
+---
+version: "1.0"
+edges:
+  - [ACP-001, ACP-002, ACT-002]
+  - [ACP-001, ACP-003, ACT-003]
+  - [ACP-001, ACP-004, ACT-004]
+  - [ACP-001, ACP-005, ACT-005]
+  - [ACP-001, ACP-008, ACT-007]
+  - [ACP-003, ACP-002, ACT-002]
+  - [ACP-004, Capability System, ACT-004]
+  - [ACP-005, Workflow, ACT-005]
+  - [ACP-005, Runtime, ACT-005]
+  - [ACP-006, Registry, ACT-006]
+  - [ACP-008, Event Store, ACT-007]

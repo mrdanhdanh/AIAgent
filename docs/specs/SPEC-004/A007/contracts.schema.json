@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aios://agent-contracts.schema.json",
+  "title": "SPEC-004 Agent Contracts (A007)",
+  "description": "JSON Schema cho contracts.yaml. Validator kiem tra cau truc.",
+  "type": "object",
+  "required": ["id", "name", "version", "status", "frozen", "owner", "contracts"],
+  "properties": {
+    "id": { "const": "SPEC-004-A007" },
+    "name": { "const": "Agent Contracts" },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "status": { "enum": ["Draft", "Review", "Approved", "Stable", "Deprecated"] },
+    "frozen": { "type": "boolean" },
+    "owner": { "type": "string" },
+    "contracts": { "type": "object", "minProperties": 7 }
+  },
+  "additionalProperties": false
+}
