@@ -1,0 +1,9 @@
+# SPEC-003 C003 - Capability Ownership
+---
+version: "1.0"
+owners:
+  Capability System: Capability Team
+  Capability Definition: Capability Team
+  Registry Entry (S014): Capability Team
+  Resolution (EF007): Runtime (SPEC-001)
+  Policy: Runtime (S012)

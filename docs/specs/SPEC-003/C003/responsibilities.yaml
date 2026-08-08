@@ -1,0 +1,254 @@
+# SPEC-003 C003 — Capability Responsibilities (18 CRR)
+# Moi responsibility dung mot Owner. Authority tach biet.
+---
+id: SPEC-003-C003
+name: Capability Responsibilities
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Capability Team
+principle: Responsibility != Capability != Component
+invariants:
+  - Mot Responsibility chi co mot Owner.
+  - Mot Responsibility co the delegate.
+  - Owner khong doi trong mot Capability vong doi.
+  - Khong Responsibility nao phu thuoc vong.
+delegation:
+  Capability Resolution: Runtime (S010 EF007)
+  Registry: Runtime (S014)
+  Policy: Runtime (S012)
+responsibilities:
+  CRR-001:
+    name: Khai bao Capability
+    group: Core
+    owner: Capability
+    priority: Critical
+    status: Draft
+    authority: Duoc nhan khai bao nang luc (metadata)
+    input: Capability Declaration
+    output: Capability Definition
+    metric: Capability Declare Rate
+    requirements: [CFR-001]
+    principles: [P003, P011]
+    rules: [RULE-001]
+  CRR-002:
+    name: Dang ky Capability
+    group: Core
+    owner: Capability
+    priority: Critical
+    status: Draft
+    authority: Duoc ghi Registry (S014)
+    input: Capability Definition
+    output: Registry Entry
+    metric: Registration Rate
+    requirements: [CFR-002]
+    principles: [P003]
+    rules: [RULE-002]
+  CRR-003:
+    name: Validate Capability
+    group: Validation
+    owner: Capability
+    priority: Critical
+    status: Draft
+    authority: Duoc kiem tra Capability
+    input: Capability Definition
+    output: Validation Result
+    metric: Invalid Capabilities
+    requirements: [CFR-006]
+    principles: [P011, P002]
+    rules: [RULE-002]
+  CRR-004:
+    name: Version Capability
+    group: Data
+    owner: Capability
+    priority: High
+    status: Draft
+    authority: Duoc quan ly version (SemVer)
+    input: Capability Definition
+    output: Versioned Capability
+    metric: Version Coverage
+    requirements: [CFR-007]
+    principles: [P004]
+    rules: [RULE-009]
+  CRR-005:
+    name: Resolve Capability
+    group: Execution
+    owner: Capability
+    priority: Critical
+    status: Draft
+    authority: Duoc resolve qua Runtime (EF007)
+    input: Capability Request
+    output: Resolved Capability
+    metric: Resolution Rate
+    requirements: [CFR-003]
+    principles: [P007]
+    rules: [RULE-002]
+  CRR-006:
+    name: Map Agent
+    group: Mapping
+    owner: Capability
+    priority: Critical
+    status: Draft
+    authority: Duoc gan nang luc voi Agent
+    input: Agent + Capability
+    output: Agent Mapping
+    metric: Mapping Coverage
+    requirements: [CFR-004]
+    principles: [P007, P001]
+    rules: [RULE-004]
+  CRR-007:
+    name: Map Plugin
+    group: Mapping
+    owner: Capability
+    priority: High
+    status: Draft
+    authority: Duoc gan nang luc voi Plugin
+    input: Plugin + Capability
+    output: Plugin Mapping
+    metric: Mapping Coverage
+    requirements: [CFR-005]
+    principles: [P012]
+    rules: [RULE-010]
+  CRR-008:
+    name: Bind Policy
+    group: Governance
+    owner: Capability
+    priority: High
+    status: Draft
+    authority: Duoc khai bao tham so Policy (S012)
+    input: Capability + Policy
+    output: Policy Binding
+    metric: Binding Coverage
+    requirements: [CFR-008]
+    principles: [P015]
+    rules: [RULE-012]
+  CRR-009:
+    name: Kiem tra Compatibility
+    group: Validation
+    owner: Capability
+    priority: High
+    status: Draft
+    authority: Duoc kiem tra tuong thich (S013 GV010)
+    input: Capability + Version
+    output: Compatibility Result
+    metric: Compatibility Coverage
+    requirements: [CFR-009]
+    principles: [P018]
+    rules: [RULE-015]
+  CRR-010:
+    name: Thuc thi Permission
+    group: Governance
+    owner: Capability
+    priority: Critical
+    status: Draft
+    authority: Duoc thuc thi permission (POL-SEC-001)
+    input: Capability Request
+    output: Allow / Deny
+    metric: Permission Violations
+    requirements: [CFR-010]
+    principles: [P016]
+    rules: [RULE-008]
+  CRR-011:
+    name: Theo doi Usage
+    group: Observability
+    owner: Capability
+    priority: High
+    status: Draft
+    authority: Duoc ghi Metrics (S011)
+    input: Capability Usage
+    output: Usage Metrics
+    metric: Usage Coverage
+    requirements: [CFR-011]
+    principles: [P014]
+    rules: [RULE-014]
+  CRR-012:
+    name: Phat Capability Events
+    group: Observability
+    owner: Capability
+    priority: High
+    status: Draft
+    authority: Duoc ghi Event Store (S011)
+    input: State Change
+    output: Capability Event
+    metric: Event Coverage
+    requirements: [CFR-012]
+    principles: [P005, P014]
+    rules: [RULE-007]
+  CRR-013:
+    name: Ho tro Discovery
+    group: Data
+    owner: Capability
+    priority: High
+    status: Draft
+    authority: Duoc kham pha qua Registry (S014)
+    input: Discovery Query
+    output: Capability List
+    metric: Discovery Rate
+    requirements: [CFR-013]
+    principles: [P003]
+    rules: [RULE-002]
+  CRR-014:
+    name: Quan ly Deprecation
+    group: Data
+    owner: Capability
+    priority: Medium
+    status: Draft
+    authority: Duoc deprecate Capability (S014 RG010)
+    input: Capability
+    output: Deprecated Entry
+    metric: Deprecation Coverage
+    requirements: [CFR-014]
+    principles: [P018]
+    rules: [RULE-015]
+  CRR-015:
+    name: Quan ly Capability Groups
+    group: Core
+    owner: Capability
+    priority: Medium
+    status: Draft
+    authority: Duoc nhom nang luc
+    input: Capability List
+    output: Capability Group
+    metric: Group Coverage
+    requirements: [CFR-015]
+    principles: [P001]
+    rules: [RULE-004]
+  CRR-016:
+    name: Dieu phoi Fallback
+    group: Execution
+    owner: Capability
+    priority: Medium
+    status: Draft
+    authority: Duoc fallback khi resolution that bai
+    input: Failed Resolution
+    output: Fallback Capability
+    metric: Fallback Coverage
+    requirements: [CFR-016]
+    principles: [P015]
+    rules: [RULE-012]
+  CRR-017:
+    name: Thuc thi Capability Governance
+    group: Governance
+    owner: Capability
+    priority: Critical
+    status: Draft
+    authority: Duoc thuc thi Governance (S013)
+    input: Capability
+    output: Enforcement
+    metric: Governance Violations
+    requirements: [CNFR-010]
+    principles: [P016]
+    rules: [RULE-008]
+  CRR-018:
+    name: Tu choi Capability khong hop le
+    group: Governance
+    owner: Capability
+    priority: Critical
+    status: Draft
+    authority: Duoc tu choi Capability
+    input: Invalid Capability
+    output: Rejection + Audit (S011)
+    metric: Rejection Rate
+    requirements: [CFR-006]
+    principles: [P011, P002]
+    rules: [RULE-002, RULE-003]
