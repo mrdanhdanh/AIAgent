@@ -1,0 +1,11 @@
+# SPEC-003 C006 - Component Validation
+# Doctor kiem tra.
+---
+version: "1.0"
+checks:
+  - Missing Component
+  - Duplicate Component ID
+  - Missing Contract
+  - Missing Capability
+  - Boundary Violation (C004)
+  - Business Logic trong Component

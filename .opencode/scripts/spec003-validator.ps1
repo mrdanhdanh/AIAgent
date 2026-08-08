@@ -265,6 +265,53 @@ if (Test-Path $amd5) {
   }
 }
 
+# ---------- C6-001: C006 components ----------
+$c006 = Join-Path $spec3 'C006'
+foreach ($f in @('components.md','components.yaml','components.schema.json','component-model.yaml','component-lifecycle.yaml','component-ownership.yaml','component-contracts.yaml','component-dependencies.yaml','component-mapping.yaml','component-metrics.yaml','component-validation.yaml','component-registry.yaml')) {
+  if (-not (Test-Path (Join-Path $c006 $f))) { $errors += "C6-001: missing C006/$f" }
+}
+
+# ---------- C6-002: components.yaml ----------
+$cw6 = Join-Path $c006 'components.yaml'
+if (Test-Path $cw6) {
+  $cp6 = Get-Content -LiteralPath $cw6 -Raw -Encoding utf8
+  foreach ($sec in @('philosophy','principles','component_model','groups','lifecycles','components','not_in_runtime')) {
+    if ($cp6 -notmatch "(?m)^${sec}:") { $errors += "C6-002: components thieu '$sec'" }
+  }
+  foreach ($c in @('CCP-001','CCP-004','CCP-005','CCP-008')) {
+    if ($cp6 -notmatch [regex]::Escape($c)) { $errors += "C6-002: thieu $c" }
+  }
+  foreach ($n in @('Capability Engine','Declaration Manager','Validation Engine','Registration Manager','Capability Resolver','Discovery Provider','Binding Registrar','Capability Event Dispatcher')) {
+    if ($cp6 -notmatch [regex]::Escape($n)) { $errors += "C6-002: thieu component '$n'" }
+  }
+}
+
+# ---------- C6-003: moi component co layer/domain/requirements ----------
+foreach ($c in @('CCP-001','CCP-004','CCP-005')) {
+  $block = [regex]::Match($cp6, "(?ms)^  ${c}:.*?^    principles:.*$")
+  if (-not $block.Success) { $errors += "C6-003: $c thieu block" }
+  else {
+    if ($block.Value -notmatch '(?m)^    layer:') { $errors += "C6-003: $c thieu layer" }
+    if ($block.Value -notmatch '(?m)^    domain:') { $errors += "C6-003: $c thieu domain" }
+    if ($block.Value -notmatch '(?m)^    requirements:') { $errors += "C6-003: $c thieu requirements" }
+  }
+}
+
+# ---------- C6-004: not_in_runtime ----------
+if (Test-Path $cw6) {
+  $cp6b = Get-Content -LiteralPath $cw6 -Raw -Encoding utf8
+  if ($cp6b -notmatch '(?m)^not_in_runtime:') { $errors += "C6-004: thieu not_in_runtime" }
+}
+
+# ---------- C6-005: components.md ----------
+$cmd6 = Join-Path $c006 'components.md'
+if (Test-Path $cmd6) {
+  $cm6 = Get-Content -LiteralPath $cmd6 -Raw -Encoding utf8
+  foreach ($sec in @('Philosophy','Principles','Groups','Components','Not in Capability System','Contracts','Dependencies','Lifecycles','Validation','Machine-readable')) {
+    if ($cm6 -notmatch [regex]::Escape("## $sec")) { $errors += "C6-005: components.md thieu section '$sec'" }
+  }
+}
+
 # ---------- C1-005: SPEC.yaml ----------
 $specFile = Join-Path $spec3 'SPEC.yaml'
 if (Test-Path $specFile) {

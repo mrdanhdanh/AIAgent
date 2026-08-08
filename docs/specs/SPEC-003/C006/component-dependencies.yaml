@@ -1,0 +1,12 @@
+# SPEC-003 C006 - Component Dependencies
+---
+version: "1.0"
+dependencies:
+  CCP-001: [CCP-002, CCP-003, CCP-004, CCP-005, CCP-008]
+  CCP-002: []
+  CCP-003: [CCP-002]
+  CCP-004: [Registry (S014)]
+  CCP-005: [Registry (S014), Runtime (SPEC-001)]
+  CCP-006: [Registry (S014)]
+  CCP-007: [Policy (S012)]
+  CCP-008: [Event Store (S011)]

@@ -1,0 +1,10 @@
+# SPEC-003 C006 - Component Contracts
+---
+version: "1.0"
+contracts:
+  Capability Contract: [CCP-001]
+  Declaration Contract: [CCP-002]
+  Validation Contract: [CCP-003]
+  Registry Contract: [CCP-004, CCP-005, CCP-006]
+  Binding Contract: [CCP-007]
+  Event Contract: [CCP-008]
