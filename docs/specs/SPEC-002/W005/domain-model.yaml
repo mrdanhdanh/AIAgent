@@ -1,0 +1,10 @@
+# SPEC-002 W005 - Domain Model
+---
+version: "1.0"
+domains:
+  Definition: { owner: Workflow, business_logic: false }
+  Validation: { owner: Workflow, business_logic: false }
+  Execution: { owner: Runtime (SPEC-001), business_logic: false }
+  Coordination: { owner: Runtime (SPEC-001), business_logic: false }
+  Capability: { owner: Runtime (S014), business_logic: false }
+  Observability: { owner: Runtime (S011), business_logic: false }

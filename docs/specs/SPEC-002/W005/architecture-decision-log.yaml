@@ -1,0 +1,13 @@
+# SPEC-002 W005 - Architecture Decision Log
+---
+version: "1.0"
+decisions:
+  - id: WAD-001
+    decision: Workflow Engine la Declarator, khong phai Executor
+    reason: Workflow = Execution cua Runtime (SPEC-001)
+  - id: WAD-002
+    decision: Khong lap lai Execution/State/Event layer cua Runtime
+    reason: Tranh trung lap, Workflow chi khai bao luong
+  - id: WAD-003
+    decision: Orchestration delegate toan bo cho Runtime
+    reason: Runtime co san S010 EF021/EF022, Policy S012

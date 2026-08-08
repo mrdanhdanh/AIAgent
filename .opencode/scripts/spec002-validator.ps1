@@ -217,6 +217,54 @@ if (Test-Path $bmd) {
   }
 }
 
+# ---------- W5-001: W005 architecture ----------
+$w005 = Join-Path $spec2 'W005'
+foreach ($f in @('architecture.md','architecture.yaml','architecture.schema.json','layer-model.yaml','domain-model.yaml','dependency-rules.yaml','communication-rules.yaml','architecture-matrix.yaml','architecture-decision-log.yaml','architecture-registry.yaml')) {
+  if (-not (Test-Path (Join-Path $w005 $f))) { $errors += "W5-001: missing W005/$f" }
+}
+
+# ---------- W5-002: architecture.yaml ----------
+$aw = Join-Path $w005 'architecture.yaml'
+if (Test-Path $aw) {
+  $ar = Get-Content -LiteralPath $aw -Raw -Encoding utf8
+  foreach ($sec in @('vision','decisions','layers','domains','dependency_rules','communication_rules','invariants','views','quality','constraints','stability','metrics','validation','mapping')) {
+    if ($ar -notmatch "(?m)^${sec}:") { $errors += "W5-002: architecture thieu '$sec'" }
+  }
+  foreach ($l in @('Command','Declaration','Definition','Validation','Resolution','Orchestration','Publication')) {
+    if ($ar -notmatch [regex]::Escape($l)) { $errors += "W5-002: thieu layer $l" }
+  }
+  foreach ($d in @('Definition','Validation','Execution','Coordination','Capability','Observability')) {
+    if ($ar -notmatch [regex]::Escape($d)) { $errors += "W5-002: thieu domain $d" }
+  }
+}
+
+# ---------- W5-003: moi layer co invariant + principle ----------
+foreach ($l in @('Command','Declaration','Validation','Orchestration','Publication')) {
+  $block = [regex]::Match($ar, "(?ms)^  ${l}:.*?^    principle:.*$")
+  if (-not $block.Success) { $errors += "W5-003: $l thieu block" }
+  else {
+    if ($block.Value -notmatch '(?m)^    invariant:') { $errors += "W5-003: $l thieu invariant" }
+    if ($block.Value -notmatch '(?m)^    principle:') { $errors += "W5-003: $l thieu principle" }
+  }
+}
+
+# ---------- W5-004: layer-model.yaml ----------
+$lm = Join-Path $w005 'layer-model.yaml'
+if (Test-Path $lm) {
+  $lmm = Get-Content -LiteralPath $lm -Raw -Encoding utf8
+  $layerCount = ([regex]::Matches($lmm, '(?m)^  - name:')).Count
+  if ($layerCount -lt 7) { $errors += "W5-004: layer-model chi co $layerCount layers (can >=7)" }
+}
+
+# ---------- W5-005: architecture.md ----------
+$amd = Join-Path $w005 'architecture.md'
+if (Test-Path $amd) {
+  $am = Get-Content -LiteralPath $amd -Raw -Encoding utf8
+  foreach ($sec in @('Architectural Decisions','Layers','Domains','Dependency Rules','Communication Rules','Invariants','Views','Quality','Constraints','Stability','Validation','Machine-readable')) {
+    if ($am -notmatch [regex]::Escape("## $sec")) { $errors += "W5-005: architecture.md thieu section '$sec'" }
+  }
+}
+
 # ---------- W1-005: SPEC.yaml ----------
 $specFile = Join-Path $spec2 'SPEC.yaml'
 if (Test-Path $specFile) {
