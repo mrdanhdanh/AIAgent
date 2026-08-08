@@ -1,0 +1,9 @@
+# SPEC-004 A008 - Agent References
+---
+version: "1.0"
+references:
+  Agent → Capability: CapabilityRef (SPEC-003)
+  Agent → Workflow: WorkflowRef (SPEC-002)
+  Agent → Execution: ExecutionRef (S008)
+  Agent → Registry: AgentRegistryEntry (S014)
+  Agent → Event: AgentEvent (S011)

@@ -1,0 +1,9 @@
+# SPEC-004 Appendix - Agent Model Validation
+---
+version: "1.0"
+checks:
+  - Agent co dung mot Definition.
+  - CapabilityMapping qua SPEC-003 - khong hardcode.
+  - Binding co policy_ref (S012).
+  - Group chi chua Agent hop le.
+  - AgentResult immutable.

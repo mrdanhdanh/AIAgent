@@ -1,0 +1,4 @@
+# SPEC-004 Appendix - Agent Model Registry
+---
+version: "1.0"
+models: [AM-001, AM-002, AM-003, AM-004, AM-005, AM-006, AM-007, AM-008]

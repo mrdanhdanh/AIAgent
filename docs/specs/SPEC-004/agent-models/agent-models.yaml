@@ -1,0 +1,47 @@
+# SPEC-004 Appendix — Agent Canonical Models (8 models)
+# Single Source of Truth (P009) - moi SPEC tham chieu, khong dinh nghia lai.
+---
+version: "1.0"
+status: Draft
+aggregate_root: Agent
+models:
+  AM-001:
+    name: Agent
+    kind: Root
+    fields: [id, definition_ref, version, status, owner, created_at, mapping_ref]
+    immutable: false
+  AM-002:
+    name: AgentDefinition
+    kind: Entity
+    fields: [id, name, version, description, contracts, owner, status]
+    immutable: true (Published)
+  AM-003:
+    name: AgentVersion
+    kind: Entity
+    fields: [id, agent_ref, version, semver, changelog]
+    immutable: true
+  AM-004:
+    name: CapabilityMapping
+    kind: Value
+    fields: [id, agent_ref, capability_ref (SPEC-003), via_registry]
+    immutable: true (Published)
+  AM-005:
+    name: AgentGroup
+    kind: Value
+    fields: [id, name, agents, owner]
+    immutable: false
+  AM-006:
+    name: AgentBinding
+    kind: Value
+    fields: [id, agent_ref, policy_ref (S012), parameters, scope]
+    immutable: true (Published)
+  AM-007:
+    name: AgentResult
+    kind: Entity
+    fields: [id, agent_ref, outcome, artifacts_ref, metrics_ref, timestamp]
+    immutable: true
+  AM-008:
+    name: AgentRegistryEntry
+    kind: Reference
+    fields: [id, agent_ref, version, status (S014)]
+    immutable: true (Published)

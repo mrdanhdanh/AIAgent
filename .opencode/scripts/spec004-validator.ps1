@@ -359,6 +359,57 @@ if (Test-Path $cmd7) {
   }
 }
 
+# ---------- A8-001: appendix agent-models ----------
+$am8 = Join-Path $spec4 'agent-models'
+foreach ($f in @('README.md','agent-models.yaml','agent-model-registry.yaml','agent-model-relationships.yaml','agent-model-validation.yaml','agent-models.schema.json')) {
+  if (-not (Test-Path (Join-Path $am8 $f))) { $errors += "A8-001: missing agent-models/$f" }
+}
+$amYaml = Join-Path $am8 'agent-models.yaml'
+if (Test-Path $amYaml) {
+  $amy = Get-Content -LiteralPath $amYaml -Raw -Encoding utf8
+  if ($amy -notmatch '(?m)^aggregate_root:\s*Agent') { $errors += "A8-001: aggregate_root phai la Agent" }
+  foreach ($m in @('AM-001','AM-002','AM-004','AM-008')) {
+    if ($amy -notmatch [regex]::Escape($m)) { $errors += "A8-001: thieu model $m" }
+  }
+}
+
+# ---------- A8-002: A008 data model files ----------
+$a008 = Join-Path $spec4 'A008'
+foreach ($f in @('data-model.md','agent-data-model.yaml','agent-data.schema.json','agent-entities.yaml','agent-identities.yaml','agent-invariants.yaml','agent-lifecycle.yaml','agent-ownership.yaml','agent-references.yaml','agent-relations.yaml','agent-validation.yaml')) {
+  if (-not (Test-Path (Join-Path $a008 $f))) { $errors += "A8-002: missing A008/$f" }
+}
+
+# ---------- A8-003: agent-data-model.yaml ----------
+$dm8 = Join-Path $a008 'agent-data-model.yaml'
+if (Test-Path $dm8) {
+  $dm = Get-Content -LiteralPath $dm8 -Raw -Encoding utf8
+  foreach ($sec in @('aggregate_root','aggregate_rules','classification','invariants','consistency','dependencies')) {
+    if ($dm -notmatch "(?m)^${sec}:") { $errors += "A8-003: agent-data-model thieu '$sec'" }
+  }
+  if ($dm -notmatch 'Agent') { $errors += "A8-003: aggregate_root phai la Agent" }
+}
+
+# ---------- A8-004: entities ----------
+$en8 = Join-Path $a008 'agent-entities.yaml'
+if (Test-Path $en8) {
+  $en = Get-Content -LiteralPath $en8 -Raw -Encoding utf8
+  $entCount = ([regex]::Matches($en, '(?m)^  ENT-A\d+:')).Count
+  if ($entCount -lt 15) { $errors += "A8-004: agent-entities chi co $entCount (can >=15)" }
+  foreach ($e in @('ENT-A001','ENT-A002','ENT-A008','ENT-A014')) {
+    if ($en -notmatch [regex]::Escape($e)) { $errors += "A8-004: thieu $e" }
+  }
+}
+
+# ---------- A8-005: data-model.md ----------
+$dmd8 = Join-Path $a008 'data-model.md'
+if (Test-Path $dmd8) {
+  $dm8m = Get-Content -LiteralPath $dmd8 -Raw -Encoding utf8
+  for ($i = 1; $i -le 15; $i++) {
+    $sec = "ADM{0:D3}" -f $i
+    if ($dm8m -notmatch [regex]::Escape($sec)) { $errors += "A8-005: thieu section $sec" }
+  }
+}
+
 # ---------- A1-005: SPEC.yaml ----------
 $specFile = Join-Path $spec4 'SPEC.yaml'
 if (Test-Path $specFile) {

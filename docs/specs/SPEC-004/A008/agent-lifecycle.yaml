@@ -1,0 +1,5 @@
+# SPEC-004 A008 - Agent Lifecycle
+---
+version: "1.0"
+definition: [Draft, Published, Deprecated, Retired]
+run: [Idle, Assigned, Running, Completed]

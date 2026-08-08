@@ -1,0 +1,8 @@
+# SPEC-004 Appendix - Agent Model Relationships
+---
+version: "1.0"
+relationships:
+  Agent: [AgentDefinition, CapabilityMapping, AgentBinding, AgentResult]
+  AgentDefinition: [AgentVersion, AgentRegistryEntry]
+  CapabilityMapping: [CapabilityRef (SPEC-003)]
+  AgentGroup: [Agent]
