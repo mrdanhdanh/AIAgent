@@ -596,6 +596,54 @@ if (Test-Path $plmd) {
   }
 }
 
+# ---------- C13-001: C013 governance ----------
+$c013 = Join-Path $spec3 'C013'
+foreach ($f in @('governance.md','capability-governance.yaml','capability-governance.schema.json','capability-governance-stack.yaml','capability-binding-enforcement.yaml','capability-governance-matrix.yaml','capability-governance-events.yaml','capability-governance-decisions.yaml','capability-governance-lifecycle.yaml','capability-governance-metrics.yaml','capability-governance-registry.yaml')) {
+  if (-not (Test-Path (Join-Path $c013 $f))) { $errors += "C13-001: missing C013/$f" }
+}
+
+# ---------- C13-002: capability-governance.yaml ----------
+$gv13 = Join-Path $c013 'capability-governance.yaml'
+if (Test-Path $gv13) {
+  $gv = Get-Content -LiteralPath $gv13 -Raw -Encoding utf8
+  foreach ($sec in @('philosophy','principles','scope','version_governance','compatibility_governance','validation_pipeline','decisions','traceability')) {
+    if ($gv -notmatch "(?m)^${sec}:") { $errors += "C13-002: thieu '$sec'" }
+  }
+  foreach ($e in @('Constitution (SPEC-000)','Policy Binding (C012)','Contract (C007)','Boundary (C004)','Permission (S013)','Version Compatibility')) {
+    if ($gv -notmatch [regex]::Escape($e)) { $errors += "C13-002: thieu enforces '$e'" }
+  }
+}
+
+# ---------- C13-003: validation_pipeline 5 buoc ----------
+if (Test-Path $gv13) {
+  $gv3 = Get-Content -LiteralPath $gv13 -Raw -Encoding utf8
+  foreach ($step in @('Constitution','Boundary (C004)','Contract (C007)','Policy Binding (C012)','Resolution (Runtime EF007)')) {
+    if ($gv3 -notmatch [regex]::Escape($step)) { $errors += "C13-003: pipeline thieu $step" }
+  }
+}
+
+# ---------- C13-004: binding enforcement ----------
+$be13 = Join-Path $c013 'capability-binding-enforcement.yaml'
+if (Test-Path $be13) {
+  $be = Get-Content -LiteralPath $be13 -Raw -Encoding utf8
+  if ($be -notmatch 'Resolve binding') { $errors += "C13-004: thieu resolve binding" }
+  if ($be -notmatch 'Apply') { $errors += "C13-004: thieu apply" }
+  if ($be -notmatch 'Audit') { $errors += "C13-004: thieu audit" }
+}
+
+# ---------- C13-005: governance.md ----------
+$gvmd = Join-Path $c013 'governance.md'
+if (Test-Path $gvmd) {
+  $gvm = Get-Content -LiteralPath $gvmd -Raw -Encoding utf8
+  for ($i = 1; $i -le 18; $i++) {
+    $sec = "CG{0:D3}" -f $i
+    if ($gvm -notmatch [regex]::Escape($sec)) { $errors += "C13-005: thieu section $sec" }
+  }
+  foreach ($sec in @('CG003A','CG005A','CG011A','CG012A','CG014A')) {
+    if ($gvm -notmatch [regex]::Escape($sec)) { $errors += "C13-005: thieu section $sec" }
+  }
+}
+
 # ---------- C1-005: SPEC.yaml ----------
 $specFile = Join-Path $spec3 'SPEC.yaml'
 if (Test-Path $specFile) {

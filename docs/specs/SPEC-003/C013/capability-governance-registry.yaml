@@ -1,0 +1,13 @@
+# SPEC-003 C013 - Capability Governance Registry
+---
+version: "1.0"
+registry:
+  - capability-governance.yaml
+  - capability-governance-stack.yaml
+  - capability-binding-enforcement.yaml
+  - capability-governance-matrix.yaml
+  - capability-governance-events.yaml
+  - capability-governance-decisions.yaml
+  - capability-governance-lifecycle.yaml
+  - capability-governance-metrics.yaml
+  - capability-governance.schema.json

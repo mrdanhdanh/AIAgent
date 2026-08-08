@@ -1,0 +1,51 @@
+# SPEC-003 C013 - Capability Governance
+# Capability chiu Governance cua Runtime (S013) - chi them Capability-level.
+---
+id: SPEC-003-C013
+name: Capability Governance
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Capability Team
+philosophy:
+  - Governance la co che thuc thi luat.
+  - Capability khong quyet dinh luat.
+  - Capability chi thuc thi luat da duoc dinh nghia (S012/S013).
+  - Governance doc lap Business Logic.
+principles:
+  - Constitution First
+  - Policy Binding First (C012)
+  - Contract First (C007)
+  - Boundary First (C004)
+  - Least Privilege
+  - Deterministic
+  - Auditable
+  - Versioned
+scope:
+  enforces:
+    - Constitution (SPEC-000)
+    - Policy Binding (C012)
+    - Contract (C007)
+    - Boundary (C004)
+    - Permission (S013)
+    - Version Compatibility
+  not_enforces:
+    - Business Rule
+    - Domain Rule
+version_governance:
+  checks: [SemVer, Compatibility, Deprecated, Breaking Change]
+compatibility_governance:
+  checks: [Contract, Capability, Plugin, Agent]
+validation_pipeline:
+  - Constitution
+  - Boundary (C004)
+  - Contract (C007)
+  - Policy Binding (C012)
+  - Resolution (Runtime EF007)
+decisions: [Allow, Deny, Suspend, Retry, Escalate]
+traceability:
+  - Capability
+  - Policy Binding (C012)
+  - Contract (C007)
+  - Boundary (C004)
+  - Constitution
