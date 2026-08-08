@@ -456,6 +456,50 @@ if (Test-Path $smd9) {
   }
 }
 
+# ---------- A10-001: A010 execution flow ----------
+$a010 = Join-Path $spec4 'A010'
+foreach ($f in @('execution-flow.md','agent-execution-flow.yaml','agent-execution-flow.schema.json','agent-stages.yaml','agent-registration.yaml','agent-orchestration.yaml','agent-fallback.yaml','agent-failure.yaml','agent-lineage.yaml','agent-outcome.yaml','agent-policies.yaml','agent-validation.yaml')) {
+  if (-not (Test-Path (Join-Path $a010 $f))) { $errors += "A10-001: missing A010/$f" }
+}
+
+# ---------- A10-002: agent-execution-flow.yaml ----------
+$ef10 = Join-Path $a010 'agent-execution-flow.yaml'
+if (Test-Path $ef10) {
+  $ef = Get-Content -LiteralPath $ef10 -Raw -Encoding utf8
+  foreach ($sec in @('philosophy','principles','stages','canonical_flow','agent_flows','rules')) {
+    if ($ef -notmatch "(?m)^${sec}:") { $errors += "A10-002: thieu '$sec'" }
+  }
+  foreach ($st in @('Initialize','Validate','Prepare','Execute','Coordinate','Finalize','Complete')) {
+    if ($ef -notmatch [regex]::Escape($st)) { $errors += "A10-002: thieu stage $st" }
+  }
+}
+
+# ---------- A10-003: canonical_flow 8 buoc ----------
+if (Test-Path $ef10) {
+  $ef3 = Get-Content -LiteralPath $ef10 -Raw -Encoding utf8
+  foreach ($step in @('Command','Declare','Validate','Register','Orchestrate','Execute','Finalize','Complete')) {
+    if ($ef3 -notmatch [regex]::Escape($step)) { $errors += "A10-003: canonical_flow thieu $step" }
+  }
+}
+
+# ---------- A10-004: agent_flows 7 loai ----------
+if (Test-Path $ef10) {
+  $ef4 = Get-Content -LiteralPath $ef10 -Raw -Encoding utf8
+  foreach ($fl in @('Registration','Orchestration','Fallback','Gate','Retry','Timeout','Failure')) {
+    if ($ef4 -notmatch [regex]::Escape($fl)) { $errors += "A10-004: thieu flow $fl" }
+  }
+}
+
+# ---------- A10-005: execution-flow.md ----------
+$efmd = Join-Path $a010 'execution-flow.md'
+if (Test-Path $efmd) {
+  $efm = Get-Content -LiteralPath $efmd -Raw -Encoding utf8
+  for ($i = 1; $i -le 19; $i++) {
+    $sec = "AF{0:D3}" -f $i
+    if ($efm -notmatch [regex]::Escape($sec)) { $errors += "A10-005: thieu section $sec" }
+  }
+}
+
 # ---------- A1-005: SPEC.yaml ----------
 $specFile = Join-Path $spec4 'SPEC.yaml'
 if (Test-Path $specFile) {

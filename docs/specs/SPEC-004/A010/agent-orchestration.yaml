@@ -1,0 +1,12 @@
+# SPEC-004 A010 - Agent Orchestration Flow
+---
+version: "1.0"
+flow:
+  - Request (agent + capability)
+  - Resolve capability (SPEC-003 qua Registry S014)
+  - Dieu phoi qua Workflow (SPEC-002)
+  - Delegate Runtime (SPEC-001)
+  - Resolved (agent execution)
+rules:
+  - Delegate Workflow (SPEC-002) + Runtime (SPEC-001) - khong tu chay (AB004).
+  - Failure -> loi chuan (S014 RG005A).

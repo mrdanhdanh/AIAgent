@@ -1,0 +1,10 @@
+# SPEC-004 A010 - Agent Flow Validation
+# Doctor kiem tra.
+---
+version: "1.0"
+checks:
+  - Agent khong dang ky trong S014.
+  - Agent System tu chay ngoai Runtime (AB004).
+  - Thieu Event cho buoc nao do (S011).
+  - Hardcode capability mapping (AB007).
+  - Agent ket thuc khong bang Terminal State (S009).

@@ -1,0 +1,12 @@
+# SPEC-004 A010 - Agent Registration Flow
+---
+version: "1.0"
+flow:
+  - Khai bao (metadata)
+  - Validate (AB003)
+  - Dang ky Registry Entry (S014)
+  - Capability Mapping (SPEC-003)
+  - Published (AST-003)
+rules:
+  - Khong hardcode capability mapping (AB007).
+  - Moi buoc sinh Event + Audit (S011).
