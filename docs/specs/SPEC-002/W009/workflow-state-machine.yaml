@@ -1,0 +1,66 @@
+# SPEC-002 W009 — Workflow State Machine (Canonical)
+# 2 tang: Definition (WST-001..006) + Run (tham chieu S009, khong dinh nghia lai).
+---
+id: SPEC-002-W009
+name: Workflow State Machine
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Workflow Team
+philosophy:
+  - Workflow luon co dung mot State.
+  - State chi thay doi qua Transition.
+  - Transition phai hop le.
+  - Moi Transition sinh Event.
+  - Workflow Run dung State Machine cua Runtime (S009) - khong dinh nghia lai.
+principles:
+  - State la nguon su that duy nhat ve Workflow.
+  - State doc lap implementation.
+  - State bat bien sau khi roi khoi.
+  - Transition quyet dinh Lifecycle.
+  - Khong duoc bo qua State.
+  - Run State Machine = S009 (Runtime).
+structure:
+  - Definition State Machine (WST-001..006)
+  - Run State Machine (tham chieu S009 ST-001..014)
+categories:
+  Initial: [WST-001]
+  Preparation: [WST-002]
+  Active: [WST-003]
+  Control: [WST-004]
+  Terminal: [WST-005, WST-006]
+states:
+  WST-001: { name: Draft, category: Initial, type: Initial, terminal: false }
+  WST-002: { name: Validating, category: Preparation, type: Internal, terminal: false }
+  WST-003: { name: Published, category: Active, type: Active, terminal: false }
+  WST-004: { name: Deprecated, category: Control, type: Active, terminal: false }
+  WST-005: { name: Retired, category: Terminal, type: Terminal, terminal: true }
+  WST-006: { name: Rejected, category: Terminal, type: Terminal, terminal: true }
+initial_state: WST-001
+terminal_states: [WST-005, WST-006]
+run_mapping:
+  note: Workflow Run la Execution cua Runtime - dung S009 ST-001..014.
+  Workflow Created: ST-001
+  Workflow Validating: ST-002
+  Workflow Prepared: ST-003
+  Workflow Running: ST-004
+  Workflow Waiting (Gate): ST-005
+  Workflow Suspended: ST-006
+  Workflow Cancelling: ST-007
+  Workflow Completed: ST-008
+  Workflow Failed: ST-009
+  Workflow Cancelled: ST-010
+  Workflow TimedOut: ST-011
+  Workflow Aborted: ST-014
+terminal_rules:
+  - Terminal khong co transition ra.
+  - Ngoai le duy nhat: Replay (S009 ST-012).
+triggers: [Registry (S014), User, Governance (S013), Scheduler]
+transitions:
+  - from: WST-001; to: WST-002; event: WORKFLOW_VALIDATING; guard: Khai bao hop le (schema)
+  - from: WST-002; to: WST-003; event: WORKFLOW_PUBLISHED; guard: Validate pass + Registry Entry (S014)
+  - from: WST-002; to: WST-006; event: WORKFLOW_REJECTED; guard: Validate fail
+  - from: WST-003; to: WST-004; event: WORKFLOW_DEPRECATED; guard: Governance (S013) cho phep
+  - from: WST-004; to: WST-003; event: WORKFLOW_REACTIVATED; guard: Governance (S013) duyet
+  - from: WST-003; to: WST-005; event: WORKFLOW_RETIRED; guard: Governance (S013)
+  - from: WST-004; to: WST-005; event: WORKFLOW_RETIRED; guard: Khong con dung

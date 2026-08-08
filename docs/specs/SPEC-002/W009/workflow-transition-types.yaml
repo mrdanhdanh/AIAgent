@@ -1,0 +1,4 @@
+# SPEC-002 W009 - Workflow Transition Types
+---
+version: "1.0"
+types: [Initial, Internal, Active, Terminal]

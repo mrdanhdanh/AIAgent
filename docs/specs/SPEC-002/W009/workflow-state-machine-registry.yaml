@@ -1,0 +1,16 @@
+# SPEC-002 W009 - Workflow State Machine Registry
+---
+version: "1.0"
+registries:
+  - workflow-state-machine.yaml
+  - workflow-states.yaml
+  - workflow-transitions.yaml
+  - workflow-transition-guards.yaml
+  - workflow-transition-triggers.yaml
+  - workflow-transition-types.yaml
+  - workflow-transition-matrix.yaml
+  - workflow-state-events.yaml
+  - workflow-state-history.yaml
+  - workflow-state-metrics.yaml
+  - workflow-state-machine-validation.yaml
+  - workflow.schema.json

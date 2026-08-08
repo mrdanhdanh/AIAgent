@@ -1,0 +1,16 @@
+# SPEC-002 W009 - Workflow Transition Guards
+---
+version: "1.0"
+guards:
+  - transition: WST-001 -> WST-002
+    guard: Khai bao hop le (schema, khong code WB001)
+  - transition: WST-002 -> WST-003
+    guard: Validate pass + Registry Entry (S014)
+  - transition: WST-002 -> WST-006
+    guard: Validate fail (co Invalid Audit S013)
+  - transition: WST-003 -> WST-004
+    guard: Governance (S013) cho phep
+  - transition: WST-004 -> WST-003
+    guard: Governance (S013) duyet
+  - transition: WST-003/004 -> WST-005
+    guard: Governance (S013) / khong con dung
