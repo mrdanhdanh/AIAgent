@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aios://workflow-contracts.schema.json",
+  "title": "SPEC-002 Workflow Contracts (W007)",
+  "description": "JSON Schema cho contracts.yaml. Validator kiem tra cau truc.",
+  "type": "object",
+  "required": ["id", "name", "version", "status", "frozen", "owner", "contracts"],
+  "properties": {
+    "id": { "const": "SPEC-002-W007" },
+    "name": { "const": "Workflow Contracts" },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "status": { "enum": ["Draft", "Review", "Approved", "Stable", "Deprecated"] },
+    "frozen": { "type": "boolean" },
+    "owner": { "type": "string" },
+    "contracts": { "type": "object", "minProperties": 6 }
+  },
+  "additionalProperties": false
+}

@@ -312,6 +312,53 @@ if (Test-Path $cmd) {
   }
 }
 
+# ---------- W7-001: W007 contracts ----------
+$w007 = Join-Path $spec2 'W007'
+foreach ($f in @('contracts.md','contracts.yaml','contracts.schema.json','contract-model.yaml','contract-categories.yaml','contract-types.yaml','contract-compatibility.yaml','contract-mapping.yaml','contract-quality.yaml','contract-anti-patterns.yaml','communication-matrix.yaml','contract-registry.yaml')) {
+  if (-not (Test-Path (Join-Path $w007 $f))) { $errors += "W7-001: missing W007/$f" }
+}
+
+# ---------- W7-002: contracts.yaml ----------
+$cw7 = Join-Path $w007 'contracts.yaml'
+if (Test-Path $cw7) {
+  $ct = Get-Content -LiteralPath $cw7 -Raw -Encoding utf8
+  if ($ct -notmatch '(?m)^contracts:') { $errors += "W7-002: contracts.yaml thieu 'contracts:'" }
+  foreach ($c in @('WCT-001','WCT-002','WCT-003','WCT-004','WCT-005','WCT-006')) {
+    if ($ct -notmatch [regex]::Escape($c)) { $errors += "W7-002: thieu $c" }
+  }
+  foreach ($n in @('Workflow Contract','Definition Contract','Validation Contract','Orchestrator Contract','Registry Contract','Event Contract')) {
+    if ($ct -notmatch [regex]::Escape($n)) { $errors += "W7-002: thieu contract '$n'" }
+  }
+}
+
+# ---------- W7-003: moi contract co component/principles ----------
+foreach ($c in @('WCT-001','WCT-004','WCT-006')) {
+  $block = [regex]::Match($ct, "(?ms)^  ${c}:.*?^    compatibility:.*$")
+  if (-not $block.Success) { $errors += "W7-003: $c thieu block" }
+  else {
+    if ($block.Value -notmatch '(?m)^    owner:') { $errors += "W7-003: $c thieu owner" }
+    if ($block.Value -notmatch '(?m)^    preconditions:') { $errors += "W7-003: $c thieu preconditions" }
+    if ($block.Value -notmatch '(?m)^    invariants:') { $errors += "W7-003: $c thieu invariants" }
+  }
+}
+
+# ---------- W7-004: communication-matrix ----------
+$mm7 = Join-Path $w007 'communication-matrix.yaml'
+if (Test-Path $mm7) {
+  $m7 = Get-Content -LiteralPath $mm7 -Raw -Encoding utf8
+  $edgeCount = ([regex]::Matches($m7, '(?m)^  - \[')).Count
+  if ($edgeCount -lt 10) { $errors += "W7-004: communication-matrix chi co $edgeCount edges (can >=10)" }
+}
+
+# ---------- W7-005: contracts.md ----------
+$cmd7 = Join-Path $w007 'contracts.md'
+if (Test-Path $cmd7) {
+  $cm7 = Get-Content -LiteralPath $cmd7 -Raw -Encoding utf8
+  foreach ($sec in @('Contracts','Contract Quality','Anti-patterns','Communication Matrix','Machine-readable')) {
+    if ($cm7 -notmatch [regex]::Escape("## $sec")) { $errors += "W7-005: contracts.md thieu section '$sec'" }
+  }
+}
+
 # ---------- W1-005: SPEC.yaml ----------
 $specFile = Join-Path $spec2 'SPEC.yaml'
 if (Test-Path $specFile) {
