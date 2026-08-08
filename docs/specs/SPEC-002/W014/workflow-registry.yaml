@@ -1,0 +1,111 @@
+# SPEC-002 W014 - Workflow Registry
+# Workflow dang ky trong Registry cua Runtime (S014 workflow-registry).
+# Khong mo ta database/storage/API/implementation.
+---
+id: SPEC-002-W014
+name: Workflow Registry
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Workflow Team
+philosophy:
+  - Workflow Registry la SSOT cho Workflow Metadata.
+  - Workflow khong hardcode - moi Workflow dang ky trong S014.
+  - Moi Resolution deu di qua Registry.
+  - Registry khong chua Business Logic.
+principles:
+  - Metadata First
+  - Contract First (W007)
+  - Versioned
+  - Discoverable
+  - Immutable (Published)
+  - Traceable
+categories:
+  note: Workflow Registry la 1 category cua S014 (workflow-registry).
+  - Workflow Definition
+  - Workflow Version
+  - Workflow Binding (W012)
+domains:
+  - Workflow Domain
+  - Definition Domain
+  - Binding Domain
+entry_model:
+  fields: [id, type, category, version, status, owner, references, compatibility, lifecycle, metadata]
+ownership:
+  Workflow Entry: Workflow Team
+  Binding Entry: Workflow Team
+  Registry (S014): Runtime
+lifecycle: [Draft, Published, Deprecated, Retired]
+governance:
+  - Published
+  - Immutable
+  - Governance (S013)
+  - Deprecated
+  - Retired
+constraints:
+  - Khong Duplicate Workflow ID.
+  - Khong Duplicate Version.
+  - Khong Broken Reference (S014).
+  - Khong Circular Reference (S014).
+  - Khong Orphan Entry (S014).
+  - Khong Multiple Active Version.
+resolution:
+  - Request
+  - Normalize
+  - Lookup (S014)
+  - Candidate Selection
+  - Compatibility Check
+  - Policy Binding Check (W012)
+  - Governance Check (S013)
+  - Resolved
+resolution_rules:
+  - Resolve theo ID (S014).
+  - Nhieu Version -> ap dung Resolution Priority.
+  - Khong Resolve Entry Deprecated neu co ban Active.
+  - Khong Resolve Entry Invalid.
+resolution_priority:
+  - Exact
+  - Compatible
+  - Latest Stable
+  - Latest
+  - Failure
+resolution_failures:
+  NotFound: khong ton tai
+  Invalid: schema loi
+  Deprecated: het ho tro
+  Incompatible: version
+  Forbidden: governance
+  Ambiguous: nhieu candidate
+version_resolution:
+  - Exact Version
+  - Compatible Version
+  - Latest Compatible
+  - Failure
+relationships:
+  Workflow: [Definition, Binding, Execution (S008)]
+  Definition: [Step, Branch, Gate]
+  Binding: [Policy (S012)]
+dependency:
+  Workflow: Definition
+  Definition: Registry (S014)
+  Binding: Policy (S012)
+  note: Khong circular (DAG).
+traceability:
+  - Registry (S014)
+  - Workflow
+  - Execution (S008)
+  - Artifact
+events:
+  - WORKFLOW_REGISTERED
+  - WORKFLOW_UPDATED
+  - WORKFLOW_DEPRECATED
+  - WORKFLOW_RETIRED
+  - WORKFLOW_RESOLUTION_FAILED
+  - WORKFLOW_COMPATIBILITY_FAILED
+metrics:
+  workflow_entries: 0
+  active_workflows: 0
+  deprecated_workflows: 0
+  resolution_success_rate: 0
+  resolution_time: 0
+  failed_resolution: 0

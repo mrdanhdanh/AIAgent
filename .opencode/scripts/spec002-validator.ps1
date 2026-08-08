@@ -645,6 +645,48 @@ if (Test-Path $gvmd) {
   }
 }
 
+# ---------- W14-001: W014 registry ----------
+$w014 = Join-Path $spec2 'W014'
+foreach ($f in @('registry.md','workflow-registry.yaml','workflow-registry.schema.json','workflow-registry-model.yaml','workflow-registry-domains.yaml','workflow-registry-resolution.yaml','workflow-registry-events.yaml','workflow-registry-lifecycle.yaml','workflow-registry-constraints.yaml','workflow-registry-traceability.yaml','workflow-registry-metrics.yaml','workflow-registry-validation.yaml','workflow-registry-registry.yaml')) {
+  if (-not (Test-Path (Join-Path $w014 $f))) { $errors += "W14-001: missing W014/$f" }
+}
+
+# ---------- W14-002: workflow-registry.yaml ----------
+$rg14 = Join-Path $w014 'workflow-registry.yaml'
+if (Test-Path $rg14) {
+  $rg = Get-Content -LiteralPath $rg14 -Raw -Encoding utf8
+  foreach ($sec in @('philosophy','principles','categories','domains','entry_model','ownership','lifecycle','governance','constraints','resolution','resolution_rules','resolution_priority','resolution_failures','version_resolution','relationships','dependency','traceability','events','metrics')) {
+    if ($rg -notmatch "(?m)^${sec}:") { $errors += "W14-002: thieu '$sec'" }
+  }
+}
+
+# ---------- W14-003: resolution 8 buoc ----------
+if (Test-Path $rg14) {
+  $rg3 = Get-Content -LiteralPath $rg14 -Raw -Encoding utf8
+  foreach ($step in @('Request','Normalize','Lookup','Candidate Selection','Compatibility Check','Policy Binding Check','Governance Check','Resolved')) {
+    if ($rg3 -notmatch [regex]::Escape($step)) { $errors += "W14-003: resolution thieu $step" }
+  }
+}
+
+# ---------- W14-004: entry_model 10 fields ----------
+if (Test-Path $rg14) {
+  $rg4 = Get-Content -LiteralPath $rg14 -Raw -Encoding utf8
+  if ($rg4 -notmatch 'fields: \[id, type, category, version, status, owner, references, compatibility, lifecycle, metadata\]') { $errors += "W14-004: entry_model phai co 10 fields" }
+}
+
+# ---------- W14-005: registry.md ----------
+$rgmd = Join-Path $w014 'registry.md'
+if (Test-Path $rgmd) {
+  $rgm = Get-Content -LiteralPath $rgmd -Raw -Encoding utf8
+  for ($i = 1; $i -le 15; $i++) {
+    $sec = "WR{0:D3}" -f $i
+    if ($rgm -notmatch [regex]::Escape($sec)) { $errors += "W14-005: thieu section $sec" }
+  }
+  foreach ($sec in @('WR003A','WR005A','WR005B','WR008A','WR009A','WR010A')) {
+    if ($rgm -notmatch [regex]::Escape($sec)) { $errors += "W14-005: thieu section $sec" }
+  }
+}
+
 # ---------- W1-005: SPEC.yaml ----------
 $specFile = Join-Path $spec2 'SPEC.yaml'
 if (Test-Path $specFile) {

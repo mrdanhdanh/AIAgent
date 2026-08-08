@@ -1,0 +1,16 @@
+# SPEC-002 W014 - Workflow Registry of Registries
+# Dashboard chi can doc mot file duy nhat.
+---
+version: "1.0"
+registries:
+  - workflow-registry.yaml
+  - workflow-registry-model.yaml
+  - workflow-registry-domains.yaml
+  - workflow-registry-resolution.yaml
+  - workflow-registry-events.yaml
+  - workflow-registry-lifecycle.yaml
+  - workflow-registry-constraints.yaml
+  - workflow-registry-traceability.yaml
+  - workflow-registry-metrics.yaml
+  - workflow-registry-validation.yaml
+  - workflow-registry.schema.json

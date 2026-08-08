@@ -1,0 +1,4 @@
+# SPEC-002 W014 - Workflow Registry Domains
+---
+version: "1.0"
+domains: [Workflow Domain, Definition Domain, Binding Domain]
