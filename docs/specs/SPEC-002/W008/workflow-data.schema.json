@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aios://workflow-data.schema.json",
+  "title": "SPEC-002 Workflow Data Model (W008)",
+  "description": "JSON Schema cho workflow-data-model.yaml. Validator kiem tra cau truc.",
+  "type": "object",
+  "required": ["version", "status", "frozen", "aggregate_root", "aggregate_rules", "classification", "invariants", "consistency", "dependencies"],
+  "properties": {
+    "version": { "type": "string" },
+    "status": { "enum": ["Draft", "Review", "Approved", "Stable", "Deprecated"] },
+    "frozen": { "type": "boolean" },
+    "aggregate_root": { "const": "Workflow" },
+    "aggregate_rules": { "type": "array", "items": { "type": "string" }, "minItems": 4 },
+    "classification": { "type": "object" },
+    "invariants": { "type": "array", "items": { "type": "string" }, "minItems": 12 },
+    "consistency": { "type": "object" },
+    "dependencies": { "type": "array", "items": { "type": "string" }, "minItems": 8 }
+  },
+  "additionalProperties": false
+}

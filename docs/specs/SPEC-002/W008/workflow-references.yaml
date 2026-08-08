@@ -1,0 +1,8 @@
+# SPEC-002 W008 - Workflow References
+---
+version: "1.0"
+references:
+  Workflow → Execution: ExecutionRef (S008)
+  Workflow → Registry: WorkflowRegistryEntry (S014)
+  Workflow → Capability: Capability Ref (S014)
+  Workflow → Event: WorkflowEvent (S011)

@@ -1,0 +1,16 @@
+# SPEC-002 W008 - Workflow Invariants (12)
+---
+version: "1.0"
+invariants:
+  - Workflow co dung mot Definition.
+  - Definition co it nhat mot Step.
+  - WorkflowContext isolated.
+  - WorkflowResult immutable.
+  - Event khong thay doi.
+  - Workflow ID toan cuc.
+  - Workflow luon co Owner.
+  - Workflow luon co Version.
+  - Workflow luon co Lifecycle.
+  - Workflow khong doi Identity.
+  - Definition khong doi khi Published.
+  - Step khong doi sau Published.

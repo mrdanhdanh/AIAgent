@@ -1,0 +1,5 @@
+# SPEC-002 W008 - Workflow Lifecycle
+---
+version: "1.0"
+definition: [Draft, Published, Deprecated, Retired]
+run: [Idle, Assigned, Running, Completed]

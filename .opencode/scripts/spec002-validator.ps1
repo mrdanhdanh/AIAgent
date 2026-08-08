@@ -359,6 +359,57 @@ if (Test-Path $cmd7) {
   }
 }
 
+# ---------- W8-001: appendix workflow-models ----------
+$wm = Join-Path $spec2 'workflow-models'
+foreach ($f in @('README.md','workflow-models.yaml','workflow-model-registry.yaml','workflow-model-relationships.yaml','workflow-model-validation.yaml','workflow-models.schema.json')) {
+  if (-not (Test-Path (Join-Path $wm $f))) { $errors += "W8-001: missing workflow-models/$f" }
+}
+$wmYaml = Join-Path $wm 'workflow-models.yaml'
+if (Test-Path $wmYaml) {
+  $wmy = Get-Content -LiteralPath $wmYaml -Raw -Encoding utf8
+  if ($wmy -notmatch '(?m)^aggregate_root:\s*Workflow') { $errors += "W8-001: aggregate_root phai la Workflow" }
+  foreach ($m in @('WM-001','WM-002','WM-008')) {
+    if ($wmy -notmatch [regex]::Escape($m)) { $errors += "W8-001: thieu model $m" }
+  }
+}
+
+# ---------- W8-002: W008 data model files ----------
+$w008 = Join-Path $spec2 'W008'
+foreach ($f in @('data-model.md','workflow-data-model.yaml','workflow-data.schema.json','workflow-entities.yaml','workflow-identities.yaml','workflow-invariants.yaml','workflow-lifecycle.yaml','workflow-ownership.yaml','workflow-references.yaml','workflow-relations.yaml','workflow-validation.yaml')) {
+  if (-not (Test-Path (Join-Path $w008 $f))) { $errors += "W8-002: missing W008/$f" }
+}
+
+# ---------- W8-003: workflow-data-model.yaml ----------
+$dm8 = Join-Path $w008 'workflow-data-model.yaml'
+if (Test-Path $dm8) {
+  $dm = Get-Content -LiteralPath $dm8 -Raw -Encoding utf8
+  foreach ($sec in @('aggregate_root','aggregate_rules','classification','invariants','consistency','dependencies')) {
+    if ($dm -notmatch "(?m)^${sec}:") { $errors += "W8-003: workflow-data-model thieu '$sec'" }
+  }
+  if ($dm -notmatch 'Workflow') { $errors += "W8-003: aggregate_root phai la Workflow" }
+}
+
+# ---------- W8-004: entities ----------
+$en8 = Join-Path $w008 'workflow-entities.yaml'
+if (Test-Path $en8) {
+  $en = Get-Content -LiteralPath $en8 -Raw -Encoding utf8
+  $entCount = ([regex]::Matches($en, '(?m)^  ENT-W\d+:')).Count
+  if ($entCount -lt 15) { $errors += "W8-004: workflow-entities chi co $entCount (can >=15)" }
+  foreach ($e in @('ENT-W001','ENT-W002','ENT-W008','ENT-W014')) {
+    if ($en -notmatch [regex]::Escape($e)) { $errors += "W8-004: thieu $e" }
+  }
+}
+
+# ---------- W8-005: data-model.md ----------
+$dmd8 = Join-Path $w008 'data-model.md'
+if (Test-Path $dmd8) {
+  $dm8m = Get-Content -LiteralPath $dmd8 -Raw -Encoding utf8
+  for ($i = 1; $i -le 15; $i++) {
+    $sec = "WF{0:D3}" -f $i
+    if ($dm8m -notmatch [regex]::Escape($sec)) { $errors += "W8-005: thieu section $sec" }
+  }
+}
+
 # ---------- W1-005: SPEC.yaml ----------
 $specFile = Join-Path $spec2 'SPEC.yaml'
 if (Test-Path $specFile) {

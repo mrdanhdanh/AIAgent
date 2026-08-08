@@ -1,0 +1,19 @@
+# SPEC-002 W008 - Workflow Entities (15 ENT)
+---
+version: "1.0"
+entities:
+  ENT-W001: { name: Workflow, kind: AggregateRoot, owner: Workflow, immutable: false }
+  ENT-W002: { name: WorkflowDefinition, kind: Entity, owner: Workflow, immutable: true }
+  ENT-W003: { name: WorkflowVersion, kind: Entity, owner: Workflow, immutable: true }
+  ENT-W004: { name: WorkflowStep, kind: Value, owner: Workflow, immutable: true }
+  ENT-W005: { name: StepCondition, kind: Value, owner: Workflow, immutable: true }
+  ENT-W006: { name: StepGate, kind: Value, owner: Workflow, immutable: true }
+  ENT-W007: { name: StepContext, kind: Transient, owner: Workflow, immutable: false }
+  ENT-W008: { name: WorkflowResult, kind: Entity, owner: Workflow, immutable: true }
+  ENT-W009: { name: WorkflowEvent, kind: Ref (S011), owner: Runtime, immutable: true }
+  ENT-W010: { name: WorkflowMetric, kind: Ref (S011), owner: Runtime, immutable: true }
+  ENT-W011: { name: WorkflowRegistryEntry, kind: Ref (S014), owner: Workflow, immutable: true }
+  ENT-W012: { name: WorkflowPlan, kind: Transient, owner: Workflow, immutable: false }
+  ENT-W013: { name: WorkflowLineage, kind: Ref (S011), owner: Runtime, immutable: true }
+  ENT-W014: { name: ExecutionRef, kind: Ref (S008), owner: Runtime, immutable: true }
+  ENT-W015: { name: WorkflowExtension, kind: Value, owner: Workflow, immutable: true }
