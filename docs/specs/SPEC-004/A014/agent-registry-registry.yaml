@@ -1,0 +1,16 @@
+# SPEC-004 A014 - Agent Registry of Registries
+# Dashboard chi can doc mot file duy nhat.
+---
+version: "1.0"
+registries:
+  - agent-registry.yaml
+  - agent-registry-model.yaml
+  - agent-registry-domains.yaml
+  - agent-registry-resolution.yaml
+  - agent-registry-events.yaml
+  - agent-registry-lifecycle.yaml
+  - agent-registry-constraints.yaml
+  - agent-registry-traceability.yaml
+  - agent-registry-metrics.yaml
+  - agent-registry-validation.yaml
+  - agent-registry.schema.json

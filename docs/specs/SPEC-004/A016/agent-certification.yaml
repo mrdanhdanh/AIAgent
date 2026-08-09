@@ -1,0 +1,8 @@
+# SPEC-004 A016 - Agent Certification (S016 CM008)
+---
+version: "1.0"
+levels: [Not Certified, Certified, Revoked]
+requirements:
+  - 100% validation rules Pass.
+  - Khong CRITICAL violation.
+  - Health Score = Healthy.

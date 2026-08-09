@@ -1,0 +1,7 @@
+# SPEC-004 A019 - Agent Doctor Report
+---
+version: "1.0"
+report:
+  fields: [id, timestamp, agent_version, checks, score, status, repair, evidence]
+rules:
+  - Report immutable (P005).

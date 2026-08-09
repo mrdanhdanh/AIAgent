@@ -1,0 +1,18 @@
+# SPEC-004 A019 - Agent Doctor Checks (tham chieu, khong dinh nghia lai)
+---
+version: "1.0"
+groups:
+  - source: A011 Observability
+    count: 5
+  - source: A013 Governance
+    count: 6
+  - source: A014 Registry
+    count: 7
+  - source: A015 Resources
+    count: 5
+  - source: A016 Compliance
+    count: 12
+  - source: A017 Extensions
+    count: 6
+  - source: A018 Evolution
+    count: 6

@@ -1,0 +1,10 @@
+# SPEC-004 A019 - Agent Doctor Self-Repair
+---
+version: "1.0"
+rules:
+  - Chi Low impact.
+  - Qua Approval (A013) hoac auto cho quen thuoc.
+  - Co rollback.
+  - Ghi Audit (A011).
+  - Khong sua implementation.
+  - Khong Repair vi pham CRITICAL - bao cao len nguoi.

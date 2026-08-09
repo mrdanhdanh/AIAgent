@@ -500,6 +500,218 @@ if (Test-Path $efmd) {
   }
 }
 
+# ---------- A11-001: A011 observability ----------
+$a011 = Join-Path $spec4 'A011'
+foreach ($f in @('observability.md','agent-observability.yaml','agent-observability.schema.json','agent-events.yaml','agent-metrics.yaml','agent-traces.yaml','agent-audit.yaml','agent-correlation.yaml','agent-health.yaml','agent-dashboard.yaml','agent-observability-mapping.yaml')) {
+  if (-not (Test-Path (Join-Path $a011 $f))) { $errors += "A11-001: missing A011/$f" }
+}
+$ob11 = Join-Path $a011 'agent-observability.yaml'
+if (Test-Path $ob11) {
+  $ob = Get-Content -LiteralPath $ob11 -Raw -Encoding utf8
+  foreach ($sec in @('philosophy','principles','domains','boundary','correlation_model','doctor_checks','evolution_integration','machine_readable','success_criteria')) {
+    if ($ob -notmatch "(?m)^${sec}:") { $errors += "A11-002: thieu '$sec'" }
+  }
+  if ($ob -notmatch 'Business Data') { $errors += "A11-003: thieu not_observes Business Data" }
+}
+$obmd = Join-Path $a011 'observability.md'
+if (Test-Path $obmd) {
+  $obm = Get-Content -LiteralPath $obmd -Raw -Encoding utf8
+  for ($i = 1; $i -le 16; $i++) { $sec = "AO{0:D3}" -f $i; if ($obm -notmatch [regex]::Escape($sec)) { $errors += "A11-005: thieu section $sec" } }
+  foreach ($sec in @('AO003A','AO011A')) { if ($obm -notmatch [regex]::Escape($sec)) { $errors += "A11-005: thieu section $sec" } }
+}
+
+# ---------- A12-001: A012 policies ----------
+$a012 = Join-Path $spec4 'A012'
+foreach ($f in @('policies.md','agent-policies.yaml','agent-policies.schema.json','agent-policy-model.yaml','agent-policy-lifecycle.yaml','agent-policy-categories.yaml','agent-policy-resolution.yaml','agent-policy-validation.yaml','agent-policy-traceability.yaml','retry-binding.yaml','timeout-binding.yaml','approval-binding.yaml')) {
+  if (-not (Test-Path (Join-Path $a012 $f))) { $errors += "A12-001: missing A012/$f" }
+}
+$pl12 = Join-Path $a012 'agent-policies.yaml'
+if (Test-Path $pl12) {
+  $pl = Get-Content -LiteralPath $pl12 -Raw -Encoding utf8
+  foreach ($sec in @('philosophy','principles','binding_model','lifecycle','categories','bindings','responsibility_chain')) {
+    if ($pl -notmatch "(?m)^${sec}:") { $errors += "A12-002: thieu '$sec'" }
+  }
+  foreach ($pol in @('POL-RETRY-001','POL-TIMEOUT-001','POL-APPROVAL-001','POL-RES-001','POL-PARALLEL-001','POL-COMP-001','POL-SCHED-001','POL-ISOL-001','POL-SEC-001','POL-RESACC-001')) {
+    if ($pl -notmatch [regex]::Escape($pol)) { $errors += "A12-003: thieu binding toi $pol" }
+  }
+}
+$plmd = Join-Path $a012 'policies.md'
+if (Test-Path $plmd) {
+  $plm = Get-Content -LiteralPath $plmd -Raw -Encoding utf8
+  for ($i = 1; $i -le 17; $i++) { $sec = "AP{0:D3}" -f $i; if ($plm -notmatch [regex]::Escape($sec)) { $errors += "A12-005: thieu section $sec" } }
+  foreach ($sec in @('AP002A','AP002B')) { if ($plm -notmatch [regex]::Escape($sec)) { $errors += "A12-005: thieu section $sec" } }
+}
+
+# ---------- A13-001: A013 governance ----------
+$a013 = Join-Path $spec4 'A013'
+foreach ($f in @('governance.md','agent-governance.yaml','agent-governance.schema.json','agent-governance-stack.yaml','agent-binding-enforcement.yaml','agent-governance-matrix.yaml','agent-governance-events.yaml','agent-governance-decisions.yaml','agent-governance-lifecycle.yaml','agent-governance-metrics.yaml','agent-governance-registry.yaml')) {
+  if (-not (Test-Path (Join-Path $a013 $f))) { $errors += "A13-001: missing A013/$f" }
+}
+$gv13 = Join-Path $a013 'agent-governance.yaml'
+if (Test-Path $gv13) {
+  $gv = Get-Content -LiteralPath $gv13 -Raw -Encoding utf8
+  foreach ($sec in @('philosophy','principles','scope','version_governance','compatibility_governance','validation_pipeline','decisions','traceability')) {
+    if ($gv -notmatch "(?m)^${sec}:") { $errors += "A13-002: thieu '$sec'" }
+  }
+  foreach ($step in @('Constitution','Boundary (A004)','Contract (A007)','Policy Binding (A012)','Execution (Runtime SPEC-001)')) {
+    if ($gv -notmatch [regex]::Escape($step)) { $errors += "A13-003: pipeline thieu $step" }
+  }
+}
+$gvmd = Join-Path $a013 'governance.md'
+if (Test-Path $gvmd) {
+  $gvm = Get-Content -LiteralPath $gvmd -Raw -Encoding utf8
+  for ($i = 1; $i -le 18; $i++) { $sec = "AG{0:D3}" -f $i; if ($gvm -notmatch [regex]::Escape($sec)) { $errors += "A13-005: thieu section $sec" } }
+  foreach ($sec in @('AG003A','AG005A','AG011A','AG012A','AG014A')) { if ($gvm -notmatch [regex]::Escape($sec)) { $errors += "A13-005: thieu section $sec" } }
+}
+
+# ---------- A14-001: A014 registry ----------
+$a014 = Join-Path $spec4 'A014'
+foreach ($f in @('registry.md','agent-registry.yaml','agent-registry.schema.json','agent-registry-model.yaml','agent-registry-domains.yaml','agent-registry-resolution.yaml','agent-registry-events.yaml','agent-registry-lifecycle.yaml','agent-registry-constraints.yaml','agent-registry-traceability.yaml','agent-registry-metrics.yaml','agent-registry-validation.yaml','agent-registry-registry.yaml')) {
+  if (-not (Test-Path (Join-Path $a014 $f))) { $errors += "A14-001: missing A014/$f" }
+}
+$rg14 = Join-Path $a014 'agent-registry.yaml'
+if (Test-Path $rg14) {
+  $rg = Get-Content -LiteralPath $rg14 -Raw -Encoding utf8
+  foreach ($sec in @('philosophy','principles','categories','domains','entry_model','ownership','lifecycle','governance','constraints','resolution','resolution_rules','resolution_priority','resolution_failures','version_resolution','relationships','dependency','traceability','events','metrics')) {
+    if ($rg -notmatch "(?m)^${sec}:") { $errors += "A14-002: thieu '$sec'" }
+  }
+  foreach ($step in @('Request','Normalize','Lookup','Candidate Selection','Compatibility Check','Policy Binding Check','Governance Check','Resolved')) {
+    if ($rg -notmatch [regex]::Escape($step)) { $errors += "A14-003: resolution thieu $step" }
+  }
+  if ($rg -notmatch 'fields: \[id, type, category, version, status, owner, references, compatibility, lifecycle, metadata\]') { $errors += "A14-004: entry_model phai co 10 fields" }
+}
+$rgmd = Join-Path $a014 'registry.md'
+if (Test-Path $rgmd) {
+  $rgm = Get-Content -LiteralPath $rgmd -Raw -Encoding utf8
+  for ($i = 1; $i -le 15; $i++) { $sec = "AR{0:D3}" -f $i; if ($rgm -notmatch [regex]::Escape($sec)) { $errors += "A14-005: thieu section $sec" } }
+  foreach ($sec in @('AR003A','AR005A','AR005B','AR008A','AR009A','AR010A')) { if ($rgm -notmatch [regex]::Escape($sec)) { $errors += "A14-005: thieu section $sec" } }
+}
+
+# ---------- A15-001: A015 resources ----------
+$a015 = Join-Path $spec4 'A015'
+foreach ($f in @('resources.md','agent-resources.yaml','agent-resources.schema.json','agent-resource-model.yaml','agent-resource-categories.yaml','agent-resource-lifecycle.yaml','agent-resource-allocation.yaml','agent-resource-access.yaml','agent-resource-events.yaml','agent-resource-metrics.yaml','agent-resource-validation.yaml')) {
+  if (-not (Test-Path (Join-Path $a015 $f))) { $errors += "A15-001: missing A015/$f" }
+}
+$rs15 = Join-Path $a015 'agent-resources.yaml'
+if (Test-Path $rs15) {
+  $rs = Get-Content -LiteralPath $rs15 -Raw -Encoding utf8
+  foreach ($sec in @('philosophy','principles','categories','resource_model','lifecycle','allocation','access','ownership','constraints','registry_reference','traceability','events','metrics')) {
+    if ($rs -notmatch "(?m)^${sec}:") { $errors += "A15-002: thieu '$sec'" }
+  }
+  if ($rs -notmatch 'APB-004') { $errors += "A15-003: allocation thieu binding APB-004" }
+  if ($rs -notmatch 'APB-010') { $errors += "A15-003: access thieu binding APB-010" }
+}
+$rsmd = Join-Path $a015 'resources.md'
+if (Test-Path $rsmd) {
+  $rsm = Get-Content -LiteralPath $rsmd -Raw -Encoding utf8
+  for ($i = 1; $i -le 17; $i++) { $sec = "ARC{0:D3}" -f $i; if ($rsm -notmatch [regex]::Escape($sec)) { $errors += "A15-005: thieu section $sec" } }
+}
+
+# ---------- A16-001: A016 compliance ----------
+$a016 = Join-Path $spec4 'A016'
+foreach ($f in @('compliance.md','agent-compliance.yaml','agent-compliance.schema.json','agent-validation-rules.yaml','agent-compliance-matrix.yaml','agent-health-score.yaml','agent-readiness-checklist.yaml','agent-certification.yaml','agent-compliance-events.yaml','agent-compliance-metrics.yaml','agent-compliance-report.yaml')) {
+  if (-not (Test-Path (Join-Path $a016 $f))) { $errors += "A16-001: missing A016/$f" }
+}
+$cm16 = Join-Path $a016 'agent-compliance.yaml'
+if (Test-Path $cm16) {
+  $cm = Get-Content -LiteralPath $cm16 -Raw -Encoding utf8
+  foreach ($sec in @('philosophy','principles','scope','validation_rules','health_score','readiness_checklist','certification','pipeline','events','metrics')) {
+    if ($cm -notmatch "(?m)^${sec}:") { $errors += "A16-002: thieu '$sec'" }
+  }
+  $ruleCount = ([regex]::Matches($cm, '(?m)^  - ')).Count
+  if ($ruleCount -lt 12) { $errors += "A16-003: validation_rules chi co $ruleCount (can >=12)" }
+  if ($cm -notmatch 'Not Certified') { $errors += "A16-004: certification thieu Not Certified" }
+}
+$cmmd = Join-Path $a016 'compliance.md'
+if (Test-Path $cmmd) {
+  $cmm = Get-Content -LiteralPath $cmmd -Raw -Encoding utf8
+  for ($i = 1; $i -le 16; $i++) { $sec = "AMC{0:D3}" -f $i; if ($cmm -notmatch [regex]::Escape($sec)) { $errors += "A16-005: thieu section $sec" } }
+}
+
+# ---------- A17-001: A017 extensions ----------
+$a017 = Join-Path $spec4 'A017'
+foreach ($f in @('extensions.md','agent-extensions.yaml','agent-extensions.schema.json','agent-extension-model.yaml','agent-extension-categories.yaml','agent-extension-lifecycle.yaml','agent-extension-installation.yaml','agent-extension-isolation.yaml','agent-extension-events.yaml','agent-extension-metrics.yaml','agent-extension-validation.yaml')) {
+  if (-not (Test-Path (Join-Path $a017 $f))) { $errors += "A17-001: missing A017/$f" }
+}
+$ex17 = Join-Path $a017 'agent-extensions.yaml'
+if (Test-Path $ex17) {
+  $ex = Get-Content -LiteralPath $ex17 -Raw -Encoding utf8
+  foreach ($sec in @('philosophy','principles','categories','extension_model','lifecycle','installation','activation_rules','isolation','security','resources','compatibility','events','metrics')) {
+    if ($ex -notmatch "(?m)^${sec}:") { $errors += "A17-002: thieu '$sec'" }
+  }
+  if ($ex -notmatch 'Agent Internal State') { $errors += "A17-004: isolation thieu Agent Internal State" }
+}
+$exmd = Join-Path $a017 'extensions.md'
+if (Test-Path $exmd) {
+  $exm = Get-Content -LiteralPath $exmd -Raw -Encoding utf8
+  for ($i = 1; $i -le 17; $i++) { $sec = "AXE{0:D3}" -f $i; if ($exm -notmatch [regex]::Escape($sec)) { $errors += "A17-005: thieu section $sec" } }
+}
+
+# ---------- A18-001: A018 evolution ----------
+$a018 = Join-Path $spec4 'A018'
+foreach ($f in @('evolution.md','agent-evolution.yaml','agent-evolution.schema.json','agent-evolution-scope.yaml','agent-evolution-pipeline.yaml','agent-evolution-proposal.yaml','agent-evolution-approval.yaml','agent-evolution-events.yaml','agent-evolution-metrics.yaml','agent-evolution-validation.yaml')) {
+  if (-not (Test-Path (Join-Path $a018 $f))) { $errors += "A18-001: missing A018/$f" }
+}
+$ev18 = Join-Path $a018 'agent-evolution.yaml'
+if (Test-Path $ev18) {
+  $ev = Get-Content -LiteralPath $ev18 -Raw -Encoding utf8
+  foreach ($sec in @('philosophy','principles','scope','pipeline','proposal_model','proposal_status','approval','safety','application','traceability','events','metrics')) {
+    if ($ev -notmatch "(?m)^${sec}:") { $errors += "A18-002: thieu '$sec'" }
+  }
+  foreach ($step in @('Collect','Analyze','Learn','Propose','Approval Gate','Apply')) {
+    if ($ev -notmatch [regex]::Escape($step)) { $errors += "A18-003: pipeline thieu $step" }
+  }
+  if ($ev -notmatch 'Human approval bat buoc') { $errors += "A18-004: approval thieu Human bat buoc" }
+}
+$evmd = Join-Path $a018 'evolution.md'
+if (Test-Path $evmd) {
+  $evm = Get-Content -LiteralPath $evmd -Raw -Encoding utf8
+  for ($i = 1; $i -le 16; $i++) { $sec = "AVE{0:D3}" -f $i; if ($evm -notmatch [regex]::Escape($sec)) { $errors += "A18-005: thieu section $sec" } }
+}
+
+# ---------- A19-001: A019 doctor ----------
+$a019 = Join-Path $spec4 'A019'
+foreach ($f in @('doctor.md','agent-doctor.yaml','agent-doctor.schema.json','agent-doctor-scope.yaml','agent-doctor-checks.yaml','agent-doctor-pipeline.yaml','agent-doctor-self-repair.yaml','agent-doctor-report.yaml','agent-doctor-events.yaml','agent-doctor-metrics.yaml','agent-doctor-validation.yaml')) {
+  if (-not (Test-Path (Join-Path $a019 $f))) { $errors += "A19-001: missing A019/$f" }
+}
+$dr19 = Join-Path $a019 'agent-doctor.yaml'
+if (Test-Path $dr19) {
+  $dr = Get-Content -LiteralPath $dr19 -Raw -Encoding utf8
+  foreach ($sec in @('philosophy','principles','scope','check_sources','health_score','pipeline','self_repair','report','events','metrics','traceability')) {
+    if ($dr -notmatch "(?m)^${sec}:") { $errors += "A19-002: thieu '$sec'" }
+  }
+  $srcCount = ([regex]::Matches($dr, '(?m)^  - "?A\d{3} ')).Count
+  if ($srcCount -lt 7) { $errors += "A19-003: check_sources chi co $srcCount (can >=7)" }
+  if ($dr -notmatch 'Chi Low impact') { $errors += "A19-004: self_repair thieu Low impact" }
+}
+$drmd = Join-Path $a019 'doctor.md'
+if (Test-Path $drmd) {
+  $drm = Get-Content -LiteralPath $drmd -Raw -Encoding utf8
+  for ($i = 1; $i -le 16; $i++) { $sec = "ADR{0:D3}" -f $i; if ($drm -notmatch [regex]::Escape($sec)) { $errors += "A19-005: thieu section $sec" } }
+}
+
+# ---------- A20-001: A020 dashboard ----------
+$a020 = Join-Path $spec4 'A020'
+foreach ($f in @('dashboard.md','agent-dashboard.yaml','agent-dashboard.schema.json','agent-dashboard-scope.yaml','agent-dashboard-views.yaml','agent-dashboard-read-model.yaml','agent-dashboard-refresh.yaml','agent-dashboard-events.yaml','agent-dashboard-metrics.yaml','agent-dashboard-validation.yaml')) {
+  if (-not (Test-Path (Join-Path $a020 $f))) { $errors += "A20-001: missing A020/$f" }
+}
+$db20 = Join-Path $a020 'agent-dashboard.yaml'
+if (Test-Path $db20) {
+  $db = Get-Content -LiteralPath $db20 -Raw -Encoding utf8
+  foreach ($sec in @('philosophy','principles','scope','views','read_model','refresh','events','metrics')) {
+    if ($db -notmatch "(?m)^${sec}:") { $errors += "A20-002: thieu '$sec'" }
+  }
+  foreach ($v in @('Agent View','Definition View','Registry View','Governance View','Resource View','Health View','Compliance + Doctor View')) {
+    if ($db -notmatch [regex]::Escape($v)) { $errors += "A20-003: thieu view '$v'" }
+  }
+  if ($db -notmatch 'Event Driven') { $errors += "A20-004: refresh thieu Event Driven" }
+}
+$dbmd = Join-Path $a020 'dashboard.md'
+if (Test-Path $dbmd) {
+  $dbm = Get-Content -LiteralPath $dbmd -Raw -Encoding utf8
+  for ($i = 1; $i -le 16; $i++) { $sec = "ADB{0:D3}" -f $i; if ($dbm -notmatch [regex]::Escape($sec)) { $errors += "A20-005: thieu section $sec" } }
+}
+
 # ---------- A1-005: SPEC.yaml ----------
 $specFile = Join-Path $spec4 'SPEC.yaml'
 if (Test-Path $specFile) {

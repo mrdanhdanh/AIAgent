@@ -1,0 +1,11 @@
+# SPEC-004 A018 - Agent Evolution Approval Gate (A013)
+---
+version: "1.0"
+gate:
+  - Low impact: auto-approve (Strict rules).
+  - Medium impact: Agent approval.
+  - High impact / Breaking: Human approval bat buoc.
+  - Quyet dinh ghi Audit (A011).
+rules:
+  - Khong duyet -> Khong Apply.
+  - Breaking Change can Simulation (S013 GV011A) truoc.

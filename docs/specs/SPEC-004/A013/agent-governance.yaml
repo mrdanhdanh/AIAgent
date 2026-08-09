@@ -1,0 +1,51 @@
+# SPEC-004 A013 - Agent Governance
+# Agent chiu Governance cua Runtime (S013) - chi them Agent-level.
+---
+id: SPEC-004-A013
+name: Agent Governance
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Agent Team
+philosophy:
+  - Governance la co che thuc thi luat.
+  - Agent khong quyet dinh luat.
+  - Agent chi thuc thi luat da duoc dinh nghia (S012/S013).
+  - Governance doc lap Business Logic.
+principles:
+  - Constitution First
+  - Policy Binding First (A012)
+  - Contract First (A007)
+  - Boundary First (A004)
+  - Least Privilege
+  - Deterministic
+  - Auditable
+  - Versioned
+scope:
+  enforces:
+    - Constitution (SPEC-000)
+    - Policy Binding (A012)
+    - Contract (A007)
+    - Boundary (A004)
+    - Permission (S013)
+    - Version Compatibility
+  not_enforces:
+    - Business Rule
+    - Domain Rule
+version_governance:
+  checks: [SemVer, Compatibility, Deprecated, Breaking Change]
+compatibility_governance:
+  checks: [Contract, Capability, Plugin, Agent]
+validation_pipeline:
+  - Constitution
+  - Boundary (A004)
+  - Contract (A007)
+  - Policy Binding (A012)
+  - Execution (Runtime SPEC-001)
+decisions: [Allow, Deny, Suspend, Retry, Escalate]
+traceability:
+  - Agent
+  - Policy Binding (A012)
+  - Contract (A007)
+  - Boundary (A004)
+  - Constitution

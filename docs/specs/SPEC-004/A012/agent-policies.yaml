@@ -1,0 +1,48 @@
+# SPEC-004 A012 - Agent Policies
+# Agent khong dinh nghia policy (AB008) - chi khai bao BINDING toi S012.
+---
+id: SPEC-004-A012
+name: Agent Policies
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Agent Team
+philosophy:
+  - Policy la luat cua Runtime (S012) - Agent khong dinh nghia lai (AB008).
+  - Agent khai bao Binding: policy_ref + parameters + scope.
+  - Binding hop le thi moi duoc apply.
+  - Agent khong chua Policy Logic.
+principles:
+  - Reference Only: chi tro den POL-* (S012).
+  - Parameterized: khai bao tham so, khong dinh nghia hanh vi.
+  - Scoped: binding theo Agent hoac Execution.
+  - Versioned: binding theo version policy (S012).
+  - Validated: binding phai hop le truoc khi chay.
+  - Traceable: moi binding apply co Event + Audit (S011).
+binding_model:
+  fields: [id, agent, execution, policy_ref, parameters, scope, version, status, lifecycle, metadata]
+lifecycle: [Draft, Validated, Published, Active, Deprecated, Retired]
+categories:
+  note: Dung 7 categories cua S012 RP003.
+  - Recovery
+  - Control
+  - Orchestration
+  - Resource
+  - Governance
+  - Security
+  - Lifecycle
+bindings:
+  - APB-001 Retry Binding -> POL-RETRY-001
+  - APB-002 Timeout Binding -> POL-TIMEOUT-001
+  - APB-003 Approval Binding -> POL-APPROVAL-001
+  - APB-004 Resource Binding -> POL-RES-001
+  - APB-005 Parallel Binding -> POL-PARALLEL-001
+  - APB-006 Compensation Binding -> POL-COMP-001
+  - APB-007 Scheduling Binding -> POL-SCHED-001
+  - APB-008 Isolation Binding -> POL-ISOL-001
+  - APB-009 Security Binding -> POL-SEC-001
+  - APB-010 Resource Access Binding -> POL-RESACC-001
+responsibility_chain:
+  - S012 Runtime Policies: define policy
+  - S013 Runtime Governance: enforce policy
+  - A012 Agent Policies: bind policy vao agent

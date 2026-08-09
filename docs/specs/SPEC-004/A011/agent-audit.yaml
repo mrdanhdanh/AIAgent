@@ -1,0 +1,11 @@
+# SPEC-004 A011 - Agent Audit (S011 reuse)
+---
+version: "1.0"
+properties:
+  - Append Only
+  - Immutable
+  - Ordered
+  - Time Consistent
+rules:
+  - Ghi moi quyet dinh (publish, deprecate, reject, mapping) (P008).
+  - Khong ghi Business Data.

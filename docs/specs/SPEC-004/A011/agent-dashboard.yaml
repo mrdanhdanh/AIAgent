@@ -1,0 +1,12 @@
+# SPEC-004 A011 - Agent Dashboard (S011 OB010 reuse)
+---
+version: "1.0"
+reads:
+  - Agent Events
+  - Agent Metrics
+  - Agent Trace
+  - Agent Audit
+  - Health (S011)
+rules:
+  - Dashboard chi doc (S011).
+  - Khong doc implementation.

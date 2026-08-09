@@ -1,0 +1,18 @@
+# SPEC-004 A020 - Agent Dashboard Scope (S011 OB010)
+---
+version: "1.0"
+reads:
+  - Agent Events (A011)
+  - Agent Metrics (A011)
+  - Agent Trace (A011)
+  - Agent Audit (A011)
+  - Health (A011)
+  - Registry (A014)
+  - Governance (A013)
+  - Compliance (A016)
+  - Doctor (A019)
+not_reads:
+  - Implementation
+  - Business Data
+  - Agent Internal State
+  - Plugin Internal State

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aios://agent-observability.schema.json",
+  "title": "SPEC-004 Agent Observability (A011)",
+  "type": "object",
+  "required": ["id", "name", "version", "status", "frozen", "owner", "philosophy", "principles", "domains", "boundary", "correlation_model", "doctor_checks", "evolution_integration", "machine_readable", "success_criteria"],
+  "properties": {
+    "id": { "const": "SPEC-004-A011" },
+    "name": { "const": "Agent Observability" },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "status": { "enum": ["Draft", "Review", "Approved", "Stable", "Deprecated"] },
+    "frozen": { "type": "boolean" },
+    "owner": { "type": "string" },
+    "philosophy": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "principles": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "domains": { "type": "array", "items": { "type": "string" }, "minItems": 5 },
+    "boundary": { "type": "object", "required": ["observes", "not_observes"] },
+    "correlation_model": { "type": "object" },
+    "doctor_checks": { "type": "array", "items": { "type": "string" }, "minItems": 5 },
+    "evolution_integration": { "type": "array", "items": { "type": "string" }, "minItems": 2 },
+    "machine_readable": { "type": "array", "items": { "type": "string" }, "minItems": 10 },
+    "success_criteria": { "type": "array", "items": { "type": "string" }, "minItems": 5 }
+  },
+  "additionalProperties": false
+}

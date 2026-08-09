@@ -1,0 +1,7 @@
+# SPEC-004 A016 - Agent Compliance Report
+---
+version: "1.0"
+report:
+  fields: [id, timestamp, agent_version, matrix, score, status, certification, evidence]
+rules:
+  - Report immutable (P005).

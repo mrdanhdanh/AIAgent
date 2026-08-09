@@ -1,0 +1,114 @@
+# SPEC-004 A014 - Agent Registry
+# Agent dang ky trong Registry cua Runtime (S014 agent-registry).
+# Khong mo ta database/storage/API/implementation.
+---
+id: SPEC-004-A014
+name: Agent Registry
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Agent Team
+philosophy:
+  - Agent Registry la SSOT cho Agent Metadata.
+  - Agent khong hardcode - moi Agent dang ky trong S014.
+  - Moi Resolution deu di qua Registry.
+  - Registry khong chua Business Logic.
+principles:
+  - Metadata First
+  - Contract First (A007)
+  - Versioned
+  - Discoverable
+  - Immutable (Published)
+  - Traceable
+categories:
+  note: Agent Registry la 1 category cua S014 (agent-registry).
+  - Agent Definition
+  - Agent Version
+  - Agent Binding (A012)
+domains:
+  - Agent Domain
+  - Definition Domain
+  - Binding Domain
+entry_model:
+  fields: [id, type, category, version, status, owner, references, compatibility, lifecycle, metadata]
+ownership:
+  Agent Entry: Agent Team
+  Binding Entry: Agent Team
+  Registry (S014): Runtime
+lifecycle: [Draft, Published, Deprecated, Retired]
+governance:
+  - Published
+  - Immutable
+  - Governance (S013)
+  - Deprecated
+  - Retired
+constraints:
+  - Khong Duplicate Agent ID.
+  - Khong Duplicate Version.
+  - Khong Broken Reference (S014).
+  - Khong Circular Reference (S014).
+  - Khong Orphan Entry (S014).
+  - Khong Multiple Active Version.
+  - Khong Hardcode Capability Mapping (AB007).
+resolution:
+  - Request
+  - Normalize
+  - Lookup (S014)
+  - Candidate Selection
+  - Compatibility Check
+  - Policy Binding Check (A012)
+  - Governance Check (S013)
+  - Resolved
+resolution_rules:
+  - Resolve theo ID (S014).
+  - Nhieu Version -> ap dung Resolution Priority.
+  - Khong Resolve Entry Deprecated neu co ban Active.
+  - Khong Resolve Entry Invalid.
+resolution_priority:
+  - Exact
+  - Compatible
+  - Latest Stable
+  - Latest
+  - Failure
+resolution_failures:
+  NotFound: khong ton tai
+  Invalid: schema loi
+  Deprecated: het ho tro
+  Incompatible: version
+  Forbidden: governance
+  Ambiguous: nhieu candidate
+version_resolution:
+  - Exact Version
+  - Compatible Version
+  - Latest Compatible
+  - Failure
+relationships:
+  Agent: [Definition, Mapping, Binding]
+  Definition: [Version]
+  Mapping: [Capability (SPEC-003)]
+  Binding: [Policy (S012)]
+dependency:
+  Agent: Definition
+  Definition: Registry (S014)
+  Mapping: Capability (SPEC-003)
+  Binding: Policy (S012)
+  note: Khong circular (DAG).
+traceability:
+  - Registry (S014)
+  - Agent
+  - Execution (S008)
+  - Artifact
+events:
+  - AGENT_REGISTERED
+  - AGENT_UPDATED
+  - AGENT_DEPRECATED
+  - AGENT_RETIRED
+  - AGENT_RESOLUTION_FAILED
+  - AGENT_COMPATIBILITY_FAILED
+metrics:
+  agent_entries: 0
+  active_agents: 0
+  deprecated_agents: 0
+  resolution_success_rate: 0
+  resolution_time: 0
+  failed_resolution: 0

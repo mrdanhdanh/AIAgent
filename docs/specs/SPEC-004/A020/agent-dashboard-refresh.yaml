@@ -1,0 +1,7 @@
+# SPEC-004 A020 - Agent Dashboard Refresh
+---
+version: "1.0"
+rules:
+  - Event Driven (P005): refresh khi co event moi.
+  - Khong polling.
+  - View la projection immutable (P010).

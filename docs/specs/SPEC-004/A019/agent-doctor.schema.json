@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aios://agent-doctor.schema.json",
+  "title": "SPEC-004 Agent Doctor (A019)",
+  "type": "object",
+  "required": ["id", "name", "version", "status", "frozen", "owner", "philosophy", "principles", "scope", "check_sources", "health_score", "pipeline", "self_repair", "report", "traceability"],
+  "properties": {
+    "id": { "const": "SPEC-004-A019" },
+    "name": { "const": "Agent Doctor" },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "status": { "enum": ["Draft", "Review", "Approved", "Stable", "Deprecated"] },
+    "frozen": { "type": "boolean" },
+    "owner": { "type": "string" },
+    "philosophy": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "principles": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "scope": { "type": "object", "required": ["checks_domains", "not_reads"] },
+    "check_sources": { "type": "array", "items": { "type": "string" }, "minItems": 7 },
+    "health_score": { "type": "array", "items": { "type": "string" }, "minItems": 3 },
+    "pipeline": { "type": "array", "items": { "type": "string" }, "minItems": 5 },
+    "self_repair": { "type": "array", "items": { "type": "string" }, "minItems": 5 },
+    "report": { "type": "object", "required": ["fields"] },
+    "traceability": { "type": "array", "items": { "type": "string" }, "minItems": 4 },
+    "events": { "type": "array", "items": { "type": "string" } },
+    "metrics": { "type": "object" }
+  },
+  "additionalProperties": false
+}

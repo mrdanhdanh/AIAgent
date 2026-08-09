@@ -1,0 +1,17 @@
+# SPEC-004 A011 - Agent Events (S011 reuse)
+---
+version: "1.0"
+definition_events:
+  - AGENT_VALIDATING
+  - AGENT_PUBLISHED
+  - AGENT_REJECTED
+  - AGENT_DEPRECATED
+  - AGENT_REACTIVATED
+  - AGENT_RETIRED
+run_events:
+  note: Agent Run dung EXECUTION_* cua S011 (Runtime).
+rules:
+  - Event immutable (P005).
+  - Event chi append.
+  - Moi transition sinh Event (A009).
+  - Event co correlation_id.

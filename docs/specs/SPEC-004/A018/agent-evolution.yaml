@@ -1,0 +1,77 @@
+# SPEC-004 A018 - Agent Evolution
+# Agent tu hoc tu du lieu quan sat (A011) - khong quyet dinh thay con nguoi.
+---
+id: SPEC-004-A018
+name: Agent Evolution
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Agent Team
+philosophy:
+  - Agent Evolution hoc tu du lieu quan sat (A011).
+  - Evolution khong quyet dinh thay con nguoi.
+  - Moi thay doi deu qua Approval Gate (A013).
+  - Khong Breaking Change khi chua duoc duyet.
+principles:
+  - Evidence Based (A011 + A016)
+  - Read Only (khong doc implementation)
+  - Approved (A013 Governance)
+  - Versioned (thay doi qua Registry A014)
+  - Reversible (rollback luon kha dung)
+  - Non-invasive (hoc khong thay doi Agent dang chay)
+scope:
+  reads:
+    - Agent Event (A011)
+    - Agent Metrics (A011)
+    - Agent Trace (A011)
+    - Agent Audit (A011)
+    - Compliance Report (A016)
+    - Registry (A014)
+  not_reads:
+    - Implementation
+    - Business Data
+    - User Data
+    - Agent Internal State
+    - Plugin Internal State
+pipeline:
+  - Collect (A011 data)
+  - Analyze (patterns, anomalies)
+  - Learn (lessons, hypotheses)
+  - Propose (evolution proposal)
+  - Approval Gate (A013 Governance)
+  - Apply (qua Registry A014 + Binding A012)
+proposal_model:
+  fields: [id, source, evidence, change, impact, status, approval]
+proposal_status: [Draft, Submitted, Approved, Rejected, Applied, Rolled Back]
+approval:
+  - Low impact: auto-approve (Strict rules).
+  - Medium impact: Agent approval.
+  - High impact / Breaking: Human approval bat buoc.
+  - Quyet dinh ghi Audit (A011).
+safety:
+  - Simulation truoc (S013 GV011A mode).
+  - Rollback luon kha dung.
+  - Khong Breaking Change khi chua duyet.
+  - Apply versioned qua Registry (A014).
+application:
+  - Binding moi la version moi (A012).
+  - Cap nhat Agent Definition (A009 - Published moi).
+  - Cap nhat Registry Entry (A014).
+traceability:
+  - Evolution Proposal
+  - Evidence (A011)
+  - Agent Execution
+  - Registry Entry (A014)
+events:
+  - AGENT_EVOLUTION_PROPOSED
+  - AGENT_EVOLUTION_APPROVED
+  - AGENT_EVOLUTION_REJECTED
+  - AGENT_EVOLUTION_APPLIED
+  - AGENT_EVOLUTION_ROLLED_BACK
+metrics:
+  proposals: 0
+  applied: 0
+  rejected: 0
+  rolled_back: 0
+  success_rate: 0
+  avg_learning_time: 0

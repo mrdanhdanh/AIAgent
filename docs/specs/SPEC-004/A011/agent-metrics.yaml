@@ -1,0 +1,17 @@
+# SPEC-004 A011 - Agent Metrics (S011 reuse)
+---
+version: "1.0"
+metrics:
+  agent_count: 0
+  execution_count: 0
+  execution_success_rate: 0
+  execution_failure_rate: 0
+  fallback_count: 0
+  mapping_count: 0
+  binding_count: 0
+  state_distribution: {}
+  outcome_distribution: {}
+  avg_execution_time: 0
+rules:
+  - Metrics chi append (S011).
+  - Khong chua Business Data (S011).

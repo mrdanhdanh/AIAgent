@@ -1,0 +1,79 @@
+# SPEC-004 A019 - Agent Doctor
+# Kiem tra suc khoe Agent System - tong hop checks tu A011..A018 + S016.
+---
+id: SPEC-004-A019
+name: Agent Doctor
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Agent Team
+philosophy:
+  - Agent Doctor la co che kiem tra suc khoe Agent System.
+  - Doctor chi doc machine-readable (A011).
+  - Khong dinh nghia lai quy tac (A016 da tong hop).
+  - Self-repair chi thay doi an toan, co gioi han.
+principles:
+  - Evidence Based
+  - Machine-readable First
+  - Non-invasive
+  - Deterministic
+  - Repairable (self-repair an toan)
+  - Auditable
+scope:
+  checks_domains:
+    - Constitution (SPEC-000)
+    - Contracts (A007)
+    - Policy Binding (A012)
+    - Governance (A013)
+    - Registry (A014)
+    - Resources (A015)
+    - Compliance (A016)
+    - Extensions (A017)
+    - Observability (A011)
+  not_reads:
+    - Implementation
+    - Business Data
+    - Agent Internal State
+    - Plugin Internal State
+check_sources:
+  - A011 Observability: 5 checks
+  - A013 Governance: 6 checks
+  - A014 Registry: 7 checks
+  - A015 Resources: 5 checks
+  - A016 Compliance: 12 rules
+  - A017 Extensions: 6 checks
+  - A018 Evolution: 6 checks
+health_score: [Healthy, Degraded, Unhealthy]
+pipeline:
+  - Collect (machine-readable)
+  - Validate (checks per domain)
+  - Score (health - A016 AMC006)
+  - Report (agent-doctor-report)
+  - Repair (neu an toan, self-repair)
+self_repair:
+  - Chi Low impact.
+  - Qua Approval (A013) hoac auto cho quen thuoc.
+  - Co rollback.
+  - Ghi Audit (A011).
+  - Khong sua implementation.
+  - Khong Repair vi pham CRITICAL - bao cao len nguoi.
+report:
+  fields: [id, timestamp, agent_version, checks, score, status, repair, evidence]
+events:
+  - AGENT_DOCTOR_RUN
+  - AGENT_DOCTOR_PASSED
+  - AGENT_DOCTOR_FAILED
+  - AGENT_DOCTOR_REPORTED
+  - AGENT_DOCTOR_REPAIRED
+metrics:
+  health_score: 0
+  passed_checks: 0
+  failed_checks: 0
+  warning_checks: 0
+  total_checks: 0
+  repair_count: 0
+traceability:
+  - Agent Doctor Report
+  - Checks
+  - Evidence (A011)
+  - SPEC source (A0xx)
