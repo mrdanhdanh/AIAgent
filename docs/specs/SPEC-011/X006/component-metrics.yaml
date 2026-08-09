@@ -1,0 +1,7 @@
+# SPEC-011 X006 - Doctor Component Metrics
+---
+version: "1.0"
+metrics:
+  - doctor_scan_total
+  - doctor_scan_duration_seconds
+  - doctor_repair_total

@@ -1,0 +1,10 @@
+# SPEC-011 X009 - Doctor Transition Triggers
+---
+version: "1.0"
+triggers:
+  XST-001: Request (User/CLI)
+  XST-002: Scan (Doctor)
+  XST-003: Diagnose (Doctor)
+  XST-004: Score (Doctor)
+  XST-005: Report (Doctor)
+  XST-006: Fail (scan loi)

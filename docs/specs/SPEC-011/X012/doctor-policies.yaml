@@ -1,0 +1,14 @@
+# SPEC-011 X012 - Doctor Policies (10)
+---
+version: "1.0"
+policies:
+  XPOL-001: { name: Non-Invasive, description: Doctor khong sua core, priority: Critical, source: P015, principle: P015 }
+  XPOL-002: { name: Safe Repair, description: Chi sua doc, khong sua core, priority: Critical, source: P015, principle: P015 }
+  XPOL-003: { name: Scan All, description: Scan toan bo he sinh thai, priority: Critical, source: P005, principle: P005 }
+  XPOL-004: { name: Score Strict, description: Score 0-100 hop le, priority: High, source: P005, principle: P005 }
+  XPOL-005: { name: No Business Data, description: Doctor chi metadata, priority: Critical, source: S011 OB003A, principle: P001 }
+  XPOL-006: { name: Retention, description: Report archive theo retention, priority: High, source: S012, principle: P011 }
+  XPOL-007: { name: Quota, description: Gioi han findings/report, priority: High, source: S012, principle: P011 }
+  XPOL-008: { name: No Auto-Decision, description: Khong tu quyet dinh, priority: Critical, source: S013, principle: P009 }
+  XPOL-009: { name: Audit All, description: Moi thay doi co audit, priority: High, source: S011, principle: P005 }
+  XPOL-010: { name: Schema Valid, description: Report theo schema, priority: High, source: X008, principle: P009 }

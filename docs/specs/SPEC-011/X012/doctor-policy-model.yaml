@@ -1,0 +1,9 @@
+# SPEC-011 X012 - Doctor Policy Model
+---
+version: "1.0"
+policy_model:
+  identity: policy_id (XPOL-###)
+  enforcement: Doctor (before op)
+  evaluation: metadata-only (khong doc business data)
+  result: allow | deny | warn
+  trace: policy decision log (S011)

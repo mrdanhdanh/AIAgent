@@ -1,0 +1,10 @@
+# SPEC-011 X011 - Doctor Health
+---
+version: "1.0"
+health_checks:
+  - scan_ok: scan nhanh, khong loi
+  - score_ok: score hop le 0-100
+  - repair_ok: khong sua core
+  - event_ok: event day du (S011)
+  - policy_ok: policy applied (S012)
+  score: tinh trong X019 Doctor

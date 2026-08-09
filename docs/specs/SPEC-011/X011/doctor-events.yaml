@@ -1,0 +1,21 @@
+# SPEC-011 X011 - Doctor Events (S011 reuse)
+---
+version: "1.0"
+definition_events:
+  - DOCTOR_REQUESTED
+  - DOCTOR_SCANNING
+  - DOCTOR_DIAGNOSED
+  - DOCTOR_SCORED
+  - DOCTOR_REPAIRED
+  - DOCTOR_REPORTED
+  - DOCTOR_FAILED
+  - DOCTOR_FINDING
+  - DOCTOR_SCORE_LOW
+  - DOCTOR_REPAIR_BLOCKED
+  - DOCTOR_REPAIRED_DOC
+  - DOCTOR_RESTORED
+rules:
+  - Event immutable (P005).
+  - Event chi append.
+  - Moi transition sinh Event (X009).
+  - Event co correlation_id (S011).

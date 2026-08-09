@@ -1,0 +1,9 @@
+# SPEC-011 X013 - Doctor Governance Registry
+---
+version: "1.0"
+registry:
+  spec: SPEC-011 (this)
+  sections: [X001..X020]
+  models: doctor-models/
+  schemas: *.schema.json
+  status_tracking: SPEC-INDEX.md

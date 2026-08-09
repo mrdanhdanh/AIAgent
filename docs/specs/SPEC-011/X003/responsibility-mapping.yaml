@@ -1,0 +1,8 @@
+# SPEC-011 X003 - Doctor Responsibility Mapping
+---
+version: "1.0"
+mapping:
+  XRR-001..005: Doctor core ops
+  XRR-006..012: scan theo domain
+  XRR-013..014: simulation + benchmark
+  XRR-015..016: Runtime integration (S011)

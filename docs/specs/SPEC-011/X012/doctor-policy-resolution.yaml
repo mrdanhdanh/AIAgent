@@ -1,0 +1,8 @@
+# SPEC-011 X012 - Doctor Policy Resolution
+---
+version: "1.0"
+resolution:
+  order: SPEC-005 registry (policy registry)
+  conflict: deny wins (S012)
+  scope: doctor op (scan/repair/report)
+  cache: khong cache policy decision (evaluate moi lan)

@@ -1,0 +1,13 @@
+# SPEC-011 Appendix - Doctor Canonical Models (8)
+---
+version: "1.0"
+models:
+  AM-001: { name: Scan, kind: AggregateRoot, owner: Doctor, immutable: false }
+  AM-002: { name: ScanDefinition, kind: Entity, owner: Doctor, immutable: true }
+  AM-003: { name: Finding, kind: Entity, owner: Doctor, immutable: false }
+  AM-004: { name: HealthScore, kind: Entity, owner: Doctor, immutable: true }
+  AM-005: { name: RepairAction, kind: Value, owner: Doctor, immutable: false }
+  AM-006: { name: ScanState, kind: Transient, owner: Doctor, immutable: false }
+  AM-007: { name: DoctorReport, kind: Entity, owner: Doctor, immutable: true }
+  AM-008: { name: ScannerRef, kind: Value, owner: Doctor, immutable: true }
+aggregate_root: AM-001 Scan

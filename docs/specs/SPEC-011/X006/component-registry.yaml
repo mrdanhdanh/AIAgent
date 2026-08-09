@@ -1,0 +1,6 @@
+# SPEC-011 X006 - Doctor Component Registry
+---
+version: "1.0"
+registry:
+  owner: Doctor Team
+  tracked: [XCP-001..012]

@@ -1,0 +1,9 @@
+# SPEC-011 X008 - Doctor Ownership
+---
+version: "1.0"
+ownership:
+  owner_entity: Doctor (SPEC-011)
+  scanned: toan bo he sinh thai
+  repair: doc-only
+  transfer: Khong cho phep (P005)
+  destroy: Report archive (S012)

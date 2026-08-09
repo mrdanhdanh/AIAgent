@@ -1,0 +1,7 @@
+# SPEC-011 X003 - Doctor Responsibility Registry
+---
+version: "1.0"
+registry:
+  owner: Doctor Team
+  tracked: [XRR-001..016]
+  spec: SPEC-011 X003

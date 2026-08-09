@@ -1,0 +1,9 @@
+# SPEC-011 X016 - Doctor Compliance Report
+---
+version: "1.0"
+report:
+  scope: [X001..X020]
+  format: markdown + JSON
+  frequency: moi thay doi SPEC-011
+  content: [score, violations, evidence, actions]
+  tool: spec011-validator.ps1

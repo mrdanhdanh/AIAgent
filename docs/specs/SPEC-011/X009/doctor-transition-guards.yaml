@@ -1,0 +1,8 @@
+# SPEC-011 X009 - Doctor Transition Guards
+---
+version: "1.0"
+guards:
+  XGD-001: { transition: XTR-002, condition: Scan day du + khong loi }
+  XGD-002: { transition: XTR-004, condition: Score 0-100 hop le }
+  XGD-003: { transition: XTR-005, condition: Report day du (markdown/JSON) }
+guard_fail: transition bi chan + error DOCTOR_GUARD

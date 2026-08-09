@@ -1,0 +1,5 @@
+{
+  "schema": "doctor-responsibilities",
+  "version": "1.0",
+  "responsibility_id": { "type": "string", "pattern": "^XRR-[0-9]{3}$" }
+}

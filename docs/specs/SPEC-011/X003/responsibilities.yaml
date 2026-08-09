@@ -1,0 +1,20 @@
+# SPEC-011 X003 - Doctor Responsibilities (16)
+---
+version: "1.0"
+responsibilities:
+  XRR-001: { name: Scan System, owner: Doctor, partner: System, role: OWNER }
+  XRR-002: { name: Diagnose, owner: Doctor, partner: Doctor Analyzer, role: OWNER }
+  XRR-003: { name: Score Health, owner: Doctor, partner: Scorer, role: OWNER }
+  XRR-004: { name: Repair Safe, owner: Doctor, partner: Repairer, role: OWNER }
+  XRR-005: { name: Report, owner: Doctor, partner: Reporter, role: OWNER }
+  XRR-006: { name: Scan Environment, owner: Doctor, partner: Environment, role: OWNER }
+  XRR-007: { name: Scan Agents, owner: Doctor, partner: Agents (SPEC-004), role: OWNER }
+  XRR-008: { name: Scan Commands, owner: Doctor, partner: Commands, role: OWNER }
+  XRR-009: { name: Scan Skills, owner: Doctor, partner: Skills, role: OWNER }
+  XRR-010: { name: Scan Knowledge, owner: Doctor, partner: Knowledge, role: OWNER }
+  XRR-011: { name: Scan Workflow, owner: Doctor, partner: Workflow (SPEC-002), role: OWNER }
+  XRR-012: { name: Scan Contracts, owner: Doctor, partner: Contracts (SPEC-009), role: OWNER }
+  XRR-013: { name: Runtime Simulation, owner: Doctor, partner: Runtime (SPEC-001), role: SIMULATOR }
+  XRR-014: { name: Capability Benchmark, owner: Doctor, partner: Capability (SPEC-003), role: BENCHMARKER }
+  XRR-015: { name: Events, owner: Runtime (S011), partner: Doctor, role: EMITTER }
+  XRR-016: { name: Audit, owner: Runtime (S011), partner: Doctor, role: EMITTER }

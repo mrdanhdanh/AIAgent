@@ -1,0 +1,11 @@
+# SPEC-011 X007 - Doctor Contract Types (7)
+---
+version: "1.0"
+contracts:
+  XCT-001: { name: API Contract, description: DoctorApi ops (scan/diagnose/score/repair/report), breaking: ADR }
+  XCT-002: { name: Data Contract, description: Finding + Score schema, breaking: ADR }
+  XCT-003: { name: Event Contract, description: DOCTOR_* events (S011), breaking: ADR }
+  XCT-004: { name: Metric Contract, description: doctor_* metrics, breaking: additive }
+  XCT-005: { name: Policy Contract, description: repair scope, breaking: ADR }
+  XCT-006: { name: Interface Contract, description: Store, Scanner, RepairEngine, breaking: ADR }
+  XCT-007: { name: Report Contract, description: report schema (markdown/JSON), breaking: ADR }

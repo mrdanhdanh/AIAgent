@@ -1,0 +1,10 @@
+# SPEC-011 X009 - Doctor State Metrics
+---
+version: "1.0"
+metrics:
+  - doctor_states_total
+  - doctor_transitions_total
+  - doctor_transition_duration_seconds
+  - doctor_failed_total
+  - doctor_reported_total
+labels: [scan_id, state, transition, execution_id]

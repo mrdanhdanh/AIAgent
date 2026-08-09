@@ -1,0 +1,9 @@
+# SPEC-011 X016 - Doctor Compliance Events
+---
+version: "1.0"
+events:
+  - SPEC011_COMPLIANCE_PASS
+  - SPEC011_COMPLIANCE_FAIL
+  - SPEC011_CERTIFIED
+  - SPEC011_AUDITED
+note: Event vao S011.

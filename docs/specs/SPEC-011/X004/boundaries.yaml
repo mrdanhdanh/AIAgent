@@ -1,0 +1,14 @@
+# SPEC-011 X004 - Doctor Boundaries (10)
+---
+version: "1.0"
+boundaries:
+  XB-001: { name: Content, in_scope: Health report + score, out_scope: -, forbidden: - }
+  XB-002: { name: Metadata, in_scope: scan_id, timestamp, scope, findings, out_scope: format metadata, forbidden: - }
+  XB-003: { name: System, in_scope: toan bo he sinh thai, out_scope: he sinh thai khac, forbidden: - }
+  XB-004: { name: Repair, in_scope: doc-only fixes, out_scope: -, forbidden: core fixes }
+  XB-005: { name: Policy, in_scope: repair scope (S012), out_scope: policy logic, forbidden: - }
+  XB-006: { name: Registry, in_scope: definition refs (SPEC-005), out_scope: runtime entries, forbidden: - }
+  XB-007: { name: Core, in_scope: KHONG trong Doctor, out_scope: Core, forbidden: core modify }
+  XB-008: { name: Secret, in_scope: -, out_scope: -, forbidden: credentials, keys }
+  XB-009: { name: PII, in_scope: -, out_scope: -, forbidden: user personal data }
+  XB-010: { name: Business Data, in_scope: -, out_scope: -, forbidden: business data }

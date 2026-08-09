@@ -1,0 +1,8 @@
+# SPEC-011 X007 - Doctor Communication Matrix
+---
+version: "1.0"
+matrix:
+  User -> DoctorApi: sync scan
+  DoctorApi -> ScanEngine: sync scan
+  DoctorApi -> ReportEngine: sync report
+  DoctorApi -> S011: async event

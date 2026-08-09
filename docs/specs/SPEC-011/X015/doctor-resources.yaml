@@ -1,0 +1,10 @@
+# SPEC-011 X015 - Doctor Resources
+---
+version: "1.0"
+resources:
+  XRES-001: { name: Storage, owner: Doctor }
+  XRES-002: { name: Index, owner: Doctor }
+  XRES-003: { name: ScanId, owner: Doctor }
+  XRES-004: { name: Scan CPU, owner: Doctor }
+  XRES-005: { name: Event Buffer, owner: Runtime }
+  XRES-006: { name: Snapshot Store, owner: Doctor }

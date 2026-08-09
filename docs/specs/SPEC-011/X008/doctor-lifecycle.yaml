@@ -1,0 +1,10 @@
+# SPEC-011 X008 - Doctor Lifecycle (see X009)
+---
+version: "1.0"
+lifecycle_phases:
+  - Requested
+  - Scanning
+  - Diagnosed
+  - Scored
+  - Reported
+note: Doctor khong dinh nghia lai lifecycle.

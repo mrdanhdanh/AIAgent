@@ -1,0 +1,8 @@
+# SPEC-011 X020 - Doctor Dashboard Events
+---
+version: "1.0"
+events:
+  - DOCTOR_DASHBOARD_OPENED
+  - DOCTOR_DASHBOARD_FILTERED
+  - DOCTOR_DASHBOARD_EXPORTED
+note: Event vao S011.

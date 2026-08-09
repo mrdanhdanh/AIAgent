@@ -1,0 +1,8 @@
+# SPEC-011 X005 - Doctor Communication Rules
+---
+version: "1.0"
+communication_rules:
+  - Scan/Score: sync (blocking)
+  - Repair: sync, doc-only
+  - Events, metrics: async (S011)
+  - Moi op co trace_id (S011)

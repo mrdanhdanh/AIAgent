@@ -1,0 +1,10 @@
+# SPEC-011 X016 - Doctor Certification
+---
+version: "1.0"
+certification:
+  certified_artifacts:
+    - SPEC-011 SPEC.yaml
+    - X001-X020 sections
+    - doctor-models/
+  criteria: validator PASS + Doctor PASS
+  issued_by: Doctor Team + Governance (S013)

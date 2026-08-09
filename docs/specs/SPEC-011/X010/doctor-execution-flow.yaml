@@ -1,0 +1,11 @@
+# SPEC-011 X010 - Doctor Execution Flow (6 stages)
+---
+version: "1.0"
+stages:
+  XF-001: { name: Request, description: Nhan request tu User/CLI, actor: Doctor, event: DOCTOR_REQUESTED }
+  XF-002: { name: Scan, description: Scan toan bo he sinh thai, actor: ScanEngine, event: DOCTOR_SCANNING }
+  XF-003: { name: Diagnose, description: Chan doan findings, actor: DiagnoseEngine, event: DOCTOR_DIAGNOSED }
+  XF-004: { name: Score, description: Cham diem 0-100, actor: Scorer, event: DOCTOR_SCORED }
+  XF-005: { name: Repair, description: Tu sua doc-only (optional), actor: RepairEngine, event: DOCTOR_REPAIRED }
+  XF-006: { name: Report, description: Tao report markdown/JSON, actor: ReportEngine, event: DOCTOR_REPORTED }
+source: /doctor command (Doctor khong dinh nghia lai pipeline)

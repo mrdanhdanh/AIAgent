@@ -1,0 +1,9 @@
+# SPEC-011 X005 - Doctor Architecture Matrix
+---
+version: "1.0"
+matrix:
+  XAL-001: { name: API Layer }
+  XAL-002: { name: Engine Layer }
+  XAL-003: { name: Guard Layer }
+  XAL-004: { name: Store Layer }
+  XAL-005: { name: Integration }

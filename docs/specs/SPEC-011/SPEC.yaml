@@ -1,0 +1,63 @@
+---
+id: SPEC-011
+name: Doctor
+version: "1.0.0"
+status: Draft
+type: Engine
+authority: High
+owner: Doctor Team
+description: >
+  Doctor — kiểm tra sức khỏe AIOS: Scan, Diagnose, Score, Repair, Report.
+  Doctor kiểm tra Environment, Agents, Commands, Skills, Knowledge, Workflow,
+  Contracts, Runtime (simulation), Capability (benchmark). Health score + self-repair an toàn.
+dependencies:
+  - SPEC-000
+  - SPEC-001
+  - SPEC-002
+  - SPEC-003
+  - SPEC-004
+  - SPEC-005
+  - SPEC-006
+  - SPEC-007
+  - SPEC-008
+  - SPEC-009
+  - SPEC-010
+includes:
+  - X001
+  - X002
+  - X003
+  - X004
+  - X005
+  - X006
+  - X007
+  - X008
+  - X009
+  - X010
+  - X011
+  - X012
+  - X013
+  - X014
+  - X015
+  - X016
+  - X017
+  - X018
+  - X019
+  - X020
+outputs:
+  - Health Report
+  - Health Score
+  - Repair Actions
+implements:
+  - Doctor
+authoritative: false
+breaking_change_requires:
+  - ADR
+  - RFC
+references:
+  constitution: ../SPEC-000
+  runtime: ../SPEC-001
+  registry: ../SPEC-005
+  glossary: ../../glossary
+  principles: ../../principles
+  rules: ../../rules
+  governance: ../../governance

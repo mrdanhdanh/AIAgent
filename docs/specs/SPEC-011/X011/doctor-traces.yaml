@@ -1,0 +1,11 @@
+# SPEC-011 X011 - Doctor Traces
+---
+version: "1.0"
+traces:
+  - doctor.request
+  - doctor.scan
+  - doctor.diagnose
+  - doctor.score
+  - doctor.repair
+  - doctor.report
+span_attrs: [scan_id, execution_id, scope, domain]

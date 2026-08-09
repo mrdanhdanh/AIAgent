@@ -1,0 +1,9 @@
+# SPEC-011 X012 - Timeout Binding
+---
+version: "1.0"
+timeout_binding:
+  scan_timeout: 30s (default)
+  diagnose_timeout: 5s (default)
+  score_timeout: 1s (default)
+  report_timeout: 5s (default)
+  note: cau hinh qua Policy S012, khong hardcode
