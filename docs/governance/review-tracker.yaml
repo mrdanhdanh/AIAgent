@@ -3485,244 +3485,344 @@ items:
   SPEC-010:
     X001:
       name: Plugin Vision
-      lifecycle: Draft
+      lifecycle: Review
       created: "2026-08-09"
-      review: { status: NotReviewed, count: 0, inherited: false }
-      history: []
+      review: { status: Rev1, count: 1, inherited: false }
+      history:
+        - review: REV-20260809-207
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
     X002:
       name: Plugin Requirements
-      lifecycle: Draft
+      lifecycle: Review
       created: "2026-08-09"
-      review: { status: NotReviewed, count: 0, inherited: false }
-      history: []
+      review: { status: Rev1, count: 1, inherited: false }
+      history:
+        - review: REV-20260809-207
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
     X003:
       name: Plugin Responsibilities
-      lifecycle: Draft
+      lifecycle: Review
       created: "2026-08-09"
-      review: { status: NotReviewed, count: 0, inherited: false }
-      history: []
+      review: { status: Rev1, count: 1, inherited: false }
+      history:
+        - review: REV-20260809-207
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
     X004:
       name: Plugin Boundaries
-      lifecycle: Draft
+      lifecycle: Review
       created: "2026-08-09"
-      review: { status: NotReviewed, count: 0, inherited: false }
-      history: []
+      review: { status: Rev1, count: 1, inherited: false }
+      history:
+        - review: REV-20260809-207
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
     X005:
       name: Plugin Architecture
-      lifecycle: Draft
+      lifecycle: Review
       created: "2026-08-09"
-      review: { status: NotReviewed, count: 0, inherited: false }
-      history: []
+      review: { status: Rev1, count: 1, inherited: false }
+      history:
+        - review: REV-20260809-207
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
     X006:
       name: Plugin Components
-      lifecycle: Draft
+      lifecycle: Review
       created: "2026-08-09"
-      review: { status: NotReviewed, count: 0, inherited: false }
-      history: []
+      review: { status: Rev1, count: 1, inherited: false }
+      history:
+        - review: REV-20260809-207
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
     X007:
       name: Plugin Contracts
-      lifecycle: Draft
+      lifecycle: Review
       created: "2026-08-09"
-      review: { status: NotReviewed, count: 0, inherited: false }
-      history: []
+      review: { status: Rev1, count: 1, inherited: false }
+      history:
+        - review: REV-20260809-207
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
     X008:
       name: Plugin Data Model
-      lifecycle: Draft
+      lifecycle: Review
       created: "2026-08-09"
-      review: { status: NotReviewed, count: 0, inherited: false }
-      history: []
+      review: { status: Rev1, count: 1, inherited: false }
+      history:
+        - review: REV-20260809-207
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
     X009:
       name: Plugin State Machine
-      lifecycle: Draft
+      lifecycle: Review
       created: "2026-08-09"
-      review: { status: NotReviewed, count: 0, inherited: false }
-      history: []
+      review: { status: Rev1, count: 1, inherited: false }
+      history:
+        - review: REV-20260809-207
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
     X010:
       name: Plugin Execution Flow
-      lifecycle: Draft
+      lifecycle: Review
       created: "2026-08-09"
-      review: { status: NotReviewed, count: 0, inherited: false }
-      history: []
+      review: { status: Rev1, count: 1, inherited: false }
+      history:
+        - review: REV-20260809-207
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
     X011:
       name: Plugin Observability
-      lifecycle: Draft
+      lifecycle: Review
       created: "2026-08-09"
-      review: { status: NotReviewed, count: 0, inherited: false }
-      history: []
+      review: { status: Rev1, count: 1, inherited: false }
+      history:
+        - review: REV-20260809-207
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
     X012:
       name: Plugin Policies
-      lifecycle: Draft
+      lifecycle: Review
       created: "2026-08-09"
-      review: { status: NotReviewed, count: 0, inherited: false }
-      history: []
+      review: { status: Rev1, count: 1, inherited: false }
+      history:
+        - review: REV-20260809-207
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
     X013:
       name: Plugin Governance
-      lifecycle: Draft
+      lifecycle: Review
       created: "2026-08-09"
-      review: { status: NotReviewed, count: 0, inherited: false }
-      history: []
+      review: { status: Rev1, count: 1, inherited: false }
+      history:
+        - review: REV-20260809-207
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
     X014:
       name: Plugin Registry
-      lifecycle: Draft
+      lifecycle: Review
       created: "2026-08-09"
-      review: { status: NotReviewed, count: 0, inherited: false }
-      history: []
+      review: { status: Rev1, count: 1, inherited: false }
+      history:
+        - review: REV-20260809-207
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
     X015:
       name: Plugin Resources
-      lifecycle: Draft
+      lifecycle: Review
       created: "2026-08-09"
-      review: { status: NotReviewed, count: 0, inherited: false }
-      history: []
+      review: { status: Rev1, count: 1, inherited: false }
+      history:
+        - review: REV-20260809-207
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
     X016:
       name: Plugin Compliance
-      lifecycle: Draft
+      lifecycle: Review
       created: "2026-08-09"
-      review: { status: NotReviewed, count: 0, inherited: false }
-      history: []
+      review: { status: Rev1, count: 1, inherited: false }
+      history:
+        - review: REV-20260809-207
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
     X017:
       name: Plugin Extensions
-      lifecycle: Draft
+      lifecycle: Review
       created: "2026-08-09"
-      review: { status: NotReviewed, count: 0, inherited: false }
-      history: []
+      review: { status: Rev1, count: 1, inherited: false }
+      history:
+        - review: REV-20260809-207
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
     X018:
       name: Plugin Evolution
-      lifecycle: Draft
+      lifecycle: Review
       created: "2026-08-09"
-      review: { status: NotReviewed, count: 0, inherited: false }
-      history: []
+      review: { status: Rev1, count: 1, inherited: false }
+      history:
+        - review: REV-20260809-207
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
     X019:
       name: Plugin Doctor
-      lifecycle: Draft
+      lifecycle: Review
       created: "2026-08-09"
-      review: { status: NotReviewed, count: 0, inherited: false }
-      history: []
+      review: { status: Rev1, count: 1, inherited: false }
+      history:
+        - review: REV-20260809-207
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
     X020:
       name: Plugin Dashboard
-      lifecycle: Draft
+      lifecycle: Review
       created: "2026-08-09"
-      review: { status: NotReviewed, count: 0, inherited: false }
-      history: []
+      review: { status: Rev1, count: 1, inherited: false }
+      history:
+        - review: REV-20260809-207
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
 
   SPEC-011:
     X001:
       name: Doctor Vision
       lifecycle: Draft
       created: "2026-08-09"
+      recheck_required: true
       review: { status: NotReviewed, count: 0, inherited: false }
       history: []
     X002:
       name: Doctor Requirements
       lifecycle: Draft
       created: "2026-08-09"
+      recheck_required: true
       review: { status: NotReviewed, count: 0, inherited: false }
       history: []
     X003:
       name: Doctor Responsibilities
       lifecycle: Draft
       created: "2026-08-09"
+      recheck_required: true
       review: { status: NotReviewed, count: 0, inherited: false }
       history: []
     X004:
       name: Doctor Boundaries
       lifecycle: Draft
       created: "2026-08-09"
+      recheck_required: true
       review: { status: NotReviewed, count: 0, inherited: false }
       history: []
     X005:
       name: Doctor Architecture
       lifecycle: Draft
       created: "2026-08-09"
+      recheck_required: true
       review: { status: NotReviewed, count: 0, inherited: false }
       history: []
     X006:
       name: Doctor Components
       lifecycle: Draft
       created: "2026-08-09"
+      recheck_required: true
       review: { status: NotReviewed, count: 0, inherited: false }
       history: []
     X007:
       name: Doctor Contracts
       lifecycle: Draft
       created: "2026-08-09"
+      recheck_required: true
       review: { status: NotReviewed, count: 0, inherited: false }
       history: []
     X008:
       name: Doctor Data Model
       lifecycle: Draft
       created: "2026-08-09"
+      recheck_required: true
       review: { status: NotReviewed, count: 0, inherited: false }
       history: []
     X009:
       name: Doctor State Machine
       lifecycle: Draft
       created: "2026-08-09"
+      recheck_required: true
       review: { status: NotReviewed, count: 0, inherited: false }
       history: []
     X010:
       name: Doctor Execution Flow
       lifecycle: Draft
       created: "2026-08-09"
+      recheck_required: true
       review: { status: NotReviewed, count: 0, inherited: false }
       history: []
     X011:
       name: Doctor Observability
       lifecycle: Draft
       created: "2026-08-09"
+      recheck_required: true
       review: { status: NotReviewed, count: 0, inherited: false }
       history: []
     X012:
       name: Doctor Policies
       lifecycle: Draft
       created: "2026-08-09"
+      recheck_required: true
       review: { status: NotReviewed, count: 0, inherited: false }
       history: []
     X013:
       name: Doctor Governance
       lifecycle: Draft
       created: "2026-08-09"
+      recheck_required: true
       review: { status: NotReviewed, count: 0, inherited: false }
       history: []
     X014:
       name: Doctor Registry
       lifecycle: Draft
       created: "2026-08-09"
+      recheck_required: true
       review: { status: NotReviewed, count: 0, inherited: false }
       history: []
     X015:
       name: Doctor Resources
       lifecycle: Draft
       created: "2026-08-09"
+      recheck_required: true
       review: { status: NotReviewed, count: 0, inherited: false }
       history: []
     X016:
       name: Doctor Compliance
       lifecycle: Draft
       created: "2026-08-09"
+      recheck_required: true
       review: { status: NotReviewed, count: 0, inherited: false }
       history: []
     X017:
       name: Doctor Extensions
       lifecycle: Draft
       created: "2026-08-09"
+      recheck_required: true
       review: { status: NotReviewed, count: 0, inherited: false }
       history: []
     X018:
       name: Doctor Evolution
       lifecycle: Draft
       created: "2026-08-09"
+      recheck_required: true
       review: { status: NotReviewed, count: 0, inherited: false }
       history: []
     X019:
       name: Doctor Doctor
       lifecycle: Draft
       created: "2026-08-09"
+      recheck_required: true
       review: { status: NotReviewed, count: 0, inherited: false }
       history: []
     X020:
       name: Doctor Dashboard
       lifecycle: Draft
       created: "2026-08-09"
+      recheck_required: true
       review: { status: NotReviewed, count: 0, inherited: false }
       history: []
 
@@ -3741,6 +3841,29 @@ not_started_specs:
 
 # Review log — mỗi review /review ghi 1 entry (append-only, đồng bộ review-history.yaml)
 review_log:
+  - review: REV-20260809-207
+    spec: SPEC-010
+    item: SPEC-010
+    type: rev1
+    mode: "rev1 (whole-SPEC re-review lan 2 sau fix REV-20260809-205 FAIL). id_note: history 206 entries (max REV-20260809-206 — SPEC-011 rev1 session da chiem 206) — dung 207 (max + 1, grep toan docs 0)."
+    verdict: PASS
+    date: "2026-08-09"
+    note: "rev1 whole-SPEC re-review SPEC-010 (Plugin Framework, 20 muc X001-X020 + Appendix plugin-models). Verify may (PyYAML 6.0.3 + jsonschema 4.26.0 Draft202012 strict + grep + git): 142/142 YAML parse PASS 0 ParserError + 0 duplicate key (10 CRITICAL REV-205 #01-#10 da FIXED); 16/16 schema META-VALID; X008 plugin-data.schema.json required [entities, relations, invariants, validation, storage] khop canonical plugin-data-model.yaml (MAJOR #11 da FIXED); cross-SPEC events PLUGIN_INSTALLED/DISABLED/UNINSTALLED = 0 trong SPEC-010 (da rename PLUGIN_FW_INSTALLED 8 / PLUGIN_FW_DISABLED 11 / PLUGIN_FW_UNINSTALLED 11 — SPEC-001 S017 giu nguyen PLUGIN_* cua no, MAJOR #12 da FIXED); 'S011 reuse'/'Event goi vao S011' = 0, X011 plugin-events.yaml re-list 12 events co comment nguon X009 (5) + X011/X010 (7) (MAJOR #13/#15 da FIXED); 'immutable (P005)' = 0 -> P010 (MAJOR #14 da FIXED); X015 comment + RRES-002 'IndeR' da fix (MINOR #19 da FIXED). RE-MAIN (khong fix, khong chan): MINOR #16 version \"1.0\" = 125 vs \"1.0.0\" = 17 YAML (POLICY-002, chi bump file da sua); MINOR #17 frontmatter md thieu status (23/23, tien le khong chan); MINOR #18 frontmatter X014-X020 van dung 'SPEC-010-x0xx-*' in hoa (7 file — claim fix KHONG dung, van lech convention lowercase spec-010-* X001-X013). INFO ke thua: #20 schema.json metadata version \"1.0\" x15 + thieu $schema (16/16); #21 S011 taxonomy thieu 'plugin' (thuoc S011). Verdict PASS (0 CRITICAL, 0 MAJOR -> Decision Matrix) -> tinh count: X001-X020 NotReviewed -> Rev1, count 0 -> 1, lifecycle Draft -> Review (REV-205 FAIL khong tang count nen count tu 0). KHONG auto-freeze (type rev1). Cascade: SPEC-011 (dependency SPEC.yaml:24 + README:121 — co tracker entry tu REV-206) gan recheck_required: true X001-X020 (khong doi review.status, Doctor lap task regression TRG-002); SPEC-001 S017 (Frozen, so huu PLUGIN_* events) khong doi status. SLA: TRG-006 khong ap (draft 0 ngay), TRG-007 chua ap. Report: docs/governance/reviews/REV-SPEC-010-SPEC010-rev1-20260809-201315.md."
+    score:
+      coverage: 95
+      quality: 92
+      consistency: 88
+      governance: 90
+      overall: 91
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 0
+      MINOR: 3
+      INFO: 2
+    started: "2026-08-09T20:13:15"
+    finished: "2026-08-09T20:13:15"
+    cascade_review: [SPEC-011]
+    report_path: docs/governance/reviews/REV-SPEC-010-SPEC010-rev1-20260809-201315.md
   - review: REV-20260809-206
     spec: SPEC-011
     item: SPEC-011

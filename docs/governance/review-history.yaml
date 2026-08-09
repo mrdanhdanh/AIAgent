@@ -8030,3 +8030,61 @@ entries:
     finished: "2026-08-09T19:59:12"
     cascade_review: [SPEC-012]
     report_path: docs/governance/reviews/REV-SPEC-011-SPEC011-rev1-20260809-195912.md
+  - review_id: REV-20260809-207
+    spec: SPEC-010
+    item: SPEC-010
+    name: Plugin Framework (whole-SPEC re-review)
+    type: rev1
+    mode: "rev1 (whole-SPEC re-review lan 2 sau fix REV-20260809-205 FAIL). id_note: history 206 entries (max REV-20260809-206 — SPEC-011 rev1 session da chiem 206) — dung 207 (max + 1, grep toan docs 0)."
+    verdict: PASS
+    note: >
+      rev1 whole-SPEC re-review tren SPEC-010 (Plugin Framework, 20 muc X001-X020 + Appendix
+      plugin-models, Draft/NotReviewed/count 0 sau REV-205 FAIL — REV-205 khong tang count). Verify
+      may (PyYAML 6.0.3 + jsonschema 4.26.0 Draft202012 strict + grep + git): 142/142 YAML parse PASS
+      0 ParserError + 0 duplicate key (10 CRITICAL REV-205 #01-#10 da FIXED — quote '-'/'Type[]'/
+      '*.schema.json'/'- [ ]', comment tool:/score:, gop duplicate PLUGIN_ENABLED, sửa lifecycle
+      block); 16/16 schema.json META-VALID + X008 plugin-data.schema.json required
+      [entities, relations, invariants, validation, storage] khop canonical plugin-data-model.yaml
+      (MAJOR #11 da FIXED — truoc required [pluginId, version, manifest, permission] strict FAIL);
+      cross-SPEC events da rename PLUGIN_INSTALLED/DISABLED/UNINSTALLED -> PLUGIN_FW_INSTALLED
+      (8)/PLUGIN_FW_DISABLED (11)/PLUGIN_FW_UNINSTALLED (11) — grep toan SPEC-010 0 ten cu,
+      SPEC-001 S017 giu nguyen PLUGIN_* cua no (3 locations each) nên het collision single-definition
+      (MAJOR #12 da FIXED, cung lop SPEC-005 R013/R014 REV-138 #04); 'S011 reuse'/'Event goi vao
+      S011' = 0 (MAJOR #13 da FIXED — X011 plugin-events.yaml:1-6 comment nguon 'X009 dinh nghia 5
+      event types' + X011/X010 7 events, X013 plugin-governance-events.yaml comment 'SPEC010_* rieng
+      cua SPEC-010'); 'immutable (P005)' = 0 -> da doi P010 o X009 plugin-state-events.yaml + X011
+      plugin-events.yaml:25 + X011 observability.md (MAJOR #14 da FIXED, P005 = Event Driven, P010 =
+      Immutable Artifact — 03-principles.md:31/36); X015 plugin-resources.yaml comment '# SPEC-010
+      R015' -> '# SPEC-010 X015' + RRES-002 'IndeR' -> 'Index' (MINOR #19 da FIXED). RE-MAIN
+      (khong chan): MINOR #16 version \"1.0\" = 125 vs \"1.0.0\" = 17 YAML (POLICY-002 — chi bump
+      version cac file da sua, chua dong bo toan SPEC-010); MINOR #17 frontmatter md thieu status
+      field (23/23, tien le SPEC-008 #01 khong chan); MINOR #18 frontmatter X014-X020 van dung
+      'SPEC-010-x0xx-*' in hoa (7 file: X014 registry.md:2, X015 resources.md:2, X016 compliance.md:2,
+      X017 extensions.md:2, X018 evolution.md:2, X019 doctor.md:2, X020 dashboard.md:2) — claim fix
+      KHONG dung, lech convention lowercase 'spec-010-x0xx-*' cua X001-X013 (POLICY-007). INFO ke
+      thua: #20 schema.json metadata version \"1.0\" x15 (chi plugin-data.schema.json len 1.0.0) +
+      thieu $schema 16/16 (field-catalog pattern); #21 S011 event_type taxonomy thieu 'plugin' (thuoc
+      S011, khong phai loi SPEC-010). Tich cuc: TERM-015/S014/SPEC-009/SPEC-000/003/005 upstream refs
+      ton tai, event counts md<->yaml khop (X009 5 types/6 transitions, X011 12 events, X010 7
+      stages), X011 'day du' re-list dung nguon, git diff SPEC-010 22 file modified khong co file
+      moi khong lien quan. Verdict PASS (0 CRITICAL, 0 MAJOR -> Decision Matrix) -> tinh count:
+      X001-X020 NotReviewed -> Rev1, count 0 -> 1, lifecycle Draft -> Review. KHONG auto-freeze
+      (type rev1, khong phai revfull). Cascade: SPEC-011 (dependency SPEC.yaml:24 + README:121 — da
+      co tracker entry tu REV-206) gan recheck_required: true X001-X020 (khong doi review.status —
+      Doctor lap task regression TRG-002); SPEC-001 S017 (Frozen, so huu PLUGIN_* events) khong doi
+      review.status. SLA: TRG-006/TRG-007 khong ap.
+    score:
+      coverage: 95
+      quality: 92
+      consistency: 88
+      governance: 90
+      overall: 91
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 0
+      MINOR: 3
+      INFO: 2
+    started: "2026-08-09T20:13:15"
+    finished: "2026-08-09T20:13:15"
+    cascade_review: [SPEC-011]
+    report_path: docs/governance/reviews/REV-SPEC-010-SPEC010-rev1-20260809-201315.md
