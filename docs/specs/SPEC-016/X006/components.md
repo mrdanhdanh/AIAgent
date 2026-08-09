@@ -1,5 +1,5 @@
 ---
-name: SPEC-016-x006-components
+name: spec-016-x006-components
 description: SPEC-016 X006 - CLI Components. Component model, contracts, lifecycle.
 agent: general
 ---

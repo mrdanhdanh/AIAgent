@@ -1,5 +1,5 @@
 ---
-name: SPEC-015-x012-policies
+name: spec-015-x012-policies
 description: SPEC-015 X012 - SDK Policies. 10 policies binding S012, isolated.
 agent: general
 ---

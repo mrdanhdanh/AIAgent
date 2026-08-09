@@ -1,5 +1,5 @@
 ---
-name: SPEC-015-x014-registry
+name: spec-015-x014-registry
 description: SPEC-015 X014 - SDK Registry. Dang ky SDK definition qua SPEC-005.
 agent: general
 ---

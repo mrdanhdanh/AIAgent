@@ -1,5 +1,5 @@
 ---
-name: SPEC-015-x015-resources
+name: spec-015-x015-resources
 description: SPEC-015 X015 - SDK Resources. Storage, index, quota, leak detection.
 agent: general
 ---

@@ -1,5 +1,5 @@
 ---
-name: SPEC-016-x004-boundaries
+name: spec-016-x004-boundaries
 description: SPEC-016 X004 - CLI Boundaries. Scope CLI, system ngoai.
 agent: general
 ---

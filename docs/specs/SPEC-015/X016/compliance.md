@@ -1,5 +1,5 @@
 ---
-name: SPEC-015-x016-compliance
+name: spec-015-x016-compliance
 description: SPEC-015 X016 - SDK Compliance. 6 rules, score, certification, checklist.
 agent: general
 ---

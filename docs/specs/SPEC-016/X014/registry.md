@@ -1,5 +1,5 @@
 ---
-name: SPEC-016-x014-registry
+name: spec-016-x014-registry
 description: SPEC-016 X014 - CLI Registry. Dang ky CLI definition qua SPEC-005.
 agent: general
 ---

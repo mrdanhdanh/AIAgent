@@ -1,5 +1,5 @@
 ---
-name: SPEC-015-x007-contracts
+name: spec-015-x007-contracts
 description: SPEC-015 X007 - SDK Contracts. Contract types, compatibility, anti-patterns.
 agent: general
 ---

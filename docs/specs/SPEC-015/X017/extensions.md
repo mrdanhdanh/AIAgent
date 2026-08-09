@@ -1,5 +1,5 @@
 ---
-name: SPEC-015-x017-extensions
+name: spec-015-x017-extensions
 description: SPEC-015 X017 - SDK Extensions. 7 extension points, policy, lifecycle.
 agent: general
 ---

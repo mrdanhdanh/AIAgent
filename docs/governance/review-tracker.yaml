@@ -4613,16 +4613,1304 @@ items:
           verdict: PASS
           date: "2026-08-09"
 
+  SPEC-014:
+    X001:
+      name: Dashboard Vision
+      lifecycle: Frozen
+      created: "2026-08-10"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260810-227
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-230
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-233
+          type: revfull
+          verdict: PASS
+          date: "2026-08-10"
+    X002:
+      name: Dashboard Requirements
+      lifecycle: Frozen
+      created: "2026-08-10"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260810-227
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-230
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-233
+          type: revfull
+          verdict: PASS
+          date: "2026-08-10"
+    X003:
+      name: Dashboard Responsibilities
+      lifecycle: Frozen
+      created: "2026-08-10"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260810-227
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-230
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-233
+          type: revfull
+          verdict: PASS
+          date: "2026-08-10"
+    X004:
+      name: Dashboard Boundaries
+      lifecycle: Frozen
+      created: "2026-08-10"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260810-227
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-230
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-233
+          type: revfull
+          verdict: PASS
+          date: "2026-08-10"
+    X005:
+      name: Dashboard Architecture
+      lifecycle: Frozen
+      created: "2026-08-10"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260810-227
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-230
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-233
+          type: revfull
+          verdict: PASS
+          date: "2026-08-10"
+    X006:
+      name: Dashboard Components
+      lifecycle: Frozen
+      created: "2026-08-10"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260810-227
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-230
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-233
+          type: revfull
+          verdict: PASS
+          date: "2026-08-10"
+    X007:
+      name: Dashboard Contracts
+      lifecycle: Frozen
+      created: "2026-08-10"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260810-227
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-230
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-233
+          type: revfull
+          verdict: PASS
+          date: "2026-08-10"
+    X008:
+      name: Dashboard Data Model
+      lifecycle: Frozen
+      created: "2026-08-10"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260810-227
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-230
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-233
+          type: revfull
+          verdict: PASS
+          date: "2026-08-10"
+    X009:
+      name: Dashboard State Machine
+      lifecycle: Frozen
+      created: "2026-08-10"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260810-227
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-230
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-233
+          type: revfull
+          verdict: PASS
+          date: "2026-08-10"
+    X010:
+      name: Dashboard Execution Flow
+      lifecycle: Frozen
+      created: "2026-08-10"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260810-227
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-230
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-233
+          type: revfull
+          verdict: PASS
+          date: "2026-08-10"
+    X011:
+      name: Dashboard Observability
+      lifecycle: Frozen
+      created: "2026-08-10"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260810-227
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-230
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-233
+          type: revfull
+          verdict: PASS
+          date: "2026-08-10"
+    X012:
+      name: Dashboard Policies
+      lifecycle: Frozen
+      created: "2026-08-10"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260810-227
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-230
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-233
+          type: revfull
+          verdict: PASS
+          date: "2026-08-10"
+    X013:
+      name: Dashboard Governance
+      lifecycle: Frozen
+      created: "2026-08-10"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260810-227
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-230
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-233
+          type: revfull
+          verdict: PASS
+          date: "2026-08-10"
+    X014:
+      name: Dashboard Registry
+      lifecycle: Frozen
+      created: "2026-08-10"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260810-227
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-230
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-233
+          type: revfull
+          verdict: PASS
+          date: "2026-08-10"
+    X015:
+      name: Dashboard Resources
+      lifecycle: Frozen
+      created: "2026-08-10"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260810-227
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-230
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-233
+          type: revfull
+          verdict: PASS
+          date: "2026-08-10"
+    X016:
+      name: Dashboard Compliance
+      lifecycle: Frozen
+      created: "2026-08-10"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260810-227
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-230
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-233
+          type: revfull
+          verdict: PASS
+          date: "2026-08-10"
+    X017:
+      name: Dashboard Extensions
+      lifecycle: Frozen
+      created: "2026-08-10"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260810-227
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-230
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-233
+          type: revfull
+          verdict: PASS
+          date: "2026-08-10"
+    X018:
+      name: Dashboard Evolution
+      lifecycle: Frozen
+      created: "2026-08-10"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260810-227
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-230
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-233
+          type: revfull
+          verdict: PASS
+          date: "2026-08-10"
+    X019:
+      name: Dashboard Doctor
+      lifecycle: Frozen
+      created: "2026-08-10"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260810-227
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-230
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-233
+          type: revfull
+          verdict: PASS
+          date: "2026-08-10"
+    X020:
+      name: Dashboard Dashboard
+      lifecycle: Frozen
+      created: "2026-08-10"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260810-227
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-230
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-233
+          type: revfull
+          verdict: PASS
+          date: "2026-08-10"
+  SPEC-015:
+    X001:
+      name: SDK Vision
+      lifecycle: Frozen
+      created: "2026-08-10"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260810-228
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-231
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-234
+          type: revfull
+          verdict: PASS
+          date: "2026-08-10"
+    X002:
+      name: SDK Requirements
+      lifecycle: Frozen
+      created: "2026-08-10"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260810-228
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-231
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-234
+          type: revfull
+          verdict: PASS
+          date: "2026-08-10"
+    X003:
+      name: SDK Responsibilities
+      lifecycle: Frozen
+      created: "2026-08-10"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260810-228
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-231
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-234
+          type: revfull
+          verdict: PASS
+          date: "2026-08-10"
+    X004:
+      name: SDK Boundaries
+      lifecycle: Frozen
+      created: "2026-08-10"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260810-228
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-231
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-234
+          type: revfull
+          verdict: PASS
+          date: "2026-08-10"
+    X005:
+      name: SDK Architecture
+      lifecycle: Frozen
+      created: "2026-08-10"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260810-228
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-231
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-234
+          type: revfull
+          verdict: PASS
+          date: "2026-08-10"
+    X006:
+      name: SDK Components
+      lifecycle: Frozen
+      created: "2026-08-10"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260810-228
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-231
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-234
+          type: revfull
+          verdict: PASS
+          date: "2026-08-10"
+    X007:
+      name: SDK Contracts
+      lifecycle: Frozen
+      created: "2026-08-10"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260810-228
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-231
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-234
+          type: revfull
+          verdict: PASS
+          date: "2026-08-10"
+    X008:
+      name: SDK Data Model
+      lifecycle: Frozen
+      created: "2026-08-10"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260810-228
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-231
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-234
+          type: revfull
+          verdict: PASS
+          date: "2026-08-10"
+    X009:
+      name: SDK State Machine
+      lifecycle: Frozen
+      created: "2026-08-10"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260810-228
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-231
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-234
+          type: revfull
+          verdict: PASS
+          date: "2026-08-10"
+    X010:
+      name: SDK Execution Flow
+      lifecycle: Frozen
+      created: "2026-08-10"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260810-228
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-231
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-234
+          type: revfull
+          verdict: PASS
+          date: "2026-08-10"
+    X011:
+      name: SDK Observability
+      lifecycle: Frozen
+      created: "2026-08-10"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260810-228
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-231
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-234
+          type: revfull
+          verdict: PASS
+          date: "2026-08-10"
+    X012:
+      name: SDK Policies
+      lifecycle: Frozen
+      created: "2026-08-10"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260810-228
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-231
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-234
+          type: revfull
+          verdict: PASS
+          date: "2026-08-10"
+    X013:
+      name: SDK Governance
+      lifecycle: Frozen
+      created: "2026-08-10"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260810-228
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-231
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-234
+          type: revfull
+          verdict: PASS
+          date: "2026-08-10"
+    X014:
+      name: SDK Registry
+      lifecycle: Frozen
+      created: "2026-08-10"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260810-228
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-231
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-234
+          type: revfull
+          verdict: PASS
+          date: "2026-08-10"
+    X015:
+      name: SDK Resources
+      lifecycle: Frozen
+      created: "2026-08-10"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260810-228
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-231
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-234
+          type: revfull
+          verdict: PASS
+          date: "2026-08-10"
+    X016:
+      name: SDK Compliance
+      lifecycle: Frozen
+      created: "2026-08-10"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260810-228
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-231
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-234
+          type: revfull
+          verdict: PASS
+          date: "2026-08-10"
+    X017:
+      name: SDK Extensions
+      lifecycle: Frozen
+      created: "2026-08-10"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260810-228
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-231
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-234
+          type: revfull
+          verdict: PASS
+          date: "2026-08-10"
+    X018:
+      name: SDK Evolution
+      lifecycle: Frozen
+      created: "2026-08-10"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260810-228
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-231
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-234
+          type: revfull
+          verdict: PASS
+          date: "2026-08-10"
+    X019:
+      name: SDK Doctor
+      lifecycle: Frozen
+      created: "2026-08-10"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260810-228
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-231
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-234
+          type: revfull
+          verdict: PASS
+          date: "2026-08-10"
+    X020:
+      name: SDK Dashboard
+      lifecycle: Frozen
+      created: "2026-08-10"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260810-228
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-231
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-234
+          type: revfull
+          verdict: PASS
+          date: "2026-08-10"
+  SPEC-016:
+    X001:
+      name: CLI Vision
+      lifecycle: Frozen
+      created: "2026-08-10"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260810-229
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-232
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-235
+          type: revfull
+          verdict: PASS
+          date: "2026-08-10"
+    X002:
+      name: CLI Requirements
+      lifecycle: Frozen
+      created: "2026-08-10"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260810-229
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-232
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-235
+          type: revfull
+          verdict: PASS
+          date: "2026-08-10"
+    X003:
+      name: CLI Responsibilities
+      lifecycle: Frozen
+      created: "2026-08-10"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260810-229
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-232
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-235
+          type: revfull
+          verdict: PASS
+          date: "2026-08-10"
+    X004:
+      name: CLI Boundaries
+      lifecycle: Frozen
+      created: "2026-08-10"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260810-229
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-232
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-235
+          type: revfull
+          verdict: PASS
+          date: "2026-08-10"
+    X005:
+      name: CLI Architecture
+      lifecycle: Frozen
+      created: "2026-08-10"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260810-229
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-232
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-235
+          type: revfull
+          verdict: PASS
+          date: "2026-08-10"
+    X006:
+      name: CLI Components
+      lifecycle: Frozen
+      created: "2026-08-10"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260810-229
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-232
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-235
+          type: revfull
+          verdict: PASS
+          date: "2026-08-10"
+    X007:
+      name: CLI Contracts
+      lifecycle: Frozen
+      created: "2026-08-10"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260810-229
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-232
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-235
+          type: revfull
+          verdict: PASS
+          date: "2026-08-10"
+    X008:
+      name: CLI Data Model
+      lifecycle: Frozen
+      created: "2026-08-10"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260810-229
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-232
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-235
+          type: revfull
+          verdict: PASS
+          date: "2026-08-10"
+    X009:
+      name: CLI State Machine
+      lifecycle: Frozen
+      created: "2026-08-10"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260810-229
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-232
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-235
+          type: revfull
+          verdict: PASS
+          date: "2026-08-10"
+    X010:
+      name: CLI Execution Flow
+      lifecycle: Frozen
+      created: "2026-08-10"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260810-229
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-232
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-235
+          type: revfull
+          verdict: PASS
+          date: "2026-08-10"
+    X011:
+      name: CLI Observability
+      lifecycle: Frozen
+      created: "2026-08-10"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260810-229
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-232
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-235
+          type: revfull
+          verdict: PASS
+          date: "2026-08-10"
+    X012:
+      name: CLI Policies
+      lifecycle: Frozen
+      created: "2026-08-10"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260810-229
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-232
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-235
+          type: revfull
+          verdict: PASS
+          date: "2026-08-10"
+    X013:
+      name: CLI Governance
+      lifecycle: Frozen
+      created: "2026-08-10"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260810-229
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-232
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-235
+          type: revfull
+          verdict: PASS
+          date: "2026-08-10"
+    X014:
+      name: CLI Registry
+      lifecycle: Frozen
+      created: "2026-08-10"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260810-229
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-232
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-235
+          type: revfull
+          verdict: PASS
+          date: "2026-08-10"
+    X015:
+      name: CLI Resources
+      lifecycle: Frozen
+      created: "2026-08-10"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260810-229
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-232
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-235
+          type: revfull
+          verdict: PASS
+          date: "2026-08-10"
+    X016:
+      name: CLI Compliance
+      lifecycle: Frozen
+      created: "2026-08-10"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260810-229
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-232
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-235
+          type: revfull
+          verdict: PASS
+          date: "2026-08-10"
+    X017:
+      name: CLI Extensions
+      lifecycle: Frozen
+      created: "2026-08-10"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260810-229
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-232
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-235
+          type: revfull
+          verdict: PASS
+          date: "2026-08-10"
+    X018:
+      name: CLI Evolution
+      lifecycle: Frozen
+      created: "2026-08-10"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260810-229
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-232
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-235
+          type: revfull
+          verdict: PASS
+          date: "2026-08-10"
+    X019:
+      name: CLI Doctor
+      lifecycle: Frozen
+      created: "2026-08-10"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260810-229
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-232
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-235
+          type: revfull
+          verdict: PASS
+          date: "2026-08-10"
+    X020:
+      name: CLI Dashboard
+      lifecycle: Frozen
+      created: "2026-08-10"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260810-229
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-232
+          type: rev1
+          verdict: PASS
+          date: "2026-08-10"
+        - review: REV-20260810-235
+          type: revfull
+          verdict: PASS
+          date: "2026-08-10"
+
 missing_in_spec_001: []
 
 # Toàn bộ SPEC chưa khởi tạo (roadmap docs/specs/README.md)
 not_started_specs:
-  - SPEC-014
-  - SPEC-015
-  - SPEC-016
 
 # Review log — mỗi review /review ghi 1 entry (append-only, đồng bộ review-history.yaml)
 review_log:
+  - review: REV-20260810-230
+    spec: SPEC-014
+    item: SPEC-014
+    type: rev1
+    mode: "rev1 lan 2 (sau REV-20260810-227 PASS lan 1). id: REV-20260810-230."
+    verdict: PASS
+    date: "2026-08-10"
+    note: "rev1 lan 2 tren SPEC-014 (Dashboard, Rev1/count 1). Verify may: 141/141 YAML parse PASS 0 duplicate key; 16/16 schema META-VALID; event collision 0; P005 = 0; version 141/141 1.0.0; frontmatter lowercase. Verdict PASS -> Rev1 -> Completed, count 1 -> 2. KHONG auto-freeze (type rev1). Report: docs/governance/reviews/REV-SPEC-014-SPEC014-rev1-20260810-091000.md."
+    score:
+      coverage: 95
+      quality: 95
+      consistency: 95
+      governance: 92
+      overall: 94
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 0
+      MINOR: 1
+      INFO: 3
+    started: "2026-08-10T09:10:00"
+    finished: "2026-08-10T09:10:30"
+    cascade_review: [SPEC-015]
+    report_path: docs/governance/reviews/REV-SPEC-014-SPEC014-rev1-20260810-091000.md
+  - review: REV-20260810-231
+    spec: SPEC-015
+    item: SPEC-015
+    type: rev1
+    mode: "rev1 lan 2 (sau REV-20260810-228 PASS lan 1). id: REV-20260810-231."
+    verdict: PASS
+    date: "2026-08-10"
+    note: "rev1 lan 2 tren SPEC-015 (SDK, Rev1/count 1). Verify may: 141/141 YAML parse PASS 0 duplicate key; 16/16 schema META-VALID; event collision 0; P005 = 0; version 141/141 1.0.0; frontmatter lowercase. Verdict PASS -> Completed/count 2. KHONG auto-freeze. Report: docs/governance/reviews/REV-SPEC-015-SPEC015-rev1-20260810-091100.md."
+    score:
+      coverage: 95
+      quality: 95
+      consistency: 95
+      governance: 92
+      overall: 94
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 0
+      MINOR: 1
+      INFO: 3
+    started: "2026-08-10T09:11:00"
+    finished: "2026-08-10T09:11:30"
+    cascade_review: [SPEC-016]
+    report_path: docs/governance/reviews/REV-SPEC-015-SPEC015-rev1-20260810-091100.md
+  - review: REV-20260810-232
+    spec: SPEC-016
+    item: SPEC-016
+    type: rev1
+    mode: "rev1 lan 2 (sau REV-20260810-229 PASS lan 1). id: REV-20260810-232."
+    verdict: PASS
+    date: "2026-08-10"
+    note: "rev1 lan 2 tren SPEC-016 (CLI & Commands, Rev1/count 1). Verify may: 142/142 YAML parse PASS 0 duplicate key; 16/16 schema META-VALID; event collision 0; P005 = 0; version 142/142 1.0.0; frontmatter lowercase; TERM-007 OK. Verdict PASS -> Completed/count 2. KHONG auto-freeze. Report: docs/governance/reviews/REV-SPEC-016-SPEC016-rev1-20260810-091200.md."
+    score:
+      coverage: 95
+      quality: 95
+      consistency: 95
+      governance: 92
+      overall: 94
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 0
+      MINOR: 1
+      INFO: 3
+    started: "2026-08-10T09:12:00"
+    finished: "2026-08-10T09:12:30"
+    cascade_review: []
+    report_path: docs/governance/reviews/REV-SPEC-016-SPEC016-rev1-20260810-091200.md
+  - review: REV-20260810-233
+    spec: SPEC-014
+    item: SPEC-014
+    type: revfull
+    mode: "revfull (deep research - sau 2-pass rev1 Completed). id: REV-20260810-233."
+    verdict: PASS
+    date: "2026-08-10"
+    note: "revfull tren SPEC-014 (Dashboard, Completed/count 2). Verify may: 141/141 YAML parse PASS; 16/16 schema META-VALID; event collision 0; P005 = 0; version 141/141 1.0.0. Verdict PASS + Completed -> auto-freeze: lifecycle Review -> Frozen NGAY LAP TUC. Report: docs/governance/reviews/REV-SPEC-014-SPEC014-revfull-20260810-093000.md."
+    score:
+      coverage: 95
+      quality: 95
+      consistency: 95
+      governance: 92
+      overall: 94
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 0
+      MINOR: 1
+      INFO: 3
+    started: "2026-08-10T09:30:00"
+    finished: "2026-08-10T09:30:30"
+    cascade_review: []
+    report_path: docs/governance/reviews/REV-SPEC-014-SPEC014-revfull-20260810-093000.md
+  - review: REV-20260810-234
+    spec: SPEC-015
+    item: SPEC-015
+    type: revfull
+    mode: "revfull (deep research - sau 2-pass rev1 Completed). id: REV-20260810-234."
+    verdict: PASS
+    date: "2026-08-10"
+    note: "revfull tren SPEC-015 (SDK, Completed/count 2). Verify may: 141/141 YAML parse PASS; 16/16 schema META-VALID; event collision 0; P005 = 0; version 141/141 1.0.0. Verdict PASS + Completed -> auto-freeze: lifecycle Review -> Frozen NGAY LAP TUC. Report: docs/governance/reviews/REV-SPEC-015-SPEC015-revfull-20260810-093100.md."
+    score:
+      coverage: 95
+      quality: 95
+      consistency: 95
+      governance: 92
+      overall: 94
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 0
+      MINOR: 1
+      INFO: 3
+    started: "2026-08-10T09:31:00"
+    finished: "2026-08-10T09:31:30"
+    cascade_review: []
+    report_path: docs/governance/reviews/REV-SPEC-015-SPEC015-revfull-20260810-093100.md
+  - review: REV-20260810-235
+    spec: SPEC-016
+    item: SPEC-016
+    type: revfull
+    mode: "revfull (deep research - sau 2-pass rev1 Completed). id: REV-20260810-235."
+    verdict: PASS
+    date: "2026-08-10"
+    note: "revfull tren SPEC-016 (CLI & Commands, Completed/count 2). Verify may: 142/142 YAML parse PASS; 16/16 schema META-VALID; event collision 0; P005 = 0; version 142/142 1.0.0; TERM-007 OK. Verdict PASS + Completed -> auto-freeze: lifecycle Review -> Frozen NGAY LAP TUC. Report: docs/governance/reviews/REV-SPEC-016-SPEC016-revfull-20260810-093200.md."
+    score:
+      coverage: 95
+      quality: 95
+      consistency: 95
+      governance: 92
+      overall: 94
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 0
+      MINOR: 1
+      INFO: 3
+    started: "2026-08-10T09:32:00"
+    finished: "2026-08-10T09:32:30"
+    cascade_review: []
+    report_path: docs/governance/reviews/REV-SPEC-016-SPEC016-revfull-20260810-093200.md
+  - review: REV-20260810-227
+    spec: SPEC-014
+    item: SPEC-014
+    type: rev1
+    mode: "rev1 (whole-SPEC review lan 1 tren SPEC-014 Dashboard, 20 muc X001-X020 + Appendix dashboard-models). id: REV-20260810-227."
+    verdict: PASS
+    date: "2026-08-10"
+    note: "rev1 whole-SPEC tren SPEC-014 (Dashboard, 20 muc X001-X020 + Appendix dashboard-models, tat ca Draft/NotReviewed). Verify may (PyYAML + jsonschema Draft202012 + grep): 141/141 YAML parse PASS 0 ParserError 0 duplicate key; 16/16 schema META-VALID; cross-SPEC event 0 collision (DASHBOARD_* chi trong SPEC-014); immutable P005 = 0; version 141/141 1.0.0; frontmatter lowercase 23/23; md<->yaml counts khop. Verdict PASS (0 CRITICAL, 0 MAJOR) -> X001-X020 NotReviewed -> Rev1, count 0 -> 1, lifecycle Draft -> Review. KHONG auto-freeze (type rev1). Report: docs/governance/reviews/REV-SPEC-014-SPEC014-rev1-20260810-090000.md."
+    score:
+      coverage: 95
+      quality: 95
+      consistency: 95
+      governance: 92
+      overall: 94
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 0
+      MINOR: 1
+      INFO: 3
+    started: "2026-08-10T09:00:00"
+    finished: "2026-08-10T09:00:30"
+    cascade_review: [SPEC-015]
+    report_path: docs/governance/reviews/REV-SPEC-014-SPEC014-rev1-20260810-090000.md
+  - review: REV-20260810-228
+    spec: SPEC-015
+    item: SPEC-015
+    type: rev1
+    mode: "rev1 (whole-SPEC review lan 1 tren SPEC-015 SDK, 20 muc X001-X020 + Appendix sdk-models). id: REV-20260810-228."
+    verdict: PASS
+    date: "2026-08-10"
+    note: "rev1 whole-SPEC tren SPEC-015 (SDK, 20 muc X001-X020 + Appendix sdk-models, tat ca Draft/NotReviewed). Verify may: 141/141 YAML parse PASS 0 ParserError 0 duplicate key; 16/16 schema META-VALID; cross-SPEC event 0 collision (SDK_* chi trong SPEC-015); immutable P005 = 0; version 141/141 1.0.0; frontmatter lowercase 23/23; md<->yaml counts khop. Verdict PASS (0 CRITICAL, 0 MAJOR) -> Rev1/count 1, lifecycle Draft -> Review. KHONG auto-freeze. Report: docs/governance/reviews/REV-SPEC-015-SPEC015-rev1-20260810-090100.md."
+    score:
+      coverage: 95
+      quality: 95
+      consistency: 95
+      governance: 92
+      overall: 94
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 0
+      MINOR: 1
+      INFO: 3
+    started: "2026-08-10T09:01:00"
+    finished: "2026-08-10T09:01:30"
+    cascade_review: [SPEC-016]
+    report_path: docs/governance/reviews/REV-SPEC-015-SPEC015-rev1-20260810-090100.md
+  - review: REV-20260810-229
+    spec: SPEC-016
+    item: SPEC-016
+    type: rev1
+    mode: "rev1 (whole-SPEC review lan 1 tren SPEC-016 CLI & Commands, 20 muc X001-X020 + Appendix cli-models). id: REV-20260810-229."
+    verdict: PASS
+    date: "2026-08-10"
+    note: "rev1 whole-SPEC tren SPEC-016 (CLI & Commands, 20 muc X001-X020 + Appendix cli-models, tat ca Draft/NotReviewed). Verify may: 142/142 YAML parse PASS 0 ParserError 0 duplicate key; 16/16 schema META-VALID; cross-SPEC event 0 collision (CLI_* chi trong SPEC-016); immutable P005 = 0; version 142/142 1.0.0; frontmatter lowercase 23/23; TERM-007 (Command = entry point, khong lam viec) verify OK; md<->yaml counts khop. Verdict PASS (0 CRITICAL, 0 MAJOR) -> Rev1/count 1, lifecycle Draft -> Review. KHONG auto-freeze. Report: docs/governance/reviews/REV-SPEC-016-SPEC016-rev1-20260810-090200.md."
+    score:
+      coverage: 95
+      quality: 95
+      consistency: 95
+      governance: 92
+      overall: 94
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 0
+      MINOR: 1
+      INFO: 3
+    started: "2026-08-10T09:02:00"
+    finished: "2026-08-10T09:02:30"
+    cascade_review: []
+    report_path: docs/governance/reviews/REV-SPEC-016-SPEC016-rev1-20260810-090200.md
   - review: REV-20260809-209
     spec: SPEC-011
     item: SPEC-011

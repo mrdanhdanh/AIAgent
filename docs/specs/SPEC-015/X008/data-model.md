@@ -1,5 +1,5 @@
 ---
-name: SPEC-015-x008-data-model
+name: spec-015-x008-data-model
 description: SPEC-015 X008 - SDK Data Model. Entity, relation, invariant, validation.
 agent: general
 ---

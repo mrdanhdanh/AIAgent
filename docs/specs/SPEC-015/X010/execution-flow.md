@@ -1,5 +1,5 @@
 ---
-name: SPEC-015-x010-execution-flow
+name: spec-015-x010-execution-flow
 description: SPEC-015 X010 - SDK Execution Flow. 6 stages, failure, lineage.
 agent: general
 ---

@@ -1,5 +1,5 @@
 ---
-name: SPEC-015-x006-components
+name: spec-015-x006-components
 description: SPEC-015 X006 - SDK Components. Component model, contracts, lifecycle.
 agent: general
 ---

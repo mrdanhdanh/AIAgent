@@ -1,5 +1,5 @@
 ---
-name: SPEC-015-x013-governance
+name: spec-015-x013-governance
 description: SPEC-015 X013 - SDK Governance. Authority, decisions, lifecycle, matrix.
 agent: general
 ---

@@ -1,5 +1,5 @@
 ---
-name: SPEC-015-x005-architecture
+name: spec-015-x005-architecture
 description: SPEC-015 X005 - SDK Architecture. Layers, components, dependencies.
 agent: general
 ---

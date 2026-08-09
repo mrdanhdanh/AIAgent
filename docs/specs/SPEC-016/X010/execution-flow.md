@@ -1,5 +1,5 @@
 ---
-name: SPEC-016-x010-execution-flow
+name: spec-016-x010-execution-flow
 description: SPEC-016 X010 - CLI Execution Flow. 6 stages, failure, lineage.
 agent: general
 ---

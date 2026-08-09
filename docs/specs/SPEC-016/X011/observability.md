@@ -1,5 +1,5 @@
 ---
-name: SPEC-016-x011-observability
+name: spec-016-x011-observability
 description: SPEC-016 X011 - CLI Observability. Events, metrics, audit, traces (S011).
 agent: general
 ---

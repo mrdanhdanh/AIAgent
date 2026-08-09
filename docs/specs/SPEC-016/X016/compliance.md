@@ -1,5 +1,5 @@
 ---
-name: SPEC-016-x016-compliance
+name: spec-016-x016-compliance
 description: SPEC-016 X016 - CLI Compliance. 6 rules, score, certification, checklist.
 agent: general
 ---

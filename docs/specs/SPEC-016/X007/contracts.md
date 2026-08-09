@@ -1,5 +1,5 @@
 ---
-name: SPEC-016-x007-contracts
+name: spec-016-x007-contracts
 description: SPEC-016 X007 - CLI Contracts. Contract types, compatibility, anti-patterns.
 agent: general
 ---

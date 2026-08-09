@@ -1,5 +1,5 @@
 ---
-name: SPEC-016-x009-state-machine
+name: spec-016-x009-state-machine
 description: SPEC-016 X009 - CLI State Machine. 6 states, 5 transitions, 3 guards.
 agent: general
 ---

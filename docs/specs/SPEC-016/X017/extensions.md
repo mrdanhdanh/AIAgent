@@ -1,5 +1,5 @@
 ---
-name: SPEC-016-x017-extensions
+name: spec-016-x017-extensions
 description: SPEC-016 X017 - CLI Extensions. 7 extension points, policy, lifecycle.
 agent: general
 ---

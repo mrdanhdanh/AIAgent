@@ -404,7 +404,7 @@ SPEC-013 Evolution Engine
 
 ## SPEC-014 — Dashboard
 
-> **Trạng thái**: ✅ Hoàn thành (20/20, Draft — chờ review) · **Phụ thuộc**: SPEC-000, SPEC-001, SPEC-005, SPEC-008, SPEC-011
+> **Trạng thái**: 🔒 Frozen (20/20, 2026-08-10 — rev1 x2 REV-227/230 + revfull REV-233 auto-freeze) · **Phụ thuộc**: SPEC-000, SPEC-001, SPEC-005, SPEC-008, SPEC-011
 
 ```text
 SPEC-014 Dashboard
@@ -431,7 +431,7 @@ SPEC-014 Dashboard
 
 ## SPEC-015 — SDK
 
-> **Trạng thái**: ✅ Hoàn thành (20/20, Draft — chờ review) · **Phụ thuộc**: SPEC-000..014
+> **Trạng thái**: 🔒 Frozen (20/20, 2026-08-10 — rev1 x2 REV-228/231 + revfull REV-234 auto-freeze) · **Phụ thuộc**: SPEC-000..014
 
 ```text
 SPEC-015 SDK
@@ -458,7 +458,7 @@ SPEC-015 SDK
 
 ## SPEC-016 — CLI & Commands
 
-> **Trạng thái**: ✅ Hoàn thành (20/20, Draft — chờ review) · **Phụ thuộc**: SPEC-000, SPEC-001, SPEC-002, SPEC-005, SPEC-015
+> **Trạng thái**: 🔒 Frozen (20/20, 2026-08-10 — rev1 x2 REV-229/232 + revfull REV-235 auto-freeze) · **Phụ thuộc**: SPEC-000, SPEC-001, SPEC-002, SPEC-005, SPEC-015
 
 ```text
 SPEC-016 CLI & Commands

@@ -1,5 +1,5 @@
 ---
-name: SPEC-016-x015-resources
+name: spec-016-x015-resources
 description: SPEC-016 X015 - CLI Resources. Storage, index, quota, leak detection.
 agent: general
 ---

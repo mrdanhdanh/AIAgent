@@ -1,5 +1,5 @@
 ---
-name: SPEC-016-x013-governance
+name: spec-016-x013-governance
 description: SPEC-016 X013 - CLI Governance. Authority, decisions, lifecycle, matrix.
 agent: general
 ---

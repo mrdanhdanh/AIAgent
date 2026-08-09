@@ -1,5 +1,5 @@
 ---
-name: SPEC-015-x004-boundaries
+name: spec-015-x004-boundaries
 description: SPEC-015 X004 - SDK Boundaries. Scope SDK, system ngoai.
 agent: general
 ---

@@ -1,5 +1,5 @@
 ---
-name: SPEC-016-x003-responsibilities
+name: spec-016-x003-responsibilities
 description: SPEC-016 X003 - CLI Responsibilities. CLI vs S011 vs User.
 agent: general
 ---

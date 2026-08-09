@@ -1,5 +1,5 @@
 ---
-name: SPEC-015-x002-requirements
+name: spec-015-x002-requirements
 description: SPEC-015 X002 - SDK Requirements. 16 FR, 12 NFR, 6 constraints.
 agent: general
 ---

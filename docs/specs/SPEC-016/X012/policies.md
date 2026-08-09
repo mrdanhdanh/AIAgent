@@ -1,5 +1,5 @@
 ---
-name: SPEC-016-x012-policies
+name: spec-016-x012-policies
 description: SPEC-016 X012 - CLI Policies. 10 policies binding S012, isolated.
 agent: general
 ---

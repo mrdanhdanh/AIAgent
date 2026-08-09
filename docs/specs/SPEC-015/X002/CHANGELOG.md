@@ -1,5 +1,5 @@
 ---
-name: SPEC-015-x002-changelog
+name: spec-015-x002-changelog
 description: SPEC-015 X002 - Changelog
 agent: general
 ---

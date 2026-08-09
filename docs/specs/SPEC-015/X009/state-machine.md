@@ -1,5 +1,5 @@
 ---
-name: SPEC-015-x009-state-machine
+name: spec-015-x009-state-machine
 description: SPEC-015 X009 - SDK State Machine. 6 states, 5 transitions, 3 guards.
 agent: general
 ---

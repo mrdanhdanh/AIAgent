@@ -1,5 +1,5 @@
 ---
-name: SPEC-015-x003-responsibilities
+name: spec-015-x003-responsibilities
 description: SPEC-015 X003 - SDK Responsibilities. SDK vs S011 vs User.
 agent: general
 ---

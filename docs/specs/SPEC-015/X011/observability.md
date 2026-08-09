@@ -1,5 +1,5 @@
 ---
-name: SPEC-015-x011-observability
+name: spec-015-x011-observability
 description: SPEC-015 X011 - SDK Observability. Events, metrics, audit, traces (S011).
 agent: general
 ---

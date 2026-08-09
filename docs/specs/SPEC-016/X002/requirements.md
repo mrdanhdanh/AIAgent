@@ -1,5 +1,5 @@
 ---
-name: SPEC-016-x002-requirements
+name: spec-016-x002-requirements
 description: SPEC-016 X002 - CLI Requirements. 16 FR, 12 NFR, 6 constraints.
 agent: general
 ---

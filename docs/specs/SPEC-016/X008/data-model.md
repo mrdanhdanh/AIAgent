@@ -1,5 +1,5 @@
 ---
-name: SPEC-016-x008-data-model
+name: spec-016-x008-data-model
 description: SPEC-016 X008 - CLI Data Model. Entity, relation, invariant, validation.
 agent: general
 ---

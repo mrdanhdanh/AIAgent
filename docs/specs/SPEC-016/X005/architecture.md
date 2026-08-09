@@ -1,5 +1,5 @@
 ---
-name: SPEC-016-x005-architecture
+name: spec-016-x005-architecture
 description: SPEC-016 X005 - CLI Architecture. Layers, components, dependencies.
 agent: general
 ---

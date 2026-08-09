@@ -1,5 +1,5 @@
 ---
-name: SPEC-015-x018-SDK
+name: spec-015-x018-sdk
 description: SPEC-015 X018 - SDK Doctor. Versioning, deprecation, migration.
 agent: general
 ---
