@@ -39,33 +39,33 @@ specs/
 
 | SPEC | Chủ đề | Sprint | Trạng thái |
 |------|--------|--------|-----------|
-| SPEC-000 | Constitution (Assemble D001-D005) | Foundation | ✅ Frozen |
-| SPEC-001 | Runtime Kernel | A — Core | 🚧 S001 |
-| SPEC-002 | Execution Engine | A — Core | ⬜ |
-| SPEC-003 | State Machine | A — Core | ⬜ |
-| SPEC-004 | Workflow Engine | A — Core | ⬜ |
-| SPEC-005 | Capability Registry | B — Registry | ⬜ |
-| SPEC-006 | Context Engine | B — Registry | ⬜ |
-| SPEC-007 | Artifact Manager | B — Registry | ⬜ |
-| SPEC-008 | Event Bus | C — Data | ⬜ |
-| SPEC-009 | Scheduler | C — Data | ⬜ |
-| SPEC-010 | Simulation Engine | D — Intelligence | ⬜ |
-| SPEC-011 | Doctor Framework | D — Intelligence | ⬜ |
-| SPEC-012 | Knowledge Graph | D — Intelligence | ⬜ |
-| SPEC-013 | Evaluation Engine | E — Evolution | ⬜ |
-| SPEC-014 | Evolution Engine | E — Evolution | ⬜ |
-| SPEC-015 | Plugin SDK | F — Extension | ⬜ |
-| SPEC-016 | Dashboard | F — Extension | ⬜ |
+| SPEC-000 | Constitution (Assemble D001-D005) | Foundation | Frozen |
+| SPEC-001 | Runtime Kernel | A - Core | Frozen |
+| SPEC-002 | Workflow Engine | A - Core | Frozen |
+| SPEC-003 | Capability System | A - Core | Frozen |
+| SPEC-004 | Agent System | A - Core | Frozen |
+| SPEC-005 | Registry | B - Registry | Frozen |
+| SPEC-006 | Context Engine | B - Registry | Frozen |
+| SPEC-007 | Artifact Manager | B - Registry | Frozen |
+| SPEC-008 | Event Bus | C - Data | Frozen |
+| SPEC-009 | Contract System | C - Data | Frozen |
+| SPEC-010 | Plugin Framework | C - Data | Frozen |
+| SPEC-011 | Doctor | D - Intelligence | Frozen |
+| SPEC-012 | Simulation Engine | D - Intelligence | Frozen |
+| SPEC-013 | Evolution Engine | D - Intelligence | Frozen |
+| SPEC-014 | Dashboard | E - Experience | Frozen |
+| SPEC-015 | SDK | E - Experience | Frozen |
+| SPEC-016 | CLI & Commands | E - Experience | Frozen |
 
 ## 4. Sprint plan (Kernel-first)
 
 | Sprint | SPEC | Phạm vi |
 |--------|------|---------|
-| A — Core | 001–004 | Runtime Kernel, Execution, State Machine, Workflow |
-| B — Registry | 005–007 | Capability Registry, Context, Artifact |
-| C — Data | 008–009 | Event Bus, Scheduler |
-| D — Intelligence | 010–012 | Simulation, Doctor, Knowledge |
-| E — Evolution | 013–014 | Evaluation, Evolution |
+| A - Core | 001-005 | Runtime Kernel, Workflow, Capability, Agent, Registry |
+| B - Registry | 006-007 | Context, Artifact |
+| C - Data | 008-010 | Event Bus, Contract, Plugin |
+| D - Intelligence | 011-013 | Doctor, Simulation, Evolution |
+| E - Experience | 014-016 | Dashboard, SDK, CLI & Commands |
 | F — Extension | 015–016 | Plugin SDK, Dashboard |
 
 ## 5. Pipeline mỗi SPEC

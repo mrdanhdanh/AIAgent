@@ -44,6 +44,11 @@ agent: general
 | 14 | TERM-014 | Contract | Platform | Definition | `terms/contract.md` | Không gọi trực tiếp |
 | 15 | TERM-015 | Plugin | Extension | Extension | `terms/plugin.md` | Không sửa Core |
 | 16 | TERM-016 | Skill | Knowledge | Definition | `terms/skill.md` | Không có state |
+| 17 | TERM-017 | Doctor | Platform | Service | `terms/doctor.md` | Không sửa Core |
+| 18 | TERM-018 | Simulation | Platform | Service | `terms/simulation.md` | Không đổi hệ thống thật |
+| 19 | TERM-019 | Evolution | Platform | Service | `terms/evolution.md` | Không phá vỡ hệ thống |
+| 20 | TERM-020 | Dashboard | Platform | Service | `terms/dashboard.md` | Read-only |
+| 21 | TERM-021 | SDK | Platform | Service | `terms/sdk.md` | Không vào Core trực tiếp |
 
 ## 3. Main Flow
 

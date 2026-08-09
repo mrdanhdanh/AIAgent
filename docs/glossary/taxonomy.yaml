@@ -21,7 +21,7 @@ categories:
     terms: [TERM-011, TERM-016]
   Platform:
     description: Hạ tầng nền tảng (registry, event, contract).
-    terms: [TERM-012, TERM-013, TERM-014]
+    terms: [TERM-012, TERM-013, TERM-014, TERM-017, TERM-018, TERM-019, TERM-020, TERM-021]
   Extension:
     description: Mở rộng ngoài Core.
     terms: [TERM-015]
