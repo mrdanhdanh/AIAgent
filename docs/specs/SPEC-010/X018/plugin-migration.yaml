@@ -1,0 +1,8 @@
+# SPEC-010 X018 - Plugin Migration
+---
+version: "1.0"
+migration:
+  - Upgrade: bo sung field/op (backward)
+  - Downgrade: giu field cu (compat)
+  - Breaking: can ADR + RFC + migration doc
+  - Runtime Plugin: KHONG migrate - version moi (P004)

@@ -1,0 +1,50 @@
+# SPEC-010 X008 - Plugin Data Model
+---
+version: "1.0"
+entities:
+  ENT-X001: { name: Plugin, kind: AggregateRoot, owner: Plugin Registry, immutable: true }
+  ENT-X002: { name: PluginDefinition, kind: Entity, owner: Plugin Registry, immutable: true }
+  ENT-X003: { name: PluginManifest, kind: Entity, owner: Plugin Registry, immutable: true }
+  ENT-X004: { name: PluginPermission, kind: Value, owner: Plugin Registry, immutable: true }
+  ENT-X005: { name: PluginExport, kind: Entity, owner: Plugin Registry, immutable: false }
+  ENT-X006: { name: PluginState, kind: Transient, owner: Plugin Registry, immutable: false }
+  ENT-X007: { name: PluginSandbox, kind: Entity, owner: Plugin Registry, immutable: false }
+  ENT-X008: { name: PluginEvent, kind: Ref (S011), owner: Runtime, immutable: true }
+  ENT-X009: { name: PluginMetric, kind: Ref (S011), owner: Runtime, immutable: true }
+  ENT-X010: { name: PluginSnapshot, kind: Entity, owner: Plugin Registry, immutable: false }
+  ENT-X011: { name: ExecutionRef, kind: Ref (SPEC-001), owner: Execution, immutable: true }
+  ENT-X012: { name: ProviderRef, kind: Ref (SPEC-004/002), owner: Agent/Task, immutable: true }
+  ENT-X013: { name: CapabilityRef, kind: Ref (SPEC-003), owner: Capability, immutable: true }
+  ENT-X014: { name: PolicyRef, kind: Ref (S012), owner: Runtime, immutable: true }
+  ENT-X015: { name: PluginExtension, kind: Value, owner: Plugin Registry, immutable: true }
+relations:
+  REL-X001: { from: Plugin, to: PluginDefinition, cardinality: 1..1 }
+  REL-X002: { from: Plugin, to: PluginManifest, cardinality: 1..1 }
+  REL-X003: { from: Plugin, to: PluginPermission, cardinality: 1..* }
+  REL-X004: { from: Plugin, to: PluginExport, cardinality: 0..* }
+  REL-X005: { from: Plugin, to: PluginState, cardinality: 1..1 }
+  REL-X006: { from: Plugin, to: PluginSandbox, cardinality: 1..1 }
+  REL-X007: { from: Plugin, to: ExecutionRef, cardinality: 1..1 }
+  REL-X008: { from: Plugin, to: PluginEvent, cardinality: 0..* }
+  REL-X009: { from: Plugin, to: PluginSnapshot, cardinality: 0..* }
+invariants:
+  INV-X001: { name: Unique PluginId, description: Moi Plugin co id duy nhat }
+  INV-X002: { name: No Core Modify, description: Plugin khong sua Core }
+  INV-X003: { name: Manifest Valid, description: Manifest hop le }
+  INV-X004: { name: Permission Scoped, description: Khong vuot permission }
+  INV-X005: { name: Sandbox Active, description: Plugin chay trong sandbox }
+  INV-X006: { name: Disable Before Uninstall, description: Phai disable truoc uninstall }
+  INV-X007: { name: No Business Data, description: Plugin khong chua business data }
+validation:
+  VAL-X001: { field: PluginId, requirement: Required, type: UUID }
+  VAL-X002: { field: Version, requirement: Required, type: SemVer }
+  VAL-X003: { field: Manifest, requirement: Required, type: JSON Schema }
+  VAL-X004: { field: Permission, requirement: Required, type: String[] }
+  VAL-X005: { field: Exports, requirement: Required, type: Type[] }
+  VAL-X006: { field: ProviderId, requirement: Required, type: UUID }
+  VAL-X007: { field: Sandbox, requirement: Required, type: Enum }
+storage:
+  mode: Manifest store
+  persistence: "true (TERM-015 - definition)"
+  snapshot: PluginSnapshot (optional, debug)
+  source: S014 Plugin Registry

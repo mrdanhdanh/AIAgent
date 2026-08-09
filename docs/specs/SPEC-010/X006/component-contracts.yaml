@@ -1,0 +1,16 @@
+# SPEC-010 X006 - Plugin Component Contracts
+---
+version: "1.0"
+contracts:
+  XCP-001: { name: PluginApi, contract: X007 XCT-### }
+  XCP-002: { name: LifecycleOrchestrator, contract: X007 XCT-### }
+  XCP-003: { name: PluginStateMachine, contract: X007 XCT-### }
+  XCP-004: { name: ManifestValidator, contract: X007 XCT-### }
+  XCP-005: { name: SandboxEnforcer, contract: X007 XCT-### }
+  XCP-006: { name: PolicyGuard, contract: X007 XCT-### }
+  XCP-007: { name: PluginStore, contract: X007 XCT-### }
+  XCP-008: { name: ManifestIndex, contract: X007 XCT-### }
+  XCP-009: { name: ExportManager, contract: X007 XCT-### }
+  XCP-010: { name: PluginMetrics, contract: X007 XCT-### }
+  XCP-011: { name: RegistryClient, contract: X007 XCT-### }
+  XCP-012: { name: Uninstaller, contract: X007 XCT-### }

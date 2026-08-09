@@ -1,0 +1,12 @@
+# SPEC-010 X002 - Requirements Index
+---
+version: "1.0"
+index:
+  - id: XFR-001
+    type: functional
+  - id: XFR-016
+    type: functional
+  - id: XNF-001
+    type: non_functional
+  - id: XNF-012
+    type: non_functional

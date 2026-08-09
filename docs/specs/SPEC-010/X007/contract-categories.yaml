@@ -1,0 +1,10 @@
+# SPEC-010 X007 - Plugin Contract Categories
+---
+version: "1.0"
+categories:
+  API: [XCT-001]
+  Manifest: [XCT-002, XCT-007]
+  Event: [XCT-003]
+  Metric: [XCT-004]
+  Policy: [XCT-005]
+  Interface: [XCT-006]

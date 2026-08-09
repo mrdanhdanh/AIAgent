@@ -1,0 +1,11 @@
+# SPEC-010 X017 - Plugin Extension Points
+---
+version: "1.0"
+extensions:
+  XEXT-001: { name: Plugin Extension Point, description: Diem mo rong Plugin Framework, owner: Plugin Framework, priority: High }
+  XEXT-002: { name: Custom Schema Type, description: Kieu schema moi, owner: Plugin Framework, priority: Medium }
+  XEXT-003: { name: Custom Compat Rule, description: Compat rule tuy bien, owner: Plugin Framework, priority: Medium }
+  XEXT-004: { name: Retention Hook, description: Hook retention (S012), owner: Policy (S012), priority: High }
+  XEXT-005: { name: Verify Strategy, description: Chien luoc verify tuy bien, owner: Plugin Framework, priority: Medium }
+  XEXT-006: { name: Snapshot Serializer, description: Serialization tuy bien, owner: Plugin Framework, priority: Low }
+  XEXT-007: { name: Dashboard Widget, description: Widget X020 tu tao, owner: X020, priority: Low }

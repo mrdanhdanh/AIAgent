@@ -1,0 +1,7 @@
+# SPEC-010 Appendix - Plugin Model Relationships
+---
+version: "1.0"
+relationships:
+  AM-001 owns: [AM-002, AM-003, AM-004, AM-005, AM-008]
+  AM-001 has: [AM-006, AM-007]
+  note: Aggregate Root = Plugin

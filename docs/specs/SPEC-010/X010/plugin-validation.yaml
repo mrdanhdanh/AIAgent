@@ -1,0 +1,8 @@
+# SPEC-010 X010 - Plugin Flow Validation
+---
+version: "1.0"
+validation:
+  - stage order dung TERM-015
+  - moi stage co event tuong ung
+  - plugin disabled truoc uninstall
+  - khong co Core modify (Doctor X019)

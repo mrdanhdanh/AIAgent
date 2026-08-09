@@ -1,0 +1,10 @@
+# SPEC-010 X016 - Plugin Readiness Checklist
+---
+version: "1.0"
+readiness:
+  - [ ] X001-X020 day du
+  - [ ] Validator PASS 5/5 blocks
+  - [ ] Cross-reference hop le (SPEC-000/001/005)
+  - [ ] Schema JSON hop le
+  - [ ] Doctor PASS (X019)
+  - [ ] Compliance >= 80%

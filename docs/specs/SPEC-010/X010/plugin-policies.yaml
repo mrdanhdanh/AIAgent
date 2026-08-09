@@ -1,0 +1,10 @@
+# SPEC-010 X010 - Plugin Flow Policies
+---
+version: "1.0"
+policies:
+  - Plugin khong sua Core (TERM-015).
+  - Moi stage co Event (S011).
+  - Export qua Registry (SPEC-005).
+  - Disable truoc uninstall (P011).
+  - Khong vuot permission (TERM-015).
+source: S012 Policy

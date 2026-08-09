@@ -1,0 +1,9 @@
+# SPEC-010 X013 - Plugin Governance Registry
+---
+version: "1.0"
+registry:
+  spec: SPEC-010 (this)
+  sections: [X001..X020]
+  models: plugin-models/
+  schemas: *.schema.json
+  status_tracking: SPEC-INDEX.md

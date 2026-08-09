@@ -1,0 +1,9 @@
+# SPEC-010 X011 - Plugin Observability Model
+---
+version: "1.0"
+observability:
+  logs: Plugin Framework logs (structured)
+  events: PLUGIN_* (S011 Event Store)
+  metrics: plugin_* (prometheus)
+  traces: trace_id + correlation_id (S011)
+boundary: Plugin la observable (RULE-014)

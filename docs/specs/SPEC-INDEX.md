@@ -215,56 +215,56 @@ SPEC-006 Context Engine
 
 ## SPEC-007 — Artifact Manager
 
-> **Trạng thái**: ✅ Hoàn thành (20/20) · **Phụ thuộc**: SPEC-000, SPEC-001, SPEC-005
+> **Trạng thái**: 🚧 In progress (20/20 Draft — rev1 REV-20260809-146 FAIL, chưa fix) · **Phụ thuộc**: SPEC-000, SPEC-001, SPEC-005
 
 ```text
 SPEC-007 Artifact Manager
 │
 ├── Tier 1 — Foundation
-│   ├── X001 Artifact Vision             ✅
-│   ├── X002 Artifact Requirements       ✅
-│   ├── X003 Artifact Responsibilities   ✅
-│   ├── X004 Artifact Boundaries         ✅
-│   ├── X005 Artifact Architecture       ✅
-│   ├── X006 Artifact Components         ✅
-│   ├── X007 Artifact Contracts          ✅
-│   └── Appendix: Canonical Models       ✅
+│   ├── X001 Artifact Vision             🚧
+│   ├── X002 Artifact Requirements       🚧
+│   ├── X003 Artifact Responsibilities   🚧
+│   ├── X004 Artifact Boundaries         🚧
+│   ├── X005 Artifact Architecture       🚧
+│   ├── X006 Artifact Components         🚧
+│   ├── X007 Artifact Contracts          🚧
+│   └── Appendix: Canonical Models       🚧
 │
 ├── Tier 2 — Behavior
-│   ├── X008 Artifact Data Model         ✅
-│   ├── X009 Artifact State Machine      ✅
-│   └── X010 Artifact Execution Flow     ✅
+│   ├── X008 Artifact Data Model         🚧
+│   ├── X009 Artifact State Machine      🚧
+│   └── X010 Artifact Execution Flow     🚧
 │
 └── Tier 3/4 — Operations + Experience
-    ├── X011-X016 Operations            ✅
-    └── X017-X020 Experience            ✅
+    ├── X011-X016 Operations            🚧
+    └── X017-X020 Experience            🚧
 ```
 
 ## SPEC-008 — Event Bus
 
-> **Trạng thái**: ✅ Hoàn thành (20/20) · **Phụ thuộc**: SPEC-000, SPEC-001, SPEC-005, SPEC-007
+> **Trạng thái**: In progress · **Phụ thuộc**: SPEC-000, SPEC-001, SPEC-005, SPEC-007
 
 ```text
 SPEC-008 Event Bus
 │
 ├── Tier 1 — Foundation
-│   ├── X001 Event Vision             ✅
-│   ├── X002 Event Requirements       ✅
-│   ├── X003 Event Responsibilities   ✅
-│   ├── X004 Event Boundaries         ✅
-│   ├── X005 Event Architecture       ✅
-│   ├── X006 Event Components         ✅
-│   ├── X007 Event Contracts          ✅
-│   └── Appendix: Canonical Models    ✅
+│   ├── X001 Event Vision             🚧
+│   ├── X002 Event Requirements       🚧
+│   ├── X003 Event Responsibilities   🚧
+│   ├── X004 Event Boundaries         🚧
+│   ├── X005 Event Architecture       🚧
+│   ├── X006 Event Components         🚧
+│   ├── X007 Event Contracts          🚧
+│   └── Appendix: Canonical Models    🚧
 │
 ├── Tier 2 — Behavior
-│   ├── X008 Event Data Model         ✅
-│   ├── X009 Event State Machine      ✅
-│   └── X010 Event Execution Flow     ✅
+│   ├── X008 Event Data Model         🚧
+│   ├── X009 Event State Machine      🚧
+│   └── X010 Event Execution Flow     🚧
 │
 └── Tier 3/4 — Operations + Experience
-    ├── X011-X016 Operations          ✅
-    └── X017-X020 Experience          ✅
+    ├── X011-X016 Operations          🚧
+    └── X017-X020 Experience          🚧
 ```
 
 ## SPEC-009 — Contract System
@@ -296,7 +296,30 @@ SPEC-009 Contract System
 
 ## SPEC-010 — Plugin Framework
 
-> **Trạng thái**: ⬜
+> **Trạng thái**: ✅ Hoàn thành (20/20) · **Phụ thuộc**: SPEC-000, SPEC-001, SPEC-003, SPEC-005, SPEC-009
+
+```text
+SPEC-010 Plugin Framework
+│
+├── Tier 1 — Foundation
+│   ├── X001 Plugin Vision            ✅
+│   ├── X002 Plugin Requirements      ✅
+│   ├── X003 Plugin Responsibilities  ✅
+│   ├── X004 Plugin Boundaries        ✅
+│   ├── X005 Plugin Architecture      ✅
+│   ├── X006 Plugin Components        ✅
+│   ├── X007 Plugin Contracts         ✅
+│   └── Appendix: Canonical Models    ✅
+│
+├── Tier 2 — Behavior
+│   ├── X008 Plugin Data Model        ✅
+│   ├── X009 Plugin State Machine     ✅
+│   └── X010 Plugin Execution Flow    ✅
+│
+└── Tier 3/4 — Operations + Experience
+    ├── X011-X016 Operations          ✅
+    └── X017-X020 Experience          ✅
+```
 
 ## SPEC-011 — Doctor
 

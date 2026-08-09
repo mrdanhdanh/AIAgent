@@ -1,0 +1,14 @@
+# SPEC-010 X011 - Plugin Metrics
+---
+version: "1.0"
+metrics:
+  - plugin_installed_total
+  - plugin_enabled_total
+  - plugin_disabled_total
+  - plugin_uninstalled_total
+  - plugin_rejected_total
+  - plugin_exported_total
+  - plugin_enable_latency_seconds
+  - plugin_install_latency_seconds
+  - plugin_sandbox_violations_total
+labels: [plugin_id, state, execution_id, provider_id]

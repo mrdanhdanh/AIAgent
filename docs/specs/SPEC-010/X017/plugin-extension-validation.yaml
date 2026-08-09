@@ -1,0 +1,9 @@
+# SPEC-010 X017 - Plugin Extension Validation
+---
+version: "1.0"
+validation:
+  - extension co schema.json
+  - extension khong pha vo invariants (X008)
+  - extension co test (Plugin Test)
+  - extension co doc
+  - kiem tra bang Doctor X019

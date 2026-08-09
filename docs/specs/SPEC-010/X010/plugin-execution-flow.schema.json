@@ -1,0 +1,6 @@
+{
+  "schema": "plugin-execution-flow",
+  "version": "1.0",
+  "stages": { "type": "array", "items": { "type": "object" } },
+  "stage_names": ["Install","Validate","Sandbox","Enable","Export","Disable","Uninstall"]
+}

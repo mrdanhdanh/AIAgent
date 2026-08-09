@@ -1,0 +1,13 @@
+# SPEC-010 X008 - Plugin Relations
+---
+version: "1.0"
+relations:
+  REL-X001: { from: Plugin, relation: owns, to: PluginDefinition, cardinality: 1..1 }
+  REL-X002: { from: Plugin, relation: owns, to: PluginManifest, cardinality: 1..1 }
+  REL-X003: { from: Plugin, relation: owns, to: PluginPermission, cardinality: 1..* }
+  REL-X004: { from: Plugin, relation: exports, to: PluginExport, cardinality: 0..* }
+  REL-X005: { from: Plugin, relation: has, to: PluginState, cardinality: 1..1 }
+  REL-X006: { from: Plugin, relation: sandboxed, to: PluginSandbox, cardinality: 1..1 }
+  REL-X007: { from: Plugin, relation: refers, to: ExecutionRef, cardinality: 1..1 }
+  REL-X008: { from: Plugin, relation: emits, to: PluginEvent, cardinality: 0..* }
+  REL-X009: { from: Plugin, relation: snapshots, to: PluginSnapshot, cardinality: 0..* }

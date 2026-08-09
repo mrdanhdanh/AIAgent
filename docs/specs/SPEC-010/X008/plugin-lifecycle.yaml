@@ -1,0 +1,10 @@
+# SPEC-010 X008 - Plugin Lifecycle (see X009)
+---
+version: "1.0"
+lifecycle_phases:
+  - Installed
+  - Validated
+  - Enabled
+  - Disabled
+  - Uninstalled
+note: TERM-015 - Plugin Framework khong dinh nghia lai lifecycle.

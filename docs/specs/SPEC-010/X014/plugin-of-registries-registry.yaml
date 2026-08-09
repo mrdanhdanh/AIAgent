@@ -1,0 +1,11 @@
+# SPEC-010 X014 - Plugin Registry of Registries
+---
+version: "1.0"
+registries:
+  registry: SPEC-005
+  PLUGIN_sections:
+    - X008 data model
+    - X009 state machine
+    - X012 policies
+    - X014 this
+  note: Registry KHONG chua runtime Plugin content.

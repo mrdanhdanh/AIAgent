@@ -1,0 +1,7 @@
+# SPEC-010 X006 - Plugin Component Lifecycle
+---
+version: "1.0"
+lifecycle:
+  PluginApi: co khi Runtime start
+  PluginStore: per-Store instance
+  Others: singleton per Engine

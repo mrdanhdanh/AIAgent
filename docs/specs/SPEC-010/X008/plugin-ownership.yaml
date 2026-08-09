@@ -1,0 +1,9 @@
+# SPEC-010 X008 - Plugin Ownership
+---
+version: "1.0"
+ownership:
+  owner_entity: Plugin Registry (TERM-015)
+  plugin: thanh phan mo rong
+  exported: Capability/Agent/Skill/Widget (SPEC-003/004)
+  transfer: Khong cho phep (TERM-015)
+  destroy: Disable + Uninstall (S012)

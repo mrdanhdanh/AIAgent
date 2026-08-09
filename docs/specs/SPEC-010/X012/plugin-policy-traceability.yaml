@@ -1,0 +1,14 @@
+# SPEC-010 X012 - Plugin Policy Traceability
+---
+version: "1.0"
+traceability:
+  XPOL-001: { name: No Core Modify, source: TERM-015, principle: P009 }
+  XPOL-002: { name: Manifest Required, source: TERM-015, principle: P004 }
+  XPOL-003: { name: Permission Scoped, source: TERM-015, principle: P009 }
+  XPOL-004: { name: Sandbox Enforced, source: TERM-015, principle: P009 }
+  XPOL-005: { name: No Business Data, source: S011 OB003A, principle: P001 }
+  XPOL-006: { name: Retention, source: S012, principle: P011 }
+  XPOL-007: { name: Quota, source: S012, principle: P011 }
+  XPOL-008: { name: Disable Before Uninstall, source: TERM-015, principle: P011 }
+  XPOL-009: { name: Audit All, source: S011, principle: P005 }
+  XPOL-010: { name: Schema Valid, source: X008, principle: P009 }

@@ -1,0 +1,9 @@
+# SPEC-010 X012 - Timeout Binding
+---
+version: "1.0"
+timeout_binding:
+  install_timeout: 1s (default)
+  validate_timeout: 500ms (default)
+  enable_timeout: 1s (default)
+  uninstall_timeout: 1s (default)
+  note: cau hinh qua Policy S012, khong hardcode

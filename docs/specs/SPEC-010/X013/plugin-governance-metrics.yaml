@@ -1,0 +1,9 @@
+# SPEC-010 X013 - Plugin Governance Metrics
+---
+version: "1.0"
+metrics:
+  - SPEC010_frozen_sections
+  - SPEC010_open_questions
+  - SPEC010_decisions_total
+  - SPEC010_compliance_score (X016)
+  - SPEC010_health_score (X019)

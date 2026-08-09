@@ -1,0 +1,19 @@
+# SPEC-010 X008 - Plugin Entities (15 ENT)
+---
+version: "1.0"
+entities:
+  ENT-X001: { name: Plugin, kind: AggregateRoot, owner: Plugin Registry, immutable: true }
+  ENT-X002: { name: PluginDefinition, kind: Entity, owner: Plugin Registry, immutable: true }
+  ENT-X003: { name: PluginManifest, kind: Entity, owner: Plugin Registry, immutable: true }
+  ENT-X004: { name: PluginPermission, kind: Value, owner: Plugin Registry, immutable: true }
+  ENT-X005: { name: PluginExport, kind: Entity, owner: Plugin Registry, immutable: false }
+  ENT-X006: { name: PluginState, kind: Transient, owner: Plugin Registry, immutable: false }
+  ENT-X007: { name: PluginSandbox, kind: Entity, owner: Plugin Registry, immutable: false }
+  ENT-X008: { name: PluginEvent, kind: Ref (S011), owner: Runtime, immutable: true }
+  ENT-X009: { name: PluginMetric, kind: Ref (S011), owner: Runtime, immutable: true }
+  ENT-X010: { name: PluginSnapshot, kind: Entity, owner: Plugin Registry, immutable: false }
+  ENT-X011: { name: ExecutionRef, kind: Ref (SPEC-001), owner: Execution, immutable: true }
+  ENT-X012: { name: ProviderRef, kind: Ref (SPEC-004/002), owner: Agent/Task, immutable: true }
+  ENT-X013: { name: CapabilityRef, kind: Ref (SPEC-003), owner: Capability, immutable: true }
+  ENT-X014: { name: PolicyRef, kind: Ref (S012), owner: Runtime, immutable: true }
+  ENT-X015: { name: PluginExtension, kind: Value, owner: Plugin Registry, immutable: true }

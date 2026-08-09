@@ -1,0 +1,8 @@
+# SPEC-010 X009 - Plugin Transition Types
+---
+version: "1.0"
+transition_types:
+  external: [PLUGIN_VALIDATING, PLUGIN_ENABLED, PLUGIN_REJECTED, PLUGIN_UNINSTALLED]
+  internal: [PLUGIN_DISABLED]
+  error: [PLUGIN_REJECTED]
+rule: Internal transition chi trong Plugin Framework.

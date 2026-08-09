@@ -1,0 +1,8 @@
+# SPEC-010 X020 - Plugin Dashboard Config
+---
+version: "1.0"
+config:
+  refresh: 30s (default)
+  theme: S011 dashboard theme
+  filters: [PLUGIN_id, state, provider_id, time_range]
+  export: JSON

@@ -1,0 +1,10 @@
+# SPEC-010 X016 - Plugin Certification
+---
+version: "1.0"
+certification:
+  certified_artifacts:
+    - SPEC-010 SPEC.yaml
+    - X001-X020 sections
+    - plugin-models/
+  criteria: validator PASS + Doctor PASS
+  issued_by: Plugin Team + Governance (S013)

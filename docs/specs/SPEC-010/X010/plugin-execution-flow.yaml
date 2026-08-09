@@ -1,0 +1,12 @@
+# SPEC-010 X010 - Plugin Execution Flow (7 stages)
+---
+version: "1.0"
+stages:
+  XF-001: { name: Install, description: Nhan manifest tu Plugin, actor: Plugin Framework, event: PLUGIN_INSTALLED }
+  XF-002: { name: Validate, description: Validate schema + permission, actor: Plugin Framework, event: PLUGIN_VALIDATING }
+  XF-003: { name: Sandbox, description: Thiet lap sandbox, actor: SandboxEnforcer, event: PLUGIN_SANDBOXED }
+  XF-004: { name: Enable, description: Enable de export, actor: Plugin Framework, event: PLUGIN_ENABLED }
+  XF-005: { name: Export, description: Export capability/agent/skill/widget, actor: ExportManager, event: PLUGIN_EXPORTED }
+  XF-006: { name: Disable, description: Disable khi can tat, actor: Plugin Framework, event: PLUGIN_DISABLED }
+  XF-007: { name: Uninstall, description: Uninstall khi het dung, actor: Uninstaller, event: PLUGIN_UNINSTALLED }
+source: TERM-015 (Plugin Framework thuc thi, khong dinh nghia lai)

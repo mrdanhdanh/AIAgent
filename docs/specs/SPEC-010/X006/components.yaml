@@ -1,0 +1,16 @@
+# SPEC-010 X006 - Plugin Components (12)
+---
+version: "1.0"
+components:
+  XCP-001: { name: PluginApi, role: expose op, dependency: Engine, layer: Core }
+  XCP-002: { name: LifecycleOrchestrator, role: lifecycle flow, dependency: StateMachine, Store, layer: Core }
+  XCP-003: { name: PluginStateMachine, role: state transitions, dependency: S009, layer: Core }
+  XCP-004: { name: ManifestValidator, role: schema + permission, dependency: X008, layer: Core }
+  XCP-005: { name: SandboxEnforcer, role: sandbox isolation, dependency: Store, layer: Core }
+  XCP-006: { name: PolicyGuard, role: policy eval, dependency: S012, layer: Guard }
+  XCP-007: { name: PluginStore, role: plugin manifests, dependency: Store, layer: Core }
+  XCP-008: { name: ManifestIndex, role: manifest lookup, dependency: Store, layer: Data }
+  XCP-009: { name: ExportManager, role: export capability/agent/skill/widget, dependency: Store, layer: Data }
+  XCP-010: { name: PluginMetrics, role: metrics, dependency: S011, layer: Data }
+  XCP-011: { name: RegistryClient, role: definition lookup, dependency: SPEC-005, layer: Integration }
+  XCP-012: { name: Uninstaller, role: disable + uninstall, dependency: Store, layer: Data }

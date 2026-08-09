@@ -1,0 +1,8 @@
+# SPEC-010 X007 - Plugin Communication Matrix
+---
+version: "1.0"
+matrix:
+  Plugin -> PluginApi: sync install/enable
+  PluginApi -> ExportManager: sync export
+  PluginApi -> Registry: register exports
+  PluginApi -> S011: async event

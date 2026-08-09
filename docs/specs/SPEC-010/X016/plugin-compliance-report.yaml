@@ -1,0 +1,9 @@
+# SPEC-010 X016 - Plugin Compliance Report
+---
+version: "1.0"
+report:
+  scope: [X001..X020]
+  format: markdown + JSON
+  frequency: moi thay doi SPEC-010
+  content: [score, violations, evidence, actions]
+  tool: SPEC010-validator.ps1

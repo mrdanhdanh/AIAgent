@@ -1,0 +1,17 @@
+# SPEC-010 X006 - Plugin Component Model
+---
+version: "1.0"
+component_model:
+  XCP-001: { name: PluginApi, layer: Core }
+  XCP-002: { name: LifecycleOrchestrator, layer: Core }
+  XCP-003: { name: PluginStateMachine, layer: Core }
+  XCP-004: { name: ManifestValidator, layer: Core }
+  XCP-005: { name: SandboxEnforcer, layer: Core }
+  XCP-006: { name: PolicyGuard, layer: Guard }
+  XCP-007: { name: PluginStore, layer: Core }
+  XCP-008: { name: ManifestIndex, layer: Data }
+  XCP-009: { name: ExportManager, layer: Data }
+  XCP-010: { name: PluginMetrics, layer: Data }
+  XCP-011: { name: RegistryClient, layer: Integration }
+  XCP-012: { name: Uninstaller, layer: Data }
+rule: Component chi goi qua interface (X007).

@@ -1,0 +1,21 @@
+# SPEC-010 X011 - Plugin Events (S011 reuse)
+---
+version: "1.0"
+definition_events:
+  - PLUGIN_INSTALLED
+  - PLUGIN_VALIDATING
+  - PLUGIN_SANDBOXED
+  - PLUGIN_ENABLED
+  - PLUGIN_EXPORTED
+  - PLUGIN_DISABLED
+  - PLUGIN_UNINSTALLED
+  - PLUGIN_REJECTED
+  - PLUGIN_PERMISSION_BLOCKED
+  - PLUGIN_CORE_MODIFY_BLOCKED
+  - PLUGIN_SANDBOX_VIOLATION
+  - PLUGIN_RESTORED
+rules:
+  - Event immutable (P005).
+  - Event chi append.
+  - Moi transition sinh Event (X009).
+  - Event co correlation_id (S011).

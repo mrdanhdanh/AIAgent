@@ -1,0 +1,11 @@
+# SPEC-010 X008 - Plugin References
+---
+version: "1.0"
+references:
+  - ExecutionRef (SPEC-001)
+  - ProviderRef (SPEC-004/002)
+  - CapabilityRef (SPEC-003)
+  - PolicyRef (S012)
+  - Event (S011)
+  - RegistryEntry (SPEC-005)
+rule: Reference readonly, khong duoc mutate qua Plugin.

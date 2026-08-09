@@ -1,0 +1,10 @@
+# SPEC-010 X011 - Plugin Health
+---
+version: "1.0"
+health_checks:
+  - install_ok: install nhanh, khong loi
+  - sandbox_ok: khong vi pham sandbox
+  - enable_ok: enable thanh cong
+  - event_ok: event day du (S011)
+  - policy_ok: policy applied (S012)
+  score: tinh trong X019 Doctor

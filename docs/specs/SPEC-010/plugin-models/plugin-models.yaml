@@ -1,0 +1,13 @@
+# SPEC-010 Appendix - Plugin Canonical Models (8)
+---
+version: "1.0"
+models:
+  AM-001: { name: Plugin, kind: AggregateRoot, owner: Plugin Registry, immutable: true }
+  AM-002: { name: PluginDefinition, kind: Entity, owner: Plugin Registry, immutable: true }
+  AM-003: { name: PluginManifest, kind: Entity, owner: Plugin Registry, immutable: true }
+  AM-004: { name: PluginPermission, kind: Value, owner: Plugin Registry, immutable: true }
+  AM-005: { name: PluginExport, kind: Entity, owner: Plugin Registry, immutable: false }
+  AM-006: { name: PluginState, kind: Transient, owner: Plugin Registry, immutable: false }
+  AM-007: { name: PluginSandbox, kind: Entity, owner: Plugin Registry, immutable: false }
+  AM-008: { name: PluginReference, kind: Value, owner: Plugin Registry, immutable: true }
+aggregate_root: AM-001 Plugin

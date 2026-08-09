@@ -1,0 +1,12 @@
+# SPEC-010 X011 - Plugin Traces
+---
+version: "1.0"
+traces:
+  - plugin.install
+  - plugin.validate
+  - plugin.sandbox
+  - plugin.enable
+  - plugin.export
+  - plugin.disable
+  - plugin.uninstall
+span_attrs: [plugin_id, execution_id, version, provider_id]

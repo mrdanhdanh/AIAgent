@@ -1,0 +1,8 @@
+# SPEC-010 X005 - Plugin ADL
+---
+version: "1.0"
+decisions:
+  XAD-001: { decision: Plugin khong sua Core, reason: TERM-015 }
+  XAD-002: { decision: Manifest permission, reason: TERM-015 }
+  XAD-003: { decision: Policy qua S012, reason: khong tu quyet }
+  XAD-004: { decision: Sandbox cho plugin, reason: isolation }

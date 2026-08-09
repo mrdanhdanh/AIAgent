@@ -1,0 +1,9 @@
+# SPEC-010 X016 - Plugin Compliance Events
+---
+version: "1.0"
+events:
+  - SPEC010_COMPLIANCE_PASS
+  - SPEC010_COMPLIANCE_FAIL
+  - SPEC010_CERTIFIED
+  - SPEC010_AUDITED
+note: Event vao S011.

@@ -1,0 +1,11 @@
+# SPEC-010 X011 - Plugin Audit
+---
+version: "1.0"
+audit:
+  who: provider_id / plugin_id / engine
+  what: op (install/validate/enable/disable/uninstall)
+  when: timestamp
+  where: plugin_id, execution_id
+  why: transition_id, event
+  audit_log: append-only (S011)
+  source: XFR-016

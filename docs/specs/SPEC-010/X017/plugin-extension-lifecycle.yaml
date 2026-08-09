@@ -1,0 +1,6 @@
+# SPEC-010 X017 - Plugin Extension Lifecycle
+---
+version: "1.0"
+lifecycle:
+  states: [Proposed, Approved, Registered, Active, Retired]
+  gate: Approval (S012) + Registry (SPEC-005)

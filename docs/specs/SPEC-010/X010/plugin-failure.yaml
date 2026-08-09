@@ -1,0 +1,12 @@
+# SPEC-010 X010 - Plugin Failure Modes
+---
+version: "1.0"
+failure_modes:
+  - Install fail: error + khong tao Plugin
+  - Validate fail: PLUGIN_REJECTED + cleanup
+  - Sandbox fail: khong enable + event
+  - Enable fail: retry policy
+  - Export fail: giu Plugin, retry
+  - Disable fail: giu Plugin, retry
+  - Uninstall fail: giu Plugin, retry
+retry: theo Policy S012

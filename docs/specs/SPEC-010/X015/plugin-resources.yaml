@@ -1,0 +1,10 @@
+# SPEC-010 R015 - Plugin Resources
+---
+version: "1.0"
+resources:
+  RRES-001: { name: Storage, owner: Plugin Framework }
+  RRES-002: { name: IndeR, owner: Plugin Framework }
+  RRES-003: { name: PluginId, owner: Plugin Framework }
+  RRES-004: { name: Verify CPU, owner: Plugin Framework }
+  RRES-005: { name: Event Buffer, owner: Runtime }
+  RRES-006: { name: Snapshot Store, owner: Plugin Framework }

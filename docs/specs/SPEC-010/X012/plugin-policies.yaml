@@ -1,0 +1,14 @@
+# SPEC-010 X012 - Plugin Policies (10)
+---
+version: "1.0"
+policies:
+  XPOL-001: { name: No Core Modify, description: Plugin khong sua Core, priority: Critical, source: TERM-015, principle: P009 }
+  XPOL-002: { name: Manifest Required, description: Moi Plugin co manifest, priority: Critical, source: TERM-015, principle: P004 }
+  XPOL-003: { name: Permission Scoped, description: Khong vuot permission, priority: Critical, source: TERM-015, principle: P009 }
+  XPOL-004: { name: Sandbox Enforced, description: Plugin chay trong sandbox, priority: High, source: TERM-015, principle: P009 }
+  XPOL-005: { name: No Business Data, description: Plugin chi metadata, priority: Critical, source: S011 OB003A, principle: P001 }
+  XPOL-006: { name: Retention, description: Uninstall theo retention days, priority: High, source: S012, principle: P011 }
+  XPOL-007: { name: Quota, description: Gioi han Plugin/export, priority: High, source: S012, principle: P011 }
+  XPOL-008: { name: Disable Before Uninstall, description: Phai disable truoc uninstall, priority: High, source: TERM-015, principle: P011 }
+  XPOL-009: { name: Audit All, description: Moi thay doi co audit, priority: High, source: S011, principle: P005 }
+  XPOL-010: { name: Schema Valid, description: Manifest theo schema, priority: High, source: X008, principle: P009 }

@@ -1,0 +1,9 @@
+# SPEC-010 X015 - Plugin Resource Events
+---
+version: "1.0"
+events:
+  - PLUGIN_RESOURCE_ALLOCATED
+  - PLUGIN_RESOURCE_RELEASED
+  - PLUGIN_RESOURCE_LEAKED
+  - PLUGIN_RESOURCE_QUOTA_EXCEEDED
+note: Event vao S011.
