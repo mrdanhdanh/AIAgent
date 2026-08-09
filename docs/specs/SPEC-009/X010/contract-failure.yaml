@@ -1,0 +1,12 @@
+# SPEC-009 X010 - Contract Failure Modes
+---
+version: "1.0"
+failure_modes:
+  - Declare fail: error + khong tao Contract
+  - Validate fail: CONTRACT_REJECTED + cleanup
+  - Compat fail: khong publish + event
+  - Publish fail: retry policy
+  - Resolve fail: giu Contract, retry
+  - Verify fail: khong cho dung + event
+  - Retire fail: giu Contract, retry
+retry: theo Policy S012

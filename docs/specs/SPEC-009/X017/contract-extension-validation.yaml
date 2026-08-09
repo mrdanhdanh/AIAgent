@@ -1,0 +1,9 @@
+# SPEC-009 X017 - Contract Extension Validation
+---
+version: "1.0"
+validation:
+  - extension co schema.json
+  - extension khong pha vo invariants (X008)
+  - extension co test (Contract Test)
+  - extension co doc
+  - kiem tra bang Doctor X019

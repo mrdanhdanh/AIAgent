@@ -1,0 +1,8 @@
+# SPEC-009 X020 - Contract Dashboard Config
+---
+version: "1.0"
+config:
+  refresh: 30s (default)
+  theme: S011 dashboard theme
+  filters: [contract_id, state, provider_id, time_range]
+  export: JSON

@@ -1,0 +1,10 @@
+# SPEC-009 X009 - Contract State Metrics
+---
+version: "1.0"
+metrics:
+  - contract_states_total
+  - contract_transitions_total
+  - contract_transition_duration_seconds
+  - contract_rejected_total
+  - contract_retired_total
+labels: [contract_id, state, transition, execution_id]

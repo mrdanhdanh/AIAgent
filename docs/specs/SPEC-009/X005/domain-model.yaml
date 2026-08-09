@@ -1,0 +1,6 @@
+# SPEC-009 X005 - Contract Domain Model
+---
+version: "1.0"
+domain:
+  entities: [Contract, ContractVersion, ContractSchema, ContractBinding, ContractVerification]
+  logic_layer: Engine Layer

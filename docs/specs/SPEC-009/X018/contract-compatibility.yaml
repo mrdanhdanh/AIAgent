@@ -1,0 +1,7 @@
+# SPEC-009 X018 - Contract Compatibility
+---
+version: "1.0"
+compatibility:
+  backward: moi version giu Contract contract cu (XNF-005)
+  forward: tuan thu schema strict
+  check: kiem tra bang validator + Doctor X019

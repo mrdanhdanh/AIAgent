@@ -1,0 +1,9 @@
+# SPEC-009 X012 - Timeout Binding
+---
+version: "1.0"
+timeout_binding:
+  declare_timeout: 500ms (default)
+  validate_timeout: 500ms (default)
+  resolve_timeout: 1s (default)
+  verify_timeout: 1s (default)
+  note: cau hinh qua Policy S012, khong hardcode

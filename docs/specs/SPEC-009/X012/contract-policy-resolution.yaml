@@ -1,0 +1,8 @@
+# SPEC-009 X012 - Contract Policy Resolution
+---
+version: "1.0"
+resolution:
+  order: SPEC-005 registry (policy registry)
+  conflict: deny wins (S012)
+  scope: contract op (declare/version/resolve)
+  cache: khong cache policy decision (evaluate moi lan)

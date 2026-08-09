@@ -1,0 +1,8 @@
+# SPEC-009 X020 - Contract Dashboard Events
+---
+version: "1.0"
+events:
+  - CONTRACT_DASHBOARD_OPENED
+  - CONTRACT_DASHBOARD_FILTERED
+  - CONTRACT_DASHBOARD_EXPORTED
+note: Event vao S011.

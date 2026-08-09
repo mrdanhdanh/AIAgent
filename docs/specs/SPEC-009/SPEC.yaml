@@ -1,0 +1,55 @@
+---
+id: SPEC-009
+name: Contract System
+version: "1.0.0"
+status: Draft
+type: Engine
+authority: High
+owner: Contract Team
+description: >
+  Contract System — quản lý Contract: Declare, Validate, Version, Resolve,
+  Verify, Retire (S007 Contract Model, TERM-014). Contract versioned,
+  backward compatible, không chứa implementation.
+dependencies:
+  - SPEC-000
+  - SPEC-001
+  - SPEC-005
+includes:
+  - X001
+  - X002
+  - X003
+  - X004
+  - X005
+  - X006
+  - X007
+  - X008
+  - X009
+  - X010
+  - X011
+  - X012
+  - X013
+  - X014
+  - X015
+  - X016
+  - X017
+  - X018
+  - X019
+  - X020
+outputs:
+  - Contract
+  - Contract Version
+  - Contract Verification
+implements:
+  - Contract
+authoritative: false
+breaking_change_requires:
+  - ADR
+  - RFC
+references:
+  constitution: ../SPEC-000
+  runtime: ../SPEC-001
+  registry: ../SPEC-005
+  glossary: ../../glossary
+  principles: ../../principles
+  rules: ../../rules
+  governance: ../../governance

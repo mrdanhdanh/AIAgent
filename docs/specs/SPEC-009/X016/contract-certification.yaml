@@ -1,0 +1,10 @@
+# SPEC-009 X016 - Contract Certification
+---
+version: "1.0"
+certification:
+  certified_artifacts:
+    - SPEC-009 SPEC.yaml
+    - X001-X020 sections
+    - contract-models/
+  criteria: validator PASS + Doctor PASS
+  issued_by: Contract Team + Governance (S013)

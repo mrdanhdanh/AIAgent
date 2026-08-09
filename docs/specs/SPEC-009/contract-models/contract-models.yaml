@@ -1,0 +1,13 @@
+# SPEC-009 Appendix - Contract Canonical Models (8)
+---
+version: "1.0"
+models:
+  AM-001: { name: Contract, kind: AggregateRoot, owner: Contract Registry, immutable: true }
+  AM-002: { name: ContractDefinition, kind: Entity, owner: Contract Registry, immutable: true }
+  AM-003: { name: ContractVersion, kind: Entity, owner: Contract Registry, immutable: true }
+  AM-004: { name: ContractSchema, kind: Entity, owner: Contract Registry, immutable: true }
+  AM-005: { name: ContractBinding, kind: Value, owner: Contract Registry, immutable: false }
+  AM-006: { name: ContractState, kind: Transient, owner: Contract Registry, immutable: false }
+  AM-007: { name: ContractVerification, kind: Entity, owner: Contract Registry, immutable: true }
+  AM-008: { name: ContractReference, kind: Value, owner: Contract Registry, immutable: true }
+aggregate_root: AM-001 Contract

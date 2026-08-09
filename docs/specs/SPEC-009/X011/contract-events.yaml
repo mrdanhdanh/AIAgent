@@ -1,0 +1,21 @@
+# SPEC-009 X011 - Contract Events (S011 reuse)
+---
+version: "1.0"
+definition_events:
+  - CONTRACT_DECLARED
+  - CONTRACT_VALIDATING
+  - CONTRACT_COMPAT_CHECKED
+  - CONTRACT_PUBLISHED
+  - CONTRACT_VERSIONED
+  - CONTRACT_RESOLVED
+  - CONTRACT_VERIFIED
+  - CONTRACT_BOUND
+  - CONTRACT_RETIRED
+  - CONTRACT_REJECTED
+  - CONTRACT_COMPAT_BLOCKED
+  - CONTRACT_RESTORED
+rules:
+  - Event immutable (P005).
+  - Event chi append.
+  - Moi transition sinh Event (X009).
+  - Event co correlation_id (S011).

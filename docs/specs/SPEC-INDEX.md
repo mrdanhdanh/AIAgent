@@ -161,56 +161,56 @@ SPEC-004 Agent System
 
 ## SPEC-005 — Registry
 
-> **Trạng thái**: 🚧 In progress (20/20 Draft — rev1 FAIL REV-20260809-138, NotReviewed/count 0) · **Phụ thuộc**: SPEC-000, SPEC-001
+> **Trạng thái**: ✅ Frozen (20/20, revfull REV-20260809-144 auto-freeze) · **Phụ thuộc**: SPEC-000, SPEC-001
 
 ```text
 SPEC-005 Registry
 │
-├── Tier 1 — Foundation 🚧
-│   ├── R001 Registry Vision            🚧 Draft
-│   ├── R002 Registry Requirements      🚧 Draft
-│   ├── R003 Registry Responsibilities  🚧 Draft
-│   ├── R004 Registry Boundaries        🚧 Draft
-│   ├── R005 Registry Architecture      🚧 Draft
-│   ├── R006 Registry Components        🚧 Draft
-│   ├── R007 Registry Contracts         🚧 Draft
-│   └── Appendix: Canonical Models      🚧 Draft
+├── Tier 1 — Foundation ✅
+│   ├── R001 Registry Vision            ✅ Frozen
+│   ├── R002 Registry Requirements      ✅ Frozen
+│   ├── R003 Registry Responsibilities  ✅ Frozen
+│   ├── R004 Registry Boundaries        ✅ Frozen
+│   ├── R005 Registry Architecture      ✅ Frozen
+│   ├── R006 Registry Components        ✅ Frozen
+│   ├── R007 Registry Contracts         ✅ Frozen
+│   └── Appendix: Canonical Models      ✅ Frozen
 │
-├── Tier 2 — Behavior 🚧
-│   ├── R008 Registry Data Model        🚧 Draft
-│   ├── R009 Registry State Machine     🚧 Draft
-│   └── R010 Registry Execution Flow    🚧 Draft
+├── Tier 2 — Behavior ✅
+│   ├── R008 Registry Data Model        ✅ Frozen
+│   ├── R009 Registry State Machine     ✅ Frozen
+│   └── R010 Registry Execution Flow    ✅ Frozen
 │
-└── Tier 3/4 — Operations + Experience 🚧
-    ├── R011-R016 Operations            🚧 Draft
-    └── R017-R020 Experience            🚧 Draft
+└── Tier 3/4 — Operations + Experience ✅
+    ├── R011-R016 Operations            ✅ Frozen
+    └── R017-R020 Experience            ✅ Frozen
 ```
 
 ## SPEC-006 — Context Engine
 
-> **Trạng thái**: 🚧 In progress (20/20 Draft — rev1 FAIL 2026-08-09, chờ fix CRITICAL) · **Phụ thuộc**: SPEC-000, SPEC-001, SPEC-005
+> **Trạng thái**: ✅ Frozen (20/20, 2026-08-09 — rev1 x2 REV-20260809-141/143 + revfull REV-20260809-145 PASS auto-freeze) · **Phụ thuộc**: SPEC-000, SPEC-001, SPEC-005
 
 ```text
 SPEC-006 Context Engine
 │
-├── Tier 1 — Foundation
-│   ├── X001 Context Vision             🚧
-│   ├── X002 Context Requirements       🚧
-│   ├── X003 Context Responsibilities   🚧
-│   ├── X004 Context Boundaries         🚧
-│   ├── X005 Context Architecture       🚧
-│   ├── X006 Context Components         🚧
-│   ├── X007 Context Contracts          🚧
-│   └── Appendix: Canonical Models      🚧
+├── Tier 1 — Foundation ✅ Frozen
+│   ├── X001 Context Vision             ✅ Frozen
+│   ├── X002 Context Requirements       ✅ Frozen
+│   ├── X003 Context Responsibilities   ✅ Frozen
+│   ├── X004 Context Boundaries         ✅ Frozen
+│   ├── X005 Context Architecture       ✅ Frozen
+│   ├── X006 Context Components         ✅ Frozen
+│   ├── X007 Context Contracts          ✅ Frozen
+│   └── Appendix: Canonical Models      ✅ Frozen
 │
-├── Tier 2 — Behavior
-│   ├── X008 Context Data Model         🚧
-│   ├── X009 Context State Machine      🚧
-│   └── X010 Context Execution Flow     🚧
+├── Tier 2 — Behavior ✅ Frozen
+│   ├── X008 Context Data Model         ✅ Frozen
+│   ├── X009 Context State Machine      ✅ Frozen
+│   └── X010 Context Execution Flow     ✅ Frozen
 │
-└── Tier 3/4 — Operations + Experience
-    ├── X011-X016 Operations            🚧
-    └── X017-X020 Experience            🚧
+└── Tier 3/4 — Operations + Experience ✅ Frozen
+    ├── X011-X016 Operations            ✅ Frozen
+    └── X017-X020 Experience            ✅ Frozen
 ```
 
 ## SPEC-007 — Artifact Manager
@@ -269,7 +269,30 @@ SPEC-008 Event Bus
 
 ## SPEC-009 — Contract System
 
-> **Trạng thái**: ⬜
+> **Trạng thái**: ✅ Hoàn thành (20/20) · **Phụ thuộc**: SPEC-000, SPEC-001, SPEC-005
+
+```text
+SPEC-009 Contract System
+│
+├── Tier 1 — Foundation
+│   ├── X001 Contract Vision           ✅
+│   ├── X002 Contract Requirements     ✅
+│   ├── X003 Contract Responsibilities ✅
+│   ├── X004 Contract Boundaries       ✅
+│   ├── X005 Contract Architecture     ✅
+│   ├── X006 Contract Components       ✅
+│   ├── X007 Contract Contracts        ✅
+│   └── Appendix: Canonical Models     ✅
+│
+├── Tier 2 — Behavior
+│   ├── X008 Contract Data Model       ✅
+│   ├── X009 Contract State Machine    ✅
+│   └── X010 Contract Execution Flow   ✅
+│
+└── Tier 3/4 — Operations + Experience
+    ├── X011-X016 Operations           ✅
+    └── X017-X020 Experience           ✅
+```
 
 ## SPEC-010 — Plugin Framework
 

@@ -1,0 +1,8 @@
+# SPEC-009 X005 - Contract ADL
+---
+version: "1.0"
+decisions:
+  XAD-001: { decision: Contract interface-only, reason: TERM-014 }
+  XAD-002: { decision: Version immutable, reason: P004 }
+  XAD-003: { decision: Policy qua S012, reason: khong tu quyet }
+  XAD-004: { decision: Store tach Version Index, reason: compat check }

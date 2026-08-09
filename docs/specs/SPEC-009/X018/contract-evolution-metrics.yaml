@@ -1,0 +1,8 @@
+# SPEC-009 X018 - Contract Evolution Metrics
+---
+version: "1.0"
+metrics:
+  - spec009_version
+  - spec009_versions_total
+  - spec009_deprecated_count
+  - spec009_compat_score

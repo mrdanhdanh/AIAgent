@@ -1,0 +1,7 @@
+# SPEC-009 X012 - Approval Binding
+---
+version: "1.0"
+approval_binding:
+  binding: Contract op theo S012 approval flow
+  required_for: [XPOL-003, XPOL-004, XPOL-006]
+  approver: Governance (S013)

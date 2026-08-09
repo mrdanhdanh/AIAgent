@@ -1,0 +1,12 @@
+# SPEC-009 X010 - Contract Stages Registry
+---
+version: "1.0"
+registered_stages:
+  XF-001: { name: Declare, actor: Contract System, event: CONTRACT_DECLARED }
+  XF-002: { name: Validate, actor: Contract System, event: CONTRACT_VALIDATING }
+  XF-003: { name: CompatCheck, actor: CompatChecker, event: CONTRACT_COMPAT_CHECKED }
+  XF-004: { name: Publish, actor: Contract System, event: CONTRACT_PUBLISHED }
+  XF-005: { name: Resolve, actor: Contract System, event: CONTRACT_RESOLVED }
+  XF-006: { name: Verify, actor: Verifier, event: CONTRACT_VERIFIED }
+  XF-007: { name: Bind, actor: Contract System, event: CONTRACT_BOUND }
+  XF-008: { name: Retire, actor: Contract System, event: CONTRACT_RETIRED }

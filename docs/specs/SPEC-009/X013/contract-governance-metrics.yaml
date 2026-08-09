@@ -1,0 +1,9 @@
+# SPEC-009 X013 - Contract Governance Metrics
+---
+version: "1.0"
+metrics:
+  - spec009_frozen_sections
+  - spec009_open_questions
+  - spec009_decisions_total
+  - spec009_compliance_score (X016)
+  - spec009_health_score (X019)

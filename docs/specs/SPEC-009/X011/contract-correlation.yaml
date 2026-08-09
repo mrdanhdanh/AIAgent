@@ -1,0 +1,8 @@
+# SPEC-009 X011 - Contract Correlation
+---
+version: "1.0"
+correlation:
+  correlation_id: sinh khi Declare
+  trace_id: Runtime (S011)
+  execution_id: Execution (SPEC-001)
+  mapping: contract-observability-mapping.yaml

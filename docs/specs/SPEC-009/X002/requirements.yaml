@@ -1,0 +1,357 @@
+# SPEC-009 X002 - Contract Requirements
+---
+id: SPEC-009-X002
+name: Contract Requirements
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Contract Team
+functional:
+  XFR-001:
+    title: Declare Contract
+    description: khai bao Contract (interface)
+    priority: Critical
+    category: Core
+    owner: Contract
+    status: Draft
+    source: [P004, TERM-014]
+    rules: [RULE-005]
+    verification: [Contract Test, Doctor]
+  XFR-002:
+    title: Validate Contract
+    description: validate schema truoc publish
+    priority: Critical
+    category: Validation
+    owner: Contract
+    status: Draft
+    source: [P004, TERM-014]
+    rules: [RULE-005]
+    verification: [Contract Test, Doctor]
+  XFR-003:
+    title: Version Contract
+    description: thay doi = version moi (P004)
+    priority: Critical
+    category: Core
+    owner: Contract
+    status: Draft
+    source: [P004, TERM-014]
+    rules: [RULE-005]
+    verification: [Contract Test, Doctor]
+  XFR-004:
+    title: Resolve Contract
+    description: tra Contract cho caller
+    priority: Critical
+    category: Core
+    owner: Contract
+    status: Draft
+    source: [P004, TERM-014]
+    rules: [RULE-005]
+    verification: [Contract Test, Doctor]
+  XFR-005:
+    title: Verify Contract
+    description: verify truoc khi dung
+    priority: Critical
+    category: Validation
+    owner: Contract
+    status: Draft
+    source: [P004, TERM-014]
+    rules: [RULE-005]
+    verification: [Contract Test, Doctor]
+  XFR-006:
+    title: Retire Contract
+    description: retire khi het han
+    priority: High
+    category: Data
+    owner: Contract
+    status: Draft
+    source: [P004, TERM-014]
+    rules: [RULE-005]
+    verification: [Contract Test, Doctor]
+  XFR-007:
+    title: Check Compatible
+    description: kiem tra backward compatible
+    priority: Critical
+    category: Core
+    owner: Contract
+    status: Draft
+    source: [P004, TERM-014]
+    rules: [RULE-005]
+    verification: [Contract Test, Doctor]
+  XFR-008:
+    title: Bind Caller
+    description: gan caller vao Contract
+    priority: High
+    category: Execution
+    owner: Contract
+    status: Draft
+    source: [P004, TERM-014]
+    rules: [RULE-005]
+    verification: [Contract Test, Doctor]
+  XFR-009:
+    title: Track Contract
+    description: theo doi lifecycle (S011)
+    priority: High
+    category: Observability
+    owner: Contract
+    status: Draft
+    source: [P004, TERM-014]
+    rules: [RULE-005]
+    verification: [Contract Test, Doctor]
+  XFR-010:
+    title: Publish Contract Events
+    description: phat Event cho moi state change (S011)
+    priority: High
+    category: Observability
+    owner: Contract
+    status: Draft
+    source: [P004, TERM-014]
+    rules: [RULE-005]
+    verification: [Contract Test, Doctor]
+  XFR-011:
+    title: Bind Policy
+    description: khai bao tham so Policy (S012 binding)
+    priority: High
+    category: Governance
+    owner: Contract
+    status: Draft
+    source: [P004, TERM-014]
+    rules: [RULE-005]
+    verification: [Contract Test, Doctor]
+  XFR-012:
+    title: Register Contract
+    description: dang ky trong Registry (SPEC-005)
+    priority: Medium
+    category: Data
+    owner: Contract
+    status: Draft
+    source: [P004, TERM-014]
+    rules: [RULE-005]
+    verification: [Contract Test, Doctor]
+  XFR-013:
+    title: Support Contract Chain
+    description: Contract cha-con (extends)
+    priority: Medium
+    category: Execution
+    owner: Contract
+    status: Draft
+    source: [P004, TERM-014]
+    rules: [RULE-005]
+    verification: [Contract Test, Doctor]
+  XFR-014:
+    title: Manage Contract Lifecycle
+    description: vong doi (declare->retire)
+    priority: Critical
+    category: Execution
+    owner: Contract
+    status: Draft
+    source: [P004, TERM-014]
+    rules: [RULE-005]
+    verification: [Contract Test, Doctor]
+  XFR-015:
+    title: Audit Contract
+    description: ghi audit moi thay doi (S011)
+    priority: High
+    category: Observability
+    owner: Contract
+    status: Draft
+    source: [P004, TERM-014]
+    rules: [RULE-005]
+    verification: [Contract Test, Doctor]
+  XFR-016:
+    title: Enforce No-Direct-Call
+    description: chan goi truc tiep (TERM-014)
+    priority: Critical
+    category: Core
+    owner: Contract
+    status: Draft
+    source: [P004, TERM-014]
+    rules: [RULE-005]
+    verification: [Contract Test, Doctor]
+non_functional:
+  XNF-001:
+    title: Interface Only
+    description: Contract chi dinh nghia input/output
+    priority: Critical
+    category: Core
+    owner: Contract
+    status: Draft
+    source: [P004]
+    rules: [RULE-005]
+  XNF-002:
+    title: No Implementation
+    description: Contract khong chua code
+    priority: Critical
+    category: Core
+    owner: Contract
+    status: Draft
+    source: [P004]
+    rules: [RULE-005]
+  XNF-003:
+    title: Versioned
+    description: moi Contract co version (P004)
+    priority: Critical
+    category: Core
+    owner: Contract
+    status: Draft
+    source: [P004]
+    rules: [RULE-005]
+  XNF-004:
+    title: Observable
+    description: moi Contract quan sat qua S011
+    priority: High
+    category: Observability
+    owner: Contract
+    status: Draft
+    source: [P004]
+    rules: [RULE-005]
+  XNF-005:
+    title: Compatible
+    description: backward compatible (XNF-006)
+    priority: Critical
+    category: Core
+    owner: Contract
+    status: Draft
+    source: [P004]
+    rules: [RULE-005]
+  XNF-006:
+    title: Backward Compatible
+    description: khong pha caller cu
+    priority: High
+    category: Data
+    owner: Contract
+    status: Draft
+    source: [P004]
+    rules: [RULE-005]
+  XNF-007:
+    title: Recoverable
+    description: phuc hoi sau loi
+    priority: High
+    category: Core
+    owner: Contract
+    status: Draft
+    source: [P004]
+    rules: [RULE-005]
+  XNF-008:
+    title: Testable
+    description: kiem thu tu dong
+    priority: High
+    category: Core
+    owner: Contract
+    status: Draft
+    source: [P004]
+    rules: [RULE-005]
+  XNF-009:
+    title: Performant
+    description: dap ung target resolve/verify
+    priority: High
+    category: Observability
+    owner: Contract
+    status: Draft
+    source: [P004]
+    rules: [RULE-005]
+  XNF-010:
+    title: Governed
+    description: chiu Governance (S013)
+    priority: Critical
+    category: Governance
+    owner: Contract
+    status: Draft
+    source: [P004]
+    rules: [RULE-005]
+  XNF-011:
+    title: Reusable
+    description: Contract pattern tai su dung
+    priority: Medium
+    category: Data
+    owner: Contract
+    status: Draft
+    source: [P004]
+    rules: [RULE-005]
+  XNF-012:
+    title: Traceable
+    description: moi Contract truy vet (S011)
+    priority: High
+    category: Observability
+    owner: Contract
+    status: Draft
+    source: [P004]
+    rules: [RULE-005]
+constraints:
+  XC-001:
+    name: No Implementation
+    type: Architectural
+    source: [TERM-014]
+    rules: [RULE-005]
+  XC-002:
+    name: No Direct Call
+    type: Architectural
+    source: [TERM-014]
+    rules: [RULE-005]
+  XC-003:
+    name: No Business Data
+    type: Architectural
+    source: [P001]
+    rules: [RULE-001]
+  XC-004:
+    name: No Redefine S007 Model
+    type: Architectural
+    source: [P001]
+    rules: [RULE-005]
+  XC-005:
+    name: No Redefine Policy (S012)
+    type: Governance
+    source: [P015]
+    rules: [RULE-012]
+  XC-006:
+    name: Retire Before Remove
+    type: Governance
+    source: [P011]
+    rules: [RULE-005]
+assumptions:
+  XA-001: Contract hop le (da validate)
+  XA-002: Execution ton tai (SPEC-001)
+  XA-003: Registry kha dung (SPEC-005)
+  XA-004: Runtime kha dung (SPEC-001)
+  note: Neu gia dinh sai, Contract System chi bao loi, khong tu sua.
+dependencies:
+  logical:
+    - Constitution
+    - Runtime (SPEC-001)
+    - Registry (SPEC-005)
+  runtime_services:
+    - Event Store (S011)
+    - Metrics Collector (S011)
+external_interfaces:
+  Execution: Input
+  Caller: Resolve
+  Provider: Declare
+  Policy (S012): Apply
+quality_attributes:
+  Compatibility:
+    target: "100%"
+    description: Khong Contract pha vo caller
+  Interface Coverage:
+    target: "100%"
+  Reliability:
+    target: "99.9%"
+  Traceability:
+    target: "100%"
+  Observability:
+    target: "100%"
+acceptance:
+  XAR-001:
+    description: Contract System declare va resolve duoc Contract hop le
+    related: [XFR-001, XFR-004, TERM-014]
+    verified_by: [Contract Tests, Doctor]
+  XAR-002:
+    description: Contract khong chua implementation
+    related: [XC-001, TERM-014]
+    verified_by: [Contract Tests, Doctor]
+  XAR-003:
+    description: Khong goi truc tiep - qua Contract
+    related: [XFR-016, TERM-014]
+    verified_by: [Doctor]
+  XAR-004:
+    description: Contract khong chua Business Data
+    related: [XC-003, P001]
+    verified_by: [Doctor]

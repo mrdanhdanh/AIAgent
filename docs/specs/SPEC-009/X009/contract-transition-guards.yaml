@@ -1,0 +1,8 @@
+# SPEC-009 X009 - Contract Transition Guards
+---
+version: "1.0"
+guards:
+  XGD-001: { transition: XTR-002, condition: Validate pass + backward compatible }
+  XGD-002: { transition: XTR-005, condition: Version moi khong pha caller cu }
+  XGD-003: { transition: XTR-006, condition: Retention het han (S012) }
+guard_fail: transition bi chan + error CONTRACT_GUARD

@@ -1,0 +1,9 @@
+# SPEC-009 X016 - Contract Compliance Report
+---
+version: "1.0"
+report:
+  scope: [X001..X020]
+  format: markdown + JSON
+  frequency: moi thay doi SPEC-009
+  content: [score, violations, evidence, actions]
+  tool: spec009-validator.ps1

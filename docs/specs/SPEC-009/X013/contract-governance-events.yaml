@@ -1,0 +1,10 @@
+# SPEC-009 X013 - Contract Governance Events
+---
+version: "1.0"
+events:
+  - SPEC009_FROZEN
+  - SPEC009_UNFROZEN
+  - SPEC009_VERSIONED
+  - SPEC009_DECISION_MADE
+  - SPEC009_DECISION_OVERRIDDEN
+note: Event goi vao S011.

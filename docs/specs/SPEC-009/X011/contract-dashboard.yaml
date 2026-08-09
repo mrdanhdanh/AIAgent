@@ -1,0 +1,10 @@
+# SPEC-009 X011 - Contract Dashboard
+---
+version: "1.0"
+dashboard:
+  - Contract Activity (declare/publish rate)
+  - Contract Lifecycle (state histogram)
+  - Contract Failures (rejected/compat blocked)
+  - Version Status (active versions)
+  - Binding Status (callers)
+  tool: X020 Contract Dashboard

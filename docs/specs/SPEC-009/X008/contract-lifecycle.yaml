@@ -1,0 +1,10 @@
+# SPEC-009 X008 - Contract Lifecycle (see X009)
+---
+version: "1.0"
+lifecycle_phases:
+  - Declared
+  - Validated
+  - Published
+  - Resolved
+  - Retired
+note: S007 - Contract System khong dinh nghia lai lifecycle.

@@ -1,0 +1,14 @@
+# SPEC-009 X011 - Contract Metrics
+---
+version: "1.0"
+metrics:
+  - contract_declared_total
+  - contract_published_total
+  - contract_rejected_total
+  - contract_retired_total
+  - contract_resolved_total
+  - contract_compat_blocked_total
+  - contract_verified_total
+  - contract_resolve_latency_seconds
+  - contract_versions_active_current
+labels: [contract_id, state, execution_id, provider_id]

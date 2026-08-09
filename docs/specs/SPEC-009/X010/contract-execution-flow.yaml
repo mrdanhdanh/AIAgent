@@ -1,0 +1,13 @@
+# SPEC-009 X010 - Contract Execution Flow (8 stages)
+---
+version: "1.0"
+stages:
+  XF-001: { name: Declare, description: Nhan Contract tu Provider, actor: Contract System, event: CONTRACT_DECLARED }
+  XF-002: { name: Validate, description: Validate schema + invariants, actor: Contract System, event: CONTRACT_VALIDATING }
+  XF-003: { name: CompatCheck, description: Kiem tra backward compatible, actor: CompatChecker, event: CONTRACT_COMPAT_CHECKED }
+  XF-004: { name: Publish, description: Publish Contract, actor: Contract System, event: CONTRACT_PUBLISHED }
+  XF-005: { name: Resolve, description: Tra cho caller, actor: Contract System, event: CONTRACT_RESOLVED }
+  XF-006: { name: Verify, description: Verify truoc khi dung, actor: Verifier, event: CONTRACT_VERIFIED }
+  XF-007: { name: Bind, description: Gan caller, actor: Contract System, event: CONTRACT_BOUND }
+  XF-008: { name: Retire, description: Retire khi het han, actor: Contract System, event: CONTRACT_RETIRED }
+source: S007 Contract Model (Contract System thuc thi, khong dinh nghia lai)

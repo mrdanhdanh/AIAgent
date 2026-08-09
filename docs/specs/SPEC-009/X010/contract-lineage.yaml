@@ -1,0 +1,8 @@
+# SPEC-009 X010 - Contract Lineage
+---
+version: "1.0"
+lineage:
+  contract_id: UUID
+  parent_contract_id: null (Root) | UUID (extends)
+  provider: thanh phan khai bao
+  note: Lineage duoc luu trong metadata.
