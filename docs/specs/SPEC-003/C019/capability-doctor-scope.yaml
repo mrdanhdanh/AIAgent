@@ -1,6 +1,6 @@
 # SPEC-003 C019 - Capability Doctor Scope
 ---
-version: "1.0"
+version: "1.0.0"
 checks_domains:
   - Constitution (SPEC-000)
   - Contracts (C007)

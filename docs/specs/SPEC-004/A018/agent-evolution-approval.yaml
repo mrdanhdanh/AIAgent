@@ -1,6 +1,6 @@
 # SPEC-004 A018 - Agent Evolution Approval Gate (A013)
 ---
-version: "1.0"
+version: "1.0.0"
 gate:
   - Low impact: auto-approve (Strict rules).
   - Medium impact: Agent approval.

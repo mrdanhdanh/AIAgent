@@ -1,7 +1,7 @@
 # SPEC-004 Appendix — Agent Canonical Models (8 models)
 # Single Source of Truth (P009) - moi SPEC tham chieu, khong dinh nghia lai.
 ---
-version: "1.0"
+version: "1.0.0"
 status: Draft
 aggregate_root: Agent
 models:

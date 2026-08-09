@@ -1,6 +1,6 @@
 # SPEC-004 A005 - Domain Model
 ---
-version: "1.0"
+version: "1.0.0"
 domains:
   Definition: { owner: Agent, business_logic: false }
   Validation: { owner: Agent, business_logic: false }

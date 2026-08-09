@@ -1,6 +1,6 @@
 # SPEC-003 C004 - Resolution Boundary (CB004)
 ---
-version: "1.0"
+version: "1.0.0"
 name: Resolution Boundary
 severity: Critical
 allowed:

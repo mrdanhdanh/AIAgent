@@ -21,7 +21,7 @@ principles:
   - Immutable (Published)
   - Traceable
 categories:
-  note: Capability Registry la 1 category cua S014 (capability-registry).
+# note: Capability Registry la 1 category cua S014 (capability-registry).
   - Capability Definition
   - Capability Version
   - Capability Binding (C012)
@@ -101,10 +101,10 @@ traceability:
 events:
   - CAPABILITY_REGISTERED
   - CAPABILITY_UPDATED
-  - CAPABILITY_DEPRECATED
-  - CAPABILITY_RETIRED
+  - CAPABILITY_REGISTRY_DEPRECATED
+  - CAPABILITY_REGISTRY_RETIRED
   - CAPABILITY_RESOLUTION_FAILED
-  - CAPABILITY_COMPATIBILITY_FAILED
+  - CAPABILITY_REGISTRY_COMPATIBILITY_FAILED
 metrics:
   capability_entries: 0
   active_capabilities: 0

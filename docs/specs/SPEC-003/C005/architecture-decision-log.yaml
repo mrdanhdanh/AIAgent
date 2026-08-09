@@ -1,6 +1,6 @@
 # SPEC-003 C005 - Architecture Decision Log
 ---
-version: "1.0"
+version: "1.0.0"
 decisions:
   - id: CAD-001
     decision: Capability System la Declarator + Resolver, khong phai Executor

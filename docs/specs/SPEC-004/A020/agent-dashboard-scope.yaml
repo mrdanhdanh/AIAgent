@@ -1,6 +1,6 @@
 # SPEC-004 A020 - Agent Dashboard Scope (S011 OB010)
 ---
-version: "1.0"
+version: "1.0.0"
 reads:
   - Agent Events (A011)
   - Agent Metrics (A011)

@@ -1,6 +1,6 @@
 # SPEC-003 C015 - Capability Resource Metrics
 ---
-version: "1.0"
+version: "1.0.0"
 metrics:
   capability_resource_allocations: 0
   capability_resource_releases: 0

@@ -1,6 +1,6 @@
 # SPEC-004 A009 - Agent Transition Matrix
 ---
-version: "1.0"
+version: "1.0.0"
 matrix:
   - [AST-001, AST-002, AGENT_VALIDATING]
   - [AST-002, AST-003, AGENT_PUBLISHED]

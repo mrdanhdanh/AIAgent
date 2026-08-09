@@ -1,6 +1,6 @@
 # SPEC-004 A016 - Agent Readiness Checklist
 ---
-version: "1.0"
+version: "1.0.0"
 items:
   - Agent Definition Published (A009).
   - Binding Active (A012).

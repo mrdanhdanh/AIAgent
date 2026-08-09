@@ -1,6 +1,6 @@
 # SPEC-003 C012 - Approval Binding (CPB-003 -> POL-APPROVAL-001)
 ---
-version: "1.0"
+version: "1.0.0"
 binding:
   id: CPB-003
   policy_ref: POL-APPROVAL-001 (S012)

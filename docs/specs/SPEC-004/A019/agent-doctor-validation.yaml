@@ -1,6 +1,6 @@
 # SPEC-004 A019 - Agent Doctor Validation
 ---
-version: "1.0"
+version: "1.0.0"
 checks:
   - Missing Evidence
   - Invalid Report

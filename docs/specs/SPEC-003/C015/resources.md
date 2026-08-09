@@ -100,7 +100,7 @@ Deny mặc định (S013).
 
 - CAPABILITY_RESOURCE_ALLOCATED · RELEASED · EXHAUSTED · LEAKED · DENIED · QUEUED.
 
-> S011 reuse trực tiếp.
+> C015 định nghĩa 6 event types — S011 cung cấp event model (fields, correlation_id).
 
 ## CRC012 — Resource Metrics
 

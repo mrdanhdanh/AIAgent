@@ -13,13 +13,13 @@ philosophy:
   - Moi resolution deu qua Runtime (EF007).
   - Khong buoc nao thieu Event (S011).
 principles:
-  - Declarative: nang luc khai bao truoc, khong hardcode.
+  - "Declarative: nang luc khai bao truoc, khong hardcode."
   - Validate truoc khi dang ky (CFR-006).
   - Register truoc khi resolve (CNFR-003).
   - Delegate thuc thi cho Runtime (CB004).
   - Moi resolution co trace + event (S011).
 stages:
-  note: Capability dung 7 stages cua S010 EF004 (qua Runtime).
+# note: Capability dung 7 stages cua S010 EF004 (qua Runtime).
   - Initialize
   - Validate
   - Prepare

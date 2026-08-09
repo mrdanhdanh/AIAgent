@@ -1,7 +1,7 @@
 # SPEC-004 A013 - Agent Policy Binding Enforcement
 # Tham chieu A012 (define binding) - o day chi enforce.
 ---
-version: "1.0"
+version: "1.0.0"
 enforcement:
   - Resolve binding (A012 AP013)
   - Validate binding (A012 AP014)

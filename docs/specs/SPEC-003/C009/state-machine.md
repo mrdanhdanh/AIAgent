@@ -111,7 +111,7 @@ Cancelled → ST-010 · TimedOut → ST-011 · Aborted → ST-014
 
 - CAPABILITY_VALIDATING · CAPABILITY_PUBLISHED · CAPABILITY_REJECTED · CAPABILITY_DEPRECATED · CAPABILITY_REACTIVATED · CAPABILITY_RETIRED.
 - Run dùng events EXECUTION_* của S009.
-- S011 reuse trực tiếp.
+- C009 định nghĩa 6 event types — S011 cung cấp event model (fields, correlation_id).
 
 ## CS012 — State History
 

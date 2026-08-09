@@ -1,6 +1,6 @@
 # SPEC-003 C010 - Capability Registration Flow
 ---
-version: "1.0"
+version: "1.0.0"
 flow:
   - Khai bao (metadata)
   - Validate (CB003)

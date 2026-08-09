@@ -1,4 +1,4 @@
 # SPEC-003 C013 - Capability Governance Lifecycle (S013 GV012A)
 ---
-version: "1.0"
+version: "1.0.0"
 lifecycle: [Resolved, Validated, Applied, Audited, Archived]

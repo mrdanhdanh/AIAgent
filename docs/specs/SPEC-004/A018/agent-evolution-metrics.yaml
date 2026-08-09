@@ -1,6 +1,6 @@
 # SPEC-004 A018 - Agent Evolution Metrics
 ---
-version: "1.0"
+version: "1.0.0"
 metrics:
   proposals: 0
   applied: 0

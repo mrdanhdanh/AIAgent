@@ -21,7 +21,7 @@ principles:
   - Immutable (Published)
   - Traceable
 categories:
-  note: Agent Registry la 1 category cua S014 (agent-registry).
+  # note: Agent Registry la 1 category cua S014 (agent-registry).
   - Agent Definition
   - Agent Version
   - Agent Binding (A012)
@@ -101,10 +101,10 @@ traceability:
 events:
   - AGENT_REGISTERED
   - AGENT_UPDATED
-  - AGENT_DEPRECATED
-  - AGENT_RETIRED
+  - AGENT_REGISTRY_DEPRECATED
+  - AGENT_REGISTRY_RETIRED
   - AGENT_RESOLUTION_FAILED
-  - AGENT_COMPATIBILITY_FAILED
+  - AGENT_REGISTRY_COMPATIBILITY_FAILED
 metrics:
   agent_entries: 0
   active_agents: 0

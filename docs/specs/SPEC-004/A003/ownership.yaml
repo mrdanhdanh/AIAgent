@@ -1,6 +1,6 @@
 # SPEC-004 A003 - Agent Ownership
 ---
-version: "1.0"
+version: "1.0.0"
 owners:
   Agent System: Agent Team
   Agent Definition: Agent Team

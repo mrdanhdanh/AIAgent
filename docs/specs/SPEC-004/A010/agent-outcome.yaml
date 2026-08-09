@@ -1,6 +1,6 @@
 # SPEC-004 A010 - Agent Outcome (S010 EF024)
 ---
-version: "1.0"
+version: "1.0.0"
 outcomes:
   Success: Completed (ST-008)
   Fallback Success: Completed (ST-008) - dung fallback

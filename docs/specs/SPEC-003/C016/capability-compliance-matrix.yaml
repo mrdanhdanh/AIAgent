@@ -1,7 +1,7 @@
 # SPEC-003 C016 - Capability Compliance Matrix
 # Doctor chi can doc matrix.
 ---
-version: "1.0"
+version: "1.0.0"
 matrix:
   - source: Constitution (SPEC-000)
     check: Constitution Violation

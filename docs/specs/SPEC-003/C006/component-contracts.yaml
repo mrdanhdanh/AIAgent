@@ -1,6 +1,6 @@
 # SPEC-003 C006 - Component Contracts
 ---
-version: "1.0"
+version: "1.0.0"
 contracts:
   Capability Contract: [CCP-001]
   Declaration Contract: [CCP-002]

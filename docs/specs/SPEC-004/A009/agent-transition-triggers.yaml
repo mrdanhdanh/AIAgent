@@ -1,9 +1,9 @@
 # SPEC-004 A009 - Agent Transition Triggers
 ---
-version: "1.0"
+version: "1.0.0"
 definition_triggers: [Registry (S014), User, Governance (S013), Scheduler]
 run_triggers:
-  note: Agent Run dung triggers cua S009 (Runtime).
+  # note: Agent Run dung triggers cua S009 (Runtime).
   - Runtime
   - Policy (S012)
   - User

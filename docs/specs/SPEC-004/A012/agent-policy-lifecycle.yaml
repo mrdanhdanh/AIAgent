@@ -1,6 +1,6 @@
 # SPEC-004 A012 - Agent Policy Binding Lifecycle (S012 RP002B)
 ---
-version: "1.0"
+version: "1.0.0"
 lifecycle: [Draft, Validated, Published, Active, Deprecated, Retired]
 rules:
   - Chi Validated moi Published.

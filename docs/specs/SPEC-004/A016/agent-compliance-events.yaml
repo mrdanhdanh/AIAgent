@@ -1,6 +1,6 @@
 # SPEC-004 A016 - Agent Compliance Events (S011 reuse)
 ---
-version: "1.0"
+version: "1.0.0"
 event_types:
   - AGENT_COMPLIANCE_PASSED
   - AGENT_COMPLIANCE_FAILED

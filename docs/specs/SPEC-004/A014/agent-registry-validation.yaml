@@ -1,7 +1,7 @@
 # SPEC-004 A014 - Agent Registry Validation
 # Doctor kiem tra.
 ---
-version: "1.0"
+version: "1.0.0"
 checks:
   - Duplicate Agent ID
   - Broken Reference (S014)

@@ -1,6 +1,6 @@
 # SPEC-004 A004 - Boundary Matrix (Boundary x Severity)
 ---
-version: "1.0"
+version: "1.0.0"
 matrix:
   Critical: [AB001-declaration, AB002-registry, AB003-validation, AB004-execution, AB007-capability, AB009-governance]
   High: [AB005-interface, AB006-dependency, AB008-policy]

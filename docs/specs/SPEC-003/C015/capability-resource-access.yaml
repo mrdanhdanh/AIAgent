@@ -1,6 +1,6 @@
 # SPEC-003 C015 - Capability Resource Access (S015 RS007)
 ---
-version: "1.0"
+version: "1.0.0"
 flow:
   - Request
   - Binding Check (C012 CPB-010 -> POL-RESACC-001)

@@ -1,7 +1,8 @@
 # SPEC-004 A011 - Agent Events (S011 reuse)
 ---
-version: "1.0"
+version: "1.0.0"
 definition_events:
+  # nguon: A009 agent-state-events.yaml (6 event types)
   - AGENT_VALIDATING
   - AGENT_PUBLISHED
   - AGENT_REJECTED
@@ -11,7 +12,7 @@ definition_events:
 run_events:
   note: Agent Run dung EXECUTION_* cua S011 (Runtime).
 rules:
-  - Event immutable (P005).
+  - Event immutable (P010).
   - Event chi append.
   - Moi transition sinh Event (A009).
   - Event co correlation_id.

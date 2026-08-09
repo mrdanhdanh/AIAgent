@@ -1,6 +1,6 @@
 # SPEC-003 C018 - Capability Evolution Pipeline
 ---
-version: "1.0"
+version: "1.0.0"
 pipeline:
   - Collect (C011 data)
   - Analyze (patterns, anomalies)

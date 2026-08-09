@@ -1,6 +1,6 @@
 # SPEC-004 A007 - Communication Matrix
 ---
-version: "1.0"
+version: "1.0.0"
 edges:
   - [ACP-001, ACP-002, ACT-002]
   - [ACP-001, ACP-003, ACT-003]

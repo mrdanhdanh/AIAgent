@@ -1,6 +1,6 @@
 # SPEC-003 C010 - Capability Lineage (S010 EF023)
 ---
-version: "1.0"
+version: "1.0.0"
 lineage:
   - Root Capability (khong co parent)
   - Capability trong Workflow (SPEC-002)

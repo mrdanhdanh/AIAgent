@@ -1,6 +1,6 @@
 # SPEC-003 C019 - Capability Doctor Self-Repair
 ---
-version: "1.0"
+version: "1.0.0"
 rules:
   - Chi Low impact.
   - Qua Approval (C013) hoac auto cho quen thuoc.

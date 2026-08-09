@@ -1,6 +1,6 @@
-# SPEC-003 C009 - Capability State Events (S011 reuse)
+# SPEC-003 C009 - Capability State Events (event model: S011)
 ---
-version: "1.0"
+version: "1.0.0"
 events:
   - CAPABILITY_VALIDATING
   - CAPABILITY_PUBLISHED

@@ -1,6 +1,6 @@
 # SPEC-004 A011 - Agent Dashboard (S011 OB010 reuse)
 ---
-version: "1.0"
+version: "1.0.0"
 reads:
   - Agent Events
   - Agent Metrics

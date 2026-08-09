@@ -106,7 +106,7 @@ Chỉ Activate khi:
 
 - CAPABILITY_EXTENSION_REGISTERED · INSTALLED · ACTIVATED · DISABLED · FAILED · UNINSTALLED.
 
-> S011 reuse trực tiếp.
+> C017 định nghĩa 6 event types — S011 cung cấp event model (fields, correlation_id).
 
 ## CXE015 — Extension Metrics
 

@@ -89,7 +89,7 @@ Read model là projection immutable (P010).
 
 - CAPABILITY_DASHBOARD_VIEWED · REFRESHED · ERROR.
 
-> S011 reuse trực tiếp.
+> C020 định nghĩa 3 event types — S011 cung cấp event model (fields, correlation_id).
 
 ## CDB010 — Dashboard Metrics
 

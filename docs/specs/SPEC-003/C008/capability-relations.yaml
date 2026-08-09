@@ -1,6 +1,6 @@
 # SPEC-003 C008 - Capability Relations
 ---
-version: "1.0"
+version: "1.0.0"
 relations:
   Capability 1-1 Definition
   Definition 1-N Version

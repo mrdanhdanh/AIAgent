@@ -1,6 +1,6 @@
 # SPEC-004 A015 - Agent Resource Allocation (S015 RS006)
 ---
-version: "1.0"
+version: "1.0.0"
 flow:
   - Request (agent execution)
   - Binding Check (A012 APB-004 -> POL-RES-001)

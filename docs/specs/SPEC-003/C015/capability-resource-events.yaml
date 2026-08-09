@@ -1,6 +1,6 @@
-# SPEC-003 C015 - Capability Resource Events (S011 reuse)
+# SPEC-003 C015 - Capability Resource Events (event model: S011)
 ---
-version: "1.0"
+version: "1.0.0"
 event_types:
   - CAPABILITY_RESOURCE_ALLOCATED
   - CAPABILITY_RESOURCE_RELEASED

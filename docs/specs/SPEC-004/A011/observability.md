@@ -52,7 +52,7 @@ agent: general
 - **Definition-level**: AGENT_VALIDATING · AGENT_PUBLISHED · AGENT_REJECTED · AGENT_DEPRECATED · AGENT_REACTIVATED · AGENT_RETIRED (A009).
 - **Run-level**: EXECUTION_* (S011 — Runtime).
 
-**Rules:** Event immutable (P005); chỉ append; mọi transition sinh Event (A009); có correlation_id.
+**Rules:** Event immutable (P010); chỉ append; mọi transition sinh Event (A009); có correlation_id.
 
 ## AO005 — Agent Metrics
 

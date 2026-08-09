@@ -1,6 +1,6 @@
 # SPEC-004 A018 - Agent Evolution Pipeline
 ---
-version: "1.0"
+version: "1.0.0"
 pipeline:
   - Collect (A011 data)
   - Analyze (patterns, anomalies)

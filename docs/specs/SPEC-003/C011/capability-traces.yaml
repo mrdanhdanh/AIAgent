@@ -1,6 +1,6 @@
-# SPEC-003 C011 - Capability Trace (S011 reuse)
+# SPEC-003 C011 - Capability Trace (event model: S011)
 ---
-version: "1.0"
+version: "1.0.0"
 scope:
   - Capability
   - Resolution (EF007)

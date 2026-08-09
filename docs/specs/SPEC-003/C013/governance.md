@@ -154,7 +154,7 @@ Resolved → Validated → Applied → Audited → Archived
 ## CG013 — Governance Events
 
 - CAPABILITY_GOVERNANCE_VALIDATED · CAPABILITY_BOUNDARY_DENIED · CAPABILITY_BINDING_APPLIED · CAPABILITY_CONTRACT_VALIDATED · CAPABILITY_PERMISSION_DENIED · CAPABILITY_VERSION_CONFLICT · CAPABILITY_COMPATIBILITY_FAILED.
-- S011 reuse trực tiếp.
+- C013 định nghĩa 7 event types — S011 cung cấp event model (fields, correlation_id).
 
 ## CG014 — Governance Traceability
 

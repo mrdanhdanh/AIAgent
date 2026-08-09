@@ -1,7 +1,7 @@
 # SPEC-004 A009 - Agent State Machine Validation
 # Doctor kiem tra.
 ---
-version: "1.0"
+version: "1.0.0"
 checks:
   - Agent co dung mot State.
   - Transition hop le (da khai bao).

@@ -1,6 +1,6 @@
 # SPEC-003 C007 - Communication Matrix
 ---
-version: "1.0"
+version: "1.0.0"
 edges:
   - [CCP-001, CCP-002, CCT-002]
   - [CCP-001, CCP-003, CCT-003]

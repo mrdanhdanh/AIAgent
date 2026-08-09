@@ -1,6 +1,6 @@
 # SPEC-004 A009 - Agent Transitions (7)
 ---
-version: "1.0"
+version: "1.0.0"
 transitions:
   - "from: AST-001; to: AST-002; event: AGENT_VALIDATING; guard: Khai bao hop le (schema)"
   - "from: AST-002; to: AST-003; event: AGENT_PUBLISHED; guard: Validate pass + Registry Entry (S014)"

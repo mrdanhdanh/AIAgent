@@ -1,4 +1,4 @@
 # SPEC-004 A012 - Agent Policy Categories (S012 RP003)
 ---
-version: "1.0"
+version: "1.0.0"
 categories: [Recovery, Control, Orchestration, Resource, Governance, Security, Lifecycle]

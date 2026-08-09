@@ -1,6 +1,6 @@
 # SPEC-004 A003 - Responsibility Registry
 ---
-version: "1.0"
+version: "1.0.0"
 registries:
   - responsibilities.yaml
   - ownership.yaml

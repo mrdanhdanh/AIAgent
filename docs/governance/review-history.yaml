@@ -6281,3 +6281,415 @@ entries:
     finished: "2026-08-08T23:05:59"
     cascade_review: [W020]
     report_path: docs/governance/reviews/REV-SPEC-002-W019-20260808-230559.md
+  - review_id: REV-20260809-130
+    spec: SPEC-003
+    item: SPEC-003
+    name: Capability System (whole-SPEC)
+    type: rev1
+    mode: rev1 (whole-SPEC review lan dau — SPEC-003 moi khoi tao tracker)
+    verdict: FAIL
+    note: >
+      rev1 whole-SPEC tren SPEC-003 (Capability System, 20 muc C001-C020, tat ca Draft/
+      NotReviewed — chua co entry tracker truoc review nay). Verify may (PyYAML 6.0.3 +
+      jsonschema 4.26.0 + grep): 175 YAML SPEC-003, 8 PARSE-ERR — CRITICAL #01-YAML-parse:
+      C005 architecture.yaml:113 (communication_rules note:), C006 components.yaml:202
+      (not_in_runtime note:), C008 capability-data-model.yaml:50 (dependencies note:),
+      C009 capability-transition-triggers.yaml:6 (run_triggers note truoc list),
+      C010 capability-execution-flow.yaml:22 (stages note truoc list),
+      C012 capability-policies.yaml:26 (categories note truoc list),
+      C014 capability-registry.yaml:24 (categories note truoc list),
+      C015 capability-resources.yaml:23 (categories note truoc list) — cung lop da fix
+      S003/S005/S006/S008 bang comment/quoted string. 5 SCHEMA-FAIL tren canonical (MAJOR
+      #02): C009 capability-state-machine.yaml terminal_rules[1], C011 capability-
+      observability.yaml evolution_integration[0], C018 capability-evolution.yaml
+      approval[0-2], C019 capability-doctor.yaml check_sources[0-6], C020 capability-
+      dashboard.yaml refresh[0] — ': ' chua quote parse thanh mapping vs schema string
+      (cung lop W020#01 da fix). 10 muc claim 'S011 reuse truc tiep' (MAJOR #03
+      TRACEABILITY): C009 CS011, C011 CO012/CO013, C013 CG013, C014 CR012, C015 CRC011,
+      C016 CMC010, C017 CXE014, C018 CVE011, C019 CDR010, C020 CDB009 — S011 events.yaml
+      chi dinh nghia event model (fields + correlation_id), KHONG dinh nghia event type
+      CAPABILITY_* cu the nao (grep CAPABILITY_ toan S011 = 0 matches; event_type taxonomy
+      chi liet ke 'Capability' nhu 1 type) — cung lop da fix S013-S018/W013-W020. 3 muc
+      'immutable (P005)' sai (MAJOR #04 COMPLIANCE): C011 capability-events.yaml:14 +
+      observability.md:55 'Event immutable (P005)' — P005 = Event Driven, immutable = P010;
+      C016 compliance.md:132 + capability-compliance-report.yaml:7 'Report immutable (P005)';
+      C019 doctor.md:91,143 + capability-doctor-report.yaml:7 'Report immutable (P005)' —
+      cung lop da fix W016#02/W019#03. MINOR #05: version 1.0 (154 file phu) vs 1.0.0 (13
+      canonical). INFO #06: frontmatter md khong co status field (W019 cung vay — khong
+      chan). Tich cuc: canonical VALID — C002 requirements.yaml (16 FR/12 NFR/6 CC/6 CA),
+      C003 responsibilities.yaml (18 CRR), C004 boundaries.yaml (9 B), C007 contracts.yaml
+      (6 CCT), C013 capability-governance.yaml, C016 capability-compliance.yaml, C017
+      capability-extensions.yaml, capability-models.yaml; upstream refs deu ton tai (S009
+      ST-005/012/013, S010 EF004/EF007, S011 OB003A/009/010/011A, S012 POL-RETRY/TIMEOUT/
+      APPROVAL/RES/RESACC/ISOL/SEC/COMP/PARALLEL/SCHED, S013 GV010/GV011A, S014 RG004/
+      RG005A, S015 RS003/004/005, S016 CM006/008 — grep toan OK); SPEC-004 (A001, A002) ton
+      tai (18 refs — future spec). Verdict tong SPEC-003: FAIL (>=1 CRITICAL — 8 YAML parse
+      errors). Per-muc: C001/C002/C003/C004/C007 PASS (0 CRITICAL 0 MAJOR) -> advance
+      NotReviewed -> Rev1, count 0 -> 1, lifecycle Draft -> Review; C011/C013/C016/C017/
+      C018/C019/C020 CONDITIONAL (0 CRITICAL, 1-3 MAJOR) -> advance Rev1 count 1; C005/
+      C006/C008/C009/C010/C012/C014/C015 FAIL (1 CRITICAL YAML parse) -> giu NotReviewed
+      count 0. Cascade: SPEC-004 (Agent System) ref SPEC-003 18 lan (A001, A002) — SPEC
+      chua co tracker entry, ghi nhan thong tin (khong doi review.status). SLA: TRG-006
+      khong ap (draft 1 ngay); TRG-007 chua ap. Next: fix 8 YAML parse + 5 schema quote +
+      10 S011-reuse claim + 3 P005/P010 -> rev1 lan 2.
+    score:
+      coverage: 88
+      quality: 62
+      consistency: 70
+      governance: 88
+      overall: 77
+    severity_counts:
+      CRITICAL: 8
+      MAJOR: 15
+      MINOR: 1
+      INFO: 1
+    started: "2026-08-09T06:35:07"
+    finished: "2026-08-09T06:35:07"
+    cascade_review: [SPEC-004]
+    report_path: docs/governance/reviews/REV-SPEC-003-SPEC003-rev1-20260809-063507.md
+  - review_id: REV-20260809-131
+    spec: SPEC-003
+    item: SPEC-003
+    name: Capability System
+    type: rev1
+    mode: rev1 (whole-SPEC re-review lan 2 — xac nhan fix 26 findings REV-20260809-130)
+    verdict: CONDITIONAL
+    note: >
+      rev1 lan 2 toan SPEC-003 (Capability System, 20 muc C001-C020) — re-review sau khi
+      user fix toan bo 26 findings REV-20260809-130 (#01-#27). Verify may (PyYAML 6.0.3 +
+      jsonschema 4.26.0 + grep): 175/175 YAML parse PASS 0 ParserError (8 CRITICAL #01-#08
+      FIXED — C005 architecture.yaml communication_rules note, C006 components.yaml
+      not_in_runtime note, C008 capability-data-model.yaml dependencies note, C009
+      capability-transition-triggers.yaml run_triggers, C010 capability-execution-flow.yaml
+      stages, C012 capability-policies.yaml categories, C014 capability-registry.yaml
+      categories, C015 capability-resources.yaml categories — deu thanh comment '# note:');
+      20/20 canonical schema Draft202012 strict VALID 0 errors (5 MAJOR #09-#13 FIXED —
+      C009 terminal_rules, C011 evolution_integration, C018 approval[0-2], C019
+      check_sources[0-6], C020 refresh[0] — ': ' da quote; C008/C010/C012/C015 cung lop);
+      grep 'S011 reuse' toan SPEC-003 = 0 matches (10 MAJOR #14-#23 FIXED — claim moi
+      'C0xx dinh nghia N event types — S011 cung cap event model (fields, correlation_id)'
+      dung 10/10 va count events khop thuc te: C009 6, C013 7, C014 6, C015 6, C016 5,
+      C017 6, C018 5, C019 5, C020 3, C011 (S011 event model — lifecycle tu S011
+      events.yaml)); 'immutable (P005)' = 0, 'immutable (P010)' = 14 (3 MAJOR #24-#26
+      FIXED — C011/C016/C019 Report/Event immutable P005->P010); version 1.0.0 dong nhat
+      toan SPEC-003 (MINOR #27 FIXED, 175 YAML deu 1.0.0, khong con 1.0 bare); INFO #28
+      frontmatter status giu nguyen (khong chan). Phat hien MOI #29 MAJOR CONSISTENCY
+      (single-definition): C014 capability-registry-events.yaml:7-10 + registry.md:145
+      claim 'C014 dinh nghia 6 event types' nhung 3 event da do muc khac so huu —
+      CAPABILITY_DEPRECATED/CAPABILITY_RETIRED (C009 capability-state-events.yaml:8,10)
+      + CAPABILITY_COMPATIBILITY_FAILED (C013 capability-governance-events.yaml:11) —
+      cung lop S014#02 REV-20260808-020 (COMPATIBILITY_FAILED trung S013) da fix bang doi
+      ten; C014 khong ref C009/C013 lam nguon (grep C009|C013 trong C014 md = 0). Phat
+      hien MOI #30 MINOR: C011 capability-events.yaml:6-11 definition_events re-list 6
+      event CAPABILITY_* cua C009 khong ghi nguon trong YAML (md observability.md:52 ghi
+      (C009) nhung YAML khong comment nguon). Tich cuc: cross-ref upstream deu ton tai
+      (S009 ST-005/012/013, S010 EF004/EF007, S011 OB003A/009/010/011A, S012 POL-*,
+      S013 GV010/GV011A, S014 RG004/RG005A, S015 RS003/004/005, S016 CM006/008 — grep
+      toan OK); claim event model dung nguon S011 (events.yaml:6 model.fields co
+      correlation_id); single-definition trong cac muc con lai 0 collision. Verdict per
+      muc (Decision Matrix): 19 muc PASS (0 CRITICAL, 0 MAJOR) — C001-C004/C007/C011/
+      C013/C016-C020: Rev1 -> Completed count 1 -> 2 (lifecycle giu Review); C005/C006/
+      C008/C009/C010/C012/C015: NotReviewed -> Rev1 count 0 -> 1 (lifecycle Draft ->
+      Review). C014: CONDITIONAL (0 CRITICAL, 1 MAJOR #29) -> NotReviewed -> Rev1 count
+      0 -> 1 (lifecycle Draft -> Review) + recheck_required: true (MAJOR #29 chua fix).
+      KHONG auto-freeze (type rev1, khong phai revfull — chi revfull PASS + Completed moi
+      freeze). Cascade: C009/C013 (event owner bi C014 re-define) — ghi nhan thong tin
+      khong doi status; SPEC-004 (Agent System, ref SPEC-003 18 lan) chua co tracker entry
+      — ghi nhan. SLA: TRG-006 khong ap (draft 1 ngay), TRG-007 chua ap. Next: fix #29
+      (doi ten 3 event C014 or ref C009/C013), #30 (comment nguon C009 trong C011 YAML) ->
+      rev1 lan 3 C014/C011 hoac revfull khi du 2-pass.
+    score:
+      coverage: 97
+      quality: 95
+      consistency: 87
+      governance: 97
+      overall: 94
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 1
+      MINOR: 1
+      INFO: 1
+    started: "2026-08-09T08:15:00"
+    finished: "2026-08-09T08:15:00"
+    cascade_review: [C009, C013, SPEC-004]
+    report_path: docs/governance/reviews/REV-SPEC-003-SPEC003-rev1-20260809-081500.md
+  - review_id: REV-20260809-132
+    spec: SPEC-003
+    item: SPEC-003
+    name: Capability System (whole-SPEC)
+    type: rev1
+    mode: rev1 (whole-SPEC re-review lan 3 - xac nhan fix #29/#30 REV-20260809-131)
+    verdict: PASS
+    note: >
+      rev1 lan 3 toan SPEC-003 (Capability System, 20 muc C001-C020) - re-review sau khi user fix
+      #29 (C014 single-definition: doi ten 3 event -> CAPABILITY_REGISTRY_DEPRECATED/
+      CAPABILITY_REGISTRY_RETIRED/CAPABILITY_REGISTRY_COMPATIBILITY_FAILED o ca 3 noi:
+      capability-registry-events.yaml:7,8,10 + capability-registry.yaml:104,105,107 +
+      registry.md:145) va #30 (C011 capability-events.yaml:5 comment '# nguon: C009
+      capability-state-events.yaml (6 event types)'). Verify may (PyYAML 6.0.3 + jsonschema
+      4.26.0 + grep): #29 FIXED - cross-item duplicate = 0 (CAPABILITY_REGISTRY_* chi xuat hien
+      trong C014, 0 noi khac; CAPABILITY_DEPRECATED/CAPABILITY_RETIRED chi C009 so huu + C011
+      definition_events la reference co nguon comment; CAPABILITY_COMPATIBILITY_FAILED chi C013);
+      #30 FIXED - C011 YAML co comment nguon C009 (khop md observability.md:52). 175/175 YAML
+      parse PASS 0 ParserError; 20/20 canonical schema Draft202012 strict VALID 0 errors; grep
+      'S011 reuse' toan SPEC-003 = 0; 'immutable (P005)' = 0 (P005 chi dung Event Driven o
+      C005/C020/C002 - DUNG, immutable = P010 o C011/C016/C019); version 1.0.0 dong nhat
+      175/175 YAML. Single-definition: 0 cross-item conflict (49 event types; C011
+      definition_events la reference co comment nguon, khong phai redefine). Event count claims
+      md khop YAML 9/9 (C009 6, C013 7, C014 6, C015 6, C016 5, C017 6, C018 5, C019 5, C020 3).
+      Upstream refs deu ton tai (S009 ST-005/012/013, S010 EF004/EF007, S011 OB003A/009/010/
+      011A, S012 POL-RETRY-001/TIMEOUT-001/APPROVAL-001/ISOL-001/SEC-001/RESACC-001, S013
+      GV010/GV011A, S014 RG004/RG005A, S015 RS003/004/005, S016 CM006/008 - grep toan OK).
+      Verdict per muc (Decision Matrix): 20/20 PASS (0 CRITICAL, 0 MAJOR) - C005/C006/C008/
+      C009/C010/C012/C014/C015: Rev1 -> Completed count 1 -> 2 (lifecycle giu Review);
+      C001-C004/C007/C011/C013/C016-C020 giu Completed/count 2 (da 2-pass tu REV-131, khong
+      doi). C014: GO recheck_required (MAJOR #29 FIXED - hoan tat TRG-002). KHONG auto-freeze
+      (type rev1, khong phai revfull - chi revfull PASS + review.status Completed moi freeze).
+      Cascade: khong doi event types/key/contract o muc khac (rename noi bo C014; SPEC-004 khong
+      ref CAPABILITY_REGISTRY_* - grep 0 matches) -> cascade_review []. SLA: TRG-006 khong ap
+      (draft 1 ngay), TRG-007 chua ap. Next: toan bo 20/20 Completed/count 2 - chay /review
+      SPEC-003 revfull de auto-freeze.
+    score:
+      coverage: 98
+      quality: 98
+      consistency: 100
+      governance: 98
+      overall: 99
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 0
+      MINOR: 0
+      INFO: 1
+    started: "2026-08-09T07:14:28"
+    finished: "2026-08-09T07:14:28"
+    cascade_review: []
+    report_path: docs/governance/reviews/REV-SPEC-003-SPEC003-rev1-20260809-071427.md
+  - review_id: REV-20260809-133
+    spec: SPEC-003
+    item: SPEC-003
+    name: Capability System (whole-SPEC)
+    type: revfull
+    mode: revfull (whole-SPEC deep research — 20/20 Completed/count 2 — auto-freeze)
+    verdict: PASS
+    note: >
+      revfull toan SPEC-003 (Capability System, 20 muc C001-C020) — deep research sau khi
+      SPEC-003 dat 20/20 Completed/count 2 qua 3 vong rev1 (REV-130 FAIL -> REV-131 CONDITIONAL
+      -> REV-132 PASS). Verify may (PyYAML 6.0.3 + jsonschema 4.26.0 + grep + git): 175/175 YAML
+      parse PASS 0 ParserError; 20/20 canonical schema Draft202012 strict VALID 0 errors (C008
+      capability-data.schema.json <-> capability-data-model.yaml, C009 capability.schema.json <->
+      capability-state-machine.yaml — ten base khac nhau deu VALID); grep 'S011 reuse' toan
+      SPEC-003 = 0; 'immutable (P005)' = 0, 'immutable (P010)' = 14; version 1.0.0 dong nhat
+      175/175 YAML. Single-definition: 0 cross-item conflict (CAPABILITY_REGISTRY_* chi C014 3
+      noi: capability-registry-events.yaml + capability-registry.yaml + registry.md;
+      CAPABILITY_REGISTERED/UPDATED/RESOLUTION_FAILED chi C014; CAPABILITY_COMPATIBILITY_FAILED
+      chi C013; CAPABILITY_DEPRECATED/RETIRED chi C009 + C011 definition_events la reference co
+      comment nguon C009). Event count claim md khop YAML 9/9 (C009 6, C013 7, C014 6, C015 6,
+      C016 5, C017 6, C018 5, C019 5, C020 3). Upstream refs deu ton tai: S009 ST-005/012/013,
+      S010 EF004/EF007, S011 OB003A/009/010/011A (+ events.yaml model.fields co correlation_id),
+      S012 POL-RETRY-001/TIMEOUT-001/APPROVAL-001/ISOL-001/SEC-001/RESACC-001, S013 GV010/GV011A,
+      S014 RG004/RG005A, S015 RS003/004/005, S016 CM006/008. Git history: branch NewVersion; git
+      blame xac nhan rename C014 3 event (#29 REV-131) la uncommitted 2026-08-09 07:45 — diff chi
+      12 file 20 insertions/20 deletions (version 1.0->1.0.0 + rename noi bo), khong breaking;
+      C011 comment nguon C009 (#30) khop md observability.md:52; validator spec003-validator.ps1
+      khong hardcode C014 event types (chi ref C009 6 events + C014 file list). System-level
+      (cascade impact): SPEC-004 ref SPEC-003 o 45 files nhung grep CAPABILITY_REGISTRY_/
+      CAPABILITY_DEPRECATED/CAPABILITY_RETIRED/CAPABILITY_COMPATIBILITY_FAILED trong SPEC-004 = 0
+      matches — khong bi anh huong rename; SPEC-001 S003 responsibilities.md:43 ref SPEC-003;
+      SPEC-002 0 ref; validators khong hardcode event type -> cascade_review []. Verdict per muc
+      (Decision Matrix): 20/20 PASS (0 CRITICAL, 0 MAJOR). AUTO-FREEZE (revfull PASS + review.
+      status Completed/count 2 da du 2-pass) -> lifecycle Review -> Frozen truc tiep (khong can
+      Approved/POLICY-001) + frozen: 2026-08-09 cho toan bo 20 muc; review.status giu
+      Completed/count 2 (khong tang count). Con INFO ke thua khong chan: frontmatter md thieu
+      status field (REV-130 #28/REV-132 #31), README.md + SPEC.yaml status Draft lech (se cap
+      nhat khi can theo POLICY-002). SLA: TRG-006 khong ap (draft 1 ngay), TRG-007 chua ap.
+      Next: SPEC-004 (Agent System) review; chay /doctor de kiem tra health toan he thong.
+    score:
+      coverage: 98
+      quality: 98
+      consistency: 100
+      governance: 98
+      overall: 99
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 0
+      MINOR: 0
+      INFO: 3
+    started: "2026-08-09T07:47:26"
+    finished: "2026-08-09T07:47:26"
+    cascade_review: []
+    report_path: docs/governance/reviews/REV-SPEC-003-SPEC003-revfull-20260809-074726.md
+  - review_id: REV-20260809-134
+    spec: SPEC-004
+    item: SPEC-004
+    name: Agent System
+    type: rev1
+    mode: rev1 (whole-SPEC review lan dau — 20 muc A001-A020, moi khoi tao tracker)
+    verdict: FAIL
+    note: >
+      rev1 whole-SPEC tren SPEC-004 (Agent System, 20 muc A001-A020 + Appendix, tat ca
+      Draft/NotReviewed/count 0 — chua co entry tracker, not_started_specs truoc review).
+      Verify may (PyYAML 6.0.3 + jsonschema 4.26.0 + grep): 175/175 YAML SPEC-004 -> 8
+      PARSE-ERR CRITICAL (cung lop SPEC-003 REV-130 #01 / SPEC-001 S003/S005/S006/S008):
+      #01 A005 architecture.yaml:115 communication_rules note:, #02 A006 components.yaml:203
+      not_in_runtime note:, #03 A008 agent-data-model.yaml:50 dependencies note:, #04 A009
+      agent-transition-triggers.yaml:6 run_triggers, #05 A010 agent-execution-flow.yaml:22
+      stages note:, #06 A012 agent-policies.yaml:26 categories note:, #07 A014
+      agent-registry.yaml:24 categories note:, #08 A015 agent-resources.yaml:23 categories
+      note: — file canonical khong parse duoc bang may. 4 SCHEMA-FAIL MAJOR (#09-#12, cung
+      lop SPEC-003 REV-130 #02 / W018/W019/W020 ': ' chua quote -> mapping vs schema string):
+      A011 agent-observability.yaml:53 evolution_integration[0] 1 err, A018 agent-evolution.yaml:47-49
+      approval[0-2] 3 errs, A019 agent-doctor.yaml:39-45 check_sources[0-6] 7 errs, A020
+      agent-dashboard.yaml:50 refresh[0] 1 err. MAJOR #13 COMPLIANCE: 7 vi tri 'immutable
+      (P005)' sai (P005 = Event Driven, immutable = P010) — A011 agent-events.yaml:14 +
+      observability.md:55, A016 agent-compliance-report.yaml:7 + compliance.md:132, A019
+      agent-doctor-report.yaml:7 + doctor.md:91,143 (cung lop W016#02/W019#03/C011/C016/C019).
+      MAJOR #14 CONSISTENCY single-definition: A014 agent-registry-events.yaml:7,8,10 khai bao
+      lai 3 event do muc khac so huu — AGENT_DEPRECATED/AGENT_RETIRED (A009 agent-state-events.yaml:8,10),
+      AGENT_COMPATIBILITY_FAILED (A013 agent-governance-events.yaml:11) — cung lop #29 C014 da
+      fix (doi ten CAPABILITY_REGISTRY_*); can doi ten AGENT_REGISTRY_DEPRECATED/RETIRED/
+      COMPATIBILITY_FAILED dong nhat 3 noi (md + registry.yaml + events.yaml). MINOR #15:
+      version 1.0 (160 file) vs 1.0.0 (19 canonical) khong nhat quan. MINOR #16 TRACEABILITY:
+      A011 agent-events.yaml:4-9 definition_events re-list 6 AGENT_* event cua A009 khong
+      comment nguon trong YAML (md observability.md:52 ghi (A009)) — cung lop #30 C011. INFO
+      #17: frontmatter md thieu status field (theo tien le khong chan). Tich cuc: grep 'S011
+      reuse' toan SPEC-004 = 0 (khong tuyen bo reuse sai); upstream refs deu ton tai (S009
+      ST-* 109, S010 EF004 4, S011 OB003A/005/009/010 10, S012 POL-* 46, S013 GV010/GV011A 15,
+      S014 RG004/RG005A 9, S015 RS003/004/005 7, S016 CM006/008 4, SPEC-003 114 matches);
+      8/18 canonical schema VALID; A002 counts khop (16 FR/12 NFR/6 AC/6 AAR); md structure
+      20/20 sections day du; A001 vision khong lan forward-ref loi. Verdict toan SPEC: FAIL
+      (8 CRITICAL >= 1 -> Decision Matrix) -> KHONG tang count, KHONG doi trang thai: 20 muc
+      giu Draft/NotReviewed/count 0. Tracker: khoi tao entries A001-A020 (lifecycle Draft,
+      review {status: NotReviewed, count: 0}) + xoa SPEC-004 khoi not_started_specs. Cascade:
+      A009/A011/A013/A014 gan recheck_required: true (event single-definition + re-list — can
+      regression TRG-002 sau fix), khong doi review.status. SLA: TRG-006 khong ap (draft 1
+      ngay), TRG-007 chua ap. Next: fix 8 CRITICAL (comment note: trong block sequence —
+      precedent ADR-007/ADR-006/SPEC-003 REV-130) + 4 MAJOR schema (quote ': ') + #13 P005->
+      P010 + #14 doi ten 3 event A014 -> chay lai /review SPEC-004 rev1 (xac nhan fix, advance
+      Rev1).
+    score:
+      coverage: 90
+      quality: 60
+      consistency: 78
+      governance: 80
+      overall: 77
+    severity_counts:
+      CRITICAL: 8
+      MAJOR: 6
+      MINOR: 2
+      INFO: 1
+    started: "2026-08-09T07:50:00"
+    finished: "2026-08-09T07:50:00"
+    cascade_review: [A009, A011, A013, A014]
+    report_path: docs/governance/reviews/REV-SPEC-004-SPEC004-rev1-20260809-075000.md
+  - review_id: REV-20260809-135
+    spec: SPEC-004
+    item: SPEC-004
+    name: Agent System (whole-SPEC)
+    type: rev1
+    mode: "rev1 (whole-SPEC re-review lan 2 — xac nhan fix 17 findings REV-134). id_note: history 134 entries (max REV-20260809-134) — dung 135."
+    verdict: PASS
+    note: >
+      rev1 lan 2 toan SPEC-004 (Agent System, 20 muc A001-A020). Verify may
+      (PyYAML 6.0.3 + jsonschema 4.26.0 + grep): 175/175 YAML parse PASS 0 ParserError
+      (8 CRITICAL #01-#08 da FIXED — A005/A006/A008/A009/A010/A012/A014/A015 note: -> comment,
+      A005 them note thu 2 o constraints cung da comment); 18/18 canonical schema strict VALID
+      (4 MAJOR #09-#12 da FIXED — A011 evolution_integration, A018 approval[0-2], A019
+      check_sources[0-6], A020 refresh[0] quote ': '; them cung lop A010 principles[0], A012
+      philosophy/principles/responsibility_chain 8 item, A015 principles 5 item); 'immutable
+      (P005)' = 0 (3 MAJOR #13 da FIXED — A011/A016/A019 7 vi tri P005 -> P010); single-definition
+      het conflict (MAJOR #14 da FIXED — A014 doi ten 3 event -> AGENT_REGISTRY_DEPRECATED/
+      AGENT_REGISTRY_RETIRED/AGENT_REGISTRY_COMPATIBILITY_FAILED dong nhat 3 noi registry.yaml +
+      registry-events.yaml + registry.md; AGENT_DEPRECATED/RETIRED chi con o owner A009 + def-ref
+      A011 co nguon comment, AGENT_COMPATIBILITY_FAILED chi A013 — 0 collision); version 1.0.0
+      dong nhat (MINOR #15 da FIXED — 156 dong version: "1.0" -> 1.0.0, grep = 0); MINOR #16 da
+      FIXED — A011 agent-events.yaml comment '# nguon: A009 agent-state-events.yaml (6 event
+      types)' (precedent #30 C011). INFO #17 frontmatter md giu nguyen. Tich cuc: grep 'S011
+      reuse' = 0; upstream refs deu ton tai; A002 counts khop; md 20/20 sections day du.
+      Verdict per muc (Decision Matrix): 20/20 PASS (0 CRITICAL, 0 MAJOR) -> NotReviewed ->
+      Rev1/count 1, lifecycle Draft -> Review (type rev1 khong auto-freeze). GO recheck_required
+      A009/A011/A013/A014 (MAJOR da fix — hoan tat TRG-002). Cascade: rename noi bo A014,
+      khong doi contract o muc khac. SLA: TRG-006/007 khong ap.
+    score:
+      coverage: 97
+      quality: 95
+      consistency: 97
+      governance: 97
+      overall: 96
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 0
+      MINOR: 0
+      INFO: 1
+    started: "2026-08-09T08:08:00"
+    finished: "2026-08-09T08:08:53"
+    cascade_review: [A009, A011, A013, A014]
+    report_path: docs/governance/reviews/REV-SPEC-004-SPEC004-rev1-20260809-080853.md
+  - review_id: REV-20260809-136
+    spec: SPEC-004
+    item: SPEC-004
+    name: Agent System (whole-SPEC)
+    type: rev1
+    mode: "rev1 (whole-SPEC re-review lan 3 — pass 2, hoan tat 2-pass). id_note: history 135 entries (max REV-20260809-135) — dung 136."
+    verdict: PASS
+    note: >
+      rev1 lan 3 toan SPEC-004 (Agent System, 20 muc A001-A020) — pass thu 2 (sau REV-135
+      PASS). Khong co thay doi source giua REV-135 va REV-136 (chi tracker/history/index).
+      Verify may lap lai (PyYAML 6.0.3 + jsonschema 4.26.0 + grep): 175/175 YAML parse PASS,
+      18/18 canonical schema VALID, 'immutable (P005)' = 0, version 1.0.0 dong nhat,
+      single-definition 0 conflict (AGENT_REGISTRY_* chi A014; AGENT_DEPRECATED/RETIRED chi
+      A009 + def-ref A011 co nguon; AGENT_COMPATIBILITY_FAILED chi A013). Verdict per muc
+      (Decision Matrix): 20/20 PASS (0 CRITICAL, 0 MAJOR) -> Rev1 -> Completed / count 1 -> 2
+      (lifecycle giu Review — type rev1 khong auto-freeze). recheck_required: khong con.
+      SLA: TRG-006/007 khong ap. Next: revfull (du 2-pass -> auto-freeze).
+    score:
+      coverage: 97
+      quality: 95
+      consistency: 97
+      governance: 97
+      overall: 96
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 0
+      MINOR: 0
+      INFO: 1
+    started: "2026-08-09T08:10:00"
+    finished: "2026-08-09T08:11:00"
+    cascade_review: []
+    report_path: docs/governance/reviews/REV-SPEC-004-SPEC004-rev1-20260809-081100.md
+  - review_id: REV-20260809-137
+    spec: SPEC-004
+    item: SPEC-004
+    name: Agent System (whole-SPEC)
+    type: revfull
+    mode: "revfull (whole-SPEC deep research — 20/20 Completed/count 2 — auto-freeze). id_note: history 136 entries (max REV-20260809-136) — dung 137."
+    verdict: PASS
+    note: >
+      revfull toan SPEC-004 (Agent System, 20 muc A001-A020) — deep research sau 3 vong
+      rev1 (REV-134 FAIL -> REV-135 PASS -> REV-136 PASS, 20/20 Completed/count 2). Verify
+      may (PyYAML 6.0.3 + jsonschema 4.26.0 + grep + git): 175/175 YAML parse PASS;
+      18/18 canonical schema strict VALID; 'immutable (P005)' = 0; version 1.0.0 dong nhat;
+      single-definition 0 cross-item conflict (AGENT_REGISTRY_* chi A014 3 noi;
+      AGENT_DEPRECATED/RETIRED chi A009 + A011 def-ref co nguon; AGENT_COMPATIBILITY_FAILED
+      chi A013; 47 event types A009-A020, 0 collision). Event count claims md khop YAML 9/9
+      (A009 6, A013 7, A014 6, A015 6, A016 5, A017 6, A018 5, A019 5, A020 3 — ca events.yaml
+      + canonical). Upstream refs deu ton tai (S009-S016, SPEC-003). Git: uncommitted fixes
+      2026-08-09 (version/note/quote/P005->P010/rename A014) — noi bo SPEC-004, khong breaking;
+      SPEC-005 ref SPEC-004 chi o muc entity AgentRef (R008), khong ref event types — an toan.
+      Verdict per muc (Decision Matrix): 20/20 PASS (0 CRITICAL, 0 MAJOR) -> AUTO-FREEZE
+      (revfull PASS + Completed/count 2) -> lifecycle Review -> Frozen truc tiep 2026-08-09
+      (khong qua Approved/POLICY-001). cascade_review: []. SLA: khong trigger.
+    score:
+      coverage: 97
+      quality: 96
+      consistency: 97
+      governance: 97
+      overall: 97
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 0
+      MINOR: 0
+      INFO: 1
+    started: "2026-08-09T08:12:00"
+    finished: "2026-08-09T08:13:30"
+    cascade_review: []
+    report_path: docs/governance/reviews/REV-SPEC-004-SPEC004-revfull-20260809-081330.md

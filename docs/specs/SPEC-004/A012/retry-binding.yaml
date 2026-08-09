@@ -1,6 +1,6 @@
 # SPEC-004 A012 - Retry Binding (APB-001 -> POL-RETRY-001)
 ---
-version: "1.0"
+version: "1.0.0"
 binding:
   id: APB-001
   policy_ref: POL-RETRY-001 (S012)

@@ -1,6 +1,6 @@
 # SPEC-003 C008 - Capability Identities
 ---
-version: "1.0"
+version: "1.0.0"
 identities:
   Capability ID: toan cuc, khong doi
   Definition ID: toan cuc, khong doi khi Published

@@ -1,6 +1,6 @@
 # SPEC-004 A012 - Agent Policy Traceability (S012 RP015)
 ---
-version: "1.0"
+version: "1.0.0"
 records:
   fields: [binding_id, policy_ref, agent_id, execution_id, correlation_id, parameters, result, timestamp]
 rules:

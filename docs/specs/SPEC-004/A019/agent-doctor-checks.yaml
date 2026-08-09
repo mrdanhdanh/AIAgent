@@ -1,6 +1,6 @@
 # SPEC-004 A019 - Agent Doctor Checks (tham chieu, khong dinh nghia lai)
 ---
-version: "1.0"
+version: "1.0.0"
 groups:
   - source: A011 Observability
     count: 5

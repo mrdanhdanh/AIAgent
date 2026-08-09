@@ -1,6 +1,6 @@
-# SPEC-003 C011 - Capability Audit (S011 reuse)
+# SPEC-003 C011 - Capability Audit (event model: S011)
 ---
-version: "1.0"
+version: "1.0.0"
 properties:
   - Append Only
   - Immutable

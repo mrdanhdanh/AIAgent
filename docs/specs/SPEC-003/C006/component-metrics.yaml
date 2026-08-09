@@ -1,6 +1,6 @@
 # SPEC-003 C006 - Component Metrics
 ---
-version: "1.0"
+version: "1.0.0"
 metrics:
   CCP-001: Capability Completion Rate
   CCP-002: Declaration Coverage

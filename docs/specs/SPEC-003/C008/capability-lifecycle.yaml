@@ -1,5 +1,5 @@
 # SPEC-003 C008 - Capability Lifecycle
 ---
-version: "1.0"
+version: "1.0.0"
 definition: [Draft, Published, Deprecated, Retired]
 run: [Idle, Assigned, Running, Completed]

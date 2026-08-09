@@ -1,6 +1,6 @@
 # SPEC-003 C006 - Component Mapping (CCP -> Layer -> Domain)
 ---
-version: "1.0"
+version: "1.0.0"
 mapping:
   CCP-001: { layer: Command, domain: Execution }
   CCP-002: { layer: Declaration, domain: Definition }

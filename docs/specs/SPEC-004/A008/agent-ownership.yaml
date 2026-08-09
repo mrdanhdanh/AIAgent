@@ -1,6 +1,6 @@
 # SPEC-004 A008 - Agent Ownership
 ---
-version: "1.0"
+version: "1.0.0"
 ownership:
   Agent: Agent Team
   AgentDefinition: Agent Team

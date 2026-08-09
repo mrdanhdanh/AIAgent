@@ -1,6 +1,6 @@
 # SPEC-004 A020 - Agent Dashboard Read Model
 ---
-version: "1.0"
+version: "1.0.0"
 read_model:
   fields: [id, timestamp, agent_version, views, sources, refresh]
 rules:

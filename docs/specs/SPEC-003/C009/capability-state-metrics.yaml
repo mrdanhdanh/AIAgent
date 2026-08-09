@@ -1,6 +1,6 @@
 # SPEC-003 C009 - Capability State Metrics
 ---
-version: "1.0"
+version: "1.0.0"
 metrics:
   capability_state_distribution: {}
   invalid_transitions: 0

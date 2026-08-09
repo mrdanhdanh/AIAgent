@@ -1,6 +1,6 @@
 # SPEC-003 C016 - Capability Compliance Metrics
 ---
-version: "1.0"
+version: "1.0.0"
 metrics:
   capability_compliance_score: 0
   passed_rules: 0

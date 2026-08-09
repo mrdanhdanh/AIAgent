@@ -1,6 +1,6 @@
 # SPEC-004 A007 - Contract Mapping (ACT -> Component)
 ---
-version: "1.0"
+version: "1.0.0"
 mapping:
   ACT-001: [ACP-001]
   ACT-002: [ACP-002]

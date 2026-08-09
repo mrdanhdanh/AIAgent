@@ -1,6 +1,6 @@
 # SPEC-003 C018 - Capability Evolution Approval Gate (C013)
 ---
-version: "1.0"
+version: "1.0.0"
 gate:
   - Low impact: auto-approve (Strict rules).
   - Medium impact: Agent approval.

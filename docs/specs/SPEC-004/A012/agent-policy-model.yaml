@@ -1,6 +1,6 @@
 # SPEC-004 A012 - Canonical Agent Policy Binding
 ---
-version: "1.0"
+version: "1.0.0"
 binding:
   id:
   agent:

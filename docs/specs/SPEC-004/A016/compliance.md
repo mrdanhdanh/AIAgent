@@ -129,7 +129,7 @@ report:
   fields: [id, timestamp, agent_version, matrix, score, status, certification, evidence]
 ```
 
-Report immutable (P005).
+Report immutable (P010).
 
 ## AMC014 — Machine-readable
 

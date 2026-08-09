@@ -1,7 +1,7 @@
 # SPEC-004 A013 - Agent Governance Stack
 # Kien truc 6 tang (tham chieu S013 GV003A).
 ---
-version: "1.0"
+version: "1.0.0"
 stack:
   - Constitution
   - Boundary (A004)

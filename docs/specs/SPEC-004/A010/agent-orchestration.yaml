@@ -1,6 +1,6 @@
 # SPEC-004 A010 - Agent Orchestration Flow
 ---
-version: "1.0"
+version: "1.0.0"
 flow:
   - Request (agent + capability)
   - Resolve capability (SPEC-003 qua Registry S014)

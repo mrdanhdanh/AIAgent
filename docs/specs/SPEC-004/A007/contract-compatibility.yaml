@@ -1,6 +1,6 @@
 # SPEC-004 A007 - Contract Compatibility
 ---
-version: "1.0"
+version: "1.0.0"
 compatibility:
   ACT-001: [1.x]
   ACT-002: [1.x]

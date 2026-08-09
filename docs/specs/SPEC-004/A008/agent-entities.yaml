@@ -1,6 +1,6 @@
 # SPEC-004 A008 - Agent Entities (15 ENT)
 ---
-version: "1.0"
+version: "1.0.0"
 entities:
   ENT-A001: { name: Agent, kind: AggregateRoot, owner: Agent, immutable: false }
   ENT-A002: { name: AgentDefinition, kind: Entity, owner: Agent, immutable: true }

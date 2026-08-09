@@ -102,7 +102,7 @@ Không evidence → Rejected.
 
 - CAPABILITY_EVOLUTION_PROPOSED · APPROVED · REJECTED · APPLIED · ROLLED_BACK.
 
-> S011 reuse trực tiếp.
+> C018 định nghĩa 5 event types — S011 cung cấp event model (fields, correlation_id).
 
 ## CVE012 — Evolution Metrics
 

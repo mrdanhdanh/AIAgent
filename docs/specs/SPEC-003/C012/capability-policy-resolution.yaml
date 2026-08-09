@@ -1,6 +1,6 @@
 # SPEC-003 C012 - Capability Policy Resolution (S012 RP013)
 ---
-version: "1.0"
+version: "1.0.0"
 flow:
   - Collect binding cua Capability/Resolution (trigger khop)
   - Kiem tra binding Active (lifecycle)

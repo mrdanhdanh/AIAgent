@@ -1,6 +1,6 @@
 # SPEC-004 A002 - Requirements Index
 ---
-version: "1.0"
+version: "1.0.0"
 index:
   - id: AFR-001
     type: functional

@@ -1,6 +1,6 @@
-# SPEC-003 C011 - Capability Correlation (S011 reuse)
+# SPEC-003 C011 - Capability Correlation (event model: S011)
 ---
-version: "1.0"
+version: "1.0.0"
 model:
   fields: [capability_id, execution_id, correlation_id, lineage_id, parent_id]
 rules:

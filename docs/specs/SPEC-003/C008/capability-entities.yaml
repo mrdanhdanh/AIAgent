@@ -1,6 +1,6 @@
 # SPEC-003 C008 - Capability Entities (15 ENT)
 ---
-version: "1.0"
+version: "1.0.0"
 entities:
   ENT-C001: { name: Capability, kind: AggregateRoot, owner: Capability, immutable: false }
   ENT-C002: { name: CapabilityDefinition, kind: Entity, owner: Capability, immutable: true }

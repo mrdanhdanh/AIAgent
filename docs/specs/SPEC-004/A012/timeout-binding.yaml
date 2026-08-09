@@ -1,6 +1,6 @@
 # SPEC-004 A012 - Timeout Binding (APB-002 -> POL-TIMEOUT-001)
 ---
-version: "1.0"
+version: "1.0.0"
 binding:
   id: APB-002
   policy_ref: POL-TIMEOUT-001 (S012)

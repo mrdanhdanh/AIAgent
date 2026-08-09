@@ -1,4 +1,4 @@
 # SPEC-003 C014 - Capability Registry Domains
 ---
-version: "1.0"
+version: "1.0.0"
 domains: [Capability Domain, Definition Domain, Binding Domain]

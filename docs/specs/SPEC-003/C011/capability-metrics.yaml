@@ -1,6 +1,6 @@
-# SPEC-003 C011 - Capability Metrics (S011 reuse)
+# SPEC-003 C011 - Capability Metrics (event model: S011)
 ---
-version: "1.0"
+version: "1.0.0"
 metrics:
   capability_count: 0
   resolution_count: 0

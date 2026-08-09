@@ -1,6 +1,6 @@
 # SPEC-003 C016 - Capability Validation Rules (12)
 ---
-version: "1.0"
+version: "1.0.0"
 rules:
   - id: CVR-001
     source: C009

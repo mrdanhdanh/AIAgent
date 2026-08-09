@@ -1,6 +1,6 @@
 # SPEC-003 C014 - Capability Registry Metrics
 ---
-version: "1.0"
+version: "1.0.0"
 metrics:
   capability_entries: 0
   active_capabilities: 0

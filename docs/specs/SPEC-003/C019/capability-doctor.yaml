@@ -36,13 +36,13 @@ scope:
     - Agent Internal State
     - Plugin Internal State
 check_sources:
-  - C011 Observability: 5 checks
-  - C013 Governance: 6 checks
-  - C014 Registry: 7 checks
-  - C015 Resources: 5 checks
-  - C016 Compliance: 12 rules
-  - C017 Extensions: 6 checks
-  - C018 Evolution: 6 checks
+  - "C011 Observability: 5 checks"
+  - "C013 Governance: 6 checks"
+  - "C014 Registry: 7 checks"
+  - "C015 Resources: 5 checks"
+  - "C016 Compliance: 12 rules"
+  - "C017 Extensions: 6 checks"
+  - "C018 Evolution: 6 checks"
 health_score: [Healthy, Degraded, Unhealthy]
 pipeline:
   - Collect (machine-readable)

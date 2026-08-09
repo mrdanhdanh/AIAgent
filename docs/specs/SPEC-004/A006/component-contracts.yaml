@@ -1,6 +1,6 @@
 # SPEC-004 A006 - Component Contracts
 ---
-version: "1.0"
+version: "1.0.0"
 contracts:
   Agent Contract: [ACP-001]
   Declaration Contract: [ACP-002]

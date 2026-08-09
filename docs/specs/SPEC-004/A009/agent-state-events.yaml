@@ -1,6 +1,6 @@
 # SPEC-004 A009 - Agent State Events (S011 reuse)
 ---
-version: "1.0"
+version: "1.0.0"
 events:
   - AGENT_VALIDATING
   - AGENT_PUBLISHED

@@ -1,6 +1,6 @@
 # SPEC-003 C002 - Requirements Index
 ---
-version: "1.0"
+version: "1.0.0"
 index:
   - id: CFR-001
     type: functional

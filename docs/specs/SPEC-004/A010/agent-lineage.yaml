@@ -1,6 +1,6 @@
 # SPEC-004 A010 - Agent Lineage (S010 EF023)
 ---
-version: "1.0"
+version: "1.0.0"
 lineage:
   - Root Agent (khong co parent)
   - Agent trong Workflow (SPEC-002)

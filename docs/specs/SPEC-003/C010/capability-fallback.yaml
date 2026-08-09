@@ -1,6 +1,6 @@
 # SPEC-003 C010 - Capability Fallback Flow (CFR-016)
 ---
-version: "1.0"
+version: "1.0.0"
 flow:
   - Resolution Failed (S014 RG005A)
   - Kiem tra fallback list (khai bao)

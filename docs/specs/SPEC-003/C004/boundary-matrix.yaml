@@ -1,6 +1,6 @@
 # SPEC-003 C004 - Boundary Matrix (Boundary x Severity)
 ---
-version: "1.0"
+version: "1.0.0"
 matrix:
   Critical: [CB001-declaration, CB002-registry, CB003-validation, CB004-resolution, CB007-mapping, CB009-governance]
   High: [CB005-interface, CB006-dependency, CB008-policy]

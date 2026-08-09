@@ -1,6 +1,6 @@
 # SPEC-003 C004 - Mapping Boundary (CB007)
 ---
-version: "1.0"
+version: "1.0.0"
 name: Mapping Boundary
 severity: Critical
 allowed:

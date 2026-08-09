@@ -52,7 +52,7 @@ agent: general
 - **Definition-level**: CAPABILITY_VALIDATING · CAPABILITY_PUBLISHED · CAPABILITY_REJECTED · CAPABILITY_DEPRECATED · CAPABILITY_REACTIVATED · CAPABILITY_RETIRED (C009).
 - **Run-level**: EXECUTION_* (S011 — Runtime).
 
-**Rules:** Event immutable (P005); chỉ append; mọi transition sinh Event (C009); có correlation_id.
+**Rules:** Event immutable (P010); chỉ append; mọi transition sinh Event (C009); có correlation_id.
 
 ## CO005 — Capability Metrics
 
@@ -108,7 +108,7 @@ Kiểm tra: Missing Capability Event · Missing Capability Metrics · Broken Cap
 Created → Published → Consumed → Archived
 ```
 
-(S011 reuse)
+(S011 event model — lifecycle từ S011 events.yaml)
 
 ## CO013 — Metrics Lifecycle
 
@@ -116,7 +116,7 @@ Created → Published → Consumed → Archived
 Collected → Aggregated → Published
 ```
 
-(S011 reuse)
+(S011 metrics model — chỉ append)
 
 ## CO014 — Traceability
 

@@ -1,7 +1,7 @@
 # SPEC-003 C010 - Capability Flow Validation
 # Doctor kiem tra.
 ---
-version: "1.0"
+version: "1.0.0"
 checks:
   - Capability khong dang ky trong S014.
   - Capability System tu resolve ngoai Runtime (CB004).

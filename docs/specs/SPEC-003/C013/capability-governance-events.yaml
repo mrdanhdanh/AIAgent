@@ -1,6 +1,6 @@
-# SPEC-003 C013 - Capability Governance Events (S013 + S011 reuse)
+# SPEC-003 C013 - Capability Governance Events (S013 + event model: S011)
 ---
-version: "1.0"
+version: "1.0.0"
 event_types:
   - CAPABILITY_GOVERNANCE_VALIDATED
   - CAPABILITY_BOUNDARY_DENIED

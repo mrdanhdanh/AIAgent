@@ -1,6 +1,6 @@
 # SPEC-003 C009 - Capability Definition States (6)
 ---
-version: "1.0"
+version: "1.0.0"
 initial_state: CST-001
 terminal_states: [CST-005, CST-006]
 states:

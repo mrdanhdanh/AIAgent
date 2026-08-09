@@ -1,6 +1,6 @@
-# SPEC-003 C016 - Capability Compliance Events (S011 reuse)
+# SPEC-003 C016 - Capability Compliance Events (event model: S011)
 ---
-version: "1.0"
+version: "1.0.0"
 event_types:
   - CAPABILITY_COMPLIANCE_PASSED
   - CAPABILITY_COMPLIANCE_FAILED

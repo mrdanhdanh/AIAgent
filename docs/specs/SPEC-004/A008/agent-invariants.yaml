@@ -1,6 +1,6 @@
 # SPEC-004 A008 - Agent Invariants (12)
 ---
-version: "1.0"
+version: "1.0.0"
 invariants:
   - Agent co dung mot Definition.
   - Agent dang ky trong Registry (S014).

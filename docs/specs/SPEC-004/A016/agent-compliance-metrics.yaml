@@ -1,6 +1,6 @@
 # SPEC-004 A016 - Agent Compliance Metrics
 ---
-version: "1.0"
+version: "1.0.0"
 metrics:
   agent_compliance_score: 0
   passed_rules: 0

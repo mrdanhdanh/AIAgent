@@ -1,6 +1,6 @@
 # SPEC-003 C004 - Policy Boundary (CB008)
 ---
-version: "1.0"
+version: "1.0.0"
 name: Policy Boundary
 severity: High
 allowed:

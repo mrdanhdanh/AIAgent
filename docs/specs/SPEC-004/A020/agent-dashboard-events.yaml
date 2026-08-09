@@ -1,6 +1,6 @@
 # SPEC-004 A020 - Agent Dashboard Events (S011 reuse)
 ---
-version: "1.0"
+version: "1.0.0"
 event_types:
   - AGENT_DASHBOARD_VIEWED
   - AGENT_DASHBOARD_REFRESHED

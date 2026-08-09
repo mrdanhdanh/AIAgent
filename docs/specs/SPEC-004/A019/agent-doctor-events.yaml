@@ -1,6 +1,6 @@
 # SPEC-004 A019 - Agent Doctor Events (S011 reuse)
 ---
-version: "1.0"
+version: "1.0.0"
 event_types:
   - AGENT_DOCTOR_RUN
   - AGENT_DOCTOR_PASSED

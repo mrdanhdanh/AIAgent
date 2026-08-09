@@ -1,7 +1,7 @@
 # SPEC-004 A010 - Agent Flow Validation
 # Doctor kiem tra.
 ---
-version: "1.0"
+version: "1.0.0"
 checks:
   - Agent khong dang ky trong S014.
   - Agent System tu chay ngoai Runtime (AB004).

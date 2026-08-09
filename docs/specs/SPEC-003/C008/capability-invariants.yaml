@@ -1,6 +1,6 @@
 # SPEC-003 C008 - Capability Invariants (12)
 ---
-version: "1.0"
+version: "1.0.0"
 invariants:
   - Capability co dung mot Definition.
   - Capability dang ky trong Registry (S014).

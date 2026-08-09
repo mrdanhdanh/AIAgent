@@ -1,6 +1,6 @@
 # SPEC-003 C020 - Capability Dashboard Refresh
 ---
-version: "1.0"
+version: "1.0.0"
 rules:
   - Event Driven (P005): refresh khi co event moi.
   - Khong polling.

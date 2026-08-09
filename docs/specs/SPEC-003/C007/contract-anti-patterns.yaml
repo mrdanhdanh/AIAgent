@@ -1,6 +1,6 @@
 # SPEC-003 C007 - Contract Anti-patterns
 ---
-version: "1.0"
+version: "1.0.0"
 anti_patterns:
   - Contract tra Business Data.
   - Contract hardcode mapping Agent.

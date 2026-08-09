@@ -5,7 +5,7 @@
 # Chỉ lệnh /review được phép cập nhật (append-only history). Schema: review.schema.json.
 ---
 version: "2.0"
-updated: "2026-08-08"
+updated: "2026-08-09"
 convention:
   review_ladder: [NotReviewed, Rev1, Completed]
   document_lifecycle: [Draft, Review, Approved, Frozen, Deprecated, Archived]
@@ -796,6 +796,802 @@ items:
           verdict: PASS
           date: "2026-08-08"
 
+  SPEC-003:
+    C001:
+      name: Capability Vision
+      lifecycle: Frozen
+      created: "2026-08-08"
+      frozen: "2026-08-09"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260809-130
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-131
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-133
+          type: revfull
+          verdict: PASS
+          date: "2026-08-09"
+    C002:
+      name: Capability Requirements
+      lifecycle: Frozen
+      created: "2026-08-08"
+      frozen: "2026-08-09"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260809-130
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-131
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-133
+          type: revfull
+          verdict: PASS
+          date: "2026-08-09"
+    C003:
+      name: Capability Responsibilities
+      lifecycle: Frozen
+      created: "2026-08-08"
+      frozen: "2026-08-09"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260809-130
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-131
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-133
+          type: revfull
+          verdict: PASS
+          date: "2026-08-09"
+    C004:
+      name: Capability Boundaries
+      lifecycle: Frozen
+      created: "2026-08-08"
+      frozen: "2026-08-09"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260809-130
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-131
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-133
+          type: revfull
+          verdict: PASS
+          date: "2026-08-09"
+    C005:
+      name: Capability Architecture
+      lifecycle: Frozen
+      created: "2026-08-08"
+      frozen: "2026-08-09"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260809-130
+          type: rev1
+          verdict: FAIL
+          date: "2026-08-09"
+        - review: REV-20260809-131
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-132
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-133
+          type: revfull
+          verdict: PASS
+          date: "2026-08-09"
+    C006:
+      name: Capability Components
+      lifecycle: Frozen
+      created: "2026-08-08"
+      frozen: "2026-08-09"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260809-130
+          type: rev1
+          verdict: FAIL
+          date: "2026-08-09"
+        - review: REV-20260809-131
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-132
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-133
+          type: revfull
+          verdict: PASS
+          date: "2026-08-09"
+    C007:
+      name: Capability Contracts
+      lifecycle: Frozen
+      created: "2026-08-08"
+      frozen: "2026-08-09"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260809-130
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-131
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-133
+          type: revfull
+          verdict: PASS
+          date: "2026-08-09"
+    C008:
+      name: Capability Data Model
+      lifecycle: Frozen
+      created: "2026-08-08"
+      frozen: "2026-08-09"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260809-130
+          type: rev1
+          verdict: FAIL
+          date: "2026-08-09"
+        - review: REV-20260809-131
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-132
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-133
+          type: revfull
+          verdict: PASS
+          date: "2026-08-09"
+    C009:
+      name: Capability State Machine
+      lifecycle: Frozen
+      created: "2026-08-08"
+      frozen: "2026-08-09"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260809-130
+          type: rev1
+          verdict: FAIL
+          date: "2026-08-09"
+        - review: REV-20260809-131
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-132
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-133
+          type: revfull
+          verdict: PASS
+          date: "2026-08-09"
+    C010:
+      name: Capability Execution Flow
+      lifecycle: Frozen
+      created: "2026-08-08"
+      frozen: "2026-08-09"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260809-130
+          type: rev1
+          verdict: FAIL
+          date: "2026-08-09"
+        - review: REV-20260809-131
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-132
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-133
+          type: revfull
+          verdict: PASS
+          date: "2026-08-09"
+    C011:
+      name: Capability Observability
+      lifecycle: Frozen
+      created: "2026-08-08"
+      frozen: "2026-08-09"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260809-130
+          type: rev1
+          verdict: CONDITIONAL
+          date: "2026-08-09"
+        - review: REV-20260809-131
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-133
+          type: revfull
+          verdict: PASS
+          date: "2026-08-09"
+    C012:
+      name: Capability Policies
+      lifecycle: Frozen
+      created: "2026-08-08"
+      frozen: "2026-08-09"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260809-130
+          type: rev1
+          verdict: FAIL
+          date: "2026-08-09"
+        - review: REV-20260809-131
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-132
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-133
+          type: revfull
+          verdict: PASS
+          date: "2026-08-09"
+    C013:
+      name: Capability Governance
+      lifecycle: Frozen
+      created: "2026-08-08"
+      frozen: "2026-08-09"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260809-130
+          type: rev1
+          verdict: CONDITIONAL
+          date: "2026-08-09"
+        - review: REV-20260809-131
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-133
+          type: revfull
+          verdict: PASS
+          date: "2026-08-09"
+    C014:
+      name: Capability Registry
+      lifecycle: Frozen
+      created: "2026-08-08"
+      frozen: "2026-08-09"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260809-130
+          type: rev1
+          verdict: FAIL
+          date: "2026-08-09"
+        - review: REV-20260809-131
+          type: rev1
+          verdict: CONDITIONAL
+          date: "2026-08-09"
+        - review: REV-20260809-132
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-133
+          type: revfull
+          verdict: PASS
+          date: "2026-08-09"
+    C015:
+      name: Capability Resources
+      lifecycle: Frozen
+      created: "2026-08-08"
+      frozen: "2026-08-09"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260809-130
+          type: rev1
+          verdict: FAIL
+          date: "2026-08-09"
+        - review: REV-20260809-131
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-132
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-133
+          type: revfull
+          verdict: PASS
+          date: "2026-08-09"
+    C016:
+      name: Capability Compliance
+      lifecycle: Frozen
+      created: "2026-08-08"
+      frozen: "2026-08-09"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260809-130
+          type: rev1
+          verdict: CONDITIONAL
+          date: "2026-08-09"
+        - review: REV-20260809-131
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-133
+          type: revfull
+          verdict: PASS
+          date: "2026-08-09"
+    C017:
+      name: Capability Extensions
+      lifecycle: Frozen
+      created: "2026-08-08"
+      frozen: "2026-08-09"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260809-130
+          type: rev1
+          verdict: CONDITIONAL
+          date: "2026-08-09"
+        - review: REV-20260809-131
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-133
+          type: revfull
+          verdict: PASS
+          date: "2026-08-09"
+    C018:
+      name: Capability Evolution
+      lifecycle: Frozen
+      created: "2026-08-08"
+      frozen: "2026-08-09"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260809-130
+          type: rev1
+          verdict: CONDITIONAL
+          date: "2026-08-09"
+        - review: REV-20260809-131
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-133
+          type: revfull
+          verdict: PASS
+          date: "2026-08-09"
+    C019:
+      name: Capability Doctor
+      lifecycle: Frozen
+      created: "2026-08-08"
+      frozen: "2026-08-09"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260809-130
+          type: rev1
+          verdict: CONDITIONAL
+          date: "2026-08-09"
+        - review: REV-20260809-131
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-133
+          type: revfull
+          verdict: PASS
+          date: "2026-08-09"
+    C020:
+      name: Capability Dashboard
+      lifecycle: Frozen
+      created: "2026-08-08"
+      frozen: "2026-08-09"
+      review: { status: Completed, count: 2, inherited: false }
+      history:
+        - review: REV-20260809-130
+          type: rev1
+          verdict: CONDITIONAL
+          date: "2026-08-09"
+        - review: REV-20260809-131
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-133
+          type: revfull
+          verdict: PASS
+          date: "2026-08-09"
+
+  SPEC-004:
+    A001:
+      name: Agent Vision
+      lifecycle: Frozen
+      created: "2026-08-08"
+      frozen: "2026-08-09"
+      review: { status: Completed, count:  2, inherited: false }
+      history:
+        - review: REV-20260809-137
+          type: revfull
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-136
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-135
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+    A002:
+      name: Agent Requirements
+      lifecycle: Frozen
+      created: "2026-08-08"
+      frozen: "2026-08-09"
+      review: { status: Completed, count:  2, inherited: false }
+      history:
+        - review: REV-20260809-137
+          type: revfull
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-136
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-135
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+    A003:
+      name: Agent Responsibilities
+      lifecycle: Frozen
+      created: "2026-08-08"
+      frozen: "2026-08-09"
+      review: { status: Completed, count:  2, inherited: false }
+      history:
+        - review: REV-20260809-137
+          type: revfull
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-136
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-135
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+    A004:
+      name: Agent Boundaries
+      lifecycle: Frozen
+      created: "2026-08-08"
+      frozen: "2026-08-09"
+      review: { status: Completed, count:  2, inherited: false }
+      history:
+        - review: REV-20260809-137
+          type: revfull
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-136
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-135
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+    A005:
+      name: Agent Architecture
+      lifecycle: Frozen
+      created: "2026-08-08"
+      frozen: "2026-08-09"
+      review: { status: Completed, count:  2, inherited: false }
+      history:
+        - review: REV-20260809-137
+          type: revfull
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-136
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-135
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+    A006:
+      name: Agent Components
+      lifecycle: Frozen
+      created: "2026-08-08"
+      frozen: "2026-08-09"
+      review: { status: Completed, count:  2, inherited: false }
+      history:
+        - review: REV-20260809-137
+          type: revfull
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-136
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-135
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+    A007:
+      name: Agent Contracts
+      lifecycle: Frozen
+      created: "2026-08-08"
+      frozen: "2026-08-09"
+      review: { status: Completed, count:  2, inherited: false }
+      history:
+        - review: REV-20260809-137
+          type: revfull
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-136
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-135
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+    A008:
+      name: Agent Data Model
+      lifecycle: Frozen
+      created: "2026-08-08"
+      frozen: "2026-08-09"
+      review: { status: Completed, count:  2, inherited: false }
+      history:
+        - review: REV-20260809-137
+          type: revfull
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-136
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-135
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+    A009:
+      name: Agent State Machine
+      lifecycle: Frozen
+      created: "2026-08-08"
+      frozen: "2026-08-09"
+      review: { status: Completed, count:  2, inherited: false }
+      history:
+        - review: REV-20260809-137
+          type: revfull
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-136
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-135
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+    A010:
+      name: Agent Execution Flow
+      lifecycle: Frozen
+      created: "2026-08-08"
+      frozen: "2026-08-09"
+      review: { status: Completed, count:  2, inherited: false }
+      history:
+        - review: REV-20260809-137
+          type: revfull
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-136
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-135
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+    A011:
+      name: Agent Observability
+      lifecycle: Frozen
+      created: "2026-08-08"
+      frozen: "2026-08-09"
+      review: { status: Completed, count:  2, inherited: false }
+      history:
+        - review: REV-20260809-137
+          type: revfull
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-136
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-135
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+    A012:
+      name: Agent Policies
+      lifecycle: Frozen
+      created: "2026-08-08"
+      frozen: "2026-08-09"
+      review: { status: Completed, count:  2, inherited: false }
+      history:
+        - review: REV-20260809-137
+          type: revfull
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-136
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-135
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+    A013:
+      name: Agent Governance
+      lifecycle: Frozen
+      created: "2026-08-08"
+      frozen: "2026-08-09"
+      review: { status: Completed, count:  2, inherited: false }
+      history:
+        - review: REV-20260809-137
+          type: revfull
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-136
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-135
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+    A014:
+      name: Agent Registry
+      lifecycle: Frozen
+      created: "2026-08-08"
+      frozen: "2026-08-09"
+      review: { status: Completed, count:  2, inherited: false }
+      history:
+        - review: REV-20260809-137
+          type: revfull
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-136
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-135
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+    A015:
+      name: Agent Resources
+      lifecycle: Frozen
+      created: "2026-08-08"
+      frozen: "2026-08-09"
+      review: { status: Completed, count:  2, inherited: false }
+      history:
+        - review: REV-20260809-137
+          type: revfull
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-136
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-135
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+    A016:
+      name: Agent Compliance
+      lifecycle: Frozen
+      created: "2026-08-08"
+      frozen: "2026-08-09"
+      review: { status: Completed, count:  2, inherited: false }
+      history:
+        - review: REV-20260809-137
+          type: revfull
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-136
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-135
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+    A017:
+      name: Agent Extensions
+      lifecycle: Frozen
+      created: "2026-08-08"
+      frozen: "2026-08-09"
+      review: { status: Completed, count:  2, inherited: false }
+      history:
+        - review: REV-20260809-137
+          type: revfull
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-136
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-135
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+    A018:
+      name: Agent Evolution
+      lifecycle: Frozen
+      created: "2026-08-08"
+      frozen: "2026-08-09"
+      review: { status: Completed, count:  2, inherited: false }
+      history:
+        - review: REV-20260809-137
+          type: revfull
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-136
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-135
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+    A019:
+      name: Agent Doctor
+      lifecycle: Frozen
+      created: "2026-08-08"
+      frozen: "2026-08-09"
+      review: { status: Completed, count:  2, inherited: false }
+      history:
+        - review: REV-20260809-137
+          type: revfull
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-136
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-135
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+    A020:
+      name: Agent Dashboard
+      lifecycle: Frozen
+      created: "2026-08-08"
+      frozen: "2026-08-09"
+      review: { status: Completed, count:  2, inherited: false }
+      history:
+        - review: REV-20260809-137
+          type: revfull
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-136
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+        - review: REV-20260809-135
+          type: rev1
+          verdict: PASS
+          date: "2026-08-09"
+
 # created = baseline estimate cho mục chưa review — /review sẽ hiệu chỉnh khi cần.
 
 # Mục chưa tồn tại trong SPEC-001 (SPEC.yaml includes S015-S020)
@@ -803,8 +1599,6 @@ missing_in_spec_001: []
 
 # Toàn bộ SPEC chưa khởi tạo (roadmap docs/specs/README.md)
 not_started_specs:
-  - SPEC-003
-  - SPEC-004
   - SPEC-005
   - SPEC-006
   - SPEC-007
@@ -820,6 +1614,70 @@ not_started_specs:
 
 # Review log — mỗi review /review ghi 1 entry (append-only, đồng bộ review-history.yaml)
 review_log:
+  - review: REV-20260809-137
+    spec: SPEC-004
+    item: SPEC-004
+    type: revfull
+    mode: "revfull (whole-SPEC deep research — 20/20 Completed/count 2 — auto-freeze). id_note: history 136 entries (max REV-20260809-136) — dung 137."
+    verdict: PASS
+    date: "2026-08-09"
+    note: "revfull toan SPEC-004 (Agent System, 20 muc A001-A020) — deep research sau 3 vong rev1 (REV-134 FAIL -> REV-135 PASS -> REV-136 PASS, 20/20 Completed/count 2). Verify may (PyYAML 6.0.3 + jsonschema 4.26.0 + grep + git): 175/175 YAML parse PASS 0 ParserError; 18/18 canonical schema Draft202012 strict VALID; grep 'immutable (P005)' = 0, 'immutable (P010)' = 7; version 1.0.0 dong nhat toan SPEC-004; single-definition 0 cross-item conflict (AGENT_REGISTRY_DEPRECATED/RETIRED/COMPATIBILITY_FAILED chi A014 3 noi; AGENT_DEPRECATED/RETIRED chi A009 + A011 def-ref co nguon comment; AGENT_COMPATIBILITY_FAILED chi A013; 47 event types A009-A020, 0 collision). Event count claims md khop YAML 9/9 (A009 6, A013 7, A014 6, A015 6, A016 5, A017 6, A018 5, A019 5, A020 3 — ca 2 file events.yaml + canonical yaml). Upstream refs deu ton tai (S009 ST-* 109, S010 EF004, S011 OB003A, S012 POL-*, S013 GV010/GV011A, S014 RG004/RG005A, S015 RS003/004/005, S016 CM006/008, SPEC-003 114 matches). Git history: branch NewVersion; uncommitted fixes 2026-08-09 (version 1.0->1.0.0 156 dong, note:->comment, ': ' quote, P005->P010, rename 3 event A014 -> AGENT_REGISTRY_*) — diff noi bo SPEC-004, khong breaking, khong doi contract/event types duoc tham chieu tu ben ngoai; SPEC-005 ref SPEC-004 chi o muc entity AgentRef (R008) — khong ref event type nao (AGENT_* trong SPEC-005 = 0 matches) — rename an toan. System-level: SPEC-001/002/003 la upstream (khong ref event AGENT_*), SPEC-005 (Registry) ref SPEC-004 o R008 (AgentRef/Agent domain) chi dang ky metadata — khong phu thuoc event types; 0 missing item trong SPEC-004 (20/20 sections day du, Appendix 8 AM + agent-models). Verdict per muc (Decision Matrix): 20/20 PASS (0 CRITICAL, 0 MAJOR) -> AUTO-FREEZE (revfull PASS + review.status Completed/count 2 da du 2-pass) -> lifecycle Review -> Frozen truc tiep 2026-08-09 (khong qua Approved/POLICY-001). cascade_review: [] (khong doi gi ben ngoai; recheck_required khong con). SLA: TRG-006/007 khong ap. Next: SPEC-004 da Frozen — /review scan de xem SPEC tiep theo (SPEC-005 Registry da COMPLETE chua review)."
+  - review: REV-20260809-136
+    spec: SPEC-004
+    item: SPEC-004
+    type: rev1
+    mode: "rev1 (whole-SPEC re-review lan 3 — pass 2, hoan tat 2-pass). id_note: history 135 entries (max REV-20260809-135) — dung 136."
+    verdict: PASS
+    date: "2026-08-09"
+    note: "rev1 lan 3 toan SPEC-004 (Agent System, 20 muc A001-A020) — pass thu 2 (sau REV-135 PASS). Khong co thay doi source giua REV-135 va REV-136 (chi tracker/history/index). Verify may lap lai (PyYAML + jsonschema + grep): 175/175 YAML parse PASS, 18/18 canonical schema VALID, 'immutable (P005)' = 0, version 1.0.0 dong nhat, single-definition 0 conflict (AGENT_REGISTRY_* chi A014, AGENT_DEPRECATED/RETIRED chi A009 + def-ref A011 co nguon, AGENT_COMPATIBILITY_FAILED chi A013). Verdict per muc: 20/20 PASS (0 CRITICAL, 0 MAJOR) -> Rev1 -> Completed / count 1 -> 2 (lifecycle giu Review — type rev1 khong auto-freeze). recheck_required: khong con (da GO tu REV-135). SLA: TRG-006/007 khong ap. Next: chay /review SPEC-004 revfull (du 2-pass, verdict PASS -> auto-freeze Frozen truc tiep)."
+  - review: REV-20260809-135
+    spec: SPEC-004
+    item: SPEC-004
+    type: rev1
+    mode: "rev1 (whole-SPEC re-review lan 2 — xac nhan fix 17 findings REV-134). id_note: history 134 entries (max REV-20260809-134) — dung 135."
+    verdict: PASS
+    date: "2026-08-09"
+    note: "rev1 lan 2 toan SPEC-004 (Agent System, 20 muc A001-A020). Verify may (PyYAML 6.0.3 + jsonschema 4.26.0 + grep): 175/175 YAML parse PASS 0 ParserError (8 CRITICAL #01-#08 da FIXED — A005/A006/A008/A009/A010/A012/A014/A015 note: -> comment, A005 them note thu 2 o constraints da comment); 18/18 canonical schema Draft202012 strict VALID 0 errors (4 MAJOR #09-#12 da FIXED — A011 evolution_integration, A018 approval[0-2], A019 check_sources[0-6], A020 refresh[0] quote ': '; them cung lop A010 principles[0], A012 philosophy/principles/responsibility_chain 8 item, A015 principles 5 item); 'immutable (P005)' = 0 (3 MAJOR #13 da FIXED — A011/A016/A019 7 vi tri doi P005 -> P010, P005 chi con dung Event Driven dung nghia); A014 het conflict single-definition (MAJOR #14 da FIXED — doi ten 3 event -> AGENT_REGISTRY_DEPRECATED/AGENT_REGISTRY_RETIRED/AGENT_REGISTRY_COMPATIBILITY_FAILED dong nhat 3 noi registry.yaml:104-107 + registry-events.yaml:7-10 + registry.md:145; AGENT_DEPRECATED/RETIRED chi con o owner A009 + def-ref A011 co nguon comment, AGENT_COMPATIBILITY_FAILED chi A013 — 0 collision); version 1.0.0 dong nhat toan SPEC-004 (MINOR #15 da FIXED — 156 dong version: \"1.0\" -> 1.0.0, grep = 0); MINOR #16 da FIXED — A011 agent-events.yaml comment '# nguon: A009 agent-state-events.yaml (6 event types)' (precedent #30 C011). INFO #17 frontmatter md giu nguyen (theo tien le khong chan). Tich cuc: grep 'S011 reuse' toan SPEC-004 = 0; upstream refs deu ton tai (S009-S016, SPEC-003); event def-ref co nguon; A002 counts khop; md structure 20/20 sections day du. Verdict per muc (Decision Matrix): 20/20 PASS (0 CRITICAL, 0 MAJOR) -> NotReviewed -> Rev1/count 1, lifecycle Draft -> Review (type rev1 khong auto-freeze). GO recheck_required A009/A011/A013/A014 (MAJOR da fix — hoan tat TRG-002). Cascade: khong doi event types/key/contract o muc khac (rename noi bo A014); SPEC-001/002/003 la upstream, SPEC-005+ chua khoi tao. SLA: TRG-006 khong ap (draft 2 ngay), TRG-007 chua ap. Next: fix khong con — chay /review SPEC-004 rev1 lan 3 (Rev1 -> Completed/count 2) sau do /review SPEC-004 revfull de auto-freeze (khi du 2-pass)."
+  - review: REV-20260809-134
+    spec: SPEC-004
+    item: SPEC-004
+    type: rev1
+    mode: "rev1 (whole-SPEC review lan dau — SPEC-004 moi khoi tao tracker). SPEC-004 chua co entry nao (not_started_specs truoc review). id_note: history 133 entries (max REV-20260809-133 — session song song da dung 133 revfull auto-freeze SPEC-003 truoc) — dung 134 (entries.length 133 + 1, grep toan docs 0)."
+    verdict: FAIL
+    date: "2026-08-09"
+    note: "rev1 whole-SPEC tren SPEC-004 (Agent System, 20 muc A001-A020, tat ca Draft/NotReviewed/chua co entry tracker). Verify may (PyYAML 6.0.3 + jsonschema 4.26.0 + grep): 175 YAML SPEC-004, 8 PARSE-ERR — CRITICAL #01-YAML-parse cung lop da fix SPEC-001 S003/S005/S006/S008 + SPEC-003 REV-130: A005 architecture.yaml:115 communication_rules note:, A006 components.yaml:203 not_in_runtime note:, A008 agent-data-model.yaml:50 dependencies note:, A009 agent-transition-triggers.yaml:6 run_triggers, A010 agent-execution-flow.yaml:22 stages note:, A012 agent-policies.yaml:26 categories note:, A014 agent-registry.yaml:24 categories note:, A015 agent-resources.yaml:23 categories note:. 4 SCHEMA-FAIL tren canonical (MAJOR #02 cung lop SPEC-003 REV-130 / W018/W019/W020): A011 agent-observability.yaml:53 evolution_integration[0], A018 agent-evolution.yaml:47-49 approval[0-2], A019 agent-doctor.yaml:39-45 check_sources[0-6], A020 agent-dashboard.yaml:50 refresh[0] — ': ' chua quote parse thanh mapping vs schema string. 7 vi pham 'immutable (P005)' (MAJOR #03 COMPLIANCE cung lop W016#02/W019#03/C011/C016/C019): A011 agent-events.yaml:14 + observability.md:55, A016 agent-compliance-report.yaml:7 + compliance.md:132, A019 agent-doctor-report.yaml:7 + doctor.md:91,143 — P005 = Event Driven, immutable = P010. MAJOR #04 CONSISTENCY single-definition: A014 agent-registry-events.yaml:7,8,10 khai bao lai 3 event do A009 so huu (AGENT_DEPRECATED state-events:8, AGENT_RETIRED state-events:10) va A013 so huu (AGENT_COMPATIBILITY_FAILED governance-events:11) — cung lop #29 C014 da fix (doi ten thanh CAPABILITY_REGISTRY_*); can doi ten AGENT_REGISTRY_DEPRECATED/RETIRED/COMPATIBILITY_FAILED. MINOR #05: version 1.0 (160 file) vs 1.0.0 (19 canonical). MINOR #06: A011 agent-events.yaml:4-9 definition_events re-list 6 event A009 khong comment nguon trong YAML (md observability.md:52 ghi (A009)) — cung lop #30 C011. INFO #07: frontmatter md khong status field (theo tien le khong chan). Tich cuc: grep 'S011 reuse' toan SPEC-004 = 0 (khong tuyen bo reuse sai); upstream refs deu ton tai (S009 ST-*, S010 EF004, S011 OB003A/005/009/010, S012 POL-RETRY-001/TIMEOUT-001/APPROVAL-001/SEC-001/RES-001/ISOL-001, S013 GV010/GV011A, S014 RG004/RG005A, S015 RS003/004/005, S016 CM006/008, SPEC-003 114 matches); 8/18 canonical schema VALID; A002 counts khop (16 FR/12 NFR/6 AC/6 AAR); md structure day du 20/20 sections. Verdict toan SPEC: FAIL (8 CRITICAL >= 1 -> Decision Matrix) -> KHONG doi trang thai 20 muc (giu Draft/NotReviewed/count 0), khong tang count. Tracker: khoi tao entries A001-A020 (lifecycle Draft, review NotReviewed, count 0). Cascade: A009/A011/A013/A014 gan recheck_required (event single-definition + re-list — can regression TRG-002 sau fix). SLA: TRG-006 khong ap (draft 1 ngay), TRG-007 chua ap. Next: fix 8 CRITICAL (comment note: trong block sequence — precedent ADR-007/ADR-006/SPEC-003 REV-130) + 4 MAJOR schema (quote ': ') + #13 P005->P010 + #14 doi ten 3 event A014 -> re-review /review SPEC-004 rev1."
+  - review: REV-20260809-133
+    spec: SPEC-003
+    item: SPEC-003
+    type: revfull
+    mode: "revfull (whole-SPEC deep research — 20/20 Completed/count 2 — auto-freeze)"
+    verdict: PASS
+    date: "2026-08-09"
+    note: "revfull toan SPEC-003 (Capability System, 20 muc C001-C020) — deep research sau 3 vong rev1 (REV-130 FAIL -> REV-131 CONDITIONAL -> REV-132 PASS, 20/20 Completed/count 2). Verify may (PyYAML 6.0.3 + jsonschema 4.26.0 + grep + git): 175/175 YAML parse PASS 0 ParserError; 20/20 canonical schema Draft202012 strict VALID 0 errors (C008 capability-data.schema.json<->capability-data-model.yaml, C009 capability.schema.json<->capability-state-machine.yaml — ten base khac, deu VALID); grep 'S011 reuse' toan SPEC-003 = 0; 'immutable (P005)' = 0, 'immutable (P010)' = 14; version 1.0.0 dong nhat 175/175. Single-definition: 0 cross-item conflict (CAPABILITY_REGISTRY_* chi C014 3 noi; CAPABILITY_REGISTERED/UPDATED/RESOLUTION_FAILED chi C014; CAPABILITY_COMPATIBILITY_FAILED chi C013; CAPABILITY_DEPRECATED/RETIRED chi C009 + C011 def-ref co nguon). Event count md khop YAML 9/9 (C009 6, C013 7, C014 6, C015 6, C016 5, C017 6, C018 5, C019 5, C020 3). Upstream refs deu ton tai (S009 ST-005/012/013, S010 EF004/EF007, S011 OB003A/009/010/011A + events.yaml model.fields co correlation_id, S012 POL-RETRY-001/TIMEOUT-001/APPROVAL-001/ISOL-001/SEC-001/RESACC-001, S013 GV010/GV011A, S014 RG004/RG005A, S015 RS003/004/005, S016 CM006/008). Git history: branch NewVersion; rename C014 3 event (#29 REV-131) la uncommitted 2026-08-09 07:45, diff chi 12 file 20 insertions/20 deletions — version + rename noi bo, khong breaking; C011 comment nguon C009 (#30) khop md observability.md:52; validator spec003-validator.ps1 khong hardcode C014 event types (chi ref C009 events + file list). System-level: SPEC-004 ref SPEC-003 o 45 files nhung 0 ref event type cu (CAPABILITY_REGISTRY_/DEPRECATED/RETIRED/COMPATIBILITY = 0 matches); SPEC-001 S003 responsibilities.md:43 ref SPEC-003; SPEC-002 0 ref; cascade_review []. Verdict per muc (Decision Matrix): 20/20 PASS (0 CRITICAL, 0 MAJOR) -> AUTO-FREEZE (revfull PASS + review.status Completed/count 2 da du 2-pass) -> lifecycle Review -> Frozen truc tiep (khong can Approved/POLICY-001) + frozen: 2026-08-09, review.status giu Completed/count 2 (khong tang count). Con INFO ke thua: frontmatter md thieu status field, README/SPEC.yaml status Draft lech (se cap nhat khi can). SLA: TRG-006 khong ap (draft 1 ngay), TRG-007 chua ap. Next: SPEC-004 (Agent System) review; /doctor kiem tra health."
+  - review: REV-20260809-132
+    spec: SPEC-003
+    item: SPEC-003
+    type: rev1
+    mode: "rev1 (whole-SPEC re-review lan 3 — xac nhan fix #29/#30 REV-131). id_note: history 131 entries (max REV-20260809-131), review_log moi nhat 131 — dung 132 (entries.length 131 + 1)."
+    verdict: PASS
+    date: "2026-08-09"
+    note: "rev1 lan 3 toan SPEC-003 (Capability System, 20 muc C001-C020) — re-review sau khi user fix #29 (C014 single-definition: doi ten 3 event -> CAPABILITY_REGISTRY_DEPRECATED/CAPABILITY_REGISTRY_RETIRED/CAPABILITY_REGISTRY_COMPATIBILITY_FAILED o ca 3 noi registry-events.yaml:7,8,10 + registry.yaml:104,105,107 + registry.md:145) va #30 (C011 capability-events.yaml:5 comment '# nguon: C009 capability-state-events.yaml (6 event types)'). Verify may (PyYAML 6.0.3 + jsonschema 4.26.0 + grep): #29 FIXED — cross-item duplicate = 0 (CAPABILITY_REGISTRY_* chi trong C014, 0 noi khac; CAPABILITY_DEPRECATED/CAPABILITY_RETIRED chi C009 + C011 def-ref co nguon; CAPABILITY_COMPATIBILITY_FAILED chi C013); #30 FIXED — C011 YAML co comment nguon C009 (khop md observability.md:52). 175/175 YAML parse PASS 0 ParserError; 20/20 canonical schema Draft202012 strict VALID 0 errors; grep 'S011 reuse' toan SPEC-003 = 0; 'immutable (P005)' = 0 (P005 chi dung Event Driven C005/C020/C002 — DUNG, immutable = P010 o C011/C016/C019); version 1.0.0 dong nhat 175/175. Single-definition: 0 conflict (49 event types, C011 definition_events la reference co nguon comment — khong phai redefine). Event count claims md khop YAML 9/9 (C009 6, C013 7, C014 6, C015 6, C016 5, C017 6, C018 5, C019 5, C020 3). Upstream refs deu ton tai (S009 ST-005/012/013, S010 EF004/EF007, S011 OB003A/009/010/011A, S012 POL-* 001, S013 GV010/GV011A, S014 RG004/RG005A, S015 RS003/004/005, S016 CM006/008). Verdict per muc (Decision Matrix): 20/20 PASS (0 CRITICAL, 0 MAJOR) -> C005/C006/C008/C009/C010/C012/C014/C015: Rev1 -> Completed count 1 -> 2 (lifecycle giu Review); C001-C004/C007/C011/C013/C016-C020 giu Completed/count 2 (da 2-pass tu REV-131, khong doi). C014: GO recheck_required (MAJOR #29 FIXED — hoan tat TRG-002). KHONG auto-freeze (type rev1, khong phai revfull — chi revfull PASS + Completed moi freeze). Cascade: khong doi event types/key/contract o muc khac (rename noi bo C014, SPEC-004 khong ref CAPABILITY_REGISTRY_* — 0 matches) -> cascade_review []. SLA: TRG-006 khong ap (draft 1 ngay), TRG-007 chua ap. Next: toan bo 20/20 Completed/count 2 — chay /review SPEC-003 revfull de auto-freeze (can 2-pass du + verdict PASS)."
+  - review: REV-20260809-131
+    spec: SPEC-003
+    item: SPEC-003
+    type: rev1
+    mode: "rev1 (whole-SPEC re-review lan 2 — xac nhan fix 26 findings REV-130). id_note: history 130 entries (max REV-20260809-130), review_log moi nhat 130 — dung 131 (entries.length 130 + 1)."
+    verdict: CONDITIONAL
+    date: "2026-08-09"
+    note: "rev1 lan 2 toan SPEC-003 (re-review sau khi user fix 26 findings REV-130). Verify may (PyYAML 6.0.3 + jsonschema 4.26.0 + grep): 175/175 YAML parse PASS 0 ParserError (8 CRITICAL #01-#08 da FIXED — C005/C006/C008/C009/C010/C012/C014/C015 note: -> comment); 20/20 canonical schema Draft202012 strict VALID 0 errors (5 MAJOR #09-#13 da FIXED — C009/C011/C018/C019/C020 ': ' quoted, C008/C010/C012/C015 cung lop); grep 'S011 reuse' toan SPEC-003 = 0 (10 MAJOR #14-#23 da FIXED — claim moi 'C0xx dinh nghia N event types — S011 cung cap event model (fields, correlation_id)' dung 10/10, count events khop: C009 6, C013 7, C014 6, C015 6, C016 5, C017 6, C018 5, C019 5, C020 3); 'immutable (P005)' = 0, 'immutable (P010)' = 14 (3 MAJOR #24-#26 da FIXED — C011/C016/C019); version 1.0.0 dong nhat toan SPEC-003 175/175 YAML (MINOR #27 da FIXED). Phat hien MOI #29 MAJOR CONSISTENCY single-definition: C014 capability-registry-events.yaml:7-10 + registry.md:145 claim 'C014 dinh nghia 6 event types' nhung 3 event da do muc khac dinh nghia — CAPABILITY_DEPRECATED/CAPABILITY_RETIRED (C009 capability-state-events.yaml:8,10 so huu) + CAPABILITY_COMPATIBILITY_FAILED (C013 capability-governance-events.yaml:11 so huu) — cung lop S014#02 REV-20260808-020 da fix (doi ten de het collision); C014 khong ref C009/C013 lam nguon. Phat hien MOI #30 MINOR: C011 capability-events.yaml:6-11 definition_events re-list 6 event CAPABILITY_* cua C009 ma khong ghi nguon trong YAML (md observability.md:52 ghi (C009) nhung YAML khong comment). Verdict theo muc (Decision Matrix): 19 muc PASS (0 CRITICAL, 0 MAJOR) — C001-C004/C007/C011/C013/C016-C020 Completed/count 2 (Rev1->Completed), C005/C006/C008/C009/C010/C012/C015 Rev1/count 1 (NotReviewed->Rev1); C014 CONDITIONAL (0 CRITICAL, 1 MAJOR #29) -> NotReviewed -> Rev1/count 1 + recheck_required: true. Lifecycle: tat ca Draft -> Review (count >= 1). KHONG auto-freeze (type rev1, khong phai revfull). recheck_required C014 giu true (MAJOR #29 chua fix — cho regression TRG-002). Cascade: C009/C013 (event owner bi C014 re-define) gan recheck_required thong tin khong doi status; SPEC-004 (ref SPEC-003 18 lan) chua co tracker entry — ghi nhan."
+  - review: REV-20260809-130
+    spec: SPEC-003
+    item: SPEC-003
+    type: rev1
+    mode: "rev1 (whole-SPEC review lan dau — SPEC-003 moi khoi tao tracker). SPEC-003 chua co entry nao (not_started_specs truoc review). id_note: history 129 entries (max 20260808-149), review_log moi nhat 110 (W019) — dung 130 (entries.length 129 + 1, ngay moi 20260809 chua ai dung 130)."
+    verdict: FAIL
+    date: "2026-08-09"
+    note: "rev1 whole-SPEC tren SPEC-003 (Capability System, 20 muc C001-C020, tat ca Draft/NotReviewed). Verify may (PyYAML 6.0.3 + jsonschema 4.26.0 + grep): 175 YAML SPEC-003, 8 PARSE-ERR — CRITICAL #01-YAML-parse (C005 architecture.yaml:113 communication_rules note:, C006 components.yaml:202 not_in_runtime note:, C008 capability-data-model.yaml:50 dependencies note:, C009 capability-transition-triggers.yaml:6 run_triggers, C010 capability-execution-flow.yaml:22 stages note:, C012 capability-policies.yaml:26 categories note:, C014 capability-registry.yaml:24 categories note:, C015 capability-resources.yaml:23 categories note:) — cung lop da fix S003/S005/S006/S008 bang comment/quoted. 5 SCHEMA-FAIL tren canonical (MAJOR #02): C009 state-machine terminal_rules[1], C011 observability evolution_integration[0], C018 evolution approval[0-2], C019 doctor check_sources[0-6], C020 dashboard refresh[0] — ': ' chua quote parse thanh mapping vs schema string (cung lop W020#01 da fix). 10 muc claim 'S011 reuse truc tiep' (MAJOR #03 TRACEABILITY): C009 CS011, C011 CO012/CO013, C013 CG013, C014 CR012, C015 CRC011, C016 CMC010, C017 CXE014, C018 CVE011, C019 CDR010, C020 CDB009 — S011 events.yaml chi dinh nghia event model (fields + correlation_id), KHONG dinh nghia event type CAPABILITY_* cu the nao (grep CAPABILITY_ toan S011 = 0 matches; event_type taxonomy co 'Capability' nhung chi la type) — cung lop da fix S013-S018/W013-W020. 3 muc 'immutable (P005)' sai (MAJOR #04 COMPLIANCE): C011 events.yaml:14 + observability.md:55 'Event immutable (P005)' — P005 = Event Driven, immutable = P010; C016 compliance.md:132 + capability-compliance-report.yaml:7; C019 doctor.md:91,143 + capability-doctor-report.yaml:7 — cung lop da fix W016#02/W019#03. MINOR #05: version 1.0 (154 file phu) vs 1.0.0 (13 canonical); INFO #06: frontmatter md khong co status field (W019 cung vay — khong chan). Tich cuc: canonical VALID — C002 requirements.yaml (16 FR/12 NFR/6 CC/6 CA), C003 responsibilities.yaml (18 CRR), C004 boundaries.yaml (9 B), C007 contracts.yaml (6 CCT), C013 governance.yaml, C016 compliance.yaml, C017 extensions.yaml, capability-models.yaml; upstream refs deu ton tai (S009 ST-005/012/013, S010 EF004/EF007, S011 OB003A/009/010/011A, S012 POL-* 10, S013 GV010/GV011A, S014 RG004/RG005A, S015 RS003/004/005, S016 CM006/008 — grep toan OK); SPEC-004 (A001) ton tai (18 refs — future spec). Verdict tong SPEC-003: FAIL (>=1 CRITICAL — 8 YAML parse errors). Per-muc: C001/C002/C003/C004/C007 PASS (0 CRITICAL 0 MAJOR) -> advance NotReviewed->Rev1 count 0->1 lifecycle Draft->Review; C011/C013/C016/C017/C018/C019/C020 CONDITIONAL (0 CRITICAL, 1-3 MAJOR) -> advance Rev1 count 1; C005/C006/C008/C009/C010/C012/C014/C015 FAIL (1 CRITICAL YAML parse) -> giu NotReviewed count 0. Cascade: SPEC-003 la future spec — SPEC-004 (Agent System) ref SPEC-003 18 lan (A001, A002) chua co tracker entry, ghi nhan thong tin. SLA: TRG-006 khong ap (created 08-08, draft 1 ngay); TRG-007 chua ap. Next: fix 8 YAML parse + 5 schema quote + 10 S011-reuse claim + 3 P005/P010 -> rev1 lan 2."
   - review: REV-20260808-110
     spec: SPEC-002
     item: W019

@@ -1,6 +1,6 @@
 # SPEC-004 A006 - Component Dependencies
 ---
-version: "1.0"
+version: "1.0.0"
 dependencies:
   ACP-001: [ACP-002, ACP-003, ACP-004, ACP-005, ACP-008]
   ACP-002: []

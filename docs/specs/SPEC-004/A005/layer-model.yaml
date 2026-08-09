@@ -1,6 +1,6 @@
 # SPEC-004 A005 - Layer Model
 ---
-version: "1.0"
+version: "1.0.0"
 layers:
   - name: Command
     level: 1

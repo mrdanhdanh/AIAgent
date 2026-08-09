@@ -1,6 +1,6 @@
 # SPEC-003 C009 - Capability Transition Matrix
 ---
-version: "1.0"
+version: "1.0.0"
 matrix:
   - [CST-001, CST-002, CAPABILITY_VALIDATING]
   - [CST-002, CST-003, CAPABILITY_PUBLISHED]

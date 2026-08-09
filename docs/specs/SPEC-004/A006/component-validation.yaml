@@ -1,7 +1,7 @@
 # SPEC-004 A006 - Component Validation
 # Doctor kiem tra.
 ---
-version: "1.0"
+version: "1.0.0"
 checks:
   - Missing Component
   - Duplicate Component ID

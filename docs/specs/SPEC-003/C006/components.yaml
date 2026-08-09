@@ -199,4 +199,4 @@ not_in_runtime:
   - Policy Engine (SPEC-001 S006 CMP-006)
   - Registry (S014)
   - Runtime Resolver (S010 EF007)
-  note: Capability System dung qua Runtime (SPEC-001) - khong lap lai.
+# note: Capability System dung qua Runtime (SPEC-001) - khong lap lai.

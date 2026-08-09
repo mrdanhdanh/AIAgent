@@ -1,6 +1,6 @@
 # SPEC-004 A003 - Responsibility Mapping (ARR -> Requirement)
 ---
-version: "1.0"
+version: "1.0.0"
 mapping:
   ARR-001: [AFR-001]
   ARR-002: [AFR-002]

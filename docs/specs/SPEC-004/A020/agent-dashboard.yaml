@@ -47,7 +47,7 @@ views:
 read_model:
   fields: [id, timestamp, agent_version, views, sources, refresh]
 refresh:
-  - Event Driven (P005): refresh khi co event moi.
+  - "Event Driven (P005): refresh khi co event moi."
   - Khong polling.
   - View la projection immutable (P010).
 events:

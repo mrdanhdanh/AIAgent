@@ -50,7 +50,7 @@ doctor_checks:
   - Broken Lineage (S011)
   - Invalid Audit (S011)
 evolution_integration:
-  - Evolution chi doc: Agent Event, Metrics, Trace, Audit.
+  - "Evolution chi doc: Agent Event, Metrics, Trace, Audit."
   - Evolution khong doc implementation.
 machine_readable:
   - agent-observability.yaml

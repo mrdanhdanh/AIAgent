@@ -1,6 +1,6 @@
-# SPEC-003 C019 - Capability Doctor Events (S011 reuse)
+# SPEC-003 C019 - Capability Doctor Events (event model: S011)
 ---
-version: "1.0"
+version: "1.0.0"
 event_types:
   - CAPABILITY_DOCTOR_RUN
   - CAPABILITY_DOCTOR_PASSED

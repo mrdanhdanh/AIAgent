@@ -1,6 +1,6 @@
 # SPEC-003 Appendix - Capability Model Relationships
 ---
-version: "1.0"
+version: "1.0.0"
 relationships:
   Capability: [CapabilityDefinition, CapabilityMapping, CapabilityBinding, CapabilityResult]
   CapabilityDefinition: [CapabilityVersion, CapabilityRegistryEntry]

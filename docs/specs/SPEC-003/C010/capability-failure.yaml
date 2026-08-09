@@ -1,6 +1,6 @@
 # SPEC-003 C010 - Capability Failure Flow (tham chieu S010 EF017)
 ---
-version: "1.0"
+version: "1.0.0"
 failure_types:
   - Validation Failure (khai bao khong hop le)
   - Registration Failure (khong dang ky duoc S014)

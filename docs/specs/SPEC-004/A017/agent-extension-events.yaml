@@ -1,6 +1,6 @@
 # SPEC-004 A017 - Extension Events (S011 reuse)
 ---
-version: "1.0"
+version: "1.0.0"
 event_types:
   - AGENT_EXTENSION_REGISTERED
   - AGENT_EXTENSION_INSTALLED

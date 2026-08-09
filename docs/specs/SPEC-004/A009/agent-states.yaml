@@ -1,6 +1,6 @@
 # SPEC-004 A009 - Agent Definition States (6)
 ---
-version: "1.0"
+version: "1.0.0"
 initial_state: AST-001
 terminal_states: [AST-005, AST-006]
 states:

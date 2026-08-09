@@ -1,6 +1,6 @@
 # SPEC-003 C014 - Canonical Capability Registry Entry (S014 RG004)
 ---
-version: "1.0"
+version: "1.0.0"
 entry:
   fields: [id, type, category, version, status, owner, references, compatibility, lifecycle, metadata]
 rules:

@@ -1,6 +1,6 @@
 # SPEC-004 A006 - Component Ownership
 ---
-version: "1.0"
+version: "1.0.0"
 ownership:
   ACP-001: Agent
   ACP-002: Agent

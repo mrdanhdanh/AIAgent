@@ -1,6 +1,6 @@
 # SPEC-003 C008 - Capability Ownership
 ---
-version: "1.0"
+version: "1.0.0"
 ownership:
   Capability: Capability Team
   CapabilityDefinition: Capability Team

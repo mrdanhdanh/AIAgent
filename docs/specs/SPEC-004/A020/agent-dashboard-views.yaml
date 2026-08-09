@@ -1,6 +1,6 @@
 # SPEC-004 A020 - Agent Dashboard Views
 ---
-version: "1.0"
+version: "1.0.0"
 views:
   - name: Agent View
     source: A009/A010

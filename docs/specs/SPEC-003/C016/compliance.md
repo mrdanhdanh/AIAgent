@@ -111,7 +111,7 @@ Generate Report (capability-compliance-report)
 
 - CAPABILITY_COMPLIANCE_PASSED · FAILED · REPORTED · CAPABILITY_CERTIFICATION_GRANTED · REVOKED.
 
-> S011 reuse trực tiếp.
+> C016 định nghĩa 5 event types — S011 cung cấp event model (fields, correlation_id).
 
 ## CMC011 — Compliance Metrics
 
@@ -129,7 +129,7 @@ report:
   fields: [id, timestamp, capability_version, matrix, score, status, certification, evidence]
 ```
 
-Report immutable (P005).
+Report immutable (P010).
 
 ## CMC014 — Machine-readable
 

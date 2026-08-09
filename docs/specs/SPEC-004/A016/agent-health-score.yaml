@@ -1,6 +1,6 @@
 # SPEC-004 A016 - Agent Health Score (S016 CM006)
 ---
-version: "1.0"
+version: "1.0.0"
 levels: [Healthy, Degraded, Unhealthy]
 sources:
   - Agent Execution (S009)

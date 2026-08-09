@@ -9,21 +9,21 @@ frozen: false
 owner: Agent Team
 philosophy:
   - Policy la luat cua Runtime (S012) - Agent khong dinh nghia lai (AB008).
-  - Agent khai bao Binding: policy_ref + parameters + scope.
+  - "Agent khai bao Binding: policy_ref + parameters + scope."
   - Binding hop le thi moi duoc apply.
   - Agent khong chua Policy Logic.
 principles:
-  - Reference Only: chi tro den POL-* (S012).
-  - Parameterized: khai bao tham so, khong dinh nghia hanh vi.
-  - Scoped: binding theo Agent hoac Execution.
-  - Versioned: binding theo version policy (S012).
-  - Validated: binding phai hop le truoc khi chay.
-  - Traceable: moi binding apply co Event + Audit (S011).
+  - "Reference Only: chi tro den POL-* (S012)."
+  - "Parameterized: khai bao tham so, khong dinh nghia hanh vi."
+  - "Scoped: binding theo Agent hoac Execution."
+  - "Versioned: binding theo version policy (S012)."
+  - "Validated: binding phai hop le truoc khi chay."
+  - "Traceable: moi binding apply co Event + Audit (S011)."
 binding_model:
   fields: [id, agent, execution, policy_ref, parameters, scope, version, status, lifecycle, metadata]
 lifecycle: [Draft, Validated, Published, Active, Deprecated, Retired]
 categories:
-  note: Dung 7 categories cua S012 RP003.
+  # note: Dung 7 categories cua S012 RP003.
   - Recovery
   - Control
   - Orchestration
@@ -43,6 +43,6 @@ bindings:
   - APB-009 Security Binding -> POL-SEC-001
   - APB-010 Resource Access Binding -> POL-RESACC-001
 responsibility_chain:
-  - S012 Runtime Policies: define policy
-  - S013 Runtime Governance: enforce policy
-  - A012 Agent Policies: bind policy vao agent
+  - "S012 Runtime Policies: define policy"
+  - "S013 Runtime Governance: enforce policy"
+  - "A012 Agent Policies: bind policy vao agent"

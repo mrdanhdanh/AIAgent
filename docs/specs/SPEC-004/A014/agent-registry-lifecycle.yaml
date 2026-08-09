@@ -1,5 +1,5 @@
 # SPEC-004 A014 - Agent Registry Lifecycle + Governance (S014 RG010/RG010A)
 ---
-version: "1.0"
+version: "1.0.0"
 lifecycle: [Draft, Published, Deprecated, Retired]
 governance: [Published, Immutable, Governance (S013), Deprecated, Retired]

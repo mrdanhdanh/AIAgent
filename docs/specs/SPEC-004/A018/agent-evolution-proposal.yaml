@@ -1,6 +1,6 @@
 # SPEC-004 A018 - Agent Evolution Proposal
 ---
-version: "1.0"
+version: "1.0.0"
 proposal:
   fields: [id, source, evidence, change, impact, status, approval]
 status: [Draft, Submitted, Approved, Rejected, Applied, Rolled Back]

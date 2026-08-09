@@ -1,7 +1,7 @@
 # SPEC-003 C009 - Capability State Machine Validation
 # Doctor kiem tra.
 ---
-version: "1.0"
+version: "1.0.0"
 checks:
   - Capability co dung mot State.
   - Transition hop le (da khai bao).

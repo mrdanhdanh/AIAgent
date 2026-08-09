@@ -1,6 +1,6 @@
 # SPEC-004 A011 - Agent Trace (S011 reuse)
 ---
-version: "1.0"
+version: "1.0.0"
 scope:
   - Agent
   - Orchestration (Workflow SPEC-002)

@@ -1,6 +1,6 @@
 # SPEC-004 A003 - Responsibility Matrix (ARR x Group)
 ---
-version: "1.0"
+version: "1.0.0"
 groups:
   Core: [ARR-001, ARR-002, ARR-015]
   Validation: [ARR-003, ARR-009]

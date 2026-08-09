@@ -1,6 +1,6 @@
 # SPEC-004 A009 - Agent State Machine Registry
 ---
-version: "1.0"
+version: "1.0.0"
 registries:
   - agent-state-machine.yaml
   - agent-states.yaml

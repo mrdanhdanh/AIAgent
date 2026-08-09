@@ -1,6 +1,6 @@
 # SPEC-004 A011 - Agent Metrics (S011 reuse)
 ---
-version: "1.0"
+version: "1.0.0"
 metrics:
   agent_count: 0
   execution_count: 0

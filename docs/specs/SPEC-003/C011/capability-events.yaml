@@ -1,7 +1,8 @@
-# SPEC-003 C011 - Capability Events (S011 reuse)
+# SPEC-003 C011 - Capability Events (event model: S011)
 ---
-version: "1.0"
+version: "1.0.0"
 definition_events:
+  # nguon: C009 capability-state-events.yaml (6 event types)
   - CAPABILITY_VALIDATING
   - CAPABILITY_PUBLISHED
   - CAPABILITY_REJECTED
@@ -11,7 +12,7 @@ definition_events:
 run_events:
   note: Capability Run dung EXECUTION_* cua S011 (Runtime).
 rules:
-  - Event immutable (P005).
+  - Event immutable (P010).
   - Event chi append.
   - Moi transition sinh Event (C009).
   - Event co correlation_id.

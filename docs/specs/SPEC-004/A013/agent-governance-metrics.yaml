@@ -1,6 +1,6 @@
 # SPEC-004 A013 - Agent Governance Metrics (S013 GV015)
 ---
-version: "1.0"
+version: "1.0.0"
 metrics:
   violations: 0
   denied: 0

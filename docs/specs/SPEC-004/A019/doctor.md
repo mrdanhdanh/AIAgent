@@ -88,7 +88,7 @@ report:
   fields: [id, timestamp, agent_version, checks, score, status, repair, evidence]
 ```
 
-Report immutable (P005).
+Report immutable (P010).
 
 ## ADR010 — Doctor Events
 
@@ -140,7 +140,7 @@ Agent Doctor Report → Checks → Evidence (A011) → SPEC source (A0xx)
 - Health Score xác định được từ Observability Data.
 - Self-repair chỉ Low impact, có rollback, có Audit.
 - Doctor không bypass Governance (A013).
-- Report immutable (P005).
+- Report immutable (P010).
 
 ## Tham chiếu
 

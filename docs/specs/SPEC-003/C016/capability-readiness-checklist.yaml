@@ -1,6 +1,6 @@
 # SPEC-003 C016 - Capability Readiness Checklist
 ---
-version: "1.0"
+version: "1.0.0"
 items:
   - Capability Definition Published (C009).
   - Binding Active (C012).

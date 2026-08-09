@@ -1,6 +1,6 @@
 # SPEC-004 A012 - Agent Policy Binding Validation
 ---
-version: "1.0"
+version: "1.0.0"
 checks:
   - policy_ref tro den POL-* ton tai (S012).
   - parameters dung schema cua policy.

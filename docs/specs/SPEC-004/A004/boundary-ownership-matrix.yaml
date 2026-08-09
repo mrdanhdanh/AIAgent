@@ -1,6 +1,6 @@
 # SPEC-004 A004 - Boundary Ownership Matrix
 ---
-version: "1.0"
+version: "1.0.0"
 ownership:
   AB001-declaration: Agent
   AB002-registry: Agent

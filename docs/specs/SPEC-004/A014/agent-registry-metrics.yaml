@@ -1,6 +1,6 @@
 # SPEC-004 A014 - Agent Registry Metrics
 ---
-version: "1.0"
+version: "1.0.0"
 metrics:
   agent_entries: 0
   active_agents: 0

@@ -1,6 +1,6 @@
 # SPEC-003 C002 - Requirement Traceability
 ---
-version: "1.0"
+version: "1.0.0"
 traceability:
   CFR-001: [P003, P011]
   CFR-002: [P003]

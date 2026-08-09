@@ -1,6 +1,6 @@
 # SPEC-003 C005 - Architecture Matrix (Layer x Domain)
 ---
-version: "1.0"
+version: "1.0.0"
 matrix:
   Command: Execution
   Declaration: Definition

@@ -1,6 +1,6 @@
 # SPEC-003 C018 - Capability Evolution Scope (C011 reuse)
 ---
-version: "1.0"
+version: "1.0.0"
 reads:
   - Capability Event (C011)
   - Capability Metrics (C011)

@@ -1,6 +1,6 @@
 # SPEC-003 Appendix - Capability Model Validation
 ---
-version: "1.0"
+version: "1.0.0"
 checks:
   - Capability co dung mot Definition.
   - Mapping qua Registry (S014) - khong hardcode.

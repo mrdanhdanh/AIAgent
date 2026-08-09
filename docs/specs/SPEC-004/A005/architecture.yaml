@@ -112,7 +112,7 @@ communication_rules:
   - Contract
   - Context
   - Event
-  note: Ngoai ra deu bi cam.
+  # note: Ngoai ra deu bi cam.
 invariants:
   - Agent System luon Metadata Driven.
   - Agent System khong biet Agent cu the.
@@ -142,7 +142,7 @@ constraints:
   - Direct Agent Coupling
   - Direct Plugin Coupling
   - Business Logic trong Agent System
-  note: Tat ca deu CAM.
+  # note: Tat ca deu CAM.
 stability:
   stable: [Layers, Domains]
   evolvable: [Agent Schema, Contracts, Groups]

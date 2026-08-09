@@ -1,6 +1,6 @@
-# SPEC-003 C017 - Extension Events (S011 reuse)
+# SPEC-003 C017 - Extension Events (event model: S011)
 ---
-version: "1.0"
+version: "1.0.0"
 event_types:
   - CAPABILITY_EXTENSION_REGISTERED
   - CAPABILITY_EXTENSION_INSTALLED

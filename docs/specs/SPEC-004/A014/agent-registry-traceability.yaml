@@ -1,6 +1,6 @@
 # SPEC-004 A014 - Agent Registry Traceability
 ---
-version: "1.0"
+version: "1.0.0"
 traceability:
   - Registry (S014)
   - Agent

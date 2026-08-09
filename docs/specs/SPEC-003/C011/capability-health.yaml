@@ -1,6 +1,6 @@
 # SPEC-003 C011 - Capability Health (S011 OB009 reuse)
 ---
-version: "1.0"
+version: "1.0.0"
 status: [Healthy, Degraded, Unhealthy]
 sources:
   - Execution (S009/S010)

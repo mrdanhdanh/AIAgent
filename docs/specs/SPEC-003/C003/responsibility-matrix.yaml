@@ -1,6 +1,6 @@
 # SPEC-003 C003 - Responsibility Matrix (CRR x Group)
 ---
-version: "1.0"
+version: "1.0.0"
 groups:
   Core: [CRR-001, CRR-002, CRR-015]
   Validation: [CRR-003, CRR-009]

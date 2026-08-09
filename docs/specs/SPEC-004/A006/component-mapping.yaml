@@ -1,6 +1,6 @@
 # SPEC-004 A006 - Component Mapping (ACP -> Layer -> Domain)
 ---
-version: "1.0"
+version: "1.0.0"
 mapping:
   ACP-001: { layer: Command, domain: Execution }
   ACP-002: { layer: Declaration, domain: Definition }

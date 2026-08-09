@@ -1,7 +1,7 @@
 # SPEC-004 A008 — Agent Data Model
 # Canonical Data Model — Single Source of Truth (P009).
 ---
-version: "1.0"
+version: "1.0.0"
 status: Draft
 frozen: false
 aggregate_root: Agent
@@ -47,4 +47,4 @@ dependencies:
   - Agent → Workflow (SPEC-002)
   - Agent → Execution (S008)
   - Agent → Registry (S014)
-  note: Khong dependency nguoc.
+  # note: Khong dependency nguoc.

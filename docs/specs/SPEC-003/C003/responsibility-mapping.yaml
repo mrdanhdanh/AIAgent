@@ -1,6 +1,6 @@
 # SPEC-003 C003 - Responsibility Mapping (CRR -> Requirement)
 ---
-version: "1.0"
+version: "1.0.0"
 mapping:
   CRR-001: [CFR-001]
   CRR-002: [CFR-002]

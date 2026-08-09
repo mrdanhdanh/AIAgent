@@ -1,6 +1,6 @@
 # SPEC-004 A006 - Component Metrics
 ---
-version: "1.0"
+version: "1.0.0"
 metrics:
   ACP-001: Agent Completion Rate
   ACP-002: Declaration Coverage

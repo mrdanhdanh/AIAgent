@@ -1,6 +1,6 @@
 # SPEC-003 C020 - Capability Dashboard Views
 ---
-version: "1.0"
+version: "1.0.0"
 views:
   - name: Capability View
     source: C009/C010

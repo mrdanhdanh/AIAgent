@@ -1,6 +1,6 @@
 # SPEC-003 C010 - Capability Resolution Flow (S010 EF007)
 ---
-version: "1.0"
+version: "1.0.0"
 flow:
   - Request (capability id + version)
   - Lookup (S014)

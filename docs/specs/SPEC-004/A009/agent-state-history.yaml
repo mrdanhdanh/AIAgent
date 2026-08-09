@@ -1,6 +1,6 @@
 # SPEC-004 A009 - Agent State History (S011)
 ---
-version: "1.0"
+version: "1.0.0"
 history:
   fields: [agent_id, state_from, state_to, event, timestamp, correlation_id]
 rules:

@@ -1,6 +1,6 @@
 # SPEC-003 C015 - Capability Resource Allocation (S015 RS006)
 ---
-version: "1.0"
+version: "1.0.0"
 flow:
   - Request (capability resolution)
   - Binding Check (C012 CPB-004 -> POL-RES-001)

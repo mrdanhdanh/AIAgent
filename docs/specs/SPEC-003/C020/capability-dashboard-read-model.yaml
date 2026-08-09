@@ -1,6 +1,6 @@
 # SPEC-003 C020 - Capability Dashboard Read Model
 ---
-version: "1.0"
+version: "1.0.0"
 read_model:
   fields: [id, timestamp, capability_version, views, sources, refresh]
 rules:

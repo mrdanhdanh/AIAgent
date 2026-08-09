@@ -1,14 +1,14 @@
 # SPEC-003 C008 — Capability Data Model
 # Canonical Data Model — Single Source of Truth (P009).
 ---
-version: "1.0"
+version: "1.0.0"
 status: Draft
 frozen: false
 aggregate_root: Capability
 aggregate_rules:
   - Capability la Aggregate Root duy nhat.
-  - Capability owns: [Definition, Mapping, Binding, Result, Events, Metrics]
-  - Capability references: [Agent (SPEC-004), Plugin (S017), Execution (S008), Registry Entry (S014)]
+  - "Capability owns: [Definition, Mapping, Binding, Result, Events, Metrics]"
+  - "Capability references: [Agent (SPEC-004), Plugin (S017), Execution (S008), Registry Entry (S014)]"
   - Ownership va Reference khac nhau - khong nham lan.
 classification:
   Capability Data: [Definition Data, Mapping Data]
@@ -47,4 +47,4 @@ dependencies:
   - Capability → Plugin (S017)
   - Capability → Execution (S008)
   - Capability → Registry (S014)
-  note: Khong dependency nguoc.
+# note: Khong dependency nguoc.

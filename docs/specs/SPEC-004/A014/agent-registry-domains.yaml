@@ -1,4 +1,4 @@
 # SPEC-004 A014 - Agent Registry Domains
 ---
-version: "1.0"
+version: "1.0.0"
 domains: [Agent Domain, Definition Domain, Binding Domain]

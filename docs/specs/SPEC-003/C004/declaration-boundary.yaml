@@ -1,6 +1,6 @@
 # SPEC-003 C004 - Declaration Boundary (CB001)
 ---
-version: "1.0"
+version: "1.0.0"
 name: Declaration Boundary
 severity: Critical
 allowed:

@@ -1,6 +1,6 @@
 # SPEC-004 A008 - Agent References
 ---
-version: "1.0"
+version: "1.0.0"
 references:
   Agent → Capability: CapabilityRef (SPEC-003)
   Agent → Workflow: WorkflowRef (SPEC-002)

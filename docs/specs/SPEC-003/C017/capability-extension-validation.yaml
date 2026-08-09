@@ -1,7 +1,7 @@
 # SPEC-003 C017 - Extension Validation
 # Doctor kiem tra.
 ---
-version: "1.0"
+version: "1.0.0"
 checks:
   - Missing Contract (C007)
   - Invalid Version

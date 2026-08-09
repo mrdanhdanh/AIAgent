@@ -88,13 +88,13 @@ report:
   fields: [id, timestamp, capability_version, checks, score, status, repair, evidence]
 ```
 
-Report immutable (P005).
+Report immutable (P010).
 
 ## CDR010 — Doctor Events
 
 - CAPABILITY_DOCTOR_RUN · PASSED · FAILED · REPORTED · REPAIRED.
 
-> S011 reuse trực tiếp.
+> C019 định nghĩa 5 event types — S011 cung cấp event model (fields, correlation_id).
 
 ## CDR011 — Doctor Metrics
 
@@ -140,7 +140,7 @@ Capability Doctor Report → Checks → Evidence (C011) → SPEC source (C0xx)
 - Health Score xác định được từ Observability Data.
 - Self-repair chỉ Low impact, có rollback, có Audit.
 - Doctor không bypass Governance (C013).
-- Report immutable (P005).
+- Report immutable (P010).
 
 ## Tham chiếu
 
