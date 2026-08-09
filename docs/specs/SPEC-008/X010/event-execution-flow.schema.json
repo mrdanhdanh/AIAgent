@@ -1,0 +1,6 @@
+{
+  "schema": "event-execution-flow",
+  "version": "1.0",
+  "stages": { "type": "array", "items": { "type": "object" } },
+  "stage_names": ["Publish","Validate","Lineage","Store","Route","Deliver","Replay","Archive"]
+}

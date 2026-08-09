@@ -1,0 +1,10 @@
+# SPEC-008 X010 - Event Flow Policies
+---
+version: "1.0"
+policies:
+  - Event luon immutable sau publish (P010).
+  - Moi stage co Event (S011).
+  - Deliver at-least-once (S012).
+  - Archive theo retention (S012).
+  - Khong xoa Event bao gio (P005).
+source: S012 Policy

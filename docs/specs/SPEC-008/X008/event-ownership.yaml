@@ -1,0 +1,9 @@
+# SPEC-008 X008 - Event Ownership
+---
+version: "1.0"
+ownership:
+  owner_entity: Event Bus (TERM-012)
+  producer: moi thanh phan phat Event
+  subscriber: Agent/Doctor/Dashboard/Simulation
+  transfer: Khong cho phep (P010)
+  destroy: Archive + retention (S012)

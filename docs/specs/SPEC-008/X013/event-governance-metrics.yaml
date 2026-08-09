@@ -1,0 +1,9 @@
+# SPEC-008 X013 - Event Governance Metrics
+---
+version: "1.0"
+metrics:
+  - spec008_frozen_sections
+  - spec008_open_questions
+  - spec008_decisions_total
+  - spec008_compliance_score (X016)
+  - spec008_health_score (X019)

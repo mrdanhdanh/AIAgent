@@ -1,0 +1,8 @@
+# SPEC-008 X013 - Event Binding Enforcement
+---
+version: "1.0"
+binding_enforcement:
+  rules: RULE-007 (event), RULE-005 (immutable)
+  policies: XPOL-001..010
+  violations: ghi nhan + Doctor X019
+  escalation: S013 Governance

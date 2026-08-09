@@ -1,0 +1,8 @@
+# SPEC-008 X009 - Event Transition Types
+---
+version: "1.0"
+transition_types:
+  external: [EVENT_VALIDATING, EVENT_PUBLISHED, EVENT_REJECTED, EVENT_ARCHIVED]
+  internal: [EVENT_DELIVERED]
+  error: [EVENT_REJECTED]
+rule: Internal transition chi trong Event Bus.

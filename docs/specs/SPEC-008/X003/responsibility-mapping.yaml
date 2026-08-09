@@ -1,0 +1,8 @@
+# SPEC-008 X003 - Event Responsibility Mapping
+---
+version: "1.0"
+mapping:
+  XRR-001..003: Event Bus core ops
+  XRR-004..005: subscription qua API
+  XRR-010..012, XRR-014: Runtime/Policy integration
+  XRR-013: Registry (SPEC-005)

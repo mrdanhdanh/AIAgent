@@ -1,0 +1,8 @@
+# SPEC-008 X010 - Event Storage
+---
+version: "1.0"
+storage:
+  mode: Append-only log (P005)
+  lifecycle: Publish -> Archive
+  snapshot: optional (debug)
+  quota: theo policy (X012)

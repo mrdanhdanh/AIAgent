@@ -1,0 +1,8 @@
+# SPEC-008 X011 - Event Correlation
+---
+version: "1.0"
+correlation:
+  correlation_id: sinh khi Publish
+  trace_id: Runtime (S011)
+  execution_id: Execution (SPEC-001)
+  mapping: event-observability-mapping.yaml

@@ -1,0 +1,14 @@
+# SPEC-008 X008 - Event Validation Rules
+---
+version: "1.0"
+validation_rules:
+  VAL-X001: { field: EventId, requirement: Required, type: UUID }
+  VAL-X002: { field: Type, requirement: Required, type: String (S011 types) }
+  VAL-X003: { field: Severity, requirement: Required, type: info }
+  VAL-X004: { field: CorrelationId, requirement: Required, type: UUID }
+  VAL-X005: { field: ExecutionId, requirement: Required, type: UUID }
+  VAL-X006: { field: Timestamp, requirement: Required, type: Timestamp }
+  VAL-X007: { field: Lineage, requirement: Required, type: event chain }
+validate_on:
+  - Publish
+  - Deliver

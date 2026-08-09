@@ -1,0 +1,8 @@
+{
+  "schema": "event-data-model",
+  "version": "1.0",
+  "eventId": { "type": "string", "format": "uuid" },
+  "type": { "type": "string", "minLength": 1 },
+  "severity": { "enum": ["info","warning","error","critical"] },
+  "required": [ "eventId", "type", "severity", "correlationId", "timestamp" ]
+}

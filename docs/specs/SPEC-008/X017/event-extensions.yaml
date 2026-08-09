@@ -1,0 +1,11 @@
+# SPEC-008 X017 - Event Extension Points
+---
+version: "1.0"
+extensions:
+  XEXT-001: { name: Event Extension Point, description: Diem mo rong Event Bus, owner: Event Bus, priority: High }
+  XEXT-002: { name: Custom Event Type, description: Kieu event moi, owner: Event Bus, priority: Medium }
+  XEXT-003: { name: Custom Router, description: Routing tuy bien, owner: Event Bus, priority: Medium }
+  XEXT-004: { name: Retention Hook, description: Hook retention (S012), owner: Policy (S012), priority: High }
+  XEXT-005: { name: Delivery Strategy, description: Chien luoc deliver tuy bien, owner: Event Bus, priority: Medium }
+  XEXT-006: { name: Snapshot Serializer, description: Serialization tuy bien, owner: Event Bus, priority: Low }
+  XEXT-007: { name: Dashboard Widget, description: Widget X020 tu tao, owner: X020, priority: Low }

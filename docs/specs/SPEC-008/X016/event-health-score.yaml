@@ -1,0 +1,11 @@
+# SPEC-008 X016 - Event Health Score
+---
+version: "1.0"
+health_score:
+  dimensions:
+    - spec_consistency (30%)
+    - cross_reference_valid (20%)
+    - schema_valid (20%)
+    - completeness (15%)
+    - governance (15%)
+  score: 0-100, tinh bang X019 Doctor

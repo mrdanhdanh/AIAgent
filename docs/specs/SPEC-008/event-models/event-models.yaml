@@ -1,0 +1,13 @@
+# SPEC-008 Appendix - Event Canonical Models (8)
+---
+version: "1.0"
+models:
+  AM-001: { name: Event, kind: AggregateRoot, owner: Event Bus, immutable: true }
+  AM-002: { name: EventDefinition, kind: Entity, owner: Event Bus, immutable: true }
+  AM-003: { name: EventStream, kind: Entity, owner: Event Bus, immutable: true }
+  AM-004: { name: EventMetadata, kind: Entity, owner: Event Bus, immutable: true }
+  AM-005: { name: EventLineage, kind: Value, owner: Event Bus, immutable: true }
+  AM-006: { name: EventState, kind: Transient, owner: Event Bus, immutable: false }
+  AM-007: { name: Subscription, kind: Entity, owner: Event Bus, immutable: false }
+  AM-008: { name: Topic, kind: Value, owner: Event Bus, immutable: true }
+aggregate_root: AM-001 Event

@@ -1,0 +1,17 @@
+# SPEC-008 X011 - Event Observability Mapping
+---
+version: "1.0"
+mapping:
+  stage -> event:
+    Publish: EVENT_CREATED
+    Validate: EVENT_VALIDATING
+    Lineage: EVENT_LINEAGED
+    Store: EVENT_STORED
+    Route: EVENT_ROUTED
+    Deliver: EVENT_DELIVERED
+    Replay: EVENT_REPLAYED
+    Archive: EVENT_ARCHIVED
+  state -> metric:
+    Published: event_published_total
+    Archived: event_archived_total
+    Rejected: event_rejected_total

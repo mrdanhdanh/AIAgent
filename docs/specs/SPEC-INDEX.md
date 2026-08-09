@@ -188,29 +188,29 @@ SPEC-005 Registry
 
 ## SPEC-006 — Context Engine
 
-> **Trạng thái**: ✅ Hoàn thành (20/20) · **Phụ thuộc**: SPEC-000, SPEC-001, SPEC-005
+> **Trạng thái**: 🚧 In progress (20/20 Draft — rev1 FAIL 2026-08-09, chờ fix CRITICAL) · **Phụ thuộc**: SPEC-000, SPEC-001, SPEC-005
 
 ```text
 SPEC-006 Context Engine
 │
 ├── Tier 1 — Foundation
-│   ├── X001 Context Vision             ✅
-│   ├── X002 Context Requirements       ✅
-│   ├── X003 Context Responsibilities   ✅
-│   ├── X004 Context Boundaries         ✅
-│   ├── X005 Context Architecture       ✅
-│   ├── X006 Context Components         ✅
-│   ├── X007 Context Contracts          ✅
-│   └── Appendix: Canonical Models      ✅
+│   ├── X001 Context Vision             🚧
+│   ├── X002 Context Requirements       🚧
+│   ├── X003 Context Responsibilities   🚧
+│   ├── X004 Context Boundaries         🚧
+│   ├── X005 Context Architecture       🚧
+│   ├── X006 Context Components         🚧
+│   ├── X007 Context Contracts          🚧
+│   └── Appendix: Canonical Models      🚧
 │
 ├── Tier 2 — Behavior
-│   ├── X008 Context Data Model         ✅
-│   ├── X009 Context State Machine      ✅
-│   └── X010 Context Execution Flow     ✅
+│   ├── X008 Context Data Model         🚧
+│   ├── X009 Context State Machine      🚧
+│   └── X010 Context Execution Flow     🚧
 │
 └── Tier 3/4 — Operations + Experience
-    ├── X011-X016 Operations            ✅
-    └── X017-X020 Experience            ✅
+    ├── X011-X016 Operations            🚧
+    └── X017-X020 Experience            🚧
 ```
 
 ## SPEC-007 — Artifact Manager
@@ -242,7 +242,30 @@ SPEC-007 Artifact Manager
 
 ## SPEC-008 — Event Bus
 
-> **Trạng thái**: ⬜
+> **Trạng thái**: ✅ Hoàn thành (20/20) · **Phụ thuộc**: SPEC-000, SPEC-001, SPEC-005, SPEC-007
+
+```text
+SPEC-008 Event Bus
+│
+├── Tier 1 — Foundation
+│   ├── X001 Event Vision             ✅
+│   ├── X002 Event Requirements       ✅
+│   ├── X003 Event Responsibilities   ✅
+│   ├── X004 Event Boundaries         ✅
+│   ├── X005 Event Architecture       ✅
+│   ├── X006 Event Components         ✅
+│   ├── X007 Event Contracts          ✅
+│   └── Appendix: Canonical Models    ✅
+│
+├── Tier 2 — Behavior
+│   ├── X008 Event Data Model         ✅
+│   ├── X009 Event State Machine      ✅
+│   └── X010 Event Execution Flow     ✅
+│
+└── Tier 3/4 — Operations + Experience
+    ├── X011-X016 Operations          ✅
+    └── X017-X020 Experience          ✅
+```
 
 ## SPEC-009 — Contract System
 

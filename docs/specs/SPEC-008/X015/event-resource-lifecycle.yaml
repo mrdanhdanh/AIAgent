@@ -1,0 +1,7 @@
+# SPEC-008 X015 - Event Resource Lifecycle
+---
+version: "1.0"
+lifecycle:
+  allocate -> in_use -> archived
+  leaked: resource khong duoc release -> Doctor X019 phat hien
+  reclamation: archive theo retention (XPOL-006)

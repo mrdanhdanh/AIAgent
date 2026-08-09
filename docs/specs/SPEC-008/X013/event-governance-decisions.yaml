@@ -1,0 +1,8 @@
+# SPEC-008 X013 - Event Governance Decisions
+---
+version: "1.0"
+decisions:
+  XDEC-001: { issue: Event co mutable khong, decision: Khong - immutable (P010), date: pending }
+  XDEC-002: { issue: Event co xoa duoc khong, decision: Khong - append-only (P005), date: pending }
+  XDEC-003: { issue: Event co chua Business Data khong, decision: Khong - chi metadata, date: pending }
+  XDEC-004: { issue: Deliver guarantee nao, decision: at-least-once (S012), date: pending }

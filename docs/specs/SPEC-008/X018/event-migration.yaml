@@ -1,0 +1,8 @@
+# SPEC-008 X018 - Event Migration
+---
+version: "1.0"
+migration:
+  - Upgrade: bo sung field/type (backward)
+  - Downgrade: giu field cu (compat)
+  - Breaking: can ADR + RFC + migration doc
+  - Runtime Event: KHONG migrate - append-only (P005)

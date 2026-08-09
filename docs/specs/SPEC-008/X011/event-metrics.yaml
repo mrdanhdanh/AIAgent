@@ -1,0 +1,14 @@
+# SPEC-008 X011 - Event Metrics
+---
+version: "1.0"
+metrics:
+  - event_published_total
+  - event_delivered_total
+  - event_rejected_total
+  - event_archived_total
+  - event_lost_total
+  - event_replayed_total
+  - event_deliver_latency_seconds
+  - event_publish_latency_seconds
+  - event_subscription_active_current
+labels: [event_id, state, execution_id, producer_id]

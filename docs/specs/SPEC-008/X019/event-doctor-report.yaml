@@ -1,0 +1,8 @@
+# SPEC-008 X019 - Event Doctor Report
+---
+version: "1.0"
+report:
+  format: markdown + JSON
+  sections: [summary, score, checks, violations, evidence, actions]
+  tool: spec008-validator.ps1
+  output: docs/specs/SPEC-008/reports/

@@ -1,0 +1,359 @@
+# SPEC-008 X002 - Event Requirements
+---
+id: SPEC-008-X002
+name: Event Requirements
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Event Team
+functional:
+  XFR-001:
+    title: Publish Event
+    description: phat Event khi state change (RULE-007)
+    priority: Critical
+    category: Core
+    owner: Event
+    status: Draft
+    source: [P005, P010, RULE-007]
+    rules: [RULE-007, RULE-005]
+    verification: [Event Test, Doctor]
+  XFR-002:
+    title: Route Event
+    description: route Event den subscriber theo topic
+    priority: Critical
+    category: Core
+    owner: Event
+    status: Draft
+    source: [P005, P010, RULE-007]
+    rules: [RULE-007, RULE-005]
+    verification: [Event Test, Doctor]
+  XFR-003:
+    title: Deliver Event
+    description: giao Event cho subscriber (guarantee)
+    priority: Critical
+    category: Core
+    owner: Event
+    status: Draft
+    source: [P005, P010, RULE-007]
+    rules: [RULE-007, RULE-005]
+    verification: [Event Test, Doctor]
+  XFR-004:
+    title: Subscribe Event
+    description: dang ky nhan Event theo topic
+    priority: High
+    category: Execution
+    owner: Event
+    status: Draft
+    source: [P005, P010, RULE-007]
+    rules: [RULE-007, RULE-005]
+    verification: [Event Test, Doctor]
+  XFR-005:
+    title: Unsubscribe Event
+    description: huy dang ky nhan Event
+    priority: High
+    category: Execution
+    owner: Event
+    status: Draft
+    source: [P005, P010, RULE-007]
+    rules: [RULE-007, RULE-005]
+    verification: [Event Test, Doctor]
+  XFR-006:
+    title: Replay Event
+    description: phat lai Event tu log (simulate/audit)
+    priority: High
+    category: Execution
+    owner: Event
+    status: Draft
+    source: [P005, P010, RULE-007]
+    rules: [RULE-007, RULE-005]
+    verification: [Event Test, Doctor]
+  XFR-007:
+    title: Archive Event
+    description: archive khi het han
+    priority: High
+    category: Data
+    owner: Event
+    status: Draft
+    source: [P005, P010, RULE-007]
+    rules: [RULE-007, RULE-005]
+    verification: [Event Test, Doctor]
+  XFR-008:
+    title: Validate Event
+    description: validate Event truoc publish
+    priority: Critical
+    category: Validation
+    owner: Event
+    status: Draft
+    source: [P005, P010, RULE-007]
+    rules: [RULE-007, RULE-005]
+    verification: [Event Test, Doctor]
+  XFR-009:
+    title: Link Lineage
+    description: gan lineage (event chain)
+    priority: Critical
+    category: Core
+    owner: Event
+    status: Draft
+    source: [P005, P010, RULE-007]
+    rules: [RULE-007, RULE-005]
+    verification: [Event Test, Doctor]
+  XFR-010:
+    title: Track Event
+    description: theo doi Event lifecycle (S011)
+    priority: High
+    category: Observability
+    owner: Event
+    status: Draft
+    source: [P005, P010, RULE-007]
+    rules: [RULE-007, RULE-005]
+    verification: [Event Test, Doctor]
+  XFR-011:
+    title: Filter Event
+    description: filter theo type/severity/scope
+    priority: High
+    category: Execution
+    owner: Event
+    status: Draft
+    source: [P005, P010, RULE-007]
+    rules: [RULE-007, RULE-005]
+    verification: [Event Test, Doctor]
+  XFR-012:
+    title: Bind Policy
+    description: khai bao tham so Policy (S012 binding)
+    priority: High
+    category: Governance
+    owner: Event
+    status: Draft
+    source: [P005, P010, RULE-007]
+    rules: [RULE-007, RULE-005]
+    verification: [Event Test, Doctor]
+  XFR-013:
+    title: Register Event
+    description: dang ky Event trong Registry (SPEC-005)
+    priority: Medium
+    category: Data
+    owner: Event
+    status: Draft
+    source: [P005, P010, RULE-007]
+    rules: [RULE-007, RULE-005]
+    verification: [Event Test, Doctor]
+  XFR-014:
+    title: Support Ordering
+    description: bao toan thu tu event per source
+    priority: High
+    category: Core
+    owner: Event
+    status: Draft
+    source: [P005, P010, RULE-007]
+    rules: [RULE-007, RULE-005]
+    verification: [Event Test, Doctor]
+  XFR-015:
+    title: Manage Event Lifecycle
+    description: vong doi Event (publish->archive)
+    priority: Critical
+    category: Execution
+    owner: Event
+    status: Draft
+    source: [P005, P010, RULE-007]
+    rules: [RULE-007, RULE-005]
+    verification: [Event Test, Doctor]
+  XFR-016:
+    title: Audit Event
+    description: ghi audit moi thay doi Event (S011)
+    priority: High
+    category: Observability
+    owner: Event
+    status: Draft
+    source: [P005, P010, RULE-007]
+    rules: [RULE-007, RULE-005]
+    verification: [Event Test, Doctor]
+non_functional:
+  XNF-001:
+    title: Immutable
+    description: Event khong thay doi sau publish
+    priority: Critical
+    category: Core
+    owner: Event
+    status: Draft
+    source: [P005]
+    rules: [RULE-007]
+  XNF-002:
+    title: Append-Only
+    description: Event chi append (P005)
+    priority: Critical
+    category: Core
+    owner: Event
+    status: Draft
+    source: [P005]
+    rules: [RULE-007]
+  XNF-003:
+    title: Lineaged
+    description: moi Event co lineage (RULE-007)
+    priority: Critical
+    category: Core
+    owner: Event
+    status: Draft
+    source: [P005]
+    rules: [RULE-007]
+  XNF-004:
+    title: Observable
+    description: moi Event quan sat qua S011
+    priority: High
+    category: Observability
+    owner: Event
+    status: Draft
+    source: [P005]
+    rules: [RULE-007]
+  XNF-005:
+    title: Ordered
+    description: thu tu event bao toan per source
+    priority: High
+    category: Core
+    owner: Event
+    status: Draft
+    source: [P005]
+    rules: [RULE-007]
+  XNF-006:
+    title: Compatible
+    description: backward compatible
+    priority: High
+    category: Data
+    owner: Event
+    status: Draft
+    source: [P005]
+    rules: [RULE-007]
+  XNF-007:
+    title: Recoverable
+    description: phuc hoi sau loi
+    priority: High
+    category: Core
+    owner: Event
+    status: Draft
+    source: [P005]
+    rules: [RULE-007]
+  XNF-008:
+    title: Testable
+    description: kiem thu tu dong
+    priority: High
+    category: Core
+    owner: Event
+    status: Draft
+    source: [P005]
+    rules: [RULE-007]
+  XNF-009:
+    title: Performant
+    description: dap ung target publish/deliver
+    priority: High
+    category: Observability
+    owner: Event
+    status: Draft
+    source: [P005]
+    rules: [RULE-007]
+  XNF-010:
+    title: Governed
+    description: chiu Governance (S013)
+    priority: Critical
+    category: Governance
+    owner: Event
+    status: Draft
+    source: [P005]
+    rules: [RULE-007]
+  XNF-011:
+    title: Reusable
+    description: Event pattern tai su dung
+    priority: Medium
+    category: Data
+    owner: Event
+    status: Draft
+    source: [P005]
+    rules: [RULE-007]
+  XNF-012:
+    title: Traceable
+    description: moi Event truy vet (S011)
+    priority: High
+    category: Observability
+    owner: Event
+    status: Draft
+    source: [P005]
+    rules: [RULE-007]
+constraints:
+  XC-001:
+    name: No Mutable Event
+    type: Architectural
+    source: [P010]
+    rules: [RULE-007]
+  XC-002:
+    name: No Delete Event
+    type: Architectural
+    source: [P005]
+    rules: [RULE-007]
+  XC-003:
+    name: No Business Data
+    type: Architectural
+    source: [P001]
+    rules: [RULE-001]
+  XC-004:
+    name: No Redefine S011 Model
+    type: Architectural
+    source: [P001]
+    rules: [RULE-007]
+  XC-005:
+    name: No Redefine Policy (S012)
+    type: Governance
+    source: [P015]
+    rules: [RULE-012]
+  XC-006:
+    name: Archive Before Delete
+    type: Governance
+    source: [P011]
+    rules: [RULE-007]
+assumptions:
+  XA-001: Event hop le (da validate)
+  XA-002: Execution ton tai (SPEC-001)
+  XA-003: Registry kha dung (SPEC-005)
+  XA-004: Runtime kha dung (SPEC-001)
+  note: Neu gia dinh sai, Event Bus chi bao loi, khong tu sua.
+dependencies:
+  logical:
+    - Constitution
+    - Runtime (SPEC-001)
+    - Registry (SPEC-005)
+    - Artifact (SPEC-007)
+  runtime_services:
+    - Event Store (S011)
+    - Metrics Collector (S011)
+external_interfaces:
+  Execution: Input
+  Producer: Publish
+  Subscriber: Deliver
+  Policy (S012): Apply
+quality_attributes:
+  Immutability:
+    target: "100%"
+    description: Khong Event bi sua sau publish
+  Ordering:
+    target: "100%"
+    description: Thu tu bao toan per source
+  Reliability:
+    target: "99.9%"
+  Traceability:
+    target: "100%"
+  Observability:
+    target: "100%"
+acceptance:
+  XAR-001:
+    description: Event Bus publish va deliver duoc Event hop le
+    related: [XFR-001, XFR-003, RULE-007]
+    verified_by: [Event Tests, Doctor]
+  XAR-002:
+    description: Event khong bao gio bi sua hoac xoa
+    related: [XC-001, XC-002, P005]
+    verified_by: [Event Tests, Doctor]
+  XAR-003:
+    description: Moi state change phat Event (RULE-007)
+    related: [XFR-001, RULE-007]
+    verified_by: [Doctor]
+  XAR-004:
+    description: Event khong chua Business Data
+    related: [XC-003, P001]
+    verified_by: [Doctor]

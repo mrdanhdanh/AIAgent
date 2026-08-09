@@ -1,0 +1,9 @@
+# SPEC-008 X015 - Event Resource Events
+---
+version: "1.0"
+events:
+  - EVENT_RESOURCE_ALLOCATED
+  - EVENT_RESOURCE_RELEASED
+  - EVENT_RESOURCE_LEAKED
+  - EVENT_RESOURCE_QUOTA_EXCEEDED
+note: Event vao S011.

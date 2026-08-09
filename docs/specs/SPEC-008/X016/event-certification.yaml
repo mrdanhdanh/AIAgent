@@ -1,0 +1,10 @@
+# SPEC-008 X016 - Event Certification
+---
+version: "1.0"
+certification:
+  certified_artifacts:
+    - SPEC-008 SPEC.yaml
+    - X001-X020 sections
+    - event-models/
+  criteria: validator PASS + Doctor PASS
+  issued_by: Event Team + Governance (S013)

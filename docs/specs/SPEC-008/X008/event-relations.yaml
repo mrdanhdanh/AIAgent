@@ -1,0 +1,13 @@
+# SPEC-008 X008 - Event Relations
+---
+version: "1.0"
+relations:
+  REL-X001: { from: Event, relation: owns, to: EventDefinition, cardinality: 1..1 }
+  REL-X002: { from: Event, relation: belongs, to: EventStream, cardinality: 1..1 }
+  REL-X003: { from: Event, relation: owns, to: EventMetadata, cardinality: 1..1 }
+  REL-X004: { from: Event, relation: has, to: EventLineage, cardinality: 1..1 }
+  REL-X005: { from: Event, relation: has, to: EventState, cardinality: 1..1 }
+  REL-X006: { from: Event, relation: subscribed, to: Subscription, cardinality: 0..* }
+  REL-X007: { from: Event, relation: refers, to: ExecutionRef, cardinality: 1..1 }
+  REL-X008: { from: Event, relation: routed, to: Topic, cardinality: 1..1 }
+  REL-X009: { from: Event, relation: snapshots, to: EventSnapshot, cardinality: 0..* }

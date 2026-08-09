@@ -1,0 +1,10 @@
+# SPEC-008 X016 - Event Compliance Rules
+---
+version: "1.0"
+compliance_rules:
+  COMP-001: { name: Immutable, requirement: Event khong thay doi sau publish (P010), source: XNF-001 }
+  COMP-002: { name: Append-Only, requirement: Khong xoa Event (P005), source: XNF-002 }
+  COMP-003: { name: Lineage, requirement: Moi Event co lineage (RULE-007), source: XNF-003 }
+  COMP-004: { name: Observable, requirement: Moi thay doi co Event (P005), source: XNF-004 }
+  COMP-005: { name: Owned, requirement: Event thuoc mot Execution (S011), source: XNF-005 }
+  COMP-006: { name: Archived, requirement: Archive theo retention (S012), source: XPOL-006 }

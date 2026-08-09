@@ -1,0 +1,5 @@
+{
+  "schema": "event-boundaries",
+  "version": "1.0",
+  "boundary_id": { "type": "string", "pattern": "^XB-[0-9]{3}$" }
+}

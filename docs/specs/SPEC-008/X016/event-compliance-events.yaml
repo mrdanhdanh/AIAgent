@@ -1,0 +1,9 @@
+# SPEC-008 X016 - Event Compliance Events
+---
+version: "1.0"
+events:
+  - SPEC008_COMPLIANCE_PASS
+  - SPEC008_COMPLIANCE_FAIL
+  - SPEC008_CERTIFIED
+  - SPEC008_AUDITED
+note: Event vao S011.

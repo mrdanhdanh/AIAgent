@@ -1,0 +1,9 @@
+# SPEC-008 X010 - Event Lineage
+---
+version: "1.0"
+lineage:
+  event_id: UUID
+  parent_event_id: null (Root) | UUID (chain)
+  execution_id: UUID
+  producer: Agent/Task/Artifact
+  note: Lineage bat buoc (RULE-007).

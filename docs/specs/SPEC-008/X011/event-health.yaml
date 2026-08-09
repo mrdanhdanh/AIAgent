@@ -1,0 +1,10 @@
+# SPEC-008 X011 - Event Health
+---
+version: "1.0"
+health_checks:
+  - publish_ok: publish nhanh, khong loi
+  - deliver_ok: khong Event lost
+  - lineage_ok: chain lien tuc
+  - event_ok: event day du (RULE-007)
+  - policy_ok: policy applied (S012)
+  score: tinh trong X019 Doctor

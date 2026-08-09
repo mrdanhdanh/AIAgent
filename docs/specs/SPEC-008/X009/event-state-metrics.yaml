@@ -1,0 +1,10 @@
+# SPEC-008 X009 - Event State Metrics
+---
+version: "1.0"
+metrics:
+  - event_states_total
+  - event_transitions_total
+  - event_transition_duration_seconds
+  - event_rejected_total
+  - event_archived_total
+labels: [event_id, state, transition, execution_id]

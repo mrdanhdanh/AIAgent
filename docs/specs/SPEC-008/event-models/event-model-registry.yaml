@@ -1,0 +1,6 @@
+# SPEC-008 Appendix - Event Model Registry
+---
+version: "1.0"
+registry:
+  owner: Event Team
+  tracked: [AM-001..008]

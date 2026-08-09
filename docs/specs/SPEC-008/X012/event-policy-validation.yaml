@@ -1,0 +1,8 @@
+# SPEC-008 X012 - Event Policy Validation
+---
+version: "1.0"
+validation:
+  - moi policy co source (P010/S012/S011)
+  - moi policy co principle
+  - moi policy co enforcement point
+  - kiem tra bang Doctor (X019)

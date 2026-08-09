@@ -1,0 +1,12 @@
+# SPEC-008 X008 - Event Invariants
+---
+version: "1.0"
+invariants:
+  INV-X001: { name: Unique EventId, description: Moi Event co id duy nhat }
+  INV-X002: { name: Single Owner, description: Event thuoc mot Execution }
+  INV-X003: { name: Immutable, description: Event khong doi sau publish }
+  INV-X004: { name: Append-Only, description: Khong xoa, khong overwrite }
+  INV-X005: { name: Lineage Valid, description: Chain lien tuc }
+  INV-X006: { name: Ordering, description: Thu tu per source bao toan }
+  INV-X007: { name: No Business Data, description: Event khong chua business data }
+violation: BLOCK operation + error EVENT_INVARIANT

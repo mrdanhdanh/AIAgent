@@ -1,0 +1,13 @@
+# SPEC-008 X011 - Event Traces
+---
+version: "1.0"
+traces:
+  - event.publish
+  - event.validate
+  - event.lineage
+  - event.store
+  - event.route
+  - event.deliver
+  - event.replay
+  - event.archive
+span_attrs: [event_id, execution_id, correlation_id, producer_id]

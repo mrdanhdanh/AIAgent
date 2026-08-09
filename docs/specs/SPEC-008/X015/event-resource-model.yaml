@@ -1,0 +1,10 @@
+# SPEC-008 X015 - Event Resource Model
+---
+version: "1.0"
+resources:
+  XRES-001: { name: Storage, description: Append-only log storage, owner: Event Bus, priority: Critical }
+  XRES-002: { name: Index, description: Event index (type/execution), owner: Event Bus, priority: High }
+  XRES-003: { name: EventId, description: UUID pool, owner: Event Bus, priority: Critical }
+  XRES-004: { name: Deliver Threads, description: Concurrency deliver, owner: Event Bus, priority: High }
+  XRES-005: { name: Event Buffer, description: S011 publish queue, owner: Runtime, priority: High }
+  XRES-006: { name: Snapshot Store, description: debug/doctor snapshots, owner: Event Bus, priority: Low }
