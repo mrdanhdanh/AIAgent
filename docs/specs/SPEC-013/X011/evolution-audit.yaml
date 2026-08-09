@@ -1,6 +1,6 @@
 # SPEC-013 X011 - Evolution Audit
 ---
-version: "1.0"
+version: "1.0.0"
 audit:
   who: user_id / engine
   what: op (diff/compatcheck/plan/migrate/heal/evolve)

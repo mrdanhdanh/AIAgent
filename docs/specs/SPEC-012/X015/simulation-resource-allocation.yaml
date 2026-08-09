@@ -1,6 +1,6 @@
 # SPEC-012 X015 - Simulation Resource Allocation
 ---
-version: "1.0"
+version: "1.0.0"
 allocation:
   - Scan: cap storage theo quota (XPOL-007)
   - Report: cap report slot

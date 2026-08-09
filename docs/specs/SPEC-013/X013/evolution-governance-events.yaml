@@ -1,6 +1,6 @@
 # SPEC-013 X013 - Evolution Governance Events
 ---
-version: "1.0"
+version: "1.0.0"
 events:
   - SPEC013_FROZEN
   - SPEC013_UNFROZEN

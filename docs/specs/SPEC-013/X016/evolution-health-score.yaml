@@ -1,6 +1,6 @@
 # SPEC-013 X016 - Evolution Health Score
 ---
-version: "1.0"
+version: "1.0.0"
 health_score:
   dimensions:
     - spec_consistency (30%)
@@ -8,4 +8,4 @@ health_score:
     - schema_valid (20%)
     - completeness (15%)
     - governance (15%)
-  score: 0-100, tinh bang X019 Evolution
+  # score: 0-100, tinh bang X019 Evolution

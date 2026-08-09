@@ -1,6 +1,6 @@
 # SPEC-013 X016 - Evolution Compliance Matrix
 ---
-version: "1.0"
+version: "1.0.0"
 matrix:
   COMP-001: { check: Evolution X019, artifact: evolution-*, gate: build }
   COMP-002: { check: Evolution X019, artifact: evolution-*, gate: build }

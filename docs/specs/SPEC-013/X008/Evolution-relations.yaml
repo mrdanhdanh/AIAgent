@@ -1,6 +1,6 @@
 # SPEC-013 X008 - Evolution Relations
 ---
-version: "1.0"
+version: "1.0.0"
 relations:
   REL-X001: { from: Evolution, relation: owns, to: EvolutionDefinition, cardinality: 1..1 }
   REL-X002: { from: Evolution, relation: diffs, to: SemanticDiff, cardinality: 0..* }

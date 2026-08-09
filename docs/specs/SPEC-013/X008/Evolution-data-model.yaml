@@ -1,6 +1,6 @@
 # SPEC-013 X008 - Evolution Data Model
 ---
-version: "1.0"
+version: "1.0.0"
 entities:
   ENT-X001: { name: Evolution, kind: AggregateRoot, owner: Evolution Engine, immutable: false }
   ENT-X002: { name: EvolutionDefinition, kind: Entity, owner: Evolution Engine, immutable: true }
@@ -39,7 +39,7 @@ validation:
   VAL-X001: { field: EvolutionId, requirement: Required, type: UUID }
   VAL-X002: { field: VersionFrom, requirement: Required, type: SemVer }
   VAL-X003: { field: VersionTo, requirement: Required, type: SemVer }
-  VAL-X004: { field: Diff, requirement: Required, type: SemanticDiff[] }
+  VAL-X004: { field: Diff, requirement: Required, type: "SemanticDiff[]" }
   VAL-X005: { field: Compatibility, requirement: Required, type: Enum }
   VAL-X006: { field: MigrationPlan, requirement: Optional, type: Object }
   VAL-X007: { field: Timestamp, requirement: Required, type: Timestamp }

@@ -1,6 +1,6 @@
 # SPEC-012 X016 - Simulation Compliance Events
 ---
-version: "1.0"
+version: "1.0.0"
 events:
   - spec012_COMPLIANCE_PASS
   - spec012_COMPLIANCE_FAIL

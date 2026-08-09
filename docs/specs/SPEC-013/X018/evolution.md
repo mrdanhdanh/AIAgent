@@ -1,5 +1,5 @@
 ---
-name: SPEC-013-x018-evolution
+name: spec-013-x018-evolution
 description: SPEC-013 X018 - Evolution Evolution. Versioning, deprecation, migration.
 agent: general
 ---

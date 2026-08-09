@@ -1,6 +1,6 @@
 # SPEC-012 X008 - Simulation Data Model
 ---
-version: "1.0"
+version: "1.0.0"
 entities:
   ENT-X001: { name: Simulation, kind: AggregateRoot, owner: Simulation Engine, immutable: false }
   ENT-X002: { name: SimulationDefinition, kind: Entity, owner: Simulation Engine, immutable: true }
@@ -42,9 +42,9 @@ validation:
   VAL-X004: { field: Result, requirement: Required, type: Object }
   VAL-X005: { field: SuccessRate, requirement: Required, type: 0-100 }
   VAL-X006: { field: Timestamp, requirement: Required, type: Timestamp }
-  VAL-X007: { field: Issues, requirement: Optional, type: String[] }
+  VAL-X007: { field: Issues, requirement: Optional, type: "String[]" }
 storage:
   mode: Scenario store
-  persistence: "true (P005 - report history)"
+  persistence: "true (P010 - report history)"
   snapshot: SimulationSnapshot (optional, debug)
   source: /doctor --simulation

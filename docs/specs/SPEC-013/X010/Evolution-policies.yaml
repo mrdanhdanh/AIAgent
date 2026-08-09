@@ -1,6 +1,6 @@
 # SPEC-013 X010 - Evolution Flow Policies
 ---
-version: "1.0"
+version: "1.0.0"
 policies:
   - Evolution khong pha vo he thong (P013).
   - Moi stage co Event (S011).

@@ -1,6 +1,6 @@
 # SPEC-013 X010 - Evolution Flow Validation
 ---
-version: "1.0"
+version: "1.0.0"
 validation:
   - stage order dung pipeline
   - moi stage co event tuong ung

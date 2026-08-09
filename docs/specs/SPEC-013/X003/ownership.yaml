@@ -1,6 +1,6 @@
 # SPEC-013 X003 - Evolution Ownership
 ---
-version: "1.0"
+version: "1.0.0"
 ownership:
   owner_entity: Evolution Engine (SPEC-013)
   system: toan bo he sinh thai (SPEC-000..012)

@@ -1,6 +1,6 @@
 # SPEC-013 X005 - Evolution ADL
 ---
-version: "1.0"
+version: "1.0.0"
 decisions:
   XAD-001: { decision: Evolution khong pha vo he thong, reason: P013 }
   XAD-002: { decision: Module registry, reason: 9 modules de mo rong }

@@ -1,6 +1,6 @@
 # SPEC-012 X005 - Simulation ADL
 ---
-version: "1.0"
+version: "1.0.0"
 decisions:
   XAD-001: { decision: Simulation isolated, reason: RULE-007 }
   XAD-002: { decision: Deterministic runner, reason: P013 }

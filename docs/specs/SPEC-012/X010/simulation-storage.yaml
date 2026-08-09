@@ -1,6 +1,6 @@
 # SPEC-012 X010 - Simulation Storage
 ---
-version: "1.0"
+version: "1.0.0"
 storage:
   mode: Scenario store (P005)
   lifecycle: Define -> Report archive

@@ -1,6 +1,6 @@
 # SPEC-013 X018 - Evolution Migration
 ---
-version: "1.0"
+version: "1.0.0"
 migration:
   - Upgrade: bo sung field/scanner (backward)
   - Downgrade: giu field cu (compat)

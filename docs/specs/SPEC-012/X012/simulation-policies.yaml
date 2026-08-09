@@ -1,6 +1,6 @@
 # SPEC-012 X012 - Simulation Policies (10)
 ---
-version: "1.0"
+version: "1.0.0"
 policies:
   XPOL-001: { name: Isolated, description: Simulation khong doi he thong that, priority: Critical, source: RULE-007, principle: P009 }
   XPOL-002: { name: Deterministic, description: Cung input cung ket qua, priority: Critical, source: P013, principle: P013 }

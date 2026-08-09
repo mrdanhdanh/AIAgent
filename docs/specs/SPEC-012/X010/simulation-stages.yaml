@@ -1,6 +1,6 @@
 # SPEC-012 X010 - Simulation Stages Registry
 ---
-version: "1.0"
+version: "1.0.0"
 registered_stages:
   XF-001: { name: Define, actor: Simulation Engine, event: SIMULATION_DEFINED }
   XF-002: { name: Configure, actor: Simulation Engine, event: SIMULATION_CONFIGURED }

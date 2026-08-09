@@ -1,6 +1,6 @@
 # SPEC-013 X009 - Evolution Transition Triggers
 ---
-version: "1.0"
+version: "1.0.0"
 triggers:
   XST-001: Diff (Evolution Engine)
   XST-002: CompatCheck (Evolution Engine)

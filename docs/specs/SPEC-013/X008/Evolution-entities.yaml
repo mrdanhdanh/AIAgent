@@ -1,6 +1,6 @@
 # SPEC-013 X008 - Evolution Entities (15 ENT)
 ---
-version: "1.0"
+version: "1.0.0"
 entities:
   ENT-X001: { name: Evolution, kind: AggregateRoot, owner: Evolution Engine, immutable: false }
   ENT-X002: { name: EvolutionDefinition, kind: Entity, owner: Evolution Engine, immutable: true }

@@ -1,6 +1,6 @@
 # SPEC-012 X008 - Simulation Invariants
 ---
-version: "1.0"
+version: "1.0.0"
 invariants:
   INV-X001: { name: Unique SimulationId, description: Moi Simulation co id duy nhat }
   INV-X002: { name: Isolated, description: Simulation khong doi he thong that }

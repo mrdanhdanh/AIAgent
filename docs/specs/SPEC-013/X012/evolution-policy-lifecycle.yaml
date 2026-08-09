@@ -1,6 +1,6 @@
 # SPEC-013 X012 - Evolution Policy Lifecycle
 ---
-version: "1.0"
+version: "1.0.0"
 lifecycle:
   states: [Draft, Approved, Active, Deprecated, Retired]
   owner: Governance (S013)

@@ -1,6 +1,6 @@
 # SPEC-012 X009 - Simulation Transition Guards
 ---
-version: "1.0"
+version: "1.0.0"
 guards:
   XGD-001: { transition: XTR-002, condition: Config hop le + isolated }
   XGD-002: { transition: XTR-004, condition: Result day du + deterministic }

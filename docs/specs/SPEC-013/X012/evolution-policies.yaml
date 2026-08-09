@@ -1,6 +1,6 @@
 # SPEC-013 X012 - Evolution Policies (10)
 ---
-version: "1.0"
+version: "1.0.0"
 policies:
   XPOL-001: { name: Safe Evolution, description: Evolution khong pha vo he thong, priority: Critical, source: P013, principle: P013 }
   XPOL-002: { name: Backward Compatible, description: Moi thay doi giu tuong thich, priority: Critical, source: P013, principle: P013 }

@@ -1,6 +1,6 @@
 # SPEC-012 X008 - Simulation Validation Rules
 ---
-version: "1.0"
+version: "1.0.0"
 validation_rules:
   VAL-X001: { field: SimulationId, requirement: Required, type: UUID }
   VAL-X002: { field: Scenario, requirement: Required, type: Enum (6 types) }
@@ -8,7 +8,7 @@ validation_rules:
   VAL-X004: { field: Result, requirement: Required, type: Object }
   VAL-X005: { field: SuccessRate, requirement: Required, type: 0-100 }
   VAL-X006: { field: Timestamp, requirement: Required, type: Timestamp }
-  VAL-X007: { field: Issues, requirement: Optional, type: String[] }
+  VAL-X007: { field: Issues, requirement: Optional, type: "String[]" }
 validate_on:
   - Define
   - Run

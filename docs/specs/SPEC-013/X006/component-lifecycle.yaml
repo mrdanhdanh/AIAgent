@@ -1,6 +1,6 @@
 # SPEC-013 X006 - Evolution Component Lifecycle
 ---
-version: "1.0"
+version: "1.0.0"
 lifecycle:
   EvolutionApi: co khi Runtime start
   DiffStore: per-Store instance

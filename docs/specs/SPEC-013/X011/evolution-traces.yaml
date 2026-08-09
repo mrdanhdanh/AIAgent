@@ -1,6 +1,6 @@
 # SPEC-013 X011 - Evolution Traces
 ---
-version: "1.0"
+version: "1.0.0"
 traces:
   - evolution.diff
   - evolution.compat_check

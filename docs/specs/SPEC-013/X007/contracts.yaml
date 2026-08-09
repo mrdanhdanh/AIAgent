@@ -1,6 +1,6 @@
 # SPEC-013 X007 - Evolution Contract Types (7)
 ---
-version: "1.0"
+version: "1.0.0"
 contracts:
   XCT-001: { name: API Contract, description: EvolutionApi ops (diff/compat/migrate/heal/score/evolve), breaking: ADR }
   XCT-002: { name: Data Contract, description: Diff + MigrationPlan schema, breaking: ADR }

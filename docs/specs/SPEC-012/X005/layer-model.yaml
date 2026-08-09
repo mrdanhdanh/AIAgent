@@ -1,6 +1,6 @@
 # SPEC-012 X005 - Simulation Layer Model (5)
 ---
-version: "1.0"
+version: "1.0.0"
 layers:
   XAL-001: { name: API Layer, role: Simulation API (define, configure, run, observe, compare, report) }
   XAL-002: { name: Engine Layer, role: Pipeline Orchestrator + State Machine (X009) }

@@ -1,6 +1,6 @@
 # SPEC-012 X010 - Simulation Execution Flow (6 stages)
 ---
-version: "1.0"
+version: "1.0.0"
 stages:
   XF-001: { name: Define, description: Nhan scenario tu User, actor: Simulation Engine, event: SIMULATION_DEFINED }
   XF-002: { name: Configure, description: Cau hinh thong so, actor: Simulation Engine, event: SIMULATION_CONFIGURED }

@@ -1,6 +1,6 @@
 # SPEC-012 X003 - Simulation Responsibility Matrix
 ---
-version: "1.0"
+version: "1.0.0"
 matrix:
   XRR-001: { name: Define Scenario, owner: Simulation Engine, role: OWNER }
   XRR-002: { name: Configure Simulation, owner: Simulation Engine, role: OWNER }

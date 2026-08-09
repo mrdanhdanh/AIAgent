@@ -1,6 +1,6 @@
 # SPEC-013 X016 - Evolution Compliance Events
 ---
-version: "1.0"
+version: "1.0.0"
 events:
   - SPEC013_COMPLIANCE_PASS
   - SPEC013_COMPLIANCE_FAIL

@@ -1,6 +1,6 @@
 # SPEC-012 X010 - Simulation Flow Policies
 ---
-version: "1.0"
+version: "1.0.0"
 policies:
   - Simulation khong doi he thong that (RULE-007).
   - Moi stage co Event (S011).

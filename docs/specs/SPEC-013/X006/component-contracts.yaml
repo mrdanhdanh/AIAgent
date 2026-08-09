@@ -1,6 +1,6 @@
 # SPEC-013 X006 - Evolution Component Contracts
 ---
-version: "1.0"
+version: "1.0.0"
 contracts:
   XCP-001: { name: EvolutionApi, contract: X007 XCT-### }
   XCP-002: { name: PipelineOrchestrator, contract: X007 XCT-### }

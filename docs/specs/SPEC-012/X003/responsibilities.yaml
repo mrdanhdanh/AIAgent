@@ -1,12 +1,12 @@
 # SPEC-012 X003 - Simulation Responsibilities (16)
 ---
-version: "1.0"
+version: "1.0.0"
 responsibilities:
   XRR-001: { name: Define Scenario, owner: Simulation Engine, partner: User, role: OWNER }
-  XRR-002: { name: Configure Simulation, owner: Simulation Engine, partner: -, role: OWNER }
+  XRR-002: { name: Configure Simulation, owner: Simulation Engine, partner: "-", role: OWNER }
   XRR-003: { name: Run Simulation, owner: Simulation Engine, partner: Runtime (isolated), role: OWNER }
   XRR-004: { name: Observe Result, owner: Simulation Engine, partner: Observer, role: OWNER }
-  XRR-005: { name: Compare Expectation, owner: Simulation Engine, partner: -, role: OWNER }
+  XRR-005: { name: Compare Expectation, owner: Simulation Engine, partner: "-", role: OWNER }
   XRR-006: { name: Report Simulation, owner: Simulation Engine, partner: Reporter, role: OWNER }
   XRR-007: { name: Simulate Bug Fix, owner: Simulation Engine, partner: Workflow (SPEC-002), role: SIMULATOR }
   XRR-008: { name: Simulate New Feature, owner: Simulation Engine, partner: Workflow (SPEC-002), role: SIMULATOR }

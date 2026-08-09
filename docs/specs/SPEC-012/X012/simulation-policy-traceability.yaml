@@ -1,6 +1,6 @@
 # SPEC-012 X012 - Simulation Policy Traceability
 ---
-version: "1.0"
+version: "1.0.0"
 traceability:
   XPOL-001: { name: Isolated, source: RULE-007, principle: P009 }
   XPOL-002: { name: Deterministic, source: P013, principle: P013 }

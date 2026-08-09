@@ -1,5 +1,5 @@
 ---
-name: SPEC-013-x015-resources
+name: spec-013-x015-resources
 description: SPEC-013 X015 - Evolution Resources. Storage, index, quota, leak detection.
 agent: general
 ---

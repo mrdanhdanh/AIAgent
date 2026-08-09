@@ -1,6 +1,6 @@
 # SPEC-012 X013 - Simulation Governance Decisions
 ---
-version: "1.0"
+version: "1.0.0"
 decisions:
   XDEC-001: { issue: Simulation co doi he thong that khong, decision: Khong - isolated (RULE-007), date: pending }
   XDEC-002: { issue: Simulation co deterministic khong, decision: Co - P013, date: pending }

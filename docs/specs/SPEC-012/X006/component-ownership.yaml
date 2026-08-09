@@ -1,6 +1,6 @@
 # SPEC-012 X006 - Simulation Component Ownership
 ---
-version: "1.0"
+version: "1.0.0"
 ownership:
   Simulation Team: XCP-001..012
   Runtime: S011 components (metrics)

@@ -1,6 +1,6 @@
 # SPEC-012 X013 - Simulation Governance Events
 ---
-version: "1.0"
+version: "1.0.0"
 events:
   - SPEC012_FROZEN
   - SPEC012_UNFROZEN

@@ -1,6 +1,6 @@
 # SPEC-012 X010 - Simulation Resolution
 ---
-version: "1.0"
+version: "1.0.0"
 resolution:
   input: simulation_id
   output: report + result hoac not-found

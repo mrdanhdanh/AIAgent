@@ -1,6 +1,6 @@
 # SPEC-012 X008 - Simulation References
 ---
-version: "1.0"
+version: "1.0.0"
 references:
   - ExecutionRef (SPEC-001)
   - WorkflowRef (SPEC-002)

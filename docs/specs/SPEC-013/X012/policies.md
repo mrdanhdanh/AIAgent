@@ -1,5 +1,5 @@
 ---
-name: SPEC-013-x012-policies
+name: spec-013-x012-policies
 description: SPEC-013 X012 - Evolution Policies. 10 policies binding S012, safe evolution.
 agent: general
 ---

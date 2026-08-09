@@ -1,6 +1,6 @@
 # SPEC-012 X005 - Simulation Communication Rules
 ---
-version: "1.0"
+version: "1.0.0"
 communication_rules:
   - Define/Run: sync (blocking)
   - Observe/Compare: sync

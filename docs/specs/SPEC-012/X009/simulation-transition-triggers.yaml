@@ -1,6 +1,6 @@
 # SPEC-012 X009 - Simulation Transition Triggers
 ---
-version: "1.0"
+version: "1.0.0"
 triggers:
   XST-001: Define (User)
   XST-002: Configure (Simulation Engine)

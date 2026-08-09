@@ -1,6 +1,6 @@
 # SPEC-012 X016 - Simulation Certification
 ---
-version: "1.0"
+version: "1.0.0"
 certification:
   certified_artifacts:
     - SPEC-012 SPEC.yaml

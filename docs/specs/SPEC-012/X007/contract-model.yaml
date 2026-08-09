@@ -1,6 +1,6 @@
 # SPEC-012 X007 - Simulation Contract Model
 ---
-version: "1.0"
+version: "1.0.0"
 contract_model:
   identity: contract_id (XCT-###)
   schema: simulation-*.schema.json

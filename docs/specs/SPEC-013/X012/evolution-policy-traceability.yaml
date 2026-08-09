@@ -1,6 +1,6 @@
 # SPEC-013 X012 - Evolution Policy Traceability
 ---
-version: "1.0"
+version: "1.0.0"
 traceability:
   XPOL-001: { name: Safe Evolution, source: P013, principle: P013 }
   XPOL-002: { name: Backward Compatible, source: P013, principle: P013 }

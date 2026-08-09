@@ -1,6 +1,6 @@
 # SPEC-012 X012 - Timeout Binding
 ---
-version: "1.0"
+version: "1.0.0"
 timeout_binding:
   define_timeout: 1s (default)
   configure_timeout: 1s (default)

@@ -1,6 +1,6 @@
 # SPEC-013 X020 - Evolution Dashboard Panels (6)
 ---
-version: "1.0"
+version: "1.0.0"
 panels:
   XPAN-001: { name: Health Trend, description: Score history, data: X011 metrics, priority: High }
   XPAN-002: { name: Results by Domain, description: Spec breakdown, data: X011 metrics, priority: High }

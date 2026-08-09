@@ -1,6 +1,6 @@
 # SPEC-013 X015 - Evolution Resource Allocation
 ---
-version: "1.0"
+version: "1.0.0"
 allocation:
   - Scan: cap storage theo quota (XPOL-007)
   - Report: cap report slot

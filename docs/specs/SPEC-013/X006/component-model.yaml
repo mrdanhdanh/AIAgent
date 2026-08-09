@@ -1,6 +1,6 @@
 # SPEC-013 X006 - Evolution Component Model
 ---
-version: "1.0"
+version: "1.0.0"
 component_model:
   XCP-001: { name: EvolutionApi, layer: Core }
   XCP-002: { name: PipelineOrchestrator, layer: Core }

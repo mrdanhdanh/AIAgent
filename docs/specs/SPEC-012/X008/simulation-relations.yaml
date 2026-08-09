@@ -1,6 +1,6 @@
 # SPEC-012 X008 - Simulation Relations
 ---
-version: "1.0"
+version: "1.0.0"
 relations:
   REL-X001: { from: Simulation, relation: owns, to: SimulationDefinition, cardinality: 1..1 }
   REL-X002: { from: Simulation, relation: uses, to: Scenario, cardinality: 1..1 }

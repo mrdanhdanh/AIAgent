@@ -1,6 +1,6 @@
 # SPEC-013 X009 - Evolution State Metrics
 ---
-version: "1.0"
+version: "1.0.0"
 metrics:
   - evolution_states_total
   - evolution_transitions_total

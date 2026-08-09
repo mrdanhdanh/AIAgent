@@ -1,6 +1,6 @@
 # SPEC-012 X002 - Requirement Metrics
 ---
-version: "1.0"
+version: "1.0.0"
 metrics:
   - requirement_count
   - requirement_covered_pct

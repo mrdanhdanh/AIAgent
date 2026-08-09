@@ -1,6 +1,6 @@
 # SPEC-012 X011 - Simulation Events (S011 reuse)
 ---
-version: "1.0"
+version: "1.0.0"
 definition_events:
   - SIMULATION_DEFINED
   - SIMULATION_CONFIGURED
@@ -15,7 +15,7 @@ definition_events:
   - SIMULATION_REPLAYED
   - SIMULATION_RESTORED
 rules:
-  - Event immutable (P005).
+  - Event immutable (P010).
   - Event chi append.
   - Moi transition sinh Event (X009).
   - Event co correlation_id (S011).

@@ -1,6 +1,6 @@
 # SPEC-013 X010 - Evolution Query
 ---
-version: "1.0"
+version: "1.0.0"
 query_ops:
   - GetEvolution(evolution_id)
   - GetDiff(evolution_id)

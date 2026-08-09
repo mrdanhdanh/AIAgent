@@ -1,17 +1,17 @@
 # SPEC-013 X003 - Evolution Responsibilities (16)
 ---
-version: "1.0"
+version: "1.0.0"
 responsibilities:
   XRR-001: { name: Semantic Diff, owner: Evolution Engine, partner: System, role: OWNER }
   XRR-002: { name: Check Compatibility, owner: Evolution Engine, partner: CompatChecker, role: OWNER }
-  XRR-003: { name: Create Migration Plan, owner: Evolution Engine, partner: -, role: OWNER }
+  XRR-003: { name: Create Migration Plan, owner: Evolution Engine, partner: "-", role: OWNER }
   XRR-004: { name: Migrate, owner: Evolution Engine, partner: System, role: OWNER }
   XRR-005: { name: Self-Heal, owner: Evolution Engine, partner: Doctor (SPEC-011), role: OWNER }
   XRR-006: { name: Score Health, owner: Evolution Engine, partner: Doctor (SPEC-011), role: OWNER }
   XRR-007: { name: Capability Benchmark, owner: Evolution Engine, partner: Capability (SPEC-003), role: BENCHMARKER }
   XRR-008: { name: Knowledge Migration, owner: Evolution Engine, partner: Knowledge, role: OWNER }
   XRR-009: { name: Stress Test, owner: Evolution Engine, partner: Simulation (SPEC-012), role: RUNNER }
-  XRR-010: { name: Evolve, owner: Evolution Engine, partner: -, role: OWNER }
+  XRR-010: { name: Evolve, owner: Evolution Engine, partner: "-", role: OWNER }
   XRR-011: { name: Events, owner: Runtime (S011), partner: Evolution Engine, role: EMITTER }
   XRR-012: { name: Policy eval, owner: Policy (S012), partner: Evolution Engine, role: DECIDER }
   XRR-013: { name: Registry, owner: Registry (SPEC-005), partner: Evolution Engine, role: REGISTER }

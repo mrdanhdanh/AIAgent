@@ -1,6 +1,6 @@
 # SPEC-012 X010 - Simulation Query
 ---
-version: "1.0"
+version: "1.0.0"
 query_ops:
   - GetSimulation(simulation_id)
   - GetResult(simulation_id)

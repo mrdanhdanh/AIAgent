@@ -1,6 +1,6 @@
 # SPEC-013 X010 - Evolution Execution Flow (6 stages)
 ---
-version: "1.0"
+version: "1.0.0"
 stages:
   XF-001: { name: Diff, description: So sanh phien ban cu/moi, actor: DiffEngine, event: EVOLUTION_DIFFED }
   XF-002: { name: CompatCheck, description: Kiem tra backward compatible, actor: CompatChecker, event: EVOLUTION_COMPAT_CHECKED }

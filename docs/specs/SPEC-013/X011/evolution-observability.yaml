@@ -1,6 +1,6 @@
 # SPEC-013 X011 - Evolution Observability Model
 ---
-version: "1.0"
+version: "1.0.0"
 observability:
   logs: Evolution Engine logs (structured)
   events: EVOLUTION_* (S011 Event Store)

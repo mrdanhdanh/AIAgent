@@ -1,6 +1,6 @@
 # SPEC-012 X015 - Simulation Resources
 ---
-version: "1.0"
+version: "1.0.0"
 resources:
   XRES-001: { name: Storage, owner: Simulation }
   XRES-002: { name: Index, owner: Simulation }

@@ -1,6 +1,6 @@
 # SPEC-013 X016 - Evolution Validation Rules
 ---
-version: "1.0"
+version: "1.0.0"
 validation_rules:
   - B1: SPEC.yaml hop le (id, name, version)
   - B2: README table khop thuc te

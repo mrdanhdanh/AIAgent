@@ -1,6 +1,6 @@
 # SPEC-012 X008 - Simulation Entities (15 ENT)
 ---
-version: "1.0"
+version: "1.0.0"
 entities:
   ENT-X001: { name: Simulation, kind: AggregateRoot, owner: Simulation Engine, immutable: false }
   ENT-X002: { name: SimulationDefinition, kind: Entity, owner: Simulation Engine, immutable: true }

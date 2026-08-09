@@ -1,6 +1,6 @@
 # SPEC-012 X013 - Simulation Governance Metrics
 ---
-version: "1.0"
+version: "1.0.0"
 metrics:
   - spec012_frozen_sections
   - spec012_open_questions

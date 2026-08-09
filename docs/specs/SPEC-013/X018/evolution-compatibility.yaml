@@ -1,6 +1,6 @@
 # SPEC-013 X018 - Evolution Compatibility
 ---
-version: "1.0"
+version: "1.0.0"
 compatibility:
   backward: moi version giu Evolution contract cu (XNF-006)
   forward: tuan thu schema strict

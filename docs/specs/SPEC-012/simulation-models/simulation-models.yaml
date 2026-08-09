@@ -1,6 +1,6 @@
 # SPEC-012 Appendix - Simulation Canonical Models (8)
 ---
-version: "1.0"
+version: "1.0.0"
 models:
   AM-001: { name: Simulation, kind: AggregateRoot, owner: Simulation Engine, immutable: false }
   AM-002: { name: SimulationDefinition, kind: Entity, owner: Simulation Engine, immutable: true }

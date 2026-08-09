@@ -1,6 +1,6 @@
 # SPEC-012 X014 - Simulation Registry of Registries
 ---
-version: "1.0"
+version: "1.0.0"
 registries:
   registry: SPEC-005
   SIMULATION_sections:

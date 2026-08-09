@@ -1,6 +1,6 @@
 # SPEC-012 X009 - Simulation Transitions (5)
 ---
-version: "1.0"
+version: "1.0.0"
 transitions:
   XTR-001: { from: XST-001, to: XST-002, event: SIMULATION_CONFIGURED, guard: Scenario hop le }
   XTR-002: { from: XST-002, to: XST-003, event: SIMULATION_RUNNING, guard: Config hop le }

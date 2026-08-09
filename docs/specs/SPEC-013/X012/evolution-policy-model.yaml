@@ -1,6 +1,6 @@
 # SPEC-013 X012 - Evolution Policy Model
 ---
-version: "1.0"
+version: "1.0.0"
 policy_model:
   identity: policy_id (XPOL-###)
   enforcement: Evolution Engine (before op)

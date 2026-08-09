@@ -1,6 +1,6 @@
 # SPEC-012 X007 - Simulation Communication Matrix
 ---
-version: "1.0"
+version: "1.0.0"
 matrix:
   User -> SimulationApi: sync define
   SimulationApi -> ScenarioEngine: sync run

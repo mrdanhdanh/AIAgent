@@ -1,6 +1,6 @@
 # SPEC-012 X018 - Simulation Deprecation
 ---
-version: "1.0"
+version: "1.0.0"
 deprecation:
   - Deprecated qua R009 lifecycle (SPEC-005).
   - Co notice truoc 1 version.

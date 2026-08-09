@@ -1,6 +1,6 @@
 # SPEC-013 X012 - Evolution Policy Categories
 ---
-version: "1.0"
+version: "1.0.0"
 categories:
   Isolation: [XPOL-001, XPOL-004]
   Data: [XPOL-005, XPOL-010]

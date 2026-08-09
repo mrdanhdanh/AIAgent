@@ -1,6 +1,6 @@
 # SPEC-012 X018 - Simulation Compatibility
 ---
-version: "1.0"
+version: "1.0.0"
 compatibility:
   backward: moi version giu Simulation contract cu (XNF-006)
   forward: tuan thu schema strict

@@ -1,6 +1,6 @@
 # SPEC-013 X010 - Evolution Resolution
 ---
-version: "1.0"
+version: "1.0.0"
 resolution:
   input: evolution_id
   output: report + diff hoac not-found

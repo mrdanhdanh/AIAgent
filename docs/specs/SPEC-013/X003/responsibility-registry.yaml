@@ -1,6 +1,6 @@
 # SPEC-013 X003 - Evolution Responsibility Registry
 ---
-version: "1.0"
+version: "1.0.0"
 registry:
   owner: Evolution Team
   tracked: [XRR-001..016]

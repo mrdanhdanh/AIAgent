@@ -1,6 +1,6 @@
 # SPEC-012 X011 - Simulation Traces
 ---
-version: "1.0"
+version: "1.0.0"
 traces:
   - simulation.define
   - simulation.configure

@@ -1,6 +1,6 @@
 # SPEC-012 X016 - Simulation Compliance Matrix
 ---
-version: "1.0"
+version: "1.0.0"
 matrix:
   COMP-001: { check: Simulation Doctor, artifact: simulation-*, gate: build }
   COMP-002: { check: Simulation Doctor, artifact: simulation-*, gate: build }

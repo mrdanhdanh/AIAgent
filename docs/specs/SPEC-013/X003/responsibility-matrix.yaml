@@ -1,6 +1,6 @@
 # SPEC-013 X003 - Evolution Responsibility Matrix
 ---
-version: "1.0"
+version: "1.0.0"
 matrix:
   XRR-001: { name: Semantic Diff, owner: Evolution Engine, role: OWNER }
   XRR-002: { name: Check Compatibility, owner: Evolution Engine, role: OWNER }

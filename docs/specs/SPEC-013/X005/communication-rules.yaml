@@ -1,6 +1,6 @@
 # SPEC-013 X005 - Evolution Communication Rules
 ---
-version: "1.0"
+version: "1.0.0"
 communication_rules:
   - Diff/Compat: sync (blocking)
   - Migrate/Heal: sync, doc-only

@@ -1,6 +1,6 @@
 # SPEC-013 X009 - Evolution Transition Types
 ---
-version: "1.0"
+version: "1.0.0"
 transition_types:
   external: [EVOLUTION_COMPAT_CHECKED, EVOLUTION_FAILED]
   internal: [EVOLUTION_PLANNED, EVOLUTION_MIGRATED, EVOLUTION_EVOLVED]

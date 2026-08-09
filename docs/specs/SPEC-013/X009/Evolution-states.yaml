@@ -1,12 +1,12 @@
 # SPEC-013 X009 - Evolution Definition States (6)
 ---
-version: "1.0"
+version: "1.0.0"
 initial_state: XST-001
 terminal_states: [XST-005, XST-006]
 states:
-  XST-001: { name: Diffed, category: Initial, type: Initial, terminal: - }
-  XST-002: { name: CompatChecked, category: Preparation, type: Internal, terminal: - }
-  XST-003: { name: Planned, category: Active, type: Active, terminal: - }
-  XST-004: { name: Migrated, category: Active, type: Active, terminal: - }
+  XST-001: { name: Diffed, category: Initial, type: Initial, terminal: "-" }
+  XST-002: { name: CompatChecked, category: Preparation, type: Internal, terminal: "-" }
+  XST-003: { name: Planned, category: Active, type: Active, terminal: "-" }
+  XST-004: { name: Migrated, category: Active, type: Active, terminal: "-" }
   XST-005: { name: Evolved, category: Terminal, type: Terminal, terminal: yes }
   XST-006: { name: Failed, category: Terminal, type: Terminal, terminal: yes }

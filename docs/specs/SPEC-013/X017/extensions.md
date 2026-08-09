@@ -1,5 +1,5 @@
 ---
-name: SPEC-013-x017-extensions
+name: spec-013-x017-extensions
 description: SPEC-013 X017 - Evolution Extensions. 7 extension points, policy, lifecycle.
 agent: general
 ---

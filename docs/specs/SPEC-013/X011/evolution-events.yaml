@@ -1,6 +1,6 @@
 # SPEC-013 X011 - Evolution Events (S011 reuse)
 ---
-version: "1.0"
+version: "1.0.0"
 definition_events:
   - EVOLUTION_DIFFED
   - EVOLUTION_COMPAT_CHECKED
@@ -15,7 +15,7 @@ definition_events:
   - EVOLUTION_REVERTED
   - EVOLUTION_RESTORED
 rules:
-  - Event immutable (P005).
+  - Event immutable (P010).
   - Event chi append.
   - Moi transition sinh Event (X009).
   - Event co correlation_id (S011).

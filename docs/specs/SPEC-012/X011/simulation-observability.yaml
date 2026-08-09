@@ -1,6 +1,6 @@
 # SPEC-012 X011 - Simulation Observability Model
 ---
-version: "1.0"
+version: "1.0.0"
 observability:
   logs: Simulation Engine logs (structured)
   events: SIMULATION_* (S011 Event Store)

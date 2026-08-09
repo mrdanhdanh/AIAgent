@@ -1,6 +1,6 @@
 # SPEC-012 X015 - Simulation Resource Events
 ---
-version: "1.0"
+version: "1.0.0"
 events:
   - SIMULATION_RESOURCE_ALLOCATED
   - SIMULATION_RESOURCE_RELEASED

@@ -1,6 +1,6 @@
 # SPEC-012 X005 - Simulation Architecture Registry
 ---
-version: "1.0"
+version: "1.0.0"
 registry:
   owner: Simulation Team
   tracked: [XAL-001..005]

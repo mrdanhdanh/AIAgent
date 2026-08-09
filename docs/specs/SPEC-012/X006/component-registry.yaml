@@ -1,6 +1,6 @@
 # SPEC-012 X006 - Simulation Component Registry
 ---
-version: "1.0"
+version: "1.0.0"
 registry:
   owner: Simulation Team
   tracked: [XCP-001..012]

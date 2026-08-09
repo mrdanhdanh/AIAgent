@@ -1,6 +1,6 @@
 # SPEC-012 X011 - Simulation Audit
 ---
-version: "1.0"
+version: "1.0.0"
 audit:
   who: user_id / engine
   what: op (define/configure/run/observe/compare/report)

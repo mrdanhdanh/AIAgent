@@ -1,9 +1,9 @@
 # SPEC-013 X013 - Evolution Governance Registry
 ---
-version: "1.0"
+version: "1.0.0"
 registry:
   spec: SPEC-013 (this)
   sections: [X001..X020]
   models: evolution-models/
-  schemas: *.schema.json
+  schemas: "*.schema.json"
   status_tracking: SPEC-INDEX.md

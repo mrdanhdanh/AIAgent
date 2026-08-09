@@ -1,7 +1,7 @@
 # SPEC-012 X015 - Simulation Resource Lifecycle
 ---
-version: "1.0"
+version: "1.0.0"
 lifecycle:
-  allocate -> in_use -> archived
+  states: [allocate -> in_use -> archived]
   leaked: resource khong duoc release -> Simulation Doctor phat hien
   reclamation: archive theo retention (XPOL-006)

@@ -1,6 +1,6 @@
 # SPEC-013 X008 - Evolution Invariants
 ---
-version: "1.0"
+version: "1.0.0"
 invariants:
   INV-X001: { name: Unique EvolutionId, description: Moi Evolution co id duy nhat }
   INV-X002: { name: No Breaking Change, description: Evolution khong pha vo he thong }

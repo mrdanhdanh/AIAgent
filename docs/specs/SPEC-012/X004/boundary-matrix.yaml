@@ -1,6 +1,6 @@
 # SPEC-012 X004 - Simulation Boundary Matrix
 ---
-version: "1.0"
+version: "1.0.0"
 matrix:
   XB-001: { name: Content, scope: IN }
   XB-002: { name: Metadata, scope: IN }

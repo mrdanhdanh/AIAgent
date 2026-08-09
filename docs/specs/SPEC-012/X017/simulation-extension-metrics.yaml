@@ -1,6 +1,6 @@
 # SPEC-012 X017 - Simulation Extension Metrics
 ---
-version: "1.0"
+version: "1.0.0"
 metrics:
   - SIMULATION_extensions_total
   - SIMULATION_extensions_active

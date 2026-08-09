@@ -1,6 +1,6 @@
 # SPEC-012 X010 - Simulation Failure Modes
 ---
-version: "1.0"
+version: "1.0.0"
 failure_modes:
   - Define fail: error + khong simulation
   - Configure fail: SIMULATION_FAILED + cleanup

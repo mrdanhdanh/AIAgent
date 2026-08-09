@@ -1,6 +1,6 @@
 # SPEC-012 X020 - Simulation Dashboard Events
 ---
-version: "1.0"
+version: "1.0.0"
 events:
   - SIMULATION_DASHBOARD_OPENED
   - SIMULATION_DASHBOARD_FILTERED

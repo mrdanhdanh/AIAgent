@@ -1,6 +1,6 @@
 # SPEC-013 X005 - Evolution Layer Model (5)
 ---
-version: "1.0"
+version: "1.0.0"
 layers:
   XAL-001: { name: API Layer, role: Evolution API (diff, compat, migrate, heal, score, evolve) }
   XAL-002: { name: Engine Layer, role: Pipeline Orchestrator + State Machine (X009) }

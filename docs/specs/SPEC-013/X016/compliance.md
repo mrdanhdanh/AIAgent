@@ -1,5 +1,5 @@
 ---
-name: SPEC-013-x016-compliance
+name: spec-013-x016-compliance
 description: SPEC-013 X016 - Evolution Compliance. 6 rules, score, certification, checklist.
 agent: general
 ---

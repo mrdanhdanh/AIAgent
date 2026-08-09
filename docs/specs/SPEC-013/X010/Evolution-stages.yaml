@@ -1,6 +1,6 @@
 # SPEC-013 X010 - Evolution Stages Registry
 ---
-version: "1.0"
+version: "1.0.0"
 registered_stages:
   XF-001: { name: Diff, actor: DiffEngine, event: EVOLUTION_DIFFED }
   XF-002: { name: CompatCheck, actor: CompatChecker, event: EVOLUTION_COMPAT_CHECKED }

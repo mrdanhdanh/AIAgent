@@ -1,6 +1,6 @@
 # SPEC-013 X014 - Evolution Registry of Registries
 ---
-version: "1.0"
+version: "1.0.0"
 registries:
   registry: SPEC-005
   EVOLUTION_sections:

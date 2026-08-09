@@ -1,6 +1,6 @@
 # SPEC-013 X006 - Evolution Components (12)
 ---
-version: "1.0"
+version: "1.0.0"
 components:
   XCP-001: { name: EvolutionApi, role: expose op, dependency: Engine, layer: Core }
   XCP-002: { name: PipelineOrchestrator, role: pipeline flow, dependency: StateMachine, Store, layer: Core }

@@ -1,6 +1,6 @@
 # SPEC-013 X011 - Evolution Metrics
 ---
-version: "1.0"
+version: "1.0.0"
 metrics:
   - evolution_diffs_total
   - evolution_migrations_total

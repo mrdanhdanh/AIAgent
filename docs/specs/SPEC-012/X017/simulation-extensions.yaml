@@ -1,6 +1,6 @@
 # SPEC-012 X017 - Simulation Extension Points
 ---
-version: "1.0"
+version: "1.0.0"
 extensions:
   XEXT-001: { name: Simulation Extension Point, description: Diem mo rong Simulation, owner: Simulation, priority: High }
   XEXT-002: { name: Custom Scanner, description: Scanner moi (domain), owner: Simulation, priority: High }

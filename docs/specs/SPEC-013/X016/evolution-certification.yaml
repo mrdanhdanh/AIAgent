@@ -1,6 +1,6 @@
 # SPEC-013 X016 - Evolution Certification
 ---
-version: "1.0"
+version: "1.0.0"
 certification:
   certified_artifacts:
     - SPEC-013 SPEC.yaml

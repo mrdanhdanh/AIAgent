@@ -1,5 +1,5 @@
 ---
-name: SPEC-013-x014-registry
+name: spec-013-x014-registry
 description: SPEC-013 X014 - Evolution Registry. Dang ky Evolution definition qua SPEC-005.
 agent: general
 ---

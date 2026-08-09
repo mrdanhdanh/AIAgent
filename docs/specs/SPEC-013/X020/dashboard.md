@@ -1,5 +1,5 @@
 ---
-name: SPEC-013-x020-dashboard
+name: spec-013-x020-dashboard
 description: SPEC-013 X020 - Evolution Dashboard. 6 panels tu S011 metrics.
 agent: general
 ---

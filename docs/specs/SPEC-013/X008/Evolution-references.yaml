@@ -1,6 +1,6 @@
 # SPEC-013 X008 - Evolution References
 ---
-version: "1.0"
+version: "1.0.0"
 references:
   - ExecutionRef (SPEC-001)
   - SystemRef (SPEC-000..012)

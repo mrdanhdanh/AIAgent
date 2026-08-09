@@ -1,6 +1,6 @@
 # SPEC-013 X008 - Evolution Identity
 ---
-version: "1.0"
+version: "1.0.0"
 identity:
   evolution_id: UUID (generated at Diff)
   version_from: SemVer (cu)

@@ -1,6 +1,6 @@
 # SPEC-013 X011 - Evolution Correlation
 ---
-version: "1.0"
+version: "1.0.0"
 correlation:
   correlation_id: sinh khi Diff
   trace_id: Runtime (S011)

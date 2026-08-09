@@ -1,6 +1,6 @@
 # SPEC-012 X012 - Simulation Policy Validation
 ---
-version: "1.0"
+version: "1.0.0"
 validation:
   - moi policy co source (RULE-007/P013/S012)
   - moi policy co principle

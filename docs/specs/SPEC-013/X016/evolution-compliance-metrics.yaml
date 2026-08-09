@@ -1,6 +1,6 @@
 # SPEC-013 X016 - Evolution Compliance Metrics
 ---
-version: "1.0"
+version: "1.0.0"
 metrics:
   - compliance_score (0-100)
   - violations_total
