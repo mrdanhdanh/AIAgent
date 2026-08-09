@@ -1,0 +1,8 @@
+{
+  "schema": "artifact-data-model",
+  "version": "1.0",
+  "artifactId": { "type": "string", "format": "uuid" },
+  "version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+  "checksum": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+  "required": [ "artifactId", "executionId", "version", "checksum", "createdAt" ]
+}

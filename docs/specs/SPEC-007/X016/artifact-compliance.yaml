@@ -1,0 +1,10 @@
+# SPEC-007 X016 - Artifact Compliance Rules
+---
+version: "1.0"
+compliance_rules:
+  COMP-001: { name: Immutable, requirement: Artifact khong thay doi sau publish (P010), source: XNF-001 }
+  COMP-002: { name: No Overwrite, requirement: Khong bao gio overwrite (TERM-008), source: XNF-002 }
+  COMP-003: { name: Checksum, requirement: Moi Artifact co checksum (P010), source: XNF-002 }
+  COMP-004: { name: Observable, requirement: Moi thay doi co Event (P005), source: XNF-004 }
+  COMP-005: { name: Owned, requirement: Artifact thuoc mot Execution (S008), source: XNF-005 }
+  COMP-006: { name: Archived, requirement: Archive theo retention (S012), source: XPOL-006 }

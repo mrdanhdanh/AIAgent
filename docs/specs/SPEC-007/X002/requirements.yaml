@@ -1,0 +1,357 @@
+# SPEC-007 X002 - Artifact Requirements
+---
+id: SPEC-007-X002
+name: Artifact Requirements
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Artifact Team
+functional:
+  XFR-001:
+    title: Create Artifact
+    description: tao Artifact tu output cua Task/Agent
+    priority: Critical
+    category: Core
+    owner: Artifact
+    status: Draft
+    source: [P010, P004, P001]
+    rules: [RULE-005, RULE-014]
+    verification: [Artifact Test, Doctor]
+  XFR-002:
+    title: Validate Artifact
+    description: validate noi dung + schema truoc publish
+    priority: Critical
+    category: Validation
+    owner: Artifact
+    status: Draft
+    source: [P010, P004, P001]
+    rules: [RULE-005, RULE-014]
+    verification: [Artifact Test, Doctor]
+  XFR-003:
+    title: Checksum Artifact
+    description: tinh checksum (P010)
+    priority: Critical
+    category: Core
+    owner: Artifact
+    status: Draft
+    source: [P010, P004, P001]
+    rules: [RULE-005, RULE-014]
+    verification: [Artifact Test, Doctor]
+  XFR-004:
+    title: Publish Artifact
+    description: publish immutable (P010)
+    priority: Critical
+    category: Core
+    owner: Artifact
+    status: Draft
+    source: [P010, P004, P001]
+    rules: [RULE-005, RULE-014]
+    verification: [Artifact Test, Doctor]
+  XFR-005:
+    title: Version Artifact
+    description: sua = version moi (P004)
+    priority: Critical
+    category: Core
+    owner: Artifact
+    status: Draft
+    source: [P010, P004, P001]
+    rules: [RULE-005, RULE-014]
+    verification: [Artifact Test, Doctor]
+  XFR-006:
+    title: Index Artifact
+    description: index metadata de tim kiem
+    priority: High
+    category: Data
+    owner: Artifact
+    status: Draft
+    source: [P010, P004, P001]
+    rules: [RULE-005, RULE-014]
+    verification: [Artifact Test, Doctor]
+  XFR-007:
+    title: Consume Artifact
+    description: doc Artifact cho Agent/Doctor/Dashboard
+    priority: High
+    category: Execution
+    owner: Artifact
+    status: Draft
+    source: [P010, P004, P001]
+    rules: [RULE-005, RULE-014]
+    verification: [Artifact Test, Doctor]
+  XFR-008:
+    title: Archive Artifact
+    description: archive khi het han
+    priority: High
+    category: Data
+    owner: Artifact
+    status: Draft
+    source: [P010, P004, P001]
+    rules: [RULE-005, RULE-014]
+    verification: [Artifact Test, Doctor]
+  XFR-009:
+    title: Link Execution
+    description: gan Artifact vao Execution
+    priority: High
+    category: Data
+    owner: Artifact
+    status: Draft
+    source: [P010, P004, P001]
+    rules: [RULE-005, RULE-014]
+    verification: [Artifact Test, Doctor]
+  XFR-010:
+    title: Track Artifact
+    description: theo doi Artifact lifecycle (S011)
+    priority: High
+    category: Observability
+    owner: Artifact
+    status: Draft
+    source: [P010, P004, P001]
+    rules: [RULE-005, RULE-014]
+    verification: [Artifact Test, Doctor]
+  XFR-011:
+    title: Publish Artifact Events
+    description: phat Event cho moi state change (S011)
+    priority: High
+    category: Observability
+    owner: Artifact
+    status: Draft
+    source: [P010, P004, P001]
+    rules: [RULE-005, RULE-014]
+    verification: [Artifact Test, Doctor]
+  XFR-012:
+    title: Bind Policy
+    description: khai bao tham so Policy (S012 binding)
+    priority: High
+    category: Governance
+    owner: Artifact
+    status: Draft
+    source: [P010, P004, P001]
+    rules: [RULE-005, RULE-014]
+    verification: [Artifact Test, Doctor]
+  XFR-013:
+    title: Register Artifact
+    description: dang ky Artifact trong Registry (SPEC-005)
+    priority: Medium
+    category: Data
+    owner: Artifact
+    status: Draft
+    source: [P010, P004, P001]
+    rules: [RULE-005, RULE-014]
+    verification: [Artifact Test, Doctor]
+  XFR-014:
+    title: Support Artifact Chain
+    description: chuoi Artifact (output -> input)
+    priority: Medium
+    category: Execution
+    owner: Artifact
+    status: Draft
+    source: [P010, P004, P001]
+    rules: [RULE-005, RULE-014]
+    verification: [Artifact Test, Doctor]
+  XFR-015:
+    title: Manage Artifact Lifecycle
+    description: vong doi Artifact (create->archive)
+    priority: Critical
+    category: Execution
+    owner: Artifact
+    status: Draft
+    source: [P010, P004, P001]
+    rules: [RULE-005, RULE-014]
+    verification: [Artifact Test, Doctor]
+  XFR-016:
+    title: Audit Artifact
+    description: ghi audit moi thay doi Artifact (S011)
+    priority: High
+    category: Observability
+    owner: Artifact
+    status: Draft
+    source: [P010, P004, P001]
+    rules: [RULE-005, RULE-014]
+    verification: [Artifact Test, Doctor]
+non_functional:
+  XNF-001:
+    title: Immutable
+    description: Artifact khong thay doi sau publish
+    priority: Critical
+    category: Core
+    owner: Artifact
+    status: Draft
+    source: [P010]
+    rules: [RULE-005]
+  XNF-002:
+    title: Checksummed
+    description: moi Artifact co checksum (P010)
+    priority: Critical
+    category: Core
+    owner: Artifact
+    status: Draft
+    source: [P010]
+    rules: [RULE-005]
+  XNF-003:
+    title: Versioned
+    description: moi thay doi tao version moi (P004)
+    priority: Critical
+    category: Core
+    owner: Artifact
+    status: Draft
+    source: [P010]
+    rules: [RULE-005]
+  XNF-004:
+    title: Observable
+    description: moi Artifact quan sat qua S011
+    priority: High
+    category: Observability
+    owner: Artifact
+    status: Draft
+    source: [P010]
+    rules: [RULE-005]
+  XNF-005:
+    title: Owned
+    description: moi Artifact thuoc mot Execution
+    priority: Critical
+    category: Core
+    owner: Artifact
+    status: Draft
+    source: [P010]
+    rules: [RULE-005]
+  XNF-006:
+    title: Compatible
+    description: backward compatible
+    priority: High
+    category: Data
+    owner: Artifact
+    status: Draft
+    source: [P010]
+    rules: [RULE-005]
+  XNF-007:
+    title: Recoverable
+    description: phuc hoi sau loi
+    priority: High
+    category: Core
+    owner: Artifact
+    status: Draft
+    source: [P010]
+    rules: [RULE-005]
+  XNF-008:
+    title: Testable
+    description: kiem thu tu dong
+    priority: High
+    category: Core
+    owner: Artifact
+    status: Draft
+    source: [P010]
+    rules: [RULE-005]
+  XNF-009:
+    title: Performant
+    description: dap ung target store/consume
+    priority: High
+    category: Observability
+    owner: Artifact
+    status: Draft
+    source: [P010]
+    rules: [RULE-005]
+  XNF-010:
+    title: Governed
+    description: chiu Governance (S013)
+    priority: Critical
+    category: Governance
+    owner: Artifact
+    status: Draft
+    source: [P010]
+    rules: [RULE-005]
+  XNF-011:
+    title: Reusable
+    description: Artifact pattern tai su dung
+    priority: Medium
+    category: Data
+    owner: Artifact
+    status: Draft
+    source: [P010]
+    rules: [RULE-005]
+  XNF-012:
+    title: Traceable
+    description: moi Artifact truy vet (S011)
+    priority: High
+    category: Observability
+    owner: Artifact
+    status: Draft
+    source: [P010]
+    rules: [RULE-005]
+constraints:
+  XC-001:
+    name: No Mutable Artifact
+    type: Architectural
+    source: [P010]
+    rules: [RULE-005]
+  XC-002:
+    name: No Overwrite
+    type: Architectural
+    source: [P010, TERM-008]
+    rules: [RULE-005]
+  XC-003:
+    name: No Business Data
+    type: Architectural
+    source: [P001]
+    rules: [RULE-001]
+  XC-004:
+    name: No Redefine ENT-008
+    type: Architectural
+    source: [P001]
+    rules: [RULE-005]
+  XC-005:
+    name: No Redefine Policy (S012)
+    type: Governance
+    source: [P015]
+    rules: [RULE-012]
+  XC-006:
+    name: Archive Before Delete
+    type: Governance
+    source: [P011]
+    rules: [RULE-005]
+assumptions:
+  XA-001: Artifact hop le (da validate)
+  XA-002: Execution ton tai (SPEC-001)
+  XA-003: Registry kha dung (SPEC-005)
+  XA-004: Runtime kha dung (SPEC-001)
+  note: Neu gia dinh sai, Artifact Manager chi bao loi, khong tu sua.
+dependencies:
+  logical:
+    - Constitution
+    - Runtime (SPEC-001)
+    - Registry (SPEC-005)
+  runtime_services:
+    - Event Store (S011)
+    - Metrics Collector (S011)
+external_interfaces:
+  Execution: Input
+  Agent/Task: Produce/Consume
+  Event (S011): Publish
+  Policy (S012): Apply
+quality_attributes:
+  Immutability:
+    target: "100%"
+    description: Khong Artifact bi sua sau publish
+  Checksum Coverage:
+    target: "100%"
+  Reliability:
+    target: "99.9%"
+  Traceability:
+    target: "100%"
+  Observability:
+    target: "100%"
+acceptance:
+  XAR-001:
+    description: Artifact Manager tao va publish duoc Artifact hop le
+    related: [XFR-001, XFR-004, P010]
+    verified_by: [Artifact Tests, Doctor]
+  XAR-002:
+    description: Artifact khong bao gio bi overwrite
+    related: [XC-002, P010]
+    verified_by: [Artifact Tests, Doctor]
+  XAR-003:
+    description: Artifact phat Event day du cho moi state change
+    related: [XFR-011, P005]
+    verified_by: [Doctor]
+  XAR-004:
+    description: Artifact khong chua Business Data
+    related: [XC-003, P001]
+    verified_by: [Doctor]

@@ -1,0 +1,8 @@
+# SPEC-007 X010 - Artifact Flow Validation
+---
+version: "1.0"
+validation:
+  - stage order dung ENT-008
+  - moi stage co event tuong ung
+  - artifact published truoc khi consume
+  - khong co overwrite (Doctor X019)

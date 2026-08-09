@@ -1,0 +1,8 @@
+# SPEC-007 X019 - Artifact Doctor Report
+---
+version: "1.0"
+report:
+  format: markdown + JSON
+  sections: [summary, score, checks, violations, evidence, actions]
+  tool: spec007-validator.ps1
+  output: docs/specs/SPEC-007/reports/

@@ -1,0 +1,8 @@
+# SPEC-007 X010 - Artifact Storage
+---
+version: "1.0"
+storage:
+  mode: Content-addressable (checksum)
+  lifecycle: Create -> Archive
+  snapshot: optional (debug)
+  quota: theo policy (X012)

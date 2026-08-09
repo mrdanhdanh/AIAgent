@@ -1,0 +1,10 @@
+# SPEC-007 X010 - Artifact Query
+---
+version: "1.0"
+query_ops:
+  - GetArtifact(artifact_id)
+  - GetVersion(artifact_id, version)
+  - SearchArtifacts(query)
+  - ListByExecution(execution_id)
+  - GetHistory(artifact_id)
+rule: Query khong thay doi Artifact, khong can grant.

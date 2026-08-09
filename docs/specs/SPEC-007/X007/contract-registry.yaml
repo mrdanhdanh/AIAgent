@@ -1,0 +1,6 @@
+# SPEC-007 X007 - Artifact Contract Registry
+---
+version: "1.0"
+registry:
+  owner: Artifact Team
+  tracked: [XCT-001..007]

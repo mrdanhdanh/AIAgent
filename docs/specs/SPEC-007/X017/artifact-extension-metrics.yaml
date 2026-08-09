@@ -1,0 +1,7 @@
+# SPEC-007 X017 - Artifact Extension Metrics
+---
+version: "1.0"
+metrics:
+  - artifact_extensions_total
+  - artifact_extensions_active
+  - artifact_extensions_rejected_total

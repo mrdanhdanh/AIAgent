@@ -1,0 +1,8 @@
+# SPEC-007 X020 - Artifact Dashboard Events
+---
+version: "1.0"
+events:
+  - ARTIFACT_DASHBOARD_OPENED
+  - ARTIFACT_DASHBOARD_FILTERED
+  - ARTIFACT_DASHBOARD_EXPORTED
+note: Event vao S011.

@@ -161,29 +161,29 @@ SPEC-004 Agent System
 
 ## SPEC-005 — Registry
 
-> **Trạng thái**: ✅ COMPLETE (20/20 Draft) · **Phụ thuộc**: SPEC-000, SPEC-001
+> **Trạng thái**: 🚧 In progress (20/20 Draft — rev1 FAIL REV-20260809-138, NotReviewed/count 0) · **Phụ thuộc**: SPEC-000, SPEC-001
 
 ```text
 SPEC-005 Registry
 │
-├── Tier 1 — Foundation ✅
-│   ├── R001 Registry Vision            ✅ Draft
-│   ├── R002 Registry Requirements      ✅ Draft
-│   ├── R003 Registry Responsibilities  ✅ Draft
-│   ├── R004 Registry Boundaries        ✅ Draft
-│   ├── R005 Registry Architecture      ✅ Draft
-│   ├── R006 Registry Components        ✅ Draft
-│   ├── R007 Registry Contracts         ✅ Draft
-│   └── Appendix: Canonical Models      ✅ Draft
+├── Tier 1 — Foundation 🚧
+│   ├── R001 Registry Vision            🚧 Draft
+│   ├── R002 Registry Requirements      🚧 Draft
+│   ├── R003 Registry Responsibilities  🚧 Draft
+│   ├── R004 Registry Boundaries        🚧 Draft
+│   ├── R005 Registry Architecture      🚧 Draft
+│   ├── R006 Registry Components        🚧 Draft
+│   ├── R007 Registry Contracts         🚧 Draft
+│   └── Appendix: Canonical Models      🚧 Draft
 │
-├── Tier 2 — Behavior ✅
-│   ├── R008 Registry Data Model        ✅ Draft
-│   ├── R009 Registry State Machine     ✅ Draft
-│   └── R010 Registry Execution Flow    ✅ Draft
+├── Tier 2 — Behavior 🚧
+│   ├── R008 Registry Data Model        🚧 Draft
+│   ├── R009 Registry State Machine     🚧 Draft
+│   └── R010 Registry Execution Flow    🚧 Draft
 │
-└── Tier 3/4 — Operations + Experience ✅
-    ├── R011-R016 Operations            ✅ Draft
-    └── R017-R020 Experience            ✅ Draft
+└── Tier 3/4 — Operations + Experience 🚧
+    ├── R011-R016 Operations            🚧 Draft
+    └── R017-R020 Experience            🚧 Draft
 ```
 
 ## SPEC-006 — Context Engine
@@ -215,7 +215,30 @@ SPEC-006 Context Engine
 
 ## SPEC-007 — Artifact Manager
 
-> **Trạng thái**: ⬜
+> **Trạng thái**: ✅ Hoàn thành (20/20) · **Phụ thuộc**: SPEC-000, SPEC-001, SPEC-005
+
+```text
+SPEC-007 Artifact Manager
+│
+├── Tier 1 — Foundation
+│   ├── X001 Artifact Vision             ✅
+│   ├── X002 Artifact Requirements       ✅
+│   ├── X003 Artifact Responsibilities   ✅
+│   ├── X004 Artifact Boundaries         ✅
+│   ├── X005 Artifact Architecture       ✅
+│   ├── X006 Artifact Components         ✅
+│   ├── X007 Artifact Contracts          ✅
+│   └── Appendix: Canonical Models       ✅
+│
+├── Tier 2 — Behavior
+│   ├── X008 Artifact Data Model         ✅
+│   ├── X009 Artifact State Machine      ✅
+│   └── X010 Artifact Execution Flow     ✅
+│
+└── Tier 3/4 — Operations + Experience
+    ├── X011-X016 Operations            ✅
+    └── X017-X020 Experience            ✅
+```
 
 ## SPEC-008 — Event Bus
 

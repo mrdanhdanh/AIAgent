@@ -1,0 +1,5 @@
+{
+  "schema": "artifact-registry",
+  "version": "1.0",
+  "entry_types": ["ArtifactDefinition","ArtifactSchema","ArtifactPolicy","ArtifactStateMachine"]
+}

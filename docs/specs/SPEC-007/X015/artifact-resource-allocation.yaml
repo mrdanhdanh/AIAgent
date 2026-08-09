@@ -1,0 +1,8 @@
+# SPEC-007 X015 - Artifact Resource Allocation
+---
+version: "1.0"
+allocation:
+  - Create: cap storage theo quota (XPOL-007)
+  - Publish: cap content + index slot
+  - Archive: thu hoi storage theo retention
+  - Quota: cau hinh qua Policy S012

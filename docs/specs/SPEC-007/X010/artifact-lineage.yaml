@@ -1,0 +1,9 @@
+# SPEC-007 X010 - Artifact Lineage
+---
+version: "1.0"
+lineage:
+  artifact_id: UUID
+  parent_artifact_id: null (Root) | UUID (chain)
+  execution_id: UUID
+  producer: Agent/Task
+  note: Lineage duoc luu trong metadata.

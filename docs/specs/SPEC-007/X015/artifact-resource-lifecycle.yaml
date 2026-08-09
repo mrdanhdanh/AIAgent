@@ -1,0 +1,7 @@
+# SPEC-007 X015 - Artifact Resource Lifecycle
+---
+version: "1.0"
+lifecycle:
+  allocate -> in_use -> archived
+  leaked: resource khong duoc release -> Doctor X019 phat hien
+  reclamation: archive theo retention (XPOL-006)

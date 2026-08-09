@@ -1,0 +1,9 @@
+# SPEC-007 X013 - Artifact Governance Registry
+---
+version: "1.0"
+registry:
+  spec: SPEC-007 (this)
+  sections: [X001..X020]
+  models: artifact-models/
+  schemas: *.schema.json
+  status_tracking: SPEC-INDEX.md

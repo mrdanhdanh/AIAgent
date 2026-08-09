@@ -1,0 +1,17 @@
+# SPEC-007 X011 - Artifact Observability Mapping
+---
+version: "1.0"
+mapping:
+  stage -> event:
+    Create: ARTIFACT_CREATED
+    Validate: ARTIFACT_VALIDATING
+    Checksum: ARTIFACT_CHECKSUMMED
+    Publish: ARTIFACT_PUBLISHED
+    Version: ARTIFACT_VERSIONED
+    Index: ARTIFACT_INDEXED
+    Consume: ARTIFACT_CONSUMED
+    Archive: ARTIFACT_ARCHIVED
+  state -> metric:
+    Published: artifact_published_total
+    Archived: artifact_archived_total
+    Rejected: artifact_rejected_total

@@ -1,0 +1,20 @@
+# SPEC-007 X003 - Artifact Responsibilities (16)
+---
+version: "1.0"
+responsibilities:
+  XRR-001: { name: Create Artifact, owner: Artifact Store, partner: -, role: OWNER }
+  XRR-002: { name: Validate Artifact, owner: Artifact Store, partner: Artifact Validator, role: OWNER }
+  XRR-003: { name: Checksum, owner: Artifact Store, partner: -, role: OWNER }
+  XRR-004: { name: Publish, owner: Artifact Store, partner: -, role: OWNER }
+  XRR-005: { name: Version, owner: Artifact Store, partner: -, role: OWNER }
+  XRR-006: { name: Index, owner: Artifact Store, partner: Indexer, role: OWNER }
+  XRR-007: { name: Consume, owner: Agent/Doctor/Dashboard, partner: Artifact Store, role: GRANTEE }
+  XRR-008: { name: Archive, owner: Artifact Store, partner: -, role: OWNER }
+  XRR-009: { name: Link Execution, owner: Artifact Store, partner: Execution, role: OWNER }
+  XRR-010: { name: Events, owner: Runtime (S011), partner: Artifact Store, role: EMITTER }
+  XRR-011: { name: Metrics, owner: Runtime (S011), partner: Artifact Store, role: EMITTER }
+  XRR-012: { name: Policy eval, owner: Policy (S012), partner: Artifact Store, role: DECIDER }
+  XRR-013: { name: Registry, owner: Registry (SPEC-005), partner: Artifact Store, role: REGISTER }
+  XRR-014: { name: Audit, owner: Runtime (S011), partner: Artifact Store, role: EMITTER }
+  XRR-015: { name: Retention, owner: Artifact Store, partner: Policy (S012), role: OWNER }
+  XRR-016: { name: Recovery, owner: Artifact Store, partner: Snapshot, role: OWNER }

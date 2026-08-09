@@ -1,0 +1,9 @@
+# SPEC-007 X016 - Artifact Compliance Events
+---
+version: "1.0"
+events:
+  - SPEC007_COMPLIANCE_PASS
+  - SPEC007_COMPLIANCE_FAIL
+  - SPEC007_CERTIFIED
+  - SPEC007_AUDITED
+note: Event vao S011.

@@ -1,0 +1,9 @@
+# SPEC-007 X005 - Artifact Layer Model (5)
+---
+version: "1.0"
+layers:
+  XAL-001: { name: API Layer, role: Artifact API (create, publish, version, consume, archive) }
+  XAL-002: { name: Engine Layer, role: Lifecycle Orchestrator + State Machine (X009) }
+  XAL-003: { name: Guard Layer, role: Policy Evaluator (S012) + Validator + Checksum }
+  XAL-004: { name: Store Layer, role: Artifact Store (immutable content) + Index }
+  XAL-005: { name: Integration, role: Registry (SPEC-005) + Events/Metrics (S011) }

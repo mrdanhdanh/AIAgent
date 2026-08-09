@@ -1,0 +1,6 @@
+# SPEC-007 X005 - Artifact Architecture Registry
+---
+version: "1.0"
+registry:
+  owner: Artifact Team
+  tracked: [XAL-001..005]

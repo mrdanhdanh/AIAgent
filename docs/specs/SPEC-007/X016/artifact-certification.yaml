@@ -1,0 +1,10 @@
+# SPEC-007 X016 - Artifact Certification
+---
+version: "1.0"
+certification:
+  certified_artifacts:
+    - SPEC-007 SPEC.yaml
+    - X001-X020 sections
+    - artifact-models/
+  criteria: validator PASS + Doctor PASS
+  issued_by: Artifact Team + Governance (S013)

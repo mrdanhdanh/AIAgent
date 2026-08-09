@@ -1,0 +1,13 @@
+# SPEC-007 X011 - Artifact Traces
+---
+version: "1.0"
+traces:
+  - artifact.create
+  - artifact.validate
+  - artifact.checksum
+  - artifact.publish
+  - artifact.version
+  - artifact.index
+  - artifact.consume
+  - artifact.archive
+span_attrs: [artifact_id, execution_id, version, producer_id]

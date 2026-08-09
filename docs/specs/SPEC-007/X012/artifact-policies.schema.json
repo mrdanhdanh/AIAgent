@@ -1,0 +1,5 @@
+{
+  "schema": "artifact-policies",
+  "version": "1.0",
+  "policy_id": { "type": "string", "pattern": "^XPOL-[0-9]{3}$" }
+}

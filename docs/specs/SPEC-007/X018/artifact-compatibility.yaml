@@ -1,0 +1,7 @@
+# SPEC-007 X018 - Artifact Compatibility
+---
+version: "1.0"
+compatibility:
+  backward: moi version giu Artifact contract cu (XNF-006)
+  forward: tuan thu schema strict
+  check: kiem tra bang validator + Doctor X019

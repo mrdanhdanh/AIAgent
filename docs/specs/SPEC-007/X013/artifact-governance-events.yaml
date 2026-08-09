@@ -1,0 +1,10 @@
+# SPEC-007 X013 - Artifact Governance Events
+---
+version: "1.0"
+events:
+  - SPEC007_FROZEN
+  - SPEC007_UNFROZEN
+  - SPEC007_VERSIONED
+  - SPEC007_DECISION_MADE
+  - SPEC007_DECISION_OVERRIDDEN
+note: Event goi vao S011.

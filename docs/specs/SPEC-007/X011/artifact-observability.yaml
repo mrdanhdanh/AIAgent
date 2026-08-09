@@ -1,0 +1,9 @@
+# SPEC-007 X011 - Artifact Observability Model
+---
+version: "1.0"
+observability:
+  logs: Artifact Manager logs (structured)
+  events: ARTIFACT_* (S011 Event Store)
+  metrics: artifact_* (prometheus)
+  traces: trace_id + correlation_id (S011)
+boundary: Artifact la output observable (RULE-014)

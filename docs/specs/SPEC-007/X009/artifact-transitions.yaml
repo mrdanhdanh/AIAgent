@@ -1,0 +1,11 @@
+# SPEC-007 X009 - Artifact Transitions (7)
+---
+version: "1.0"
+transitions:
+  XTR-001: { from: XST-001, to: XST-002, event: ARTIFACT_VALIDATING, guard: Khai bao hop le }
+  XTR-002: { from: XST-002, to: XST-003, event: ARTIFACT_PUBLISHED, guard: Validate pass + checksum OK }
+  XTR-003: { from: XST-002, to: XST-006, event: ARTIFACT_REJECTED, guard: Validate fail }
+  XTR-004: { from: XST-003, to: XST-004, event: ARTIFACT_CONSUMED, guard: Co consumer doc }
+  XTR-005: { from: XST-003, to: XST-003, event: ARTIFACT_VERSIONED, guard: Version moi (P004) }
+  XTR-006: { from: XST-004, to: XST-005, event: ARTIFACT_ARCHIVED, guard: Het retention }
+  XTR-007: { from: XST-003, to: XST-005, event: ARTIFACT_ARCHIVED, guard: Het retention (khong consumed) }

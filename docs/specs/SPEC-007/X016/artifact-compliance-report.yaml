@@ -1,0 +1,9 @@
+# SPEC-007 X016 - Artifact Compliance Report
+---
+version: "1.0"
+report:
+  scope: [X001..X020]
+  format: markdown + JSON
+  frequency: moi thay doi SPEC-007
+  content: [score, violations, evidence, actions]
+  tool: spec007-validator.ps1

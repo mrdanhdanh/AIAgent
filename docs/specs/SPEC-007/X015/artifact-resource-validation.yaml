@@ -1,0 +1,8 @@
+# SPEC-007 X015 - Artifact Resource Validation
+---
+version: "1.0"
+validation:
+  - quota khong vuot (XPOL-007)
+  - khong leak sau Archive
+  - metrics day du (X011)
+  - kiem tra bang Doctor X019

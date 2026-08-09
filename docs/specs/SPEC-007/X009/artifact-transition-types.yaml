@@ -1,0 +1,8 @@
+# SPEC-007 X009 - Artifact Transition Types
+---
+version: "1.0"
+transition_types:
+  external: [ARTIFACT_VALIDATING, ARTIFACT_PUBLISHED, ARTIFACT_REJECTED, ARTIFACT_ARCHIVED]
+  internal: [ARTIFACT_VERSIONED, ARTIFACT_CONSUMED]
+  error: [ARTIFACT_REJECTED]
+rule: Internal transition chi trong Artifact Manager.

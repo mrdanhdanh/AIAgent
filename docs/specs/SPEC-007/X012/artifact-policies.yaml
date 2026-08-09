@@ -1,0 +1,14 @@
+# SPEC-007 X012 - Artifact Policies (10)
+---
+version: "1.0"
+policies:
+  XPOL-001: { name: Immutable, description: Artifact khong thay doi sau publish, priority: Critical, source: P010, principle: P010 }
+  XPOL-002: { name: No Overwrite, description: Khong bao gio overwrite, priority: Critical, source: TERM-008, principle: P010 }
+  XPOL-003: { name: Checksum Required, description: Moi Artifact co checksum, priority: Critical, source: P010, principle: P010 }
+  XPOL-004: { name: Version Strict, description: Thay doi = version moi, priority: High, source: P004, principle: P004 }
+  XPOL-005: { name: No Business Data, description: Artifact chi metadata, priority: Critical, source: S011 OB003A, principle: P001 }
+  XPOL-006: { name: Retention, description: Archive theo retention days, priority: High, source: S012, principle: P011 }
+  XPOL-007: { name: Quota, description: Gioi han kich thuoc Artifact, priority: High, source: S012, principle: P011 }
+  XPOL-008: { name: Consume Read-Only, description: Consumer khong doi Artifact, priority: High, source: S012, principle: P009 }
+  XPOL-009: { name: Audit All, description: Moi thay doi co audit, priority: High, source: S011, principle: P005 }
+  XPOL-010: { name: Schema Valid, description: Content theo schema, priority: High, source: X008, principle: P009 }

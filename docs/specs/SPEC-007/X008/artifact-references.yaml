@@ -1,0 +1,11 @@
+# SPEC-007 X008 - Artifact References
+---
+version: "1.0"
+references:
+  - ExecutionRef (SPEC-001)
+  - ProducerRef (SPEC-004/002)
+  - ConsumerRef (SPEC-004)
+  - PolicyRef (S012)
+  - Event (S011)
+  - RegistryEntry (SPEC-005)
+rule: Reference readonly, khong duoc mutate qua Artifact.

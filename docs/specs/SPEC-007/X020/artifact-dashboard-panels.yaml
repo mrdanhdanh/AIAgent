@@ -1,0 +1,10 @@
+# SPEC-007 X020 - Artifact Dashboard Panels (6)
+---
+version: "1.0"
+panels:
+  XPAN-001: { name: Artifact Activity, description: Create/Publish rate, data: X011 metrics, priority: High }
+  XPAN-002: { name: Artifact Lifecycle, description: State histogram (X009), data: X009 states, priority: High }
+  XPAN-003: { name: Artifact Failures, description: Rejected/corrupted, data: X015 metrics, priority: High }
+  XPAN-004: { name: Storage Usage, description: Content bytes, data: X015 metrics, priority: Medium }
+  XPAN-005: { name: Retention Status, description: Archive queue, data: X015 metrics, priority: Medium }
+  XPAN-006: { name: Compliance Score, description: X016 score, data: X016 report, priority: High }

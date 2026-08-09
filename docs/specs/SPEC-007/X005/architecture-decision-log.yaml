@@ -1,0 +1,8 @@
+# SPEC-007 X005 - Artifact ADL
+---
+version: "1.0"
+decisions:
+  XAD-001: { decision: Artifact content write-once, reason: P010 immutable }
+  XAD-002: { decision: Metadata versioned, reason: P004 }
+  XAD-003: { decision: Policy qua S012, reason: khong tu quyet }
+  XAD-004: { decision: Store tach Index, reason: query performance }

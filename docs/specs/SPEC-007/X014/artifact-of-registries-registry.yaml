@@ -1,0 +1,11 @@
+# SPEC-007 X014 - Artifact Registry of Registries
+---
+version: "1.0"
+registries:
+  registry: SPEC-005
+  artifact_sections:
+    - X008 data model
+    - X009 state machine
+    - X012 policies
+    - X014 this
+  note: Registry KHONG chua runtime Artifact content.

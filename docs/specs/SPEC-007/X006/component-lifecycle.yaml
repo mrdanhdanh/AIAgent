@@ -1,0 +1,7 @@
+# SPEC-007 X006 - Artifact Component Lifecycle
+---
+version: "1.0"
+lifecycle:
+  ArtifactApi: co khi Runtime start
+  ArtifactStore: per-Store instance
+  Others: singleton per Engine

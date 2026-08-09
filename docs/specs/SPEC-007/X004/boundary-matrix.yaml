@@ -1,0 +1,14 @@
+# SPEC-007 X004 - Artifact Boundary Matrix
+---
+version: "1.0"
+matrix:
+  XB-001: { name: Content, scope: IN }
+  XB-002: { name: Metadata, scope: IN }
+  XB-003: { name: Producer, scope: IN }
+  XB-004: { name: Consumer, scope: IN }
+  XB-005: { name: Policy, scope: IN }
+  XB-006: { name: Registry, scope: IN }
+  XB-007: { name: Event, scope: IN }
+  XB-008: { name: Secret, scope: FORBIDDEN }
+  XB-009: { name: PII, scope: FORBIDDEN }
+  XB-010: { name: Business Data, scope: FORBIDDEN }

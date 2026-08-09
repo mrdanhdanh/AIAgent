@@ -1,0 +1,10 @@
+# SPEC-007 X011 - Artifact Health
+---
+version: "1.0"
+health_checks:
+  - create_ok: create nhanh, khong loi
+  - checksum_ok: checksum luon khop
+  - publish_ok: publish thanh cong
+  - event_ok: event day du (S011)
+  - policy_ok: policy applied (S012)
+  score: tinh trong X019 Doctor

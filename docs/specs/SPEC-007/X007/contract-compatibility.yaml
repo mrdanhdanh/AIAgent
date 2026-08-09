@@ -1,0 +1,8 @@
+# SPEC-007 X007 - Artifact Contract Compatibility
+---
+version: "1.0"
+compatibility:
+  Add: field/version moi - OK
+  Change: y nghia field - ADR
+  Remove: field - ADR + RFC + migration
+  Event: them OK, doi BREAKING
