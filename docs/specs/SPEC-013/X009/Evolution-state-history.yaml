@@ -2,6 +2,6 @@
 ---
 version: "1.0"
 state_history:
-  record: [Evolution_id, state, timestamp, transition_id, correlation_id]
+  record: [evolution_id, state, timestamp, transition_id, correlation_id]
   retention: persistent (S011 Event Store)
   source: S011 Event Store

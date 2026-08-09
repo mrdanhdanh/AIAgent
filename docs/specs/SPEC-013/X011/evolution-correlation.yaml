@@ -1,0 +1,8 @@
+# SPEC-013 X011 - Evolution Correlation
+---
+version: "1.0"
+correlation:
+  correlation_id: sinh khi Diff
+  trace_id: Runtime (S011)
+  execution_id: Execution (SPEC-001)
+  mapping: evolution-observability-mapping.yaml

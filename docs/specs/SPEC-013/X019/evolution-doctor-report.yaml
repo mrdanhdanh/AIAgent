@@ -1,0 +1,8 @@
+# SPEC-013 X019 - Evolution Doctor Report
+---
+version: "1.0"
+report:
+  format: markdown + JSON
+  sections: [summary, score, checks, violations, evidence, actions]
+  tool: spec013-validator.ps1
+  output: docs/specs/SPEC-013/reports/

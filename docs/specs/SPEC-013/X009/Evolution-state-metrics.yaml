@@ -2,9 +2,9 @@
 ---
 version: "1.0"
 metrics:
-  - Evolution_states_total
-  - Evolution_transitions_total
-  - Evolution_transition_duration_seconds
-  - Evolution_failed_total
-  - Evolution_Diffed_total
-labels: [Evolution_id, state, transition, execution_id]
+  - evolution_states_total
+  - evolution_transitions_total
+  - evolution_transition_duration_seconds
+  - evolution_failed_total
+  - evolution_evolved_total
+labels: [evolution_id, state, transition, execution_id]

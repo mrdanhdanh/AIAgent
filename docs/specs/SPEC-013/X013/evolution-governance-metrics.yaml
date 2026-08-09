@@ -1,0 +1,9 @@
+# SPEC-013 X013 - Evolution Governance Metrics
+---
+version: "1.0"
+metrics:
+  - SPEC013_frozen_sections
+  - SPEC013_open_questions
+  - SPEC013_decisions_total
+  - SPEC013_compliance_score (X016)
+  - SPEC013_health_score (X019)

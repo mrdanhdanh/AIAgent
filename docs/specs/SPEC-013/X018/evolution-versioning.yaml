@@ -1,0 +1,6 @@
+# SPEC-013 X018 - Evolution Versioning
+---
+version: "1.0"
+versions:
+  XV-001: { version: 1.0.0, change: Initial Draft, detail: X001-X020 de xuat, date: 8/2026 }
+versioning_scheme: SemVer (SPEC-000)

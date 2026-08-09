@@ -1,0 +1,5 @@
+{
+  "schema": "evolution-registry",
+  "version": "1.0",
+  "entry_types": ["EvolutionDefinition","ScannerDefinition","EvolutionPolicy","EvolutionStateMachine"]
+}

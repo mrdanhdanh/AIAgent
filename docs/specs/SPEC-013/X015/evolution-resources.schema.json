@@ -1,0 +1,5 @@
+{
+  "schema": "evolution-resources",
+  "version": "1.0",
+  "resource_id": { "type": "string", "pattern": "^XRES-[0-9]{3}$" }
+}

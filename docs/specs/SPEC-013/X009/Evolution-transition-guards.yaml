@@ -2,7 +2,7 @@
 ---
 version: "1.0"
 guards:
-  XGD-001: { transition: XTR-002, condition: Plan hop le + isolated }
-  XGD-002: { transition: XTR-004, condition: Result day du + deterministic }
-  XGD-003: { transition: XTR-005, condition: Report day du (success rate) }
-guard_fail: transition bi chan + error Evolution_GUARD
+  XGD-001: { transition: XTR-002, condition: Backward compatible (P013) }
+  XGD-002: { transition: XTR-004, condition: Migration plan day du }
+  XGD-003: { transition: XTR-005, condition: Evolve xong + report }
+guard_fail: transition bi chan + error EVOLUTION_GUARD

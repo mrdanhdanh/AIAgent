@@ -1,0 +1,11 @@
+# SPEC-013 X017 - Evolution Extension Points
+---
+version: "1.0"
+extensions:
+  XEXT-001: { name: Evolution Extension Point, description: Diem mo rong Evolution, owner: Evolution, priority: High }
+  XEXT-002: { name: Custom Scanner, description: Scanner moi (domain), owner: Evolution, priority: High }
+  XEXT-003: { name: Custom Scoring Rule, description: Scoring rule tuy bien, owner: Evolution, priority: Medium }
+  XEXT-004: { name: Repair Hook, description: Hook repair (doc-only), owner: Policy (S012), priority: High }
+  XEXT-005: { name: Report Strategy, description: Chien luoc report tuy bien, owner: Evolution, priority: Medium }
+  XEXT-006: { name: Snapshot Serializer, description: Serialization tuy bien, owner: Evolution, priority: Low }
+  XEXT-007: { name: Dashboard Widget, description: Widget X020 tu tao, owner: X020, priority: Low }

@@ -1,0 +1,8 @@
+# SPEC-013 X013 - Evolution Governance Decisions
+---
+version: "1.0"
+decisions:
+  XDEC-001: { issue: Evolution co pha vo he thong khong, decision: Khong - safe (P013), date: pending }
+  XDEC-002: { issue: Evolution co backward compatible khong, decision: Co - P013, date: pending }
+  XDEC-003: { issue: Evolution co chua Business Data khong, decision: Khong - chi metadata, date: pending }
+  XDEC-004: { issue: Modules nao, decision: 9 modules (diff/compat/migrate/knowledge/self-heal/score/benchmark/stress/report), date: pending }

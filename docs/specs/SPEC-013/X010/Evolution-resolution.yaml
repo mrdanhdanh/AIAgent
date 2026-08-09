@@ -2,6 +2,6 @@
 ---
 version: "1.0"
 resolution:
-  input: Evolution_id
-  output: report + result hoac not-found
+  input: evolution_id
+  output: report + diff hoac not-found
   trace: moi resolution co trace_id (S011)

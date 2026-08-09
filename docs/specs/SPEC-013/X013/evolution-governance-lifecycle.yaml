@@ -1,0 +1,7 @@
+# SPEC-013 X013 - Evolution Governance Lifecycle
+---
+version: "1.0"
+lifecycle:
+  states: [Draft, Review, Approved, Frozen, Deprecated]
+  frozen: can ADR + RFC de thay doi (SPEC-000)
+  owner: Evolution Team

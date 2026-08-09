@@ -1,0 +1,8 @@
+# SPEC-013 X018 - Evolution Deprecation
+---
+version: "1.0"
+deprecation:
+  - Deprecated qua R009 lifecycle (SPEC-005).
+  - Co notice truoc 1 version.
+  - Breaking -> ADR + RFC.
+  - Migration guide bat buoc.

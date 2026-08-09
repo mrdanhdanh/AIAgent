@@ -296,7 +296,7 @@ SPEC-009 Contract System
 
 ## SPEC-010 — Plugin Framework
 
-> **Trạng thái**: 🚧 In progress (20/20 — review rev1 REV-20260809-205 FAIL, chờ fix 10 CRITICAL) · **Phụ thuộc**: SPEC-000, SPEC-001, SPEC-003, SPEC-005, SPEC-009
+> **Trạng thái**: 🚧 In progress (20/20 — review rev1 REV-20260809-207 PASS, Rev1/count 1 — còn 3 MINOR, chờ lần 2) · **Phụ thuộc**: SPEC-000, SPEC-001, SPEC-003, SPEC-005, SPEC-009
 
 ```text
 SPEC-010 Plugin Framework
@@ -377,7 +377,30 @@ SPEC-012 Simulation Engine
 
 ## SPEC-013 — Evolution Engine
 
-> **Trạng thái**: ⬜
+> **Trạng thái**: ✅ Hoàn thành (20/20) · **Phụ thuộc**: SPEC-000, SPEC-001, SPEC-002, SPEC-003, SPEC-005, SPEC-011, SPEC-012
+
+```text
+SPEC-013 Evolution Engine
+│
+├── Tier 1 — Foundation
+│   ├── X001 Evolution Vision          ✅
+│   ├── X002 Evolution Requirements    ✅
+│   ├── X003 Evolution Responsibilities ✅
+│   ├── X004 Evolution Boundaries      ✅
+│   ├── X005 Evolution Architecture    ✅
+│   ├── X006 Evolution Components      ✅
+│   ├── X007 Evolution Contracts       ✅
+│   └── Appendix: Canonical Models     ✅
+│
+├── Tier 2 — Behavior
+│   ├── X008 Evolution Data Model      ✅
+│   ├── X009 Evolution State Machine   ✅
+│   └── X010 Evolution Execution Flow  ✅
+│
+└── Tier 3/4 — Operations + Experience
+    ├── X011-X016 Operations           ✅
+    └── X017-X020 Experience           ✅
+```
 
 ## SPEC-014 — Dashboard
 

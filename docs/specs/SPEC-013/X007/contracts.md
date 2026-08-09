@@ -1,5 +1,5 @@
 ---
-name: SPEC-013-x007-contracts
+name: spec-013-x007-contracts
 description: SPEC-013 X007 - Evolution Contracts. Contract types, compatibility, anti-patterns.
 agent: general
 ---
@@ -17,19 +17,19 @@ agent: general
 - Contract la hop dong - khong phai cai dat.
 - Backward compatible (XNF-006).
 - Breaking change can ADR + RFC (SPEC-000).
-- Contract co schema (Evolution-*.schema.json).
+- Contract co schema (evolution-*.schema.json).
 
 ## XCT002 - Contract Types (7)
 
 | Type | Vi du | Breaking? |
 |------|-------|-----------|
 | API Contract | EvolutionApi ops | can ADR |
-| Data Contract | Diff + Result schema | can ADR |
-| Event Contract | Evolution_* events (S011) | can ADR |
-| Metric Contract | Evolution_* metrics | additive |
-| Policy Contract | run scope | can ADR |
-| Interface Contract | Store, Diff, Comparator | can ADR |
-| Report Contract | report schema | can ADR |
+| Data Contract | Diff + MigrationPlan schema | can ADR |
+| Event Contract | EVOLUTION_* events (S011) | can ADR |
+| Metric Contract | evolution_* metrics | additive |
+| Policy Contract | migration scope | can ADR |
+| Interface Contract | Store, DiffEngine, MigrationEngine | can ADR |
+| Report Contract | evolution report schema | can ADR |
 
 ## XCT003 - Compatibility Rules
 
@@ -42,8 +42,8 @@ agent: general
 
 - No implicit contract (undocumented).
 - No silent breaking.
-- No production change qua Evolution.
-- No non-deterministic Evolution.
+- No breaking change qua migration.
+- No core modify qua self-heal.
 
 ## XCT005 - Quality
 

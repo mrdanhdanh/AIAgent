@@ -1,0 +1,15 @@
+# SPEC-013 X011 - Evolution Observability Mapping
+---
+version: "1.0"
+mapping:
+  stage -> event:
+    Diff: EVOLUTION_DIFFED
+    CompatCheck: EVOLUTION_COMPAT_CHECKED
+    Plan: EVOLUTION_PLANNED
+    Migrate: EVOLUTION_MIGRATED
+    Heal: EVOLUTION_HEALED
+    Evolve: EVOLUTION_EVOLVED
+  state -> metric:
+    Evolved: evolution_evolved_total
+    Failed: evolution_failed_total
+    Migrated: evolution_migrations_total

@@ -2,7 +2,7 @@
 ---
 version: "1.0"
 transition_types:
-  external: [Evolution_Diffed, Evolution_FAILED]
-  internal: [Evolution_Diffed, Evolution_Diffed, Evolution_Diffed]
-  error: [Evolution_FAILED]
+  external: [EVOLUTION_COMPAT_CHECKED, EVOLUTION_FAILED]
+  internal: [EVOLUTION_PLANNED, EVOLUTION_MIGRATED, EVOLUTION_EVOLVED]
+  error: [EVOLUTION_FAILED]
 rule: Internal transition chi trong Evolution Engine.

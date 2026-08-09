@@ -1,5 +1,5 @@
 ---
-name: SPEC-013-x009-state-machine
+name: spec-013-x009-state-machine
 description: SPEC-013 X009 - Evolution State Machine. 6 states, 5 transitions, 3 guards.
 agent: general
 ---
@@ -35,11 +35,11 @@ agent: general
 
 | State | Category | Type | Terminal |
 |-------|----------|------|----------|
-| XST-001 Diffedd | Initial | Initial | - |
-| XST-002 Diffed | Preparation | Internal | - |
-| XST-003 Diffed | Active | Active | - |
-| XST-004 Diffed | Active | Active | - |
-| XST-005 Diffed | Terminal | Terminal | yes |
+| XST-001 Diffed | Initial | Initial | - |
+| XST-002 CompatChecked | Preparation | Internal | - |
+| XST-003 Planned | Active | Active | - |
+| XST-004 Migrated | Active | Active | - |
+| XST-005 Evolved | Terminal | Terminal | yes |
 | XST-006 Failed | Terminal | Terminal | yes |
 
 `initial_state: XST-001` - `terminal_states: [XST-005, XST-006]`
@@ -48,11 +48,11 @@ agent: general
 
 | From -> To | Event | Guard |
 |-----------|-------|-------|
-| XST-001 -> XST-002 | Evolution_Diffed | Diff hop le |
-| XST-002 -> XST-003 | Evolution_Diffed | Plan hop le |
-| XST-002 -> XST-006 | Evolution_FAILED | Plan fail |
-| XST-003 -> XST-004 | Evolution_Diffed | Run xong + result |
-| XST-004 -> XST-005 | Evolution_Diffed | Report xong |
+| XST-001 -> XST-002 | EVOLUTION_COMPAT_CHECKED | Diff hop le |
+| XST-002 -> XST-003 | EVOLUTION_PLANNED | Compat pass |
+| XST-002 -> XST-006 | EVOLUTION_FAILED | Compat fail (breaking) |
+| XST-003 -> XST-004 | EVOLUTION_MIGRATED | Migration xong |
+| XST-004 -> XST-005 | EVOLUTION_EVOLVED | Evolve xong |
 
 ## XS006 - Transition Matrix
 
@@ -67,15 +67,15 @@ XST-006 -> (terminal)
 
 ## XS007 - Guards (3)
 
-1. XTR-002: Plan hop le + isolated.
-2. XTR-004: Result day du + deterministic.
-3. XTR-005: Report day du (success rate).
+1. XTR-002: Backward compatible (P013).
+2. XTR-004: Migration plan day du.
+3. XTR-005: Evolve xong + report.
 
-Guard fail -> BLOCK + Evolution_GUARD + Event (S011).
+Guard fail -> BLOCK + EVOLUTION_GUARD + Event (S011).
 
 ## XS008 - Events (5)
 
-- Moi transition sinh dung mot event Evolution_*.
+- Moi transition sinh dung mot event EVOLUTION_*.
 - Event immutable, append-only (P005).
 - Event co correlation_id (S011).
 
@@ -91,11 +91,11 @@ Guard fail -> BLOCK + Evolution_GUARD + Event (S011).
 
 ## XS011 - Metrics
 
-- Evolution_states_total, Evolution_transitions_total.
-- Evolution_failed_total, Evolution_Diffed_total.
+- evolution_states_total, evolution_transitions_total.
+- evolution_failed_total, evolution_evolved_total.
 
 ## Tham chieu
 
 - S009 State Machine - SPEC-001
-- RULE-007 Event
+- P013 Deterministic Execution
 - S011 Events - SPEC-001

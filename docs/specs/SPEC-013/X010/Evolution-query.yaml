@@ -2,9 +2,9 @@
 ---
 version: "1.0"
 query_ops:
-  - GetEvolution(Evolution_id)
-  - GetResult(Evolution_id)
-  - SearchEvolutions(query)
-  - ListByDiff(Diff)
-  - GetHistory(Evolution_id)
+  - GetEvolution(evolution_id)
+  - GetDiff(evolution_id)
+  - GetCompatReport(evolution_id)
+  - GetMigrationPlan(evolution_id)
+  - GetHistory(evolution_id)
 rule: Query khong thay doi Evolution, khong can grant.

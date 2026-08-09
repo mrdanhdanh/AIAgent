@@ -1,0 +1,5 @@
+{
+  "schema": "evolution-compliance",
+  "version": "1.0",
+  "compliance_rule": { "type": "string", "pattern": "^COMP-[0-9]{3}$" }
+}

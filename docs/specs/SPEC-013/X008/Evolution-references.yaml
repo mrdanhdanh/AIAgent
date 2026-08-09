@@ -3,8 +3,8 @@
 version: "1.0"
 references:
   - ExecutionRef (SPEC-001)
-  - WorkflowRef (SPEC-002)
-  - DiffRef (SPEC-013)
+  - SystemRef (SPEC-000..012)
+  - ModuleRef (SPEC-013)
   - PolicyRef (S012)
   - Event (S011)
   - RegistryEntry (SPEC-005)

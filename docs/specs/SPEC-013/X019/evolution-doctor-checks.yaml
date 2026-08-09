@@ -1,0 +1,14 @@
+# SPEC-013 X019 - Evolution Doctor Checks (10)
+---
+version: "1.0"
+checks:
+  XDOC-001: { name: SPEC.yaml, description: SPEC-013 cau truc hop le, method: validator B1, priority: Critical }
+  XDOC-002: { name: README, description: Bang X001-X020 khop thuc te, method: validator B2, priority: Critical }
+  XDOC-003: { name: Sections, description: Moi X-co file chinh, method: validator B3, priority: Critical }
+  XDOC-004: { name: Schemas, description: Moi schema.json hop le, method: validator B4, priority: High }
+  XDOC-005: { name: Cross-ref, description: Tham chieu SPEC-000..010 ton tai, method: validator B5, priority: High }
+  XDOC-006: { name: State Machine, description: X009 hop le (reachable, terminal), method: X009 rules, priority: High }
+  XDOC-007: { name: Invariants, description: X008 invariant khong vi pham, method: X008 rules, priority: Critical }
+  XDOC-008: { name: Policies, description: XPOL binding S012, method: X012 rules, priority: High }
+  XDOC-009: { name: Safe Repair, description: Khong sua core (runtime), method: X015 metrics, priority: High }
+  XDOC-010: { name: Events, description: Event day du (S011), method: X011 mapping, priority: High }

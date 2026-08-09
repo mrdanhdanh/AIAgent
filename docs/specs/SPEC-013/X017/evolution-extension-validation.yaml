@@ -1,0 +1,9 @@
+# SPEC-013 X017 - Evolution Extension Validation
+---
+version: "1.0"
+validation:
+  - extension co schema.json
+  - extension khong pha vo invariants (X008)
+  - extension co test (Evolution Test)
+  - extension co doc
+  - kiem tra bang Evolution X019

@@ -4,5 +4,5 @@ version: "1.0"
 validation:
   - stage order dung pipeline
   - moi stage co event tuong ung
-  - Evolution khong doi he thong that
-  - deterministic (Doctor X019)
+  - compat check truoc migrate
+  - khong breaking change (Doctor X019)

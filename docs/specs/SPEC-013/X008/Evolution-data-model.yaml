@@ -4,24 +4,24 @@ version: "1.0"
 entities:
   ENT-X001: { name: Evolution, kind: AggregateRoot, owner: Evolution Engine, immutable: false }
   ENT-X002: { name: EvolutionDefinition, kind: Entity, owner: Evolution Engine, immutable: true }
-  ENT-X003: { name: Diff, kind: Entity, owner: Evolution Engine, immutable: true }
-  ENT-X004: { name: EvolutionPlan, kind: Entity, owner: Evolution Engine, immutable: true }
-  ENT-X005: { name: EvolutionResult, kind: Value, owner: Evolution Engine, immutable: false }
+  ENT-X003: { name: SemanticDiff, kind: Entity, owner: Evolution Engine, immutable: true }
+  ENT-X004: { name: CompatibilityReport, kind: Entity, owner: Evolution Engine, immutable: true }
+  ENT-X005: { name: MigrationPlan, kind: Value, owner: Evolution Engine, immutable: false }
   ENT-X006: { name: EvolutionState, kind: Transient, owner: Evolution Engine, immutable: false }
   ENT-X007: { name: EvolutionReport, kind: Entity, owner: Evolution Engine, immutable: true }
   ENT-X008: { name: EvolutionEvent, kind: Ref (S011), owner: Runtime, immutable: true }
   ENT-X009: { name: EvolutionMetric, kind: Ref (S011), owner: Runtime, immutable: true }
   ENT-X010: { name: EvolutionSnapshot, kind: Entity, owner: Evolution Engine, immutable: false }
   ENT-X011: { name: ExecutionRef, kind: Ref (SPEC-001), owner: Execution, immutable: true }
-  ENT-X012: { name: WorkflowRef, kind: Ref (SPEC-002), owner: Workflow, immutable: true }
-  ENT-X013: { name: DiffRef, kind: Ref (SPEC-013), owner: Evolution, immutable: true }
+  ENT-X012: { name: SystemRef, kind: Ref (SPEC-000..012), owner: System, immutable: true }
+  ENT-X013: { name: ModuleRef, kind: Ref (SPEC-013), owner: Evolution, immutable: true }
   ENT-X014: { name: PolicyRef, kind: Ref (S012), owner: Runtime, immutable: true }
   ENT-X015: { name: EvolutionExtension, kind: Value, owner: Evolution Engine, immutable: true }
 relations:
   REL-X001: { from: Evolution, to: EvolutionDefinition, cardinality: 1..1 }
-  REL-X002: { from: Evolution, to: Diff, cardinality: 1..1 }
-  REL-X003: { from: Evolution, to: EvolutionPlan, cardinality: 1..1 }
-  REL-X004: { from: Evolution, to: EvolutionResult, cardinality: 1..1 }
+  REL-X002: { from: Evolution, to: SemanticDiff, cardinality: 0..* }
+  REL-X003: { from: Evolution, to: CompatibilityReport, cardinality: 1..1 }
+  REL-X004: { from: Evolution, to: MigrationPlan, cardinality: 0..* }
   REL-X005: { from: Evolution, to: EvolutionState, cardinality: 1..1 }
   REL-X006: { from: Evolution, to: EvolutionReport, cardinality: 0..1 }
   REL-X007: { from: Evolution, to: ExecutionRef, cardinality: 1..1 }
@@ -29,22 +29,22 @@ relations:
   REL-X009: { from: Evolution, to: EvolutionSnapshot, cardinality: 0..* }
 invariants:
   INV-X001: { name: Unique EvolutionId, description: Moi Evolution co id duy nhat }
-  INV-X002: { name: Isolated, description: Evolution khong doi he thong that }
-  INV-X003: { name: Deterministic, description: Cung input cung ket qua }
-  INV-X004: { name: Diff Valid, description: Diff thuoc 6 types }
-  INV-X005: { name: Plan Valid, description: Plan hop le }
-  INV-X006: { name: Result Compare, description: Result co the compare }
+  INV-X002: { name: No Breaking Change, description: Evolution khong pha vo he thong }
+  INV-X003: { name: Compatible, description: Thay doi backward compatible }
+  INV-X004: { name: Migration Planned, description: Moi thay doi co migration plan }
+  INV-X005: { name: Self-Heal Safe, description: Self-heal doc-only }
+  INV-X006: { name: Report Complete, description: Report day du }
   INV-X007: { name: No Business Data, description: Evolution khong chua business data }
 validation:
   VAL-X001: { field: EvolutionId, requirement: Required, type: UUID }
-  VAL-X002: { field: Diff, requirement: Required, type: Enum (6 types) }
-  VAL-X003: { field: Plan, requirement: Required, type: Object }
-  VAL-X004: { field: Result, requirement: Required, type: Object }
-  VAL-X005: { field: SuccessRate, requirement: Required, type: 0-100 }
-  VAL-X006: { field: Timestamp, requirement: Required, type: Timestamp }
-  VAL-X007: { field: Issues, requirement: Optional, type: String[] }
+  VAL-X002: { field: VersionFrom, requirement: Required, type: SemVer }
+  VAL-X003: { field: VersionTo, requirement: Required, type: SemVer }
+  VAL-X004: { field: Diff, requirement: Required, type: SemanticDiff[] }
+  VAL-X005: { field: Compatibility, requirement: Required, type: Enum }
+  VAL-X006: { field: MigrationPlan, requirement: Optional, type: Object }
+  VAL-X007: { field: Timestamp, requirement: Required, type: Timestamp }
 storage:
   mode: Diff store
-  persistence: "true (P005 - report history)"
+  persistence: "true (P013 - migration history)"
   snapshot: EvolutionSnapshot (optional, debug)
-  source: /doctor --Evolution
+  source: /team-syncdocs (9 modules)

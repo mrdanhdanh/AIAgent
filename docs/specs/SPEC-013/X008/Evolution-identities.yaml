@@ -2,7 +2,7 @@
 ---
 version: "1.0"
 identity:
-  Evolution_id: UUID (generated at Diffed)
-  execution_id: UUID (from Execution)
-  Diff: 6 types enum
+  evolution_id: UUID (generated at Diff)
+  version_from: SemVer (cu)
+  version_to: SemVer (moi)
 identity_scope: Execution-scoped (never global)

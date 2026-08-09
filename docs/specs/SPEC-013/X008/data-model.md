@@ -1,5 +1,5 @@
 ---
-name: SPEC-013-x008-data-model
+name: spec-013-x008-data-model
 description: SPEC-013 X008 - Evolution Data Model. Entity, relation, invariant, validation.
 agent: general
 ---
@@ -14,31 +14,31 @@ agent: general
 
 ## XD001 - Philosophy
 
-- Evolution mo phong workflow (SPEC-002).
-- Evolution isolated - khong doi he thong that (RULE-007).
-- Evolution chi chua Diff + result - KHONG chua Business Data (S011 OB003A).
-- Evolution deterministic (P013).
+- Evolution tien hoa he thong (SPEC-000..012).
+- Evolution khong pha vo he thong (P013).
+- Evolution chi chua diff + migration plan - KHONG chua Business Data (S011 OB003A).
+- Evolution backward compatible (XNF-002).
 
 ## XD002 - Principles
 
-- **Isolated** - khong doi he thong that (RULE-007).
-- **Deterministic** - cung input cung ket qua (P013).
-- **Replayable** - replay qua Event log (RULE-007).
-- **Safe** - khong tao Artifact production (XNF-005).
-- **Observable** - moi Evolution quan sat qua S011.
+- **Safe Evolution** - khong pha vo he thong (P013).
+- **Backward Compatible** - giu tuong thich (XNF-002).
+- **Migration Planned** - moi thay doi co plan (XNF-003).
+- **Self-Heal Safe** - doc-only (XNF-005).
+- **Observable** - moi evolution quan sat qua S011.
 
 ## XD003 - Structure (3 lop)
 
 ```text
 Evolution (AggregateRoot)
   +- EvolutionDefinition (Entity)
-  +- Diff (Entity)
-  +- EvolutionPlan (Entity)
-  +- EvolutionResult (Value)
+  +- SemanticDiff (Entity) 0..*
+  +- CompatibilityReport (Entity)
+  +- MigrationPlan (Value) 0..*
   +- EvolutionState (Transient)
   +- EvolutionReport (Entity) 0..1
   +- EvolutionSnapshot (Entity) 0..*
-  +- refs: ExecutionRef, WorkflowRef, DiffRef, PolicyRef
+  +- refs: ExecutionRef, SystemRef, ModuleRef, PolicyRef
 ```
 
 ## XD004 - Entities (15 ENT)
@@ -47,34 +47,34 @@ Evolution (AggregateRoot)
 |-----|------|------|-------|-----------|
 | ENT-X001 | Evolution | AggregateRoot | Evolution Engine | - |
 | ENT-X002 | EvolutionDefinition | Entity | Evolution Engine | yes |
-| ENT-X003 | Diff | Entity | Evolution Engine | yes |
-| ENT-X004 | EvolutionPlan | Entity | Evolution Engine | yes |
-| ENT-X005 | EvolutionResult | Value | Evolution Engine | - |
+| ENT-X003 | SemanticDiff | Entity | Evolution Engine | yes |
+| ENT-X004 | CompatibilityReport | Entity | Evolution Engine | yes |
+| ENT-X005 | MigrationPlan | Value | Evolution Engine | - |
 | ENT-X006 | EvolutionState | Transient | Evolution Engine | - |
 | ENT-X007 | EvolutionReport | Entity | Evolution Engine | yes |
 | ENT-X008 | EvolutionEvent | Ref (S011) | Runtime | yes |
 | ENT-X009 | EvolutionMetric | Ref (S011) | Runtime | yes |
 | ENT-X010 | EvolutionSnapshot | Entity | Evolution Engine | - |
 | ENT-X011 | ExecutionRef | Ref (SPEC-001) | Execution | yes |
-| ENT-X012 | WorkflowRef | Ref (SPEC-002) | Workflow | yes |
-| ENT-X013 | DiffRef | Ref (SPEC-013) | Evolution | yes |
+| ENT-X012 | SystemRef | Ref (SPEC-000..012) | System | yes |
+| ENT-X013 | ModuleRef | Ref (SPEC-013) | Evolution | yes |
 | ENT-X014 | PolicyRef | Ref (S012) | Runtime | yes |
 | ENT-X015 | EvolutionExtension | Value | Evolution Engine | yes |
 
 ## XD005 - Identity
 
-- Evolution_id: UUID (Diffed sinh ra).
+- evolution_id: UUID (Diff sinh ra).
+- version_from/version_to: SemVer.
 - execution_id: UUID.
-- Diff: 6 types enum.
 
 ## XD006 - Relations (9)
 
 | REL | From | To | Card |
 |-----|------|----|------|
 | REL-X001 | Evolution | EvolutionDefinition | 1..1 |
-| REL-X002 | Evolution | Diff | 1..1 |
-| REL-X003 | Evolution | EvolutionPlan | 1..1 |
-| REL-X004 | Evolution | EvolutionResult | 1..1 |
+| REL-X002 | Evolution | SemanticDiff | 0..* |
+| REL-X003 | Evolution | CompatibilityReport | 1..1 |
+| REL-X004 | Evolution | MigrationPlan | 0..* |
 | REL-X005 | Evolution | EvolutionState | 1..1 |
 | REL-X006 | Evolution | EvolutionReport | 0..1 |
 | REL-X007 | Evolution | ExecutionRef | 1..1 |
@@ -84,23 +84,23 @@ Evolution (AggregateRoot)
 ## XD007 - Invariants (7)
 
 1. Unique EvolutionId.
-2. Isolated - khong doi he thong that.
-3. Deterministic.
-4. Diff thuoc 6 types.
-5. Plan hop le.
-6. Result co the compare.
+2. Khong pha vo he thong.
+3. Backward compatible.
+4. Moi thay doi co migration plan.
+5. Self-heal doc-only.
+6. Report day du.
 7. KHONG chua Business Data.
 
 ## XD008 - Validation
 
-- Validate khi: Diffed, Run.
-- Vi pham -> BLOCK + error Evolution_INVARIANT.
+- Validate khi: Diff, Migrate.
+- Vi pham -> BLOCK + error EVOLUTION_INVARIANT.
 - Validation co trace (S011).
 
 ## XD009 - Storage
 
-- Diff store (P005).
-- Persistent (report history).
+- Diff store (P013).
+- Persistent (migration history).
 - EvolutionSnapshot optional (debug).
 
 ## XD010 - Open Questions
@@ -110,6 +110,6 @@ Evolution (AggregateRoot)
 
 ## Tham chieu
 
-- SPEC-002 Workflow
-- RULE-007 Event
+- /team-syncdocs (9 modules)
+- P013 Deterministic Execution
 - S011 Observability

@@ -1,0 +1,10 @@
+# SPEC-013 X015 - Evolution Resource Model
+---
+version: "1.0"
+resources:
+  XRES-001: { name: Storage, description: Results storage, owner: Evolution, priority: Critical }
+  XRES-002: { name: Index, description: result index (domain/severity), owner: Evolution, priority: High }
+  XRES-003: { name: ScanId, description: UUID pool, owner: Evolution, priority: Critical }
+  XRES-004: { name: Scan CPU, description: Scanner compute, owner: Evolution, priority: High }
+  XRES-005: { name: Event Buffer, description: S011 publish queue, owner: Runtime, priority: High }
+  XRES-006: { name: Snapshot Store, description: debug snapshots, owner: Evolution, priority: Low }

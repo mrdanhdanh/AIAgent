@@ -1,0 +1,7 @@
+# SPEC-013 X017 - Evolution Extension Metrics
+---
+version: "1.0"
+metrics:
+  - EVOLUTION_extensions_total
+  - EVOLUTION_extensions_active
+  - EVOLUTION_extensions_rejected_total

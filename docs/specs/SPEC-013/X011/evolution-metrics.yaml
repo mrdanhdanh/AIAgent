@@ -1,0 +1,14 @@
+# SPEC-013 X011 - Evolution Metrics
+---
+version: "1.0"
+metrics:
+  - evolution_diffs_total
+  - evolution_migrations_total
+  - evolution_failed_total
+  - evolution_evolved_total
+  - evolution_heals_total
+  - evolution_breaking_blocked_total
+  - evolution_diff_duration_seconds
+  - evolution_migrate_latency_seconds
+  - evolution_health_score_current
+labels: [evolution_id, state, execution_id, module]

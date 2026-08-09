@@ -2,7 +2,7 @@
 ---
 version: "1.0"
 outcome:
-  success: Diffed + Evolution_Diffed
-  failure: Failed + Evolution_FAILED
-  metrics: [Evolution_Diffed_total, Evolution_failed_total]
+  success: Evolved + EVOLUTION_EVOLVED
+  failure: Failed + EVOLUTION_FAILED
+  metrics: [evolution_evolved_total, evolution_failed_total]
   audit: moi outcome ghi vao S011

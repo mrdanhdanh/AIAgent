@@ -3,12 +3,12 @@
 version: "1.0"
 validation_rules:
   VAL-X001: { field: EvolutionId, requirement: Required, type: UUID }
-  VAL-X002: { field: Diff, requirement: Required, type: Enum (6 types) }
-  VAL-X003: { field: Plan, requirement: Required, type: Object }
-  VAL-X004: { field: Result, requirement: Required, type: Object }
-  VAL-X005: { field: SuccessRate, requirement: Required, type: 0-100 }
-  VAL-X006: { field: Timestamp, requirement: Required, type: Timestamp }
-  VAL-X007: { field: Issues, requirement: Optional, type: String[] }
+  VAL-X002: { field: VersionFrom, requirement: Required, type: SemVer }
+  VAL-X003: { field: VersionTo, requirement: Required, type: SemVer }
+  VAL-X004: { field: Diff, requirement: Required, type: SemanticDiff[] }
+  VAL-X005: { field: Compatibility, requirement: Required, type: Enum }
+  VAL-X006: { field: MigrationPlan, requirement: Optional, type: Object }
+  VAL-X007: { field: Timestamp, requirement: Required, type: Timestamp }
 validate_on:
-  - Diffed
-  - Run
+  - Diff
+  - Migrate

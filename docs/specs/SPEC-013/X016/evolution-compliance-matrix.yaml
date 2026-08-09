@@ -1,0 +1,11 @@
+# SPEC-013 X016 - Evolution Compliance Matrix
+---
+version: "1.0"
+matrix:
+  COMP-001: { check: Evolution X019, artifact: evolution-*, gate: build }
+  COMP-002: { check: Evolution X019, artifact: evolution-*, gate: build }
+  COMP-003: { check: Evolution X019, artifact: evolution-*, gate: build }
+  COMP-004: { check: Evolution X019, artifact: evolution-*, gate: build }
+  COMP-005: { check: Evolution X019, artifact: evolution-*, gate: build }
+  COMP-006: { check: Evolution X019, artifact: evolution-*, gate: build }
+gate: khong pass -> BLOCKED

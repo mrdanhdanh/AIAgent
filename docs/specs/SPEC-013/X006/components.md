@@ -1,5 +1,5 @@
 ---
-name: SPEC-013-x006-components
+name: spec-013-x006-components
 description: SPEC-013 X006 - Evolution Components. Component model, contracts, lifecycle.
 agent: general
 ---
@@ -19,15 +19,15 @@ agent: general
 | EvolutionApi | expose op | API |
 | PipelineOrchestrator | pipeline flow | Engine |
 | EvolutionStateMachine | state transitions | Engine |
-| DiffEngine | chay Diffs | Core |
-| PlanValidator | validate Plan | Core |
+| DiffEngine | semantic diff | Core |
+| CompatChecker | backward compatible check | Core |
 | PolicyGuard | policy eval | Guard |
-| DiffStore | Diff definitions | Core |
-| ResultStore | Evolution results | Data |
-| Comparator | compare voi ky vong | Data |
-| EvolutionMetrics | metrics | Data |
-| RegistryClient | definition lookup | Integration |
-| Reporter | Evolution report | Data |
+| DiffStore | diff results | Core |
+| MigrationStore | migration plans | Data |
+| MigrationEngine | thuc hien migration | Data |
+| SelfHealEngine | doc-only repair | Data |
+| ModuleRegistry | 9 module lookup | Integration |
+| HealthScorer | health score | Data |
 
 ## XC002 - Contracts
 
@@ -45,7 +45,7 @@ agent: general
 
 - Evolution Team so huu toan bo component.
 - S011 components thuoc Runtime.
-- Workflow khong so huu component.
+- He thong khong so huu component.
 
 ## XC005 - Validation
 

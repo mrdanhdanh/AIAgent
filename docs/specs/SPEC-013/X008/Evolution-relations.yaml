@@ -3,9 +3,9 @@
 version: "1.0"
 relations:
   REL-X001: { from: Evolution, relation: owns, to: EvolutionDefinition, cardinality: 1..1 }
-  REL-X002: { from: Evolution, relation: uses, to: Diff, cardinality: 1..1 }
-  REL-X003: { from: Evolution, relation: owns, to: EvolutionPlan, cardinality: 1..1 }
-  REL-X004: { from: Evolution, relation: produces, to: EvolutionResult, cardinality: 1..1 }
+  REL-X002: { from: Evolution, relation: diffs, to: SemanticDiff, cardinality: 0..* }
+  REL-X003: { from: Evolution, relation: checks, to: CompatibilityReport, cardinality: 1..1 }
+  REL-X004: { from: Evolution, relation: plans, to: MigrationPlan, cardinality: 0..* }
   REL-X005: { from: Evolution, relation: has, to: EvolutionState, cardinality: 1..1 }
   REL-X006: { from: Evolution, relation: reports, to: EvolutionReport, cardinality: 0..1 }
   REL-X007: { from: Evolution, relation: refers, to: ExecutionRef, cardinality: 1..1 }

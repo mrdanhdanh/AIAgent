@@ -2,7 +2,7 @@
 ---
 version: "1.0"
 lineage:
-  Evolution_id: UUID
-  parent_Evolution_id: null (Root) | UUID (follow-up)
+  evolution_id: UUID
+  parent_evolution_id: null (Root) | UUID (follow-up)
   execution_id: UUID
   note: Lineage duoc luu trong metadata.

@@ -1,0 +1,10 @@
+# SPEC-013 X011 - Evolution Dashboard
+---
+version: "1.0"
+dashboard:
+  - Evolution Activity (diff/migrate rate)
+  - Compatibility Status (breaking blocked)
+  - Failures (evolution failed)
+  - Health Trend (score history)
+  - Migration Status (plan queue)
+  tool: X020 Evolution Dashboard

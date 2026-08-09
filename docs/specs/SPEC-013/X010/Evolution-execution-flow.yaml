@@ -2,10 +2,10 @@
 ---
 version: "1.0"
 stages:
-  XF-001: { name: Diffed, description: Nhan Diff tu User, actor: Evolution Engine, event: Evolution_DiffedD }
-  XF-002: { name: Planure, description: Cau hinh thong so, actor: Evolution Engine, event: Evolution_Diffed }
-  XF-003: { name: Run, description: Chay isolated, actor: DiffEngine, event: Evolution_Diffed }
-  XF-004: { name: Observe, description: Quan sat ket qua, actor: Observer, event: Evolution_Diffed }
-  XF-005: { name: Compare, description: So sanh voi ky vong, actor: Comparator, event: Evolution_COMPARED }
-  XF-006: { name: Report, description: Tao report, actor: Reporter, event: Evolution_Diffed }
-source: /doctor --Evolution (Evolution khong dinh nghia lai pipeline)
+  XF-001: { name: Diff, description: So sanh phien ban cu/moi, actor: DiffEngine, event: EVOLUTION_DIFFED }
+  XF-002: { name: CompatCheck, description: Kiem tra backward compatible, actor: CompatChecker, event: EVOLUTION_COMPAT_CHECKED }
+  XF-003: { name: Plan, description: Tao migration plan, actor: MigrationEngine, event: EVOLUTION_PLANNED }
+  XF-004: { name: Migrate, description: Thuc hien migration, actor: MigrationEngine, event: EVOLUTION_MIGRATED }
+  XF-005: { name: Heal, description: Self-heal doc-only (optional), actor: SelfHealEngine, event: EVOLUTION_HEALED }
+  XF-006: { name: Evolve, description: Tien hoa + report, actor: Evolution Engine, event: EVOLUTION_EVOLVED }
+source: /team-syncdocs (Evolution khong dinh nghia lai pipeline)

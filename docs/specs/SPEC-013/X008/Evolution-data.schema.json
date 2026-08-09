@@ -1,7 +1,7 @@
 {
-  "schema": "Evolution-data-model",
+  "schema": "evolution-data-model",
   "version": "1.0",
-  "EvolutionId": { "type": "string", "format": "uuid" },
-  "Diff": { "enum": ["Bug Fix","New Feature","Migration","Review","Testing","Refactoring"] },
-  "required": [ "EvolutionId", "Diff", "Plan", "timestamp" ]
+  "evolutionId": { "type": "string", "format": "uuid" },
+  "versionFrom": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+  "required": [ "evolutionId", "versionFrom", "versionTo", "timestamp" ]
 }

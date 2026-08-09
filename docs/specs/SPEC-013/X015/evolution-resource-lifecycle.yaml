@@ -1,0 +1,7 @@
+# SPEC-013 X015 - Evolution Resource Lifecycle
+---
+version: "1.0"
+lifecycle:
+  allocate -> in_use -> archived
+  leaked: resource khong duoc release -> Evolution X019 phat hien
+  reclamation: archive theo retention (XPOL-006)

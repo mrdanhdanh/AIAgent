@@ -1,0 +1,11 @@
+# SPEC-013 X011 - Evolution Traces
+---
+version: "1.0"
+traces:
+  - evolution.diff
+  - evolution.compat_check
+  - evolution.plan
+  - evolution.migrate
+  - evolution.heal
+  - evolution.evolve
+span_attrs: [evolution_id, execution_id, module, version_from]

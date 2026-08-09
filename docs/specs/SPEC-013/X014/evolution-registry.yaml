@@ -1,0 +1,13 @@
+# SPEC-013 X014 - Evolution Registry (via SPEC-005)
+---
+version: "1.0"
+registry:
+  owner: Registry (SPEC-005)
+  entries: Evolution Definition (scanners, schemas, policies)
+  runtime_data: KHONG vao Registry (Results o Store)
+  entry_types:
+    - EvolutionDefinition
+    - ScannerDefinition
+    - EvolutionPolicy
+    - EvolutionStateMachine
+  resolution: Registry resolve, Runtime thuc thi (RB004)

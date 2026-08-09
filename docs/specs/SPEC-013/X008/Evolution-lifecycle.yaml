@@ -2,9 +2,9 @@
 ---
 version: "1.0"
 lifecycle_phases:
-  - Diffedd
   - Diffed
-  - Diffed
-  - Diffed
-  - Diffed
+  - CompatChecked
+  - Planned
+  - Migrated
+  - Evolved
 note: Evolution khong dinh nghia lai lifecycle.
