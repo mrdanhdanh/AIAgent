@@ -1,6 +1,6 @@
 # SPEC-011 X009 - Doctor Transition Triggers
 ---
-version: "1.0"
+version: "1.0.0"
 triggers:
   XST-001: Request (User/CLI)
   XST-002: Scan (Doctor)

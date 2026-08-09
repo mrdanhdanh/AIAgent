@@ -1,6 +1,6 @@
 # SPEC-010 X013 - Plugin Governance Decisions
 ---
-version: "1.0"
+version: "1.0.0"
 decisions:
   XDEC-001: { issue: Plugin co implementation khong, decision: Khong - Manifest Based (TERM-015), date: pending }
   XDEC-002: { issue: Plugin co goi truc tiep khong, decision: Khong - qua Plugin (TERM-015), date: pending }

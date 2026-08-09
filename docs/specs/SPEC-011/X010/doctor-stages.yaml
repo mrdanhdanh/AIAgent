@@ -1,10 +1,10 @@
 # SPEC-011 X010 - Doctor Stages Registry
 ---
-version: "1.0"
+version: "1.0.0"
 registered_stages:
   XF-001: { name: Request, actor: Doctor, event: DOCTOR_REQUESTED }
   XF-002: { name: Scan, actor: ScanEngine, event: DOCTOR_SCANNING }
   XF-003: { name: Diagnose, actor: DiagnoseEngine, event: DOCTOR_DIAGNOSED }
   XF-004: { name: Score, actor: Scorer, event: DOCTOR_SCORED }
-  XF-005: { name: Repair, actor: RepairEngine, event: DOCTOR_REPAIRED }
-  XF-006: { name: Report, actor: ReportEngine, event: DOCTOR_REPORTED }
+  XF-005: { name: Repair, actor: RepairEngine, event: DOCTOR_STATE_REPAIRED }
+  XF-006: { name: Report, actor: ReportEngine, event: DOCTOR_STATE_REPORTED }

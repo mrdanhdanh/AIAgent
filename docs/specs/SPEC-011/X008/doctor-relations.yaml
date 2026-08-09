@@ -1,6 +1,6 @@
 # SPEC-011 X008 - Doctor Relations
 ---
-version: "1.0"
+version: "1.0.0"
 relations:
   REL-X001: { from: Scan, relation: owns, to: ScanDefinition, cardinality: 1..1 }
   REL-X002: { from: Scan, relation: finds, to: Finding, cardinality: 0..* }

@@ -1,6 +1,6 @@
 # SPEC-011 X012 - Approval Binding
 ---
-version: "1.0"
+version: "1.0.0"
 approval_binding:
   binding: Doctor op theo S012 approval flow
   required_for: [XPOL-001, XPOL-008, XPOL-006]

@@ -1,6 +1,6 @@
 # SPEC-011 X016 - Doctor Certification
 ---
-version: "1.0"
+version: "1.0.0"
 certification:
   certified_artifacts:
     - SPEC-011 SPEC.yaml

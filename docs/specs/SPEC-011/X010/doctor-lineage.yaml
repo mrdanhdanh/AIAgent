@@ -1,6 +1,6 @@
 # SPEC-011 X010 - Doctor Lineage
 ---
-version: "1.0"
+version: "1.0.0"
 lineage:
   scan_id: UUID
   parent_scan_id: null (Root) | UUID (follow-up)

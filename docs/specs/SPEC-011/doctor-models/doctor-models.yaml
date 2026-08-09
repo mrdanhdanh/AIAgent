@@ -1,6 +1,6 @@
 # SPEC-011 Appendix - Doctor Canonical Models (8)
 ---
-version: "1.0"
+version: "1.0.0"
 models:
   AM-001: { name: Scan, kind: AggregateRoot, owner: Doctor, immutable: false }
   AM-002: { name: ScanDefinition, kind: Entity, owner: Doctor, immutable: true }

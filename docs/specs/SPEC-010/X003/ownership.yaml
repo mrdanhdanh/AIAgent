@@ -1,6 +1,6 @@
 # SPEC-010 X003 - Plugin Ownership
 ---
-version: "1.0"
+version: "1.0.0"
 ownership:
   owner_entity: Plugin Registry (TERM-015)
   plugin: thanh phan mo rong

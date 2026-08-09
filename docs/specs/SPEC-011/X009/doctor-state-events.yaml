@@ -1,10 +1,12 @@
-# SPEC-011 X009 - Doctor Events (5)
+# SPEC-011 X009 - Doctor Events (5 types, 5 transitions)
+# X009 dinh nghia 5 state-machine event types rieng (khong trung SPEC-001 S019).
+# S011 cung cap event model (fields, correlation_id).
 ---
-version: "1.0"
+version: "1.0.0"
 events:
   DOCTOR_SCANNING: { from: XST-001, to: XST-002, category: lifecycle }
   DOCTOR_DIAGNOSED: { from: XST-002, to: XST-003, category: lifecycle }
-  DOCTOR_FAILED: { from: XST-002, to: XST-006, category: lifecycle }
+  DOCTOR_STATE_FAILED: { from: XST-002, to: XST-006, category: lifecycle }
   DOCTOR_SCORED: { from: XST-003, to: XST-004, category: lifecycle }
-  DOCTOR_REPORTED: { from: XST-004, to: XST-005, category: lifecycle }
-note: Event immutable, append-only (S011 P005).
+  DOCTOR_STATE_REPORTED: { from: XST-004, to: XST-005, category: lifecycle }
+note: Event immutable, append-only (S011 P010).

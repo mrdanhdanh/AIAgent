@@ -1,6 +1,6 @@
 # SPEC-010 X008 - Plugin Lifecycle (see X009)
 ---
-version: "1.0"
+version: "1.0.0"
 lifecycle_phases:
   - Installed
   - Validated

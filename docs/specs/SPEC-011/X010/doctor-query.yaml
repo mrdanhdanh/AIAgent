@@ -1,6 +1,6 @@
 # SPEC-011 X010 - Doctor Query
 ---
-version: "1.0"
+version: "1.0.0"
 query_ops:
   - GetScan(scan_id)
   - GetFindings(scan_id)

@@ -1,6 +1,7 @@
 # SPEC-011 X013 - Doctor Governance Events
+# SPEC011_* rieng cua SPEC-011 (S011 khong dinh nghia event types).
 ---
-version: "1.0"
+version: "1.0.0"
 events:
   - SPEC011_FROZEN
   - SPEC011_UNFROZEN

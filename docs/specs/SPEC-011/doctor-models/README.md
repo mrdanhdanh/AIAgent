@@ -39,7 +39,7 @@ Scan (AM-001)
 ## Validation
 
 - Model co schema (doctor-models.schema.json).
-- Immutable model khong doi (P005).
+- Immutable model khong doi (P010).
 - Aggregate Root doc nhat: Scan.
 
 ## Tham chieu

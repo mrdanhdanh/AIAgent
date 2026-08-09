@@ -1,13 +1,13 @@
 # SPEC-011 X008 - Doctor Validation Rules
 ---
-version: "1.0"
+version: "1.0.0"
 validation_rules:
   VAL-X001: { field: ScanId, requirement: Required, type: UUID }
   VAL-X002: { field: Timestamp, requirement: Required, type: Timestamp }
   VAL-X003: { field: Scope, requirement: Required, type: Enum }
   VAL-X004: { field: Score, requirement: Required, type: 0-100 }
-  VAL-X005: { field: Findings, requirement: Required, type: Finding[] }
-  VAL-X006: { field: Repairs, requirement: Optional, type: RepairAction[] }
+  VAL-X005: { field: Findings, requirement: Required, type: "Finding[]" }
+  VAL-X006: { field: Repairs, requirement: Optional, type: "RepairAction[]" }
   VAL-X007: { field: Report, requirement: Required, type: markdown/JSON }
 validate_on:
   - Scan

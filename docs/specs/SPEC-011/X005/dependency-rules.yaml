@@ -1,6 +1,6 @@
 # SPEC-011 X005 - Doctor Dependency Rules
 ---
-version: "1.0"
+version: "1.0.0"
 dependency_rules:
   - API -> Engine -> Guard -> Store
   - Engine khong goi truc tiep S011 (qua port)

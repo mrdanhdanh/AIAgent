@@ -1,6 +1,6 @@
 # SPEC-010 X015 - Plugin Resource Metrics
 ---
-version: "1.0"
+version: "1.0.0"
 metrics:
   - plugin_storage_bytes
   - plugin_version_count

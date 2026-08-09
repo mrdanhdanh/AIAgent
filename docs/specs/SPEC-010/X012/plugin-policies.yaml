@@ -1,6 +1,6 @@
 # SPEC-010 X012 - Plugin Policies (10)
 ---
-version: "1.0"
+version: "1.0.0"
 policies:
   XPOL-001: { name: No Core Modify, description: Plugin khong sua Core, priority: Critical, source: TERM-015, principle: P009 }
   XPOL-002: { name: Manifest Required, description: Moi Plugin co manifest, priority: Critical, source: TERM-015, principle: P004 }

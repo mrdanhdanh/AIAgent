@@ -1,6 +1,6 @@
 # SPEC-011 X013 - Doctor Governance Decisions
 ---
-version: "1.0"
+version: "1.0.0"
 decisions:
   XDEC-001: { issue: Doctor co sua core khong, decision: Khong - non-invasive (P015), date: pending }
   XDEC-002: { issue: Doctor co tu quyet dinh khong, decision: Khong - chi de xuat (S013), date: pending }

@@ -1,6 +1,6 @@
 # SPEC-011 Appendix - Doctor Model Registry
 ---
-version: "1.0"
+version: "1.0.0"
 registry:
   owner: Doctor Team
   tracked: [AM-001..008]

@@ -1,6 +1,6 @@
 # SPEC-011 X016 - Doctor Compliance Events
 ---
-version: "1.0"
+version: "1.0.0"
 events:
   - SPEC011_COMPLIANCE_PASS
   - SPEC011_COMPLIANCE_FAIL

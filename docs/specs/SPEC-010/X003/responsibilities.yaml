@@ -1,6 +1,6 @@
 # SPEC-010 X003 - Plugin Responsibilities (16)
 ---
-version: "1.0"
+version: "1.0.0"
 responsibilities:
   XRR-001: { name: Install Plugin, owner: Plugin Framework, partner: Plugin, role: OWNER }
   XRR-002: { name: Validate Plugin, owner: Plugin Framework, partner: Plugin Validator, role: OWNER }

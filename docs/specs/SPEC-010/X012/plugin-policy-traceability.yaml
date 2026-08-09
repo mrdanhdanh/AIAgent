@@ -1,6 +1,6 @@
 # SPEC-010 X012 - Plugin Policy Traceability
 ---
-version: "1.0"
+version: "1.0.0"
 traceability:
   XPOL-001: { name: No Core Modify, source: TERM-015, principle: P009 }
   XPOL-002: { name: Manifest Required, source: TERM-015, principle: P004 }

@@ -1,6 +1,6 @@
 # SPEC-011 X008 - Doctor Entities (15 ENT)
 ---
-version: "1.0"
+version: "1.0.0"
 entities:
   ENT-X001: { name: Scan, kind: AggregateRoot, owner: Doctor, immutable: false }
   ENT-X002: { name: ScanDefinition, kind: Entity, owner: Doctor, immutable: true }

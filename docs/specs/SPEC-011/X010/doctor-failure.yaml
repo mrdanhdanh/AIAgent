@@ -1,9 +1,9 @@
 # SPEC-011 X010 - Doctor Failure Modes
 ---
-version: "1.0"
+version: "1.0.0"
 failure_modes:
   - Request fail: error + khong scan
-  - Scan fail: DOCTOR_FAILED + partial findings
+  - Scan fail: DOCTOR_STATE_FAILED + partial findings
   - Diagnose fail: giu findings, retry
   - Score fail: khong report + event
   - Repair fail: ghi finding, khong sua core

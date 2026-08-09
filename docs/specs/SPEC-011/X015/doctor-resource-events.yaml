@@ -1,6 +1,6 @@
 # SPEC-011 X015 - Doctor Resource Events
 ---
-version: "1.0"
+version: "1.0.0"
 events:
   - DOCTOR_RESOURCE_ALLOCATED
   - DOCTOR_RESOURCE_RELEASED

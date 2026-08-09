@@ -1,6 +1,6 @@
 # SPEC-010 X011 - Plugin Traces
 ---
-version: "1.0"
+version: "1.0.0"
 traces:
   - plugin.install
   - plugin.validate

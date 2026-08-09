@@ -1,5 +1,5 @@
 ---
-name: SPEC-010-x016-compliance
+name: spec-010-x016-compliance
 description: SPEC-010 X016 - Plugin Compliance. 6 rules, score, certification, checklist.
 agent: general
 ---

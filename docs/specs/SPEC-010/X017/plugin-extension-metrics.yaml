@@ -1,6 +1,6 @@
 # SPEC-010 X017 - Plugin Extension Metrics
 ---
-version: "1.0"
+version: "1.0.0"
 metrics:
   - PLUGIN_extensions_total
   - PLUGIN_extensions_active

@@ -1,6 +1,6 @@
 # SPEC-011 X005 - Doctor Architecture
 ---
-version: "1.0"
+version: "1.0.0"
 architecture:
   model: Layered (5 layers)
   style: In-process + Scanner registry

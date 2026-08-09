@@ -1,6 +1,6 @@
 # SPEC-010 X010 - Plugin Lineage
 ---
-version: "1.0"
+version: "1.0.0"
 lineage:
   plugin_id: UUID
   parent_plugin_id: null (Root) | UUID (dependency)

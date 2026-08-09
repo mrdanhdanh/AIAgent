@@ -1,6 +1,6 @@
 # SPEC-011 X015 - Doctor Resource Metrics
 ---
-version: "1.0"
+version: "1.0.0"
 metrics:
   - doctor_storage_bytes
   - doctor_finding_count

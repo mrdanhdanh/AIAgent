@@ -1,6 +1,6 @@
 # SPEC-011 X009 - Doctor State Metrics
 ---
-version: "1.0"
+version: "1.0.0"
 metrics:
   - doctor_states_total
   - doctor_transitions_total

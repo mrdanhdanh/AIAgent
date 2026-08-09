@@ -1,6 +1,6 @@
 # SPEC-010 X020 - Plugin Dashboard Panels (6)
 ---
-version: "1.0"
+version: "1.0.0"
 panels:
   XPAN-001: { name: Plugin Activity, description: Install/Enable rate, data: X011 metrics, priority: High }
   XPAN-002: { name: Plugin Lifecycle, description: State histogram (X009), data: X009 states, priority: High }

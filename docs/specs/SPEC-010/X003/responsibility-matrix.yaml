@@ -1,6 +1,6 @@
 # SPEC-010 X003 - Plugin Responsibility Matrix
 ---
-version: "1.0"
+version: "1.0.0"
 matrix:
   XRR-001: { name: Install Plugin, owner: Plugin Framework, role: OWNER }
   XRR-002: { name: Validate Plugin, owner: Plugin Framework, role: OWNER }

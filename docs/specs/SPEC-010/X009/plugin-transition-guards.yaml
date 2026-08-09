@@ -1,6 +1,6 @@
 # SPEC-010 X009 - Plugin Transition Guards
 ---
-version: "1.0"
+version: "1.0.0"
 guards:
   XGD-001: { transition: XTR-002, condition: Validate pass + permission hop le }
   XGD-002: { transition: XTR-004, condition: Khong co execution dang chay }

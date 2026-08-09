@@ -1,6 +1,6 @@
 # SPEC-010 X008 - Plugin Validation Rules
 ---
-version: "1.0"
+version: "1.0.0"
 validation_rules:
   VAL-X001: { field: PluginId, requirement: Required, type: UUID }
   VAL-X002: { field: Version, requirement: Required, type: SemVer }

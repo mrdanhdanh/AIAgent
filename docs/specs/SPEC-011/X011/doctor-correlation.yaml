@@ -1,6 +1,6 @@
 # SPEC-011 X011 - Doctor Correlation
 ---
-version: "1.0"
+version: "1.0.0"
 correlation:
   correlation_id: sinh khi Request
   trace_id: Runtime (S011)

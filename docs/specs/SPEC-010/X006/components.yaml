@@ -1,6 +1,6 @@
 # SPEC-010 X006 - Plugin Components (12)
 ---
-version: "1.0"
+version: "1.0.0"
 components:
   XCP-001: { name: PluginApi, role: expose op, dependency: Engine, layer: Core }
   XCP-002: { name: LifecycleOrchestrator, role: lifecycle flow, dependency: StateMachine, Store, layer: Core }

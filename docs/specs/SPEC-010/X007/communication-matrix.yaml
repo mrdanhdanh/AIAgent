@@ -1,6 +1,6 @@
 # SPEC-010 X007 - Plugin Communication Matrix
 ---
-version: "1.0"
+version: "1.0.0"
 matrix:
   Plugin -> PluginApi: sync install/enable
   PluginApi -> ExportManager: sync export

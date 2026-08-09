@@ -1,6 +1,6 @@
 # SPEC-010 X013 - Plugin Binding Enforcement
 ---
-version: "1.0"
+version: "1.0.0"
 binding_enforcement:
   rules: RULE-005 (no direct call), RULE-014 (observability)
   policies: XPOL-001..010

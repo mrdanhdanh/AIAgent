@@ -1,6 +1,6 @@
 # SPEC-010 X009 - Plugin Transition Matrix
 ---
-version: "1.0"
+version: "1.0.0"
 matrix:
   XST-001: [XST-002]
   XST-002: [XST-003, XST-006]

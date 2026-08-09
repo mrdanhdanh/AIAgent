@@ -1,6 +1,6 @@
 # SPEC-011 X015 - Doctor Resource Model
 ---
-version: "1.0"
+version: "1.0.0"
 resources:
   XRES-001: { name: Storage, description: Findings storage, owner: Doctor, priority: Critical }
   XRES-002: { name: Index, description: Finding index (domain/severity), owner: Doctor, priority: High }

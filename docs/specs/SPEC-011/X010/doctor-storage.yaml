@@ -1,6 +1,6 @@
 # SPEC-011 X010 - Doctor Storage
 ---
-version: "1.0"
+version: "1.0.0"
 storage:
   mode: Findings store (P005)
   lifecycle: Scan -> Report archive

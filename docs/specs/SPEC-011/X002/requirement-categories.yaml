@@ -1,4 +1,4 @@
 # SPEC-011 X002 - Requirement Categories
 ---
-version: "1.0"
+version: "1.0.0"
 categories: [Core, Validation, Data, Execution, Observability, Governance]

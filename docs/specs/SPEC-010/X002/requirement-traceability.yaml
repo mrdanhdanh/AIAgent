@@ -1,6 +1,6 @@
 # SPEC-010 X002 - Requirement Traceability
 ---
-version: "1.0"
+version: "1.0.0"
 traceability:
   XFR -> X009: state machine transitions
   XFR -> X010: execution flow stages

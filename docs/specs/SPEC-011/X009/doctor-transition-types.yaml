@@ -1,8 +1,8 @@
 # SPEC-011 X009 - Doctor Transition Types
 ---
-version: "1.0"
+version: "1.0.0"
 transition_types:
-  external: [DOCTOR_SCANNING, DOCTOR_FAILED]
-  internal: [DOCTOR_DIAGNOSED, DOCTOR_SCORED, DOCTOR_REPORTED]
-  error: [DOCTOR_FAILED]
+  external: [DOCTOR_SCANNING, DOCTOR_STATE_FAILED]
+  internal: [DOCTOR_DIAGNOSED, DOCTOR_SCORED, DOCTOR_STATE_REPORTED]
+  error: [DOCTOR_STATE_FAILED]
 rule: Internal transition chi trong Doctor.

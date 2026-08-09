@@ -1,5 +1,5 @@
 ---
-name: SPEC-010-x015-resources
+name: spec-010-x015-resources
 description: SPEC-010 X015 - Plugin Resources. Storage, index, quota, leak detection.
 agent: general
 ---

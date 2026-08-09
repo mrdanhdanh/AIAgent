@@ -1,6 +1,6 @@
 # SPEC-010 X006 - Plugin Component Dependencies
 ---
-version: "1.0"
+version: "1.0.0"
 dependencies:
   XCP-001 -> Engine
   XCP-002 -> StateMachine, Store

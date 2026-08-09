@@ -1,5 +1,5 @@
 ---
-name: SPEC-010-x018-evolution
+name: spec-010-x018-evolution
 description: SPEC-010 X018 - Plugin Evolution. Versioning, deprecation, migration.
 agent: general
 ---

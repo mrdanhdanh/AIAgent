@@ -1,6 +1,6 @@
 # SPEC-011 X011 - Doctor Metrics
 ---
-version: "1.0"
+version: "1.0.0"
 metrics:
   - doctor_scans_total
   - doctor_reports_total

@@ -1,6 +1,6 @@
 # SPEC-011 X011 - Doctor Observability Model
 ---
-version: "1.0"
+version: "1.0.0"
 observability:
   logs: Doctor logs (structured)
   events: DOCTOR_* (S011 Event Store)

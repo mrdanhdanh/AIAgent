@@ -1,6 +1,6 @@
 # SPEC-010 X014 - Plugin Registry (via SPEC-005)
 ---
-version: "1.0"
+version: "1.0.0"
 registry:
   owner: Registry (SPEC-005)
   entries: Plugin Definition (schemas, state machine, policies)

@@ -1,6 +1,6 @@
 # SPEC-011 X012 - Doctor Policy Traceability
 ---
-version: "1.0"
+version: "1.0.0"
 traceability:
   XPOL-001: { name: Non-Invasive, source: P015, principle: P015 }
   XPOL-002: { name: Safe Repair, source: P015, principle: P015 }

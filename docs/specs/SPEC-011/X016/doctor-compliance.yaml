@@ -1,6 +1,6 @@
 # SPEC-011 X016 - Doctor Compliance Rules
 ---
-version: "1.0"
+version: "1.0.0"
 compliance_rules:
   COMP-001: { name: Non-Invasive, requirement: Doctor khong sua core (P015), source: XNF-001 }
   COMP-002: { name: Safe Repair, requirement: Repair doc-only (P015), source: XNF-002 }

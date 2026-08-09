@@ -1,6 +1,6 @@
 # SPEC-010 X010 - Plugin Storage
 ---
-version: "1.0"
+version: "1.0.0"
 storage:
   mode: Manifest store (TERM-015)
   lifecycle: Install -> Uninstall

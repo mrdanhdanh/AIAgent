@@ -1,6 +1,6 @@
 # SPEC-011 X006 - Doctor Component Model
 ---
-version: "1.0"
+version: "1.0.0"
 component_model:
   XCP-001: { name: DoctorApi, layer: Core }
   XCP-002: { name: PipelineOrchestrator, layer: Core }

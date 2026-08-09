@@ -1,6 +1,6 @@
 # SPEC-010 Appendix - Plugin Canonical Models (8)
 ---
-version: "1.0"
+version: "1.0.0"
 models:
   AM-001: { name: Plugin, kind: AggregateRoot, owner: Plugin Registry, immutable: true }
   AM-002: { name: PluginDefinition, kind: Entity, owner: Plugin Registry, immutable: true }

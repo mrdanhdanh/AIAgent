@@ -1,6 +1,6 @@
 # SPEC-010 X007 - Plugin Contract Categories
 ---
-version: "1.0"
+version: "1.0.0"
 categories:
   API: [XCT-001]
   Manifest: [XCT-002, XCT-007]

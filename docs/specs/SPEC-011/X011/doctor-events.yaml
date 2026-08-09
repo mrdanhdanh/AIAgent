@@ -1,21 +1,24 @@
-# SPEC-011 X011 - Doctor Events (S011 reuse)
+# SPEC-011 X011 - Doctor Events (12)
+# Event types rieng cua SPEC-011 (DOCTOR_STATE_*) khong trung SPEC-001 S019 (DR010).
+# S019 dinh nghia 5 event types rieng (DOCTOR_RUN/PASSED/FAILED/REPORTED/REPAIRED).
+# S011 cung cap event model (fields, correlation_id).
 ---
-version: "1.0"
+version: "1.0.0"
 definition_events:
   - DOCTOR_REQUESTED
   - DOCTOR_SCANNING
   - DOCTOR_DIAGNOSED
   - DOCTOR_SCORED
-  - DOCTOR_REPAIRED
-  - DOCTOR_REPORTED
-  - DOCTOR_FAILED
+  - DOCTOR_STATE_REPAIRED
+  - DOCTOR_STATE_REPORTED
+  - DOCTOR_STATE_FAILED
   - DOCTOR_FINDING
   - DOCTOR_SCORE_LOW
   - DOCTOR_REPAIR_BLOCKED
   - DOCTOR_REPAIRED_DOC
   - DOCTOR_RESTORED
 rules:
-  - Event immutable (P005).
+  - Event immutable (P010).
   - Event chi append.
   - Moi transition sinh Event (X009).
   - Event co correlation_id (S011).

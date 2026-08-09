@@ -1,6 +1,6 @@
 # SPEC-010 X011 - Plugin Observability Model
 ---
-version: "1.0"
+version: "1.0.0"
 observability:
   logs: Plugin Framework logs (structured)
   events: PLUGIN_* (S011 Event Store)

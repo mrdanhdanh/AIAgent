@@ -1,6 +1,6 @@
 # SPEC-011 X008 - Doctor References
 ---
-version: "1.0"
+version: "1.0.0"
 references:
   - ExecutionRef (SPEC-001)
   - SystemRef (SPEC-000..010)

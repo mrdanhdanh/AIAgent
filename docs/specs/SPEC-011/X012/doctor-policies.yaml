@@ -1,6 +1,6 @@
 # SPEC-011 X012 - Doctor Policies (10)
 ---
-version: "1.0"
+version: "1.0.0"
 policies:
   XPOL-001: { name: Non-Invasive, description: Doctor khong sua core, priority: Critical, source: P015, principle: P015 }
   XPOL-002: { name: Safe Repair, description: Chi sua doc, khong sua core, priority: Critical, source: P015, principle: P015 }

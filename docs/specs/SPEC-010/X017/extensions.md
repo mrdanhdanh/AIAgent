@@ -1,5 +1,5 @@
 ---
-name: SPEC-010-x017-extensions
+name: spec-010-x017-extensions
 description: SPEC-010 X017 - Plugin Extensions. 7 extension points, policy, lifecycle.
 agent: general
 ---

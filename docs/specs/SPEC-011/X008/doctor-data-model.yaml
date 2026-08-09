@@ -1,6 +1,6 @@
 # SPEC-011 X008 - Doctor Data Model
 ---
-version: "1.0"
+version: "1.0.0"
 entities:
   ENT-X001: { name: Scan, kind: AggregateRoot, owner: Doctor, immutable: false }
   ENT-X002: { name: ScanDefinition, kind: Entity, owner: Doctor, immutable: true }
@@ -40,11 +40,11 @@ validation:
   VAL-X002: { field: Timestamp, requirement: Required, type: Timestamp }
   VAL-X003: { field: Scope, requirement: Required, type: Enum }
   VAL-X004: { field: Score, requirement: Required, type: 0-100 }
-  VAL-X005: { field: Findings, requirement: Required, type: Finding[] }
-  VAL-X006: { field: Repairs, requirement: Optional, type: RepairAction[] }
+  VAL-X005: { field: Findings, requirement: Required, type: "Finding[]" }
+  VAL-X006: { field: Repairs, requirement: Optional, type: "RepairAction[]" }
   VAL-X007: { field: Report, requirement: Required, type: markdown/JSON }
 storage:
   mode: Findings store
-  persistence: "true (P005 - report history)"
+  persistence: "true (P010 - report history)"
   snapshot: DoctorSnapshot (optional, debug)
   source: /doctor command

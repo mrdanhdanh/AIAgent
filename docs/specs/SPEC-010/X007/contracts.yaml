@@ -1,6 +1,6 @@
 # SPEC-010 X007 - Plugin Contract Types (7)
 ---
-version: "1.0"
+version: "1.0.0"
 contracts:
   XCT-001: { name: API Contract, description: PluginApi ops (install/enable/disable), breaking: ADR }
   XCT-002: { name: Manifest Contract, description: Plugin manifest schema, breaking: ADR }

@@ -1,6 +1,6 @@
 # SPEC-010 X011 - Plugin Audit
 ---
-version: "1.0"
+version: "1.0.0"
 audit:
   who: provider_id / plugin_id / engine
   what: op (install/validate/enable/disable/uninstall)

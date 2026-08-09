@@ -1,6 +1,6 @@
 # SPEC-010 X006 - Plugin Component Metrics
 ---
-version: "1.0"
+version: "1.0.0"
 metrics:
   - plugin_install_total
   - plugin_enable_latency_seconds

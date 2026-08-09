@@ -1,6 +1,6 @@
 # SPEC-011 X003 - Doctor Responsibility Matrix
 ---
-version: "1.0"
+version: "1.0.0"
 matrix:
   XRR-001: { name: Scan System, owner: Doctor, role: OWNER }
   XRR-002: { name: Diagnose, owner: Doctor, role: OWNER }

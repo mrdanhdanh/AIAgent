@@ -1,6 +1,6 @@
 # SPEC-010 X010 - Plugin Query
 ---
-version: "1.0"
+version: "1.0.0"
 query_ops:
   - GetPlugin(plugin_id)
   - GetManifest(plugin_id)

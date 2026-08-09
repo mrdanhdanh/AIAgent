@@ -1,6 +1,6 @@
 # SPEC-010 R015 - Plugin Resource Model
 ---
-version: "1.0"
+version: "1.0.0"
 resources:
   RRES-001: { name: Storage, description: Versioned Plugin storage, owner: Plugin Framework, priority: Critical }
   RRES-002: { name: IndeR, description: Plugin version indeR, owner: Plugin Framework, priority: High }

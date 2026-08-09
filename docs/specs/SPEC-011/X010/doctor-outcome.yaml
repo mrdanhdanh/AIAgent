@@ -1,8 +1,8 @@
 # SPEC-011 X010 - Doctor Outcome
 ---
-version: "1.0"
+version: "1.0.0"
 outcome:
-  success: Reported + DOCTOR_REPORTED
-  failure: Failed + DOCTOR_FAILED
+  success: Reported + DOCTOR_STATE_REPORTED
+  failure: Failed + DOCTOR_STATE_FAILED
   metrics: [doctor_reported_total, doctor_failed_total]
   audit: moi outcome ghi vao S011

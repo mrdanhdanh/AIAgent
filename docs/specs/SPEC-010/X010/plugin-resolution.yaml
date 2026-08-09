@@ -1,6 +1,6 @@
 # SPEC-010 X010 - Plugin Resolution
 ---
-version: "1.0"
+version: "1.0.0"
 resolution:
   input: plugin_id + version
   output: Plugin + manifest hoac not-found

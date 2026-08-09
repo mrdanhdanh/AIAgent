@@ -1,6 +1,6 @@
 # SPEC-010 X016 - Plugin Compliance Rules
 ---
-version: "1.0"
+version: "1.0.0"
 compliance_rules:
   COMP-001: { name: Manifest Based, requirement: Plugin co manifest (TERM-015), source: XNF-002 }
   COMP-002: { name: No Core Modify, requirement: Plugin khong sua Core (TERM-015), source: XNF-001 }

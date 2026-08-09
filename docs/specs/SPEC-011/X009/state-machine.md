@@ -50,9 +50,9 @@ agent: general
 |-----------|-------|-------|
 | XST-001 -> XST-002 | DOCTOR_SCANNING | Request hop le |
 | XST-002 -> XST-003 | DOCTOR_DIAGNOSED | Scan xong + findings |
-| XST-002 -> XST-006 | DOCTOR_FAILED | Scan fail |
+| XST-002 -> XST-006 | DOCTOR_STATE_FAILED | Scan fail |
 | XST-003 -> XST-004 | DOCTOR_SCORED | Score tinh xong |
-| XST-004 -> XST-005 | DOCTOR_REPORTED | Report xong |
+| XST-004 -> XST-005 | DOCTOR_STATE_REPORTED | Report xong |
 
 ## XS006 - Transition Matrix
 
@@ -76,7 +76,7 @@ Guard fail -> BLOCK + DOCTOR_GUARD + Event (S011).
 ## XS008 - Events (5)
 
 - Moi transition sinh dung mot event DOCTOR_*.
-- Event immutable, append-only (P005).
+- Event immutable, append-only (P010).
 - Event co correlation_id (S011).
 
 ## XS009 - Registered Machines

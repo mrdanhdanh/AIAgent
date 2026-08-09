@@ -1,6 +1,6 @@
 # SPEC-010 X007 - Plugin Contract Compatibility
 ---
-version: "1.0"
+version: "1.0.0"
 compatibility:
   Add: field/op moi - OK
   Change: y nghia field - ADR

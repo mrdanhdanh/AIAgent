@@ -1,6 +1,6 @@
 # SPEC-011 X018 - Doctor Migration
 ---
-version: "1.0"
+version: "1.0.0"
 migration:
   - Upgrade: bo sung field/scanner (backward)
   - Downgrade: giu field cu (compat)

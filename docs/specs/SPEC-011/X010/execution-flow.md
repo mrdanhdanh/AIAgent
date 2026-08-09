@@ -42,8 +42,8 @@ User/CLI
   -> Scan (toan bo he sinh thai) [DOCTOR_SCANNING]
   -> Diagnose (findings) [DOCTOR_DIAGNOSED]
   -> Score (0-100) [DOCTOR_SCORED]
-  -> Repair (doc-only, optional) [DOCTOR_REPAIRED]
-  -> Report (markdown/JSON) [DOCTOR_REPORTED]
+  -> Repair (doc-only, optional) [DOCTOR_STATE_REPAIRED]
+  -> Report (markdown/JSON) [DOCTOR_STATE_REPORTED]
 ```
 
 ## XF005 - Stage Detail
@@ -54,13 +54,13 @@ User/CLI
 | Scan | ScanEngine | system | Findings | DOCTOR_SCANNING |
 | Diagnose | DiagnoseEngine | findings | Diagnosed | DOCTOR_DIAGNOSED |
 | Score | Scorer | findings | Score | DOCTOR_SCORED |
-| Repair | RepairEngine | findings | Repairs (doc) | DOCTOR_REPAIRED |
-| Report | ReportEngine | score | Report | DOCTOR_REPORTED |
+| Repair | RepairEngine | findings | Repairs (doc) | DOCTOR_STATE_REPAIRED |
+| Report | ReportEngine | score | Report | DOCTOR_STATE_REPORTED |
 
 ## XF006 - Failure Modes
 
 - Request fail -> khong scan + error.
-- Scan fail -> DOCTOR_FAILED + partial findings.
+- Scan fail -> DOCTOR_STATE_FAILED + partial findings.
 - Diagnose fail -> giu findings, retry.
 - Score fail -> khong report + event.
 - Repair fail -> ghi finding, khong sua core.

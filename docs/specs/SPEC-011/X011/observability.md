@@ -22,7 +22,7 @@ agent: general
 ## XO002 - Principles
 
 - **Event-first** - moi stage/transition co event.
-- **Immutable events** - chi append (P005).
+- **Immutable events** - chi append (P010).
 - **Correlated** - correlation_id xuyen suot.
 - **Metrics co label** - phan tich duoc.
 - **Audit day du** - ai lam gi, khi nao (XFR-016).
@@ -35,9 +35,9 @@ agent: general
 | DOCTOR_SCANNING | Dang scan |
 | DOCTOR_DIAGNOSED | Chan doan xong |
 | DOCTOR_SCORED | Cham diem xong |
-| DOCTOR_REPAIRED | Repair xong |
-| DOCTOR_REPORTED | Report xong |
-| DOCTOR_FAILED | Scan loi |
+| DOCTOR_STATE_REPAIRED | Repair xong |
+| DOCTOR_STATE_REPORTED | Report xong |
+| DOCTOR_STATE_FAILED | Scan loi |
 | DOCTOR_FINDING | Finding moi |
 | DOCTOR_SCORE_LOW | Score thap (<80) |
 | DOCTOR_REPAIR_BLOCKED | Repair bi chan (core) |

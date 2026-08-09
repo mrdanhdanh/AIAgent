@@ -1,5 +1,5 @@
 ---
-name: SPEC-010-x014-registry
+name: spec-010-x014-registry
 description: SPEC-010 X014 - Plugin Registry. Dang ky Plugin definition qua SPEC-005.
 agent: general
 ---

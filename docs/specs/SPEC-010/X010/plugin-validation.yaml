@@ -1,6 +1,6 @@
 # SPEC-010 X010 - Plugin Flow Validation
 ---
-version: "1.0"
+version: "1.0.0"
 validation:
   - stage order dung TERM-015
   - moi stage co event tuong ung

@@ -1,6 +1,6 @@
 # SPEC-011 X011 - Doctor Traces
 ---
-version: "1.0"
+version: "1.0.0"
 traces:
   - doctor.request
   - doctor.scan

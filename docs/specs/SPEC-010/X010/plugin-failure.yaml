@@ -1,6 +1,6 @@
 # SPEC-010 X010 - Plugin Failure Modes
 ---
-version: "1.0"
+version: "1.0.0"
 failure_modes:
   - Install fail: error + khong tao Plugin
   - Validate fail: PLUGIN_REJECTED + cleanup

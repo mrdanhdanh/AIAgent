@@ -1,6 +1,6 @@
 # SPEC-010 X005 - Plugin Domain Model
 ---
-version: "1.0"
+version: "1.0.0"
 domain:
   entities: [Plugin, PluginManifest, PluginPermission, PluginExport, PluginSandbox]
   logic_layer: Engine Layer

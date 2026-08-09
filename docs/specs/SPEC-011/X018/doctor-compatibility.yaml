@@ -1,6 +1,6 @@
 # SPEC-011 X018 - Doctor Compatibility
 ---
-version: "1.0"
+version: "1.0.0"
 compatibility:
   backward: moi version giu Doctor contract cu (XNF-006)
   forward: tuan thu schema strict

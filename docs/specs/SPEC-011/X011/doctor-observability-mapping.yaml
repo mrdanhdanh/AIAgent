@@ -1,14 +1,14 @@
 # SPEC-011 X011 - Doctor Observability Mapping
 ---
-version: "1.0"
+version: "1.0.0"
 mapping:
   stage -> event:
     Request: DOCTOR_REQUESTED
     Scan: DOCTOR_SCANNING
     Diagnose: DOCTOR_DIAGNOSED
     Score: DOCTOR_SCORED
-    Repair: DOCTOR_REPAIRED
-    Report: DOCTOR_REPORTED
+    Repair: DOCTOR_STATE_REPAIRED
+    Report: DOCTOR_STATE_REPORTED
   state -> metric:
     Scored: doctor_score_current
     Reported: doctor_reports_total

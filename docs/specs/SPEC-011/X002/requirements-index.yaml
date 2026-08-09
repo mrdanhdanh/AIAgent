@@ -1,6 +1,6 @@
 # SPEC-011 X002 - Requirements Index
 ---
-version: "1.0"
+version: "1.0.0"
 index:
   - id: XFR-001
     type: functional

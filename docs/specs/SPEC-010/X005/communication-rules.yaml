@@ -1,6 +1,6 @@
 # SPEC-010 X005 - Plugin Communication Rules
 ---
-version: "1.0"
+version: "1.0.0"
 communication_rules:
   - Install/Enable: sync (blocking)
   - Export: qua Registry (SPEC-005)

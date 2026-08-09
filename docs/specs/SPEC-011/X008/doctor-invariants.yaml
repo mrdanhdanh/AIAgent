@@ -1,6 +1,6 @@
 # SPEC-011 X008 - Doctor Invariants
 ---
-version: "1.0"
+version: "1.0.0"
 invariants:
   INV-X001: { name: Unique ScanId, description: Moi Scan co id duy nhat }
   INV-X002: { name: No Core Modify, description: Scan khong sua core }

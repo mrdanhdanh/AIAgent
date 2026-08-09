@@ -296,56 +296,56 @@ SPEC-009 Contract System
 
 ## SPEC-010 — Plugin Framework
 
-> **Trạng thái**: 🚧 In progress (20/20 — review rev1 REV-20260809-207 PASS, Rev1/count 1 — còn 3 MINOR, chờ lần 2) · **Phụ thuộc**: SPEC-000, SPEC-001, SPEC-003, SPEC-005, SPEC-009
+> **Trạng thái**: ✅ Hoàn thành (20/20) · **Phụ thuộc**: SPEC-000, SPEC-001, SPEC-003, SPEC-005, SPEC-009
 
 ```text
 SPEC-010 Plugin Framework
 │
 ├── Tier 1 — Foundation
-│   ├── X001 Plugin Vision            🚧
-│   ├── X002 Plugin Requirements      🚧
-│   ├── X003 Plugin Responsibilities  🚧
-│   ├── X004 Plugin Boundaries        🚧
-│   ├── X005 Plugin Architecture      🚧
-│   ├── X006 Plugin Components        🚧
-│   ├── X007 Plugin Contracts         🚧
-│   └── Appendix: Canonical Models    🚧
+│   ├── X001 Plugin Vision            ✅
+│   ├── X002 Plugin Requirements      ✅
+│   ├── X003 Plugin Responsibilities  ✅
+│   ├── X004 Plugin Boundaries        ✅
+│   ├── X005 Plugin Architecture      ✅
+│   ├── X006 Plugin Components        ✅
+│   ├── X007 Plugin Contracts         ✅
+│   └── Appendix: Canonical Models    ✅
 │
 ├── Tier 2 — Behavior
-│   ├── X008 Plugin Data Model        🚧
-│   ├── X009 Plugin State Machine     🚧
-│   └── X010 Plugin Execution Flow    🚧
+│   ├── X008 Plugin Data Model        ✅
+│   ├── X009 Plugin State Machine     ✅
+│   └── X010 Plugin Execution Flow    ✅
 │
 └── Tier 3/4 — Operations + Experience
-    ├── X011-X016 Operations          🚧
-    └── X017-X020 Experience          🚧
+    ├── X011-X016 Operations          ✅
+    └── X017-X020 Experience          ✅
 ```
 
 ## SPEC-011 — Doctor
 
-> **Trạng thái**: In progress (Draft/NotReviewed — review FAIL REV-206, chờ fix 9 CRITICAL + 2 MAJOR) · **Phụ thuộc**: SPEC-000..010
+> **Trạng thái**: ✅ Hoàn thành (20/20) · **Phụ thuộc**: SPEC-000..010
 
 ```text
 SPEC-011 Doctor
 │
 ├── Tier 1 — Foundation
-│   ├── X001 Doctor Vision            🚧
-│   ├── X002 Doctor Requirements      🚧
-│   ├── X003 Doctor Responsibilities  🚧
-│   ├── X004 Doctor Boundaries        🚧
-│   ├── X005 Doctor Architecture      🚧
-│   ├── X006 Doctor Components        🚧
-│   ├── X007 Doctor Contracts         🚧
-│   └── Appendix: Canonical Models    🚧
+│   ├── X001 Doctor Vision            ✅
+│   ├── X002 Doctor Requirements      ✅
+│   ├── X003 Doctor Responsibilities  ✅
+│   ├── X004 Doctor Boundaries        ✅
+│   ├── X005 Doctor Architecture      ✅
+│   ├── X006 Doctor Components        ✅
+│   ├── X007 Doctor Contracts         ✅
+│   └── Appendix: Canonical Models    ✅
 │
 ├── Tier 2 — Behavior
-│   ├── X008 Doctor Data Model        🚧
-│   ├── X009 Doctor State Machine     🚧
-│   └── X010 Doctor Execution Flow    🚧
+│   ├── X008 Doctor Data Model        ✅
+│   ├── X009 Doctor State Machine     ✅
+│   └── X010 Doctor Execution Flow    ✅
 │
 └── Tier 3/4 — Operations + Experience
-    ├── X011-X016 Operations          🚧
-    └── X017-X020 Experience          🚧
+    ├── X011-X016 Operations          ✅
+    └── X017-X020 Experience          ✅
 ```
 
 ## SPEC-012 — Simulation Engine

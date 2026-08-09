@@ -1,6 +1,6 @@
 # SPEC-010 X016 - Plugin Compliance Matrix
 ---
-version: "1.0"
+version: "1.0.0"
 matrix:
   COMP-001: { check: Doctor X019, artifact: plugin-*, gate: build }
   COMP-002: { check: Doctor X019, artifact: plugin-*, gate: build }

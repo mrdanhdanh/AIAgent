@@ -1,6 +1,6 @@
 # SPEC-010 X008 - Plugin Data Model
 ---
-version: "1.0"
+version: "1.0.0"
 entities:
   ENT-X001: { name: Plugin, kind: AggregateRoot, owner: Plugin Registry, immutable: true }
   ENT-X002: { name: PluginDefinition, kind: Entity, owner: Plugin Registry, immutable: true }

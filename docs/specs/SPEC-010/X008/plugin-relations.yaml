@@ -1,6 +1,6 @@
 # SPEC-010 X008 - Plugin Relations
 ---
-version: "1.0"
+version: "1.0.0"
 relations:
   REL-X001: { from: Plugin, relation: owns, to: PluginDefinition, cardinality: 1..1 }
   REL-X002: { from: Plugin, relation: owns, to: PluginManifest, cardinality: 1..1 }

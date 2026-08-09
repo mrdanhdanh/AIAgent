@@ -1,6 +1,6 @@
 # SPEC-010 X012 - Plugin Policy Model
 ---
-version: "1.0"
+version: "1.0.0"
 policy_model:
   identity: policy_id (XPOL-###)
   enforcement: Plugin Framework (before op)

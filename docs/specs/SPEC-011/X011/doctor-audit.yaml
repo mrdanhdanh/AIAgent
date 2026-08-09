@@ -1,6 +1,6 @@
 # SPEC-011 X011 - Doctor Audit
 ---
-version: "1.0"
+version: "1.0.0"
 audit:
   who: user_id / engine
   what: op (scan/diagnose/score/repair/report)

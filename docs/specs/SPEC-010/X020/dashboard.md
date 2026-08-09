@@ -1,5 +1,5 @@
 ---
-name: SPEC-010-x020-dashboard
+name: spec-010-x020-dashboard
 description: SPEC-010 X020 - Plugin Dashboard. 6 panels tu S011 metrics.
 agent: general
 ---

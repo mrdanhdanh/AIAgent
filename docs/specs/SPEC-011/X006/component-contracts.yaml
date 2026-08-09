@@ -1,6 +1,6 @@
 # SPEC-011 X006 - Doctor Component Contracts
 ---
-version: "1.0"
+version: "1.0.0"
 contracts:
   XCP-001: { name: DoctorApi, contract: X007 XCT-### }
   XCP-002: { name: PipelineOrchestrator, contract: X007 XCT-### }

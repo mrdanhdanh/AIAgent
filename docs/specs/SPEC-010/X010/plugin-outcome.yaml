@@ -1,6 +1,6 @@
 # SPEC-010 X010 - Plugin Outcome
 ---
-version: "1.0"
+version: "1.0.0"
 outcome:
   success: Enabled + Exported + PLUGIN_ENABLED
   failure: Rejected + PLUGIN_REJECTED

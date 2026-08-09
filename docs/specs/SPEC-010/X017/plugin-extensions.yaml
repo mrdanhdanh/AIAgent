@@ -1,6 +1,6 @@
 # SPEC-010 X017 - Plugin Extension Points
 ---
-version: "1.0"
+version: "1.0.0"
 extensions:
   XEXT-001: { name: Plugin Extension Point, description: Diem mo rong Plugin Framework, owner: Plugin Framework, priority: High }
   XEXT-002: { name: Custom Schema Type, description: Kieu schema moi, owner: Plugin Framework, priority: Medium }

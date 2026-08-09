@@ -1,6 +1,6 @@
 # SPEC-010 X018 - Plugin Evolution Metrics
 ---
-version: "1.0"
+version: "1.0.0"
 metrics:
   - SPEC010_version
   - SPEC010_versions_total

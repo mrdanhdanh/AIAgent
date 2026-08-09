@@ -1,5 +1,5 @@
 ---
-name: SPEC-010-x019-doctor
+name: spec-010-x019-doctor
 description: SPEC-010 X019 - Plugin Doctor. 10 checks, scoring, report, health gate.
 agent: general
 ---

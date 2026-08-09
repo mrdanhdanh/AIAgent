@@ -1,6 +1,6 @@
 # SPEC-011 X015 - Doctor Resource Access
 ---
-version: "1.0"
+version: "1.0.0"
 access:
   - Findings chi access qua Doctor API
   - He thong bi scan qua read-only interface

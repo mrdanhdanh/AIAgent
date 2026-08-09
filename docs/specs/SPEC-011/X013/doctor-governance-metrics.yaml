@@ -1,6 +1,6 @@
 # SPEC-011 X013 - Doctor Governance Metrics
 ---
-version: "1.0"
+version: "1.0.0"
 metrics:
   - spec011_frozen_sections
   - spec011_open_questions

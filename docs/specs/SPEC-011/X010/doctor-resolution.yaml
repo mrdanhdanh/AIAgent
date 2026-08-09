@@ -1,6 +1,6 @@
 # SPEC-011 X010 - Doctor Resolution
 ---
-version: "1.0"
+version: "1.0.0"
 resolution:
   input: scan_id
   output: report + score hoac not-found
