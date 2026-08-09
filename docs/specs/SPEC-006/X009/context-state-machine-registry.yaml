@@ -1,6 +1,6 @@
 # SPEC-006 X009 - Context State Machine Registry
 ---
-version: "1.0"
+version: "1.0.0"
 registered_machines:
   XSTM-001: { name: Context Lifecycle, owner: Context Engine, states: 8, transitions: 11, spec: X009 }
   XSTM-002: { name: Context Grant, owner: Context Engine, states: 3, transitions: 4, spec: X009 }

@@ -1,6 +1,6 @@
 # SPEC-007 X006 - Artifact Component Metrics
 ---
-version: "1.0"
+version: "1.0.0"
 metrics:
   - artifact_store_ops_total
   - artifact_index_latency_seconds

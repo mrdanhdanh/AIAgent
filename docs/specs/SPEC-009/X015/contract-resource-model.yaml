@@ -1,6 +1,6 @@
 # SPEC-009 X015 - Contract Resource Model
 ---
-version: "1.0"
+version: "1.0.0"
 resources:
   XRES-001: { name: Storage, description: Versioned contract storage, owner: Contract System, priority: Critical }
   XRES-002: { name: Index, description: Contract version index, owner: Contract System, priority: High }

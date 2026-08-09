@@ -1,11 +1,13 @@
-# SPEC-010 X009 - Plugin Events (6)
+# SPEC-010 X009 - Plugin Events (5 types, 6 transitions)
+# X009 dinh nghia 5 state-machine event types rieng (khong trung SPEC-001 S017).
+# S011 cung cap event model (fields, correlation_id).
+# X011 re-list day du event types co nguon.
 ---
-version: "1.0"
+version: "1.0.0"
 events:
   PLUGIN_VALIDATING: { from: XST-001, to: XST-002, category: lifecycle }
-  PLUGIN_ENABLED: { from: XST-002, to: XST-003, category: lifecycle }
+  PLUGIN_ENABLED: { from: [XST-002, XST-004], to: XST-003, category: lifecycle }
   PLUGIN_REJECTED: { from: XST-002, to: XST-006, category: lifecycle }
-  PLUGIN_DISABLED: { from: XST-003, to: XST-004, category: lifecycle }
-  PLUGIN_ENABLED: { from: XST-004, to: XST-003, category: lifecycle }
-  PLUGIN_UNINSTALLED: { from: XST-004, to: XST-005, category: lifecycle }
-note: Event immutable, append-only (S011 P005).
+  PLUGIN_FW_DISABLED: { from: XST-003, to: XST-004, category: lifecycle }
+  PLUGIN_FW_UNINSTALLED: { from: XST-004, to: XST-005, category: lifecycle }
+note: Event immutable, append-only (S011 P010).

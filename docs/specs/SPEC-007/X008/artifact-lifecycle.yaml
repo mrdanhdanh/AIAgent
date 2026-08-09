@@ -1,6 +1,6 @@
 # SPEC-007 X008 - Artifact Lifecycle (see X009)
 ---
-version: "1.0"
+version: "1.0.0"
 lifecycle_phases:
   - Created
   - Validated

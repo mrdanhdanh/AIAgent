@@ -1,6 +1,6 @@
 # SPEC-006 X006 - Component Lifecycle
 ---
-version: "1.0"
+version: "1.0.0"
 lifecycles:
   runtime: [Defined, Initialized, Ready, Active, Stopping, Disposed]
   context: [Idle, Assigned, Running, Completed]

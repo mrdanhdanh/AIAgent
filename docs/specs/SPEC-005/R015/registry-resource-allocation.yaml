@@ -1,6 +1,6 @@
 # SPEC-005 R015 - Registry Resource Allocation (S015 RS006)
 ---
-version: "1.0"
+version: "1.0.0"
 flow:
   - Request (registry resolution)
   - Binding Check (R012 RPB-004 -> POL-RES-001)

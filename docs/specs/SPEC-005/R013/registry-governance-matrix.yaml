@@ -1,6 +1,6 @@
 # SPEC-005 R013 - Registry Governance Matrix (S013 GV012)
 ---
-version: "1.0"
+version: "1.0.0"
 decision_matrix:
   Constitution Fail: Abort
   Boundary Fail: Deny

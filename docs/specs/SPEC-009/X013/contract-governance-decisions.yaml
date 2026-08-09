@@ -1,6 +1,6 @@
 # SPEC-009 X013 - Contract Governance Decisions
 ---
-version: "1.0"
+version: "1.0.0"
 decisions:
   XDEC-001: { issue: Contract co implementation khong, decision: Khong - interface only (TERM-014), date: pending }
   XDEC-002: { issue: Contract co goi truc tiep khong, decision: Khong - qua Contract (TERM-014), date: pending }

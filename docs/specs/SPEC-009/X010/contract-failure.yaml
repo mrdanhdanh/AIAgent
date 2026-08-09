@@ -1,6 +1,6 @@
 # SPEC-009 X010 - Contract Failure Modes
 ---
-version: "1.0"
+version: "1.0.0"
 failure_modes:
   - Declare fail: error + khong tao Contract
   - Validate fail: CONTRACT_REJECTED + cleanup

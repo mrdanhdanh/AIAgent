@@ -1,6 +1,6 @@
 # SPEC-008 X006 - Event Component Mapping
 ---
-version: "1.0"
+version: "1.0.0"
 mapping:
   XCP-001 -> XAL-001 API Layer
   XCP-002..005 -> XAL-002/003 Engine+Guard

@@ -1,12 +1,12 @@
 # SPEC-007 X009 - Artifact Definition States (6)
 ---
-version: "1.0"
+version: "1.0.0"
 initial_state: XST-001
 terminal_states: [XST-005, XST-006]
 states:
-  XST-001: { name: Created, category: Initial, type: Initial, terminal: - }
-  XST-002: { name: Validating, category: Preparation, type: Internal, terminal: - }
-  XST-003: { name: Published, category: Active, type: Active, terminal: - }
-  XST-004: { name: Consumed, category: Active, type: Active, terminal: - }
-  XST-005: { name: Archived, category: Terminal, type: Terminal, terminal: yes }
-  XST-006: { name: Rejected, category: Terminal, type: Terminal, terminal: yes }
+  XST-001: { name: Created, category: Initial, type: Initial, terminal: false }
+  XST-002: { name: Validating, category: Preparation, type: Internal, terminal: false }
+  XST-003: { name: Published, category: Active, type: Active, terminal: false }
+  XST-004: { name: Consumed, category: Active, type: Active, terminal: false }
+  XST-005: { name: Archived, category: Terminal, type: Terminal, terminal: true }
+  XST-006: { name: Rejected, category: Terminal, type: Terminal, terminal: true }

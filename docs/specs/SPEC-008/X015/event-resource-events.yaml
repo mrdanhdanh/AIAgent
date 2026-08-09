@@ -1,6 +1,6 @@
 # SPEC-008 X015 - Event Resource Events
 ---
-version: "1.0"
+version: "1.0.0"
 events:
   - EVENT_RESOURCE_ALLOCATED
   - EVENT_RESOURCE_RELEASED

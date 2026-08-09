@@ -1,10 +1,10 @@
 # SPEC-009 X011 - Contract Health
 ---
-version: "1.0"
+version: "1.0.0"
 health_checks:
   - declare_ok: declare nhanh, khong loi
   - compat_ok: backward compatible check pass
   - resolve_ok: resolve thanh cong
   - event_ok: event day du (S011)
   - policy_ok: policy applied (S012)
-  score: tinh trong X019 Doctor
+  # score: tinh trong X019 Doctor

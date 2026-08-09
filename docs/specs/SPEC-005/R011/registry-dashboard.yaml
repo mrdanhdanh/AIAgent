@@ -1,6 +1,6 @@
 # SPEC-005 R011 - Registry Dashboard (S011 OB010 reuse)
 ---
-version: "1.0"
+version: "1.0.0"
 reads:
   - Registry Events
   - Registry Metrics

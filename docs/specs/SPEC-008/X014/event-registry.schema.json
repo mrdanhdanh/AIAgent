@@ -1,5 +1,5 @@
 {
   "schema": "event-registry",
-  "version": "1.0",
+  "version": "1.0.0",
   "entry_types": ["EventDefinition","EventSchema","EventPolicy","EventStateMachine"]
 }

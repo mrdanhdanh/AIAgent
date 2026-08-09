@@ -1,6 +1,6 @@
 # SPEC-005 R006 - Component Mapping
 ---
-version: "1.0"
+version: "1.0.0"
 mapping:
   RCP-001: { layer: Command, domain: Execution }
   RCP-002: { layer: Declaration, domain: Definition }

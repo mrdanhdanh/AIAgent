@@ -1,6 +1,6 @@
 # SPEC-009 X012 - Timeout Binding
 ---
-version: "1.0"
+version: "1.0.0"
 timeout_binding:
   declare_timeout: 500ms (default)
   validate_timeout: 500ms (default)

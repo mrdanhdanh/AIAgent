@@ -1,6 +1,6 @@
 # SPEC-007 X015 - Artifact Resource Metrics
 ---
-version: "1.0"
+version: "1.0.0"
 metrics:
   - artifact_storage_bytes
   - artifact_index_entries

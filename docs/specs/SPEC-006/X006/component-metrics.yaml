@@ -1,6 +1,6 @@
 # SPEC-006 X006 - Component Metrics
 ---
-version: "1.0"
+version: "1.0.0"
 metrics:
   XCP-001: Context Metric
   XCP-002: Context Metric

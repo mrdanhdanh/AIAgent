@@ -1,6 +1,6 @@
 # SPEC-005 R009 - Registry State Events (S011 reuse)
 ---
-version: "1.0"
+version: "1.0.0"
 events:
   - REGISTRY_ENTRY_VALIDATING
   - REGISTRY_ENTRY_PUBLISHED

@@ -1,6 +1,6 @@
 # SPEC-009 X008 - Contract Entities (15 ENT)
 ---
-version: "1.0"
+version: "1.0.0"
 entities:
   ENT-X001: { name: Contract, kind: AggregateRoot, owner: Contract Registry, immutable: true }
   ENT-X002: { name: ContractDefinition, kind: Entity, owner: Contract Registry, immutable: true }

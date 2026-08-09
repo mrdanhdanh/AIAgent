@@ -1,6 +1,6 @@
 # SPEC-008 X011 - Event Traces
 ---
-version: "1.0"
+version: "1.0.0"
 traces:
   - event.publish
   - event.validate

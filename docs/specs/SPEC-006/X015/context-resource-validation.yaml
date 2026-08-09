@@ -1,6 +1,6 @@
 # SPEC-006 X015 - Context Resource Validation
 ---
-version: "1.0"
+version: "1.0.0"
 validation:
   - quota khong vuot (XPOL-006)
   - khong leak sau Release

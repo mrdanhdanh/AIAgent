@@ -1,6 +1,6 @@
 # SPEC-009 X006 - Contract Component Lifecycle
 ---
-version: "1.0"
+version: "1.0.0"
 lifecycle:
   ContractApi: co khi Runtime start
   ContractStore: per-Store instance

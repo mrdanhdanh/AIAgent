@@ -1,6 +1,6 @@
 # SPEC-007 X004 - Artifact Boundary Registry
 ---
-version: "1.0"
+version: "1.0.0"
 registry:
   owner: Artifact Team
   tracked: [XB-001..010]

@@ -1,6 +1,6 @@
 # SPEC-006 X017 - Context Extension Validation
 ---
-version: "1.0"
+version: "1.0.0"
 validation:
   - extension co schema.json
   - extension khong pha vo invariants (X008)

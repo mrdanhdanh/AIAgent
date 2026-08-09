@@ -50,7 +50,7 @@ agent: general
 
 | From -> To | Event | Guard |
 |-----------|-------|-------|
-| XST-001 -> XST-002 | CONTEXT_POPULATING | Khai bao section hop le |
+| XST-001 -> XST-002 | CONTEXT_POPULATED | Khai bao section hop le |
 | XST-002 -> XST-003 | CONTEXT_ACTIVE | Populate pass validate |
 | XST-002 -> XST-008 | CONTEXT_REJECTED | Populate fail |
 | XST-003 -> XST-004 | CONTEXT_DISTRIBUTED | Grant tao thanh cong |
@@ -88,7 +88,7 @@ Guard fail -> BLOCK + CONTEXT_GUARD + Event (S011).
 ## XS008 - Events (11)
 
 - Moi transition sinh dung mot event CONTEXT_*.
-- Event immutable, append-only (P005).
+- Event immutable, append-only (P010).
 - Event co correlation_id (S011).
 
 ## XS009 - Registered Machines

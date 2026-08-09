@@ -1,6 +1,6 @@
 # SPEC-008 X007 - Event Contract Compatibility
 ---
-version: "1.0"
+version: "1.0.0"
 compatibility:
   Add: field/type moi - OK
   Change: y nghia field - ADR

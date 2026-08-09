@@ -1,6 +1,6 @@
 # SPEC-006 X011 - Context Audit
 ---
-version: "1.0"
+version: "1.0.0"
 audit:
   who: agent_id / capability_id / engine
   what: op (allocate/populate/mutate/...)

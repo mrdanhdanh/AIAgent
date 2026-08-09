@@ -1,6 +1,6 @@
 # SPEC-009 X009 - Contract Transition Triggers
 ---
-version: "1.0"
+version: "1.0.0"
 triggers:
   XST-001: Declare (Contract System)
   XST-002: Validate (Contract System)

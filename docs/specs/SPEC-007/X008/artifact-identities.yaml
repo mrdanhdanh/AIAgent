@@ -1,6 +1,6 @@
 # SPEC-007 X008 - Artifact Identity
 ---
-version: "1.0"
+version: "1.0.0"
 identity:
   artifact_id: UUID (generated at Create)
   execution_id: UUID (from Execution)

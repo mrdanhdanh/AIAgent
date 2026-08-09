@@ -1,6 +1,6 @@
 # SPEC-008 X016 - Event Compliance Events
 ---
-version: "1.0"
+version: "1.0.0"
 events:
   - SPEC008_COMPLIANCE_PASS
   - SPEC008_COMPLIANCE_FAIL

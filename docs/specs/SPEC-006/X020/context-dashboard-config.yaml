@@ -1,6 +1,6 @@
 # SPEC-006 X020 - Context Dashboard Config
 ---
-version: "1.0"
+version: "1.0.0"
 config:
   refresh: 30s (default)
   theme: S011 dashboard theme

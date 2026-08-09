@@ -1,6 +1,6 @@
 # SPEC-007 X009 - Artifact Transition Triggers
 ---
-version: "1.0"
+version: "1.0.0"
 triggers:
   XST-001: Create (Artifact Manager)
   XST-002: Validate (Artifact Manager)

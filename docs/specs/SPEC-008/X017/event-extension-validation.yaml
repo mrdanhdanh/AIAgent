@@ -1,6 +1,6 @@
 # SPEC-008 X017 - Event Extension Validation
 ---
-version: "1.0"
+version: "1.0.0"
 validation:
   - extension co schema.json
   - extension khong pha vo invariants (X008)

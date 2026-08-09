@@ -1,6 +1,6 @@
 # SPEC-006 X008 - Context References
 ---
-version: "1.0"
+version: "1.0.0"
 references:
   - ExecutionRef (SPEC-001)
   - AgentRef (SPEC-004)

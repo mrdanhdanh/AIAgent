@@ -1,6 +1,6 @@
 # SPEC-008 X011 - Event Observability Model
 ---
-version: "1.0"
+version: "1.0.0"
 observability:
   logs: Event Bus logs (structured)
   events: EVENT_* (S011 Event Store)

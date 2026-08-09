@@ -1,6 +1,6 @@
 # SPEC-008 X013 - Event Governance Events
 ---
-version: "1.0"
+version: "1.0.0"
 events:
   - SPEC008_FROZEN
   - SPEC008_UNFROZEN

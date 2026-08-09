@@ -1,6 +1,6 @@
 # SPEC-008 X019 - Event Doctor Report
 ---
-version: "1.0"
+version: "1.0.0"
 report:
   format: markdown + JSON
   sections: [summary, score, checks, violations, evidence, actions]

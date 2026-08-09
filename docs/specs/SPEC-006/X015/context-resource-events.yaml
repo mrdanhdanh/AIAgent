@@ -1,6 +1,6 @@
 # SPEC-006 X015 - Context Resource Events
 ---
-version: "1.0"
+version: "1.0.0"
 events:
   - CONTEXT_RESOURCE_ALLOCATED
   - CONTEXT_RESOURCE_RELEASED

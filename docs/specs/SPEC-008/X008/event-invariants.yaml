@@ -1,6 +1,6 @@
 # SPEC-008 X008 - Event Invariants
 ---
-version: "1.0"
+version: "1.0.0"
 invariants:
   INV-X001: { name: Unique EventId, description: Moi Event co id duy nhat }
   INV-X002: { name: Single Owner, description: Event thuoc mot Execution }

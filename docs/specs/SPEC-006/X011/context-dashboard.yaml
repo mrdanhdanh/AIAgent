@@ -1,10 +1,10 @@
 # SPEC-006 X011 - Context Dashboard
 ---
-version: "1.0"
+version: "1.0.0"
 dashboard:
   - Context Activity (allocate/release rate)
   - Context Lifecycle (state histogram)
   - Context Failures (rejected/leaked)
   - Grant Status (active/revoked)
   - Resource Usage (memory per context)
-  tool: X020 Context Dashboard
+  # tool: X020 Context Dashboard

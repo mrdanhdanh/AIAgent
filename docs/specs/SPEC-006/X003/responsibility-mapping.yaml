@@ -1,6 +1,6 @@
 # SPEC-006 X003 - Responsibility Mapping
 ---
-version: "1.0"
+version: "1.0.0"
 mapping:
   XXR-001: [XFR-001]
   XXR-002: [XFR-001]

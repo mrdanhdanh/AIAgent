@@ -1,6 +1,6 @@
 # SPEC-005 R017 - Extension Events (S011 reuse)
 ---
-version: "1.0"
+version: "1.0.0"
 event_types:
   - REGISTRY_EXTENSION_REGISTERED
   - REGISTRY_EXTENSION_INSTALLED

@@ -1,5 +1,5 @@
 # SPEC-006 X006 - Component Model
 ---
-version: "1.0"
+version: "1.0.0"
 model:
   fields: [id, name, version, status, layer, domain, responsibility, capability, contracts, dependencies, lifecycle, owner, metadata]

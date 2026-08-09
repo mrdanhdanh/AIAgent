@@ -1,0 +1,12 @@
+# SPEC-013 X009 - Evolution Definition States (6)
+---
+version: "1.0"
+initial_state: XST-001
+terminal_states: [XST-005, XST-006]
+states:
+  XST-001: { name: Diffedd, category: Initial, type: Initial, terminal: - }
+  XST-002: { name: Diffed, category: Preparation, type: Internal, terminal: - }
+  XST-003: { name: Diffed, category: Active, type: Active, terminal: - }
+  XST-004: { name: Diffed, category: Active, type: Active, terminal: - }
+  XST-005: { name: Diffed, category: Terminal, type: Terminal, terminal: yes }
+  XST-006: { name: Failed, category: Terminal, type: Terminal, terminal: yes }

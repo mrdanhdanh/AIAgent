@@ -1,6 +1,6 @@
 # SPEC-006 X011 - Context Traces
 ---
-version: "1.0"
+version: "1.0.0"
 traces:
   - context.allocate
   - context.populate

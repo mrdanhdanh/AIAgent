@@ -1,6 +1,6 @@
 # SPEC-007 X015 - Artifact Resources
 ---
-version: "1.0"
+version: "1.0.0"
 resources:
   XRES-001: { name: Storage, owner: Artifact Store }
   XRES-002: { name: Index, owner: Artifact Store }

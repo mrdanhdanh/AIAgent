@@ -1,6 +1,6 @@
 # SPEC-006 X013 - Context Governance Events
 ---
-version: "1.0"
+version: "1.0.0"
 events:
   - SPEC006_FROZEN
   - SPEC006_UNFROZEN

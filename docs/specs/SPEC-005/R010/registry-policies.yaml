@@ -1,6 +1,6 @@
 # SPEC-005 R010 - Registry Policies (tham chieu S012)
 ---
-version: "1.0"
+version: "1.0.0"
 policies:
   Retry: POL-RETRY-001 (S012)
   Timeout: POL-TIMEOUT-001 (S012)

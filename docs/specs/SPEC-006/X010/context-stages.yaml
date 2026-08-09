@@ -1,6 +1,6 @@
 # SPEC-006 X010 - Context Stages Registry
 ---
-version: "1.0"
+version: "1.0.0"
 registered_stages:
   XF-001: { name: Allocate, actor: Context Engine, event: CONTEXT_ALLOCATED }
   XF-002: { name: Populate, actor: Context Engine, event: CONTEXT_POPULATED }

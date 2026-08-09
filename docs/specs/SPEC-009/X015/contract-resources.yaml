@@ -1,6 +1,6 @@
 # SPEC-009 X015 - Contract Resources
 ---
-version: "1.0"
+version: "1.0.0"
 resources:
   XRES-001: { name: Storage, owner: Contract System }
   XRES-002: { name: Index, owner: Contract System }

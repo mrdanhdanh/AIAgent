@@ -1,6 +1,6 @@
 # SPEC-007 X010 - Artifact Execution Flow (8 stages)
 ---
-version: "1.0"
+version: "1.0.0"
 stages:
   XF-001: { name: Create, description: Tao Artifact tu output cua Task/Agent, actor: Artifact Store, event: ARTIFACT_CREATED }
   XF-002: { name: Validate, description: Validate noi dung + schema, actor: Artifact Store, event: ARTIFACT_VALIDATING }

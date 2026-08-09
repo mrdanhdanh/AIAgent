@@ -1,0 +1,9 @@
+# SPEC-013 X009 - Evolution Transitions (5)
+---
+version: "1.0"
+transitions:
+  XTR-001: { from: XST-001, to: XST-002, event: Evolution_Diffed, guard: Diff hop le }
+  XTR-002: { from: XST-002, to: XST-003, event: Evolution_Diffed, guard: Plan hop le }
+  XTR-003: { from: XST-002, to: XST-006, event: Evolution_FAILED, guard: Plan fail }
+  XTR-004: { from: XST-003, to: XST-004, event: Evolution_Diffed, guard: Run xong + result }
+  XTR-005: { from: XST-004, to: XST-005, event: Evolution_Diffed, guard: Report xong }

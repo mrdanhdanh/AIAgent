@@ -1,6 +1,6 @@
 # SPEC-006 X010 - Context Flow Validation
 ---
-version: "1.0"
+version: "1.0.0"
 validation:
   - stage order dung EF008
   - moi stage co event tuong ung

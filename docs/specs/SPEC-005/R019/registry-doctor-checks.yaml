@@ -1,6 +1,6 @@
 # SPEC-005 R019 - Registry Doctor Checks (tham chieu, khong dinh nghia lai)
 ---
-version: "1.0"
+version: "1.0.0"
 groups:
   - source: R011 Observability
     count: 5

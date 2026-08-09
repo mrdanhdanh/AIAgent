@@ -1,6 +1,6 @@
 # SPEC-007 X010 - Artifact Query
 ---
-version: "1.0"
+version: "1.0.0"
 query_ops:
   - GetArtifact(artifact_id)
   - GetVersion(artifact_id, version)

@@ -1,6 +1,6 @@
-# SPEC-009 X011 - Contract Events (S011 reuse)
+# SPEC-009 X011 - Contract Events (S011 cung cap event model)
 ---
-version: "1.0"
+version: "1.0.0"
 definition_events:
   - CONTRACT_DECLARED
   - CONTRACT_VALIDATING
@@ -15,7 +15,7 @@ definition_events:
   - CONTRACT_COMPAT_BLOCKED
   - CONTRACT_RESTORED
 rules:
-  - Event immutable (P005).
+  - Event immutable (P010).
   - Event chi append.
   - Moi transition sinh Event (X009).
   - Event co correlation_id (S011).

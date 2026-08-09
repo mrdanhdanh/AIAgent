@@ -36,7 +36,7 @@ agent: general
 - **Definition-level**: REGISTRY_ENTRY_VALIDATING · PUBLISHED · REJECTED · DEPRECATED · REACTIVATED · RETIRED (R009).
 - **Run-level**: EXECUTION_* (S011).
 
-Rules: Event immutable (P005); chỉ append; có correlation_id.
+Rules: Event immutable (P010); chỉ append; có correlation_id.
 
 ## RO005 — Registry Metrics
 

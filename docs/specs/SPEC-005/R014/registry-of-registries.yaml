@@ -11,7 +11,7 @@ philosophy:
   - Registry-of-Registries la diem vao duy nhat cho moi Registry.
   - Dashboard chi can doc mot file.
 principles:
-  - Single File: registry-registry.yaml
+  - "Single File: registry-registry.yaml"
   - Metadata First
   - Versioned
   - Discoverable
@@ -52,7 +52,7 @@ resolution_rules:
 events:
   - REGISTRY_REGISTERED
   - REGISTRY_UPDATED
-  - REGISTRY_DEPRECATED
+  - REGISTRY_ROR_DEPRECATED
   - REGISTRY_RETIRED
 metrics:
   registry_count: 0

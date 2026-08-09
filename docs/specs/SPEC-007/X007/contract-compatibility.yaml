@@ -1,6 +1,6 @@
 # SPEC-007 X007 - Artifact Contract Compatibility
 ---
-version: "1.0"
+version: "1.0.0"
 compatibility:
   Add: field/version moi - OK
   Change: y nghia field - ADR

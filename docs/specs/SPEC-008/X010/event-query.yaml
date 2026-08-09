@@ -1,6 +1,6 @@
 # SPEC-008 X010 - Event Query
 ---
-version: "1.0"
+version: "1.0.0"
 query_ops:
   - GetEvent(event_id)
   - GetStream(stream_id)

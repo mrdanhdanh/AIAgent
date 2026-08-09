@@ -1,6 +1,6 @@
 # SPEC-009 X003 - Contract Responsibility Matrix
 ---
-version: "1.0"
+version: "1.0.0"
 matrix:
   XRR-001: { name: Declare Contract, owner: Contract System, role: OWNER }
   XRR-002: { name: Validate Contract, owner: Contract System, role: OWNER }

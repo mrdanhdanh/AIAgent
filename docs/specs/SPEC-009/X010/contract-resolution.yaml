@@ -1,6 +1,6 @@
 # SPEC-009 X010 - Contract Resolution
 ---
-version: "1.0"
+version: "1.0.0"
 resolution:
   input: contract_id + version
   output: Contract + schema hoac not-found

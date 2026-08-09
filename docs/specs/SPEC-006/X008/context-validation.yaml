@@ -1,6 +1,6 @@
 # SPEC-006 X008 - Context Validation Rules
 ---
-version: "1.0"
+version: "1.0.0"
 validation_rules:
   VAL-X001: { field: ContextId, requirement: Required, type: UUID }
   VAL-X002: { field: ExecutionId, requirement: Required, type: UUID }

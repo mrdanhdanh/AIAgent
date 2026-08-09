@@ -1,6 +1,6 @@
 # SPEC-009 X011 - Contract Audit
 ---
-version: "1.0"
+version: "1.0.0"
 audit:
   who: provider_id / caller_id / engine
   what: op (declare/version/resolve/verify/retire)

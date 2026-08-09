@@ -1,6 +1,6 @@
 # SPEC-005 R020 - Registry Dashboard Events (S011 reuse)
 ---
-version: "1.0"
+version: "1.0.0"
 event_types:
   - REGISTRY_DASHBOARD_VIEWED
   - REGISTRY_DASHBOARD_REFRESHED

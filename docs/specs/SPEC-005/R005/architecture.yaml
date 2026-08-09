@@ -91,7 +91,7 @@ dependency_rules:
 communication_rules:
   - Contract
   - Event
-  note: Ngoai ra deu bi cam.
+# note: Ngoai ra deu bi cam.
 invariants:
   - Registry luon Metadata Driven.
   - Registry khong biet Storage implementation.
@@ -115,7 +115,7 @@ constraints:
   - Shared Mutable State
   - Business Data trong Registry
   - Direct Storage Coupling
-  note: Tat ca deu CAM.
+# note: Tat ca deu CAM.
 stability:
   stable: [Layers, Domains]
   evolvable: [Entry Schema, Contracts, Domains]

@@ -1,9 +1,9 @@
 # SPEC-008 X013 - Event Governance Registry
 ---
-version: "1.0"
+version: "1.0.0"
 registry:
   spec: SPEC-008 (this)
   sections: [X001..X020]
   models: event-models/
-  schemas: *.schema.json
+  schemas: "*.schema.json"
   status_tracking: SPEC-INDEX.md

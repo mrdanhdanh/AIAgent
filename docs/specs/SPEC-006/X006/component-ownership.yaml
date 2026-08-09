@@ -1,6 +1,6 @@
 # SPEC-006 X006 - Component Ownership
 ---
-version: "1.0"
+version: "1.0.0"
 ownership:
   XCP-001: Context
   XCP-002: Context

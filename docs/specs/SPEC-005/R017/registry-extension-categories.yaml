@@ -1,4 +1,4 @@
 # SPEC-005 R017 - Extension Categories
 ---
-version: "1.0"
+version: "1.0.0"
 categories: [Entry Type Extension, Binding Extension, Resolution Extension, Query Extension, Compatibility Extension]

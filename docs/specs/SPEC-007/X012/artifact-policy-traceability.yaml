@@ -1,6 +1,6 @@
 # SPEC-007 X012 - Artifact Policy Traceability
 ---
-version: "1.0"
+version: "1.0.0"
 traceability:
   XPOL-001: { name: Immutable, source: P010, principle: P010 }
   XPOL-002: { name: No Overwrite, source: TERM-008, principle: P010 }

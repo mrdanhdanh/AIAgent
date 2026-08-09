@@ -1,6 +1,6 @@
 # SPEC-005 R006 - Component Dependencies
 ---
-version: "1.0"
+version: "1.0.0"
 dependencies:
   RCP-001: [RCP-002, RCP-003, RCP-004, RCP-005, RCP-008]
   RCP-002: []

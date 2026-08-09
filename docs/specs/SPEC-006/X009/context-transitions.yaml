@@ -1,8 +1,8 @@
 # SPEC-006 X009 - Context Transitions (11)
 ---
-version: "1.0"
+version: "1.0.0"
 transitions:
-  XTR-001: { from: XST-001, to: XST-002, event: CONTEXT_POPULATING, guard: Khai bao section hop le }
+  XTR-001: { from: XST-001, to: XST-002, event: CONTEXT_POPULATED, guard: Khai bao section hop le }
   XTR-002: { from: XST-002, to: XST-003, event: CONTEXT_ACTIVE, guard: Populate pass validate }
   XTR-003: { from: XST-002, to: XST-008, event: CONTEXT_REJECTED, guard: Populate fail }
   XTR-004: { from: XST-003, to: XST-004, event: CONTEXT_DISTRIBUTED, guard: Grant tao thanh cong }

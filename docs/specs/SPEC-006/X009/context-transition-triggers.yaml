@@ -1,6 +1,6 @@
 # SPEC-006 X009 - Context Transition Triggers
 ---
-version: "1.0"
+version: "1.0.0"
 triggers:
   XST-001: Allocate (EF008)
   XST-002: Populate (EF008)

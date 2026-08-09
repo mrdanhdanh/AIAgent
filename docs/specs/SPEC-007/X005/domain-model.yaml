@@ -1,6 +1,6 @@
 # SPEC-007 X005 - Artifact Domain Model
 ---
-version: "1.0"
+version: "1.0.0"
 domain:
   entities: [Artifact, ArtifactVersion, ArtifactMetadata, ArtifactChecksum, ArtifactState]
   logic_layer: Engine Layer

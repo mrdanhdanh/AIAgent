@@ -53,7 +53,7 @@ Frozen chi thay doi qua ADR + RFC.
 
 ## XG006 - Events
 
-SPEC009_FROZEN / UNFROZEN / VERSIONED / DECISION_MADE / DECISION_OVERRIDDEN (S011).
+SPEC009_FROZEN / UNFROZEN / VERSIONED / DECISION_MADE / DECISION_OVERRIDDEN (X013 dinh nghia event types — S011 cung cap event model: fields, correlation_id).
 
 ## XG007 - Binding Enforcement
 

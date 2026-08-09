@@ -1,6 +1,6 @@
 # SPEC-009 X003 - Contract Responsibility Registry
 ---
-version: "1.0"
+version: "1.0.0"
 registry:
   owner: Contract Team
   tracked: [XRR-001..016]

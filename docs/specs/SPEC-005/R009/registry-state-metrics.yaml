@@ -1,6 +1,6 @@
 # SPEC-005 R009 - Registry State Metrics
 ---
-version: "1.0"
+version: "1.0.0"
 metrics:
   entry_state_distribution: {}
   invalid_transitions: 0

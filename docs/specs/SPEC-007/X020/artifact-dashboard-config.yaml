@@ -1,6 +1,6 @@
 # SPEC-007 X020 - Artifact Dashboard Config
 ---
-version: "1.0"
+version: "1.0.0"
 config:
   refresh: 30s (default)
   theme: S011 dashboard theme

@@ -1,6 +1,6 @@
 # SPEC-007 X010 - Artifact Resolution
 ---
-version: "1.0"
+version: "1.0.0"
 resolution:
   input: artifact_id + version
   output: content + metadata hoac not-found

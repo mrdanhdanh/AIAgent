@@ -1,6 +1,6 @@
 # SPEC-006 X012 - Context Policies (10)
 ---
-version: "1.0"
+version: "1.0.0"
 policies:
   XPOL-001: { name: Isolation, description: Moi Context doc lap, khong chia se, priority: Critical, source: POL-ISOL-001, principle: P006 }
   XPOL-002: { name: No Business Data, description: Context chi chua metadata, priority: Critical, source: S011 OB003A, principle: P001 }

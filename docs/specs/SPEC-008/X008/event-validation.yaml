@@ -1,6 +1,6 @@
 # SPEC-008 X008 - Event Validation Rules
 ---
-version: "1.0"
+version: "1.0.0"
 validation_rules:
   VAL-X001: { field: EventId, requirement: Required, type: UUID }
   VAL-X002: { field: Type, requirement: Required, type: String (S011 types) }

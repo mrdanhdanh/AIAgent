@@ -1,6 +1,6 @@
 # SPEC-006 X018 - Context Migration
 ---
-version: "1.0"
+version: "1.0.0"
 migration:
   - Upgrade: bo sung field/section (backward)
   - Downgrade: giu field cu (compat)

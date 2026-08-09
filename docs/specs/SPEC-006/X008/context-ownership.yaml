@@ -1,6 +1,6 @@
 # SPEC-006 X008 - Context Ownership
 ---
-version: "1.0"
+version: "1.0.0"
 ownership:
   owner_entity: Execution (SPEC-001)
   manager: Context Engine (S010 EF008)

@@ -1,6 +1,6 @@
 # SPEC-005 R011 - Registry Trace (S011 reuse)
 ---
-version: "1.0"
+version: "1.0.0"
 scope:
   - Entry
   - Resolution (S014)

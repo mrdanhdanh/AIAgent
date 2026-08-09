@@ -1,6 +1,6 @@
 # SPEC-005 R008 - Registry Ownership
 ---
-version: "1.0"
+version: "1.0.0"
 ownership:
   RegistryEntry: Registry Team
   EntryMetadata: Registry Team

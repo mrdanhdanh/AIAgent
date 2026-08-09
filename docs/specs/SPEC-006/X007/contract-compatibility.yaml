@@ -1,6 +1,6 @@
 # SPEC-006 X007 - Contract Compatibility
 ---
-version: "1.0"
+version: "1.0.0"
 compatibility:
   XCT-001: [1.x]
   XCT-002: [1.x]

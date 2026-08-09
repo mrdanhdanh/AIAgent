@@ -1,6 +1,6 @@
 # SPEC-006 X011 - Context Events (S011 reuse)
 ---
-version: "1.0"
+version: "1.0.0"
 definition_events:
   - CONTEXT_ALLOCATED
   - CONTEXT_POPULATED
@@ -18,7 +18,7 @@ definition_events:
   - CONTEXT_GRANTED
   - CONTEXT_GRANT_REVOKED
 rules:
-  - Event immutable (P005).
+  - Event immutable (P010).
   - Event chi append.
   - Moi transition sinh Event (X009).
   - Event co correlation_id (S011).

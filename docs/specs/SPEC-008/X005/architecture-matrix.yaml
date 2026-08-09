@@ -1,6 +1,6 @@
 # SPEC-008 X005 - Event Architecture Matrix
 ---
-version: "1.0"
+version: "1.0.0"
 matrix:
   XAL-001: { name: API Layer }
   XAL-002: { name: Engine Layer }

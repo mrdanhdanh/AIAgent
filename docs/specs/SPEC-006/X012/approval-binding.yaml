@@ -1,6 +1,6 @@
 # SPEC-006 X012 - Approval Binding
 ---
-version: "1.0"
+version: "1.0.0"
 approval_binding:
   binding: Context op theo S012 approval flow
   required_for: [XPOL-005, XPOL-006, XPOL-004]

@@ -1,6 +1,6 @@
 # SPEC-009 X012 - Contract Policy Categories
 ---
-version: "1.0"
+version: "1.0.0"
 categories:
   Interface: [XPOL-001, XPOL-002]
   Data: [XPOL-005, XPOL-010]

@@ -1,6 +1,6 @@
 # SPEC-009 X011 - Contract Metrics
 ---
-version: "1.0"
+version: "1.0.0"
 metrics:
   - contract_declared_total
   - contract_published_total

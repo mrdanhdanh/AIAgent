@@ -1,6 +1,6 @@
 # SPEC-009 X016 - Contract Compliance Rules
 ---
-version: "1.0"
+version: "1.0.0"
 compliance_rules:
   COMP-001: { name: Interface Only, requirement: Contract khong chua implementation (TERM-014), source: XNF-001 }
   COMP-002: { name: No Direct Call, requirement: Goi qua Contract (TERM-014), source: XNF-002 }

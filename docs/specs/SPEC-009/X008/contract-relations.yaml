@@ -1,6 +1,6 @@
 # SPEC-009 X008 - Contract Relations
 ---
-version: "1.0"
+version: "1.0.0"
 relations:
   REL-X001: { from: Contract, relation: owns, to: ContractDefinition, cardinality: 1..1 }
   REL-X002: { from: Contract, relation: owns, to: ContractVersion, cardinality: 1..* }

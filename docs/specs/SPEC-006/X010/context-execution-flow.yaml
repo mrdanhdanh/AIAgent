@@ -1,6 +1,6 @@
 # SPEC-006 X010 - Context Execution Flow (7 stages)
 ---
-version: "1.0"
+version: "1.0.0"
 stages:
   XF-001: { name: Allocate, description: Tao Context tu Execution metadata, actor: Context Engine, event: CONTEXT_ALLOCATED }
   XF-002: { name: Populate, description: Dien du lieu metadata vao Context, actor: Context Engine, event: CONTEXT_POPULATED }

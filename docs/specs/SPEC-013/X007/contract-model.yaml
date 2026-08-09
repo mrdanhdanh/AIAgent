@@ -1,0 +1,7 @@
+# SPEC-013 X007 - Evolution Contract Model
+---
+version: "1.0"
+contract_model:
+  identity: contract_id (XCT-###)
+  schema: evolution-*.schema.json
+  breaking: can ADR + RFC (SPEC-000)

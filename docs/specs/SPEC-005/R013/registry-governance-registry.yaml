@@ -1,6 +1,6 @@
 # SPEC-005 R013 - Registry Governance Registry
 ---
-version: "1.0"
+version: "1.0.0"
 registry:
   - registry-governance.yaml
   - registry-governance-stack.yaml

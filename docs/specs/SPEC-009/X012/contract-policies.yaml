@@ -1,6 +1,6 @@
 # SPEC-009 X012 - Contract Policies (10)
 ---
-version: "1.0"
+version: "1.0.0"
 policies:
   XPOL-001: { name: Interface Only, description: Contract chi input/output, priority: Critical, source: TERM-014, principle: P004 }
   XPOL-002: { name: No Implementation, description: Contract khong chua code, priority: Critical, source: TERM-014, principle: P004 }

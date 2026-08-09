@@ -1,10 +1,10 @@
 # SPEC-010 X011 - Plugin Dashboard
 ---
-version: "1.0"
+version: "1.0.0"
 dashboard:
   - Plugin Activity (install/enable rate)
   - Plugin Lifecycle (state histogram)
   - Plugin Failures (rejected/permission blocked)
   - Export Status (capability/agent/skill/widget)
   - Sandbox Status (violations)
-  tool: X020 Plugin Dashboard
+  # tool: X020 Plugin Dashboard

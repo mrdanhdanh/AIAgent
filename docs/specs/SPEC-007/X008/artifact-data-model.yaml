@@ -1,6 +1,6 @@
 # SPEC-007 X008 - Artifact Data Model
 ---
-version: "1.0"
+version: "1.0.0"
 entities:
   ENT-X001: { name: Artifact, kind: AggregateRoot, owner: Artifact Store, immutable: false }
   ENT-X002: { name: ArtifactDefinition, kind: Entity, owner: Artifact Store, immutable: true }

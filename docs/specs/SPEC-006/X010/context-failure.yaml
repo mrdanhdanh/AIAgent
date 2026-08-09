@@ -1,6 +1,6 @@
 # SPEC-006 X010 - Context Failure Modes
 ---
-version: "1.0"
+version: "1.0.0"
 failure_modes:
   - Allocate fail: error + khong tao Context
   - Populate fail: CONTEXT_REJECTED + cleanup

@@ -1,6 +1,6 @@
 # SPEC-005 R018 - Registry Evolution Scope (R011 reuse)
 ---
-version: "1.0"
+version: "1.0.0"
 reads:
   - Registry Event (R011)
   - Registry Metrics (R011)

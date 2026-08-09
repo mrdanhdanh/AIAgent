@@ -1,0 +1,10 @@
+# SPEC-013 X009 - Evolution Events (5)
+---
+version: "1.0"
+events:
+  Evolution_Diffed: { from: XST-001, to: XST-002, category: lifecycle }
+  Evolution_Diffed: { from: XST-002, to: XST-003, category: lifecycle }
+  Evolution_FAILED: { from: XST-002, to: XST-006, category: lifecycle }
+  Evolution_Diffed: { from: XST-003, to: XST-004, category: lifecycle }
+  Evolution_Diffed: { from: XST-004, to: XST-005, category: lifecycle }
+note: Event immutable, append-only (S011 P005).

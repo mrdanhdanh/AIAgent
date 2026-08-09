@@ -1,6 +1,6 @@
 # SPEC-005 R015 - Registry Resource Validation
 ---
-version: "1.0"
+version: "1.0.0"
 checks:
   - Double Allocation (S015)
   - Resource Leak (S015)

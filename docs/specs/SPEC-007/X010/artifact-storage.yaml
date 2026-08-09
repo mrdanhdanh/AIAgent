@@ -1,6 +1,6 @@
 # SPEC-007 X010 - Artifact Storage
 ---
-version: "1.0"
+version: "1.0.0"
 storage:
   mode: Content-addressable (checksum)
   lifecycle: Create -> Archive

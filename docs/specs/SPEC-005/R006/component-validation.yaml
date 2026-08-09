@@ -1,6 +1,6 @@
 # SPEC-005 R006 - Component Validation
 ---
-version: "1.0"
+version: "1.0.0"
 checks:
   - Missing Component
   - Duplicate Component ID

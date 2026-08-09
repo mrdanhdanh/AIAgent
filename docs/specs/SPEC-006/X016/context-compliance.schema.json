@@ -1,5 +1,13 @@
 {
-  "schema": "context-compliance",
-  "version": "1.0",
-  "compliance_rule": { "type": "string", "pattern": "^COMP-[0-9]{3}$" }
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aios://context-compliance.schema.json",
+  "title": "SPEC-006 Context Compliance (X016)",
+  "type": "object",
+  "properties": {
+    "schema": { "const": "context-compliance" },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "compliance_rule": { "type": "string", "pattern": "^COMP-[0-9]{3}$" }
+  },
+  "required": [ "schema", "version" ],
+  "additionalProperties": true
 }

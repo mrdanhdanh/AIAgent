@@ -1,0 +1,6 @@
+# SPEC-013 X004 - Evolution Boundary Registry
+---
+version: "1.0"
+registry:
+  owner: Evolution Team
+  tracked: [XB-001..010]

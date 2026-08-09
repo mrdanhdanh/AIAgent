@@ -1,6 +1,6 @@
 # SPEC-007 X016 - Artifact Certification
 ---
-version: "1.0"
+version: "1.0.0"
 certification:
   certified_artifacts:
     - SPEC-007 SPEC.yaml

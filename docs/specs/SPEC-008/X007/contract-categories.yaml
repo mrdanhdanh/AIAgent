@@ -1,6 +1,6 @@
 # SPEC-008 X007 - Event Contract Categories
 ---
-version: "1.0"
+version: "1.0.0"
 categories:
   API: [XCT-001]
   Data: [XCT-002, XCT-007]

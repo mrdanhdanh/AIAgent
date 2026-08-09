@@ -1,6 +1,6 @@
 # SPEC-009 X008 - Contract Invariants
 ---
-version: "1.0"
+version: "1.0.0"
 invariants:
   INV-X001: { name: Unique ContractId, description: Moi Contract co id duy nhat }
   INV-X002: { name: Interface Only, description: Contract khong chua implementation }

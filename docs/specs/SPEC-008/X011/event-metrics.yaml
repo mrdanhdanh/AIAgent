@@ -1,6 +1,6 @@
 # SPEC-008 X011 - Event Metrics
 ---
-version: "1.0"
+version: "1.0.0"
 metrics:
   - event_published_total
   - event_delivered_total

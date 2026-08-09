@@ -1,0 +1,8 @@
+# SPEC-013 X009 - Evolution Transition Types
+---
+version: "1.0"
+transition_types:
+  external: [Evolution_Diffed, Evolution_FAILED]
+  internal: [Evolution_Diffed, Evolution_Diffed, Evolution_Diffed]
+  error: [Evolution_FAILED]
+rule: Internal transition chi trong Evolution Engine.

@@ -1,6 +1,6 @@
 # SPEC-005 R012 - Canonical Registry Policy Binding
 ---
-version: "1.0"
+version: "1.0.0"
 binding:
   fields: [id, entry, resolution, policy_ref, parameters, scope, version, status, lifecycle, metadata]
 rules:

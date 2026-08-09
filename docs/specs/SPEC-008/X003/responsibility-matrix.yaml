@@ -1,6 +1,6 @@
 # SPEC-008 X003 - Event Responsibility Matrix
 ---
-version: "1.0"
+version: "1.0.0"
 matrix:
   XRR-001: { name: Publish Event, owner: Event Bus, role: OWNER }
   XRR-002: { name: Route Event, owner: Event Bus, role: OWNER }

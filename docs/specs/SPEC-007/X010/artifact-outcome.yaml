@@ -1,6 +1,6 @@
 # SPEC-007 X010 - Artifact Outcome
 ---
-version: "1.0"
+version: "1.0.0"
 outcome:
   success: Published immutable + ARTIFACT_PUBLISHED
   failure: Rejected + ARTIFACT_REJECTED

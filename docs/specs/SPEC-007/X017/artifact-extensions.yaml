@@ -1,6 +1,6 @@
 # SPEC-007 X017 - Artifact Extension Points
 ---
-version: "1.0"
+version: "1.0.0"
 extensions:
   XEXT-001: { name: Artifact Extension Point, description: Diem mo rong Artifact, owner: Artifact Store, priority: High }
   XEXT-002: { name: Custom Content Type, description: Kieu content moi (MIME), owner: Artifact Store, priority: Medium }

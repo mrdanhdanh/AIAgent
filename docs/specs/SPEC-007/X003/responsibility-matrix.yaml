@@ -1,6 +1,6 @@
 # SPEC-007 X003 - Artifact Responsibility Matrix
 ---
-version: "1.0"
+version: "1.0.0"
 matrix:
   XRR-001: { name: Create Artifact, owner: Artifact Store, role: OWNER }
   XRR-002: { name: Validate Artifact, owner: Artifact Store, role: OWNER }

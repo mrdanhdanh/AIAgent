@@ -1,6 +1,6 @@
 # SPEC-006 X018 - Context Compatibility
 ---
-version: "1.0"
+version: "1.0.0"
 compatibility:
   backward: moi version giu Context contract cu (XNF-006)
   forward: tuan thu schema strict

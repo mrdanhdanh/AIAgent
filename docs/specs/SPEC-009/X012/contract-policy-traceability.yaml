@@ -1,6 +1,6 @@
 # SPEC-009 X012 - Contract Policy Traceability
 ---
-version: "1.0"
+version: "1.0.0"
 traceability:
   XPOL-001: { name: Interface Only, source: TERM-014, principle: P004 }
   XPOL-002: { name: No Implementation, source: TERM-014, principle: P004 }

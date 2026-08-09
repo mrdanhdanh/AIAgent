@@ -1,6 +1,6 @@
 # SPEC-007 X019 - Artifact Doctor Report
 ---
-version: "1.0"
+version: "1.0.0"
 report:
   format: markdown + JSON
   sections: [summary, score, checks, violations, evidence, actions]

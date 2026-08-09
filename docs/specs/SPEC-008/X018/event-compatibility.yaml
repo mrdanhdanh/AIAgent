@@ -1,6 +1,6 @@
 # SPEC-008 X018 - Event Compatibility
 ---
-version: "1.0"
+version: "1.0.0"
 compatibility:
   backward: moi version giu Event contract cu (XNF-006)
   forward: tuan thu schema strict

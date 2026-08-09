@@ -1,0 +1,8 @@
+# SPEC-013 X007 - Evolution Communication Matrix
+---
+version: "1.0"
+matrix:
+  User -> EvolutionApi: sync diff
+  EvolutionApi -> DiffEngine: sync diff
+  EvolutionApi -> MigrationEngine: sync migrate
+  EvolutionApi -> S011: async event

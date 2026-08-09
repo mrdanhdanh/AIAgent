@@ -1,0 +1,9 @@
+# SPEC-013 X008 - Evolution Ownership
+---
+version: "1.0"
+ownership:
+  owner_entity: Evolution Engine (SPEC-013)
+  workflow: Workflow (SPEC-002) bi mo phong
+  result: Evolution Report
+  transfer: Khong cho phep (P005)
+  destroy: Report archive (S012)

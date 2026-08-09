@@ -1,6 +1,6 @@
 # SPEC-008 X010 - Event Failure Modes
 ---
-version: "1.0"
+version: "1.0.0"
 failure_modes:
   - Publish fail: error + khong tao Event
   - Validate fail: EVENT_REJECTED + cleanup

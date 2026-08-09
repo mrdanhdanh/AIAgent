@@ -1,6 +1,6 @@
 # SPEC-008 X008 - Event Identity
 ---
-version: "1.0"
+version: "1.0.0"
 identity:
   event_id: UUID (generated at Publish)
   correlation_id: UUID (S011)

@@ -1,6 +1,6 @@
 # SPEC-006 X016 - Context Health Score
 ---
-version: "1.0"
+version: "1.0.0"
 health_score:
   dimensions:
     - spec_consistency (30%)

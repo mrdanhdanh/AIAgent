@@ -3,6 +3,7 @@
 # review_id format: REV-<YYYYMMDD>-<NNN> — NNN = entries.length + 1.
 ---
 version: "1.0"
+updated: "2026-08-09"
 entries:
   - review_id: REV-20260807-001
     spec: SPEC-001
@@ -6693,3 +6694,1339 @@ entries:
     finished: "2026-08-09T08:13:30"
     cascade_review: []
     report_path: docs/governance/reviews/REV-SPEC-004-SPEC004-revfull-20260809-081330.md
+  - review_id: REV-20260809-138
+    spec: SPEC-005
+    item: SPEC-005
+    name: Registry (whole-SPEC)
+    type: rev1
+    mode: rev1 (whole-SPEC review lan dau — 20 muc R001-R020 + Appendix, moi khoi tao tracker)
+    verdict: FAIL
+    note: >
+      rev1 whole-SPEC tren SPEC-005 (Registry, 20 muc R001-R020 + Appendix registry-models,
+      tat ca Draft/NotReviewed/count 0 — chua co entry tracker, not_started_specs truoc
+      review). Verify may (PyYAML 6.0.3 + jsonschema 4.26.0 + grep): 162 YAML SPEC-005 ->
+      7 PARSE-ERR CRITICAL (cung lop SPEC-003 REV-130 #01 / SPEC-004 REV-134 #01):
+      #01 R005 architecture.yaml:94 communication_rules note:, #02 R006 components.yaml:187
+      not_in_runtime note:, #03 R008 registry-data-model.yaml:46 dependencies note:, #04 R009
+      registry-transition-triggers.yaml:6 run_triggers, #05 R010 registry-execution-flow.yaml:19
+      stages note:, #06 R012 registry-policies.yaml:24 categories note:, #07 R015
+      registry-resources.yaml:20 categories note: — file canonical khong parse duoc bang may.
+      5 SCHEMA-FAIL MAJOR (#08-#12, cung lop SPEC-003 REV-130 #02 / SPEC-004 REV-134 #09-#12
+      ': ' chua quote -> mapping vs schema string): R011 registry-observability.yaml:51
+      evolution_integration[0] 1 err, R014 registry-of-registries.yaml:14 principles[0] 1 err,
+      R018 registry-evolution.yaml:46-48 approval[0-2] 3 errs, R019 registry-doctor.yaml:38-44
+      check_sources[0-6] 7 errs, R020 registry-dashboard.yaml:50 refresh[0] 1 err.
+      MAJOR #13 COMPLIANCE: 7 vi tri 'immutable (P005)' sai (P005 = Event Driven, immutable =
+      P010) — R011 registry-events.yaml:14 + observability.md:39, R016 registry-compliance-report.yaml:7
+      + compliance.md:87, R019 registry-doctor-report.yaml:7 + doctor.md:69,110 (cung lop
+      W016#02/W019#03/C011/C016/C019). MAJOR #14 CONSISTENCY single-definition CROSS-SPEC:
+      R013 registry-governance-events.yaml:11 dinh nghia lai REGISTRY_COMPATIBILITY_FAILED
+      (S014 SPEC-001 registry-events.yaml:15 so huu) + R014 registry-of-registries.yaml:55
+      dinh nghia lai REGISTRY_DEPRECATED (S014 registry-events.yaml:9 so huu) — cung lop #29
+      C014 / #14 A014 da fix bang doi ten; de nghi REGISTRY_GOVERNANCE_COMPATIBILITY_FAILED /
+      REGISTRY_ROR_DEPRECATED. MINOR #15: version 1.0 (143 file) vs 1.0.0 (20 canonical) khong
+      nhat quan. MINOR #16 TRACEABILITY: R011 registry-events.yaml:4-10 definition_events
+      re-list 6 REGISTRY_ENTRY_* event cua R009 khong comment nguon trong YAML (md
+      observability.md:36 ghi (R009)) — cung lop #30 C011 / #16 A011. INFO #17: frontmatter md
+      thieu status field (theo tien le khong chan). Tich cuc: grep 'S011 reuse truc tiep' toan
+      SPEC-005 = 0 (khong tuyen bo reuse sai event types — comment 'S011 reuse' chi chi event
+      model, dung nghia); upstream refs deu ton tai (S014 RG004/RG005A/RG010, S011
+      OB003A/005/009/010/011A, S012 POL-* 10, S013 GV010/GV011A, S015 RS003-007, S016 CM006/008,
+      S009 ST-* run_mapping, S010 EF004/EF007/EF013/EF014/EF017); 9/20 canonical schema VALID
+      (R002/R003/R004/R007/R009/R013/R016/R017/APP); R002 counts khop (16 FR/12 NFR/6 CC/6 CA);
+      R009 6 RST + run mapping S009 dung; md event count R009 6/6 khop yaml; md structure
+      20/20 sections + appendix day du. Verdict toan SPEC: FAIL (7 CRITICAL >= 1 -> Decision
+      Matrix) -> KHONG tang count, KHONG doi trang thai: 20 muc giu Draft/NotReviewed/count 0.
+      Tracker: khoi tao entries R001-R020 (lifecycle Draft, review {status: NotReviewed,
+      count: 0}) + xoa SPEC-005 khoi not_started_specs. Cascade: R009/R011/R013/R014/R016/R019
+      gan recheck_required (event single-definition + re-list + P005 — can regression TRG-002
+      sau fix), khong doi review.status. SLA: TRG-006 khong ap (draft 0 ngay — created
+      2026-08-09), TRG-007 chua ap. Next: fix 7 CRITICAL (comment note: trong block sequence —
+      precedent ADR-007/ADR-006/SPEC-003 REV-130/SPEC-004 REV-134) + 5 MAJOR schema (quote
+      ': ') + #13 P005->P010 + #14 doi ten 2 event -> chay lai /review SPEC-005 rev1 (xac
+      nhan fix, advance Rev1).
+    score:
+      coverage: 90
+      quality: 60
+      consistency: 78
+      governance: 80
+      overall: 77
+    severity_counts:
+      CRITICAL: 7
+      MAJOR: 7
+      MINOR: 2
+      INFO: 1
+    started: "2026-08-09T08:29:11"
+    finished: "2026-08-09T08:29:11"
+    cascade_review: [R009, R011, R013, R014, R016, R019]
+    report_path: docs/governance/reviews/REV-SPEC-005-SPEC005-rev1-20260809-082911.md
+  - review_id: REV-20260809-139
+    spec: SPEC-006
+    item: SPEC-006
+    name: Context Engine (whole-SPEC)
+    type: rev1
+    mode: rev1 (whole-SPEC review lan dau — 20 muc X001-X020 + Appendix, moi khoi tao tracker)
+    verdict: FAIL
+    note: >
+      rev1 whole-SPEC tren SPEC-006 (Context Engine, 20 muc X001-X020 + Appendix
+      context-models, tat ca Draft/NotReviewed/count 0 — chua co entry tracker,
+      not_started_specs truoc review). Verify may (PyYAML 6.0.3 + jsonschema 4.26.0 +
+      grep): 143 YAML SPEC-006 -> 8 PARSE-ERR CRITICAL (cung lop SPEC-005 REV-138 #01 /
+      SPEC-004 REV-134 #01 / SPEC-003 REV-130 #01): #01 X005/architecture.yaml:92
+      communication_rules note:, #02 X006/components.yaml:186 not_in_runtime note:,
+      #03 X009/context-states.yaml:7-12 flow mapping terminal: -, #04 X011/context-dashboard.yaml:10
+      tool:, #05 X011/context-health.yaml:10 score:, #06 X013/context-governance-registry.yaml:8
+      schemas: *.schema.json (alias error), #07 X015/context-resource-lifecycle.yaml:5-7 lifecycle
+      block, #08 X016/context-readiness-checklist.yaml:5-10 "- [ ]" block. 7 canonical schema
+      ($schema): 5 VALID (X002/X003/X004/X007/context-models), 2 chan boi parse-ERR (X005/X006);
+      9 schema.json X008-X016 la field-catalog khong phai JSON Schema chuan (MINOR).
+      MAJOR #09 TRACEABILITY event naming conflict: X009 dung CONTEXT_POPULATING (context-state-events.yaml:5,
+      context-transitions.yaml:5, state-machine.md:53, context-transition-types.yaml:5) trong khi
+      X010/X011 dung CONTEXT_POPULATED (context-events.yaml:6, observability.md:35,
+      execution-flow.yaml:6, context-stages.yaml:6) — 1 event 2 ten, vi pham POLICY-011.
+      MAJOR #10 CONSISTENCY: X006 components.md:17-29 10 components (ContextApi, LifecycleOrchestrator,
+      ContextStateMachine, PolicyGuard, ScopeChecker, ContextValidator, ContextStore, ContextEvents,
+      ContextMetrics, ContextRegistryClient) vs components.yaml 8 XCP (Context Engine, Allocation
+      Manager, Population Manager, Validation Engine, Distribution Manager, Collection Manager,
+      Isolation Manager, Context Event Dispatcher) — ten khac hoan toan. MAJOR #11 CONSISTENCY:
+      X005 architecture.md:24-34 5 layers (API, Engine, Guard, Data, Integration) vs
+      architecture.yaml:15-78 7 layers (Command, Allocation, Population, Validation, Distribution,
+      Collection, Publication). MAJOR #12 COMPLIANCE: 4 vi tri 'immutable (P005)' sai (P005 = Event
+      Driven, immutable = P010 — 03-principles.md:36): X009 context-state-events.yaml:16 +
+      state-machine.md:91, X011 context-events.yaml:21 + observability.md:25 (cung lop SPEC-005
+      REV-138 #13 / SPEC-004 REV-134 #13). MINOR #13: version 1.0 (136 file) vs 1.0.0 (31 canonical)
+      khong nhat quan. MINOR #14 CONTENT typo '`n- SPEC-001 Runtime Kernel' x3 (X015 resources.md:63,
+      X019 doctor.md:57, X020 dashboard.md:46). MINOR #15 TRACEABILITY: X014 registry.md:20 tham chieu
+      mo ho 'SPEC-005 R0xx'. MINOR #16 SCHEMA: 9 schema.json X008-X016 khong phai JSON Schema chuan
+      (field-catalog khong co $schema/type/properties) — X019 XDOC-004 khong kiem duoc. INFO #17:
+      upstream SPEC-001/005 khong ref nguoc SPEC-006 (1 chieu, frozen truoc). INFO #18: X009 'Events
+      (11)' vs X011 'Events (15)' 2 con so cung chu de gay nham lan. INFO #19: frontmatter md thieu
+      status field. INFO #20: spec006-validator.ps1 chi check regex structure, khong parse YAML/schema
+      that -> bao '20/20 PASS' sai (8 YAML hong). Tich cuc: grep 'S011 reuse truc tiep' toan SPEC-006
+      = 0 (comment 'S011 reuse' chi chi event model, dung nghia); X001 5 invariants day du; X002 16
+      FR/12 NFR/6 XC khop md + YAML; X003 18 XXR day du; X004 9 XB day du + mapping; X007 7 XCT day
+      du; X008 15 ENT/9 REL/7 INV khop md; X010 7 stages EF008 dung; X014 dung Registry SPEC-005
+      khong dinh nghia lai; upstream refs deu ton tai (S010 EF008 64, S008 21, S011 OB003A 14, S012
+      POL-ISOL-001 4, SPEC-005 40); md structure 20/20 sections + appendix day du. Verdict toan SPEC:
+      FAIL (8 CRITICAL >= 1 -> Decision Matrix) -> KHONG tang count, KHONG doi trang thai: 20 muc giu
+      Draft/NotReviewed/count 0. Tracker: khoi tao entries X001-X020 (lifecycle Draft, review
+      {status: NotReviewed, count: 0}) + xoa SPEC-006 khoi not_started_specs. Cascade: X005/X006/X009/
+      X010/X011 gan recheck_required (finding cheo noi bo — can regression TRG-002 sau fix), khong doi
+      review.status. SLA: TRG-006 khong ap (draft 1 ngay — created 2026-08-08), TRG-007 chua ap.
+      Next: fix 8 CRITICAL (comment note:/tool:/score: trong block sequence, quote *.schema.json va
+      "- [ ]", sua flow terminal: -, sua lifecycle block — precedent ADR-007/SPEC-005 REV-138) + #09
+      thong nhat event name CONTEXT_POPULATED + #10/#11 dong bo md<->yaml + #12 P005->P010 -> chay
+      lai /review SPEC-006 rev1 (xac nhan fix, advance Rev1).
+    score:
+      coverage: 88
+      quality: 58
+      consistency: 65
+      governance: 78
+      overall: 72
+    severity_counts:
+      CRITICAL: 8
+      MAJOR: 4
+      MINOR: 4
+      INFO: 4
+    started: "2026-08-09T08:33:34"
+    finished: "2026-08-09T08:33:34"
+    cascade_review: [X005, X006, X009, X010, X011]
+    report_path: docs/governance/reviews/REV-SPEC-006-SPEC006-rev1-20260809-083334.md
+  - review_id: REV-20260809-140
+    spec: SPEC-005
+    item: SPEC-005
+    name: Registry (whole-SPEC)
+    type: rev1
+    mode: rev1 (whole-SPEC re-review lan 2 — xac nhan fix 17 findings REV-20260809-138)
+    verdict: CONDITIONAL
+    note: >
+      rev1 whole-SPEC lan 2 tren SPEC-005 (Registry, 20 muc R001-R020 + Appendix registry-models,
+      Draft/NotReviewed/count 0 sau REV-138 FAIL). Verify may (PyYAML 6.0.3 + jsonschema 4.26.0
+      Draft202012 strict + grep): 17/17 findings REV-138 da FIXED — #01-#07 7 CRITICAL: 8 note:
+      trong block sequence -> comment (R005 x2 communication_rules/constraints, R006 not_in_runtime,
+      R008 dependencies, R009 run_triggers, R010 stages, R012 categories, R015 categories) — 162/162
+      YAML parse PASS 0 ParserError (truoc 7); #08-#12 5 MAJOR: quote ': ' 13 string (R011
+      evolution_integration, R014 principles, R018 approval, R019 check_sources, R020 refresh +
+      them R010 principles[0], R012 philosophy[1]/principles[0-5]/responsibility_chain[0-2], R015
+      principles[0-4], R020 refresh rules[0]) — jsonschema 20/20 cap pairs: 19 VALID + R008 FAIL
+      2 errs (MAJOR moi); #13 7 vi tri immutable (P005)->(P010) — grep = 0; #14 rename
+      REGISTRY_COMPATIBILITY_FAILED -> REGISTRY_GOVERNANCE_COMPATIBILITY_FAILED (R013
+      governance-events.yaml:11) + REGISTRY_DEPRECATED -> REGISTRY_ROR_DEPRECATED (R014
+      of-registries.yaml:55) — S014 (SPEC-001) giu 2 ten cu (registry-events.yaml:15/9 +
+      registry.md:296/290 + registry.yaml:123/117), grep ten cu trong SPEC-005 = 0, het collision
+      single-definition; #15 version 1.0.0 dong nhat 162/162 (grep version: "1.0" = 0); #16 R011
+      registry-events.yaml co comment '# nguon: R009 registry-state-events.yaml (6 event types)'
+      khop md observability.md:36. Phat hien MAJOR moi #01 SCHEMA: R008 registry-data-model.yaml:9-10
+      aggregate_rules[1] 'Entry owns: [Metadata, ...]' + [2] 'Entry references: [Capability, ...]'
+      chua ': ' -> PyYAML parse thanh mapping vs schema items type string -> jsonschema strict FAIL
+      2 errors (bi che boi parse-err #03 REV-138, chi lo khi fix parse — cung lop #08-#12 da fix,
+      can quote). Tich cuc: R009 == R011 definition_events 6/6 khop (REGISTRY_ENTRY_VALIDATING/
+      PUBLISHED/REJECTED/DEPRECATED/REACTIVATED/RETIRED); event duplicate noi bo SPEC-005 = 6
+      (R009/R011 def+ref co nguon comment — hop le theo tien le C011/A011, khong phai redefine);
+      R013 7 events unique; R014 4 events (REGISTRY_ROR_DEPRECATED unique); md structure 20/20 +
+      Appendix registry-models; grep 'S011 reuse truc tiep' toan SPEC-005 = 0; 132 ref S014/RG keys
+      ton tai; version/event naming nhat quan (162/162 1.0.0). Verdict toan SPEC: CONDITIONAL
+      (0 CRITICAL, 1 MAJOR -> Decision Matrix) -> TANG count: R001-R020 count 0 -> 1, status
+      NotReviewed -> Rev1, lifecycle Draft -> Review (type rev1 khong auto-freeze — chi revfull
+      PASS + Completed moi freeze). GO recheck_required R009/R011/R013/R014/R016/R019 (cascade
+      REV-138 — fix sach tai nguon, grep ten event cu = 0, version doi khong vo gi, hoan tat
+      TRG-002). Khong cascade moi (R008 finding noi bo, khong doi key/event). SLA: TRG-006 khong
+      ap (draft 0 ngay — created 2026-08-09), TRG-007 chua ap. Next: fix R008 #01 (quote 2 string
+      aggregate_rules) -> /review SPEC-005 rev1 lan 3 (Rev1 -> Completed/count 2) -> /review
+      SPEC-005 revfull de auto-freeze. id_note: history 139 entries (max REV-20260809-139 — SPEC-006
+      session song song chiem 139 truoc) — dung 140 de dam bao unique (entries.length 139 + 1,
+      grep toan docs 0).
+    score:
+      coverage: 95
+      quality: 97
+      consistency: 97
+      governance: 97
+      overall: 96
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 1
+      MINOR: 0
+      INFO: 1
+    started: "2026-08-09T12:11:32"
+    finished: "2026-08-09T12:11:32"
+    cascade_review: [R009, R011, R013, R014, R016, R019]
+    report_path: docs/governance/reviews/REV-SPEC-005-SPEC005-rev1-20260809-121132.md
+  - review_id: REV-20260809-141
+    spec: SPEC-006
+    item: SPEC-006
+    name: Context Engine (whole-SPEC)
+    type: rev1
+    mode: rev1 (whole-SPEC RE-REVIEW lan 2 - xac nhan fix 16 findings REV-20260809-139)
+    verdict: PASS
+    note: >
+      rev1 RE-REVIEW toan SPEC-006 (Context Engine, 20 muc X001-X020 + Appendix context-models,
+      Draft/NotReviewed/count 0 sau REV-139 FAIL). Verify may (PyYAML 6.0.3 + jsonschema 4.26.0
+      Draft202012 strict + grep + git): 16/16 findings REV-139 da FIXED — #01-#08 8 CRITICAL: comment
+      note:/tool:/score: trong block sequence (X005 communication_rules, X006 not_in_runtime, X011
+      dashboard tool:, X011 health score:), X009 context-states.yaml terminal: - -> terminal: false,
+      X013 schemas: *.schema.json -> quote "*.schema.json", X015 context-resource-lifecycle.yaml
+      lifecycle block -> quoted list, X016 context-readiness-checklist.yaml "- [ ]" -> quoted string —
+      143/143 YAML parse PASS 0 ParserError (truoc 8); 9 schema.json X008-X016 da nang thanh JSON
+      Schema Draft202012 chuan ($schema/$id/type/properties) — 16/16 META-VALID + 7/7 canonical
+      artifact VALID (X002/X003/X004/X005/X006/X007/context-models) — MINOR #16 FIXED; MAJOR #09
+      event naming thong nhat CONTEXT_POPULATED 11/11 locations (X009 state-events/transitions/
+      transition-types/state-machine.md + X010 execution-flow.yaml/stages/execution-flow.md + X011
+      events/observability-mapping/observability.md) — CONTEXT_POPULATING = 0; MAJOR #10 X006
+      components.md -> 8 XCP khop components.yaml (Context Engine/Allocation Manager/Population
+      Manager/Validation Engine/Distribution Manager/Collection Manager/Isolation Manager/Context
+      Event Dispatcher); MAJOR #11 X005 architecture.md -> 7 layers khop architecture.yaml (Command/
+      Allocation/Population/Validation/Distribution/Collection/Publication + layer_count 7); MAJOR #12
+      4 vi tri immutable (P005)->(P010) — grep immutable (P005) = 0, immutable (P010) = 3 (X009
+      state-machine.md:91, X011 context-events.yaml:21, X011 observability.md:25); MINOR #13 version
+      1.0.0 dong nhat 144/144 (grep version: "1.0" = 0); MINOR #14 typo n- SPEC-001 = 0 (X015
+      resources.md:63, X019 doctor.md:57, X020 dashboard.md:46 -> '- SPEC-001 Runtime Kernel'); MINOR
+      #15 X014 registry.md:20 'SPEC-005 R0xx' -> 'SPEC-005 R008 RegistryEntry' (SPEC-005 R008 ton tai).
+      INFO #17-#20 chua xu ly (chap nhan/ghi nhan — upstream SPEC-001/005 khong ref nguoc #17, Events
+      11 vs 15 #18, frontmatter md thieu status #19, spec006-validator.ps1 chi regex #20). Tich cuc:
+      upstream refs deu ton tai (EF008 64, S008 12, S011 99, SPEC-005 38); md structure 20/20 + appendix
+      day du; spec006-validator.ps1 exit 0; cascade ngoai: SPEC-000 cross-reference.yaml:77 + SPEC-007
+      X001-vision.md:93 ref SPEC-006 (metadata/vision — khong can recheck). Verdict toan SPEC: PASS
+      (0 CRITICAL, 0 MAJOR -> Decision Matrix) -> tinh count: NotReviewed -> Rev1, count 0 -> 1,
+      lifecycle Draft -> Review (type rev1 khong auto-freeze). Tracker: X001-X020 -> Review/Rev1/count 1
+      + history entry REV-20260809-141. Cascade: X005/X006/X009/X010/X011 het recheck noi bo (finding da
+      fix); khong cascade moi. SLA: TRG-006 khong ap (draft 1 ngay — created 2026-08-09), TRG-007 chua
+      ap. Next: chay /review SPEC-006 rev1 lan 3 (pass 2 -> Completed/count 2) roi /review SPEC-006
+      revfull (du 2-pass + PASS -> auto-freeze Frozen). id_note: history 140 entries (max
+      REV-20260809-140 — SPEC-005 session song song da chiem 140) — dung 141 de dam bao unique
+      (entries.length 140 + 1, grep toan docs 0).
+    score:
+      coverage: 97
+      quality: 95
+      consistency: 96
+      governance: 97
+      overall: 96
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 0
+      MINOR: 0
+      INFO: 4
+    started: "2026-08-09T12:17:06"
+    finished: "2026-08-09T12:17:06"
+    cascade_review: []
+    report_path: docs/governance/reviews/REV-SPEC-006-SPEC006-rev1-20260809-121706.md
+  - review_id: REV-20260809-142
+    spec: SPEC-005
+    item: SPEC-005
+    name: Registry (whole-SPEC)
+    type: rev1
+    mode: rev1 (whole-SPEC re-review lan 3 — xac nhan fix MAJOR #01 REV-20260809-140)
+    verdict: PASS
+    note: >
+      rev1 whole-SPEC lan 3 tren SPEC-005 (Registry, 20 muc R001-R020 + Appendix registry-models,
+      Review/Rev1/count 1 sau REV-140 CONDITIONAL). Verify may (PyYAML 6.0.3 + jsonschema 4.26.0
+      Draft202012 strict + grep): MAJOR #01 REV-140 FIXED — R008 registry-data-model.yaml:9-10
+      aggregate_rules[1] "Entry owns: [Metadata, Version, Domain, Owner, Reference, Result]" + [2]
+      "Entry references: [Capability (SPEC-003), Workflow (SPEC-002), Agent (SPEC-004), Execution
+      (S008)]" da quote (precedent #08-#12 REV-140) — jsonschema 20/20 cap pairs VALID 0 errors
+      (truoc 19/20 FAIL R008); 162/162 YAML parse PASS 0 ParserError; grep `immutable (P005)` = 0;
+      `version: "1.0"` = 0 (162/162 = 1.0.0); REGISTRY_COMPATIBILITY_FAILED / REGISTRY_DEPRECATED
+      trong SPEC-005 = 0; R011 registry-events.yaml co comment '# nguon: R009 registry-state-events.yaml
+      (6 event types)' khop md; R009 == R011 definition_events 6/6 khop (REGISTRY_ENTRY_VALIDATING/
+      PUBLISHED/REJECTED/DEPRECATED/REACTIVATED/RETIRED); single-definition: REGISTRY_GOVERNANCE_
+      COMPATIBILITY_FAILED (R013 governance-events.yaml:11) + REGISTRY_ROR_DEPRECATED (R014
+      of-registries.yaml:55) unique — S014 (SPEC-001) giu 2 ten cu (registry-events.yaml:15/9 +
+      registry.md:296/290 + registry.yaml:123/117), grep ten moi ngoai SPEC-005 = 0, het collision;
+      event duplicate noi bo SPEC-005 = 6 (R009/R011 def+ref co nguon comment — hop le theo tien le
+      C011/A011, khong phai redefine); md structure 20/20 + Appendix registry-models; grep 'S011
+      reuse truc tiep' toan SPEC-005 = 0; version/event naming nhat quan (162/162 1.0.0). Con 2 INFO
+      ke thua REV-140 khong chan (#01 R014 events REGISTRY_REGISTERED/UPDATED/RETIRED dung prefix
+      REGISTRY_* gan S014 — goi y ROR_, optional; #02 frontmatter md thieu status field — ke thua
+      REV-138 #17). Verdict toan SPEC: PASS (0 CRITICAL, 0 MAJOR -> Decision Matrix) -> tinh count:
+      R001-R020 count 1 -> 2, status Rev1 -> Completed, lifecycle giu Review (type rev1 khong
+      auto-freeze — chi revfull PASS + Completed moi freeze). GO recheck_required R009/R011/R013/
+      R014/R016/R019 (cascade REV-138/140 — fix sach tai nguon, grep ten event cu = 0, khong vo ref
+      downstream, hoan tat TRG-002). Khong cascade moi (R008 finding noi bo da fix, khong doi
+      key/event). SLA: TRG-006 khong ap (draft 0 ngay — created 2026-08-09), TRG-007 chua ap. Next:
+      chay /review SPEC-005 revfull (du 2-pass PASS -> auto-freeze Frozen). id_note: history 141
+      entries (max REV-20260809-141 — SPEC-006 session song song chiem 141 truoc) — dung 142 de dam
+      bao unique (entries.length 141 + 1, grep toan docs 0).
+    score:
+      coverage: 97
+      quality: 97
+      consistency: 100
+      governance: 97
+      overall: 98
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 0
+      MINOR: 0
+      INFO: 2
+    started: "2026-08-09T12:21:40"
+    finished: "2026-08-09T12:21:40"
+    cascade_review: [R009, R011, R013, R014, R016, R019]
+    report_path: docs/governance/reviews/REV-SPEC-005-SPEC005-rev1-20260809-122140.md
+  - review_id: REV-20260809-143
+    spec: SPEC-006
+    item: SPEC-006
+    name: Context Engine (whole-SPEC)
+    type: rev1
+    mode: rev1 (whole-SPEC pass 2 - hoan tat 2-pass, Review/Rev1/count 1 sau REV-20260809-141)
+    verdict: PASS
+    note: >
+      rev1 whole-SPEC lan 3 tren SPEC-006 (Context Engine, 20 muc X001-X020 + Appendix
+      context-models, Review/Rev1/count 1 sau REV-141 PASS pass 1). Khong co thay doi source
+      giua REV-141 va REV-143 (git working tree giu nguyen 155 files fix REV-139 — pass 2 la
+      re-review xac nhan lai cung trang thai). Verify may (PyYAML 6.0.3 + jsonschema 4.26.0
+      Draft202012 strict + grep): 143/143 YAML parse PASS 0 ParserError; 16/16 schema.json
+      META-VALID ($schema/type/properties) + 7/7 canonical artifact VALID 0 errors (X002
+      requirements, X003 responsibilities, X004 boundaries, X005 architecture, X006 components,
+      X007 contracts, context-models/context-models); grep sach 5/5 — CONTEXT_POPULATING = 0,
+      immutable (P005) = 0 (P010 dung cho immutable), version: "1.0" = 0, R0xx = 0,
+      n- SPEC-001 = 0; CONTEXT_POPULATED = 11/11 (POLICY-011 single-name); version: "1.0.0"
+      = 144 (POLICY-002); md<->yaml khop — X006 8 XCP (yaml = md), X005 7 layers
+      (Command/Allocation/Population/Validation/Distribution/Collection/Publication = md);
+      X009 11 transition events vs X011 15 definition events (INFO #02 2 pham vi, chap nhan);
+      upstream refs deu ton tai (SPEC-001 EF008 7 hits, S008/S011 dirs, SPEC-005); 
+      spec006-validator.ps1 exit 0. Verdict toan SPEC: PASS (0 CRITICAL, 0 MAJOR ->
+      Decision Matrix) -> tinh count: X001-X020 count 1 -> 2, status Rev1 -> Completed
+      (du 2-pass bat buoc), lifecycle giu Review (type rev1 khong auto-freeze — chi revfull
+      PASS + Completed moi freeze). Tracker: X001-X020 -> Review/Completed/count 2 + history
+      entry REV-20260809-143. 4 INFO ke thua REV-141 (#01 upstream khong ref nguoc, #02
+      Events 11 vs 15, #03 frontmatter md thieu status, #04 spec006-validator.ps1 chi regex)
+      chap nhan, khong chan (0 MINOR moi). Cascade: [] — khong doi source, external refs chi
+      metadata/vision (SPEC-000 cross-reference.yaml:77, SPEC-007 X001-vision.md:93, specs/
+      README.md); X005/X006/X009/X010/X011 het recheck noi bo tu REV-141. SLA: TRG-006 khong
+      ap (draft 1 ngay — created 2026-08-09), TRG-007 chua ap (Completed vua dat, chu ky
+      180 ngay bat dau tu day). Next: chay /review SPEC-006 revfull (du 2-pass + PASS ->
+      auto-freeze Frozen truc tiep, khong can Approved/POLICY-001) roi /doctor. id_note:
+      history 142 entries (max REV-20260809-142 — SPEC-005 session song song da chiem 142)
+      — dung 143 de dam bao unique (entries.length 142 + 1, grep toan docs 0).
+    score:
+      coverage: 97
+      quality: 97
+      consistency: 97
+      governance: 97
+      overall: 97
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 0
+      MINOR: 0
+      INFO: 4
+    started: "2026-08-09T12:25:52"
+    finished: "2026-08-09T12:25:52"
+    cascade_review: []
+    report_path: docs/governance/reviews/REV-SPEC-006-SPEC006-rev1-20260809-122552.md
+  - review_id: REV-20260809-144
+    spec: SPEC-005
+    item: SPEC-005
+    name: Registry (whole-SPEC)
+    type: revfull
+    mode: revfull (whole-SPEC deep research — 20/20 Completed/count 2 — auto-freeze)
+    verdict: PASS
+    note: >
+      revfull toan SPEC-005 (Registry, 20 muc R001-R020 + Appendix registry-models) — deep
+      research sau 2 vong rev1 (REV-140 CONDITIONAL -> REV-142 PASS, 20/20 Completed/count 2).
+      Verify may (PyYAML 6.0.3 + jsonschema 4.26.0 Draft202012 strict + grep + git): 162/162
+      YAML parse PASS 0 ParserError; 20/20 canonical schema Draft202012 strict VALID 0 errors
+      (R002-R020 + registry-models; R008 registry-data.schema.json<->registry-data-model.yaml,
+      R009 registry.schema.json<->registry-state-machine.yaml — ten base khac, deu VALID);
+      grep `immutable (P005)` = 0 (immutable dung P010 o R011/R016/R019); `version: "1.0"` = 0
+      (162/162 = 1.0.0); REGISTRY_COMPATIBILITY_FAILED / REGISTRY_DEPRECATED trong SPEC-005 = 0
+      (da doi ten); R011 registry-events.yaml co comment '# nguon: R009 registry-state-events.yaml
+      (6 event types)' khop md; R009 == R011 definition_events 6/6 khop (REGISTRY_ENTRY_VALIDATING/
+      PUBLISHED/REJECTED/DEPRECATED/REACTIVATED/RETIRED); single-definition cross-SPEC:
+      REGISTRY_GOVERNANCE_COMPATIBILITY_FAILED (R013) + REGISTRY_ROR_DEPRECATED (R014) unique —
+      grep source ngoai SPEC-005 = 0 (S014 SPEC-001 giu 2 ten cu registry-events.yaml:15/9 +
+      registry.md:296/290 + registry.yaml:123/117; W014/C014/A014 dung prefix rieng WORKFLOW_/
+      CAPABILITY_/AGENT_ — khong collision); SPEC-006/007/008 khong ref event type REGISTRY_* nao
+      (0 matches) — fix khong vo downstream. Git: branch NewVersion, toan bo SPEC-005 uncommitted
+      156 files 193 insertions/193 deletions doi xung — chi version 1.0->1.0.0, note:->comment,
+      ': ' quote, P005->P010, rename 2 event noi bo SPEC-005 (R013/R014); khong doi key/contract/
+      event type duoc tham chieu tu SPEC-001/002/003/004 (git status 0 modified ngoai SPEC-005 +
+      governance + SPEC-INDEX). md structure 20/20 + Appendix registry-models day du (23 md);
+      SPEC.yaml includes 20/20 R001-R020. Con 2 INFO ke thua REV-140/142 khong chan (#01 R014
+      events REGISTRY_REGISTERED/UPDATED/RETIRED dung prefix REGISTRY_* gan S014 — goi y ROR_,
+      optional; #02 frontmatter md thieu status field — ke thua REV-138 #17). Verdict toan SPEC:
+      PASS (0 CRITICAL, 0 MAJOR -> Decision Matrix) -> AUTO-FREEZE (revfull PASS + review.status
+      Completed/count 2 da du 2-pass) -> lifecycle R001-R020 Review -> Frozen truc tiep 2026-08-09
+      (khong qua Approved/POLICY-001 — theo precedent SPEC-004 REV-137: count giu 2, khong tang
+      len 3). review.status giu Completed, count giu 2. Cascade: [] (khong doi gi ben ngoai; fix
+      da verify sach REV-142 — GO recheck_required R009/R011/R013/R014/R016/R019 hoan tat TRG-002;
+      khong phat hien moi). SLA: TRG-006/007 khong ap (draft 0 ngay — created 2026-08-09, Frozen
+      vua dat). Next: chay /review SPEC-006 revfull (SPEC-006 da Completed/count 2 tu REV-143 —
+      auto-freeze tiep) roi /doctor. id_note: history 143 entries (max REV-20260809-143 — SPEC-006
+      session song song da chiem 143 truoc) — dung 144 de dam bao unique (entries.length 143 + 1,
+      grep toan docs 0).
+    score:
+      coverage: 97
+      quality: 97
+      consistency: 100
+      governance: 97
+      overall: 98
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 0
+      MINOR: 0
+      INFO: 2
+    started: "2026-08-09T12:28:54"
+    finished: "2026-08-09T12:28:54"
+    cascade_review: []
+    report_path: docs/governance/reviews/REV-SPEC-005-SPEC005-revfull-20260809-122854.md
+  - review_id: REV-20260809-145
+    spec: SPEC-006
+    item: SPEC-006
+    name: Context Engine (whole-SPEC)
+    type: revfull
+    mode: revfull (whole-SPEC deep research — 20/20 Completed/count 2 — auto-freeze)
+    verdict: PASS
+    note: >
+      revfull toan SPEC-006 (Context Engine, 20 muc X001-X020 + Appendix context-models) — deep
+      research sau 2 vong rev1 (REV-141 PASS pass 1 -> REV-143 PASS pass 2, 20/20 Completed/count 2).
+      Verify may (PyYAML 6.0.3 + jsonschema 4.26.0 Draft202012 strict + grep + git): 143/143 YAML
+      parse PASS 0 ParserError; 16/16 schema.json META-VALID ($schema/type/properties) + 7/7
+      canonical VALID 0 errors (X002 requirements, X003 responsibilities, X004 boundaries, X005
+      architecture, X006 components, X007 contracts, context-models/context-models); grep sach 5/5 —
+      CONTEXT_POPULATING = 0, immutable (P005) = 0 (P010 dung cho immutable), version: "1.0" = 0,
+      R0xx placeholder = 0 (chi XR001-XR005 section IDs cua X002/X014 + R009 SPEC-005 ref cu the —
+      hop le), n- SPEC-001 = 0; CONTEXT_POPULATED = 11/11 (POLICY-011 single-name); version:
+      "1.0.0" = 143 (POLICY-002); md<->yaml khop — X006 8 XCP (yaml = md), X005 7 layers
+      (Command/Allocation/Population/Validation/Distribution/Collection/Publication = md, layer_count
+      7). spec006-validator.ps1 exit 0. Dependency chain doc day du: SPEC-001 S010 EF008 (Context
+      Flow — execution-flow.md:146 + context-flow.yaml 7 stages Allocate->Release khop 100% vo
+      SPEC-006 SPEC.yaml + X010 context-execution-flow.yaml source: S010 EF008), S008 ENT Context
+      (runtime-data-model.yaml:11 'Execution owns: [Context...]' + runtime-invariants.yaml Context
+      isolated), S011 OB003A (observability.md:55 Observability Boundary — SPEC-006 X011/X012 ref
+      dung), SPEC-005 (R008 RegistryEntry aggregate_root + R009 registry-state-machine.yaml),
+      SPEC-000 cross-reference.yaml:77 specs: [SPEC-006]; external refs chi metadata/vision:
+      SPEC-007 X001-vision.md:93 '- Context (SPEC-006)', specs/README.md roadmap; SPEC-008 khong ref
+      SPEC-006 (0 matches). Git history: branch NewVersion, commit 5907632 tao SPEC-006 COMPLETE
+      (182 files), 155 files uncommitted = fixes REV-139 (khong breaking, khong doi contract/event
+      types tu REV-141/143 — git status khong modified ngoai SPEC-006 + governance) — khong commit
+      rac. Verdict per muc (Decision Matrix): 20/20 PASS (0 CRITICAL, 0 MAJOR) -> AUTO-FREEZE
+      (revfull PASS + review.status Completed/count 2 da du 2-pass) -> lifecycle X001-X020 Review ->
+      Frozen truc tiep 2026-08-09 (khong qua Approved/POLICY-001 — review-status.yaml transition
+      Review->Frozen). review.status giu Completed, count 2 -> 3 (revfull tinh count theo
+      review-rules.yaml counting + output contract). Tracker: X001-X020 -> Frozen/Completed/count 3
+      + history entry REV-20260809-145. 4 INFO ke thua REV-141/143 chap nhan, khong chan (#01
+      upstream SPEC-001/005 khong ref nguoc SPEC-006 — 1 chieu, upstream frozen truoc; #02 Events
+      11 vs 15 — X009 11 transition events vs X011 15 definition events, 2 pham vi da verify;
+      #03 frontmatter md thieu status field — theo tien le khong chan; #04 spec006-validator.ps1 chi
+      regex-based — chap nhan, de xuat P2). cascade_review: [] — khong doi source giua REV-143 va
+      REV-145, external refs chi metadata/vision khong can recheck (SPEC-000/SPEC-007). SLA:
+      TRG-006 khong ap (draft 1 ngay — created 2026-08-09), TRG-007 chua ap (Completed vua dat REV-143,
+      chu ky 180 ngay). Next: chay /doctor xac nhan he thong; SPEC-005 da auto-freeze REV-144 (session
+      song song); SPEC-007/008 co tracker entries? — can /review status de xac nhan. id_note:
+      history 144 entries (max REV-20260809-144 — SPEC-005 session song song da chiem 144) — dung 145
+      de dam bao unique (entries.length 144 + 1, grep toan docs 0).
+    score:
+      coverage: 97
+      quality: 97
+      consistency: 100
+      governance: 97
+      overall: 98
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 0
+      MINOR: 0
+      INFO: 4
+    started: "2026-08-09T12:30:59"
+    finished: "2026-08-09T12:30:59"
+    cascade_review: []
+    report_path: docs/governance/reviews/REV-SPEC-006-SPEC006-revfull-20260809-123059.md
+  - review_id: REV-20260809-146
+    spec: SPEC-007
+    item: SPEC-007
+    name: Artifact Manager (whole-SPEC)
+    type: rev1
+    mode: rev1 (whole-SPEC review lan dau — 20 muc X001-X020 + Appendix, moi khoi tao tracker)
+    verdict: FAIL
+    note: >
+      rev1 whole-SPEC tren SPEC-007 (Artifact Manager, 20 muc X001-X020 + Appendix
+      artifact-models, tat ca Draft/NotReviewed/count 0 — chua co entry tracker,
+      not_started_specs truoc review). Verify may (PyYAML 6.0.3 + jsonschema 4.26.0
+      Draft202012 strict + grep): 142 YAML SPEC-007 -> 7 PARSE-ERR CRITICAL (cung lop
+      SPEC-006 REV-139 #01-#08 / SPEC-005 REV-138 #01 / SPEC-004 REV-134 #01 / SPEC-003
+      REV-130 #01): #01 X004/boundaries.yaml:5-14 flow mapping {out_scope: -, forbidden: -}
+      — bare '-' trong flow node -> ParserError "expected the node content, but found '-'";
+      #02 X009/artifact-states.yaml:7-11 flow mapping {terminal: -} cung lop; #03
+      X011/artifact-dashboard.yaml:5-9 block sequence dashboard + key tool: cung indent ->
+      "expected <block end>, but found '?'"; #04 X011/artifact-health.yaml:5-9 block sequence
+      health_checks + key score: cung lop; #05 X013/artifact-governance-registry.yaml:8
+      schemas: *.schema.json — alias error; #06 X015/artifact-resource-lifecycle.yaml:5-7
+      'allocate -> in_use -> archived' + leaked:/reclamation: mapping trong block -> "mapping
+      values are not allowed"; #07 X016/artifact-readiness-checklist.yaml:5-9 '- [ ]' checklist
+      -> ParserError. 16/16 schema.json META-VALID ($schema/type/properties — tot hon SPEC-006
+      REV-139 9 field-catalog); 14/17 cap canonical VALID (X002/X003/X005/X006/X007/X010/X011/
+      X012/X013/X014/X015/X016/artifact-models/X009-transitions), X008 FAIL 4 errs
+      (artifact-data-model.yaml vs artifact-data.schema.json — schema yeu cau artifactId/
+      executionId/version/checksum/createdAt top-level nhung canonical la model entities/relations,
+      MAJOR SCHEMA cung lop S002#01), X004 + X009-states bi chan boi parse-ERR. MAJOR #08
+      COMPLIANCE: 4 vi tri 'immutable (P005)' sai (P005 = Event Driven, immutable = P010) —
+      X011/artifact-events.yaml:18 + observability.md:25, X009/artifact-state-events.yaml:12 +
+      state-machine.md:81 (cung lop SPEC-006 #12 / SPEC-005 #13). MAJOR #09 SCHEMA: duplicate key
+      ARTIFACT_ARCHIVED X009/artifact-state-events.yaml:10-11 — PyYAML last-wins mat mapping
+      XST-004->XST-005. MINOR #10: version 1.0 (140 file) vs 1.0.0 (3 canonical) khong nhat quan.
+      MINOR #11: X011/artifact-events.yaml:1 comment "S011 reuse" gay hieu lam (ARTIFACT_* do
+      X011 dinh nghia, S011 chi cung cap event model). MINOR #12 COMPLIANCE: XPOL-009 (X012
+      artifact-policies.yaml:13 + artifact-policy-traceability.yaml:13) principle P005 cho Audit
+      All — audit thuoc P014 Observability. MINOR #13 COMPLIANCE: X020/dashboard.md:19 "khong co
+      dashboard -> khong debug duoc (P005)" — P005 = Event Driven, debug thuoc P014. INFO #14:
+      frontmatter md thieu status field (theo tien le). INFO #15: spec007-validator.ps1 chi regex
+      structure, khong parse YAML that -> exit 0 sai (7 YAML hong). INFO #16: upstream SPEC-001/005
+      khong ref nguoc SPEC-007 (1 chieu, frozen truoc). Tich cuc: md<->yaml khop toan bo counts
+      (X005 5 layers, X006 12 XCP, X009 6 states/7 transitions/3 guards, X011 12 events/9 metrics,
+      X012 10 XPOL, X015 6 XRES, X016 6 COMP, X019 10 XDOC, X020 6 panels/3 events, X002 16 FR/12
+      NFR/6 XC/4 CA, X008 15 ENT, Appendix 8 AM); event naming thong nhat ARTIFACT_* (0 collision
+      cross-SPEC) + SPEC007_* chi X013/X016; upstream refs deu ton tai (S008 ENT-008, S010, S011
+      events.yaml correlation_id, S012, SPEC-005 RB004); grep 'S011 reuse truc tiep' = 0;
+      n- SPEC-001 typo = 0. Verdict toan SPEC: FAIL (7 CRITICAL >= 1 -> Decision Matrix) ->
+      KHONG tang count, KHONG doi trang thai: 20 muc giu Draft/NotReviewed/count 0. Tracker:
+      khoi tao entries X001-X020 (lifecycle Draft, review {status: NotReviewed, count: 0}) +
+      xoa SPEC-007 khoi not_started_specs. Cascade: SPEC-008 (Event Bus) dependency SPEC-007
+      (SPEC.yaml/README/X001/X002/X008 event-references) — SPEC-008 chua khoi tao tracker
+      (not_started_specs) -> ghi nhan, khong gan recheck_required. SLA: TRG-006 khong ap (draft
+      0 ngay — created 2026-08-09), TRG-007 chua ap. Next: fix 7 CRITICAL (comment tool:/score:,
+      quote "*.schema.json" + "- [ ]", sua flow terminal: -, sua lifecycle block — precedent
+      ADR-007/SPEC-006 REV-139) + 3 MAJOR (P005->P010, X008 schema, duplicate key X009) -> chay
+      lai /review SPEC-007 rev1 (xac nhan fix, advance Rev1). id_note: history 145 entries (max
+      REV-20260809-145) — dung 146 de dam bao unique (entries.length 145 + 1, grep toan docs 0).
+    score:
+      coverage: 90
+      quality: 58
+      consistency: 72
+      governance: 78
+      overall: 75
+    severity_counts:
+      CRITICAL: 7
+      MAJOR: 3
+      MINOR: 4
+      INFO: 3
+    started: "2026-08-09T12:39:33"
+    finished: "2026-08-09T12:39:33"
+    cascade_review: [SPEC-008]
+    report_path: docs/governance/reviews/REV-SPEC-007-SPEC007-rev1-20260809-123933.md
+
+  - review_id: REV-20260809-147
+    spec: SPEC-008
+    item: SPEC-008
+    name: Event Bus (whole-SPEC)
+    type: rev1
+    mode: "rev1 (whole-SPEC review lan dau — SPEC-008 moi khoi tao tracker)"
+    verdict: FAIL
+    note: >
+      rev1 whole-SPEC tren SPEC-008 (Event Bus, 20 muc X001-X020 + Appendix
+      event-models, tat ca Draft/NotReviewed/chua co entry tracker truoc review).
+      Verify may (PyYAML 6.0.3 + jsonschema 4.26.0 Draft202012 strict + grep):
+      142 YAML SPEC-008 -> 7 PARSE-ERR (CRITICAL) cung lop SPEC-007 REV-146 /
+      SPEC-006 REV-139 / SPEC-005 REV-138 / SPEC-004 REV-134 / SPEC-003 REV-130:
+      #01 X004 boundaries.yaml:5-14 flow mapping {in_scope:..., out_scope: -,
+      forbidden: -} — bare '-' trong flow node -> ParserError; #02 X009
+      event-states.yaml:7-11 flow {terminal: -} cung lop; #03 X011
+      event-dashboard.yaml:5-10 block sequence + key tool: cung indent ->
+      ParserError; #04 X011 event-health.yaml:5-10 block sequence + key score:
+      cung lop; #05 X013 event-governance-registry.yaml:8 schemas:
+      *.schema.json — alias error; #06 X015 event-resource-lifecycle.yaml:5-7
+      'allocate -> in_use -> archived' + leaked:/reclamation: mapping trong
+      block -> mapping values not allowed; #07 X016
+      event-readiness-checklist.yaml:5-10 '- [ ]' checklist -> ParserError.
+      jsonschema: 15/16 schema.json META-VALID + 15/16 cap canonical VALID —
+      X008 event-data.schema.json META-INVALID (top-level 'type' keyword khong
+      hop le, required [eventId, type, severity, correlationId, timestamp] nhung
+      canonical event-data-model.yaml la entities/relations) — MAJOR SCHEMA cung
+      lop S002#01. Duplicate key EVENT_ARCHIVED X009 event-state-events.yaml:10-11
+      (MAJOR SCHEMA — PyYAML last-wins mat mapping XST-003->XST-005). 6 vi tri
+      'immutable (P005)' sai (MAJOR COMPLIANCE cung lop SPEC-007 #08): X005
+      architecture-decision-log.yaml:5 XAD-001 'P005 immutable' + architecture.md:59,
+      X009 event-state-events.yaml:11 + state-machine.md:80, X011 event-events.yaml:18
+      + observability.md:25 — P005 = Event Driven, immutable = P010. version: "1.0"
+      = 140 vs 1.0.0 = 3 (MINOR POLICY-002). 'S011 reuse' comment X011
+      event-events.yaml:1 gay hieu lam (MINOR TRACEABILITY). Tich cuc: md<->yaml
+      khop toan bo counts (X002 16 FR/12 NFR/6 XC, X003 16 XRR, X006 12 XCP, X007
+      7 XCT, X008 15 ENT, X012 10 XPOL, X013 4 XDEC, X015 6 XRES, X016 6 COMP,
+      X017 7 XEXT, X019 10 XDOC, X020 6 panels, Appendix 8 AM); event naming
+      thong nhat EVENT_* + SPEC008_* (0 collision noi bo va cross-SPEC voi
+      SPEC-001/005/007); upstream refs deu ton tai (S011/S008/S009 SPEC-001, R009
+      SPEC-005, SPEC-007 165 files, RULE-007, TERM-012, RULE-014). Verdict FAIL
+      (7 CRITICAL >= 1 -> Decision Matrix) -> khong tang count (giu 0), khong doi
+      review.status (NotReviewed), lifecycle giu Draft. Khong auto-freeze. Khoi
+      tao tracker entries X001-X020 (Draft/NotReviewed/count 0), xoa SPEC-008 khoi
+      not_started_specs. Cascade: SPEC-007 (dependency SPEC.yaml/README/X001/X002/
+      X008 event-references) da co recheck_required tu REV-146 — giu nguyen;
+      SPEC-009 khong ref SPEC-008 (0 matches). SLA: TRG-006 khong ap (draft 0
+      ngay — created 2026-08-09), TRG-007 chua ap. Next: fix 7 CRITICAL (comment
+      tool:/score:, quote "- "/"*.schema.json", fix flow '-' thanh null, lifecycle
+      block, checklist) + 3 MAJOR (X008 schema, duplicate key X009, P005->P010) ->
+      chay lai /review SPEC-008 rev1 (xac nhan fix, advance NotReviewed -> Rev1).
+      id_note: history 146 entries (max REV-20260809-146 — SPEC-007 session song
+      song da chiem 146) — dung 147 (entries.length 146 + 1, grep toan docs 0).
+    score:
+      coverage: 85
+      quality: 68
+      consistency: 62
+      governance: 80
+      overall: 74
+    severity_counts:
+      CRITICAL: 7
+      MAJOR: 3
+      MINOR: 3
+      INFO: 4
+    started: "2026-08-09T12:49:07"
+    finished: "2026-08-09T12:49:07"
+    cascade_review: [SPEC-007]
+    report_path: docs/governance/reviews/REV-SPEC-008-SPEC008-rev1-20260809-124907.md
+  - review_id: REV-20260809-148
+    spec: SPEC-007
+    item: SPEC-007
+    name: Artifact Manager (whole-SPEC)
+    type: rev1
+    mode: "rev1 (whole-SPEC re-review lan 2 — xac nhan fix 18 findings REV-146)"
+    verdict: PASS
+    note: >
+      rev1 RE-REVIEW toan SPEC-007 (Artifact Manager, 20 muc X001-X020 + Appendix
+      artifact-models, Draft/NotReviewed/count 0 sau REV-146 FAIL). Verify may
+      (PyYAML 6.0.3 + jsonschema 4.26.0 Draft202012 strict + grep + git):
+      18/18 findings REV-146 da FIXED — #01-#07 7 CRITICAL: comment tool:/score:
+      trong block sequence (X011 artifact-dashboard.yaml tool:, artifact-health.yaml
+      score:), X004 boundaries.yaml flow {out_scope: -, forbidden: -} da quote/chuyen
+      block, X009 artifact-states.yaml terminal: - -> false, X013 schemas:
+      *.schema.json -> quote "*.schema.json", X015 artifact-resource-lifecycle.yaml
+      lifecycle block -> quoted list, X016 artifact-readiness-checklist.yaml
+      "- [ ]" -> quoted string — 142/142 YAML parse PASS 0 ParserError (truoc 7);
+      #09 X008 artifact-data.schema.json rewrite Draft202012 chuan ($schema/$id/
+      type/properties/required 6 keys version/entities/relations/invariants/
+      validation/storage) -> jsonschema strict thuc te VALID 0 errors
+      (artifact-data-model.yaml top-level keys khop 6/6 — truoc FAIL 4 errs);
+      #10 X009 duplicate key ARTIFACT_ARCHIVED da gop thanh 1 mapping — 6 keys
+      unique, PyYAML giu du XST-004->XST-005 (archive); #08 4 vi tri immutable
+      (P005)->(P010) — grep immutable (P005) = 0 (truoc 4), immutable (P010) = 10;
+      #11 version 1.0.0 dong nhat 143/143 (grep version: "1.0" = 0 — truoc 140);
+      #12 X011 artifact-events.yaml:1 comment doi thanh "(S011 cung cap event
+      model)" — grep 'S011 reuse' = 0; #13/#14 XPOL-009 P005 (X012) + X020
+      dashboard.md:19 (P005) — GIU NGUYEN theo precedent SPEC-006 REV-141/143
+      (da pass 2-pass): ghi nhan MINOR chap nhan, khong chan, khong bat buoc fix;
+      #15-#18 4 INFO chap nhan/ghi nhan (frontmatter md thieu status,
+      spec007-validator.ps1 regex-only, upstream 1 chieu frozen truoc, SPEC-008
+      dependency). Tich cuc: md<->yaml khop toan bo counts (X005 5 layers XA002,
+      X006 12 XCP, X009 6 states/7 transitions/3 guards, X011 12 events/9 metrics,
+      X012 10 XPOL, X015 6 XRES, X016 6 COMP, X019 10 XDOC, X020 6 panels/3 events,
+      X002 16 FR/12 NFR/6 XC/4 CA, X008 15 ENT, Appendix 8 AM); 16/16 schema.json
+      META-VALID (X008 Draft202012 day du; 15 con lai field-catalog theo chuan
+      SPEC-007 hien tai); X009 artifact.schema.json field-catalog VALID 3 canonical
+      (states/transitions/registry); event naming thong nhat ARTIFACT_* (0 collision
+      cross-SPEC) + SPEC007_* chi X013/X016; upstream refs deu ton tai (S008 21,
+      S010 3, S011 109, S012 75, SPEC-005 42, ENT-008 27, RB004 3); R0xx = 4 matches
+      deu la R009 SPEC-005 lifecycle ref hop le (khong phai placeholder);
+      n- SPEC-001 typo = 0; git working tree: 158 files modified SPEC-007 +206/-196
+      doi xung (version 1.0->1.0.0, note:->comment, ': ' quote, P005->P010, X008
+      schema, X009 gop dup) — khong breaking, khong doi key/event type. Verdict toan
+      SPEC: PASS (0 CRITICAL, 0 MAJOR -> Decision Matrix) -> tinh count: X001-X020
+      count 0 -> 1, status NotReviewed -> Rev1, lifecycle Draft -> Review (count >= 1).
+      Cascade: SPEC-008 (dependency — da co tracker entry sau REV-147 FAIL, ghi nhan,
+      khong gan recheck_required moi). SLA: TRG-006 khong ap (draft 1 ngay),
+      TRG-007 chua ap. Next: chay /review SPEC-007 revfull (pass 2 — du 2-pass PASS
+      -> auto-freeze Frozen truc tiep), sau do /doctor. id_note: history 147 entries
+      (max REV-20260809-147 — SPEC-008 session song song da chiem 147) — dung 148
+      (entries.length 147 + 1, grep toan docs 0).
+    score:
+      coverage: 97
+      quality: 97
+      consistency: 97
+      governance: 94
+      overall: 96
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 0
+      MINOR: 2
+      INFO: 3
+    started: "2026-08-09T13:05:00"
+    finished: "2026-08-09T13:05:00"
+    cascade_review: [SPEC-008]
+    report_path: docs/governance/reviews/REV-SPEC-007-SPEC007-rev1-20260809-130500.md
+  - review_id: REV-20260809-149
+    spec: SPEC-008
+    item: SPEC-008
+    name: Event Bus (whole-SPEC)
+    type: rev1
+    mode: "rev1 (whole-SPEC re-review lan 2 — xac nhan fix 10 findings REV-147 FAIL + MINOR #12)"
+    verdict: PASS
+    note: >
+      rev1 whole-SPEC lan 2 tren SPEC-008 (Event Bus, 20 muc X001-X020 + Appendix
+      event-models, Draft/NotReviewed/count 0 sau REV-147 FAIL). Verify may (PyYAML
+      6.0.3 + jsonschema 4.26.0 Draft202012 strict + grep + git diff): 10 fix REV-147
+      + MINOR #12 da xac nhan FIXED trong working tree (git diff 14 files SPEC-008,
+      53 insertions/43 deletions): #01 X004 boundaries.yaml flow '-' -> quote "-",
+      #02 X009 event-states.yaml terminal: - -> false/true, #03 X011 event-dashboard
+      .yaml tool: -> comment, #04 X011 event-health.yaml score: -> comment, #05 X013
+      event-governance-registry.yaml schemas -> quote "*.schema.json", #06 X015
+      event-resource-lifecycle.yaml lifecycle -> quoted list, #07 X016 event-readiness
+      -checklist.yaml "- [ ]" -> quoted string — 142/142 YAML parse PASS 0 PARSE-ERR
+      (UniqueKeyLoader 142 file = 0 duplicate; truoc 7); #08 X008 event-data.schema
+      .json rewrite Draft202012 chuan ($schema/$id/title/type object/required 6 keys
+      version/entities/relations/invariants/validation/storage/additionalProperties
+      true) -> META-VALID + canonical event-data-model.yaml VALID (truoc META-INVALID)
+      — 16/16 schema.json META-VALID + 17/17 canonical pairs VALID (X002-X016 +
+      X009-events + event-models; truoc 15/16 X008 FAIL); #09 X009 duplicate key
+      EVENT_ARCHIVED gop thanh list 2 mappings (XST-004->XST-005 + XST-003->XST-005)
+      — 0 duplicate, 6 transition events day du; #10 6 vi tri immutable (P005)->(P010)
+      (X005 architecture-decision-log.yaml:5 + architecture.md:59, X009 event-state-
+      events.yaml:11 + state-machine.md:80, X011 event-events.yaml:18 + observability
+      .md:25) — grep immutable (P005) = 0, immutable (P010) = 7 files; #12 X011
+      event-events.yaml:1 comment "S011 reuse" -> "S011 cung cap event model" — grep
+      'S011 reuse'/'reuse truc tiep' = 0. MINOR #11 version "1.0" = 140 YAML vs
+      "1.0.0" = 2 YAML + 1 md CHUA fix — danh gia lai: KHONG block theo Decision
+      Matrix (MINOR), de nghi gop fix voi SPEC-007 (cung chua dong bo 143 file "1.0")
+      trong 1 luot truoc revfull. spec008-validator.ps1 exit 0 (regex-only — script
+      ton tai .opencode/scripts/). md<->yaml counts khop toan bo (X002 16 FR/12 NFR,
+      X003 16 XRR, X006 12 XCP, X007 7 XCT, X008 15 ENT, X009 6 XST/6 transitions,
+      X011 12 events, X012 10 XPOL, X013 4 XDEC, X015 6 XRES, X016 6 COMP, X017 7
+      XEXT, X019 10 XDOC, X020 6 panels, Appendix 8 AM); upstream refs deu ton tai
+      (SPEC-000 24, SPEC-001 38/S011 130/S008 2/S009 10, SPEC-005 46/R009 4, SPEC-007
+      10, RULE-007 93, TERM-012 10, RULE-014 2, OB003A 8); event naming thong nhat
+      EVENT_* + SPEC008_* 0 collision cross-SPEC; SPEC-009 <-> SPEC-008 = 0 matches 2
+      chieu. Verdict toan SPEC: PASS (0 CRITICAL, 0 MAJOR -> Decision Matrix) -> tinh
+      count: X001-X020 count 0 -> 1, status NotReviewed -> Rev1, lifecycle Draft ->
+      Review (count >= 1). KHONG auto-freeze (type rev1 — chi revfull PASS + Completed
+      moi freeze). Cascade: SPEC-007 (dependency) — da duoc session song song REV-148
+      re-review PASS (Review/Rev1/count 1), giu nguyen, khong doi status. SLA: TRG-006
+      khong ap (draft 0 ngay — created 2026-08-09), TRG-007 chua ap. Next: (1) dong bo
+      version 1.0->1.0.0 SPEC-008 + SPEC-007 (1 luot, truoc revfull); (2) chay /review
+      SPEC-008 rev1 lan 3 (pass 2 -> Completed/count 2) hoac revfull sau khi du 2-pass;
+      (3) chay /doctor sau review. id_note: history 147 entries (max REV-20260809-147);
+      148 da bi session song song (SPEC-007 RE-REVIEW) chiem trong tracker va history
+      (entries.length 147 + 1 = 148 ban, da dung) — dung 149 (grep toan docs 0;
+      precedent REV-20260808-015/016/018/024/026/033).
+    score:
+      coverage: 97
+      quality: 97
+      consistency: 94
+      governance: 94
+      overall: 96
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 0
+      MINOR: 1
+      INFO: 4
+    started: "2026-08-09T13:06:59"
+    finished: "2026-08-09T13:06:59"
+    cascade_review: [SPEC-007]
+    report_path: docs/governance/reviews/REV-SPEC-008-SPEC008-rev1-20260809-130659.md
+  - review_id: REV-20260809-150
+    spec: SPEC-009
+    item: SPEC-009
+    name: Contract System (whole-SPEC)
+    type: rev1
+    mode: "rev1 (whole-SPEC review lan dau — SPEC-009 moi khoi tao tracker). SPEC-009 chua co entry nao (not_started_specs truoc review). id_note: history 149 entries (max REV-20260809-149 — SPEC-008 session song song da chiem 149) — dung 150 (entries.length 149 + 1, grep toan docs 0)."
+    verdict: FAIL
+    note: >
+      rev1 whole-SPEC tren SPEC-009 (Contract System, 20 muc X001-X020 + Appendix
+      contract-models, tat ca Draft/NotReviewed/chua co entry tracker). Verify may
+      (PyYAML 6.0.3 + jsonschema 4.26.0 Draft202012 strict + grep): 142 YAML
+      SPEC-009, 7 PARSE-ERR — CRITICAL cung lop SPEC-008 REV-147 / SPEC-007
+      REV-146: #01 X004 boundaries.yaml:5-14 flow mapping {in_scope:...,
+      out_scope: -, forbidden: -} — bare '-' trong flow node -> ParserError;
+      #02 X009 contract-states.yaml:7-11 flow {terminal: -} cung lop; #03 X011
+      contract-dashboard.yaml:5-10 block sequence + key tool: cung indent ->
+      ParserError; #04 X011 contract-health.yaml:5-10 block sequence + key
+      score: cung lop; #05 X013 contract-governance-registry.yaml:8 schemas:
+      *.schema.json — alias error; #06 X015 contract-resource-lifecycle.yaml:5-7
+      'allocate -> in_use -> archived' + leaked:/reclamation: mapping trong block
+      -> mapping values not allowed; #07 X016 contract-readiness-checklist.yaml:5-10
+      '- [ ]' checklist -> ParserError. jsonschema: 16/16 schema.json META-VALID
+      + 13/14 cap canonical VALID — X008 contract-data.schema.json required
+      [contractId, version, providerId, schema] nhung canonical contract-data-
+      model.yaml la entities/relations/invariants/validation/storage -> strict
+      FAIL 3 errors (MAJOR SCHEMA cung lop S002#01). 4 vi tri 'immutable (P005)'
+      sai (MAJOR COMPLIANCE cung lop SPEC-007#08/SPEC-008#10): X009 state-machine
+      .md:80 + contract-state-events.yaml:8, X011 contract-events.yaml:18 +
+      observability.md:25 — P005 = Event Driven, immutable = P010. CONTRACT_GUARD
+      (X009 contract-transition-guards.yaml:8 + state-machine.md:75) +
+      CONTRACT_RESOURCE_* (X015 resources.md:55 + contract-resource-events.yaml)
+      + CONTRACT_DASHBOARD_* (X020 dashboard.md:38 + contract-dashboard-events
+      .yaml) ghi '(S011)' nhung S011 events.yaml khong dinh nghia event type cu
+      the nao (chi model + taxonomy), grep toan S011 = 0 matches — MAJOR
+      TRACEABILITY cung lop S013#01/S014#01/S015#03 da fix. version: "1.0" = 140
+      vs 1.0.0 = 2 (MINOR POLICY-002). 'S011 reuse' comment X011 contract-events
+      .yaml:1 (MINOR TRACEABILITY). XS006 Transition Matrix md khong khop
+      transitions.yaml (XST-003->XST-003 versioned thieu, XST-003->XST-005 khong
+      co) (MINOR CONSISTENCY). Tich cuc: md<->yaml khop toan bo counts (X002 16
+      FR/12 NFR/6 XC, X003 12 matrix rows, X004 10 boundary, X005 5 layers/4 ADR,
+      X006 12 XCP, X007 7 XCT, X008 15 ENT, X009 6 XST/6 XTR, X010 8 stages,
+      X011 12 events/9 metrics, X012 10 XPOL, X013 4 XDEC, X015 6 XRES, X016 6
+      COMP, X017 7 XEXT, X019 10 XDOC, X020 6 panels, Appendix 8 AM); event
+      naming thong nhat CONTRACT_* (0 collision noi bo va cross-SPEC voi
+      SPEC-001/005/007/008); upstream refs deu ton tai (S007/S009/S010/S011/S012/
+      S014 SPEC-001, R009 SPEC-005, TERM-014, P001-P016, RULE-014); 23/23 md
+      frontmatter day du. Verdict FAIL (7 CRITICAL >= 1 -> Decision Matrix) ->
+      khong tang count (giu 0), khong doi review.status (NotReviewed), lifecycle
+      giu Draft. Khong auto-freeze. Khoi tao tracker entries X001-X020
+      (Draft/NotReviewed/count 0), xoa SPEC-009 khoi not_started_specs. Cascade:
+      SPEC-010 (Plugin Framework — SPEC.yaml/README/X001/X002 ref SPEC-009) chua
+      co tracker entry — ghi nhan thong tin, khong gan recheck_required. SLA:
+      TRG-006 khong ap (draft 0 ngay — created 2026-08-09), TRG-007 chua ap.
+      Next: fix 7 CRITICAL (comment tool:/score:, quote "*.schema.json"/"- [ ]",
+      flow '-' thanh null, lifecycle block — precedent ADR-007/SPEC-008 REV-149)
+      + 3 MAJOR (X008 schema, P005->P010, S011 claims) -> chay lai /review
+      SPEC-009 rev1 (xac nhan fix, advance NotReviewed -> Rev1).
+    score:
+      coverage: 88
+      quality: 65
+      consistency: 60
+      governance: 78
+      overall: 73
+    severity_counts:
+      CRITICAL: 7
+      MAJOR: 3
+      MINOR: 4
+      INFO: 3
+    started: "2026-08-09T13:09:16"
+    finished: "2026-08-09T13:09:16"
+    cascade_review: [SPEC-010]
+    report_path: docs/governance/reviews/REV-SPEC-009-SPEC009-rev1-20260809-130916.md
+  - review_id: REV-20260809-151
+    spec: SPEC-007
+    item: SPEC-007
+    name: Artifact Manager (whole-SPEC)
+    type: revfull
+    mode: "revfull (whole-SPEC pass 2 — deep research, auto-freeze). id_note: history 150 entries (max REV-20260809-150 — SPEC-009 session song song da chiem 150) — dung 151 (entries.length 150 + 1, grep toan docs 0)."
+    verdict: PASS
+    note: >
+      revfull toan SPEC-007 (Artifact Manager, 20 muc X001-X020 + Appendix
+      artifact-models, Review/Rev1/count 1 sau REV-148 PASS). Verify may (PyYAML
+      6.0.3 + jsonschema 4.26.0 Draft202012 strict + grep + git): 142/142 YAML
+      parse PASS 0 ParserError + 0 duplicate key (UniqueKeyLoader); 16/16
+      schema.json META-VALID; 15/15 cap canonical VALID (X002-X008/X010-X016 +
+      artifact-models — X008 artifact-data-model.yaml vs artifact-data.schema.json
+      VALID 0 errors) + X009 field-catalog 3/3 VALID; grep immutable (P005) = 0 /
+      immutable (P010) = 10; version: "1.0" = 0 / "1.0.0" = 143; 'S011 reuse' = 0;
+      n- SPEC-001 typo = 0; R0xx placeholder = 0 (XR001-XR005 section + R009 ref
+      hop le); event naming ARTIFACT_* 0 collision cross-SPEC, SPEC007_* events chi
+      X013/X016; md<->yaml counts khop toan bo (X005 5 layers, X006 12 XCP, X009 6
+      states/7 transitions/3 guards, X011 12 events/9 metrics, X012 10 XPOL, X015 6
+      XRES, X016 6 COMP, X019 10 XDOC, X020 6 panels/3 events, X002 16 FR/12 NFR/6
+      XC/4 CA, X008 15 ENT, X010 8 stages, Appendix 8 AM); upstream refs deu ton
+      tai (S008 ENT-008, S010, S011 correlation_id, S012 XPOL, SPEC-005, RB004);
+      git working tree 158 files modified SPEC-007 +206/-196 khong breaking, khong
+      doi key/contract/event type. 18/18 findings REV-146 (#01-#18) da xac nhan
+      FIXED tu REV-148 — RE-VERIFY lai toan bo PASS: #01-#07 CRITICAL parse = 0
+      ParserError; #08 P005->P010 = 0; #09 X008 schema VALID; #10 duplicate key
+      X009 = 0; #11 version 1.0.0 143/143; #12 comment S011 reuse = 0; #13 XPOL-009
+      P005 + #14 X020 dashboard P005 GIU NGUYEN (MINOR chap nhan theo precedent
+      SPEC-006 REV-141/143); #15-#18 INFO chap nhan. Verdict PASS (0 CRITICAL, 0
+      MAJOR -> Decision Matrix) -> tinh count: X001-X020 count 1 -> 2, status Rev1
+      -> Completed (du 2-pass PASS) -> auto-freeze: lifecycle Review -> Frozen
+      TRUC TIEP (revfull PASS + Completed, bo qua Approved/POLICY-001). Cascade:
+      SPEC-008 (dependency — Review/Rev1/count 1 sau REV-149 PASS, ghi nhan, khong
+      gan recheck_required moi) + SPEC-009 (REV-150 FAIL Draft, phu thuoc) ghi
+      nhan. SLA: TRG-006 khong ap (draft 1 ngay), TRG-007 chua ap. Next: /doctor
+      kiem tra health toan he thong + SPEC-008 rev1 pass 2.
+    score:
+      coverage: 97
+      quality: 97
+      consistency: 97
+      governance: 94
+      overall: 96
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 0
+      MINOR: 2
+      INFO: 3
+    started: "2026-08-09T13:16:00"
+    finished: "2026-08-09T13:16:00"
+    cascade_review: [SPEC-008]
+    report_path: docs/governance/reviews/REV-SPEC-007-SPEC007-revfull-20260809-131600.md
+  - review_id: REV-20260809-152
+    spec: SPEC-008
+    item: SPEC-008
+    name: Event Bus (whole-SPEC)
+    type: rev1
+    mode: "rev1 (whole-SPEC pass 2 — lần review thứ 3, final rev1, xác nhận fix MINOR #11 version consistency). id_note: history 150 entries (max REV-20260809-150); 151 đã bị session song song (SPEC-007 revfull) chiếm trong tracker (grep 20 matches) — dùng 152 (entries.length 150 + 1 = 151 bận, chuyển sang 152, grep toàn docs 0)."
+    verdict: PASS
+    note: >
+      rev1 whole-SPEC lần 3 (final rev1) trên SPEC-008 (Event Bus, 20 mục X001-X020
+      + Appendix event-models, Review/Rev1/count 1 sau REV-149 PASS). Verify máy
+      (PyYAML 6.0.3 + jsonschema 4.26.0 Draft202012 strict + grep + git diff):
+      MINOR #11 REV-149 đã FIXED — version "1.0" = 0 (trước 140), "1.0.0" = 142
+      YAML + 15/16 schema.json có version "1.0.0" (X008 event-data.schema.json là
+      JSON Schema Draft202012 thuần — properties.version pattern đổi thành
+      ^\d+\.\d+\.\d+$ khớp 1.0.0, không có version metadata top-level); 142/142
+      YAML parse PASS 0 PARSE-ERR (UniqueKeyLoader 0 duplicate key, gồm EVENT_
+      ARCHIVED X009); 16/16 schema.json META-VALID; 16/16 canonical pairs VALID
+      (X002-X016 + event-models, gồm X008 + X010 event-execution-flow); immutable
+      (P005) = 0 / 'S011 reuse' = 0; n- SPEC-001 typo = 0; R0xx placeholder = 0
+      (chỉ XR001-XR005 section IDs + R009 SPEC-005 refs hợp lệ); spec008-validator
+      .ps1 exit 0; md<->yaml counts khớp toàn bộ (X002 16 FR, X003 16 XRR, X006 12
+      XCP, X007 7 XCT, X008 15 ENT, X009 6 XST, X011 12 events, X012 10 XPOL,
+      X013 4 XDEC, X015 6 XRES, X016 6 COMP, X017 7 XEXT, X019 10 XDOC, X020 6
+      panels, Appendix 8 AM); upstream refs đều tồn tại (SPEC-000 24, SPEC-001
+      38/S011 130/S008 2/S009 10, SPEC-005 46/R009 4, SPEC-007 10, RULE-007 93,
+      TERM-012 10, RULE-014 2, OB003A 8); SPEC-009 <-> SPEC-008 = 0 matches 2
+      chiều (không cascade); git diff SPEC-008 159 files: 95 dòng non-version =
+      fix REV-147/149 đã review PASS (quote X004, P005->P010, rewrite X008 schema,
+      comment X009/X011), delta sau REV-149 chỉ là version bump — không đổi
+      content/contract/event type. Verdict toàn SPEC: PASS (0 CRITICAL, 0 MAJOR
+      -> Decision Matrix; MINOR #11 đã fix, chỉ còn INFO kế thừa) -> tăng count:
+      X001-X020 count 1 -> 2, status Rev1 -> Completed (đủ 2-pass), lifecycle
+      Review -> Approved (2-pass hoàn tất; rev1 KHÔNG auto-freeze — Frozen chỉ qua
+      revfull PASS + Completed). 4 INFO kế thừa REV-149 chấp nhận, không chặn
+      (#01 frontmatter md thiếu status, #02 spec008-validator.ps1 regex-only, #03
+      SPEC-007 dependency, #04 RULE-014 hợp lệ). Cascade: SPEC-007 (dependency —
+      đã REV-151 revfull auto-freeze Frozen bởi session song song, ghi nhận, không
+      gán recheck_required mới); SPEC-009 (REV-150 FAIL Draft) không ref SPEC-008.
+      SLA: TRG-006 không áp (draft 0 ngày), TRG-007 chưa áp. Next: /review
+      SPEC-008 revfull (sau khi 2-pass Completed + PASS -> auto-freeze Frozen trực
+      tiếp) hoặc ghi nhận Approved rồi chạy /doctor.
+    score:
+      coverage: 97
+      quality: 97
+      consistency: 97
+      governance: 94
+      overall: 96
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 0
+      MINOR: 0
+      INFO: 4
+    started: "2026-08-09T13:09:30"
+    finished: "2026-08-09T13:09:30"
+    cascade_review: [SPEC-007]
+    report_path: docs/governance/reviews/REV-SPEC-008-SPEC008-rev1-20260809-130930.md
+  - review_id: REV-20260809-201
+    spec: SPEC-008
+    item: SPEC-008
+    name: Event Bus (whole-SPEC)
+    type: revfull
+    mode: "revfull (whole-SPEC pass 3 — deep research, auto-freeze). id_note: history 152 entries (max REV-20260809-200 — grep toan docs 0 cho 201) — dung 201 (max hien co + 1, precedent REV-20260808-015/016/018/024/026/033)."
+    verdict: PASS
+    note: >
+      revfull toan SPEC-008 (Event Bus, 20 muc X001-X020 + Appendix event-models,
+      Approved/Completed/count 2 sau REV-149 + REV-152 PASS — mo ta task "Rev1/count
+      1" la loi thoi, da bi session song song REV-152 vuot len). Verify may (PyYAML
+      6.0.3 + jsonschema 4.26.0 Draft202012 strict + grep + git): 142/142 YAML parse
+      PASS 0 ParserError + 0 duplicate key (UniqueKeyLoader); 16/16 schema.json
+      META-VALID; 16/16 cap canonical VALID (14 base-name + X008 event-data + X009
+      event-states — 0 errors); immutable (P005) = 0 (P005 dung nghia Event Driven
+      append-only — X008 data-model.md:18/25 ng canh Event Bus; immutable = P010 dung
+      5 files) / immutable (P010) = 5; version: "1.0" = 0 / "1.0.0" = 143 (MINOR #11
+      da FIXED REV-152); 'S011 reuse' = 0; n- SPEC-001 typo = 0; R0xx placeholder =
+      0 (chi XR001-XR005 section IDs + R009 SPEC-005 refs hop le); event naming
+      EVENT_* 47 + SPEC008_* 18 noi bo, 0 collision cross-SPEC (event_ok la health
+      metric chuan SPEC-006/007/009/010 — khong phai event type); md<->yaml counts
+      khop toan bo (X002 16 FR/12 NFR/6 C/4 A, X003 16 XRR, X006 12 XCP, X007 7 XCT,
+      X008 15 ENT, X009 6 XST/6 transitions, X011 12 events, X012 10 XPOL, X013 4
+      XDEC, X015 6 XRES, X016 6 COMP, X017 7 XEXT, X019 10 XDOC, X020 6 panels,
+      Appendix 8 AM); upstream refs deu ton tai (SPEC-000 24, SPEC-001 38/S011 130/
+      S008 2/S009 10, SPEC-005 46/R009 4, SPEC-007 10, RULE-007 93, TERM-012 10,
+      RULE-014 2, OB003A 8); correlation_id (S011) 12 locations hop le; SPEC-007
+      (Frozen REV-151) — SPEC-008 chi ref ArtifactRef metadata (X002:321, X008:9),
+      0 ref ARTIFACT_* event types -> khong doi contract, khong can recheck; SPEC-009/
+      010 ref SPEC-008 = 0 matches 2 chieu (khong cascade); spec008-validator.ps1
+      exit 0 (regex-only — INFO ke thua); git: branch NewVersion, commit 805e89a
+      SPEC-008 COMPLETE, 665 files uncommitted (fix + governance) — khong breaking,
+      khong doi key/contract/event type. 10/10 findings REV-147 + MINOR #11 REV-149
+      da xac nhan FIXED tu REV-152 — RE-VERIFY lai toan bo PASS. Verdict toan SPEC:
+      PASS (0 CRITICAL, 0 MAJOR -> Decision Matrix; 0 MINOR, 4 INFO ke thua chap
+      nhan) -> AUTO-FREEZE: revfull PASS + review.status Completed (du 2-pass
+      REV-149/152) -> lifecycle Approved -> Frozen TRUC TIEP (bo qua Approved/POLICY-
+      001 theo freeze_rule). Count GIU 2 (precedent SPEC-004 REV-137 / SPEC-005
+      REV-144: revfull tren Completed/count 2 -> Frozen, khong tang len 3; SPEC-006
+      REV-145 outlier). Cascade: [] — khong doi contract/event type duoc tham chieu
+      tu ben ngoai; SPEC-007 upstream Frozen ghi nhan khong gan recheck_required moi;
+      SPEC-009/010 khong ref. SLA: TRG-006 khong ap (draft 0 ngay), TRG-007 chua ap
+      (Completed moi dat REV-152). Next: /doctor kiem tra health toan he thong;
+      SPEC-009 fix REV-150 (7 CRITICAL) -> /review SPEC-009 rev1; SPEC-010 rev1
+      (chua tracker entry); SPEC-011+ theo roadmap.
+    score:
+      coverage: 97
+      quality: 97
+      consistency: 97
+      governance: 94
+      overall: 96
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 0
+      MINOR: 0
+      INFO: 4
+    started: "2026-08-09T13:39:56"
+    finished: "2026-08-09T13:39:56"
+    cascade_review: []
+    report_path: docs/governance/reviews/REV-SPEC-008-SPEC008-revfull-20260809-133956.md
+  - review_id: REV-20260809-153
+    spec: SPEC-009
+    item: SPEC-009
+    name: Contract System (whole-SPEC)
+    type: rev1
+    mode: "rev1 (whole-SPEC re-review lan 2 — xac nhan fix REV-150 FAIL). id_note: history 152 entries (max REV-20260809-152) — dung 153 (entries.length 152 + 1, grep toan docs 0). REV-149 bi SPEC-008 session song song chiem; REV-150 la SPEC-009 lan 1 (FAIL). Precedent REV-20260808-015/016/018 + REV-20260809-151/152."
+    verdict: CONDITIONAL
+    note: >
+      rev1 whole-SPEC lan 2 tren SPEC-009 (Contract System, 20 muc X001-X020 +
+      Appendix contract-models, Draft/NotReviewed/count 0 sau REV-150 FAIL). Verify
+      may (PyYAML 6.0.3 + jsonschema 4.26.0 Draft202012 strict + grep + git diff):
+      7 CRITICAL REV-150 #01-#07 FIXED — 142/142 YAML parse PASS 0 ParserError + 0
+      duplicate key (UniqueKeyLoader; X004 flow '-' quote, X009 terminal false/true,
+      X011 dashboard tool: comment + health score: comment, X013 schemas
+      "*.schema.json" quote, X015 lifecycle quoted list, X016 checklist "- [ ]"
+      quote); 16/16 schema.json META-VALID; 14/15 cap canonical VALID — X008
+      contract-data-model.yaml version "1.0" vs schema pattern ^\d+\.\d+\.\d+$ FAIL
+      1 error (MAJOR #01, cung lop S002#01; SPEC-007/008 X008 data-model dung
+      1.0.0) — fix #08 CHUA DONG HOAN TOAN; immutable (P005) = 0 / immutable
+      (P010) = 4 vi tri (X009 contract-state-events.yaml:11 + state-machine.md:80,
+      X011 contract-events.yaml:18 + observability.md:25) — MAJOR #09 FIXED;
+      'S011 reuse' = 0; S011 claims #10 FIXED tai X009/X015/X020/X016 ('X0xx dinh
+      nghia event types — S011 cung cap event model') NHUNG X013 CHUA SỬA:
+      governance.md:56 + contract-governance-events.yaml:10 van 'SPEC009_* (S011)' /
+      'Event goi vao S011' — MAJOR #02 cung lop #10; version: "1.0" = 133 vs
+      "1.0.0" = 10 (MINOR #03 ke thua REV-150 #11 chua fix hoan toan); X009
+      transition matrix XS006 + contract-transition-matrix.yaml ghi XST-003:
+      [XST-004, XST-005] nhung transitions.yaml co XTR-005 self-loop XST-003->
+      XST-003, khong co XST-003->XST-005 (MINOR #04 ke thua REV-150 #13); cross-SPEC
+      event CONTRACT_*/SPEC009_* 0 collision (SPEC-007 ARTIFACT_*, SPEC-008 EVENT_*,
+      SPEC-001 COMPLIANCE_*/CONTRACT_VALIDATED); md<->yaml counts khop toan bo (X002
+      16 FR/12 NFR/6 XC, X003 16 XRR, X004 10 XB, X005 5 layers/4 ADL, X006 12 XCP,
+      X007 7 XCT, X008 15 ENT, X009 6 XST/6 XTR, X010 8 stages, X011 12 events/9
+      metrics, X012 10 XPOL, X013 4 XDEC, X015 6 XRES, X016 6 COMP, X017 7 XEXT,
+      X019 10 XDOC, X020 6 panels, Appendix 8 AM); upstream refs deu ton tai (S007
+      39, S011 103, S012 71, TERM-014 77, SPEC-005 47, R009). Verdict toan SPEC:
+      CONDITIONAL (0 CRITICAL, 2 MAJOR -> Decision Matrix) -> tinh count: X001-X020
+      count 0 -> 1, status NotReviewed -> Rev1, lifecycle Draft -> Review. Cascade:
+      SPEC-010 (dependency — da commit COMPLETE 1999e06 nhung chua co tracker entry,
+      ghi nhan thong tin, khong set recheck_required). SLA: TRG-006 khong ap (draft
+      0 ngay), TRG-007 chua ap. Next: fix 2 MAJOR (X008 version "1.0.0" hoac nới
+      schema pattern; X013 doi pattern 'X013 dinh nghia event types — S011 cung cap
+      event model') -> /review SPEC-009 rev1 pass 2 hoac revfull (auto-freeze).
+    score:
+      coverage: 92
+      quality: 88
+      consistency: 82
+      governance: 87
+      overall: 87
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 2
+      MINOR: 4
+      INFO: 3
+    started: "2026-08-09T13:42:00"
+    finished: "2026-08-09T13:42:00"
+    cascade_review: [SPEC-010]
+    report_path: docs/governance/reviews/REV-SPEC-009-SPEC009-rev1-20260809-134200.md
+  - review_id: REV-20260809-202
+    spec: SPEC-009
+    item: SPEC-009
+    name: Contract System (whole-SPEC)
+    type: rev1
+    mode: "rev1 (whole-SPEC re-review lan 3 — xac nhan fix REV-153 CONDITIONAL 2 MAJOR + 4 MINOR). id_note: history max REV-20260809-201 (SPEC-008 revfull session song song da chiem 201) — dung 202 (max + 1, grep toan docs 0)."
+    verdict: PASS
+    note: >
+      rev1 whole-SPEC lan 3 (pass 3, final rev1) tren SPEC-009 (Contract System, 20 muc X001-X020 +
+      Appendix contract-models, Review/Rev1/count 1 sau REV-153 CONDITIONAL). Verify may (PyYAML
+      6.0.3 + jsonschema 4.26.0 Draft202012 strict + grep + git diff): 2 MAJOR REV-153 da FIXED —
+      #01 X008 contract-data-model.yaml version "1.0"->"1.0.0" (git diff 2 dong + jsonschema strict
+      VALID 0 errors, pattern ^\d+\.\d+\.\d+$ thoa); #02 X013 governance.md:56 + contract-governance-
+      events.yaml:10 doi pattern 'X013 dinh nghia event types — S011 cung cap event model (fields,
+      correlation_id)' + bo sung cung lop tai X007 contracts.yaml:7 + contracts.md:28 'X011 dinh
+      nghia - S011 cung cap event model' (git diff xac nhan, grep toan SPEC-009 'S011 reuse'/'Event
+      goi vao S011' = 0). MINOR #03 version sync FIXED: version "1.0" = 0 trong 142 YAML (truoc 133),
+      "1.0.0" = 142/142 + md header 'Version 1.0' standalone = 0 (schema.json metadata version "1.0"
+      = 15 giu nguyen — legacy metadata field, cung pattern SPEC-010/011 chua review, khong phai part
+      cua version sync POLICY-002 YAML — ghi nhan INFO). MINOR #04 FIXED: X009 contract-transition-
+      matrix.yaml XST-003: [XST-003, XST-004] + state-machine.md XS006 'XST-003 -> XST-003 | XST-004'
+      khop transitions.yaml XTR-004/005 (git diff 4 dong). 142/142 YAML parse PASS 0 ParserError + 0
+      duplicate key (UniqueKeyLoader); 16/16 schema.json META-VALID; X008 canonical VALID 0 errors;
+      immutable (P005) = 0 / (P010) dung; cross-SPEC event CONTRACT_*/SPEC009_* 0 collision (SPEC-007
+      ARTIFACT_*, SPEC-008 EVENT_*, SPEC-001 COMPLIANCE_*/CONTRACT_VALIDATED); md<->yaml counts khop
+      toan bo (X002 16 FR/12 NFR/6 XC, X003 16 XRR, X004 10 XB, X005 5 XAL, X006 12 XCP, X007 7 XCT,
+      X008 15 ENT, X009 6 XST/6 XTR, X010 8 XF, X011 12 events, X012 10 XPOL, X013 4 XDEC, X015 6
+      XRES, X016 6 COMP, X017 7 XEXT, X019 10 XDOC, X020 6 panels, Appendix 8 AM); upstream refs deu
+      ton tai (S011 102, S012 71, SPEC-005 51, S007 38, S009 9, TERM-014 77, R009); spec009-validator.
+      ps1 exit 0. Con 2 MINOR ke thua khong chan (#05 frontmatter md thieu status field — tien le, #06
+      P005 dung context Observability/Audit — chap nhan) + 3 INFO (#07 SPEC-010 dependency chua tracker
+      entry, #08 upstream 1 chieu, #09 validator regex-only) + INFO moi #10 (schema.json metadata
+      version "1.0" x15). Verdict toan SPEC: PASS (0 CRITICAL, 0 MAJOR -> Decision Matrix) -> tinh
+      count: X001-X020 count 1 -> 2, status Rev1 -> Completed (du 2-pass), lifecycle Review -> Approved
+      (2-pass hoan tat; rev1 KHONG auto-freeze — Frozen chi qua revfull PASS + Completed). Cascade:
+      SPEC-010 (dependency — chua co tracker entry, ghi nhan, khong set recheck_required). SLA: TRG-006
+      khong ap (draft 0 ngay), TRG-007 chua ap. Next: /review SPEC-009 revfull (auto-freeze khi PASS +
+      Completed) hoac /doctor kiem tra health toan he thong; SPEC-010 rev1 (chua tracker entry).
+    score:
+      coverage: 96
+      quality: 96
+      consistency: 97
+      governance: 94
+      overall: 96
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 0
+      MINOR: 2
+      INFO: 4
+    started: "2026-08-09T14:06:10"
+    finished: "2026-08-09T14:06:10"
+    cascade_review: [SPEC-010]
+    report_path: docs/governance/reviews/REV-SPEC-009-SPEC009-rev1-20260809-140610.md
+  - review_id: REV-20260809-204
+    spec: SPEC-008
+    item: SPEC-008
+    name: Event Bus (whole-SPEC)
+    type: revfull
+    mode: "revfull-as-health (SPEC-008 da Frozen/Completed/count 2 tu REV-201 auto-freeze — health semantics, giu nguyen 2 truc). id_note: 203 bi SPEC-009 revfull session song song (REV-20260809-142029) chiem truoc — doi sang 204 (max hien co + 1, grep toan docs 0, precedent REV-20260808-015/016/018/024/026/033)."
+    verdict: PASS
+    note: >
+      revfull-as-health tren SPEC-008 (Event Bus, 20 muc X001-X020 + Appendix event-models,
+      Frozen/Completed/count 2 sau REV-149 + REV-152 PASS 2-pass + REV-201 revfull PASS
+      auto-freeze). Theo freeze_rule: revfull tren muc da Frozen = health-check, giu nguyen 2
+      truc (lifecycle Frozen, review.status Completed, count 2), KHONG tang count, KHONG
+      re-freeze. Verify may (PyYAML 6.0.3 + jsonschema 4.26.0 Draft202012 strict + grep + git):
+      142/142 YAML parse PASS 0 ParserError + 0 duplicate key (UniqueKeyLoader); 16/16
+      schema.json META-VALID; 16/16 cap canonical VALID (14 base-name + X008 event-data +
+      X009 event-states — 0 errors); immutable (P005) = 0 (P005 dung nghia Event Driven
+      append-only) / immutable (P010) = 5; version: "1.0" = 0 / "1.0.0" = 143; 'S011 reuse'
+      = 0; n- SPEC-001 typo = 0; R0xx placeholder = 0 (chi XR001-XR005 section IDs + R009
+      hop le); event naming EVENT_* 22 unique + SPEC008_* 9 unique noi bo, 0 collision
+      cross-SPEC; correlation_id (S011) 14 locations hop le; md<->yaml counts khop toan bo
+      (ke thua REV-201, khong doi); upstream refs deu ton tai (SPEC-000/001/005/007, S011,
+      RULE-007, TERM-012); SPEC-007 (Frozen REV-151) — ref 1 chieu ArtifactRef metadata,
+      khong doi contract, khong can recheck; SPEC-009/010 ref SPEC-008 = 0 matches 2 chieu
+      (khong cascade); SPEC-011 (chua start) chi khai bao SPEC-008 dependency trong
+      SPEC.yaml:22 + README.md:119 — ghi nhan, khong cascade; spec008-validator.ps1 exit 0
+      (regex-only — INFO ke thua); git: 159 files modified SPEC-008 trong working tree =
+      version bump (140) + note fix (EVENT_ARCHIVED dedupe + P005->P010, da verify
+      REV-152/201) — khong breaking, khong doi key/contract/event type. Toan bo findings
+      REV-147/149/152/201 FIXED/PASS — RE-VERIFY lai toan bo PASS. Verdict toan SPEC: PASS
+      (0 CRITICAL, 0 MAJOR -> Decision Matrix; 0 MINOR, 4 INFO ke thua chap nhan) ->
+      KHONG doi 2 truc: lifecycle Frozen, review.status Completed, count 2 (health
+      semantics — khong tang count, khong auto-freeze lai vi da Frozen). Cascade: [].
+      SLA: TRG-006 khong ap (Frozen), TRG-007 chua ap (Frozen 2026-08-09, con ~180 ngay).
+      Next: /doctor kiem tra health toan he thong; SPEC-009 revfull (Completed + PASS ->
+      auto-freeze) hoac SPEC-010 rev1 (chua tracker entry); SPEC-011+ theo roadmap.
+    score:
+      coverage: 97
+      quality: 97
+      consistency: 97
+      governance: 94
+      overall: 96
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 0
+      MINOR: 0
+      INFO: 4
+    started: "2026-08-09T14:22:03"
+    finished: "2026-08-09T14:22:03"
+    cascade_review: []
+    report_path: docs/governance/reviews/REV-SPEC-008-SPEC008-revfull-20260809-142204.md
+  - review_id: REV-20260809-203
+    spec: SPEC-009
+    item: SPEC-009
+    name: Contract System (whole-SPEC)
+    type: revfull
+    mode: "revfull (whole-SPEC pass 2 — deep research, auto-freeze). id_note: history max REV-20260809-202 (SPEC-009 rev1 session song song da chiem 202) — dung 203 (max + 1, grep toan docs 0)."
+    verdict: PASS
+    note: >
+      revfull toan SPEC-009 (Contract System, 20 muc X001-X020 + Appendix contract-models,
+      Approved/Completed/count 2 sau REV-153 CONDITIONAL + REV-202 PASS). Verify may (PyYAML
+      6.0.3 + jsonschema 4.26.0 Draft202012 strict + grep + git): 142/142 YAML parse PASS 0
+      ParserError + 0 duplicate key (UniqueKeyLoader); 16/16 schema.json META-VALID; 14/14 cap
+      canonical VALID (X002-X016 + contract-models — X008 contract-data-model.yaml VALID 0
+      errors); immutable (P005) = 0 / immutable (P010) dung; version: "1.0" = 0 / "1.0.0" =
+      142/142 YAML (MINOR #03 REV-153 da FIXED REV-202); 'S011 reuse'/'Event goi vao S011' = 0;
+      cross-SPEC event CONTRACT_*/SPEC009_* 0 collision (SPEC-007 ARTIFACT_*, SPEC-008 EVENT_*,
+      SPEC-001 COMPLIANCE_*/CONTRACT_VALIDATED — SPEC-001 S013 so huu CONTRACT_VALIDATED,
+      SPEC-009 khong dung); md<->yaml counts khop toan bo (X002 16 FR/12 NFR/6 XC, X003 16 XRR,
+      X004 10 XB, X005 5 XAL, X006 12 XCP, X007 7 XCT, X008 15 ENT, X009 6 XST/6 XTR, X010 8 XF,
+      X011 12 events, X012 10 XPOL, X013 4 XDEC, X015 6 XRES, X016 6 COMP, X017 7 XEXT, X019 10
+      XDOC, X020 6 panels, Appendix 8 AM); upstream refs deu ton tai (S011 103, S012 70, SPEC-005
+      47, S007 39, S009 10, TERM-014 77, R009 4) + S011 events.yaml model.fields co correlation_id
+      (chuan pattern 'S011 cung cap event model'); spec009-validator.ps1 exit 0; git: branch
+      NewVersion, commit 6cd11e5 SPEC-009 COMPLETE 2026-08-09 12:43 + fixes uncommitted 147 files
+      201+/191- (version bump + quote X004/X009/X011/X013/X015/X016 + X008 schema rewrite + event
+      claims X007/X013 — da review REV-150/153/202, khong breaking, khong doi key/contract/event
+      type, git blame xac nhan fixes o working tree); downstream SPEC-010 (Plugin Framework) ref
+      SPEC-009 (SPEC.yaml:18 dependency + README 4 + X001 4 + requirements.yaml 1) chua tracker
+      entry (not_started_specs) — ghi nhan, khi SPEC-010 khoi tao tracker regression theo TRG-002.
+      6/6 findings REV-202 (#01-#06 MINOR/INFO) da xac nhan giu nguyen (chap nhan, khong chan) —
+      RE-VERIFY lai toan bo PASS. Verdict PASS (0 CRITICAL, 0 MAJOR -> Decision Matrix) -> tinh
+      count: X001-X020 count 2 -> 3, status giu Completed, lifecycle Approved -> Frozen TRUC TIEP
+      (revfull PASS + Completed -> auto-freeze, khong qua Approved/POLICY-001 theo review-rules.yaml
+      freeze_rule + review-status.yaml Approved->Frozen). Cascade: SPEC-010 (downstream dependency
+      — chua tracker entry, ghi nhan, khong set recheck_required moi); upstream SPEC-000/001/005
+      frozen truoc ref 1 chieu — khong recheck; SPEC-007/008 khong ref SPEC-009 (0 matches 2 chieu).
+      SLA: TRG-006 khong ap (draft 0 ngay), TRG-007 bat dau dem tu hom nay khi Frozen (180 ngay).
+      Next: /doctor xac nhan he thong dong bo; SPEC-010 rev1 (chua tracker entry); SPEC-011+ theo
+      roadmap.
+    score:
+      coverage: 97
+      quality: 97
+      consistency: 97
+      governance: 96
+      overall: 97
+    severity_counts:
+      CRITICAL: 0
+      MAJOR: 0
+      MINOR: 2
+      INFO: 4
+    started: "2026-08-09T14:20:29"
+    finished: "2026-08-09T14:20:29"
+    cascade_review: [SPEC-010]
+    report_path: docs/governance/reviews/REV-SPEC-009-SPEC009-revfull-20260809-142029.md
+  - review_id: REV-20260809-205
+    spec: SPEC-010
+    item: SPEC-010
+    name: Plugin Framework (whole-SPEC)
+    type: rev1
+    mode: "rev1 (whole-SPEC review lan dau — SPEC-010 moi khoi tao tracker). SPEC-010 chua co entry nao (not_started_specs truoc review). id_note: history 204 entries (max REV-20260809-204 — SPEC-008 revfull-as-health session song song da chiem 204) — dung 205 (max + 1, grep toan docs 0)."
+    verdict: FAIL
+    note: >
+      rev1 whole-SPEC tren SPEC-010 (Plugin Framework, 20 muc X001-X020 + Appendix plugin-models,
+      tat ca Draft/NotReviewed/chua co entry tracker). Verify may (PyYAML 6.0.3 + jsonschema 4.26.0
+      Draft202012 strict + grep + git): 142 YAML SPEC-010, 10 PARSE-ERR — CRITICAL cung lop SPEC-007
+      REV-146 / SPEC-008 REV-147 / SPEC-009 REV-150: #01 X004 boundaries.yaml:5-14 flow mapping
+      {in_scope:..., out_scope: -, forbidden: -} — bare '-' trong flow node -> ParserError; #02 X008
+      plugin-data-model.yaml:42-43 flow mapping type: Type[]/String[] chua quote -> ParserError; #03
+      X008 plugin-validation.yaml:8-9 cung lop; #04 X009 plugin-state-events.yaml:5,9 duplicate key
+      PLUGIN_ENABLED (UniqueKeyLoader) — 2 mapping cung ten, mat 1 transition; #05 X009 plugin-states.
+      yaml:7-11 flow {terminal: -} cung lop #01; #06 X011 plugin-dashboard.yaml:5-10 block sequence +
+      key tool: cung indent -> ParserError; #07 X011 plugin-health.yaml:5-10 block sequence + key score:
+      cung lop; #08 X013 plugin-governance-registry.yaml:8 schemas: *.schema.json — alias error; #09 X015
+      plugin-resource-lifecycle.yaml:5-7 'allocate -> in_use -> uninstalled' + leaked:/reclamation:
+      mapping trong block -> mapping values not allowed; #10 X016 plugin-readiness-checklist.yaml:5-10
+      '- [ ]' checklist -> ParserError. jsonschema: 16/16 schema.json META-VALID (field-catalog, khong
+      co $schema — MINOR ke thua, cung pattern SPEC-008) + X008 plugin-data.schema.json required
+      [pluginId, version, manifest, permission] nhung canonical plugin-data-model.yaml la entities/
+      relations/invariants/validation/storage -> strict FAIL (MAJOR SCHEMA cung lop S002#01). MAJOR #12
+      CONSISTENCY single-definition cross-SPEC: PLUGIN_INSTALLED/PLUGIN_DISABLED/PLUGIN_UNINSTALLED do
+      SPEC-001 S017 so huu (plugin-events.yaml:6-10 + plugins.yaml:34-38) nhung SPEC-010 X009/X010/X011
+      dinh nghia lai (grep toan SPEC-010 PLUGIN_INSTALLED 15, PLUGIN_DISABLED 13, PLUGIN_UNINSTALLED 13)
+      — cung lop SPEC-005 R013/R014 REGISTRY_* (REV-138 #04) / S014 COMPATIBILITY_FAILED
+      (REV-20260808-017 #02). MAJOR #13 TRACEABILITY: 'S011 reuse' o X011 plugin-events.yaml:1 + X013
+      plugin-governance-events.yaml:10 'Event goi vao S011' — S011 events.yaml khong dinh nghia event
+      type cu the nao (chi model + taxonomy [execution, workflow, capability, resource, policy, system]),
+      grep PLUGIN_/SPEC010_ toan S011 = 0 matches — cung lop S013#01/S014#01/S015#03 da fix. MAJOR #14
+      COMPLIANCE: 3 vi tri 'immutable (P005)' sai (P005 = Event Driven, immutable = P010) — X009
+      plugin-state-events.yaml:11 + state-machine.md:80, X011 plugin-events.yaml:18 (cung lop SPEC-007#08/
+      SPEC-008#10/SPEC-009#09). MAJOR #15 CONSISTENCY noi bo SPEC-010: X009 dinh nghia 5 event types
+      (plugin-state-events.yaml:5-10) nhung X011 dinh nghia lai 12 events PLUGIN_* (plugin-events.yaml:
+      5-16) + X010 7 events (execution-flow.md:41-49) — 1 SPEC 2 dinh nghia event cung ten,
+      single-definition noi bo. MINOR: #16 version \"1.0\" = 140 vs \"1.0.0\" = 2 (SPEC.yaml:4 +
+      requirements.yaml:5) — POLICY-002; #17 frontmatter md thieu status (23 file, chi name/description/
+      agent — tien le SPEC-008 #01); #18 X014-X020 md name dung 'SPEC-010-x0xx-*' in hoa trong khi
+      X001-X013 dung 'spec-010-x0xx-*' in thuong — naming khong nhat quan (POLICY-007); #19 X015
+      plugin-resources.yaml:1 comment '# SPEC-010 R015' sai (dung X015) + RRES-002 'IndeR' typo. INFO:
+      #20 schema.json metadata version \"1.0\" x16 (legacy field — cung pattern SPEC-009 INFO); #21 S011
+      event_type taxonomy thieu 'plugin' — thuoc S011, ghi nhan; #22 R009/R015 refs hop le (SPEC-005
+      Registry State Machine/Resources ton tai); #23 tich cuc — TERM-015 133 refs dung, S014 16 refs ton
+      tai, SPEC-009 11 refs (dependency SPEC.yaml:18) ton tai, SPEC-000/003/005 deu ref day du,
+      RULE-005/P001/P011/P015 ton tai, md<->yaml counts khop cho cac file parse OK (X002 16 FR/12 NFR/6
+      XC, X003 16 XRR, X006 12 XCP, X007 7 XCT, X009 6 XST/6 XTR, X010 7 stages, X011 12 events, X012 10
+      XPOL, X013 4 XDEC, X016 6 COMP, X019 10 XDOC, X020 6 panels, Appendix 8 AM). Verdict FAIL (10
+      CRITICAL >= 1 -> Decision Matrix) -> khong tang count, khong doi 2 truc: giu lifecycle Draft,
+      review.status NotReviewed, count 0. Khoi tao tracker entries X001-X020 (Draft/NotReviewed/count 0),
+      xoa SPEC-010 khoi not_started_specs. Cascade: SPEC-011 (dependency SPEC.yaml:24 + README:121 —
+      chua tracker entry, ghi nhan, khong set recheck_required); SPEC-001 S017 (Frozen, so huu PLUGIN_*
+      events) khong doi review.status.
+    score:
+      coverage: 85
+      quality: 60
+      consistency: 55
+      governance: 75
+      overall: 69
+    severity_counts:
+      CRITICAL: 10
+      MAJOR: 4
+      MINOR: 4
+      INFO: 3
+    started: "2026-08-09T14:27:49"
+    finished: "2026-08-09T14:27:49"
+    cascade_review: [SPEC-011]
+    report_path: docs/governance/reviews/REV-SPEC-010-SPEC010-rev1-20260809-142749.md
+  - review_id: REV-20260809-206
+    spec: SPEC-011
+    item: SPEC-011
+    name: Doctor (whole-SPEC)
+    type: rev1
+    mode: "rev1 (whole-SPEC review lan dau — SPEC-011 moi khoi tao tracker). SPEC-011 chua co entry nao (not_started_specs truoc review, SPEC-010 REV-205 da ghi cascade_review: [SPEC-011]). id_note: history 205 entries (max REV-20260809-205 — SPEC-010 rev1 session truoc da chiem 205) — dung 206 (max + 1, grep toan docs 0)."
+    verdict: FAIL
+    note: >
+      rev1 whole-SPEC tren SPEC-011 (Doctor, 20 muc X001-X020 + Appendix doctor-models, tat ca
+      Draft/NotReviewed/chua co entry tracker). Verify may (PyYAML 6.0.3 + jsonschema 4.26.0 Draft202012
+      strict + grep + git): 142 YAML SPEC-011, 9 PARSE-ERR — CRITICAL cung lop SPEC-007 REV-146 /
+      SPEC-008 REV-147 / SPEC-009 REV-150 / SPEC-010 REV-205: #01 X004 boundaries.yaml:5-14 flow mapping
+      {in_scope:..., out_scope: -, forbidden: -} — bare '-' trong flow node -> ParserError; #02 X008
+      doctor-data-model.yaml:43-44 flow mapping type: Finding[]/RepairAction[] chua quote -> ParserError;
+      #03 X008 doctor-validation.yaml:9-10 cung lop; #04 X009 doctor-states.yaml:7-10 flow {terminal: -}
+      cung lop #01; #05 X011 doctor-dashboard.yaml:5-10 block sequence + key tool: cung indent ->
+      ParserError; #06 X011 doctor-health.yaml:5-10 block sequence + key score: cung lop; #07 X013
+      doctor-governance-registry.yaml:8 schemas: *.schema.json — alias error; #08 X015
+      doctor-resource-lifecycle.yaml:5-7 'allocate -> in_use -> archived' + leaked:/reclamation: mapping
+      trong block -> mapping values not allowed; #09 X016 doctor-readiness-checklist.yaml:5-10 '- [ ]'
+      checklist -> ParserError. jsonschema: 16/16 schema.json META-VALID (field-catalog, khong co $schema —
+      MINOR ke thua, cung pattern SPEC-008/009/010) + 13/16 cap canonical VALID (X002/X003/X005/X006/X007/
+      X010/X011/X012/X013/X014/X015/X016/doctor-models) + 3 FAIL (X004/X008/X009) do YAML parse loi
+      CRITICAL #01/#02/#04 — khong phai loi schema rieng. MAJOR #10 COMPLIANCE immutable (P005) sai —
+      P005 = Event Driven, immutable = P010: X011 doctor-events.yaml:18 'Event immutable (P005)' + X009
+      doctor-state-events.yaml:10 '(S011 P005)' + X008 doctor-data-model.yaml:48 'persistence true (P005)'
+      + doctor-models README.md:42 — cung lop SPEC-008#10/SPEC-009#09 (da fix o SPEC khac bang P005->P010).
+      MAJOR #11 CONSISTENCY single-definition cross-SPEC: DOCTOR_FAILED/DOCTOR_REPORTED/DOCTOR_REPAIRED do
+      SPEC-001 S019 so huu (S019 doctor-events.yaml:6-10 + doctor.md:132-136 + doctor.yaml:65-69) nhung
+      SPEC-011 X009 (doctor-state-events.yaml:7,9 + doctor-transition-types.yaml:5-7) va X011
+      (doctor-events.yaml:9-11) dinh nghia lai — cung lop SPEC-010 REV-205 #12 PLUGIN_*; S019 comment:
+      'S019 dinh nghia 5 event types rieng (DR010) — S011 cung cap event model'. MINOR: #12 version
+      \"1.0\" = 140 vs \"1.0.0\" = 3 YAML (POLICY-002, cung lop SPEC-009 #03); #13 schema.json thieu
+      $schema (16/16, ke thua); #14 md<->yaml ID pattern khac — X003 md dung XRM001-004 (yaml
+      XRR-001..016), X006 md dung XC001-005 (yaml XCP-001..012), X007 md khong lieu XCT IDs — traceability
+      chua dong nhat. INFO: #15 R009 refs (4) la SPEC-005 hop le; #16 spec011-validator.ps1 exit 0
+      (regex-only — INFO ke thua); #17 frontmatter md thieu status; #18 tich cuc — counts content khop
+      (X002 16 XFR/12 XNF/6 XC, X003 16 XRR yaml, X006 12 XCP, X008 15 ENT, X009 6 XST, X011 12 events
+      yaml, X013 4 XDEC, X019 10 XDOC), upstream refs deu ton tai (SPEC-000 37, SPEC-001 28, SPEC-005 28,
+      SPEC-002/003/004 5, SPEC-009 4), commit 0a7390d SPEC-011 COMPLETE, working tree SPEC-011 sach 0
+      uncommitted. Verdict FAIL (9 CRITICAL >= 1 -> Decision Matrix) -> khong tang count, khong doi 2 truc:
+      giu lifecycle Draft, review.status NotReviewed, count 0. Khoi tao tracker entries X001-X020
+      (Draft/NotReviewed/count 0), xoa SPEC-011 khoi not_started_specs. Cascade: SPEC-012 (dependency
+      SPEC.yaml:14 + README refs — chua tracker entry, ghi nhan, khong set recheck_required); SPEC-001
+      S019 (Frozen, so huu DOCTOR_* events) khong doi review.status.
+    score:
+      coverage: 85
+      quality: 60
+      consistency: 55
+      governance: 75
+      overall: 69
+    severity_counts:
+      CRITICAL: 9
+      MAJOR: 2
+      MINOR: 3
+      INFO: 4
+    started: "2026-08-09T19:59:12"
+    finished: "2026-08-09T19:59:12"
+    cascade_review: [SPEC-012]
+    report_path: docs/governance/reviews/REV-SPEC-011-SPEC011-rev1-20260809-195912.md

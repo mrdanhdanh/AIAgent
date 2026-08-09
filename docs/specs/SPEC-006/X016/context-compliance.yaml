@@ -1,6 +1,6 @@
 # SPEC-006 X016 - Context Compliance Rules
 ---
-version: "1.0"
+version: "1.0.0"
 compliance_rules:
   COMP-001: { name: Isolation, requirement: Moi Context co dung mot Execution (P006), source: XNF-001 }
   COMP-002: { name: No Business Data, requirement: Context khong chua business data (P001), source: XNF-002 }

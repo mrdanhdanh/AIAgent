@@ -56,7 +56,7 @@ Domain logic trong Engine Layer.
 
 | ID | Decision | Ly do |
 |----|----------|-------|
-| XAD-001 | Event append-only | P005 immutable |
+| XAD-001 | Event append-only | P010 immutable |
 | XAD-002 | Topic-based routing | subscriber filter |
 | XAD-003 | Policy qua S012 | khong tu quyet |
 | XAD-004 | Store tach Replay | simulate/audit |

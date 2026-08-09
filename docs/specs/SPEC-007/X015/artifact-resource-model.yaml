@@ -1,6 +1,6 @@
 # SPEC-007 X015 - Artifact Resource Model
 ---
-version: "1.0"
+version: "1.0.0"
 resources:
   XRES-001: { name: Storage, description: Immutable content storage, owner: Artifact Store, priority: Critical }
   XRES-002: { name: Index, description: Metadata index, owner: Artifact Store, priority: High }

@@ -1,5 +1,5 @@
 # SPEC-005 R010 - Registry Stages (tham chieu S010 EF004)
 ---
-version: "1.0"
+version: "1.0.0"
 stages: [Initialize, Validate, Prepare, Execute, Coordinate, Finalize, Complete]
 note: Entry dung 7 stages cua S010 EF004 - khong dinh nghia lai.

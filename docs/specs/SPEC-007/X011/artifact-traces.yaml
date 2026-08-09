@@ -1,6 +1,6 @@
 # SPEC-007 X011 - Artifact Traces
 ---
-version: "1.0"
+version: "1.0.0"
 traces:
   - artifact.create
   - artifact.validate

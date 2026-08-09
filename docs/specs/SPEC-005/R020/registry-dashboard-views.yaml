@@ -1,6 +1,6 @@
 # SPEC-005 R020 - Registry Dashboard Views
 ---
-version: "1.0"
+version: "1.0.0"
 views:
   - name: Registry View
     source: R009/R010

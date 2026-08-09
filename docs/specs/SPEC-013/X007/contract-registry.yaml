@@ -1,0 +1,6 @@
+# SPEC-013 X007 - Evolution Contract Registry
+---
+version: "1.0"
+registry:
+  owner: Evolution Team
+  tracked: [XCT-001..007]

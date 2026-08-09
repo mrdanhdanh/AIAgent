@@ -1,6 +1,6 @@
 # SPEC-008 X008 - Event Ownership
 ---
-version: "1.0"
+version: "1.0.0"
 ownership:
   owner_entity: Event Bus (TERM-012)
   producer: moi thanh phan phat Event

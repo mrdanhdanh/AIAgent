@@ -60,7 +60,7 @@ context_memory_bytes, context_grant_slots_used, context_resource_leaked_total,
 context_quota_exceeded_total, context_resource_release_latency_seconds.
 
 ## Tham chieu
-`n- SPEC-001 Runtime Kernel
+- SPEC-001 Runtime Kernel
 
 - XPOL-006 Quota - SPEC-006 X012
 - X011 Observability - SPEC-006

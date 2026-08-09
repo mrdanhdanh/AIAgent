@@ -1,6 +1,6 @@
 # SPEC-005 R009 - Registry Definition States (6)
 ---
-version: "1.0"
+version: "1.0.0"
 initial_state: RST-001
 terminal_states: [RST-005, RST-006]
 states:

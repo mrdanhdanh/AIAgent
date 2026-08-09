@@ -1,6 +1,6 @@
 # SPEC-005 R003 - Responsibility Mapping
 ---
-version: "1.0"
+version: "1.0.0"
 mapping:
   RRR-001: [RFR-001]
   RRR-002: [RFR-001]

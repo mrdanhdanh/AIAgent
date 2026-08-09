@@ -1,6 +1,6 @@
 # SPEC-006 X012 - Context Policy Categories
 ---
-version: "1.0"
+version: "1.0.0"
 categories:
   Isolation: [XPOL-001]
   Data: [XPOL-002, XPOL-010]

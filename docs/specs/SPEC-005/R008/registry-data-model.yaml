@@ -1,13 +1,13 @@
 # SPEC-005 R008 — Registry Data Model
 ---
-version: "1.0"
+version: "1.0.0"
 status: Draft
 frozen: false
 aggregate_root: RegistryEntry
 aggregate_rules:
   - RegistryEntry la Aggregate Root duy nhat.
-  - Entry owns: [Metadata, Version, Domain, Owner, Reference, Result]
-  - Entry references: [Capability (SPEC-003), Workflow (SPEC-002), Agent (SPEC-004), Execution (S008)]
+  - "Entry owns: [Metadata, Version, Domain, Owner, Reference, Result]"
+  - "Entry references: [Capability (SPEC-003), Workflow (SPEC-002), Agent (SPEC-004), Execution (S008)]"
   - Ownership va Reference khac nhau - khong nham lan.
 classification:
   Entry Data: [Metadata, Version, Domain, Owner]
@@ -43,4 +43,4 @@ dependencies:
   - Entry → Owner
   - Entry → Reference
   - Entry → Resolution Result
-  note: Khong dependency nguoc.
+# note: Khong dependency nguoc.

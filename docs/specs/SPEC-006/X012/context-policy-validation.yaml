@@ -1,6 +1,6 @@
 # SPEC-006 X012 - Context Policy Validation
 ---
-version: "1.0"
+version: "1.0.0"
 validation:
   - moi policy co source (S012/S011/S010)
   - moi policy co principle

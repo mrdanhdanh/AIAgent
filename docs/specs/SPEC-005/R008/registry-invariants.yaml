@@ -1,6 +1,6 @@
 # SPEC-005 R008 - Registry Invariants (12)
 ---
-version: "1.0"
+version: "1.0.0"
 invariants:
   - Entry co dung mot Metadata.
   - Entry versioned (SemVer).

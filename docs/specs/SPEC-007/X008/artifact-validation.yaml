@@ -1,6 +1,6 @@
 # SPEC-007 X008 - Artifact Validation Rules
 ---
-version: "1.0"
+version: "1.0.0"
 validation_rules:
   VAL-X001: { field: ArtifactId, requirement: Required, type: UUID }
   VAL-X002: { field: ExecutionId, requirement: Required, type: UUID }

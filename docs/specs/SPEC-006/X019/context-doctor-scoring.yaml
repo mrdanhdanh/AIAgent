@@ -1,6 +1,6 @@
 # SPEC-006 X019 - Context Doctor Scoring
 ---
-version: "1.0"
+version: "1.0.0"
 scoring:
   dimensions:
     spec_consistency: 30

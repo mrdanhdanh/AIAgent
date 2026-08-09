@@ -1,6 +1,6 @@
 # SPEC-007 X004 - Artifact Boundary Ownership Matrix
 ---
-version: "1.0"
+version: "1.0.0"
 ownership:
   content: Artifact Store (immutable)
   metadata: Artifact Store

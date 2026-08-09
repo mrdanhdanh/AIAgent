@@ -25,7 +25,7 @@ agent: general
 |------|-------|-----------|
 | API Contract | ContractApi ops | can ADR |
 | Data Contract | Contract schema | can ADR |
-| Event Contract | CONTRACT_* events (S011) | can ADR |
+| Event Contract | CONTRACT_* events (X011 dinh nghia — S011 cung cap event model) | can ADR |
 | Metric Contract | contract_* metrics | additive |
 | Policy Contract | retention/compat | can ADR |
 | Interface Contract | Store, Verifier | can ADR |

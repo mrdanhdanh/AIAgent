@@ -1,6 +1,6 @@
 # SPEC-008 X006 - Event Components (12)
 ---
-version: "1.0"
+version: "1.0.0"
 components:
   XCP-001: { name: EventApi, role: expose op, dependency: Engine, layer: Core }
   XCP-002: { name: RouteOrchestrator, role: route events, dependency: Router, Store, layer: Core }

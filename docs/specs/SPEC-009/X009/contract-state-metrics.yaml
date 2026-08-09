@@ -1,6 +1,6 @@
 # SPEC-009 X009 - Contract State Metrics
 ---
-version: "1.0"
+version: "1.0.0"
 metrics:
   - contract_states_total
   - contract_transitions_total

@@ -1,6 +1,6 @@
 # SPEC-006 X011 - Context Observability Mapping
 ---
-version: "1.0"
+version: "1.0.0"
 mapping:
   stage -> event:
     Allocate: CONTEXT_ALLOCATED

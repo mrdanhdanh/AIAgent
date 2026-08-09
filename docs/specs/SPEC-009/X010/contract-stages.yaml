@@ -1,6 +1,6 @@
 # SPEC-009 X010 - Contract Stages Registry
 ---
-version: "1.0"
+version: "1.0.0"
 registered_stages:
   XF-001: { name: Declare, actor: Contract System, event: CONTRACT_DECLARED }
   XF-002: { name: Validate, actor: Contract System, event: CONTRACT_VALIDATING }

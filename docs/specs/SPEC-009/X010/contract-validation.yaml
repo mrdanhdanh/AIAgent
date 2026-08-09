@@ -1,6 +1,6 @@
 # SPEC-009 X010 - Contract Flow Validation
 ---
-version: "1.0"
+version: "1.0.0"
 validation:
   - stage order dung S007
   - moi stage co event tuong ung

@@ -1,6 +1,6 @@
 # SPEC-006 X013 - Context Governance Metrics
 ---
-version: "1.0"
+version: "1.0.0"
 metrics:
   - spec006_frozen_sections
   - spec006_open_questions

@@ -1,6 +1,6 @@
 # SPEC-009 X006 - Contract Component Dependencies
 ---
-version: "1.0"
+version: "1.0.0"
 dependencies:
   XCP-001 -> Engine
   XCP-002 -> StateMachine, Store

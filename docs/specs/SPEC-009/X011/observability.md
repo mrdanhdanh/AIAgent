@@ -22,7 +22,7 @@ agent: general
 ## XO002 - Principles
 
 - **Event-first** - moi stage/transition co event.
-- **Immutable events** - chi append (P005).
+- **Immutable events** - chi append (P010).
 - **Correlated** - correlation_id xuyen suot.
 - **Metrics co label** - phan tich duoc.
 - **Audit day du** - ai lam gi, khi nao (XFR-015).

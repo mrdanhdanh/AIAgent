@@ -1,6 +1,6 @@
 # SPEC-005 R011 - Registry Metrics (S011 reuse)
 ---
-version: "1.0"
+version: "1.0.0"
 metrics:
   entry_count: 0
   lookup_count: 0

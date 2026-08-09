@@ -1,6 +1,6 @@
 # SPEC-009 X002 - Requirement Lifecycle
 ---
-version: "1.0"
+version: "1.0.0"
 lifecycle:
   states: [Draft, Review, Approved, Frozen]
   gate: Review (S013) + approval

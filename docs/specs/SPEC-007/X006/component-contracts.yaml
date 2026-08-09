@@ -1,6 +1,6 @@
 # SPEC-007 X006 - Artifact Component Contracts
 ---
-version: "1.0"
+version: "1.0.0"
 contracts:
   XCP-001: { name: ArtifactApi, contract: X007 XCT-### }
   XCP-002: { name: LifecycleOrchestrator, contract: X007 XCT-### }

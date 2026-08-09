@@ -1,11 +1,11 @@
 # SPEC-010 X010 - Plugin Stages Registry
 ---
-version: "1.0"
+version: "1.0.0"
 registered_stages:
-  XF-001: { name: Install, actor: Plugin Framework, event: PLUGIN_INSTALLED }
+  XF-001: { name: Install, actor: Plugin Framework, event: PLUGIN_FW_INSTALLED }
   XF-002: { name: Validate, actor: Plugin Framework, event: PLUGIN_VALIDATING }
   XF-003: { name: Sandbox, actor: SandboxEnforcer, event: PLUGIN_SANDBOXED }
   XF-004: { name: Enable, actor: Plugin Framework, event: PLUGIN_ENABLED }
   XF-005: { name: Export, actor: ExportManager, event: PLUGIN_EXPORTED }
-  XF-006: { name: Disable, actor: Plugin Framework, event: PLUGIN_DISABLED }
-  XF-007: { name: Uninstall, actor: Uninstaller, event: PLUGIN_UNINSTALLED }
+  XF-006: { name: Disable, actor: Plugin Framework, event: PLUGIN_FW_DISABLED }
+  XF-007: { name: Uninstall, actor: Uninstaller, event: PLUGIN_FW_UNINSTALLED }

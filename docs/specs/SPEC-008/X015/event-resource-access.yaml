@@ -1,6 +1,6 @@
 # SPEC-008 X015 - Event Resource Access
 ---
-version: "1.0"
+version: "1.0.0"
 access:
   - Event chi access qua Event Bus API
   - Subscriber nhan qua deliver (read-only)

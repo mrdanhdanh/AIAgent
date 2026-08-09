@@ -1,6 +1,6 @@
 # SPEC-008 X009 - Event State History
 ---
-version: "1.0"
+version: "1.0.0"
 state_history:
   record: [event_id, state, timestamp, transition_id, correlation_id]
   retention: persistent (S011 Event Store)

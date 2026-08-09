@@ -1,6 +1,6 @@
 # SPEC-005 R009 - Registry Transition Matrix
 ---
-version: "1.0"
+version: "1.0.0"
 matrix:
   - [RST-001, RST-002, REGISTRY_ENTRY_VALIDATING]
   - [RST-002, RST-003, REGISTRY_ENTRY_PUBLISHED]

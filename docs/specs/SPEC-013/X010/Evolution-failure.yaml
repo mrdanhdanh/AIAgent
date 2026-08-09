@@ -1,0 +1,11 @@
+# SPEC-013 X010 - Evolution Failure Modes
+---
+version: "1.0"
+failure_modes:
+  - Diffed fail: error + khong Evolution
+  - Planure fail: Evolution_FAILED + cleanup
+  - Run fail: Evolution_FAILED + partial result
+  - Observe fail: giu result, retry
+  - Compare fail: khong report + event
+  - Report fail: retry policy
+retry: theo Policy S012

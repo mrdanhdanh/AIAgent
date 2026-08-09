@@ -84,7 +84,7 @@ report:
   fields: [id, timestamp, registry_version, matrix, score, status, certification, evidence]
 ```
 
-Report immutable (P005).
+Report immutable (P010).
 
 ## RMC014 — Machine-readable
 

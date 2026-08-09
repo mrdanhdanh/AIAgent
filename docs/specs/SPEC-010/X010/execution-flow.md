@@ -38,28 +38,28 @@ Install -> Validate -> Sandbox -> Enable -> Export -> Disable -> Uninstall
 
 ```text
 Plugin manifest
-  -> Install (plugin_id sinh) [PLUGIN_INSTALLED]
+  -> Install (plugin_id sinh) [PLUGIN_FW_INSTALLED]
   -> Validate (schema + permission) [PLUGIN_VALIDATING]
   -> Sandbox (isolation) [PLUGIN_SANDBOXED]
   -> Enable (export san sang) [PLUGIN_ENABLED]
   -> Export (capability/agent/skill/widget) [PLUGIN_EXPORTED]
 Can tat
-  -> Disable [PLUGIN_DISABLED]
+  -> Disable [PLUGIN_FW_DISABLED]
 Het dung
-  -> Uninstall [PLUGIN_UNINSTALLED]
+  -> Uninstall [PLUGIN_FW_UNINSTALLED]
 ```
 
 ## XF005 - Stage Detail
 
 | Stage | Actor | Input | Output | Event |
 |-------|-------|-------|--------|-------|
-| Install | Plugin Framework | manifest | Plugin | PLUGIN_INSTALLED |
+| Install | Plugin Framework | manifest | Plugin | PLUGIN_FW_INSTALLED |
 | Validate | Plugin Framework | manifest | Validated | PLUGIN_VALIDATING |
 | Sandbox | SandboxEnforcer | plugin | Sandbox | PLUGIN_SANDBOXED |
 | Enable | Plugin Framework | validated | Enabled Plugin | PLUGIN_ENABLED |
 | Export | ExportManager | plugin | Exports | PLUGIN_EXPORTED |
-| Disable | Plugin Framework | - | Disabled | PLUGIN_DISABLED |
-| Uninstall | Uninstaller | - | Uninstalled | PLUGIN_UNINSTALLED |
+| Disable | Plugin Framework | - | Disabled | PLUGIN_FW_DISABLED |
+| Uninstall | Uninstaller | - | Uninstalled | PLUGIN_FW_UNINSTALLED |
 
 ## XF006 - Failure Modes
 

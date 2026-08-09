@@ -1,6 +1,6 @@
 # SPEC-009 X018 - Contract Migration
 ---
-version: "1.0"
+version: "1.0.0"
 migration:
   - Upgrade: bo sung field/op (backward)
   - Downgrade: giu field cu (compat)

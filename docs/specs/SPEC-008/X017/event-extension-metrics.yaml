@@ -1,6 +1,6 @@
 # SPEC-008 X017 - Event Extension Metrics
 ---
-version: "1.0"
+version: "1.0.0"
 metrics:
   - event_extensions_total
   - event_extensions_active

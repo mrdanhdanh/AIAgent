@@ -1,6 +1,6 @@
 # SPEC-005 R015 - Registry Resource Access (S015 RS007)
 ---
-version: "1.0"
+version: "1.0.0"
 flow:
   - Request
   - Binding Check (R012 RPB-010 -> POL-RESACC-001)

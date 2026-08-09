@@ -1,6 +1,6 @@
 # SPEC-006 X014 - Context Registry of Registries
 ---
-version: "1.0"
+version: "1.0.0"
 registries:
   registry: SPEC-005
   context_sections:

@@ -1,6 +1,6 @@
 # SPEC-005 R010 - Registry Resolution Flow (S014)
 ---
-version: "1.0"
+version: "1.0.0"
 flow:
   - Request (entry id + version)
   - Lookup

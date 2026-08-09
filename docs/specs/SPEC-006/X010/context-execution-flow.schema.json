@@ -1,6 +1,14 @@
 {
-  "schema": "context-execution-flow",
-  "version": "1.0",
-  "stages": { "type": "array", "items": { "type": "object" } },
-  "stage_names": ["Allocate","Populate","Distribute","Mutate","Merge","Collect","Release"]
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aios://context-execution-flow.schema.json",
+  "title": "SPEC-006 Context Execution Flow (X010)",
+  "type": "object",
+  "properties": {
+    "schema": { "const": "context-execution-flow" },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "stages": { "type": "array", "items": { "type": "object" } },
+    "stage_names": { "type": "array", "items": { "type": "string", "enum": ["Allocate","Populate","Distribute","Mutate","Merge","Collect","Release"] } }
+  },
+  "required": [ "schema", "version" ],
+  "additionalProperties": true
 }

@@ -1,9 +1,9 @@
 # SPEC-009 X013 - Contract Governance Registry
 ---
-version: "1.0"
+version: "1.0.0"
 registry:
   spec: SPEC-009 (this)
   sections: [X001..X020]
   models: contract-models/
-  schemas: *.schema.json
+  schemas: "*.schema.json"
   status_tracking: SPEC-INDEX.md

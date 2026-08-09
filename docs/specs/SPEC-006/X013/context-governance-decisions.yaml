@@ -1,6 +1,6 @@
 # SPEC-006 X013 - Context Governance Decisions
 ---
-version: "1.0"
+version: "1.0.0"
 decisions:
   XDEC-001: { issue: Context co chua Business Data khong, decision: Khong - chi metadata, date: pending }
   XDEC-002: { issue: Context co persist khong, decision: Khong - transient, date: pending }

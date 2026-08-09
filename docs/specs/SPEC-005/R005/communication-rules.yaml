@@ -1,5 +1,5 @@
 # SPEC-005 R005 - Communication Rules
 ---
-version: "1.0"
+version: "1.0.0"
 allowed: [Contract, Event]
 note: Ngoai ra deu bi cam.

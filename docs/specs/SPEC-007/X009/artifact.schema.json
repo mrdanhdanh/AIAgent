@@ -1,6 +1,6 @@
 {
   "schema": "artifact-state-machine",
-  "version": "1.0",
+  "version": "1.0.0",
   "initial_state": { "type": "string", "pattern": "^XST-[0-9]{3}$" },
   "states": { "type": "array", "items": { "type": "object" } },
   "transitions": { "type": "array", "items": { "type": "object" } }

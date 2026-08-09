@@ -1,6 +1,6 @@
 # SPEC-007 X008 - Artifact Ownership
 ---
-version: "1.0"
+version: "1.0.0"
 ownership:
   owner_entity: Artifact Store (S008 ENT-008)
   producer: Agent/Task (SPEC-004/SPEC-002)

@@ -1,6 +1,6 @@
 # SPEC-005 R008 - Registry Entities (15 ENT)
 ---
-version: "1.0"
+version: "1.0.0"
 entities:
   ENT-R001: { name: RegistryEntry, kind: AggregateRoot, owner: Registry, immutable: false }
   ENT-R002: { name: EntryMetadata, kind: Entity, owner: Registry, immutable: true }

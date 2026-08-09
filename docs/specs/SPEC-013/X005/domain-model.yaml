@@ -1,0 +1,6 @@
+# SPEC-013 X005 - Evolution Domain Model
+---
+version: "1.0"
+domain:
+  entities: [Evolution, SemanticDiff, CompatibilityReport, MigrationPlan, EvolutionReport]
+  logic_layer: Engine Layer

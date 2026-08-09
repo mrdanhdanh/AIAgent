@@ -1,6 +1,6 @@
 # SPEC-008 X009 - Event Transitions (6)
 ---
-version: "1.0"
+version: "1.0.0"
 transitions:
   XTR-001: { from: XST-001, to: XST-002, event: EVENT_VALIDATING, guard: Khai bao hop le }
   XTR-002: { from: XST-002, to: XST-003, event: EVENT_PUBLISHED, guard: Validate pass + lineage OK }

@@ -1,6 +1,6 @@
 # SPEC-007 X016 - Artifact Health Score
 ---
-version: "1.0"
+version: "1.0.0"
 health_score:
   dimensions:
     - spec_consistency (30%)

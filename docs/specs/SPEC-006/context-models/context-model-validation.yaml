@@ -1,6 +1,6 @@
 # SPEC-006 Appendix - Context Model Validation
 ---
-version: "1.0"
+version: "1.0.0"
 checks:
   - Context co dung mot Metadata.
   - Context thuoc dung mot Execution.

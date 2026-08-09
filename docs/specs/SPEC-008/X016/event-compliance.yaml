@@ -1,6 +1,6 @@
 # SPEC-008 X016 - Event Compliance Rules
 ---
-version: "1.0"
+version: "1.0.0"
 compliance_rules:
   COMP-001: { name: Immutable, requirement: Event khong thay doi sau publish (P010), source: XNF-001 }
   COMP-002: { name: Append-Only, requirement: Khong xoa Event (P005), source: XNF-002 }

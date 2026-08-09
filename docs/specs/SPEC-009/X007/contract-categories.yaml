@@ -1,6 +1,6 @@
 # SPEC-009 X007 - Contract Contract Categories
 ---
-version: "1.0"
+version: "1.0.0"
 categories:
   API: [XCT-001]
   Data: [XCT-002]

@@ -1,6 +1,6 @@
 # SPEC-008 X010 - Event Resolution
 ---
-version: "1.0"
+version: "1.0.0"
 resolution:
   input: event_id hoac correlation_id
   output: Event + lineage hoac not-found

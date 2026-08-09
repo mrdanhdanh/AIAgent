@@ -1,6 +1,6 @@
 # SPEC-005 R016 - Registry Readiness Checklist
 ---
-version: "1.0"
+version: "1.0.0"
 items:
   - Entry Published (R009).
   - Binding Active (R012).

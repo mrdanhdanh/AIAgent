@@ -1,6 +1,6 @@
 # SPEC-008 X006 - Event Component Validation
 ---
-version: "1.0"
+version: "1.0.0"
 validation:
   - component co contract + test
   - metrics day du (X011)

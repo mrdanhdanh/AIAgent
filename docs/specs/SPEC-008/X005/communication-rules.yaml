@@ -1,6 +1,6 @@
 # SPEC-008 X005 - Event Communication Rules
 ---
-version: "1.0"
+version: "1.0.0"
 communication_rules:
   - Publish: async (fire-and-forget voi retry)
   - Subscribe: sync register

@@ -1,6 +1,6 @@
 # SPEC-008 X007 - Event Contract Types (7)
 ---
-version: "1.0"
+version: "1.0.0"
 contracts:
   XCT-001: { name: API Contract, description: EventApi ops (publish/subscribe/replay), breaking: ADR }
   XCT-002: { name: Data Contract, description: Event schema (S011 model), breaking: ADR }

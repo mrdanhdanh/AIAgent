@@ -1,6 +1,6 @@
 # SPEC-005 R019 - Registry Doctor Self-Repair
 ---
-version: "1.0"
+version: "1.0.0"
 rules:
   - Chi Low impact.
   - Qua Approval (R013) hoac auto cho quen thuoc.

@@ -17,7 +17,7 @@ agent: general
 - Context KHONG co registry rieng - dung Registry chung (SPEC-005).
 - Registry luu DEFINITION, khong luu runtime Context (P009).
 - Registry resolve, Runtime thuc thi (RB004).
-- Context definition la Entry cua Registry (SPEC-005 R0xx).
+- Context definition la Entry cua Registry (SPEC-005 R008 RegistryEntry).
 
 ## XR002 - Entry Types (4)
 

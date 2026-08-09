@@ -1,6 +1,6 @@
 # SPEC-008 X012 - Event Policies (10)
 ---
-version: "1.0"
+version: "1.0.0"
 policies:
   XPOL-001: { name: Immutable, description: Event khong thay doi sau publish, priority: Critical, source: P010, principle: P010 }
   XPOL-002: { name: Append-Only, description: Khong xoa Event, priority: Critical, source: P005, principle: P005 }

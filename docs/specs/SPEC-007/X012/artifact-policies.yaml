@@ -1,6 +1,6 @@
 # SPEC-007 X012 - Artifact Policies (10)
 ---
-version: "1.0"
+version: "1.0.0"
 policies:
   XPOL-001: { name: Immutable, description: Artifact khong thay doi sau publish, priority: Critical, source: P010, principle: P010 }
   XPOL-002: { name: No Overwrite, description: Khong bao gio overwrite, priority: Critical, source: TERM-008, principle: P010 }

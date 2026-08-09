@@ -1,6 +1,6 @@
 # SPEC-006 X007 - Communication Matrix
 ---
-version: "1.0"
+version: "1.0.0"
 edges:
   - [XCP-001, XCP-002, XCT-002]
   - [XCP-001, XCP-003, XCT-003]

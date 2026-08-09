@@ -11,13 +11,13 @@ philosophy:
   - Quota khai bao qua binding (R012 RPB-004).
   - Khong Resource nao bi Leak.
 principles:
-  - Allocated: cap phat tuong minh (S015).
-  - Released: giai phong tren Terminal State (S015).
-  - Bounded: quota qua binding (R012).
-  - Observable: quan sat qua S011 (S015).
-  - Traceable: moi allocation truy vet (S015).
+  - "Allocated: cap phat tuong minh (S015)."
+  - "Released: giai phong tren Terminal State (S015)."
+  - "Bounded: quota qua binding (R012)."
+  - "Observable: quan sat qua S011 (S015)."
+  - "Traceable: moi allocation truy vet (S015)."
 categories:
-  note: Dung 10 categories cua S015 RS003.
+# note: Dung 10 categories cua S015 RS003.
   - Capability
   - Execution
   - Context

@@ -1,0 +1,6 @@
+# SPEC-013 Appendix - Evolution Model Registry
+---
+version: "1.0"
+registry:
+  owner: Evolution Team
+  tracked: [AM-001..008]

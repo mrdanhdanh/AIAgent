@@ -1,6 +1,6 @@
 # SPEC-005 R020 - Registry Dashboard Scope (S011 OB010)
 ---
-version: "1.0"
+version: "1.0.0"
 reads:
   - Registry Events (R011)
   - Registry Metrics (R011)

@@ -1,6 +1,6 @@
 # SPEC-008 X006 - Event Component Metrics
 ---
-version: "1.0"
+version: "1.0.0"
 metrics:
   - event_publish_total
   - event_deliver_latency_seconds

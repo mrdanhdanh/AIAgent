@@ -1,6 +1,6 @@
 # SPEC-007 X020 - Artifact Dashboard Events
 ---
-version: "1.0"
+version: "1.0.0"
 events:
   - ARTIFACT_DASHBOARD_OPENED
   - ARTIFACT_DASHBOARD_FILTERED

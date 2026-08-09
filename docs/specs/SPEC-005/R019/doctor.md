@@ -66,7 +66,7 @@ report:
   fields: [id, timestamp, registry_version, checks, score, status, repair, evidence]
 ```
 
-Report immutable (P005).
+Report immutable (P010).
 
 ## RDR010 — Doctor Events
 
@@ -107,7 +107,7 @@ Registry Doctor Report → Checks → Evidence (R011) → SPEC source (R0xx)
 
 ## RDR016 — Success Criteria
 
-- Doctor chỉ đọc machine-readable. · 47 checks từ 7 nguồn. · Self-repair an toàn. · Không bypass Governance (R013). · Report immutable (P005).
+- Doctor chỉ đọc machine-readable. · 47 checks từ 7 nguồn. · Self-repair an toàn. · Không bypass Governance (R013). · Report immutable (P010).
 
 ## Tham chiếu
 

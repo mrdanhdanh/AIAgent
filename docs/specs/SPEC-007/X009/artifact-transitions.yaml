@@ -1,6 +1,6 @@
 # SPEC-007 X009 - Artifact Transitions (7)
 ---
-version: "1.0"
+version: "1.0.0"
 transitions:
   XTR-001: { from: XST-001, to: XST-002, event: ARTIFACT_VALIDATING, guard: Khai bao hop le }
   XTR-002: { from: XST-002, to: XST-003, event: ARTIFACT_PUBLISHED, guard: Validate pass + checksum OK }

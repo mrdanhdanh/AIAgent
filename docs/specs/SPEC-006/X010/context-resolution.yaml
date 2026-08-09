@@ -1,6 +1,6 @@
 # SPEC-006 X010 - Context Resolution
 ---
-version: "1.0"
+version: "1.0.0"
 resolution:
   input: key_path (contextId/section/item)
   output: item value hoac not-found

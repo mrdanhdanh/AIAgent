@@ -78,7 +78,7 @@ Guard fail -> BLOCK + ARTIFACT_GUARD + Event (S011).
 ## XS008 - Events (7)
 
 - Moi transition sinh dung mot event ARTIFACT_*.
-- Event immutable, append-only (P005).
+- Event immutable, append-only (P010).
 - Event co correlation_id (S011).
 
 ## XS009 - Registered Machines

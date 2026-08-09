@@ -1,6 +1,6 @@
 # SPEC-009 X004 - Contract Boundary Ownership Matrix
 ---
-version: "1.0"
+version: "1.0.0"
 ownership:
   interface: Contract Registry (immutable)
   metadata: Contract Registry

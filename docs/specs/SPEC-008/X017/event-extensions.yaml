@@ -1,6 +1,6 @@
 # SPEC-008 X017 - Event Extension Points
 ---
-version: "1.0"
+version: "1.0.0"
 extensions:
   XEXT-001: { name: Event Extension Point, description: Diem mo rong Event Bus, owner: Event Bus, priority: High }
   XEXT-002: { name: Custom Event Type, description: Kieu event moi, owner: Event Bus, priority: Medium }

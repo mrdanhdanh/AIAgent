@@ -22,7 +22,7 @@ agent: general
 ## XO002 - Principles
 
 - **Event-first** - moi stage/transition co event.
-- **Immutable events** - chi append (P005).
+- **Immutable events** - chi append (P010).
 - **Correlated** - correlation_id xuyen suot.
 - **Metrics co label** - phan tich duoc.
 - **Audit day du** - ai lam gi, khi nao (XFR-016).
@@ -31,13 +31,13 @@ agent: general
 
 | Event | Y nghia |
 |-------|---------|
-| PLUGIN_INSTALLED | Plugin install |
+| PLUGIN_FW_INSTALLED | Plugin install |
 | PLUGIN_VALIDATING | Dang validate |
 | PLUGIN_SANDBOXED | Sandbox thiet lap |
 | PLUGIN_ENABLED | Enable xong |
 | PLUGIN_EXPORTED | Export xong |
-| PLUGIN_DISABLED | Disable |
-| PLUGIN_UNINSTALLED | Uninstall |
+| PLUGIN_FW_DISABLED | Disable |
+| PLUGIN_FW_UNINSTALLED | Uninstall |
 | PLUGIN_REJECTED | Tu choi |
 | PLUGIN_PERMISSION_BLOCKED | Vuot permission bi chan |
 | PLUGIN_CORE_MODIFY_BLOCKED | Sua Core bi chan |

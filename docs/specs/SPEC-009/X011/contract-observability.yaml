@@ -1,6 +1,6 @@
 # SPEC-009 X011 - Contract Observability Model
 ---
-version: "1.0"
+version: "1.0.0"
 observability:
   logs: Contract System logs (structured)
   events: CONTRACT_* (S011 Event Store)

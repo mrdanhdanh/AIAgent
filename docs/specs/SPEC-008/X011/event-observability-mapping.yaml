@@ -1,6 +1,6 @@
 # SPEC-008 X011 - Event Observability Mapping
 ---
-version: "1.0"
+version: "1.0.0"
 mapping:
   stage -> event:
     Publish: EVENT_CREATED

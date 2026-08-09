@@ -1,6 +1,6 @@
 # SPEC-006 X002 - Requirement Traceability
 ---
-version: "1.0"
+version: "1.0.0"
 traceability:
   XFR-001: [P009]
   XFR-002: [P009]

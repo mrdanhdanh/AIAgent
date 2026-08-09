@@ -1,6 +1,6 @@
 # SPEC-009 X006 - Contract Components (12)
 ---
-version: "1.0"
+version: "1.0.0"
 components:
   XCP-001: { name: ContractApi, role: expose op, dependency: Engine, layer: Core }
   XCP-002: { name: LifecycleOrchestrator, role: lifecycle flow, dependency: StateMachine, Store, layer: Core }

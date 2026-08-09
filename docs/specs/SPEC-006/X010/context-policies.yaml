@@ -1,6 +1,6 @@
 # SPEC-006 X010 - Context Flow Policies
 ---
-version: "1.0"
+version: "1.0.0"
 policies:
   - Khong Context nao song sau Execution.
   - Moi stage co Event (S011).

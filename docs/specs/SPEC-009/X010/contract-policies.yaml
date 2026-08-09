@@ -1,6 +1,6 @@
 # SPEC-009 X010 - Contract Flow Policies
 ---
-version: "1.0"
+version: "1.0.0"
 policies:
   - Contract luon versioned (P004).
   - Moi stage co Event (S011).

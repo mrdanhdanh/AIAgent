@@ -1,6 +1,6 @@
 # SPEC-009 X008 - Contract Ownership
 ---
-version: "1.0"
+version: "1.0.0"
 ownership:
   owner_entity: Contract Registry (TERM-014)
   provider: thanh phan khai bao

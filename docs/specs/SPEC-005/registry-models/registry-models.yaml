@@ -1,6 +1,6 @@
 # SPEC-005 Appendix — Registry Canonical Models (8 RM)
 ---
-version: "1.0"
+version: "1.0.0"
 status: Draft
 aggregate_root: RegistryEntry
 models:

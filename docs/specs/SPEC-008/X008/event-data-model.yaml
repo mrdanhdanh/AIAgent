@@ -1,6 +1,6 @@
 # SPEC-008 X008 - Event Data Model
 ---
-version: "1.0"
+version: "1.0.0"
 entities:
   ENT-X001: { name: Event, kind: AggregateRoot, owner: Event Bus, immutable: true }
   ENT-X002: { name: EventDefinition, kind: Entity, owner: Event Bus, immutable: true }

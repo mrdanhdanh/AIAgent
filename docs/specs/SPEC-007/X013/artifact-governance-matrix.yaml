@@ -1,6 +1,6 @@
 # SPEC-007 X013 - Artifact Governance Matrix
 ---
-version: "1.0"
+version: "1.0.0"
 matrix:
   change_type | authority | process |
   Typo/Editorial | Owner | Direct fix + note |

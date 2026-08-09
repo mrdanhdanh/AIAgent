@@ -1,6 +1,6 @@
 # SPEC-005 R018 - Registry Evolution Approval Gate (R013)
 ---
-version: "1.0"
+version: "1.0.0"
 gate:
   - Low impact: auto-approve (Strict rules).
   - Medium impact: Agent approval.

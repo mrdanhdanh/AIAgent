@@ -1,6 +1,6 @@
 # SPEC-009 X005 - Contract Layer Model (5)
 ---
-version: "1.0"
+version: "1.0.0"
 layers:
   XAL-001: { name: API Layer, role: Contract API (declare, validate, version, resolve, verify) }
   XAL-002: { name: Engine Layer, role: Lifecycle Orchestrator + State Machine (X009) }

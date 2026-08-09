@@ -1,6 +1,6 @@
 # SPEC-009 X010 - Contract Lineage
 ---
-version: "1.0"
+version: "1.0.0"
 lineage:
   contract_id: UUID
   parent_contract_id: null (Root) | UUID (extends)

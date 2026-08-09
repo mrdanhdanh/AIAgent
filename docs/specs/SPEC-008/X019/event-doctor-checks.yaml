@@ -1,6 +1,6 @@
 # SPEC-008 X019 - Event Doctor Checks (10)
 ---
-version: "1.0"
+version: "1.0.0"
 checks:
   XDOC-001: { name: SPEC.yaml, description: SPEC-008 cau truc hop le, method: validator B1, priority: Critical }
   XDOC-002: { name: README, description: Bang X001-X020 khop thuc te, method: validator B2, priority: Critical }

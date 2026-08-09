@@ -1,6 +1,6 @@
 # SPEC-007 X008 - Artifact Invariants
 ---
-version: "1.0"
+version: "1.0.0"
 invariants:
   INV-X001: { name: Unique ArtifactId, description: Moi Artifact co id duy nhat }
   INV-X002: { name: Single Owner, description: Artifact chi thuoc mot Execution }

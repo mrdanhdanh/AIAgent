@@ -8,20 +8,20 @@ frozen: false
 owner: Registry Team
 philosophy:
   - Policy la luat cua Runtime (S012) - Registry khong dinh nghia lai (RB008).
-  - Registry khai bao Binding: policy_ref + parameters + scope.
+  - "Registry khai bao Binding: policy_ref + parameters + scope."
   - Binding hop le thi moi duoc apply.
 principles:
-  - Reference Only: chi tro den POL-* (S012).
-  - Parameterized: khai bao tham so, khong dinh nghia hanh vi.
-  - Scoped: binding theo Entry hoac Resolution.
-  - Versioned: binding theo version policy (S012).
-  - Validated: binding phai hop le truoc khi chay.
-  - Traceable: moi binding apply co Event + Audit (S011).
+  - "Reference Only: chi tro den POL-* (S012)."
+  - "Parameterized: khai bao tham so, khong dinh nghia hanh vi."
+  - "Scoped: binding theo Entry hoac Resolution."
+  - "Versioned: binding theo version policy (S012)."
+  - "Validated: binding phai hop le truoc khi chay."
+  - "Traceable: moi binding apply co Event + Audit (S011)."
 binding_model:
   fields: [id, entry, resolution, policy_ref, parameters, scope, version, status, lifecycle, metadata]
 lifecycle: [Draft, Validated, Published, Active, Deprecated, Retired]
 categories:
-  note: Dung 7 categories cua S012 RP003.
+# note: Dung 7 categories cua S012 RP003.
   - Recovery
   - Control
   - Orchestration
@@ -41,6 +41,6 @@ bindings:
   - RPB-009 Security Binding -> POL-SEC-001
   - RPB-010 Resource Access Binding -> POL-RESACC-001
 responsibility_chain:
-  - S012 Runtime Policies: define policy
-  - S013 Runtime Governance: enforce policy
-  - R012 Registry Policies: bind policy vao entry
+  - "S012 Runtime Policies: define policy"
+  - "S013 Runtime Governance: enforce policy"
+  - "R012 Registry Policies: bind policy vao entry"

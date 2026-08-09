@@ -183,4 +183,4 @@ not_in_runtime:
   - State Manager (SPEC-001 S006 CMP-004)
   - Policy Engine (SPEC-001 S006 CMP-006)
   - Registry (S014)
-  note: Context Engine dung qua Runtime (SPEC-001) - khong lap lai.
+  # note: Context Engine dung qua Runtime (SPEC-001) - khong lap lai.

@@ -1,6 +1,6 @@
 # SPEC-008 X011 - Event Correlation
 ---
-version: "1.0"
+version: "1.0.0"
 correlation:
   correlation_id: sinh khi Publish
   trace_id: Runtime (S011)

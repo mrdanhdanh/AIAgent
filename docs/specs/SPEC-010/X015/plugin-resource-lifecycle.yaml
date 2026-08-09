@@ -1,7 +1,7 @@
 # SPEC-010 X015 - Plugin Resource Lifecycle
 ---
-version: "1.0"
+version: "1.0.0"
 lifecycle:
-  allocate -> in_use -> uninstalled
+  states: [allocate, in_use, uninstalled]
   leaked: resource khong duoc release -> Doctor X019 phat hien
   reclamation: uninstall theo retention (XPOL-006)

@@ -1,6 +1,6 @@
 # SPEC-008 X010 - Event Lineage
 ---
-version: "1.0"
+version: "1.0.0"
 lineage:
   event_id: UUID
   parent_event_id: null (Root) | UUID (chain)

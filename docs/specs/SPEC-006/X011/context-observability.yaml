@@ -1,6 +1,6 @@
 # SPEC-006 X011 - Context Observability Model
 ---
-version: "1.0"
+version: "1.0.0"
 observability:
   logs: Context Engine logs (structured)
   events: CONTEXT_* (S011 Event Store)

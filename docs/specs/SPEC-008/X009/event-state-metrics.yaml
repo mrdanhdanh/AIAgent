@@ -1,6 +1,6 @@
 # SPEC-008 X009 - Event State Metrics
 ---
-version: "1.0"
+version: "1.0.0"
 metrics:
   - event_states_total
   - event_transitions_total

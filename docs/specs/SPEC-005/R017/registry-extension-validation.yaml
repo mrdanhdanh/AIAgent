@@ -1,6 +1,6 @@
 # SPEC-005 R017 - Extension Validation
 ---
-version: "1.0"
+version: "1.0.0"
 checks:
   - Missing Contract (R007)
   - Invalid Version

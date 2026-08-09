@@ -1,6 +1,6 @@
 # SPEC-009 X016 - Contract Certification
 ---
-version: "1.0"
+version: "1.0.0"
 certification:
   certified_artifacts:
     - SPEC-009 SPEC.yaml

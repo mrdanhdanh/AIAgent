@@ -1,0 +1,8 @@
+# SPEC-013 X010 - Evolution Outcome
+---
+version: "1.0"
+outcome:
+  success: Diffed + Evolution_Diffed
+  failure: Failed + Evolution_FAILED
+  metrics: [Evolution_Diffed_total, Evolution_failed_total]
+  audit: moi outcome ghi vao S011

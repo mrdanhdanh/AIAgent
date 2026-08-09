@@ -1,6 +1,6 @@
 # SPEC-009 X009 - Contract Transitions (6)
 ---
-version: "1.0"
+version: "1.0.0"
 transitions:
   XTR-001: { from: XST-001, to: XST-002, event: CONTRACT_VALIDATING, guard: Khai bao hop le }
   XTR-002: { from: XST-002, to: XST-003, event: CONTRACT_PUBLISHED, guard: Validate pass + compat OK }

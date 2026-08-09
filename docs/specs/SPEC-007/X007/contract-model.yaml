@@ -1,6 +1,6 @@
 # SPEC-007 X007 - Artifact Contract Model
 ---
-version: "1.0"
+version: "1.0.0"
 contract_model:
   identity: contract_id (XCT-###)
   schema: artifact-*.schema.json

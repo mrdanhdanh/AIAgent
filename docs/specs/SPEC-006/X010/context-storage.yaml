@@ -1,6 +1,6 @@
 # SPEC-006 X010 - Context Storage
 ---
-version: "1.0"
+version: "1.0.0"
 storage:
   mode: In-Memory (P009)
   lifecycle: Allocate -> Release

@@ -5,8 +5,8 @@ validation_rules:
   VAL-X001: { field: PluginId, requirement: Required, type: UUID }
   VAL-X002: { field: Version, requirement: Required, type: SemVer }
   VAL-X003: { field: Manifest, requirement: Required, type: JSON Schema }
-  VAL-X004: { field: Permission, requirement: Required, type: String[] }
-  VAL-X005: { field: Exports, requirement: Required, type: Type[] }
+  VAL-X004: { field: Permission, requirement: Required, type: "String[]" }
+  VAL-X005: { field: Exports, requirement: Required, type: "Type[]" }
   VAL-X006: { field: ProviderId, requirement: Required, type: UUID }
   VAL-X007: { field: Sandbox, requirement: Required, type: Enum }
 validate_on:

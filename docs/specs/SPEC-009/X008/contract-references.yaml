@@ -1,6 +1,6 @@
 # SPEC-009 X008 - Contract References
 ---
-version: "1.0"
+version: "1.0.0"
 references:
   - ExecutionRef (SPEC-001)
   - ProviderRef (SPEC-004/002)

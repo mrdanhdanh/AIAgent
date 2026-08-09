@@ -1,6 +1,6 @@
 # SPEC-007 X010 - Artifact Stages Registry
 ---
-version: "1.0"
+version: "1.0.0"
 registered_stages:
   XF-001: { name: Create, actor: Artifact Store, event: ARTIFACT_CREATED }
   XF-002: { name: Validate, actor: Artifact Store, event: ARTIFACT_VALIDATING }

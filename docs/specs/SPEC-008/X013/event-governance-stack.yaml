@@ -1,6 +1,6 @@
 # SPEC-008 X013 - Event Governance Stack
 ---
-version: "1.0"
+version: "1.0.0"
 stack:
   XG-001: { layer: Constitution (SPEC-000), role: Nen tang }
   XG-002: { layer: Principles (P001-P016), role: Nguyen tac }

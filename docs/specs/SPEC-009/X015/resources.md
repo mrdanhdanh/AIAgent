@@ -52,7 +52,7 @@ Reclamation theo retention (XPOL-006).
 
 ## XRM006 - Events (4)
 
-CONTRACT_RESOURCE_ALLOCATED / RELEASED / LEAKED / QUOTA_EXCEEDED (S011).
+CONTRACT_RESOURCE_ALLOCATED / RELEASED / LEAKED / QUOTA_EXCEEDED (X015 dinh nghia event types — S011 cung cap event model: fields, correlation_id).
 
 ## XRM007 - Metrics (5)
 

@@ -1,6 +1,6 @@
 # SPEC-005 R017 - Extension Lifecycle
 ---
-version: "1.0"
+version: "1.0.0"
 lifecycle: [Draft, Published, Installed, Active, Disabled, Retired]
 rules:
   - Chi Published moi Install.

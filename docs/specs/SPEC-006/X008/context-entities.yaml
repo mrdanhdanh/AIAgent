@@ -1,6 +1,6 @@
 # SPEC-006 X008 - Context Entities (15 ENT)
 ---
-version: "1.0"
+version: "1.0.0"
 entities:
   ENT-X001: { name: Context, kind: AggregateRoot, owner: Context Engine, immutable: false }
   ENT-X002: { name: ContextMetadata, kind: Entity, owner: Context Engine, immutable: true }

@@ -1,6 +1,6 @@
 # SPEC-007 Appendix - Artifact Canonical Models (8)
 ---
-version: "1.0"
+version: "1.0.0"
 models:
   AM-001: { name: Artifact, kind: AggregateRoot, owner: Artifact Store, immutable: false }
   AM-002: { name: ArtifactDefinition, kind: Entity, owner: Artifact Store, immutable: true }

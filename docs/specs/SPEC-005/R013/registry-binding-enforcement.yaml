@@ -1,6 +1,6 @@
 # SPEC-005 R013 - Registry Policy Binding Enforcement
 ---
-version: "1.0"
+version: "1.0.0"
 enforcement:
   - Resolve binding (R012)
   - Validate binding (R012)

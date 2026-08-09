@@ -1,6 +1,6 @@
 # SPEC-007 X005 - Artifact ADL
 ---
-version: "1.0"
+version: "1.0.0"
 decisions:
   XAD-001: { decision: Artifact content write-once, reason: P010 immutable }
   XAD-002: { decision: Metadata versioned, reason: P004 }

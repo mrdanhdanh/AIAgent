@@ -1,0 +1,10 @@
+# SPEC-013 X009 - Evolution State Metrics
+---
+version: "1.0"
+metrics:
+  - Evolution_states_total
+  - Evolution_transitions_total
+  - Evolution_transition_duration_seconds
+  - Evolution_failed_total
+  - Evolution_Diffed_total
+labels: [Evolution_id, state, transition, execution_id]

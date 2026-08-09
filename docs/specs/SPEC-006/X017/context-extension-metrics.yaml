@@ -1,6 +1,6 @@
 # SPEC-006 X017 - Context Extension Metrics
 ---
-version: "1.0"
+version: "1.0.0"
 metrics:
   - context_extensions_total
   - context_extensions_active

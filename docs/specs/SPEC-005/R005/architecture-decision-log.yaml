@@ -1,6 +1,6 @@
 # SPEC-005 R005 - Architecture Decision Log
 ---
-version: "1.0"
+version: "1.0.0"
 decisions:
   - id: RAD-001
     decision: Registry la metadata system, khong phai Database

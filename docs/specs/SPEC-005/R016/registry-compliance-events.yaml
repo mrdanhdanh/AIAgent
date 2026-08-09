@@ -1,6 +1,6 @@
 # SPEC-005 R016 - Registry Compliance Events (S011 reuse)
 ---
-version: "1.0"
+version: "1.0.0"
 event_types:
   - REGISTRY_COMPLIANCE_PASSED
   - REGISTRY_COMPLIANCE_FAILED

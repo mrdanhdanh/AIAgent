@@ -1,6 +1,6 @@
 # SPEC-009 X020 - Contract Dashboard Config
 ---
-version: "1.0"
+version: "1.0.0"
 config:
   refresh: 30s (default)
   theme: S011 dashboard theme

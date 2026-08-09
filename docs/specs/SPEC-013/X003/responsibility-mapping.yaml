@@ -1,0 +1,8 @@
+# SPEC-013 X003 - Evolution Responsibility Mapping
+---
+version: "1.0"
+mapping:
+  XRR-001..006: Evolution Engine core ops
+  XRR-007..010: modules (benchmark/migrate/stress/evolve)
+  XRR-011..012, XRR-014: Runtime/Policy integration
+  XRR-013: Registry (SPEC-005)

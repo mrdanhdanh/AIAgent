@@ -1,6 +1,6 @@
 # SPEC-005 R019 - Registry Doctor Events (S011 reuse)
 ---
-version: "1.0"
+version: "1.0.0"
 event_types:
   - REGISTRY_DOCTOR_RUN
   - REGISTRY_DOCTOR_PASSED

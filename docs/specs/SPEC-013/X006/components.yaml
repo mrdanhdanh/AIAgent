@@ -1,0 +1,16 @@
+# SPEC-013 X006 - Evolution Components (12)
+---
+version: "1.0"
+components:
+  XCP-001: { name: EvolutionApi, role: expose op, dependency: Engine, layer: Core }
+  XCP-002: { name: PipelineOrchestrator, role: pipeline flow, dependency: StateMachine, Store, layer: Core }
+  XCP-003: { name: EvolutionStateMachine, role: state transitions, dependency: S009, layer: Core }
+  XCP-004: { name: DiffEngine, role: semantic diff, dependency: Store, layer: Core }
+  XCP-005: { name: CompatChecker, role: backward compatible check, dependency: Store, layer: Core }
+  XCP-006: { name: PolicyGuard, role: policy eval, dependency: S012, layer: Guard }
+  XCP-007: { name: DiffStore, role: diff results, dependency: Store, layer: Core }
+  XCP-008: { name: MigrationStore, role: migration plans, dependency: Store, layer: Data }
+  XCP-009: { name: MigrationEngine, role: thuc hien migration, dependency: Store, layer: Data }
+  XCP-010: { name: SelfHealEngine, role: doc-only repair, dependency: Store, layer: Data }
+  XCP-011: { name: ModuleRegistry, role: 9 module lookup, dependency: SPEC-005, layer: Integration }
+  XCP-012: { name: HealthScorer, role: health score, dependency: Store, layer: Data }

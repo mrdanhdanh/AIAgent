@@ -1,6 +1,6 @@
 # SPEC-007 X008 - Artifact Relations
 ---
-version: "1.0"
+version: "1.0.0"
 relations:
   REL-X001: { from: Artifact, relation: owns, to: ArtifactDefinition, cardinality: 1..1 }
   REL-X002: { from: Artifact, relation: owns, to: ArtifactVersion, cardinality: 1..* }

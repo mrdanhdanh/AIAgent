@@ -1,0 +1,16 @@
+# SPEC-013 X006 - Evolution Component Contracts
+---
+version: "1.0"
+contracts:
+  XCP-001: { name: EvolutionApi, contract: X007 XCT-### }
+  XCP-002: { name: PipelineOrchestrator, contract: X007 XCT-### }
+  XCP-003: { name: EvolutionStateMachine, contract: X007 XCT-### }
+  XCP-004: { name: DiffEngine, contract: X007 XCT-### }
+  XCP-005: { name: CompatChecker, contract: X007 XCT-### }
+  XCP-006: { name: PolicyGuard, contract: X007 XCT-### }
+  XCP-007: { name: DiffStore, contract: X007 XCT-### }
+  XCP-008: { name: MigrationStore, contract: X007 XCT-### }
+  XCP-009: { name: MigrationEngine, contract: X007 XCT-### }
+  XCP-010: { name: SelfHealEngine, contract: X007 XCT-### }
+  XCP-011: { name: ModuleRegistry, contract: X007 XCT-### }
+  XCP-012: { name: HealthScorer, contract: X007 XCT-### }

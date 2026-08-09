@@ -35,7 +35,7 @@ Refresh 30s, theme S011, filters (contract_id, state, provider_id, time_range), 
 
 ## XDA004 - Events
 
-CONTRACT_DASHBOARD_OPENED / FILTERED / EXPORTED (S011).
+CONTRACT_DASHBOARD_OPENED / FILTERED / EXPORTED (X020 dinh nghia event types — S011 cung cap event model: fields, correlation_id).
 
 ## XDA005 - Tiep nhan
 

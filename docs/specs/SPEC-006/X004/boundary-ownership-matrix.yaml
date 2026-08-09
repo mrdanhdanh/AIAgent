@@ -1,6 +1,6 @@
 # SPEC-006 X004 - Boundary Ownership Matrix
 ---
-version: "1.0"
+version: "1.0.0"
 ownership:
   XB001-allocation: Context
   XB002-isolation: Context

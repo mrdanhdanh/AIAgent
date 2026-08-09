@@ -1,0 +1,7 @@
+{
+  "schema": "Evolution-data-model",
+  "version": "1.0",
+  "EvolutionId": { "type": "string", "format": "uuid" },
+  "Diff": { "enum": ["Bug Fix","New Feature","Migration","Review","Testing","Refactoring"] },
+  "required": [ "EvolutionId", "Diff", "Plan", "timestamp" ]
+}

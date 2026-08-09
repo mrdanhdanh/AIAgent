@@ -1,6 +1,6 @@
 # SPEC-009 X010 - Contract Storage
 ---
-version: "1.0"
+version: "1.0.0"
 storage:
   mode: Versioned store (P004)
   lifecycle: Declare -> Retire

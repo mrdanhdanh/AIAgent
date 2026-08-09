@@ -1,6 +1,6 @@
 # SPEC-005 R018 - Registry Evolution Pipeline
 ---
-version: "1.0"
+version: "1.0.0"
 pipeline:
   - Collect (R011 data)
   - Analyze (patterns, anomalies)

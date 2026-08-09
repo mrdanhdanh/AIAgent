@@ -1,6 +1,6 @@
 # SPEC-007 X016 - Artifact Compliance Metrics
 ---
-version: "1.0"
+version: "1.0.0"
 metrics:
   - compliance_score (0-100)
   - violations_total

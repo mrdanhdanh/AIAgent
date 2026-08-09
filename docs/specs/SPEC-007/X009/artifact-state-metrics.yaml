@@ -1,6 +1,6 @@
 # SPEC-007 X009 - Artifact State Metrics
 ---
-version: "1.0"
+version: "1.0.0"
 metrics:
   - artifact_states_total
   - artifact_transitions_total

@@ -1,6 +1,6 @@
 # SPEC-008 X009 - Event Transition Types
 ---
-version: "1.0"
+version: "1.0.0"
 transition_types:
   external: [EVENT_VALIDATING, EVENT_PUBLISHED, EVENT_REJECTED, EVENT_ARCHIVED]
   internal: [EVENT_DELIVERED]

@@ -1,6 +1,6 @@
 # SPEC-008 X006 - Event Component Contracts
 ---
-version: "1.0"
+version: "1.0.0"
 contracts:
   XCP-001: { name: EventApi, contract: X007 XCT-### }
   XCP-002: { name: RouteOrchestrator, contract: X007 XCT-### }

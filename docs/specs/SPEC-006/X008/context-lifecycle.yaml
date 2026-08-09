@@ -1,6 +1,6 @@
 # SPEC-006 X008 - Context Lifecycle (see X009)
 ---
-version: "1.0"
+version: "1.0.0"
 lifecycle_phases:
   - Allocate
   - Populate

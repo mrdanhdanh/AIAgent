@@ -1,6 +1,6 @@
 # SPEC-008 X012 - Approval Binding
 ---
-version: "1.0"
+version: "1.0.0"
 approval_binding:
   binding: Event op theo S012 approval flow
   required_for: [XPOL-001, XPOL-002, XPOL-006]

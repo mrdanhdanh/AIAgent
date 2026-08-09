@@ -1,6 +1,6 @@
 # SPEC-006 Appendix — Context Canonical Models (8 XM)
 ---
-version: "1.0"
+version: "1.0.0"
 status: Draft
 aggregate_root: Context
 models:

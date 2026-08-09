@@ -1,6 +1,6 @@
 # SPEC-007 X020 - Artifact Dashboard Panels (6)
 ---
-version: "1.0"
+version: "1.0.0"
 panels:
   XPAN-001: { name: Artifact Activity, description: Create/Publish rate, data: X011 metrics, priority: High }
   XPAN-002: { name: Artifact Lifecycle, description: State histogram (X009), data: X009 states, priority: High }

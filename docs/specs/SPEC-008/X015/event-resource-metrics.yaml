@@ -1,6 +1,6 @@
 # SPEC-008 X015 - Event Resource Metrics
 ---
-version: "1.0"
+version: "1.0.0"
 metrics:
   - event_storage_bytes
   - event_index_entries

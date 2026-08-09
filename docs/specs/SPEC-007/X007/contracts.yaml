@@ -1,6 +1,6 @@
 # SPEC-007 X007 - Artifact Contract Types (7)
 ---
-version: "1.0"
+version: "1.0.0"
 contracts:
   XCT-001: { name: API Contract, description: ArtifactApi ops, breaking: ADR }
   XCT-002: { name: Data Contract, description: Artifact schema, breaking: ADR }

@@ -54,7 +54,7 @@ Tool: spec006-validator.ps1. Output: reports/.
 - Moi sua co note + event (S011).
 
 ## Tham chieu
-`n- SPEC-001 Runtime Kernel
+- SPEC-001 Runtime Kernel
 
 - X016 Compliance - SPEC-006
 - spec006-validator.ps1

@@ -60,7 +60,7 @@ agent: general
 ```text
 XST-001 -> XST-002
 XST-002 -> XST-003 | XST-006
-XST-003 -> XST-004 | XST-005
+XST-003 -> XST-003 | XST-004
 XST-004 -> XST-005
 XST-005 -> (terminal)
 XST-006 -> (terminal)
@@ -72,12 +72,12 @@ XST-006 -> (terminal)
 2. XTR-005: Version moi khong pha caller cu.
 3. XTR-006: Retention het han (S012).
 
-Guard fail -> BLOCK + CONTRACT_GUARD + Event (S011).
+Guard fail -> BLOCK + CONTRACT_GUARD (X009 dinh nghia event type) + Event (S011 cung cap event model: fields, correlation_id).
 
 ## XS008 - Events (6)
 
 - Moi transition sinh dung mot event CONTRACT_*.
-- Event immutable, append-only (P005).
+- Event immutable, append-only (P010).
 - Event co correlation_id (S011).
 
 ## XS009 - Registered Machines

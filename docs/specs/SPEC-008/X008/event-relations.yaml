@@ -1,6 +1,6 @@
 # SPEC-008 X008 - Event Relations
 ---
-version: "1.0"
+version: "1.0.0"
 relations:
   REL-X001: { from: Event, relation: owns, to: EventDefinition, cardinality: 1..1 }
   REL-X002: { from: Event, relation: belongs, to: EventStream, cardinality: 1..1 }

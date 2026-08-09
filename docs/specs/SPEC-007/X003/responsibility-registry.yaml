@@ -1,6 +1,6 @@
 # SPEC-007 X003 - Artifact Responsibility Registry
 ---
-version: "1.0"
+version: "1.0.0"
 registry:
   owner: Artifact Team
   tracked: [XRR-001..016]

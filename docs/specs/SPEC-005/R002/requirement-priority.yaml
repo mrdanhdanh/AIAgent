@@ -1,4 +1,4 @@
 # SPEC-005 R002 - Requirement Priority
 ---
-version: "1.0"
+version: "1.0.0"
 levels: [Critical, High, Medium, Low]

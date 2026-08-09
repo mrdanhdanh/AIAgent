@@ -1,6 +1,6 @@
 # SPEC-005 R015 - Registry Resource Metrics
 ---
-version: "1.0"
+version: "1.0.0"
 metrics:
   registry_resource_allocations: 0
   registry_resource_releases: 0

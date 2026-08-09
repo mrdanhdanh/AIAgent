@@ -1,6 +1,6 @@
 # SPEC-006 X013 - Context Governance
 ---
-version: "1.0"
+version: "1.0.0"
 governance:
   authority: SPEC-000 (Constitution)
   decisions: qua S013 Governance

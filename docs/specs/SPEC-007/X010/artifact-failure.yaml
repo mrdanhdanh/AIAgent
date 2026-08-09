@@ -1,6 +1,6 @@
 # SPEC-007 X010 - Artifact Failure Modes
 ---
-version: "1.0"
+version: "1.0.0"
 failure_modes:
   - Create fail: error + khong tao Artifact
   - Validate fail: ARTIFACT_REJECTED + cleanup

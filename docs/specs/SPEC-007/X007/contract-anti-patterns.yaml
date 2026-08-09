@@ -1,6 +1,6 @@
 # SPEC-007 X007 - Artifact Contract Anti-Patterns
 ---
-version: "1.0"
+version: "1.0.0"
 anti_patterns:
   - No implicit contract (undocumented)
   - No silent breaking

@@ -1,6 +1,6 @@
 # SPEC-005 R015 - Registry Resource Events (S011 reuse)
 ---
-version: "1.0"
+version: "1.0.0"
 event_types:
   - REGISTRY_RESOURCE_ALLOCATED
   - REGISTRY_RESOURCE_RELEASED

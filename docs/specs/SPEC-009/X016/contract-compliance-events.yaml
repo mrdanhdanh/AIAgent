@@ -1,9 +1,9 @@
 # SPEC-009 X016 - Contract Compliance Events
 ---
-version: "1.0"
+version: "1.0.0"
 events:
   - SPEC009_COMPLIANCE_PASS
   - SPEC009_COMPLIANCE_FAIL
   - SPEC009_CERTIFIED
   - SPEC009_AUDITED
-note: Event vao S011.
+note: Event types do X016 dinh nghia - S011 cung cap event model (fields, correlation_id).

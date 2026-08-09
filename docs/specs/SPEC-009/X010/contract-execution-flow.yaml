@@ -1,6 +1,6 @@
 # SPEC-009 X010 - Contract Execution Flow (8 stages)
 ---
-version: "1.0"
+version: "1.0.0"
 stages:
   XF-001: { name: Declare, description: Nhan Contract tu Provider, actor: Contract System, event: CONTRACT_DECLARED }
   XF-002: { name: Validate, description: Validate schema + invariants, actor: Contract System, event: CONTRACT_VALIDATING }

@@ -1,6 +1,6 @@
 # SPEC-006 X016 - Context Certification
 ---
-version: "1.0"
+version: "1.0.0"
 certification:
   certified_artifacts:
     - SPEC-006 SPEC.yaml

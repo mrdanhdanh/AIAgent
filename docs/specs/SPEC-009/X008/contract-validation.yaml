@@ -1,6 +1,6 @@
 # SPEC-009 X008 - Contract Validation Rules
 ---
-version: "1.0"
+version: "1.0.0"
 validation_rules:
   VAL-X001: { field: ContractId, requirement: Required, type: UUID }
   VAL-X002: { field: Version, requirement: Required, type: SemVer }

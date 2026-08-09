@@ -1,6 +1,6 @@
 # SPEC-005 R016 - Registry Validation Rules (12)
 ---
-version: "1.0"
+version: "1.0.0"
 rules:
   - id: RVR-001
     source: R009

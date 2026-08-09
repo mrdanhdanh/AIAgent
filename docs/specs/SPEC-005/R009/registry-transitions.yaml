@@ -1,6 +1,6 @@
 # SPEC-005 R009 - Registry Transitions (7)
 ---
-version: "1.0"
+version: "1.0.0"
 transitions:
   - "from: RST-001; to: RST-002; event: REGISTRY_ENTRY_VALIDATING; guard: Khai bao hop le"
   - "from: RST-002; to: RST-003; event: REGISTRY_ENTRY_PUBLISHED; guard: Validate pass + Storage OK"

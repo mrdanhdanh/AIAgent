@@ -1,6 +1,6 @@
 # SPEC-005 R002 - Requirement Traceability
 ---
-version: "1.0"
+version: "1.0.0"
 traceability:
   RFR-001: [P003]
   RFR-002: [P003]

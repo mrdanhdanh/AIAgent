@@ -1,6 +1,6 @@
 # SPEC-008 X014 - Event Registry (via SPEC-005)
 ---
-version: "1.0"
+version: "1.0.0"
 registry:
   owner: Registry (SPEC-005)
   entries: Event Definition (schemas, state machine, policies)

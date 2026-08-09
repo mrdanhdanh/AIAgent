@@ -1,0 +1,20 @@
+# SPEC-013 X003 - Evolution Responsibility Matrix
+---
+version: "1.0"
+matrix:
+  XRR-001: { name: Semantic Diff, owner: Evolution Engine, role: OWNER }
+  XRR-002: { name: Check Compatibility, owner: Evolution Engine, role: OWNER }
+  XRR-003: { name: Create Migration Plan, owner: Evolution Engine, role: OWNER }
+  XRR-004: { name: Migrate, owner: Evolution Engine, role: OWNER }
+  XRR-005: { name: Self-Heal, owner: Evolution Engine, role: OWNER }
+  XRR-006: { name: Score Health, owner: Evolution Engine, role: OWNER }
+  XRR-007: { name: Capability Benchmark, owner: Evolution Engine, role: BENCHMARKER }
+  XRR-008: { name: Knowledge Migration, owner: Evolution Engine, role: OWNER }
+  XRR-009: { name: Stress Test, owner: Evolution Engine, role: RUNNER }
+  XRR-010: { name: Evolve, owner: Evolution Engine, role: OWNER }
+  XRR-011: { name: Events, owner: Runtime (S011), role: EMITTER }
+  XRR-012: { name: Policy eval, owner: Policy (S012), role: DECIDER }
+  XRR-013: { name: Registry, owner: Registry (SPEC-005), role: REGISTER }
+  XRR-014: { name: Audit, owner: Runtime (S011), role: EMITTER }
+  XRR-015: { name: Retention, owner: Evolution Engine, role: OWNER }
+  XRR-016: { name: Recovery, owner: Evolution Engine, role: OWNER }

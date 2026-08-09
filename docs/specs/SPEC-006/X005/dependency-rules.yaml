@@ -1,6 +1,6 @@
 # SPEC-006 X005 - Dependency Rules
 ---
-version: "1.0"
+version: "1.0.0"
 rules:
   - "Layer N -> Layer N+1: duoc phep"
   - "Layer N -> Layer N+2: khong duoc phep"

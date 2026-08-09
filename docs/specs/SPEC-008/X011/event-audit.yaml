@@ -1,6 +1,6 @@
 # SPEC-008 X011 - Event Audit
 ---
-version: "1.0"
+version: "1.0.0"
 audit:
   who: producer_id / subscriber_id / engine
   what: op (publish/route/deliver/replay/archive)

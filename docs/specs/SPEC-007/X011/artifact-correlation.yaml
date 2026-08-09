@@ -1,6 +1,6 @@
 # SPEC-007 X011 - Artifact Correlation
 ---
-version: "1.0"
+version: "1.0.0"
 correlation:
   correlation_id: sinh khi Create
   trace_id: Runtime (S011)

@@ -1,8 +1,17 @@
 {
-  "schema": "event-data-model",
-  "version": "1.0",
-  "eventId": { "type": "string", "format": "uuid" },
-  "type": { "type": "string", "minLength": 1 },
-  "severity": { "enum": ["info","warning","error","critical"] },
-  "required": [ "eventId", "type", "severity", "correlationId", "timestamp" ]
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aios://event-data.schema.json",
+  "title": "SPEC-008 Event Data Model (X008)",
+  "description": "JSON Schema cho event-data-model.yaml. Validator kiem tra cau truc.",
+  "type": "object",
+  "required": ["version", "entities", "relations", "invariants", "validation", "storage"],
+  "properties": {
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "entities": { "type": "object" },
+    "relations": { "type": "object" },
+    "invariants": { "type": "object" },
+    "validation": { "type": "object" },
+    "storage": { "type": "object" }
+  },
+  "additionalProperties": true
 }

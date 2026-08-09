@@ -1,6 +1,6 @@
 # SPEC-008 X015 - Event Resource Allocation
 ---
-version: "1.0"
+version: "1.0.0"
 allocation:
   - Publish: cap storage theo quota (XPOL-007)
   - Deliver: cap deliver threads

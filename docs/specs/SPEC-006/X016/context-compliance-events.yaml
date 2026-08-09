@@ -1,6 +1,6 @@
 # SPEC-006 X016 - Context Compliance Events
 ---
-version: "1.0"
+version: "1.0.0"
 events:
   - SPEC006_COMPLIANCE_PASS
   - SPEC006_COMPLIANCE_FAIL

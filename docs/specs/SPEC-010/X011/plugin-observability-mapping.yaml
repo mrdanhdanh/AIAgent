@@ -1,15 +1,15 @@
 # SPEC-010 X011 - Plugin Observability Mapping
 ---
-version: "1.0"
+version: "1.0.0"
 mapping:
   stage -> event:
-    Install: PLUGIN_INSTALLED
+    Install: PLUGIN_FW_INSTALLED
     Validate: PLUGIN_VALIDATING
     Sandbox: PLUGIN_SANDBOXED
     Enable: PLUGIN_ENABLED
     Export: PLUGIN_EXPORTED
-    Disable: PLUGIN_DISABLED
-    Uninstall: PLUGIN_UNINSTALLED
+    Disable: PLUGIN_FW_DISABLED
+    Uninstall: PLUGIN_FW_UNINSTALLED
   state -> metric:
     Enabled: plugin_enabled_total
     Disabled: plugin_disabled_total

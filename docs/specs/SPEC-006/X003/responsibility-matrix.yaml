@@ -1,6 +1,6 @@
 # SPEC-006 X003 - Responsibility Matrix
 ---
-version: "1.0"
+version: "1.0.0"
 groups:
   Core: [XXR-001, XXR-002, XXR-008]
   Validation: [XXR-003]

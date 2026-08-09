@@ -1,0 +1,10 @@
+# SPEC-013 X010 - Evolution Query
+---
+version: "1.0"
+query_ops:
+  - GetEvolution(Evolution_id)
+  - GetResult(Evolution_id)
+  - SearchEvolutions(query)
+  - ListByDiff(Diff)
+  - GetHistory(Evolution_id)
+rule: Query khong thay doi Evolution, khong can grant.

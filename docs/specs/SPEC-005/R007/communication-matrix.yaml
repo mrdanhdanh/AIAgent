@@ -1,6 +1,6 @@
 # SPEC-005 R007 - Communication Matrix
 ---
-version: "1.0"
+version: "1.0.0"
 edges:
   - [RCP-001, RCP-002, RCT-002]
   - [RCP-001, RCP-003, RCT-003]

@@ -1,6 +1,6 @@
 # SPEC-007 X015 - Artifact Resource Events
 ---
-version: "1.0"
+version: "1.0.0"
 events:
   - ARTIFACT_RESOURCE_ALLOCATED
   - ARTIFACT_RESOURCE_RELEASED

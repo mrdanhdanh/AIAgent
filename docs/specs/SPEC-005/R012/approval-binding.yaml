@@ -1,6 +1,6 @@
 # SPEC-005 R012 - Binding (RPB-003 -> POL-APPROVAL-001)
 ---
-version: "1.0"
+version: "1.0.0"
 binding:
   id: RPB-003
   policy_ref: POL-APPROVAL-001 (S012)

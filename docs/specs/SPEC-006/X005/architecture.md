@@ -1,68 +1,107 @@
 ---
 name: spec-006-x005-architecture
-description: SPEC-006 X005 - Context Architecture. Layers, components, dependencies.
+description: SPEC-006 X005 — Context Architecture. 7 layers.
 agent: general
 ---
 
-# X005 - Context Architecture
+# X005 — Context Architecture
 
-> **SPEC-006**: Context Engine - **Version**: 1.0.0 - **Trang thai**: Draft
+> **SPEC-006**: Context Engine · **Version**: 1.0.0 · **Trạng thái**: Draft
 
-## Cau hoi duy nhat
+## Câu hỏi duy nhất
 
-> **Context Engine duoc to chuc nhu the nao?**
+> **Context Engine được cấu trúc như thế nào?**
 
-## XA001 - Philosophy
+## Architectural Decisions
 
-- Nho, metadata-only, transient.
-- Tach Lifecycle (Context Engine) khoi Decision (Policy S012).
-- Tach Event/Metric (S011) khoi Logic.
-- Khong duong vong qua Business layer.
+- Context Engine là context management layer, không phải Database.
+- Context transient — chỉ tồn tại trong vòng đời Execution.
+- Context luôn isolated.
+- Context Engine thực thi S010 EF008 — không định nghĩa lại flow.
 
-## XA002 - Layer Model
+## Layers (7)
+
+| Layer | Domain | Invariant | Principle |
+|-------|--------|-----------|-----------|
+| Command | Execution | Không chứa nghiệp vụ | P001 |
+| Allocation | Definition | Allocate ngoài Execution (XB001) | P009 |
+| Population | Definition | Không chứa Business Data (XB006) | P009 |
+| Validation | Validation | Cap Context không hợp lệ (XB003) | P011 |
+| Distribution | Execution | Cap trực tiếp (XB004) | P002 |
+| Collection | Execution | Giữ Context sau kết thúc (XB007) | P009 |
+| Publication | Observability | Không chứa Business Data | P014 |
+
+## Domains (4)
+
+| Domain | Owner |
+|--------|-------|
+| Definition | Context |
+| Validation | Context |
+| Execution | Runtime (SPEC-001) |
+| Observability | Runtime (S011) |
+
+Mọi domain: `contains_business_logic: false`.
+
+## Dependency Rules
+
+- Layer N → Layer N+1: được phép.
+- Layer N → Layer N+2: không được phép.
+- Không Circular Dependency.
+
+## Communication Rules
+
+- Contract · Context · Event. Ngoài ra đều bị cấm.
+
+## Invariants
+
+- Context luôn Metadata Driven.
+- Context luôn isolated.
+- Context luôn Contract First.
+- Context luôn Event Driven.
+
+## Views
+
+- **Layer view**: Command → Allocation → Population → Validation → Distribution → Collection → Publication.
+- **Dependency view**: Allocation → Population → Validation → Distribution → Collection.
+- **Data flow view**: Context → Context Grant → Context Result.
+- **Event flow view**: Context → Event → Metrics → Dashboard.
+
+## Quality
+
+Modularity: Cao · Coupling: Thấp · Cohesion: Cao · Extensibility: Rất cao · Testability: Cao · Determinism: 100%.
+
+## Constraints (đều CẤM)
+
+- Circular Dependency · Hidden Dependency · Shared Mutable State · Business Data trong Context · Shared Context.
+
+## Stability
+
+- **Stable**: Layers, Domains.
+- **Evolvable**: Context Schema, Contracts.
+- **Replaceable**: Context Store, Distribution Strategy.
+
+## Validation
+
+Layering · Dependency · Coupling · Boundary Compliance (X004) · Principle Compliance.
+
+## Machine-readable
 
 ```text
-[API Layer]      Context API (allocate, populate, distribute, mutate, merge, collect, release)
-     |
-[Engine Layer]   Lifecycle Orchestrator (EF008) + State Machine (X009)
-     |
-[Guard Layer]    Policy Evaluator (S012) + Scope Check + Validator
-     |
-[Data Layer]     In-Memory Context Store (transient)
-     |
-[Integration]    Registry (SPEC-005) + Events/Metrics (S011)
+architecture.yaml
+layer-model.yaml
+domain-model.yaml
+dependency-rules.yaml
+communication-rules.yaml
+architecture-matrix.yaml
+architecture-decision-log.yaml
+architecture-registry.yaml
+architecture.schema.json
 ```
 
-## XA003 - Dependency Rules
+## Tham chiếu
 
-- API -> Engine -> Guard -> Data.
-- Engine KHONG goi truc tiep S011 (qua port).
-- Guard goi Policy qua interface (S012).
-- Khong dependency vong.
-
-## XA004 - Communication Rules
-
-- Sync: allocate/populate/mutate/merge (blocking).
-- Async: events, metrics (S011).
-- Query: read-only, khong can grant.
-- Moi op co trace_id (S011).
-
-## XA005 - Domain Model
-
-Context, ContextSection, ContextItem, ContextGrant, ContextState (X008 ENT).
-Domain logic trong Engine Layer.
-
-## XA006 - Key Decisions (ADR)
-
-| ID | Decision | Ly do |
-|----|----------|-------|
-| XAD-001 | Context in-memory | P009 transient |
-| XAD-002 | Context khong business data | P001 |
-| XAD-003 | Policy qua S012 | khong tu quyet |
-| XAD-004 | State machine cua S009 | khong dinh nghia lai |
-
-## Tham chieu
-
-- S010 EF008 - SPEC-001
-- X006 Components - SPEC-006
-- S011 Observability - SPEC-001
+- X001: `../X001-vision.md`
+- X004: `../X004/boundaries.md`
+- S010 EF008: `../../SPEC-001/S010/execution-flow.md`
+- S011: `../../SPEC-001/S011/observability.md`
+- Constitution: `docs/specs/SPEC-000/`

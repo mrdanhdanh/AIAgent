@@ -1,6 +1,6 @@
 # SPEC-008 X013 - Event Governance Metrics
 ---
-version: "1.0"
+version: "1.0.0"
 metrics:
   - spec008_frozen_sections
   - spec008_open_questions

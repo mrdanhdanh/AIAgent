@@ -51,9 +51,9 @@ agent: general
 | XST-001 -> XST-002 | PLUGIN_VALIDATING | Manifest hop le |
 | XST-002 -> XST-003 | PLUGIN_ENABLED | Validate pass + permission OK |
 | XST-002 -> XST-006 | PLUGIN_REJECTED | Validate fail |
-| XST-003 -> XST-004 | PLUGIN_DISABLED | Can tat |
+| XST-003 -> XST-004 | PLUGIN_FW_DISABLED | Can tat |
 | XST-004 -> XST-003 | PLUGIN_ENABLED | Enable lai |
-| XST-004 -> XST-005 | PLUGIN_UNINSTALLED | Het dung |
+| XST-004 -> XST-005 | PLUGIN_FW_UNINSTALLED | Het dung |
 
 ## XS006 - Transition Matrix
 
@@ -74,10 +74,10 @@ XST-006 -> (terminal)
 
 Guard fail -> BLOCK + PLUGIN_GUARD + Event (S011).
 
-## XS008 - Events (6)
+## XS008 - Events (5 types, 6 transitions)
 
 - Moi transition sinh dung mot event PLUGIN_*.
-- Event immutable, append-only (P005).
+- Event immutable, append-only (P010).
 - Event co correlation_id (S011).
 
 ## XS009 - Registered Machines

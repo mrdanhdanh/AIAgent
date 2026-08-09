@@ -1,12 +1,12 @@
 # SPEC-010 X009 - Plugin Definition States (6)
 ---
-version: "1.0"
+version: "1.0.0"
 initial_state: XST-001
 terminal_states: [XST-005, XST-006]
 states:
-  XST-001: { name: Installed, category: Initial, type: Initial, terminal: - }
-  XST-002: { name: Validating, category: Preparation, type: Internal, terminal: - }
-  XST-003: { name: Enabled, category: Active, type: Active, terminal: - }
-  XST-004: { name: Disabled, category: Active, type: Active, terminal: - }
-  XST-005: { name: Uninstalled, category: Terminal, type: Terminal, terminal: yes }
-  XST-006: { name: Rejected, category: Terminal, type: Terminal, terminal: yes }
+  XST-001: { name: Installed, category: Initial, type: Initial, terminal: false }
+  XST-002: { name: Validating, category: Preparation, type: Internal, terminal: false }
+  XST-003: { name: Enabled, category: Active, type: Active, terminal: false }
+  XST-004: { name: Disabled, category: Active, type: Active, terminal: false }
+  XST-005: { name: Uninstalled, category: Terminal, type: Terminal, terminal: true }
+  XST-006: { name: Rejected, category: Terminal, type: Terminal, terminal: true }

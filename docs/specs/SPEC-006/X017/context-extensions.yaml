@@ -1,6 +1,6 @@
 # SPEC-006 X017 - Context Extension Points
 ---
-version: "1.0"
+version: "1.0.0"
 extensions:
   XEXT-001: { name: Context Extension Point, description: Diem mo rong Context, owner: Context Engine, priority: High }
   XEXT-002: { name: Custom Section Type, description: Kieu section moi, owner: Context Engine, priority: Medium }

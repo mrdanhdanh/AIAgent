@@ -1,6 +1,6 @@
 # SPEC-005 R019 - Registry Doctor Pipeline
 ---
-version: "1.0"
+version: "1.0.0"
 pipeline:
   - Collect (machine-readable)
   - Validate (checks per domain)

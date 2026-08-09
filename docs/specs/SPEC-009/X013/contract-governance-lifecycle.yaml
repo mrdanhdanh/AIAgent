@@ -1,6 +1,6 @@
 # SPEC-009 X013 - Contract Governance Lifecycle
 ---
-version: "1.0"
+version: "1.0.0"
 lifecycle:
   states: [Draft, Review, Approved, Frozen, Deprecated]
   frozen: can ADR + RFC de thay doi (SPEC-000)

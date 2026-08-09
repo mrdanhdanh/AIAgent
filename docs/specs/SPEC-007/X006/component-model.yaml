@@ -1,6 +1,6 @@
 # SPEC-007 X006 - Artifact Component Model
 ---
-version: "1.0"
+version: "1.0.0"
 component_model:
   XCP-001: { name: ArtifactApi, layer: Core }
   XCP-002: { name: LifecycleOrchestrator, layer: Core }

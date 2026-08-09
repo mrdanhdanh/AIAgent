@@ -1,6 +1,6 @@
 # SPEC-005 R009 - Registry State Machine Registry
 ---
-version: "1.0"
+version: "1.0.0"
 registries:
   - registry-state-machine.yaml
   - registry-states.yaml

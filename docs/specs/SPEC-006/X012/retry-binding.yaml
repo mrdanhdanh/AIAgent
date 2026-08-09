@@ -1,6 +1,6 @@
 # SPEC-006 X012 - Retry Binding
 ---
-version: "1.0"
+version: "1.0.0"
 retry_binding:
   retry: theo S012 retry policy
   applies_to: [Distribute, Collect, Release]

@@ -1,6 +1,6 @@
 # SPEC-005 R010 - Registry Failure Flow (tham chieu S010 EF017)
 ---
-version: "1.0"
+version: "1.0.0"
 failure_types:
   - Validation Failure
   - Storage Failure

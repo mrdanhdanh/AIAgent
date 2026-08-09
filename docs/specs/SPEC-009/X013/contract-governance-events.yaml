@@ -1,10 +1,10 @@
 # SPEC-009 X013 - Contract Governance Events
 ---
-version: "1.0"
+version: "1.0.0"
 events:
   - SPEC009_FROZEN
   - SPEC009_UNFROZEN
   - SPEC009_VERSIONED
   - SPEC009_DECISION_MADE
   - SPEC009_DECISION_OVERRIDDEN
-note: Event goi vao S011.
+note: Event types do X013 dinh nghia - S011 cung cap event model (fields, correlation_id).

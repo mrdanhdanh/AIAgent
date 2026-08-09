@@ -1,6 +1,6 @@
 # SPEC-009 X016 - Contract Compliance Matrix
 ---
-version: "1.0"
+version: "1.0.0"
 matrix:
   COMP-001: { check: Doctor X019, artifact: contract-*, gate: build }
   COMP-002: { check: Doctor X019, artifact: contract-*, gate: build }

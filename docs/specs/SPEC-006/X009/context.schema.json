@@ -1,7 +1,15 @@
 {
-  "schema": "context-state-machine",
-  "version": "1.0",
-  "initial_state": { "type": "string", "pattern": "^XST-[0-9]{3}$" },
-  "states": { "type": "array", "items": { "type": "object" } },
-  "transitions": { "type": "array", "items": { "type": "object" } }
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aios://context.schema.json",
+  "title": "SPEC-006 Context State Machine (X009)",
+  "type": "object",
+  "properties": {
+    "schema": { "const": "context-state-machine" },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "initial_state": { "type": "string", "pattern": "^XST-[0-9]{3}$" },
+    "states": { "type": "array", "items": { "type": "object" } },
+    "transitions": { "type": "array", "items": { "type": "object" } }
+  },
+  "required": [ "schema", "version" ],
+  "additionalProperties": true
 }

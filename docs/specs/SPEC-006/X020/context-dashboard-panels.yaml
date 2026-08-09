@@ -1,6 +1,6 @@
 # SPEC-006 X020 - Context Dashboard Panels (6)
 ---
-version: "1.0"
+version: "1.0.0"
 panels:
   XPAN-001: { name: Context Activity, description: Allocate/Release rate, data: X011 metrics, priority: High }
   XPAN-002: { name: Context Lifecycle, description: State histogram (X009), data: X009 states, priority: High }

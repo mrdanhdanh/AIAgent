@@ -1,10 +1,10 @@
 # SPEC-009 X007 - Contract Contract Types (7)
 ---
-version: "1.0"
+version: "1.0.0"
 contracts:
   XCT-001: { name: API Contract, description: ContractApi ops (declare/resolve/verify), breaking: ADR }
   XCT-002: { name: Data Contract, description: Contract schema, breaking: ADR }
-  XCT-003: { name: Event Contract, description: CONTRACT_* events (S011), breaking: ADR }
+  XCT-003: { name: Event Contract, description: CONTRACT_* events (X011 dinh nghia - S011 cung cap event model), breaking: ADR }
   XCT-004: { name: Metric Contract, description: contract_* metrics, breaking: additive }
   XCT-005: { name: Policy Contract, description: retention/compat, breaking: ADR }
   XCT-006: { name: Interface Contract, description: Store, Verifier, CompatChecker, breaking: ADR }

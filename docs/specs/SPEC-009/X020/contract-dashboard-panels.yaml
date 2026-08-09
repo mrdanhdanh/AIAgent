@@ -1,6 +1,6 @@
 # SPEC-009 X020 - Contract Dashboard Panels (6)
 ---
-version: "1.0"
+version: "1.0.0"
 panels:
   XPAN-001: { name: Contract Activity, description: Declare/Publish rate, data: X011 metrics, priority: High }
   XPAN-002: { name: Contract Lifecycle, description: State histogram (X009), data: X009 states, priority: High }

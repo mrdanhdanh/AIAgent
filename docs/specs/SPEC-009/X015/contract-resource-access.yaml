@@ -1,6 +1,6 @@
 # SPEC-009 X015 - Contract Resource Access
 ---
-version: "1.0"
+version: "1.0.0"
 access:
   - Contract chi access qua Contract System API
   - Caller doc qua resolve (read-only)

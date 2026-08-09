@@ -1,0 +1,8 @@
+# SPEC-013 X010 - Evolution Storage
+---
+version: "1.0"
+storage:
+  mode: Diff store (P005)
+  lifecycle: Diffed -> Report archive
+  snapshot: optional (debug)
+  quota: theo policy (X012)

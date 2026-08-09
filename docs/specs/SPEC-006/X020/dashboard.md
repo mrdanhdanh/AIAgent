@@ -43,7 +43,7 @@ CONTEXT_DASHBOARD_OPENED / FILTERED / EXPORTED (S011).
 - Neu score thap -> dan X019 Doctor.
 
 ## Tham chieu
-`n- SPEC-001 Runtime Kernel
+- SPEC-001 Runtime Kernel
 
 - X011 Observability - SPEC-006
 - X016 Compliance - SPEC-006

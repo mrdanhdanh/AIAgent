@@ -1,6 +1,6 @@
 # SPEC-008 X012 - Event Policy Categories
 ---
-version: "1.0"
+version: "1.0.0"
 categories:
   Integrity: [XPOL-001, XPOL-002, XPOL-003]
   Data: [XPOL-005, XPOL-010]

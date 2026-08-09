@@ -1,6 +1,6 @@
 # SPEC-006 X008 - Context Invariants
 ---
-version: "1.0"
+version: "1.0.0"
 invariants:
   INV-X001: { name: Unique ContextId, description: Moi Context co id duy nhat }
   INV-X002: { name: Single Owner, description: Context chi thuoc mot Execution }

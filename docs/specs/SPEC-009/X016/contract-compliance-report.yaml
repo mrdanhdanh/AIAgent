@@ -1,6 +1,6 @@
 # SPEC-009 X016 - Contract Compliance Report
 ---
-version: "1.0"
+version: "1.0.0"
 report:
   scope: [X001..X020]
   format: markdown + JSON

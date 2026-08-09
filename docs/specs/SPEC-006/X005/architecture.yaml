@@ -89,7 +89,7 @@ communication_rules:
   - Contract
   - Context
   - Event
-  note: Ngoai ra deu bi cam.
+  # note: Ngoai ra deu bi cam.
 invariants:
   - Context luon Metadata Driven.
   - Context luon isolated.
@@ -113,7 +113,7 @@ constraints:
   - Shared Mutable State
   - Business Data trong Context
   - Shared Context
-  note: Tat ca deu CAM.
+  # note: Tat ca deu CAM.
 stability:
   stable: [Layers, Domains]
   evolvable: [Context Schema, Contracts]

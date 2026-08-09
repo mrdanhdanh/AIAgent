@@ -1,6 +1,6 @@
 # SPEC-007 X011 - Artifact Observability Mapping
 ---
-version: "1.0"
+version: "1.0.0"
 mapping:
   stage -> event:
     Create: ARTIFACT_CREATED

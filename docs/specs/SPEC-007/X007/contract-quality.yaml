@@ -1,6 +1,6 @@
 # SPEC-007 X007 - Artifact Contract Quality
 ---
-version: "1.0"
+version: "1.0.0"
 quality:
   - Contract co schema + doc + test
   - Contract register trong SPEC-005

@@ -1,6 +1,6 @@
 # SPEC-007 X012 - Artifact Policy Model
 ---
-version: "1.0"
+version: "1.0.0"
 policy_model:
   identity: policy_id (XPOL-###)
   enforcement: Artifact Manager (before op)

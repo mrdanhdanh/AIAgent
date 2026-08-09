@@ -1,6 +1,6 @@
 # SPEC-009 X015 - Contract Resource Categories
 ---
-version: "1.0"
+version: "1.0.0"
 categories:
   Storage: [XRES-001]
   Index: [XRES-002]

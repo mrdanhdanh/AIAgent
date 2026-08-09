@@ -50,6 +50,12 @@ param(
     [switch]$noCommit,
 
     [Parameter(Mandatory = $false)]
+    [switch]$cur,
+
+    [Parameter(Mandatory = $false)]
+    [switch]$skipConfirm,
+
+    [Parameter(Mandatory = $false)]
     [string]$projectRoot = (Get-Location).Path,
 
     [Parameter(Mandatory = $false)]
@@ -93,13 +99,13 @@ function Get-AutoCommitMessage {
     if (-not $rawDiff) { $rawDiff = & git diff 2>$null }
 
     $type = "chore"
-    $hasNewClass = $rawDiff -match '\+.*(class |interface |struct |enum )\s+\w+'
-    $hasFix = $rawDiff -match '\+.*(fix|bug|issue|error|exception|crash|null|fail)'
-    $hasRefactor = $rawDiff -match '(rename|move|extract|inline|split|merge)'
-    $hasDoc = $rawDiff -match '\+.*(\/\/\/|/// |\/\*|\*\/|# )'
+    $hasNewClass = $rawDiff -match '^\+\s*(class |interface |struct |enum )\s+\w+'
+    $hasFix = $rawDiff -match '^\+\s*(.*\b(fix|bug|issue|error|exception|crash|null|fail)\b.*)'
+    $hasRefactor = $rawDiff -match '^\+\s*(rename|move|extract|inline|split|merge)'
+    $hasDoc = $rawDiff -match '^\+\s*(\/\/\/|/// |\/\*|\*\/|# )'
     $hasTest = $allFiles | Where-Object { $_ -match '\.Tests\.|test|spec' }
-    $hasStyle = $rawDiff -match '(color|background|font|margin|padding|flex|grid|@media|\.css)'
-    $hasPerf = $rawDiff -match '(async|await|Task\.|caching|memory|performance|lazy)'
+    $hasStyle = $rawDiff -match '^\+\s*(color|background|font|margin|padding|flex|grid|@media|\.css)'
+    $hasPerf = $rawDiff -match '^\+\s*(async|await|Task\.|caching|memory|performance|lazy)'
 
     if ($hasNewClass) { $type = "feat" }
     elseif ($hasFix) { $type = "fix" }
@@ -146,17 +152,19 @@ function Get-AutoCommitMessage {
         if ($scope) { $summary += " in $scope" }
     }
 
-    # --- Tạo body ngắn ---
+    # --- Tạo body ngắn (chạy regex 1 lần, không lặp theo file) ---
     $bodyLines = @()
-    foreach ($f in $allFiles) {
-        $desc = ""
-        if ($rawDiff -match '\+.*(new|added|create|implement)\b.*' -and $f -match '\.cs$') { $desc = "add new implementation" }
-        elseif ($rawDiff -match '\-.*(removed|deleted|deprecated)\b') { $desc = "remove deprecated code" }
-        elseif ($insertions -gt $deletions * 2) { $desc = "add $insertions lines" }
-        elseif ($deletions -gt $insertions * 2) { $desc = "remove $deletions lines" }
-        else { $desc = "update $([math]::Max($insertions,$deletions)) lines" }
+    $hasNewCs = $rawDiff -match '^\+\s*(new|added|create|implement)\b'
+    $hasRemoved = $rawDiff -match '^-\s*(removed|deleted|deprecated)\b'
+    if ($hasNewCs) { $desc = "add new implementation" }
+    elseif ($hasRemoved) { $desc = "remove deprecated code" }
+    elseif ($insertions -gt $deletions * 2) { $desc = "add $insertions lines" }
+    elseif ($deletions -gt $insertions * 2) { $desc = "remove $deletions lines" }
+    else { $desc = "update $([math]::Max($insertions,$deletions)) lines" }
+    foreach ($f in ($allFiles | Select-Object -First 30)) {
         $bodyLines += "- $f`: $desc"
     }
+    if ($allFiles.Count -gt 30) { $bodyLines += "- ... and $($allFiles.Count - 30) more files" }
 
     $message = "$type"
     if ($scope) { $message += "($scope)" }
@@ -278,7 +286,11 @@ if (-not $noCommit -and $hasChanges) {
         }
     }
 
-    & git add -A 2>$null
+    if ($cur) {
+        & git add -u 2>$null
+    } else {
+        & git add -A 2>$null
+    }
     & git commit -m $finalMessage 2>$null
     if ($LASTEXITCODE -ne 0) {
         return @{ status = "FAILED"; summary = "Commit thất bại"; error = "git commit failed" }
@@ -371,12 +383,15 @@ Write-Output ""
 
 # --- Read confirmation ---
 $confirmation = ""
-if ($Host.UI.RawUI) {
+if ($skipConfirm) {
+    # Agent-run sau khi user đã xác nhận — bỏ qua confirmation gate
+    $confirmation = if ($force) { "FORCE" } else { "Y" }
+} elseif ($Host.UI.RawUI) {
     try {
         $confirmation = $Host.UI.RawUI.ReadLine()
     } catch {
-        # Fallback for non-interactive
-        $confirmation = "Y"
+        # Non-interactive: KHÔNG tự động xác nhận — mặc định hủy (an toàn)
+        $confirmation = ""
     }
 } else {
     $confirmation = Read-Host

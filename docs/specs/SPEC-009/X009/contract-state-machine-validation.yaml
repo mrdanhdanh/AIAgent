@@ -1,6 +1,6 @@
 # SPEC-009 X009 - Contract State Machine Validation
 ---
-version: "1.0"
+version: "1.0.0"
 validation:
   - initial_state ton tai
   - moi state reachable

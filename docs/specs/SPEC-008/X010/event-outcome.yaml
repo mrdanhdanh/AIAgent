@@ -1,6 +1,6 @@
 # SPEC-008 X010 - Event Outcome
 ---
-version: "1.0"
+version: "1.0.0"
 outcome:
   success: Published + Delivered + EVENT_DELIVERED
   failure: Rejected + EVENT_REJECTED

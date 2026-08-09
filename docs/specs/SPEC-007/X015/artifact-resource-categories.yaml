@@ -1,6 +1,6 @@
 # SPEC-007 X015 - Artifact Resource Categories
 ---
-version: "1.0"
+version: "1.0.0"
 categories:
   Storage: [XRES-001]
   Index: [XRES-002]

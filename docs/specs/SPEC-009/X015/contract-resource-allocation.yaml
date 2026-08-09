@@ -1,6 +1,6 @@
 # SPEC-009 X015 - Contract Resource Allocation
 ---
-version: "1.0"
+version: "1.0.0"
 allocation:
   - Declare: cap storage theo quota (XPOL-007)
   - Version: cap version slot

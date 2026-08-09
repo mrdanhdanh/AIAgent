@@ -1,0 +1,7 @@
+# SPEC-013 X006 - Evolution Component Metrics
+---
+version: "1.0"
+metrics:
+  - evolution_diff_total
+  - evolution_migrate_total
+  - evolution_heal_total

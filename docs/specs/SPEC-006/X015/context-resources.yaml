@@ -1,6 +1,6 @@
 # SPEC-006 X015 - Context Resources
 ---
-version: "1.0"
+version: "1.0.0"
 resources:
   XRES-001: { name: Memory, owner: Context Engine }
   XRES-002: { name: ContextId, owner: Context Engine }

@@ -1,6 +1,6 @@
 # SPEC-006 X012 - Context Policy Traceability
 ---
-version: "1.0"
+version: "1.0.0"
 traceability:
   XPOL-001: { name: Isolation, source: POL-ISOL-001, principle: P006 }
   XPOL-002: { name: No Business Data, source: S011 OB003A, principle: P001 }

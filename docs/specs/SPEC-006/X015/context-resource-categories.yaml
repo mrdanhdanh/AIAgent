@@ -1,6 +1,6 @@
 # SPEC-006 X015 - Context Resource Categories
 ---
-version: "1.0"
+version: "1.0.0"
 categories:
   Memory: [XRES-001]
   Identity: [XRES-002]
