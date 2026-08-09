@@ -296,7 +296,7 @@ SPEC-009 Contract System
 
 ## SPEC-010 — Plugin Framework
 
-> **Trạng thái**: ✅ Hoàn thành (Completed/count 2, 2026-08-09 — rev1 x2 REV-20260809-207 PASS + REV-20260809-208 PASS) · **Phụ thuộc**: SPEC-000, SPEC-001, SPEC-003, SPEC-005, SPEC-009
+> **Trạng thái**: 🔒 Frozen (20/20, 2026-08-09 — rev1 x2 REV-207/208 + revfull REV-226 auto-freeze) · **Phụ thuộc**: SPEC-000, SPEC-001, SPEC-003, SPEC-005, SPEC-009
 
 ```text
 SPEC-010 Plugin Framework
@@ -323,7 +323,7 @@ SPEC-010 Plugin Framework
 
 ## SPEC-011 — Doctor
 
-> **Trạng thái**: 🚧 Đang review (20/20, Review/Rev1 — REV-20260809-209 PASS, cần rev1 lần 2) · **Phụ thuộc**: SPEC-000..010
+> **Trạng thái**: 🔒 Frozen (20/20, 2026-08-09 — rev1 x2 REV-209/220 + revfull REV-223 auto-freeze) · **Phụ thuộc**: SPEC-000..010
 
 ```text
 SPEC-011 Doctor
@@ -350,7 +350,7 @@ SPEC-011 Doctor
 
 ## SPEC-012 — Simulation Engine
 
-> **Trạng thái**: 🚧 Đang review (20/20, Review/Rev1 — REV-210 PASS, cần rev1 lần 2) · **Phụ thuộc**: SPEC-000, SPEC-001, SPEC-002, SPEC-005, SPEC-011
+> **Trạng thái**: 🔒 Frozen (20/20, 2026-08-09 — rev1 x2 REV-210/221 + revfull REV-224 auto-freeze) · **Phụ thuộc**: SPEC-000, SPEC-001, SPEC-002, SPEC-005, SPEC-011
 
 ```text
 SPEC-012 Simulation Engine
@@ -377,7 +377,7 @@ SPEC-012 Simulation Engine
 
 ## SPEC-013 — Evolution Engine
 
-> **Trạng thái**: 🚧 Đang review (20/20, Review/Rev1 — REV-211 PASS, cần rev1 lần 2) · **Phụ thuộc**: SPEC-000, SPEC-001, SPEC-002, SPEC-003, SPEC-005, SPEC-011, SPEC-012
+> **Trạng thái**: 🔒 Frozen (20/20, 2026-08-09 — rev1 x2 REV-211/222 + revfull REV-225 auto-freeze) · **Phụ thuộc**: SPEC-000, SPEC-001, SPEC-002, SPEC-003, SPEC-005, SPEC-011, SPEC-012
 
 ```text
 SPEC-013 Evolution Engine
