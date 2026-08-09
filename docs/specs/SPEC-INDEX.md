@@ -296,7 +296,7 @@ SPEC-009 Contract System
 
 ## SPEC-010 — Plugin Framework
 
-> **Trạng thái**: ✅ Hoàn thành (20/20) · **Phụ thuộc**: SPEC-000, SPEC-001, SPEC-003, SPEC-005, SPEC-009
+> **Trạng thái**: ✅ Hoàn thành (Completed/count 2, 2026-08-09 — rev1 x2 REV-20260809-207 PASS + REV-20260809-208 PASS) · **Phụ thuộc**: SPEC-000, SPEC-001, SPEC-003, SPEC-005, SPEC-009
 
 ```text
 SPEC-010 Plugin Framework
@@ -323,34 +323,34 @@ SPEC-010 Plugin Framework
 
 ## SPEC-011 — Doctor
 
-> **Trạng thái**: ✅ Hoàn thành (20/20) · **Phụ thuộc**: SPEC-000..010
+> **Trạng thái**: 🚧 Đang review (20/20, Review/Rev1 — REV-20260809-209 PASS, cần rev1 lần 2) · **Phụ thuộc**: SPEC-000..010
 
 ```text
 SPEC-011 Doctor
 │
 ├── Tier 1 — Foundation
-│   ├── X001 Doctor Vision            ✅
-│   ├── X002 Doctor Requirements      ✅
-│   ├── X003 Doctor Responsibilities  ✅
-│   ├── X004 Doctor Boundaries        ✅
-│   ├── X005 Doctor Architecture      ✅
-│   ├── X006 Doctor Components        ✅
-│   ├── X007 Doctor Contracts         ✅
-│   └── Appendix: Canonical Models    ✅
+│   ├── X001 Doctor Vision            🚧
+│   ├── X002 Doctor Requirements      🚧
+│   ├── X003 Doctor Responsibilities  🚧
+│   ├── X004 Doctor Boundaries        🚧
+│   ├── X005 Doctor Architecture      🚧
+│   ├── X006 Doctor Components        🚧
+│   ├── X007 Doctor Contracts         🚧
+│   └── Appendix: Canonical Models    🚧
 │
 ├── Tier 2 — Behavior
-│   ├── X008 Doctor Data Model        ✅
-│   ├── X009 Doctor State Machine     ✅
-│   └── X010 Doctor Execution Flow    ✅
+│   ├── X008 Doctor Data Model        🚧
+│   ├── X009 Doctor State Machine     🚧
+│   └── X010 Doctor Execution Flow    🚧
 │
 └── Tier 3/4 — Operations + Experience
-    ├── X011-X016 Operations          ✅
-    └── X017-X020 Experience          ✅
+    ├── X011-X016 Operations          🚧
+    └── X017-X020 Experience          🚧
 ```
 
 ## SPEC-012 — Simulation Engine
 
-> **Trạng thái**: ✅ Hoàn thành (20/20) · **Phụ thuộc**: SPEC-000, SPEC-001, SPEC-002, SPEC-005, SPEC-011
+> **Trạng thái**: 🚧 Đang review (20/20, Review/Rev1 — REV-210 PASS, cần rev1 lần 2) · **Phụ thuộc**: SPEC-000, SPEC-001, SPEC-002, SPEC-005, SPEC-011
 
 ```text
 SPEC-012 Simulation Engine
@@ -377,7 +377,7 @@ SPEC-012 Simulation Engine
 
 ## SPEC-013 — Evolution Engine
 
-> **Trạng thái**: ✅ Hoàn thành (20/20) · **Phụ thuộc**: SPEC-000, SPEC-001, SPEC-002, SPEC-003, SPEC-005, SPEC-011, SPEC-012
+> **Trạng thái**: 🚧 Đang review (20/20, Review/Rev1 — REV-211 PASS, cần rev1 lần 2) · **Phụ thuộc**: SPEC-000, SPEC-001, SPEC-002, SPEC-003, SPEC-005, SPEC-011, SPEC-012
 
 ```text
 SPEC-013 Evolution Engine

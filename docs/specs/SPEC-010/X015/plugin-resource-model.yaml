@@ -1,9 +1,9 @@
-# SPEC-010 R015 - Plugin Resource Model
+# SPEC-010 X015 - Plugin Resource Model
 ---
 version: "1.0.0"
 resources:
   RRES-001: { name: Storage, description: Versioned Plugin storage, owner: Plugin Framework, priority: Critical }
-  RRES-002: { name: IndeR, description: Plugin version indeR, owner: Plugin Framework, priority: High }
+  RRES-002: { name: Index, description: Plugin version index, owner: Plugin Framework, priority: High }
   RRES-003: { name: PluginId, description: UUID pool, owner: Plugin Framework, priority: Critical }
   XRES-004: { name: Sandbox CPU, description: Sandbox compute, owner: Plugin Framework, priority: High }
   RRES-005: { name: Event Buffer, description: S011 publish queue, owner: Runtime, priority: High }
