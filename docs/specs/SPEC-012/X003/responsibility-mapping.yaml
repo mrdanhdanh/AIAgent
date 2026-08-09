@@ -1,0 +1,8 @@
+# SPEC-012 X003 - Simulation Responsibility Mapping
+---
+version: "1.0"
+mapping:
+  XRR-001..006: Simulation Engine core ops
+  XRR-007..012: simulate theo scenario type
+  XRR-013..014, XRR-016: Runtime/Policy integration
+  XRR-015: Registry (SPEC-005)

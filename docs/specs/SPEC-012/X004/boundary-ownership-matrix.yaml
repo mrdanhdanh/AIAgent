@@ -1,0 +1,9 @@
+# SPEC-012 X004 - Simulation Boundary Ownership Matrix
+---
+version: "1.0"
+ownership:
+  report: Simulation Engine (immutable)
+  metadata: Simulation Engine
+  workflow: Workflow (SPEC-002) bi mo phong
+  policy: Policy (S012)
+  production: KHONG thuoc Simulation

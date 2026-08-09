@@ -1,0 +1,15 @@
+# SPEC-012 X011 - Simulation Observability Mapping
+---
+version: "1.0"
+mapping:
+  stage -> event:
+    Define: SIMULATION_DEFINED
+    Configure: SIMULATION_CONFIGURED
+    Run: SIMULATION_RUNNING
+    Observe: SIMULATION_OBSERVED
+    Compare: SIMULATION_COMPARED
+    Report: SIMULATION_REPORTED
+  state -> metric:
+    Reported: simulation_reported_total
+    Failed: simulation_failed_total
+    Observed: simulation_success_rate

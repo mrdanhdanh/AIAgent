@@ -1,0 +1,7 @@
+{
+  "schema": "simulation-data-model",
+  "version": "1.0",
+  "simulationId": { "type": "string", "format": "uuid" },
+  "scenario": { "enum": ["Bug Fix","New Feature","Migration","Review","Testing","Refactoring"] },
+  "required": [ "simulationId", "scenario", "config", "timestamp" ]
+}

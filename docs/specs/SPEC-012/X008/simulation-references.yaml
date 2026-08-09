@@ -1,0 +1,11 @@
+# SPEC-012 X008 - Simulation References
+---
+version: "1.0"
+references:
+  - ExecutionRef (SPEC-001)
+  - WorkflowRef (SPEC-002)
+  - ScenarioRef (SPEC-012)
+  - PolicyRef (S012)
+  - Event (S011)
+  - RegistryEntry (SPEC-005)
+rule: Reference readonly, khong duoc mutate qua Simulation.

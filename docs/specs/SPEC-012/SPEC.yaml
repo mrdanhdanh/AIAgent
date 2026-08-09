@@ -1,0 +1,59 @@
+---
+id: SPEC-012
+name: Simulation Engine
+version: "1.0.0"
+status: Draft
+type: Engine
+authority: High
+owner: Simulation Team
+description: >
+  Simulation Engine — mô phỏng workflow: Define Scenario, Configure, Run,
+  Observe, Compare, Report. 6 scenario types (Bug Fix, New Feature, Migration,
+  Review, Testing, Refactoring) qua workflow (SPEC-002).
+dependencies:
+  - SPEC-000
+  - SPEC-001
+  - SPEC-002
+  - SPEC-005
+  - SPEC-011
+includes:
+  - X001
+  - X002
+  - X003
+  - X004
+  - X005
+  - X006
+  - X007
+  - X008
+  - X009
+  - X010
+  - X011
+  - X012
+  - X013
+  - X014
+  - X015
+  - X016
+  - X017
+  - X018
+  - X019
+  - X020
+outputs:
+  - Simulation Run
+  - Simulation Report
+  - Scenario Result
+implements:
+  - Simulation
+authoritative: false
+breaking_change_requires:
+  - ADR
+  - RFC
+references:
+  constitution: ../SPEC-000
+  runtime: ../SPEC-001
+  workflow: ../SPEC-002
+  registry: ../SPEC-005
+  doctor: ../SPEC-011
+  glossary: ../../glossary
+  principles: ../../principles
+  rules: ../../rules
+  governance: ../../governance

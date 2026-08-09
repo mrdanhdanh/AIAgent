@@ -1,0 +1,6 @@
+# SPEC-012 X005 - Simulation Domain Model
+---
+version: "1.0"
+domain:
+  entities: [Simulation, Scenario, SimulationConfig, SimulationResult, SimulationReport]
+  logic_layer: Engine Layer

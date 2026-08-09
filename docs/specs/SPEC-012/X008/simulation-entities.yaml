@@ -1,0 +1,19 @@
+# SPEC-012 X008 - Simulation Entities (15 ENT)
+---
+version: "1.0"
+entities:
+  ENT-X001: { name: Simulation, kind: AggregateRoot, owner: Simulation Engine, immutable: false }
+  ENT-X002: { name: SimulationDefinition, kind: Entity, owner: Simulation Engine, immutable: true }
+  ENT-X003: { name: Scenario, kind: Entity, owner: Simulation Engine, immutable: true }
+  ENT-X004: { name: SimulationConfig, kind: Entity, owner: Simulation Engine, immutable: true }
+  ENT-X005: { name: SimulationResult, kind: Value, owner: Simulation Engine, immutable: false }
+  ENT-X006: { name: SimulationState, kind: Transient, owner: Simulation Engine, immutable: false }
+  ENT-X007: { name: SimulationReport, kind: Entity, owner: Simulation Engine, immutable: true }
+  ENT-X008: { name: SimulationEvent, kind: Ref (S011), owner: Runtime, immutable: true }
+  ENT-X009: { name: SimulationMetric, kind: Ref (S011), owner: Runtime, immutable: true }
+  ENT-X010: { name: SimulationSnapshot, kind: Entity, owner: Simulation Engine, immutable: false }
+  ENT-X011: { name: ExecutionRef, kind: Ref (SPEC-001), owner: Execution, immutable: true }
+  ENT-X012: { name: WorkflowRef, kind: Ref (SPEC-002), owner: Workflow, immutable: true }
+  ENT-X013: { name: ScenarioRef, kind: Ref (SPEC-012), owner: Simulation, immutable: true }
+  ENT-X014: { name: PolicyRef, kind: Ref (S012), owner: Runtime, immutable: true }
+  ENT-X015: { name: SimulationExtension, kind: Value, owner: Simulation Engine, immutable: true }

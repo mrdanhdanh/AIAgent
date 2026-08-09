@@ -1,0 +1,11 @@
+# SPEC-012 X011 - Simulation Traces
+---
+version: "1.0"
+traces:
+  - simulation.define
+  - simulation.configure
+  - simulation.run
+  - simulation.observe
+  - simulation.compare
+  - simulation.report
+span_attrs: [simulation_id, execution_id, scenario, domain]

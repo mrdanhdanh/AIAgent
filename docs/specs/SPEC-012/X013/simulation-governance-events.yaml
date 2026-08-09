@@ -1,0 +1,10 @@
+# SPEC-012 X013 - Simulation Governance Events
+---
+version: "1.0"
+events:
+  - SPEC012_FROZEN
+  - SPEC012_UNFROZEN
+  - SPEC012_VERSIONED
+  - SPEC012_DECISION_MADE
+  - SPEC012_DECISION_OVERRIDDEN
+note: Event goi vao S011.

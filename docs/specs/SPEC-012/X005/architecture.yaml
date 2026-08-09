@@ -1,0 +1,10 @@
+# SPEC-012 X005 - Simulation Architecture
+---
+version: "1.0"
+architecture:
+  model: Layered (5 layers)
+  style: In-process + isolated runner
+  key_decisions:
+    - Simulation isolated (RULE-007)
+    - Deterministic (P013)
+    - Policy qua S012

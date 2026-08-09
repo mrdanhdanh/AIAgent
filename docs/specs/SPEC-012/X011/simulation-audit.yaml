@@ -1,0 +1,11 @@
+# SPEC-012 X011 - Simulation Audit
+---
+version: "1.0"
+audit:
+  who: user_id / engine
+  what: op (define/configure/run/observe/compare/report)
+  when: timestamp
+  where: simulation_id, execution_id
+  why: transition_id, event
+  audit_log: append-only (S011)
+  source: XFR-016

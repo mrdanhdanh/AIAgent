@@ -1,0 +1,8 @@
+# SPEC-012 X018 - Simulation Evolution Metrics
+---
+version: "1.0"
+metrics:
+  - spec012_version
+  - spec012_versions_total
+  - spec012_deprecated_count
+  - spec012_compat_score

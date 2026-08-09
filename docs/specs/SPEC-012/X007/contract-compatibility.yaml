@@ -1,0 +1,8 @@
+# SPEC-012 X007 - Simulation Contract Compatibility
+---
+version: "1.0"
+compatibility:
+  Add: field/op moi - OK
+  Change: y nghia field - ADR
+  Remove: field/op - ADR + RFC + migration
+  Event: them type OK, doi type BREAKING

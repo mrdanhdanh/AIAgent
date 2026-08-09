@@ -1,0 +1,8 @@
+# SPEC-012 X007 - Simulation Communication Matrix
+---
+version: "1.0"
+matrix:
+  User -> SimulationApi: sync define
+  SimulationApi -> ScenarioEngine: sync run
+  SimulationApi -> Reporter: sync report
+  SimulationApi -> S011: async event

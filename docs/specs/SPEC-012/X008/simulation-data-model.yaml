@@ -1,0 +1,50 @@
+# SPEC-012 X008 - Simulation Data Model
+---
+version: "1.0"
+entities:
+  ENT-X001: { name: Simulation, kind: AggregateRoot, owner: Simulation Engine, immutable: false }
+  ENT-X002: { name: SimulationDefinition, kind: Entity, owner: Simulation Engine, immutable: true }
+  ENT-X003: { name: Scenario, kind: Entity, owner: Simulation Engine, immutable: true }
+  ENT-X004: { name: SimulationConfig, kind: Entity, owner: Simulation Engine, immutable: true }
+  ENT-X005: { name: SimulationResult, kind: Value, owner: Simulation Engine, immutable: false }
+  ENT-X006: { name: SimulationState, kind: Transient, owner: Simulation Engine, immutable: false }
+  ENT-X007: { name: SimulationReport, kind: Entity, owner: Simulation Engine, immutable: true }
+  ENT-X008: { name: SimulationEvent, kind: Ref (S011), owner: Runtime, immutable: true }
+  ENT-X009: { name: SimulationMetric, kind: Ref (S011), owner: Runtime, immutable: true }
+  ENT-X010: { name: SimulationSnapshot, kind: Entity, owner: Simulation Engine, immutable: false }
+  ENT-X011: { name: ExecutionRef, kind: Ref (SPEC-001), owner: Execution, immutable: true }
+  ENT-X012: { name: WorkflowRef, kind: Ref (SPEC-002), owner: Workflow, immutable: true }
+  ENT-X013: { name: ScenarioRef, kind: Ref (SPEC-012), owner: Simulation, immutable: true }
+  ENT-X014: { name: PolicyRef, kind: Ref (S012), owner: Runtime, immutable: true }
+  ENT-X015: { name: SimulationExtension, kind: Value, owner: Simulation Engine, immutable: true }
+relations:
+  REL-X001: { from: Simulation, to: SimulationDefinition, cardinality: 1..1 }
+  REL-X002: { from: Simulation, to: Scenario, cardinality: 1..1 }
+  REL-X003: { from: Simulation, to: SimulationConfig, cardinality: 1..1 }
+  REL-X004: { from: Simulation, to: SimulationResult, cardinality: 1..1 }
+  REL-X005: { from: Simulation, to: SimulationState, cardinality: 1..1 }
+  REL-X006: { from: Simulation, to: SimulationReport, cardinality: 0..1 }
+  REL-X007: { from: Simulation, to: ExecutionRef, cardinality: 1..1 }
+  REL-X008: { from: Simulation, to: SimulationEvent, cardinality: 0..* }
+  REL-X009: { from: Simulation, to: SimulationSnapshot, cardinality: 0..* }
+invariants:
+  INV-X001: { name: Unique SimulationId, description: Moi Simulation co id duy nhat }
+  INV-X002: { name: Isolated, description: Simulation khong doi he thong that }
+  INV-X003: { name: Deterministic, description: Cung input cung ket qua }
+  INV-X004: { name: Scenario Valid, description: Scenario thuoc 6 types }
+  INV-X005: { name: Config Valid, description: Config hop le }
+  INV-X006: { name: Result Compare, description: Result co the compare }
+  INV-X007: { name: No Business Data, description: Simulation khong chua business data }
+validation:
+  VAL-X001: { field: SimulationId, requirement: Required, type: UUID }
+  VAL-X002: { field: Scenario, requirement: Required, type: Enum (6 types) }
+  VAL-X003: { field: Config, requirement: Required, type: Object }
+  VAL-X004: { field: Result, requirement: Required, type: Object }
+  VAL-X005: { field: SuccessRate, requirement: Required, type: 0-100 }
+  VAL-X006: { field: Timestamp, requirement: Required, type: Timestamp }
+  VAL-X007: { field: Issues, requirement: Optional, type: String[] }
+storage:
+  mode: Scenario store
+  persistence: "true (P005 - report history)"
+  snapshot: SimulationSnapshot (optional, debug)
+  source: /doctor --simulation

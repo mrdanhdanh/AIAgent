@@ -1,0 +1,6 @@
+# SPEC-012 X004 - Simulation Boundary Registry
+---
+version: "1.0"
+registry:
+  owner: Simulation Team
+  tracked: [XB-001..010]

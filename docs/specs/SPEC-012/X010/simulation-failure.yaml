@@ -1,0 +1,11 @@
+# SPEC-012 X010 - Simulation Failure Modes
+---
+version: "1.0"
+failure_modes:
+  - Define fail: error + khong simulation
+  - Configure fail: SIMULATION_FAILED + cleanup
+  - Run fail: SIMULATION_FAILED + partial result
+  - Observe fail: giu result, retry
+  - Compare fail: khong report + event
+  - Report fail: retry policy
+retry: theo Policy S012

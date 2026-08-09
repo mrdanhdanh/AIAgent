@@ -1,0 +1,7 @@
+# SPEC-012 X003 - Simulation Responsibility Registry
+---
+version: "1.0"
+registry:
+  owner: Simulation Team
+  tracked: [XRR-001..016]
+  spec: SPEC-012 X003

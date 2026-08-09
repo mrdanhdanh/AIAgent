@@ -1,0 +1,8 @@
+# SPEC-012 X011 - Simulation Correlation
+---
+version: "1.0"
+correlation:
+  correlation_id: sinh khi Define
+  trace_id: Runtime (S011)
+  execution_id: Execution (SPEC-001)
+  mapping: simulation-observability-mapping.yaml

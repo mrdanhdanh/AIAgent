@@ -1,0 +1,13 @@
+# SPEC-012 Appendix - Simulation Canonical Models (8)
+---
+version: "1.0"
+models:
+  AM-001: { name: Simulation, kind: AggregateRoot, owner: Simulation Engine, immutable: false }
+  AM-002: { name: SimulationDefinition, kind: Entity, owner: Simulation Engine, immutable: true }
+  AM-003: { name: Scenario, kind: Entity, owner: Simulation Engine, immutable: true }
+  AM-004: { name: SimulationConfig, kind: Entity, owner: Simulation Engine, immutable: true }
+  AM-005: { name: SimulationResult, kind: Value, owner: Simulation Engine, immutable: false }
+  AM-006: { name: SimulationState, kind: Transient, owner: Simulation Engine, immutable: false }
+  AM-007: { name: SimulationReport, kind: Entity, owner: Simulation Engine, immutable: true }
+  AM-008: { name: WorkflowRef, kind: Value, owner: Simulation Engine, immutable: true }
+aggregate_root: AM-001 Simulation

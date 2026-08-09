@@ -1,0 +1,8 @@
+# SPEC-012 X007 - Simulation Contract Anti-Patterns
+---
+version: "1.0"
+anti_patterns:
+  - No implicit contract (undocumented)
+  - No silent breaking
+  - No production change qua simulation
+  - No non-deterministic simulation

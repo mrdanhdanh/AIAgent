@@ -1,0 +1,9 @@
+# SPEC-012 X013 - Simulation Governance Registry
+---
+version: "1.0"
+registry:
+  spec: SPEC-012 (this)
+  sections: [X001..X020]
+  models: simulation-models/
+  schemas: *.schema.json
+  status_tracking: SPEC-INDEX.md

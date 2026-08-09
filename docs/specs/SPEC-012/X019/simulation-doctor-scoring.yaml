@@ -1,0 +1,16 @@
+# SPEC-012 X019 - Simulation Doctor Scoring
+---
+version: "1.0"
+scoring:
+  dimensions:
+    spec_consistency: 30
+    cross_reference_valid: 20
+    schema_valid: 20
+    completeness: 15
+    governance: 15
+  grade:
+    "90-100": Excellent
+    "80-89": Good
+    "60-79": Fair
+    "0-59": Poor
+  gate: < 80 -> BLOCKED (X016)

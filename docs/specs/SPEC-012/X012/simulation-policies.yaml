@@ -1,0 +1,14 @@
+# SPEC-012 X012 - Simulation Policies (10)
+---
+version: "1.0"
+policies:
+  XPOL-001: { name: Isolated, description: Simulation khong doi he thong that, priority: Critical, source: RULE-007, principle: P009 }
+  XPOL-002: { name: Deterministic, description: Cung input cung ket qua, priority: Critical, source: P013, principle: P013 }
+  XPOL-003: { name: Replayable, description: Replay qua Event log, priority: High, source: RULE-007, principle: P005 }
+  XPOL-004: { name: Safe, description: Khong tao Artifact production, priority: Critical, source: P015, principle: P009 }
+  XPOL-005: { name: No Business Data, description: Simulation chi metadata, priority: Critical, source: S011 OB003A, principle: P001 }
+  XPOL-006: { name: Retention, description: Report archive theo retention, priority: High, source: S012, principle: P011 }
+  XPOL-007: { name: Quota, description: Gioi han simulation/report, priority: High, source: S012, principle: P011 }
+  XPOL-008: { name: Scenario Valid, description: Scenario thuoc 6 types, priority: High, source: X008, principle: P009 }
+  XPOL-009: { name: Audit All, description: Moi thay doi co audit, priority: High, source: S011, principle: P005 }
+  XPOL-010: { name: Schema Valid, description: Report theo schema, priority: High, source: X008, principle: P009 }

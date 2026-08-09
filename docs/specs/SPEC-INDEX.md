@@ -242,115 +242,138 @@ SPEC-007 Artifact Manager
 
 ## SPEC-008 — Event Bus
 
-> **Trạng thái**: ✅ Approved (20/20, 2026-08-09 — rev1 x2 REV-20260809-149/152 PASS 2-pass, cần revfull để Frozen) · **Phụ thuộc**: SPEC-000, SPEC-001, SPEC-005, SPEC-007
+> **Trạng thái**: ✅ Frozen (20/20, 2026-08-09 — rev1 x2 REV-20260809-149/152 PASS 2-pass + revfull REV-20260809-201 PASS auto-freeze) · **Phụ thuộc**: SPEC-000, SPEC-001, SPEC-005, SPEC-007
 
 ```text
 SPEC-008 Event Bus
 │
-├── Tier 1 — Foundation ✅ Approved
-│   ├── X001 Event Vision             ✅ Approved
-│   ├── X002 Event Requirements       ✅ Approved
-│   ├── X003 Event Responsibilities   ✅ Approved
-│   ├── X004 Event Boundaries         ✅ Approved
-│   ├── X005 Event Architecture       ✅ Approved
-│   ├── X006 Event Components         ✅ Approved
-│   ├── X007 Event Contracts          ✅ Approved
-│   └── Appendix: Canonical Models    ✅ Approved
+├── Tier 1 — Foundation ✅ Frozen
+│   ├── X001 Event Vision             ✅ Frozen
+│   ├── X002 Event Requirements       ✅ Frozen
+│   ├── X003 Event Responsibilities   ✅ Frozen
+│   ├── X004 Event Boundaries         ✅ Frozen
+│   ├── X005 Event Architecture       ✅ Frozen
+│   ├── X006 Event Components         ✅ Frozen
+│   ├── X007 Event Contracts          ✅ Frozen
+│   └── Appendix: Canonical Models    ✅ Frozen
 │
-├── Tier 2 — Behavior ✅ Approved
-│   ├── X008 Event Data Model         ✅ Approved
-│   ├── X009 Event State Machine      ✅ Approved
-│   └── X010 Event Execution Flow     ✅ Approved
+├── Tier 2 — Behavior ✅ Frozen
+│   ├── X008 Event Data Model         ✅ Frozen
+│   ├── X009 Event State Machine      ✅ Frozen
+│   └── X010 Event Execution Flow     ✅ Frozen
 │
-└── Tier 3/4 — Operations + Experience ✅ Approved
-    ├── X011-X016 Operations          ✅ Approved
-    └── X017-X020 Experience          ✅ Approved
+└── Tier 3/4 — Operations + Experience ✅ Frozen
+    ├── X011-X016 Operations          ✅ Frozen
+    └── X017-X020 Experience          ✅ Frozen
 ```
 
 ## SPEC-009 — Contract System
 
-> **Trạng thái**: 🚧 In progress (20/20 Draft — rev1 REV-20260809-150 FAIL 7 CRITICAL, chưa fix) · **Phụ thuộc**: SPEC-000, SPEC-001, SPEC-005
+> **Trạng thái**: ✅ Frozen (20/20, 2026-08-09 — rev1 x2 REV-20260809-153 CONDITIONAL + REV-20260809-202 PASS + revfull REV-20260809-203 PASS auto-freeze) · **Phụ thuộc**: SPEC-000, SPEC-001, SPEC-005
 
 ```text
 SPEC-009 Contract System
 │
-├── Tier 1 — Foundation
-│   ├── X001 Contract Vision           🚧
-│   ├── X002 Contract Requirements     🚧
-│   ├── X003 Contract Responsibilities 🚧
-│   ├── X004 Contract Boundaries       🚧
-│   ├── X005 Contract Architecture     🚧
-│   ├── X006 Contract Components       🚧
-│   ├── X007 Contract Contracts        🚧
-│   └── Appendix: Canonical Models     🚧
+├── Tier 1 — Foundation ✅ Frozen
+│   ├── X001 Contract Vision           ✅ Frozen
+│   ├── X002 Contract Requirements     ✅ Frozen
+│   ├── X003 Contract Responsibilities ✅ Frozen
+│   ├── X004 Contract Boundaries       ✅ Frozen
+│   ├── X005 Contract Architecture     ✅ Frozen
+│   ├── X006 Contract Components       ✅ Frozen
+│   ├── X007 Contract Contracts        ✅ Frozen
+│   └── Appendix: Canonical Models     ✅ Frozen
 │
-├── Tier 2 — Behavior
-│   ├── X008 Contract Data Model       🚧
-│   ├── X009 Contract State Machine    🚧
-│   └── X010 Contract Execution Flow   🚧
+├── Tier 2 — Behavior ✅ Frozen
+│   ├── X008 Contract Data Model       ✅ Frozen
+│   ├── X009 Contract State Machine    ✅ Frozen
+│   └── X010 Contract Execution Flow   ✅ Frozen
 │
-└── Tier 3/4 — Operations + Experience
-    ├── X011-X016 Operations           🚧
-    └── X017-X020 Experience           🚧
+└── Tier 3/4 — Operations + Experience ✅ Frozen
+    ├── X011-X016 Operations           ✅ Frozen
+    └── X017-X020 Experience           ✅ Frozen
 ```
 
 ## SPEC-010 — Plugin Framework
 
-> **Trạng thái**: ✅ Hoàn thành (20/20) · **Phụ thuộc**: SPEC-000, SPEC-001, SPEC-003, SPEC-005, SPEC-009
+> **Trạng thái**: 🚧 In progress (20/20 — review rev1 REV-20260809-205 FAIL, chờ fix 10 CRITICAL) · **Phụ thuộc**: SPEC-000, SPEC-001, SPEC-003, SPEC-005, SPEC-009
 
 ```text
 SPEC-010 Plugin Framework
 │
 ├── Tier 1 — Foundation
-│   ├── X001 Plugin Vision            ✅
-│   ├── X002 Plugin Requirements      ✅
-│   ├── X003 Plugin Responsibilities  ✅
-│   ├── X004 Plugin Boundaries        ✅
-│   ├── X005 Plugin Architecture      ✅
-│   ├── X006 Plugin Components        ✅
-│   ├── X007 Plugin Contracts         ✅
-│   └── Appendix: Canonical Models    ✅
+│   ├── X001 Plugin Vision            🚧
+│   ├── X002 Plugin Requirements      🚧
+│   ├── X003 Plugin Responsibilities  🚧
+│   ├── X004 Plugin Boundaries        🚧
+│   ├── X005 Plugin Architecture      🚧
+│   ├── X006 Plugin Components        🚧
+│   ├── X007 Plugin Contracts         🚧
+│   └── Appendix: Canonical Models    🚧
 │
 ├── Tier 2 — Behavior
-│   ├── X008 Plugin Data Model        ✅
-│   ├── X009 Plugin State Machine     ✅
-│   └── X010 Plugin Execution Flow    ✅
+│   ├── X008 Plugin Data Model        🚧
+│   ├── X009 Plugin State Machine     🚧
+│   └── X010 Plugin Execution Flow    🚧
 │
 └── Tier 3/4 — Operations + Experience
-    ├── X011-X016 Operations          ✅
-    └── X017-X020 Experience          ✅
+    ├── X011-X016 Operations          🚧
+    └── X017-X020 Experience          🚧
 ```
 
 ## SPEC-011 — Doctor
 
-> **Trạng thái**: ✅ Hoàn thành (20/20) · **Phụ thuộc**: SPEC-000..010
+> **Trạng thái**: In progress (Draft/NotReviewed — review FAIL REV-206, chờ fix 9 CRITICAL + 2 MAJOR) · **Phụ thuộc**: SPEC-000..010
 
 ```text
 SPEC-011 Doctor
 │
 ├── Tier 1 — Foundation
-│   ├── X001 Doctor Vision            ✅
-│   ├── X002 Doctor Requirements      ✅
-│   ├── X003 Doctor Responsibilities  ✅
-│   ├── X004 Doctor Boundaries        ✅
-│   ├── X005 Doctor Architecture      ✅
-│   ├── X006 Doctor Components        ✅
-│   ├── X007 Doctor Contracts         ✅
-│   └── Appendix: Canonical Models    ✅
+│   ├── X001 Doctor Vision            🚧
+│   ├── X002 Doctor Requirements      🚧
+│   ├── X003 Doctor Responsibilities  🚧
+│   ├── X004 Doctor Boundaries        🚧
+│   ├── X005 Doctor Architecture      🚧
+│   ├── X006 Doctor Components        🚧
+│   ├── X007 Doctor Contracts         🚧
+│   └── Appendix: Canonical Models    🚧
 │
 ├── Tier 2 — Behavior
-│   ├── X008 Doctor Data Model        ✅
-│   ├── X009 Doctor State Machine     ✅
-│   └── X010 Doctor Execution Flow    ✅
+│   ├── X008 Doctor Data Model        🚧
+│   ├── X009 Doctor State Machine     🚧
+│   └── X010 Doctor Execution Flow    🚧
 │
 └── Tier 3/4 — Operations + Experience
-    ├── X011-X016 Operations          ✅
-    └── X017-X020 Experience          ✅
+    ├── X011-X016 Operations          🚧
+    └── X017-X020 Experience          🚧
 ```
 
 ## SPEC-012 — Simulation Engine
 
-> **Trạng thái**: ⬜
+> **Trạng thái**: ✅ Hoàn thành (20/20) · **Phụ thuộc**: SPEC-000, SPEC-001, SPEC-002, SPEC-005, SPEC-011
+
+```text
+SPEC-012 Simulation Engine
+│
+├── Tier 1 — Foundation
+│   ├── X001 Simulation Vision         ✅
+│   ├── X002 Simulation Requirements   ✅
+│   ├── X003 Simulation Responsibilities ✅
+│   ├── X004 Simulation Boundaries     ✅
+│   ├── X005 Simulation Architecture   ✅
+│   ├── X006 Simulation Components     ✅
+│   ├── X007 Simulation Contracts      ✅
+│   └── Appendix: Canonical Models     ✅
+│
+├── Tier 2 — Behavior
+│   ├── X008 Simulation Data Model     ✅
+│   ├── X009 Simulation State Machine  ✅
+│   └── X010 Simulation Execution Flow ✅
+│
+└── Tier 3/4 — Operations + Experience
+    ├── X011-X016 Operations           ✅
+    └── X017-X020 Experience           ✅
+```
 
 ## SPEC-013 — Evolution Engine
 

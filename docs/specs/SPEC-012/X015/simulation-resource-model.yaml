@@ -1,0 +1,10 @@
+# SPEC-012 X015 - Simulation Resource Model
+---
+version: "1.0"
+resources:
+  XRES-001: { name: Storage, description: Results storage, owner: Simulation, priority: Critical }
+  XRES-002: { name: Index, description: result index (domain/severity), owner: Simulation, priority: High }
+  XRES-003: { name: ScanId, description: UUID pool, owner: Simulation, priority: Critical }
+  XRES-004: { name: Scan CPU, description: Scanner compute, owner: Simulation, priority: High }
+  XRES-005: { name: Event Buffer, description: S011 publish queue, owner: Runtime, priority: High }
+  XRES-006: { name: Snapshot Store, description: debug snapshots, owner: Simulation, priority: Low }

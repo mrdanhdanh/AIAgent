@@ -1,0 +1,10 @@
+# SPEC-012 X008 - Simulation Lifecycle (see X009)
+---
+version: "1.0"
+lifecycle_phases:
+  - Defined
+  - Configured
+  - Running
+  - Observed
+  - Reported
+note: Simulation khong dinh nghia lai lifecycle.

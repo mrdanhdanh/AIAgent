@@ -1,0 +1,8 @@
+# SPEC-012 X010 - Simulation Flow Validation
+---
+version: "1.0"
+validation:
+  - stage order dung pipeline
+  - moi stage co event tuong ung
+  - simulation khong doi he thong that
+  - deterministic (Doctor X019)

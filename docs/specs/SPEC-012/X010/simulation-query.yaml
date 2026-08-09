@@ -1,0 +1,10 @@
+# SPEC-012 X010 - Simulation Query
+---
+version: "1.0"
+query_ops:
+  - GetSimulation(simulation_id)
+  - GetResult(simulation_id)
+  - SearchSimulations(query)
+  - ListByScenario(scenario)
+  - GetHistory(simulation_id)
+rule: Query khong thay doi Simulation, khong can grant.

@@ -1,0 +1,8 @@
+# SPEC-012 X005 - Simulation Dependency Rules
+---
+version: "1.0"
+dependency_rules:
+  - API -> Engine -> Guard -> Store
+  - Engine khong goi truc tiep S011 (qua port)
+  - Guard goi Policy qua interface (S012)
+  - Simulator goi Workflow qua read-only interface

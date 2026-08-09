@@ -1,0 +1,11 @@
+# SPEC-012 X007 - Simulation Contract Types (7)
+---
+version: "1.0"
+contracts:
+  XCT-001: { name: API Contract, description: SimulationApi ops (define/run/observe/compare/report), breaking: ADR }
+  XCT-002: { name: Data Contract, description: Scenario + Result schema, breaking: ADR }
+  XCT-003: { name: Event Contract, description: SIMULATION_* events (S011), breaking: ADR }
+  XCT-004: { name: Metric Contract, description: simulation_* metrics, breaking: additive }
+  XCT-005: { name: Policy Contract, description: run scope, breaking: ADR }
+  XCT-006: { name: Interface Contract, description: Store, Scenario, Comparator, breaking: ADR }
+  XCT-007: { name: Report Contract, description: report schema (success rate), breaking: ADR }

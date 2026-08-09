@@ -1,0 +1,10 @@
+# SPEC-012 X010 - Simulation Stages Registry
+---
+version: "1.0"
+registered_stages:
+  XF-001: { name: Define, actor: Simulation Engine, event: SIMULATION_DEFINED }
+  XF-002: { name: Configure, actor: Simulation Engine, event: SIMULATION_CONFIGURED }
+  XF-003: { name: Run, actor: ScenarioEngine, event: SIMULATION_RUNNING }
+  XF-004: { name: Observe, actor: Observer, event: SIMULATION_OBSERVED }
+  XF-005: { name: Compare, actor: Comparator, event: SIMULATION_COMPARED }
+  XF-006: { name: Report, actor: Reporter, event: SIMULATION_REPORTED }

@@ -1,0 +1,9 @@
+# SPEC-012 X015 - Simulation Resource Metrics
+---
+version: "1.0"
+metrics:
+  - SIMULATION_storage_bytes
+  - SIMULATION_result_count
+  - SIMULATION_resource_leaked_total
+  - SIMULATION_quota_exceeded_total
+  - SIMULATION_scan_latency_seconds

@@ -1,0 +1,10 @@
+# SPEC-012 X016 - Simulation Compliance Rules
+---
+version: "1.0"
+compliance_rules:
+  COMP-001: { name: Non-Invasive, requirement: Simulation khong sua core (P015), source: XNF-001 }
+  COMP-002: { name: Safe Repair, requirement: Repair doc-only (P015), source: XNF-002 }
+  COMP-003: { name: Measurable, requirement: Moi check co diem (XNF-003), source: XNF-003 }
+  COMP-004: { name: Observable, requirement: Moi thay doi co Event (P005), source: XNF-004 }
+  COMP-005: { name: Comprehensive, requirement: Scan toan bo (XNF-005), source: XNF-005 }
+  COMP-006: { name: No Auto-Decision, requirement: Khong tu quyet dinh (S013), source: XPOL-008 }

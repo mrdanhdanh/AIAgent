@@ -1,0 +1,16 @@
+# SPEC-012 X006 - Simulation Component Contracts
+---
+version: "1.0"
+contracts:
+  XCP-001: { name: SimulationApi, contract: X007 XCT-### }
+  XCP-002: { name: PipelineOrchestrator, contract: X007 XCT-### }
+  XCP-003: { name: SimulationStateMachine, contract: X007 XCT-### }
+  XCP-004: { name: ScenarioEngine, contract: X007 XCT-### }
+  XCP-005: { name: ConfigValidator, contract: X007 XCT-### }
+  XCP-006: { name: PolicyGuard, contract: X007 XCT-### }
+  XCP-007: { name: ScenarioStore, contract: X007 XCT-### }
+  XCP-008: { name: ResultStore, contract: X007 XCT-### }
+  XCP-009: { name: Comparator, contract: X007 XCT-### }
+  XCP-010: { name: SimulationMetrics, contract: X007 XCT-### }
+  XCP-011: { name: RegistryClient, contract: X007 XCT-### }
+  XCP-012: { name: Reporter, contract: X007 XCT-### }
