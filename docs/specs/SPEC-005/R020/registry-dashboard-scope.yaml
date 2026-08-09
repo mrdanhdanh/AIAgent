@@ -1,0 +1,18 @@
+# SPEC-005 R020 - Registry Dashboard Scope (S011 OB010)
+---
+version: "1.0"
+reads:
+  - Registry Events (R011)
+  - Registry Metrics (R011)
+  - Registry Trace (R011)
+  - Registry Audit (R011)
+  - Health (R011)
+  - Registry-of-Registries (R014)
+  - Governance (R013)
+  - Compliance (R016)
+  - Doctor (R019)
+not_reads:
+  - Implementation
+  - Business Data
+  - Agent Internal State
+  - Plugin Internal State

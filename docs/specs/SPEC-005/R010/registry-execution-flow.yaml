@@ -1,0 +1,48 @@
+# SPEC-005 R010 — Registry Execution Flow
+---
+id: SPEC-005-R010
+name: Registry Execution Flow
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Registry Team
+philosophy:
+  - Moi Entry chay nhu Execution cua Runtime (SPEC-001).
+  - Registry luu + resolve, Runtime thuc thi (RB004).
+  - Khong buoc nao thieu Event (S011).
+principles:
+  - Declarative: Entry khai bao truoc, khong hardcode.
+  - Validate truoc khi luu (RFR-004).
+  - Delegate thuc thi cho Runtime (RB004).
+  - Moi resolution co trace + event (S011).
+stages:
+  note: Entry dung 7 stages cua S010 EF004 (qua Runtime).
+  - Initialize
+  - Validate
+  - Prepare
+  - Execute
+  - Coordinate
+  - Finalize
+  - Complete
+canonical_flow:
+  - Command
+  - Declare (metadata)
+  - Validate
+  - Store (S014 model)
+  - Resolve (S014 pipeline)
+  - Execute (Runtime S010)
+  - Finalize
+  - Complete
+registry_flows:
+  - Storage
+  - Resolution (S014)
+  - Query
+  - Gate (approval)
+  - Retry (POL-RETRY-001)
+  - Timeout (POL-TIMEOUT-001)
+  - Failure (EF017)
+rules:
+  - Moi Entry phai validate truoc khi luu.
+  - Moi resolution chay qua Runtime - khong tu resolve (RB004).
+  - Moi buoc sinh Event + Trace + Metric (S011).
+  - Entry ket thuc bang Terminal State (S009).

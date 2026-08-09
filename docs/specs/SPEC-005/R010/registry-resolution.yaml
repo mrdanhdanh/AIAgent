@@ -1,0 +1,14 @@
+# SPEC-005 R010 - Registry Resolution Flow (S014)
+---
+version: "1.0"
+flow:
+  - Request (entry id + version)
+  - Lookup
+  - Candidate Selection
+  - Compatibility Check (S013 GV010)
+  - Policy Binding Check (S012)
+  - Governance Check (S013)
+  - Resolved (delegate Runtime)
+rules:
+  - Delegate Runtime - khong tu resolve (RB004).
+  - Failure -> loi chuan (S014 RG005A).

@@ -1,0 +1,7 @@
+{ "$schema": "https://json-schema.org/draft/2020-12/schema", "$id": "aios://registry-contracts.schema.json", "title": "SPEC-005 Registry Contracts (R007)", "type": "object",
+  "required": ["id","name","version","status","frozen","owner","contracts"],
+  "properties": { "id": { "const": "SPEC-005-R007" }, "name": { "const": "Registry Contracts" },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "status": { "enum": ["Draft","Review","Approved","Stable","Deprecated"] }, "frozen": { "type": "boolean" },
+    "owner": { "type": "string" }, "contracts": { "type": "object", "minProperties": 7 } },
+  "additionalProperties": false }

@@ -1,0 +1,69 @@
+# SPEC-005 R011 - Registry Observability
+---
+id: SPEC-005-R011
+name: Registry Observability
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Registry Team
+philosophy:
+  - Moi hoat dong deu sinh du lieu quan sat (P014).
+  - Registry dung S011 (Runtime) - khong dinh nghia lai.
+principles:
+  - Event Driven (S011)
+  - Traceable (S011)
+  - Immutable (S011)
+  - Correlation First (S011)
+  - Metadata First (S011)
+  - Append Only (S011)
+domains:
+  - Events
+  - Metrics
+  - Trace
+  - Audit
+  - Health
+boundary:
+  observes:
+    - Entry Metadata
+    - Entry Version
+    - Entry Domain
+    - Registry Event
+    - Resolution Result
+  not_observes:
+    - Business Data
+    - User Data
+    - Knowledge Content
+    - Agent Internal State
+    - Plugin Internal State
+correlation_model:
+  fields: [entry_id, execution_id, correlation_id, lineage_id, parent_id]
+  rules:
+    - Sinh khi Entry Created.
+    - Gan vao: Event, Metrics, Trace, Audit.
+    - Khong doi trong vong doi (P009).
+doctor_checks:
+  - Missing Registry Event
+  - Missing Registry Metrics
+  - Broken Registry Trace
+  - Broken Lineage (S011)
+  - Invalid Audit (S011)
+evolution_integration:
+  - Evolution chi doc: Registry Event, Metrics, Trace, Audit.
+  - Evolution khong doc implementation.
+machine_readable:
+  - registry-observability.yaml
+  - registry-events.yaml
+  - registry-metrics.yaml
+  - registry-traces.yaml
+  - registry-audit.yaml
+  - registry-correlation.yaml
+  - registry-health.yaml
+  - registry-dashboard.yaml
+  - registry-observability-mapping.yaml
+  - registry-observability.schema.json
+success_criteria:
+  - Moi Entry deu quan sat duoc.
+  - Moi Transition deu sinh Event (R009).
+  - Moi Entry deu co Metrics + Trace + Audit.
+  - Dashboard va Doctor chi can doc machine-readable.
+  - Khong phu thuoc nen tang quan sat cu the.

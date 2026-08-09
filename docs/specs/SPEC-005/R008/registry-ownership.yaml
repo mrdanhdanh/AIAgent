@@ -1,0 +1,9 @@
+# SPEC-005 R008 - Registry Ownership
+---
+version: "1.0"
+ownership:
+  RegistryEntry: Registry Team
+  EntryMetadata: Registry Team
+  EntryVersion: Registry Team
+  ResolutionResult: Registry Team
+  Capability (SPEC-003): Capability Team

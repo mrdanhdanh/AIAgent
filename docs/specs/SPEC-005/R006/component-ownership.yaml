@@ -1,0 +1,12 @@
+# SPEC-005 R006 - Component Ownership
+---
+version: "1.0"
+ownership:
+  RCP-001: Registry
+  RCP-002: Registry
+  RCP-003: Registry
+  RCP-004: Registry
+  RCP-005: Registry
+  RCP-006: Registry
+  RCP-007: Registry
+  RCP-008: Registry

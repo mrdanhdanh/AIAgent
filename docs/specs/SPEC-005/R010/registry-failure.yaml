@@ -1,0 +1,17 @@
+# SPEC-005 R010 - Registry Failure Flow (tham chieu S010 EF017)
+---
+version: "1.0"
+failure_types:
+  - Validation Failure
+  - Storage Failure
+  - Resolution Failure (S014 RG005A)
+  - Policy Failure
+  - System Failure
+flow:
+  - Failure
+  - Isolation
+  - Failure Event (S011)
+  - Terminal State (S009)
+rules:
+  - Khong sua loi nghiep vu.
+  - Delegate Runtime (S010 EF017).

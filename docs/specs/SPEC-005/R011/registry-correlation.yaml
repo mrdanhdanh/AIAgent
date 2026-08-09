@@ -1,0 +1,9 @@
+# SPEC-005 R011 - Registry Correlation (S011 reuse)
+---
+version: "1.0"
+model:
+  fields: [entry_id, execution_id, correlation_id, lineage_id, parent_id]
+rules:
+  - Sinh khi Entry Created.
+  - Gan vao: Event, Metrics, Trace, Audit.
+  - Khong doi trong vong doi (P009).

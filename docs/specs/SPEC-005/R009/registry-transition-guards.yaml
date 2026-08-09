@@ -1,0 +1,12 @@
+# SPEC-005 R009 - Registry Transition Guards
+---
+version: "1.0"
+guards:
+  - transition: RST-001 -> RST-002
+    guard: Khai bao hop le (schema, khong code RB001)
+  - transition: RST-002 -> RST-003
+    guard: Validate pass + Storage OK
+  - transition: RST-002 -> RST-006
+    guard: Validate fail (co Invalid Audit S013)
+  - transition: RST-003/004 -> RST-005
+    guard: Governance (S013) / khong con dung

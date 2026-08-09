@@ -1,0 +1,60 @@
+# SPEC-005 R014 - Registry-of-Registries
+---
+id: SPEC-005-R014
+name: Registry-of-Registries
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Registry Team
+philosophy:
+  - Registry dang ky chinh no trong S014.
+  - Registry-of-Registries la diem vao duy nhat cho moi Registry.
+  - Dashboard chi can doc mot file.
+principles:
+  - Single File: registry-registry.yaml
+  - Metadata First
+  - Versioned
+  - Discoverable
+categories:
+  - Capability Registry
+  - Workflow Registry
+  - Contract Registry
+  - Policy Registry
+  - Plugin Registry
+  - Agent Registry
+entry_model:
+  fields: [id, type, category, version, status, owner, references, compatibility, lifecycle, metadata]
+ownership:
+  Registry-of-Registries: Registry Team
+  Sub Registry: Owner rieng
+  Registry (S014): Runtime
+lifecycle: [Draft, Published, Deprecated, Retired]
+governance:
+  - Published
+  - Immutable
+  - Governance (S013)
+  - Deprecated
+  - Retired
+constraints:
+  - Khong Duplicate Registry ID.
+  - Khong Broken Reference (S014).
+  - Khong Circular Reference (S014).
+  - Khong Orphan Registry.
+resolution:
+  - Request
+  - Lookup (S014)
+  - Candidate Selection
+  - Governance Check (S013)
+  - Resolved
+resolution_rules:
+  - Resolve theo ID (S014).
+  - Khong Resolve Deprecated neu co ban Active.
+events:
+  - REGISTRY_REGISTERED
+  - REGISTRY_UPDATED
+  - REGISTRY_DEPRECATED
+  - REGISTRY_RETIRED
+metrics:
+  registry_count: 0
+  active_registries: 0
+  resolution_success_rate: 0

@@ -1,0 +1,9 @@
+# SPEC-005 R008 - Registry References
+---
+version: "1.0"
+references:
+  Entry → Capability: CapabilityRef (SPEC-003)
+  Entry → Workflow: WorkflowRef (SPEC-002)
+  Entry → Agent: AgentRef (SPEC-004)
+  Entry → Execution: ExecutionRef (S008)
+  Entry → Event: RegistryEvent (S011)

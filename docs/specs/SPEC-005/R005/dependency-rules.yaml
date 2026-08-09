@@ -1,0 +1,8 @@
+# SPEC-005 R005 - Dependency Rules
+---
+version: "1.0"
+rules:
+  - "Layer N -> Layer N+1: duoc phep"
+  - "Layer N -> Layer N+2: khong duoc phep"
+  - "Khong Circular Dependency"
+  - "Resolution -> Runtime: duoc phep (delegate S014)"

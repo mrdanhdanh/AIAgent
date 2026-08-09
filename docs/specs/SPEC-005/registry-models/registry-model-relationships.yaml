@@ -1,0 +1,7 @@
+# SPEC-005 Appendix - Registry Model Relationships
+---
+version: "1.0"
+relationships:
+  RegistryEntry: [EntryMetadata, EntryVersion, EntryDomain, EntryOwner, EntryReference, ResolutionResult]
+  EntryMetadata: [EntryVersion]
+  ResolutionResult: [RegistrySnapshot]

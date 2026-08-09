@@ -1,0 +1,12 @@
+# SPEC-005 R006 - Component Metrics
+---
+version: "1.0"
+metrics:
+  RCP-001: Registry Metric
+  RCP-002: Registry Metric
+  RCP-003: Registry Metric
+  RCP-004: Registry Metric
+  RCP-005: Registry Metric
+  RCP-006: Registry Metric
+  RCP-007: Registry Metric
+  RCP-008: Registry Metric

@@ -1,0 +1,9 @@
+# SPEC-005 R015 - Registry Resource Validation
+---
+version: "1.0"
+checks:
+  - Double Allocation (S015)
+  - Resource Leak (S015)
+  - Quota Violation (binding R012)
+  - Undefined Resource
+  - Release sai Terminal State (S009)

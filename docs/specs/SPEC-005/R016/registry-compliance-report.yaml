@@ -1,0 +1,7 @@
+# SPEC-005 R016 - Registry Compliance Report
+---
+version: "1.0"
+report:
+  fields: [id, timestamp, registry_version, matrix, score, status, certification, evidence]
+rules:
+  - Report immutable (P005).

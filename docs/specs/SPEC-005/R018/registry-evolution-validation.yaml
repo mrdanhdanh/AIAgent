@@ -1,0 +1,10 @@
+# SPEC-005 R018 - Registry Evolution Validation
+---
+version: "1.0"
+checks:
+  - Missing Evidence (R011)
+  - Unauthorized Source
+  - Missing Approval (R013)
+  - Breaking Change Without Approval
+  - Invalid Proposal
+  - Apply Khong Qua Registry (S014)

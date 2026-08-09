@@ -1,0 +1,7 @@
+# SPEC-005 R013 - Registry Governance Decision (S013 GV012)
+---
+version: "1.0"
+model:
+  fields: [id, entry, rule, result, reason, timestamp, severity]
+result: [Allow, Deny, Suspend, Retry, Escalate]
+modes: [Strict, Compatible, Simulation, Audit Only]

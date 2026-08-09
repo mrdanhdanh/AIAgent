@@ -1,0 +1,4 @@
+# SPEC-005 R012 - Registry Policy Categories (S012 RP003)
+---
+version: "1.0"
+categories: [Recovery, Control, Orchestration, Resource, Governance, Security, Lifecycle]

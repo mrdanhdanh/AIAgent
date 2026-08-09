@@ -1,0 +1,11 @@
+# SPEC-005 R005 - Architecture Matrix
+---
+version: "1.0"
+matrix:
+  Command: Execution
+  Declaration: Definition
+  Storage: Definition
+  Validation: Validation
+  Resolution: Capability
+  Query: Data
+  Publication: Observability

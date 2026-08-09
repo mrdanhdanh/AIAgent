@@ -1,0 +1,11 @@
+# SPEC-005 R010 - Registry Storage Flow
+---
+version: "1.0"
+flow:
+  - Khai bao (metadata)
+  - Validate (RB003)
+  - Luu Entry theo S014
+  - Published (RST-003)
+rules:
+  - Khong luu Business Data (RB002).
+  - Moi buoc sinh Event + Audit (S011).

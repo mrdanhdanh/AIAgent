@@ -1,0 +1,138 @@
+# SPEC-005 R005 — Registry Architecture (Blueprint)
+---
+id: SPEC-005-R005
+name: Registry Architecture
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Registry Team
+vision: He thong metadata SSOT cho AIOS. Moi tang mot trach nhiem, giao tiep qua Contract.
+decisions:
+  - Registry la metadata system, khong phai Database.
+  - Registry thuc thi S014 - khong dinh nghia lai model.
+  - Storage-agnostic.
+  - Registry khong chua Domain Logic.
+layers:
+  Command:
+    level: 1
+    domain: Execution
+    input: Entry Request
+    output: Entry Result
+    responsibility: [Nhan Entry Request]
+    not_responsibility: [Khong chua nghiep vu]
+    invariant: Khong chua nghiep vu
+    principle: P001
+  Declaration:
+    level: 2
+    domain: Definition
+    input: Entry Request
+    output: Entry Result
+    responsibility: [Nhan khai bao Entry (metadata)]
+    not_responsibility: [Khong nhan code (RB001)]
+    invariant: Khong nhan code (RB001)
+    principle: P003
+  Storage:
+    level: 3
+    domain: Definition
+    input: Entry Request
+    output: Entry Result
+    responsibility: [Luu Entry theo S014]
+    not_responsibility: [Khong luu Business Data (RB002)]
+    invariant: Khong luu Business Data (RB002)
+    principle: P009
+  Validation:
+    level: 4
+    domain: Validation
+    input: Entry Request
+    output: Entry Result
+    responsibility: [Validate Entry truoc khi luu]
+    not_responsibility: [Khong luu Entry khong hop le (RB003)]
+    invariant: Khong luu Entry khong hop le (RB003)
+    principle: P011
+  Resolution:
+    level: 5
+    domain: Capability
+    input: Entry Request
+    output: Entry Result
+    responsibility: [Resolve qua S014 pipeline]
+    not_responsibility: [Khong tu resolve (RB004)]
+    invariant: Khong tu resolve (RB004)
+    principle: P007
+  Query:
+    level: 6
+    domain: Data
+    input: Entry Request
+    output: Entry Result
+    responsibility: [Query + Discover Entry]
+    not_responsibility: [Khong phu thuoc Storage cu the (RB006)]
+    invariant: Khong phu thuoc Storage cu the (RB006)
+    principle: P003
+  Publication:
+    level: 7
+    domain: Observability
+    input: Entry Request
+    output: Entry Result
+    responsibility: [Publish Event/Metrics/Trace/Audit (S011)]
+    not_responsibility: [Khong chua Business Data]
+    invariant: Khong chua Business Data
+    principle: P014
+domains:
+  Definition: { owner: Registry, business_logic: false }
+  Validation: { owner: Registry, business_logic: false }
+  Capability: { owner: Runtime (S014), business_logic: false }
+  Data: { owner: Registry, business_logic: false }
+  Execution: { owner: Runtime (SPEC-001), business_logic: false }
+  Observability: { owner: Runtime (S011), business_logic: false }
+dependency_rules:
+  - "Layer N -> Layer N+1: duoc phep"
+  - "Layer N -> Layer N+2: khong duoc phep"
+  - "Khong Circular Dependency"
+  - "Resolution -> Runtime: duoc phep (delegate S014)"
+communication_rules:
+  - Contract
+  - Event
+  note: Ngoai ra deu bi cam.
+invariants:
+  - Registry luon Metadata Driven.
+  - Registry khong biet Storage implementation.
+  - Registry luon Contract First.
+  - Registry luon Event Driven.
+views:
+  layer_view: [Command, Declaration, Storage, Validation, Resolution, Query, Publication]
+  dependency_view: [Storage, Validation, Resolution, Runtime]
+  data_flow_view: [Entry, Metadata, Resolution Result]
+  event_flow_view: [Registry, Event, Metrics, Dashboard]
+quality:
+  Modularity: Cao
+  Coupling: Thap
+  Cohesion: Cao
+  Extensibility: Rat cao
+  Testability: Cao
+  Determinism: "100%"
+constraints:
+  - Circular Dependency
+  - Hidden Dependency
+  - Shared Mutable State
+  - Business Data trong Registry
+  - Direct Storage Coupling
+  note: Tat ca deu CAM.
+stability:
+  stable: [Layers, Domains]
+  evolvable: [Entry Schema, Contracts, Domains]
+  replaceable: [Storage, Cache]
+metrics:
+  layer_count: 7
+  domain_count: 6
+  circular_dependency: 0
+validation:
+  - Layering
+  - Dependency
+  - Coupling
+  - Boundary Compliance (R004)
+  - Principle Compliance
+mapping:
+  Layering: P008
+  Contract: P002
+  Event: P005
+  Metadata: P003
+  Constitution: P020

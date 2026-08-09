@@ -1,0 +1,7 @@
+# SPEC-005 R008 - Registry Identities
+---
+version: "1.0"
+identities:
+  Entry ID: toan cuc, khong doi
+  Metadata ID: khong doi khi Published
+  Version ID: semver

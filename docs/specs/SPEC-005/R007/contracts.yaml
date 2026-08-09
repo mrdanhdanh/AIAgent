@@ -1,0 +1,142 @@
+# SPEC-005 R007 — Registry Contracts (7 RCT)
+---
+id: SPEC-005-R007
+name: Registry Contracts
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Registry Team
+contracts:
+  RCT-001:
+    name: Registry Contract
+    category: Execution
+    direction: Request/Response
+    pattern: Sync
+    version: 1.0.0
+    status: Draft
+    owner: Registry Engine
+    layer: Core
+    domain: Registry
+    purpose: Quan ly vong doi Entry
+    inputs: [Entry Request]
+    outputs: [Entry Result]
+    preconditions: [Entry hop le]
+    postconditions: [Entry stored hoac rejected]
+    invariants: [Registry dang ky trong S014, khong Business Data]
+    dependencies: []
+    capability: registry-contract
+    compatibility: [1.x]
+  RCT-002:
+    name: Declaration Contract
+    category: Data
+    direction: Request/Response
+    pattern: Request/Response
+    version: 1.0.0
+    status: Draft
+    owner: Declaration Manager
+    layer: Core
+    domain: Registry
+    purpose: Entry Definition + Version
+    inputs: [Entry Request]
+    outputs: [Entry Result]
+    preconditions: [Entry hop le]
+    postconditions: [Entry stored hoac rejected]
+    invariants: [Definition immutable khi Published]
+    dependencies: []
+    capability: registry-contract
+    compatibility: [1.x]
+  RCT-003:
+    name: Storage Contract
+    category: Data
+    direction: Request/Response
+    pattern: Request/Response
+    version: 1.0.0
+    status: Draft
+    owner: Storage Manager
+    layer: Core
+    domain: Registry
+    purpose: Luu Entry theo S014
+    inputs: [Entry Request]
+    outputs: [Entry Result]
+    preconditions: [Entry hop le]
+    postconditions: [Entry stored hoac rejected]
+    invariants: [Khong luu Business Data (RB002)]
+    dependencies: []
+    capability: registry-contract
+    compatibility: [1.x]
+  RCT-004:
+    name: Validation Contract
+    category: Execution
+    direction: Request/Response
+    pattern: Sync
+    version: 1.0.0
+    status: Draft
+    owner: Validation Engine
+    layer: Core
+    domain: Registry
+    purpose: Validate Entry truoc khi luu
+    inputs: [Entry Request]
+    outputs: [Entry Result]
+    preconditions: [Entry hop le]
+    postconditions: [Entry stored hoac rejected]
+    invariants: [Validate truoc khi luu (RB003)]
+    dependencies: []
+    capability: registry-contract
+    compatibility: [1.x]
+  RCT-005:
+    name: Resolution Contract
+    category: Execution
+    direction: Request/Response
+    pattern: Sync/Async
+    version: 1.0.0
+    status: Draft
+    owner: Resolution Service
+    layer: Core
+    domain: Registry
+    purpose: Resolve qua S014 pipeline
+    inputs: [Entry Request]
+    outputs: [Entry Result]
+    preconditions: [Entry hop le]
+    postconditions: [Entry stored hoac rejected]
+    invariants: [Khong tu resolve (RB004)]
+    dependencies: []
+    capability: registry-contract
+    compatibility: [1.x]
+  RCT-006:
+    name: Query Contract
+    category: Data
+    direction: Request/Response
+    pattern: Request/Response
+    version: 1.0.0
+    status: Draft
+    owner: Query Provider
+    layer: Core
+    domain: Registry
+    purpose: Query + Discover Entry
+    inputs: [Entry Request]
+    outputs: [Entry Result]
+    preconditions: [Entry hop le]
+    postconditions: [Entry stored hoac rejected]
+    invariants: [Khong phu thuoc Storage cu the]
+    dependencies: []
+    capability: registry-contract
+    compatibility: [1.x]
+  RCT-007:
+    name: Event Contract
+    category: Observability
+    direction: Request/Response
+    pattern: Event
+    version: 1.0.0
+    status: Draft
+    owner: Registry Event Dispatcher
+    layer: Core
+    domain: Registry
+    purpose: Publish Event/Metrics/Trace/Audit (S011)
+    inputs: [Entry Request]
+    outputs: [Entry Result]
+    preconditions: [Entry hop le]
+    postconditions: [Entry stored hoac rejected]
+    invariants: [Khong Business Data, immutable]
+    dependencies: []
+    capability: registry-contract
+    compatibility: [1.x]

@@ -1,0 +1,25 @@
+# SPEC-005 R020 - Registry Dashboard Views
+---
+version: "1.0"
+views:
+  - name: Registry View
+    source: R009/R010
+    content: state + outcome distribution
+  - name: Entry View
+    source: R012
+    content: entry metadata + binding
+  - name: Registry-of-Registries View
+    source: R014
+    content: registry-of-registries.yaml (mot file)
+  - name: Governance View
+    source: R013
+    content: governance graph
+  - name: Resource View
+    source: R015
+    content: resource metrics
+  - name: Health View
+    source: R011 + R016
+    content: health status + compliance score
+  - name: Compliance + Doctor View
+    source: R016 + R019
+    content: compliance report + doctor report

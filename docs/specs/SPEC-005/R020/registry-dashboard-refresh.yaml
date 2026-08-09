@@ -1,0 +1,7 @@
+# SPEC-005 R020 - Registry Dashboard Refresh
+---
+version: "1.0"
+rules:
+  - Event Driven (P005): refresh khi co event moi.
+  - Khong polling.
+  - View la projection immutable (P010).

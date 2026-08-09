@@ -1,0 +1,365 @@
+# SPEC-005 R002 — Registry Requirements
+---
+id: SPEC-005-R002
+name: Registry Requirements
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Registry Team
+functional:
+  RFR-001:
+    title: Store Entry
+    description: lưu trữ Entry theo S014 model
+    priority: Critical
+    category: Core
+    owner: Registry
+    status: Draft
+    source: [P003, P011]
+    rules: [RULE-002]
+    verification: [Registry Test, Doctor]
+  RFR-002:
+    title: Resolve Entry
+    description: phân giải Entry qua Resolution Service (S014)
+    priority: Critical
+    category: Execution
+    owner: Registry
+    status: Draft
+    source: [P003, P011]
+    rules: [RULE-002]
+    verification: [Registry Test, Doctor]
+  RFR-003:
+    title: Version Entry
+    description: quản lý version Entry (SemVer)
+    priority: Critical
+    category: Data
+    owner: Registry
+    status: Draft
+    source: [P003, P011]
+    rules: [RULE-002]
+    verification: [Registry Test, Doctor]
+  RFR-004:
+    title: Validate Entry
+    description: validate Entry trước khi lưu
+    priority: Critical
+    category: Validation
+    owner: Registry
+    status: Draft
+    source: [P003, P011]
+    rules: [RULE-002]
+    verification: [Registry Test, Doctor]
+  RFR-005:
+    title: Discover Entry
+    description: khám phá Entry theo domain
+    priority: High
+    category: Data
+    owner: Registry
+    status: Draft
+    source: [P003, P011]
+    rules: [RULE-002]
+    verification: [Registry Test, Doctor]
+  RFR-006:
+    title: Query Registry
+    description: truy vấn metadata
+    priority: High
+    category: Data
+    owner: Registry
+    status: Draft
+    source: [P003, P011]
+    rules: [RULE-002]
+    verification: [Registry Test, Doctor]
+  RFR-007:
+    title: Manage Domains
+    description: quản lý multi-domain
+    priority: High
+    category: Core
+    owner: Registry
+    status: Draft
+    source: [P003, P011]
+    rules: [RULE-002]
+    verification: [Registry Test, Doctor]
+  RFR-008:
+    title: Check Compatibility
+    description: kiểm tra compatibility (S013 GV010)
+    priority: High
+    category: Validation
+    owner: Registry
+    status: Draft
+    source: [P003, P011]
+    rules: [RULE-002]
+    verification: [Registry Test, Doctor]
+  RFR-009:
+    title: Enforce Ownership
+    description: mỗi Entry đúng một owner
+    priority: Critical
+    category: Governance
+    owner: Registry
+    status: Draft
+    source: [P003, P011]
+    rules: [RULE-002]
+    verification: [Registry Test, Doctor]
+  RFR-010:
+    title: Deprecate Entry
+    description: lifecycle deprecation (S014 RG010)
+    priority: High
+    category: Data
+    owner: Registry
+    status: Draft
+    source: [P003, P011]
+    rules: [RULE-002]
+    verification: [Registry Test, Doctor]
+  RFR-011:
+    title: Publish Registry Events
+    description: phát Event cho mọi state change (S011)
+    priority: High
+    category: Observability
+    owner: Registry
+    status: Draft
+    source: [P003, P011]
+    rules: [RULE-002]
+    verification: [Registry Test, Doctor]
+  RFR-012:
+    title: Track Metrics
+    description: theo dõi lookup/resolution (S011)
+    priority: High
+    category: Observability
+    owner: Registry
+    status: Draft
+    source: [P003, P011]
+    rules: [RULE-002]
+    verification: [Registry Test, Doctor]
+  RFR-013:
+    title: Cache Read
+    description: đọc cache hợp lệ
+    priority: Medium
+    category: Core
+    owner: Registry
+    status: Draft
+    source: [P003, P011]
+    rules: [RULE-002]
+    verification: [Registry Test, Doctor]
+  RFR-014:
+    title: Support Groups
+    description: nhóm Entry (domain group)
+    priority: Medium
+    category: Core
+    owner: Registry
+    status: Draft
+    source: [P003, P011]
+    rules: [RULE-002]
+    verification: [Registry Test, Doctor]
+  RFR-015:
+    title: Manage Lifecycle
+    description: vòng đời Entry (Draft->Published->...)
+    priority: Critical
+    category: Execution
+    owner: Registry
+    status: Draft
+    source: [P003, P011]
+    rules: [RULE-002]
+    verification: [Registry Test, Doctor]
+  RFR-016:
+    title: Audit Registry
+    description: ghi audit mọi thay đổi (S011)
+    priority: High
+    category: Observability
+    owner: Registry
+    status: Draft
+    source: [P003, P011]
+    rules: [RULE-002]
+    verification: [Registry Test, Doctor]
+non_functional:
+  RNF-001:
+    title: Deterministic Resolution
+    description: cùng request -> cùng result
+    priority: Critical
+    category: Execution
+    owner: Registry
+    status: Draft
+    source: [P009]
+    rules: [RULE-013]
+  RNF-002:
+    title: Metadata Driven
+    description: không hardcode metadata
+    priority: Critical
+    category: Core
+    owner: Registry
+    status: Draft
+    source: [P009]
+    rules: [RULE-013]
+  RNF-003:
+    title: Storage-agnostic
+    description: không ràng buộc database
+    priority: Critical
+    category: Core
+    owner: Registry
+    status: Draft
+    source: [P009]
+    rules: [RULE-013]
+  RNF-004:
+    title: Observable
+    description: mọi lookup quan sát qua S011
+    priority: High
+    category: Observability
+    owner: Registry
+    status: Draft
+    source: [P009]
+    rules: [RULE-013]
+  RNF-005:
+    title: Versioned
+    description: mọi Entry version (SemVer)
+    priority: High
+    category: Data
+    owner: Registry
+    status: Draft
+    source: [P009]
+    rules: [RULE-013]
+  RNF-006:
+    title: Compatible
+    description: backward compatible
+    priority: High
+    category: Data
+    owner: Registry
+    status: Draft
+    source: [P009]
+    rules: [RULE-013]
+  RNF-007:
+    title: Recoverable
+    description: phục hồi sau lỗi lưu trữ
+    priority: High
+    category: Core
+    owner: Registry
+    status: Draft
+    source: [P009]
+    rules: [RULE-013]
+  RNF-008:
+    title: Testable
+    description: kiểm thử tự động
+    priority: High
+    category: Core
+    owner: Registry
+    status: Draft
+    source: [P009]
+    rules: [RULE-013]
+  RNF-009:
+    title: Performant
+    description: đáp ứng target lookup
+    priority: High
+    category: Observability
+    owner: Registry
+    status: Draft
+    source: [P009]
+    rules: [RULE-013]
+  RNF-010:
+    title: Governed
+    description: chịu Governance (S013)
+    priority: Critical
+    category: Governance
+    owner: Registry
+    status: Draft
+    source: [P009]
+    rules: [RULE-013]
+  RNF-011:
+    title: Reusable
+    description: metadata tái sử dụng
+    priority: Medium
+    category: Data
+    owner: Registry
+    status: Draft
+    source: [P009]
+    rules: [RULE-013]
+  RNF-012:
+    title: Traceable
+    description: mọi resolution truy vết (S011)
+    priority: High
+    category: Observability
+    owner: Registry
+    status: Draft
+    source: [P009]
+    rules: [RULE-013]
+constraints:
+  RC-001:
+    name: No Business Data
+    type: Architectural
+    source: [P001]
+    rules: [RULE-001]
+  RC-002:
+    name: No Hardcoded Metadata
+    type: Architectural
+    source: [P003]
+    rules: [RULE-001]
+  RC-003:
+    name: No Direct Storage Coupling
+    type: Architectural
+    source: [P003]
+    rules: [RULE-001]
+  RC-004:
+    name: No Redefine S014 Model
+    type: Architectural
+    source: [P009]
+    rules: [RULE-009]
+  RC-005:
+    name: No Redefine Policy (S012)
+    type: Governance
+    source: [P015]
+    rules: [RULE-012]
+  RC-006:
+    name: Validate Before Store
+    type: Governance
+    source: [P011]
+    rules: [RULE-002]
+assumptions:
+  RA-001: Entry hop le (da validate)
+  RA-002: Storage kha dung
+  RA-003: Contract hop le (S007)
+  RA-004: Runtime kha dung (SPEC-001)
+  note: Neu gia dinh sai, Registry chi bao loi, khong tu sua.
+dependencies:
+  logical:
+    - Constitution
+    - Runtime (SPEC-001)
+    - Registry Model (S014)
+  runtime_services:
+    - Event Store (S011)
+    - Metrics Collector (S011)
+external_interfaces:
+  Entry Request: Input
+  Resolution: Output
+  Event (S011): Publish
+  Policy (S012): Apply
+quality_attributes:
+  Determinism:
+    target: "100%"
+    description: Cung request -> cung result
+  Reliability:
+    target: "99.9%"
+  Availability:
+    target: "99.9%"
+  Traceability:
+    target: "100%"
+  Observability:
+    target: "100%"
+acceptance:
+  RAR-001:
+    description: Registry luu va resolve duoc Entry hop le
+    related: [RFR-001, RFR-002, P003]
+    verified_by: [Registry Tests, Doctor]
+  RAR-002:
+    description: Registry tu choi Entry khong hop le
+    related: [RFR-004, P011]
+    verified_by: [Registry Tests, Doctor]
+  RAR-003:
+    description: Registry phat Event day du cho moi state change
+    related: [RFR-011, P005]
+    verified_by: [Doctor]
+  RAR-004:
+    description: Registry khong chua Business Data
+    related: [RC-001, P001]
+    verified_by: [Doctor]
+  RAR-005:
+    description: Registry khong dinh nghia lai S014
+    related: [RC-004, P009]
+    verified_by: [Doctor]
+  RAR-006:
+    description: Registry khong vi pham Constitution
+    related: [P020, RNF-010]
+    verified_by: [Doctor]

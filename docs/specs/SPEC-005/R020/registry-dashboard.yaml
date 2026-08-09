@@ -1,0 +1,60 @@
+# SPEC-005 R020 - Registry Dashboard
+---
+id: SPEC-005-R020
+name: Registry Dashboard
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Registry Team
+philosophy:
+  - Registry Dashboard la mat quan sat Registry.
+  - Dashboard chi doc, khong ghi.
+  - Dashboard khong doc implementation.
+  - Moi view dung machine-readable.
+principles:
+  - Read Only
+  - Machine-readable First (R011)
+  - Event Driven (P005 - refresh theo event, khong polling)
+  - Single File (R014 registry-of-registries.yaml)
+  - Least Privilege (S012 POL-SEC-001)
+  - Immutable Views (view la projection, khong sua nguon)
+scope:
+  reads:
+    - Registry Events (R011)
+    - Registry Metrics (R011)
+    - Registry Trace (R011)
+    - Registry Audit (R011)
+    - Health (R011)
+    - Registry-of-Registries (R014)
+    - Governance (R013)
+    - Compliance (R016)
+    - Doctor (R019)
+  not_reads:
+    - Implementation
+    - Business Data
+    - Agent Internal State
+    - Plugin Internal State
+views:
+  - Registry View (state + outcome distribution R009/R010)
+  - Entry View (entry metadata, binding R012)
+  - Registry-of-Registries View (R014 - mot file)
+  - Governance View (R013 - graph)
+  - Resource View (R015 metrics)
+  - Health View (R011 health + R016 score)
+  - Compliance + Doctor View (R016 report + R019 report)
+read_model:
+  fields: [id, timestamp, registry_version, views, sources, refresh]
+refresh:
+  - Event Driven (P005): refresh khi co event moi.
+  - Khong polling.
+  - View la projection immutable (P010).
+events:
+  - REGISTRY_DASHBOARD_VIEWED
+  - REGISTRY_DASHBOARD_REFRESHED
+  - REGISTRY_DASHBOARD_ERROR
+metrics:
+  views_count: 0
+  widgets_count: 0
+  refresh_count: 0
+  source_errors: 0
+  avg_render_time: 0

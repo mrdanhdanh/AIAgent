@@ -1,0 +1,10 @@
+# SPEC-005 R005 - Domain Model
+---
+version: "1.0"
+domains:
+  Definition: { owner: Registry, business_logic: false }
+  Validation: { owner: Registry, business_logic: false }
+  Capability: { owner: Runtime (S014), business_logic: false }
+  Data: { owner: Registry, business_logic: false }
+  Execution: { owner: Runtime (SPEC-001), business_logic: false }
+  Observability: { owner: Runtime (S011), business_logic: false }

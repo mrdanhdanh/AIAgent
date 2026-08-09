@@ -1,0 +1,11 @@
+# SPEC-005 R016 - Registry Readiness Checklist
+---
+version: "1.0"
+items:
+  - Entry Published (R009).
+  - Binding Active (R012).
+  - Registry-of-Registries hop le (R014).
+  - Resources khong leak (R015).
+  - Contracts hop le (R007).
+  - Governance enforced (R013).
+  - Observability day du (R011).

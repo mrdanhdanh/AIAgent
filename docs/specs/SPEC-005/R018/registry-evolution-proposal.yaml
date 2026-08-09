@@ -1,0 +1,9 @@
+# SPEC-005 R018 - Registry Evolution Proposal
+---
+version: "1.0"
+proposal:
+  fields: [id, source, evidence, change, impact, status, approval]
+status: [Draft, Submitted, Approved, Rejected, Applied, Rolled Back]
+impact: [Low, Medium, High, Breaking]
+rules:
+  - Proposal phai co evidence (R011) - khong suy doan.

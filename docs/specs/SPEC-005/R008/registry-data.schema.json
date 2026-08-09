@@ -1,0 +1,8 @@
+{ "$schema": "https://json-schema.org/draft/2020-12/schema", "$id": "aios://registry-data.schema.json", "title": "SPEC-005 Registry Data Model (R008)", "type": "object",
+  "required": ["version","status","frozen","aggregate_root","aggregate_rules","classification","invariants","consistency","dependencies"],
+  "properties": { "version": { "type": "string" }, "status": { "enum": ["Draft","Review","Approved","Stable","Deprecated"] },
+    "frozen": { "type": "boolean" }, "aggregate_root": { "const": "RegistryEntry" },
+    "aggregate_rules": { "type": "array", "items": { "type": "string" }, "minItems": 4 },
+    "classification": { "type": "object" }, "invariants": { "type": "array", "items": { "type": "string" }, "minItems": 12 },
+    "consistency": { "type": "object" }, "dependencies": { "type": "array", "items": { "type": "string" }, "minItems": 6 } },
+  "additionalProperties": false }

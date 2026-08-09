@@ -99,69 +99,92 @@ SPEC-002 Workflow Engine
 
 ## SPEC-003 — Capability System
 
-> **Trạng thái**: 🚧 In progress (rev1: 12/20 Completed · 8 mục Rev1 chờ review lần 2) · **Phụ thuộc**: SPEC-000, SPEC-001, SPEC-002
+> **Trạng thái**: ✅ Frozen (20/20, 2026-08-09) · **Phụ thuộc**: SPEC-000, SPEC-001, SPEC-002
 
 ```text
 SPEC-003 Capability System
 │
 ├── Tier 1 — Foundation ✅
-│   ├── C001 Capability Vision          ✅ Review/Completed
-│   ├── C002 Capability Requirements    ✅ Review/Completed
-│   ├── C003 Capability Responsibilities ✅ Review/Completed
-│   ├── C004 Capability Boundaries      ✅ Review/Completed
-│   ├── C005 Capability Architecture    🚧 Review/Rev1
-│   ├── C006 Capability Components      🚧 Review/Rev1
-│   ├── C007 Capability Contracts       ✅ Review/Completed
-│   └── Appendix: Canonical Models      🚧 Draft (chưa track)
+│   ├── C001 Capability Vision          ✅ Frozen
+│   ├── C002 Capability Requirements    ✅ Frozen
+│   ├── C003 Capability Responsibilities ✅ Frozen
+│   ├── C004 Capability Boundaries      ✅ Frozen
+│   ├── C005 Capability Architecture    ✅ Frozen
+│   ├── C006 Capability Components      ✅ Frozen
+│   ├── C007 Capability Contracts       ✅ Frozen
+│   └── Appendix: Canonical Models      ✅ Frozen
 │
 ├── Tier 2 — Behavior ✅
-│   ├── C008 Capability Data Model      🚧 Review/Rev1
-│   ├── C009 Capability State Machine   🚧 Review/Rev1
-│   └── C010 Capability Execution Flow  🚧 Review/Rev1
+│   ├── C008 Capability Data Model      ✅ Frozen
+│   ├── C009 Capability State Machine   ✅ Frozen
+│   └── C010 Capability Execution Flow  ✅ Frozen
 │
 └── Tier 3/4 — Operations + Experience ✅
-    ├── C011 Capability Observability   ✅ Review/Completed
-    ├── C012 Capability Policies        🚧 Review/Rev1
-    ├── C013 Capability Governance      ✅ Review/Completed
-    ├── C014 Capability Registry        🚧 Review/Rev1
-    ├── C015 Capability Resources       🚧 Review/Rev1
-    ├── C016 Capability Compliance      ✅ Review/Completed
-    ├── C017 Capability Extensions      ✅ Review/Completed
-    ├── C018 Capability Evolution       ✅ Review/Completed
-    ├── C019 Capability Doctor          ✅ Review/Completed
-    └── C020 Capability Dashboard       ✅ Review/Completed
+    ├── C011 Capability Observability   ✅ Frozen
+    ├── C012 Capability Policies        ✅ Frozen
+    ├── C013 Capability Governance      ✅ Frozen
+    ├── C014 Capability Registry        ✅ Frozen
+    ├── C015 Capability Resources       ✅ Frozen
+    ├── C016 Capability Compliance      ✅ Frozen
+    ├── C017 Capability Extensions      ✅ Frozen
+    ├── C018 Capability Evolution       ✅ Frozen
+    ├── C019 Capability Doctor          ✅ Frozen
+    └── C020 Capability Dashboard       ✅ Frozen
 ```
 
 ## SPEC-004 — Agent System
 
-> **Trạng thái**: ✅ COMPLETE (20/20 Draft) · **Phụ thuộc**: SPEC-000, SPEC-001, SPEC-002, SPEC-003
+> **Trạng thái**: 🚧 In progress (20/20 Draft — review rev1 FAIL REV-20260809-134, chờ fix) · **Phụ thuộc**: SPEC-000, SPEC-001, SPEC-002, SPEC-003
 
 ```text
 SPEC-004 Agent System
 │
-├── Tier 1 — Foundation ✅
-│   ├── A001 Agent Vision              ✅ Draft
-│   ├── A002 Agent Requirements        ✅ Draft
-│   ├── A003 Agent Responsibilities    ✅ Draft
-│   ├── A004 Agent Boundaries          ✅ Draft
-│   ├── A005 Agent Architecture        ✅ Draft
-│   ├── A006 Agent Components          ✅ Draft
-│   ├── A007 Agent Contracts           ✅ Draft
-│   └── Appendix: Canonical Models     ✅ Draft
+├── Tier 1 — Foundation 🚧
+│   ├── A001 Agent Vision              🚧 Draft
+│   ├── A002 Agent Requirements        🚧 Draft
+│   ├── A003 Agent Responsibilities    🚧 Draft
+│   ├── A004 Agent Boundaries          🚧 Draft
+│   ├── A005 Agent Architecture        🚧 Draft
+│   ├── A006 Agent Components          🚧 Draft
+│   ├── A007 Agent Contracts           🚧 Draft
+│   └── Appendix: Canonical Models     🚧 Draft
 │
-├── Tier 2 — Behavior ✅
-│   ├── A008 Agent Data Model          ✅ Draft
-│   ├── A009 Agent State Machine       ✅ Draft
-│   └── A010 Agent Execution Flow      ✅ Draft
+├── Tier 2 — Behavior 🚧
+│   ├── A008 Agent Data Model          🚧 Draft
+│   ├── A009 Agent State Machine       🚧 Draft
+│   └── A010 Agent Execution Flow      🚧 Draft
 │
-└── Tier 3/4 — Operations + Experience ✅
-    ├── A011-A016 Operations           ✅ Draft
-    └── A017-A020 Experience           ✅ Draft
+└── Tier 3/4 — Operations + Experience 🚧
+    ├── A011-A016 Operations           🚧 Draft
+    └── A017-A020 Experience           🚧 Draft
 ```
 
 ## SPEC-005 — Registry
 
-> **Trạng thái**: ⬜
+> **Trạng thái**: ✅ COMPLETE (20/20 Draft) · **Phụ thuộc**: SPEC-000, SPEC-001
+
+```text
+SPEC-005 Registry
+│
+├── Tier 1 — Foundation ✅
+│   ├── R001 Registry Vision            ✅ Draft
+│   ├── R002 Registry Requirements      ✅ Draft
+│   ├── R003 Registry Responsibilities  ✅ Draft
+│   ├── R004 Registry Boundaries        ✅ Draft
+│   ├── R005 Registry Architecture      ✅ Draft
+│   ├── R006 Registry Components        ✅ Draft
+│   ├── R007 Registry Contracts         ✅ Draft
+│   └── Appendix: Canonical Models      ✅ Draft
+│
+├── Tier 2 — Behavior ✅
+│   ├── R008 Registry Data Model        ✅ Draft
+│   ├── R009 Registry State Machine     ✅ Draft
+│   └── R010 Registry Execution Flow    ✅ Draft
+│
+└── Tier 3/4 — Operations + Experience ✅
+    ├── R011-R016 Operations            ✅ Draft
+    └── R017-R020 Experience            ✅ Draft
+```
 
 ## SPEC-006 — Context Engine
 

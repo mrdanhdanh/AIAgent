@@ -1,0 +1,9 @@
+# SPEC-005 R010 - Registry Flow Validation
+---
+version: "1.0"
+checks:
+  - Entry khong validate truoc khi luu.
+  - Registry tu resolve ngoai Runtime (RB004).
+  - Thieu Event cho buoc nao do (S011).
+  - Luu Business Data (RB002).
+  - Entry ket thuc khong bang Terminal State (S009).

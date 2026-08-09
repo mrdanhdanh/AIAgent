@@ -1,0 +1,11 @@
+# SPEC-005 R013 - Registry Governance Metrics (S013 GV015)
+---
+version: "1.0"
+metrics:
+  violations: 0
+  denied: 0
+  warnings: 0
+  binding_usage: 0
+  contract_failures: 0
+  boundary_failures: 0
+  version_conflicts: 0

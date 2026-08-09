@@ -1,0 +1,11 @@
+# SPEC-005 R007 - Contract Compatibility
+---
+version: "1.0"
+compatibility:
+  RCT-001: [1.x]
+  RCT-002: [1.x]
+  RCT-003: [1.x]
+  RCT-004: [1.x]
+  RCT-005: [1.x]
+  RCT-006: [1.x]
+  RCT-007: [1.x]

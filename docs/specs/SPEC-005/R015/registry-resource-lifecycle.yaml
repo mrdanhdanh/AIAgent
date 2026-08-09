@@ -1,0 +1,6 @@
+# SPEC-005 R015 - Registry Resource Lifecycle (S015 RS005)
+---
+version: "1.0"
+lifecycle: [Draft, Available, Allocated, In Use, Released, Depleted]
+rules:
+  - Release tren Terminal State (S009).

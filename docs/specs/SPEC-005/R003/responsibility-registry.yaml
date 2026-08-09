@@ -1,0 +1,9 @@
+# SPEC-005 R003 - Responsibility Registry
+---
+version: "1.0"
+registries:
+  - responsibilities.yaml
+  - ownership.yaml
+  - responsibility-mapping.yaml
+  - responsibility-matrix.yaml
+  - responsibilities.schema.json

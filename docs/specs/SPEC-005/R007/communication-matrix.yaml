@@ -1,0 +1,14 @@
+# SPEC-005 R007 - Communication Matrix
+---
+version: "1.0"
+edges:
+  - [RCP-001, RCP-002, RCT-002]
+  - [RCP-001, RCP-003, RCT-003]
+  - [RCP-001, RCP-004, RCT-004]
+  - [RCP-001, RCP-005, RCT-005]
+  - [RCP-001, RCP-006, RCT-006]
+  - [RCP-001, RCP-008, RCT-007]
+  - [RCP-004, RCP-002, RCT-002]
+  - [RCP-005, Runtime, RCT-005]
+  - [RCP-007, RCP-003, RCT-003]
+  - [RCP-008, Event Store, RCT-007]

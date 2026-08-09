@@ -1,0 +1,46 @@
+# SPEC-005 R012 - Registry Policies
+---
+id: SPEC-005-R012
+name: Registry Policies
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Registry Team
+philosophy:
+  - Policy la luat cua Runtime (S012) - Registry khong dinh nghia lai (RB008).
+  - Registry khai bao Binding: policy_ref + parameters + scope.
+  - Binding hop le thi moi duoc apply.
+principles:
+  - Reference Only: chi tro den POL-* (S012).
+  - Parameterized: khai bao tham so, khong dinh nghia hanh vi.
+  - Scoped: binding theo Entry hoac Resolution.
+  - Versioned: binding theo version policy (S012).
+  - Validated: binding phai hop le truoc khi chay.
+  - Traceable: moi binding apply co Event + Audit (S011).
+binding_model:
+  fields: [id, entry, resolution, policy_ref, parameters, scope, version, status, lifecycle, metadata]
+lifecycle: [Draft, Validated, Published, Active, Deprecated, Retired]
+categories:
+  note: Dung 7 categories cua S012 RP003.
+  - Recovery
+  - Control
+  - Orchestration
+  - Resource
+  - Governance
+  - Security
+  - Lifecycle
+bindings:
+  - RPB-001 Retry Binding -> POL-RETRY-001
+  - RPB-002 Timeout Binding -> POL-TIMEOUT-001
+  - RPB-003 Approval Binding -> POL-APPROVAL-001
+  - RPB-004 Resource Binding -> POL-RES-001
+  - RPB-005 Parallel Binding -> POL-PARALLEL-001
+  - RPB-006 Compensation Binding -> POL-COMP-001
+  - RPB-007 Scheduling Binding -> POL-SCHED-001
+  - RPB-008 Isolation Binding -> POL-ISOL-001
+  - RPB-009 Security Binding -> POL-SEC-001
+  - RPB-010 Resource Access Binding -> POL-RESACC-001
+responsibility_chain:
+  - S012 Runtime Policies: define policy
+  - S013 Runtime Governance: enforce policy
+  - R012 Registry Policies: bind policy vao entry

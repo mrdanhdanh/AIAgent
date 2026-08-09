@@ -1,0 +1,10 @@
+# SPEC-005 R019 - Registry Doctor Validation
+---
+version: "1.0"
+checks:
+  - Missing Evidence
+  - Invalid Report
+  - Repair Without Approval (R013)
+  - Repair Not Rollback-able
+  - Unauthorized Repair
+  - Stale Report

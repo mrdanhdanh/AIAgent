@@ -1,0 +1,4 @@
+# SPEC-005 R009 - Registry Transition Types
+---
+version: "1.0"
+types: [Initial, Internal, Active, Terminal]

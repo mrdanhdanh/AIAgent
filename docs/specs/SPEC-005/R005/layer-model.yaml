@@ -1,0 +1,25 @@
+# SPEC-005 R005 - Layer Model
+---
+version: "1.0"
+layers:
+  - name: Command
+    level: 1
+    domain: Execution
+  - name: Declaration
+    level: 2
+    domain: Definition
+  - name: Storage
+    level: 3
+    domain: Definition
+  - name: Validation
+    level: 4
+    domain: Validation
+  - name: Resolution
+    level: 5
+    domain: Capability
+  - name: Query
+    level: 6
+    domain: Data
+  - name: Publication
+    level: 7
+    domain: Observability

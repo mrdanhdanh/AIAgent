@@ -1,0 +1,9 @@
+# SPEC-005 R020 - Registry Dashboard Validation
+---
+version: "1.0"
+checks:
+  - Missing Source
+  - Stale Data
+  - Unauthorized Read
+  - Broken View
+  - Invalid Report

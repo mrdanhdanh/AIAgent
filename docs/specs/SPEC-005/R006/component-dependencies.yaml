@@ -1,0 +1,12 @@
+# SPEC-005 R006 - Component Dependencies
+---
+version: "1.0"
+dependencies:
+  RCP-001: [RCP-002, RCP-003, RCP-004, RCP-005, RCP-008]
+  RCP-002: []
+  RCP-003: []
+  RCP-004: [RCP-002]
+  RCP-005: [Runtime (SPEC-001)]
+  RCP-006: []
+  RCP-007: [RCP-003]
+  RCP-008: [Event Store (S011)]

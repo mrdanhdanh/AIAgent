@@ -1,0 +1,187 @@
+# SPEC-005 R006 — Registry Components (8 RCP)
+---
+id: SPEC-005-R006
+name: Registry Components
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Registry Team
+philosophy:
+  - Component cang it cang tot.
+  - Moi Component chi co mot trach nhiem.
+principles:
+  - Mot Responsibility.
+  - Mot Owner.
+  - Mot hoac nhieu Contract.
+  - Co the thay the.
+  - Khong chua Business Logic.
+component_model:
+  fields: [id, name, version, status, layer, domain, responsibility, capability, contracts, dependencies, lifecycle, owner, metadata]
+groups:
+  Core: [Registry Engine, Declaration Manager, Storage Manager, Validation Engine, Domain Manager]
+  Resolution: [Resolution Service, Query Provider]
+  Infrastructure: [Registry Event Dispatcher]
+lifecycles:
+  runtime: [Defined, Initialized, Ready, Active, Stopping, Disposed]
+  entry: [Idle, Assigned, Running, Completed]
+components:
+  RCP-001:
+    name: Registry Engine
+    version: 1.0.0
+    status: Draft
+    layer: Command
+    domain: Execution
+    responsibility: Quan ly vong doi Entry
+    capability: registry-management
+    contracts: [Registry Contract]
+    dependencies: []
+    lifecycle: runtime
+    owner: Registry
+    replaceable: true
+    metric: Registry Metric
+    boundary: AB009-governance
+    rule: RULE-002
+    responsibilities: [RRR-001]
+    requirements: [RFR-001]
+    principles: [P003]
+  RCP-002:
+    name: Declaration Manager
+    version: 1.0.0
+    status: Draft
+    layer: Declaration
+    domain: Definition
+    responsibility: Entry Definition + Version
+    capability: entry-declaration
+    contracts: [Registry Contract]
+    dependencies: []
+    lifecycle: runtime
+    owner: Registry
+    replaceable: true
+    metric: Registry Metric
+    boundary: RB001-declaration
+    rule: RULE-002
+    responsibilities: [RRR-001]
+    requirements: [RFR-001]
+    principles: [P003]
+  RCP-003:
+    name: Storage Manager
+    version: 1.0.0
+    status: Draft
+    layer: Storage
+    domain: Definition
+    responsibility: Luu Entry theo S014
+    capability: entry-storage
+    contracts: [Registry Contract]
+    dependencies: []
+    lifecycle: runtime
+    owner: Registry
+    replaceable: true
+    metric: Registry Metric
+    boundary: RB002-storage
+    rule: RULE-002
+    responsibilities: [RRR-001]
+    requirements: [RFR-001]
+    principles: [P003]
+  RCP-004:
+    name: Validation Engine
+    version: 1.0.0
+    status: Draft
+    layer: Validation
+    domain: Validation
+    responsibility: Validate Entry truoc khi luu
+    capability: entry-validation
+    contracts: [Registry Contract]
+    dependencies: []
+    lifecycle: runtime
+    owner: Registry
+    replaceable: true
+    metric: Registry Metric
+    boundary: RB003-validation
+    rule: RULE-002
+    responsibilities: [RRR-001]
+    requirements: [RFR-001]
+    principles: [P003]
+  RCP-005:
+    name: Resolution Service
+    version: 1.0.0
+    status: Draft
+    layer: Resolution
+    domain: Capability
+    responsibility: Resolve qua S014 pipeline
+    capability: entry-resolution
+    contracts: [Registry Contract]
+    dependencies: []
+    lifecycle: runtime
+    owner: Registry
+    replaceable: true
+    metric: Registry Metric
+    boundary: RB004-resolution
+    rule: RULE-002
+    responsibilities: [RRR-001]
+    requirements: [RFR-001]
+    principles: [P003]
+  RCP-006:
+    name: Query Provider
+    version: 1.0.0
+    status: Draft
+    layer: Query
+    domain: Data
+    responsibility: Query + Discover Entry
+    capability: registry-query
+    contracts: [Registry Contract]
+    dependencies: []
+    lifecycle: runtime
+    owner: Registry
+    replaceable: true
+    metric: Registry Metric
+    boundary: RB006-dependency
+    rule: RULE-002
+    responsibilities: [RRR-001]
+    requirements: [RFR-001]
+    principles: [P003]
+  RCP-007:
+    name: Domain Manager
+    version: 1.0.0
+    status: Draft
+    layer: Storage
+    domain: Definition
+    responsibility: Quan ly multi-domain
+    capability: domain-manage
+    contracts: [Registry Contract]
+    dependencies: []
+    lifecycle: runtime
+    owner: Registry
+    replaceable: true
+    metric: Registry Metric
+    boundary: RB007-ownership
+    rule: RULE-002
+    responsibilities: [RRR-001]
+    requirements: [RFR-001]
+    principles: [P003]
+  RCP-008:
+    name: Registry Event Dispatcher
+    version: 1.0.0
+    status: Draft
+    layer: Publication
+    domain: Observability
+    responsibility: Publish Event/Metrics/Trace/Audit (S011)
+    capability: registry-observability
+    contracts: [Registry Contract]
+    dependencies: []
+    lifecycle: runtime
+    owner: Registry
+    replaceable: true
+    metric: Registry Metric
+    boundary: RB009-governance
+    rule: RULE-002
+    responsibilities: [RRR-001]
+    requirements: [RFR-001]
+    principles: [P003]
+not_in_runtime:
+  - Execution Manager (SPEC-001 S006 CMP-001)
+  - Context Manager (SPEC-001 S006 CMP-003)
+  - State Manager (SPEC-001 S006 CMP-004)
+  - Policy Engine (SPEC-001 S006 CMP-006)
+  - Registry (S014)
+  - Runtime Resolver (S010 EF007)
+  note: Registry dung qua Runtime (SPEC-001) - khong lap lai.

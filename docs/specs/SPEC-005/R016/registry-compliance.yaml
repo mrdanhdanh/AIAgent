@@ -1,0 +1,75 @@
+# SPEC-005 R016 - Registry Compliance
+---
+id: SPEC-005-R016
+name: Registry Compliance
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Registry Team
+philosophy:
+  - Compliance la xac minh, khong phai thuc thi (S016).
+  - Doctor chi doc machine-readable (S011).
+  - Khong dinh nghia lai quy tac da co.
+principles:
+  - Evidence Based (S016)
+  - Machine-readable First (S016)
+  - Deterministic (S016)
+  - Verifiable (S016)
+  - Non-invasive (S016)
+  - Versioned (S016)
+scope:
+  verifies:
+    - Constitution (SPEC-000)
+    - Boundary (R004)
+    - Contract (R007)
+    - Policy Binding (R012)
+    - Governance (R013)
+    - Registry-of-Registries (R014)
+    - Resources (R015)
+    - Observability (R011)
+validation_rules:
+  - RVR-001 (R009) - Invalid Entry - Critical
+  - RVR-002 (R012) - Invalid Binding - Critical
+  - RVR-003 (R004) - Boundary Violation - Critical
+  - RVR-004 (R014) - Registry Violation - Critical
+  - RVR-005 (R015) - Resource Leak - Critical
+  - RVR-006 (R007) - Contract Failure - High
+  - RVR-007 (R015) - Quota Violation - High
+  - RVR-008 (R011) - Missing Registry Event - High
+  - RVR-009 (R011) - Missing Registry Metrics - Medium
+  - RVR-010 (R011) - Broken Registry Trace - Medium
+  - RVR-011 (R011) - Invalid Audit - Medium
+  - RVR-012 (S013) - Constitution Violation - Critical
+health_score: [Healthy, Degraded, Unhealthy]
+readiness_checklist:
+  - Entry Published (R009).
+  - Binding Active (R012).
+  - Registry-of-Registries hop le (R014).
+  - Resources khong leak (R015).
+  - Contracts hop le (R007).
+  - Governance enforced (R013).
+  - Observability day du (R011).
+certification:
+  levels: [Not Certified, Certified, Revoked]
+  requirements:
+    - 100% validation rules Pass.
+    - Khong CRITICAL violation.
+    - Health Score = Healthy.
+pipeline:
+  - Collect Evidence (machine-readable)
+  - Validate Rules
+  - Compute Score
+  - Generate Report
+events:
+  - REGISTRY_COMPLIANCE_PASSED
+  - REGISTRY_COMPLIANCE_FAILED
+  - REGISTRY_COMPLIANCE_REPORTED
+  - REGISTRY_CERTIFICATION_GRANTED
+  - REGISTRY_CERTIFICATION_REVOKED
+metrics:
+  registry_compliance_score: 0
+  passed_rules: 0
+  failed_rules: 0
+  warning_rules: 0
+  total_rules: 0
+  certification_count: 0

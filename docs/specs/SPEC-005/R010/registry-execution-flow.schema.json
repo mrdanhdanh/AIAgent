@@ -1,0 +1,12 @@
+{ "$schema": "https://json-schema.org/draft/2020-12/schema", "$id": "aios://registry-execution-flow.schema.json", "title": "SPEC-005 Registry Execution Flow (R010)", "type": "object",
+  "required": ["id","name","version","status","frozen","owner","philosophy","principles","stages","canonical_flow","registry_flows","rules"],
+  "properties": { "id": { "const": "SPEC-005-R010" }, "name": { "const": "Registry Execution Flow" },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "status": { "enum": ["Draft","Review","Approved","Stable","Deprecated"] }, "frozen": { "type": "boolean" },
+    "owner": { "type": "string" }, "philosophy": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "principles": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "stages": { "type": "array", "items": { "type": "string" }, "minItems": 7 },
+    "canonical_flow": { "type": "array", "items": { "type": "string" }, "minItems": 8 },
+    "registry_flows": { "type": "array", "items": { "type": "string" }, "minItems": 7 },
+    "rules": { "type": "array", "items": { "type": "string" }, "minItems": 4 } },
+  "additionalProperties": false }

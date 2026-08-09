@@ -1,0 +1,10 @@
+# SPEC-005 R019 - Registry Doctor Metrics
+---
+version: "1.0"
+metrics:
+  health_score: 0
+  passed_checks: 0
+  failed_checks: 0
+  warning_checks: 0
+  total_checks: 0
+  repair_count: 0

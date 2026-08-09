@@ -1,0 +1,9 @@
+# SPEC-005 R006 - Component Validation
+---
+version: "1.0"
+checks:
+  - Missing Component
+  - Duplicate Component ID
+  - Missing Contract
+  - Boundary Violation (R004)
+  - Business Logic trong Component

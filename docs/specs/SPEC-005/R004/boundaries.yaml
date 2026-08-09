@@ -1,0 +1,171 @@
+# SPEC-005 R004 — Registry Boundaries (9 RB)
+---
+id: SPEC-005-R004
+name: Registry Boundaries
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Registry Team
+hierarchy:
+  Registry Boundary:
+    - RB001-declaration
+    - RB002-storage
+    - RB003-validation
+    - RB004-resolution
+    - RB005-interface
+    - RB006-dependency
+    - RB007-ownership
+    - RB008-policy
+    - RB009-governance
+decision:
+  - Neu mot chuc nang khong xac dinh duoc Boundary, chuc nang do khong duoc phep dua vao Registry.
+invariants:
+  - Registry khong vuot qua Boundary.
+  - Registry khong chua Business Data.
+  - Registry chi giao tiep qua Contract (S007).
+  - Registry khong biet Storage implementation.
+validation:
+  - Co Business Data trong Registry khong?
+  - Registry co tu resolve ngoai S014 khong?
+  - Registry co phu thuoc Storage cu the khong?
+  - Registry co dinh nghia policy rieng khong?
+  - Registry co giao tiep ngoai Contract khong?
+boundaries:
+  RB001-declaration:
+    name: Declaration Boundary
+    severity: Critical
+    version: 1.0.0
+    status: Draft
+    allowed: [Nhan khai bao Entry (metadata), khong code]
+    not_manage: [Entry ngoai schema]
+    violation: Entry ngoai schema
+    impact: Critical
+    detected_by: Doctor
+    metric: Registry Violations
+    target: 0
+    principles: [P003]
+    rules: [RULE-001]
+  RB002-storage:
+    name: Storage Boundary
+    severity: Critical
+    version: 1.0.0
+    status: Draft
+    allowed: [Luu Entry theo S014 model]
+    not_manage: [Luu Business Data]
+    violation: Luu Business Data
+    impact: Critical
+    detected_by: Doctor
+    metric: Registry Violations
+    target: 0
+    principles: [P009]
+    rules: [RULE-009]
+  RB003-validation:
+    name: Validation Boundary
+    severity: Critical
+    version: 1.0.0
+    status: Draft
+    allowed: [Validate Entry truoc khi luu]
+    not_manage: [Luu Entry khong hop le]
+    violation: Luu Entry khong hop le
+    impact: Critical
+    detected_by: Doctor
+    metric: Registry Violations
+    target: 0
+    principles: [P011]
+    rules: [RULE-002]
+  RB004-resolution:
+    name: Resolution Boundary
+    severity: Critical
+    version: 1.0.0
+    status: Draft
+    allowed: [Resolve qua S014 pipeline]
+    not_manage: [Tu resolve ngoai pipeline]
+    violation: Tu resolve ngoai pipeline
+    impact: Critical
+    detected_by: Doctor
+    metric: Registry Violations
+    target: 0
+    principles: [P007]
+    rules: [RULE-002]
+  RB005-interface:
+    name: Interface Boundary
+    severity: High
+    version: 1.0.0
+    status: Draft
+    allowed: [Giao tiep qua Contract (S007)]
+    not_manage: [Giao tiep truc tiep]
+    violation: Giao tiep truc tiep
+    impact: High
+    detected_by: Doctor
+    metric: Registry Violations
+    target: 0
+    principles: [P002]
+    rules: [RULE-003]
+  RB006-dependency:
+    name: Dependency Boundary
+    severity: High
+    version: 1.0.0
+    status: Draft
+    allowed: [Phu thuoc Abstraction]
+    not_manage: [Phu thuoc Storage cu the]
+    violation: Phu thuoc Storage cu the
+    impact: High
+    detected_by: Doctor
+    metric: Registry Violations
+    target: 0
+    principles: [P012]
+    rules: [RULE-010]
+  RB007-ownership:
+    name: Ownership Boundary
+    severity: Critical
+    version: 1.0.0
+    status: Draft
+    allowed: [Moi Entry dung mot owner]
+    not_manage: [Entry khong owner]
+    violation: Entry khong owner
+    impact: Critical
+    detected_by: Doctor
+    metric: Registry Violations
+    target: 0
+    principles: [P016]
+    rules: [RULE-008]
+  RB008-policy:
+    name: Policy Boundary
+    severity: High
+    version: 1.0.0
+    status: Draft
+    allowed: [Dung Policy cua Runtime (S012)]
+    not_manage: [Dinh nghia policy rieng]
+    violation: Dinh nghia policy rieng
+    impact: High
+    detected_by: Doctor
+    metric: Registry Violations
+    target: 0
+    principles: [P015]
+    rules: [RULE-012]
+  RB009-governance:
+    name: Governance Boundary
+    severity: Critical
+    version: 1.0.0
+    status: Draft
+    allowed: [Chiu Governance (S013)]
+    not_manage: [Bypass Governance]
+    violation: Bypass Governance
+    impact: Critical
+    detected_by: Doctor
+    metric: Registry Violations
+    target: 0
+    principles: [P016]
+    rules: [RULE-008]
+mapping:
+  RB001-declaration: { principle: P003, rule: RULE-001 }
+  RB002-storage: { principle: P009, rule: RULE-009 }
+  RB003-validation: { principle: P011, rule: RULE-002 }
+  RB004-resolution: { principle: P007, rule: RULE-002 }
+  RB005-interface: { principle: P002, rule: RULE-003 }
+  RB006-dependency: { principle: P012, rule: RULE-010 }
+  RB007-ownership: { principle: P016, rule: RULE-008 }
+  RB008-policy: { principle: P015, rule: RULE-012 }
+  RB009-governance: { principle: P016, rule: RULE-008 }
+metrics:
+  Registry Violations: 0

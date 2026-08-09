@@ -1,0 +1,14 @@
+# SPEC-005 R011 - Registry Trace (S011 reuse)
+---
+version: "1.0"
+scope:
+  - Entry
+  - Resolution (S014)
+  - Parent (workflow dung entry)
+  - Child (entry goi entry qua reference)
+  - Correlation
+  - Causation
+  - Lineage
+rules:
+  - Trace chi append (S011).
+  - Correlation khac Causation (S011).

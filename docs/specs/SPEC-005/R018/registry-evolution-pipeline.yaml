@@ -1,0 +1,10 @@
+# SPEC-005 R018 - Registry Evolution Pipeline
+---
+version: "1.0"
+pipeline:
+  - Collect (R011 data)
+  - Analyze (patterns, anomalies)
+  - Learn (lessons, hypotheses)
+  - Propose (evolution proposal)
+  - Approval Gate (R013 Governance)
+  - Apply (qua S014 + Binding R012)

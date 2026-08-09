@@ -1,0 +1,12 @@
+# SPEC-005 R009 - Registry State Events (S011 reuse)
+---
+version: "1.0"
+events:
+  - REGISTRY_ENTRY_VALIDATING
+  - REGISTRY_ENTRY_PUBLISHED
+  - REGISTRY_ENTRY_REJECTED
+  - REGISTRY_ENTRY_DEPRECATED
+  - REGISTRY_ENTRY_REACTIVATED
+  - REGISTRY_ENTRY_RETIRED
+run_events:
+  note: Entry Run dung events cua S009 (EXECUTION_*).
