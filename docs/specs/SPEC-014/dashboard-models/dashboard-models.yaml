@@ -1,0 +1,13 @@
+# SPEC-014 Appendix - Dashboard Canonical Models (8)
+---
+version: "1.0.0"
+models:
+  AM-001: { name: Dashboard, kind: AggregateRoot, owner: Dashboard, immutable: false }
+  AM-002: { name: DashboardDefinition, kind: Entity, owner: Dashboard, immutable: true }
+  AM-003: { name: Widget, kind: Entity, owner: Dashboard, immutable: true }
+  AM-004: { name: Panel, kind: Entity, owner: Dashboard, immutable: true }
+  AM-005: { name: DashboardView, kind: Value, owner: Dashboard, immutable: false }
+  AM-006: { name: DashboardState, kind: Transient, owner: Dashboard, immutable: false }
+  AM-007: { name: DashboardExport, kind: Entity, owner: Dashboard, immutable: true }
+  AM-008: { name: MetricRef, kind: Value, owner: Dashboard, immutable: true }
+aggregate_root: AM-001 Dashboard

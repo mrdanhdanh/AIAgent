@@ -1,0 +1,12 @@
+# SPEC-014 X008 - Dashboard Invariants
+---
+version: "1.0.0"
+invariants:
+  INV-X001: { name: Unique DashboardId, description: Moi Dashboard co id duy nhat }
+  INV-X002: { name: Read-Only, description: Dashboard khong thay doi he thong }
+  INV-X003: { name: S011 Source, description: Widget doc tu S011 metrics }
+  INV-X004: { name: No New Source, description: Khong tao nguon du lieu moi }
+  INV-X005: { name: Widget Valid, description: Widget co schema }
+  INV-X006: { name: View Complete, description: View day du }
+  INV-X007: { name: No Business Data, description: Dashboard khong chua business data }
+violation: BLOCK operation + error DASHBOARD_INVARIANT

@@ -1,0 +1,9 @@
+# SPEC-016 X004 - CLI Boundary Ownership Matrix
+---
+version: "1.0.0"
+ownership:
+  view: CLI (immutable)
+  metadata: CLI
+  data: S011 Metrics (read-only)
+  policy: Policy (S012)
+  system: KHONG thuoc CLI

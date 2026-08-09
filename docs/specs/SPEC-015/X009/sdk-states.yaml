@@ -1,0 +1,12 @@
+# SPEC-015 X009 - SDK Definition States (6)
+---
+version: "1.0.0"
+initial_state: XST-001
+terminal_states: [XST-005, XST-006]
+states:
+  XST-001: { name: Created, category: Initial, type: Initial, terminal: "-" }
+  XST-002: { name: Rendering, category: Preparation, type: Internal, terminal: "-" }
+  XST-003: { name: Rendered, category: Active, type: Active, terminal: "-" }
+  XST-004: { name: Filtered, category: Active, type: Active, terminal: "-" }
+  XST-005: { name: Archived, category: Terminal, type: Terminal, terminal: yes }
+  XST-006: { name: Failed, category: Terminal, type: Terminal, terminal: yes }

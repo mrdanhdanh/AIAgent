@@ -1,0 +1,8 @@
+# SPEC-015 X010 - SDK Flow Validation
+---
+version: "1.0.0"
+validation:
+  - stage order dung pipeline
+  - moi stage co event tuong ung
+  - SDK khong thay doi he thong
+  - doc S011 read-only (Doctor X019)

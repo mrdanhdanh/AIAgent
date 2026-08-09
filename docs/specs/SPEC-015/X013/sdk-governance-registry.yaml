@@ -1,0 +1,9 @@
+# SPEC-015 X013 - SDK Governance Registry
+---
+version: "1.0.0"
+registry:
+  spec: SPEC-015 (this)
+  sections: [X001..X020]
+  models: sdk-models/
+  schemas: "*.schema.json"
+  status_tracking: SPEC-INDEX.md

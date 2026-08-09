@@ -1,0 +1,10 @@
+# SPEC-016 X016 - CLI Certification
+---
+version: "1.0.0"
+certification:
+  certified_artifacts:
+    - SPEC-016 SPEC.yaml
+    - X001-X020 sections
+    - cli-models/
+  criteria: validator PASS + CLI PASS
+  issued_by: CLI Team + Governance (S013)

@@ -1,0 +1,16 @@
+# SPEC-016 X006 - CLI Components (12)
+---
+version: "1.0.0"
+components:
+  XCP-001: { name: CLIApi, role: expose op, dependency: Engine, layer: Core }
+  XCP-002: { name: PipelineOrchestrator, role: pipeline flow, dependency: StateMachine, Store, layer: Core }
+  XCP-003: { name: CLIStateMachine, role: state transitions, dependency: S009, layer: Core }
+  XCP-004: { name: CommandEngine, role: chay command, dependency: Store, layer: Core }
+  XCP-005: { name: FlagEngine, role: phan tich flag, dependency: Store, layer: Core }
+  XCP-006: { name: PolicyGuard, role: policy eval, dependency: S012, layer: Guard }
+  XCP-007: { name: WidgetStore, role: widget definitions, dependency: Store, layer: Core }
+  XCP-008: { name: ViewStore, role: view definitions, dependency: Store, layer: Data }
+  XCP-009: { name: CompletionEngine, role: hoan thanh lenh, dependency: Store, layer: Data }
+  XCP-010: { name: TriggerEngine, role: trigger workflow, dependency: Store, layer: Data }
+  XCP-011: { name: RegistryCommand, role: definition lookup, dependency: SPEC-005, layer: Integration }
+  XCP-012: { name: HelpEngine, role: hien thi help, dependency: Store, layer: Data }

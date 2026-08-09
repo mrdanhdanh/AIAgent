@@ -1,0 +1,7 @@
+# SPEC-014 X018 - Dashboard Compatibility
+---
+version: "1.0.0"
+compatibility:
+  backward: moi version giu Dashboard contract cu (XNF-006)
+  forward: tuan thu schema strict
+  check: kiem tra bang validator + Dashboard X019

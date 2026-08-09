@@ -1,0 +1,10 @@
+# SPEC-016 X015 - CLI Resources
+---
+version: "1.0.0"
+resources:
+  XRES-001: { name: Storage, owner: CLI }
+  XRES-002: { name: Index, owner: CLI }
+  XRES-003: { name: ScanId, owner: CLI }
+  XRES-004: { name: Scan CPU, owner: CLI }
+  XRES-005: { name: Event Buffer, owner: Runtime }
+  XRES-006: { name: Snapshot Store, owner: CLI }

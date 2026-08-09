@@ -1,0 +1,8 @@
+# SPEC-014 X010 - Dashboard Outcome
+---
+version: "1.0.0"
+outcome:
+  success: Exported + DASHBOARD_EXPORTED
+  failure: Failed + DASHBOARD_FAILED
+  metrics: [dashboard_rendered_total, dashboard_failed_total]
+  audit: moi outcome ghi vao S011

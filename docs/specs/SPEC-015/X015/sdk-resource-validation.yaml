@@ -1,0 +1,8 @@
+# SPEC-015 X015 - SDK Resource Validation
+---
+version: "1.0.0"
+validation:
+  - quota khong vuot (XPOL-007)
+  - khong leak sau Archive
+  - metrics day du (X011)
+  - kiem tra bang SDK X019

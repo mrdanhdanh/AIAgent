@@ -1,0 +1,8 @@
+# SPEC-016 X005 - CLI Dependency Rules
+---
+version: "1.0.0"
+dependency_rules:
+  - API -> Engine -> Guard -> Store
+  - Engine khong goi truc tiep S011 (qua port)
+  - Guard goi Policy qua interface (S012)
+  - CLI doc S011 qua read-only interface

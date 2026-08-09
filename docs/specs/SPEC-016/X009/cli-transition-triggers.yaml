@@ -1,0 +1,10 @@
+# SPEC-016 X009 - CLI Transition Triggers
+---
+version: "1.0.0"
+triggers:
+  XST-001: Create (CLI)
+  XST-002: Render (CLI)
+  XST-003: Rendered (CLI)
+  XST-004: Filter (User)
+  XST-005: Archive (retention)
+  XST-006: Fail (render loi)

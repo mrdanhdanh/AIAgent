@@ -1,0 +1,10 @@
+# SPEC-015 X010 - SDK Query
+---
+version: "1.0.0"
+query_ops:
+  - GetSDK(SDK_id)
+  - GetWidgets(SDK_id)
+  - GetViews(SDK_id)
+  - GetExport(SDK_id)
+  - GetHistory(SDK_id)
+rule: Query khong thay doi SDK, khong can grant.

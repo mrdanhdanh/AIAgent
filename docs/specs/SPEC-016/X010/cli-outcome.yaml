@@ -1,0 +1,8 @@
+# SPEC-016 X010 - CLI Outcome
+---
+version: "1.0.0"
+outcome:
+  success: Exported + CLI_EXPORTED
+  failure: Failed + CLI_FAILED
+  metrics: [CLI_rendered_total, CLI_failed_total]
+  audit: moi outcome ghi vao S011

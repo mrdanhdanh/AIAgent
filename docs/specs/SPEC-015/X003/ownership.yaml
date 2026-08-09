@@ -1,0 +1,9 @@
+# SPEC-015 X003 - SDK Ownership
+---
+version: "1.0.0"
+ownership:
+  owner_entity: SDK (SPEC-015)
+  data: S011 Metrics (read-only)
+  view: SDK View
+  transfer: Khong cho phep (P005)
+  destroy: Export archive (Policy S012)

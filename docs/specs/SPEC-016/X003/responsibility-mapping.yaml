@@ -1,0 +1,8 @@
+# SPEC-016 X003 - CLI Responsibility Mapping
+---
+version: "1.0.0"
+mapping:
+  XRR-001..006: CLI core ops
+  XRR-007..009: S011/SPEC-008/SPEC-011 integration
+  XRR-010..012, XRR-014: Runtime/Policy integration
+  XRR-013: Registry (SPEC-005)

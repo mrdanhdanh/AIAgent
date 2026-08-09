@@ -1,0 +1,5 @@
+{
+  "schema": "dashboard-models",
+  "version": "1.0",
+  "model_id": { "type": "string", "pattern": "^AM-[0-9]{3}$" }
+}

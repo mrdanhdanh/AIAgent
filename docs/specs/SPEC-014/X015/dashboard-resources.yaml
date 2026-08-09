@@ -1,0 +1,10 @@
+# SPEC-014 X015 - Dashboard Resources
+---
+version: "1.0.0"
+resources:
+  XRES-001: { name: Storage, owner: Dashboard }
+  XRES-002: { name: Index, owner: Dashboard }
+  XRES-003: { name: ScanId, owner: Dashboard }
+  XRES-004: { name: Scan CPU, owner: Dashboard }
+  XRES-005: { name: Event Buffer, owner: Runtime }
+  XRES-006: { name: Snapshot Store, owner: Dashboard }

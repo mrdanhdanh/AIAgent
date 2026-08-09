@@ -1,0 +1,8 @@
+# SPEC-015 X005 - SDK ADL
+---
+version: "1.0.0"
+decisions:
+  XAD-001: { decision: SDK doc S011, reason: P005 }
+  XAD-002: { decision: Read-only, reason: XC-001 }
+  XAD-003: { decision: Policy qua S012, reason: khong tu quyet }
+  XAD-004: { decision: View tach Client Store, reason: render history }

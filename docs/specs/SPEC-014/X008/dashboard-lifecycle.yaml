@@ -1,0 +1,10 @@
+# SPEC-014 X008 - Dashboard Lifecycle (see X009)
+---
+version: "1.0.0"
+lifecycle_phases:
+  - Created
+  - Rendered
+  - Filtered
+  - Refreshed
+  - Archived
+note: Dashboard khong dinh nghia lai lifecycle.

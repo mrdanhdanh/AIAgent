@@ -1,0 +1,9 @@
+# SPEC-014 X013 - Dashboard Governance Metrics
+---
+version: "1.0.0"
+metrics:
+  - spec014_frozen_sections
+  - spec014_open_questions
+  - spec014_decisions_total
+  - spec014_compliance_score (X016)
+  - spec014_health_score (X019)

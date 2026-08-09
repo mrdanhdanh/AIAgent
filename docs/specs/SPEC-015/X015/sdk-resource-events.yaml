@@ -1,0 +1,9 @@
+# SPEC-015 X015 - SDK Resource Events
+---
+version: "1.0.0"
+events:
+  - SDK_RESOURCE_ALLOCATED
+  - SDK_RESOURCE_RELEASED
+  - SDK_RESOURCE_LEAKED
+  - SDK_RESOURCE_QUOTA_EXCEEDED
+note: Event vao S011.

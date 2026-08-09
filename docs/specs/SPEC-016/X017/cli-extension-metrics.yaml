@@ -1,0 +1,7 @@
+# SPEC-016 X017 - CLI Extension Metrics
+---
+version: "1.0.0"
+metrics:
+  - CLI_extensions_total
+  - CLI_extensions_active
+  - CLI_extensions_rejected_total

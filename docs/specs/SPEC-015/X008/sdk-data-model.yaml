@@ -1,0 +1,50 @@
+# SPEC-015 X008 - SDK Data Model
+---
+version: "1.0.0"
+entities:
+  ENT-X001: { name: SDK, kind: AggregateRoot, owner: SDK, immutable: false }
+  ENT-X002: { name: SDKDefinition, kind: Entity, owner: SDK, immutable: true }
+  ENT-X003: { name: Widget, kind: Entity, owner: SDK, immutable: true }
+  ENT-X004: { name: Panel, kind: Entity, owner: SDK, immutable: true }
+  ENT-X005: { name: SDKView, kind: Value, owner: SDK, immutable: false }
+  ENT-X006: { name: SDKState, kind: Transient, owner: SDK, immutable: false }
+  ENT-X007: { name: SDKExport, kind: Entity, owner: SDK, immutable: true }
+  ENT-X008: { name: SDKEvent, kind: Ref (S011), owner: Runtime, immutable: true }
+  ENT-X009: { name: SDKMetric, kind: Ref (S011), owner: Runtime, immutable: true }
+  ENT-X010: { name: SDKSnapshot, kind: Entity, owner: SDK, immutable: false }
+  ENT-X011: { name: ExecutionRef, kind: Ref (SPEC-001), owner: Execution, immutable: true }
+  ENT-X012: { name: SystemRef, kind: Ref (SPEC-000..013), owner: System, immutable: true }
+  ENT-X013: { name: MetricRef, kind: Ref (S011), owner: SDK, immutable: true }
+  ENT-X014: { name: PolicyRef, kind: Ref (S012), owner: Runtime, immutable: true }
+  ENT-X015: { name: SDKExtension, kind: Value, owner: SDK, immutable: true }
+relations:
+  REL-X001: { from: SDK, to: SDKDefinition, cardinality: 1..1 }
+  REL-X002: { from: SDK, to: Widget, cardinality: 0..* }
+  REL-X003: { from: SDK, to: Panel, cardinality: 0..* }
+  REL-X004: { from: SDK, to: SDKView, cardinality: 0..* }
+  REL-X005: { from: SDK, to: SDKState, cardinality: 1..1 }
+  REL-X006: { from: SDK, to: SDKExport, cardinality: 0..1 }
+  REL-X007: { from: SDK, to: ExecutionRef, cardinality: 1..1 }
+  REL-X008: { from: SDK, to: SDKEvent, cardinality: 0..* }
+  REL-X009: { from: SDK, to: SDKSnapshot, cardinality: 0..* }
+invariants:
+  INV-X001: { name: Unique SDKId, description: Moi SDK co id duy nhat }
+  INV-X002: { name: Read-Only, description: SDK khong thay doi he thong }
+  INV-X003: { name: S011 Source, description: Widget doc tu S011 metrics }
+  INV-X004: { name: No New Source, description: Khong tao nguon du lieu moi }
+  INV-X005: { name: Widget Valid, description: Widget co schema }
+  INV-X006: { name: View Complete, description: View day du }
+  INV-X007: { name: No Business Data, description: SDK khong chua business data }
+validation:
+  VAL-X001: { field: SDKId, requirement: Required, type: UUID }
+  VAL-X002: { field: Widgets, requirement: Required, type: "Widget[]" }
+  VAL-X003: { field: Panels, requirement: Required, type: "Panel[]" }
+  VAL-X004: { field: Views, requirement: Required, type: "View[]" }
+  VAL-X005: { field: Filters, requirement: Optional, type: "Filter[]" }
+  VAL-X006: { field: Timestamp, requirement: Required, type: Timestamp }
+  VAL-X007: { field: RefreshInterval, requirement: Required, type: Integer }
+storage:
+  mode: View store
+  persistence: "true (P010 - view history)"
+  snapshot: SDKSnapshot (optional, debug)
+  source: aios-sdk

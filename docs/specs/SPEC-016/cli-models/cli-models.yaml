@@ -1,0 +1,13 @@
+# SPEC-016 Appendix - CLI Canonical Models (8)
+---
+version: "1.0.0"
+models:
+  AM-001: { name: CLI, kind: AggregateRoot, owner: CLI, immutable: false }
+  AM-002: { name: CLIDefinition, kind: Entity, owner: CLI, immutable: true }
+  AM-003: { name: CLICommand, kind: Entity, owner: CLI, immutable: true }
+  AM-004: { name: FlagSet, kind: Entity, owner: CLI, immutable: true }
+  AM-005: { name: ArgToken, kind: Value, owner: CLI, immutable: false }
+  AM-006: { name: CLIState, kind: Transient, owner: CLI, immutable: false }
+  AM-007: { name: CLICall, kind: Entity, owner: CLI, immutable: true }
+  AM-008: { name: ContractRef, kind: Value, owner: CLI, immutable: true }
+aggregate_root: AM-001 CLI

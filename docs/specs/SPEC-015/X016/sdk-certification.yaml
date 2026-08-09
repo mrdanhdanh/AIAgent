@@ -1,0 +1,10 @@
+# SPEC-015 X016 - SDK Certification
+---
+version: "1.0.0"
+certification:
+  certified_artifacts:
+    - SPEC-015 SPEC.yaml
+    - X001-X020 sections
+    - sdk-models/
+  criteria: validator PASS + SDK PASS
+  issued_by: SDK Team + Governance (S013)

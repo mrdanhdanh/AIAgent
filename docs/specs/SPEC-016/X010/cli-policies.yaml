@@ -1,0 +1,10 @@
+# SPEC-016 X010 - CLI Flow Policies
+---
+version: "1.0.0"
+policies:
+  - CLI khong thay doi he thong (XC-001).
+  - Moi stage co Event (S011).
+  - Doc S011 read-only (P005).
+  - Export day du (XFR-006).
+  - Khong tao nguon moi (XC-002).
+source: S012 Policy

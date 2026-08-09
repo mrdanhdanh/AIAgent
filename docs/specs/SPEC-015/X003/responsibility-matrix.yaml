@@ -1,0 +1,20 @@
+# SPEC-015 X003 - SDK Responsibility Matrix
+---
+version: "1.0.0"
+matrix:
+  XRR-001: { name: Connect Client, owner: SDK, role: OWNER }
+  XRR-002: { name: Authenticate, owner: SDK, role: OWNER }
+  XRR-003: { name: Bind API, owner: SDK, role: OWNER }
+  XRR-004: { name: Typed Access, owner: SDK, role: OWNER }
+  XRR-005: { name: Refresh SDK, owner: SDK, role: OWNER }
+  XRR-006: { name: Export SDK, owner: SDK, role: OWNER }
+  XRR-007: { name: Show Health Score, owner: SDK, role: OWNER }
+  XRR-008: { name: Show Event Stream, owner: SDK, role: OWNER }
+  XRR-009: { name: Error Handle, owner: SDK, role: OWNER }
+  XRR-010: { name: Events, owner: Runtime (S011), role: EMITTER }
+  XRR-011: { name: Metrics, owner: Runtime (S011), role: EMITTER }
+  XRR-012: { name: Policy eval, owner: Policy (S012), role: DECIDER }
+  XRR-013: { name: Registry, owner: Registry (SPEC-005), role: REGISTER }
+  XRR-014: { name: Audit, owner: Runtime (S011), role: EMITTER }
+  XRR-015: { name: Retention, owner: SDK, role: OWNER }
+  XRR-016: { name: Recovery, owner: SDK, role: OWNER }

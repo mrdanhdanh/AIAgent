@@ -1,0 +1,9 @@
+# SPEC-014 X009 - Dashboard Transitions (5)
+---
+version: "1.0.0"
+transitions:
+  XTR-001: { from: XST-001, to: XST-002, event: DASHBOARD_RENDERING, guard: View hop le }
+  XTR-002: { from: XST-002, to: XST-003, event: DASHBOARD_RENDERED, guard: Render xong }
+  XTR-003: { from: XST-002, to: XST-006, event: DASHBOARD_FAILED, guard: Render fail }
+  XTR-004: { from: XST-003, to: XST-004, event: DASHBOARD_FILTERED, guard: Filter xong }
+  XTR-005: { from: XST-004, to: XST-005, event: DASHBOARD_ARCHIVED, guard: Het retention }

@@ -1,0 +1,8 @@
+# SPEC-014 X012 - Dashboard Policy Resolution
+---
+version: "1.0.0"
+resolution:
+  order: SPEC-005 registry (policy registry)
+  conflict: deny wins (S012)
+  scope: Dashboard op (Create/run/Export)
+  cache: khong cache policy decision (evaluate moi lan)

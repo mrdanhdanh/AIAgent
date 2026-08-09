@@ -1,0 +1,9 @@
+# SPEC-014 X013 - Dashboard Governance Registry
+---
+version: "1.0.0"
+registry:
+  spec: SPEC-014 (this)
+  sections: [X001..X020]
+  models: dashboard-models/
+  schemas: "*.schema.json"
+  status_tracking: SPEC-INDEX.md

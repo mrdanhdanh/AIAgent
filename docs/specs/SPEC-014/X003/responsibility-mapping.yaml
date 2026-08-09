@@ -1,0 +1,8 @@
+# SPEC-014 X003 - Dashboard Responsibility Mapping
+---
+version: "1.0.0"
+mapping:
+  XRR-001..006: Dashboard core ops
+  XRR-007..009: S011/SPEC-008/SPEC-011 integration
+  XRR-010..012, XRR-014: Runtime/Policy integration
+  XRR-013: Registry (SPEC-005)

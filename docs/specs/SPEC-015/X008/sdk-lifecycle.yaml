@@ -1,0 +1,10 @@
+# SPEC-015 X008 - SDK Lifecycle (see X009)
+---
+version: "1.0.0"
+lifecycle_phases:
+  - Created
+  - Rendered
+  - Filtered
+  - Refreshed
+  - Archived
+note: SDK khong dinh nghia lai lifecycle.

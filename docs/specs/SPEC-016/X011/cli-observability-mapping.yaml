@@ -1,0 +1,15 @@
+# SPEC-016 X011 - CLI Observability Mapping
+---
+version: "1.0.0"
+mapping:
+  stage -> event:
+    Create: CLI_CreateD
+    Render: CLI_RenderD
+    Run: CLI_RUNNING
+    Compose: CLI_ComposeD
+    Filter: CLI_FilterD
+    Export: CLI_ExportED
+  state -> metric:
+    Exported: CLI_Exported_total
+    Failed: CLI_failed_total
+    Composed: CLI_success_rate

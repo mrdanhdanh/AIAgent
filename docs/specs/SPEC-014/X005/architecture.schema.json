@@ -1,0 +1,5 @@
+{
+  "schema": "dashboard-architecture",
+  "version": "1.0",
+  "layer_id": { "type": "string", "pattern": "^XAL-[0-9]{3}$" }
+}

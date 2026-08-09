@@ -1,0 +1,9 @@
+# SPEC-015 X016 - SDK Compliance Events
+---
+version: "1.0.0"
+events:
+  - spec012_COMPLIANCE_PASS
+  - spec012_COMPLIANCE_FAIL
+  - spec012_CERTIFIED
+  - spec012_AUDITED
+note: Event vao S011.

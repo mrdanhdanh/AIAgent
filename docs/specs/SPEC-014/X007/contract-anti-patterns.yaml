@@ -1,0 +1,8 @@
+# SPEC-014 X007 - Dashboard Contract Anti-Patterns
+---
+version: "1.0.0"
+anti_patterns:
+  - No implicit contract (undocumented)
+  - No silent breaking
+  - No write qua Dashboard
+  - No new data source (P005)

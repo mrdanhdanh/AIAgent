@@ -1,0 +1,6 @@
+# SPEC-016 Appendix - CLI Model Registry
+---
+version: "1.0.0"
+registry:
+  owner: CLI Team
+  tracked: [AM-001..008]

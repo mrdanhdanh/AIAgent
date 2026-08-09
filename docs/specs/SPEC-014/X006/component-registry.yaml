@@ -1,0 +1,6 @@
+# SPEC-014 X006 - Dashboard Component Registry
+---
+version: "1.0.0"
+registry:
+  owner: Dashboard Team
+  tracked: [XCP-001..012]

@@ -1,0 +1,8 @@
+# SPEC-014 X018 - Dashboard Metrics
+---
+version: "1.0.0"
+metrics:
+  - spec014_version
+  - spec014_versions_total
+  - spec014_deprecated_count
+  - spec014_compat_score

@@ -1,0 +1,6 @@
+# SPEC-016 X007 - CLI Contract Registry
+---
+version: "1.0.0"
+registry:
+  owner: CLI Team
+  tracked: [XCT-001..007]

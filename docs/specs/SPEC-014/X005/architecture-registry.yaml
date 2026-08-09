@@ -1,0 +1,6 @@
+# SPEC-014 X005 - Dashboard Architecture Registry
+---
+version: "1.0.0"
+registry:
+  owner: Dashboard Team
+  tracked: [XAL-001..005]

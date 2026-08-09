@@ -1,0 +1,14 @@
+# SPEC-015 X008 - SDK Validation Rules
+---
+version: "1.0.0"
+validation_rules:
+  VAL-X001: { field: SDKId, requirement: Required, type: UUID }
+  VAL-X002: { field: Widgets, requirement: Required, type: "Widget[]" }
+  VAL-X003: { field: Panels, requirement: Required, type: "Panel[]" }
+  VAL-X004: { field: Views, requirement: Required, type: "View[]" }
+  VAL-X005: { field: Filters, requirement: Optional, type: "Filter[]" }
+  VAL-X006: { field: Timestamp, requirement: Required, type: Timestamp }
+  VAL-X007: { field: RefreshInterval, requirement: Required, type: Integer }
+validate_on:
+  - Create
+  - Render

@@ -1,0 +1,9 @@
+# SPEC-016 X015 - CLI Resource Metrics
+---
+version: "1.0.0"
+metrics:
+  - CLI_storage_bytes
+  - CLI_result_count
+  - CLI_resource_leaked_total
+  - CLI_quota_exceeded_total
+  - CLI_scan_latency_seconds

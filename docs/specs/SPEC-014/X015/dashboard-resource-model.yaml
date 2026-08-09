@@ -1,0 +1,10 @@
+# SPEC-014 X015 - Dashboard Resource Model
+---
+version: "1.0.0"
+resources:
+  XRES-001: { name: Storage, description: Results storage, owner: Dashboard, priority: Critical }
+  XRES-002: { name: Index, description: result index (domain/severity), owner: Dashboard, priority: High }
+  XRES-003: { name: ScanId, description: UUID pool, owner: Dashboard, priority: Critical }
+  XRES-004: { name: Scan CPU, description: Scanner compute, owner: Dashboard, priority: High }
+  XRES-005: { name: Event Buffer, description: S011 publish queue, owner: Runtime, priority: High }
+  XRES-006: { name: Snapshot Store, description: debug snapshots, owner: Dashboard, priority: Low }

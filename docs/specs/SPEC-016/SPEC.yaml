@@ -1,0 +1,56 @@
+---
+id: SPEC-016
+name: CLI & Commands
+version: "1.0.0"
+status: Draft
+type: Experience
+authority: Medium
+owner: CLI Team
+description: >
+  CLI & Commands — entry point AIOS: Command, Flag, Alias, Help, Completion,
+  Shell Integration. Command chỉ khởi động Runtime — không làm việc (TERM-007).
+dependencies:
+  - SPEC-000
+  - SPEC-001
+  - SPEC-002
+  - SPEC-005
+  - SPEC-015
+includes:
+  - X001
+  - X002
+  - X003
+  - X004
+  - X005
+  - X006
+  - X007
+  - X008
+  - X009
+  - X010
+  - X011
+  - X012
+  - X013
+  - X014
+  - X015
+  - X016
+  - X017
+  - X018
+  - X019
+  - X020
+outputs:
+  - Command
+  - CLI Entry
+  - Help
+implements:
+  - Command
+authoritative: false
+breaking_change_requires:
+  - ADR
+  - RFC
+references:
+  constitution: ../SPEC-000
+  runtime: ../SPEC-001
+  registry: ../SPEC-005
+  glossary: ../../glossary
+  principles: ../../principles
+  rules: ../../rules
+  governance: ../../governance

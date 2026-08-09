@@ -1,0 +1,7 @@
+# SPEC-015 X010 - SDK Resolution
+---
+version: "1.0.0"
+resolution:
+  input: SDK_id
+  output: view + metrics hoac not-found
+  trace: moi resolution co trace_id (S011)

@@ -1,0 +1,8 @@
+# SPEC-015 X011 - SDK Correlation
+---
+version: "1.0.0"
+correlation:
+  correlation_id: sinh khi Create
+  trace_id: Runtime (S011)
+  execution_id: Execution (SPEC-001)
+  mapping: sdk-observability-mapping.yaml

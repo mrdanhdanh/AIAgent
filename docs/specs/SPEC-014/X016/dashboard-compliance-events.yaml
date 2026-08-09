@@ -1,0 +1,9 @@
+# SPEC-014 X016 - Dashboard Compliance Events
+---
+version: "1.0.0"
+events:
+  - spec014_COMPLIANCE_PASS
+  - spec014_COMPLIANCE_FAIL
+  - spec014_CERTIFIED
+  - spec014_AUDITED
+note: Event vao S011.

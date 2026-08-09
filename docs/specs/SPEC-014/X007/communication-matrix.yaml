@@ -1,0 +1,8 @@
+# SPEC-014 X007 - Dashboard Communication Matrix
+---
+version: "1.0.0"
+matrix:
+  User -> DashboardApi: sync render
+  DashboardApi -> RenderEngine: sync render
+  DashboardApi -> ExportEngine: sync export
+  DashboardApi -> S011: async event

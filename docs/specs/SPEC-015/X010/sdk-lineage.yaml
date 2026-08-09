@@ -1,0 +1,8 @@
+# SPEC-015 X010 - SDK Lineage
+---
+version: "1.0.0"
+lineage:
+  SDK_id: UUID
+  parent_SDK_id: null (Root) | UUID (view chain)
+  execution_id: UUID
+  note: Lineage duoc luu trong metadata.

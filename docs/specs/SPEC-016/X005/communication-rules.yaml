@@ -1,0 +1,8 @@
+# SPEC-016 X005 - CLI Communication Rules
+---
+version: "1.0.0"
+communication_rules:
+  - Run/Trigger: sync (blocking)
+  - Help: sync
+  - Events, metrics: async (S011)
+  - Moi op co trace_id (S011)

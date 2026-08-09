@@ -1,0 +1,9 @@
+# SPEC-016 X003 - CLI Ownership
+---
+version: "1.0.0"
+ownership:
+  owner_entity: CLI (SPEC-016)
+  data: S011 Metrics (read-only)
+  view: CLI View
+  transfer: Khong cho phep (P005)
+  destroy: Export archive (Policy S012)

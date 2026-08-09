@@ -1,0 +1,15 @@
+# SPEC-015 X011 - SDK Observability Mapping
+---
+version: "1.0.0"
+mapping:
+  stage -> event:
+    Create: SDK_CreateD
+    Render: SDK_RenderD
+    Run: SDK_RUNNING
+    Compose: SDK_ComposeD
+    Filter: SDK_FilterD
+    Export: SDK_ExportED
+  state -> metric:
+    Exported: SDK_Exported_total
+    Failed: SDK_failed_total
+    Composed: SDK_success_rate

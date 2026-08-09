@@ -1,0 +1,10 @@
+# SPEC-016 X009 - CLI State Metrics
+---
+version: "1.0.0"
+metrics:
+  - CLI_states_total
+  - CLI_transitions_total
+  - CLI_transition_duration_seconds
+  - CLI_failed_total
+  - CLI_archived_total
+labels: [CLI_id, state, transition, execution_id]

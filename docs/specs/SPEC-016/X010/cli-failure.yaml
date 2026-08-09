@@ -1,0 +1,11 @@
+# SPEC-016 X010 - CLI Failure Modes
+---
+version: "1.0.0"
+failure_modes:
+  - Create fail: error + khong CLI
+  - Render fail: CLI_FAILED + retry
+  - Compose fail: giu widget, retry
+  - Filter fail: giu view cu, retry
+  - Refresh fail: giu view cu, retry
+  - Export fail: retry policy
+retry: theo Policy S012

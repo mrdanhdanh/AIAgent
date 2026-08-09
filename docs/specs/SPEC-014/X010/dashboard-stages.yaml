@@ -1,0 +1,10 @@
+# SPEC-014 X010 - Dashboard Stages Registry
+---
+version: "1.0.0"
+registered_stages:
+  XF-001: { name: Create, actor: Dashboard, event: DASHBOARD_CREATED }
+  XF-002: { name: Render, actor: RenderEngine, event: DASHBOARD_RENDERING }
+  XF-003: { name: Compose, actor: Dashboard, event: DASHBOARD_COMPOSED }
+  XF-004: { name: Filter, actor: FilterEngine, event: DASHBOARD_FILTERED }
+  XF-005: { name: Refresh, actor: RefreshEngine, event: DASHBOARD_REFRESHED }
+  XF-006: { name: Export, actor: ExportEngine, event: DASHBOARD_EXPORTED }

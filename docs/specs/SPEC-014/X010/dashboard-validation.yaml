@@ -1,0 +1,8 @@
+# SPEC-014 X010 - Dashboard Flow Validation
+---
+version: "1.0.0"
+validation:
+  - stage order dung pipeline
+  - moi stage co event tuong ung
+  - dashboard khong thay doi he thong
+  - doc S011 read-only (Doctor X019)

@@ -1,0 +1,5 @@
+{
+  "schema": "dashboard-registry",
+  "version": "1.0",
+  "entry_types": ["DashboardDefinition","ScannerDefinition","DashboardPolicy","DashboardStateMachine"]
+}

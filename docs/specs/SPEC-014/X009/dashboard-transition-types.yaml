@@ -1,0 +1,8 @@
+# SPEC-014 X009 - Dashboard Transition Types
+---
+version: "1.0.0"
+transition_types:
+  external: [DASHBOARD_RENDERING, DASHBOARD_FAILED]
+  internal: [DASHBOARD_RENDERED, DASHBOARD_FILTERED, DASHBOARD_ARCHIVED]
+  error: [DASHBOARD_FAILED]
+rule: Internal transition chi trong Dashboard.

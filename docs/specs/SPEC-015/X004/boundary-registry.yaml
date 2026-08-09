@@ -1,0 +1,6 @@
+# SPEC-015 X004 - SDK Boundary Registry
+---
+version: "1.0.0"
+registry:
+  owner: SDK Team
+  tracked: [XB-001..010]

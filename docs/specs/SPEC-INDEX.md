@@ -404,15 +404,84 @@ SPEC-013 Evolution Engine
 
 ## SPEC-014 — Dashboard
 
-> **Trạng thái**: ⬜
+> **Trạng thái**: ✅ Hoàn thành (20/20, Draft — chờ review) · **Phụ thuộc**: SPEC-000, SPEC-001, SPEC-005, SPEC-008, SPEC-011
+
+```text
+SPEC-014 Dashboard
+│
+├── Tier 1 — Foundation
+│   ├── X001 Dashboard Vision         ✅
+│   ├── X002 Dashboard Requirements   ✅
+│   ├── X003 Dashboard Responsibilities ✅
+│   ├── X004 Dashboard Boundaries     ✅
+│   ├── X005 Dashboard Architecture   ✅
+│   ├── X006 Dashboard Components     ✅
+│   ├── X007 Dashboard Contracts      ✅
+│   └── Appendix: Canonical Models    ✅
+│
+├── Tier 2 — Behavior
+│   ├── X008 Dashboard Data Model     ✅
+│   ├── X009 Dashboard State Machine  ✅
+│   └── X010 Dashboard Execution Flow ✅
+│
+└── Tier 3/4 — Operations + Experience
+    ├── X011-X016 Operations          ✅
+    └── X017-X020 Experience          ✅
+```
 
 ## SPEC-015 — SDK
 
-> **Trạng thái**: ⬜
+> **Trạng thái**: ✅ Hoàn thành (20/20, Draft — chờ review) · **Phụ thuộc**: SPEC-000..014
+
+```text
+SPEC-015 SDK
+│
+├── Tier 1 — Foundation
+│   ├── X001 SDK Vision              ✅
+│   ├── X002 SDK Requirements        ✅
+│   ├── X003 SDK Responsibilities    ✅
+│   ├── X004 SDK Boundaries          ✅
+│   ├── X005 SDK Architecture        ✅
+│   ├── X006 SDK Components          ✅
+│   ├── X007 SDK Contracts           ✅
+│   └── Appendix: Canonical Models   ✅
+│
+├── Tier 2 — Behavior
+│   ├── X008 SDK Data Model          ✅
+│   ├── X009 SDK State Machine       ✅
+│   └── X010 SDK Execution Flow      ✅
+│
+└── Tier 3/4 — Operations + Experience
+    ├── X011-X016 Operations         ✅
+    └── X017-X020 Experience         ✅
+```
 
 ## SPEC-016 — CLI & Commands
 
-> **Trạng thái**: ⬜
+> **Trạng thái**: ✅ Hoàn thành (20/20, Draft — chờ review) · **Phụ thuộc**: SPEC-000, SPEC-001, SPEC-002, SPEC-005, SPEC-015
+
+```text
+SPEC-016 CLI & Commands
+│
+├── Tier 1 — Foundation
+│   ├── X001 CLI Vision              ✅
+│   ├── X002 CLI Requirements        ✅
+│   ├── X003 CLI Responsibilities    ✅
+│   ├── X004 CLI Boundaries          ✅
+│   ├── X005 CLI Architecture        ✅
+│   ├── X006 CLI Components          ✅
+│   ├── X007 CLI Contracts           ✅
+│   └── Appendix: Canonical Models   ✅
+│
+├── Tier 2 — Behavior
+│   ├── X008 CLI Data Model          ✅
+│   ├── X009 CLI State Machine       ✅
+│   └── X010 CLI Execution Flow      ✅
+│
+└── Tier 3/4 — Operations + Experience
+    ├── X011-X016 Operations         ✅
+    └── X017-X020 Experience         ✅
+```
 
 ## Thứ tự triển khai (Kernel-first)
 

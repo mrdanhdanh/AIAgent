@@ -1,0 +1,20 @@
+# SPEC-016 X003 - CLI Responsibility Matrix
+---
+version: "1.0.0"
+matrix:
+  XRR-001: { name: Run Command, owner: CLI, role: OWNER }
+  XRR-002: { name: Parse Flags, owner: CLI, role: OWNER }
+  XRR-003: { name: Resolve Alias, owner: CLI, role: OWNER }
+  XRR-004: { name: Show Help, owner: CLI, role: OWNER }
+  XRR-005: { name: Completion, owner: CLI, role: OWNER }
+  XRR-006: { name: Trigger Workflow, owner: CLI, role: OWNER }
+  XRR-007: { name: Shell Integration, owner: CLI, role: OWNER }
+  XRR-008: { name: Parse Args, owner: CLI, role: OWNER }
+  XRR-009: { name: Validate Command, owner: CLI, role: OWNER }
+  XRR-010: { name: Events, owner: Runtime (S011), role: EMITTER }
+  XRR-011: { name: Metrics, owner: Runtime (S011), role: EMITTER }
+  XRR-012: { name: Policy eval, owner: Policy (S012), role: DECIDER }
+  XRR-013: { name: Registry, owner: Registry (SPEC-005), role: REGISTER }
+  XRR-014: { name: Audit, owner: Runtime (S011), role: EMITTER }
+  XRR-015: { name: Retention, owner: CLI, role: OWNER }
+  XRR-016: { name: Recovery, owner: CLI, role: OWNER }

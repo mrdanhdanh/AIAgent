@@ -1,0 +1,7 @@
+# SPEC-015 X017 - SDK Extension Metrics
+---
+version: "1.0.0"
+metrics:
+  - SDK_extensions_total
+  - SDK_extensions_active
+  - SDK_extensions_rejected_total

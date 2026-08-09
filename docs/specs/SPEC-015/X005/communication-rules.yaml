@@ -1,0 +1,8 @@
+# SPEC-015 X005 - SDK Communication Rules
+---
+version: "1.0.0"
+communication_rules:
+  - Render/Refresh: sync (blocking)
+  - Export: sync
+  - Events, metrics: async (S011)
+  - Moi op co trace_id (S011)

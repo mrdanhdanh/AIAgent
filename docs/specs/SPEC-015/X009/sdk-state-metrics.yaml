@@ -1,0 +1,10 @@
+# SPEC-015 X009 - SDK State Metrics
+---
+version: "1.0.0"
+metrics:
+  - SDK_states_total
+  - SDK_transitions_total
+  - SDK_transition_duration_seconds
+  - SDK_failed_total
+  - SDK_archived_total
+labels: [SDK_id, state, transition, execution_id]

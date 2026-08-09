@@ -1,0 +1,7 @@
+{
+  "schema": "CLI-data-model",
+  "version": "1.0",
+  "CLIId": { "type": "string", "format": "uuid" },
+  "widgets": { "type": "array" },
+  "required": [ "CLIId", "widgets", "panels", "timestamp" ]
+}

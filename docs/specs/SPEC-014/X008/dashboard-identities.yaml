@@ -1,0 +1,8 @@
+# SPEC-014 X008 - Dashboard Identity
+---
+version: "1.0.0"
+identity:
+  dashboard_id: UUID (generated at Create)
+  execution_id: UUID (from Execution)
+  view_name: String (per role)
+identity_scope: Execution-scoped (never global)

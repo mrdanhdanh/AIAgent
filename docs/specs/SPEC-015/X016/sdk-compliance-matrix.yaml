@@ -1,0 +1,11 @@
+# SPEC-015 X016 - SDK Compliance Matrix
+---
+version: "1.0.0"
+matrix:
+  COMP-001: { check: SDK X019, artifact: sdk-*, gate: build }
+  COMP-002: { check: SDK X019, artifact: sdk-*, gate: build }
+  COMP-003: { check: SDK X019, artifact: sdk-*, gate: build }
+  COMP-004: { check: SDK X019, artifact: sdk-*, gate: build }
+  COMP-005: { check: SDK X019, artifact: sdk-*, gate: build }
+  COMP-006: { check: SDK X019, artifact: sdk-*, gate: build }
+gate: khong pass -> BLOCKED

@@ -1,0 +1,7 @@
+# SPEC-014 X006 - Dashboard Component Metrics
+---
+version: "1.0.0"
+metrics:
+  - dashboard_render_total
+  - dashboard_render_latency_seconds
+  - dashboard_export_total

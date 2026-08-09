@@ -1,0 +1,14 @@
+# SPEC-014 X011 - Dashboard Metrics
+---
+version: "1.0.0"
+metrics:
+  - DASHBOARD_runs_total
+  - DASHBOARD_Exported_total
+  - DASHBOARD_failed_total
+  - DASHBOARD_success_rate
+  - DASHBOARD_deviation_total
+  - DASHBOARD_replayed_total
+  - DASHBOARD_run_duration_seconds
+  - DASHBOARD_Filter_latency_seconds
+  - DASHBOARD_isolation_blocked_total
+labels: [DASHBOARD_id, state, execution_id, scenario]

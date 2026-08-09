@@ -1,0 +1,11 @@
+# SPEC-015 X010 - SDK Execution Flow (6 stages)
+---
+version: "1.0.0"
+stages:
+  XF-001: { name: Create, description: Nhan view tu User, actor: SDK, event: SDK_CREATED }
+  XF-002: { name: Render, description: Doc S011 metrics + render widget, actor: RenderEngine, event: SDK_RENDERING }
+  XF-003: { name: Compose, description: Ghep widget thanh panel, actor: SDK, event: SDK_COMPOSED }
+  XF-004: { name: Filter, description: Loc theo thoi gian/scope, actor: FilterEngine, event: SDK_FILTERED }
+  XF-005: { name: Refresh, description: Lam moi dinh ky, actor: RefreshEngine, event: SDK_REFRESHED }
+  XF-006: { name: Export, description: Xuat JSON/markdown, actor: ExportEngine, event: SDK_EXPORTED }
+source: aios-sdk (SDK khong dinh nghia lai pipeline)

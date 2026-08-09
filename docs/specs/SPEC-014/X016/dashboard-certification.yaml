@@ -1,0 +1,10 @@
+# SPEC-014 X016 - Dashboard Certification
+---
+version: "1.0.0"
+certification:
+  certified_artifacts:
+    - SPEC-014 SPEC.yaml
+    - X001-X020 sections
+    - dashboard-models/
+  criteria: validator PASS + Dashboard PASS
+  issued_by: Dashboard Team + Governance (S013)

@@ -1,0 +1,7 @@
+{
+  "schema": "dashboard-data-model",
+  "version": "1.0",
+  "dashboardId": { "type": "string", "format": "uuid" },
+  "widgets": { "type": "array" },
+  "required": [ "dashboardId", "widgets", "panels", "timestamp" ]
+}
