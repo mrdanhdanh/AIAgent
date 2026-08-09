@@ -1,0 +1,10 @@
+{
+  "schema": "context-data-model",
+  "version": "1.0",
+  "entityId": { "type": "string", "format": "uuid" },
+  "sectionKey": { "type": "string", "minLength": 1 },
+  "itemKey": { "type": "string", "pattern": "^[a-z][a-z0-9.-]*$" },
+  "itemValue": { "type": [ "string", "number", "boolean", "object", "array", "null" ] },
+  "ttl": { "type": "integer", "minimum": 1 },
+  "required": [ "contextId", "executionId", "createdAt", "ttl" ]
+}

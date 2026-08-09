@@ -1,0 +1,12 @@
+# SPEC-006 X006 - Component Dependencies
+---
+version: "1.0"
+dependencies:
+  XCP-001: [XCP-002, XCP-003, XCP-004, XCP-005, XCP-008]
+  XCP-002: []
+  XCP-003: []
+  XCP-004: [XCP-003]
+  XCP-005: [XCP-004]
+  XCP-006: [XCP-005]
+  XCP-007: [XCP-005]
+  XCP-008: [Event Store (S011)]

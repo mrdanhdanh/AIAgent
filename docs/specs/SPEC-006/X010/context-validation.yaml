@@ -1,0 +1,8 @@
+# SPEC-006 X010 - Context Flow Validation
+---
+version: "1.0"
+validation:
+  - stage order dung EF008
+  - moi stage co event tuong ung
+  - context duoc release truoc Execution end
+  - khong co Context leak (Doctor X019)

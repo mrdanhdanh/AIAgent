@@ -1,0 +1,8 @@
+# SPEC-006 X018 - Context Migration
+---
+version: "1.0"
+migration:
+  - Upgrade: bo sung field/section (backward)
+  - Downgrade: giu field cu (compat)
+  - Breaking: can ADR + RFC + migration doc
+  - Runtime Context: KHONG migrate (transient, tao moi)

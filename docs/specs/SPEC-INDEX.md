@@ -134,29 +134,29 @@ SPEC-003 Capability System
 
 ## SPEC-004 — Agent System
 
-> **Trạng thái**: 🚧 In progress (20/20 Draft — review rev1 FAIL REV-20260809-134, chờ fix) · **Phụ thuộc**: SPEC-000, SPEC-001, SPEC-002, SPEC-003
+> **Trạng thái**: ✅ COMPLETE (20/20 Frozen — rev1 x3 REV-134/135/136 + revfull REV-137 auto-freeze) · **Phụ thuộc**: SPEC-000, SPEC-001, SPEC-002, SPEC-003
 
 ```text
 SPEC-004 Agent System
 │
-├── Tier 1 — Foundation 🚧
-│   ├── A001 Agent Vision              🚧 Draft
-│   ├── A002 Agent Requirements        🚧 Draft
-│   ├── A003 Agent Responsibilities    🚧 Draft
-│   ├── A004 Agent Boundaries          🚧 Draft
-│   ├── A005 Agent Architecture        🚧 Draft
-│   ├── A006 Agent Components          🚧 Draft
-│   ├── A007 Agent Contracts           🚧 Draft
-│   └── Appendix: Canonical Models     🚧 Draft
+├── Tier 1 — Foundation ✅
+│   ├── A001 Agent Vision              ✅ Frozen
+│   ├── A002 Agent Requirements        ✅ Frozen
+│   ├── A003 Agent Responsibilities    ✅ Frozen
+│   ├── A004 Agent Boundaries          ✅ Frozen
+│   ├── A005 Agent Architecture        ✅ Frozen
+│   ├── A006 Agent Components          ✅ Frozen
+│   ├── A007 Agent Contracts           ✅ Frozen
+│   └── Appendix: Canonical Models     ✅ Frozen
 │
-├── Tier 2 — Behavior 🚧
-│   ├── A008 Agent Data Model          🚧 Draft
-│   ├── A009 Agent State Machine       🚧 Draft
-│   └── A010 Agent Execution Flow      🚧 Draft
+├── Tier 2 — Behavior ✅
+│   ├── A008 Agent Data Model          ✅ Frozen
+│   ├── A009 Agent State Machine       ✅ Frozen
+│   └── A010 Agent Execution Flow      ✅ Frozen
 │
-└── Tier 3/4 — Operations + Experience 🚧
-    ├── A011-A016 Operations           🚧 Draft
-    └── A017-A020 Experience           🚧 Draft
+└── Tier 3/4 — Operations + Experience ✅
+    ├── A011-A016 Operations           ✅ Frozen
+    └── A017-A020 Experience           ✅ Frozen
 ```
 
 ## SPEC-005 — Registry
@@ -188,7 +188,30 @@ SPEC-005 Registry
 
 ## SPEC-006 — Context Engine
 
-> **Trạng thái**: ⬜
+> **Trạng thái**: ✅ Hoàn thành (20/20) · **Phụ thuộc**: SPEC-000, SPEC-001, SPEC-005
+
+```text
+SPEC-006 Context Engine
+│
+├── Tier 1 — Foundation
+│   ├── X001 Context Vision             ✅
+│   ├── X002 Context Requirements       ✅
+│   ├── X003 Context Responsibilities   ✅
+│   ├── X004 Context Boundaries         ✅
+│   ├── X005 Context Architecture       ✅
+│   ├── X006 Context Components         ✅
+│   ├── X007 Context Contracts          ✅
+│   └── Appendix: Canonical Models      ✅
+│
+├── Tier 2 — Behavior
+│   ├── X008 Context Data Model         ✅
+│   ├── X009 Context State Machine      ✅
+│   └── X010 Context Execution Flow     ✅
+│
+└── Tier 3/4 — Operations + Experience
+    ├── X011-X016 Operations            ✅
+    └── X017-X020 Experience            ✅
+```
 
 ## SPEC-007 — Artifact Manager
 

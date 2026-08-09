@@ -1,0 +1,12 @@
+# SPEC-006 X010 - Context Execution Flow (7 stages)
+---
+version: "1.0"
+stages:
+  XF-001: { name: Allocate, description: Tao Context tu Execution metadata, actor: Context Engine, event: CONTEXT_ALLOCATED }
+  XF-002: { name: Populate, description: Dien du lieu metadata vao Context, actor: Context Engine, event: CONTEXT_POPULATED }
+  XF-003: { name: Distribute, description: Cap ContextGrant cho Agent/Capability, actor: Context Engine, event: CONTEXT_DISTRIBUTED }
+  XF-004: { name: Mutate, description: Thay doi Context trong pham vi grant, actor: Agent/Capability, event: CONTEXT_MUTATED }
+  XF-005: { name: Merge, description: Gop Context con vao Context cha, actor: Context Engine, event: CONTEXT_MERGED }
+  XF-006: { name: Collect, description: Thu ket qua tu Context, actor: Context Engine, event: CONTEXT_COLLECTED }
+  XF-007: { name: Release, description: Thu hoi Context khi Execution ket thuc, actor: Context Engine, event: CONTEXT_RELEASED }
+source: S010 EF008 (Context Engine thuc thi, khong dinh nghia lai)

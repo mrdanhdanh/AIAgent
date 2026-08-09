@@ -1,0 +1,5 @@
+{
+  "schema": "context-observability",
+  "version": "1.0",
+  "events": { "type": "array", "items": { "type": "string", "pattern": "^CONTEXT_" } }
+}

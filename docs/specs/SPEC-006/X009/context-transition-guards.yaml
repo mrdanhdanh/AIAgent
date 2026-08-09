@@ -1,0 +1,10 @@
+# SPEC-006 X009 - Context Transition Guards
+---
+version: "1.0"
+guards:
+  XGD-001: { transition: XTR-002, condition: Validate pass }
+  XGD-002: { transition: XTR-004, condition: Grant scope hop le }
+  XGD-003: { transition: XTR-005, condition: Key trong scope cua grant }
+  XGD-004: { transition: XTR-007, condition: Merge khong conflict key }
+  XGD-005: { transition: XTR-010, condition: Execution terminal }
+guard_fail: transition bi chan + error CONTEXT_GUARD

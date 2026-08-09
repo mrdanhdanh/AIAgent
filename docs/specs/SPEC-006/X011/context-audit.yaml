@@ -1,0 +1,11 @@
+# SPEC-006 X011 - Context Audit
+---
+version: "1.0"
+audit:
+  who: agent_id / capability_id / engine
+  what: op (allocate/populate/mutate/...)
+  when: timestamp
+  where: context_id, execution_id
+  why: transition_id, event
+  audit_log: append-only (S011)
+  source: XFR-016

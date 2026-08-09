@@ -1,0 +1,8 @@
+# SPEC-006 X015 - Context Resource Allocation
+---
+version: "1.0"
+allocation:
+  - Allocate: cap memory theo quota (XPOL-006)
+  - Distribute: cap grant slot
+  - Release: thu hoi memory + slot
+  - Quota: cau hinh qua Policy S012

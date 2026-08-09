@@ -1,0 +1,10 @@
+# SPEC-006 X015 - Context Resource Model
+---
+version: "1.0"
+resources:
+  XRES-001: { name: Memory, description: In-memory Context storage, owner: Context Engine, priority: Critical }
+  XRES-002: { name: ContextId, description: UUID pool, owner: Context Engine, priority: Critical }
+  XRES-003: { name: Grant Slot, description: Grant active limit, owner: Context Engine, priority: High }
+  XRES-004: { name: Event Buffer, description: S011 publish queue, owner: Runtime, priority: High }
+  XRES-005: { name: Snapshot Store, description: debug/doctor snapshots, owner: Context Engine, priority: Low }
+  XRES-006: { name: Policy Evaluator, description: S012 decision engine, owner: Runtime, priority: High }

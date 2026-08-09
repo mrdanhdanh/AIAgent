@@ -1,0 +1,11 @@
+# SPEC-006 X003 - Responsibility Matrix
+---
+version: "1.0"
+groups:
+  Core: [XXR-001, XXR-002, XXR-008]
+  Validation: [XXR-003]
+  Execution: [XXR-004, XXR-005, XXR-006, XXR-007, XXR-014, XXR-015]
+  Security: [XXR-009]
+  Observability: [XXR-010, XXR-011, XXR-016]
+  Data: [XXR-013]
+  Governance: [XXR-012, XXR-017, XXR-018]

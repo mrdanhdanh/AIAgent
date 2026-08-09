@@ -1,0 +1,5 @@
+# SPEC-006 X005 - Communication Rules
+---
+version: "1.0"
+allowed: [Contract, Context, Event]
+note: Ngoai ra deu bi cam.

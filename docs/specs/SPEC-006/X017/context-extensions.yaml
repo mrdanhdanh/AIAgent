@@ -1,0 +1,11 @@
+# SPEC-006 X017 - Context Extension Points
+---
+version: "1.0"
+extensions:
+  XEXT-001: { name: Context Extension Point, description: Diem mo rong Context, owner: Context Engine, priority: High }
+  XEXT-002: { name: Custom Section Type, description: Kieu section moi, owner: Context Engine, priority: Medium }
+  XEXT-003: { name: Custom Item Validator, description: Validator tu dinh nghia, owner: Context Engine, priority: Medium }
+  XEXT-004: { name: Grant Policy Hook, description: Hook chinh sach grant, owner: Policy (S012), priority: High }
+  XEXT-005: { name: Merge Strategy, description: Chien luoc merge tuy bien, owner: Context Engine, priority: Medium }
+  XEXT-006: { name: Snapshot Serializer, description: Serialization tuy bien, owner: Context Engine, priority: Low }
+  XEXT-007: { name: Dashboard Widget, description: Widget X020 tu tao, owner: X020, priority: Low }

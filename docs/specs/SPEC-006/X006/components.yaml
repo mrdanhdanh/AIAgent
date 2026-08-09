@@ -1,0 +1,186 @@
+# SPEC-006 X006 — Context Components (8 XCP)
+---
+id: SPEC-006-X006
+name: Context Components
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Context Team
+philosophy:
+  - Component cang it cang tot.
+  - Moi Component chi co mot trach nhiem.
+principles:
+  - Mot Responsibility.
+  - Mot Owner.
+  - Mot hoac nhieu Contract.
+  - Co the thay the.
+  - Khong chua Business Logic.
+component_model:
+  fields: [id, name, version, status, layer, domain, responsibility, capability, contracts, dependencies, lifecycle, owner, metadata]
+groups:
+  Core: [Context Engine, Allocation Manager, Population Manager, Validation Engine, Isolation Manager]
+  Distribution: [Distribution Manager, Collection Manager]
+  Infrastructure: [Context Event Dispatcher]
+lifecycles:
+  runtime: [Defined, Initialized, Ready, Active, Stopping, Disposed]
+  context: [Idle, Assigned, Running, Completed]
+components:
+  XCP-001:
+    name: Context Engine
+    version: 1.0.0
+    status: Draft
+    layer: Command
+    domain: Execution
+    responsibility: Quan ly vong doi Context
+    capability: context-management
+    contracts: [Context Contract]
+    dependencies: []
+    lifecycle: runtime
+    owner: Context
+    replaceable: true
+    metric: Context Metric
+    boundary: XB009-governance
+    rule: RULE-005
+    responsibilities: [XXR-001]
+    requirements: [XFR-001]
+    principles: [P009]
+  XCP-002:
+    name: Allocation Manager
+    version: 1.0.0
+    status: Draft
+    layer: Allocation
+    domain: Definition
+    responsibility: Allocate Context khi Execution Created
+    capability: context-allocation
+    contracts: [Context Contract]
+    dependencies: []
+    lifecycle: runtime
+    owner: Context
+    replaceable: true
+    metric: Context Metric
+    boundary: XB001-allocation
+    rule: RULE-005
+    responsibilities: [XXR-001]
+    requirements: [XFR-001]
+    principles: [P009]
+  XCP-003:
+    name: Population Manager
+    version: 1.0.0
+    status: Draft
+    layer: Population
+    domain: Definition
+    responsibility: Populate Context
+    capability: context-population
+    contracts: [Context Contract]
+    dependencies: []
+    lifecycle: runtime
+    owner: Context
+    replaceable: true
+    metric: Context Metric
+    boundary: XB006-data
+    rule: RULE-005
+    responsibilities: [XXR-001]
+    requirements: [XFR-001]
+    principles: [P009]
+  XCP-004:
+    name: Validation Engine
+    version: 1.0.0
+    status: Draft
+    layer: Validation
+    domain: Validation
+    responsibility: Validate Context truoc khi cap
+    capability: context-validation
+    contracts: [Context Contract]
+    dependencies: []
+    lifecycle: runtime
+    owner: Context
+    replaceable: true
+    metric: Context Metric
+    boundary: XB003-validation
+    rule: RULE-005
+    responsibilities: [XXR-001]
+    requirements: [XFR-001]
+    principles: [P009]
+  XCP-005:
+    name: Distribution Manager
+    version: 1.0.0
+    status: Draft
+    layer: Distribution
+    domain: Execution
+    responsibility: Cap Context cho Agent/Capability
+    capability: context-distribution
+    contracts: [Context Contract]
+    dependencies: []
+    lifecycle: runtime
+    owner: Context
+    replaceable: true
+    metric: Context Metric
+    boundary: XB004-distribution
+    rule: RULE-005
+    responsibilities: [XXR-001]
+    requirements: [XFR-001]
+    principles: [P009]
+  XCP-006:
+    name: Collection Manager
+    version: 1.0.0
+    status: Draft
+    layer: Collection
+    domain: Execution
+    responsibility: Collect + Release Context
+    capability: context-collection
+    contracts: [Context Contract]
+    dependencies: []
+    lifecycle: runtime
+    owner: Context
+    replaceable: true
+    metric: Context Metric
+    boundary: XB007-release
+    rule: RULE-005
+    responsibilities: [XXR-001]
+    requirements: [XFR-001]
+    principles: [P009]
+  XCP-007:
+    name: Isolation Manager
+    version: 1.0.0
+    status: Draft
+    layer: Distribution
+    domain: Execution
+    responsibility: Dam bao Context isolated
+    capability: context-isolation
+    contracts: [Context Contract]
+    dependencies: []
+    lifecycle: runtime
+    owner: Context
+    replaceable: true
+    metric: Context Metric
+    boundary: XB002-isolation
+    rule: RULE-005
+    responsibilities: [XXR-001]
+    requirements: [XFR-001]
+    principles: [P009]
+  XCP-008:
+    name: Context Event Dispatcher
+    version: 1.0.0
+    status: Draft
+    layer: Publication
+    domain: Observability
+    responsibility: Publish Event/Metrics/Trace/Audit (S011)
+    capability: context-observability
+    contracts: [Context Contract]
+    dependencies: []
+    lifecycle: runtime
+    owner: Context
+    replaceable: true
+    metric: Context Metric
+    boundary: XB009-governance
+    rule: RULE-005
+    responsibilities: [XXR-001]
+    requirements: [XFR-001]
+    principles: [P009]
+not_in_runtime:
+  - Execution Manager (SPEC-001 S006 CMP-001)
+  - Context Manager (SPEC-001 S006 CMP-003)
+  - State Manager (SPEC-001 S006 CMP-004)
+  - Policy Engine (SPEC-001 S006 CMP-006)
+  - Registry (S014)
+  note: Context Engine dung qua Runtime (SPEC-001) - khong lap lai.

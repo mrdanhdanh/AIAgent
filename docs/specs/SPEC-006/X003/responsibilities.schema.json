@@ -1,0 +1,9 @@
+{ "$schema": "https://json-schema.org/draft/2020-12/schema", "$id": "aios://context-responsibilities.schema.json", "title": "SPEC-006 Context Responsibilities (X003)", "type": "object",
+  "required": ["id","name","version","status","frozen","owner","principle","invariants","delegation","responsibilities"],
+  "properties": { "id": { "const": "SPEC-006-X003" }, "name": { "const": "Context Responsibilities" },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "status": { "enum": ["Draft","Review","Approved","Stable","Deprecated"] }, "frozen": { "type": "boolean" },
+    "owner": { "type": "string" }, "principle": { "type": "string" },
+    "invariants": { "type": "array", "items": { "type": "string" }, "minItems": 4 },
+    "delegation": { "type": "object" }, "responsibilities": { "type": "object", "minProperties": 18 } },
+  "additionalProperties": false }

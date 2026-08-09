@@ -1,0 +1,14 @@
+# SPEC-006 X009 - Context Definition States (8)
+---
+version: "1.0"
+initial_state: XST-001
+terminal_states: [XST-007, XST-008]
+states:
+  XST-001: { name: Allocated, category: Initial, type: Initial, terminal: - }
+  XST-002: { name: Populating, category: Preparation, type: Internal, terminal: - }
+  XST-003: { name: Active, category: Active, type: Active, terminal: - }
+  XST-004: { name: Distributed, category: Active, type: Active, terminal: - }
+  XST-005: { name: Merging, category: Preparation, type: Internal, terminal: - }
+  XST-006: { name: Collected, category: Active, type: Active, terminal: - }
+  XST-007: { name: Released, category: Terminal, type: Terminal, terminal: yes }
+  XST-008: { name: Rejected, category: Terminal, type: Terminal, terminal: yes }

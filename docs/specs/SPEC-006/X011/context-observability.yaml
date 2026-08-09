@@ -1,0 +1,9 @@
+# SPEC-006 X011 - Context Observability Model
+---
+version: "1.0"
+observability:
+  logs: Context Engine logs (structured)
+  events: CONTEXT_* (S011 Event Store)
+  metrics: context_* (prometheus)
+  traces: trace_id + correlation_id (S011)
+boundary: Context la observability boundary (S011 OB003A)

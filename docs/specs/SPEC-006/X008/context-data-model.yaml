@@ -1,0 +1,50 @@
+# SPEC-006 X008 - Context Data Model
+---
+version: "1.0"
+entities:
+  ENT-X001: { name: Context, kind: AggregateRoot, owner: Context Engine, immutable: false }
+  ENT-X002: { name: ContextMetadata, kind: Entity, owner: Context Engine, immutable: true }
+  ENT-X003: { name: ContextSection, kind: Entity, owner: Context Engine, immutable: false }
+  ENT-X004: { name: ContextItem, kind: Value, owner: Context Engine, immutable: true }
+  ENT-X005: { name: ContextKey, kind: Value, owner: Context Engine, immutable: true }
+  ENT-X006: { name: ContextState, kind: Transient, owner: Context Engine, immutable: false }
+  ENT-X007: { name: ContextGrant, kind: Entity, owner: Context Engine, immutable: false }
+  ENT-X008: { name: ContextEvent, kind: Ref (S011), owner: Runtime, immutable: true }
+  ENT-X009: { name: ContextMetric, kind: Ref (S011), owner: Runtime, immutable: true }
+  ENT-X010: { name: ContextSnapshot, kind: Entity, owner: Context Engine, immutable: false }
+  ENT-X011: { name: ExecutionRef, kind: Ref (SPEC-001), owner: Execution, immutable: true }
+  ENT-X012: { name: AgentRef, kind: Ref (SPEC-004), owner: Agent, immutable: true }
+  ENT-X013: { name: CapabilityRef, kind: Ref (SPEC-003), owner: Capability, immutable: true }
+  ENT-X014: { name: PolicyRef, kind: Ref (S012), owner: Runtime, immutable: true }
+  ENT-X015: { name: ContextExtension, kind: Value, owner: Context Engine, immutable: true }
+relations:
+  REL-X001: { from: Context, to: ContextMetadata, cardinality: 1..1 }
+  REL-X002: { from: Context, to: ContextSection, cardinality: 1..* }
+  REL-X003: { from: ContextSection, to: ContextItem, cardinality: 1..* }
+  REL-X004: { from: Context, to: ContextState, cardinality: 1..1 }
+  REL-X005: { from: Context, to: ContextGrant, cardinality: 0..* }
+  REL-X006: { from: Context, to: ExecutionRef, cardinality: 1..1 }
+  REL-X007: { from: Context, to: AgentRef, cardinality: 0..* }
+  REL-X008: { from: Context, to: ContextEvent, cardinality: 0..* }
+  REL-X009: { from: Context, to: ContextSnapshot, cardinality: 0..* }
+invariants:
+  INV-X001: { name: Unique ContextId, description: Moi Context co id duy nhat }
+  INV-X002: { name: Single Owner, description: Context chi thuoc mot Execution }
+  INV-X003: { name: Key Unique In Section, description: Key khong trung trong section }
+  INV-X004: { name: Section Required, description: Context co it nhat mot section }
+  INV-X005: { name: Key Schema Valid, description: Key theo context-key.schema.json }
+  INV-X006: { name: No Business Data, description: Context khong chua business data }
+  INV-X007: { name: Grant Scope Valid, description: Grant scope nam trong context scope }
+validation:
+  VAL-X001: { field: ContextId, requirement: Required, type: UUID }
+  VAL-X002: { field: ExecutionId, requirement: Required, type: UUID }
+  VAL-X003: { field: SectionKey, requirement: Required, type: String }
+  VAL-X004: { field: ItemKey, requirement: Required, type: String }
+  VAL-X005: { field: ItemValue, requirement: Optional, type: Any (metadata) }
+  VAL-X006: { field: CreatedAt, requirement: Required, type: Timestamp }
+  VAL-X007: { field: Ttl, requirement: Required, type: Duration }
+storage:
+  mode: In-Memory
+  persistence: "false (P009 - transient)"
+  snapshot: ContextSnapshot (optional, debug)
+  source: S008 ENT Context

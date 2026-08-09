@@ -1,0 +1,13 @@
+# SPEC-006 X004 - Boundary Ownership Matrix
+---
+version: "1.0"
+ownership:
+  XB001-allocation: Context
+  XB002-isolation: Context
+  XB003-validation: Context
+  XB004-distribution: Context
+  XB005-mutation: Context
+  XB006-data: Context
+  XB007-release: Context
+  XB008-policy: Runtime (S012)
+  XB009-governance: Runtime (S013)

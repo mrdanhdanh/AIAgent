@@ -1,0 +1,10 @@
+# SPEC-006 X020 - Context Dashboard Panels (6)
+---
+version: "1.0"
+panels:
+  XPAN-001: { name: Context Activity, description: Allocate/Release rate, data: X011 metrics, priority: High }
+  XPAN-002: { name: Context Lifecycle, description: State histogram (X009), data: X009 states, priority: High }
+  XPAN-003: { name: Context Failures, description: Rejected/leaked, data: X015 metrics, priority: High }
+  XPAN-004: { name: Grant Status, description: Active/revoked grants, data: X011 metrics, priority: Medium }
+  XPAN-005: { name: Resource Usage, description: Memory per context, data: X015 metrics, priority: Medium }
+  XPAN-006: { name: Compliance Score, description: X016 score, data: X016 report, priority: High }

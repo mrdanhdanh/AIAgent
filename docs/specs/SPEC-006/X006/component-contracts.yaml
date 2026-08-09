@@ -1,0 +1,6 @@
+# SPEC-006 X006 - Component Contracts
+---
+version: "1.0"
+contracts:
+  Context Contract: [XCP-001..XCP-007]
+  Event Contract: [XCP-008]

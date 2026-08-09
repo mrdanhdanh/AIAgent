@@ -1,0 +1,8 @@
+# SPEC-006 Appendix - Context Model Validation
+---
+version: "1.0"
+checks:
+  - Context co dung mot Metadata.
+  - Context thuoc dung mot Execution.
+  - ContextResult immutable.
+  - Context khong chua Business Data.

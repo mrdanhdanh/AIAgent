@@ -1,0 +1,10 @@
+# SPEC-006 X016 - Context Compliance Rules
+---
+version: "1.0"
+compliance_rules:
+  COMP-001: { name: Isolation, requirement: Moi Context co dung mot Execution (P006), source: XNF-001 }
+  COMP-002: { name: No Business Data, requirement: Context khong chua business data (P001), source: XNF-002 }
+  COMP-003: { name: Transient, requirement: Context khong persist (P009), source: XNF-003 }
+  COMP-004: { name: Observable, requirement: Moi thay doi co Event (P005), source: XNF-004 }
+  COMP-005: { name: Owned, requirement: Context chi tao boi Context Engine (EF008), source: XNF-005 }
+  COMP-006: { name: Released, requirement: Release truoc Execution end (EF008), source: XPOL-005 }

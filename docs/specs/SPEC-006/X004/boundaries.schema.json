@@ -1,0 +1,11 @@
+{ "$schema": "https://json-schema.org/draft/2020-12/schema", "$id": "aios://context-boundaries.schema.json", "title": "SPEC-006 Context Boundaries (X004)", "type": "object",
+  "required": ["id","name","version","status","frozen","owner","hierarchy","decision","invariants","validation","boundaries","mapping","metrics"],
+  "properties": { "id": { "const": "SPEC-006-X004" }, "name": { "const": "Context Boundaries" },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "status": { "enum": ["Draft","Review","Approved","Stable","Deprecated"] }, "frozen": { "type": "boolean" },
+    "owner": { "type": "string" }, "hierarchy": { "type": "object" }, "decision": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "invariants": { "type": "array", "items": { "type": "string" }, "minItems": 4 },
+    "validation": { "type": "array", "items": { "type": "string" }, "minItems": 5 },
+    "boundaries": { "type": "object", "minProperties": 9 }, "mapping": { "type": "object", "minProperties": 9 },
+    "metrics": { "type": "object", "minProperties": 1 } },
+  "additionalProperties": false }

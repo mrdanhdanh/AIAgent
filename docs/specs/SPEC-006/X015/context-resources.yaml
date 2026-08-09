@@ -1,0 +1,10 @@
+# SPEC-006 X015 - Context Resources
+---
+version: "1.0"
+resources:
+  XRES-001: { name: Memory, owner: Context Engine }
+  XRES-002: { name: ContextId, owner: Context Engine }
+  XRES-003: { name: Grant Slot, owner: Context Engine }
+  XRES-004: { name: Event Buffer, owner: Runtime }
+  XRES-005: { name: Snapshot Store, owner: Context Engine }
+  XRES-006: { name: Policy Evaluator, owner: Runtime }

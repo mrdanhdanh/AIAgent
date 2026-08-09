@@ -1,0 +1,8 @@
+# SPEC-006 X015 - Context Resource Access
+---
+version: "1.0"
+access:
+  - Context chi access qua Context Engine API
+  - Agent access qua ContextGrant (scope)
+  - Khong access truc tiep (P006)
+  - Audit moi access (X011)

@@ -1,0 +1,11 @@
+# SPEC-006 X010 - Context Stages Registry
+---
+version: "1.0"
+registered_stages:
+  XF-001: { name: Allocate, actor: Context Engine, event: CONTEXT_ALLOCATED }
+  XF-002: { name: Populate, actor: Context Engine, event: CONTEXT_POPULATED }
+  XF-003: { name: Distribute, actor: Context Engine, event: CONTEXT_DISTRIBUTED }
+  XF-004: { name: Mutate, actor: Agent/Capability, event: CONTEXT_MUTATED }
+  XF-005: { name: Merge, actor: Context Engine, event: CONTEXT_MERGED }
+  XF-006: { name: Collect, actor: Context Engine, event: CONTEXT_COLLECTED }
+  XF-007: { name: Release, actor: Context Engine, event: CONTEXT_RELEASED }

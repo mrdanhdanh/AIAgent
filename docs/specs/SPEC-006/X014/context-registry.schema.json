@@ -1,0 +1,5 @@
+{
+  "schema": "context-registry",
+  "version": "1.0",
+  "entry_types": ["ContextDefinition","ContextSchema","ContextPolicy","ContextStateMachine"]
+}

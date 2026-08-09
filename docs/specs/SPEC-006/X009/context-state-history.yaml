@@ -1,0 +1,7 @@
+# SPEC-006 X009 - Context State History
+---
+version: "1.0"
+state_history:
+  record: [context_id, state, timestamp, transition_id, correlation_id]
+  retention: cung vong doi Execution (transient)
+  source: S011 Event Store

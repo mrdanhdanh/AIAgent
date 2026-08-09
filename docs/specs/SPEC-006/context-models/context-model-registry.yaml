@@ -1,0 +1,12 @@
+# SPEC-006 Appendix - Context Model Registry
+---
+version: "1.0"
+models:
+  - XM-001
+  - XM-002
+  - XM-003
+  - XM-004
+  - XM-005
+  - XM-006
+  - XM-007
+  - XM-008

@@ -1,0 +1,8 @@
+# SPEC-006 X011 - Context Correlation
+---
+version: "1.0"
+correlation:
+  correlation_id: sinh khi Allocate
+  trace_id: Runtime (S011)
+  execution_id: Execution (SPEC-001)
+  mapping: context_observability-mapping.yaml

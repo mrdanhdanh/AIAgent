@@ -1,0 +1,22 @@
+# SPEC-006 X003 - Responsibility Mapping
+---
+version: "1.0"
+mapping:
+  XXR-001: [XFR-001]
+  XXR-002: [XFR-001]
+  XXR-003: [XFR-001]
+  XXR-004: [XFR-001]
+  XXR-005: [XFR-001]
+  XXR-006: [XFR-001]
+  XXR-007: [XFR-001]
+  XXR-008: [XFR-001]
+  XXR-009: [XFR-001]
+  XXR-010: [XFR-001]
+  XXR-011: [XFR-001]
+  XXR-012: [XFR-001]
+  XXR-013: [XFR-001]
+  XXR-014: [XFR-001]
+  XXR-015: [XFR-001]
+  XXR-016: [XFR-001]
+  XXR-017: [XFR-001]
+  XXR-018: [XFR-001]

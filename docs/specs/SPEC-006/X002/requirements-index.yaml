@@ -1,0 +1,88 @@
+# SPEC-006 X002 - Requirements Index
+---
+version: "1.0"
+index:
+  - id: XFR-001
+    type: functional
+    status: Draft
+  - id: XFR-002
+    type: functional
+    status: Draft
+  - id: XFR-003
+    type: functional
+    status: Draft
+  - id: XFR-004
+    type: functional
+    status: Draft
+  - id: XFR-005
+    type: functional
+    status: Draft
+  - id: XFR-006
+    type: functional
+    status: Draft
+  - id: XFR-007
+    type: functional
+    status: Draft
+  - id: XFR-008
+    type: functional
+    status: Draft
+  - id: XFR-009
+    type: functional
+    status: Draft
+  - id: XFR-010
+    type: functional
+    status: Draft
+  - id: XFR-011
+    type: functional
+    status: Draft
+  - id: XFR-012
+    type: functional
+    status: Draft
+  - id: XFR-013
+    type: functional
+    status: Draft
+  - id: XFR-014
+    type: functional
+    status: Draft
+  - id: XFR-015
+    type: functional
+    status: Draft
+  - id: XFR-016
+    type: functional
+    status: Draft
+  - id: XNF-001
+    type: non_functional
+    status: Draft
+  - id: XNF-002
+    type: non_functional
+    status: Draft
+  - id: XNF-003
+    type: non_functional
+    status: Draft
+  - id: XNF-004
+    type: non_functional
+    status: Draft
+  - id: XNF-005
+    type: non_functional
+    status: Draft
+  - id: XNF-006
+    type: non_functional
+    status: Draft
+  - id: XNF-007
+    type: non_functional
+    status: Draft
+  - id: XNF-008
+    type: non_functional
+    status: Draft
+  - id: XNF-009
+    type: non_functional
+    status: Draft
+  - id: XNF-010
+    type: non_functional
+    status: Draft
+  - id: XNF-011
+    type: non_functional
+    status: Draft
+  - id: XNF-012
+    type: non_functional
+    status: Draft

@@ -1,0 +1,25 @@
+# SPEC-006 X005 - Layer Model
+---
+version: "1.0"
+layers:
+  - name: Command
+    level: 1
+    domain: Execution
+  - name: Allocation
+    level: 2
+    domain: Definition
+  - name: Population
+    level: 3
+    domain: Definition
+  - name: Validation
+    level: 4
+    domain: Validation
+  - name: Distribution
+    level: 5
+    domain: Execution
+  - name: Collection
+    level: 6
+    domain: Execution
+  - name: Publication
+    level: 7
+    domain: Observability

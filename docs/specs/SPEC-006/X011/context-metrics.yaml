@@ -1,0 +1,14 @@
+# SPEC-006 X011 - Context Metrics
+---
+version: "1.0"
+metrics:
+  - context_allocated_total
+  - context_released_total
+  - context_rejected_total
+  - context_active_current
+  - context_mutate_total
+  - context_merge_total
+  - context_release_latency_seconds
+  - context_grant_active_current
+  - context_memory_bytes
+labels: [context_id, state, execution_id, agent_id]

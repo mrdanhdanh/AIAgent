@@ -1,0 +1,12 @@
+# SPEC-006 X006 - Component Mapping
+---
+version: "1.0"
+mapping:
+  XCP-001: { layer: Command, domain: Execution }
+  XCP-002: { layer: Allocation, domain: Definition }
+  XCP-003: { layer: Population, domain: Definition }
+  XCP-004: { layer: Validation, domain: Validation }
+  XCP-005: { layer: Distribution, domain: Execution }
+  XCP-006: { layer: Collection, domain: Execution }
+  XCP-007: { layer: Distribution, domain: Execution }
+  XCP-008: { layer: Publication, domain: Observability }

@@ -1,0 +1,8 @@
+# SPEC-006 X013 - Context Binding Enforcement
+---
+version: "1.0"
+binding_enforcement:
+  rules: RULE-005 (isolation), RULE-001 (no business data)
+  policies: XPOL-001..010
+  violations: ghi nhan + Doctor X019
+  escalation: S013 Governance

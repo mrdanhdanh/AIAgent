@@ -1,0 +1,8 @@
+# SPEC-006 X015 - Context Resource Validation
+---
+version: "1.0"
+validation:
+  - quota khong vuot (XPOL-006)
+  - khong leak sau Release
+  - metrics day du (X011)
+  - kiem tra bang Doctor X019

@@ -1,0 +1,253 @@
+# SPEC-006 X003 — Context Responsibilities (18 XXR)
+---
+id: SPEC-006-X003
+name: Context Responsibilities
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Context Team
+principle: Responsibility != Capability != Component
+invariants:
+  - Mot Responsibility chi co mot Owner.
+  - Mot Responsibility co the delegate.
+  - Owner khong doi trong mot Context vong doi.
+  - Khong Responsibility nao phu thuoc vong.
+delegation:
+  Execution: Runtime (SPEC-001)
+  Policy: Runtime (S012)
+  Governance: Runtime (S013)
+responsibilities:
+  XXR-001:
+    name: Allocate Context
+    group: Core
+    owner: Context
+    priority: Critical
+    status: Draft
+    capability: context-allocate
+    input: Execution
+    output: Context
+    metric: Context Metric
+    requirements: [XFR-001]
+    principles: [P009]
+    rules: [RULE-005]
+  XXR-002:
+    name: Populate Context
+    group: Core
+    owner: Context
+    priority: Critical
+    status: Draft
+    capability: context-populate
+    input: Execution
+    output: Context
+    metric: Context Metric
+    requirements: [XFR-001]
+    principles: [P009]
+    rules: [RULE-005]
+  XXR-003:
+    name: Validate Context
+    group: Validation
+    owner: Context
+    priority: Critical
+    status: Draft
+    capability: context-validate
+    input: Execution
+    output: Context
+    metric: Context Metric
+    requirements: [XFR-001]
+    principles: [P009]
+    rules: [RULE-005]
+  XXR-004:
+    name: Distribute Context
+    group: Execution
+    owner: Context
+    priority: Critical
+    status: Draft
+    capability: context-distribute
+    input: Execution
+    output: Context
+    metric: Context Metric
+    requirements: [XFR-001]
+    principles: [P009]
+    rules: [RULE-005]
+  XXR-005:
+    name: Mutate Context
+    group: Execution
+    owner: Context
+    priority: High
+    status: Draft
+    capability: context-mutate
+    input: Execution
+    output: Context
+    metric: Context Metric
+    requirements: [XFR-001]
+    principles: [P009]
+    rules: [RULE-005]
+  XXR-006:
+    name: Merge Context
+    group: Execution
+    owner: Context
+    priority: High
+    status: Draft
+    capability: context-merge
+    input: Execution
+    output: Context
+    metric: Context Metric
+    requirements: [XFR-001]
+    principles: [P009]
+    rules: [RULE-005]
+  XXR-007:
+    name: Collect Context
+    group: Execution
+    owner: Context
+    priority: High
+    status: Draft
+    capability: context-collect
+    input: Execution
+    output: Context
+    metric: Context Metric
+    requirements: [XFR-001]
+    principles: [P009]
+    rules: [RULE-005]
+  XXR-008:
+    name: Release Context
+    group: Core
+    owner: Context
+    priority: Critical
+    status: Draft
+    capability: context-release
+    input: Execution
+    output: Context
+    metric: Context Metric
+    requirements: [XFR-001]
+    principles: [P009]
+    rules: [RULE-005]
+  XXR-009:
+    name: Isolate Context
+    group: Security
+    owner: Context
+    priority: Critical
+    status: Draft
+    capability: context-isolate
+    input: Execution
+    output: Context
+    metric: Context Metric
+    requirements: [XFR-001]
+    principles: [P009]
+    rules: [RULE-005]
+  XXR-010:
+    name: Track Context
+    group: Observability
+    owner: Context
+    priority: High
+    status: Draft
+    capability: context-track
+    input: Execution
+    output: Context
+    metric: Context Metric
+    requirements: [XFR-001]
+    principles: [P009]
+    rules: [RULE-005]
+  XXR-011:
+    name: Publish Context Events
+    group: Observability
+    owner: Context
+    priority: High
+    status: Draft
+    capability: context-events
+    input: Execution
+    output: Context
+    metric: Context Metric
+    requirements: [XFR-001]
+    principles: [P009]
+    rules: [RULE-005]
+  XXR-012:
+    name: Bind Policy
+    group: Governance
+    owner: Context
+    priority: High
+    status: Draft
+    capability: context-binding
+    input: Execution
+    output: Context
+    metric: Context Metric
+    requirements: [XFR-001]
+    principles: [P009]
+    rules: [RULE-005]
+  XXR-013:
+    name: Register Context
+    group: Data
+    owner: Context
+    priority: Medium
+    status: Draft
+    capability: context-register
+    input: Execution
+    output: Context
+    metric: Context Metric
+    requirements: [XFR-001]
+    principles: [P009]
+    rules: [RULE-005]
+  XXR-014:
+    name: Quan ly Context Chain
+    group: Execution
+    owner: Context
+    priority: Medium
+    status: Draft
+    capability: context-chain
+    input: Execution
+    output: Context
+    metric: Context Metric
+    requirements: [XFR-001]
+    principles: [P009]
+    rules: [RULE-005]
+  XXR-015:
+    name: Quan ly Lifecycle
+    group: Execution
+    owner: Context
+    priority: Critical
+    status: Draft
+    capability: context-lifecycle
+    input: Execution
+    output: Context
+    metric: Context Metric
+    requirements: [XFR-001]
+    principles: [P009]
+    rules: [RULE-005]
+  XXR-016:
+    name: Audit Context
+    group: Observability
+    owner: Context
+    priority: High
+    status: Draft
+    capability: context-audit
+    input: Execution
+    output: Context
+    metric: Context Metric
+    requirements: [XFR-001]
+    principles: [P009]
+    rules: [RULE-005]
+  XXR-017:
+    name: Thuc thi Context Governance
+    group: Governance
+    owner: Context
+    priority: Critical
+    status: Draft
+    capability: context-governance
+    input: Execution
+    output: Context
+    metric: Context Metric
+    requirements: [XFR-001]
+    principles: [P009]
+    rules: [RULE-005]
+  XXR-018:
+    name: Tu choi Context khong hop le
+    group: Governance
+    owner: Context
+    priority: Critical
+    status: Draft
+    capability: context-reject
+    input: Execution
+    output: Context
+    metric: Context Metric
+    requirements: [XFR-001]
+    principles: [P009]
+    rules: [RULE-005]

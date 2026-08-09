@@ -1,0 +1,19 @@
+# SPEC-006 X008 - Context Entities (15 ENT)
+---
+version: "1.0"
+entities:
+  ENT-X001: { name: Context, kind: AggregateRoot, owner: Context Engine, immutable: false }
+  ENT-X002: { name: ContextMetadata, kind: Entity, owner: Context Engine, immutable: true }
+  ENT-X003: { name: ContextSection, kind: Entity, owner: Context Engine, immutable: false }
+  ENT-X004: { name: ContextItem, kind: Value, owner: Context Engine, immutable: true }
+  ENT-X005: { name: ContextKey, kind: Value, owner: Context Engine, immutable: true }
+  ENT-X006: { name: ContextState, kind: Transient, owner: Context Engine, immutable: false }
+  ENT-X007: { name: ContextGrant, kind: Entity, owner: Context Engine, immutable: false }
+  ENT-X008: { name: ContextEvent, kind: Ref (S011), owner: Runtime, immutable: true }
+  ENT-X009: { name: ContextMetric, kind: Ref (S011), owner: Runtime, immutable: true }
+  ENT-X010: { name: ContextSnapshot, kind: Entity, owner: Context Engine, immutable: false }
+  ENT-X011: { name: ExecutionRef, kind: Ref (SPEC-001), owner: Execution, immutable: true }
+  ENT-X012: { name: AgentRef, kind: Ref (SPEC-004), owner: Agent, immutable: true }
+  ENT-X013: { name: CapabilityRef, kind: Ref (SPEC-003), owner: Capability, immutable: true }
+  ENT-X014: { name: PolicyRef, kind: Ref (S012), owner: Runtime, immutable: true }
+  ENT-X015: { name: ContextExtension, kind: Value, owner: Context Engine, immutable: true }

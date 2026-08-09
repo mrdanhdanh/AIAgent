@@ -1,0 +1,11 @@
+# SPEC-006 X005 - Architecture Matrix
+---
+version: "1.0"
+matrix:
+  Command: Execution
+  Allocation: Definition
+  Population: Definition
+  Validation: Validation
+  Distribution: Execution
+  Collection: Execution
+  Publication: Observability

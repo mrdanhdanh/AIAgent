@@ -1,0 +1,142 @@
+# SPEC-006 X007 — Context Contracts (7 XCT)
+---
+id: SPEC-006-X007
+name: Context Contracts
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Context Team
+contracts:
+  XCT-001:
+    name: Context Contract
+    category: Execution
+    direction: Request/Response
+    pattern: Sync
+    version: 1.0.0
+    status: Draft
+    owner: Context Engine
+    layer: Core
+    domain: Context
+    purpose: Quan ly vong doi Context
+    inputs: [Execution]
+    outputs: [Context]
+    preconditions: [Execution hop le]
+    postconditions: [Context allocated/released]
+    invariants: [Context thuoc dung mot Execution, isolated]
+    dependencies: []
+    capability: context-contract
+    compatibility: [1.x]
+  XCT-002:
+    name: Allocation Contract
+    category: Data
+    direction: Request/Response
+    pattern: Request/Response
+    version: 1.0.0
+    status: Draft
+    owner: Allocation Manager
+    layer: Core
+    domain: Context
+    purpose: Allocate Context khi Execution Created
+    inputs: [Execution]
+    outputs: [Context]
+    preconditions: [Execution hop le]
+    postconditions: [Context allocated/released]
+    invariants: [Allocate ngoai Execution (XB001)]
+    dependencies: []
+    capability: context-contract
+    compatibility: [1.x]
+  XCT-003:
+    name: Population Contract
+    category: Data
+    direction: Request/Response
+    pattern: Request/Response
+    version: 1.0.0
+    status: Draft
+    owner: Population Manager
+    layer: Core
+    domain: Context
+    purpose: Populate Context
+    inputs: [Execution]
+    outputs: [Context]
+    preconditions: [Execution hop le]
+    postconditions: [Context allocated/released]
+    invariants: [Khong chua Business Data (XB006)]
+    dependencies: []
+    capability: context-contract
+    compatibility: [1.x]
+  XCT-004:
+    name: Validation Contract
+    category: Execution
+    direction: Request/Response
+    pattern: Sync
+    version: 1.0.0
+    status: Draft
+    owner: Validation Engine
+    layer: Core
+    domain: Context
+    purpose: Validate Context truoc khi cap
+    inputs: [Execution]
+    outputs: [Context]
+    preconditions: [Execution hop le]
+    postconditions: [Context allocated/released]
+    invariants: [Cap Context khong hop le (XB003)]
+    dependencies: []
+    capability: context-contract
+    compatibility: [1.x]
+  XCT-005:
+    name: Distribution Contract
+    category: Execution
+    direction: Request/Response
+    pattern: Sync/Async
+    version: 1.0.0
+    status: Draft
+    owner: Distribution Manager
+    layer: Core
+    domain: Context
+    purpose: Cap Context cho Agent/Capability
+    inputs: [Execution]
+    outputs: [Context]
+    preconditions: [Execution hop le]
+    postconditions: [Context allocated/released]
+    invariants: [Cap truc tiep (XB004)]
+    dependencies: []
+    capability: context-contract
+    compatibility: [1.x]
+  XCT-006:
+    name: Collection Contract
+    category: Execution
+    direction: Request/Response
+    pattern: Request/Response
+    version: 1.0.0
+    status: Draft
+    owner: Collection Manager
+    layer: Core
+    domain: Context
+    purpose: Collect + Release Context
+    inputs: [Execution]
+    outputs: [Context]
+    preconditions: [Execution hop le]
+    postconditions: [Context allocated/released]
+    invariants: [Giu Context sau ket thuc (XB007)]
+    dependencies: []
+    capability: context-contract
+    compatibility: [1.x]
+  XCT-007:
+    name: Event Contract
+    category: Observability
+    direction: Request/Response
+    pattern: Event
+    version: 1.0.0
+    status: Draft
+    owner: Context Event Dispatcher
+    layer: Core
+    domain: Context
+    purpose: Publish Event/Metrics/Trace/Audit (S011)
+    inputs: [Execution]
+    outputs: [Context]
+    preconditions: [Execution hop le]
+    postconditions: [Context allocated/released]
+    invariants: [Khong Business Data, immutable]
+    dependencies: []
+    capability: context-contract
+    compatibility: [1.x]

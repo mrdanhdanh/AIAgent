@@ -1,0 +1,8 @@
+# SPEC-006 X020 - Context Dashboard Events
+---
+version: "1.0"
+events:
+  - CONTEXT_DASHBOARD_OPENED
+  - CONTEXT_DASHBOARD_FILTERED
+  - CONTEXT_DASHBOARD_EXPORTED
+note: Event vao S011.

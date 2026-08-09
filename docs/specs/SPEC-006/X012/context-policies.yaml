@@ -1,0 +1,14 @@
+# SPEC-006 X012 - Context Policies (10)
+---
+version: "1.0"
+policies:
+  XPOL-001: { name: Isolation, description: Moi Context doc lap, khong chia se, priority: Critical, source: POL-ISOL-001, principle: P006 }
+  XPOL-002: { name: No Business Data, description: Context chi chua metadata, priority: Critical, source: S011 OB003A, principle: P001 }
+  XPOL-003: { name: Transient, description: Context song cung Execution, priority: Critical, source: P009, principle: P009 }
+  XPOL-004: { name: Grant Scope, description: Mutate chi trong grant scope, priority: High, source: S012, principle: P009 }
+  XPOL-005: { name: Release Before End, description: Release truoc Execution ket thuc, priority: Critical, source: S010 EF008, principle: P011 }
+  XPOL-006: { name: Context Quota, description: Gioi han kich thuoc Context, priority: High, source: S012, principle: P011 }
+  XPOL-007: { name: Merge Same Execution, description: Merge chi cha-con cung Execution, priority: High, source: S012, principle: P009 }
+  XPOL-008: { name: Retry Policy, description: Retry theo S012, priority: Medium, source: S012, principle: P011 }
+  XPOL-009: { name: Audit All, description: Moi thay doi co audit, priority: High, source: S011, principle: P005 }
+  XPOL-010: { name: Key Schema, description: Key theo context-key schema, priority: High, source: X008, principle: P009 }
