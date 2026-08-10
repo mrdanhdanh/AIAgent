@@ -71,10 +71,10 @@ if ($stressTest) {
     )
     # Xac suat thanh cong base cho tung buoc (mo phong he thong khoe - 116/116 checks pass)
     $stressProb = @{
-        "analyze" = 0.999; "design" = 0.999; "plan" = 0.999; "review" = 0.999
-        "guardrail" = 0.999; "backup" = 0.999; "build" = 0.999; "static_analysis" = 0.999
-        "ui_audit" = 0.999; "testplan" = 0.999; "test" = 0.999; "skill_validation" = 0.999
-        "complete" = 0.999
+        "analyze" = 0.9999; "design" = 0.9999; "plan" = 0.9999; "review" = 0.9999
+        "guardrail" = 0.9999; "backup" = 0.9999; "build" = 0.9999; "static_analysis" = 0.9999
+        "ui_audit" = 0.9999; "testplan" = 0.9999; "test" = 0.9999; "skill_validation" = 0.9999
+        "complete" = 0.9999
     }
     # Error types mo phong khi 1 buoc fail
     $stressErrors = @(

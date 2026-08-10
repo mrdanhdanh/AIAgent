@@ -74,18 +74,23 @@ foreach ($kf in $knowledgeFiles) {
         }
     }
     
-    # Check 2: Old .NET references
-    if ($lowerContent -match '\.net\s*(5|6|7|8|9)\b') {
-        $results.deprecated_knowledge += @{
-            file = $entry.file
-            type = "DEPRECATED_VERSION"
-            old = $Matches[0]
-            current = ".NET 10"
-            severity = "MINOR"
-            detail = "Knowledge references $($Matches[0]) but project uses .NET 10"
-            suggestion = "Update to .NET 10 patterns"
+    # Check 2: Old .NET references (skip negative context: "khong dung .NET 5-9" = historical note)
+    $negativePattern = '(khong dung|kh\u00F4ng d\u00F9ng|khong phai|kh\u01A1ng ph\u1EA3i|khong ap dung|kh\u00F4ng \u00E1p d\u1EE5ng|tranh|tr\u00E1nh|not use|don''t use|no longer|replaced|avoid|legacy)'
+    foreach ($cline in ($content -split '\r?\n')) {
+        $cl = $cline.ToLower()
+        if ($cl -match '\.net\s*(5|6|7|8|9)\b' -and $cl -notmatch $negativePattern) {
+            $results.deprecated_knowledge += @{
+                file = $entry.file
+                type = "DEPRECATED_VERSION"
+                old = $Matches[0]
+                current = ".NET 10"
+                severity = "MINOR"
+                detail = "Knowledge references $($Matches[0]) but project uses .NET 10"
+                suggestion = "Update to .NET 10 patterns"
+            }
+            $results.score -= 5
+            break
         }
-        $results.score -= 5
     }
     
     # Check 3: Old Blazor patterns

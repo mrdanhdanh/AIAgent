@@ -187,7 +187,7 @@ if ($agentName) {
                     field = "removed_fields"
                     old_value = ($removedFields -join ', ')
                     new_value = "removed"
-                    severity = if ($breaking -eq 'true') { "BREAKING" } else { "MAJOR" }
+                    severity = if ($breaking -eq 'true') { "BREAKING" } else { "MINOR" }
                     description = "Removed fields: $($removedFields -join ', ')"
                     breaking = ($breaking -eq 'true')
                 }
