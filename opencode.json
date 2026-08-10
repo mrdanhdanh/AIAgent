@@ -259,6 +259,11 @@
                                         "description":  "Quy trinh nhan va fix bug — tai hien bug, root cause, de xuat chinh sua, kiem tra sau sua, test bUnit + E2E",
                                         "agent":  "general"
                                     },
+                    "team-bug-learn":  {
+                                           "template":  "Bạn là General Agent (Orchestrator). Chạy toàn bộ Learning Pipeline sau khi fix bug — normalize+hash → failure-agent classify + search memory → root-cause → ghi failure record → sinh lessons/patterns → self-improve. Đọc hướng dẫn đầy đủ tại: .opencode/commands/team-bug-learn.md\n\nBug context: $ARGUMENTS",
+                                           "description":  "Learning Pipeline 1 lenh sau khi fix bug — ghi failure record, sinh lessons/patterns, self-improve",
+                                           "agent":  "general"
+                                       },
                     "team-testplan":  {
                                           "template":  "Bạn là Test-Planner Agent. Tạo kế hoạch kiểm thử. Đọc hướng dẫn đầy đủ tại: .opencode/commands/team-testplan.md\n\nThông tin: $ARGUMENTS",
                                           "description":  "Tao ke hoach kiem thu toan dien cho tinh nang da phat trien",

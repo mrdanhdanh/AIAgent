@@ -66,13 +66,13 @@ Mục tiêu: bộ khung chuẩn để mọi module sau dựa vào.
 
 Mục tiêu: bộ khung điều phối + giao tiếp + trạng thái.
 
-- [ ] `event-bus.psm1`: `Publish`, `Subscribe`, `Unsubscribe`, queue priority, dead-letter (theo `events/bus.md:41-42`, `dispatcher.md:45-46`)
-- [ ] `state-machine.psm1`: states, transition guard, `Checkpoint` (ghi đủ artifact + log — **fix lỗi WF-20260810-001**)
-- [ ] `kernel.ps1`: route mọi lời gọi qua kernel, log entry + metrics JSON
-- [ ] Tests: event-bus ≥12 case (publish/subscribe/unsubscribe/priority/history/replay/filter/routing/dead-letter/lineage/contract/overflow), state-machine ≥8 case (transition/guard/checkpoint/rollback)
-- [ ] Cập nhật `runtime-validator.ps1` check module mới
+- [x] `event-bus.psm1`: `Publish`, `Subscribe`, `Unsubscribe`, queue priority, dead-letter (theo `events/bus.md:41-42`, `dispatcher.md:45-46`)
+- [x] `state-machine.psm1`: states, transition guard, `Checkpoint` (ghi đủ artifact + log — **fix lỗi WF-20260810-001**)
+- [x] `kernel.ps1`: route mọi lời gọi qua kernel, log entry + metrics JSON
+- [x] Tests: event-bus 14 case + state-machine 12 case + smoke 5 = **34/34 PASS** (E4 priority bug đã tìm & fix: Publish tự drain phá batch)
+- [x] Cập nhật `runtime-validator.ps1` check module mới
 
-**Gate:** tests PASS · `kernel.ps1 status` chạy được · doctor PASS
+**Gate:** tests PASS · `kernel.ps1 status` chạy được · doctor PASS → **ĐẠT (34/34 PASS, validator PASS, doctor 97/100 không FAIL)**
 
 ---
 
@@ -143,7 +143,7 @@ Mục tiêu: máy chạy workflow từ definition YAML **bằng code** — bư�
 | Phase | Trạng thái | Ngày bắt đầu | Ngày hoàn tất | Ghi chú |
 |-------|-----------|-------------|---------------|---------|
 | 0 — Foundation | ✅ | 2026-08-11 | 2026-08-11 | runner + validator + smoke test 5/5 |
-| 1 — Core lõi | ⬜ | | | |
+| 1 — Core lõi | ✅ | 2026-08-11 | 2026-08-11 | event-bus + state-machine + kernel, 34/34 tests |
 | 2 — Scheduler + Executor | ⬜ | | | |
 | 3 — Data Layer | ⬜ | | | |
 | 4 — SDK | ⬜ | | | |
@@ -164,3 +164,4 @@ Mục tiêu: máy chạy workflow từ definition YAML **bằng code** — bư�
 |------|-----------|---------|
 | 2026-08-11 | Tạo kế hoạch này | ✅ |
 | 2026-08-11 | Phase 0: runtime/, sdk/, tests/ + runtime-tests.ps1 + runtime-validator.ps1 + smoke.test.ps1 | ✅ 5/5 PASS, validator PASS, doctor không vỡ |
+| 2026-08-11 | Phase 1: event-bus.psm1 + state-machine.psm1 + kernel.ps1 + 2 test files | ✅ 34/34 PASS; fix bug E4 (Publish tự drain phá priority batch); checkpoint ghi đủ artifacts + log |
