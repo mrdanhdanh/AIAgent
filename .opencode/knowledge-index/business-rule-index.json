@@ -1,6 +1,353 @@
 ﻿{
-    "generated_at":  "2026-08-01T17:28:13.9661402+07:00",
+    "generated_at":  "2026-08-10T23:47:55.0957231+07:00",
     "rules":  [
-
+                  {
+                      "rule":  "*Goc re**: REV-20260808-001 #03 \"schema khong validate duoc artifact\" duoc \"fix\" bang cach doi schema sang `oneOf` nhan STRING pattern (`^from: ST-\\d{3}; to: ST-\\d{3}(; .+)?$`) â€” tuc la **ben schema cho nhan format, nhung artifact goc van khong phai YAML hop le** (can quote de tro thanh string). Cung huong fix cua ADR-009 S008 (quote gia tri) nhung chua ap cho S009.",
+                      "source":  "docs/governance/reviews/REV-SPEC-001-S009-REGRESSION-20260808-110330.md"
+                  },
+                  {
+                      "rule":  "S009: \u0027Archived\u0027 = **0**, \u0027Deprecated\u0027 = **1** â€” chi xuat hien o `state.schema.json:12` **status enum** `[\"Draft\", \"Review\", \"Approved\", \"Stable\", \"Deprecated\"]` (thang document status, KHONG phai state).",
+                      "source":  "docs/governance/reviews/REV-SPEC-001-S009-REGRESSION-20260808-110330.md"
+                  },
+                  {
+                      "rule":  "**Ket luan**: S009 KHONG dinh nghia state \u0027Deprecated\u0027 / \u0027Archived\u0027 nao trong state catalog (ST-001..014 = Created..Aborted). S008 \u0027Archived\u0027 la lifecycle muc Data rut gon, khong phai state machine. **Khong ton tai mau thuan** -\u003e INFO #06 confirmed CLEAN (khong can MAJOR/MINOR).",
+                      "source":  "docs/governance/reviews/REV-SPEC-001-S009-REGRESSION-20260808-110330.md"
+                  },
+                  {
+                      "rule":  "**Summary**: 8 loi REV-20260808-081 (3 CRITICAL + 2 MAJOR + 3 MINOR) da FIXED bang may (PyYAML 12/12 parse PASS, jsonschema VALID + META-VALID, grep reuse = 0, run_mapping 14/14, version dong nhat 1.0.0, registry 13 files). Noi dung W009 day du (6 states, 7 transitions, run_mapping S009, WS015 13 files), cross-ref 2 chieu 0 BAD, spec002-validator exit 0 (INFO #12 da fix o commit d88bd18). Chi con 3 INFO (#09/#10/#11) khong chan. Verdict PASS (0 CRITICAL, 0 MAJOR â†’ Decision Matrix) â†’ tinh count: Rev1 â†’ Completed, count 1 â†’ 2, lifecycle giu Review. KHONG auto-freeze (type rev1, khong phai revfull).",
+                      "source":  "docs/governance/reviews/REV-SPEC-002-W009-20260808-203108.md"
+                  },
+                  {
+                      "rule":  "**Next step**: W009 dat Completed/count 2 â€” hoan tat 2-pass bat buoc. Review tiep theo: W010 (Workflow Execution Flow â€” REV-20260808-084 da FAIL, dang cho fix re-review). W011 se xu ly mirror 6 event WORKFLOW_* khi den luot.",
+                      "source":  "docs/governance/reviews/REV-SPEC-002-W009-20260808-203108.md"
+                  },
+                  {
+                      "rule":  "**Váº¥n Ä‘á»**: 3 item `- Low impact: auto-approve (Strict rules).` / `- Medium impact: Agent approval.` / `- High impact / Breaking: Human approval bat buoc.` chá»©a `: ` â†’ PyYAML parse thÃ nh mapping `{Low impact: \u0027...\u0027}` thay vÃ¬ string; schema `approval.items.type = string` â†’ jsonschema strict **FAIL 3 errors** (`approval[0]`, `approval[1]`, `approval[2]` not of type \u0027string\u0027).",
+                      "source":  "docs/governance/reviews/REV-SPEC-002-W018-20260808-221946.md"
+                  },
+                  {
+                      "rule":  "Du **2-pass bat buoc** (REV-148 PASS + REV-151 PASS) + verdict PASS â†’ revfull PASS se **auto-freeze Frozen truc tiep** (review-status.yaml transition `Review â†’ Frozen`: \"revfull PASS + review.status = Completed\" â€” khong can Approved/POLICY-001; freeze_rule review-rules.yaml).",
+                      "source":  "docs/governance/reviews/REV-SPEC-007-SPEC007-revfull-20260809-131600.md"
+                  },
+                  {
+                      "rule":  "R0xx placeholder = **0** (4 matches deu la XR001-XR005 section IDs X002/X014 + R009 SPEC-005 lifecycle ref hop le â€” khong phai placeholder).",
+                      "source":  "docs/governance/reviews/REV-SPEC-007-SPEC007-revfull-20260809-131600.md"
+                  },
+                  {
+                      "rule":  "Event naming ARTIFACT_* **0 collision cross-SPEC** (2 matches ngoai SPEC-007 la artifact_ref field S011 audit.yaml:6 + artifact_count metadata S008 data-model.md:265 â€” khong phai event types).",
+                      "source":  "docs/governance/reviews/REV-SPEC-007-SPEC007-revfull-20260809-131600.md"
+                  },
+                  {
+                      "rule":  "SPEC007_* events chi **X013/X016** (SPEC007_FROZEN/UNFROZEN/VERSIONED/DECISION_MADE/DECISION_OVERRIDDEN + SPEC007_AUDITED/CERTIFIED/COMPLIANCE_PASS/COMPLIANCE_FAIL; X018 chi metric lowercase spec007_* â€” khong phai event).",
+                      "source":  "docs/governance/reviews/REV-SPEC-007-SPEC007-revfull-20260809-131600.md"
+                  },
+                  {
+                      "rule":  "**missing_items**: khong thieu muc bat buoc (20/20 + Appendix day du; 16 schema.json + validator + README + SPEC.yaml day du). Optional: README.md báº£ng tráº¡ng thÃ¡i sync marker Frozen (se dong bo qua SPEC-INDEX).",
+                      "source":  "docs/governance/reviews/REV-SPEC-007-SPEC007-revfull-20260809-131600.md"
+                  },
+                  {
+                      "rule":  "**missing_items**: [Khong thieu muc bat buoc (20/20 + Appendix, 16 schema.json, validator, README, SPEC.yaml day du). Optional: README.md bang trang thai sync marker Frozen.]",
+                      "source":  "docs/governance/reviews/REV-SPEC-007-SPEC007-revfull-20260809-131600.md"
+                  },
+                  {
+                      "rule":  "Context luon isolated (P006/P009).",
+                      "source":  "docs/specs/SPEC-006/X002/requirements.md"
+                  },
+                  {
+                      "rule":  "Contract la hop dong - khong phai cai dat.",
+                      "source":  "docs/specs/SPEC-006/X007/contracts.md"
+                  },
+                  {
+                      "rule":  "Context luon co dung mot State.",
+                      "source":  "docs/specs/SPEC-006/X009/state-machine.md"
+                  },
+                  {
+                      "rule":  "Context luon duoc Release truoc Execution ket thuc.",
+                      "source":  "docs/specs/SPEC-006/X010/execution-flow.md"
+                  },
+                  {
+                      "rule":  "Moi thay doi Context phai phat Event (S011).",
+                      "source":  "docs/specs/SPEC-006/X011/observability.md"
+                  },
+                  {
+                      "rule":  "Observability la bat buoc (P005, XNF-004).",
+                      "source":  "docs/specs/SPEC-006/X011/observability.md"
+                  },
+                  {
+                      "rule":  "Extension la tuy chon, khong bat buoc.",
+                      "source":  "docs/specs/SPEC-006/X017/extensions.md"
+                  },
+                  {
+                      "rule":  "Migration guide bat buoc.",
+                      "source":  "docs/specs/SPEC-006/X018/evolution.md"
+                  },
+                  {
+                      "rule":  "Artifact luon immutable (P010).",
+                      "source":  "docs/specs/SPEC-007/X002/requirements.md"
+                  },
+                  {
+                      "rule":  "Contract la hop dong - khong phai cai dat.",
+                      "source":  "docs/specs/SPEC-007/X007/contracts.md"
+                  },
+                  {
+                      "rule":  "Artifact luon co dung mot State.",
+                      "source":  "docs/specs/SPEC-007/X009/state-machine.md"
+                  },
+                  {
+                      "rule":  "Artifact luon immutable sau publish (P010).",
+                      "source":  "docs/specs/SPEC-007/X010/execution-flow.md"
+                  },
+                  {
+                      "rule":  "Moi thay doi Artifact phai phat Event (S011).",
+                      "source":  "docs/specs/SPEC-007/X011/observability.md"
+                  },
+                  {
+                      "rule":  "Observability la bat buoc (P005, XNF-004).",
+                      "source":  "docs/specs/SPEC-007/X011/observability.md"
+                  },
+                  {
+                      "rule":  "Extension la tuy chon, khong bat buoc.",
+                      "source":  "docs/specs/SPEC-007/X017/extensions.md"
+                  },
+                  {
+                      "rule":  "Migration guide bat buoc.",
+                      "source":  "docs/specs/SPEC-007/X018/evolution.md"
+                  },
+                  {
+                      "rule":  "Moi state change phai phat Event (RULE-007).",
+                      "source":  "docs/specs/SPEC-008/X002/requirements.md"
+                  },
+                  {
+                      "rule":  "Contract la hop dong - khong phai cai dat.",
+                      "source":  "docs/specs/SPEC-008/X007/contracts.md"
+                  },
+                  {
+                      "rule":  "Event luon co dung mot State.",
+                      "source":  "docs/specs/SPEC-008/X009/state-machine.md"
+                  },
+                  {
+                      "rule":  "Event luon immutable sau publish (P010).",
+                      "source":  "docs/specs/SPEC-008/X010/execution-flow.md"
+                  },
+                  {
+                      "rule":  "Moi thay doi Event phai phat Event (RULE-007).",
+                      "source":  "docs/specs/SPEC-008/X011/observability.md"
+                  },
+                  {
+                      "rule":  "Observability la bat buoc (P005, XNF-004).",
+                      "source":  "docs/specs/SPEC-008/X011/observability.md"
+                  },
+                  {
+                      "rule":  "Extension la tuy chon, khong bat buoc.",
+                      "source":  "docs/specs/SPEC-008/X017/extensions.md"
+                  },
+                  {
+                      "rule":  "Migration guide bat buoc.",
+                      "source":  "docs/specs/SPEC-008/X018/evolution.md"
+                  },
+                  {
+                      "rule":  "Contract la hop dong - khong phai cai dat.",
+                      "source":  "docs/specs/SPEC-009/X007/contracts.md"
+                  },
+                  {
+                      "rule":  "Contract luon co dung mot State.",
+                      "source":  "docs/specs/SPEC-009/X009/state-machine.md"
+                  },
+                  {
+                      "rule":  "Contract luon versioned + compatible (P004/XNF-005).",
+                      "source":  "docs/specs/SPEC-009/X010/execution-flow.md"
+                  },
+                  {
+                      "rule":  "Moi thay doi Contract phai phat Event (S011).",
+                      "source":  "docs/specs/SPEC-009/X011/observability.md"
+                  },
+                  {
+                      "rule":  "Observability la bat buoc (P005, XNF-004).",
+                      "source":  "docs/specs/SPEC-009/X011/observability.md"
+                  },
+                  {
+                      "rule":  "Extension la tuy chon, khong bat buoc.",
+                      "source":  "docs/specs/SPEC-009/X017/extensions.md"
+                  },
+                  {
+                      "rule":  "Migration guide bat buoc.",
+                      "source":  "docs/specs/SPEC-009/X018/evolution.md"
+                  },
+                  {
+                      "rule":  "Plugin khong duoc sua Core (TERM-015).",
+                      "source":  "docs/specs/SPEC-010/X002/requirements.md"
+                  },
+                  {
+                      "rule":  "Contract la hop dong - khong phai cai dat.",
+                      "source":  "docs/specs/SPEC-010/X007/contracts.md"
+                  },
+                  {
+                      "rule":  "Plugin luon co dung mot State.",
+                      "source":  "docs/specs/SPEC-010/X009/state-machine.md"
+                  },
+                  {
+                      "rule":  "Moi thay doi Plugin phai phat Event (S011).",
+                      "source":  "docs/specs/SPEC-010/X011/observability.md"
+                  },
+                  {
+                      "rule":  "Observability la bat buoc (P005, XNF-004).",
+                      "source":  "docs/specs/SPEC-010/X011/observability.md"
+                  },
+                  {
+                      "rule":  "Extension la tuy chon, khong bat buoc.",
+                      "source":  "docs/specs/SPEC-010/X017/extensions.md"
+                  },
+                  {
+                      "rule":  "Migration guide bat buoc.",
+                      "source":  "docs/specs/SPEC-010/X018/evolution.md"
+                  },
+                  {
+                      "rule":  "Doctor la OWNER cua viec kiem tra - khong phai he thong.",
+                      "source":  "docs/specs/SPEC-011/X003/responsibilities.md"
+                  },
+                  {
+                      "rule":  "Contract la hop dong - khong phai cai dat.",
+                      "source":  "docs/specs/SPEC-011/X007/contracts.md"
+                  },
+                  {
+                      "rule":  "Scan luon co dung mot State.",
+                      "source":  "docs/specs/SPEC-011/X009/state-machine.md"
+                  },
+                  {
+                      "rule":  "Moi thay doi Scan phai phat Event (S011).",
+                      "source":  "docs/specs/SPEC-011/X011/observability.md"
+                  },
+                  {
+                      "rule":  "Observability la bat buoc (P005, XNF-004).",
+                      "source":  "docs/specs/SPEC-011/X011/observability.md"
+                  },
+                  {
+                      "rule":  "Extension la tuy chon, khong bat buoc.",
+                      "source":  "docs/specs/SPEC-011/X017/extensions.md"
+                  },
+                  {
+                      "rule":  "Migration guide bat buoc.",
+                      "source":  "docs/specs/SPEC-011/X018/evolution.md"
+                  },
+                  {
+                      "rule":  "Contract la hop dong - khong phai cai dat.",
+                      "source":  "docs/specs/SPEC-012/X007/contracts.md"
+                  },
+                  {
+                      "rule":  "Simulation luon co dung mot State.",
+                      "source":  "docs/specs/SPEC-012/X009/state-machine.md"
+                  },
+                  {
+                      "rule":  "Moi thay doi Simulation phai phat Event (S011).",
+                      "source":  "docs/specs/SPEC-012/X011/observability.md"
+                  },
+                  {
+                      "rule":  "Observability la bat buoc (P005, XNF-004).",
+                      "source":  "docs/specs/SPEC-012/X011/observability.md"
+                  },
+                  {
+                      "rule":  "Extension la tuy chon, khong bat buoc.",
+                      "source":  "docs/specs/SPEC-012/X017/extensions.md"
+                  },
+                  {
+                      "rule":  "Migration guide bat buoc.",
+                      "source":  "docs/specs/SPEC-012/X018/evolution.md"
+                  },
+                  {
+                      "rule":  "Contract la hop dong - khong phai cai dat.",
+                      "source":  "docs/specs/SPEC-013/X007/contracts.md"
+                  },
+                  {
+                      "rule":  "Evolution luon co dung mot State.",
+                      "source":  "docs/specs/SPEC-013/X009/state-machine.md"
+                  },
+                  {
+                      "rule":  "Moi thay doi Evolution phai phat Event (S011).",
+                      "source":  "docs/specs/SPEC-013/X011/observability.md"
+                  },
+                  {
+                      "rule":  "Observability la bat buoc (P005, XNF-004).",
+                      "source":  "docs/specs/SPEC-013/X011/observability.md"
+                  },
+                  {
+                      "rule":  "Extension la tuy chon, khong bat buoc.",
+                      "source":  "docs/specs/SPEC-013/X017/extensions.md"
+                  },
+                  {
+                      "rule":  "Migration guide bat buoc.",
+                      "source":  "docs/specs/SPEC-013/X018/evolution.md"
+                  },
+                  {
+                      "rule":  "Contract la hop dong - khong phai cai dat.",
+                      "source":  "docs/specs/SPEC-014/X007/contracts.md"
+                  },
+                  {
+                      "rule":  "Dashboard luon co dung mot State.",
+                      "source":  "docs/specs/SPEC-014/X009/state-machine.md"
+                  },
+                  {
+                      "rule":  "Moi thay doi Dashboard phai phat Event (S011).",
+                      "source":  "docs/specs/SPEC-014/X011/observability.md"
+                  },
+                  {
+                      "rule":  "Observability la bat buoc (P005, XNF-004).",
+                      "source":  "docs/specs/SPEC-014/X011/observability.md"
+                  },
+                  {
+                      "rule":  "Extension la tuy chon, khong bat buoc.",
+                      "source":  "docs/specs/SPEC-014/X017/extensions.md"
+                  },
+                  {
+                      "rule":  "Migration guide bat buoc.",
+                      "source":  "docs/specs/SPEC-014/X018/evolution.md"
+                  },
+                  {
+                      "rule":  "Contract la hop dong - khong phai cai dat.",
+                      "source":  "docs/specs/SPEC-015/X007/contracts.md"
+                  },
+                  {
+                      "rule":  "SDK luon co dung mot State.",
+                      "source":  "docs/specs/SPEC-015/X009/state-machine.md"
+                  },
+                  {
+                      "rule":  "Moi thay doi SDK phai phat Event (S011).",
+                      "source":  "docs/specs/SPEC-015/X011/observability.md"
+                  },
+                  {
+                      "rule":  "Observability la bat buoc (P005, XNF-004).",
+                      "source":  "docs/specs/SPEC-015/X011/observability.md"
+                  },
+                  {
+                      "rule":  "Extension la tuy chon, khong bat buoc.",
+                      "source":  "docs/specs/SPEC-015/X017/extensions.md"
+                  },
+                  {
+                      "rule":  "Migration guide bat buoc.",
+                      "source":  "docs/specs/SPEC-015/X018/evolution.md"
+                  },
+                  {
+                      "rule":  "Contract la hop dong - khong phai cai dat.",
+                      "source":  "docs/specs/SPEC-016/X007/contracts.md"
+                  },
+                  {
+                      "rule":  "CLI luon co dung mot State.",
+                      "source":  "docs/specs/SPEC-016/X009/state-machine.md"
+                  },
+                  {
+                      "rule":  "Moi thay doi CLI phai phat Event (S011).",
+                      "source":  "docs/specs/SPEC-016/X011/observability.md"
+                  },
+                  {
+                      "rule":  "Observability la bat buoc (P005, XNF-004).",
+                      "source":  "docs/specs/SPEC-016/X011/observability.md"
+                  },
+                  {
+                      "rule":  "Extension la tuy chon, khong bat buoc.",
+                      "source":  "docs/specs/SPEC-016/X017/extensions.md"
+                  },
+                  {
+                      "rule":  "Migration guide bat buoc.",
+                      "source":  "docs/specs/SPEC-016/X018/evolution.md"
+                  }
               ]
 }

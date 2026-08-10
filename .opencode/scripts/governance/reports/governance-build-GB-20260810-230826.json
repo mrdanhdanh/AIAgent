@@ -1,0 +1,180 @@
+{
+    "build_id":  "GB-20260810-230826",
+    "timestamp":  "2026-08-10T23:08:27.8585308+07:00",
+    "project_root":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI",
+    "dry_run":  {
+                    "IsPresent":  false
+                },
+    "overall":  "PASS",
+    "phases":  [
+                   {
+                       "phase":  "P0",
+                       "name":  "Preflight",
+                       "status":  "PASS",
+                       "detail":  "ps=5.1.26100.8875 root=C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI"
+                   },
+                   {
+                       "phase":  "P1",
+                       "name":  "Foundation",
+                       "status":  "PASS",
+                       "detail":  "rules=exists policies=exists"
+                   },
+                   {
+                       "phase":  "P2",
+                       "name":  "Engine core",
+                       "status":  "PASS",
+                       "detail":  "check=exists audit=exists evaluate=exists"
+                   },
+                   {
+                       "phase":  "P3",
+                       "name":  "Workflow integration",
+                       "status":  "PASS",
+                       "detail":  "phase governance_check already present | workflow-validator {\r\n    \"scanned_at\":  \"2026-08-10T23:08:26.8553221+07:00\",\r\n    \"schema\":  \".opencode/workflow/schemas/workflow.schema.yaml\",\r\n    \"files\":  [\r\n                  {\r\n                      \"status\":  \"PASS\",\r\n                      \"path\":  \"C:\\\\Users\\\\nguye\\\\OneDrive\\\\Desktop\\\\JAP2\\\\AgentAI\\\\.opencode\\\\workflow\\\\definitions\\\\bugfix.workflow.yaml\",\r\n                      \"errors\":  [\r\n\r\n                                 ],\r\n                      \"file\":  \"bugfix.workflow.yaml\"\r\n                  },\r\n                  {\r\n                      \"status\":  \"PASS\",\r\n                      \"path\":  \"C:\\\\Users\\\\nguye\\\\OneDrive\\\\Desktop\\\\JAP2\\\\AgentAI\\\\.opencode\\\\workflow\\\\definitions\\\\default.workflow.yaml\",\r\n                      \"errors\":  [\r\n\r\n                                 ],\r\n                      \"file\":  \"default.workflow.yaml\"\r\n                  },\r\n                  {\r\n                      \"status\":  \"PASS\",\r\n                      \"path\":  \"C:\\\\Users\\\\nguye\\\\OneDrive\\\\Desktop\\\\JAP2\\\\AgentAI\\\\.opencode\\\\workflow\\\\definitions\\\\docs.workflow.yaml\",\r\n                      \"errors\":  [\r\n\r\n                                 ],\r\n                      \"file\":  \"docs.workflow.yaml\"\r\n                  },\r\n                  {\r\n                      \"status\":  \"PASS\",\r\n                      \"path\":  \"C:\\\\Users\\\\nguye\\\\OneDrive\\\\Desktop\\\\JAP2\\\\AgentAI\\\\.opencode\\\\workflow\\\\definitions\\\\documentation.workflow.yaml\",\r\n                      \"errors\":  [\r\n\r\n                                 ],\r\n                      \"file\":  \"documentation.workflow.yaml\"\r\n                  },\r\n                  {\r\n                      \"status\":  \"PASS\",\r\n                      \"path\":  \"C:\\\\Users\\\\nguye\\\\OneDrive\\\\Desktop\\\\JAP2\\\\AgentAI\\\\.opencode\\\\workflow\\\\definitions\\\\feature.workflow.yaml\",\r\n                      \"errors\":  [\r\n\r\n                                 ],\r\n                      \"file\":  \"feature.workflow.yaml\"\r\n                  },\r\n                  {\r\n                      \"status\":  \"PASS\",\r\n                      \"path\":  \"C:\\\\Users\\\\nguye\\\\OneDrive\\\\Desktop\\\\JAP2\\\\AgentAI\\\\.opencode\\\\workflow\\\\definitions\\\\ui.workflow.yaml\",\r\n                      \"errors\":  [\r\n\r\n                                 ],\r\n                      \"file\":  \"ui.workflow.yaml\"\r\n                  }\r\n              ],\r\n    \"validator\":  \"workflow-validator.ps1\",\r\n    \"status\":  \"PASS\"\r\n} PASS"
+                   },
+                   {
+                       "phase":  "P4",
+                       "name":  "Validate",
+                       "status":  "PASS",
+                       "detail":  "gov=PASS pol=PASS gov-framework=PASS workflow={\r\n    \"scanned_at\":  \"2026-08-10T23:08:27.3227707+07:00\",\r\n    \"schema\":  \".opencode/workflow/schemas/workflow.schema.yaml\",\r\n    \"files\":  [\r\n                  {\r\n                      \"status\":  \"PASS\",\r\n                      \"path\":  \"C:\\\\Users\\\\nguye\\\\OneDrive\\\\Desktop\\\\JAP2\\\\AgentAI\\\\.opencode\\\\workflow\\\\definitions\\\\bugfix.workflow.yaml\",\r\n                      \"errors\":  [\r\n\r\n                                 ],\r\n                      \"file\":  \"bugfix.workflow.yaml\"\r\n                  },\r\n                  {\r\n                      \"status\":  \"PASS\",\r\n                      \"path\":  \"C:\\\\Users\\\\nguye\\\\OneDrive\\\\Desktop\\\\JAP2\\\\AgentAI\\\\.opencode\\\\workflow\\\\definitions\\\\default.workflow.yaml\",\r\n                      \"errors\":  [\r\n\r\n                                 ],\r\n                      \"file\":  \"default.workflow.yaml\"\r\n                  },\r\n                  {\r\n                      \"status\":  \"PASS\",\r\n                      \"path\":  \"C:\\\\Users\\\\nguye\\\\OneDrive\\\\Desktop\\\\JAP2\\\\AgentAI\\\\.opencode\\\\workflow\\\\definitions\\\\docs.workflow.yaml\",\r\n                      \"errors\":  [\r\n\r\n                                 ],\r\n                      \"file\":  \"docs.workflow.yaml\"\r\n                  },\r\n                  {\r\n                      \"status\":  \"PASS\",\r\n                      \"path\":  \"C:\\\\Users\\\\nguye\\\\OneDrive\\\\Desktop\\\\JAP2\\\\AgentAI\\\\.opencode\\\\workflow\\\\definitions\\\\documentation.workflow.yaml\",\r\n                      \"errors\":  [\r\n\r\n                                 ],\r\n                      \"file\":  \"documentation.workflow.yaml\"\r\n                  },\r\n                  {\r\n                      \"status\":  \"PASS\",\r\n                      \"path\":  \"C:\\\\Users\\\\nguye\\\\OneDrive\\\\Desktop\\\\JAP2\\\\AgentAI\\\\.opencode\\\\workflow\\\\definitions\\\\feature.workflow.yaml\",\r\n                      \"errors\":  [\r\n\r\n                                 ],\r\n                      \"file\":  \"feature.workflow.yaml\"\r\n                  },\r\n                  {\r\n                      \"status\":  \"PASS\",\r\n                      \"path\":  \"C:\\\\Users\\\\nguye\\\\OneDrive\\\\Desktop\\\\JAP2\\\\AgentAI\\\\.opencode\\\\workflow\\\\definitions\\\\ui.workflow.yaml\",\r\n                      \"errors\":  [\r\n\r\n                                 ],\r\n                      \"file\":  \"ui.workflow.yaml\"\r\n                  }\r\n              ],\r\n    \"validator\":  \"workflow-validator.ps1\",\r\n    \"status\":  \"PASS\"\r\n} PASS"
+                   },
+                   {
+                       "phase":  "P5",
+                       "name":  "Selftest",
+                       "status":  "PASS",
+                       "detail":  "tests=13 failed=0"
+                   }
+               ],
+    "artifacts":  [
+                      {
+                          "path":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\governance\\governance.rules.yaml",
+                          "action":  "exists",
+                          "sha256":  "876b86dcb938aca54adefeedffbb4e100c131cb1499cae24d92d42f4d98a084b"
+                      },
+                      {
+                          "path":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\policy\\policies.yaml",
+                          "action":  "exists",
+                          "sha256":  "b8cf8c4dc2d1417b23716fbd0a80ddb6286e1e085d57dbd562352171f3dda568"
+                      },
+                      {
+                          "path":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\scripts\\governance\\governance-check.ps1",
+                          "action":  "exists",
+                          "sha256":  "b5f6e9aefcfd9004eb621d6ebde31279e779e2aa3cf7b0d5cbd1440dbc85e787"
+                      },
+                      {
+                          "path":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\scripts\\governance\\audit-log.ps1",
+                          "action":  "exists",
+                          "sha256":  "6b04145f149293dd6bf7e6e62e1adcafe85bad0842a9fde7c925929d6b54f922"
+                      },
+                      {
+                          "path":  "C:\\Users\\nguye\\OneDrive\\Desktop\\JAP2\\AgentAI\\.opencode\\scripts\\governance\\policy-evaluate.ps1",
+                          "action":  "exists",
+                          "sha256":  "9844782380e4a754611ed58f3b42ed12de8b42f013a2d4b22c249fdd8b24dcde"
+                      }
+                  ],
+    "selftests":  [
+                      {
+                          "test":  "policy: planner planning.task",
+                          "expect_exit":  0,
+                          "actual":  {
+
+                                     },
+                          "status":  "PASS"
+                      },
+                      {
+                          "test":  "policy: planner artifact.delete (deny wins)",
+                          "expect_exit":  1,
+                          "actual":  {
+
+                                     },
+                          "status":  "PASS"
+                      },
+                      {
+                          "test":  "policy: unknown subject default deny",
+                          "expect_exit":  1,
+                          "actual":  {
+
+                                     },
+                          "status":  "PASS"
+                      },
+                      {
+                          "test":  "policy: builder policy.edit (deny)",
+                          "expect_exit":  1,
+                          "actual":  {
+
+                                     },
+                          "status":  "PASS"
+                      },
+                      {
+                          "test":  "policy: wildcard general *",
+                          "expect_exit":  0,
+                          "actual":  {
+
+                                     },
+                          "status":  "PASS"
+                      },
+                      {
+                          "test":  "gov: valid agent name",
+                          "expect_exit":  0,
+                          "actual":  {
+
+                                     },
+                          "status":  "PASS"
+                      },
+                      {
+                          "test":  "gov: invalid agent name (naming)",
+                          "expect_exit":  1,
+                          "actual":  {
+
+                                     },
+                          "status":  "PASS"
+                      },
+                      {
+                          "test":  "gov: plugin unsigned (security)",
+                          "expect_exit":  1,
+                          "actual":  {
+
+                                     },
+                          "status":  "PASS"
+                      },
+                      {
+                          "test":  "gov: deprecated no replacement",
+                          "expect_exit":  1,
+                          "actual":  {
+
+                                     },
+                          "status":  "PASS"
+                      },
+                      {
+                          "test":  "gov: secret scan hit",
+                          "expect_exit":  1,
+                          "actual":  {
+
+                                     },
+                          "status":  "PASS"
+                      },
+                      {
+                          "test":  "audit: append entry",
+                          "expect_exit":  0,
+                          "actual":  {
+
+                                     },
+                          "status":  "PASS"
+                      },
+                      {
+                          "test":  "audit: verify chain",
+                          "expect_exit":  0,
+                          "actual":  {
+
+                                     },
+                          "status":  "PASS"
+                      },
+                      {
+                          "test":  "audit: tamper detect",
+                          "expect_exit":  1,
+                          "actual":  {
+
+                                     },
+                          "status":  "PASS"
+                      }
+                  ]
+}

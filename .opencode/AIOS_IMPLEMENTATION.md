@@ -81,13 +81,17 @@ Mỗi SPEC 5–10 trang. **Đã thực thi hóa thành 30 module docs** (archite
 | SPEC-011 | Object Model | ✅ (thiếu) | ✅ → `workflow-runtime/`, `kernel/` |
 | SPEC-012 | Naming Convention | ✅ (thiếu) | ✅ → `registry/naming` (docs module) |
 | SPEC-013 | Versioning Strategy | ✅ (thiếu) | ✅ → `aios-sdk/versioning.md` |
-| SPEC-014 | Error Handling | ✅ (thiếu) | ✅ → `workflow-runtime/recovery.md` |
-| SPEC-015 | Compatibility Rules | ✅ (thiếu) | ✅ → `workflow-runtime/compatibility.md` |
-| SPEC-016 | Simulation | | ✅ → `simulation/` |
+| SPEC-014 | Error Handling | ✅ | ✅ → `workflow-runtime/recovery.md` |
+| SPEC-015 | Compatibility Rules | ✅ | ✅ → `workflow-runtime/compatibility.md` |
+| SPEC-016 | Simulation | ✅ | ✅ → `simulation/` |
 | SPEC-017 | Doctor | | ✅ → `doctor/` |
 | SPEC-018 | Evaluation | | ✅ → `evaluation/` |
 | SPEC-019 | Evolution | | ✅ → `evolution/` |
 | SPEC-020 | Scheduler | ✅ | ✅ → `kernel/scheduler.md` |
+
+> ⚠️ **Naming collision (đã đồng bộ):** `docs/specs/SPEC-014/015/016` hiện chứa spec thế hệ mới **Dashboard / SDK / CLI & Commands** (ngày 2026-08-10) — không phải Error Handling/Compatibility/Simulation ở bảng trên. Hai hệ đánh số trùng id:
+> - Legacy core SPEC-001..020 (bảng trên) → đã thực thi hóa thành **30 module docs** trong `.opencode/` (`workflow-runtime/`, `simulation/`, `doctor/`, `evaluation/`, `evolution/`, `kernel/`...) — đọc module docs, không đọc `docs/specs/`.
+> - Spec hiện hành trong `docs/specs/` (SPEC-000..016 + SPEC-INDEX.md) → quản lý bởi `/review`, validate bởi `spec0XX-validator.ps1` (spec014/015/016-validator.ps1 validate đúng nội dung Dashboard/SDK/CLI).
 
 ## 3b. Module Index (30 modules)
 

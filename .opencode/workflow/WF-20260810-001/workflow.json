@@ -1,7 +1,7 @@
 {
-  "workflow_id": "WF-20260808-001",
+  "workflow_id": "WF-20260810-001",
   "definition_id": "default",
-  "request": "Tao 1 trang web Template: rong Chau A bay luon dau trang, scroll xuong thi rong di chuyen theo va bao boc container, scroll toi/lui muot ma, click than rong thi thoat ra bay luon roi quay lai, cuoi trang rong bay vao goc phai duoi cuon tron ngu",
+  "request": "Tao 1 trang moi: 'Design a homepage for a Gaming Console, with sections for introduction, services, and contact details.'",
   "status": "completed",
   "phases": [
     { "id": "analyze", "status": "completed", "retry_count": 0, "error_history": [] },
@@ -34,11 +34,11 @@
     "12_test.md",
     "13_skill_validation.md"
   ],
-  "final_report": "WF-20260808-001: Dragon-website template completed. 4 files tao moi tai templates/dragon-website/ (index.html, style.css, script.js, README.md). E2E smoke test 10/10 PASS. F1-F5 all verified.",
+  "final_report": "WF-20260810-001: Gaming Console homepage (NEXA X1) completed. 4 files created at templates/gaming-console-homepage/ (index.html, style.css, script.js, README.md). 3 sections (Introduction/Services/Contact) verified via Playwright smoke E2E 10/10 PASS, 0 console errors. Vanilla stack, offline-safe, responsive, a11y complete.",
   "created_files": [
-    "templates/dragon-website/index.html",
-    "templates/dragon-website/style.css",
-    "templates/dragon-website/script.js",
-    "templates/dragon-website/README.md"
+    "templates/gaming-console-homepage/index.html",
+    "templates/gaming-console-homepage/style.css",
+    "templates/gaming-console-homepage/script.js",
+    "templates/gaming-console-homepage/README.md"
   ]
 }

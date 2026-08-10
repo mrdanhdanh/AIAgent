@@ -1,7 +1,7 @@
 # He Thong .opencode - So Do Tong The
 
-> **Tu dong tao luc:** 2026-08-05 00:15:04
-> **Workflow ID:** WF-20260805-SYNC
+> **Tu dong tao luc:** 2026-08-10 23:31:38
+> **Workflow ID:** WF-20260810-SYNC
 > **Cap nhat:** Toan bo agents, commands, skills, scripts, knowledge
 
 ---
@@ -25,9 +25,9 @@
 ```
 .opencode/
 |-- agents/           # 18 agent definitions
-|-- commands/         # 56 command templates
-|-- skills/           # 28 skill packages
-|-- scripts/          # 54 utility scripts
+|-- commands/         # 58 command templates
+|-- skills/           # 29 skill packages
+|-- scripts/          # 71 utility scripts
 |-- knowledge/        # Knowledge base
 |-- backup/           # Backup artifacts
 |-- workflow/         # Workflow artifacts
@@ -40,24 +40,24 @@
 
 | Agent | Description | Model | Permissions | Commands |
 |-------|-------------|-------|-------------|----------|
-| analyst | Phân tích yêu cầu người dùng, xác định phạm vi, rủi ro và các task cần thực hiện | opencode-go/deepseek-v4-flash |  | team-analyze |
-| backup-agent | Backup và rollback file dùng Backup Utility. Hỗ trợ: backup trước khi sửa file, rollback khi catastrophic failure, liệt kê backup history, verify backup integrity. | opencode-go/deepseek-v4-flash |  | backup |
-| builder | Thực thi kế hoạch đã được đánh giá, viết code và thực hiện thay đổi | opencode-go/deepseek-v4-flash |  | team-build |
-| cleaner | Workspace Cleaner Agent v2.0 — quét rác theo tiêu chí cấu hình chi tiết, phân loại LOW/MEDIUM/HIGH, backup workflow-linked, dry-run bắt buộc, protected list 4 nhóm. | opencode-go/deepseek-v4-flash |  | team-cleanup |
+| analyst | Phân tích yêu cầu người dùng, xác định phạm vi, rủi ro và các task cần thực hiện | opencode-go/deepseek-v4-pro |  | team-analyze, team-syncdocs, team-explore |
+| backup-agent | Backup và rollback file dùng Backup Utility. Hỗ trợ: backup trước khi sửa file, rollback khi catastrophic failure, liệt kê backup history, verify backup integrity. | opencode-go/deepseek-v4-flash |  | backup, team-build |
+| builder | Thực thi kế hoạch đã được đánh giá, viết code và thực hiện thay đổi | opencode-go/deepseek-v4-flash |  | team-build, knowledge-compare-doc, team-plan, team-syncdocs, knowledge-trace, team-test, knowledge-impact, doctor, team-bugfix, knowledge-health, knowledge-ask, ask, knowledge-why, knowledge-explain, knowledge-flow, knowledge-where, team-root-cause |
+| cleaner | Workspace Cleaner Agent v2.0 — quét rác theo tiêu chí cấu hình chi tiết, phân loại LOW/MEDIUM/HIGH, backup workflow-linked, dry-run bắt buộc, protected list 4 nhóm. | opencode-go/deepseek-v4-flash |  | team-cleanup, team-ui-audit |
 | codebase-explorer | Khám phá cấu trúc dự án, phân tích codebase, mapping dependencies và patterns. Agent read-only chạy trước khi thực hiện thay đổi. | opencode-go/deepseek-v4-flash |  | team-explore |
-| failure-agent | Chuyên gia phân tích và chuẩn hóa lỗi — normalize+hash do failure-analyzer.ps1 tính, agent chỉ classify, search failure/lesson/pattern memory, score và đề xuất. Read-only (bash chỉ chạy failure-analyzer.ps1). | opencode-go/deepseek-v4-flash |  | team-analyze-failure |
-| general | General-purpose orchestrator agent — điều phối workflow, triệu hồi sub-agents, quản lý state machine | opencode-go/deepseek-v4-flash |  | team-runtime-benchmark, team-syncdocs, model-policy, team-doctor, doctor, team-bugfix, trace, test-bootstrap, ask, explain, team-capabilities, flow, why, compare-doc, test-cross-browser, doctor-test, test-e2e, where, impact, approve-test, team |
-| guardian | Chuyên gia review source code trước khi push lên git — phát hiện secret, lỗi convention, lỗ hổng bảo mật, vi phạm quy tắc dự án | opencode-go/deepseek-v4-flash |  | team-gitguard |
-| knowledge-agent | Intent Analyzer + Router cho Knowledge Assistant — phân loại câu hỏi, chọn skill pipeline, tổng hợp trả lời có nguồn | opencode-go/deepseek-v4-flash |  | knowledge-compare-doc, knowledge, knowledge-trace, knowledge-impact, knowledge-health, knowledge-ask, knowledge-index, knowledge-why, knowledge-explain, knowledge-flow, knowledge-where |
-| learning-agent | Chuyên gia Learning Pipeline — đọc failure records từ memory, phân tích patterns xuyên suốt, auto-generate lessons và patterns mới. Ghi trực tiếp vào memory/. Cần approval gate cho MEDIUM/HIGH impact. | opencode-go/deepseek-v4-flash |  | team-learn |
-| planner | Mở rộng: Thiết kế giải pháp + Lập kế hoạch thực thi chi tiết. Đảm nhiệm cả Design phase và Plan phase. | opencode-go/deepseek-v4-flash |  | team-plan |
+| failure-agent | Chuyên gia phân tích và chuẩn hóa lỗi — normalize+hash do failure-analyzer.ps1 tính, agent chỉ classify, search failure/lesson/pattern memory, score và đề xuất. Read-only (bash chỉ chạy failure-analyzer.ps1). | opencode-go/deepseek-v4-flash |  | team-analyze-failure, team-syncdocs |
+| general | General-purpose orchestrator agent — điều phối workflow, triệu hồi sub-agents, quản lý state machine | opencode-go/deepseek-v4-flash |  | team-runtime-benchmark, team-analyze-failure, team-syncdocs, model-policy, doctor-test, doctor, team-bugfix, review, trace, test-bootstrap, team-doctor, ask, explain, team-capabilities, flow, why, compare-doc, impact, test-cross-browser, test-e2e, governance-build, where, approve-test, team, team-ui-audit, impeccable |
+| guardian | Chuyên gia review source code trước khi push lên git — phát hiện secret, lỗi convention, lỗ hổng bảo mật, vi phạm quy tắc dự án | opencode-go/deepseek-v4-pro |  | team-gitguard, team-syncdocs |
+| knowledge-agent | Intent Analyzer + Router cho Knowledge Assistant — phân loại câu hỏi, chọn skill pipeline, tổng hợp trả lời có nguồn | opencode-go/deepseek-v4-pro |  | knowledge-compare-doc, knowledge, knowledge-trace, knowledge-impact, knowledge-health, knowledge-ask, knowledge-why, knowledge-explain, knowledge-flow, knowledge-index, knowledge-where |
+| learning-agent | Chuyên gia Learning Pipeline — đọc failure records từ memory, phân tích patterns xuyên suốt, auto-generate lessons và patterns mới. Ghi trực tiếp vào memory/. Cần approval gate cho MEDIUM/HIGH impact. | opencode-go/deepseek-v4-flash |  | team-learn, team-analyze-failure, team-syncdocs |
+| planner | Mở rộng: Thiết kế giải pháp + Lập kế hoạch thực thi chi tiết. Đảm nhiệm cả Design phase và Plan phase. | opencode-go/deepseek-v4-pro |  | team-plan, team-review, team-testplan, team-syncdocs, test-regression, doctor, ask, test-plan, test-audit, team-root-cause, test-evolve |
 | pusher | Chuyên gia thực hiện git push an toàn — auto-commit từ diff, safety checks, build, test, confirmation gate, push execution, post-push verify | opencode-go/deepseek-v4-flash |  | team-gitpush |
-| reviewer | Đánh giá kế hoạch thực thi, kiểm tra tính đúng đắn, đầy đủ và hiệu quả | opencode-go/deepseek-v4-flash |  | team-review |
-| root-cause-agent | Chuyên gia phân tích nguyên nhân gốc (Root Cause Analysis) — nhận error đã normalized, tìm kiếm trong codebase, tạo hypotheses với confidence score, đề xuất hướng fix. Agent read + suggest. | opencode-go/deepseek-v4-flash |  | team-root-cause |
-| self-improver | Sau khi workflow hoàn tất, đọc lại quá trình, phân tích kỹ năng đã dùng và thiếu, đề xuất cải tiến (chỉ suggestion, không ghi KB). Cần qua approval gate trước khi ghi knowledge base. | opencode-go/deepseek-v4-flash |  | team-selfimprove |
-| tester | Thực thi kiểm thử, validate tính năng và báo cáo kết quả kèm coverage (v3.0) | opencode-go/deepseek-v4-flash |  | team-test |
-| test-planner | Tạo kế hoạch kiểm thử chi tiết, chống overlap, có impact analysis, coverage matrix, risk-based testing | opencode-go/deepseek-v4-flash |  | team-testplan, test-regression, test-plan, test-audit, test-evolve |
-| ui-beautifier | >- | opencode-go/deepseek-v4-flash |  | test-accessibility, test-visual, test-ui, team-ui-audit, impeccable |
+| reviewer | Đánh giá kế hoạch thực thi, kiểm tra tính đúng đắn, đầy đủ và hiệu quả | opencode-go/deepseek-v4-pro |  | team-review, team-build, team-syncdocs, doctor |
+| root-cause-agent | Chuyên gia phân tích nguyên nhân gốc (Root Cause Analysis) — nhận error đã normalized, tìm kiếm trong codebase, tạo hypotheses với confidence score, đề xuất hướng fix. Agent read + suggest. | opencode-go/deepseek-v4-pro |  | team-root-cause, team-syncdocs, team-bugfix |
+| self-improver | Sau khi workflow hoàn tất, đọc lại quá trình, phân tích kỹ năng đã dùng và thiếu, đề xuất cải tiến (chỉ suggestion, không ghi KB). Cần qua approval gate trước khi ghi knowledge base. | opencode-go/deepseek-v4-pro |  | team-selfimprove, team-syncdocs |
+| tester | Thực thi kiểm thử, validate tính năng và báo cáo kết quả kèm coverage (v3.0) | opencode-go/deepseek-v4-flash |  | team-test, team-syncdocs, doctor |
+| test-planner | Tạo kế hoạch kiểm thử chi tiết, chống overlap, có impact analysis, coverage matrix, risk-based testing | opencode-go/deepseek-v4-pro |  | team-testplan, test-regression, test-plan, test-audit, test-evolve, team-syncdocs |
+| ui-beautifier | >- | opencode-go/deepseek-v4-pro |  | test-accessibility, test-ui, test-visual, team-ui-audit, impeccable, team-syncdocs |
 
 ---
 
@@ -73,6 +73,7 @@
 | /doctor-test | QA Doctor — kiểm tra sức khỏe bộ test: thiếu test, duplicate, flaky, timeout, coverage thấp, screenshot cũ, selector dễ hỏng, hardcode wait, missing assertion, missing cleanup, dead test, orphan page object. Health Score + Risk | general |  |
 | /explain | Giải thích từng method trong một file source — input, output, logic, side-effect, dependencies | general |  |
 | /flow | Sinh mô tả luồng hoạt động (sequence, mermaid) cho một nghiệp vụ hoặc màn hình — từ code thực tế | general |  |
+| /governance-build | Build/rebuild Runtime Enforcement cho AIOS Governance Engine v26 + Policy Engine v15 — sinh governance.rules.yaml, policies.yaml, 3 engine scripts, optional workflow gate. Idempotent. | general |  |
 | /impact | Phân tích ảnh hưởng khi sửa một component — sửa X ảnh hưởng API/Screen/Batch/Report/SP nào. Quan trọng nhất cho thay đổi an toàn | general |  |
 | /impeccable | Design, redesign, shape, critique, audit, polish, or improve frontend UI. Sub-commands: init, shape, document, critique, audit, polish, bolder, quieter, distill, harden, onboard, animate, colorize, typeset, layout, delight, overdrive, clarify, adapt, optimize, live, hooks, doctor, extract. | ui-beautifier |  |
 | /knowledge | Help + routing cho Knowledge Assistant — liệt kê 10 commands, intent mapping, ví dụ sử dụng | knowledge-agent |  |
@@ -87,9 +88,10 @@
 | /knowledge-where | Tìm toàn bộ nơi sử dụng một symbol/pattern — class, method, property, LocalStorage key | knowledge-agent |  |
 | /knowledge-why | Giải thích lý do tồn tại của một symbol/thiết kế — đọc tài liệu, git history, code context | knowledge-agent |  |
 | /model-policy | Bật/tắt free model (opencode-go/deepseek-v4-flash) cho toàn bộ agent/skill/command. Đọc setting từ .opencode/model-policy/settings.json | general |  |
+| /review | AIOS Review v2.0 — review SPEC/mục theo chuẩn 2-pass. 6 types: rev1, revfull, health, compliance, migration, regression. Tách Document Lifecycle khỏi Review Lifecycle, severity + decision matrix, score, cascade, trigger, SLA. | general |  |
 | /team | Chạy toàn bộ team workflow: analyze → design/plan → review → backup → build → static analysis → ui audit → testplan → test → skill validation → complete | general |  |
 | /team-analyze | Chỉ chạy bước phân tích yêu cầu (dùng agent analyst) | analyst |  |
-| /team-analyze-failure | Phân tích lỗi trong workflow. Chạy failure-analyzer.ps1 (normalize+SHA256 deterministic) rồi gọi failure-agent classify + search failure memory. Output YAML contract v2. | failure-agent |  |
+| /team-analyze-failure | Phân tích lỗi trong workflow — 2 MODE. Mode analyze-error (có args): chạy failure-analyzer.ps1 (normalize+SHA256 deterministic) + failure-agent classify + search failure memory → failure_analysis YAML v2. Mode self-learn (KHÔNG args hoặc --self-learn): quét failure records đã phát hiện & chỉnh sửa trong memory, tự tạo bài học (lessons) + mô tả (patterns) qua learning-agent → learning_report YAML. | general |  |
 | /team-bugfix | Quy trình nhận và fix bug — nhận báo cáo → tái hiện bug → root cause → đề xuất chỉnh sửa → kiểm tra sau sửa → test bUnit + E2E → báo cáo. Dùng agent general (orchestrator) + agents chuyên biệt | general |  |
 | /team-build | Thực thi kế hoạch đã duyệt (dùng agent builder) | builder |  |
 | /team-capabilities | Khám phá năng lực System — liệt kê capability theo category, reset agent/skill/command maps từ capability. Là giao diện discovery của Capability Registry. | general |  |
@@ -144,6 +146,7 @@
 | gitpush | gitpush | Pre-push safety validation + git push execution — kiểm tra secret, convention, build, test, sau đó push lên remote với xác nhận từ user. Sử dụng câu lệnh /team-gitpush. | 1.0 |
 | impact-analyzer | impact-analyzer | Phân tích ảnh hưởng khi sửa component — sửa X ảnh hưởng API/Screen/Batch/Report/SP nào. Quan trọng nhất trong Knowledge Assistant. Dùng trong /impact. | 1.0 |
 | impeccable | impeccable | Use when the user wants to design, redesign, shape, critique, audit, polish, clarify, distill, harden, optimize, adapt, animate, colorize, extract, or otherwise improve a frontend interface. Covers websites, landing pages, dashboards, product UI, app shells, components, forms, settings, onboarding, and empty states. Handles UX review, visual hierarchy, information architecture, cognitive load, accessibility, performance, responsive behavior, theming, anti-patterns, typography, fonts, spacing, layout, alignment, color, motion, micro-interactions, UX copy, error states, edge cases, i18n, and reusable design systems or tokens. Also use for bland designs that need to become bolder or more delightful, loud designs that should become quieter, live browser iteration on UI elements, or ambitious visual effects that should feel technically extraordinary. Not for backend-only or non-UI tasks. | 1.0 |
+| knowledge | knowledge | Namespace container — nhóm 10 sub-skills đọc hiểu codebase (answer-builder, architecture-reader, code-understanding, data-model-reader, dependency-analyzer, document-understanding, git-history, impact-analyzer, search-engine, workflow-reader). KHÔNG tự chạy pipeline — điều phối qua /knowledge-assistant. | 1.0 |
 | knowledge-assistant | knowledge-assistant | Knowledge Assistant — điều phối pipeline trả lời mọi câu hỏi về codebase: Intent Analyzer → Knowledge Planner → Code/Doc Skill → Dependency → Search/Impact → Answer Builder. Hỗ trợ /ask, /where, /why, /flow, /impact, /explain, /trace, /compare-doc, /knowledge-health. | 1.0 |
 | playwright-component | playwright-component | Sinh test component-level cho FluentUI — button, textbox, dropdown, dialog, grid, form. Kiểm tra validation, keyboard, focus, tab order, shortcut. Dùng bUnit cho Blazor component. Sử dụng câu lệnh /test-e2e kèm --component. | 1.0 |
 | playwright-e2e | playwright-e2e | Sinh test E2E Playwright hoàn chỉnh — Playwright Test, Page Object, Test Fixture, Mock API, Login Helper. Input: Screen/API/Requirement. Output: tests/, page-object/, fixtures/. Sử dụng câu lệnh /test-e2e. | 1.0 |
@@ -174,7 +177,8 @@
 | catalog-builder | Utility script | 5 KB |
 | constitution-doctor | Utility script | 6 KB |
 | constitution-validator | Utility script | 4 KB |
-| context-validator | Validate Context Engine structure: profiles/, schemas/, budget. | 3 KB |
+| context-validator | Validate Context Engine structure: profiles/, schemas/, budget. | 4 KB |
+| contrast-checker | Utility script | 16 KB |
 | cost-validator | Utility script | 1 KB |
 | cross-ref-validator | Cross-Reference Validator — kiểm tra tham chiếu chéo trong .opencode (agents, commands, skills, contracts). | 6 KB |
 | dashboard-validator | Validate Dashboard structure + schema. | 2 KB |
@@ -186,8 +190,9 @@
 | evolution-validator | Validate Evolution Engine structure + schema + policy + objectives. | 3 KB |
 | experiments-validator | Utility script | 1 KB |
 | failure-analyzer | Utility script | 4 KB |
-| gitpush-utility | GitPush Utility — thực hiện git push an toàn với auto-commit, safety checks, confirmation gate. | 18 KB |
+| gitpush-utility | GitPush Utility — thực hiện git push an toàn với auto-commit, safety checks, confirmation gate. | 19 KB |
 | glossary-validator | Validate AIOS Glossary. | 5 KB |
+| governance-build | Utility script | 39 KB |
 | governance-framework-validator | Validate AIOS Governance Framework (D005). | 6 KB |
 | governance-validator | Utility script | 1 KB |
 | kernel-validator | Utility script | 1 KB |
@@ -196,7 +201,7 @@
 | manifest-validator | Validate AIOS Manifest. | 3 KB |
 | marketplace-validator | Utility script | 1 KB |
 | memory-validator | Utility script | 1 KB |
-| model-policy | Utility script | 10 KB |
+| model-policy | Utility script | 11 KB |
 | model-router-validator | Utility script | 1 KB |
 | observability-validator | Utility script | 1 KB |
 | plugins-validator | Validate Plugin Architecture structure + schema + permissions. | 3 KB |
@@ -210,10 +215,25 @@
 | schema-validator | Schema Validator — validate YAML schema của agent definitions. | 5 KB |
 | sdk-validator | Validate AIOS SDK structure + schema. | 2 KB |
 | simulation-validator | Validate Simulation Engine structure + schema. | 3 KB |
-| spec000-validator | Validate SPEC-000 Constitution. | 5 KB |
-| spec001-validator | Validate SPEC-001 Runtime Kernel. | 5 KB |
+| spec000-validator | Validate SPEC-000 Constitution. | 6 KB |
+| spec001-validator | Validate SPEC-001 Runtime Kernel. | 35 KB |
+| spec002-validator | Validate SPEC-002 Workflow Engine. | 48 KB |
+| spec003-validator | Validate SPEC-003 Capability System. | 47 KB |
+| spec004-validator | Validate SPEC-004 Agent System. | 40 KB |
+| spec005-validator | Validate SPEC-005 Registry. | 12 KB |
+| spec006-validator | Validate SPEC-006 Context Engine. | 8 KB |
+| spec007-validator | Validate SPEC-007 Artifact Manager. | 8 KB |
+| spec008-validator | Validate SPEC-008 Event Bus. | 8 KB |
+| spec009-validator | Validate SPEC-009 Contract System. | 8 KB |
+| spec010-validator | Validate SPEC-010 Plugin Framework. | 8 KB |
+| spec011-validator | Validate SPEC-011 Doctor. | 8 KB |
+| spec012-validator | Validate SPEC-012 Simulation. | 8 KB |
+| spec013-validator | Validate SPEC-013 Evolution. | 8 KB |
+| spec014-validator | Validate SPEC-014 Dashboard. | 8 KB |
+| spec015-validator | Validate SPEC-015 SDK. | 8 KB |
+| spec016-validator | Validate SPEC-016 CLI. | 8 KB |
 | spec-validator | Validate AIOS Implementation control file. | 2 KB |
-| sync-system-docs | System Docs Sync — đồng bộ system docs + System Evolution Engine (9 engines). | 51 KB |
+| sync-system-docs | System Docs Sync — đồng bộ system docs + System Evolution Engine (9 engines). | 52 KB |
 | trust-validator | Utility script | 1 KB |
 | workflow-validator | Workflow Validator v4 — validate 5 workflow definitions (.opencode/workflow/definitions/*.yaml). | 14 KB |
 | workspaces-validator | Utility script | 1 KB |
@@ -225,8 +245,11 @@
 | File | Size |
 |------|------|
 | knowledge/framework\blazor\component-lifecycle.md | 3 KB |
+| knowledge/framework\dotnet.md | 2 KB |
 | knowledge/framework\fluentu\design-tokens.md | 1 KB |
 | knowledge/framework\fluentu\fluentu.md | 1 KB |
+| knowledge/framework\git.md | 1 KB |
+| knowledge/framework\sql-and-storage.md | 2 KB |
 | knowledge/knowledge-assistant\index\_index-report.json | 1 KB |
 | knowledge/knowledge-assistant\index\code-index.json | 7 KB |
 | knowledge/knowledge-assistant\index\data-model-index.json | 5 KB |
@@ -236,7 +259,8 @@
 | knowledge/knowledge-assistant\index\service-index.json | 0 KB |
 | knowledge/knowledge-assistant\index\symbol-index.json | 7 KB |
 | knowledge/knowledge-assistant\README.md | 3 KB |
-| knowledge/lessons.md | 23 KB |
+| knowledge/lessons.md | 28 KB |
+| knowledge/patterns\database-migration-patterns.md | 2 KB |
 | knowledge/patterns\localstorage.md | 1 KB |
 | knowledge/patterns\seed-data-patterns.md | 1 KB |
 | knowledge/project\japanese-learner\deployment.md | 4 KB |
@@ -279,24 +303,24 @@
 
 | Agent | Commands |
 |-------|----------|
-| analyst | team-analyze |
-| backup-agent | backup |
-| builder | team-build |
-| cleaner | team-cleanup |
+| analyst | team-analyze, team-syncdocs, team-explore |
+| backup-agent | backup, team-build |
+| builder | team-build, knowledge-compare-doc, team-plan, team-syncdocs, knowledge-trace, team-test, knowledge-impact, doctor, team-bugfix, knowledge-health, knowledge-ask, ask, knowledge-why, knowledge-explain, knowledge-flow, knowledge-where, team-root-cause |
+| cleaner | team-cleanup, team-ui-audit |
 | codebase-explorer | team-explore |
-| failure-agent | team-analyze-failure |
-| general | team-runtime-benchmark, team-syncdocs, model-policy, team-doctor, doctor, team-bugfix, trace, test-bootstrap, ask, explain, team-capabilities, flow, why, compare-doc, test-cross-browser, doctor-test, test-e2e, where, impact, approve-test, team |
-| guardian | team-gitguard |
-| knowledge-agent | knowledge-compare-doc, knowledge, knowledge-trace, knowledge-impact, knowledge-health, knowledge-ask, knowledge-index, knowledge-why, knowledge-explain, knowledge-flow, knowledge-where |
-| learning-agent | team-learn |
-| planner | team-plan |
+| failure-agent | team-analyze-failure, team-syncdocs |
+| general | team-runtime-benchmark, team-analyze-failure, team-syncdocs, model-policy, doctor-test, doctor, team-bugfix, review, trace, test-bootstrap, team-doctor, ask, explain, team-capabilities, flow, why, compare-doc, impact, test-cross-browser, test-e2e, governance-build, where, approve-test, team, team-ui-audit, impeccable |
+| guardian | team-gitguard, team-syncdocs |
+| knowledge-agent | knowledge-compare-doc, knowledge, knowledge-trace, knowledge-impact, knowledge-health, knowledge-ask, knowledge-why, knowledge-explain, knowledge-flow, knowledge-index, knowledge-where |
+| learning-agent | team-learn, team-analyze-failure, team-syncdocs |
+| planner | team-plan, team-review, team-testplan, team-syncdocs, test-regression, doctor, ask, test-plan, test-audit, team-root-cause, test-evolve |
 | pusher | team-gitpush |
-| reviewer | team-review |
-| root-cause-agent | team-root-cause |
-| self-improver | team-selfimprove |
-| tester | team-test |
-| test-planner | team-testplan, test-regression, test-plan, test-audit, test-evolve |
-| ui-beautifier | test-accessibility, test-visual, test-ui, team-ui-audit, impeccable |
+| reviewer | team-review, team-build, team-syncdocs, doctor |
+| root-cause-agent | team-root-cause, team-syncdocs, team-bugfix |
+| self-improver | team-selfimprove, team-syncdocs |
+| tester | team-test, team-syncdocs, doctor |
+| test-planner | team-testplan, test-regression, test-plan, test-audit, test-evolve, team-syncdocs |
+| ui-beautifier | test-accessibility, test-ui, test-visual, team-ui-audit, impeccable, team-syncdocs |
 
 ---
 
@@ -419,5 +443,5 @@
 
 ---
 
-> **Tong so:** 18 agents . 56 commands . 28 skills . 54 scripts . 27 knowledge files
+> **Tong so:** 18 agents . 58 commands . 29 skills . 71 scripts . 31 knowledge files
 > **Sinh boi:** sync-system-docs.ps1

@@ -11,7 +11,7 @@ Knowledge Index là tầng chỉ mục giúp Knowledge Assistant trả lời câ
 | `api-index.json` | Public methods → callers | `/impact`, `/trace` |
 | `database-index.json` | Storage keys / DB objects | `/where`, `/impact` |
 | `dependency-graph.json` | Nodes + edges (DI graph) | `/impact`, `/trace`, `/where` |
-| `document-index.json` | Docs → sections/headings | `/why`, `/compare-doc` |
+| `document-index.json` | Docs → sections/headings (`.opencode/knowledge/` + `docs/`: specs, rules, governance, glossary, principles) | `/why`, `/compare-doc` |
 | `business-rule-index.json` | Business rules → sources | `/why`, `/compare-doc` |
 
 ## Build / Update
@@ -34,4 +34,4 @@ Hoặc dùng command: `/knowledge-index`, `/knowledge-index --update`, `/knowled
 1. **Index = định vị nhanh. File gốc = bằng chứng.** Luôn đọc file gốc trước khi kết luận.
 2. Chạy `--update` sau mỗi lần source code thay đổi.
 3. Không index file nhạy cảm (secret, connection string).
-4. Lưu ý: `--rebuild` xóa toàn bộ thư mục — không đặt file khác ngoài index JSON ở đây.
+4. Lưu ý: `--rebuild` chỉ xóa `*.json` index (giữ nguyên `README.md` và các file khác trong thư mục).

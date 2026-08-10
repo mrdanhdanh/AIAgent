@@ -361,6 +361,26 @@ foreach ($cmdName in $report.commands.Keys) {
     }
 }
 
+# Scan command bodies for agents invoked inline (e.g. "triệu hồi `failure-agent`",
+# "**Agent:** `learning-agent`") — frontmatter agent: only covers the orchestrator,
+# not sub-agents summoned inside the body. Prevents false-positive ORPHAN_AGENT.
+foreach ($cmdName in $report.commands.Keys) {
+    $cmdBodyFile = "$root/$($report.commands[$cmdName].file)"
+    if (-not (Test-Path $cmdBodyFile)) { continue }
+    $bodyContent = Get-Content -LiteralPath $cmdBodyFile -Raw -Encoding utf8
+    foreach ($agentName in $report.agents.Keys) {
+        $pattern = [regex]::Escape($agentName) + "(?![-\w])"
+        if ($bodyContent -match $pattern) {
+            $refList = $report.cross_refs.agent_to_commands[$agentName]
+            if (-not $refList) { $refList = @() }
+            if ($refList -notcontains $cmdName) {
+                $refList += $cmdName
+                $report.cross_refs.agent_to_commands[$agentName] = $refList
+            }
+        }
+    }
+}
+
 foreach ($agentName in $report.agents.Keys) {
     $cmds = $report.cross_refs.agent_to_commands[$agentName]
     if (-not $cmds -or $cmds.Count -eq 0) {
