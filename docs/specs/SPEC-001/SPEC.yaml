@@ -2,7 +2,7 @@
 id: SPEC-001
 name: Runtime Kernel
 version: "1.0.0"
-status: Draft
+status: Frozen
 type: Kernel
 authority: High
 owner: Runtime Team

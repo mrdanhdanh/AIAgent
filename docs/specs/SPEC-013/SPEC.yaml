@@ -2,7 +2,7 @@
 id: SPEC-013
 name: Evolution Engine
 version: "1.0.0"
-status: Draft
+status: Frozen
 type: Engine
 authority: High
 owner: Evolution Team

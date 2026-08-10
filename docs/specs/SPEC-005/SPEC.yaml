@@ -2,7 +2,7 @@
 id: SPEC-005
 name: Registry
 version: "1.0.0"
-status: Draft
+status: Frozen
 type: System
 authority: High
 owner: Registry Team

@@ -3,6 +3,8 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [master]
+  pull_request:
+    branches: [master]
   workflow_dispatch:
 
 permissions:
@@ -11,7 +13,49 @@ permissions:
   id-token: write
 
 jobs:
+  quality:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Build
+        run: dotnet build JapaneseLearner/JapaneseLearner.csproj --nologo
+
+      - name: Unit tests
+        run: dotnet test JapaneseLearner.Tests/JapaneseLearner.Tests.csproj --nologo
+
+      - name: AIOS validators
+        shell: pwsh
+        run: |
+          $fail = @()
+          $scripts = @(
+            ".opencode/scripts/spec-validator.ps1",
+            ".opencode/scripts/constitution-validator.ps1",
+            ".opencode/scripts/rules-validator.ps1",
+            ".opencode/scripts/glossary-validator.ps1",
+            ".opencode/scripts/governance-framework-validator.ps1",
+            ".opencode/scripts/manifest-validator.ps1",
+            ".opencode/scripts/principles-validator.ps1",
+            ".opencode/scripts/workflow-validator.ps1"
+          ) + @(Get-ChildItem ".opencode/scripts/spec0*-validator.ps1" | ForEach-Object { $_.FullName })
+          foreach ($s in $scripts) {
+            Write-Host "=== $s ==="
+            & $s
+            if ($LASTEXITCODE -ne 0) { $fail += $s }
+          }
+          if ($fail.Count -gt 0) {
+            Write-Host "::error::AIOS validator failed: $($fail -join ', ')"
+            exit 1
+          }
+
   deploy:
+    needs: quality
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

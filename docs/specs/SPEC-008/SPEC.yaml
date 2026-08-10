@@ -2,7 +2,7 @@
 id: SPEC-008
 name: Event Bus
 version: "1.0.0"
-status: Draft
+status: Frozen
 type: Engine
 authority: High
 owner: Event Team

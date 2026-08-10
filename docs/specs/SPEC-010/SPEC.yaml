@@ -2,7 +2,7 @@
 id: SPEC-010
 name: Plugin Framework
 version: "1.0.0"
-status: Draft
+status: Frozen
 type: Framework
 authority: High
 owner: Plugin Team

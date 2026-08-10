@@ -2,7 +2,7 @@
 id: SPEC-003
 name: Capability System
 version: "1.0.0"
-status: Draft
+status: Frozen
 type: System
 authority: High
 owner: Capability Team

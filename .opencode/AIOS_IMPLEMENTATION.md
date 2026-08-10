@@ -30,8 +30,8 @@ Roadmap
 | Specification | ✅ | 30 modules đủ docs + schema.yaml (thay SPEC-001..020 cũ) |
 | Architecture Validation | ✅ | 30 validator scripts PASS |
 | Code Generation | ✅ | Workflow Runtime v4.0 CERTIFIED + 54 scripts + SDK |
-| Tests | 🔶 | Acceptance/Benchmark PASS — còn nợ stress test |
-| Doctor | 🔶 | 93/100 (2026-08-02) — cần re-run sau khi fix |
+| Tests | ✅ | Acceptance/Benchmark PASS — stress test đã chạy (100% STABLE) |
+| Doctor | ✅ | 98/100 (2026-08-11) — re-run `/doctor -Mode full` sau sync SPEC |
 
 ## 2. 4 Giai đoạn Implementation
 
@@ -122,9 +122,9 @@ Mỗi module 1 thư mục với đặc tả đầy đủ (architecture.md, READM
 
 | Ưu tiên | Công việc | Trạng thái |
 |---------|-----------|------------|
-| 🔴 HIGH | Stress test Runtime (Doctor: 50/100 UNSTABLE) | ⬜ |
-| 🔴 HIGH | SemanticDiff 55/100 — cải thiện điểm | ⬜ |
-| 🟡 MEDIUM | Re-run `/doctor --full --markdown` sau khi fix | ⬜ |
+| 🔴 HIGH | Stress test Runtime (Doctor: 50/100 UNSTABLE) | ✅ 100% (20/20, 2026-08-11) |
+| 🔴 HIGH | SemanticDiff 55/100 — cải thiện điểm | ✅ 100/100 (2026-08-11) |
+| 🟡 MEDIUM | Re-run `/doctor --full --markdown` sau khi fix | ✅ 98/100 (2026-08-11) |
 | 🟡 MEDIUM | Hoàn tất tests còn thiếu theo module tests.md | ⬜ |
 | 🟢 LOW | Bảo trì định kỳ: `/team-syncdocs` + `/team-doctor` | 🔁 |
 
@@ -138,12 +138,12 @@ Mỗi module 1 thư mục với đặc tả đầy đủ (architecture.md, READM
 | Runtime Certificate | ✅ v4.0 (≥90% mọi hạng mục) |
 | Scripts | 54 |
 | Agents / Commands / Skills | 18 / 56 / 28 |
-| Doctor Health | 93/100 |
+| Doctor Health | 98/100 |
 | Evolution Health | 98/100 |
 | Giai đoạn 2 (core runtime) | ✅ CERTIFIED |
 | Giai đoạn 3 (data) | ✅ docs |
 | Giai đoạn 4 (intelligence) | ✅ docs |
-| Stress test | ⬜ 50/100 — việc còn lại |
+| Stress test | ✅ 100% (20/20 STABLE, 2026-08-11) |
 
 ## 6. Nguyên tắc Implementation
 

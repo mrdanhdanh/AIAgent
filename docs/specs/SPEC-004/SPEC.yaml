@@ -2,7 +2,7 @@
 id: SPEC-004
 name: Agent System
 version: "1.0.0"
-status: Draft
+status: Frozen
 type: System
 authority: High
 owner: Agent Team

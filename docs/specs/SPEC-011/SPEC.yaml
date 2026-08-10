@@ -2,7 +2,7 @@
 id: SPEC-011
 name: Doctor
 version: "1.0.0"
-status: Draft
+status: Frozen
 type: Engine
 authority: High
 owner: Doctor Team
