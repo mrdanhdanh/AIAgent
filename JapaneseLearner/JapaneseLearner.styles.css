@@ -15,7 +15,7 @@
     padding: 10px 18px;
     border-radius: 0 0 10px 10px;
     background: var(--accent-color);
-    color: #fff;
+    color: var(--text-on-accent, #fff);
     font-weight: 600;
     text-decoration: none;
     transition: top 0.2s ease;
@@ -62,7 +62,7 @@
     font-size: 1.05rem;
     font-weight: 700;
     font-family: var(--font-family);
-    color: #fff;
+    color: var(--text-on-accent, #fff);
     background: linear-gradient(160deg, var(--accent-color) 0%, var(--accent-hover) 100%);
     box-shadow: 0 2px 8px rgba(197, 65, 59, 0.35);
 }

@@ -20,8 +20,9 @@
   --bg-card: #ffffff;
   --bg-input: #ffffff;
   --text-primary: #2b211f;
-  --text-secondary: #6f645f;
+  --text-secondary: #4a423c;
   --text-on-primary: #ffffff;
+  --text-on-accent: #ffffff;
   --text-table: #3a302d;
   --appbar-bg: rgba(43, 33, 31, 0.92);
   --appbar-border: rgba(255, 255, 255, 0.08);
@@ -54,9 +55,9 @@
 
   /* ===== Stats / feedback / cards ===== */
   --stat-correct-bg: rgba(47, 125, 95, 0.12);
-  --stat-correct-text: #2f7d5f;
+  --stat-correct-text: #1f5c44;
   --stat-wrong-bg: rgba(197, 65, 59, 0.12);
-  --stat-wrong-text: #c5413b;
+  --stat-wrong-text: #8f2b26;
   --card-border-correct: #2f7d5f;
   --card-shadow-correct: rgba(47, 125, 95, 0.16);
   --card-border-wrong: #c5413b;
@@ -66,10 +67,10 @@
   --hint-dot-active-bg: rgba(63, 107, 133, 0.14);
   --hint-dot-active-text: #3f6b85;
   --feedback-correct-bg: rgba(47, 125, 95, 0.1);
-  --feedback-correct-text: #2f7d5f;
+  --feedback-correct-text: #1f5c44;
   --feedback-correct-border: rgba(47, 125, 95, 0.22);
   --feedback-wrong-bg: rgba(197, 65, 59, 0.09);
-  --feedback-wrong-text: #c5413b;
+  --feedback-wrong-text: #8f2b26;
   --feedback-wrong-border: rgba(197, 65, 59, 0.16);
   --color-on-yomi: #c5413b;
   --color-kun-yomi: #3f6b85;
@@ -77,10 +78,10 @@
   /* ===== Quiz options ===== */
   --opt-correct-border: #2f7d5f;
   --opt-correct-bg: rgba(47, 125, 95, 0.15);
-  --opt-correct-text: #2f7d5f;
+  --opt-correct-text: #1f5c44;
   --opt-wrong-border: #c5413b;
   --opt-wrong-bg: rgba(197, 65, 59, 0.15);
-  --opt-wrong-text: #c5413b;
+  --opt-wrong-text: #8f2b26;
 
   /* ===== Tabs & filters ===== */
   --tab-bar-bg: #ffffff;
@@ -99,19 +100,19 @@
   --badge-seion-bg: rgba(63, 107, 133, 0.12);
   --badge-seion-text: #3f6b85;
   --badge-dakuon-bg: rgba(197, 65, 59, 0.1);
-  --badge-dakuon-text: #c5413b;
+  --badge-dakuon-text: #8f2b26;
   --badge-handakuon-bg: rgba(47, 125, 95, 0.12);
-  --badge-handakuon-text: #2f7d5f;
+  --badge-handakuon-text: #1f5c44;
   --badge-yoon-bg: rgba(178, 138, 34, 0.16);
-  --badge-yoon-text: #8a6b15;
+  --badge-yoon-text: #66500d;
   --badge-sokuon-bg: rgba(74, 107, 125, 0.14);
   --badge-sokuon-text: #33485a;
   --badge-choon-bg: rgba(63, 107, 133, 0.14);
   --badge-choon-text: #33485a;
   --badge-n5-bg: rgba(47, 125, 95, 0.12);
-  --badge-n5-text: #2f7d5f;
+  --badge-n5-text: #1f5c44;
   --badge-level-bg: rgba(178, 138, 34, 0.18);
-  --badge-level-text: #8a6b15;
+  --badge-level-text: #66500d;
   --badge-stroke-bg: #4a6b7d;
   --badge-stroke-text: #ffffff;
 
@@ -124,7 +125,7 @@
 
   /* ===== Notifications & loading ===== */
   --notif-success-bg: rgba(47, 125, 95, 0.12);
-  --notif-success-text: #2f7d5f;
+  --notif-success-text: #1f5c44;
   --notif-success-border: rgba(47, 125, 95, 0.22);
   --loading-stroke-bg: #ece6de;
   --loading-stroke-fg: #c5413b;
@@ -155,6 +156,7 @@
   --text-primary: #ece7e1;
   --text-secondary: #a89f98;
   --text-table: #c9c1b8;
+  --text-on-accent: #2b211f;
   --appbar-bg: rgba(20, 18, 16, 0.92);
   --appbar-border: rgba(255, 255, 255, 0.06);
   --appbar-text: #ece7e1;
@@ -185,7 +187,7 @@
   --stat-correct-bg: rgba(95, 174, 143, 0.18);
   --stat-wrong-bg: rgba(229, 106, 85, 0.18);
   --stat-correct-text: #5fae8f;
-  --stat-wrong-text: #e56a55;
+  --stat-wrong-text: #f29281;
   --card-shadow-default: rgba(0, 0, 0, 0.35);
   --card-border-correct: #5fae8f;
   --card-shadow-correct: rgba(95, 174, 143, 0.22);
@@ -198,10 +200,10 @@
   --color-kun-yomi: #7fa8bf;
   --opt-correct-border: #5fae8f;
   --opt-correct-bg: rgba(95, 174, 143, 0.22);
-  --opt-correct-text: #5fae8f;
+  --opt-correct-text: #74c6a5;
   --opt-wrong-border: #e56a55;
   --opt-wrong-bg: rgba(229, 106, 85, 0.22);
-  --opt-wrong-text: #e56a55;
+  --opt-wrong-text: #f29281;
   --icon-kanji-bg: linear-gradient(160deg, #a33730, #6e221f);
   --icon-hiragana-bg: linear-gradient(160deg, #a33730, #6e221f);
   --icon-word-bg: linear-gradient(160deg, #2f5267, #1d3646);
@@ -210,8 +212,10 @@
   --icon-grammar-bg: linear-gradient(160deg, #5f4470, #3f2f4d);
   --tab-bar-bg: #1f1c1a;
   --tab-btn-bg: #282523;
+  --tab-btn-text: #cfc7bd;
   --tab-btn-border: #33302c;
   --tab-btn-active-bg: #e56a55;
+  --tab-btn-active-text: #2b211f;
   --tab-btn-hover-bg: #33302c;
   --tab-btn-hover-border: #7fa8bf;
   --tab-btn-hover-text: #9ec4d8;
