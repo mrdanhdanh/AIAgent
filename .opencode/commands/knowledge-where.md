@@ -49,3 +49,11 @@ matches:
   - { file: "path/to/file.cs", line: 42, snippet: "..." }
 sources: ["path/to/file.cs:42"]
 ```
+
+## Flags:
+
+| Flag | Y nghia |
+|------|---------|
+| `--all` | Tat ca noi dung dung |
+| `--index` | Chi knowledge index |
+

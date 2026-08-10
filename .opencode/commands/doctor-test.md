@@ -98,3 +98,18 @@ next_action: "Fix CRITICAL/MAJOR hoặc chạy /test-audit"
 
 - Xem thêm skill: `.opencode/skills/flaky-test-detector/SKILL.md`, `.opencode/skills/test-report/SKILL.md`
 - Kiểm tra `PlaywrightFixture.cs:24` browser path — nếu hardcoded → ghi WARNING
+
+## Flags:
+
+| Flag | Y nghia |
+|------|---------|
+| `--quick` | Scan nhanh |
+| `--full` | Toan bo pipeline |
+| `--component` | Chi bUnit tests |
+| `--report` | Xuat bao cao |
+
+## Output Contract
+
+- **Output**: health report + score 0-100.
+- **Format**: markdown/JSON.
+

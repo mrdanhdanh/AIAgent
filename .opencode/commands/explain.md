@@ -73,3 +73,12 @@ next_action: "Chạy /where nếu cần tìm nơi method được gọi"
 
 - Xem thêm: `.opencode/skills/code-understanding/SKILL.md`
 - Xem thêm: `.opencode/knowledge-index/code-index.json`
+
+## Flags:
+
+| Flag | Y nghia |
+|------|---------|
+| `--method <name>` | Chi giai thich method |
+| `--flow` | Kem call graph |
+| `--di` | Kem DI graph |
+

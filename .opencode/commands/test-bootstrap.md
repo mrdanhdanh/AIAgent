@@ -92,3 +92,9 @@ next_action: "Chạy /test-e2e cho feature đầu tiên"
 
 - Xem thêm skill: `.opencode/skills/playwright-e2e/SKILL.md`
 - Xem thêm: `.opencode/knowledge/testing/playwright-e2e.md`
+
+## Output Contract
+
+- **Output**: Playwright config + page objects + fixtures.
+- **Format**: files + README.
+

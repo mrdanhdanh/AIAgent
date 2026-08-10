@@ -77,3 +77,17 @@ next_action: "Cập nhật tài liệu hoặc tạo knowledge note"
 
 - Xem thêm: `.opencode/skills/document-understanding/SKILL.md`
 - Xem thêm: `.opencode/skills/code-understanding/SKILL.md`
+
+## Flags:
+
+| Flag | Y nghia |
+|------|---------|
+| `--full` | So sanh toan bo |
+| `--section <name>` | Chi so sanh section |
+| `--output <file>` | Ghi ket qua ra file |
+
+## Output Contract
+
+- **Output**: bang so sanh doc vs code + findings.
+- **Format**: markdown.
+

@@ -46,3 +46,11 @@ comparisons:
 summary: "N điểm MATCH, M điểm DIFF, K điểm MISSING"
 sources: ["AGENTS.md:22", "Pages/WordStudy.razor:1"]
 ```
+
+## Flags:
+
+| Flag | Y nghia |
+|------|---------|
+| `--full` | So sanh toan bo |
+| `--section <name>` | Chi so sanh section |
+

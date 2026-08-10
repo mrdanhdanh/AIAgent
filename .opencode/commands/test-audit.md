@@ -103,3 +103,18 @@ next_action: "Thực thi improvement plan theo ưu tiên"
 
 - Xem thêm skill: `.opencode/skills/flaky-test-detector/SKILL.md`, `.opencode/skills/test-report/SKILL.md`
 - Kết hợp `/doctor-test` cho health check nhanh
+
+## Flags:
+
+| Flag | Y nghia |
+|------|---------|
+| `--coverage` | Kiem tra coverage |
+| `--flaky` | Phat hien flaky |
+| `--duplicate` | Phat hien duplicate |
+| `--report` | Xuat bao cao |
+
+## Output Contract
+
+- **Output**: audit report (coverage/duplicate/flaky/runtime).
+- **Format**: markdown.
+

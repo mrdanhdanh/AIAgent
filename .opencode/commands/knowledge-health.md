@@ -60,3 +60,12 @@ recommendations:
   - "Thêm architecture diagram vào knowledge/"
   - "Ghi ADR cho quyết định cache-first storage"
 ```
+
+## Flags:
+
+| Flag | Y nghia |
+|------|---------|
+| `--quick` | Scan nhanh |
+| `--full` | Toan bo |
+| `--report` | Xuat bao cao |
+

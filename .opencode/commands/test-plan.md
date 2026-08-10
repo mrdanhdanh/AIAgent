@@ -97,3 +97,17 @@ next_action: "Chuyển sang /test-e2e để sinh test"
 
 - Xem thêm skill: `.opencode/skills/test-data-generator/SKILL.md` để sinh data
 - Xem thêm: `.opencode/knowledge/testing/xunit-bunit-testing.md`
+
+## Flags:
+
+| Flag | Y nghia |
+|------|---------|
+| `--matrix` | Kem coverage matrix |
+| `--scenario` | Kem scenario list |
+| `--priority` | Kem priority |
+
+## Output Contract
+
+- **Output**: test plan + coverage matrix + scenarios.
+- **Format**: markdown.
+

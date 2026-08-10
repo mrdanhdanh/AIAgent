@@ -48,3 +48,20 @@ Bạn là General Agent đóng vai Workflow Engine. Làm theo `.opencode/workflo
 ---
 
 Yêu cầu: $ARGUMENTS
+
+## Flags:
+
+| Flag | Y nghia |
+|------|---------|
+| `--workflow <type>` | Loai workflow (default/bugfix/feature/ui/docs) |
+| `--analyze` | Chi phan tich |
+| `--plan` | Chi lap ke hoach |
+| `--build` | Chi code |
+| `--test` | Chi test |
+| `--gitpush` | Push sau khi xong |
+
+## Output Contract
+
+- **Output**: workflow report (analyze/plan/build/test artifacts).
+- **Format**: markdown artifacts.
+

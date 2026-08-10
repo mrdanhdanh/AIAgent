@@ -1,507 +1,519 @@
 {
-  "$schema": "https://opencode.ai/config.json",
-  "agent": {
-    "analyst": {
-      "description": "Phân tích yêu cầu người dùng, xác định phạm vi, rủi ro và các task cần thực hiện",
-      "mode": "subagent",
-      "model": "opencode-go/deepseek-v4-flash",
-      "permission": {
-        "read": "allow",
-        "grep": "allow",
-        "glob": "allow",
-        "edit": "deny",
-        "bash": "deny"
-      }
-    },
-    "planner": {
-      "description": "Lên kế hoạch thực thi chi tiết dựa trên yêu cầu đã phân tích",
-      "mode": "subagent",
-      "model": "opencode-go/deepseek-v4-flash",
-      "permission": {
-        "read": "allow",
-        "grep": "allow",
-        "glob": "allow",
-        "edit": "deny",
-        "bash": "deny"
-      }
-    },
-    "reviewer": {
-      "description": "Đánh giá kế hoạch thực thi, kiểm tra tính đúng đắn, đầy đủ và hiệu quả",
-      "mode": "subagent",
-      "model": "opencode-go/deepseek-v4-flash",
-      "permission": {
-        "read": "allow",
-        "grep": "allow",
-        "glob": "allow",
-        "edit": "deny",
-        "bash": "deny"
-      }
-    },
-    "builder": {
-      "description": "Thực thi kế hoạch đã được đánh giá, viết code và thực hiện thay đổi",
-      "mode": "subagent",
-      "model": "opencode-go/deepseek-v4-flash",
-      "permission": {
-        "read": "allow",
-        "grep": "allow",
-        "glob": "allow",
-        "edit": "allow",
-        "bash": "allow"
-      }
-    },
-    "test-planner": {
-      "description": "Tạo kế hoạch kiểm thử chi tiết cho tính năng đã phát triển",
-      "mode": "subagent",
-      "model": "opencode-go/deepseek-v4-flash",
-      "permission": {
-        "read": "allow",
-        "grep": "allow",
-        "glob": "allow",
-        "edit": "deny",
-        "bash": "deny"
-      }
-    },
-    "tester": {
-      "description": "Thực thi kiểm thử, validate tính năng và báo cáo kết quả",
-      "mode": "subagent",
-      "model": "opencode-go/deepseek-v4-flash",
-      "permission": {
-        "read": "allow",
-        "grep": "allow",
-        "glob": "allow",
-        "edit": "deny",
-        "bash": "allow"
-      }
-    },
-    "codebase-explorer": {
-      "description": "Khám phá cấu trúc dự án, phân tích codebase, mapping dependencies và patterns. Agent read-only chạy trước khi thực hiện thay đổi.",
-      "mode": "subagent",
-      "model": "opencode-go/deepseek-v4-flash",
-      "permission": {
-        "read": "allow",
-        "grep": "allow",
-        "glob": "allow",
-        "edit": "deny",
-        "bash": "deny"
-      }
-    },
-    "self-improver": {
-      "description": "Sau khi workflow hoàn tất, đọc lại quá trình, phân tích kỹ năng đã dùng và thiếu, đề xuất bổ sung vào knowledge base",
-      "mode": "subagent",
-      "model": "opencode-go/deepseek-v4-flash",
-      "permission": {
-        "read": "allow",
-        "grep": "allow",
-        "glob": "allow",
-        "edit": "allow",
-        "bash": "allow"
-      }
-    },
-    "ui-beautifier": {
-      "description": "Chuyên đánh giá và cải thiện giao diện người dùng cho Japanese Learner (Blazor WASM + FluentUI 4.14.3). Phân tích .razor files, phát hiện CSS issues, accessibility problems, và đề xuất cải tiến UI/UX.",
-      "mode": "subagent",
-      "model": "opencode-go/deepseek-v4-flash",
-      "permission": {
-        "read": "allow",
-        "grep": "allow",
-        "glob": "allow",
-        "edit": "allow",
-        "bash": "allow"
-      }
-    },
-    "backup-agent": {
-      "description": "Backup và rollback file dùng Backup Utility. Hỗ trợ: backup trước khi sửa file, rollback khi catastrophic failure, liệt kê backup history, verify backup integrity.",
-      "mode": "subagent",
-      "model": "opencode-go/deepseek-v4-flash",
-      "permission": {
-        "read": "allow",
-        "grep": "allow",
-        "glob": "allow",
-        "edit": "deny",
-        "bash": "allow"
-      }
-    },
-    "guardian": {
-      "description": "Chuyên gia review source code trước khi push lên git — phát hiện secret, lỗi convention, lỗ hổng bảo mật, vi phạm quy tắc dự án",
-      "mode": "subagent",
-      "model": "opencode-go/deepseek-v4-flash",
-      "permission": {
-        "read": "allow",
-        "grep": "allow",
-        "glob": "allow",
-        "bash": "allow",
-        "edit": "deny"
-      }
-    },
-    "pusher": {
-      "description": "Chuyên gia thực hiện git push an toàn — safety checks, build, test, confirmation gate, push execution, post-push verify",
-      "mode": "subagent",
-      "model": "opencode-go/deepseek-v4-flash",
-      "permission": {
-        "read": "allow",
-        "grep": "allow",
-        "glob": "allow",
-        "bash": "allow",
-        "edit": "deny"
-      }
-    },
-    "cleaner": {
-      "description": "Chuyên gia dọn rác Workspace — quét file rác, phân loại Cấp 1/2/3, backup trước khi xóa, dry-run, confirmation gate",
-      "mode": "subagent",
-      "model": "opencode-go/deepseek-v4-flash",
-      "permission": {
-        "read": "allow",
-        "grep": "allow",
-        "glob": "allow",
-        "bash": "allow",
-        "edit": "deny"
-      }
-    },
-    "general": {
-      "description": "General-purpose orchestrator agent — điều phối workflow, triệu hồi sub-agents, quản lý state machine",
-      "mode": "subagent",
-      "model": "opencode-go/deepseek-v4-flash",
-      "permission": {
-        "read": "allow",
-        "grep": "allow",
-        "glob": "allow",
-        "bash": "allow",
-        "edit": "allow"
-      }
-    },
-    "failure-agent": {
-      "description": "Chuyên gia phân tích và chuẩn hóa lỗi — normalize+hash do failure-analyzer.ps1 tính, agent chỉ classify, search failure/lesson/pattern memory, score và đề xuất. Read-only (bash chỉ chạy failure-analyzer.ps1).",
-      "mode": "subagent",
-      "model": "opencode-go/deepseek-v4-flash",
-      "permission": {
-        "read": "allow",
-        "grep": "allow",
-        "glob": "allow",
-        "edit": "deny",
-        "bash": "allow"
-      }
-    },
-    "root-cause-agent": {
-      "description": "Chuyên gia phân tích nguyên nhân gốc (Root Cause Analysis) — nhận error đã normalized, tìm kiếm trong codebase, tạo hypotheses với confidence score, đề xuất hướng fix.",
-      "mode": "subagent",
-      "model": "opencode-go/deepseek-v4-flash",
-      "permission": {
-        "read": "allow",
-        "grep": "allow",
-        "glob": "allow",
-        "edit": "allow",
-        "bash": "deny"
-      }
-    },
-    "learning-agent": {
-      "description": "Chuyên gia Learning Pipeline — đọc failure records từ memory, phân tích patterns xuyên suốt, auto-generate lessons và patterns mới. Ghi trực tiếp vào memory/.",
-      "mode": "subagent",
-      "model": "opencode-go/deepseek-v4-flash",
-      "permission": {
-        "read": "allow",
-        "grep": "allow",
-        "glob": "allow",
-        "edit": "allow",
-        "bash": "deny"
-      }
-    },
-    "knowledge-agent": {
-      "description": "Intent Analyzer + Router cho Knowledge Assistant — phân loại câu hỏi, chọn skill pipeline, tổng hợp trả lời có nguồn. Bash allow để chạy git log (git-history) và knowledge-index.ps1.",
-      "mode": "subagent",
-      "model": "opencode-go/deepseek-v4-flash",
-      "permission": {
-        "read": "allow",
-        "grep": "allow",
-        "glob": "allow",
-        "bash": "allow",
-        "edit": "deny"
-      }
-    }
-  },
-  "command": {
-    "impeccable": {
-      "template": "Bạn là UI Design Agent. Thực thi skill impeccable. Đọc hướng dẫn đầy đủ tại: .opencode/skills/impeccable/SKILL.md\n\nTham số: $ARGUMENTS\n\nRouting:\n1. Không có tham số: load .opencode/skills/impeccable/reference/routing.md và present context-aware menu\n2. Sub-command (init, shape, document, critique, audit, polish, bolder, quieter, distill, harden, onboard, animate, colorize, typeset, layout, delight, overdrive, clarify, adapt, optimize, live, hooks, doctor, extract): load .opencode/skills/impeccable/reference/<subcommand>.md và follow nó\n3. Khác: load SKILL.md và reference tương ứng\n\nBước đầu tiên: chạy node .opencode/skills/impeccable/scripts/context.mjs --target <path> nếu có target.",
-      "description": "Design, redesign, shape, critique, audit, polish, or improve frontend UI (impeccable skill)",
-      "agent": "ui-beautifier"
-    },
-    "backup": {
-      "template": "Bạn là Backup Agent. Dùng Backup Utility để backup/rollback file.\n\n## Script paths\nbackupScript: .opencode/scripts/backup-utility.ps1\nrollbackScript: .opencode/scripts/rollback-utility.ps1\n\n## Actions\n- save <files...>: Backup file trước khi sửa\n- rollback <workflowId> [--force]: Restore từ backup\n- list: Liệt kê backup history\n- verify <workflowId>: Kiểm tra integrity\n\nThực hiện action $ARGUMENTS và output kết quả.",
-      "description": "Backup va rollback file dung Backup Utility",
-      "agent": "backup-agent"
-    },
-    "team": {
-      "template": "Bạn là Orchestrator Agent. Chạy toàn bộ Dev Agent Team workflow. Đọc hướng dẫn đầy đủ tại: .opencode/commands/team.md\n\nYêu cầu: $ARGUMENTS",
-      "description": "Chay toan bo team workflow: analyze, design/plan, review, backup, build, smoke test, testplan, test, self-improve",
-      "agent": "general"
-    },
-    "team-analyze": {
-      "template": "Bạn là Analyst Agent. Phân tích yêu cầu phát triển. Đọc hướng dẫn đầy đủ tại: .opencode/commands/team-analyze.md\n\nYêu cầu: $ARGUMENTS",
-      "description": "Phan tich yeu cau phat trien — doc codebase, xac dinh pham vi, rui ro, task con",
-      "agent": "analyst"
-    },
-    "team-plan": {
-      "template": "Bạn là Planner Agent. Thiết kế giải pháp + Lập kế hoạch thực thi. Đọc hướng dẫn đầy đủ tại: .opencode/commands/team-plan.md\n\nNội dung: $ARGUMENTS",
-      "description": "Thiet ke giai phap (Design) + Lap ke hoach thuc thi (Plan)",
-      "agent": "planner"
-    },
-    "team-review": {
-      "template": "Bạn là Reviewer Agent. Đánh giá thiết kế/kế hoạch. Đọc hướng dẫn đầy đủ tại: .opencode/commands/team-review.md\n\nNội dung: $ARGUMENTS",
-      "description": "Danh gia thiet ke hoac ke hoach theo 6 tieu chi",
-      "agent": "reviewer"
-    },
-    "team-build": {
-      "template": "Bạn là Builder Agent. Thực thi kế hoạch đã duyệt. Đọc hướng dẫn đầy đủ tại: .opencode/commands/team-build.md\n\nKế hoạch: $ARGUMENTS",
-      "description": "Thuc thi ke hoach da duyet — tao/sua file code, kiem tra syntax/lint",
-      "agent": "builder"
-    },
-    "team-bugfix": {
-      "template": "Bạn là General Agent (Orchestrator). Chạy toàn bộ Bug-Fix Pipeline — nhận bug → tái hiện → root cause → đề xuất chỉnh sửa → kiểm tra sau sửa → test bUnit + E2E. Đọc hướng dẫn đầy đủ tại: .opencode/commands/team-bugfix.md\n\nMô tả bug: $ARGUMENTS",
-      "description": "Quy trinh nhan va fix bug — tai hien bug, root cause, de xuat chinh sua, kiem tra sau sua, test bUnit + E2E",
-      "agent": "general"
-    },
-    "team-testplan": {
-      "template": "Bạn là Test-Planner Agent. Tạo kế hoạch kiểm thử. Đọc hướng dẫn đầy đủ tại: .opencode/commands/team-testplan.md\n\nThông tin: $ARGUMENTS",
-      "description": "Tao ke hoach kiem thu toan dien cho tinh nang da phat trien",
-      "agent": "test-planner"
-    },
-    "team-test": {
-      "template": "Bạn là Tester Agent. Thực thi kiểm thử. Đọc hướng dẫn đầy đủ tại: .opencode/commands/team-test.md\n\nKế hoạch test: $ARGUMENTS",
-      "description": "Thuc thi kiem thu theo ke hoach — chay test cases, tinh coverage, bao cao PASS/FAIL/SKIP",
-      "agent": "tester"
-    },
-    "team-ui-audit": {
-      "template": "Bạn là UI Beautifier Agent. Kiểm tra giao diện người dùng. Đọc hướng dẫn đầy đủ tại: .opencode/commands/team-ui-audit.md\n\nNội dung: $ARGUMENTS",
-      "description": "Chay UI audit tren toan bo .razor files — CSS issues, accessibility, dark mode",
-      "agent": "ui-beautifier"
-    },
-    "team-selfimprove": {
-      "template": "Bạn là Self-Improver Agent. Phân tích workflow và đề xuất cải tiến. Đọc hướng dẫn đầy đủ tại: .opencode/commands/team-selfimprove.md\n\nDữ liệu workflow: $ARGUMENTS",
-      "description": "Phan tich workflow va de xuat cai tien coding pattern, testing pattern, workflow",
-      "agent": "self-improver"
-    },
-    "team-explore": {
-      "template": "[DEPRECATED] Explore step đã được gộp vào Analyze. Dùng team-analyze thay thế.",
-      "description": "[DEPRECATED] Explore step da duoc gop vao Analyze. Dung team-analyze thay the.",
-      "agent": "codebase-explorer",
-      "deprecated": true
-    },
-    "team-gitguard": {
-      "template": "Bạn là Guardian Agent. Review source code trước khi push lên git. Đọc hướng dẫn đầy đủ tại: .opencode/commands/team-gitguard.md\n\nNội dung: $ARGUMENTS",
-      "description": "Review source code truoc khi push len git -- phat hien secret, loi convention, lo hong bao mat, vi pham quy tac du an",
-      "agent": "guardian"
-    },
-    "team-gitpush": {
-      "template": "Bạn là Pusher Agent. Thực hiện git push an toàn với safety checks. Đọc hướng dẫn đầy đủ tại: .opencode/commands/team-gitpush.md\n\nTham số: $ARGUMENTS",
-      "description": "Pre-push safety validation + git push execution — kiem tra secret, convention, build, test, xac nhan user, push len remote",
-      "agent": "pusher"
-    },
-    "team-cleanup": {
-      "template": "Bạn là Cleaner Agent. Dọn rác Workspace tự động. Đọc hướng dẫn đầy đủ tại: .opencode/skills/workspace-cleaner/SKILL.md\n\nTham số: $ARGUMENTS\n\nHành động:\n1. Phân tích tham số (--dry-run, --force, --target, --keep-backup, --aggressive, --older-than)\n2. Gọi workspace-cleaner script: .opencode/skills/workspace-cleaner/scripts/workspace-cleaner.ps1\n3. Output báo cáo YAML",
-      "description": "Don rac Workspace tu dong — xoa build artifacts, backup cu, temp files, cache. Tich hop dry-run, backup truoc khi xoa, confirmation gate",
-      "agent": "cleaner"
-    },
-    "team-syncdocs": {
-      "template": "Bạn là System Documentation Sync Agent. Quét và đồng bộ toàn bộ system docs. Đọc hướng dẫn đầy đủ tại: .opencode/commands/team-syncdocs.md\n\nTham số: $ARGUMENTS",
-      "description": "Dong bo toan bo system docs: quet agents, commands, skills, scripts, knowledge -> cap nhat SYSTEM_MAP.md, cross-references",
-      "agent": "general"
-    },
-    "team-analyze-failure": {
-      "template": "Bạn là Failure Agent. Phân tích lỗi trong workflow. Đọc hướng dẫn đầy đủ tại: .opencode/commands/team-analyze-failure.md\n\nError: $ARGUMENTS\n\nBước 1: chạy & \".opencode/scripts/failure-analyzer.ps1\" -RawError \"$ARGUMENTS\" (hoặc -FilePath nếu là path) để lấy error_normalized + error_hash deterministic. Bước 2: classify + search memory + output contract v2.",
-      "description": "Phan tich loi trong workflow — deterministic normalize/hash + classify + search failure memory",
-      "agent": "failure-agent"
-    },
-    "team-root-cause": {
-      "template": "Bạn là Root Cause Agent. Phân tích nguyên nhân gốc từ failure analysis. Đọc hướng dẫn đầy đủ tại: .opencode/commands/team-root-cause.md\n\nFailure Analysis: $ARGUMENTS",
-      "description": "Phan tich nguyen nhan goc — tim evidence trong codebase, tao hypotheses, de xuat fix",
-      "agent": "root-cause-agent"
-    },
-    "team-learn": {
-      "template": "Bạn là Learning Agent. Chạy Learning Pipeline — quét failure records, auto-generate lessons và patterns. Đọc hướng dẫn đầy đủ tại: .opencode/commands/team-learn.md\n\nTham số: $ARGUMENTS",
-      "description": "Chay Learning Pipeline — quet failure records tu memory, auto-generate lessons va patterns, cap nhat memory",
-      "agent": "learning-agent"
-    },
-    "doctor": {
-      "template": "Bạn là Doctor Agent. Kiểm tra sức khỏe hệ thống AI Agent Framework. Đọc hướng dẫn đầy đủ tại: .opencode/commands/doctor.md\n\nTham số: $ARGUMENTS\n\nHành động:\n1. Phân tích tham số (--quick, --full, --runtime, --workflow, --agent, --skill, --command, --knowledge, --contracts, --simulation, --benchmark, --repair, --force, --dry-run, --json)\n2. Map mode sang tham số -Mode của script: quick|full|runtime|workflow|agent|skill|command|knowledge|contracts|simulation|benchmark|repair\n3. Gọi script: & \".opencode\\scripts\\doctor.ps1\" -Mode <mode> [-Force] [-DryRun] [-Json]\n4. Output báo cáo YAML theo output contract trong doctor.md",
-      "description": "Kiem tra suc khoe he thong AI Agent Framework — Environment, Agents, Commands, Skills, Knowledge, Workflow, Contracts, Runtime, Capability. Tich hop health score, simulation, benchmark va self-repair an toan",
-      "agent": "general"
-    },
-    "team-doctor": {
-      "template": "Bạn là Doctor Agent. Kiểm tra sức khỏe hệ thống AI Agent Framework (alias của /doctor). Đọc hướng dẫn đầy đủ tại: .opencode/commands/doctor.md\n\nTham số: $ARGUMENTS\n\nHành động:\n1. Phân tích tham số (--quick, --full, --runtime, --workflow, --agent, --skill, --command, --knowledge, --contracts, --simulation, --benchmark, --repair, --force, --dry-run, --json)\n2. Map mode sang tham số -Mode của script: quick|full|runtime|workflow|agent|skill|command|knowledge|contracts|simulation|benchmark|repair\n3. Gọi script: & \".opencode\\scripts\\doctor.ps1\" -Mode <mode> [-Force] [-DryRun] [-Json]\n4. Output báo cáo YAML theo output contract trong doctor.md",
-      "description": "Kiem tra suc khoe he thong AI Agent Framework (alias cua /doctor)",
-      "agent": "general"
-    },
-    "knowledge": {
-      "template": "Bạn là Knowledge Agent. Hiển thị menu Knowledge Assistant + routing. Đọc hướng dẫn đầy đủ tại: .opencode/commands/knowledge.md\n\nTham số: $ARGUMENTS",
-      "description": "Help va routing cho Knowledge Assistant — liet ke 10 commands, intent mapping, vi du su dung",
-      "agent": "knowledge-agent"
-    },
-    "knowledge-ask": {
-      "template": "Bạn là Knowledge Agent. Trả lời câu hỏi mở về codebase. Đọc hướng dẫn đầy đủ tại: .opencode/commands/knowledge-ask.md\n\nCâu hỏi: $ARGUMENTS",
-      "description": "Hoi Knowledge Assistant — module/component/service nay hoat dong the nao, dung de lam gi",
-      "agent": "knowledge-agent"
-    },
-    "knowledge-where": {
-      "template": "Bạn là Knowledge Agent. Tìm toàn bộ nơi sử dụng symbol. Đọc hướng dẫn đầy đủ tại: .opencode/commands/knowledge-where.md\n\nSymbol: $ARGUMENTS",
-      "description": "Tim toan bo noi su dung mot symbol/pattern — class, method, property, LocalStorage key",
-      "agent": "knowledge-agent"
-    },
-    "knowledge-why": {
-      "template": "Bạn là Knowledge Agent. Giải thích lý do thiết kế. Đọc hướng dẫn đầy đủ tại: .opencode/commands/knowledge-why.md\n\nTarget: $ARGUMENTS",
-      "description": "Giai thich ly do ton tai cua mot symbol/thiet ke — doc tai lieu, git history, code context",
-      "agent": "knowledge-agent"
-    },
-    "knowledge-flow": {
-      "template": "Bạn là Knowledge Agent. Mô tả workflow của chức năng/màn hình. Đọc hướng dẫn đầy đủ tại: .opencode/commands/knowledge-flow.md\n\nChức năng: $ARGUMENTS",
-      "description": "Mo ta workflow cua mot chuc nang/man hinh — user flow, business flow, sinh mermaid sequence diagram",
-      "agent": "knowledge-agent"
-    },
-    "knowledge-impact": {
-      "template": "Bạn là Knowledge Agent. Phân tích ảnh hưởng khi sửa symbol/file. Đọc hướng dẫn đầy đủ tại: .opencode/commands/knowledge-impact.md\n\nTarget: $ARGUMENTS",
-      "description": "Phan tich anh huong khi sua mot symbol/file — affected screens, services, models, tests kem muc do",
-      "agent": "knowledge-agent"
-    },
-    "knowledge-explain": {
-      "template": "Bạn là Knowledge Agent. Giải thích từng method của file. Đọc hướng dẫn đầy đủ tại: .opencode/commands/knowledge-explain.md\n\nFile: $ARGUMENTS",
-      "description": "Giai thich tung method cua mot file — class summary, method list, DI dependencies, lifecycle",
-      "agent": "knowledge-agent"
-    },
-    "knowledge-trace": {
-      "template": "Bạn là Knowledge Agent. Trace luồng end-to-end. Đọc hướng dẫn đầy đủ tại: .opencode/commands/knowledge-trace.md\n\nChức năng: $ARGUMENTS",
-      "description": "Trace luong hoat dong end-to-end — UI -> Service -> Model -> LocalStorage, sinh chuoi trace dang cay",
-      "agent": "knowledge-agent"
-    },
-    "knowledge-compare-doc": {
-      "template": "Bạn là Knowledge Agent. So sánh code với tài liệu thiết kế. Đọc hướng dẫn đầy đủ tại: .opencode/commands/knowledge-compare-doc.md\n\nTarget: $ARGUMENTS",
-      "description": "So sanh code hien tai voi tai lieu thiet ke — phat hien lech lac giua code va docs",
-      "agent": "knowledge-agent"
-    },
-    "knowledge-health": {
-      "template": "Bạn là Knowledge Agent. Đánh giá sức khỏe kiến thức codebase. Đọc hướng dẫn đầy đủ tại: .opencode/commands/knowledge-health.md\n\nTham số: $ARGUMENTS",
-      "description": "Danh gia kien thuc codebase — thieu README, thieu diagram, thieu flow, thieu ADR, thieu comment, doc coverage",
-      "agent": "knowledge-agent"
-    },
-    "knowledge-index": {
-      "template": "Bạn là Knowledge Agent. Xây dựng/cập nhật Knowledge Index. Đọc hướng dẫn đầy đủ tại: .opencode/commands/knowledge-index.md\n\nTham số: $ARGUMENTS\n\nHành động:\n1. Phân tích tham số (--update, --status, --clean, hoặc build mặc định)\n2. Gọi script: & \".opencode\\scripts\\knowledge-index.ps1\" -Mode <mode> -ProjectRoot (Get-Location).Path\n3. Báo cáo kết quả: INDEX_BUILD, FILES_SCANNED, ROUTES_FOUND, SYMBOLS_FOUND",
-      "description": "Xay dung/cap nhat Knowledge Index — quet codebase, sinh chi muc JSON (route, symbol, service, data-model, dependency, document)",
-      "agent": "knowledge-agent"
-    },
-    "model-policy": {
-      "template": "Bạn là Model Policy Agent. Quản lý bật/tắt free model cho toàn bộ agent/skill/command. Đọc hướng dẫn đầy đủ tại: .opencode/commands/model-policy.md\n\nTham số: $ARGUMENTS\n\nHành động:\n1. Phân tích tham số (status | apply | enable | disable)\n2. Gọi script: & \".opencode\\scripts\\model-policy.ps1\" -Mode <mode> -ProjectRoot (Get-Location).Path\n3. Output báo cáo theo output contract trong model-policy.md",
-      "description": "Bật/tat free model (opencode-go/deepseek-v4-flash) cho toan bo agent/skill/command — doc setting tu .opencode/model-policy/settings.json",
-      "agent": "general"
-    },
-    "ask": {
-      "template": "Bạn là Knowledge Assistant. Trả lời câu hỏi mở về codebase. Đọc hướng dẫn đầy đủ tại: .opencode/commands/ask.md\n\nCâu hỏi: $ARGUMENTS",
-      "description": "Hoi dap tu do ve codebase — module, API, man hinh, workflow. Dieu phoi Knowledge Assistant pipeline voi intent analyzer",
-      "agent": "general"
-    },
-    "where": {
-      "template": "Bạn là Knowledge Assistant. Tìm toàn bộ nơi sử dụng symbol. Đọc hướng dẫn đầy đủ tại: .opencode/commands/where.md\n\nSymbol: $ARGUMENTS",
-      "description": "Tim toan bo noi su dung mot symbol (class, method, field, storage key, db object) trong codebase — kem file:line va phan loai",
-      "agent": "general"
-    },
-    "why": {
-      "template": "Bạn là Knowledge Assistant. Giải thích lý do thiết kế. Đọc hướng dẫn đầy đủ tại: .opencode/commands/why.md\n\nTarget: $ARGUMENTS",
-      "description": "Giai thich ly do ton tai / thiet ke cua mot component — tu tai lieu, git history, va code",
-      "agent": "general"
-    },
-    "flow": {
-      "template": "Bạn là Knowledge Assistant. Mô tả luồng hoạt động. Đọc hướng dẫn đầy đủ tại: .opencode/commands/flow.md\n\nChức năng: $ARGUMENTS",
-      "description": "Sinh mo ta luong hoat dong (sequence, mermaid) cho mot nghiep vu hoac man hinh — tu code thuc te",
-      "agent": "general"
-    },
-    "impact": {
-      "template": "Bạn là Knowledge Assistant. Phân tích ảnh hưởng khi sửa component. Đọc hướng dẫn đầy đủ tại: .opencode/commands/impact.md\n\nTarget: $ARGUMENTS",
-      "description": "Phan tich anh huong khi sua mot component — sua X anh huong API/Screen/Batch/Report/SP nao. Quan trong nhat cho thay doi an toan",
-      "agent": "general"
-    },
-    "explain": {
-      "template": "Bạn là Knowledge Assistant. Giải thích từng method của file. Đọc hướng dẫn đầy đủ tại: .opencode/commands/explain.md\n\nFile: $ARGUMENTS",
-      "description": "Giai thich tung method trong mot file source — input, output, logic, side-effect, dependencies",
-      "agent": "general"
-    },
-    "trace": {
-      "template": "Bạn là Knowledge Assistant. Trace luồng xử lý end-to-end. Đọc hướng dẫn đầy đủ tại: .opencode/commands/trace.md\n\nChức năng: $ARGUMENTS",
-      "description": "Truy vet luong xu ly tu dau den cuoi — UI -> API -> Service -> Repository -> DB -> Response, kem evidence tung buoc",
-      "agent": "general"
-    },
-    "compare-doc": {
-      "template": "Bạn là Knowledge Assistant. So sánh code với tài liệu thiết kế. Đọc hướng dẫn đầy đủ tại: .opencode/commands/compare-doc.md\n\nTarget: $ARGUMENTS",
-      "description": "So sanh code hien tai voi tai lieu thiet ke — phat hien lech pha, loi thoi, va thay doi chua duoc tai lieu hoa",
-      "agent": "general"
-    },
-    "approve-test": {
-      "template": "Bạn là QA Approve Agent. Gate cuối trước merge. Đọc hướng dẫn đầy đủ tại: .opencode/commands/approve-test.md\n\nTham số: $ARGUMENTS",
-      "description": "Approve Test Gate — gate cuoi truoc merge. Chan neu coverage < 80%, flaky, accessibility error, visual diff, failed E2E, broken responsive, missing critical scenario",
-      "agent": "general"
-    },
-    "doctor-test": {
-      "template": "Bạn là QA Doctor Agent. Kiểm tra sức khỏe bộ test. Đọc hướng dẫn đầy đủ tại: .opencode/commands/doctor-test.md\n\nTham số: $ARGUMENTS",
-      "description": "QA Doctor — kiem tra suc khoe bo test: thieu test, duplicate, flaky, timeout, coverage thap, screenshot cu, selector de hong, hardcode wait, missing assertion, missing cleanup, dead test, orphan page object. Health Score + Risk",
-      "agent": "general"
-    },
-    "team-capabilities": {
-      "template": "Bạn là Capability Registry Assistant. Khám phá năng lực hệ thống. Đọc hướng dẫn đầy đủ tại: .opencode/commands/team-capabilities.md\n\nTham số: $ARGUMENTS",
-      "description": "Kham pha nang luc System — liet ke capability theo category, reset agent/skill/command maps tu capability. La giao dien discovery cua Capability Registry",
-      "agent": "general"
-    },
-    "team-runtime-benchmark": {
-      "template": "Bạn là Runtime Benchmark Agent. Chạy benchmark Workflow Runtime. Đọc hướng dẫn đầy đủ tại: .opencode/commands/team-runtime-benchmark.md\n\nTham số: $ARGUMENTS",
-      "description": "Chay benchmark Workflow Runtime — do Compile/Execution/Retry/Recovery/Persistence/Validation. Khong can AI, dung mock dispatcher. Output: benchmark report + cap nhat Runtime Certificate",
-      "agent": "general"
-    },
-    "test-e2e": {
-      "template": "Bạn là QA E2E Agent. Chạy pipeline E2E Playwright. Đọc hướng dẫn đầy đủ tại: .opencode/commands/test-e2e.md\n\nFeature/Màn hình: $ARGUMENTS",
-      "description": "Chay pipeline E2E — Requirement -> Playwright -> Fixture -> Run -> Report. Sinh test Playwright tu dong theo skill playwright-e2e",
-      "agent": "general"
-    },
-    "test-bootstrap": {
-      "template": "Bạn là QA Bootstrap Agent. Khởi tạo cấu hình test. Đọc hướng dẫn đầy đủ tại: .opencode/commands/test-bootstrap.md\n\nTham số: $ARGUMENTS",
-      "description": "Bootstrap QA — phan tich du an (Blazor, React, Angular...), tu phat hien framework UI, route structure, sinh cau hinh Playwright + Page Object + Fixture + thu muc test ban dau",
-      "agent": "general"
-    },
-    "test-cross-browser": {
-      "template": "Bạn là QA Cross-Browser Agent. Kiểm tra tương thích trình duyệt. Đọc hướng dẫn đầy đủ tại: .opencode/commands/test-cross-browser.md\n\nTham số: $ARGUMENTS",
-      "description": "Cross-browser testing — Chrome, Edge, Firefox, Safari + iPhone/Android. Tich hop skill browser-compatibility",
-      "agent": "general"
-    },
-    "test-plan": {
-      "template": "Bạn là Test Planner Agent. Sinh kế hoạch test. Đọc hướng dẫn đầy đủ tại: .opencode/commands/test-plan.md\n\nRequirement: $ARGUMENTS",
-      "description": "Sinh toan bo ke hoach test — Requirement -> Test Matrix -> Scenario -> Boundary -> Edge Case -> Priority",
-      "agent": "test-planner"
-    },
-    "test-regression": {
-      "template": "Bạn là Test Planner Agent. Chạy regression testing. Đọc hướng dẫn đầy đủ tại: .opencode/commands/test-regression.md\n\nTham số: $ARGUMENTS",
-      "description": "Regression testing — tu dong chon module bi anh huong, sinh regression cases, chay va bao cao",
-      "agent": "test-planner"
-    },
-    "test-audit": {
-      "template": "Bạn là Test Planner Agent. Audit chất lượng bộ test. Đọc hướng dẫn đầy đủ tại: .opencode/commands/test-audit.md\n\nTham số: $ARGUMENTS",
-      "description": "Audit chat luong tong the bo test — coverage theo chuc nang, duplication, maintainability, thoi gian chay, flaky rate -> ke hoach cai thien theo uu tien",
-      "agent": "test-planner"
-    },
-    "test-evolve": {
-      "template": "Bạn là Test Planner Agent. Evolve test suite theo source changes. Đọc hướng dẫn đầy đủ tại: .opencode/commands/test-evolve.md\n\nTham số: $ARGUMENTS",
-      "description": "Evolve test suite — so sanh thay doi source code voi test hien co, xac dinh test can cap nhat, test loi thoi, sinh test moi cho chuc nang moi",
-      "agent": "test-planner"
-    },
-    "test-ui": {
-      "template": "Bạn là UI Beautifier Agent. Review UI tổng hợp. Đọc hướng dẫn đầy đủ tại: .opencode/commands/test-ui.md\n\nTham số: $ARGUMENTS",
-      "description": "Review UI tong hop — doc project, danh gia UI/UX/Consistency/Responsive/Accessibility. Tich hop skills ui-review, design-system-validator, responsive-layout, accessibility",
-      "agent": "ui-beautifier"
-    },
-    "test-visual": {
-      "template": "Bạn là UI Beautifier Agent. Chạy visual regression testing. Đọc hướng dẫn đầy đủ tại: .opencode/commands/test-visual.md\n\nTham số: $ARGUMENTS",
-      "description": "Visual regression testing — Take Screenshot -> Compare -> Generate Diff -> Generate Report. Tich hop skills visual-regression, screenshot-analyzer",
-      "agent": "ui-beautifier"
-    },
-    "test-accessibility": {
-      "template": "Bạn là UI Beautifier Agent. Chạy accessibility testing. Đọc hướng dẫn đầy đủ tại: .opencode/commands/test-accessibility.md\n\nTham số: $ARGUMENTS",
-      "description": "Accessibility testing — Run Axe -> Generate Report -> Fix Suggestion. Tich hop skill accessibility",
-      "agent": "ui-beautifier"
-    }
-  },
-  "skills": {
-    "paths": [".opencode/skills"]
-  }
+    "$schema":  "https://opencode.ai/config.json",
+    "agent":  {
+                  "analyst":  {
+                                  "description":  "Phân tích yêu cầu người dùng, xác định phạm vi, rủi ro và các task cần thực hiện",
+                                  "mode":  "subagent",
+                                  "model":  "opencode-go/deepseek-v4-flash",
+                                  "permission":  {
+                                                     "read":  "allow",
+                                                     "grep":  "allow",
+                                                     "glob":  "allow",
+                                                     "edit":  "deny",
+                                                     "bash":  "deny"
+                                                 }
+                              },
+                  "planner":  {
+                                  "description":  "Lên kế hoạch thực thi chi tiết dựa trên yêu cầu đã phân tích",
+                                  "mode":  "subagent",
+                                  "model":  "opencode-go/deepseek-v4-flash",
+                                  "permission":  {
+                                                     "read":  "allow",
+                                                     "grep":  "allow",
+                                                     "glob":  "allow",
+                                                     "edit":  "deny",
+                                                     "bash":  "deny"
+                                                 }
+                              },
+                  "reviewer":  {
+                                   "description":  "Đánh giá kế hoạch thực thi, kiểm tra tính đúng đắn, đầy đủ và hiệu quả",
+                                   "mode":  "subagent",
+                                   "model":  "opencode-go/deepseek-v4-flash",
+                                   "permission":  {
+                                                      "read":  "allow",
+                                                      "grep":  "allow",
+                                                      "glob":  "allow",
+                                                      "edit":  "deny",
+                                                      "bash":  "deny"
+                                                  }
+                               },
+                  "builder":  {
+                                  "description":  "Thực thi kế hoạch đã được đánh giá, viết code và thực hiện thay đổi",
+                                  "mode":  "subagent",
+                                  "model":  "opencode-go/deepseek-v4-flash",
+                                  "permission":  {
+                                                     "read":  "allow",
+                                                     "grep":  "allow",
+                                                     "glob":  "allow",
+                                                     "edit":  "allow",
+                                                     "bash":  "allow"
+                                                 }
+                              },
+                  "test-planner":  {
+                                       "description":  "Tạo kế hoạch kiểm thử chi tiết cho tính năng đã phát triển",
+                                       "mode":  "subagent",
+                                       "model":  "opencode-go/deepseek-v4-flash",
+                                       "permission":  {
+                                                          "read":  "allow",
+                                                          "grep":  "allow",
+                                                          "glob":  "allow",
+                                                          "edit":  "deny",
+                                                          "bash":  "deny"
+                                                      }
+                                   },
+                  "tester":  {
+                                 "description":  "Thực thi kiểm thử, validate tính năng và báo cáo kết quả",
+                                 "mode":  "subagent",
+                                 "model":  "opencode-go/deepseek-v4-flash",
+                                 "permission":  {
+                                                    "read":  "allow",
+                                                    "grep":  "allow",
+                                                    "glob":  "allow",
+                                                    "edit":  "deny",
+                                                    "bash":  "allow"
+                                                }
+                             },
+                  "codebase-explorer":  {
+                                            "description":  "Khám phá cấu trúc dự án, phân tích codebase, mapping dependencies và patterns. Agent read-only chạy trước khi thực hiện thay đổi.",
+                                            "mode":  "subagent",
+                                            "model":  "opencode-go/deepseek-v4-flash",
+                                            "permission":  {
+                                                               "read":  "allow",
+                                                               "grep":  "allow",
+                                                               "glob":  "allow",
+                                                               "edit":  "deny",
+                                                               "bash":  "deny"
+                                                           }
+                                        },
+                  "self-improver":  {
+                                        "description":  "Sau khi workflow hoàn tất, đọc lại quá trình, phân tích kỹ năng đã dùng và thiếu, đề xuất bổ sung vào knowledge base",
+                                        "mode":  "subagent",
+                                        "model":  "opencode-go/deepseek-v4-flash",
+                                        "permission":  {
+                                                           "read":  "allow",
+                                                           "grep":  "allow",
+                                                           "glob":  "allow",
+                                                           "edit":  "allow",
+                                                           "bash":  "allow"
+                                                       }
+                                    },
+                  "ui-beautifier":  {
+                                        "description":  "Chuyên đánh giá và cải thiện giao diện người dùng cho Japanese Learner (Blazor WASM + FluentUI 4.14.3). Phân tích .razor files, phát hiện CSS issues, accessibility problems, và đề xuất cải tiến UI/UX.",
+                                        "mode":  "subagent",
+                                        "model":  "opencode-go/deepseek-v4-flash",
+                                        "permission":  {
+                                                           "read":  "allow",
+                                                           "grep":  "allow",
+                                                           "glob":  "allow",
+                                                           "edit":  "allow",
+                                                           "bash":  "allow"
+                                                       }
+                                    },
+                  "backup-agent":  {
+                                       "description":  "Backup và rollback file dùng Backup Utility. Hỗ trợ: backup trước khi sửa file, rollback khi catastrophic failure, liệt kê backup history, verify backup integrity.",
+                                       "mode":  "subagent",
+                                       "model":  "opencode-go/deepseek-v4-flash",
+                                       "permission":  {
+                                                          "read":  "allow",
+                                                          "grep":  "allow",
+                                                          "glob":  "allow",
+                                                          "edit":  "deny",
+                                                          "bash":  "allow"
+                                                      }
+                                   },
+                  "guardian":  {
+                                   "description":  "Chuyên gia review source code trước khi push lên git — phát hiện secret, lỗi convention, lỗ hổng bảo mật, vi phạm quy tắc dự án",
+                                   "mode":  "subagent",
+                                   "model":  "opencode-go/deepseek-v4-flash",
+                                   "permission":  {
+                                                      "read":  "allow",
+                                                      "grep":  "allow",
+                                                      "glob":  "allow",
+                                                      "bash":  "allow",
+                                                      "edit":  "deny"
+                                                  }
+                               },
+                  "pusher":  {
+                                 "description":  "Chuyên gia thực hiện git push an toàn — safety checks, build, test, confirmation gate, push execution, post-push verify",
+                                 "mode":  "subagent",
+                                 "model":  "opencode-go/deepseek-v4-flash",
+                                 "permission":  {
+                                                    "read":  "allow",
+                                                    "grep":  "allow",
+                                                    "glob":  "allow",
+                                                    "bash":  "allow",
+                                                    "edit":  "deny"
+                                                }
+                             },
+                  "cleaner":  {
+                                  "description":  "Chuyên gia dọn rác Workspace — quét file rác, phân loại Cấp 1/2/3, backup trước khi xóa, dry-run, confirmation gate",
+                                  "mode":  "subagent",
+                                  "model":  "opencode-go/deepseek-v4-flash",
+                                  "permission":  {
+                                                     "read":  "allow",
+                                                     "grep":  "allow",
+                                                     "glob":  "allow",
+                                                     "bash":  "allow",
+                                                     "edit":  "deny"
+                                                 }
+                              },
+                  "general":  {
+                                  "description":  "General-purpose orchestrator agent — điều phối workflow, triệu hồi sub-agents, quản lý state machine",
+                                  "mode":  "subagent",
+                                  "model":  "opencode-go/deepseek-v4-flash",
+                                  "permission":  {
+                                                     "read":  "allow",
+                                                     "grep":  "allow",
+                                                     "glob":  "allow",
+                                                     "bash":  "allow",
+                                                     "edit":  "allow"
+                                                 }
+                              },
+                  "failure-agent":  {
+                                        "description":  "Chuyên gia phân tích và chuẩn hóa lỗi — normalize+hash do failure-analyzer.ps1 tính, agent chỉ classify, search failure/lesson/pattern memory, score và đề xuất. Read-only (bash chỉ chạy failure-analyzer.ps1).",
+                                        "mode":  "subagent",
+                                        "model":  "opencode-go/deepseek-v4-flash",
+                                        "permission":  {
+                                                           "read":  "allow",
+                                                           "grep":  "allow",
+                                                           "glob":  "allow",
+                                                           "edit":  "deny",
+                                                           "bash":  "allow"
+                                                       }
+                                    },
+                  "root-cause-agent":  {
+                                           "description":  "Chuyên gia phân tích nguyên nhân gốc (Root Cause Analysis) — nhận error đã normalized, tìm kiếm trong codebase, tạo hypotheses với confidence score, đề xuất hướng fix.",
+                                           "mode":  "subagent",
+                                           "model":  "opencode-go/deepseek-v4-flash",
+                                           "permission":  {
+                                                              "read":  "allow",
+                                                              "grep":  "allow",
+                                                              "glob":  "allow",
+                                                              "edit":  "allow",
+                                                              "bash":  "deny"
+                                                          }
+                                       },
+                  "learning-agent":  {
+                                         "description":  "Chuyên gia Learning Pipeline — đọc failure records từ memory, phân tích patterns xuyên suốt, auto-generate lessons và patterns mới. Ghi trực tiếp vào memory/.",
+                                         "mode":  "subagent",
+                                         "model":  "opencode-go/deepseek-v4-flash",
+                                         "permission":  {
+                                                            "read":  "allow",
+                                                            "grep":  "allow",
+                                                            "glob":  "allow",
+                                                            "edit":  "allow",
+                                                            "bash":  "deny"
+                                                        }
+                                     },
+                  "knowledge-agent":  {
+                                          "description":  "Intent Analyzer + Router cho Knowledge Assistant — phân loại câu hỏi, chọn skill pipeline, tổng hợp trả lời có nguồn. Bash allow để chạy git log (git-history) và knowledge-index.ps1.",
+                                          "mode":  "subagent",
+                                          "model":  "opencode-go/deepseek-v4-flash",
+                                          "permission":  {
+                                                             "read":  "allow",
+                                                             "grep":  "allow",
+                                                             "glob":  "allow",
+                                                             "bash":  "allow",
+                                                             "edit":  "deny"
+                                                         }
+                                      }
+              },
+    "command":  {
+                    "impeccable":  {
+                                       "template":  "Bạn là UI Design Agent. Thực thi skill impeccable. Đọc hướng dẫn đầy đủ tại: .opencode/skills/impeccable/SKILL.md\n\nTham số: $ARGUMENTS\n\nRouting:\n1. Không có tham số: load .opencode/skills/impeccable/reference/routing.md và present context-aware menu\n2. Sub-command (init, shape, document, critique, audit, polish, bolder, quieter, distill, harden, onboard, animate, colorize, typeset, layout, delight, overdrive, clarify, adapt, optimize, live, hooks, doctor, extract): load .opencode/skills/impeccable/reference/\u003csubcommand\u003e.md và follow nó\n3. Khác: load SKILL.md và reference tương ứng\n\nBước đầu tiên: chạy node .opencode/skills/impeccable/scripts/context.mjs --target \u003cpath\u003e nếu có target.",
+                                       "description":  "Design, redesign, shape, critique, audit, polish, or improve frontend UI (impeccable skill)",
+                                       "agent":  "ui-beautifier"
+                                   },
+                    "backup":  {
+                                   "template":  "Bạn là Backup Agent. Dùng Backup Utility để backup/rollback file.\n\n## Script paths\nbackupScript: .opencode/scripts/backup-utility.ps1\nrollbackScript: .opencode/scripts/rollback-utility.ps1\n\n## Actions\n- save \u003cfiles...\u003e: Backup file trước khi sửa\n- rollback \u003cworkflowId\u003e [--force]: Restore từ backup\n- list: Liệt kê backup history\n- verify \u003cworkflowId\u003e: Kiểm tra integrity\n\nThực hiện action $ARGUMENTS và output kết quả.",
+                                   "description":  "Backup va rollback file dung Backup Utility",
+                                   "agent":  "backup-agent"
+                               },
+                    "team":  {
+                                 "template":  "Bạn là Orchestrator Agent. Chạy toàn bộ Dev Agent Team workflow. Đọc hướng dẫn đầy đủ tại: .opencode/commands/team.md\n\nYêu cầu: $ARGUMENTS",
+                                 "description":  "Chay toan bo team workflow: analyze, design/plan, review, backup, build, smoke test, testplan, test, self-improve",
+                                 "agent":  "general"
+                             },
+                    "team-analyze":  {
+                                         "template":  "Bạn là Analyst Agent. Phân tích yêu cầu phát triển. Đọc hướng dẫn đầy đủ tại: .opencode/commands/team-analyze.md\n\nYêu cầu: $ARGUMENTS",
+                                         "description":  "Phan tich yeu cau phat trien — doc codebase, xac dinh pham vi, rui ro, task con",
+                                         "agent":  "analyst"
+                                     },
+                    "team-plan":  {
+                                      "template":  "Bạn là Planner Agent. Thiết kế giải pháp + Lập kế hoạch thực thi. Đọc hướng dẫn đầy đủ tại: .opencode/commands/team-plan.md\n\nNội dung: $ARGUMENTS",
+                                      "description":  "Thiet ke giai phap (Design) + Lap ke hoach thuc thi (Plan)",
+                                      "agent":  "planner"
+                                  },
+                    "team-review":  {
+                                        "template":  "Bạn là Reviewer Agent. Đánh giá thiết kế/kế hoạch. Đọc hướng dẫn đầy đủ tại: .opencode/commands/team-review.md\n\nNội dung: $ARGUMENTS",
+                                        "description":  "Danh gia thiet ke hoac ke hoach theo 6 tieu chi",
+                                        "agent":  "reviewer"
+                                    },
+                    "team-build":  {
+                                       "template":  "Bạn là Builder Agent. Thực thi kế hoạch đã duyệt. Đọc hướng dẫn đầy đủ tại: .opencode/commands/team-build.md\n\nKế hoạch: $ARGUMENTS",
+                                       "description":  "Thuc thi ke hoach da duyet — tao/sua file code, kiem tra syntax/lint",
+                                       "agent":  "builder"
+                                   },
+                    "team-bugfix":  {
+                                        "template":  "Bạn là General Agent (Orchestrator). Chạy toàn bộ Bug-Fix Pipeline — nhận bug → tái hiện → root cause → đề xuất chỉnh sửa → kiểm tra sau sửa → test bUnit + E2E. Đọc hướng dẫn đầy đủ tại: .opencode/commands/team-bugfix.md\n\nMô tả bug: $ARGUMENTS",
+                                        "description":  "Quy trinh nhan va fix bug — tai hien bug, root cause, de xuat chinh sua, kiem tra sau sua, test bUnit + E2E",
+                                        "agent":  "general"
+                                    },
+                    "team-testplan":  {
+                                          "template":  "Bạn là Test-Planner Agent. Tạo kế hoạch kiểm thử. Đọc hướng dẫn đầy đủ tại: .opencode/commands/team-testplan.md\n\nThông tin: $ARGUMENTS",
+                                          "description":  "Tao ke hoach kiem thu toan dien cho tinh nang da phat trien",
+                                          "agent":  "test-planner"
+                                      },
+                    "team-test":  {
+                                      "template":  "Bạn là Tester Agent. Thực thi kiểm thử. Đọc hướng dẫn đầy đủ tại: .opencode/commands/team-test.md\n\nKế hoạch test: $ARGUMENTS",
+                                      "description":  "Thuc thi kiem thu theo ke hoach — chay test cases, tinh coverage, bao cao PASS/FAIL/SKIP",
+                                      "agent":  "tester"
+                                  },
+                    "team-ui-audit":  {
+                                          "template":  "Bạn là UI Beautifier Agent. Kiểm tra giao diện người dùng. Đọc hướng dẫn đầy đủ tại: .opencode/commands/team-ui-audit.md\n\nNội dung: $ARGUMENTS",
+                                          "description":  "Chay UI audit tren toan bo .razor files — CSS issues, accessibility, dark mode",
+                                          "agent":  "ui-beautifier"
+                                      },
+                    "team-selfimprove":  {
+                                             "template":  "Bạn là Self-Improver Agent. Phân tích workflow và đề xuất cải tiến. Đọc hướng dẫn đầy đủ tại: .opencode/commands/team-selfimprove.md\n\nDữ liệu workflow: $ARGUMENTS",
+                                             "description":  "Phan tich workflow va de xuat cai tien coding pattern, testing pattern, workflow",
+                                             "agent":  "self-improver"
+                                         },
+                    "team-explore":  {
+                                         "template":  "[DEPRECATED] Explore step đã được gộp vào Analyze. Dùng team-analyze thay thế.",
+                                         "description":  "[DEPRECATED] Explore step da duoc gop vao Analyze. Dung team-analyze thay the.",
+                                         "agent":  "codebase-explorer",
+                                         "deprecated":  true
+                                     },
+                    "team-gitguard":  {
+                                          "template":  "Bạn là Guardian Agent. Review source code trước khi push lên git. Đọc hướng dẫn đầy đủ tại: .opencode/commands/team-gitguard.md\n\nNội dung: $ARGUMENTS",
+                                          "description":  "Review source code truoc khi push len git -- phat hien secret, loi convention, lo hong bao mat, vi pham quy tac du an",
+                                          "agent":  "guardian"
+                                      },
+                    "team-gitpush":  {
+                                         "template":  "Bạn là Pusher Agent. Thực hiện git push an toàn với safety checks. Đọc hướng dẫn đầy đủ tại: .opencode/commands/team-gitpush.md\n\nTham số: $ARGUMENTS",
+                                         "description":  "Pre-push safety validation + git push execution — kiem tra secret, convention, build, test, xac nhan user, push len remote",
+                                         "agent":  "pusher"
+                                     },
+                    "team-cleanup":  {
+                                         "template":  "Bạn là Cleaner Agent. Dọn rác Workspace tự động. Đọc hướng dẫn đầy đủ tại: .opencode/skills/workspace-cleaner/SKILL.md\n\nTham số: $ARGUMENTS\n\nHành động:\n1. Phân tích tham số (--dry-run, --force, --target, --keep-backup, --aggressive, --older-than)\n2. Gọi workspace-cleaner script: .opencode/skills/workspace-cleaner/scripts/workspace-cleaner.ps1\n3. Output báo cáo YAML",
+                                         "description":  "Don rac Workspace tu dong — xoa build artifacts, backup cu, temp files, cache. Tich hop dry-run, backup truoc khi xoa, confirmation gate",
+                                         "agent":  "cleaner"
+                                     },
+                    "team-syncdocs":  {
+                                          "template":  "Bạn là System Documentation Sync Agent. Quét và đồng bộ toàn bộ system docs. Đọc hướng dẫn đầy đủ tại: .opencode/commands/team-syncdocs.md\n\nTham số: $ARGUMENTS",
+                                          "description":  "Dong bo toan bo system docs: quet agents, commands, skills, scripts, knowledge -\u003e cap nhat SYSTEM_MAP.md, cross-references",
+                                          "agent":  "general"
+                                      },
+                    "team-analyze-failure":  {
+                                                 "template":  "Bạn là Failure Agent. Phân tích lỗi trong workflow. Đọc hướng dẫn đầy đủ tại: .opencode/commands/team-analyze-failure.md\n\nError: $ARGUMENTS\n\nBước 1: chạy \u0026 \".opencode/scripts/failure-analyzer.ps1\" -RawError \"$ARGUMENTS\" (hoặc -FilePath nếu là path) để lấy error_normalized + error_hash deterministic. Bước 2: classify + search memory + output contract v2.",
+                                                 "description":  "Phan tich loi trong workflow — deterministic normalize/hash + classify + search failure memory",
+                                                 "agent":  "failure-agent"
+                                             },
+                    "team-root-cause":  {
+                                            "template":  "Bạn là Root Cause Agent. Phân tích nguyên nhân gốc từ failure analysis. Đọc hướng dẫn đầy đủ tại: .opencode/commands/team-root-cause.md\n\nFailure Analysis: $ARGUMENTS",
+                                            "description":  "Phan tich nguyen nhan goc — tim evidence trong codebase, tao hypotheses, de xuat fix",
+                                            "agent":  "root-cause-agent"
+                                        },
+                    "team-learn":  {
+                                       "template":  "Bạn là Learning Agent. Chạy Learning Pipeline — quét failure records, auto-generate lessons và patterns. Đọc hướng dẫn đầy đủ tại: .opencode/commands/team-learn.md\n\nTham số: $ARGUMENTS",
+                                       "description":  "Chay Learning Pipeline — quet failure records tu memory, auto-generate lessons va patterns, cap nhat memory",
+                                       "agent":  "learning-agent"
+                                   },
+                    "doctor":  {
+                                   "template":  "Bạn là Doctor Agent. Kiểm tra sức khỏe hệ thống AI Agent Framework. Đọc hướng dẫn đầy đủ tại: .opencode/commands/doctor.md\n\nTham số: $ARGUMENTS\n\nHành động:\n1. Phân tích tham số (--quick, --full, --runtime, --workflow, --agent, --skill, --command, --knowledge, --contracts, --simulation, --benchmark, --repair, --force, --dry-run, --json)\n2. Map mode sang tham số -Mode của script: quick|full|runtime|workflow|agent|skill|command|knowledge|contracts|simulation|benchmark|repair\n3. Gọi script: \u0026 \".opencode\\scripts\\doctor.ps1\" -Mode \u003cmode\u003e [-Force] [-DryRun] [-Json]\n4. Output báo cáo YAML theo output contract trong doctor.md",
+                                   "description":  "Kiem tra suc khoe he thong AI Agent Framework — Environment, Agents, Commands, Skills, Knowledge, Workflow, Contracts, Runtime, Capability. Tich hop health score, simulation, benchmark va self-repair an toan",
+                                   "agent":  "general"
+                               },
+                    "team-doctor":  {
+                                        "template":  "Bạn là Doctor Agent. Kiểm tra sức khỏe hệ thống AI Agent Framework (alias của /doctor). Đọc hướng dẫn đầy đủ tại: .opencode/commands/doctor.md\n\nTham số: $ARGUMENTS\n\nHành động:\n1. Phân tích tham số (--quick, --full, --runtime, --workflow, --agent, --skill, --command, --knowledge, --contracts, --simulation, --benchmark, --repair, --force, --dry-run, --json)\n2. Map mode sang tham số -Mode của script: quick|full|runtime|workflow|agent|skill|command|knowledge|contracts|simulation|benchmark|repair\n3. Gọi script: \u0026 \".opencode\\scripts\\doctor.ps1\" -Mode \u003cmode\u003e [-Force] [-DryRun] [-Json]\n4. Output báo cáo YAML theo output contract trong doctor.md",
+                                        "description":  "Kiem tra suc khoe he thong AI Agent Framework (alias cua /doctor)",
+                                        "agent":  "general"
+                                    },
+                    "knowledge":  {
+                                      "template":  "Bạn là Knowledge Agent. Hiển thị menu Knowledge Assistant + routing. Đọc hướng dẫn đầy đủ tại: .opencode/commands/knowledge.md\n\nTham số: $ARGUMENTS",
+                                      "description":  "Help va routing cho Knowledge Assistant — liet ke 10 commands, intent mapping, vi du su dung",
+                                      "agent":  "knowledge-agent"
+                                  },
+                    "knowledge-ask":  {
+                                          "template":  "Bạn là Knowledge Agent. Trả lời câu hỏi mở về codebase. Đọc hướng dẫn đầy đủ tại: .opencode/commands/knowledge-ask.md\n\nCâu hỏi: $ARGUMENTS",
+                                          "description":  "Hoi Knowledge Assistant — module/component/service nay hoat dong the nao, dung de lam gi",
+                                          "agent":  "knowledge-agent"
+                                      },
+                    "knowledge-where":  {
+                                            "template":  "Bạn là Knowledge Agent. Tìm toàn bộ nơi sử dụng symbol. Đọc hướng dẫn đầy đủ tại: .opencode/commands/knowledge-where.md\n\nSymbol: $ARGUMENTS",
+                                            "description":  "Tim toan bo noi su dung mot symbol/pattern — class, method, property, LocalStorage key",
+                                            "agent":  "knowledge-agent"
+                                        },
+                    "knowledge-why":  {
+                                          "template":  "Bạn là Knowledge Agent. Giải thích lý do thiết kế. Đọc hướng dẫn đầy đủ tại: .opencode/commands/knowledge-why.md\n\nTarget: $ARGUMENTS",
+                                          "description":  "Giai thich ly do ton tai cua mot symbol/thiet ke — doc tai lieu, git history, code context",
+                                          "agent":  "knowledge-agent"
+                                      },
+                    "knowledge-flow":  {
+                                           "template":  "Bạn là Knowledge Agent. Mô tả workflow của chức năng/màn hình. Đọc hướng dẫn đầy đủ tại: .opencode/commands/knowledge-flow.md\n\nChức năng: $ARGUMENTS",
+                                           "description":  "Mo ta workflow cua mot chuc nang/man hinh — user flow, business flow, sinh mermaid sequence diagram",
+                                           "agent":  "knowledge-agent"
+                                       },
+                    "knowledge-impact":  {
+                                             "template":  "Bạn là Knowledge Agent. Phân tích ảnh hưởng khi sửa symbol/file. Đọc hướng dẫn đầy đủ tại: .opencode/commands/knowledge-impact.md\n\nTarget: $ARGUMENTS",
+                                             "description":  "Phan tich anh huong khi sua mot symbol/file — affected screens, services, models, tests kem muc do",
+                                             "agent":  "knowledge-agent"
+                                         },
+                    "knowledge-explain":  {
+                                              "template":  "Bạn là Knowledge Agent. Giải thích từng method của file. Đọc hướng dẫn đầy đủ tại: .opencode/commands/knowledge-explain.md\n\nFile: $ARGUMENTS",
+                                              "description":  "Giai thich tung method cua mot file — class summary, method list, DI dependencies, lifecycle",
+                                              "agent":  "knowledge-agent"
+                                          },
+                    "knowledge-trace":  {
+                                            "template":  "Bạn là Knowledge Agent. Trace luồng end-to-end. Đọc hướng dẫn đầy đủ tại: .opencode/commands/knowledge-trace.md\n\nChức năng: $ARGUMENTS",
+                                            "description":  "Trace luong hoat dong end-to-end — UI -\u003e Service -\u003e Model -\u003e LocalStorage, sinh chuoi trace dang cay",
+                                            "agent":  "knowledge-agent"
+                                        },
+                    "knowledge-compare-doc":  {
+                                                  "template":  "Bạn là Knowledge Agent. So sánh code với tài liệu thiết kế. Đọc hướng dẫn đầy đủ tại: .opencode/commands/knowledge-compare-doc.md\n\nTarget: $ARGUMENTS",
+                                                  "description":  "So sanh code hien tai voi tai lieu thiet ke — phat hien lech lac giua code va docs",
+                                                  "agent":  "knowledge-agent"
+                                              },
+                    "knowledge-health":  {
+                                             "template":  "Bạn là Knowledge Agent. Đánh giá sức khỏe kiến thức codebase. Đọc hướng dẫn đầy đủ tại: .opencode/commands/knowledge-health.md\n\nTham số: $ARGUMENTS",
+                                             "description":  "Danh gia kien thuc codebase — thieu README, thieu diagram, thieu flow, thieu ADR, thieu comment, doc coverage",
+                                             "agent":  "knowledge-agent"
+                                         },
+                    "knowledge-index":  {
+                                            "template":  "Bạn là Knowledge Agent. Xây dựng/cập nhật Knowledge Index. Đọc hướng dẫn đầy đủ tại: .opencode/commands/knowledge-index.md\n\nTham số: $ARGUMENTS\n\nHành động:\n1. Phân tích tham số (--update, --status, --clean, hoặc build mặc định)\n2. Gọi script: \u0026 \".opencode\\scripts\\knowledge-index.ps1\" -Mode \u003cmode\u003e -ProjectRoot (Get-Location).Path\n3. Báo cáo kết quả: INDEX_BUILD, FILES_SCANNED, ROUTES_FOUND, SYMBOLS_FOUND",
+                                            "description":  "Xay dung/cap nhat Knowledge Index — quet codebase, sinh chi muc JSON (route, symbol, service, data-model, dependency, document)",
+                                            "agent":  "knowledge-agent"
+                                        },
+                    "model-policy":  {
+                                         "template":  "Bạn là Model Policy Agent. Quản lý bật/tắt free model cho toàn bộ agent/skill/command. Đọc hướng dẫn đầy đủ tại: .opencode/commands/model-policy.md\n\nTham số: $ARGUMENTS\n\nHành động:\n1. Phân tích tham số (status | apply | enable | disable)\n2. Gọi script: \u0026 \".opencode\\scripts\\model-policy.ps1\" -Mode \u003cmode\u003e -ProjectRoot (Get-Location).Path\n3. Output báo cáo theo output contract trong model-policy.md",
+                                         "description":  "Bật/tat free model (opencode-go/deepseek-v4-flash) cho toan bo agent/skill/command — doc setting tu .opencode/model-policy/settings.json",
+                                         "agent":  "general"
+                                     },
+                    "ask":  {
+                                "template":  "Bạn là Knowledge Assistant. Trả lời câu hỏi mở về codebase. Đọc hướng dẫn đầy đủ tại: .opencode/commands/ask.md\n\nCâu hỏi: $ARGUMENTS",
+                                "description":  "Hoi dap tu do ve codebase — module, API, man hinh, workflow. Dieu phoi Knowledge Assistant pipeline voi intent analyzer",
+                                "agent":  "general"
+                            },
+                    "where":  {
+                                  "template":  "Bạn là Knowledge Assistant. Tìm toàn bộ nơi sử dụng symbol. Đọc hướng dẫn đầy đủ tại: .opencode/commands/where.md\n\nSymbol: $ARGUMENTS",
+                                  "description":  "Tim toan bo noi su dung mot symbol (class, method, field, storage key, db object) trong codebase — kem file:line va phan loai",
+                                  "agent":  "general"
+                              },
+                    "why":  {
+                                "template":  "Bạn là Knowledge Assistant. Giải thích lý do thiết kế. Đọc hướng dẫn đầy đủ tại: .opencode/commands/why.md\n\nTarget: $ARGUMENTS",
+                                "description":  "Giai thich ly do ton tai / thiet ke cua mot component — tu tai lieu, git history, va code",
+                                "agent":  "general"
+                            },
+                    "flow":  {
+                                 "template":  "Bạn là Knowledge Assistant. Mô tả luồng hoạt động. Đọc hướng dẫn đầy đủ tại: .opencode/commands/flow.md\n\nChức năng: $ARGUMENTS",
+                                 "description":  "Sinh mo ta luong hoat dong (sequence, mermaid) cho mot nghiep vu hoac man hinh — tu code thuc te",
+                                 "agent":  "general"
+                             },
+                    "impact":  {
+                                   "template":  "Bạn là Knowledge Assistant. Phân tích ảnh hưởng khi sửa component. Đọc hướng dẫn đầy đủ tại: .opencode/commands/impact.md\n\nTarget: $ARGUMENTS",
+                                   "description":  "Phan tich anh huong khi sua mot component — sua X anh huong API/Screen/Batch/Report/SP nao. Quan trong nhat cho thay doi an toan",
+                                   "agent":  "general"
+                               },
+                    "explain":  {
+                                    "template":  "Bạn là Knowledge Assistant. Giải thích từng method của file. Đọc hướng dẫn đầy đủ tại: .opencode/commands/explain.md\n\nFile: $ARGUMENTS",
+                                    "description":  "Giai thich tung method trong mot file source — input, output, logic, side-effect, dependencies",
+                                    "agent":  "general"
+                                },
+                    "trace":  {
+                                  "template":  "Bạn là Knowledge Assistant. Trace luồng xử lý end-to-end. Đọc hướng dẫn đầy đủ tại: .opencode/commands/trace.md\n\nChức năng: $ARGUMENTS",
+                                  "description":  "Truy vet luong xu ly tu dau den cuoi — UI -\u003e API -\u003e Service -\u003e Repository -\u003e DB -\u003e Response, kem evidence tung buoc",
+                                  "agent":  "general"
+                              },
+                    "compare-doc":  {
+                                        "template":  "Bạn là Knowledge Assistant. So sánh code với tài liệu thiết kế. Đọc hướng dẫn đầy đủ tại: .opencode/commands/compare-doc.md\n\nTarget: $ARGUMENTS",
+                                        "description":  "So sanh code hien tai voi tai lieu thiet ke — phat hien lech pha, loi thoi, va thay doi chua duoc tai lieu hoa",
+                                        "agent":  "general"
+                                    },
+                    "approve-test":  {
+                                         "template":  "Bạn là QA Approve Agent. Gate cuối trước merge. Đọc hướng dẫn đầy đủ tại: .opencode/commands/approve-test.md\n\nTham số: $ARGUMENTS",
+                                         "description":  "Approve Test Gate — gate cuoi truoc merge. Chan neu coverage \u003c 80%, flaky, accessibility error, visual diff, failed E2E, broken responsive, missing critical scenario",
+                                         "agent":  "general"
+                                     },
+                    "doctor-test":  {
+                                        "template":  "Bạn là QA Doctor Agent. Kiểm tra sức khỏe bộ test. Đọc hướng dẫn đầy đủ tại: .opencode/commands/doctor-test.md\n\nTham số: $ARGUMENTS",
+                                        "description":  "QA Doctor — kiem tra suc khoe bo test: thieu test, duplicate, flaky, timeout, coverage thap, screenshot cu, selector de hong, hardcode wait, missing assertion, missing cleanup, dead test, orphan page object. Health Score + Risk",
+                                        "agent":  "general"
+                                    },
+                    "team-capabilities":  {
+                                              "template":  "Bạn là Capability Registry Assistant. Khám phá năng lực hệ thống. Đọc hướng dẫn đầy đủ tại: .opencode/commands/team-capabilities.md\n\nTham số: $ARGUMENTS",
+                                              "description":  "Kham pha nang luc System — liet ke capability theo category, reset agent/skill/command maps tu capability. La giao dien discovery cua Capability Registry",
+                                              "agent":  "general"
+                                          },
+                    "team-runtime-benchmark":  {
+                                                   "template":  "Bạn là Runtime Benchmark Agent. Chạy benchmark Workflow Runtime. Đọc hướng dẫn đầy đủ tại: .opencode/commands/team-runtime-benchmark.md\n\nTham số: $ARGUMENTS",
+                                                   "description":  "Chay benchmark Workflow Runtime — do Compile/Execution/Retry/Recovery/Persistence/Validation. Khong can AI, dung mock dispatcher. Output: benchmark report + cap nhat Runtime Certificate",
+                                                   "agent":  "general"
+                                               },
+                    "test-e2e":  {
+                                     "template":  "Bạn là QA E2E Agent. Chạy pipeline E2E Playwright. Đọc hướng dẫn đầy đủ tại: .opencode/commands/test-e2e.md\n\nFeature/Màn hình: $ARGUMENTS",
+                                     "description":  "Chay pipeline E2E — Requirement -\u003e Playwright -\u003e Fixture -\u003e Run -\u003e Report. Sinh test Playwright tu dong theo skill playwright-e2e",
+                                     "agent":  "general"
+                                 },
+                    "test-bootstrap":  {
+                                           "template":  "Bạn là QA Bootstrap Agent. Khởi tạo cấu hình test. Đọc hướng dẫn đầy đủ tại: .opencode/commands/test-bootstrap.md\n\nTham số: $ARGUMENTS",
+                                           "description":  "Bootstrap QA — phan tich du an (Blazor, React, Angular...), tu phat hien framework UI, route structure, sinh cau hinh Playwright + Page Object + Fixture + thu muc test ban dau",
+                                           "agent":  "general"
+                                       },
+                    "test-cross-browser":  {
+                                               "template":  "Bạn là QA Cross-Browser Agent. Kiểm tra tương thích trình duyệt. Đọc hướng dẫn đầy đủ tại: .opencode/commands/test-cross-browser.md\n\nTham số: $ARGUMENTS",
+                                               "description":  "Cross-browser testing — Chrome, Edge, Firefox, Safari + iPhone/Android. Tich hop skill browser-compatibility",
+                                               "agent":  "general"
+                                           },
+                    "test-plan":  {
+                                      "template":  "Bạn là Test Planner Agent. Sinh kế hoạch test. Đọc hướng dẫn đầy đủ tại: .opencode/commands/test-plan.md\n\nRequirement: $ARGUMENTS",
+                                      "description":  "Sinh toan bo ke hoach test — Requirement -\u003e Test Matrix -\u003e Scenario -\u003e Boundary -\u003e Edge Case -\u003e Priority",
+                                      "agent":  "test-planner"
+                                  },
+                    "test-regression":  {
+                                            "template":  "Bạn là Test Planner Agent. Chạy regression testing. Đọc hướng dẫn đầy đủ tại: .opencode/commands/test-regression.md\n\nTham số: $ARGUMENTS",
+                                            "description":  "Regression testing — tu dong chon module bi anh huong, sinh regression cases, chay va bao cao",
+                                            "agent":  "test-planner"
+                                        },
+                    "test-audit":  {
+                                       "template":  "Bạn là Test Planner Agent. Audit chất lượng bộ test. Đọc hướng dẫn đầy đủ tại: .opencode/commands/test-audit.md\n\nTham số: $ARGUMENTS",
+                                       "description":  "Audit chat luong tong the bo test — coverage theo chuc nang, duplication, maintainability, thoi gian chay, flaky rate -\u003e ke hoach cai thien theo uu tien",
+                                       "agent":  "test-planner"
+                                   },
+                    "test-evolve":  {
+                                        "template":  "Bạn là Test Planner Agent. Evolve test suite theo source changes. Đọc hướng dẫn đầy đủ tại: .opencode/commands/test-evolve.md\n\nTham số: $ARGUMENTS",
+                                        "description":  "Evolve test suite — so sanh thay doi source code voi test hien co, xac dinh test can cap nhat, test loi thoi, sinh test moi cho chuc nang moi",
+                                        "agent":  "test-planner"
+                                    },
+                    "test-ui":  {
+                                    "template":  "Bạn là UI Beautifier Agent. Review UI tổng hợp. Đọc hướng dẫn đầy đủ tại: .opencode/commands/test-ui.md\n\nTham số: $ARGUMENTS",
+                                    "description":  "Review UI tong hop — doc project, danh gia UI/UX/Consistency/Responsive/Accessibility. Tich hop skills ui-review, design-system-validator, responsive-layout, accessibility",
+                                    "agent":  "ui-beautifier"
+                                },
+                    "test-visual":  {
+                                        "template":  "Bạn là UI Beautifier Agent. Chạy visual regression testing. Đọc hướng dẫn đầy đủ tại: .opencode/commands/test-visual.md\n\nTham số: $ARGUMENTS",
+                                        "description":  "Visual regression testing — Take Screenshot -\u003e Compare -\u003e Generate Diff -\u003e Generate Report. Tich hop skills visual-regression, screenshot-analyzer",
+                                        "agent":  "ui-beautifier"
+                                    },
+                    "test-accessibility":  {
+                                               "template":  "Bạn là UI Beautifier Agent. Chạy accessibility testing. Đọc hướng dẫn đầy đủ tại: .opencode/commands/test-accessibility.md\n\nTham số: $ARGUMENTS",
+                                               "description":  "Accessibility testing — Run Axe -\u003e Generate Report -\u003e Fix Suggestion. Tich hop skill accessibility",
+                                               "agent":  "ui-beautifier"
+                                           },
+                    "governance-build":  {
+                                             "template":  "Ban la Governance Build Assistant. Xay dung cac artifact governance tu SPEC (review-tracker, review-history, review reports). Doc huong dan day du tai: .opencode/commands/governance-build.md\n\nTham so: $ARGUMENTS",
+                                             "description":  "Xay dung artifact governance tu SPEC - review-tracker, review-history, review reports. Giao dien cua Governance System",
+                                             "agent":  "general"
+                                         },
+                    "review":  {
+                                   "template":  "Ban la AIOS Review Agent v2.0. Review tai lieu theo chuan 2-pass. Doc huong dan day du tai: .opencode/commands/review.md\n\nTham so: $ARGUMENTS",
+                                   "description":  "Review SPEC/muc theo chuan 2-pass - rev1, revfull, health, compliance, migration, regression. Tich hop Document Lifecycle + Review Lifecycle",
+                                   "agent":  "general"
+                               }
+                },
+    "skills":  {
+                   "paths":  [
+                                 ".opencode/skills"
+                             ]
+               }
 }

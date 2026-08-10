@@ -49,3 +49,12 @@ Không gọi AI. Không sửa file definition gốc.
 - Benchmark **không được** gọi AI/agent thật.
 - Không hard-code kết quả — đo thật trên Runtime hiện tại.
 - Sử dụng config `features.*` trong `runtime-manifest.yaml`.
+
+## Flags:
+
+| Flag | Y nghia |
+|------|---------|
+| `--quick` | Benchmark nhanh |
+| `--full` | Toan bo |
+| `--json` | Xuat JSON |
+

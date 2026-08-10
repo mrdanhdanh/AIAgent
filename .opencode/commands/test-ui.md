@@ -88,3 +88,9 @@ next_action: "Fix ERROR rồi chạy /test-visual"
 ## LƯU Ý
 
 - Xem thêm: `.opencode/knowledge/ui/fluentui-components.md`, `.opencode/knowledge/ui/dark-mode-theming.md`
+
+## Output Contract
+
+- **Output**: UI review report + issues.
+- **Format**: markdown.
+

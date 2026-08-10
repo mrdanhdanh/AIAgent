@@ -49,3 +49,11 @@ trace_chain:
 cache_notes: "Cache-first: in-memory + LocalStorage persist"
 sources: ["Pages/WordStudy.razor:2"]
 ```
+
+## Flags:
+
+| Flag | Y nghia |
+|------|---------|
+| `--detail` | Chi tiet tung lop |
+| `--diagram` | Kem sequence diagram |
+

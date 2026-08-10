@@ -201,3 +201,14 @@ index_changes:
 - Rules/Trigger/Metrics: `docs/governance/review-{rules,trigger,metrics}.yaml`
 - Status/Severity/Matrix/Score: `docs/governance/review-{status,severity,matrix,score}.yaml`
 - Lifecycle: `docs/governance/lifecycle/specification-lifecycle.md` · Index: `docs/specs/SPEC-INDEX.md`
+
+## Flags:
+
+| Flag | Y nghia |
+|------|---------|
+| `rev1` | Review lan 1 |
+| `revfull` | Deep research |
+| `health` | Health check (khong tang count) |
+| `status` | Bang trang thai |
+| `scan` | Quet gaps + SLA |
+

@@ -72,3 +72,12 @@ next_action: "Chạy /team-gitguard trước khi push nếu workflow thay đổi
 ```
 
 Xem thêm: `.opencode/governance/architecture.md`, `.opencode/governance/README.md`, `.opencode/policy/architecture.md`
+
+## Flags:
+
+| Flag | Y nghia |
+|------|---------|
+| `--check` | Chi kiem tra, khong ghi |
+| `--fix` | Tu dong fix |
+| `--report` | Xuat bao cao |
+

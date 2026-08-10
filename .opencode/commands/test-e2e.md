@@ -83,3 +83,9 @@ next_action: "Chuyển sang /test-visual hoặc /test-accessibility"
 
 - Xem thêm: `.opencode/knowledge/testing/playwright-e2e.md`
 - Xem thêm skill: `.opencode/skills/playwright-e2e/SKILL.md`, `.opencode/skills/test-report/SKILL.md`
+
+## Output Contract
+
+- **Output**: E2E results + report.
+- **Format**: markdown/JSON/JUnit.
+

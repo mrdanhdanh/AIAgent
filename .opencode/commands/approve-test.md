@@ -90,3 +90,19 @@ next_action: "Bổ sung test + fix a11y rồi chạy lại"
 
 - Xem thêm: `/team-gitguard` cho security review trước push
 - Xem thêm: `/team-gitpush` để push an toàn
+
+## Flags:
+
+| Flag | Y nghia |
+|------|---------|
+| `--coverage` | Kiem tra coverage threshold |
+| `--flaky` | Kiem tra flaky tests |
+| `--a11y` | Kiem tra accessibility errors |
+| `--visual` | Kiem tra visual diff |
+| `--e2e` | Kiem tra E2E failed |
+
+## Output Contract
+
+- **Output**: verdict PASS/BLOCKED + coverage, flaky, a11y, visual, e2e status.
+- **Format**: markdown report.
+
