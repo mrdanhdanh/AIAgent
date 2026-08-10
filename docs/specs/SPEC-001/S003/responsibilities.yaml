@@ -6,7 +6,7 @@ name: Runtime Responsibilities
 version: "1.0.0"
 status: Approved
 frozen: true
-frozen_date: "2026-08-04"
+frozen_date: "2026-08-08"
 owner: Runtime Team
 principle: Responsibility != Capability != Component
 invariants:
@@ -418,7 +418,7 @@ responsibilities:
     status: Approved
     authority: Bị cấm sửa Artifact
     input: Artifact
-    output: -
+    output: "-"
     metric: Mutation Violations
     requirements: [FR-008]
     principles: [P010]

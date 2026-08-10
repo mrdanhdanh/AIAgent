@@ -1,0 +1,10 @@
+# SPEC-013 X005 - Evolution Architecture
+---
+version: "1.0.0"
+architecture:
+  model: Layered (5 layers)
+  style: In-process + Module registry
+  key_decisions:
+    - Evolution khong pha vo he thong (P013)
+    - Module registry (9 modules)
+    - Policy qua S012

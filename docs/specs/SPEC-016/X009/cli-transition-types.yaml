@@ -1,0 +1,8 @@
+# SPEC-016 X009 - CLI Transition Types
+---
+version: "1.0.0"
+transition_types:
+  external: [CLI_RENDERING, CLI_FAILED]
+  internal: [CLI_RENDERED, CLI_FILTERED, CLI_ARCHIVED]
+  error: [CLI_FAILED]
+rule: Internal transition chi trong CLI.

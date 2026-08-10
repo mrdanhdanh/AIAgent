@@ -1,0 +1,13 @@
+# SPEC-001 S012 - Policy Validation
+# Policy phai hop le truoc khi ap dung.
+---
+version: "1.0.0"
+checks:
+  - Schema: du 13 field canonical (id/name/category/version/status/owner/trigger/guard/action/priority/scope/lifecycle/metadata).
+  - Reference: trigger/action tham chieu State/Transition ton tai (S009).
+  - Uniqueness: id duy nhat.
+  - Priority: so nguyen, khong trung trong cung category.
+  - Version: semver.
+result:
+  - Valid: policy duoc ap dung.
+  - Invalid: policy bi tu choi, co Invalid Audit.

@@ -1,0 +1,52 @@
+# SPEC-004 A016 - Agent Validation Rules (12)
+---
+version: "1.0.0"
+rules:
+  - id: AVR-001
+    source: A009
+    rule: Invalid Agent
+    severity: Critical
+  - id: AVR-002
+    source: A012
+    rule: Invalid Binding
+    severity: Critical
+  - id: AVR-003
+    source: A004
+    rule: Boundary Violation
+    severity: Critical
+  - id: AVR-004
+    source: A014
+    rule: Registry Violation
+    severity: Critical
+  - id: AVR-005
+    source: A015
+    rule: Resource Leak
+    severity: Critical
+  - id: AVR-006
+    source: A007
+    rule: Contract Failure
+    severity: High
+  - id: AVR-007
+    source: A015
+    rule: Quota Violation
+    severity: High
+  - id: AVR-008
+    source: A011
+    rule: Missing Agent Event
+    severity: High
+  - id: AVR-009
+    source: A011
+    rule: Missing Agent Metrics
+    severity: Medium
+  - id: AVR-010
+    source: A011
+    rule: Broken Agent Trace
+    severity: Medium
+  - id: AVR-011
+    source: A011
+    rule: Invalid Audit
+    severity: Medium
+  - id: AVR-012
+    source: S013
+    rule: Constitution Violation
+    severity: Critical

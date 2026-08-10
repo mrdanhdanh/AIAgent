@@ -1,0 +1,16 @@
+# SPEC-005 R011 - Registry Metrics (S011 reuse)
+---
+version: "1.0.0"
+metrics:
+  entry_count: 0
+  lookup_count: 0
+  resolution_count: 0
+  resolution_success_rate: 0
+  cache_hit: 0
+  query_count: 0
+  state_distribution: {}
+  outcome_distribution: {}
+  avg_resolution_time: 0
+rules:
+  - Metrics chi append (S011).
+  - Khong chua Business Data (S011).

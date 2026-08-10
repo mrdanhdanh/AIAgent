@@ -1,0 +1,10 @@
+# SPEC-009 X015 - Contract Resource Model
+---
+version: "1.0.0"
+resources:
+  XRES-001: { name: Storage, description: Versioned contract storage, owner: Contract System, priority: Critical }
+  XRES-002: { name: Index, description: Contract version index, owner: Contract System, priority: High }
+  XRES-003: { name: ContractId, description: UUID pool, owner: Contract System, priority: Critical }
+  XRES-004: { name: Verify CPU, description: Schema verify compute, owner: Contract System, priority: High }
+  XRES-005: { name: Event Buffer, description: S011 publish queue, owner: Runtime, priority: High }
+  XRES-006: { name: Snapshot Store, description: debug/doctor snapshots, owner: Contract System, priority: Low }

@@ -1,0 +1,12 @@
+# SPEC-003 C006 - Component Mapping (CCP -> Layer -> Domain)
+---
+version: "1.0.0"
+mapping:
+  CCP-001: { layer: Command, domain: Execution }
+  CCP-002: { layer: Declaration, domain: Definition }
+  CCP-003: { layer: Validation, domain: Validation }
+  CCP-004: { layer: Registration, domain: Mapping }
+  CCP-005: { layer: Resolution, domain: Capability }
+  CCP-006: { layer: Registration, domain: Mapping }
+  CCP-007: { layer: Registration, domain: Mapping }
+  CCP-008: { layer: Publication, domain: Observability }

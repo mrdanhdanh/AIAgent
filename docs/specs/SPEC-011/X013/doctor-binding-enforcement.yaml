@@ -1,0 +1,8 @@
+# SPEC-011 X013 - Doctor Binding Enforcement
+---
+version: "1.0.0"
+binding_enforcement:
+  rules: RULE-005 (no mutable), RULE-014 (observability)
+  policies: XPOL-001..010
+  violations: ghi nhan + Doctor X019
+  escalation: S013 Governance

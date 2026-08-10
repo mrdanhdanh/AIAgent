@@ -1,0 +1,11 @@
+# SPEC-004 A006 - Component Contracts
+---
+version: "1.0.0"
+contracts:
+  Agent Contract: [ACP-001]
+  Declaration Contract: [ACP-002]
+  Validation Contract: [ACP-003]
+  Registry Contract: [ACP-004, ACP-006]
+  Orchestration Contract: [ACP-005]
+  Binding Contract: [ACP-007]
+  Event Contract: [ACP-008]

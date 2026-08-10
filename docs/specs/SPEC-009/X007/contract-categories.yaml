@@ -1,0 +1,10 @@
+# SPEC-009 X007 - Contract Contract Categories
+---
+version: "1.0.0"
+categories:
+  API: [XCT-001]
+  Data: [XCT-002]
+  Event: [XCT-003]
+  Metric: [XCT-004]
+  Policy: [XCT-005]
+  Interface: [XCT-006, XCT-007]

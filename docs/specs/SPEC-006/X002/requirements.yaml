@@ -1,0 +1,365 @@
+# SPEC-006 X002 — Context Requirements
+---
+id: SPEC-006-X002
+name: Context Requirements
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Context Team
+functional:
+  XFR-001:
+    title: Allocate Context
+    description: tạo Context khi Execution Created (EF008)
+    priority: Critical
+    category: Core
+    owner: Context
+    status: Draft
+    source: [P001, P009]
+    rules: [RULE-005]
+    verification: [Context Test, Doctor]
+  XFR-002:
+    title: Populate Context
+    description: điền dữ liệu vào Context
+    priority: Critical
+    category: Core
+    owner: Context
+    status: Draft
+    source: [P001, P009]
+    rules: [RULE-005]
+    verification: [Context Test, Doctor]
+  XFR-003:
+    title: Distribute Context
+    description: cấp Context cho Agent/Capability
+    priority: Critical
+    category: Execution
+    owner: Context
+    status: Draft
+    source: [P001, P009]
+    rules: [RULE-005]
+    verification: [Context Test, Doctor]
+  XFR-004:
+    title: Mutate Context
+    description: thay đổi Context trong phạm vi cấp
+    priority: High
+    category: Execution
+    owner: Context
+    status: Draft
+    source: [P001, P009]
+    rules: [RULE-005]
+    verification: [Context Test, Doctor]
+  XFR-005:
+    title: Merge Context
+    description: gộp Context con về Context cha (parallel)
+    priority: High
+    category: Execution
+    owner: Context
+    status: Draft
+    source: [P001, P009]
+    rules: [RULE-005]
+    verification: [Context Test, Doctor]
+  XFR-006:
+    title: Collect Context
+    description: thu thập kết quả từ Context
+    priority: High
+    category: Execution
+    owner: Context
+    status: Draft
+    source: [P001, P009]
+    rules: [RULE-005]
+    verification: [Context Test, Doctor]
+  XFR-007:
+    title: Release Context
+    description: thu hồi Context khi Execution kết thúc
+    priority: Critical
+    category: Core
+    owner: Context
+    status: Draft
+    source: [P001, P009]
+    rules: [RULE-005]
+    verification: [Context Test, Doctor]
+  XFR-008:
+    title: Isolate Context
+    description: đảm bảo Context không bị chia sẻ
+    priority: Critical
+    category: Security
+    owner: Context
+    status: Draft
+    source: [P001, P009]
+    rules: [RULE-005]
+    verification: [Context Test, Doctor]
+  XFR-009:
+    title: Validate Context
+    description: validate Context trước khi cấp
+    priority: High
+    category: Validation
+    owner: Context
+    status: Draft
+    source: [P001, P009]
+    rules: [RULE-005]
+    verification: [Context Test, Doctor]
+  XFR-010:
+    title: Track Context
+    description: theo dõi Context lifecycle (S011)
+    priority: High
+    category: Observability
+    owner: Context
+    status: Draft
+    source: [P001, P009]
+    rules: [RULE-005]
+    verification: [Context Test, Doctor]
+  XFR-011:
+    title: Publish Context Events
+    description: phát Event cho mọi state change (S011)
+    priority: High
+    category: Observability
+    owner: Context
+    status: Draft
+    source: [P001, P009]
+    rules: [RULE-005]
+    verification: [Context Test, Doctor]
+  XFR-012:
+    title: Bind Policy
+    description: khai báo tham số Policy (S012 binding)
+    priority: High
+    category: Governance
+    owner: Context
+    status: Draft
+    source: [P001, P009]
+    rules: [RULE-005]
+    verification: [Context Test, Doctor]
+  XFR-013:
+    title: Register Context
+    description: đăng ký Context trong Registry (SPEC-005)
+    priority: Medium
+    category: Data
+    owner: Context
+    status: Draft
+    source: [P001, P009]
+    rules: [RULE-005]
+    verification: [Context Test, Doctor]
+  XFR-014:
+    title: Support Context Chain
+    description: chuỗi Context cha-con (sub-workflow)
+    priority: Medium
+    category: Execution
+    owner: Context
+    status: Draft
+    source: [P001, P009]
+    rules: [RULE-005]
+    verification: [Context Test, Doctor]
+  XFR-015:
+    title: Manage Context Lifecycle
+    description: vòng đời Context (allocate->release)
+    priority: Critical
+    category: Execution
+    owner: Context
+    status: Draft
+    source: [P001, P009]
+    rules: [RULE-005]
+    verification: [Context Test, Doctor]
+  XFR-016:
+    title: Audit Context
+    description: ghi audit mọi thay đổi Context (S011)
+    priority: High
+    category: Observability
+    owner: Context
+    status: Draft
+    source: [P001, P009]
+    rules: [RULE-005]
+    verification: [Context Test, Doctor]
+non_functional:
+  XNF-001:
+    title: Isolation
+    description: cùng Execution chỉ một Context; không chia sẻ
+    priority: Critical
+    category: Security
+    owner: Context
+    status: Draft
+    source: [P009]
+    rules: [RULE-005]
+  XNF-002:
+    title: Metadata Driven
+    description: không hardcode Context data
+    priority: Critical
+    category: Core
+    owner: Context
+    status: Draft
+    source: [P009]
+    rules: [RULE-005]
+  XNF-003:
+    title: Transient
+    description: có đúng vòng đời Execution
+    priority: Critical
+    category: Core
+    owner: Context
+    status: Draft
+    source: [P009]
+    rules: [RULE-005]
+  XNF-004:
+    title: Observable
+    description: mọi Context quan sát qua S011
+    priority: High
+    category: Observability
+    owner: Context
+    status: Draft
+    source: [P009]
+    rules: [RULE-005]
+  XNF-005:
+    title: Owned
+    description: mỗi Context đúng một Execution
+    priority: Critical
+    category: Core
+    owner: Context
+    status: Draft
+    source: [P009]
+    rules: [RULE-005]
+  XNF-006:
+    title: Compatible
+    description: backward compatible
+    priority: High
+    category: Data
+    owner: Context
+    status: Draft
+    source: [P009]
+    rules: [RULE-005]
+  XNF-007:
+    title: Recoverable
+    description: phục hồi sau lỗi
+    priority: High
+    category: Core
+    owner: Context
+    status: Draft
+    source: [P009]
+    rules: [RULE-005]
+  XNF-008:
+    title: Testable
+    description: kiểm thử tự động
+    priority: High
+    category: Core
+    owner: Context
+    status: Draft
+    source: [P009]
+    rules: [RULE-005]
+  XNF-009:
+    title: Performant
+    description: đáp ứng target allocate/release
+    priority: High
+    category: Observability
+    owner: Context
+    status: Draft
+    source: [P009]
+    rules: [RULE-005]
+  XNF-010:
+    title: Governed
+    description: chịu Governance (S013)
+    priority: Critical
+    category: Governance
+    owner: Context
+    status: Draft
+    source: [P009]
+    rules: [RULE-005]
+  XNF-011:
+    title: Reusable
+    description: Context pattern tái sử dụng
+    priority: Medium
+    category: Data
+    owner: Context
+    status: Draft
+    source: [P009]
+    rules: [RULE-005]
+  XNF-012:
+    title: Traceable
+    description: mọi Context truy vết (S011)
+    priority: High
+    category: Observability
+    owner: Context
+    status: Draft
+    source: [P009]
+    rules: [RULE-005]
+constraints:
+  XC-001:
+    name: No Business Data
+    type: Architectural
+    source: [P001]
+    rules: [RULE-001]
+  XC-002:
+    name: No Shared Context
+    type: Architectural
+    source: [P006, P009]
+    rules: [RULE-005]
+  XC-003:
+    name: No Persistence
+    type: Architectural
+    source: [P009]
+    rules: [RULE-005]
+  XC-004:
+    name: No Redefine EF008 Flow
+    type: Architectural
+    source: [P009]
+    rules: [RULE-005]
+  XC-005:
+    name: No Redefine Policy (S012)
+    type: Governance
+    source: [P015]
+    rules: [RULE-012]
+  XC-006:
+    name: Release Before Execution End
+    type: Governance
+    source: [P011]
+    rules: [RULE-005]
+assumptions:
+  XA-001: Context hop le (da validate)
+  XA-002: Execution ton tai (SPEC-001)
+  XA-003: Registry kha dung (SPEC-005)
+  XA-004: Runtime kha dung (SPEC-001)
+  note: Neu gia dinh sai, Context Engine chi bao loi, khong tu sua.
+dependencies:
+  logical:
+    - Constitution
+    - Runtime (SPEC-001)
+    - Registry (SPEC-005)
+  runtime_services:
+    - Event Store (S011)
+    - Metrics Collector (S011)
+external_interfaces:
+  Execution: Input
+  Agent/Capability: Context Grant
+  Event (S011): Publish
+  Policy (S012): Apply
+quality_attributes:
+  Isolation:
+    target: "100%"
+    description: Khong Context bi chia se
+  Determinism:
+    target: "100%"
+  Reliability:
+    target: "99.9%"
+  Traceability:
+    target: "100%"
+  Observability:
+    target: "100%"
+acceptance:
+  XAR-001:
+    description: Context Engine allocate va release duoc Context hop le
+    related: [XFR-001, XFR-007, P001]
+    verified_by: [Context Tests, Doctor]
+  XAR-002:
+    description: Context khong bi chia se giua Execution
+    related: [XFR-008, P006]
+    verified_by: [Context Tests, Doctor]
+  XAR-003:
+    description: Context phat Event day du cho moi state change
+    related: [XFR-011, P005]
+    verified_by: [Doctor]
+  XAR-004:
+    description: Context khong chua Business Data
+    related: [XC-001, P001]
+    verified_by: [Doctor]
+  XAR-005:
+    description: Context duoc thu hoi khi Execution ket thuc
+    related: [XC-006, XFR-007]
+    verified_by: [Context Tests, Doctor]
+  XAR-006:
+    description: Context Engine khong vi pham Constitution
+    related: [P020, XNF-010]
+    verified_by: [Doctor]

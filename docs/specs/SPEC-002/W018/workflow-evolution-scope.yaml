@@ -1,0 +1,16 @@
+# SPEC-002 W018 - Workflow Evolution Scope (data tu W011 observability)
+---
+version: "1.0"
+reads:
+  - Workflow Event (W011)
+  - Workflow Metrics (W011)
+  - Workflow Trace (W011)
+  - Workflow Audit (W011)
+  - Compliance Report (W016)
+  - Registry (W014)
+not_reads:
+  - Implementation
+  - Business Data
+  - User Data
+  - Agent Internal State
+  - Plugin Internal State

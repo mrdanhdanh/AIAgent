@@ -1,0 +1,10 @@
+# SPEC-005 R010 - Registry Lineage (S010 EF023)
+---
+version: "1.0.0"
+lineage:
+  - Root Entry
+  - Entry trong Workflow (SPEC-002)
+  - Replay (S009 ST-012)
+  - Simulation (S013 GV011A)
+rules:
+  - Lineage immutable (append-only, S011).

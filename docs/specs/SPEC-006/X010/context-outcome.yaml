@@ -1,0 +1,8 @@
+# SPEC-006 X010 - Context Outcome
+---
+version: "1.0.0"
+outcome:
+  success: Release thanh cong + CONTEXT_RELEASED
+  failure: Rejected + CONTEXT_REJECTED/RELEASED_FAILED
+  metrics: [context_released_total, context_rejected_total]
+  audit: moi outcome ghi vao S011

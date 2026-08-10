@@ -1,0 +1,10 @@
+# SPEC-001 S010 — Timeout Flow (EF013)
+---
+version: "1.0"
+flow:
+  - Running
+  - Timeout
+  - TimedOut
+rules:
+  - Runtime dừng Execution khi timeout.
+  - Sinh Timeout Artifact.

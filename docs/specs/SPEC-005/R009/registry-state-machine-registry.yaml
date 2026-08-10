@@ -1,0 +1,16 @@
+# SPEC-005 R009 - Registry State Machine Registry
+---
+version: "1.0.0"
+registries:
+  - registry-state-machine.yaml
+  - registry-states.yaml
+  - registry-transitions.yaml
+  - registry-transition-guards.yaml
+  - registry-transition-triggers.yaml
+  - registry-transition-types.yaml
+  - registry-transition-matrix.yaml
+  - registry-state-events.yaml
+  - registry-state-history.yaml
+  - registry-state-metrics.yaml
+  - registry-state-machine-validation.yaml
+  - registry.schema.json

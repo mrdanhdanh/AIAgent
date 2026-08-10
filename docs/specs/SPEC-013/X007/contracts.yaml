@@ -1,0 +1,11 @@
+# SPEC-013 X007 - Evolution Contract Types (7)
+---
+version: "1.0.0"
+contracts:
+  XCT-001: { name: API Contract, description: EvolutionApi ops (diff/compat/migrate/heal/score/evolve), breaking: ADR }
+  XCT-002: { name: Data Contract, description: Diff + MigrationPlan schema, breaking: ADR }
+  XCT-003: { name: Event Contract, description: EVOLUTION_* events (S011), breaking: ADR }
+  XCT-004: { name: Metric Contract, description: evolution_* metrics, breaking: additive }
+  XCT-005: { name: Policy Contract, description: migration scope, breaking: ADR }
+  XCT-006: { name: Interface Contract, description: Store, DiffEngine, MigrationEngine, breaking: ADR }
+  XCT-007: { name: Report Contract, description: evolution report schema, breaking: ADR }

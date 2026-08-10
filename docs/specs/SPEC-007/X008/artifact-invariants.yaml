@@ -1,0 +1,12 @@
+# SPEC-007 X008 - Artifact Invariants
+---
+version: "1.0.0"
+invariants:
+  INV-X001: { name: Unique ArtifactId, description: Moi Artifact co id duy nhat }
+  INV-X002: { name: Single Owner, description: Artifact chi thuoc mot Execution }
+  INV-X003: { name: Immutable Content, description: Content khong doi sau publish }
+  INV-X004: { name: Checksum Valid, description: Checksum khop content }
+  INV-X005: { name: Version Strict, description: Version tang don dieu }
+  INV-X006: { name: No Overwrite, description: Khong overwrite artifact }
+  INV-X007: { name: No Business Data, description: Artifact khong chua business data }
+violation: BLOCK operation + error ARTIFACT_INVARIANT

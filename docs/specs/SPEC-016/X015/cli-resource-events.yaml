@@ -1,0 +1,9 @@
+# SPEC-016 X015 - CLI Resource Events
+---
+version: "1.0.0"
+events:
+  - CLI_RESOURCE_ALLOCATED
+  - CLI_RESOURCE_RELEASED
+  - CLI_RESOURCE_LEAKED
+  - CLI_RESOURCE_QUOTA_EXCEEDED
+note: Event vao S011.

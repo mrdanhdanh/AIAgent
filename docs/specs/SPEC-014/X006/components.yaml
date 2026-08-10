@@ -1,0 +1,16 @@
+# SPEC-014 X006 - Dashboard Components (12)
+---
+version: "1.0.0"
+components:
+  XCP-001: { name: DashboardApi, role: expose op, dependency: Engine, layer: Core }
+  XCP-002: { name: PipelineOrchestrator, role: pipeline flow, dependency: StateMachine, Store, layer: Core }
+  XCP-003: { name: DashboardStateMachine, role: state transitions, dependency: S009, layer: Core }
+  XCP-004: { name: RenderEngine, role: render widgets, dependency: Store, layer: Core }
+  XCP-005: { name: FilterEngine, role: filter data, dependency: Store, layer: Core }
+  XCP-006: { name: PolicyGuard, role: policy eval, dependency: S012, layer: Guard }
+  XCP-007: { name: WidgetStore, role: widget definitions, dependency: Store, layer: Core }
+  XCP-008: { name: ViewStore, role: view definitions, dependency: Store, layer: Data }
+  XCP-009: { name: RefreshEngine, role: refresh dinh ky, dependency: Store, layer: Data }
+  XCP-010: { name: ExportEngine, role: export JSON/markdown, dependency: Store, layer: Data }
+  XCP-011: { name: RegistryClient, role: definition lookup, dependency: SPEC-005, layer: Integration }
+  XCP-012: { name: MetricReader, role: doc S011 metrics, dependency: Store, layer: Data }

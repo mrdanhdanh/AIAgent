@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aios://registry.schema.json",
+  "title": "SPEC-001 Runtime Registry (S014)",
+  "description": "JSON Schema cho registry.yaml. Validator kiem tra cau truc.",
+  "type": "object",
+  "required": ["id", "name", "version", "status", "owner", "philosophy", "principles", "categories", "domains", "entry_model", "ownership", "lifecycle", "governance", "constraints", "resolution", "resolution_rules", "resolution_priority", "resolution_failures", "version_resolution", "relationships", "dependency", "traceability"],
+  "properties": {
+    "id": { "const": "SPEC-001-S014" },
+    "name": { "const": "Runtime Registry" },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "status": { "enum": ["Draft", "Review", "Approved", "Stable", "Deprecated"] },
+    "owner": { "type": "string" },
+    "philosophy": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "principles": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "categories": { "type": "array", "items": { "type": "string" }, "minItems": 9 },
+    "domains": { "type": "array", "items": { "type": "string" }, "minItems": 6 },
+    "entry_model": {
+      "type": "object",
+      "required": ["fields"],
+      "properties": {
+        "fields": { "type": "array", "items": { "type": "string" }, "minItems": 10 }
+      }
+    },
+    "ownership": { "type": "object" },
+    "lifecycle": { "type": "array", "items": { "type": "string" }, "minItems": 4 },
+    "governance": { "type": "array", "items": { "type": "string" }, "minItems": 5 },
+    "constraints": { "type": "array", "items": { "type": "string" }, "minItems": 7 },
+    "resolution": { "type": "array", "items": { "type": "string" }, "minItems": 8 },
+    "resolution_rules": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "resolution_priority": { "type": "array", "items": { "type": "string" }, "minItems": 5 },
+    "resolution_failures": { "type": "object" },
+    "version_resolution": { "type": "array", "items": { "type": "string" }, "minItems": 4 },
+    "relationships": { "type": "object" },
+    "dependency": { "type": "object" },
+    "traceability": { "type": "array", "items": { "type": "string" }, "minItems": 5 },
+    "events": { "type": "array", "items": { "type": "string" } },
+    "metrics": { "type": "object" }
+  },
+  "additionalProperties": false
+}

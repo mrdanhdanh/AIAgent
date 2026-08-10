@@ -1,0 +1,10 @@
+# SPEC-010 X010 - Plugin Query
+---
+version: "1.0.0"
+query_ops:
+  - GetPlugin(plugin_id)
+  - GetManifest(plugin_id)
+  - SearchPlugins(query)
+  - ListExports(plugin_id)
+  - GetHistory(plugin_id)
+rule: Query khong thay doi Plugin, khong can grant.

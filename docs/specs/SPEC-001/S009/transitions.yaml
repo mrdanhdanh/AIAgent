@@ -1,94 +1,195 @@
-# SPEC-001 S009 — Transitions (pre/post conditions)
+# SPEC-001 S009 — Transitions v2 (first-class entity)
+# Transition: id/from/to/trigger/preconditions/postconditions/generated_events/policy/timeout
 ---
-version: "1.0"
+version: "1.0.0"
 transitions:
-  ST-001-ST-002:
-    event: EXECUTION_VALIDATING
+  TR-001:
+    from: ST-001
+    to: ST-002
+    trigger: Runtime
     guard: Workflow + Contract hợp lệ
-    precondition: Execution vừa tạo
-    postcondition: Validation bắt đầu
-  ST-002-ST-003:
-    event: EXECUTION_PREPARED
+    preconditions: [Execution vừa tạo]
+    postconditions: [Validation bắt đầu]
+    generated_events: [EXECUTION_VALIDATING]
+    policy: "-"
+    timeout: "-"
+  TR-002:
+    from: ST-002
+    to: ST-003
+    trigger: Runtime
     guard: Validation pass
-    precondition: Validation thành công
-    postcondition: Context được cấp
-  ST-002-ST-009:
-    event: EXECUTION_VALIDATION_FAILED
+    preconditions: [Validation thành công]
+    postconditions: [Context được cấp]
+    generated_events: [EXECUTION_PREPARED]
+    policy: "-"
+    timeout: "-"
+  TR-003:
+    from: ST-002
+    to: ST-009
+    trigger: Runtime
     guard: Validation fail
-    precondition: Workflow không hợp lệ
-    postcondition: Failure Artifact
-  ST-003-ST-004:
-    event: EXECUTION_STARTED
+    preconditions: [Workflow không hợp lệ]
+    postconditions: [Failure Artifact]
+    generated_events: [EXECUTION_VALIDATION_FAILED]
+    policy: "-"
+    timeout: "-"
+  TR-004:
+    from: ST-003
+    to: ST-004
+    trigger: Runtime
     guard: Simulation pass (P013)
-    precondition: Execution sẵn sàng
-    postcondition: Running bắt đầu
-  ST-004-ST-005:
-    event: EXECUTION_WAITING
+    preconditions: [Execution sẵn sàng]
+    postconditions: [Running bắt đầu]
+    generated_events: [EXECUTION_STARTED]
+    policy: "-"
+    timeout: "-"
+  TR-005:
+    from: ST-004
+    to: ST-005
+    trigger: Approval
     guard: Cần approval/ngoại bộ
-    precondition: Approval gate kích hoạt
-    postcondition: Chờ quyết định
-  ST-005-ST-004:
-    event: EXECUTION_APPROVED
+    preconditions: [Approval gate kích hoạt]
+    postconditions: [Chờ quyết định]
+    generated_events: [EXECUTION_WAITING]
+    policy: Approval Policy
+    timeout: approval_timeout
+  TR-006:
+    from: ST-005
+    to: ST-004
+    trigger: Approval
     guard: Approval được duyệt
-    precondition: Quyết định hợp lệ
-    postcondition: Tiếp tục chạy
-  ST-004-ST-006:
-    event: EXECUTION_SUSPENDED
+    preconditions: [Quyết định hợp lệ]
+    postconditions: [Tiếp tục chạy]
+    generated_events: [EXECUTION_APPROVED]
+    policy: Approval Policy
+    timeout: "-"
+  TR-007:
+    from: ST-004
+    to: ST-006
+    trigger: User
     guard: Pause theo yêu cầu
-    precondition: Execution đang chạy
-    postcondition: Tạm dừng
-  ST-006-ST-004:
-    event: EXECUTION_RESUMED
+    preconditions: [Execution đang chạy]
+    postconditions: [Tạm dừng]
+    generated_events: [EXECUTION_SUSPENDED]
+    policy: "-"
+    timeout: "-"
+  TR-008:
+    from: ST-006
+    to: ST-004
+    trigger: User
     guard: Resume hợp lệ
-    precondition: Tài nguyên sẵn sàng
-    postcondition: Tiếp tục chạy
-  ST-004-ST-007:
-    event: EXECUTION_CANCELLING
+    preconditions: [Tài nguyên sẵn sàng]
+    postconditions: [Tiếp tục chạy]
+    generated_events: [EXECUTION_RESUMED]
+    policy: "-"
+    timeout: "-"
+  TR-009:
+    from: ST-004
+    to: ST-007
+    trigger: User
     guard: Cancel request hợp lệ
-    precondition: Yêu cầu hủy
-    postcondition: Đang hủy
-  ST-007-ST-010:
-    event: EXECUTION_CANCELLED
+    preconditions: [Yêu cầu hủy]
+    postconditions: [Đang hủy]
+    generated_events: [EXECUTION_CANCELLING]
+    policy: Cancellation Policy
+    timeout: cancel_timeout
+  TR-010:
+    from: ST-007
+    to: ST-010
+    trigger: Runtime
     guard: Hủy thành công
-    precondition: Hủy hoàn tất
-    postcondition: Cancelled Terminal
-  ST-004-ST-008:
-    event: EXECUTION_COMPLETED
+    preconditions: [Hủy hoàn tất]
+    postconditions: [Cancelled Terminal]
+    generated_events: [EXECUTION_CANCELLED]
+    policy: "-"
+    timeout: "-"
+  TR-011:
+    from: ST-004
+    to: ST-008
+    trigger: Runtime
     guard: Mọi Task/Phase xong
-    precondition: Tất cả Task hoàn thành
-    postcondition: Result được publish
-  ST-004-ST-009:
-    event: EXECUTION_FAILED
+    preconditions: [Tất cả Task hoàn thành]
+    postconditions: [Result được publish]
+    generated_events: [EXECUTION_COMPLETED]
+    policy: "-"
+    timeout: "-"
+  TR-012:
+    from: ST-004
+    to: ST-009
+    trigger: Runtime
     guard: Lỗi không retry được
-    precondition: Lỗi thực thi
-    postcondition: Failure Artifact
-  ST-004-ST-011:
-    event: EXECUTION_TIMED_OUT
+    preconditions: [Lỗi thực thi]
+    postconditions: [Failure Artifact]
+    generated_events: [EXECUTION_FAILED]
+    policy: Retry Policy
+    timeout: "-"
+  TR-013:
+    from: ST-004
+    to: ST-011
+    trigger: Timeout
     guard: Timeout policy
-    precondition: Vượt thời gian
-    postcondition: Timeout Artifact
-  ST-004-ST-014:
-    event: EXECUTION_ABORTED
+    preconditions: [Vượt thời gian]
+    postconditions: [Timeout Artifact]
+    generated_events: [EXECUTION_TIMED_OUT]
+    policy: Timeout Policy
+    timeout: execution_timeout
+  TR-014:
+    from: ST-004
+    to: ST-014
+    trigger: Runtime
     guard: System abort
-    precondition: Lỗi hệ thống
-    postcondition: Abort Artifact
-  ST-009-ST-013:
-    event: EXECUTION_RETRYING
-    guard: Retry policy cho phép
-    precondition: Lỗi recoverable
-    postcondition: Chuẩn bị retry
-  ST-013-ST-004:
-    event: EXECUTION_RETRIED
+    preconditions: [Lỗi hệ thống]
+    postconditions: [Abort Artifact]
+    generated_events: [EXECUTION_ABORTED]
+    policy: Fail Safe Policy
+    timeout: "-"
+  TR-015:
+    from: ST-009
+    to: ST-013
+    trigger: Policy
+    guard: retry_count < policy.max_retry
+    preconditions: [Lỗi recoverable]
+    postconditions: [Chuẩn bị retry]
+    generated_events: [EXECUTION_RETRYING]
+    policy: Retry Policy
+    timeout: retry_timeout
+  TR-016:
+    from: ST-013
+    to: ST-004
+    trigger: Scheduler
     guard: Retry attempt
-    precondition: Retry bắt đầu
-    postcondition: Chạy lại
-  ST-008-ST-012:
-    event: EXECUTION_REPLAYED
+    preconditions: [Retry bắt đầu]
+    postconditions: [Chạy lại]
+    generated_events: [EXECUTION_RETRIED]
+    policy: Retry Policy
+    timeout: "-"
+  TR-017:
+    from: ST-013
+    to: ST-009
+    trigger: Policy
+    guard: Hết retry
+    preconditions: [Retry vượt max]
+    postconditions: [Failed Terminal]
+    generated_events: [EXECUTION_FAILED]
+    policy: Retry Policy
+    timeout: "-"
+  TR-018:
+    from: ST-008
+    to: ST-012
+    trigger: Event
     guard: Replay được tạo
-    precondition: Replay Execution mới
-    postcondition: Lineage giữ nguyên
-  ST-009-ST-012:
-    event: EXECUTION_REPLAYED
+    preconditions: [Replay Execution mới]
+    postconditions: [Lineage giữ nguyên]
+    generated_events: [EXECUTION_REPLAYED]
+    policy: Replay Policy
+    timeout: "-"
+  TR-019:
+    from: ST-009
+    to: ST-012
+    trigger: Event
     guard: Replay được tạo
-    precondition: Replay Execution mới
-    postcondition: Lineage giữ nguyên
+    preconditions: [Replay Execution mới]
+    postconditions: [Lineage giữ nguyên]
+    generated_events: [EXECUTION_REPLAYED]
+    policy: Replay Policy
+    timeout: "-"

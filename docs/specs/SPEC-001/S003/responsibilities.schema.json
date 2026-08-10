@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "aios://responsibilities.schema.json",
-  "title": "SPEC-001 Runtime Responsibilities (S003 v2)",
+  "title": "SPEC-001 Runtime Responsibilities (S003 v3.1)",
   "description": "JSON Schema cho responsibilities.yaml. Validator kiem tra cau truc.",
   "type": "object",
   "required": ["id", "name", "version", "status", "owner", "responsibilities"],
@@ -11,6 +11,11 @@
     "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
     "status": { "enum": ["Draft", "Review", "Approved", "Stable", "Deprecated"] },
     "owner": { "type": "string" },
+    "frozen": { "type": "boolean" },
+    "frozen_date": { "type": "string", "format": "date" },
+    "principle": { "type": "string" },
+    "invariants": { "type": "array", "items": { "type": "string" } },
+    "delegation": { "type": "object", "additionalProperties": { "type": "string" } },
     "responsibilities": {
       "type": "object",
       "patternProperties": {

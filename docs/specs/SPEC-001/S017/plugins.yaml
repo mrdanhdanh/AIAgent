@@ -1,0 +1,74 @@
+# SPEC-001 S017 - Runtime Plugins
+# Plugin mo rong Runtime qua Contract (S007), dang ky Registry (S014).
+# Khong mo ta implementation/package/code.
+---
+id: SPEC-001-S017
+name: Runtime Plugins
+version: "1.0.0"
+status: Approved
+owner: Runtime Team
+philosophy:
+  - Plugin mo rong Runtime qua Contract (S007).
+  - Plugin khong sua Runtime core.
+  - Moi Plugin dang ky trong Registry (S014).
+  - Plugin chi truy cap qua Capability + Contract.
+principles:
+  - Contract First (implement contracts S007)
+  - Registry First (dang ky S014)
+  - Isolated (S012 POL-ISOL-001)
+  - Least Privilege (S012 POL-SEC-001)
+  - Versioned (SemVer)
+  - Verifiable (S016)
+categories:
+  - Capability Plugin
+  - Workflow Plugin
+  - Tool Plugin
+  - Model Plugin
+  - Integration Plugin
+  - Provider Plugin
+plugin_model:
+  fields: [id, name, version, category, status, owner, capabilities, contracts, dependencies, metadata]
+lifecycle: [Draft, Published, Installed, Active, Disabled, Retired]
+installation:
+  - Register (S014 plugin-registry)
+  - Validate (Contract S007 + Compatibility S013)
+  - Install
+  - Activate
+activation_rules:
+  - Contract hop le (S007).
+  - Compatibility pass (S013 GV010).
+  - Governance allow (S013).
+  - Isolation dam bao (S012 POL-ISOL-001).
+isolation:
+  - Context isolated (S010 EF008).
+  - Resource bounded (S015 quota).
+  - Khong truy cap Agent Internal State (S011 OB003A).
+  - Khong truy cap Plugin khac.
+  - Vi pham -> PLUGIN_FAILED + Disabled.
+security:
+  - Permission qua POL-SEC-001 (S012).
+  - Resource Access qua POL-RESACC-001 (S012).
+  - Deny mac dinh (S013).
+resources:
+  - Plugin owner resource (S015).
+  - Quota rieng cho moi Plugin.
+compatibility:
+  - Contract (S013 GV010)
+  - Capability (S013 GV010)
+  - Plugin (S013 GV010)
+  - Workflow (S013 GV010)
+  - Registry compatibility check (S014 RG005)
+events:
+  - PLUGIN_REGISTERED
+  - PLUGIN_INSTALLED
+  - PLUGIN_ACTIVATED
+  - PLUGIN_DISABLED
+  - PLUGIN_FAILED
+  - PLUGIN_UNINSTALLED
+metrics:
+  active_plugins: 0
+  installed_plugins: 0
+  failed_plugins: 0
+  plugin_calls: 0
+  plugin_errors: 0
+  avg_plugin_latency: 0

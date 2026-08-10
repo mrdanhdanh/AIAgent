@@ -1,0 +1,12 @@
+# SPEC-002 W011 - Workflow Dashboard (S011 OB010 reuse)
+---
+version: "1.0"
+reads:
+  - Workflow Events
+  - Workflow Metrics
+  - Workflow Trace
+  - Workflow Audit
+  - Health (S011)
+rules:
+  - Dashboard chi doc (S011 OB010).
+  - Khong doc implementation.

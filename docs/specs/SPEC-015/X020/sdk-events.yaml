@@ -1,0 +1,8 @@
+# SPEC-015 X020 - SDK Doctor Events
+---
+version: "1.0.0"
+events:
+  - SDK_SDK_OPENED
+  - SDK_SDK_FILTERED
+  - SDK_SDK_EXPORTED
+note: Event vao S011.

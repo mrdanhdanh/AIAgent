@@ -1,0 +1,14 @@
+# SPEC-003 C010 - Capability Resolution Flow (S010 EF007)
+---
+version: "1.0.0"
+flow:
+  - Request (capability id + version)
+  - Lookup (S014)
+  - Candidate Selection
+  - Compatibility Check (S013 GV010)
+  - Policy Binding Check (S012)
+  - Governance Check (S013)
+  - Resolved (delegate Runtime EF007)
+rules:
+  - Delegate Runtime (EF007) - khong tu resolve (CB004).
+  - Failure -> loi chuan (S014 RG005A).

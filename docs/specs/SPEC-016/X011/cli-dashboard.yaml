@@ -1,0 +1,10 @@
+# SPEC-016 X011 - CLI
+---
+version: "1.0.0"
+CLI:
+  - CLI Activity (run rate)
+  - Success Rate by Scenario (6 types)
+  - Failures (run failed)
+  - Deviation (so sanh ky vong)
+  - Replay Status (replay qua Event log)
+  # tool: X020 CLI

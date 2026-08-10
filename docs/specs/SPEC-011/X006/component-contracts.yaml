@@ -1,0 +1,16 @@
+# SPEC-011 X006 - Doctor Component Contracts
+---
+version: "1.0.0"
+contracts:
+  XCP-001: { name: DoctorApi, contract: X007 XCT-### }
+  XCP-002: { name: PipelineOrchestrator, contract: X007 XCT-### }
+  XCP-003: { name: DoctorStateMachine, contract: X007 XCT-### }
+  XCP-004: { name: ScanEngine, contract: X007 XCT-### }
+  XCP-005: { name: DiagnoseEngine, contract: X007 XCT-### }
+  XCP-006: { name: PolicyGuard, contract: X007 XCT-### }
+  XCP-007: { name: FindingsStore, contract: X007 XCT-### }
+  XCP-008: { name: ScoreStore, contract: X007 XCT-### }
+  XCP-009: { name: RepairEngine, contract: X007 XCT-### }
+  XCP-010: { name: ReportEngine, contract: X007 XCT-### }
+  XCP-011: { name: ScannerRegistry, contract: X007 XCT-### }
+  XCP-012: { name: BenchmarkRunner, contract: X007 XCT-### }

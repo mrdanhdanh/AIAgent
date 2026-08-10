@@ -86,6 +86,18 @@ registries:
   roles: roles.yaml
   compliance: compliance.yaml
   review_cycle: review-cycle.yaml
+  review_workflow: review-workflow.md
+  review_tracker: review-tracker.yaml
+  review_history: review-history.yaml
+  review_status: review-status.yaml
+  review_severity: review-severity.yaml
+  review_matrix: review-matrix.yaml
+  review_score: review-score.yaml
+  review_rules: review-rules.yaml
+  review_trigger: review-trigger.yaml
+  review_metrics: review-metrics.yaml
+  review_schema: review.schema.json
+  reviews_dir: reviews/
   metrics: metrics.yaml
   audit_policy: audit-policy.yaml
 

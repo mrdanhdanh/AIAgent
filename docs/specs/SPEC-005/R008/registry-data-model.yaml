@@ -1,0 +1,46 @@
+# SPEC-005 R008 — Registry Data Model
+---
+version: "1.0.0"
+status: Draft
+frozen: false
+aggregate_root: RegistryEntry
+aggregate_rules:
+  - RegistryEntry la Aggregate Root duy nhat.
+  - "Entry owns: [Metadata, Version, Domain, Owner, Reference, Result]"
+  - "Entry references: [Capability (SPEC-003), Workflow (SPEC-002), Agent (SPEC-004), Execution (S008)]"
+  - Ownership va Reference khac nhau - khong nham lan.
+classification:
+  Entry Data: [Metadata, Version, Domain, Owner]
+  Transient: [EntryState]
+  Persistent Metadata: [ResolutionResult, Snapshot, Events, Metrics]
+  Reference Data: [Capability Ref, Workflow Ref, Agent Ref, Execution Ref]
+  not_manages: [Business Data, Knowledge, User Data]
+invariants:
+  - Entry co dung mot Metadata.
+  - Entry versioned (SemVer).
+  - Entry co dung mot Owner.
+  - ResolutionResult immutable.
+  - Event khong thay doi.
+  - Entry ID toan cuc.
+  - Entry luon co Owner.
+  - Entry luon co Version.
+  - Entry luon co Lifecycle.
+  - Entry khong doi Identity.
+  - Metadata khong doi khi Published.
+  - Reference khong doi khi Published.
+consistency:
+  levels: [Metadata Consistency, Version Consistency, Reference Consistency]
+  rules:
+    - Metadata luon hop le (validate truoc khi luu).
+    - Version luon semver.
+    - Reference luon tro den Entry ton tai.
+    - Metrics chi append.
+    - Event chi append.
+dependencies:
+  - Entry → Metadata
+  - Entry → Version
+  - Entry → Domain
+  - Entry → Owner
+  - Entry → Reference
+  - Entry → Resolution Result
+# note: Khong dependency nguoc.

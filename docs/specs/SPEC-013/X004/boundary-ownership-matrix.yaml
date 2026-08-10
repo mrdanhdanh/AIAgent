@@ -1,0 +1,9 @@
+# SPEC-013 X004 - Evolution Boundary Ownership Matrix
+---
+version: "1.0.0"
+ownership:
+  report: Evolution Engine (immutable)
+  metadata: Evolution Engine
+  system: chu so huu tung he thong
+  policy: Policy (S012)
+  core: KHONG thuoc Evolution

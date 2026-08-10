@@ -1,0 +1,20 @@
+# SPEC-008 X003 - Event Responsibilities (16)
+---
+version: "1.0.0"
+responsibilities:
+  XRR-001: { name: Publish Event, owner: Event Bus, partner: Producer, role: OWNER }
+  XRR-002: { name: Route Event, owner: Event Bus, partner: -, role: OWNER }
+  XRR-003: { name: Deliver Event, owner: Event Bus, partner: Subscriber, role: OWNER }
+  XRR-004: { name: Subscribe, owner: Subscriber, partner: Event Bus, role: GRANTEE }
+  XRR-005: { name: Unsubscribe, owner: Subscriber, partner: Event Bus, role: GRANTEE }
+  XRR-006: { name: Replay, owner: Event Bus, partner: Event Store, role: OWNER }
+  XRR-007: { name: Archive, owner: Event Bus, partner: -, role: OWNER }
+  XRR-008: { name: Validate, owner: Event Bus, partner: Event Validator, role: OWNER }
+  XRR-009: { name: Lineage, owner: Event Bus, partner: -, role: OWNER }
+  XRR-010: { name: Events of Events, owner: Runtime (S011), partner: Event Bus, role: EMITTER }
+  XRR-011: { name: Metrics, owner: Runtime (S011), partner: Event Bus, role: EMITTER }
+  XRR-012: { name: Policy eval, owner: Policy (S012), partner: Event Bus, role: DECIDER }
+  XRR-013: { name: Registry, owner: Registry (SPEC-005), partner: Event Bus, role: REGISTER }
+  XRR-014: { name: Audit, owner: Runtime (S011), partner: Event Bus, role: EMITTER }
+  XRR-015: { name: Retention, owner: Event Bus, partner: Policy (S012), role: OWNER }
+  XRR-016: { name: Recovery, owner: Event Bus, partner: Replay, role: OWNER }

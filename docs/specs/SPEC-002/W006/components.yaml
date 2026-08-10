@@ -1,0 +1,200 @@
+# SPEC-002 W006 — Workflow Components (8 Components)
+# 3 nhom: Core / Resolution / Infrastructure.
+# Execution/State/Context thuoc Runtime (SPEC-001) - khong lap lai.
+---
+id: SPEC-002-W006
+name: Workflow Components
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Workflow Team
+philosophy:
+  - Component cang it cang tot.
+  - Moi Component chi co mot trach nhiem.
+  - Mo rong bang Capability, khong mo rong bang them Component moi.
+principles:
+  - Mot Responsibility.
+  - Mot Owner.
+  - Mot hoac nhieu Contract.
+  - Mot Lifecycle.
+  - Mot Metadata.
+  - Co the thay the.
+  - Khong chua Business Logic.
+  - Khong phu thuoc Component ngoai Contract.
+component_model:
+  fields: [id, name, version, status, layer, domain, responsibility, capability, contracts, dependencies, lifecycle, owner, metadata]
+groups:
+  Core: [Workflow Engine, Definition Manager, Validation Engine, Workflow Orchestrator]
+  Resolution: [Workflow Loader, Step Resolver]
+  Infrastructure: [Workflow Registrar, Workflow Event Dispatcher]
+lifecycles:
+  runtime: [Defined, Initialized, Ready, Active, Stopping, Disposed]
+  workflow: [Idle, Assigned, Running, Completed]
+components:
+  WCP-001:
+    name: Workflow Engine
+    version: 1.0.0
+    status: Draft
+    group: Core
+    layer: Command
+    domain: Execution
+    responsibility: Quan ly vong doi Workflow
+    capability: workflow-management
+    contracts: [Workflow Contract]
+    dependencies: [Definition Manager, Validation Engine, Workflow Orchestrator, Workflow Loader, Workflow Registrar, Workflow Event Dispatcher]
+    lifecycle: runtime
+    owner: Workflow
+    replaceable: false
+    metric: Workflow Completion Rate
+    boundary: WB004-execution
+    rule: RULE-004
+    responsibilities: [WRR-001, WRR-002]
+    requirements: [WFR-001, WFR-002]
+    principles: [P001, P011]
+  WCP-002:
+    name: Definition Manager
+    version: 1.0.0
+    status: Draft
+    group: Core
+    layer: Declaration
+    domain: Definition
+    responsibility: Quan ly Workflow Definition + Version
+    capability: workflow-definition
+    contracts: [Definition Contract]
+    dependencies: []
+    lifecycle: runtime
+    owner: Workflow
+    replaceable: true
+    metric: Definition Coverage
+    boundary: WB001-declaration
+    rule: RULE-001
+    responsibilities: [WRR-001, WRR-004]
+    requirements: [WFR-001, WFR-004]
+    principles: [P003, P009]
+  WCP-003:
+    name: Validation Engine
+    version: 1.0.0
+    status: Draft
+    group: Core
+    layer: Validation
+    domain: Validation
+    responsibility: Validate + Normalize Workflow (EF006)
+    capability: workflow-validation
+    contracts: [Validation Contract]
+    dependencies: [Workflow Loader]
+    lifecycle: runtime
+    owner: Workflow
+    replaceable: true
+    metric: Invalid Workflows
+    boundary: WB003-validation
+    rule: RULE-002
+    responsibilities: [WRR-003, WRR-018]
+    requirements: [WFR-003]
+    principles: [P002, P011]
+  WCP-004:
+    name: Workflow Orchestrator
+    version: 1.0.0
+    status: Draft
+    group: Core
+    layer: Orchestration
+    domain: Coordination
+    responsibility: Dieu phoi luong - delegate Runtime (SPEC-001)
+    capability: orchestration
+    contracts: [Orchestrator Contract]
+    dependencies: [Step Resolver, Runtime (SPEC-001)]
+    lifecycle: runtime
+    owner: Workflow
+    replaceable: false
+    metric: Orchestration Coverage
+    boundary: WB004-execution
+    rule: RULE-004
+    responsibilities: [WRR-006, WRR-007, WRR-008, WRR-009, WRR-010, WRR-011, WRR-012, WRR-013]
+    requirements: [WFR-006, WFR-007, WFR-008, WFR-009, WFR-010, WFR-011, WFR-012, WFR-013]
+    principles: [P001, P015]
+  WCP-005:
+    name: Workflow Loader
+    version: 1.0.0
+    status: Draft
+    group: Resolution
+    layer: Definition
+    domain: Definition
+    responsibility: Nap Workflow tu Registry (S014)
+    capability: workflow-loading
+    contracts: [Registry Contract]
+    dependencies: [Registry (S014)]
+    lifecycle: runtime
+    owner: Workflow
+    replaceable: true
+    metric: Workflow Load Rate
+    boundary: WB002-registry
+    rule: RULE-002
+    responsibilities: [WRR-002]
+    requirements: [WFR-002]
+    principles: [P001, P011]
+  WCP-006:
+    name: Step Resolver
+    version: 1.0.0
+    status: Draft
+    group: Resolution
+    layer: Resolution
+    domain: Capability
+    responsibility: Resolve Capability cho step (S014)
+    capability: step-resolution
+    contracts: [Registry Contract]
+    dependencies: [Registry (S014)]
+    lifecycle: runtime
+    owner: Workflow
+    replaceable: true
+    metric: Resolution Rate
+    boundary: WB006-dependency
+    rule: RULE-002
+    responsibilities: [WRR-005]
+    requirements: [WFR-005]
+    principles: [P007]
+  WCP-007:
+    name: Workflow Registrar
+    version: 1.0.0
+    status: Draft
+    group: Infrastructure
+    layer: Definition
+    domain: Definition
+    responsibility: Dang ky Workflow Entry (S014)
+    capability: workflow-registration
+    contracts: [Registry Contract]
+    dependencies: [Registry (S014)]
+    lifecycle: runtime
+    owner: Workflow
+    replaceable: true
+    metric: Registration Rate
+    boundary: WB002-registry
+    rule: RULE-001
+    responsibilities: [WRR-015]
+    requirements: [WFR-015]
+    principles: [P003]
+  WCP-008:
+    name: Workflow Event Dispatcher
+    version: 1.0.0
+    status: Draft
+    group: Infrastructure
+    layer: Publication
+    domain: Observability
+    responsibility: Publish Workflow Event/Metrics/Trace/Audit (S011)
+    capability: workflow-observability
+    contracts: [Event Contract]
+    dependencies: [Event Store (S011)]
+    lifecycle: runtime
+    owner: Workflow
+    replaceable: true
+    metric: Event Coverage
+    boundary: WB009-governance
+    rule: RULE-007
+    responsibilities: [WRR-016]
+    requirements: [WFR-016]
+    principles: [P005, P014]
+not_in_runtime:
+  - Execution Manager (SPEC-001 S006 CMP-001)
+  - Execution Orchestrator (SPEC-001 S006 CMP-002)
+  - Context Manager (SPEC-001 S006 CMP-003)
+  - State Manager (SPEC-001 S006 CMP-004)
+  - Policy Engine (SPEC-001 S006 CMP-005)
+  # note: Workflow Engine dung qua Runtime (SPEC-001) - khong lap lai.

@@ -1,0 +1,8 @@
+# SPEC-008 X018 - Event Evolution Metrics
+---
+version: "1.0.0"
+metrics:
+  - spec008_version
+  - spec008_versions_total
+  - spec008_deprecated_count
+  - spec008_compat_score

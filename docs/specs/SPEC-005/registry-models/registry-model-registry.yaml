@@ -1,0 +1,12 @@
+# SPEC-005 Appendix - Registry Model Registry
+---
+version: "1.0.0"
+models:
+  - RM-001
+  - RM-002
+  - RM-003
+  - RM-004
+  - RM-005
+  - RM-006
+  - RM-007
+  - RM-008

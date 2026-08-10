@@ -1,0 +1,7 @@
+# SPEC-016 X006 - CLI Component Validation
+---
+version: "1.0.0"
+validation:
+  - component co contract + test
+  - metrics day du (X011)
+  - Doctor X019 check

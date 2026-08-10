@@ -1,0 +1,5 @@
+# SPEC-005 R007 - Contract Types
+---
+version: "1.0.0"
+directions: [Request/Response]
+patterns: [Sync, Sync/Async, Event]

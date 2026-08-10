@@ -1,0 +1,16 @@
+# SPEC-005 R008 - Registry Invariants (12)
+---
+version: "1.0.0"
+invariants:
+  - Entry co dung mot Metadata.
+  - Entry versioned (SemVer).
+  - Entry co dung mot Owner.
+  - ResolutionResult immutable.
+  - Event khong thay doi.
+  - Entry ID toan cuc.
+  - Entry luon co Owner.
+  - Entry luon co Version.
+  - Entry luon co Lifecycle.
+  - Entry khong doi Identity.
+  - Metadata khong doi khi Published.
+  - Reference khong doi khi Published.

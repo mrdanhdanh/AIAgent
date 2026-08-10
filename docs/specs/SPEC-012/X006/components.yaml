@@ -1,0 +1,16 @@
+# SPEC-012 X006 - Simulation Components (12)
+---
+version: "1.0.0"
+components:
+  XCP-001: { name: SimulationApi, role: expose op, dependency: Engine, layer: Core }
+  XCP-002: { name: PipelineOrchestrator, role: pipeline flow, dependency: StateMachine, Store, layer: Core }
+  XCP-003: { name: SimulationStateMachine, role: state transitions, dependency: S009, layer: Core }
+  XCP-004: { name: ScenarioEngine, role: chay scenarios, dependency: Store, layer: Core }
+  XCP-005: { name: ConfigValidator, role: validate config, dependency: X008, layer: Core }
+  XCP-006: { name: PolicyGuard, role: policy eval, dependency: S012, layer: Guard }
+  XCP-007: { name: ScenarioStore, role: scenario definitions, dependency: Store, layer: Core }
+  XCP-008: { name: ResultStore, role: simulation results, dependency: Store, layer: Data }
+  XCP-009: { name: Comparator, role: compare voi ky vong, dependency: Store, layer: Data }
+  XCP-010: { name: SimulationMetrics, role: metrics, dependency: S011, layer: Data }
+  XCP-011: { name: RegistryClient, role: definition lookup, dependency: SPEC-005, layer: Integration }
+  XCP-012: { name: Reporter, role: simulation report, dependency: Store, layer: Data }

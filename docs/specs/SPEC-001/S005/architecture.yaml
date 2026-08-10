@@ -6,7 +6,7 @@ name: Runtime Architecture
 version: "1.1.0"
 status: Approved
 frozen: true
-frozen_date: "2026-08-04"
+frozen_date: "2026-08-08"
 owner: Runtime Team
 vision: Execution Kernel theo kien truc phan tang. Moi tang mot trach nhiem, giao tiep qua Contract.
 decisions:
@@ -127,7 +127,7 @@ communication_rules:
   - Context
   - Event
   - Artifact
-  note: Ngoai ra deu bi cam.
+  # Ngoai ra deu bi cam.
 invariants:
   - Runtime luon Metadata Driven.
   - Runtime khong biet Agent cu the.
@@ -156,7 +156,7 @@ constraints:
   - Direct Agent Coupling
   - Direct Plugin Coupling
   - Business Logic trong Runtime
-  note: Tat ca deu CAM.
+  # Tat ca deu CAM.
 stability:
   stable: [Layers, Domains]
   evolvable: [Components, Contracts, Capabilities]

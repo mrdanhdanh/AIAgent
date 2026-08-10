@@ -1,0 +1,6 @@
+# SPEC-016 X005 - CLI Architecture Registry
+---
+version: "1.0.0"
+registry:
+  owner: CLI Team
+  tracked: [XAL-001..005]

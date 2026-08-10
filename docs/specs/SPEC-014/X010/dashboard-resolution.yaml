@@ -1,0 +1,7 @@
+# SPEC-014 X010 - Dashboard Resolution
+---
+version: "1.0.0"
+resolution:
+  input: dashboard_id
+  output: view + metrics hoac not-found
+  trace: moi resolution co trace_id (S011)

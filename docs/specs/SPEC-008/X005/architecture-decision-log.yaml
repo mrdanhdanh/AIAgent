@@ -1,0 +1,8 @@
+# SPEC-008 X005 - Event ADL
+---
+version: "1.0.0"
+decisions:
+  XAD-001: { decision: Event append-only, reason: P010 immutable }
+  XAD-002: { decision: Topic-based routing, reason: subscriber filter }
+  XAD-003: { decision: Policy qua S012, reason: khong tu quyet }
+  XAD-004: { decision: Store tach Replay, reason: simulate/audit }

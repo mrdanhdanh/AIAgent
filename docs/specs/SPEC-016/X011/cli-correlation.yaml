@@ -1,0 +1,8 @@
+# SPEC-016 X011 - CLI Correlation
+---
+version: "1.0.0"
+correlation:
+  correlation_id: sinh khi Create
+  trace_id: Runtime (S011)
+  execution_id: Execution (SPEC-001)
+  mapping: cli-observability-mapping.yaml

@@ -1,0 +1,8 @@
+# SPEC-007 X013 - Artifact Governance Decisions
+---
+version: "1.0.0"
+decisions:
+  XDEC-001: { issue: Artifact co mutable khong, decision: Khong - immutable (P010), date: pending }
+  XDEC-002: { issue: Artifact co overwrite khong, decision: Khong - version moi, date: pending }
+  XDEC-003: { issue: Artifact co chua Business Data khong, decision: Khong - chi metadata, date: pending }
+  XDEC-004: { issue: Archive che do nao, decision: theo retention (S012), date: pending }

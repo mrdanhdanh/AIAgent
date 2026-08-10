@@ -1,0 +1,13 @@
+# SPEC-011 X014 - Doctor Registry (via SPEC-005)
+---
+version: "1.0.0"
+registry:
+  owner: Registry (SPEC-005)
+  entries: Doctor Definition (scanners, schemas, policies)
+  runtime_data: KHONG vao Registry (findings o Store)
+  entry_types:
+    - DoctorDefinition
+    - ScannerDefinition
+    - DoctorPolicy
+    - DoctorStateMachine
+  resolution: Registry resolve, Runtime thuc thi (RB004)

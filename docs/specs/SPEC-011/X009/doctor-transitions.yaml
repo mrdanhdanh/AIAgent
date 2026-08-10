@@ -1,0 +1,9 @@
+# SPEC-011 X009 - Doctor Transitions (5)
+---
+version: "1.0.0"
+transitions:
+  XTR-001: { from: XST-001, to: XST-002, event: DOCTOR_SCANNING, guard: Request hop le }
+  XTR-002: { from: XST-002, to: XST-003, event: DOCTOR_DIAGNOSED, guard: Scan xong + findings }
+  XTR-003: { from: XST-002, to: XST-006, event: DOCTOR_STATE_FAILED, guard: Scan fail }
+  XTR-004: { from: XST-003, to: XST-004, event: DOCTOR_SCORED, guard: Score tinh xong }
+  XTR-005: { from: XST-004, to: XST-005, event: DOCTOR_STATE_REPORTED, guard: Report xong }

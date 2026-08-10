@@ -1,0 +1,14 @@
+# SPEC-001 S018 - Evolution Validation
+# Doctor kiem tra.
+---
+version: "1.0"
+checks:
+  - Missing Evidence
+  - Unauthorized Source
+  - Missing Approval
+  - Breaking Change Without Approval
+  - Invalid Proposal
+  - Apply Khong Qua Registry
+result:
+  - Valid: Evolution an toan, co duy vet.
+  - Invalid: Proposal bi chan, co Invalid Audit (S013).

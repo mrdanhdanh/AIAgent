@@ -1,0 +1,6 @@
+# SPEC-016 X005 - CLI Domain Model
+---
+version: "1.0.0"
+domain:
+  entities: [CLI, Widget, Panel, CLIView, CLIFilter]
+  logic_layer: Engine Layer

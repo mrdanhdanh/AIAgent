@@ -1,0 +1,14 @@
+# SPEC-001 S010 — Execution Transitions v4 (tham chieu S009)
+# Flow khong dinh nghia state moi. Stage nam trong ST-004 (Running) khong co
+# transition event S009 (P005: moi Transition sinh Event) — ghi "—".
+---
+version: "1.0"
+transitions:
+  - { stage: Initialize, state: ST-001, event: EXECUTION_CREATED }
+  - { stage: Validate, state: ST-002, event: EXECUTION_VALIDATING }
+  - { stage: Prepare, state: ST-003, event: EXECUTION_PREPARED }
+  - { stage: Execute, state: ST-004, event: EXECUTION_STARTED }
+  - { stage: Coordinate, state: ST-004, event: — }
+  - { stage: Finalize, state: ST-004, event: — }
+  - { stage: Complete, state: ST-008, event: EXECUTION_COMPLETED }
+note: Moi stage anh xa state S009, khong dinh nghia state moi.

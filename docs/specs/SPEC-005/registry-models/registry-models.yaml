@@ -1,0 +1,46 @@
+# SPEC-005 Appendix — Registry Canonical Models (8 RM)
+---
+version: "1.0.0"
+status: Draft
+aggregate_root: RegistryEntry
+models:
+  RM-001:
+    name: RegistryEntry
+    kind: Root
+    description: Entry la Aggregate Root cua Registry
+    immutable: false
+  RM-002:
+    name: EntryMetadata
+    kind: Entity
+    description: Metadata cua Entry
+    immutable: true
+  RM-003:
+    name: EntryVersion
+    kind: Entity
+    description: Version Entry (SemVer)
+    immutable: true
+  RM-004:
+    name: EntryDomain
+    kind: Value
+    description: Domain cua Entry
+    immutable: true
+  RM-005:
+    name: EntryOwner
+    kind: Value
+    description: Owner cua Entry
+    immutable: true
+  RM-006:
+    name: EntryReference
+    kind: Value
+    description: Reference giua cac Entry
+    immutable: true
+  RM-007:
+    name: ResolutionResult
+    kind: Entity
+    description: Ket qua resolution
+    immutable: true
+  RM-008:
+    name: RegistrySnapshot
+    kind: Entity
+    description: Snapshot metadata
+    immutable: true

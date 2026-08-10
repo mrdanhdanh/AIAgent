@@ -1,0 +1,9 @@
+# SPEC-014 X016 - Dashboard Compliance Report
+---
+version: "1.0.0"
+report:
+  scope: [X001..X020]
+  format: markdown + JSON
+  frequency: moi thay doi SPEC-014
+  content: [score, violations, evidence, actions]
+  # tool: spec014-validator.ps1

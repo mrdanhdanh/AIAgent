@@ -1,0 +1,17 @@
+# SPEC-007 X006 - Artifact Component Model
+---
+version: "1.0.0"
+component_model:
+  XCP-001: { name: ArtifactApi, layer: Core }
+  XCP-002: { name: LifecycleOrchestrator, layer: Core }
+  XCP-003: { name: ArtifactStateMachine, layer: Core }
+  XCP-004: { name: ChecksumEngine, layer: Core }
+  XCP-005: { name: ArtifactValidator, layer: Core }
+  XCP-006: { name: PolicyGuard, layer: Guard }
+  XCP-007: { name: ArtifactStore, layer: Core }
+  XCP-008: { name: ArtifactIndexer, layer: Data }
+  XCP-009: { name: ArtifactEvents, layer: Data }
+  XCP-010: { name: ArtifactMetrics, layer: Data }
+  XCP-011: { name: RegistryClient, layer: Integration }
+  XCP-012: { name: Archiver, layer: Data }
+rule: Component chi goi qua interface (X007).

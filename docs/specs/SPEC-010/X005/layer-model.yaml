@@ -1,0 +1,9 @@
+# SPEC-010 X005 - Plugin Layer Model (5)
+---
+version: "1.0.0"
+layers:
+  XAL-001: { name: API Layer, role: Plugin API (install, validate, enable, disable, uninstall) }
+  XAL-002: { name: Engine Layer, role: Lifecycle Orchestrator + State Machine (X009) }
+  XAL-003: { name: Guard Layer, role: Policy Evaluator (S012) + Validator + Sandbox Enforcer }
+  XAL-004: { name: Store Layer, role: Plugin Store + Manifest Index }
+  XAL-005: { name: Integration, role: Registry (SPEC-005) + Exports (SPEC-003/004) + Events (S011) }

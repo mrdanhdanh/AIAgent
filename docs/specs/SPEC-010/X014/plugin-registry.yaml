@@ -1,0 +1,13 @@
+# SPEC-010 X014 - Plugin Registry (via SPEC-005)
+---
+version: "1.0.0"
+registry:
+  owner: Registry (SPEC-005)
+  entries: Plugin Definition (schemas, state machine, policies)
+  runtime_data: KHONG vao Registry (Plugin o Store)
+  entry_types:
+    - PluginDefinition
+    - PluginSchema
+    - PluginPolicy
+    - PluginStateMachine
+  resolution: Registry resolve, Runtime thuc thi (RB004)

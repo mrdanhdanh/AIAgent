@@ -1,0 +1,89 @@
+# SPEC-001 S011 - Execution Observability
+# Quan sat Execution: Event/Metrics/Trace/Audit/Health.
+# Khong mo ta implementation/framework/tool/protocol.
+---
+id: SPEC-001-S011
+name: Execution Observability
+version: "1.0.0"
+status: Approved
+owner: Runtime Team
+philosophy:
+  - Runtime luon Observable.
+  - Khong co Execution "an".
+  - Moi hoat dong deu truy vet duoc.
+  - Quan sat khong lam thay doi Execution.
+principles:
+  - Event Driven
+  - Traceable
+  - Immutable
+  - Correlation First
+  - Metadata First
+  - Append Only
+domains:
+  - Events
+  - Metrics
+  - Trace
+  - Audit
+  - Health
+boundary:
+  observes:
+    - Execution
+    - State
+    - Context
+    - Event
+    - Artifact Metadata
+    - Metrics
+    - Trace
+  not_observes:
+    - Business Data
+    - User Data
+    - Knowledge Content
+    - Agent Internal State
+    - Plugin Internal State
+correlation_model:
+  fields: [execution_id, correlation_id, lineage_id, parent_id]
+  rules:
+    - Sinh khi Execution Created.
+    - Gan vao: Event, Metrics, Trace, Audit.
+    - Khong doi trong vong doi (P010).
+doctor_checks:
+  - Missing Event
+  - Missing Metrics
+  - Broken Trace
+  - Broken Lineage
+  - Invalid Audit
+evolution_integration:
+  - "Evolution chi doc: Event, Metrics, Trace, Audit."
+  - Evolution khong doc implementation.
+machine_readable:
+  - observability.yaml
+  - events.yaml
+  - metrics.yaml
+  - traces.yaml
+  - audit.yaml
+  - health.yaml
+  - dashboard.yaml
+  - correlation.yaml
+  - lineage.yaml
+  - observability-mapping.yaml
+  - observability.schema.json
+success_criteria:
+  - Moi Execution deu quan sat duoc.
+  - Moi Transition deu sinh Event.
+  - Moi Execution deu co Metrics.
+  - Moi Execution deu co Trace.
+  - Moi Execution deu Audit duoc.
+  - Dashboard va Doctor chi can doc machine-readable de dung toan bo trang thai Runtime.
+  - Khong phu thuoc bat ky nen tang quan sat cu the nao.
+  - Moi Event deu truy vet duoc toi Execution.
+  - Moi Metrics deu gan voi Execution hoac Runtime.
+  - Moi Trace deu co Correlation va Lineage.
+  - Audit luon append-only.
+  - Health duoc xac dinh tu Observability Data.
+traceability:
+  - Execution
+  - State
+  - Event
+  - Metrics
+  - Trace
+  - Audit

@@ -1,0 +1,8 @@
+# SPEC-012 X020 - Simulation Dashboard Config
+---
+version: "1.0.0"
+config:
+  refresh: 60s (default)
+  theme: S011 dashboard theme
+  filters: [scan_id, domain, severity, time_range]
+  export: JSON

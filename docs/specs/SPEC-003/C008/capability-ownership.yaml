@@ -1,0 +1,10 @@
+# SPEC-003 C008 - Capability Ownership
+---
+version: "1.0.0"
+ownership:
+  Capability: Capability Team
+  CapabilityDefinition: Capability Team
+  CapabilityMapping: Capability Team
+  CapabilityBinding: Capability Team
+  CapabilityResult: Capability Team
+  Agent (SPEC-004): Agent

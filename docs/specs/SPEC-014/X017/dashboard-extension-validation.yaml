@@ -1,0 +1,9 @@
+# SPEC-014 X017 - Dashboard Extension Validation
+---
+version: "1.0.0"
+validation:
+  - extension co schema.json
+  - extension khong pha vo invariants (X008)
+  - extension co test (Dashboard Test)
+  - extension co doc
+  - kiem tra bang Dashboard X019

@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aios://context-policies.schema.json",
+  "title": "SPEC-006 Context Policies (X012)",
+  "type": "object",
+  "properties": {
+    "schema": { "const": "context-policies" },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "policy_id": { "type": "string", "pattern": "^XPOL-[0-9]{3}$" }
+  },
+  "required": [ "schema", "version" ],
+  "additionalProperties": true
+}

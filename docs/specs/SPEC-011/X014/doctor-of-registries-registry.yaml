@@ -1,0 +1,11 @@
+# SPEC-011 X014 - Doctor Registry of Registries
+---
+version: "1.0.0"
+registries:
+  registry: SPEC-005
+  doctor_sections:
+    - X008 data model
+    - X009 state machine
+    - X012 policies
+    - X014 this
+  note: Registry KHONG chua runtime findings.

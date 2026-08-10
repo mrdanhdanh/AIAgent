@@ -1,0 +1,8 @@
+# SPEC-012 X008 - Simulation Identity
+---
+version: "1.0.0"
+identity:
+  simulation_id: UUID (generated at Define)
+  execution_id: UUID (from Execution)
+  scenario: 6 types enum
+identity_scope: Execution-scoped (never global)

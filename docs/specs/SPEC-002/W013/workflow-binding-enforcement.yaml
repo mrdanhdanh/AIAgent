@@ -1,0 +1,12 @@
+# SPEC-002 W013 - Workflow Policy Binding Enforcement
+# Tham chieu W012 (define binding) - o day chi enforce.
+---
+version: "1.0"
+enforcement:
+  - Resolve binding (W012 WP013)
+  - Validate binding (W012 WP014)
+  - Apply (S013 enforce)
+  - Audit (S011)
+rules:
+  - Chi enforce binding Active (W012 WP002B).
+  - Binding Invalid -> Workflow khong chay (Validation Failure).

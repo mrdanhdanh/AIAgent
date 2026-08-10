@@ -1,0 +1,12 @@
+# SPEC-001 S019 - Doctor Pipeline
+---
+version: "1.0.0"
+pipeline:
+  - Collect (machine-readable)
+  - Validate (checks per domain)
+  - Score (health - S016 CM006)
+  - Report (doctor-report)
+  - Repair (neu an toan, self-repair)
+rules:
+  - Moi lan chay sinh DOCTOR_RUN + Audit (S011).
+  - Ket qua deterministic - cung trang thai, cung ket qua.

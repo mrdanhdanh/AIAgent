@@ -1,0 +1,8 @@
+# SPEC-007 X018 - Artifact Migration
+---
+version: "1.0.0"
+migration:
+  - Upgrade: bo sung field/type (backward)
+  - Downgrade: giu field cu (compat)
+  - Breaking: can ADR + RFC + migration doc
+  - Runtime Artifact: KHONG migrate - tao version moi (P004)

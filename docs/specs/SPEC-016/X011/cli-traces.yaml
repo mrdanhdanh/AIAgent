@@ -1,0 +1,11 @@
+# SPEC-016 X011 - CLI Traces
+---
+version: "1.0.0"
+traces:
+  - CLI.Create
+  - CLI.Render
+  - CLI.run
+  - CLI.Compose
+  - CLI.Filter
+  - CLI.Export
+span_attrs: [CLI_id, execution_id, scenario, domain]

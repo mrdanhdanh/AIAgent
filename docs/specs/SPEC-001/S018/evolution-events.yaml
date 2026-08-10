@@ -1,0 +1,10 @@
+# SPEC-001 S018 - Evolution Events
+# S018 dinh nghia 5 event types rieng (EV011) — S011 cung cap event model (fields, correlation_id).
+---
+version: "1.0"
+event_types:
+  - EVOLUTION_PROPOSED
+  - EVOLUTION_APPROVED
+  - EVOLUTION_REJECTED
+  - EVOLUTION_APPLIED
+  - EVOLUTION_ROLLED_BACK

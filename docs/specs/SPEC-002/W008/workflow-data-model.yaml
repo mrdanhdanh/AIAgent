@@ -1,0 +1,50 @@
+# SPEC-002 W008 — Workflow Data Model
+# Canonical Data Model — Single Source of Truth (P009).
+---
+version: "1.0"
+status: Draft
+frozen: false
+aggregate_root: Workflow
+aggregate_rules:
+  - Workflow la Aggregate Root duy nhat.
+  - "Workflow owns: [Definition, Context, Result, Events, Metrics]"
+  - "Workflow references: [Execution (S008), Capability, Registry Entry]"
+  - Ownership va Reference khac nhau - khong nham lan.
+classification:
+  Workflow Data: [Definition Data, Execution Data]
+  Definition Data: [WorkflowDefinition, WorkflowStep, Branch, Gate, Version]
+  Execution Data: [WorkflowContext, WorkflowResult]
+  Transient: [WorkflowContext]
+  Persistent Metadata: [WorkflowResult, Events, Metrics, Trace, Lineage]
+  Reference Data: [Execution Ref (S008), Capability Ref, Registry Entry (S014)]
+  not_manages: [Business Data, Knowledge, Plugin Data, User Data]
+invariants:
+  - Workflow co dung mot Definition.
+  - Definition co it nhat mot Step.
+  - WorkflowContext isolated.
+  - WorkflowResult immutable.
+  - Event khong thay doi.
+  - Workflow ID toan cuc.
+  - Workflow luon co Owner.
+  - Workflow luon co Version.
+  - Workflow luon co Lifecycle.
+  - Workflow khong doi Identity.
+  - Definition khong doi khi Published.
+  - Step khong doi sau Published.
+consistency:
+  levels: [Definition Consistency, Context Consistency, Result Consistency]
+  rules:
+    - Definition luon hop le (validate truoc khi chay).
+    - Context khong bi chia se.
+    - Result luon immutable.
+    - Metrics chi append.
+    - Event chi append.
+dependencies:
+  - Workflow → Execution (S008)
+  - Workflow → Definition
+  - Definition → Step
+  - Step → Branch
+  - Step → Gate
+  - Workflow → Context
+  - Workflow → Result
+  # note: Khong dependency nguoc.

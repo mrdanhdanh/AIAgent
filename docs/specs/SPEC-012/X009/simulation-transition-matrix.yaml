@@ -1,0 +1,10 @@
+# SPEC-012 X009 - Simulation Transition Matrix
+---
+version: "1.0.0"
+matrix:
+  XST-001: [XST-002]
+  XST-002: [XST-003, XST-006]
+  XST-003: [XST-004]
+  XST-004: [XST-005]
+  XST-005: []
+  XST-006: []

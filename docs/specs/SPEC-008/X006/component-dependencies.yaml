@@ -1,0 +1,16 @@
+# SPEC-008 X006 - Event Component Dependencies
+---
+version: "1.0.0"
+dependencies:
+  XCP-001 -> Engine
+  XCP-002 -> Router, Store
+  XCP-003 -> S009
+  XCP-004 -> X008
+  XCP-005 -> S012
+  XCP-006 -> Store
+  XCP-007 -> Store
+  XCP-008 -> Store
+  XCP-009 -> Store
+  XCP-010 -> S011
+  XCP-011 -> SPEC-005
+  XCP-012 -> Store

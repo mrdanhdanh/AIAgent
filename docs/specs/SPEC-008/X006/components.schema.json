@@ -1,0 +1,5 @@
+{
+  "schema": "event-components",
+  "version": "1.0.0",
+  "component_id": { "type": "string", "pattern": "^XCP-[0-9]{3}$" }
+}

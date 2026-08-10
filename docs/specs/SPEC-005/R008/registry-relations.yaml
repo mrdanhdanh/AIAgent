@@ -1,0 +1,10 @@
+# SPEC-005 R008 - Registry Relations
+---
+version: "1.0.0"
+relations:
+  Entry 1-1 Metadata
+  Entry 1-N Version
+  Entry 1-N Domain
+  Entry 1-1 Owner
+  Entry 1-N Reference
+  Entry 1-1 ResolutionResult

@@ -1,0 +1,12 @@
+# SPEC-003 C011 - Capability Dashboard (S011 OB010 reuse)
+---
+version: "1.0.0"
+reads:
+  - Capability Events
+  - Capability Metrics
+  - Capability Trace
+  - Capability Audit
+  - Health (S011)
+rules:
+  - Dashboard chi doc (S011).
+  - Khong doc implementation.

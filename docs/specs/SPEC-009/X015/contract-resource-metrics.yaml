@@ -1,0 +1,9 @@
+# SPEC-009 X015 - Contract Resource Metrics
+---
+version: "1.0.0"
+metrics:
+  - contract_storage_bytes
+  - contract_version_count
+  - contract_resource_leaked_total
+  - contract_quota_exceeded_total
+  - contract_verify_latency_seconds

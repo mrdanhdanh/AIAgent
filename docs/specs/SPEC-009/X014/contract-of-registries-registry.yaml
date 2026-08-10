@@ -1,0 +1,11 @@
+# SPEC-009 X014 - Contract Registry of Registries
+---
+version: "1.0.0"
+registries:
+  registry: SPEC-005
+  contract_sections:
+    - X008 data model
+    - X009 state machine
+    - X012 policies
+    - X014 this
+  note: Registry KHONG chua runtime Contract content.

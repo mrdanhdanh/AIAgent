@@ -1,0 +1,9 @@
+# SPEC-012 X016 - Simulation Compliance Report
+---
+version: "1.0.0"
+report:
+  scope: [X001..X020]
+  format: markdown + JSON
+  frequency: moi thay doi SPEC-012
+  content: [score, violations, evidence, actions]
+  # tool: spec012-validator.ps1

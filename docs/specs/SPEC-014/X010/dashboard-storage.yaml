@@ -1,0 +1,8 @@
+# SPEC-014 X010 - Dashboard Storage
+---
+version: "1.0.0"
+storage:
+  mode: View store (P005)
+  lifecycle: Create -> Export archive
+  snapshot: optional (debug)
+  quota: theo policy (X012)

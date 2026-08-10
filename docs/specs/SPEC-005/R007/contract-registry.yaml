@@ -1,0 +1,14 @@
+# SPEC-005 R007 - Contract Registry
+---
+version: "1.0.0"
+registries:
+  - contracts.yaml
+  - contract-model.yaml
+  - contract-categories.yaml
+  - contract-types.yaml
+  - contract-compatibility.yaml
+  - contract-mapping.yaml
+  - contract-quality.yaml
+  - contract-anti-patterns.yaml
+  - communication-matrix.yaml
+  - contracts.schema.json

@@ -1,0 +1,7 @@
+# SPEC-006 Appendix - Context Model Relationships
+---
+version: "1.0.0"
+relationships:
+  Context: [ContextMetadata, ContextScope, ContextOwner, ContextValue, ContextReference, ContextResult]
+  ContextMetadata: [ContextValue]
+  ContextResult: [ContextSnapshot]

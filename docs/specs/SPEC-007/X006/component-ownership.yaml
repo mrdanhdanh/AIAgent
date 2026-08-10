@@ -1,0 +1,7 @@
+# SPEC-007 X006 - Artifact Component Ownership
+---
+version: "1.0.0"
+ownership:
+  Artifact Team: XCP-001..012
+  Runtime: S011 components (events/metrics)
+  Agent: khong so huu component

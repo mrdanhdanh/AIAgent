@@ -1,0 +1,4 @@
+# SPEC-004 A017 - Extension Categories
+---
+version: "1.0.0"
+categories: [Agent Type Extension, Binding Extension, Mapping Extension, Orchestration Extension, Compatibility Extension]

@@ -1,0 +1,8 @@
+# SPEC-015 X009 - SDK Transition Guards
+---
+version: "1.0.0"
+guards:
+  XGD-001: { transition: XTR-002, condition: S011 metrics kha dung }
+  XGD-002: { transition: XTR-004, condition: Filter hop le }
+  XGD-003: { transition: XTR-005, condition: Retention het han (S012) }
+guard_fail: transition bi chan + error SDK_GUARD

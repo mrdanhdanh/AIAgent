@@ -1,0 +1,9 @@
+# SPEC-005 R019 - Registry Doctor Pipeline
+---
+version: "1.0.0"
+pipeline:
+  - Collect (machine-readable)
+  - Validate (checks per domain)
+  - Score (health - R016)
+  - Report (registry-doctor-report)
+  - Repair (neu an toan, self-repair)

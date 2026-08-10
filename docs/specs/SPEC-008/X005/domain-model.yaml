@@ -1,0 +1,6 @@
+# SPEC-008 X005 - Event Domain Model
+---
+version: "1.0.0"
+domain:
+  entities: [Event, EventStream, Subscription, Topic, EventLineage]
+  logic_layer: Engine Layer

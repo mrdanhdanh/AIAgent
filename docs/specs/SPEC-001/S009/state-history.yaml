@@ -1,0 +1,9 @@
+# SPEC-001 S009 — State History
+# Replay va Doctor can.
+---
+version: "1.0.0"
+model:
+  summary: Current State + State History
+  history_rule: "History: immutable (append-only)"
+  entries: [state_id, entered_at, exited_at, trigger, event, duration]
+  storage: Execution Lineage (ENT-014)

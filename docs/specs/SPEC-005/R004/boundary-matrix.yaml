@@ -1,0 +1,6 @@
+# SPEC-005 R004 - Boundary Matrix
+---
+version: "1.0.0"
+matrix:
+  Critical: [RB001-declaration, RB002-storage, RB003-validation, RB004-resolution, RB007-ownership, RB009-governance]
+  High: [RB005-interface, RB006-dependency, RB008-policy]

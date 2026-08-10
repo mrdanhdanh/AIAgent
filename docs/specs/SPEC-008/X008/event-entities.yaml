@@ -1,0 +1,19 @@
+# SPEC-008 X008 - Event Entities (15 ENT)
+---
+version: "1.0.0"
+entities:
+  ENT-X001: { name: Event, kind: AggregateRoot, owner: Event Bus, immutable: true }
+  ENT-X002: { name: EventDefinition, kind: Entity, owner: Event Bus, immutable: true }
+  ENT-X003: { name: EventStream, kind: Entity, owner: Event Bus, immutable: true }
+  ENT-X004: { name: EventMetadata, kind: Entity, owner: Event Bus, immutable: true }
+  ENT-X005: { name: EventLineage, kind: Value, owner: Event Bus, immutable: true }
+  ENT-X006: { name: EventState, kind: Transient, owner: Event Bus, immutable: false }
+  ENT-X007: { name: Subscription, kind: Entity, owner: Event Bus, immutable: false }
+  ENT-X008: { name: EventMetric, kind: Ref (S011), owner: Runtime, immutable: true }
+  ENT-X009: { name: EventSnapshot, kind: Entity, owner: Event Bus, immutable: false }
+  ENT-X010: { name: ExecutionRef, kind: Ref (SPEC-001), owner: Execution, immutable: true }
+  ENT-X011: { name: ProducerRef, kind: Ref (SPEC-004/002), owner: Agent/Task, immutable: true }
+  ENT-X012: { name: SubscriberRef, kind: Ref (SPEC-004), owner: Agent, immutable: true }
+  ENT-X013: { name: PolicyRef, kind: Ref (S012), owner: Runtime, immutable: true }
+  ENT-X014: { name: Topic, kind: Value, owner: Event Bus, immutable: true }
+  ENT-X015: { name: EventExtension, kind: Value, owner: Event Bus, immutable: true }

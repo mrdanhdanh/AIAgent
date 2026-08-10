@@ -113,6 +113,22 @@ phases:
       backup_workflow_id: string
     expected_result: Backup manifest duoc tao tai .opencode/backup/<WF-ID>/.
 
+  - id: governance_check
+    title: Kiem tra governance truoc build
+    description: Governance gate - check naming, lifecycle, approval, security, compliance, audit (GOV-001..007).
+    agent: guardian
+    command: team-gitguard
+    depends_on: [backup]
+    retry: 3
+    timeout_seconds: 120
+    continue_on_error: false
+    inputs:
+      plan: object
+    outputs:
+      status: string
+      checks:
+        - string
+    expected_result: PASS/WARNING/BLOCKED dua tren governance checks.
   - id: build
     title: Thuc thi code
     description: Builder thuc hien cac buoc thay doi code theo ke hoach.

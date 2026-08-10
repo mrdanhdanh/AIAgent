@@ -1,0 +1,5 @@
+{
+  "schema": "plugin-registry",
+  "version": "1.0",
+  "entry_types": ["PluginDefinition","PluginSchema","PluginPolicy","PluginStateMachine"]
+}

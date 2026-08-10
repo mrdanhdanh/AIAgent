@@ -1,0 +1,14 @@
+# SPEC-011 X011 - Doctor Metrics
+---
+version: "1.0.0"
+metrics:
+  - doctor_scans_total
+  - doctor_reports_total
+  - doctor_failed_total
+  - doctor_repairs_total
+  - doctor_findings_total
+  - doctor_score_current
+  - doctor_scan_duration_seconds
+  - doctor_repair_latency_seconds
+  - doctor_coverage_pct
+labels: [scan_id, state, execution_id, domain]

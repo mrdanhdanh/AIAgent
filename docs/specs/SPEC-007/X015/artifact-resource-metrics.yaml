@@ -1,0 +1,9 @@
+# SPEC-007 X015 - Artifact Resource Metrics
+---
+version: "1.0.0"
+metrics:
+  - artifact_storage_bytes
+  - artifact_index_entries
+  - artifact_resource_leaked_total
+  - artifact_quota_exceeded_total
+  - artifact_archive_latency_seconds

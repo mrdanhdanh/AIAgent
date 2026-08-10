@@ -1,0 +1,9 @@
+# SPEC-007 X012 - Timeout Binding
+---
+version: "1.0.0"
+timeout_binding:
+  create_timeout: 500ms (default)
+  checksum_timeout: 1s (default)
+  publish_timeout: 1s (default)
+  archive_timeout: 500ms (default)
+  note: cau hinh qua Policy S012, khong hardcode

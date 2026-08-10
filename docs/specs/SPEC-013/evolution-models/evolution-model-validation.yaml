@@ -1,0 +1,7 @@
+# SPEC-013 Appendix - Evolution Model Validation
+---
+version: "1.0.0"
+validation:
+  - Model co schema
+  - Immutable model khong doi
+  - Aggregate Root doc nhat

@@ -1,0 +1,6 @@
+# SPEC-015 X005 - SDK Domain Model
+---
+version: "1.0.0"
+domain:
+  entities: [SDK, Client, Binding, SDKView, SDKFilter]
+  logic_layer: Engine Layer

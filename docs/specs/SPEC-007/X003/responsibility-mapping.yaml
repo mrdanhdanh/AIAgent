@@ -1,0 +1,8 @@
+# SPEC-007 X003 - Artifact Responsibility Mapping
+---
+version: "1.0.0"
+mapping:
+  XRR-001..006: Artifact Store core ops
+  XRR-007: consume qua API, read-only
+  XRR-010..012, XRR-014: Runtime/Policy integration
+  XRR-013: Registry (SPEC-005)

@@ -1,0 +1,359 @@
+# SPEC-012 X002 - Simulation Requirements
+---
+id: SPEC-012-X002
+name: Simulation Requirements
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Simulation Team
+functional:
+  XFR-001:
+    title: Define Scenario
+    description: dinh nghia scenario (6 types)
+    priority: Critical
+    category: Core
+    owner: Simulation
+    status: Draft
+    source: [P005, RULE-007]
+    rules: [RULE-007]
+    verification: [Simulation Test, Doctor]
+  XFR-002:
+    title: Configure Simulation
+    description: cau hinh thong so simulation
+    priority: Critical
+    category: Core
+    owner: Simulation
+    status: Draft
+    source: [P005, RULE-007]
+    rules: [RULE-007]
+    verification: [Simulation Test, Doctor]
+  XFR-003:
+    title: Run Simulation
+    description: chay simulation isolated
+    priority: Critical
+    category: Core
+    owner: Simulation
+    status: Draft
+    source: [P005, RULE-007]
+    rules: [RULE-007]
+    verification: [Simulation Test, Doctor]
+  XFR-004:
+    title: Observe Result
+    description: quan sat ket qua simulation
+    priority: Critical
+    category: Core
+    owner: Simulation
+    status: Draft
+    source: [P005, RULE-007]
+    rules: [RULE-007]
+    verification: [Simulation Test, Doctor]
+  XFR-005:
+    title: Compare Expectation
+    description: so sanh voi ky vong
+    priority: Critical
+    category: Core
+    owner: Simulation
+    status: Draft
+    source: [P005, RULE-007]
+    rules: [RULE-007]
+    verification: [Simulation Test, Doctor]
+  XFR-006:
+    title: Report Simulation
+    description: tao report (success rate + issues)
+    priority: High
+    category: Core
+    owner: Simulation
+    status: Draft
+    source: [P005, RULE-007]
+    rules: [RULE-007]
+    verification: [Simulation Test, Doctor]
+  XFR-007:
+    title: Simulate Bug Fix
+    description: mo phong scenario Bug Fix
+    priority: High
+    category: Execution
+    owner: Simulation
+    status: Draft
+    source: [P005, RULE-007]
+    rules: [RULE-007]
+    verification: [Simulation Test, Doctor]
+  XFR-008:
+    title: Simulate New Feature
+    description: mo phong scenario New Feature
+    priority: High
+    category: Execution
+    owner: Simulation
+    status: Draft
+    source: [P005, RULE-007]
+    rules: [RULE-007]
+    verification: [Simulation Test, Doctor]
+  XFR-009:
+    title: Simulate Migration
+    description: mo phong scenario Migration
+    priority: High
+    category: Execution
+    owner: Simulation
+    status: Draft
+    source: [P005, RULE-007]
+    rules: [RULE-007]
+    verification: [Simulation Test, Doctor]
+  XFR-010:
+    title: Simulate Review
+    description: mo phong scenario Review
+    priority: High
+    category: Execution
+    owner: Simulation
+    status: Draft
+    source: [P005, RULE-007]
+    rules: [RULE-007]
+    verification: [Simulation Test, Doctor]
+  XFR-011:
+    title: Simulate Testing
+    description: mo phong scenario Testing
+    priority: High
+    category: Execution
+    owner: Simulation
+    status: Draft
+    source: [P005, RULE-007]
+    rules: [RULE-007]
+    verification: [Simulation Test, Doctor]
+  XFR-012:
+    title: Simulate Refactoring
+    description: mo phong scenario Refactoring
+    priority: High
+    category: Execution
+    owner: Simulation
+    status: Draft
+    source: [P005, RULE-007]
+    rules: [RULE-007]
+    verification: [Simulation Test, Doctor]
+  XFR-013:
+    title: Track Simulation
+    description: theo doi lifecycle (S011)
+    priority: High
+    category: Observability
+    owner: Simulation
+    status: Draft
+    source: [P005, RULE-007]
+    rules: [RULE-007]
+    verification: [Simulation Test, Doctor]
+  XFR-014:
+    title: Bind Policy
+    description: khai bao tham so Policy (S012 binding)
+    priority: High
+    category: Governance
+    owner: Simulation
+    status: Draft
+    source: [P005, RULE-007]
+    rules: [RULE-007]
+    verification: [Simulation Test, Doctor]
+  XFR-015:
+    title: Register Simulation
+    description: dang ky trong Registry (SPEC-005)
+    priority: Medium
+    category: Data
+    owner: Simulation
+    status: Draft
+    source: [P005, RULE-007]
+    rules: [RULE-007]
+    verification: [Simulation Test, Doctor]
+  XFR-016:
+    title: Audit Simulation
+    description: ghi audit moi lan chay (S011)
+    priority: High
+    category: Observability
+    owner: Simulation
+    status: Draft
+    source: [P005, RULE-007]
+    rules: [RULE-007]
+    verification: [Simulation Test, Doctor]
+non_functional:
+  XNF-001:
+    title: Isolated
+    description: Simulation khong doi he thong that
+    priority: Critical
+    category: Core
+    owner: Simulation
+    status: Draft
+    source: [P005]
+    rules: [RULE-007]
+  XNF-002:
+    title: Deterministic
+    description: cung input cung ket qua
+    priority: Critical
+    category: Core
+    owner: Simulation
+    status: Draft
+    source: [P005]
+    rules: [RULE-007]
+  XNF-003:
+    title: Replayable
+    description: replay qua Event log (RULE-007)
+    priority: Critical
+    category: Core
+    owner: Simulation
+    status: Draft
+    source: [P005]
+    rules: [RULE-007]
+  XNF-004:
+    title: Observable
+    description: moi simulation quan sat qua S011
+    priority: High
+    category: Observability
+    owner: Simulation
+    status: Draft
+    source: [P005]
+    rules: [RULE-007]
+  XNF-005:
+    title: Safe
+    description: khong tao Artifact production
+    priority: Critical
+    category: Core
+    owner: Simulation
+    status: Draft
+    source: [P005]
+    rules: [RULE-007]
+  XNF-006:
+    title: Compatible
+    description: backward compatible
+    priority: High
+    category: Data
+    owner: Simulation
+    status: Draft
+    source: [P005]
+    rules: [RULE-007]
+  XNF-007:
+    title: Recoverable
+    description: phuc hoi sau loi
+    priority: High
+    category: Core
+    owner: Simulation
+    status: Draft
+    source: [P005]
+    rules: [RULE-007]
+  XNF-008:
+    title: Testable
+    description: kiem thu tu dong
+    priority: High
+    category: Core
+    owner: Simulation
+    status: Draft
+    source: [P005]
+    rules: [RULE-007]
+  XNF-009:
+    title: Performant
+    description: dap ung target run time
+    priority: High
+    category: Observability
+    owner: Simulation
+    status: Draft
+    source: [P005]
+    rules: [RULE-007]
+  XNF-010:
+    title: Governed
+    description: chiu Governance (S013)
+    priority: Critical
+    category: Governance
+    owner: Simulation
+    status: Draft
+    source: [P005]
+    rules: [RULE-007]
+  XNF-011:
+    title: Reusable
+    description: Simulation pattern tai su dung
+    priority: Medium
+    category: Data
+    owner: Simulation
+    status: Draft
+    source: [P005]
+    rules: [RULE-007]
+  XNF-012:
+    title: Traceable
+    description: moi simulation truy vet (S011)
+    priority: High
+    category: Observability
+    owner: Simulation
+    status: Draft
+    source: [P005]
+    rules: [RULE-007]
+constraints:
+  XC-001:
+    name: No Production Change
+    type: Architectural
+    source: [RULE-007]
+    rules: [RULE-007]
+  XC-002:
+    name: No Business Data
+    type: Architectural
+    source: [P001]
+    rules: [RULE-001]
+  XC-003:
+    name: Deterministic Only
+    type: Architectural
+    source: [P013]
+    rules: [RULE-013]
+  XC-004:
+    name: No Redefine Workflow
+    type: Architectural
+    source: [P001]
+    rules: [RULE-004]
+  XC-005:
+    name: No Redefine Policy (S012)
+    type: Governance
+    source: [P015]
+    rules: [RULE-012]
+  XC-006:
+    name: Archive Before Delete
+    type: Governance
+    source: [P011]
+    rules: [RULE-007]
+assumptions:
+  XA-001: Scenario hop le (6 types)
+  XA-002: Execution ton tai (SPEC-001)
+  XA-003: Registry kha dung (SPEC-005)
+  XA-004: Runtime kha dung (SPEC-001)
+  note: Neu gia dinh sai, Simulation Engine chi bao loi, khong tu sua.
+dependencies:
+  logical:
+    - Constitution
+    - Runtime (SPEC-001)
+    - Workflow (SPEC-002)
+    - Registry (SPEC-005)
+    - Doctor (SPEC-011)
+  runtime_services:
+    - Event Store (S011)
+    - Metrics Collector (S011)
+external_interfaces:
+  Execution: Input
+  Workflow (SPEC-002): Simulate
+  Event (S011): Replay
+  Policy (S012): Apply
+quality_attributes:
+  Isolation:
+    target: "100%"
+    description: Khong doi he thong that
+  Determinism:
+    target: "100%"
+  Reliability:
+    target: "99.9%"
+  Traceability:
+    target: "100%"
+  Observability:
+    target: "100%"
+acceptance:
+  XAR-001:
+    description: Simulation Engine chay duoc 6 scenario types
+    related: [XFR-001, XFR-003, RULE-007]
+    verified_by: [Simulation Tests, Doctor]
+  XAR-002:
+    description: Simulation khong doi he thong that
+    related: [XC-001, RULE-007]
+    verified_by: [Simulation Tests, Doctor]
+  XAR-003:
+    description: Simulation deterministic
+    related: [XC-003, P013]
+    verified_by: [Doctor]
+  XAR-004:
+    description: Simulation khong chua Business Data
+    related: [XC-002, P001]
+    verified_by: [Doctor]

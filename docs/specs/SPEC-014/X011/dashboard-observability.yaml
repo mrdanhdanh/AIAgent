@@ -1,0 +1,9 @@
+# SPEC-014 X011 - Dashboard Observability Model
+---
+version: "1.0.0"
+observability:
+  logs: Dashboard Engine logs (structured)
+  events: DASHBOARD_* (S011 Event Store)
+  metrics: DASHBOARD_* (prometheus)
+  traces: trace_id + correlation_id (S011)
+boundary: Dashboard la observable (RULE-014)

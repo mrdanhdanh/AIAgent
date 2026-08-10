@@ -74,3 +74,18 @@ next_action: "Sửa an toàn sau khi xác nhận phạm vi ảnh hưởng"
 
 - Xem thêm: `.opencode/skills/impact-analyzer/SKILL.md`
 - Xem thêm: `.opencode/skills/dependency-analyzer/SKILL.md`
+
+## Flags:
+
+| Flag | Y nghia |
+|------|---------|
+| `--api` | Chi affected API |
+| `--screen` | Chi affected screens |
+| `--test` | Chi affected tests |
+| `--all` | Toan bo affected |
+
+## Output Contract
+
+- **Output**: affected list (API/Screen/Test/Model) + severity.
+- **Format**: markdown.
+

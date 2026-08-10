@@ -1,0 +1,10 @@
+# SPEC-008 X012 - Event Policy Categories
+---
+version: "1.0.0"
+categories:
+  Integrity: [XPOL-001, XPOL-002, XPOL-003]
+  Data: [XPOL-005, XPOL-010]
+  Delivery: [XPOL-004, XPOL-008]
+  Lifecycle: [XPOL-006]
+  Resource: [XPOL-007]
+  Audit: [XPOL-009]

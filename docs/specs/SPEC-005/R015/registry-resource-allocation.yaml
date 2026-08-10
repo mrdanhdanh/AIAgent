@@ -1,0 +1,11 @@
+# SPEC-005 R015 - Registry Resource Allocation (S015 RS006)
+---
+version: "1.0.0"
+flow:
+  - Request (registry resolution)
+  - Binding Check (R012 RPB-004 -> POL-RES-001)
+  - Allocate (S015 qua Runtime)
+  - Bind to Entry
+  - Track (S011)
+rules:
+  - Khong Double Allocation (S015).

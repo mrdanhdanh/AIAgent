@@ -1,0 +1,13 @@
+# SPEC-003 C016 - Capability Health Score (S016 CM006)
+---
+version: "1.0.0"
+levels: [Healthy, Degraded, Unhealthy]
+sources:
+  - Capability Execution (S009)
+  - Resource (C015)
+  - Event (C011)
+  - Metrics (C011)
+  - Policy (S012)
+rules:
+  - CRITICAL violation -> Unhealthy.
+  - Chi warning -> Degraded.

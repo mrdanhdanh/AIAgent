@@ -1,0 +1,6 @@
+# SPEC-004 A006 - Component Lifecycle
+---
+version: "1.0.0"
+lifecycles:
+  runtime: [Defined, Initialized, Ready, Active, Stopping, Disposed]
+  agent: [Idle, Assigned, Running, Completed]

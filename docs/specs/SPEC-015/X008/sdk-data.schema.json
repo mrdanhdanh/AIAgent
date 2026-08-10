@@ -1,0 +1,7 @@
+{
+  "schema": "SDK-data-model",
+  "version": "1.0",
+  "SDKId": { "type": "string", "format": "uuid" },
+  "widgets": { "type": "array" },
+  "required": [ "SDKId", "widgets", "panels", "timestamp" ]
+}

@@ -1,0 +1,137 @@
+# SPEC-001 S014 - Runtime Registry
+# SSOT cho Runtime Metadata. Khong mo ta database/storage/API/implementation.
+---
+id: SPEC-001-S014
+name: Runtime Registry
+version: "1.0.0"
+status: Approved
+owner: Runtime Team
+philosophy:
+  - Registry la SSOT cho Runtime Metadata.
+  - Runtime khong hardcode bat ky Capability hay Plugin nao.
+  - Moi Resolution deu di qua Registry.
+  - Registry khong chua Business Logic.
+principles:
+  - Metadata First
+  - Contract First
+  - Versioned
+  - Discoverable
+  - Immutable (Published)
+  - Traceable
+categories:
+  - Capability Registry
+  - Workflow Registry
+  - Contract Registry
+  - Component Registry
+  - Policy Registry
+  - Plugin Registry
+  - Agent Registry
+  - Schema Registry
+  - Template Registry
+domains:
+  - Runtime Domain
+  - Workflow Domain
+  - Capability Domain
+  - Plugin Domain
+  - Policy Domain
+  - Schema Domain
+entry_model:
+  fields: [id, type, category, version, status, owner, references, compatibility, lifecycle, metadata]
+ownership:
+  Capability: Runtime
+  Contract: Runtime
+  Policy: Runtime
+  Workflow: Runtime
+  Plugin: Runtime
+  Agent: Runtime
+lifecycle: [Draft, Published, Deprecated, Retired]
+governance:
+  - Published
+  - Immutable
+  - Governance (S013)
+  - Deprecated
+  - Retired
+constraints:
+  - Khong Duplicate ID.
+  - Khong Duplicate Version.
+  - Khong Broken Reference.
+  - Khong Circular Reference.
+  - Khong Orphan Entry.
+  - Khong Multiple Active Version.
+  - Khong Invalid Metadata.
+resolution:
+  - Request
+  - Normalize
+  - Lookup
+  - Candidate Selection
+  - Compatibility Check
+  - Policy Check
+  - Governance Check
+  - Resolved
+resolution_rules:
+  - Resolve theo ID.
+  - Nhieu Version -> ap dung Resolution Priority.
+  - Khong Resolve Entry Deprecated neu co ban Active.
+  - Khong Resolve Entry Invalid.
+resolution_priority:
+  - Exact
+  - Compatible
+  - Latest Stable
+  - Latest
+  - Failure
+resolution_failures:
+  NotFound: khong ton tai
+  Invalid: schema loi
+  Deprecated: het ho tro
+  Incompatible: version
+  Forbidden: governance
+  Ambiguous: nhieu candidate
+version_resolution:
+  - Exact Version
+  - Compatible Version
+  - Latest Compatible
+  - Failure
+relationships:
+  Workflow: [Capability]
+  Capability: [Contract, Policy, Plugin]
+  Contract: [Schema]
+  Policy: [Plugin]
+  Plugin: []
+dependency:
+  Workflow: Capability
+  Capability: Contract
+  Contract: Schema
+  Policy: Contract
+  Plugin: Contract
+  note: Khong circular (DAG).
+traceability:
+  - Registry
+  - Capability
+  - Workflow
+  - Execution
+  - Artifact
+events:
+  - REGISTRY_LOOKUP
+  - REGISTRY_RESOLVED
+  - REGISTRY_FAILED
+  - REGISTRY_DEPRECATED
+  - ENTRY_REGISTERED
+  - ENTRY_UPDATED
+  - ENTRY_DEPRECATED
+  - ENTRY_RETIRED
+  - RESOLUTION_FAILED
+  - REGISTRY_COMPATIBILITY_FAILED
+metrics:
+  registry_entries: 0
+  lookup_count: 0
+  cache_hit: 0
+  resolution_time: 0
+  failed_resolution: 0
+  deprecated_usage: 0
+  active_entries: 0
+  deprecated_entries: 0
+  resolution_success_rate: 0
+  average_lookup_time: 0
+  broken_reference: 0
+  orphan_entries: 0
+  duplicate_entries: 0

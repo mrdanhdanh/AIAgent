@@ -1,0 +1,10 @@
+# SPEC-008 X009 - Event Transition Triggers
+---
+version: "1.0.0"
+triggers:
+  XST-001: Publish (Event Bus)
+  XST-002: Validate (Event Bus)
+  XST-003: Published (Event Bus)
+  XST-004: Deliver (Subscriber)
+  XST-005: Archive (retention)
+  XST-006: Reject (validate fail)

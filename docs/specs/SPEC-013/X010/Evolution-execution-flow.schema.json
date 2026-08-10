@@ -1,0 +1,6 @@
+{
+  "schema": "evolution-execution-flow",
+  "version": "1.0",
+  "stages": { "type": "array", "items": { "type": "object" } },
+  "stage_names": ["Diff","CompatCheck","Plan","Migrate","Heal","Evolve"]
+}

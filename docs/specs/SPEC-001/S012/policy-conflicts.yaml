@@ -1,0 +1,14 @@
+# SPEC-001 S012 - Policy Conflict Resolution
+---
+version: "1.0.0"
+resolution_order:
+  - Trigger
+  - Scope
+  - Priority
+  - Version
+  - Action
+rules:
+  - Higher priority thang.
+  - Cung priority -> deterministic (khong phu thuoc thoi diem).
+  - Khong ap dung hai action mau thuan.
+  - Xung dot khong giai quyet duoc -> Execution Failed (ST-009).

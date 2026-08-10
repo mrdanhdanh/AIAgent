@@ -1,0 +1,16 @@
+# SPEC-005 R018 - Registry Evolution Scope (R011 reuse)
+---
+version: "1.0.0"
+reads:
+  - Registry Event (R011)
+  - Registry Metrics (R011)
+  - Registry Trace (R011)
+  - Registry Audit (R011)
+  - Compliance Report (R016)
+  - Registry-of-Registries (R014)
+not_reads:
+  - Implementation
+  - Business Data
+  - User Data
+  - Agent Internal State
+  - Plugin Internal State

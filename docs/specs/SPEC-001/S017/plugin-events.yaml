@@ -1,0 +1,11 @@
+# SPEC-001 S017 - Plugin Events
+# S017 dinh nghia 6 event types rieng (PL014) — S011 cung cap event model (fields, correlation_id).
+---
+version: "1.0.0"
+event_types:
+  - PLUGIN_REGISTERED
+  - PLUGIN_INSTALLED
+  - PLUGIN_ACTIVATED
+  - PLUGIN_DISABLED
+  - PLUGIN_FAILED
+  - PLUGIN_UNINSTALLED

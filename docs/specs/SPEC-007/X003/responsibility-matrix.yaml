@@ -1,0 +1,20 @@
+# SPEC-007 X003 - Artifact Responsibility Matrix
+---
+version: "1.0.0"
+matrix:
+  XRR-001: { name: Create Artifact, owner: Artifact Store, role: OWNER }
+  XRR-002: { name: Validate Artifact, owner: Artifact Store, role: OWNER }
+  XRR-003: { name: Checksum, owner: Artifact Store, role: OWNER }
+  XRR-004: { name: Publish, owner: Artifact Store, role: OWNER }
+  XRR-005: { name: Version, owner: Artifact Store, role: OWNER }
+  XRR-006: { name: Index, owner: Artifact Store, role: OWNER }
+  XRR-007: { name: Consume, owner: Agent/Doctor/Dashboard, role: GRANTEE }
+  XRR-008: { name: Archive, owner: Artifact Store, role: OWNER }
+  XRR-009: { name: Link Execution, owner: Artifact Store, role: OWNER }
+  XRR-010: { name: Events, owner: Runtime (S011), role: EMITTER }
+  XRR-011: { name: Metrics, owner: Runtime (S011), role: EMITTER }
+  XRR-012: { name: Policy eval, owner: Policy (S012), role: DECIDER }
+  XRR-013: { name: Registry, owner: Registry (SPEC-005), role: REGISTER }
+  XRR-014: { name: Audit, owner: Runtime (S011), role: EMITTER }
+  XRR-015: { name: Retention, owner: Artifact Store, role: OWNER }
+  XRR-016: { name: Recovery, owner: Artifact Store, role: OWNER }

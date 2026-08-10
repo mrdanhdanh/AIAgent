@@ -1,0 +1,13 @@
+# SPEC-007 X014 - Artifact Registry (via SPEC-005)
+---
+version: "1.0.0"
+registry:
+  owner: Registry (SPEC-005)
+  entries: Artifact Definition (schemas, state machine, policies)
+  runtime_data: KHONG vao Registry (Artifact content o Store)
+  entry_types:
+    - ArtifactDefinition
+    - ArtifactSchema
+    - ArtifactPolicy
+    - ArtifactStateMachine
+  resolution: Registry resolve, Runtime thuc thi (RB004)

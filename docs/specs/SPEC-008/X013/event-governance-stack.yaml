@@ -1,0 +1,10 @@
+# SPEC-008 X013 - Event Governance Stack
+---
+version: "1.0.0"
+stack:
+  XG-001: { layer: Constitution (SPEC-000), role: Nen tang }
+  XG-002: { layer: Principles (P001-P016), role: Nguyen tac }
+  XG-003: { layer: Rules (RULE-*), role: Quy tac }
+  XG-004: { layer: Policies (S012), role: Chinh sach }
+  XG-005: { layer: SPEC-008 (nay), role: Dac ta Event }
+  XG-006: { layer: Governance (S013), role: Dieu phoi }

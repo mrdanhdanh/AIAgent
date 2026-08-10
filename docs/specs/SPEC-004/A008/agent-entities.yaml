@@ -1,0 +1,19 @@
+# SPEC-004 A008 - Agent Entities (15 ENT)
+---
+version: "1.0.0"
+entities:
+  ENT-A001: { name: Agent, kind: AggregateRoot, owner: Agent, immutable: false }
+  ENT-A002: { name: AgentDefinition, kind: Entity, owner: Agent, immutable: true }
+  ENT-A003: { name: AgentVersion, kind: Entity, owner: Agent, immutable: true }
+  ENT-A004: { name: CapabilityMapping, kind: Value, owner: Agent, immutable: true }
+  ENT-A005: { name: AgentGroup, kind: Value, owner: Agent, immutable: false }
+  ENT-A006: { name: AgentBinding, kind: Value, owner: Agent, immutable: true }
+  ENT-A007: { name: AgentState, kind: Transient, owner: Agent, immutable: false }
+  ENT-A008: { name: AgentResult, kind: Entity, owner: Agent, immutable: true }
+  ENT-A009: { name: AgentEvent, kind: Ref (S011), owner: Runtime, immutable: true }
+  ENT-A010: { name: AgentMetric, kind: Ref (S011), owner: Runtime, immutable: true }
+  ENT-A011: { name: AgentRegistryEntry, kind: Ref (S014), owner: Agent, immutable: true }
+  ENT-A012: { name: CapabilityRef, kind: Ref (SPEC-003), owner: Capability, immutable: true }
+  ENT-A013: { name: WorkflowRef, kind: Ref (SPEC-002), owner: Workflow, immutable: true }
+  ENT-A014: { name: ExecutionRef, kind: Ref (S008), owner: Runtime, immutable: true }
+  ENT-A015: { name: AgentExtension, kind: Value, owner: Agent, immutable: true }

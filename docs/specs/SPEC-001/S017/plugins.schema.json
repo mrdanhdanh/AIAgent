@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aios://plugins.schema.json",
+  "title": "SPEC-001 Runtime Plugins (S017)",
+  "description": "JSON Schema cho plugins.yaml. Validator kiem tra cau truc.",
+  "type": "object",
+  "required": ["id", "name", "version", "status", "owner", "philosophy", "principles", "categories", "plugin_model", "lifecycle", "installation", "activation_rules", "isolation", "security", "resources", "compatibility"],
+  "properties": {
+    "id": { "const": "SPEC-001-S017" },
+    "name": { "const": "Runtime Plugins" },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "status": { "enum": ["Draft", "Review", "Approved", "Stable", "Deprecated"] },
+    "owner": { "type": "string" },
+    "philosophy": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "principles": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "categories": { "type": "array", "items": { "type": "string" }, "minItems": 6 },
+    "plugin_model": {
+      "type": "object",
+      "required": ["fields"],
+      "properties": {
+        "fields": { "type": "array", "items": { "type": "string" }, "minItems": 10 }
+      }
+    },
+    "lifecycle": { "type": "array", "items": { "type": "string" }, "minItems": 6 },
+    "installation": { "type": "array", "items": { "type": "string" }, "minItems": 4 },
+    "activation_rules": { "type": "array", "items": { "type": "string" }, "minItems": 4 },
+    "isolation": { "type": "array", "items": { "type": "string" }, "minItems": 4 },
+    "security": { "type": "array", "items": { "type": "string" }, "minItems": 3 },
+    "resources": { "type": "array", "items": { "type": "string" }, "minItems": 2 },
+    "compatibility": { "type": "array", "items": { "type": "string" }, "minItems": 5 },
+    "events": { "type": "array", "items": { "type": "string" } },
+    "metrics": { "type": "object" }
+  },
+  "additionalProperties": false
+}

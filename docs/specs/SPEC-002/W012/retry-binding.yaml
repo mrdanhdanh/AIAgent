@@ -1,0 +1,11 @@
+# SPEC-002 W012 - Retry Binding (WPB-001 -> POL-RETRY-001)
+---
+version: "1.0"
+binding:
+  id: WPB-001
+  policy_ref: POL-RETRY-001 (S012)
+  scope: Step
+  parameters:
+    max_retry: 3
+    backoff: exponential
+  status: Draft

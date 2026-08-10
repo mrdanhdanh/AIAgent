@@ -1,0 +1,50 @@
+# SPEC-004 A008 — Agent Data Model
+# Canonical Data Model — Single Source of Truth (P009).
+---
+version: "1.0.0"
+status: Draft
+frozen: false
+aggregate_root: Agent
+aggregate_rules:
+  - Agent la Aggregate Root duy nhat.
+  - Agent owns: [Definition, Mapping, Binding, Result, Events, Metrics]
+  - Agent references: [Capability (SPEC-003), Workflow (SPEC-002), Execution (S008), Registry Entry (S014)]
+  - Ownership va Reference khac nhau - khong nham lan.
+classification:
+  Agent Data: [Definition Data, Mapping Data]
+  Definition Data: [AgentDefinition, AgentVersion, AgentGroup]
+  Mapping Data: [CapabilityMapping, AgentBinding]
+  Transient: [AgentState]
+  Persistent Metadata: [AgentResult, Events, Metrics, Trace]
+  Reference Data: [Capability Ref (SPEC-003), Workflow Ref (SPEC-002), Execution Ref (S008), Registry Entry (S014)]
+  not_manages: [Business Data, Knowledge, Plugin Data, User Data]
+invariants:
+  - Agent co dung mot Definition.
+  - Agent dang ky trong Registry (S014).
+  - CapabilityMapping qua SPEC-003 - khong hardcode (AB007).
+  - AgentResult immutable.
+  - Event khong thay doi.
+  - Agent ID toan cuc.
+  - Agent luon co Owner.
+  - Agent luon co Version.
+  - Agent luon co Lifecycle.
+  - Agent khong doi Identity.
+  - Definition khong doi khi Published.
+  - Binding khong doi khi Published.
+consistency:
+  levels: [Definition Consistency, Mapping Consistency, Binding Consistency]
+  rules:
+    - Definition luon hop le (validate truoc khi dang ky).
+    - Mapping luon qua Capability System (SPEC-003).
+    - Binding luon co policy_ref hop le (S012).
+    - Metrics chi append.
+    - Event chi append.
+dependencies:
+  - Agent → Definition
+  - Agent → Mapping
+  - Agent → Binding
+  - Agent → Capability (SPEC-003)
+  - Agent → Workflow (SPEC-002)
+  - Agent → Execution (S008)
+  - Agent → Registry (S014)
+  # note: Khong dependency nguoc.

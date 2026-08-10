@@ -1,0 +1,8 @@
+# SPEC-013 X020 - Evolution Dashboard Events
+---
+version: "1.0.0"
+events:
+  - EVOLUTION_DASHBOARD_OPENED
+  - EVOLUTION_DASHBOARD_FILTERED
+  - EVOLUTION_DASHBOARD_EXPORTED
+note: Event vao S011.

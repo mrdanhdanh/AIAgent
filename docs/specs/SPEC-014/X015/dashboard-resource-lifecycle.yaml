@@ -1,0 +1,7 @@
+# SPEC-014 X015 - Dashboard Resource Lifecycle
+---
+version: "1.0.0"
+lifecycle:
+  states: [allocate -> in_use -> archived]
+  leaked: resource khong duoc release -> Dashboard X019 phat hien
+  reclamation: archive theo retention (XPOL-006)

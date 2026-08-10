@@ -1,0 +1,10 @@
+# SPEC-011 X011 - Doctor Dashboard
+---
+version: "1.0.0"
+dashboard:
+  - Health Trend (score history)
+  - Findings by Domain (spec breakdown)
+  - Failures (scan failed)
+  - Repair Status (doc repairs)
+  - Coverage (scan coverage %)
+  # tool: X020 Doctor Dashboard

@@ -1,0 +1,10 @@
+# SPEC-008 X009 - Event Transitions (6)
+---
+version: "1.0.0"
+transitions:
+  XTR-001: { from: XST-001, to: XST-002, event: EVENT_VALIDATING, guard: Khai bao hop le }
+  XTR-002: { from: XST-002, to: XST-003, event: EVENT_PUBLISHED, guard: Validate pass + lineage OK }
+  XTR-003: { from: XST-002, to: XST-006, event: EVENT_REJECTED, guard: Validate fail }
+  XTR-004: { from: XST-003, to: XST-004, event: EVENT_DELIVERED, guard: Co subscriber nhan }
+  XTR-005: { from: XST-004, to: XST-005, event: EVENT_ARCHIVED, guard: Het retention }
+  XTR-006: { from: XST-003, to: XST-005, event: EVENT_ARCHIVED, guard: Het retention (khong consumed) }

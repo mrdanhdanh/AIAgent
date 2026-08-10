@@ -1,0 +1,7 @@
+# SPEC-010 X018 - Plugin Compatibility
+---
+version: "1.0.0"
+compatibility:
+  backward: moi version giu Plugin Plugin cu (XNF-005)
+  forward: tuan thu schema strict
+  check: kiem tra bang validator + Doctor X019

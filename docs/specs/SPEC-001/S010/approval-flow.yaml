@@ -1,0 +1,11 @@
+# SPEC-001 S010 — Approval Flow (EF015)
+---
+version: "1.0"
+flow:
+  - Running
+  - Waiting
+  - Approved
+  - Running
+rules:
+  - Approval chỉ thay đổi Flow.
+  - Approval không thay đổi Workflow.

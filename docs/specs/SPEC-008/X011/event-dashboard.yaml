@@ -1,0 +1,10 @@
+# SPEC-008 X011 - Event Dashboard
+---
+version: "1.0.0"
+dashboard:
+  - Event Activity (publish/deliver rate)
+  - Event Lifecycle (state histogram)
+  - Event Failures (rejected/lost)
+  - Subscription Status (active/inactive)
+  - Replay Status (simulate/audit)
+  # tool: X020 Event Dashboard

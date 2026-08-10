@@ -1,0 +1,12 @@
+# SPEC-002 W015 - Workflow Resource Allocation (S015 RS006)
+---
+version: "1.0"
+flow:
+  - Request (workflow step)
+  - Binding Check (W012 WPB-004 -> POL-RES-001)
+  - Allocate (S015 qua Runtime)
+  - Bind to Step
+  - Track (S011)
+rules:
+  - Khong Double Allocation (S015).
+  - Queue khi khong co san (POL-RES-001).

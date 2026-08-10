@@ -1,0 +1,8 @@
+# SPEC-007 X010 - Artifact Resolution
+---
+version: "1.0.0"
+resolution:
+  input: artifact_id + version
+  output: content + metadata hoac not-found
+  checksum_check: verify checksum truoc khi tra ve
+  trace: moi resolution co trace_id (S011)

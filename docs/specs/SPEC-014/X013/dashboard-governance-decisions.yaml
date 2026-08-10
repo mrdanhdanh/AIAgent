@@ -1,0 +1,8 @@
+# SPEC-014 X013 - Dashboard Governance Decisions
+---
+version: "1.0.0"
+decisions:
+  XDEC-001: { issue: Dashboard co doi he thong that khong, decision: Khong - isolated (RULE-007), date: pending }
+  XDEC-002: { issue: Dashboard co deterministic khong, decision: Co - P013, date: pending }
+  XDEC-003: { issue: Dashboard co chua Business Data khong, decision: Khong - chi metadata, date: pending }
+  XDEC-004: { issue: Scenario types nao, decision: 6 types (Bug Fix/New Feature/Migration/Review/Testing/Refactoring), date: pending }

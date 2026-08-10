@@ -1,0 +1,8 @@
+# SPEC-005 R003 - Registry Ownership
+---
+version: "1.0.0"
+owners:
+  Registry System: Registry Team
+  Entry Store: Registry Team
+  Resolution: Runtime (S014)
+  Policy: Runtime (S012)

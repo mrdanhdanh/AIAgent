@@ -1,0 +1,11 @@
+# SPEC-002 W003 - Responsibility Matrix (WRR x Group)
+---
+version: "1.0"
+groups:
+  Core: [WRR-001, WRR-002, WRR-004]
+  Validation: [WRR-003]
+  Execution: [WRR-005, WRR-006, WRR-007, WRR-008, WRR-010, WRR-011, WRR-012, WRR-013]
+  Context: [WRR-014]
+  Data: [WRR-015]
+  Observability: [WRR-016]
+  Governance: [WRR-009, WRR-017, WRR-018]

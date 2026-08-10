@@ -1,0 +1,9 @@
+# SPEC-004 A018 - Agent Evolution Proposal
+---
+version: "1.0.0"
+proposal:
+  fields: [id, source, evidence, change, impact, status, approval]
+status: [Draft, Submitted, Approved, Rejected, Applied, Rolled Back]
+impact: [Low, Medium, High, Breaking]
+rules:
+  - Proposal phai co evidence (A011) - khong suy doan.

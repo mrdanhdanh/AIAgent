@@ -1,0 +1,8 @@
+# SPEC-011 X010 - Doctor Lineage
+---
+version: "1.0.0"
+lineage:
+  scan_id: UUID
+  parent_scan_id: null (Root) | UUID (follow-up)
+  execution_id: UUID
+  note: Lineage duoc luu trong metadata.

@@ -1,0 +1,9 @@
+# SPEC-006 X015 - Context Resource Metrics
+---
+version: "1.0.0"
+metrics:
+  - context_memory_bytes
+  - context_grant_slots_used
+  - context_resource_leaked_total
+  - context_quota_exceeded_total
+  - context_resource_release_latency_seconds

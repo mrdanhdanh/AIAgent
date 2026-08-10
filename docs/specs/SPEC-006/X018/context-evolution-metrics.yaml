@@ -1,0 +1,8 @@
+# SPEC-006 X018 - Context Evolution Metrics
+---
+version: "1.0.0"
+metrics:
+  - spec006_version
+  - spec006_versions_total
+  - spec006_deprecated_count
+  - spec006_compat_score

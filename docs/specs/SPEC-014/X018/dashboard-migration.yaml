@@ -1,0 +1,8 @@
+# SPEC-014 X018 - Dashboard Migration
+---
+version: "1.0.0"
+migration:
+  - Upgrade: bo sung field/scanner (backward)
+  - Downgrade: giu field cu (compat)
+  - Breaking: can ADR + RFC + migration doc
+  - Runtime Results: KHONG Refresh - scan lai (P005)

@@ -2,7 +2,8 @@
 .SYNOPSIS
 Build/Update Knowledge Index - scan source code + docs to generate 7 index JSON files.
 .DESCRIPTION
-Scans JapaneseLearner/ (.cs, .razor, .csproj) + .opencode/knowledge/ (.md) to generate:
+Scans JapaneseLearner/ (.cs, .razor, .csproj) + .opencode/knowledge/ (.md) + docs/ (.md:
+specs, rules, governance, glossary, principles, adr, rfc, manifest) to generate:
 code-index, symbol-index, api-index, database-index, dependency-graph,
 document-index, business-rule-index into .opencode/knowledge-index/.
 .PARAMETER Update
@@ -22,6 +23,7 @@ $ErrorActionPreference = "Stop"
 $projectRoot = (Resolve-Path ".").Path
 $sourceDir = Join-Path $projectRoot "JapaneseLearner"
 $knowledgeDir = Join-Path $projectRoot ".opencode\knowledge"
+$docsDir = Join-Path $projectRoot "docs"
 $indexDir = Join-Path $projectRoot ".opencode\knowledge-index"
 $timestamp = Get-Date -Format "o"
 
@@ -87,8 +89,9 @@ if ($Status) {
 
 # --- Rebuild mode ----------------------------------------------
 if ($Rebuild -and (Test-Path $indexDir)) {
-    Write-Log "Rebuild mode - cleaning old index..."
-    Remove-Item (Join-Path $indexDir "*") -Recurse -Force -ErrorAction SilentlyContinue
+    Write-Log "Rebuild mode - cleaning old index (giu README.md)..."
+    Get-ChildItem -Path $indexDir -Filter *.json -File -ErrorAction SilentlyContinue |
+        Remove-Item -Force
 }
 
 if (-not (Test-Path $indexDir)) { New-Item -ItemType Directory -Path $indexDir | Out-Null }
@@ -96,8 +99,8 @@ if (-not (Test-Path $indexDir)) { New-Item -ItemType Directory -Path $indexDir |
 # --- Collect files ---------------------------------------------
 Write-Log "Scanning source..."
 $csFiles = @(Get-Files $sourceDir @("*.cs", "*.razor", "*.csproj"))
-$docFiles = @(Get-Files $knowledgeDir @("*.md"))
-Write-Log "  $($csFiles.Count) source files, $($docFiles.Count) doc files"
+$docFiles = @(Get-Files $knowledgeDir @("*.md")) + @(Get-Files $docsDir @("*.md"))
+Write-Log "  $($csFiles.Count) source files, $($docFiles.Count) doc files (knowledge + docs)"
 
 # --- Build indexes ---------------------------------------------
 $codeIndex = @()
@@ -199,5 +202,5 @@ $summary = @{
     rules_found  = $businessRules.Count
     output_dir   = $indexDir
 }
-Write-Log "DONE - $($csFiles.Count) source files, $($symbolIndex.Count) symbols, $($apiIndex.Count) APIs, $($docIndex.Count) docs"
+Write-Log "DONE - $($csFiles.Count) source files, $($symbolIndex.Count) symbols, $($apiIndex.Count) APIs, $($docIndex.Count) docs (knowledge + docs)"
 $summary | ConvertTo-Json -Depth 3

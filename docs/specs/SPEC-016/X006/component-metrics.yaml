@@ -1,0 +1,7 @@
+# SPEC-016 X006 - CLI Component Metrics
+---
+version: "1.0.0"
+metrics:
+  - CLI_render_total
+  - CLI_render_latency_seconds
+  - CLI_export_total

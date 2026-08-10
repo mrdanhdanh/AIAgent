@@ -1,0 +1,10 @@
+# SPEC-006 X011 - Context Health
+---
+version: "1.0.0"
+health_checks:
+  - allocate_ok: allocate nhanh, khong loi
+  - release_ok: khong Context leak
+  - state_ok: khong Context treo (stuck)
+  - event_ok: event day du (S011)
+  - policy_ok: policy applied (S012)
+  # score: tinh trong X019 Doctor

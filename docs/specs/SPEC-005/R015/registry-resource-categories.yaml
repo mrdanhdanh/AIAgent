@@ -1,0 +1,4 @@
+# SPEC-005 R015 - Registry Resource Categories (S015 RS003)
+---
+version: "1.0.0"
+categories: [Capability, Execution, Context, Memory, Storage, Compute, Network, Quota, Token, Time]

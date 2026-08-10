@@ -49,3 +49,12 @@ status: "READY"
 menu_shown: true
 suggested_command: "Tên command gợi ý cho câu hỏi của user"
 ```
+
+## Flags:
+
+| Flag | Y nghia |
+|------|---------|
+| `--index` | Dung knowledge index |
+| `--grep` | Grep truc tiep |
+| `--detail` | Tra loi chi tiet |
+

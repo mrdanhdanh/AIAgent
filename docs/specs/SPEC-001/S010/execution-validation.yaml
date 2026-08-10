@@ -1,0 +1,11 @@
+# SPEC-001 S010 — Execution Validation (EF020)
+# Doctor kiem tra.
+---
+version: "1.0"
+validation:
+  - Có đúng một Canonical Execution Flow.
+  - Không có bước thực thi ngoài Runtime.
+  - Mọi bước đều sinh Event.
+  - Mọi Execution đều có Terminal State.
+  - Retry/Replay/Approval/Timeout/Cancellation tuân theo State Machine.
+  - Execution truy vết được toàn bộ Lifecycle.

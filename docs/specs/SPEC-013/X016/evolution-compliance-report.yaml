@@ -1,0 +1,9 @@
+# SPEC-013 X016 - Evolution Compliance Report
+---
+version: "1.0.0"
+report:
+  scope: [X001..X020]
+  format: markdown + JSON
+  frequency: moi thay doi SPEC-013
+  content: [score, violations, evidence, actions]
+  # tool: spec013-validator.ps1

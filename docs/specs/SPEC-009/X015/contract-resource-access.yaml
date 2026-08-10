@@ -1,0 +1,8 @@
+# SPEC-009 X015 - Contract Resource Access
+---
+version: "1.0.0"
+access:
+  - Contract chi access qua Contract System API
+  - Caller doc qua resolve (read-only)
+  - Khong access truc tiep Store
+  - Audit moi access (X011)

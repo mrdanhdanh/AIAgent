@@ -1,0 +1,11 @@
+# SPEC-001 S010 — Retry Flow (EF012)
+---
+version: "1.0"
+flow:
+  - Failed
+  - Retry Policy
+  - Retry
+  - Running
+rules:
+  - Retry không tạo Execution mới.
+  - Guard: retry_count < policy.max_retry (S009 TR-015).

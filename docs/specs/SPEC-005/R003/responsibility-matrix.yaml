@@ -1,0 +1,10 @@
+# SPEC-005 R003 - Responsibility Matrix
+---
+version: "1.0.0"
+groups:
+  Core: [RRR-001, RRR-002, RRR-008, RRR-013, RRR-015]
+  Validation: [RRR-003, RRR-009]
+  Execution: [RRR-005, RRR-016]
+  Data: [RRR-004, RRR-006, RRR-007, RRR-014]
+  Observability: [RRR-011, RRR-012]
+  Governance: [RRR-010, RRR-017, RRR-018]

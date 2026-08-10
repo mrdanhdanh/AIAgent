@@ -1,0 +1,10 @@
+# SPEC-013 X010 - Evolution Flow Policies
+---
+version: "1.0.0"
+policies:
+  - Evolution khong pha vo he thong (P013).
+  - Moi stage co Event (S011).
+  - Compat check truoc migrate (XFR-002).
+  - Self-heal doc-only (XNF-005).
+  - Khong breaking change (XC-001).
+source: S012 Policy

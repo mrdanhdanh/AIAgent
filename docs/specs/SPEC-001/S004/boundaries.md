@@ -8,7 +8,7 @@ agent: general
 
 # S004 — Runtime Boundaries
 
-> **SPEC-001**: Runtime Kernel · **Version**: 1.0.0 · **Trạng thái**: ✅ Frozen (2026-08-04)
+> **SPEC-001**: Runtime Kernel · **Version**: 1.0.0 · **Trạng thái**: ✅ Frozen (2026-08-08)
 
 ## Câu hỏi duy nhất
 
@@ -226,8 +226,10 @@ Doctor phải kiểm tra:
 | Permission | P002 | RULE-003 |
 | Delegation | P007 | RULE-006 |
 | Dependency | P011 | RULE-002 |
+| Interface | P002 | RULE-003 |
 | State | P009 | RULE-005 |
 | Data | P010 | RULE-009 |
+| Failure | P015 | RULE-012 |
 | Security | P016 | RULE-008 |
 
 ## Boundary Hierarchy
@@ -264,13 +266,18 @@ Runtime Boundary
 
 ## Boundary Violations
 
-Mỗi Boundary có violation mẫu (Doctor sinh báo cáo):
+Mỗi Boundary có violation (Doctor sinh báo cáo):
 
 | Boundary | Violation | Impact | Detected By |
 |----------|-----------|--------|-------------|
+| B001 Ownership | Runtime sở hữu tài nguyên ngoài danh sách cho phép | Critical | Doctor |
 | B002 Permission | Business Logic xuất hiện trong Runtime | Critical | Doctor |
+| B003 Delegation | Runtime thực hiện chức năng thuộc delegate thay vì ủy quyền | High | Doctor |
 | B004 Dependency | Runtime phụ thuộc implementation cụ thể | High | Doctor |
+| B005 Interface | Runtime công khai API nội bộ | High | Doctor |
+| B006 State | Runtime quản lý State ngoài danh sách cho phép | High | Doctor |
 | B007 Data | Runtime xử lý dữ liệu nghiệp vụ | High | Doctor |
+| B008 Failure | Runtime sửa lỗi nghiệp vụ | High | Doctor |
 | B009 Security | Runtime quản lý Identity/Auth | Critical | Doctor |
 
 ## Boundary Metrics (Dashboard)
@@ -306,10 +313,13 @@ Quy tắc này ngăn Runtime bị phình chức năng.
 | Boundary | Runtime | Agent | Workflow | Registry |
 |----------|:-------:|:-----:|:--------:|:--------:|
 | B001 Ownership | ✔ | ✖ | ✖ | ✖ |
+| B002 Permission | ✔ | ✖ | ✖ | ✖ |
 | B003 Delegation | ✔ | ✔ | ✖ | ✖ |
 | B004 Dependency | ✔ | ✔ | ✔ | ✔ |
 | B005 Interface | ✔ | ✔ | ✔ | ✔ |
+| B006 State | ✔ | ✖ | ✖ | ✖ |
 | B007 Data | ✔ | ✔ | ✖ | ✖ |
+| B008 Failure | ✔ | ✔ | ✖ | ✖ |
 | B009 Security | ✔ | ✔ | ✔ | ✔ |
 
 > Dashboard dựng sơ đồ tự động.

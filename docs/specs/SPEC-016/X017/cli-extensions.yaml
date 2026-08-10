@@ -1,0 +1,11 @@
+# SPEC-016 X017 - CLI Extension Points
+---
+version: "1.0.0"
+extensions:
+  XEXT-001: { name: CLI Extension Point, description: Diem mo rong CLI, owner: CLI, priority: High }
+  XEXT-002: { name: Custom Scanner, description: Scanner moi (domain), owner: CLI, priority: High }
+  XEXT-003: { name: Custom Scoring Rule, description: Scoring rule tuy bien, owner: CLI, priority: Medium }
+  XEXT-004: { name: Repair Hook, description: Hook repair (doc-only), owner: Policy (S012), priority: High }
+  XEXT-005: { name: Report Strategy, description: Chien luoc report tuy bien, owner: CLI, priority: Medium }
+  XEXT-006: { name: Snapshot Serializer, description: Serialization tuy bien, owner: CLI, priority: Low }
+  XEXT-007: { name: CLI Widget, description: Widget X020 tu tao, owner: X020, priority: Low }

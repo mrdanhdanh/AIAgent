@@ -1,0 +1,8 @@
+# SPEC-012 X019 - Simulation Doctor Report
+---
+version: "1.0.0"
+report:
+  format: markdown + JSON
+  sections: [summary, score, checks, violations, evidence, actions]
+  # tool: spec012-validator.ps1
+  output: docs/specs/SPEC-012/reports/

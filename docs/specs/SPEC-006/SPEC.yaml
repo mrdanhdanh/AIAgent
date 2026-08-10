@@ -1,0 +1,55 @@
+---
+id: SPEC-006
+name: Context Engine
+version: "1.0.0"
+status: Frozen
+type: Engine
+authority: High
+owner: Context Team
+description: >
+  Context Engine — quản lý Execution Context: Allocate, Populate, Distribute,
+  Mutate, Merge, Collect, Release (S010 EF008). Context luôn isolated,
+  không chứa Business Data.
+dependencies:
+  - SPEC-000
+  - SPEC-001
+  - SPEC-005
+includes:
+  - X001
+  - X002
+  - X003
+  - X004
+  - X005
+  - X006
+  - X007
+  - X008
+  - X009
+  - X010
+  - X011
+  - X012
+  - X013
+  - X014
+  - X015
+  - X016
+  - X017
+  - X018
+  - X019
+  - X020
+outputs:
+  - Execution Context
+  - Context Grant
+  - Context Lifecycle Events
+implements:
+  - Context
+authoritative: false
+breaking_change_requires:
+  - ADR
+  - RFC
+references:
+  constitution: ../SPEC-000
+  runtime: ../SPEC-001
+  registry: ../SPEC-005
+  glossary: ../../glossary
+  principles: ../../principles
+  rules: ../../rules
+  governance: ../../governance

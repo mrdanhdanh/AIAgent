@@ -1,0 +1,9 @@
+# SPEC-016 X013 - CLI Governance Registry
+---
+version: "1.0.0"
+registry:
+  spec: SPEC-016 (this)
+  sections: [X001..X020]
+  models: cli-models/
+  schemas: "*.schema.json"
+  status_tracking: SPEC-INDEX.md

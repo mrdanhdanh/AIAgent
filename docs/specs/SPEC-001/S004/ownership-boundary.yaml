@@ -1,6 +1,6 @@
 # SPEC-001 S004 — Ownership Boundary (B001)
 ---
-version: "1.0"
+version: "1.0.0"
 owns:
   - Execution
   - Execution Context

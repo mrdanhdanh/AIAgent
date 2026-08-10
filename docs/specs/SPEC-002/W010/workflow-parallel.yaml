@@ -1,0 +1,12 @@
+# SPEC-002 W010 - Parallel Flow (Scatter/Gather - S010 EF021)
+---
+version: "1.0"
+flow:
+  - Scatter -> Step A, Step B, Step C
+  - Barrier (cho tat ca Terminal)
+  - Gather (gop ket qua)
+  - Join (step tiep theo)
+join_policy: [ALL, ANY, QUORUM, CUSTOM]
+rules:
+  - Delegate Runtime thuc thi (S010 EF021).
+  - Partial Success khi join ANY/QUORUM (S010 EF024).

@@ -1,0 +1,10 @@
+# SPEC-006 X010 - Context Query
+---
+version: "1.0.0"
+query_ops:
+  - GetContext(context_id)
+  - GetSection(context_id, section_key)
+  - GetItem(context_id, section_key, item_key)
+  - ListGrants(context_id)
+  - GetHistory(context_id)
+rule: Query khong thay doi Context, khong can grant.

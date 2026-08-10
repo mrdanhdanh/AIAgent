@@ -1,0 +1,17 @@
+# SPEC-001 S014 - Registry Metrics
+---
+version: "1.0.0"
+metrics:
+  registry_entries: 0
+  lookup_count: 0
+  cache_hit: 0
+  resolution_time: 0
+  failed_resolution: 0
+  deprecated_usage: 0
+  active_entries: 0
+  deprecated_entries: 0
+  resolution_success_rate: 0
+  average_lookup_time: 0
+  broken_reference: 0
+  orphan_entries: 0
+  duplicate_entries: 0

@@ -1,0 +1,8 @@
+# SPEC-009 X015 - Contract Resource Allocation
+---
+version: "1.0.0"
+allocation:
+  - Declare: cap storage theo quota (XPOL-007)
+  - Version: cap version slot
+  - Retire: thu hoi storage theo retention
+  - Quota: cau hinh qua Policy S012

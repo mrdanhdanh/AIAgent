@@ -1,0 +1,9 @@
+# SPEC-015 X015 - SDK Resource Metrics
+---
+version: "1.0.0"
+metrics:
+  - SDK_storage_bytes
+  - SDK_result_count
+  - SDK_resource_leaked_total
+  - SDK_quota_exceeded_total
+  - SDK_scan_latency_seconds

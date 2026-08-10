@@ -1,0 +1,10 @@
+# SPEC-009 X009 - Contract Transitions (6)
+---
+version: "1.0.0"
+transitions:
+  XTR-001: { from: XST-001, to: XST-002, event: CONTRACT_VALIDATING, guard: Khai bao hop le }
+  XTR-002: { from: XST-002, to: XST-003, event: CONTRACT_PUBLISHED, guard: Validate pass + compat OK }
+  XTR-003: { from: XST-002, to: XST-006, event: CONTRACT_REJECTED, guard: Validate fail }
+  XTR-004: { from: XST-003, to: XST-004, event: CONTRACT_RESOLVED, guard: Caller resolve thanh cong }
+  XTR-005: { from: XST-003, to: XST-003, event: CONTRACT_VERSIONED, guard: Version moi (P004) }
+  XTR-006: { from: XST-004, to: XST-005, event: CONTRACT_RETIRED, guard: Het han }

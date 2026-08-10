@@ -1,0 +1,16 @@
+# SPEC-007 X006 - Artifact Component Contracts
+---
+version: "1.0.0"
+contracts:
+  XCP-001: { name: ArtifactApi, contract: X007 XCT-### }
+  XCP-002: { name: LifecycleOrchestrator, contract: X007 XCT-### }
+  XCP-003: { name: ArtifactStateMachine, contract: X007 XCT-### }
+  XCP-004: { name: ChecksumEngine, contract: X007 XCT-### }
+  XCP-005: { name: ArtifactValidator, contract: X007 XCT-### }
+  XCP-006: { name: PolicyGuard, contract: X007 XCT-### }
+  XCP-007: { name: ArtifactStore, contract: X007 XCT-### }
+  XCP-008: { name: ArtifactIndexer, contract: X007 XCT-### }
+  XCP-009: { name: ArtifactEvents, contract: X007 XCT-### }
+  XCP-010: { name: ArtifactMetrics, contract: X007 XCT-### }
+  XCP-011: { name: RegistryClient, contract: X007 XCT-### }
+  XCP-012: { name: Archiver, contract: X007 XCT-### }

@@ -1,0 +1,10 @@
+# SPEC-005 R013 - Registry Governance Stack
+---
+version: "1.0.0"
+stack:
+  - Constitution
+  - Boundary (R004)
+  - Contract (R007)
+  - Policy Binding (R012)
+  - Permission
+  - Execution Decision

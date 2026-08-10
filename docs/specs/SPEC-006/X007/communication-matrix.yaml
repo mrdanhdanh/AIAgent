@@ -1,0 +1,14 @@
+# SPEC-006 X007 - Communication Matrix
+---
+version: "1.0.0"
+edges:
+  - [XCP-001, XCP-002, XCT-002]
+  - [XCP-001, XCP-003, XCT-003]
+  - [XCP-001, XCP-004, XCT-004]
+  - [XCP-001, XCP-005, XCT-005]
+  - [XCP-001, XCP-006, XCT-006]
+  - [XCP-001, XCP-008, XCT-007]
+  - [XCP-004, XCP-003, XCT-003]
+  - [XCP-005, XCP-004, XCT-004]
+  - [XCP-006, XCP-005, XCT-005]
+  - [XCP-008, Event Store, XCT-007]

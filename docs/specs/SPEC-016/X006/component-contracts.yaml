@@ -1,0 +1,16 @@
+# SPEC-016 X006 - CLI Component Contracts
+---
+version: "1.0.0"
+contracts:
+  XCP-001: { name: CLIApi, contract: X007 XCT-### }
+  XCP-002: { name: PipelineOrchestrator, contract: X007 XCT-### }
+  XCP-003: { name: CLIStateMachine, contract: X007 XCT-### }
+  XCP-004: { name: CommandEngine, contract: X007 XCT-### }
+  XCP-005: { name: FlagEngine, contract: X007 XCT-### }
+  XCP-006: { name: PolicyGuard, contract: X007 XCT-### }
+  XCP-007: { name: WidgetStore, contract: X007 XCT-### }
+  XCP-008: { name: ViewStore, contract: X007 XCT-### }
+  XCP-009: { name: CompletionEngine, contract: X007 XCT-### }
+  XCP-010: { name: TriggerEngine, contract: X007 XCT-### }
+  XCP-011: { name: RegistryCommand, contract: X007 XCT-### }
+  XCP-012: { name: HelpEngine, contract: X007 XCT-### }

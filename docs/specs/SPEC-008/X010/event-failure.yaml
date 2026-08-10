@@ -1,0 +1,12 @@
+# SPEC-008 X010 - Event Failure Modes
+---
+version: "1.0.0"
+failure_modes:
+  - Publish fail: error + khong tao Event
+  - Validate fail: EVENT_REJECTED + cleanup
+  - Lineage fail: khong publish + event
+  - Store fail: retry policy
+  - Route fail: giu Event, retry
+  - Deliver fail: redeliver (at-least-once)
+  - Replay fail: dung replay + event
+retry: theo Policy S012

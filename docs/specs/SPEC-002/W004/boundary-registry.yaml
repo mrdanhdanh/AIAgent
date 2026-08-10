@@ -1,0 +1,12 @@
+# SPEC-002 W004 - Boundary Registry
+---
+version: "1.0"
+registries:
+  - boundaries.yaml
+  - boundary-matrix.yaml
+  - boundary-ownership-matrix.yaml
+  - declaration-boundary.yaml
+  - execution-boundary.yaml
+  - state-boundary.yaml
+  - policy-boundary.yaml
+  - boundaries.schema.json

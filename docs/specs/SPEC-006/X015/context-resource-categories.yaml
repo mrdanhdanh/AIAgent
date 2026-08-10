@@ -1,0 +1,10 @@
+# SPEC-006 X015 - Context Resource Categories
+---
+version: "1.0.0"
+categories:
+  Memory: [XRES-001]
+  Identity: [XRES-002]
+  Concurrency: [XRES-003]
+  Eventing: [XRES-004]
+  Debug: [XRES-005]
+  Decision: [XRES-006]

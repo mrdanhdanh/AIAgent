@@ -1,0 +1,10 @@
+# SPEC-014 X011 - Dashboard Health
+---
+version: "1.0.0"
+health_checks:
+  - Create_ok: Create nhanh, khong loi
+  - run_ok: run thanh cong
+  - isolation_ok: khong doi he thong that
+  - event_ok: event day du (S011)
+  - policy_ok: policy applied (S012)
+  # score: tinh trong X019 Doctor

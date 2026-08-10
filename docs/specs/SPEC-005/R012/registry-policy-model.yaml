@@ -1,0 +1,8 @@
+# SPEC-005 R012 - Canonical Registry Policy Binding
+---
+version: "1.0.0"
+binding:
+  fields: [id, entry, resolution, policy_ref, parameters, scope, version, status, lifecycle, metadata]
+rules:
+  - policy_ref bat buoc tro den POL-* ton tai (S012).
+  - Thieu bat ky field nao -> Invalid Binding.

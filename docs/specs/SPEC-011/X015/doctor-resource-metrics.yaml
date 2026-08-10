@@ -1,0 +1,9 @@
+# SPEC-011 X015 - Doctor Resource Metrics
+---
+version: "1.0.0"
+metrics:
+  - doctor_storage_bytes
+  - doctor_finding_count
+  - doctor_resource_leaked_total
+  - doctor_quota_exceeded_total
+  - doctor_scan_latency_seconds

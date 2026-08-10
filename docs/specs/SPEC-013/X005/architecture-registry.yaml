@@ -1,0 +1,6 @@
+# SPEC-013 X005 - Evolution Architecture Registry
+---
+version: "1.0.0"
+registry:
+  owner: Evolution Team
+  tracked: [XAL-001..005]

@@ -73,3 +73,16 @@ next_action: "Chạy /trace nếu cần truy vết chi tiết xuống DB"
 
 - Xem thêm: `.opencode/skills/workflow-reader/SKILL.md`
 - Xem thêm: `.opencode/skills/search-engine/SKILL.md`
+
+## Flags:
+
+| Flag | Y nghia |
+|------|---------|
+| `--mermaid` | Xuat mermaid diagram |
+| `--detail` | Chi tiet tung buoc |
+
+## Output Contract
+
+- **Output**: mo ta luong + mermaid diagram.
+- **Format**: markdown.
+

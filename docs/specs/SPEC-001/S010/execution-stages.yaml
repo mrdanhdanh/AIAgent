@@ -1,0 +1,13 @@
+# SPEC-001 S010 — Execution Stages (EF004) v4
+# Stage Coordinate/Finalize nam trong ST-004 (Running) — khong co transition
+# event S009 (P005) nen event ghi "—".
+---
+version: "1.0"
+stages:
+  Initialize: { includes: [Create Execution, Allocate Resource], event: EXECUTION_CREATED }
+  Validate: { includes: [Workflow, Contract, Policy], event: EXECUTION_VALIDATING }
+  Prepare: { includes: [Context, Capability Resolution], event: EXECUTION_PREPARED }
+  Execute: { includes: [Agent Coordination], event: EXECUTION_STARTED }
+  Coordinate: { includes: [Sequential, Parallel, Barrier, Approval, Waiting, Retry, Timeout], event: — }
+  Finalize: { includes: [Result, Artifact, Metrics], event: — }
+  Complete: { includes: [Terminal State], event: EXECUTION_COMPLETED }

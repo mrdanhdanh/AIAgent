@@ -1,0 +1,10 @@
+# SPEC-016 X010 - CLI Stages Registry
+---
+version: "1.0.0"
+registered_stages:
+  XF-001: { name: Create, actor: CLI, event: CLI_CREATED }
+  XF-002: { name: Render, actor: RenderEngine, event: CLI_RENDERING }
+  XF-003: { name: Compose, actor: CLI, event: CLI_COMPOSED }
+  XF-004: { name: Filter, actor: FilterEngine, event: CLI_FILTERED }
+  XF-005: { name: Refresh, actor: RefreshEngine, event: CLI_REFRESHED }
+  XF-006: { name: Export, actor: ExportEngine, event: CLI_EXPORTED }

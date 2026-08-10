@@ -1,0 +1,8 @@
+# SPEC-007 X007 - Artifact Communication Matrix
+---
+version: "1.0.0"
+matrix:
+  Producer -> ArtifactApi: sync create
+  ArtifactApi -> Store: sync write
+  ArtifactApi -> S011: async event
+  Consumer -> ArtifactApi: sync read

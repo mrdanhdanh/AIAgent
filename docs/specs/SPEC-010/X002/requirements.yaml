@@ -1,0 +1,359 @@
+# SPEC-010 X002 - Plugin Requirements
+---
+id: SPEC-010-X002
+name: Plugin Requirements
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Plugin Team
+functional:
+  XFR-001:
+    title: Install Plugin
+    description: install Plugin tu manifest
+    priority: Critical
+    category: Core
+    owner: Plugin
+    status: Draft
+    source: [TERM-015, P001]
+    rules: [RULE-005]
+    verification: [Plugin Test, Doctor]
+  XFR-002:
+    title: Validate Plugin
+    description: validate schema + permission
+    priority: Critical
+    category: Validation
+    owner: Plugin
+    status: Draft
+    source: [TERM-015, P001]
+    rules: [RULE-005]
+    verification: [Plugin Test, Doctor]
+  XFR-003:
+    title: Enable Plugin
+    description: enable de export
+    priority: Critical
+    category: Core
+    owner: Plugin
+    status: Draft
+    source: [TERM-015, P001]
+    rules: [RULE-005]
+    verification: [Plugin Test, Doctor]
+  XFR-004:
+    title: Disable Plugin
+    description: disable khi can tat
+    priority: Critical
+    category: Core
+    owner: Plugin
+    status: Draft
+    source: [TERM-015, P001]
+    rules: [RULE-005]
+    verification: [Plugin Test, Doctor]
+  XFR-005:
+    title: Uninstall Plugin
+    description: uninstall khi het dung
+    priority: High
+    category: Core
+    owner: Plugin
+    status: Draft
+    source: [TERM-015, P001]
+    rules: [RULE-005]
+    verification: [Plugin Test, Doctor]
+  XFR-006:
+    title: Export Capability
+    description: export capability (SPEC-003)
+    priority: Critical
+    category: Execution
+    owner: Plugin
+    status: Draft
+    source: [TERM-015, P001]
+    rules: [RULE-005]
+    verification: [Plugin Test, Doctor]
+  XFR-007:
+    title: Export Agent
+    description: export agent (SPEC-004)
+    priority: High
+    category: Execution
+    owner: Plugin
+    status: Draft
+    source: [TERM-015, P001]
+    rules: [RULE-005]
+    verification: [Plugin Test, Doctor]
+  XFR-008:
+    title: Export Skill
+    description: export skill
+    priority: High
+    category: Execution
+    owner: Plugin
+    status: Draft
+    source: [TERM-015, P001]
+    rules: [RULE-005]
+    verification: [Plugin Test, Doctor]
+  XFR-009:
+    title: Export Widget
+    description: export widget
+    priority: Medium
+    category: Execution
+    owner: Plugin
+    status: Draft
+    source: [TERM-015, P001]
+    rules: [RULE-005]
+    verification: [Plugin Test, Doctor]
+  XFR-010:
+    title: Track Plugin
+    description: theo doi lifecycle (S011)
+    priority: High
+    category: Observability
+    owner: Plugin
+    status: Draft
+    source: [TERM-015, P001]
+    rules: [RULE-005]
+    verification: [Plugin Test, Doctor]
+  XFR-011:
+    title: Publish Plugin Events
+    description: phat Event moi state change (S011)
+    priority: High
+    category: Observability
+    owner: Plugin
+    status: Draft
+    source: [TERM-015, P001]
+    rules: [RULE-005]
+    verification: [Plugin Test, Doctor]
+  XFR-012:
+    title: Bind Policy
+    description: khai bao tham so Policy (S012 binding)
+    priority: High
+    category: Governance
+    owner: Plugin
+    status: Draft
+    source: [TERM-015, P001]
+    rules: [RULE-005]
+    verification: [Plugin Test, Doctor]
+  XFR-013:
+    title: Register Plugin
+    description: dang ky trong Registry (SPEC-005)
+    priority: Medium
+    category: Data
+    owner: Plugin
+    status: Draft
+    source: [TERM-015, P001]
+    rules: [RULE-005]
+    verification: [Plugin Test, Doctor]
+  XFR-014:
+    title: Support Plugin Chain
+    description: Plugin phu thuoc Plugin khac
+    priority: Medium
+    category: Execution
+    owner: Plugin
+    status: Draft
+    source: [TERM-015, P001]
+    rules: [RULE-005]
+    verification: [Plugin Test, Doctor]
+  XFR-015:
+    title: Manage Plugin Lifecycle
+    description: vong doi (install->uninstall)
+    priority: Critical
+    category: Execution
+    owner: Plugin
+    status: Draft
+    source: [TERM-015, P001]
+    rules: [RULE-005]
+    verification: [Plugin Test, Doctor]
+  XFR-016:
+    title: Audit Plugin
+    description: ghi audit moi thay doi (S011)
+    priority: High
+    category: Observability
+    owner: Plugin
+    status: Draft
+    source: [TERM-015, P001]
+    rules: [RULE-005]
+    verification: [Plugin Test, Doctor]
+non_functional:
+  XNF-001:
+    title: No Core Modify
+    description: Plugin khong duoc sua Core
+    priority: Critical
+    category: Core
+    owner: Plugin
+    status: Draft
+    source: [TERM-015]
+    rules: [RULE-005]
+  XNF-002:
+    title: Manifest Required
+    description: moi Plugin co manifest
+    priority: Critical
+    category: Core
+    owner: Plugin
+    status: Draft
+    source: [TERM-015]
+    rules: [RULE-005]
+  XNF-003:
+    title: Permission Scoped
+    description: truy cap trong permission
+    priority: Critical
+    category: Core
+    owner: Plugin
+    status: Draft
+    source: [TERM-015]
+    rules: [RULE-005]
+  XNF-004:
+    title: Observable
+    description: moi Plugin quan sat qua S011
+    priority: High
+    category: Observability
+    owner: Plugin
+    status: Draft
+    source: [TERM-015]
+    rules: [RULE-005]
+  XNF-005:
+    title: Sandboxed
+    description: Plugin chay trong sandbox
+    priority: High
+    category: Security
+    owner: Plugin
+    status: Draft
+    source: [TERM-015]
+    rules: [RULE-005]
+  XNF-006:
+    title: Compatible
+    description: backward compatible
+    priority: High
+    category: Data
+    owner: Plugin
+    status: Draft
+    source: [TERM-015]
+    rules: [RULE-005]
+  XNF-007:
+    title: Recoverable
+    description: phuc hoi sau loi
+    priority: High
+    category: Core
+    owner: Plugin
+    status: Draft
+    source: [TERM-015]
+    rules: [RULE-005]
+  XNF-008:
+    title: Testable
+    description: kiem thu tu dong
+    priority: High
+    category: Core
+    owner: Plugin
+    status: Draft
+    source: [TERM-015]
+    rules: [RULE-005]
+  XNF-009:
+    title: Performant
+    description: dap ung target install/enable
+    priority: High
+    category: Observability
+    owner: Plugin
+    status: Draft
+    source: [TERM-015]
+    rules: [RULE-005]
+  XNF-010:
+    title: Governed
+    description: chiu Governance (S013)
+    priority: Critical
+    category: Governance
+    owner: Plugin
+    status: Draft
+    source: [TERM-015]
+    rules: [RULE-005]
+  XNF-011:
+    title: Reusable
+    description: Plugin pattern tai su dung
+    priority: Medium
+    category: Data
+    owner: Plugin
+    status: Draft
+    source: [TERM-015]
+    rules: [RULE-005]
+  XNF-012:
+    title: Traceable
+    description: moi Plugin truy vet (S011)
+    priority: High
+    category: Observability
+    owner: Plugin
+    status: Draft
+    source: [TERM-015]
+    rules: [RULE-005]
+constraints:
+  XC-001:
+    name: No Core Modify
+    type: Architectural
+    source: [TERM-015]
+    rules: [RULE-005]
+  XC-002:
+    name: No Permission Escalate
+    type: Architectural
+    source: [TERM-015]
+    rules: [RULE-005]
+  XC-003:
+    name: No Business Data
+    type: Architectural
+    source: [P001]
+    rules: [RULE-001]
+  XC-004:
+    name: No Redefine TERM-015
+    type: Architectural
+    source: [P001]
+    rules: [RULE-005]
+  XC-005:
+    name: No Redefine Policy (S012)
+    type: Governance
+    source: [P015]
+    rules: [RULE-012]
+  XC-006:
+    name: Disable Before Uninstall
+    type: Governance
+    source: [P011]
+    rules: [RULE-005]
+assumptions:
+  XA-001: Plugin hop le (da validate)
+  XA-002: Execution ton tai (SPEC-001)
+  XA-003: Registry kha dung (SPEC-005)
+  XA-004: Runtime kha dung (SPEC-001)
+  note: Neu gia dinh sai, Plugin Framework chi bao loi, khong tu sua.
+dependencies:
+  logical:
+    - Constitution
+    - Runtime (SPEC-001)
+    - Capability (SPEC-003)
+    - Registry (SPEC-005)
+    - Contract (SPEC-009)
+  runtime_services:
+    - Event Store (S011)
+    - Metrics Collector (S011)
+external_interfaces:
+  Execution: Input
+  Plugin: Manifest
+  Exported: Capability/Agent/Skill/Widget
+  Policy (S012): Apply
+quality_attributes:
+  Isolation:
+    target: "100%"
+    description: Plugin khong sua Core
+  Sandbox Coverage:
+    target: "100%"
+  Reliability:
+    target: "99.9%"
+  Traceability:
+    target: "100%"
+  Observability:
+    target: "100%"
+acceptance:
+  XAR-001:
+    description: Plugin Framework install va enable duoc Plugin hop le
+    related: [XFR-001, XFR-003, TERM-015]
+    verified_by: [Plugin Tests, Doctor]
+  XAR-002:
+    description: Plugin khong sua duoc Core
+    related: [XC-001, TERM-015]
+    verified_by: [Plugin Tests, Doctor]
+  XAR-003:
+    description: Plugin khong truy cap ngoai permission
+    related: [XC-002, TERM-015]
+    verified_by: [Doctor]
+  XAR-004:
+    description: Plugin khong chua Business Data
+    related: [XC-003, P001]
+    verified_by: [Doctor]

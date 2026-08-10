@@ -1,0 +1,9 @@
+# SPEC-005 R010 - Registry Outcome (S010 EF024)
+---
+version: "1.0.0"
+outcomes:
+  Success: Completed (ST-008)
+  Failure: Failed (ST-009)
+  Cancelled: Cancelled (ST-010)
+  Timeout: TimedOut (ST-011)
+  Aborted: Aborted (ST-014)

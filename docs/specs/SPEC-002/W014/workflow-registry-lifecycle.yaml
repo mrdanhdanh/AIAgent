@@ -1,0 +1,5 @@
+# SPEC-002 W014 - Workflow Registry Lifecycle + Governance (S014 RG010/RG010A)
+---
+version: "1.0"
+lifecycle: [Draft, Published, Deprecated, Retired]
+governance: [Published, Immutable, Governance (S013), Deprecated, Retired]

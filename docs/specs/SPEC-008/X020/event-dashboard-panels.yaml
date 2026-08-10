@@ -1,0 +1,10 @@
+# SPEC-008 X020 - Event Dashboard Panels (6)
+---
+version: "1.0.0"
+panels:
+  XPAN-001: { name: Event Activity, description: Publish/Deliver rate, data: X011 metrics, priority: High }
+  XPAN-002: { name: Event Lifecycle, description: State histogram (X009), data: X009 states, priority: High }
+  XPAN-003: { name: Event Failures, description: Rejected/lost, data: X015 metrics, priority: High }
+  XPAN-004: { name: Subscription Status, description: Active/inactive, data: X011 metrics, priority: Medium }
+  XPAN-005: { name: Replay Status, description: Simulate/audit, data: X011 metrics, priority: Medium }
+  XPAN-006: { name: Compliance Score, description: X016 score, data: X016 report, priority: High }

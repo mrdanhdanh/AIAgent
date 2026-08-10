@@ -1,0 +1,16 @@
+# SPEC-005 R013 - Registry Governance Matrix (S013 GV012)
+---
+version: "1.0.0"
+decision_matrix:
+  Constitution Fail: Abort
+  Boundary Fail: Deny
+  Contract Fail: Failed
+  Binding Invalid: Ignore
+  Permission Fail: Deny
+  Compatibility Fail: Suspend
+decision_priority:
+  Constitution: 100
+  Boundary: 90
+  Contract: 80
+  Policy Binding: 70
+  Permission: 60

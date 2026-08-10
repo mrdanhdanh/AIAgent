@@ -1,0 +1,11 @@
+# SPEC-012 X016 - Simulation Compliance Matrix
+---
+version: "1.0.0"
+matrix:
+  COMP-001: { check: Simulation Doctor, artifact: simulation-*, gate: build }
+  COMP-002: { check: Simulation Doctor, artifact: simulation-*, gate: build }
+  COMP-003: { check: Simulation Doctor, artifact: simulation-*, gate: build }
+  COMP-004: { check: Simulation Doctor, artifact: simulation-*, gate: build }
+  COMP-005: { check: Simulation Doctor, artifact: simulation-*, gate: build }
+  COMP-006: { check: Simulation Doctor, artifact: simulation-*, gate: build }
+gate: khong pass -> BLOCKED

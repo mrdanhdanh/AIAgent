@@ -1,0 +1,254 @@
+# SPEC-002 W003 — Workflow Responsibilities (18 WRR)
+# Moi responsibility dung mot Owner. Authority tach biet.
+---
+id: SPEC-002-W003
+name: Workflow Responsibilities
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Workflow Team
+principle: Responsibility != Capability != Component
+invariants:
+  - Mot Responsibility chi co mot Owner.
+  - Mot Responsibility co the delegate.
+  - Owner khong doi trong mot Workflow chay.
+  - Khong Responsibility nao phu thuoc vong.
+delegation:
+  Capability Resolution: Runtime (S014)
+  Step Execution: Runtime (SPEC-001)
+  Business Logic: Agent
+responsibilities:
+  WRR-001:
+    name: Dinh nghia Workflow
+    group: Core
+    owner: Workflow
+    priority: Critical
+    status: Draft
+    authority: Duoc nhan Workflow khai bao (YAML)
+    input: Workflow Declaration
+    output: Workflow Definition
+    metric: Workflow Define Rate
+    requirements: [WFR-001]
+    principles: [P001, P011]
+    rules: [RULE-001]
+  WRR-002:
+    name: Nap Workflow
+    group: Core
+    owner: Workflow
+    priority: Critical
+    status: Draft
+    authority: Duoc doc Registry (S014)
+    input: Workflow Reference
+    output: Workflow Definition
+    metric: Workflow Load Rate
+    requirements: [WFR-002]
+    principles: [P001, P011]
+    rules: [RULE-002]
+  WRR-003:
+    name: Validate Workflow
+    group: Validation
+    owner: Workflow
+    priority: Critical
+    status: Draft
+    authority: Duoc kiem tra Workflow
+    input: Workflow Definition
+    output: Validation Result
+    metric: Invalid Workflows
+    requirements: [WFR-003]
+    principles: [P002, P011]
+    rules: [RULE-002]
+  WRR-004:
+    name: Chuan hoa Workflow
+    group: Core
+    owner: Workflow
+    priority: High
+    status: Draft
+    authority: Duoc chuan hoa cau truc
+    input: Workflow Definition
+    output: Normalized Workflow
+    metric: Normalization Coverage
+    requirements: [WFR-004]
+    principles: [P009]
+    rules: [RULE-001]
+  WRR-005:
+    name: Resolve Step Capability
+    group: Execution
+    owner: Workflow
+    priority: Critical
+    status: Draft
+    authority: Duoc doc Registry (S014)
+    input: Step Capability Request
+    output: Resolved Capability
+    metric: Resolution Rate
+    requirements: [WFR-005]
+    principles: [P007]
+    rules: [RULE-002]
+  WRR-006:
+    name: Chay step tuan tu
+    group: Execution
+    owner: Workflow
+    priority: Critical
+    status: Draft
+    authority: Duoc dieu phoi thu tu
+    input: Normalized Workflow
+    output: Sequential Execution
+    metric: Sequential Coverage
+    requirements: [WFR-006]
+    principles: [P001]
+    rules: [RULE-004]
+  WRR-007:
+    name: Chay step song song
+    group: Execution
+    owner: Workflow
+    priority: High
+    status: Draft
+    authority: Duoc dieu phoi song song
+    input: Parallel Block
+    output: Scatter/Gather (S010 EF021)
+    metric: Parallel Coverage
+    requirements: [WFR-007]
+    principles: [P001, P009]
+    rules: [RULE-004]
+  WRR-008:
+    name: Quan ly Barrier
+    group: Execution
+    owner: Workflow
+    priority: High
+    status: Draft
+    authority: Duoc cho step con
+    input: Parallel Block
+    output: Barrier Sync (S010 EF021)
+    metric: Barrier Coverage
+    requirements: [WFR-008]
+    principles: [P001]
+    rules: [RULE-004]
+  WRR-009:
+    name: Quan ly Approval Gate
+    group: Governance
+    owner: Workflow
+    priority: Medium
+    status: Draft
+    authority: Duoc chan/duyet Gate
+    input: Gate Request
+    output: Gate Decision
+    metric: Gate Compliance
+    requirements: [WFR-009]
+    principles: [P016]
+    rules: [RULE-004]
+  WRR-010:
+    name: Dieu phoi Retry
+    group: Execution
+    owner: Workflow
+    priority: High
+    status: Draft
+    authority: Duoc retry step
+    input: Failed Step
+    output: Retry Plan (S012 POL-RETRY-001)
+    metric: Retry Success Rate
+    requirements: [WFR-010]
+    principles: [P015]
+    rules: [RULE-012]
+  WRR-011:
+    name: Quan ly Timeout
+    group: Execution
+    owner: Workflow
+    priority: High
+    status: Draft
+    authority: Duoc timeout step
+    input: Running Step
+    output: TimedOut (S012 POL-TIMEOUT-001)
+    metric: Timeout Coverage
+    requirements: [WFR-011]
+    principles: [P015]
+    rules: [RULE-012]
+  WRR-012:
+    name: Quan ly Compensation
+    group: Execution
+    owner: Workflow
+    priority: Medium
+    status: Draft
+    authority: Duoc rollback step da xong
+    input: Failed Workflow
+    output: Compensated Steps (S010 EF022)
+    metric: Compensation Coverage
+    requirements: [WFR-012]
+    principles: [P015]
+    rules: [RULE-012]
+  WRR-013:
+    name: Danh gia Branch
+    group: Execution
+    owner: Workflow
+    priority: High
+    status: Draft
+    authority: Duoc re nhanh theo dieu kien
+    input: Branch Condition
+    output: Selected Path
+    metric: Branch Correctness
+    requirements: [WFR-013]
+    principles: [P001]
+    rules: [RULE-004]
+  WRR-014:
+    name: Chuyen Context giua step
+    group: Context
+    owner: Workflow
+    priority: Critical
+    status: Draft
+    authority: Duoc cap/chuyen Context
+    input: Step Output
+    output: Next Step Context (S010 EF008)
+    metric: Context Coverage
+    requirements: [WFR-014]
+    principles: [P009]
+    rules: [RULE-005]
+  WRR-015:
+    name: Dang ky Workflow
+    group: Data
+    owner: Workflow
+    priority: High
+    status: Draft
+    authority: Duoc ghi Registry (S014)
+    input: Workflow Definition
+    output: Registry Entry
+    metric: Registration Rate
+    requirements: [WFR-015]
+    principles: [P003]
+    rules: [RULE-001]
+  WRR-016:
+    name: Phat Workflow Events
+    group: Observability
+    owner: Workflow
+    priority: High
+    status: Draft
+    authority: Duoc ghi Event Store (S011)
+    input: State Change
+    output: Workflow Event
+    metric: Event Coverage
+    requirements: [WFR-016]
+    principles: [P005, P014]
+    rules: [RULE-007]
+  WRR-017:
+    name: Thuc thi Workflow Governance
+    group: Governance
+    owner: Workflow
+    priority: Critical
+    status: Draft
+    authority: Duoc thuc thi Governance (S013)
+    input: Workflow
+    output: Enforcement
+    metric: Governance Violations
+    requirements: [WNFR-010]
+    principles: [P016]
+    rules: [RULE-008]
+  WRR-018:
+    name: Tu choi Workflow khong hop le
+    group: Governance
+    owner: Workflow
+    priority: Critical
+    status: Draft
+    authority: Duoc tu choi Workflow
+    input: Invalid Workflow
+    output: Rejection + Audit (S011)
+    metric: Rejection Rate
+    requirements: [WFR-003]
+    principles: [P011, P002]
+    rules: [RULE-002, RULE-003]

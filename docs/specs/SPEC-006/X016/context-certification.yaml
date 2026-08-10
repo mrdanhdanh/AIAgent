@@ -1,0 +1,10 @@
+# SPEC-006 X016 - Context Certification
+---
+version: "1.0.0"
+certification:
+  certified_artifacts:
+    - SPEC-006 SPEC.yaml
+    - X001-X020 sections
+    - context-models/
+  criteria: validator PASS + Doctor PASS
+  issued_by: Context Team + Governance (S013)

@@ -1,0 +1,9 @@
+# SPEC-010 X012 - Plugin Policy Categories
+---
+version: "1.0.0"
+categories:
+  Isolation: [XPOL-001, XPOL-003, XPOL-004]
+  Data: [XPOL-005, XPOL-010]
+  Lifecycle: [XPOL-002, XPOL-006, XPOL-008]
+  Resource: [XPOL-007]
+  Audit: [XPOL-009]

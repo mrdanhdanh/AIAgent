@@ -1,0 +1,16 @@
+# SPEC-004 A004 - Capability Boundary (AB007)
+---
+version: "1.0.0"
+name: Capability Boundary
+severity: Critical
+allowed:
+  - Mapping capability qua SPEC-003
+  - Capability group hop le
+not_allowed:
+  - Hardcode capability mapping
+  - Mapping truc tiep
+violation: Agent System hardcode capability mapping
+impact: Critical
+detected_by: Doctor
+principles: [P003]
+rules: [RULE-002]

@@ -1,0 +1,8 @@
+# SPEC-016 X012 - CLI Policy Validation
+---
+version: "1.0.0"
+validation:
+  - moi policy co source (RULE-007/P013/S012)
+  - moi policy co principle
+  - moi policy co enforcement point
+  - kiem tra bang Doctor (X019)

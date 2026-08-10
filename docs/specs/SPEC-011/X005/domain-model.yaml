@@ -1,0 +1,6 @@
+# SPEC-011 X005 - Doctor Domain Model
+---
+version: "1.0.0"
+domain:
+  entities: [Scan, Finding, HealthScore, RepairAction, DoctorReport]
+  logic_layer: Engine Layer

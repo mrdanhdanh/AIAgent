@@ -1,0 +1,11 @@
+# SPEC-005 R007 - Contract Mapping
+---
+version: "1.0.0"
+mapping:
+  RCT-001: [RCP-00X]
+  RCT-002: [RCP-00X]
+  RCT-003: [RCP-00X]
+  RCT-004: [RCP-00X]
+  RCT-005: [RCP-00X]
+  RCT-006: [RCP-00X]
+  RCT-007: [RCP-00X]

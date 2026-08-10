@@ -1,0 +1,9 @@
+# SPEC-009 X017 - Contract Extension Policy
+---
+version: "1.0.0"
+extension_policy:
+  - Extension qua Contract (X007) - khong sua core.
+  - Moi extension co schema + test.
+  - Khong mo rong sang Business Data.
+  - Extension dang ky qua SPEC-005 Registry.
+  - Breaking extension can ADR + RFC.

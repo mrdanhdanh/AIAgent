@@ -1,10 +1,10 @@
 # SPEC-001 S008 — Runtime Data Model v2
 # Canonical Data Model — Single Source of Truth (P009).
 ---
-version: "1.0"
+version: "1.0.0"
 status: Approved
 frozen: true
-frozen_date: "2026-08-04"
+frozen_date: "2026-08-08"
 aggregate_root: Execution
 aggregate_rules:
   - Execution là Aggregate Root duy nhất.
@@ -50,4 +50,4 @@ dependencies:
   - Execution → Events
   - Execution → Artifacts
   - Execution → Result
-  note: Không dependency ngược.
+  # Khong dependency nguoc.

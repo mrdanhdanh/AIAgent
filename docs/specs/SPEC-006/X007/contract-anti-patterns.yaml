@@ -1,0 +1,7 @@
+# SPEC-006 X007 - Contract Anti-patterns
+---
+version: "1.0.0"
+anti_patterns:
+  - Contract tra Business Data.
+  - Contract chia se Context.
+  - Contract dinh nghia lai EF008 flow.

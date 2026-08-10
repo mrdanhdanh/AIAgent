@@ -1,0 +1,8 @@
+# SPEC-014 X011 - Dashboard Correlation
+---
+version: "1.0.0"
+correlation:
+  correlation_id: sinh khi Create
+  trace_id: Runtime (S011)
+  execution_id: Execution (SPEC-001)
+  mapping: dashboard-observability-mapping.yaml

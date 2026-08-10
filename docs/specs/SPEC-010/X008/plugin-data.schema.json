@@ -1,0 +1,10 @@
+{
+  "schema": "plugin-data-model",
+  "version": "1.0.0",
+  "entities": { "type": "object" },
+  "relations": { "type": "object" },
+  "invariants": { "type": "object" },
+  "validation": { "type": "object" },
+  "storage": { "type": "object" },
+  "required": [ "entities", "relations", "invariants", "validation", "storage" ]
+}

@@ -1,0 +1,8 @@
+# SPEC-008 X007 - Event Contract Anti-Patterns
+---
+version: "1.0.0"
+anti_patterns:
+  - No implicit contract (undocumented)
+  - No silent breaking
+  - No mutable Event contract
+  - No contract chua Business Data

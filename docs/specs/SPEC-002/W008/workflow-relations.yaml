@@ -1,0 +1,10 @@
+# SPEC-002 W008 - Workflow Relations
+---
+version: "1.0"
+relations:
+  Workflow 1-1 Definition
+  Definition 1-N Step
+  Step 0-N Branch
+  Step 0-1 Gate
+  Workflow 1-1 Context (trong chay)
+  Workflow 1-1 Result

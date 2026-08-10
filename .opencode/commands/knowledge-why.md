@@ -43,3 +43,11 @@ reasons:
 summary: "Lý do chính"
 sources: ["AGENTS.md:33", "git:91bdafe"]
 ```
+
+## Flags:
+
+| Flag | Y nghia |
+|------|---------|
+| `--git` | Kem git history |
+| `--doc` | Kem doc tham chieu |
+

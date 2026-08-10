@@ -1,0 +1,19 @@
+# SPEC-016 X008 - CLI Entities (15 ENT)
+---
+version: "1.0.0"
+entities:
+  ENT-X001: { name: CLI, kind: AggregateRoot, owner: CLI, immutable: false }
+  ENT-X002: { name: CLIDefinition, kind: Entity, owner: CLI, immutable: true }
+  ENT-X003: { name: Widget, kind: Entity, owner: CLI, immutable: true }
+  ENT-X004: { name: Panel, kind: Entity, owner: CLI, immutable: true }
+  ENT-X005: { name: CLIView, kind: Value, owner: CLI, immutable: false }
+  ENT-X006: { name: CLIState, kind: Transient, owner: CLI, immutable: false }
+  ENT-X007: { name: CLIExport, kind: Entity, owner: CLI, immutable: true }
+  ENT-X008: { name: CLIEvent, kind: Ref (S011), owner: Runtime, immutable: true }
+  ENT-X009: { name: CLIMetric, kind: Ref (S011), owner: Runtime, immutable: true }
+  ENT-X010: { name: CLISnapshot, kind: Entity, owner: CLI, immutable: false }
+  ENT-X011: { name: ExecutionRef, kind: Ref (SPEC-001), owner: Execution, immutable: true }
+  ENT-X012: { name: SystemRef, kind: Ref (SPEC-000..013), owner: System, immutable: true }
+  ENT-X013: { name: MetricRef, kind: Ref (S011), owner: CLI, immutable: true }
+  ENT-X014: { name: PolicyRef, kind: Ref (S012), owner: Runtime, immutable: true }
+  ENT-X015: { name: CLIExtension, kind: Value, owner: CLI, immutable: true }

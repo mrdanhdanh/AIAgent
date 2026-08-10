@@ -1,0 +1,11 @@
+{ "$schema": "https://json-schema.org/draft/2020-12/schema", "$id": "aios://context-requirements.schema.json", "title": "SPEC-006 Context Requirements (X002)", "type": "object",
+  "required": ["id","name","version","status","frozen","owner","functional","non_functional","constraints","assumptions","dependencies","external_interfaces","quality_attributes","acceptance"],
+  "properties": { "id": { "const": "SPEC-006-X002" }, "name": { "const": "Context Requirements" },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "status": { "enum": ["Draft","Review","Approved","Stable","Deprecated"] }, "frozen": { "type": "boolean" },
+    "owner": { "type": "string" }, "functional": { "type": "object", "minProperties": 16 },
+    "non_functional": { "type": "object", "minProperties": 12 }, "constraints": { "type": "object", "minProperties": 6 },
+    "assumptions": { "type": "object" }, "dependencies": { "type": "object" },
+    "external_interfaces": { "type": "object" }, "quality_attributes": { "type": "object" },
+    "acceptance": { "type": "object", "minProperties": 6 } },
+  "additionalProperties": false }

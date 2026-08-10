@@ -47,3 +47,11 @@ di_dependencies: ["ILocalStorageService"]
 lifecycle_notes: "N/A (service, không phải component)"
 sources: ["Services/WordService.cs:12"]
 ```
+
+## Flags:
+
+| Flag | Y nghia |
+|------|---------|
+| `--method <name>` | Chi giai thich method |
+| `--flow` | Kem call graph |
+

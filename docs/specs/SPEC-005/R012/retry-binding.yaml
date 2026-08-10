@@ -1,0 +1,9 @@
+# SPEC-005 R012 - Binding (RPB-001 -> POL-RETRY-001)
+---
+version: "1.0.0"
+binding:
+  id: RPB-001
+  policy_ref: POL-RETRY-001 (S012)
+  scope: Resolution
+  parameters: {}
+  status: Draft

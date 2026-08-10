@@ -1,0 +1,57 @@
+---
+id: SPEC-008
+name: Event Bus
+version: "1.0.0"
+status: Frozen
+type: Engine
+authority: High
+owner: Event Team
+description: >
+  Event Bus — quản lý Event: Publish, Route, Deliver, Subscribe, Replay,
+  Archive (S011 Event Model, RULE-007). Event luôn immutable (P010/P005),
+  có lineage, không sửa sau publish.
+dependencies:
+  - SPEC-000
+  - SPEC-001
+  - SPEC-005
+  - SPEC-007
+includes:
+  - X001
+  - X002
+  - X003
+  - X004
+  - X005
+  - X006
+  - X007
+  - X008
+  - X009
+  - X010
+  - X011
+  - X012
+  - X013
+  - X014
+  - X015
+  - X016
+  - X017
+  - X018
+  - X019
+  - X020
+outputs:
+  - Event
+  - Event Stream
+  - Subscription
+implements:
+  - Event
+authoritative: false
+breaking_change_requires:
+  - ADR
+  - RFC
+references:
+  constitution: ../SPEC-000
+  runtime: ../SPEC-001
+  registry: ../SPEC-005
+  artifact: ../SPEC-007
+  glossary: ../../glossary
+  principles: ../../principles
+  rules: ../../rules
+  governance: ../../governance

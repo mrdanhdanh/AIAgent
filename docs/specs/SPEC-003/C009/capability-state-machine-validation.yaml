@@ -1,0 +1,10 @@
+# SPEC-003 C009 - Capability State Machine Validation
+# Doctor kiem tra.
+---
+version: "1.0.0"
+checks:
+  - Capability co dung mot State.
+  - Transition hop le (da khai bao).
+  - Moi transition sinh Event (S011).
+  - Run dung State Machine S009 - khong dinh nghia lai.
+  - Terminal khong co transition ra.

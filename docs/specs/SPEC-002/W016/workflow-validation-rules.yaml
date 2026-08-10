@@ -1,0 +1,52 @@
+# SPEC-002 W016 - Workflow Validation Rules (12)
+---
+version: "1.0"
+rules:
+  - id: WVR-001
+    source: W009
+    rule: Invalid Workflow
+    severity: Critical
+  - id: WVR-002
+    source: W012
+    rule: Invalid Binding
+    severity: Critical
+  - id: WVR-003
+    source: W004
+    rule: Boundary Violation
+    severity: Critical
+  - id: WVR-004
+    source: W014
+    rule: Registry Violation
+    severity: Critical
+  - id: WVR-005
+    source: W015
+    rule: Resource Leak
+    severity: Critical
+  - id: WVR-006
+    source: W007
+    rule: Contract Failure
+    severity: High
+  - id: WVR-007
+    source: W015
+    rule: Quota Violation
+    severity: High
+  - id: WVR-008
+    source: W011
+    rule: Missing Workflow Event
+    severity: High
+  - id: WVR-009
+    source: W011
+    rule: Missing Workflow Metrics
+    severity: Medium
+  - id: WVR-010
+    source: W011
+    rule: Broken Workflow Trace
+    severity: Medium
+  - id: WVR-011
+    source: W011
+    rule: Invalid Audit
+    severity: Medium
+  - id: WVR-012
+    source: S013
+    rule: Constitution Violation
+    severity: Critical

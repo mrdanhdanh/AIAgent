@@ -1,0 +1,5 @@
+{
+  "schema": "simulation-registry",
+  "version": "1.0",
+  "entry_types": ["SimulationDefinition","ScannerDefinition","SimulationPolicy","SimulationStateMachine"]
+}

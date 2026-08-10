@@ -1,0 +1,120 @@
+# SPEC-001 S016 - Validation Rules (tong hop tu cac SPEC)
+# 23 rules = claim CM004/compliance.yaml/S019 doctor.md.
+---
+version: "1.0.0"
+rules:
+  - id: VR-001
+    source: S013
+    section: GV011
+    rule: Missing Enforcement
+    severity: Critical
+  - id: VR-002
+    source: S013
+    section: GV004
+    rule: Constitution Violation
+    severity: Critical
+  - id: VR-003
+    source: S014
+    section: RG011
+    rule: Circular Reference
+    severity: Critical
+  - id: VR-004
+    source: S015
+    section: RS014
+    rule: Resource Leak
+    severity: Critical
+  - id: VR-005
+    source: S011
+    section: OB014
+    rule: Broken Lineage
+    severity: High
+  - id: VR-006
+    source: S014
+    section: RG011
+    rule: Orphan Entry
+    severity: High
+  - id: VR-007
+    source: S015
+    section: RS014
+    rule: Double Allocation
+    severity: High
+  - id: VR-008
+    source: S011
+    section: OB004
+    rule: Missing Event
+    severity: High
+  - id: VR-009
+    source: S014
+    section: RG011
+    rule: Missing Compatibility
+    severity: Medium
+  - id: VR-010
+    source: S011
+    section: OB007
+    rule: Invalid Audit
+    severity: Medium
+  - id: VR-011
+    source: S013
+    section: GV005
+    rule: Invalid Policy
+    severity: Critical
+  - id: VR-012
+    source: S013
+    section: GV006
+    rule: Invalid Contract
+    severity: Critical
+  - id: VR-013
+    source: S013
+    section: GV007
+    rule: Boundary Violation
+    severity: Critical
+  - id: VR-014
+    source: S013
+    section: GV009
+    rule: Version Conflict
+    severity: High
+  - id: VR-015
+    source: S014
+    section: RG011
+    rule: Missing Entry
+    severity: High
+  - id: VR-016
+    source: S014
+    section: RG011
+    rule: Duplicate ID
+    severity: High
+  - id: VR-017
+    source: S014
+    section: RG011
+    rule: Broken Reference
+    severity: High
+  - id: VR-018
+    source: S014
+    section: RG011
+    rule: Dangling Reference
+    severity: High
+  - id: VR-019
+    source: S014
+    section: RG011
+    rule: Duplicate Active Version
+    severity: Medium
+  - id: VR-020
+    source: S014
+    section: RG011
+    rule: Invalid Lifecycle
+    severity: Medium
+  - id: VR-021
+    source: S015
+    section: RS014
+    rule: Quota Violation
+    severity: High
+  - id: VR-022
+    source: S011
+    section: OB005
+    rule: Missing Metrics
+    severity: Medium
+  - id: VR-023
+    source: S011
+    section: OB006
+    rule: Broken Trace
+    severity: Medium

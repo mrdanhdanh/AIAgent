@@ -1,0 +1,8 @@
+# SPEC-015 X020 - SDK Doctor Config
+---
+version: "1.0.0"
+config:
+  refresh: 60s (default)
+  theme: S011 SDK theme
+  filters: [scan_id, domain, severity, time_range]
+  export: JSON

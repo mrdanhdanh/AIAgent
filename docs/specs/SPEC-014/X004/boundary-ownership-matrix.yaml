@@ -1,0 +1,9 @@
+# SPEC-014 X004 - Dashboard Boundary Ownership Matrix
+---
+version: "1.0.0"
+ownership:
+  view: Dashboard (immutable)
+  metadata: Dashboard
+  data: S011 Metrics (read-only)
+  policy: Policy (S012)
+  system: KHONG thuoc Dashboard

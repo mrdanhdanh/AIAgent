@@ -1,0 +1,10 @@
+# SPEC-011 X005 - Doctor Architecture
+---
+version: "1.0.0"
+architecture:
+  model: Layered (5 layers)
+  style: In-process + Scanner registry
+  key_decisions:
+    - Doctor khong sua core (P015)
+    - Scanner registry (mo rong de dang)
+    - Policy qua S012

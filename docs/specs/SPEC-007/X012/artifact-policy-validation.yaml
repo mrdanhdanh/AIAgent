@@ -1,0 +1,8 @@
+# SPEC-007 X012 - Artifact Policy Validation
+---
+version: "1.0.0"
+validation:
+  - moi policy co source (P010/S012/S011)
+  - moi policy co principle
+  - moi policy co enforcement point
+  - kiem tra bang Doctor (X019)

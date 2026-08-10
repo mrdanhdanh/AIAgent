@@ -1,0 +1,21 @@
+# SPEC-015 X011 - SDK Events (S011 reuse)
+---
+version: "1.0.0"
+definition_events:
+  - SDK_CreateD
+  - SDK_RenderD
+  - SDK_RUNNING
+  - SDK_ComposeD
+  - SDK_FilterD
+  - SDK_ExportED
+  - SDK_FAILED
+  - SDK_FINDING
+  - SDK_DEVIATION
+  - SDK_ISOLATION_BLOCKED
+  - SDK_REPLAYED
+  - SDK_RESTORED
+rules:
+  - Event immutable (P010).
+  - Event chi append.
+  - Moi transition sinh Event (X009).
+  - Event co correlation_id (S011).

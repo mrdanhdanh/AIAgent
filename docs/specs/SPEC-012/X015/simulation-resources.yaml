@@ -1,0 +1,10 @@
+# SPEC-012 X015 - Simulation Resources
+---
+version: "1.0.0"
+resources:
+  XRES-001: { name: Storage, owner: Simulation }
+  XRES-002: { name: Index, owner: Simulation }
+  XRES-003: { name: ScanId, owner: Simulation }
+  XRES-004: { name: Scan CPU, owner: Simulation }
+  XRES-005: { name: Event Buffer, owner: Runtime }
+  XRES-006: { name: Snapshot Store, owner: Simulation }

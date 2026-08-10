@@ -1,0 +1,13 @@
+# SPEC-007 X008 - Artifact Relations
+---
+version: "1.0.0"
+relations:
+  REL-X001: { from: Artifact, relation: owns, to: ArtifactDefinition, cardinality: 1..1 }
+  REL-X002: { from: Artifact, relation: owns, to: ArtifactVersion, cardinality: 1..* }
+  REL-X003: { from: Artifact, relation: owns, to: ArtifactMetadata, cardinality: 1..1 }
+  REL-X004: { from: Artifact, relation: has, to: ArtifactChecksum, cardinality: 1..1 }
+  REL-X005: { from: Artifact, relation: has, to: ArtifactState, cardinality: 1..1 }
+  REL-X006: { from: Artifact, relation: indexed, to: ArtifactIndex, cardinality: 0..1 }
+  REL-X007: { from: Artifact, relation: refers, to: ExecutionRef, cardinality: 1..1 }
+  REL-X008: { from: Artifact, relation: emits, to: ArtifactEvent, cardinality: 0..* }
+  REL-X009: { from: Artifact, relation: snapshots, to: ArtifactSnapshot, cardinality: 0..* }

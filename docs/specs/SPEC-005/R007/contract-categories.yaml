@@ -1,0 +1,4 @@
+# SPEC-005 R007 - Contract Categories
+---
+version: "1.0.0"
+categories: [Execution, Data, Observability]

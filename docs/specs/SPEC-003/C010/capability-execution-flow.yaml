@@ -1,0 +1,52 @@
+# SPEC-003 C010 — Capability Execution Flow
+# Capability chay qua Runtime (SPEC-001) - Capability System chi khai bao + dang ky + resolve.
+---
+id: SPEC-003-C010
+name: Capability Execution Flow
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Capability Team
+philosophy:
+  - Capability chay nhu Execution cua Runtime (SPEC-001).
+  - Capability System khai bao + dang ky, Runtime thuc thi (CB004).
+  - Moi resolution deu qua Runtime (EF007).
+  - Khong buoc nao thieu Event (S011).
+principles:
+  - "Declarative: nang luc khai bao truoc, khong hardcode."
+  - Validate truoc khi dang ky (CFR-006).
+  - Register truoc khi resolve (CNFR-003).
+  - Delegate thuc thi cho Runtime (CB004).
+  - Moi resolution co trace + event (S011).
+stages:
+# note: Capability dung 7 stages cua S010 EF004 (qua Runtime).
+  - Initialize
+  - Validate
+  - Prepare
+  - Execute
+  - Coordinate
+  - Finalize
+  - Complete
+canonical_flow:
+  - Command
+  - Declare (metadata)
+  - Validate
+  - Register (S014 + mapping)
+  - Resolve (delegate Runtime EF007)
+  - Execute (Runtime S010)
+  - Finalize
+  - Complete
+capability_flows:
+  - Registration
+  - Resolution (EF007)
+  - Fallback
+  - Gate (approval)
+  - Retry (POL-RETRY-001)
+  - Timeout (POL-TIMEOUT-001)
+  - Failure (EF017)
+rules:
+  - Moi capability phai dang ky truoc khi resolve (S014).
+  - Moi resolution chay qua Runtime - khong tu resolve (CB004).
+  - Moi buoc sinh Event + Trace + Metric (S011).
+  - Gate can approval (S012 POL-APPROVAL-001).
+  - Capability ket thuc bang Terminal State (S009).

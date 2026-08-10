@@ -1,0 +1,10 @@
+# SPEC-005 R010 - Registry Policies (tham chieu S012)
+---
+version: "1.0.0"
+policies:
+  Retry: POL-RETRY-001 (S012)
+  Timeout: POL-TIMEOUT-001 (S012)
+  Approval: POL-APPROVAL-001 (S012)
+  Permission: POL-SEC-001 (S012)
+rules:
+  - Registry khai bao tham so cho policy, khong dinh nghia policy (RB008).

@@ -1,0 +1,8 @@
+# SPEC-002 W009 - Workflow State History (S011)
+---
+version: "1.0.0"
+history:
+  fields: [workflow_id, state_from, state_to, event, timestamp, correlation_id]
+rules:
+  - Append-only (S011).
+  - Moi transition ghi history + Event (S011).

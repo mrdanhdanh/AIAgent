@@ -1,0 +1,10 @@
+# SPEC-002 Appendix - Workflow Model Validation
+---
+version: "1.0"
+checks:
+  - Workflow co dung mot Definition.
+  - Definition co it nhat mot Step.
+  - Branch tro den Step ton tai.
+  - Gate co policy_ref (S012).
+  - WorkflowContext isolated.
+  - WorkflowResult immutable.

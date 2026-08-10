@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aios://capability-components.schema.json",
+  "title": "SPEC-003 Capability Components (C006)",
+  "description": "JSON Schema cho components.yaml. Validator kiem tra cau truc.",
+  "type": "object",
+  "required": ["id", "name", "version", "status", "frozen", "owner", "philosophy", "principles", "component_model", "groups", "lifecycles", "components", "not_in_runtime"],
+  "properties": {
+    "id": { "const": "SPEC-003-C006" },
+    "name": { "const": "Capability Components" },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "status": { "enum": ["Draft", "Review", "Approved", "Stable", "Deprecated"] },
+    "frozen": { "type": "boolean" },
+    "owner": { "type": "string" },
+    "philosophy": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "principles": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "component_model": { "type": "object", "required": ["fields"] },
+    "groups": { "type": "object", "minProperties": 3 },
+    "lifecycles": { "type": "object" },
+    "components": { "type": "object", "minProperties": 8 },
+    "not_in_runtime": { "type": "array", "items": { "type": "string" }, "minItems": 1 }
+  },
+  "additionalProperties": false
+}

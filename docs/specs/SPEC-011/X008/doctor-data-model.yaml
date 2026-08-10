@@ -1,0 +1,50 @@
+# SPEC-011 X008 - Doctor Data Model
+---
+version: "1.0.0"
+entities:
+  ENT-X001: { name: Scan, kind: AggregateRoot, owner: Doctor, immutable: false }
+  ENT-X002: { name: ScanDefinition, kind: Entity, owner: Doctor, immutable: true }
+  ENT-X003: { name: Finding, kind: Entity, owner: Doctor, immutable: false }
+  ENT-X004: { name: HealthScore, kind: Entity, owner: Doctor, immutable: true }
+  ENT-X005: { name: RepairAction, kind: Value, owner: Doctor, immutable: false }
+  ENT-X006: { name: ScanState, kind: Transient, owner: Doctor, immutable: false }
+  ENT-X007: { name: DoctorReport, kind: Entity, owner: Doctor, immutable: true }
+  ENT-X008: { name: DoctorEvent, kind: Ref (S011), owner: Runtime, immutable: true }
+  ENT-X009: { name: DoctorMetric, kind: Ref (S011), owner: Runtime, immutable: true }
+  ENT-X010: { name: DoctorSnapshot, kind: Entity, owner: Doctor, immutable: false }
+  ENT-X011: { name: ExecutionRef, kind: Ref (SPEC-001), owner: Execution, immutable: true }
+  ENT-X012: { name: SystemRef, kind: Ref (SPEC-000..010), owner: System, immutable: true }
+  ENT-X013: { name: ScannerRef, kind: Ref (SPEC-011), owner: Doctor, immutable: true }
+  ENT-X014: { name: PolicyRef, kind: Ref (S012), owner: Runtime, immutable: true }
+  ENT-X015: { name: DoctorExtension, kind: Value, owner: Doctor, immutable: true }
+relations:
+  REL-X001: { from: Scan, to: ScanDefinition, cardinality: 1..1 }
+  REL-X002: { from: Scan, to: Finding, cardinality: 0..* }
+  REL-X003: { from: Scan, to: HealthScore, cardinality: 1..1 }
+  REL-X004: { from: Scan, to: RepairAction, cardinality: 0..* }
+  REL-X005: { from: Scan, to: ScanState, cardinality: 1..1 }
+  REL-X006: { from: Scan, to: DoctorReport, cardinality: 0..1 }
+  REL-X007: { from: Scan, to: ExecutionRef, cardinality: 1..1 }
+  REL-X008: { from: Scan, to: DoctorEvent, cardinality: 0..* }
+  REL-X009: { from: Scan, to: DoctorSnapshot, cardinality: 0..* }
+invariants:
+  INV-X001: { name: Unique ScanId, description: Moi Scan co id duy nhat }
+  INV-X002: { name: No Core Modify, description: Scan khong sua core }
+  INV-X003: { name: Score Valid, description: Score 0-100 }
+  INV-X004: { name: Finding Traceable, description: Finding co source }
+  INV-X005: { name: Repair Safe, description: Repair chi sua doc }
+  INV-X006: { name: Report Complete, description: Report day du }
+  INV-X007: { name: No Business Data, description: Scan khong chua business data }
+validation:
+  VAL-X001: { field: ScanId, requirement: Required, type: UUID }
+  VAL-X002: { field: Timestamp, requirement: Required, type: Timestamp }
+  VAL-X003: { field: Scope, requirement: Required, type: Enum }
+  VAL-X004: { field: Score, requirement: Required, type: 0-100 }
+  VAL-X005: { field: Findings, requirement: Required, type: "Finding[]" }
+  VAL-X006: { field: Repairs, requirement: Optional, type: "RepairAction[]" }
+  VAL-X007: { field: Report, requirement: Required, type: markdown/JSON }
+storage:
+  mode: Findings store
+  persistence: "true (P010 - report history)"
+  snapshot: DoctorSnapshot (optional, debug)
+  source: /doctor command

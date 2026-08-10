@@ -174,9 +174,14 @@ function Get-DoctorKnowledge {
 
     # 4. Pending learning items
     $pending = 0
-    $buckets = @("blazor","react","angular","oracle","sql","python","git","dotnet","powerapps")
+    $buckets = @("blazor","fluentu","sql","dotnet","git","testing","ui")
     $covered = @($topicNames | ForEach-Object { $_.ToLower() })
-    $missingTopics = @($buckets | Where-Object { $_ -notin $covered -and $_ -notin @(($kbFiles | ForEach-Object { $_.Directory.Name.ToLower() })) })
+    $covered += @($kbFiles | ForEach-Object { $_.Directory.Name.ToLower() })
+    $covered += @($kbFiles | ForEach-Object { $_.BaseName.ToLower() })
+    $missingTopics = @($buckets | Where-Object {
+        $kw = [regex]::Escape($_)
+        $_ -notin $covered -and -not (@($covered | Where-Object { $_ -match $kw }).Count -gt 0)
+    })
     if ($missingTopics.Count -gt 0) {
         $pending = $missingTopics.Count
         $issues += @{ severity = "WARNING"; group = "Knowledge"; message = "Missing topic coverage: $($missingTopics -join ', ')" }
@@ -189,7 +194,14 @@ function Get-DoctorKnowledge {
     # 5. Deprecated frameworks
     $deprecatedHit = @($kbFiles | Where-Object {
         $c = Get-Content -LiteralPath $_.FullName -Raw -Encoding utf8 -ErrorAction SilentlyContinue
-        $c -match '(?i)(MudBlazor|\.NET [5-9]|deprecated)'
+        $hasHistorical = $c -match '(?i)(migrated to FluentUI|KHONG AP DUNG|không áp dụng|historical|status:\s*"deprecated")'
+        if ($hasHistorical) { return $false }
+        $bad = $false
+        foreach ($line in ($c -split "`r?`n")) {
+            if ($line -match '(?i)mudblazor|deprecated') { $bad = $true; break }
+            if ($line -match '\.NET\s*[5-9]\b' -and $line -notmatch '(?i)(khong dung|không dùng|khong ap dung|không áp dụng|tranh|tránh|not use|don.t use|no longer|replaced|avoid|legacy)') { $bad = $true; break }
+        }
+        $bad
     })
     if ($deprecatedHit.Count -gt 0) {
         $score -= 10

@@ -1,0 +1,10 @@
+# SPEC-013 X008 - Evolution Lifecycle (see X009)
+---
+version: "1.0.0"
+lifecycle_phases:
+  - Diffed
+  - CompatChecked
+  - Planned
+  - Migrated
+  - Evolved
+note: Evolution khong dinh nghia lai lifecycle.

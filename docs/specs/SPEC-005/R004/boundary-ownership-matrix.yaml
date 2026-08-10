@@ -1,0 +1,13 @@
+# SPEC-005 R004 - Boundary Ownership Matrix
+---
+version: "1.0.0"
+ownership:
+  RB001-declaration: Registry
+  RB002-storage: Registry
+  RB003-validation: Registry
+  RB004-resolution: Runtime (S014)
+  RB005-interface: Registry
+  RB006-dependency: Registry
+  RB007-ownership: Registry
+  RB008-policy: Runtime (S012)
+  RB009-governance: Runtime (S013)

@@ -125,7 +125,7 @@ public class KanjiQuizTests : E2ETestBase
 
         var correctText = await GetCssVarAsync(pw.Page, ".stat-correct", "--stat-correct-text");
         var wrongText = await GetCssVarAsync(pw.Page, ".stat-wrong", "--stat-wrong-text");
-        Assert.Equal("#2f7d5f", correctText);
-        Assert.Equal("#c5413b", wrongText);
+        Assert.Equal("#1f5c44", correctText);
+        Assert.Equal("#8f2b26", wrongText);
     }
 }

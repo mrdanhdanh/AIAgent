@@ -1,0 +1,16 @@
+# SPEC-007 X006 - Artifact Component Dependencies
+---
+version: "1.0.0"
+dependencies:
+  XCP-001 -> Engine
+  XCP-002 -> StateMachine, Store
+  XCP-003 -> S009
+  XCP-004 -> Store
+  XCP-005 -> X008
+  XCP-006 -> S012
+  XCP-007 -> Store
+  XCP-008 -> Store
+  XCP-009 -> S011
+  XCP-010 -> S011
+  XCP-011 -> SPEC-005
+  XCP-012 -> Store

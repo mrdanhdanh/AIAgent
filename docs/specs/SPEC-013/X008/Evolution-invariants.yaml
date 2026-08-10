@@ -1,0 +1,12 @@
+# SPEC-013 X008 - Evolution Invariants
+---
+version: "1.0.0"
+invariants:
+  INV-X001: { name: Unique EvolutionId, description: Moi Evolution co id duy nhat }
+  INV-X002: { name: No Breaking Change, description: Evolution khong pha vo he thong }
+  INV-X003: { name: Compatible, description: Thay doi backward compatible }
+  INV-X004: { name: Migration Planned, description: Moi thay doi co migration plan }
+  INV-X005: { name: Self-Heal Safe, description: Self-heal doc-only }
+  INV-X006: { name: Report Complete, description: Report day du }
+  INV-X007: { name: No Business Data, description: Evolution khong chua business data }
+violation: BLOCK operation + error EVOLUTION_INVARIANT

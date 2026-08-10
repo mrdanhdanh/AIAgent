@@ -1,0 +1,8 @@
+# SPEC-015 X007 - SDK Communication Matrix
+---
+version: "1.0.0"
+matrix:
+  User -> SDKApi: sync render
+  SDKApi -> ClientEngine: sync render
+  SDKApi -> CallEngine: sync export
+  SDKApi -> S011: async event

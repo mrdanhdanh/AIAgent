@@ -1,0 +1,22 @@
+# SPEC-003 C003 - Responsibility Mapping (CRR -> Requirement)
+---
+version: "1.0.0"
+mapping:
+  CRR-001: [CFR-001]
+  CRR-002: [CFR-002]
+  CRR-003: [CFR-006]
+  CRR-004: [CFR-007]
+  CRR-005: [CFR-003]
+  CRR-006: [CFR-004]
+  CRR-007: [CFR-005]
+  CRR-008: [CFR-008]
+  CRR-009: [CFR-009]
+  CRR-010: [CFR-010]
+  CRR-011: [CFR-011]
+  CRR-012: [CFR-012]
+  CRR-013: [CFR-013]
+  CRR-014: [CFR-014]
+  CRR-015: [CFR-015]
+  CRR-016: [CFR-016]
+  CRR-017: [CNFR-010]
+  CRR-018: [CFR-006]

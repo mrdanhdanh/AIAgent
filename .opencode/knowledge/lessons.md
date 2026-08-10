@@ -1,6 +1,6 @@
 ---
-last_updated: 2026-08-03
-total_lessons: 26
+last_updated: 2026-08-10
+total_lessons: 33
 ---
 
 # Lessons Learned
@@ -248,3 +248,58 @@ Kho bài học kinh nghiệm được tích lũy qua các workflow.
   observation: "TrendingService trả list rỗng khi GitHub Search API 403 (rate-limit unauth 10 req/min) hoặc exception; Home.razor catch nuốt exception; HttpClient không có Timeout (mặc định 100s) → spinner treo lâu. Tri-state Loading→Empty→Data thiếu nhánh Error, không phân biệt được 'không có dữ liệu' vs 'load thất bại'."
   action: "Thêm failure surfacing vào service (HasFailures/LastError/FailedSourceCount), không cache kết quả fail (để retry fetch lại), HttpClient Timeout 20s, Home.razor thêm error state + nút Retry. Áp dụng nguyên tắc Red→Green: viết failing test bUnit trước khi sửa, GREEN sau fix. Tạo test project AIHub.Tests (bUnit 2.7.2 + Moq) kèm MockHttpMessageHandler."
   tags: ["aihub", "blazor", "error-handling", "rate-limit", "github-api", "retry", "tristate", "red-green"]
+- lesson_id: LSN-027
+  type: "success"
+  workflow: "SPEC-006 Context Engine (docs(aios) 2026-08-09)"
+  situation: "Xay dung Context Engine spec voi S010 EF008 (Context Flow) + S008 ENT Context transient"
+  observation: "Context Engine KHONG dinh nghia lai EF008 - chi thuc thi. Context transient (P009), isolated (P006), khong chua Business Data (S011 OB003A). 6 states: Allocated->Populating->Active->Distributed->Merging->Collected->Released/Rejected"
+  action: "Spec xay theo pattern: Vision(6 invariants) -> 16 FR/12 NFR/6 XC -> 15 ENT -> 6 XST -> 7 stages EF008. YAML flow mapping phai quote '-' va '[]' neu khong PyYAML ParserError"
+  tags: ["spec", "context-engine", "ef008", "yaml", "spec-006"]
+
+- lesson_id: LSN-028
+  type: "success"
+  workflow: "SPEC-007 Artifact Manager (docs(aios) 2026-08-09)"
+  situation: "Xay dung Artifact Manager spec voi P010 Immutable Artifact + TERM-008"
+  observation: "Artifact immutable (P010), checksum SHA-256, khong overwrite. Lifecycle: Created->Validating->Published->Consumed->Archived/Rejected. Content-addressable storage (checksum)"
+  action: "Pattern: X008 15 ENT (Artifact aggregate root), X009 6 XST, X010 8 stages (Create->Validate->Checksum->Publish->Version->Index->Consume->Archive). Cross-SPEC event khong trung SPEC-001 S017/S019"
+  tags: ["spec", "artifact", "immutable", "checksum", "spec-007"]
+
+- lesson_id: LSN-029
+  type: "success"
+  workflow: "SPEC-008 Event Bus (docs(aios) 2026-08-09)"
+  situation: "Xay dung Event Bus spec voi RULE-007 + S011 Event Model + TERM-012"
+  observation: "Event immutable (P010/P005), append-only, co lineage. Moi state change phat Event (RULE-007). Pub/Sub topic-based. 8 stages: Publish->Validate->Lineage->Store->Route->Deliver->Replay->Archive"
+  action: "Moi spec dung prefix event rieng (DASHBOARD_*/SDK_*/CLI_*) de tranh collision. Cross-SPEC event collision la MAJOR trong review - phai grep SPEC-001 S0xx truoc khi dat ten event"
+  tags: ["spec", "event-bus", "pubsub", "lineage", "spec-008"]
+
+- lesson_id: LSN-030
+  type: "success"
+  workflow: "SPEC-009..013 Contract/Plugin/Doctor/Simulation/Evolution (docs(aios) 2026-08-09)"
+  situation: "Xay 5 specs lien tiep: Contract System (TERM-014), Plugin Framework (TERM-015), Doctor, Simulation Engine (RULE-007), Evolution Engine (P013)"
+  observation: "Moi spec: 16 FR/12 NFR/6 XC + 15 ENT + 6 XST + stages. Pattern lap lai: Vision(6 invariants) -> Requirements -> Responsibilities -> Boundaries -> Architecture -> Components -> Contracts -> Data -> State Machine -> Flow -> Ops (X011-X016) -> Exp (X017-X020). Doctor khong sua core, Simulation isolated, Evolution backward compatible"
+  action: "Dung generator script data-driven cho moi spec (16 FR/12 NFR/6 XC/15 ENT/6 XST data arrays) roi post-fix YAML (quote '-', '[]', comment tool:/score: cung indent). Kiem tra bang PyYAML + jsonschema truoc khi commit"
+  tags: ["spec", "contract", "plugin", "doctor", "simulation", "evolution", "generator"]
+
+- lesson_id: LSN-031
+  type: "success"
+  workflow: "SPEC-014/015/016 Dashboard/SDK/CLI (docs(aios) 2026-08-10)"
+  situation: "Xay 3 specs experience: Dashboard (S011 metrics read-only), SDK (P006 access qua Contract, aios-sdk v13), CLI & Commands (TERM-007 entry point)"
+  observation: "Dashboard doc S011 metrics - khong tao nguon moi (P005). SDK typed client 11 components - khong vao Core truc tiep (P006). Command chi khoi dong Runtime - khong lam viec (TERM-007), trigger workflow (SPEC-002)"
+  action: "Transform generator tu spec truoc (Dashboard->SDK->CLI) + fix semantics bang script Python replace pairs. Chu y: Windows FS case-insensitive - rename file uppercase->lowercase phai qua temp name de khong xoa nham"
+  tags: ["spec", "dashboard", "sdk", "cli", "experience", "spec-014", "spec-015", "spec-016"]
+
+- lesson_id: LSN-032
+  type: "failure"
+  workflow: "Spec generator transform (2026-08-10)"
+  situation: "Transform generator tu spec nay sang spec khac (Evolution->Dashboard->SDK->CLI) tao ra ten file sai: SDK-models (uppercase dir), Dashboard.schema.json, sdk-SDK.yaml, cli-cli-*.yaml, Exportth thay vi Health"
+  observation: "PowerShell -replace case-insensitive + 'Dashboard'->'SDK' tao 'SDK-data-model.yaml'; 'Report'->'Export' tao 'Exportth'; double prefix (sdk-sdk, cli-cli). Windows FS coi CLI-models == cli-models nen Test-Path luon true -> xoa nham khi rename"
+  action: "Sau transform: (1) grep toan spec cho prefix la, (2) rename qua temp (zzz-) de tranh case-collision, (3) kiem tra bang python glob case-sensitive, (4) git ls-files de verify ten track dung"
+  tags: ["spec", "generator", "transform", "rename", "case-sensitive", "windows"]
+
+- lesson_id: LSN-033
+  type: "improvement"
+  workflow: "Review workflow 2-pass (2026-08-09/10)"
+  situation: "Review SPEC-006..016 theo chuan 2-pass: rev1 x2 -> Completed/count 2 -> revfull -> auto-freeze"
+  observation: "Machine-check (PyYAML + jsonschema Draft202012 + grep) phat hien 9 CRITICAL YAML parse errors/spec (quote '-', '[]', comment tool:/score:, '*.schema.json', checklist '- [ ]', lifecycle block) - cung pattern moi spec. immutable (P005) sai phai P010. version 1.0 vs 1.0.0 khong nhat quan"
+  action: "Fix pattern chung bang script Python (fix-db014.py) ap dung cho moi spec. Verdict PASS (0 CRITICAL, 0 MAJOR) -> advance Rev1 -> Completed. revfull PASS + Completed -> Frozen ngay lap tuc (bo qua Approved/POLICY-001)"
+  tags: ["review", "freeze", "yaml", "pattern", "governance"]

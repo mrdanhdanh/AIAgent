@@ -1,0 +1,16 @@
+# SPEC-006 X009 - Context Events (11)
+---
+version: "1.0.0"
+events:
+  CONTEXT_POPULATED: { from: XST-001, to: XST-002, category: lifecycle }
+  CONTEXT_ACTIVE: { from: XST-002, to: XST-003, category: lifecycle }
+  CONTEXT_REJECTED: { from: XST-002, to: XST-008, category: lifecycle }
+  CONTEXT_DISTRIBUTED: { from: XST-003, to: XST-004, category: lifecycle }
+  CONTEXT_MUTATED: { from: XST-004, to: XST-003, category: lifecycle }
+  CONTEXT_MERGING: { from: XST-004, to: XST-005, category: lifecycle }
+  CONTEXT_MERGED: { from: XST-005, to: XST-003, category: lifecycle }
+  CONTEXT_MERGE_FAILED: { from: XST-005, to: XST-008, category: lifecycle }
+  CONTEXT_COLLECTING: { from: XST-003, to: XST-006, category: lifecycle }
+  CONTEXT_RELEASED: { from: XST-006, to: XST-007, category: lifecycle }
+  CONTEXT_RELEASED_FAILED: { from: XST-006, to: XST-008, category: lifecycle }
+note: Event immutable, append-only (S011 P010).

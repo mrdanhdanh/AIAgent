@@ -1,0 +1,5 @@
+# SPEC-003 C007 - Contract Model
+---
+version: "1.0.0"
+model:
+  fields: [id, name, category, direction, pattern, version, status, owner, layer, domain, purpose, inputs, outputs, preconditions, postconditions, invariants, dependencies, capability, compatibility]

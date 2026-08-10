@@ -1,0 +1,6 @@
+# SPEC-010 Appendix - Plugin Model Registry
+---
+version: "1.0.0"
+registry:
+  owner: Plugin Team
+  tracked: [AM-001..008]

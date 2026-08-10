@@ -1,0 +1,5 @@
+{
+  "schema": "dashboard-observability",
+  "version": "1.0",
+  "events": { "type": "array", "items": { "type": "string", "pattern": "^DASHBOARD_" } }
+}

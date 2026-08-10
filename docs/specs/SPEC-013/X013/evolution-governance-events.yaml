@@ -1,0 +1,10 @@
+# SPEC-013 X013 - Evolution Governance Events
+---
+version: "1.0.0"
+events:
+  - SPEC013_FROZEN
+  - SPEC013_UNFROZEN
+  - SPEC013_VERSIONED
+  - SPEC013_DECISION_MADE
+  - SPEC013_DECISION_OVERRIDDEN
+note: Event goi vao S011.

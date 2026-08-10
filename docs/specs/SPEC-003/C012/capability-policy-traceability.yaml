@@ -1,0 +1,7 @@
+# SPEC-003 C012 - Capability Policy Traceability (S012 RP015)
+---
+version: "1.0.0"
+records:
+  fields: [binding_id, policy_ref, capability_id, execution_id, correlation_id, parameters, result, timestamp]
+rules:
+  - Moi apply sinh Event + Audit (S011).

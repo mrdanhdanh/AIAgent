@@ -1,0 +1,14 @@
+# SPEC-015 X012 - SDK Policy Traceability
+---
+version: "1.0.0"
+traceability:
+  XPOL-001: { name: Isolated, source: RULE-007, principle: P009 }
+  XPOL-002: { name: Deterministic, source: P013, principle: P013 }
+  XPOL-003: { name: Replayable, source: RULE-007, principle: P005 }
+  XPOL-004: { name: Safe, source: P015, principle: P009 }
+  XPOL-005: { name: No Business Data, source: S011 OB003A, principle: P001 }
+  XPOL-006: { name: Retention, source: S012, principle: P011 }
+  XPOL-007: { name: Quota, source: S012, principle: P011 }
+  XPOL-008: { name: Scenario Valid, source: X008, principle: P009 }
+  XPOL-009: { name: Audit All, source: S011, principle: P005 }
+  XPOL-010: { name: Schema Valid, source: X008, principle: P009 }

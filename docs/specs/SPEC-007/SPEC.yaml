@@ -1,0 +1,55 @@
+---
+id: SPEC-007
+name: Artifact Manager
+version: "1.0.0"
+status: Frozen
+type: Engine
+authority: High
+owner: Artifact Team
+description: >
+  Artifact Manager — quản lý Artifact: Create, Validate, Publish, Version,
+  Index, Consume, Archive (S008 ENT-008). Artifact luôn immutable (P010),
+  có checksum, không overwrite.
+dependencies:
+  - SPEC-000
+  - SPEC-001
+  - SPEC-005
+includes:
+  - X001
+  - X002
+  - X003
+  - X004
+  - X005
+  - X006
+  - X007
+  - X008
+  - X009
+  - X010
+  - X011
+  - X012
+  - X013
+  - X014
+  - X015
+  - X016
+  - X017
+  - X018
+  - X019
+  - X020
+outputs:
+  - Artifact
+  - Artifact Version
+  - Artifact Lifecycle Events
+implements:
+  - Artifact
+authoritative: false
+breaking_change_requires:
+  - ADR
+  - RFC
+references:
+  constitution: ../SPEC-000
+  runtime: ../SPEC-001
+  registry: ../SPEC-005
+  glossary: ../../glossary
+  principles: ../../principles
+  rules: ../../rules
+  governance: ../../governance

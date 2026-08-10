@@ -1,0 +1,8 @@
+# SPEC-011 X019 - Doctor Doctor Report
+---
+version: "1.0.0"
+report:
+  format: markdown + JSON
+  sections: [summary, score, checks, violations, evidence, actions]
+  tool: spec011-validator.ps1
+  output: docs/specs/SPEC-011/reports/

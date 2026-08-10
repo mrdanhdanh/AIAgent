@@ -1,0 +1,9 @@
+# SPEC-006 X016 - Context Compliance Report
+---
+version: "1.0.0"
+report:
+  scope: [X001..X020]
+  format: markdown + JSON
+  frequency: moi thay doi SPEC-006
+  content: [score, violations, evidence, actions]
+  tool: spec006-validator.ps1

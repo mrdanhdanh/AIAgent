@@ -1,0 +1,9 @@
+# SPEC-012 X005 - Simulation Layer Model (5)
+---
+version: "1.0.0"
+layers:
+  XAL-001: { name: API Layer, role: Simulation API (define, configure, run, observe, compare, report) }
+  XAL-002: { name: Engine Layer, role: Pipeline Orchestrator + State Machine (X009) }
+  XAL-003: { name: Guard Layer, role: Policy Evaluator (S012) + Isolation Guard }
+  XAL-004: { name: Store Layer, role: Scenario Store + Result Store }
+  XAL-005: { name: Integration, role: Workflow (SPEC-002) + Events (S011) + Doctor (SPEC-011) }

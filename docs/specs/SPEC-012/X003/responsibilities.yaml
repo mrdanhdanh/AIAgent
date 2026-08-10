@@ -1,0 +1,20 @@
+# SPEC-012 X003 - Simulation Responsibilities (16)
+---
+version: "1.0.0"
+responsibilities:
+  XRR-001: { name: Define Scenario, owner: Simulation Engine, partner: User, role: OWNER }
+  XRR-002: { name: Configure Simulation, owner: Simulation Engine, partner: "-", role: OWNER }
+  XRR-003: { name: Run Simulation, owner: Simulation Engine, partner: Runtime (isolated), role: OWNER }
+  XRR-004: { name: Observe Result, owner: Simulation Engine, partner: Observer, role: OWNER }
+  XRR-005: { name: Compare Expectation, owner: Simulation Engine, partner: "-", role: OWNER }
+  XRR-006: { name: Report Simulation, owner: Simulation Engine, partner: Reporter, role: OWNER }
+  XRR-007: { name: Simulate Bug Fix, owner: Simulation Engine, partner: Workflow (SPEC-002), role: SIMULATOR }
+  XRR-008: { name: Simulate New Feature, owner: Simulation Engine, partner: Workflow (SPEC-002), role: SIMULATOR }
+  XRR-009: { name: Simulate Migration, owner: Simulation Engine, partner: Workflow (SPEC-002), role: SIMULATOR }
+  XRR-010: { name: Simulate Review, owner: Simulation Engine, partner: Workflow (SPEC-002), role: SIMULATOR }
+  XRR-011: { name: Simulate Testing, owner: Simulation Engine, partner: Workflow (SPEC-002), role: SIMULATOR }
+  XRR-012: { name: Simulate Refactoring, owner: Simulation Engine, partner: Workflow (SPEC-002), role: SIMULATOR }
+  XRR-013: { name: Events, owner: Runtime (S011), partner: Simulation Engine, role: EMITTER }
+  XRR-014: { name: Policy eval, owner: Policy (S012), partner: Simulation Engine, role: DECIDER }
+  XRR-015: { name: Registry, owner: Registry (SPEC-005), partner: Simulation Engine, role: REGISTER }
+  XRR-016: { name: Audit, owner: Runtime (S011), partner: Simulation Engine, role: EMITTER }

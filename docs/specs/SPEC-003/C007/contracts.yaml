@@ -1,0 +1,124 @@
+# SPEC-003 C007 — Capability Contracts (6 CCT)
+# Contract Logic — khong class/interface/API/method/DTO/protocol.
+---
+id: SPEC-003-C007
+name: Capability Contracts
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Capability Team
+contracts:
+  CCT-001:
+    name: Capability Contract
+    category: Execution
+    direction: Request/Response
+    pattern: Sync
+    version: 1.0.0
+    status: Draft
+    owner: Capability Engine
+    layer: Command
+    domain: Execution
+    purpose: Quan ly vong doi Capability
+    inputs: [Capability Request, Capability Definition]
+    outputs: [Capability, Resolution Result]
+    preconditions: [Capability hop le, Registry kha dung]
+    postconditions: [Capability duoc resolve hoac tu choi]
+    invariants: [Capability dang ky trong S014, Khong hardcode, Resolution qua EF007]
+    dependencies: [Declaration Contract, Registration Contract, Registry Contract]
+    capability: capability-management
+    compatibility: [1.x]
+  CCT-002:
+    name: Declaration Contract
+    category: Data
+    direction: Read
+    pattern: Request/Response
+    version: 1.0.0
+    status: Draft
+    owner: Declaration Manager
+    layer: Declaration
+    domain: Definition
+    purpose: Quan ly Capability Definition + Version
+    inputs: [Declaration Request]
+    outputs: [Capability Definition]
+    preconditions: [Khai bao hop le (metadata)]
+    postconditions: [Definition versioned]
+    invariants: [Definition immutable khi Published, Khong chua code]
+    dependencies: []
+    capability: capability-declaration
+    compatibility: [1.x]
+  CCT-003:
+    name: Validation Contract
+    category: Execution
+    direction: Request/Response
+    pattern: Sync
+    version: 1.0.0
+    status: Draft
+    owner: Validation Engine
+    layer: Validation
+    domain: Validation
+    purpose: Validate + Compatibility Check (S013 GV010)
+    inputs: [Capability Definition]
+    outputs: [Validation Result, Validated Capability]
+    preconditions: [Definition da khai bao]
+    postconditions: [Capability valid hoac bi tu choi]
+    invariants: [Validate truoc khi dang ky, Khong dang ky truc tiep]
+    dependencies: [Declaration Contract]
+    capability: capability-validation
+    compatibility: [1.x]
+  CCT-004:
+    name: Registration Contract
+    category: Data
+    direction: Read/Write
+    pattern: Request/Response
+    version: 1.0.0
+    status: Draft
+    owner: Registration Manager
+    layer: Registration
+    domain: Mapping
+    purpose: Dang ky S014 + Mapping Agent/Plugin
+    inputs: [Validated Capability, Mapping Request]
+    outputs: [Registry Entry, Agent Mapping]
+    preconditions: [Capability da validate]
+    postconditions: [Entry dang ky trong S014]
+    invariants: [Khong hardcode mapping (CB007), Mapping qua Registry]
+    dependencies: [Registry Contract]
+    capability: capability-registration
+    compatibility: [1.x]
+  CCT-005:
+    name: Registry Contract
+    category: Registry
+    direction: Read
+    pattern: Request/Response
+    version: 1.0.0
+    status: Draft
+    owner: Capability Resolver / Discovery Provider
+    layer: Resolution
+    domain: Capability
+    purpose: Truy cap Registry (S014) va resolve
+    inputs: [Lookup Request]
+    outputs: [Lookup Result]
+    preconditions: [Registry kha dung]
+    postconditions: [Ket qua khop metadata]
+    invariants: [Registry khong phai Database]
+    dependencies: []
+    capability: capability-resolution
+    compatibility: [1.x]
+  CCT-006:
+    name: Event Contract
+    category: Observability
+    direction: Publish
+    pattern: Event
+    version: 1.0.0
+    status: Draft
+    owner: Capability Event Dispatcher
+    layer: Publication
+    domain: Observability
+    purpose: Publish Event/Metrics/Trace/Audit (S011)
+    inputs: [State Change]
+    outputs: [Capability Event]
+    preconditions: [State change xay ra]
+    postconditions: [Event published, co correlation_id]
+    invariants: [Khong chua Business Data, Event immutable]
+    dependencies: [Event Store (S011)]
+    capability: capability-observability
+    compatibility: [1.x]

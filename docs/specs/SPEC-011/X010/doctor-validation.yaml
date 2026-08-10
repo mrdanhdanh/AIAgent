@@ -1,0 +1,8 @@
+# SPEC-011 X010 - Doctor Flow Validation
+---
+version: "1.0.0"
+validation:
+  - stage order dung pipeline
+  - moi stage co event tuong ung
+  - repair khong sua core
+  - khong tu quyet dinh (Doctor X019)

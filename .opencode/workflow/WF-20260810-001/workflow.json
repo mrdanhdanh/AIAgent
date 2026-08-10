@@ -1,0 +1,44 @@
+{
+  "workflow_id": "WF-20260810-001",
+  "definition_id": "default",
+  "request": "Tao 1 trang moi: 'Design a homepage for a Gaming Console, with sections for introduction, services, and contact details.'",
+  "status": "completed",
+  "phases": [
+    { "id": "analyze", "status": "completed", "retry_count": 0, "error_history": [] },
+    { "id": "design", "status": "completed", "retry_count": 0, "error_history": [] },
+    { "id": "plan", "status": "completed", "retry_count": 0, "error_history": [] },
+    { "id": "review", "status": "completed", "retry_count": 0, "error_history": [] },
+    { "id": "guardrail", "status": "completed", "retry_count": 0, "error_history": [] },
+    { "id": "backup", "status": "completed", "retry_count": 0, "error_history": [] },
+    { "id": "governance_check", "status": "completed", "retry_count": 0, "error_history": [] },
+    { "id": "build", "status": "completed", "retry_count": 0, "error_history": [] },
+    { "id": "static_analysis", "status": "completed", "retry_count": 0, "error_history": [] },
+    { "id": "ui_audit", "status": "completed", "retry_count": 0, "error_history": [] },
+    { "id": "testplan", "status": "completed", "retry_count": 0, "error_history": [] },
+    { "id": "test", "status": "completed", "retry_count": 0, "error_history": [] },
+    { "id": "skill_validation", "status": "completed", "retry_count": 0, "error_history": [] },
+    { "id": "complete", "status": "completed", "retry_count": 0, "error_history": [] }
+  ],
+  "artifacts": [
+    "01_analyze.md",
+    "02_design.md",
+    "03_plan.md",
+    "04_review.md",
+    "05_guardrail.md",
+    "06_backup.md",
+    "07_governance_check.md",
+    "08_build.md",
+    "09_static_analysis.md",
+    "10_ui_audit.md",
+    "11_testplan.md",
+    "12_test.md",
+    "13_skill_validation.md"
+  ],
+  "final_report": "WF-20260810-001: Gaming Console homepage (NEXA X1) completed. 4 files created at templates/gaming-console-homepage/ (index.html, style.css, script.js, README.md). 3 sections (Introduction/Services/Contact) verified via Playwright smoke E2E 10/10 PASS, 0 console errors. Vanilla stack, offline-safe, responsive, a11y complete.",
+  "created_files": [
+    "templates/gaming-console-homepage/index.html",
+    "templates/gaming-console-homepage/style.css",
+    "templates/gaming-console-homepage/script.js",
+    "templates/gaming-console-homepage/README.md"
+  ]
+}

@@ -1,0 +1,9 @@
+# SPEC-004 A019 - Agent Doctor Pipeline
+---
+version: "1.0.0"
+pipeline:
+  - Collect (machine-readable)
+  - Validate (checks per domain)
+  - Score (health - A016 AMC006)
+  - Report (agent-doctor-report)
+  - Repair (neu an toan, self-repair)

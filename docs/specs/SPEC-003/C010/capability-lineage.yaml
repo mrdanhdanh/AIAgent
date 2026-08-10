@@ -1,0 +1,10 @@
+# SPEC-003 C010 - Capability Lineage (S010 EF023)
+---
+version: "1.0.0"
+lineage:
+  - Root Capability (khong co parent)
+  - Capability trong Workflow (SPEC-002)
+  - Replay (S009 ST-012)
+  - Simulation (S013 GV011A)
+rules:
+  - Lineage immutable (append-only, S011).

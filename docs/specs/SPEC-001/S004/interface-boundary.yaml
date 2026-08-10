@@ -1,6 +1,6 @@
 # SPEC-001 S004 — Interface Boundary (B005)
 ---
-version: "1.0"
+version: "1.0.0"
 exposes:
   Execution API: Khởi tạo và quản lý Execution
   Context API: Quản lý Execution Context

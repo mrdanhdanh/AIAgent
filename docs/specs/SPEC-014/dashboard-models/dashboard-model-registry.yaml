@@ -1,0 +1,6 @@
+# SPEC-014 Appendix - Dashboard Model Registry
+---
+version: "1.0.0"
+registry:
+  owner: Dashboard Team
+  tracked: [AM-001..008]

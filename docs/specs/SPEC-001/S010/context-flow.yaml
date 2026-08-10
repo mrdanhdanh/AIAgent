@@ -1,0 +1,16 @@
+# SPEC-001 S010 — Context Flow (EF008) v4
+---
+version: "1.0"
+flow:
+  - Allocate
+  - Populate
+  - Distribute
+  - Mutate
+  - Merge
+  - Collect
+  - Release
+rules:
+  - Context luôn isolated.
+  - Agent có thể Mutate Context (trong phạm vi được cấp).
+  - Merge gộp Context con về Context cha (parallel).
+  - Không chia sẻ Context giữa hai Execution (P006).

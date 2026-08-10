@@ -1,0 +1,10 @@
+# SPEC-002 W020 - Workflow Dashboard Validation
+# Doctor kiem tra Dashboard.
+---
+version: "1.0"
+checks:
+  - Missing Source
+  - Stale Data
+  - Unauthorized Read
+  - Broken View
+  - Invalid Report

@@ -1,0 +1,5 @@
+{
+  "schema": "doctor-registry",
+  "version": "1.0",
+  "entry_types": ["DoctorDefinition","ScannerDefinition","DoctorPolicy","DoctorStateMachine"]
+}

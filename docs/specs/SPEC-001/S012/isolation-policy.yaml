@@ -1,0 +1,18 @@
+# SPEC-001 S012 - POL-ISOL-001 (Isolation Policy)
+# Canonic Policy Model 13 fields.
+---
+policy:
+  id: POL-ISOL-001
+  name: Isolation Policy
+  category: Security
+  version: "1.0.0"
+  status: Draft
+  owner: Runtime Team
+  trigger: Execution start
+  guard: isolation required
+  action: Isolate Context & Execution
+  priority: 90
+  scope: Execution
+  lifecycle: Draft
+  metadata:
+    controls: Context & Execution Isolation (S010 EF008)

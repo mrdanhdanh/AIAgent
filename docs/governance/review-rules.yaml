@@ -1,0 +1,37 @@
+# AIOS Review Rules — rule store: SLA, counting, freeze, inheritance, report naming, verification.
+---
+version: "1.0"
+
+sla:
+  draft_max_days: 30
+  completed_review_cycle_days: 180
+  warning: "Doctor cảnh báo khi quá hạn — xem review-trigger.yaml TRG-006/TRG-007"
+
+counting:
+  - "Types tính review count: rev1, revfull, compliance, migration, regression"
+  - "Types KHÔNG tính count: health"
+  - "Review FAIL không tăng count, không đổi status — ghi nhận để review lại"
+  - "Review PASS/CONDITIONAL tăng count và advance review.status theo thang NotReviewed → Rev1 → Completed"
+
+freeze_rule:
+  - "revfull PASS + review.status = Completed (đủ 2-pass) → auto-freeze: lifecycle về Frozen TRỰC TIẾP (không cần Approved/POLICY-001)"
+  - "revfull PASS chưa đủ 2-pass → chỉ advance count/status bình thường, KHÔNG freeze"
+  - "revfull trên mục đã Frozen (inherited) → health-check, giữ nguyên 2 trục"
+  - "Các type khác (rev1/health/compliance/migration/regression) KHÔNG auto-freeze"
+
+inheritance_rule:
+  - "Mục đã review/Freeze từ trước giữ nguyên document.lifecycle + review.status (inherited: true)"
+  - "health/regression review trên mục Frozen/Completed không thay đổi trạng thái"
+
+review_id_rule:
+  - "Format: REV-<YYYYMMDD>-<NNN> — sequence toàn cục, NNN = số entry hiện tại trong review-history.yaml + 1"
+
+report_rule:
+  - "Report append-only tại docs/governance/reviews/REV-<SPEC>-<ITEM>-<YYYYMMDD-HHMMSS>.md"
+  - "Mọi thay đổi trạng thái phải qua /review và ghi vào review-tracker.yaml + review-history.yaml"
+  - "Không ghi đè report cũ — mỗi review 1 file"
+
+verification:
+  - "review.status = Completed là tiền đề bắt buộc cho document.lifecycle = Approved"
+  - "Tracker + history + metrics phải nhất quán — Doctor kiểm tra định kỳ (POLICY-010)"
+  - "Cascade KHÔNG tự đổi review.status — chỉ đánh dấu recheck_required cho Doctor lập task regression"

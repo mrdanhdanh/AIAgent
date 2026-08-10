@@ -1,0 +1,10 @@
+# SPEC-007 X015 - Artifact Resource Categories
+---
+version: "1.0.0"
+categories:
+  Storage: [XRES-001]
+  Index: [XRES-002]
+  Identity: [XRES-003]
+  Compute: [XRES-004]
+  Eventing: [XRES-005]
+  Debug: [XRES-006]

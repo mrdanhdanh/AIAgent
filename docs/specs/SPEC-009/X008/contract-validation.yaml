@@ -1,0 +1,14 @@
+# SPEC-009 X008 - Contract Validation Rules
+---
+version: "1.0.0"
+validation_rules:
+  VAL-X001: { field: ContractId, requirement: Required, type: UUID }
+  VAL-X002: { field: Version, requirement: Required, type: SemVer }
+  VAL-X003: { field: ProviderId, requirement: Required, type: UUID }
+  VAL-X004: { field: Schema, requirement: Required, type: JSON Schema }
+  VAL-X005: { field: InputType, requirement: Required, type: Type }
+  VAL-X006: { field: OutputType, requirement: Required, type: Type }
+  VAL-X007: { field: Compatibility, requirement: Required, type: Enum }
+validate_on:
+  - Declare
+  - Version

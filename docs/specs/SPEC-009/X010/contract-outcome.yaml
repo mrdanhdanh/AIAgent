@@ -1,0 +1,8 @@
+# SPEC-009 X010 - Contract Outcome
+---
+version: "1.0.0"
+outcome:
+  success: Published + Resolved + CONTRACT_PUBLISHED
+  failure: Rejected + CONTRACT_REJECTED
+  metrics: [contract_published_total, contract_rejected_total]
+  audit: moi outcome ghi vao S011

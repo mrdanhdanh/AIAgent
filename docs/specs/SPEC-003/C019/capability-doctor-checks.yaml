@@ -1,0 +1,18 @@
+# SPEC-003 C019 - Capability Doctor Checks (tham chieu, khong dinh nghia lai)
+---
+version: "1.0.0"
+groups:
+  - source: C011 Observability
+    count: 5
+  - source: C013 Governance
+    count: 6
+  - source: C014 Registry
+    count: 7
+  - source: C015 Resources
+    count: 5
+  - source: C016 Compliance
+    count: 12
+  - source: C017 Extensions
+    count: 6
+  - source: C018 Evolution
+    count: 6

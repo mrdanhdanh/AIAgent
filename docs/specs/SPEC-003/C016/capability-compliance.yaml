@@ -1,0 +1,77 @@
+# SPEC-003 C016 - Capability Compliance
+# Doctor xac minh Capability System - dung S016 (Runtime) + Capability-level rules.
+---
+id: SPEC-003-C016
+name: Capability Compliance
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Capability Team
+philosophy:
+  - Compliance la xac minh, khong phai thuc thi (S016).
+  - Doctor chi doc machine-readable (S011).
+  - Khong dinh nghia lai quy tac da co.
+  - Certification cho tung Capability System implementation.
+principles:
+  - Evidence Based (S016)
+  - Machine-readable First (S016)
+  - Deterministic (S016)
+  - Verifiable (S016)
+  - Non-invasive (S016)
+  - Versioned (S016)
+scope:
+  verifies:
+    - Constitution (SPEC-000)
+    - Boundary (C004)
+    - Contract (C007)
+    - Policy Binding (C012)
+    - Governance (C013)
+    - Registry (C014)
+    - Resources (C015)
+    - Observability (C011)
+validation_rules:
+  - Invalid Capability (C009/C002)
+  - Invalid Binding (C012)
+  - Boundary Violation (C004)
+  - Contract Failure (C007)
+  - Registry Violation (C014)
+  - Resource Leak (C015)
+  - Quota Violation (C015)
+  - Missing Capability Event (C011)
+  - Missing Capability Metrics (C011)
+  - Broken Capability Trace (C011)
+  - Invalid Audit (C011)
+  - Constitution Violation (S013)
+health_score: [Healthy, Degraded, Unhealthy]
+readiness_checklist:
+  - Capability Definition Published (C009).
+  - Binding Active (C012).
+  - Registry hop le (C014).
+  - Resources khong leak (C015).
+  - Contracts hop le (C007).
+  - Governance enforced (C013).
+  - Observability day du (C011).
+certification:
+  levels: [Not Certified, Certified, Revoked]
+  requirements:
+    - 100% validation rules Pass.
+    - Khong CRITICAL violation.
+    - Health Score = Healthy.
+pipeline:
+  - Collect Evidence (machine-readable)
+  - Validate Rules (capability-compliance-matrix)
+  - Compute Score (capability-health-score)
+  - Generate Report (capability-compliance-report)
+events:
+  - CAPABILITY_COMPLIANCE_PASSED
+  - CAPABILITY_COMPLIANCE_FAILED
+  - CAPABILITY_COMPLIANCE_REPORTED
+  - CAPABILITY_CERTIFICATION_GRANTED
+  - CAPABILITY_CERTIFICATION_REVOKED
+metrics:
+  capability_compliance_score: 0
+  passed_rules: 0
+  failed_rules: 0
+  warning_rules: 0
+  total_rules: 0
+  certification_count: 0

@@ -1,0 +1,12 @@
+# SPEC-003 C010 - Capability Registration Flow
+---
+version: "1.0.0"
+flow:
+  - Khai bao (metadata)
+  - Validate (CB003)
+  - Dang ky Registry Entry (S014)
+  - Mapping Agent/Plugin (CB007)
+  - Published (CST-003)
+rules:
+  - Khong hardcode mapping (CB007).
+  - Moi buoc sinh Event + Audit (S011).

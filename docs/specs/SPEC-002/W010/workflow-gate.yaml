@@ -1,0 +1,11 @@
+# SPEC-002 W010 - Gate Flow (Approval - S012 POL-APPROVAL-001)
+---
+version: "1.0"
+flow:
+  - Step -> Gate (chua duyet)
+  - Waiting (S009 ST-005)
+  - Approved -> step tiep
+  - Denied -> Failure (S009 ST-009)
+rules:
+  - Gate can approval (S012 POL-APPROVAL-001).
+  - Quyet dinh ghi Audit (S011).

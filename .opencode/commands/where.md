@@ -69,3 +69,16 @@ next_action: "Chạy /impact nếu cần phân tích ảnh hưởng"
 
 - Xem thêm: `.opencode/skills/search-engine/SKILL.md`
 - Xem thêm: `.opencode/skills/dependency-analyzer/SKILL.md`
+
+## Flags:
+
+| Flag | Y nghia |
+|------|---------|
+| `--all` | Tat ca noi dung dung |
+| `--index` | Chi knowledge index |
+
+## Output Contract
+
+- **Output**: danh sach noi dung dung symbol + file:line.
+- **Format**: markdown.
+

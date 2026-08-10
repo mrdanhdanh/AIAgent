@@ -1,0 +1,9 @@
+# SPEC-005 R012 - Registry Policy Binding Validation
+---
+version: "1.0.0"
+checks:
+  - policy_ref tro den POL-* ton tai (S012).
+  - parameters dung schema cua policy.
+  - scope hop le (Entry | Resolution).
+  - version policy ton tai (S012).
+  - Khong trung binding cung scope + policy.

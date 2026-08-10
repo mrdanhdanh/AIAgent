@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aios://contract-data.schema.json",
+  "title": "SPEC-009 Contract Data Model (X008)",
+  "description": "JSON Schema cho contract-data-model.yaml. Validator kiem tra cau truc.",
+  "type": "object",
+  "required": ["version", "entities", "relations", "invariants", "validation", "storage"],
+  "properties": {
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "entities": { "type": "object" },
+    "relations": { "type": "object" },
+    "invariants": { "type": "object" },
+    "validation": { "type": "object" },
+    "storage": { "type": "object" }
+  },
+  "additionalProperties": true
+}

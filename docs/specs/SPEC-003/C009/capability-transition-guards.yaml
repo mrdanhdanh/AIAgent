@@ -1,0 +1,16 @@
+# SPEC-003 C009 - Capability Transition Guards
+---
+version: "1.0.0"
+guards:
+  - transition: CST-001 -> CST-002
+    guard: Khai bao hop le (schema, khong code CB001)
+  - transition: CST-002 -> CST-003
+    guard: Validate pass + Registry Entry (S014)
+  - transition: CST-002 -> CST-006
+    guard: Validate fail (co Invalid Audit S013)
+  - transition: CST-003 -> CST-004
+    guard: Governance (S013) cho phep
+  - transition: CST-004 -> CST-003
+    guard: Governance (S013) duyet
+  - transition: CST-003/004 -> CST-005
+    guard: Governance (S013) / khong con dung

@@ -1,0 +1,6 @@
+# SPEC-012 X007 - Simulation Contract Registry
+---
+version: "1.0.0"
+registry:
+  owner: Simulation Team
+  tracked: [XCT-001..007]

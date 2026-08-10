@@ -1,0 +1,7 @@
+# SPEC-005 R007 - Contract Anti-patterns
+---
+version: "1.0.0"
+anti_patterns:
+  - Contract tra Business Data.
+  - Contract dinh nghia lai S014 model.
+  - Contract phu thuoc Storage cu the.

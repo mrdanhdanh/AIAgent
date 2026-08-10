@@ -1,0 +1,8 @@
+# SPEC-016 X015 - CLI Resource Allocation
+---
+version: "1.0.0"
+allocation:
+  - Scan: cap storage theo quota (XPOL-007)
+  - Report: cap report slot
+  - Archive: thu hoi storage theo retention
+  - Quota: cau hinh qua Policy S012

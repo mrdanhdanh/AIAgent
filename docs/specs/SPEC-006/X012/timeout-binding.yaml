@@ -1,0 +1,9 @@
+# SPEC-006 X012 - Timeout Binding
+---
+version: "1.0.0"
+timeout_binding:
+  allocate_timeout: 500ms (default)
+  mutate_timeout: 1s (default)
+  merge_timeout: 1s (default)
+  release_timeout: 500ms (default)
+  note: cau hinh qua Policy S012, khong hardcode

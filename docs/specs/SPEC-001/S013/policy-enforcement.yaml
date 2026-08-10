@@ -1,0 +1,12 @@
+# SPEC-001 S013 - Policy Enforcement
+# Tham chieu S012 (define) - o day chi enforce.
+---
+version: "1.0.0"
+enforcement:
+  - Resolve Policy (S012 RP013)
+  - Validate (S012 RP014)
+  - Apply (S012 RP013A - conflict resolution)
+  - Audit (S012 RP015)
+rules:
+  - Chi enforce policy Active (S012 RP002B).
+  - Policy Invalid -> khong ap dung, ghi Invalid Audit.

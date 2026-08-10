@@ -1,0 +1,8 @@
+# SPEC 010 X015   Plugin Resource Validation
+   
+version: "1.0.0"
+validation:
+    quota khong vuot (XPOL 007)
+    khong leak sau Retire
+    metrics day du (X011)
+    kiem tra bang Doctor X019

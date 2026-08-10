@@ -1,0 +1,143 @@
+# SPEC-004 A007 — Agent Contracts (7 ACT)
+# Contract Logic — khong class/interface/API/method/DTO/protocol.
+---
+id: SPEC-004-A007
+name: Agent Contracts
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Agent Team
+contracts:
+  ACT-001:
+    name: Agent Contract
+    category: Execution
+    direction: Request/Response
+    pattern: Sync
+    version: 1.0.0
+    status: Draft
+    owner: Agent Engine
+    layer: Command
+    domain: Execution
+    purpose: Quan ly vong doi Agent
+    inputs: [Agent Request, Agent Definition]
+    outputs: [Agent, Lifecycle Event]
+    preconditions: [Agent hop le, Registry kha dung]
+    postconditions: [Agent chay qua Runtime hoac bi tu choi]
+    invariants: [Agent dang ky trong S014, Capability mapping qua SPEC-003, Chay qua Runtime SPEC-001]
+    dependencies: [Declaration Contract, Registration Contract, Orchestration Contract]
+    capability: agent-management
+    compatibility: [1.x]
+  ACT-002:
+    name: Declaration Contract
+    category: Data
+    direction: Read
+    pattern: Request/Response
+    version: 1.0.0
+    status: Draft
+    owner: Declaration Manager
+    layer: Declaration
+    domain: Definition
+    purpose: Quan ly Agent Definition + Version
+    inputs: [Declaration Request]
+    outputs: [Agent Definition]
+    preconditions: [Khai bao hop le (metadata)]
+    postconditions: [Definition versioned]
+    invariants: [Definition immutable khi Published, Khong chua code]
+    dependencies: []
+    capability: agent-declaration
+    compatibility: [1.x]
+  ACT-003:
+    name: Validation Contract
+    category: Execution
+    direction: Request/Response
+    pattern: Sync
+    version: 1.0.0
+    status: Draft
+    owner: Validation Engine
+    layer: Validation
+    domain: Validation
+    purpose: Validate + Compatibility Check (S013 GV010)
+    inputs: [Agent Definition]
+    outputs: [Validation Result, Validated Agent]
+    preconditions: [Definition da khai bao]
+    postconditions: [Agent valid hoac bi tu choi]
+    invariants: [Validate truoc khi dang ky, Khong dang ky truc tiep]
+    dependencies: [Declaration Contract]
+    capability: agent-validation
+    compatibility: [1.x]
+  ACT-004:
+    name: Registration Contract
+    category: Data
+    direction: Read/Write
+    pattern: Request/Response
+    version: 1.0.0
+    status: Draft
+    owner: Registration Manager
+    layer: Registration
+    domain: Mapping
+    purpose: Dang ky S014 + Capability Mapping (SPEC-003)
+    inputs: [Validated Agent, Mapping Request]
+    outputs: [Registry Entry, Capability Mapping]
+    preconditions: [Agent da validate]
+    postconditions: [Entry dang ky trong S014]
+    invariants: [Khong hardcode capability mapping (AB007), Mapping qua SPEC-003]
+    dependencies: [Registry Contract]
+    capability: agent-registration
+    compatibility: [1.x]
+  ACT-005:
+    name: Orchestration Contract
+    category: Execution
+    direction: Request/Response
+    pattern: Sync/Async
+    version: 1.0.0
+    status: Draft
+    owner: Orchestration Provider
+    layer: Orchestration
+    domain: Orchestration
+    purpose: Dieu phoi qua Workflow (SPEC-002) + delegate Runtime (SPEC-001)
+    inputs: [Agent Request]
+    outputs: [Workflow Execution Request]
+    preconditions: [Agent da dang ky]
+    postconditions: [Agent chay qua Runtime]
+    invariants: [Khong tu chay Agent (AB004), Delegate Runtime SPEC-001]
+    dependencies: [Workflow Engine (SPEC-002), Runtime (SPEC-001)]
+    capability: agent-orchestration
+    compatibility: [1.x]
+  ACT-006:
+    name: Registry Contract
+    category: Registry
+    direction: Read
+    pattern: Request/Response
+    version: 1.0.0
+    status: Draft
+    owner: Discovery Provider
+    layer: Resolution
+    domain: Capability
+    purpose: Truy cap Registry (S014) va kham pha
+    inputs: [Lookup Request]
+    outputs: [Lookup Result]
+    preconditions: [Registry kha dung]
+    postconditions: [Ket qua khop metadata]
+    invariants: [Registry khong phai Database]
+    dependencies: []
+    capability: agent-discovery
+    compatibility: [1.x]
+  ACT-007:
+    name: Event Contract
+    category: Observability
+    direction: Publish
+    pattern: Event
+    version: 1.0.0
+    status: Draft
+    owner: Agent Event Dispatcher
+    layer: Publication
+    domain: Observability
+    purpose: Publish Event/Metrics/Trace/Audit (S011)
+    inputs: [State Change]
+    outputs: [Agent Event]
+    preconditions: [State change xay ra]
+    postconditions: [Event published, co correlation_id]
+    invariants: [Khong chua Business Data, Event immutable]
+    dependencies: [Event Store (S011)]
+    capability: agent-observability
+    compatibility: [1.x]

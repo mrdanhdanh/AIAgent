@@ -1,0 +1,88 @@
+# SPEC-005 R002 - Requirements Index
+---
+version: "1.0.0"
+index:
+  - id: RFR-001
+    type: functional
+    status: Draft
+  - id: RFR-002
+    type: functional
+    status: Draft
+  - id: RFR-003
+    type: functional
+    status: Draft
+  - id: RFR-004
+    type: functional
+    status: Draft
+  - id: RFR-005
+    type: functional
+    status: Draft
+  - id: RFR-006
+    type: functional
+    status: Draft
+  - id: RFR-007
+    type: functional
+    status: Draft
+  - id: RFR-008
+    type: functional
+    status: Draft
+  - id: RFR-009
+    type: functional
+    status: Draft
+  - id: RFR-010
+    type: functional
+    status: Draft
+  - id: RFR-011
+    type: functional
+    status: Draft
+  - id: RFR-012
+    type: functional
+    status: Draft
+  - id: RFR-013
+    type: functional
+    status: Draft
+  - id: RFR-014
+    type: functional
+    status: Draft
+  - id: RFR-015
+    type: functional
+    status: Draft
+  - id: RFR-016
+    type: functional
+    status: Draft
+  - id: RNF-001
+    type: non_functional
+    status: Draft
+  - id: RNF-002
+    type: non_functional
+    status: Draft
+  - id: RNF-003
+    type: non_functional
+    status: Draft
+  - id: RNF-004
+    type: non_functional
+    status: Draft
+  - id: RNF-005
+    type: non_functional
+    status: Draft
+  - id: RNF-006
+    type: non_functional
+    status: Draft
+  - id: RNF-007
+    type: non_functional
+    status: Draft
+  - id: RNF-008
+    type: non_functional
+    status: Draft
+  - id: RNF-009
+    type: non_functional
+    status: Draft
+  - id: RNF-010
+    type: non_functional
+    status: Draft
+  - id: RNF-011
+    type: non_functional
+    status: Draft
+  - id: RNF-012
+    type: non_functional
+    status: Draft

@@ -1,0 +1,10 @@
+# SPEC-004 A018 - Agent Evolution Pipeline
+---
+version: "1.0.0"
+pipeline:
+  - Collect (A011 data)
+  - Analyze (patterns, anomalies)
+  - Learn (lessons, hypotheses)
+  - Propose (evolution proposal)
+  - Approval Gate (A013 Governance)
+  - Apply (qua Registry A014 + Binding A012)

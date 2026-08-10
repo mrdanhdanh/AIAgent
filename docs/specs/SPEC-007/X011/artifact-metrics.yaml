@@ -1,0 +1,14 @@
+# SPEC-007 X011 - Artifact Metrics
+---
+version: "1.0.0"
+metrics:
+  - artifact_created_total
+  - artifact_published_total
+  - artifact_rejected_total
+  - artifact_archived_total
+  - artifact_consumed_total
+  - artifact_storage_bytes
+  - artifact_checksum_total
+  - artifact_publish_latency_seconds
+  - artifact_overwrite_blocked_total
+labels: [artifact_id, state, execution_id, producer_id]

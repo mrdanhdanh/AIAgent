@@ -1,0 +1,22 @@
+# SPEC-002 W003 - Responsibility Mapping (WRR -> Requirement)
+---
+version: "1.0"
+mapping:
+  WRR-001: [WFR-001]
+  WRR-002: [WFR-002]
+  WRR-003: [WFR-003]
+  WRR-004: [WFR-004]
+  WRR-005: [WFR-005]
+  WRR-006: [WFR-006]
+  WRR-007: [WFR-007]
+  WRR-008: [WFR-008]
+  WRR-009: [WFR-009]
+  WRR-010: [WFR-010]
+  WRR-011: [WFR-011]
+  WRR-012: [WFR-012]
+  WRR-013: [WFR-013]
+  WRR-014: [WFR-014]
+  WRR-015: [WFR-015]
+  WRR-016: [WFR-016]
+  WRR-017: [WNFR-010]
+  WRR-018: [WFR-003]

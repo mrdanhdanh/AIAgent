@@ -1,0 +1,10 @@
+# SPEC-010 X009 - Plugin Transitions (6)
+---
+version: "1.0.0"
+transitions:
+  XTR-001: { from: XST-001, to: XST-002, event: PLUGIN_VALIDATING, guard: Manifest hop le }
+  XTR-002: { from: XST-002, to: XST-003, event: PLUGIN_ENABLED, guard: Validate pass + permission OK }
+  XTR-003: { from: XST-002, to: XST-006, event: PLUGIN_REJECTED, guard: Validate fail }
+  XTR-004: { from: XST-003, to: XST-004, event: PLUGIN_FW_DISABLED, guard: Can tat }
+  XTR-005: { from: XST-004, to: XST-003, event: PLUGIN_ENABLED, guard: Enable lai }
+  XTR-006: { from: XST-004, to: XST-005, event: PLUGIN_FW_UNINSTALLED, guard: Het dung }

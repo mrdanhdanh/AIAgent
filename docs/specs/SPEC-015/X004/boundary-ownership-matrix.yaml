@@ -1,0 +1,9 @@
+# SPEC-015 X004 - SDK Boundary Ownership Matrix
+---
+version: "1.0.0"
+ownership:
+  view: SDK (immutable)
+  metadata: SDK
+  data: S011 Metrics (read-only)
+  policy: Policy (S012)
+  system: KHONG thuoc SDK

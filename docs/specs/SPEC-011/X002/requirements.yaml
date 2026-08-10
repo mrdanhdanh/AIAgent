@@ -1,0 +1,356 @@
+# SPEC-011 X002 - Doctor Requirements
+---
+id: SPEC-011-X002
+name: Doctor Requirements
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Doctor Team
+functional:
+  XFR-001:
+    title: Scan System
+    description: quet toan bo he sinh thai
+    priority: Critical
+    category: Core
+    owner: Doctor
+    status: Draft
+    source: [P005, P014]
+    rules: [RULE-014]
+    verification: [Doctor Test, Doctor]
+  XFR-002:
+    title: Diagnose
+    description: chan doan loi tu scan
+    priority: Critical
+    category: Core
+    owner: Doctor
+    status: Draft
+    source: [P005, P014]
+    rules: [RULE-014]
+    verification: [Doctor Test, Doctor]
+  XFR-003:
+    title: Score Health
+    description: cham diem Health Score 0-100
+    priority: Critical
+    category: Core
+    owner: Doctor
+    status: Draft
+    source: [P005, P014]
+    rules: [RULE-014]
+    verification: [Doctor Test, Doctor]
+  XFR-004:
+    title: Repair Safe
+    description: tu sua an toan (doc only)
+    priority: High
+    category: Core
+    owner: Doctor
+    status: Draft
+    source: [P005, P014]
+    rules: [RULE-014]
+    verification: [Doctor Test, Doctor]
+  XFR-005:
+    title: Report
+    description: tao bao cao markdown/JSON
+    priority: High
+    category: Core
+    owner: Doctor
+    status: Draft
+    source: [P005, P014]
+    rules: [RULE-014]
+    verification: [Doctor Test, Doctor]
+  XFR-006:
+    title: Scan Environment
+    description: kiem tra moi truong
+    priority: Critical
+    category: Core
+    owner: Doctor
+    status: Draft
+    source: [P005, P014]
+    rules: [RULE-014]
+    verification: [Doctor Test, Doctor]
+  XFR-007:
+    title: Scan Agents
+    description: kiem tra agents (SPEC-004)
+    priority: High
+    category: Execution
+    owner: Doctor
+    status: Draft
+    source: [P005, P014]
+    rules: [RULE-014]
+    verification: [Doctor Test, Doctor]
+  XFR-008:
+    title: Scan Commands
+    description: kiem tra commands
+    priority: High
+    category: Execution
+    owner: Doctor
+    status: Draft
+    source: [P005, P014]
+    rules: [RULE-014]
+    verification: [Doctor Test, Doctor]
+  XFR-009:
+    title: Scan Skills
+    description: kiem tra skills
+    priority: High
+    category: Execution
+    owner: Doctor
+    status: Draft
+    source: [P005, P014]
+    rules: [RULE-014]
+    verification: [Doctor Test, Doctor]
+  XFR-010:
+    title: Scan Knowledge
+    description: kiem tra knowledge base
+    priority: High
+    category: Execution
+    owner: Doctor
+    status: Draft
+    source: [P005, P014]
+    rules: [RULE-014]
+    verification: [Doctor Test, Doctor]
+  XFR-011:
+    title: Scan Workflow
+    description: kiem tra workflow (SPEC-002)
+    priority: High
+    category: Execution
+    owner: Doctor
+    status: Draft
+    source: [P005, P014]
+    rules: [RULE-014]
+    verification: [Doctor Test, Doctor]
+  XFR-012:
+    title: Scan Contracts
+    description: kiem tra contracts (SPEC-009)
+    priority: High
+    category: Execution
+    owner: Doctor
+    status: Draft
+    source: [P005, P014]
+    rules: [RULE-014]
+    verification: [Doctor Test, Doctor]
+  XFR-013:
+    title: Runtime Simulation
+    description: gia lap runtime
+    priority: High
+    category: Execution
+    owner: Doctor
+    status: Draft
+    source: [P005, P014]
+    rules: [RULE-014]
+    verification: [Doctor Test, Doctor]
+  XFR-014:
+    title: Capability Benchmark
+    description: benchmark capability (SPEC-003)
+    priority: High
+    category: Execution
+    owner: Doctor
+    status: Draft
+    source: [P005, P014]
+    rules: [RULE-014]
+    verification: [Doctor Test, Doctor]
+  XFR-015:
+    title: Track Doctor
+    description: theo doi lifecycle (S011)
+    priority: High
+    category: Observability
+    owner: Doctor
+    status: Draft
+    source: [P005, P014]
+    rules: [RULE-014]
+    verification: [Doctor Test, Doctor]
+  XFR-016:
+    title: Audit Doctor
+    description: ghi audit moi lan chay (S011)
+    priority: High
+    category: Observability
+    owner: Doctor
+    status: Draft
+    source: [P005, P014]
+    rules: [RULE-014]
+    verification: [Doctor Test, Doctor]
+non_functional:
+  XNF-001:
+    title: Non-Invasive
+    description: Doctor khong sua core
+    priority: Critical
+    category: Core
+    owner: Doctor
+    status: Draft
+    source: [P005]
+    rules: [RULE-014]
+  XNF-002:
+    title: Safe Repair
+    description: chi sua doc, khong sua core
+    priority: Critical
+    category: Core
+    owner: Doctor
+    status: Draft
+    source: [P005]
+    rules: [RULE-014]
+  XNF-003:
+    title: Measurable
+    description: moi check co diem so
+    priority: Critical
+    category: Core
+    owner: Doctor
+    status: Draft
+    source: [P005]
+    rules: [RULE-014]
+  XNF-004:
+    title: Observable
+    description: moi check quan sat qua S011
+    priority: High
+    category: Observability
+    owner: Doctor
+    status: Draft
+    source: [P005]
+    rules: [RULE-014]
+  XNF-005:
+    title: Comprehensive
+    description: scan toan bo he sinh thai
+    priority: Critical
+    category: Core
+    owner: Doctor
+    status: Draft
+    source: [P005]
+    rules: [RULE-014]
+  XNF-006:
+    title: Compatible
+    description: backward compatible
+    priority: High
+    category: Data
+    owner: Doctor
+    status: Draft
+    source: [P005]
+    rules: [RULE-014]
+  XNF-007:
+    title: Recoverable
+    description: phuc hoi sau loi
+    priority: High
+    category: Core
+    owner: Doctor
+    status: Draft
+    source: [P005]
+    rules: [RULE-014]
+  XNF-008:
+    title: Testable
+    description: kiem thu tu dong
+    priority: High
+    category: Core
+    owner: Doctor
+    status: Draft
+    source: [P005]
+    rules: [RULE-014]
+  XNF-009:
+    title: Performant
+    description: dap ung target scan time
+    priority: High
+    category: Observability
+    owner: Doctor
+    status: Draft
+    source: [P005]
+    rules: [RULE-014]
+  XNF-010:
+    title: Governed
+    description: chiu Governance (S013)
+    priority: Critical
+    category: Governance
+    owner: Doctor
+    status: Draft
+    source: [P005]
+    rules: [RULE-014]
+  XNF-011:
+    title: Reusable
+    description: Doctor pattern tai su dung
+    priority: Medium
+    category: Data
+    owner: Doctor
+    status: Draft
+    source: [P005]
+    rules: [RULE-014]
+  XNF-012:
+    title: Traceable
+    description: moi check truy vet (S011)
+    priority: High
+    category: Observability
+    owner: Doctor
+    status: Draft
+    source: [P005]
+    rules: [RULE-014]
+constraints:
+  XC-001:
+    name: No Core Modify
+    type: Architectural
+    source: [P015]
+    rules: [RULE-005]
+  XC-002:
+    name: Safe Repair Only
+    type: Architectural
+    source: [P015]
+    rules: [RULE-005]
+  XC-003:
+    name: No Business Data
+    type: Architectural
+    source: [P001]
+    rules: [RULE-001]
+  XC-004:
+    name: No Redefine System
+    type: Architectural
+    source: [P001]
+    rules: [RULE-005]
+  XC-005:
+    name: No Redefine Policy (S012)
+    type: Governance
+    source: [P015]
+    rules: [RULE-012]
+  XC-006:
+    name: No Auto-Decision
+    type: Governance
+    source: [P015]
+    rules: [RULE-012]
+assumptions:
+  XA-001: He sinh thai ton tai (SPEC-000..010)
+  XA-002: Runtime kha dung (SPEC-001)
+  XA-003: Registry kha dung (SPEC-005)
+  note: Neu gia dinh sai, Doctor chi bao loi, khong tu sua.
+dependencies:
+  logical:
+    - Constitution
+    - Toan bo SPEC-000..010
+  runtime_services:
+    - Event Store (S011)
+    - Metrics Collector (S011)
+external_interfaces:
+  Execution: Input
+  System: Scan
+  Report: Output
+  Policy (S012): Apply
+quality_attributes:
+  Coverage:
+    target: "100%"
+    description: Scan toan bo he sinh thai
+  Safety:
+    target: "100%"
+    description: Repair khong sua core
+  Reliability:
+    target: "99.9%"
+  Traceability:
+    target: "100%"
+  Observability:
+    target: "100%"
+acceptance:
+  XAR-001:
+    description: Doctor scan va cham diem duoc toan bo he sinh thai
+    related: [XFR-001, XFR-003, P005]
+    verified_by: [Doctor Tests, Doctor]
+  XAR-002:
+    description: Doctor khong sua duoc core
+    related: [XC-001, P015]
+    verified_by: [Doctor Tests, Doctor]
+  XAR-003:
+    description: Doctor sinh report day du (markdown/JSON)
+    related: [XFR-005, P005]
+    verified_by: [Doctor]
+  XAR-004:
+    description: Doctor khong chua Business Data
+    related: [XC-003, P001]
+    verified_by: [Doctor]

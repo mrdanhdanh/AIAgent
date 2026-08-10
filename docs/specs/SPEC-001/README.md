@@ -2,16 +2,16 @@
 name: spec-001-runtime-kernel
 description: >
   SPEC-001 — Runtime Kernel. Execution kernel thống nhất của AIOS.
-  3 tầng: Foundation (S001-S007+Appendix) / Behavior (S008-S012) / Quality (S013-S018).
+  3 tầng: Foundation (S001-S007+Appendix) / Behavior (S008-S010) / Operations (S011-S016).
   Mỗi bước review + freeze trước khi sang bước tiếp.
 agent: general
 ---
 
 # SPEC-001 — Runtime Kernel
 
-> **Trạng thái**: Draft · **Version**: 1.0.0 · **Phụ thuộc**: SPEC-000 (Constitution)
+> **Trạng thái**: ✅ Frozen (S001-S020, 2026-08-08) · **Version**: 1.0.0 · **Phụ thuộc**: SPEC-000 (Constitution)
 > **`implements: Runtime`** — xem compliance-matrix trong Constitution.
-> **Foundation + Data Model (S001-S008 + Appendix): ✅ Frozen (2026-08-04)**
+> **Toàn bộ SPEC-001 (20 mục): ✅ Frozen**
 
 ## Runtime tồn tại để làm gì?
 
@@ -28,28 +28,30 @@ Vision · Requirements · Responsibilities · Boundaries · Architecture
 Components · Contracts · Canonical Models (Appendix)
 ```
 
-### Tier 2 — Runtime Behavior (đang xây)
+### Tier 2 — Runtime Behavior ✅ Frozen
 
 ```text
 S008 Runtime Data Model     ✅ Frozen
-S009 Runtime State Machine  🚧
-S010 Runtime Execution Flow
-S011 Runtime Events
-S012 Runtime Error Handling
+S009 Runtime State Machine  ✅ Frozen
+S010 Runtime Execution Flow ✅ Frozen
 ```
 
-### Tier 3 — Runtime Quality
+### Tier 3 — Runtime Operations ✅ Frozen
 
 ```text
-S013 Observability
-S014 Security
-S015 Extension Model
-S016 Validation & Doctor
-S017 Compliance Matrix
-S018 Appendices
+S011 Execution Observability ✅ Frozen
+S012 Runtime Policies       ✅ Frozen
+S013 Runtime Governance     ✅ Frozen
+S014 Runtime Registry       ✅ Frozen
+S015 Runtime Resources      ✅ Frozen
+S016 Runtime Compliance     ✅ Frozen
+S017 Runtime Plugins        ✅ Frozen
+S018 Runtime Evolution      ✅ Frozen
+S019 Runtime Doctor         ✅ Frozen
+S020 Runtime Dashboard      ✅ Frozen
 ```
 
-## Quy trình (18 bước — freeze từng bước)
+## Quy trình (20 bước — freeze từng bước)
 
 | # | Bước | File | Tier | Trạng thái |
 |---|------|------|------|-----------|
@@ -62,32 +64,35 @@ S018 Appendices
 | S007 | Runtime Contracts | `S007/contracts.md` | 1 | ✅ Frozen |
 | — | Appendix: Canonical Models | `runtime-models/` | 1 | ✅ Frozen |
 | S008 | Runtime Data Model | `S008/data-model.md` | 2 | ✅ Frozen |
-| S009 | Runtime State Machine | `S009/state-machine.md` | 2 | 🚧 In progress |
-| S010 | Runtime Execution Flow | `S010-execution-flow.md` | 2 | ⬜ |
-| S011 | Runtime Events | `S011-events.md` | 2 | ⬜ |
-| S012 | Runtime Error Handling | `S012-error-handling.md` | 2 | ⬜ |
-| S013 | Runtime Observability | `S013-observability.md` | 3 | ⬜ |
-| S014 | Runtime Security | `S014-security.md` | 3 | ⬜ |
-| S015 | Runtime Extension Model | `S015-extension-model.md` | 3 | ⬜ |
-| S016 | Runtime Validation & Doctor | `S016-validation-doctor.md` | 3 | ⬜ |
-| S017 | Runtime Compliance Matrix | `S017-compliance-matrix.md` | 3 | ⬜ |
-| S018 | Runtime Appendices | `S018-appendices.md` | 3 | ⬜ |
+| S009 | Runtime State Machine | `S009/state-machine.md` | 2 | ✅ Frozen |
+| S010 | Runtime Execution Flow | `S010/execution-flow.md` | 2 | ✅ Frozen |
+| S011 | Execution Observability | `S011/observability.md` | 3 | ✅ Frozen |
+| S012 | Runtime Policies | `S012/policies.md` | 3 | ✅ Frozen |
+| S013 | Runtime Governance | `S013/governance.md` | 3 | ✅ Frozen |
+| S014 | Runtime Registry | `S014/registry.md` | 3 | ✅ Frozen |
+| S015 | Runtime Resources | `S015/resources.md` | 3 | ✅ Frozen |
+| S016 | Runtime Compliance | `S016/compliance.md` | 3 | ✅ Frozen |
+| S017 | Runtime Plugins | `S017/plugins.md` | 3 | ✅ Frozen |
+| S018 | Runtime Evolution | `S018/evolution.md` | 3 | ✅ Frozen |
+| S019 | Runtime Doctor | `S019/doctor.md` | 3 | ✅ Frozen |
+| S020 | Runtime Dashboard | `S020/dashboard.md` | 3 | ✅ Frozen |
 
 ## Thứ tự viết (Behavior Before Data)
 
 ```text
 Foundation ✅ → Canonical Models ✅ → S008 Data Model ✅
     ↓
-S009 State Machine    🚧 (Behavior trước)
+S009 State Machine    ✅ (Behavior trước)
     ↓
-S010 Execution Flow
+S010 Execution Flow   ✅
     ↓
-S011 Events
+    S011 Observability ✅ (Execution — Event/Metrics/Trace/Audit/Health)
     ↓
-S012 Error Handling
+S012 Policies ✅ Frozen (Define) → S013 Governance ✅ Frozen (Enforce) → S014 Registry ✅ Frozen (Resolve)
     ↓
-S013 Observability → S014 Security → S015 Extension → S016 Validation
-→ S017 Compliance → S018 Appendices
+S015 Resources ✅ Frozen (Allocate) → S016 Compliance ✅ Frozen (Verify)
+    ↓
+S017 Plugins ✅ Frozen (Extend) → S018 Evolution ✅ Frozen (Learn) → S019 Doctor ✅ Frozen (Check) → S020 Dashboard ✅ Frozen (View)
 ```
 
 ## Quy tắc

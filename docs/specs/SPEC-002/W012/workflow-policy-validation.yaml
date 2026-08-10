@@ -1,0 +1,9 @@
+# SPEC-002 W012 - Workflow Policy Binding Validation
+---
+version: "1.0"
+checks:
+  - policy_ref tro den POL-* ton tai (S012).
+  - parameters dung schema cua policy.
+  - scope hop le (Workflow | Step).
+  - version policy ton tai (S012).
+  - Khong trung binding cung scope + policy.

@@ -1,0 +1,88 @@
+# SPEC-004 A002 - Requirements Index
+---
+version: "1.0.0"
+index:
+  - id: AFR-001
+    type: functional
+    status: Draft
+  - id: AFR-002
+    type: functional
+    status: Draft
+  - id: AFR-003
+    type: functional
+    status: Draft
+  - id: AFR-004
+    type: functional
+    status: Draft
+  - id: AFR-005
+    type: functional
+    status: Draft
+  - id: AFR-006
+    type: functional
+    status: Draft
+  - id: AFR-007
+    type: functional
+    status: Draft
+  - id: AFR-008
+    type: functional
+    status: Draft
+  - id: AFR-009
+    type: functional
+    status: Draft
+  - id: AFR-010
+    type: functional
+    status: Draft
+  - id: AFR-011
+    type: functional
+    status: Draft
+  - id: AFR-012
+    type: functional
+    status: Draft
+  - id: AFR-013
+    type: functional
+    status: Draft
+  - id: AFR-014
+    type: functional
+    status: Draft
+  - id: AFR-015
+    type: functional
+    status: Draft
+  - id: AFR-016
+    type: functional
+    status: Draft
+  - id: ANFR-001
+    type: non_functional
+    status: Draft
+  - id: ANFR-002
+    type: non_functional
+    status: Draft
+  - id: ANFR-003
+    type: non_functional
+    status: Draft
+  - id: ANFR-004
+    type: non_functional
+    status: Draft
+  - id: ANFR-005
+    type: non_functional
+    status: Draft
+  - id: ANFR-006
+    type: non_functional
+    status: Draft
+  - id: ANFR-007
+    type: non_functional
+    status: Draft
+  - id: ANFR-008
+    type: non_functional
+    status: Draft
+  - id: ANFR-009
+    type: non_functional
+    status: Draft
+  - id: ANFR-010
+    type: non_functional
+    status: Draft
+  - id: ANFR-011
+    type: non_functional
+    status: Draft
+  - id: ANFR-012
+    type: non_functional
+    status: Draft

@@ -1,6 +1,6 @@
 # SPEC-001 S004 — Dependency Boundary (B004)
 ---
-version: "1.0"
+version: "1.0.0"
 allowed_dependencies:
   - Constitution
   - Workflow Definition

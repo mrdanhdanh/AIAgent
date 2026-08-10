@@ -1,0 +1,21 @@
+# SPEC-014 X011 - Dashboard Events (S011 reuse)
+---
+version: "1.0.0"
+definition_events:
+  - DASHBOARD_CreateD
+  - DASHBOARD_RenderD
+  - DASHBOARD_RUNNING
+  - DASHBOARD_ComposeD
+  - DASHBOARD_FilterD
+  - DASHBOARD_ExportED
+  - DASHBOARD_FAILED
+  - DASHBOARD_FINDING
+  - DASHBOARD_DEVIATION
+  - DASHBOARD_ISOLATION_BLOCKED
+  - DASHBOARD_REPLAYED
+  - DASHBOARD_RESTORED
+rules:
+  - Event immutable (P010).
+  - Event chi append.
+  - Moi transition sinh Event (X009).
+  - Event co correlation_id (S011).

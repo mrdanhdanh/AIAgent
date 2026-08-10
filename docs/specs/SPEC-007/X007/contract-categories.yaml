@@ -1,0 +1,11 @@
+# SPEC-007 X007 - Artifact Contract Categories
+---
+version: "1.0.0"
+categories:
+  API: [XCT-001]
+  Data: [XCT-002]
+  Event: [XCT-003]
+  Metric: [XCT-004]
+  Policy: [XCT-005]
+  Interface: [XCT-006]
+  Storage: [XCT-007]

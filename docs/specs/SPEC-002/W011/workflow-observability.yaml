@@ -1,0 +1,71 @@
+# SPEC-002 W011 - Workflow Observability
+# Workflow dung Observability cua Runtime (S011) - chi them Definition-level.
+---
+id: SPEC-002-W011
+name: Workflow Observability
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Workflow Team
+philosophy:
+  - Moi hoat dong deu sinh du lieu quan sat (P014).
+  - Khong do duoc thi khong kiem soat duoc.
+  - Workflow dung S011 (Runtime) - khong dinh nghia lai.
+principles:
+  - Event Driven (S011)
+  - Traceable (S011)
+  - Immutable (S011)
+  - Correlation First (S011)
+  - Metadata First (S011)
+  - Append Only (S011)
+domains:
+  - Events
+  - Metrics
+  - Trace
+  - Audit
+  - Health
+boundary:
+  observes:
+    - Workflow Definition
+    - Workflow Step
+    - Step Context
+    - Workflow Event
+    - Workflow Result
+  not_observes:
+    - Business Data
+    - User Data
+    - Knowledge Content
+    - Agent Internal State
+    - Plugin Internal State
+correlation_model:
+  fields: [workflow_id, execution_id, correlation_id, lineage_id, parent_id]
+  rules:
+    - Sinh khi Workflow Created.
+    - Gan vao: Event, Metrics, Trace, Audit.
+    - Khong doi trong vong doi (P010).
+doctor_checks:
+  - Missing Workflow Event
+  - Missing Workflow Metrics
+  - Broken Workflow Trace
+  - Broken Lineage (S011)
+  - Invalid Audit (S011)
+evolution_integration:
+  - "Evolution chi doc: Workflow Event, Metrics, Trace, Audit."
+  - Evolution khong doc implementation.
+machine_readable:
+  - workflow-observability.yaml
+  - workflow-events.yaml
+  - workflow-metrics.yaml
+  - workflow-traces.yaml
+  - workflow-audit.yaml
+  - workflow-correlation.yaml
+  - workflow-health.yaml
+  - workflow-dashboard.yaml
+  - workflow-observability-mapping.yaml
+  - workflow-observability.schema.json
+success_criteria:
+  - Moi Workflow deu quan sat duoc.
+  - Moi Transition deu sinh Event (W009).
+  - Moi Workflow deu co Metrics + Trace + Audit.
+  - Dashboard va Doctor chi can doc machine-readable.
+  - Khong phu thuoc nen tang quan sat cu the.

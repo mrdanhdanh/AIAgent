@@ -1,0 +1,7 @@
+# SPEC-007 X012 - Artifact Policy Lifecycle
+---
+version: "1.0.0"
+lifecycle:
+  states: [Draft, Approved, Active, Deprecated, Retired]
+  owner: Governance (S013)
+  gate: ADR/RFC cho breaking change (SPEC-000)

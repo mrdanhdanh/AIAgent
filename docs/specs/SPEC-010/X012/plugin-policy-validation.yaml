@@ -1,0 +1,8 @@
+# SPEC-010 X012 - Plugin Policy Validation
+---
+version: "1.0.0"
+validation:
+  - moi policy co source (TERM-015/S012/S011)
+  - moi policy co principle
+  - moi policy co enforcement point
+  - kiem tra bang Doctor (X019)

@@ -1,0 +1,50 @@
+# SPEC-007 X008 - Artifact Data Model
+---
+version: "1.0.0"
+entities:
+  ENT-X001: { name: Artifact, kind: AggregateRoot, owner: Artifact Store, immutable: false }
+  ENT-X002: { name: ArtifactDefinition, kind: Entity, owner: Artifact Store, immutable: true }
+  ENT-X003: { name: ArtifactVersion, kind: Entity, owner: Artifact Store, immutable: true }
+  ENT-X004: { name: ArtifactMetadata, kind: Entity, owner: Artifact Store, immutable: true }
+  ENT-X005: { name: ArtifactChecksum, kind: Value, owner: Artifact Store, immutable: true }
+  ENT-X006: { name: ArtifactState, kind: Transient, owner: Artifact Store, immutable: false }
+  ENT-X007: { name: ArtifactIndex, kind: Entity, owner: Artifact Store, immutable: false }
+  ENT-X008: { name: ArtifactEvent, kind: Ref (S011), owner: Runtime, immutable: true }
+  ENT-X009: { name: ArtifactMetric, kind: Ref (S011), owner: Runtime, immutable: true }
+  ENT-X010: { name: ArtifactSnapshot, kind: Entity, owner: Artifact Store, immutable: false }
+  ENT-X011: { name: ExecutionRef, kind: Ref (SPEC-001), owner: Execution, immutable: true }
+  ENT-X012: { name: ProducerRef, kind: Ref (SPEC-004/002), owner: Agent/Task, immutable: true }
+  ENT-X013: { name: ConsumerRef, kind: Ref (SPEC-004), owner: Agent, immutable: true }
+  ENT-X014: { name: PolicyRef, kind: Ref (S012), owner: Runtime, immutable: true }
+  ENT-X015: { name: ArtifactExtension, kind: Value, owner: Artifact Store, immutable: true }
+relations:
+  REL-X001: { from: Artifact, to: ArtifactDefinition, cardinality: 1..1 }
+  REL-X002: { from: Artifact, to: ArtifactVersion, cardinality: 1..* }
+  REL-X003: { from: Artifact, to: ArtifactMetadata, cardinality: 1..1 }
+  REL-X004: { from: Artifact, to: ArtifactChecksum, cardinality: 1..1 }
+  REL-X005: { from: Artifact, to: ArtifactState, cardinality: 1..1 }
+  REL-X006: { from: Artifact, to: ArtifactIndex, cardinality: 0..1 }
+  REL-X007: { from: Artifact, to: ExecutionRef, cardinality: 1..1 }
+  REL-X008: { from: Artifact, to: ArtifactEvent, cardinality: 0..* }
+  REL-X009: { from: Artifact, to: ArtifactSnapshot, cardinality: 0..* }
+invariants:
+  INV-X001: { name: Unique ArtifactId, description: Moi Artifact co id duy nhat }
+  INV-X002: { name: Single Owner, description: Artifact chi thuoc mot Execution }
+  INV-X003: { name: Immutable Content, description: Content khong doi sau publish }
+  INV-X004: { name: Checksum Valid, description: Checksum khop content }
+  INV-X005: { name: Version Strict, description: Version tang don dieu }
+  INV-X006: { name: No Overwrite, description: Khong overwrite artifact }
+  INV-X007: { name: No Business Data, description: Artifact khong chua business data }
+validation:
+  VAL-X001: { field: ArtifactId, requirement: Required, type: UUID }
+  VAL-X002: { field: ExecutionId, requirement: Required, type: UUID }
+  VAL-X003: { field: Version, requirement: Required, type: SemVer }
+  VAL-X004: { field: Checksum, requirement: Required, type: SHA-256 }
+  VAL-X005: { field: ContentType, requirement: Required, type: MIME }
+  VAL-X006: { field: CreatedAt, requirement: Required, type: Timestamp }
+  VAL-X007: { field: RetentionDays, requirement: Required, type: Integer }
+storage:
+  mode: Content-addressable (checksum)
+  persistence: "true (P010 - artifact la persistent metadata)"
+  snapshot: ArtifactSnapshot (optional, debug)
+  source: S008 ENT-008

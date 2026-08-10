@@ -1,0 +1,8 @@
+# SPEC-008 X007 - Event Contract Mapping
+---
+version: "1.0.0"
+mapping:
+  XCT-001 -> XCP-001
+  XCT-002 -> X008 data schema
+  XCT-003 -> S011 event types
+  XCT-005 -> XPOL-* (X012)

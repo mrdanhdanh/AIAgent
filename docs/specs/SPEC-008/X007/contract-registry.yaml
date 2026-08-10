@@ -1,0 +1,6 @@
+# SPEC-008 X007 - Event Contract Registry
+---
+version: "1.0.0"
+registry:
+  owner: Event Team
+  tracked: [XCT-001..007]

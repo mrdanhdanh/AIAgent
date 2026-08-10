@@ -1,0 +1,9 @@
+# SPEC-014 X008 - Dashboard Ownership
+---
+version: "1.0.0"
+ownership:
+  owner_entity: Dashboard (SPEC-014)
+  data: S011 Metrics (read-only)
+  view: Dashboard View
+  transfer: Khong cho phep (P005)
+  destroy: Export archive (S012)

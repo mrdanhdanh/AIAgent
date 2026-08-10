@@ -1,0 +1,11 @@
+# SPEC-013 X010 - Evolution Execution Flow (6 stages)
+---
+version: "1.0.0"
+stages:
+  XF-001: { name: Diff, description: So sanh phien ban cu/moi, actor: DiffEngine, event: EVOLUTION_DIFFED }
+  XF-002: { name: CompatCheck, description: Kiem tra backward compatible, actor: CompatChecker, event: EVOLUTION_COMPAT_CHECKED }
+  XF-003: { name: Plan, description: Tao migration plan, actor: MigrationEngine, event: EVOLUTION_PLANNED }
+  XF-004: { name: Migrate, description: Thuc hien migration, actor: MigrationEngine, event: EVOLUTION_MIGRATED }
+  XF-005: { name: Heal, description: Self-heal doc-only (optional), actor: SelfHealEngine, event: EVOLUTION_HEALED }
+  XF-006: { name: Evolve, description: Tien hoa + report, actor: Evolution Engine, event: EVOLUTION_EVOLVED }
+source: /team-syncdocs (Evolution khong dinh nghia lai pipeline)

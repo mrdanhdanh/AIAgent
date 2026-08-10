@@ -1,0 +1,15 @@
+# SPEC-001 S010 — Execution Guarantees (EF026)
+# Runtime cam ket — khac voi Requirements (S002) va Invariants (S001).
+---
+version: "1.0"
+guarantees:
+  - Exactly one Active State.
+  - Exactly one Terminal State.
+  - At-least-once Event Publication.
+  - Exactly-once Artifact Publication.
+  - Context Isolation.
+  - Deterministic Replay.
+  - Immutable Lineage.
+  - Immutable Artifact.
+  - Contract-first Communication.
+note: Doctor/Dashboard/Runtime implementation dung lam tieu chi kiem chung.

@@ -1,0 +1,10 @@
+# SPEC-014 X009 - Dashboard State Metrics
+---
+version: "1.0.0"
+metrics:
+  - dashboard_states_total
+  - dashboard_transitions_total
+  - dashboard_transition_duration_seconds
+  - dashboard_failed_total
+  - dashboard_archived_total
+labels: [dashboard_id, state, transition, execution_id]

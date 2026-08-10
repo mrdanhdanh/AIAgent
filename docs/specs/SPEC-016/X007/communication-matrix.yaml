@@ -1,0 +1,8 @@
+# SPEC-016 X007 - CLI Communication Matrix
+---
+version: "1.0.0"
+matrix:
+  User -> CLIApi: sync render
+  CLIApi -> CommandEngine: sync render
+  CLIApi -> TriggerEngine: sync export
+  CLIApi -> S011: async event

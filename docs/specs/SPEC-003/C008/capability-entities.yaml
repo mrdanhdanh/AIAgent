@@ -1,0 +1,19 @@
+# SPEC-003 C008 - Capability Entities (15 ENT)
+---
+version: "1.0.0"
+entities:
+  ENT-C001: { name: Capability, kind: AggregateRoot, owner: Capability, immutable: false }
+  ENT-C002: { name: CapabilityDefinition, kind: Entity, owner: Capability, immutable: true }
+  ENT-C003: { name: CapabilityVersion, kind: Entity, owner: Capability, immutable: true }
+  ENT-C004: { name: CapabilityMapping, kind: Value, owner: Capability, immutable: true }
+  ENT-C005: { name: CapabilityGroup, kind: Value, owner: Capability, immutable: false }
+  ENT-C006: { name: CapabilityBinding, kind: Value, owner: Capability, immutable: true }
+  ENT-C007: { name: CapabilityState, kind: Transient, owner: Capability, immutable: false }
+  ENT-C008: { name: CapabilityResult, kind: Entity, owner: Capability, immutable: true }
+  ENT-C009: { name: CapabilityEvent, kind: Ref (S011), owner: Runtime, immutable: true }
+  ENT-C010: { name: CapabilityMetric, kind: Ref (S011), owner: Runtime, immutable: true }
+  ENT-C011: { name: CapabilityRegistryEntry, kind: Ref (S014), owner: Capability, immutable: true }
+  ENT-C012: { name: AgentRef, kind: Ref (SPEC-004), owner: Agent, immutable: true }
+  ENT-C013: { name: PluginRef, kind: Ref (S017), owner: Plugin, immutable: true }
+  ENT-C014: { name: ExecutionRef, kind: Ref (S008), owner: Runtime, immutable: true }
+  ENT-C015: { name: CapabilityExtension, kind: Value, owner: Capability, immutable: true }

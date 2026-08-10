@@ -1,11 +1,11 @@
 # feature.workflow.yaml
-# Workflow: feature-development (chuan cho feature phat trien)
-# Schema: workflow.schema.yaml v4.0 (engine v4) + manifest workflow.v1 (runtime v1)
+# Workflow: feature-development (chuẩn cho feature phát triển)
+# Schema: workflow.schema.yaml v1
 
 id: feature-development
 name: Feature Development Workflow
 version: "1"
-description: Standard feature development workflow - phan tich, thiet ke, review, backup, build, test, hoan tat.
+description: Standard feature development workflow
 manifest:
   schema: workflow.v1
   entry_phase: analyze
@@ -20,134 +20,77 @@ manifest:
 
 phases:
   - id: analyze
-    title: Phan tich yeu cau
-    description: Phan tich yeu cau, xac dinh pham vi va rui ro.
+    title: Analyze
+    name: Analyze
+    description: Phân tích yêu cầu
     agent: analyst
     command: team-analyze
     capability: analysis.requirement
-    depends_on: []
+    outputs: [analysis.md]
     retry: 1
-    timeout_seconds: 120
-    continue_on_error: false
-    inputs: {}
-    outputs:
-      status: string
-      summary: string
-      requirements:
-        - string
-    expected_result: Hieu ro yeu cau va pham vi truoc khi thiet ke.
-    optional: false
 
   - id: design
-    title: Thiet ke giai phap
-    description: Thiet ke kien truc va component cho giai phap.
+    title: Design
+    name: Design
+    description: Thiết kế giải pháp
+    depends_on: [analyze]
     agent: planner
     command: team-plan
     capability: review.architecture
-    depends_on: [analyze]
+    outputs: [design.md]
     retry: 1
-    timeout_seconds: 120
-    continue_on_error: false
-    inputs:
-      analysis: object
-    outputs:
-      status: string
-      architecture: string
-      components:
-        - string
-    expected_result: Co thiet ke component, luong du lieu, security concerns.
-    optional: false
 
   - id: review
-    title: Danh gia ke hoach
-    description: Reviewer danh gia ke hoach va dua quyet dinh.
+    title: Review
+    name: Review
+    description: Đánh giá kế hoạch
+    depends_on: [design]
     agent: reviewer
     command: team-review
     capability: review.code
-    depends_on: [design]
+    outputs: [review.md]
     retry: 1
-    timeout_seconds: 120
-    continue_on_error: false
-    inputs:
-      design: object
-    outputs:
-      status: string
-      decision: string
-      issues:
-        - string
-    expected_result: Quyet dinh APPROVED hoac CHANGES_REQUESTED ro rang.
-    optional: false
 
   - id: backup
-    title: Backup truoc khi thay doi
-    description: Backup cac file cu truoc khi build theo plan.
+    title: Backup
+    name: Backup
+    description: Backup trước khi build
+    depends_on: [review]
+    agent: backup-agent
     command: backup
     capability: ops.code
-    depends_on: [review]
+    outputs: [backup.md]
     retry: 2
-    timeout_seconds: 120
-    continue_on_error: false
-    inputs:
-      plan: object
-    outputs:
-      status: string
-      backup_workflow_id: string
-    expected_result: Backup manifest duoc tao tai .opencode/backup/<WF-ID>/.
     optional: true
 
   - id: build
-    title: Thuc hien code
-    description: Builder thuc hien cac buoc thay doi code theo ke hoach.
+    title: Build
+    name: Build
+    description: Thực hiện code
+    depends_on: [backup, review]
     agent: builder
     command: team-build
     capability: implementation.code
-    depends_on: [backup, review]
+    outputs: [artifact.code]
     retry: 2
-    timeout_seconds: 120
-    continue_on_error: false
-    inputs:
-      plan: object
-    outputs:
-      status: string
-      changed_files:
-        - string
-      created_files:
-        - string
-    expected_result: Cac thay doi dung theo plan, build pass.
-    optional: false
 
   - id: test
-    title: Chay kiem thu
-    description: Tester chay unit + integration tests, bao cao coverage.
+    title: Test
+    name: Test
+    description: Kiểm thử
+    depends_on: [build]
     agent: tester
     command: team-test
     capability: test.e2e
-    depends_on: [build]
+    outputs: [test_report.md]
     retry: 2
-    timeout_seconds: 120
-    continue_on_error: false
-    inputs:
-      build_result: object
-    outputs:
-      status: string
-      coverage:
-        unit: number
-    expected_result: Tat ca test PASS, coverage >= nguong.
-    optional: false
 
   - id: complete
-    title: Tong ket workflow
-    description: Tong hop ket qua va luu workflow.json snapshot.
+    title: Complete
+    name: Complete
+    description: Tổng kết workflow
+    depends_on: [test]
     agent: general
     capability: review.code
-    depends_on: [test]
+    outputs: [summary.md]
     retry: 0
-    timeout_seconds: 120
-    continue_on_error: false
-    inputs:
-      all_outputs: object
-    outputs:
-      status: string
-      final_report: string
-    expected_result: Workflow completed, bao cao day du.
-    optional: false

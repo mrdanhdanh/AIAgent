@@ -1,0 +1,9 @@
+# SPEC-003 C019 - Capability Doctor Pipeline
+---
+version: "1.0.0"
+pipeline:
+  - Collect (machine-readable)
+  - Validate (checks per domain)
+  - Score (health - C016 CMC006)
+  - Report (capability-doctor-report)
+  - Repair (neu an toan, self-repair)

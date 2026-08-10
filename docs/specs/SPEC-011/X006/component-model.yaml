@@ -1,0 +1,17 @@
+# SPEC-011 X006 - Doctor Component Model
+---
+version: "1.0.0"
+component_model:
+  XCP-001: { name: DoctorApi, layer: Core }
+  XCP-002: { name: PipelineOrchestrator, layer: Core }
+  XCP-003: { name: DoctorStateMachine, layer: Core }
+  XCP-004: { name: ScanEngine, layer: Core }
+  XCP-005: { name: DiagnoseEngine, layer: Core }
+  XCP-006: { name: PolicyGuard, layer: Guard }
+  XCP-007: { name: FindingsStore, layer: Core }
+  XCP-008: { name: ScoreStore, layer: Data }
+  XCP-009: { name: RepairEngine, layer: Data }
+  XCP-010: { name: ReportEngine, layer: Data }
+  XCP-011: { name: ScannerRegistry, layer: Integration }
+  XCP-012: { name: BenchmarkRunner, layer: Data }
+rule: Component chi goi qua interface (X007).

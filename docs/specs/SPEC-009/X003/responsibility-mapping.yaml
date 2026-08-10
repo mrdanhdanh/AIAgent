@@ -1,0 +1,8 @@
+# SPEC-009 X003 - Contract Responsibility Mapping
+---
+version: "1.0.0"
+mapping:
+  XRR-001..007: Contract System core ops
+  XRR-008: caller binding qua API
+  XRR-009..011, XRR-013: Runtime/Policy integration
+  XRR-012: Registry (SPEC-005)

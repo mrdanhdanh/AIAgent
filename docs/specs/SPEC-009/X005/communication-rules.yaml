@@ -1,0 +1,8 @@
+# SPEC-009 X005 - Contract Communication Rules
+---
+version: "1.0.0"
+communication_rules:
+  - Declare/Resolve: sync (blocking)
+  - Verify: sync, truoc khi dung
+  - Events, metrics: async (S011)
+  - Moi op co trace_id (S011)

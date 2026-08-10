@@ -1,0 +1,24 @@
+# SPEC-001 S009 — Transition Guards
+# Guard khac Precondition: Guard quyet dinh transition co duoc phep hay khong.
+---
+version: "1.0.0"
+guards:
+  TR-001: Workflow + Contract hợp lệ
+  TR-002: Validation pass
+  TR-003: Validation fail
+  TR-004: Simulation pass (P013)
+  TR-005: Cần approval/ngoại bộ
+  TR-006: Approval được duyệt
+  TR-007: Pause theo yêu cầu
+  TR-008: Resume hợp lệ
+  TR-009: Cancel request hợp lệ
+  TR-010: Hủy thành công
+  TR-011: Mọi Task/Phase xong
+  TR-012: Lỗi không retry được
+  TR-013: Timeout policy
+  TR-014: System abort
+  TR-015: retry_count < policy.max_retry
+  TR-016: Retry attempt
+  TR-017: Hết retry
+  TR-018: Replay được tạo
+  TR-019: Replay được tạo

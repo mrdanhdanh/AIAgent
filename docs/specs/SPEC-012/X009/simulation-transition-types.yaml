@@ -1,0 +1,8 @@
+# SPEC-012 X009 - Simulation Transition Types
+---
+version: "1.0.0"
+transition_types:
+  external: [SIMULATION_CONFIGURED, SIMULATION_FAILED]
+  internal: [SIMULATION_RUNNING, SIMULATION_OBSERVED, SIMULATION_REPORTED]
+  error: [SIMULATION_FAILED]
+rule: Internal transition chi trong Simulation Engine.

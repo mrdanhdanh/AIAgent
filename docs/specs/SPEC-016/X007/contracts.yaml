@@ -1,0 +1,11 @@
+# SPEC-016 X007 - CLI Contract Types (7)
+---
+version: "1.0.0"
+contracts:
+  XCT-001: { name: API Contract, description: CLIApi ops (render/build/filter/refresh/export), breaking: ADR }
+  XCT-002: { name: Data Contract, description: Widget + View schema, breaking: ADR }
+  XCT-003: { name: Event Contract, description: CLI_* events (S011), breaking: ADR }
+  XCT-004: { name: Metric Contract, description: CLI_* metrics, breaking: additive }
+  XCT-005: { name: Policy Contract, description: render scope, breaking: ADR }
+  XCT-006: { name: Interface Contract, description: Store, CommandEngine, FlagEngine, breaking: ADR }
+  XCT-007: { name: Export Contract, description: export schema (JSON/markdown), breaking: ADR }

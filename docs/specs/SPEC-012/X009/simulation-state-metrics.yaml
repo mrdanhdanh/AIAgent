@@ -1,0 +1,10 @@
+# SPEC-012 X009 - Simulation State Metrics
+---
+version: "1.0.0"
+metrics:
+  - simulation_states_total
+  - simulation_transitions_total
+  - simulation_transition_duration_seconds
+  - simulation_failed_total
+  - simulation_reported_total
+labels: [simulation_id, state, transition, execution_id]

@@ -1,0 +1,62 @@
+# SPEC-003 C020 - Capability Dashboard
+# Dashboard chi doc (S011 OB010) - view tu machine-readable.
+# Khong doc implementation. Khong ghi.
+---
+id: SPEC-003-C020
+name: Capability Dashboard
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Capability Team
+philosophy:
+  - Capability Dashboard la mat quan sat Capability System.
+  - Dashboard chi doc, khong ghi.
+  - Dashboard khong doc implementation.
+  - Moi view dung machine-readable.
+principles:
+  - Read Only
+  - Machine-readable First (C011)
+  - Event Driven (P005 - refresh theo event, khong polling)
+  - Single File (C014 capability-registry-registry.yaml)
+  - Least Privilege (S012 POL-SEC-001)
+  - Immutable Views (view la projection, khong sua nguon)
+scope:
+  reads:
+    - Capability Events (C011)
+    - Capability Metrics (C011)
+    - Capability Trace (C011)
+    - Capability Audit (C011)
+    - Health (C011)
+    - Registry (C014)
+    - Governance (C013)
+    - Compliance (C016)
+    - Doctor (C019)
+  not_reads:
+    - Implementation
+    - Business Data
+    - Agent Internal State
+    - Plugin Internal State
+views:
+  - Capability View (state + outcome distribution C009/C010)
+  - Definition View (definition version, binding C012)
+  - Registry View (C014 capability-registry-registry.yaml)
+  - Governance View (C013 - graph)
+  - Resource View (C015 metrics)
+  - Health View (C011 health + C016 score)
+  - Compliance + Doctor View (C016 report + C019 report)
+read_model:
+  fields: [id, timestamp, capability_version, views, sources, refresh]
+refresh:
+  - "Event Driven (P005): refresh khi co event moi."
+  - Khong polling.
+  - View la projection immutable (P010).
+events:
+  - CAPABILITY_DASHBOARD_VIEWED
+  - CAPABILITY_DASHBOARD_REFRESHED
+  - CAPABILITY_DASHBOARD_ERROR
+metrics:
+  views_count: 0
+  widgets_count: 0
+  refresh_count: 0
+  source_errors: 0
+  avg_render_time: 0

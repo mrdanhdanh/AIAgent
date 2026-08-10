@@ -1,0 +1,202 @@
+# SPEC-003 C006 — Capability Components (8 Components)
+# 3 nhom: Core / Resolution / Infrastructure.
+# Execution/State/Context thuoc Runtime (SPEC-001) - khong lap lai.
+---
+id: SPEC-003-C006
+name: Capability Components
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Capability Team
+philosophy:
+  - Component cang it cang tot.
+  - Moi Component chi co mot trach nhiem.
+  - Mo rong bang Capability, khong mo rong bang them Component moi.
+principles:
+  - Mot Responsibility.
+  - Mot Owner.
+  - Mot hoac nhieu Contract.
+  - Mot Lifecycle.
+  - Mot Metadata.
+  - Co the thay the.
+  - Khong chua Business Logic.
+  - Khong phu thuoc Component ngoai Contract.
+component_model:
+  fields: [id, name, version, status, layer, domain, responsibility, capability, contracts, dependencies, lifecycle, owner, metadata]
+groups:
+  Core: [Capability Engine, Declaration Manager, Validation Engine, Registration Manager]
+  Resolution: [Capability Resolver, Discovery Provider]
+  Infrastructure: [Binding Registrar, Capability Event Dispatcher]
+lifecycles:
+  runtime: [Defined, Initialized, Ready, Active, Stopping, Disposed]
+  capability: [Idle, Assigned, Running, Completed]
+components:
+  CCP-001:
+    name: Capability Engine
+    version: 1.0.0
+    status: Draft
+    group: Core
+    layer: Command
+    domain: Execution
+    responsibility: Quan ly vong doi Capability
+    capability: capability-management
+    contracts: [Capability Contract]
+    dependencies: [Declaration Manager, Validation Engine, Registration Manager, Capability Resolver, Capability Event Dispatcher]
+    lifecycle: runtime
+    owner: Capability
+    replaceable: false
+    metric: Capability Completion Rate
+    boundary: CB004-resolution
+    rule: RULE-004
+    responsibilities: [CRR-001, CRR-002]
+    requirements: [CFR-001, CFR-002]
+    principles: [P001, P011]
+  CCP-002:
+    name: Declaration Manager
+    version: 1.0.0
+    status: Draft
+    group: Core
+    layer: Declaration
+    domain: Definition
+    responsibility: Quan ly Capability Definition + Version
+    capability: capability-declaration
+    contracts: [Declaration Contract]
+    dependencies: []
+    lifecycle: runtime
+    owner: Capability
+    replaceable: true
+    metric: Declaration Coverage
+    boundary: CB001-declaration
+    rule: RULE-001
+    responsibilities: [CRR-001, CRR-004]
+    requirements: [CFR-001, CFR-007]
+    principles: [P003, P004]
+  CCP-003:
+    name: Validation Engine
+    version: 1.0.0
+    status: Draft
+    group: Core
+    layer: Validation
+    domain: Validation
+    responsibility: Validate + Compatibility Check (S013 GV010)
+    capability: capability-validation
+    contracts: [Validation Contract]
+    dependencies: [Declaration Manager]
+    lifecycle: runtime
+    owner: Capability
+    replaceable: true
+    metric: Invalid Capabilities
+    boundary: CB003-validation
+    rule: RULE-002
+    responsibilities: [CRR-003, CRR-009]
+    requirements: [CFR-006, CFR-009]
+    principles: [P011, P018]
+  CCP-004:
+    name: Registration Manager
+    version: 1.0.0
+    status: Draft
+    group: Core
+    layer: Registration
+    domain: Mapping
+    responsibility: Dang ky S014 + Mapping Agent/Plugin
+    capability: capability-registration
+    contracts: [Registry Contract]
+    dependencies: [Registry (S014)]
+    lifecycle: runtime
+    owner: Capability
+    replaceable: false
+    metric: Registration Rate
+    boundary: CB007-mapping
+    rule: RULE-002
+    responsibilities: [CRR-002, CRR-006, CRR-007]
+    requirements: [CFR-002, CFR-004, CFR-005]
+    principles: [P003, P007]
+  CCP-005:
+    name: Capability Resolver
+    version: 1.0.0
+    status: Draft
+    group: Resolution
+    layer: Resolution
+    domain: Capability
+    responsibility: Resolve qua Runtime (EF007) + Fallback
+    capability: capability-resolution
+    contracts: [Registry Contract]
+    dependencies: [Registry (S014), Runtime (SPEC-001)]
+    lifecycle: runtime
+    owner: Capability
+    replaceable: false
+    metric: Resolution Rate
+    boundary: CB004-resolution
+    rule: RULE-002
+    responsibilities: [CRR-005, CRR-016]
+    requirements: [CFR-003, CFR-016]
+    principles: [P007, P015]
+  CCP-006:
+    name: Discovery Provider
+    version: 1.0.0
+    status: Draft
+    group: Resolution
+    layer: Registration
+    domain: Mapping
+    responsibility: Kham pha nang luc qua Registry (S014)
+    capability: capability-discovery
+    contracts: [Registry Contract]
+    dependencies: [Registry (S014)]
+    lifecycle: runtime
+    owner: Capability
+    replaceable: true
+    metric: Discovery Rate
+    boundary: CB002-registry
+    rule: RULE-002
+    responsibilities: [CRR-013]
+    requirements: [CFR-013]
+    principles: [P003]
+  CCP-007:
+    name: Binding Registrar
+    version: 1.0.0
+    status: Draft
+    group: Infrastructure
+    layer: Registration
+    domain: Mapping
+    responsibility: Khai bao tham so Policy (S012 binding)
+    capability: capability-binding
+    contracts: [Binding Contract]
+    dependencies: [Policy (S012)]
+    lifecycle: runtime
+    owner: Capability
+    replaceable: true
+    metric: Binding Coverage
+    boundary: CB008-policy
+    rule: RULE-012
+    responsibilities: [CRR-008]
+    requirements: [CFR-008]
+    principles: [P015]
+  CCP-008:
+    name: Capability Event Dispatcher
+    version: 1.0.0
+    status: Draft
+    group: Infrastructure
+    layer: Publication
+    domain: Observability
+    responsibility: Publish Event/Metrics/Trace/Audit (S011)
+    capability: capability-observability
+    contracts: [Event Contract]
+    dependencies: [Event Store (S011)]
+    lifecycle: runtime
+    owner: Capability
+    replaceable: true
+    metric: Event Coverage
+    boundary: CB009-governance
+    rule: RULE-007
+    responsibilities: [CRR-011, CRR-012]
+    requirements: [CFR-011, CFR-012]
+    principles: [P005, P014]
+not_in_runtime:
+  - Execution Manager (SPEC-001 S006 CMP-001)
+  - Execution Orchestrator (SPEC-001 S006 CMP-002)
+  - Context Manager (SPEC-001 S006 CMP-003)
+  - State Manager (SPEC-001 S006 CMP-004)
+  - Policy Engine (SPEC-001 S006 CMP-006)
+  - Registry (S014)
+  - Runtime Resolver (S010 EF007)
+# note: Capability System dung qua Runtime (SPEC-001) - khong lap lai.

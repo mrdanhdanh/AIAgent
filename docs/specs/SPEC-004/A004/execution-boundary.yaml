@@ -1,0 +1,16 @@
+# SPEC-004 A004 - Execution Boundary (AB004)
+---
+version: "1.0.0"
+name: Execution Boundary
+severity: Critical
+allowed:
+  - Chay Agent qua Runtime (SPEC-001)
+  - Dieu phoi qua Workflow (SPEC-002)
+not_allowed:
+  - Tu chay Agent
+  - Tu goi Agent truc tiep
+violation: Agent System tu chay Agent ngoai Runtime
+impact: Critical
+detected_by: Doctor
+principles: [P001]
+rules: [RULE-004]

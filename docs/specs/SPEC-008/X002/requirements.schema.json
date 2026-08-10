@@ -1,0 +1,7 @@
+{
+  "schema": "event-requirements",
+  "version": "1.0.0",
+  "functional": { "type": "object" },
+  "non_functional": { "type": "object" },
+  "constraints": { "type": "object" }
+}

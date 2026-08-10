@@ -1,0 +1,60 @@
+# SPEC-001 S013 - Runtime Governance
+# S004 define Boundary, S007 define Contract, S012 define Policy.
+# S013 enforce tat ca. S016 verify.
+---
+id: SPEC-001-S013
+name: Runtime Governance
+version: "1.0.0"
+status: Approved
+owner: Runtime Team
+philosophy:
+  - Governance la co che thuc thi luat.
+  - Runtime khong quyet dinh luat.
+  - Runtime chi thuc thi luat da duoc dinh nghia.
+  - Governance doc lap Business Logic.
+principles:
+  - Constitution First
+  - Policy Driven
+  - Contract First
+  - Boundary First
+  - Least Privilege
+  - Deterministic
+  - Auditable
+  - Versioned
+scope:
+  enforces:
+    - Constitution
+    - Policy
+    - Contract
+    - Boundary
+    - Permission
+    - Version Compatibility
+  not_enforces:
+    - Business Rule
+    - Domain Rule
+    - Workflow Logic
+version_governance:
+  checks: [SemVer, Compatibility, Deprecated, Breaking Change]
+compatibility_governance:
+  checks: [Contract, Capability, Plugin, Workflow]
+validation_pipeline:
+  - Constitution
+  - Boundary
+  - Contract
+  - Policy
+  - Execution
+decisions: [Allow, Deny, Suspend, Retry, Escalate, Abort, Failed, Ignore]
+traceability:
+  - Execution
+  - Governance Decision
+  - Policy Instance
+  - Rule
+  - Constitution
+mapping:
+  - Governance
+  - Policy
+  - Contract
+  - Boundary
+  - Requirement
+  - Principle
+  - Constitution

@@ -1,0 +1,29 @@
+{
+  "workflow_id": "WF-20260810-001",
+  "definition": {
+    "id": "default",
+    "name": "Default Development Workflow",
+    "version": "1.0.0"
+  },
+  "phase_index": 14,
+  "current_phase": "complete",
+  "status": "completed",
+  "retry_count": 0,
+  "same_error_count": 0,
+  "error_history": [],
+  "artifacts": [
+    "01_analyze.md",
+    "02_design.md",
+    "03_plan.md",
+    "04_review.md",
+    "05_guardrail.md",
+    "06_backup.md",
+    "07_governance_check.md",
+    "08_build.md",
+    "09_static_analysis.md",
+    "10_ui_audit.md",
+    "11_testplan.md",
+    "12_test.md",
+    "13_skill_validation.md"
+  ]
+}

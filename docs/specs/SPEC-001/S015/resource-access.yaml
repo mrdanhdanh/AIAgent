@@ -1,0 +1,11 @@
+# SPEC-001 S015 - Resource Access
+# Tham chieu S012 POL-RESACC-001.
+---
+version: "1.0.0"
+flow:
+  - Request
+  - Policy Check (S012 POL-RESACC-001: permission + isolation)
+  - Grant / Deny
+rules:
+  - Deny mac dinh khi khong xac dinh permission (S013).
+  - Moi truy cap sinh Event + Audit (S011).

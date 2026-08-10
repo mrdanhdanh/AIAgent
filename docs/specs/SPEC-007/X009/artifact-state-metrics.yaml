@@ -1,0 +1,10 @@
+# SPEC-007 X009 - Artifact State Metrics
+---
+version: "1.0.0"
+metrics:
+  - artifact_states_total
+  - artifact_transitions_total
+  - artifact_transition_duration_seconds
+  - artifact_rejected_total
+  - artifact_archived_total
+labels: [artifact_id, state, transition, execution_id]

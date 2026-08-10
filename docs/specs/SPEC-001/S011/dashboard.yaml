@@ -1,0 +1,13 @@
+# SPEC-001 S011 - Dashboard Model
+# Dashboard chi doc, khong doc implementation.
+---
+version: "1.0.0"
+reads:
+  - Events
+  - Metrics
+  - Trace
+  - Audit
+  - Health
+rules:
+  - Dashboard chi doc.
+  - Khong doc implementation.

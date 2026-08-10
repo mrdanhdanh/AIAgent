@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aios://context-registry.schema.json",
+  "title": "SPEC-006 Context Registry (X014)",
+  "type": "object",
+  "properties": {
+    "schema": { "const": "context-registry" },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "entry_types": { "type": "array", "items": { "type": "string", "enum": ["ContextDefinition","ContextSchema","ContextPolicy","ContextStateMachine"] } }
+  },
+  "required": [ "schema", "version" ],
+  "additionalProperties": true
+}

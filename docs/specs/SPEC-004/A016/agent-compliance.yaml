@@ -1,0 +1,77 @@
+# SPEC-004 A016 - Agent Compliance
+# Doctor xac minh Agent System - dung S016 (Runtime) + Agent-level rules.
+---
+id: SPEC-004-A016
+name: Agent Compliance
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Agent Team
+philosophy:
+  - Compliance la xac minh, khong phai thuc thi (S016).
+  - Doctor chi doc machine-readable (S011).
+  - Khong dinh nghia lai quy tac da co.
+  - Certification cho tung Agent System implementation.
+principles:
+  - Evidence Based (S016)
+  - Machine-readable First (S016)
+  - Deterministic (S016)
+  - Verifiable (S016)
+  - Non-invasive (S016)
+  - Versioned (S016)
+scope:
+  verifies:
+    - Constitution (SPEC-000)
+    - Boundary (A004)
+    - Contract (A007)
+    - Policy Binding (A012)
+    - Governance (A013)
+    - Registry (A014)
+    - Resources (A015)
+    - Observability (A011)
+validation_rules:
+  - Invalid Agent (A009/A002)
+  - Invalid Binding (A012)
+  - Boundary Violation (A004)
+  - Contract Failure (A007)
+  - Registry Violation (A014)
+  - Resource Leak (A015)
+  - Quota Violation (A015)
+  - Missing Agent Event (A011)
+  - Missing Agent Metrics (A011)
+  - Broken Agent Trace (A011)
+  - Invalid Audit (A011)
+  - Constitution Violation (S013)
+health_score: [Healthy, Degraded, Unhealthy]
+readiness_checklist:
+  - Agent Definition Published (A009).
+  - Binding Active (A012).
+  - Registry hop le (A014).
+  - Resources khong leak (A015).
+  - Contracts hop le (A007).
+  - Governance enforced (A013).
+  - Observability day du (A011).
+certification:
+  levels: [Not Certified, Certified, Revoked]
+  requirements:
+    - 100% validation rules Pass.
+    - Khong CRITICAL violation.
+    - Health Score = Healthy.
+pipeline:
+  - Collect Evidence (machine-readable)
+  - Validate Rules (agent-compliance-matrix)
+  - Compute Score (agent-health-score)
+  - Generate Report (agent-compliance-report)
+events:
+  - AGENT_COMPLIANCE_PASSED
+  - AGENT_COMPLIANCE_FAILED
+  - AGENT_COMPLIANCE_REPORTED
+  - AGENT_CERTIFICATION_GRANTED
+  - AGENT_CERTIFICATION_REVOKED
+metrics:
+  agent_compliance_score: 0
+  passed_rules: 0
+  failed_rules: 0
+  warning_rules: 0
+  total_rules: 0
+  certification_count: 0

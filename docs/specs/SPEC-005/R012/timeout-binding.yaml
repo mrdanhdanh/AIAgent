@@ -1,0 +1,9 @@
+# SPEC-005 R012 - Binding (RPB-002 -> POL-TIMEOUT-001)
+---
+version: "1.0.0"
+binding:
+  id: RPB-002
+  policy_ref: POL-TIMEOUT-001 (S012)
+  scope: Resolution
+  parameters: {}
+  status: Draft

@@ -1,0 +1,19 @@
+# SPEC-009 X008 - Contract Entities (15 ENT)
+---
+version: "1.0.0"
+entities:
+  ENT-X001: { name: Contract, kind: AggregateRoot, owner: Contract Registry, immutable: true }
+  ENT-X002: { name: ContractDefinition, kind: Entity, owner: Contract Registry, immutable: true }
+  ENT-X003: { name: ContractVersion, kind: Entity, owner: Contract Registry, immutable: true }
+  ENT-X004: { name: ContractSchema, kind: Entity, owner: Contract Registry, immutable: true }
+  ENT-X005: { name: ContractBinding, kind: Value, owner: Contract Registry, immutable: false }
+  ENT-X006: { name: ContractState, kind: Transient, owner: Contract Registry, immutable: false }
+  ENT-X007: { name: ContractVerification, kind: Entity, owner: Contract Registry, immutable: true }
+  ENT-X008: { name: ContractEvent, kind: Ref (S011), owner: Runtime, immutable: true }
+  ENT-X009: { name: ContractMetric, kind: Ref (S011), owner: Runtime, immutable: true }
+  ENT-X010: { name: ContractSnapshot, kind: Entity, owner: Contract Registry, immutable: false }
+  ENT-X011: { name: ExecutionRef, kind: Ref (SPEC-001), owner: Execution, immutable: true }
+  ENT-X012: { name: ProviderRef, kind: Ref (SPEC-004/002), owner: Agent/Task, immutable: true }
+  ENT-X013: { name: CallerRef, kind: Ref (SPEC-004), owner: Agent, immutable: true }
+  ENT-X014: { name: PolicyRef, kind: Ref (S012), owner: Runtime, immutable: true }
+  ENT-X015: { name: ContractExtension, kind: Value, owner: Contract Registry, immutable: true }

@@ -1,0 +1,7 @@
+# SPEC-005 R015 - Canonical Registry Resource Model (S015 RS004)
+---
+version: "1.0.0"
+resource:
+  fields: [id, type, category, owner, status, capacity, allocated, quota, references, metadata]
+rules:
+  - allocated khong vuot capacity va quota (S015).

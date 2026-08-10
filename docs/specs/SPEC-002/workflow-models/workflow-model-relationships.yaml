@@ -1,0 +1,8 @@
+# SPEC-002 Appendix - Workflow Model Relationships
+---
+version: "1.0"
+relationships:
+  Workflow: [WorkflowDefinition, WorkflowContext, WorkflowResult]
+  WorkflowDefinition: [WorkflowStep, Branch, Gate, WorkflowRegistryEntry]
+  WorkflowStep: [Branch, Gate]
+  WorkflowResult: [WorkflowContext]

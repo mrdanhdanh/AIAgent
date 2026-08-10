@@ -1,0 +1,8 @@
+# SPEC-012 X010 - Simulation Lineage
+---
+version: "1.0.0"
+lineage:
+  simulation_id: UUID
+  parent_simulation_id: null (Root) | UUID (follow-up)
+  execution_id: UUID
+  note: Lineage duoc luu trong metadata.

@@ -1,0 +1,10 @@
+# SPEC-009 X010 - Contract Flow Policies
+---
+version: "1.0.0"
+policies:
+  - Contract luon versioned (P004).
+  - Moi stage co Event (S011).
+  - Compat check truoc publish (XFR-007).
+  - Retire theo retention (S012).
+  - Khong goi truc tiep (TERM-014).
+source: S012 Policy

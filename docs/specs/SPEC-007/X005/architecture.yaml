@@ -1,0 +1,10 @@
+# SPEC-007 X005 - Artifact Architecture
+---
+version: "1.0.0"
+architecture:
+  model: Layered (5 layers)
+  style: In-process + Store
+  key_decisions:
+    - Artifact immutable (P010)
+    - Content write-once, metadata mutable qua version
+    - Policy qua S012

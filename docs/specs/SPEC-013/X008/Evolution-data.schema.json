@@ -1,0 +1,7 @@
+{
+  "schema": "evolution-data-model",
+  "version": "1.0",
+  "evolutionId": { "type": "string", "format": "uuid" },
+  "versionFrom": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+  "required": [ "evolutionId", "versionFrom", "versionTo", "timestamp" ]
+}

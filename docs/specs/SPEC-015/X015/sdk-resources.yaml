@@ -1,0 +1,10 @@
+# SPEC-015 X015 - SDK Resources
+---
+version: "1.0.0"
+resources:
+  XRES-001: { name: Storage, owner: SDK }
+  XRES-002: { name: Index, owner: SDK }
+  XRES-003: { name: ScanId, owner: SDK }
+  XRES-004: { name: Scan CPU, owner: SDK }
+  XRES-005: { name: Event Buffer, owner: Runtime }
+  XRES-006: { name: Snapshot Store, owner: SDK }

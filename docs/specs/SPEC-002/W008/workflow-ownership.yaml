@@ -1,0 +1,10 @@
+# SPEC-002 W008 - Workflow Ownership
+---
+version: "1.0"
+ownership:
+  Workflow: Workflow Team
+  WorkflowDefinition: Workflow Team
+  WorkflowStep: Workflow Team
+  WorkflowContext: Workflow Team
+  WorkflowResult: Workflow Team
+  Execution (S008): Runtime

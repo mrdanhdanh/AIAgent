@@ -1,0 +1,9 @@
+# SPEC-012 X003 - Simulation Ownership
+---
+version: "1.0.0"
+ownership:
+  owner_entity: Simulation Engine (SPEC-012)
+  workflow: Workflow (SPEC-002) bi mo phong
+  result: Simulation Report
+  transfer: Khong cho phep (P005)
+  destroy: Report archive (Policy S012)

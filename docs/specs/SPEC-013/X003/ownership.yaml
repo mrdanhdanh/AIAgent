@@ -1,0 +1,9 @@
+# SPEC-013 X003 - Evolution Ownership
+---
+version: "1.0.0"
+ownership:
+  owner_entity: Evolution Engine (SPEC-013)
+  system: toan bo he sinh thai (SPEC-000..012)
+  self_heal: chi sua doc, khong sua core
+  transfer: Khong cho phep (P013)
+  destroy: Report archive (Policy S012)

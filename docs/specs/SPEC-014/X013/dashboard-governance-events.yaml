@@ -1,0 +1,10 @@
+# SPEC-014 X013 - Dashboard Governance Events
+---
+version: "1.0.0"
+events:
+  - SPEC014_FROZEN
+  - SPEC014_UNFROZEN
+  - SPEC014_VERSIONED
+  - SPEC014_DECISION_MADE
+  - SPEC014_DECISION_OVERRIDDEN
+note: Event goi vao S011.

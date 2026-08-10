@@ -94,3 +94,17 @@ next_action: "Chạy /doctor-test để xác nhận health"
 ## LƯU Ý
 
 - Xem thêm skill: `.opencode/skills/playwright-e2e/SKILL.md`, `.opencode/skills/flaky-test-detector/SKILL.md`
+
+## Flags:
+
+| Flag | Y nghia |
+|------|---------|
+| `--dry-run` | Chi xem, khong ghi |
+| `--update` | Cap nhat test cu |
+| `--new` | Sinh test moi |
+
+## Output Contract
+
+- **Output**: diff source vs test + update/new test list.
+- **Format**: markdown.
+

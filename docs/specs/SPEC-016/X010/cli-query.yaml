@@ -1,0 +1,10 @@
+# SPEC-016 X010 - CLI Query
+---
+version: "1.0.0"
+query_ops:
+  - GetCLI(CLI_id)
+  - GetWidgets(CLI_id)
+  - GetViews(CLI_id)
+  - GetExport(CLI_id)
+  - GetHistory(CLI_id)
+rule: Query khong thay doi CLI, khong can grant.

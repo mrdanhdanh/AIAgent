@@ -1,0 +1,9 @@
+# SPEC-006 X016 - Context Validation Rules
+---
+version: "1.0.0"
+validation_rules:
+  - B1: SPEC.yaml hop le (id, name, version)
+  - B2: README table khop thuc te
+  - B3: Moi X-co file chinh + schema.json
+  - B4: Moi YAML parse duoc
+  - B5: Cross-reference ton tai

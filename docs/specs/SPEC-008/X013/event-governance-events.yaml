@@ -1,0 +1,10 @@
+# SPEC-008 X013 - Event Governance Events
+---
+version: "1.0.0"
+events:
+  - SPEC008_FROZEN
+  - SPEC008_UNFROZEN
+  - SPEC008_VERSIONED
+  - SPEC008_DECISION_MADE
+  - SPEC008_DECISION_OVERRIDDEN
+note: Event goi vao S011.

@@ -1,0 +1,7 @@
+# SPEC-012 Appendix - Simulation Model Relationships
+---
+version: "1.0.0"
+relationships:
+  AM-001 owns: [AM-002, AM-003, AM-004, AM-007, AM-008]
+  AM-001 has: [AM-005, AM-006]
+  note: Aggregate Root = Simulation

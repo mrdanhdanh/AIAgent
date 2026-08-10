@@ -1,0 +1,10 @@
+# SPEC-004 A008 - Agent Relations
+---
+version: "1.0.0"
+relations:
+  Agent 1-1 Definition
+  Definition 1-N Version
+  Agent 1-N CapabilityMapping
+  Agent 1-N Binding
+  Group 1-N Agent
+  Agent 1-1 Result

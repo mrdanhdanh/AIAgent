@@ -1,0 +1,7 @@
+# SPEC-011 X017 - Doctor Extension Metrics
+---
+version: "1.0.0"
+metrics:
+  - doctor_extensions_total
+  - doctor_extensions_active
+  - doctor_extensions_rejected_total

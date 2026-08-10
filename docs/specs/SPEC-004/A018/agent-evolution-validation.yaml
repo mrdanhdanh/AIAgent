@@ -1,0 +1,11 @@
+# SPEC-004 A018 - Agent Evolution Validation
+# Doctor kiem tra.
+---
+version: "1.0.0"
+checks:
+  - Missing Evidence (A011)
+  - Unauthorized Source
+  - Missing Approval (A013)
+  - Breaking Change Without Approval
+  - Invalid Proposal
+  - Apply Khong Qua Registry (A014)

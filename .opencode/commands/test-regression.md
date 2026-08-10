@@ -77,3 +77,17 @@ next_action: "Chuyển /approve-test nếu PASS"
 ## LƯU Ý
 
 - Xem thêm: `.opencode/knowledge/testing/xunit-bunit-testing.md`, `.opencode/knowledge/testing/playwright-e2e.md`
+
+## Flags:
+
+| Flag | Y nghia |
+|------|---------|
+| `--module <name>` | Chon module |
+| `--impact` | Kem impact analysis |
+| `--run` | Chay regression |
+
+## Output Contract
+
+- **Output**: regression cases + run results.
+- **Format**: markdown.
+

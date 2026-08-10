@@ -1,0 +1,10 @@
+# SPEC-002 W012 - Timeout Binding (WPB-002 -> POL-TIMEOUT-001)
+---
+version: "1.0"
+binding:
+  id: WPB-002
+  policy_ref: POL-TIMEOUT-001 (S012)
+  scope: Step
+  parameters:
+    timeout_ms: 30000
+  status: Draft

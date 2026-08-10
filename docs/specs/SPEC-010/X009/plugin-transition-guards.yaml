@@ -1,0 +1,8 @@
+# SPEC-010 X009 - Plugin Transition Guards
+---
+version: "1.0.0"
+guards:
+  XGD-001: { transition: XTR-002, condition: Validate pass + permission hop le }
+  XGD-002: { transition: XTR-004, condition: Khong co execution dang chay }
+  XGD-003: { transition: XTR-006, condition: Da disable (P011) }
+guard_fail: transition bi chan + error PLUGIN_GUARD

@@ -1,0 +1,23 @@
+# SPEC-001 S011 - Health Model
+# Runtime cong bo Health. Khong tu sua loi.
+---
+version: "1.0.0"
+model:
+  status: [Healthy, Degraded, Unhealthy]
+sources:
+  - Execution
+  - Resource
+  - Event
+  - Metrics
+  - Policy
+rules:
+  - Runtime cong bo trang thai Health.
+  - Health duoc tinh tu Observability Data (sources).
+  - Khong noi cong thuc.
+  - Khong tu sua loi (thuoc Recovery/Governance).
+doctor_checks:
+  - Missing Event
+  - Missing Metrics
+  - Broken Trace
+  - Broken Lineage
+  - Invalid Audit

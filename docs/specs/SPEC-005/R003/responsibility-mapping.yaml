@@ -1,0 +1,22 @@
+# SPEC-005 R003 - Responsibility Mapping
+---
+version: "1.0.0"
+mapping:
+  RRR-001: [RFR-001]
+  RRR-002: [RFR-001]
+  RRR-003: [RFR-001]
+  RRR-004: [RFR-001]
+  RRR-005: [RFR-001]
+  RRR-006: [RFR-001]
+  RRR-007: [RFR-001]
+  RRR-008: [RFR-001]
+  RRR-009: [RFR-001]
+  RRR-010: [RFR-001]
+  RRR-011: [RFR-001]
+  RRR-012: [RFR-001]
+  RRR-013: [RFR-001]
+  RRR-014: [RFR-001]
+  RRR-015: [RFR-001]
+  RRR-016: [RFR-001]
+  RRR-017: [RFR-001]
+  RRR-018: [RFR-001]

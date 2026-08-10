@@ -1,0 +1,9 @@
+# SPEC-003 C017 - Extension Isolation
+---
+version: "1.0.0"
+rules:
+  - Context isolated (S010 EF008).
+  - Resource bounded (C015 quota).
+  - Khong truy cap Agent Internal State (S011 OB003A).
+  - Khong truy cap Extension khac (goi qua Contract).
+  - Vi pham -> CAPABILITY_EXTENSION_FAILED + Disabled.

@@ -1,0 +1,9 @@
+# SPEC-012 X011 - Simulation Observability Model
+---
+version: "1.0.0"
+observability:
+  logs: Simulation Engine logs (structured)
+  events: SIMULATION_* (S011 Event Store)
+  metrics: simulation_* (prometheus)
+  traces: trace_id + correlation_id (S011)
+boundary: Simulation la observable (RULE-014)

@@ -1,0 +1,8 @@
+# SPEC 010 X015   Plugin Resource Access
+   
+version: "1.0.0"
+access:
+    Plugin chi access qua Plugin Framework API
+    Caller doc qua resolve (read only)
+    Khong access truc tiep Store
+    Audit moi access (X011)

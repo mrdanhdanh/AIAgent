@@ -1,0 +1,14 @@
+# SPEC-009 X004 - Contract Boundaries (10)
+---
+version: "1.0.0"
+boundaries:
+  XB-001: { name: Content, in_scope: "Contract input/output (interface)", out_scope: "-", forbidden: "-" }
+  XB-002: { name: Metadata, in_scope: "contract_id, version, provider, caller", out_scope: "format metadata", forbidden: "-" }
+  XB-003: { name: Provider, in_scope: "thanh phan khai bao", out_scope: "-", forbidden: "-" }
+  XB-004: { name: Caller, in_scope: "thanh phan goi qua Contract", out_scope: "-", forbidden: "-" }
+  XB-005: { name: Policy, in_scope: "retention, compat (S012)", out_scope: "policy logic", forbidden: "-" }
+  XB-006: { name: Registry, in_scope: "definition refs (SPEC-005)", out_scope: "runtime entries", forbidden: "-" }
+  XB-007: { name: Implementation, in_scope: "KHONG trong Contract", out_scope: "implementation", forbidden: "-" }
+  XB-008: { name: Secret, in_scope: "-", out_scope: "-", forbidden: "credentials, keys" }
+  XB-009: { name: PII, in_scope: "-", out_scope: "-", forbidden: "user personal data" }
+  XB-010: { name: Business Data, in_scope: "-", out_scope: "-", forbidden: "business data" }

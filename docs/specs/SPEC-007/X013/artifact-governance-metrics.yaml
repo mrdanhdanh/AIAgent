@@ -1,0 +1,9 @@
+# SPEC-007 X013 - Artifact Governance Metrics
+---
+version: "1.0.0"
+metrics:
+  - spec007_frozen_sections
+  - spec007_open_questions
+  - spec007_decisions_total
+  - spec007_compliance_score (X016)
+  - spec007_health_score (X019)

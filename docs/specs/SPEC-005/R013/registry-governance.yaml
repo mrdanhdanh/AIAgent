@@ -1,0 +1,49 @@
+# SPEC-005 R013 - Registry Governance
+---
+id: SPEC-005-R013
+name: Registry Governance
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Registry Team
+philosophy:
+  - Governance la co che thuc thi luat.
+  - Registry khong quyet dinh luat.
+  - Registry chi thuc thi luat da duoc dinh nghia (S012/S013).
+principles:
+  - Constitution First
+  - Policy Binding First (R012)
+  - Contract First (R007)
+  - Boundary First (R004)
+  - Least Privilege
+  - Deterministic
+  - Auditable
+  - Versioned
+scope:
+  enforces:
+    - Constitution (SPEC-000)
+    - Policy Binding (R012)
+    - Contract (R007)
+    - Boundary (R004)
+    - Permission (S013)
+    - Version Compatibility
+  not_enforces:
+    - Business Rule
+    - Domain Rule
+version_governance:
+  checks: [SemVer, Compatibility, Deprecated, Breaking Change]
+compatibility_governance:
+  checks: [Contract, Capability, Plugin, Agent]
+validation_pipeline:
+  - Constitution
+  - Boundary (R004)
+  - Contract (R007)
+  - Policy Binding (R012)
+  - Execution (Runtime SPEC-001)
+decisions: [Allow, Deny, Suspend, Retry, Escalate]
+traceability:
+  - Entry
+  - Policy Binding (R012)
+  - Contract (R007)
+  - Boundary (R004)
+  - Constitution

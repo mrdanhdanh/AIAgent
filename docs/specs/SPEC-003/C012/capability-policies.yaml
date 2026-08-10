@@ -1,0 +1,48 @@
+# SPEC-003 C012 - Capability Policies
+# Capability khong dinh nghia policy (CB008) - chi khai bao BINDING toi S012.
+---
+id: SPEC-003-C012
+name: Capability Policies
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Capability Team
+philosophy:
+  - Policy la luat cua Runtime (S012) - Capability khong dinh nghia lai (CB008).
+  - "Capability khai bao Binding: policy_ref + parameters + scope."
+  - Binding hop le thi moi duoc apply.
+  - Capability khong chua Policy Logic.
+principles:
+  - "Reference Only: chi tro den POL-* (S012)."
+  - "Parameterized: khai bao tham so, khong dinh nghia hanh vi."
+  - "Scoped: binding theo Capability hoac Resolution."
+  - "Versioned: binding theo version policy (S012)."
+  - "Validated: binding phai hop le truoc khi chay."
+  - "Traceable: moi binding apply co Event + Audit (S011)."
+binding_model:
+  fields: [id, capability, resolution, policy_ref, parameters, scope, version, status, lifecycle, metadata]
+lifecycle: [Draft, Validated, Published, Active, Deprecated, Retired]
+categories:
+# note: Dung 7 categories cua S012 RP003.
+  - Recovery
+  - Control
+  - Orchestration
+  - Resource
+  - Governance
+  - Security
+  - Lifecycle
+bindings:
+  - CPB-001 Retry Binding -> POL-RETRY-001
+  - CPB-002 Timeout Binding -> POL-TIMEOUT-001
+  - CPB-003 Approval Binding -> POL-APPROVAL-001
+  - CPB-004 Resource Binding -> POL-RES-001
+  - CPB-005 Parallel Binding -> POL-PARALLEL-001
+  - CPB-006 Compensation Binding -> POL-COMP-001
+  - CPB-007 Scheduling Binding -> POL-SCHED-001
+  - CPB-008 Isolation Binding -> POL-ISOL-001
+  - CPB-009 Security Binding -> POL-SEC-001
+  - CPB-010 Resource Access Binding -> POL-RESACC-001
+responsibility_chain:
+  - "S012 Runtime Policies: define policy"
+  - "S013 Runtime Governance: enforce policy"
+  - "C012 Capability Policies: bind policy vao capability"

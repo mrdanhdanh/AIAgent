@@ -1,0 +1,9 @@
+# SPEC-014 X005 - Dashboard Layer Model (5)
+---
+version: "1.0.0"
+layers:
+  XAL-001: { name: API Layer, role: Dashboard API (render, compose, build, filter, refresh, export) }
+  XAL-002: { name: Engine Layer, role: Pipeline Orchestrator + State Machine (X009) }
+  XAL-003: { name: Guard Layer, role: Policy Evaluator (S012) + Read-Only Guard }
+  XAL-004: { name: Store Layer, role: View Store + Widget Store }
+  XAL-005: { name: Integration, role: S011 Metrics + SPEC-008 Events + SPEC-011 Doctor + Events (S011) }

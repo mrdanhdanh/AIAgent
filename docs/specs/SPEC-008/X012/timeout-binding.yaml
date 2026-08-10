@@ -1,0 +1,9 @@
+# SPEC-008 X012 - Timeout Binding
+---
+version: "1.0.0"
+timeout_binding:
+  publish_timeout: 500ms (default)
+  validate_timeout: 500ms (default)
+  deliver_timeout: 1s (default)
+  replay_timeout: 5s (default)
+  note: cau hinh qua Policy S012, khong hardcode

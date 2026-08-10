@@ -1,0 +1,5 @@
+{
+  "schema": "plugin-observability",
+  "version": "1.0",
+  "events": { "type": "array", "items": { "type": "string", "pattern": "^PLUGIN_" } }
+}

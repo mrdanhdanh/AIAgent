@@ -1,0 +1,8 @@
+# SPEC-008 X009 - Event Transition Guards
+---
+version: "1.0.0"
+guards:
+  XGD-001: { transition: XTR-002, condition: Validate pass + lineage khop }
+  XGD-002: { transition: XTR-004, condition: Subscriber ton tai va active }
+  XGD-003: { transition: XTR-005, condition: Retention het han (S012) }
+guard_fail: transition bi chan + error EVENT_GUARD

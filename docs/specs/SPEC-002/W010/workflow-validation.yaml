@@ -1,0 +1,10 @@
+# SPEC-002 W010 - Workflow Flow Validation
+# Doctor kiem tra.
+---
+version: "1.0"
+checks:
+  - Step khong resolve duoc Capability (S014).
+  - Workflow tu chay step ngoai Runtime (WB004).
+  - Thieu Event cho buoc nao do (S011).
+  - Gate khong co approval (S012).
+  - Workflow ket thuc khong bang Terminal State (S009).

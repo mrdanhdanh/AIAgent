@@ -1,0 +1,8 @@
+# SPEC-012 X005 - Simulation ADL
+---
+version: "1.0.0"
+decisions:
+  XAD-001: { decision: Simulation isolated, reason: RULE-007 }
+  XAD-002: { decision: Deterministic runner, reason: P013 }
+  XAD-003: { decision: Policy qua S012, reason: khong tu quyet }
+  XAD-004: { decision: Scenario registry, reason: 6 types de mo rong }

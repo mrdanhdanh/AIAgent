@@ -1,0 +1,12 @@
+# SPEC-003 C009 - Capability State Events (event model: S011)
+---
+version: "1.0.0"
+events:
+  - CAPABILITY_VALIDATING
+  - CAPABILITY_PUBLISHED
+  - CAPABILITY_REJECTED
+  - CAPABILITY_DEPRECATED
+  - CAPABILITY_REACTIVATED
+  - CAPABILITY_RETIRED
+run_events:
+  note: Capability Run dung events cua S009 (EXECUTION_*).

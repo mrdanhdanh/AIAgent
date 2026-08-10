@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "aios://components.schema.json",
-  "title": "SPEC-001 Runtime Components (S006 v4)",
+  "title": "SPEC-001 Runtime Components (S006 v4.1)",
   "description": "JSON Schema cho components.yaml. Validator kiem tra cau truc.",
   "type": "object",
   "required": ["id", "name", "version", "status", "owner", "philosophy", "principles", "component_model", "groups", "lifecycles", "components", "not_in_runtime"],
@@ -11,6 +11,9 @@
     "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
     "status": { "enum": ["Draft", "Review", "Approved", "Stable", "Deprecated"] },
     "owner": { "type": "string" },
+    "frozen": { "type": "boolean" },
+    "frozen_date": { "type": "string", "format": "date" },
+    "note": { "type": "string" },
     "philosophy": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
     "principles": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
     "component_model": { "type": "object" },

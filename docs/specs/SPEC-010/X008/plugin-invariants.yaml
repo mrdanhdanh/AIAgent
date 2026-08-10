@@ -1,0 +1,12 @@
+# SPEC-010 X008 - Plugin Invariants
+---
+version: "1.0.0"
+invariants:
+  INV-X001: { name: Unique PluginId, description: Moi Plugin co id duy nhat }
+  INV-X002: { name: No Core Modify, description: Plugin khong sua Core }
+  INV-X003: { name: Manifest Valid, description: Manifest hop le }
+  INV-X004: { name: Permission Scoped, description: Khong vuot permission }
+  INV-X005: { name: Sandbox Active, description: Plugin chay trong sandbox }
+  INV-X006: { name: Disable Before Uninstall, description: Phai disable truoc uninstall }
+  INV-X007: { name: No Business Data, description: Plugin khong chua business data }
+violation: BLOCK operation + error PLUGIN_INVARIANT

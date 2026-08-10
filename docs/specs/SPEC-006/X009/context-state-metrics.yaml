@@ -1,0 +1,11 @@
+# SPEC-006 X009 - Context State Metrics
+---
+version: "1.0.0"
+metrics:
+  - context_states_total
+  - context_transitions_total
+  - context_transition_duration_seconds
+  - context_rejected_total
+  - context_released_total
+  - context_release_latency_seconds
+labels: [context_id, state, transition, execution_id]

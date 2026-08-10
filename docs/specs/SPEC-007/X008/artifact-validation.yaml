@@ -1,0 +1,15 @@
+# SPEC-007 X008 - Artifact Validation Rules
+---
+version: "1.0.0"
+validation_rules:
+  VAL-X001: { field: ArtifactId, requirement: Required, type: UUID }
+  VAL-X002: { field: ExecutionId, requirement: Required, type: UUID }
+  VAL-X003: { field: Version, requirement: Required, type: SemVer }
+  VAL-X004: { field: Checksum, requirement: Required, type: SHA-256 }
+  VAL-X005: { field: ContentType, requirement: Required, type: MIME }
+  VAL-X006: { field: CreatedAt, requirement: Required, type: Timestamp }
+  VAL-X007: { field: RetentionDays, requirement: Required, type: Integer }
+validate_on:
+  - Create
+  - Publish
+  - Version

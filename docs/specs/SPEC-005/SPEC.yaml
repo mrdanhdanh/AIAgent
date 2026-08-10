@@ -1,0 +1,52 @@
+---
+id: SPEC-005
+name: Registry
+version: "1.0.0"
+status: Frozen
+type: System
+authority: High
+owner: Registry Team
+description: >
+  Registry — SSOT cho Runtime Metadata AIOS. Thực thi S014 (Registry Model):
+  entries versioned, resolution service, multi-domain, lưu trữ-agnostic.
+dependencies:
+  - SPEC-000
+  - SPEC-001
+includes:
+  - R001
+  - R002
+  - R003
+  - R004
+  - R005
+  - R006
+  - R007
+  - R008
+  - R009
+  - R010
+  - R011
+  - R012
+  - R013
+  - R014
+  - R015
+  - R016
+  - R017
+  - R018
+  - R019
+  - R020
+outputs:
+  - Registry Entry Store
+  - Resolution Service
+  - Registry Metadata
+implements:
+  - Registry
+authoritative: false
+breaking_change_requires:
+  - ADR
+  - RFC
+references:
+  constitution: ../SPEC-000
+  runtime: ../SPEC-001
+  glossary: ../../glossary
+  principles: ../../principles
+  rules: ../../rules
+  governance: ../../governance

@@ -1,0 +1,11 @@
+# SPEC-003 C018 - Capability Evolution Validation
+# Doctor kiem tra.
+---
+version: "1.0.0"
+checks:
+  - Missing Evidence (C011)
+  - Unauthorized Source
+  - Missing Approval (C013)
+  - Breaking Change Without Approval
+  - Invalid Proposal
+  - Apply Khong Qua Registry (C014)

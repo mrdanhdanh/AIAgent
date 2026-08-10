@@ -1,0 +1,13 @@
+# SPEC-005 R016 - Registry Health Score (S016 CM006)
+---
+version: "1.0.0"
+levels: [Healthy, Degraded, Unhealthy]
+sources:
+  - Registry Execution (S009)
+  - Resource (R015)
+  - Event (R011)
+  - Metrics (R011)
+  - Policy (S012)
+rules:
+  - CRITICAL violation -> Unhealthy.
+  - Chi warning -> Degraded.

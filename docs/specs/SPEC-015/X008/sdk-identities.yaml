@@ -1,0 +1,8 @@
+# SPEC-015 X008 - SDK Identity
+---
+version: "1.0.0"
+identity:
+  SDK_id: UUID (generated at Create)
+  execution_id: UUID (from Execution)
+  view_name: String (per role)
+identity_scope: Execution-scoped (never global)

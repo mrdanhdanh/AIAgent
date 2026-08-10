@@ -1,0 +1,25 @@
+# SPEC-004 A020 - Agent Dashboard Views
+---
+version: "1.0.0"
+views:
+  - name: Agent View
+    source: A009/A010
+    content: state + outcome distribution
+  - name: Definition View
+    source: A012
+    content: definition version + binding
+  - name: Registry View
+    source: A014
+    content: agent-registry-registry.yaml (mot file)
+  - name: Governance View
+    source: A013
+    content: governance graph
+  - name: Resource View
+    source: A015
+    content: resource metrics
+  - name: Health View
+    source: A011 + A016
+    content: health status + compliance score
+  - name: Compliance + Doctor View
+    source: A016 + A019
+    content: compliance report + doctor report

@@ -1,0 +1,11 @@
+# SPEC-010 X007 - Plugin Contract Types (7)
+---
+version: "1.0.0"
+contracts:
+  XCT-001: { name: API Contract, description: PluginApi ops (install/enable/disable), breaking: ADR }
+  XCT-002: { name: Manifest Contract, description: Plugin manifest schema, breaking: ADR }
+  XCT-003: { name: Event Contract, description: PLUGIN_* events (S011), breaking: ADR }
+  XCT-004: { name: Metric Contract, description: plugin_* metrics, breaking: additive }
+  XCT-005: { name: Policy Contract, description: permission/quota, breaking: ADR }
+  XCT-006: { name: Interface Contract, description: Store, Sandbox, ExportManager, breaking: ADR }
+  XCT-007: { name: Export Contract, description: export schema (SPEC-003/004), breaking: ADR }

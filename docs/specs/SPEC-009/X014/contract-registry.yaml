@@ -1,0 +1,13 @@
+# SPEC-009 X014 - Contract Registry (via SPEC-005)
+---
+version: "1.0.0"
+registry:
+  owner: Registry (SPEC-005)
+  entries: Contract Definition (schemas, state machine, policies)
+  runtime_data: KHONG vao Registry (Contract o Store)
+  entry_types:
+    - ContractDefinition
+    - ContractSchema
+    - ContractPolicy
+    - ContractStateMachine
+  resolution: Registry resolve, Runtime thuc thi (RB004)

@@ -1,0 +1,5 @@
+# SPEC-003 C007 - Contract Types
+---
+version: "1.0.0"
+directions: [Request/Response, Read, Read/Write, Publish]
+patterns: [Sync, Sync/Async, Event]

@@ -1,0 +1,10 @@
+# SPEC-005 R008 - Registry Data Validation
+---
+version: "1.0.0"
+checks:
+  - Entry co dung mot Metadata.
+  - Entry versioned.
+  - Entry co dung mot Owner.
+  - Reference tro den Entry ton tai.
+  - ResolutionResult immutable.
+  - Khong Business Data.

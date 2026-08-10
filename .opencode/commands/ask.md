@@ -73,3 +73,17 @@ next_action: "Chạy /where hoặc /impact nếu cần chi tiết"
 
 - Xem thêm: `.opencode/skills/knowledge-assistant/SKILL.md`
 - Xem thêm: `.opencode/knowledge-index/` — index để định vị nhanh
+
+## Flags:
+
+| Flag | Y nghia |
+|------|---------|
+| `--detail` | Tra loi chi tiet |
+| `--brief` | Tra loi ngan gon |
+| `--evidence` | Kem bang chung file:line |
+
+## Output Contract
+
+- **Output**: cau tra loi + bang chung file:line.
+- **Format**: markdown.
+

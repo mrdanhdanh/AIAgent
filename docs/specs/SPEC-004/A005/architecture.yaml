@@ -1,0 +1,172 @@
+# SPEC-004 A005 — Agent Architecture (Blueprint)
+# Layer View + Domain View. Logical, khong implementation.
+# Agent System khong co Execution/State/Event layer rieng - thuoc Runtime (SPEC-001).
+---
+id: SPEC-004-A005
+name: Agent Architecture
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Agent Team
+vision: Lop khai bao va dieu phoi Agent tren Runtime Kernel. Moi tang mot trach nhiem, giao tiep qua Contract.
+decisions:
+  - Agent System la Declarator + Orchestrator, khong phai Executor.
+  - Agent System uu tien Metadata hon Configuration.
+  - Agent System chi phu thuoc Abstraction.
+  - Agent System khong biet Implementation.
+  - Agent System khong chua Domain Logic.
+  - Agent System duoc thiet ke de Evolution ma khong pha vo Core.
+  - Execution thuoc Runtime (SPEC-001) - khong lap lai.
+  - Orchestration qua Workflow (SPEC-002) - khong tu dieu phoi.
+layers:
+  Command:
+    level: 1
+    domain: Execution
+    input: Agent Request
+    output: Agent Command
+    responsibility: [Entry Point, Nhan Agent Request]
+    not_responsibility: [Nghiep vu]
+    invariant: Khong chua nghiep vu
+    principle: P001
+  Declaration:
+    level: 2
+    domain: Definition
+    input: Agent Declaration (metadata)
+    output: Agent Definition
+    responsibility: [Nhan khai bao, Parse metadata, Schema Check]
+    not_responsibility: [Code, Script]
+    invariant: Khong nhan code (AB001)
+    principle: P003
+  Definition:
+    level: 3
+    domain: Definition
+    input: Agent Definition
+    output: Versioned Agent
+    responsibility: [Agent Model, Version, Agent Group]
+    not_responsibility: [Dang ky]
+    invariant: Khong dang ky truc tiep (AB002)
+    principle: P011
+  Validation:
+    level: 4
+    domain: Validation
+    input: Agent Definition
+    output: Validated Agent
+    responsibility: [Validate cau truc, Validate tham chieu, Compatibility Check (S013 GV010)]
+    not_responsibility: [Dang ky]
+    invariant: Validate truoc khi dang ky (AB003)
+    principle: P011
+  Registration:
+    level: 5
+    domain: Mapping
+    input: Validated Agent
+    output: Registry Entry (S014) + Capability Mapping (SPEC-003)
+    responsibility: [Dang ky S014, Capability Mapping SPEC-003, Agent Group]
+    not_responsibility: [Hardcode mapping]
+    invariant: Khong hardcode capability mapping (AB007)
+    principle: P003
+  Orchestration:
+    level: 6
+    domain: Orchestration
+    input: Agent Request
+    output: Workflow Execution Request
+    responsibility: [Dieu phoi qua Workflow (SPEC-002), Delegate Runtime (SPEC-001), Agent Lifecycle]
+    not_responsibility: [Tu chay Agent, Tu goi Agent]
+    invariant: Khong tu chay - giao Runtime (AB004)
+    principle: P001
+  Publication:
+    level: 7
+    domain: Observability
+    input: Agent State Change
+    output: Agent Event
+    responsibility: [Publish Event, Publish Metrics, Trace, Audit (S011)]
+    not_responsibility: [Business Data]
+    invariant: Khong chua Business Data
+    principle: P014
+domains:
+  Definition:
+    owner: Agent
+    contains_business_logic: false
+  Validation:
+    owner: Agent
+    contains_business_logic: false
+  Mapping:
+    owner: Agent
+    contains_business_logic: false
+  Orchestration:
+    owner: Workflow Engine (SPEC-002)
+    contains_business_logic: false
+  Execution:
+    owner: Runtime (SPEC-001)
+    contains_business_logic: false
+  Observability:
+    owner: Runtime (S011)
+    contains_business_logic: false
+dependency_rules:
+  - "Layer N -> Layer N+1: duoc phep"
+  - "Layer N -> Layer N+2: khong duoc phep"
+  - "Khong Circular Dependency"
+  - "Khong Skip Layer"
+  - "Orchestration -> Workflow: duoc phep (delegate SPEC-002)"
+  - "Orchestration -> Runtime: duoc phep (delegate SPEC-001)"
+communication_rules:
+  - Contract
+  - Context
+  - Event
+  # note: Ngoai ra deu bi cam.
+invariants:
+  - Agent System luon Metadata Driven.
+  - Agent System khong biet Agent cu the.
+  - Agent System khong biet Plugin cu the.
+  - Agent System khong phu thuoc Framework.
+  - Agent System luon Declarative.
+  - Agent System luon Event Driven.
+  - Agent System luon Contract First.
+views:
+  layer_view: [Command, Declaration, Definition, Validation, Registration, Orchestration, Publication]
+  dependency_view: [Definition, Validation, Registration, Orchestration, Workflow, Runtime]
+  data_flow_view: [Agent Definition, Registry Entry, Capability Mapping]
+  event_flow_view: [Orchestration, Runtime, Event, Metrics, Dashboard]
+quality:
+  Modularity: Cao
+  Coupling: Thap
+  Cohesion: Cao
+  Extensibility: Rat cao
+  Testability: Cao
+  Evolvability: Rat cao
+  Determinism: "100%"
+constraints:
+  - Circular Dependency
+  - Hidden Dependency
+  - Shared Mutable State
+  - Code trong Agent
+  - Direct Agent Coupling
+  - Direct Plugin Coupling
+  - Business Logic trong Agent System
+  # note: Tat ca deu CAM.
+stability:
+  stable: [Layers, Domains]
+  evolvable: [Agent Schema, Contracts, Groups]
+  replaceable: [Agents, Plugins, Capabilities]
+metrics:
+  layer_count: 7
+  domain_count: 6
+  max_layer_dependency: 1
+  circular_dependency: 0
+  contract_violation: 0
+  hidden_dependency: 0
+validation:
+  - Layering
+  - Dependency
+  - Coupling
+  - Circular Dependency
+  - Contract Compliance
+  - Boundary Compliance (A004)
+  - Principle Compliance
+mapping:
+  Layering: P008
+  Contract: P002
+  Event: P005
+  Capability: P007
+  Metadata: P003
+  Plugin: P012
+  Constitution: P020

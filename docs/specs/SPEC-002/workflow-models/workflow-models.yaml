@@ -1,0 +1,47 @@
+# SPEC-002 Appendix — Workflow Canonical Models (8 models)
+# Single Source of Truth (P009) - moi SPEC tham chieu, khong dinh nghia lai.
+---
+version: "1.0"
+status: Draft
+aggregate_root: Workflow
+models:
+  WM-001:
+    name: Workflow
+    kind: Root
+    fields: [id, definition_ref, version, status, owner, created_at, lineage]
+    immutable: false
+  WM-002:
+    name: WorkflowDefinition
+    kind: Entity
+    fields: [id, name, version, steps, branches, gates, owner, status]
+    immutable: true (Published)
+  WM-003:
+    name: WorkflowStep
+    kind: Value
+    fields: [id, capability_ref, inputs, outputs, retry, timeout, compensation]
+    immutable: true
+  WM-004:
+    name: Branch
+    kind: Value
+    fields: [id, condition, target_step]
+    immutable: true
+  WM-005:
+    name: Gate
+    kind: Value
+    fields: [id, approval_required, approver, policy_ref (S012)]
+    immutable: true
+  WM-006:
+    name: WorkflowContext
+    kind: Transient
+    fields: [id, workflow_id, step_context, isolated]
+    immutable: false
+  WM-007:
+    name: WorkflowResult
+    kind: Entity
+    fields: [id, workflow_id, outcome, artifacts_ref, metrics_ref, timestamp]
+    immutable: true
+  WM-008:
+    name: WorkflowRegistryEntry
+    kind: Reference
+    fields: [id, workflow_ref, version, status (S014)]
+    immutable: true (Published)

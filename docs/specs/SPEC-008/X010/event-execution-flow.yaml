@@ -1,0 +1,13 @@
+# SPEC-008 X010 - Event Execution Flow (8 stages)
+---
+version: "1.0.0"
+stages:
+  XF-001: { name: Publish, description: Nhan Event tu Producer, actor: Event Bus, event: EVENT_CREATED }
+  XF-002: { name: Validate, description: Validate schema + invariants, actor: Event Bus, event: EVENT_VALIDATING }
+  XF-003: { name: Lineage, description: Gan event chain, actor: Event Bus, event: EVENT_LINEAGED }
+  XF-004: { name: Store, description: Append vao Event Store, actor: Event Bus, event: EVENT_STORED }
+  XF-005: { name: Route, description: Route theo topic, actor: Event Router, event: EVENT_ROUTED }
+  XF-006: { name: Deliver, description: Giao cho subscriber, actor: Event Bus, event: EVENT_DELIVERED }
+  XF-007: { name: Replay, description: Phat lai tu log (simulate/audit), actor: ReplayEngine, event: EVENT_REPLAYED }
+  XF-008: { name: Archive, description: Archive khi het retention, actor: Event Bus, event: EVENT_ARCHIVED }
+source: S011 Event Model (Event Bus thuc thi, khong dinh nghia lai)

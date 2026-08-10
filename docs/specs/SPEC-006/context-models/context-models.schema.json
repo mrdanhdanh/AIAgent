@@ -1,0 +1,5 @@
+{ "$schema": "https://json-schema.org/draft/2020-12/schema", "$id": "aios://context-models.schema.json", "title": "SPEC-006 Context Canonical Models",
+  "type": "object", "required": ["version","status","aggregate_root","models"],
+  "properties": { "version": { "type": "string" }, "status": { "enum": ["Draft","Review","Approved","Stable","Deprecated"] },
+    "aggregate_root": { "const": "Context" }, "models": { "type": "object", "minProperties": 8 } },
+  "additionalProperties": false }

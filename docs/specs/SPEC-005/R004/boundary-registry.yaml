@@ -1,0 +1,8 @@
+# SPEC-005 R004 - Boundary Registry
+---
+version: "1.0.0"
+registries:
+  - boundaries.yaml
+  - boundary-matrix.yaml
+  - boundary-ownership-matrix.yaml
+  - boundaries.schema.json

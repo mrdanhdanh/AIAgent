@@ -1,0 +1,8 @@
+# SPEC-012 X006 - Simulation Component Mapping
+---
+version: "1.0.0"
+mapping:
+  XCP-001 -> XAL-001 API Layer
+  XCP-002..006 -> XAL-002/003 Engine+Guard
+  XCP-007..010 -> XAL-004 Store Layer
+  XCP-011..012 -> XAL-005 Integration

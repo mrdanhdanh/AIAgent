@@ -1,0 +1,8 @@
+# SPEC-014 X010 - Dashboard Lineage
+---
+version: "1.0.0"
+lineage:
+  dashboard_id: UUID
+  parent_dashboard_id: null (Root) | UUID (view chain)
+  execution_id: UUID
+  note: Lineage duoc luu trong metadata.

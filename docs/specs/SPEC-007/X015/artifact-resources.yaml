@@ -1,0 +1,10 @@
+# SPEC-007 X015 - Artifact Resources
+---
+version: "1.0.0"
+resources:
+  XRES-001: { name: Storage, owner: Artifact Store }
+  XRES-002: { name: Index, owner: Artifact Store }
+  XRES-003: { name: ArtifactId, owner: Artifact Store }
+  XRES-004: { name: Checksum CPU, owner: Artifact Store }
+  XRES-005: { name: Event Buffer, owner: Runtime }
+  XRES-006: { name: Snapshot Store, owner: Artifact Store }

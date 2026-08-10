@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aios://evolution.schema.json",
+  "title": "SPEC-001 Runtime Evolution (S018)",
+  "description": "JSON Schema cho evolution.yaml. Validator kiem tra cau truc.",
+  "type": "object",
+  "required": ["id", "name", "version", "status", "owner", "philosophy", "principles", "scope", "pipeline", "proposal_model", "proposal_status", "approval", "safety", "application", "traceability"],
+  "properties": {
+    "id": { "const": "SPEC-001-S018" },
+    "name": { "const": "Runtime Evolution" },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "status": { "enum": ["Draft", "Review", "Approved", "Stable", "Deprecated"] },
+    "owner": { "type": "string" },
+    "philosophy": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "principles": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "scope": { "type": "object", "required": ["reads", "not_reads"] },
+    "pipeline": { "type": "array", "items": { "type": "string" }, "minItems": 6 },
+    "proposal_model": { "type": "object", "required": ["fields"] },
+    "proposal_status": { "type": "array", "items": { "type": "string" }, "minItems": 6 },
+    "approval": { "type": "array", "items": { "type": "string" }, "minItems": 4 },
+    "safety": { "type": "array", "items": { "type": "string" }, "minItems": 4 },
+    "application": { "type": "array", "items": { "type": "string" }, "minItems": 3 },
+    "traceability": { "type": "array", "items": { "type": "string" }, "minItems": 4 },
+    "events": { "type": "array", "items": { "type": "string" } },
+    "metrics": { "type": "object" }
+  },
+  "additionalProperties": false
+}

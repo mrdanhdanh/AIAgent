@@ -1,0 +1,11 @@
+# SPEC-009 X009 - Contract Events (6)
+---
+version: "1.0.0"
+events:
+  CONTRACT_VALIDATING: { from: XST-001, to: XST-002, category: lifecycle }
+  CONTRACT_PUBLISHED: { from: XST-002, to: XST-003, category: lifecycle }
+  CONTRACT_REJECTED: { from: XST-002, to: XST-006, category: lifecycle }
+  CONTRACT_RESOLVED: { from: XST-003, to: XST-004, category: lifecycle }
+  CONTRACT_VERSIONED: { from: XST-003, to: XST-003, category: lifecycle }
+  CONTRACT_RETIRED: { from: XST-004, to: XST-005, category: lifecycle }
+note: Event immutable, append-only (S011 P010).

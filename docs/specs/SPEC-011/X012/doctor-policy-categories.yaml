@@ -1,0 +1,11 @@
+# SPEC-011 X012 - Doctor Policy Categories
+---
+version: "1.0.0"
+categories:
+  Safety: [XPOL-001, XPOL-002]
+  Data: [XPOL-005, XPOL-010]
+  Quality: [XPOL-003, XPOL-004]
+  Lifecycle: [XPOL-006]
+  Resource: [XPOL-007]
+  Governance: [XPOL-008]
+  Audit: [XPOL-009]

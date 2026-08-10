@@ -1,0 +1,18 @@
+# SPEC-005 R019 - Registry Doctor Checks (tham chieu, khong dinh nghia lai)
+---
+version: "1.0.0"
+groups:
+  - source: R011 Observability
+    count: 5
+  - source: R013 Governance
+    count: 6
+  - source: R014 Registry-of-Registries
+    count: 7
+  - source: R015 Resources
+    count: 5
+  - source: R016 Compliance
+    count: 12
+  - source: R017 Extensions
+    count: 6
+  - source: R018 Evolution
+    count: 6

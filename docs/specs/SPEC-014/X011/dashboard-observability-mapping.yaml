@@ -1,0 +1,15 @@
+# SPEC-014 X011 - Dashboard Observability Mapping
+---
+version: "1.0.0"
+mapping:
+  stage -> event:
+    Create: DASHBOARD_CreateD
+    Render: DASHBOARD_RenderD
+    Run: DASHBOARD_RUNNING
+    Compose: DASHBOARD_ComposeD
+    Filter: DASHBOARD_FilterD
+    Export: DASHBOARD_ExportED
+  state -> metric:
+    Exported: DASHBOARD_Exported_total
+    Failed: DASHBOARD_failed_total
+    Composed: DASHBOARD_success_rate

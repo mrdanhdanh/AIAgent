@@ -1,0 +1,16 @@
+# SPEC-003 C004 - Resolution Boundary (CB004)
+---
+version: "1.0.0"
+name: Resolution Boundary
+severity: Critical
+allowed:
+  - Resolve qua Runtime (S010 EF007)
+  - Tra ket qua resolution
+not_allowed:
+  - Tu resolve
+  - Tu chon Agent
+violation: Capability System tu resolve ngoai Runtime
+impact: Critical
+detected_by: Doctor
+principles: [P007]
+rules: [RULE-002]

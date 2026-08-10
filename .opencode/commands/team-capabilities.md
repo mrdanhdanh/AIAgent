@@ -49,3 +49,17 @@ Mỗi mapping dẫn chứng `.opencode/registry/<file>:<line>`. Không suy đoá
 - **Nguồn dữ liệu**: `registry/` — tránh tự invent capability id.
 - **Registry = source of truth set 29 skills** (kể cả thực tế có skill không registry).
 - Khi thay đổi registry, chạy lại `capability-validator.ps1` cho PASS (0 error).
+
+## Flags:
+
+| Flag | Y nghia |
+|------|---------|
+| `--detail` | Chi tiet tung agent |
+| `--domain <name>` | Loc theo domain |
+| `--json` | Xuat JSON |
+
+## Output Contract
+
+- **Output**: danh sach capability + score per agent.
+- **Format**: markdown/JSON.
+

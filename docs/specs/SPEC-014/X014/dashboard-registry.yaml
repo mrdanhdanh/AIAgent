@@ -1,0 +1,13 @@
+# SPEC-014 X014 - Dashboard Registry (via SPEC-005)
+---
+version: "1.0.0"
+registry:
+  owner: Registry (SPEC-005)
+  entries: Dashboard Definition (scanners, schemas, policies)
+  runtime_data: KHONG vao Registry (Results o Store)
+  entry_types:
+    - DashboardDefinition
+    - ScannerDefinition
+    - DashboardPolicy
+    - DashboardStateMachine
+  resolution: Registry resolve, Runtime thuc thi (RB004)

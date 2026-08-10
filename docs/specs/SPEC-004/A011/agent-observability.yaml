@@ -1,0 +1,71 @@
+# SPEC-004 A011 - Agent Observability
+# Agent dung Observability cua Runtime (S011) - chi them Definition-level.
+---
+id: SPEC-004-A011
+name: Agent Observability
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Agent Team
+philosophy:
+  - Moi hoat dong deu sinh du lieu quan sat (P014).
+  - Khong do duoc thi khong kiem soat duoc.
+  - Agent dung S011 (Runtime) - khong dinh nghia lai.
+principles:
+  - Event Driven (S011)
+  - Traceable (S011)
+  - Immutable (S011)
+  - Correlation First (S011)
+  - Metadata First (S011)
+  - Append Only (S011)
+domains:
+  - Events
+  - Metrics
+  - Trace
+  - Audit
+  - Health
+boundary:
+  observes:
+    - Agent Definition
+    - Capability Mapping
+    - Agent Binding
+    - Agent Event
+    - Agent Result
+  not_observes:
+    - Business Data
+    - User Data
+    - Knowledge Content
+    - Agent Internal State
+    - Plugin Internal State
+correlation_model:
+  fields: [agent_id, execution_id, correlation_id, lineage_id, parent_id]
+  rules:
+    - Sinh khi Agent Created.
+    - Gan vao: Event, Metrics, Trace, Audit.
+    - Khong doi trong vong doi (P009).
+doctor_checks:
+  - Missing Agent Event
+  - Missing Agent Metrics
+  - Broken Agent Trace
+  - Broken Lineage (S011)
+  - Invalid Audit (S011)
+evolution_integration:
+  - "Evolution chi doc: Agent Event, Metrics, Trace, Audit."
+  - Evolution khong doc implementation.
+machine_readable:
+  - agent-observability.yaml
+  - agent-events.yaml
+  - agent-metrics.yaml
+  - agent-traces.yaml
+  - agent-audit.yaml
+  - agent-correlation.yaml
+  - agent-health.yaml
+  - agent-dashboard.yaml
+  - agent-observability-mapping.yaml
+  - agent-observability.schema.json
+success_criteria:
+  - Moi Agent deu quan sat duoc.
+  - Moi Transition deu sinh Event (A009).
+  - Moi Agent deu co Metrics + Trace + Audit.
+  - Dashboard va Doctor chi can doc machine-readable.
+  - Khong phu thuoc nen tang quan sat cu the.

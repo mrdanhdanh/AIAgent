@@ -1,0 +1,17 @@
+# SPEC-013 X006 - Evolution Component Model
+---
+version: "1.0.0"
+component_model:
+  XCP-001: { name: EvolutionApi, layer: Core }
+  XCP-002: { name: PipelineOrchestrator, layer: Core }
+  XCP-003: { name: EvolutionStateMachine, layer: Core }
+  XCP-004: { name: DiffEngine, layer: Core }
+  XCP-005: { name: CompatChecker, layer: Core }
+  XCP-006: { name: PolicyGuard, layer: Guard }
+  XCP-007: { name: DiffStore, layer: Core }
+  XCP-008: { name: MigrationStore, layer: Data }
+  XCP-009: { name: MigrationEngine, layer: Data }
+  XCP-010: { name: SelfHealEngine, layer: Data }
+  XCP-011: { name: ModuleRegistry, layer: Integration }
+  XCP-012: { name: HealthScorer, layer: Data }
+rule: Component chi goi qua interface (X007).

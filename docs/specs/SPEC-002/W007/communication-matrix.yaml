@@ -1,0 +1,14 @@
+# SPEC-002 W007 - Communication Matrix
+---
+version: "1.0"
+edges:
+  - [WCP-001, WCP-002, WCT-002]
+  - [WCP-001, WCP-003, WCT-003]
+  - [WCP-001, WCP-004, WCT-004]
+  - [WCP-001, WCP-005, WCT-005]
+  - [WCP-001, WCP-007, WCT-005]
+  - [WCP-003, WCP-005, WCT-002]
+  - [WCP-004, WCP-006, WCT-005]
+  - [WCP-004, Runtime, WCT-004]
+  - [WCP-005, Registry, WCT-005]
+  - [WCP-008, Event Store, WCT-006]

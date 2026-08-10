@@ -1,0 +1,20 @@
+# SPEC-014 X003 - Dashboard Responsibilities (16)
+---
+version: "1.0.0"
+responsibilities:
+  XRR-001: { name: Render Widget, owner: Dashboard, partner: S011 Metrics, role: OWNER }
+  XRR-002: { name: Compose Panel, owner: Dashboard, partner: Widgets, role: OWNER }
+  XRR-003: { name: Build View, owner: Dashboard, partner: Panels, role: OWNER }
+  XRR-004: { name: Filter Data, owner: Dashboard, partner: User, role: OWNER }
+  XRR-005: { name: Refresh Dashboard, owner: Dashboard, partner: S011 Metrics, role: OWNER }
+  XRR-006: { name: Export Dashboard, owner: Dashboard, partner: User, role: OWNER }
+  XRR-007: { name: Show Health Score, owner: Dashboard, partner: Doctor (SPEC-011), role: OWNER }
+  XRR-008: { name: Show Event Stream, owner: Dashboard, partner: Event Bus (SPEC-008), role: OWNER }
+  XRR-009: { name: Drill Down, owner: Dashboard, partner: S011 Metrics, role: OWNER }
+  XRR-010: { name: Events, owner: Runtime (S011), partner: Dashboard, role: EMITTER }
+  XRR-011: { name: Metrics, owner: Runtime (S011), partner: Dashboard, role: EMITTER }
+  XRR-012: { name: Policy eval, owner: Policy (S012), partner: Dashboard, role: DECIDER }
+  XRR-013: { name: Registry, owner: Registry (SPEC-005), partner: Dashboard, role: REGISTER }
+  XRR-014: { name: Audit, owner: Runtime (S011), partner: Dashboard, role: EMITTER }
+  XRR-015: { name: Retention, owner: Dashboard, partner: Policy (S012), role: OWNER }
+  XRR-016: { name: Recovery, owner: Dashboard, partner: Snapshot, role: OWNER }

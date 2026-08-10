@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "aios://contracts.schema.json",
-  "title": "SPEC-001 Runtime Contracts (S007)",
+  "title": "SPEC-001 Runtime Contracts (S007 v1.0.1)",
   "description": "JSON Schema cho contracts.yaml. Validator kiem tra cau truc.",
   "type": "object",
   "required": ["id", "name", "version", "status", "owner", "contracts"],
@@ -11,6 +11,8 @@
     "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
     "status": { "enum": ["Draft", "Review", "Approved", "Stable", "Deprecated"] },
     "owner": { "type": "string" },
+    "frozen": { "type": "boolean" },
+    "frozen_date": { "type": "string", "format": "date" },
     "contracts": {
       "type": "object",
       "patternProperties": {

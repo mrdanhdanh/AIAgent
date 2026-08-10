@@ -1,0 +1,8 @@
+# SPEC-010 X020 - Plugin Dashboard Events
+---
+version: "1.0.0"
+events:
+  - PLUGIN_DASHBOARD_OPENED
+  - PLUGIN_DASHBOARD_FILTERED
+  - PLUGIN_DASHBOARD_EXPORTED
+note: Event vao S011.

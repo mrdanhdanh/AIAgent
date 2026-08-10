@@ -1,0 +1,18 @@
+# SPEC-004 A019 - Agent Doctor Scope
+---
+version: "1.0.0"
+checks_domains:
+  - Constitution (SPEC-000)
+  - Contracts (A007)
+  - Policy Binding (A012)
+  - Governance (A013)
+  - Registry (A014)
+  - Resources (A015)
+  - Compliance (A016)
+  - Extensions (A017)
+  - Observability (A011)
+not_reads:
+  - Implementation
+  - Business Data
+  - Agent Internal State
+  - Plugin Internal State

@@ -1,0 +1,12 @@
+# SPEC-004 A013 - Agent Policy Binding Enforcement
+# Tham chieu A012 (define binding) - o day chi enforce.
+---
+version: "1.0.0"
+enforcement:
+  - Resolve binding (A012 AP013)
+  - Validate binding (A012 AP014)
+  - Apply (S013 enforce)
+  - Audit (S011)
+rules:
+  - Chi enforce binding Active (A012 AP002B).
+  - Binding Invalid -> Agent khong chay (Validation Failure).

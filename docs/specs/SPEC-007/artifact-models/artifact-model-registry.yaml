@@ -1,0 +1,6 @@
+# SPEC-007 Appendix - Artifact Model Registry
+---
+version: "1.0.0"
+registry:
+  owner: Artifact Team
+  tracked: [AM-001..008]

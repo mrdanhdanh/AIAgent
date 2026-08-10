@@ -1,0 +1,77 @@
+# SPEC-001 S018 - Runtime Evolution
+# Evolution chi doc (S011 OB011A): Event/Metrics/Trace/Audit.
+# Khong doc implementation. Approval qua Governance (S013).
+---
+id: SPEC-001-S018
+name: Runtime Evolution
+version: "1.0.0"
+status: Approved
+owner: Runtime Team
+philosophy:
+  - Evolution hoc tu du lieu quan sat (S011).
+  - Evolution khong quyet dinh thay con nguoi.
+  - Moi thay doi deu qua Approval Gate (S013).
+  - Khong Breaking Change khi chua duoc duyet.
+principles:
+  - Evidence Based (S011 + S016)
+  - Read Only (khong doc implementation)
+  - Approved (S013 Governance)
+  - Versioned (thay doi qua Registry S014)
+  - Reversible (rollback luon kha dung)
+  - Non-invasive (hoc khong thay doi Execution)
+scope:
+  reads:
+    - Event (S011)
+    - Metrics (S011)
+    - Trace (S011)
+    - Audit (S011)
+    - Compliance Report (S016)
+    - Registry (S014)
+  not_reads:
+    - Implementation
+    - Business Data
+    - User Data
+    - Agent Internal State
+    - Plugin Internal State
+pipeline:
+  - Collect (S011 data)
+  - Analyze (patterns, anomalies)
+  - Learn (lessons, hypotheses)
+  - Propose (evolution proposal)
+  - Approval Gate (S013 Governance)
+  - Apply (qua Registry S014 + Policy S012)
+proposal_model:
+  fields: [id, source, evidence, change, impact, status, approval]
+proposal_status: [Draft, Submitted, Approved, Rejected, Applied, Rolled Back]
+approval:
+  - "Low impact: auto-approve (Strict rules)."
+  - "Medium impact: Agent approval."
+  - "High impact / Breaking: Human approval bat buoc."
+  - Quyet dinh ghi Audit (S011).
+safety:
+  - Simulation truoc (S013 GV011A mode).
+  - Rollback luon kha dung.
+  - Khong Breaking Change khi chua duyet.
+  - Apply versioned qua Registry (S014).
+application:
+  - Thay doi Policy (S012) qua version moi.
+  - Cap nhat Registry Entry (S014).
+  - Cau hinh moi la version moi.
+traceability:
+  - Evolution Proposal
+  - Evidence (S011)
+  - Execution
+  - Registry Entry (S014)
+events:
+  - EVOLUTION_PROPOSED
+  - EVOLUTION_APPROVED
+  - EVOLUTION_REJECTED
+  - EVOLUTION_APPLIED
+  - EVOLUTION_ROLLED_BACK
+metrics:
+  proposals: 0
+  applied: 0
+  rejected: 0
+  rolled_back: 0
+  success_rate: 0
+  avg_learning_time: 0

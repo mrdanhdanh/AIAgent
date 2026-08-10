@@ -111,6 +111,7 @@ function Invoke-DoctorSemanticDiff {
 
     $totalChanges = 0
     $breakingChanges = 0
+    $majorChanges = 0
     $checks = @()
     $issues = @()
 
@@ -129,13 +130,16 @@ function Invoke-DoctorSemanticDiff {
 
         $agentChanges = @($sd.changes | Where-Object { $_.type -ne "contract_change" })
         $agentBreaking = @($agentChanges | Where-Object { $_.severity -eq "BREAKING" })
+        $agentMajor = @($agentChanges | Where-Object { $_.severity -eq "MAJOR" })
         $totalChanges += $agentChanges.Count
         $breakingChanges += $agentBreaking.Count
+        $majorChanges += $agentMajor.Count
 
         $st = "PASS"
         $detail = "no schema/workflow changes"
         if ($agentBreaking.Count -gt 0) { $st = "ERROR"; $detail = "$($agentBreaking.Count) breaking change(s)" }
-        elseif ($agentChanges.Count -gt 0) { $st = "WARNING"; $detail = "$($agentChanges.Count) change(s)" }
+        elseif ($agentMajor.Count -gt 0) { $st = "WARNING"; $detail = "$($agentMajor.Count) major change(s)" }
+        elseif ($agentChanges.Count -gt 0) { $detail = "$($agentChanges.Count) minor/INFO change(s) (documented)" }
         $checks += @{ name = $agentName; status = $st; detail = $detail }
 
         if ($agentBreaking.Count -gt 0) {
@@ -145,7 +149,7 @@ function Invoke-DoctorSemanticDiff {
         }
     }
 
-    $score = [Math]::Max(0, 100 - ($breakingChanges * 25) - ($totalChanges * 5))
+    $score = [Math]::Max(0, 100 - ($breakingChanges * 25) - ($majorChanges * 10))
     $score = [Math]::Min(100, $score)
     $status = if ($score -ge 80) { "PASS" } elseif ($score -ge 50) { "WARNING" } else { "ERROR" }
     return @{

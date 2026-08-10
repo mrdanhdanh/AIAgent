@@ -1,0 +1,10 @@
+# SPEC-013 X015 - Evolution Resources
+---
+version: "1.0.0"
+resources:
+  XRES-001: { name: Storage, owner: Evolution }
+  XRES-002: { name: Index, owner: Evolution }
+  XRES-003: { name: ScanId, owner: Evolution }
+  XRES-004: { name: Scan CPU, owner: Evolution }
+  XRES-005: { name: Event Buffer, owner: Runtime }
+  XRES-006: { name: Snapshot Store, owner: Evolution }

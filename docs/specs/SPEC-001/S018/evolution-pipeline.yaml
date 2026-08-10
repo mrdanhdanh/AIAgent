@@ -1,0 +1,13 @@
+# SPEC-001 S018 - Evolution Pipeline
+---
+version: "1.0"
+pipeline:
+  - Collect (S011 data)
+  - Analyze (patterns, anomalies)
+  - Learn (lessons, hypotheses)
+  - Propose (evolution proposal)
+  - Approval Gate (S013 Governance)
+  - Apply (qua Registry S014 + Policy S012)
+rules:
+  - Moi buoc sinh Event + Audit (S011).
+  - Learn khong thay doi Runtime (chi Propose).

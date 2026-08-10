@@ -1,0 +1,12 @@
+# SPEC-003 C006 - Component Metrics
+---
+version: "1.0.0"
+metrics:
+  CCP-001: Capability Completion Rate
+  CCP-002: Declaration Coverage
+  CCP-003: Invalid Capabilities
+  CCP-004: Registration Rate
+  CCP-005: Resolution Rate
+  CCP-006: Discovery Rate
+  CCP-007: Binding Coverage
+  CCP-008: Event Coverage

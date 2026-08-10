@@ -1,0 +1,10 @@
+# SPEC-005 R009 - Registry Transition Triggers
+---
+version: "1.0.0"
+definition_triggers: [Storage, User, Governance (S013), Scheduler]
+run_triggers:
+# note: Entry Run dung triggers cua S009 (Runtime).
+  - Runtime
+  - Policy (S012)
+  - User
+  - Timeout

@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "aios://architecture.schema.json",
-  "title": "SPEC-001 Runtime Architecture (S005)",
+  "title": "SPEC-001 Runtime Architecture (S005 v1.1.1)",
   "description": "JSON Schema cho architecture.yaml. Validator kiem tra cau truc.",
   "type": "object",
   "required": ["id", "name", "version", "status", "owner", "vision", "decisions", "layers", "domains", "dependency_rules", "communication_rules", "invariants", "views", "quality", "constraints", "stability", "metrics", "validation", "mapping"],
@@ -12,6 +12,8 @@
     "status": { "enum": ["Draft", "Review", "Approved", "Stable", "Deprecated"] },
     "owner": { "type": "string" },
     "vision": { "type": "string" },
+    "frozen": { "type": "boolean" },
+    "frozen_date": { "type": "string", "format": "date" },
     "decisions": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
     "layers": {
       "type": "object",

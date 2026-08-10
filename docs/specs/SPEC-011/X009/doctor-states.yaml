@@ -1,0 +1,12 @@
+# SPEC-011 X009 - Doctor Definition States (6)
+---
+version: "1.0.0"
+initial_state: XST-001
+terminal_states: [XST-005, XST-006]
+states:
+  XST-001: { name: Requested, category: Initial, type: Initial, terminal: false }
+  XST-002: { name: Scanning, category: Preparation, type: Internal, terminal: false }
+  XST-003: { name: Diagnosed, category: Active, type: Active, terminal: false }
+  XST-004: { name: Scored, category: Active, type: Active, terminal: false }
+  XST-005: { name: Reported, category: Terminal, type: Terminal, terminal: true }
+  XST-006: { name: Failed, category: Terminal, type: Terminal, terminal: true }

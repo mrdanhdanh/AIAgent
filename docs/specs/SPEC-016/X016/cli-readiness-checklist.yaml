@@ -1,0 +1,10 @@
+# SPEC-016 X016 - CLI Readiness Checklist
+---
+version: "1.0.0"
+readiness:
+  - "[ ] X001-X020 day du"
+  - "[ ] Validator PASS 5/5 blocks"
+  - "[ ] Cross-reference hop le (SPEC-000..010)"
+  - "[ ] Schema JSON hop le"
+  - "[ ] CLI PASS (X019)"
+  - "[ ] Compliance >= 80%"

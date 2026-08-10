@@ -1,0 +1,11 @@
+# SPEC-003 C009 - Capability Transitions (7)
+---
+version: "1.0.0"
+transitions:
+  - "from: CST-001; to: CST-002; event: CAPABILITY_VALIDATING; guard: Khai bao hop le (schema)"
+  - "from: CST-002; to: CST-003; event: CAPABILITY_PUBLISHED; guard: Validate pass + Registry Entry (S014)"
+  - "from: CST-002; to: CST-006; event: CAPABILITY_REJECTED; guard: Validate fail"
+  - "from: CST-003; to: CST-004; event: CAPABILITY_DEPRECATED; guard: Governance (S013) cho phep"
+  - "from: CST-004; to: CST-003; event: CAPABILITY_REACTIVATED; guard: Governance (S013) duyet"
+  - "from: CST-003; to: CST-005; event: CAPABILITY_RETIRED; guard: Governance (S013)"
+  - "from: CST-004; to: CST-005; event: CAPABILITY_RETIRED; guard: Khong con dung"

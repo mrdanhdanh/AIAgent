@@ -1,0 +1,10 @@
+# SPEC-012 X016 - Simulation Certification
+---
+version: "1.0.0"
+certification:
+  certified_artifacts:
+    - SPEC-012 SPEC.yaml
+    - X001-X020 sections
+    - simulation-models/
+  criteria: validator PASS + Simulation PASS
+  issued_by: Simulation Team + Governance (S013)

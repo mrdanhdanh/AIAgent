@@ -1,0 +1,28 @@
+# SPEC-010 X011 - Plugin Events (12 types)
+# X011 re-list day du event types cua SPEC-010:
+#   - 5 state-machine events (nguon: X009 plugin-state-events.yaml)
+#   - 7 events X011/X010 dinh nghia them (PLUGIN_FW_INSTALLED o X010 stage Install).
+# Event types rieng cua SPEC-010 (PLUGIN_FW_*) khong trung SPEC-001 S017.
+# S011 cung cap event model (fields, correlation_id).
+---
+version: "1.0.0"
+definition_events:
+  # nguon: X009 plugin-state-events.yaml (5 event types)
+  - PLUGIN_VALIDATING
+  - PLUGIN_ENABLED
+  - PLUGIN_REJECTED
+  - PLUGIN_FW_DISABLED
+  - PLUGIN_FW_UNINSTALLED
+  # X011/X010 dinh nghia them (7 event types)
+  - PLUGIN_FW_INSTALLED
+  - PLUGIN_SANDBOXED
+  - PLUGIN_EXPORTED
+  - PLUGIN_PERMISSION_BLOCKED
+  - PLUGIN_CORE_MODIFY_BLOCKED
+  - PLUGIN_SANDBOX_VIOLATION
+  - PLUGIN_RESTORED
+rules:
+  - Event immutable (P010).
+  - Event chi append.
+  - Moi transition sinh Event (X009).
+  - Event co correlation_id (S011).

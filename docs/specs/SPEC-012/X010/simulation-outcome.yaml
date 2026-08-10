@@ -1,0 +1,8 @@
+# SPEC-012 X010 - Simulation Outcome
+---
+version: "1.0.0"
+outcome:
+  success: Reported + SIMULATION_REPORTED
+  failure: Failed + SIMULATION_FAILED
+  metrics: [simulation_reported_total, simulation_failed_total]
+  audit: moi outcome ghi vao S011

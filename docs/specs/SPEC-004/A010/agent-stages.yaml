@@ -1,0 +1,5 @@
+# SPEC-004 A010 - Agent Stages (tham chieu S010 EF004)
+---
+version: "1.0.0"
+stages: [Initialize, Validate, Prepare, Execute, Coordinate, Finalize, Complete]
+note: Agent dung 7 stages cua S010 EF004 - khong dinh nghia lai.

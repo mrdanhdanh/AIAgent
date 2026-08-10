@@ -1,0 +1,13 @@
+# SPEC-015 X014 - SDK Registry (via SPEC-005)
+---
+version: "1.0.0"
+registry:
+  owner: Registry (SPEC-005)
+  entries: SDK Definition (scanners, schemas, policies)
+  runtime_data: KHONG vao Registry (Results o Store)
+  entry_types:
+    - SDKDefinition
+    - ScannerDefinition
+    - SDKPolicy
+    - SDKStateMachine
+  resolution: Registry resolve, Runtime thuc thi (RB004)

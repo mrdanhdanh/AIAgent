@@ -1,0 +1,9 @@
+# SPEC-007 X008 - Artifact Ownership
+---
+version: "1.0.0"
+ownership:
+  owner_entity: Artifact Store (S008 ENT-008)
+  producer: Agent/Task (SPEC-004/SPEC-002)
+  consumer: Agent/Doctor/Dashboard
+  transfer: Khong cho phep (P010)
+  destroy: Archive + retention (S012)

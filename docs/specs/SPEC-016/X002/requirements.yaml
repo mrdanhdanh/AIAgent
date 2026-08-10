@@ -1,0 +1,359 @@
+# SPEC-016 X002 - CLI Requirements
+---
+id: SPEC-016-X002
+name: CLI Requirements
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: CLI Team
+functional:
+  XFR-001:
+    title: Run Command
+    description: hien thi widget tu S011 metrics
+    priority: Critical
+    category: Core
+    owner: CLI
+    status: Draft
+    source: [P005, P014]
+    rules: [RULE-014]
+    verification: [CLI Test, Doctor]
+  XFR-002:
+    title: Parse Flags
+    description: ghep widget thanh panel
+    priority: Critical
+    category: Core
+    owner: CLI
+    status: Draft
+    source: [P005, P014]
+    rules: [RULE-014]
+    verification: [CLI Test, Doctor]
+  XFR-003:
+    title: Resolve Alias
+    description: tao view theo vai tro
+    priority: Critical
+    category: Core
+    owner: CLI
+    status: Draft
+    source: [P005, P014]
+    rules: [RULE-014]
+    verification: [CLI Test, Doctor]
+  XFR-004:
+    title: Show Help
+    description: loc theo thoi gian/scope
+    priority: Critical
+    category: Core
+    owner: CLI
+    status: Draft
+    source: [P005, P014]
+    rules: [RULE-014]
+    verification: [CLI Test, Doctor]
+  XFR-005:
+    title: Completion
+    description: lam moi dinh ky
+    priority: High
+    category: Core
+    owner: CLI
+    status: Draft
+    source: [P005, P014]
+    rules: [RULE-014]
+    verification: [CLI Test, Doctor]
+  XFR-006:
+    title: Trigger Workflow
+    description: xuat JSON/markdown
+    priority: High
+    category: Core
+    owner: CLI
+    status: Draft
+    source: [P005, P014]
+    rules: [RULE-014]
+    verification: [CLI Test, Doctor]
+  XFR-007:
+    title: Shell Integration
+    description: hien thi Health Score (SPEC-011)
+    priority: High
+    category: Execution
+    owner: CLI
+    status: Draft
+    source: [P005, P014]
+    rules: [RULE-014]
+    verification: [CLI Test, Doctor]
+  XFR-008:
+    title: Parse Args
+    description: hien thi event (SPEC-008)
+    priority: High
+    category: Execution
+    owner: CLI
+    status: Draft
+    source: [P005, P014]
+    rules: [RULE-014]
+    verification: [CLI Test, Doctor]
+  XFR-009:
+    title: Validate Command
+    description: chi tiet tu widget xuong metric
+    priority: Medium
+    category: Execution
+    owner: CLI
+    status: Draft
+    source: [P005, P014]
+    rules: [RULE-014]
+    verification: [CLI Test, Doctor]
+  XFR-010:
+    title: Track CLI
+    description: theo doi lifecycle (S011)
+    priority: High
+    category: Observability
+    owner: CLI
+    status: Draft
+    source: [P005, P014]
+    rules: [RULE-014]
+    verification: [CLI Test, Doctor]
+  XFR-011:
+    title: Publish CLI Events
+    description: phat Event moi thay doi (S011)
+    priority: High
+    category: Observability
+    owner: CLI
+    status: Draft
+    source: [P005, P014]
+    rules: [RULE-014]
+    verification: [CLI Test, Doctor]
+  XFR-012:
+    title: Bind Policy
+    description: khai bao tham so Policy (S012 binding)
+    priority: High
+    category: Governance
+    owner: CLI
+    status: Draft
+    source: [P005, P014]
+    rules: [RULE-014]
+    verification: [CLI Test, Doctor]
+  XFR-013:
+    title: Register CLI
+    description: dang ky trong Registry (SPEC-005)
+    priority: Medium
+    category: Data
+    owner: CLI
+    status: Draft
+    source: [P005, P014]
+    rules: [RULE-014]
+    verification: [CLI Test, Doctor]
+  XFR-014:
+    title: Support CLI Chain
+    description: view cha-con
+    priority: Medium
+    category: Execution
+    owner: CLI
+    status: Draft
+    source: [P005, P014]
+    rules: [RULE-014]
+    verification: [CLI Test, Doctor]
+  XFR-015:
+    title: Manage CLI Lifecycle
+    description: vong doi (create->archive)
+    priority: Critical
+    category: Execution
+    owner: CLI
+    status: Draft
+    source: [P005, P014]
+    rules: [RULE-014]
+    verification: [CLI Test, Doctor]
+  XFR-016:
+    title: Audit CLI
+    description: ghi audit moi lan truy cap (S011)
+    priority: High
+    category: Observability
+    owner: CLI
+    status: Draft
+    source: [P005, P014]
+    rules: [RULE-014]
+    verification: [CLI Test, Doctor]
+non_functional:
+  XNF-001:
+    title: Read-Only
+    description: CLI khong thay doi he thong
+    priority: Critical
+    category: Core
+    owner: CLI
+    status: Draft
+    source: [P005]
+    rules: [RULE-014]
+  XNF-002:
+    title: Metrics Driven
+    description: widget doc tu S011
+    priority: Critical
+    category: Core
+    owner: CLI
+    status: Draft
+    source: [P005]
+    rules: [RULE-014]
+  XNF-003:
+    title: No Business Data
+    description: CLI chi metadata
+    priority: Critical
+    category: Core
+    owner: CLI
+    status: Draft
+    source: [P005]
+    rules: [RULE-014]
+  XNF-004:
+    title: Observable
+    description: moi view quan sat qua S011
+    priority: High
+    category: Observability
+    owner: CLI
+    status: Draft
+    source: [P005]
+    rules: [RULE-014]
+  XNF-005:
+    title: Responsive
+    description: hien thi moi kich thuoc
+    priority: High
+    category: Core
+    owner: CLI
+    status: Draft
+    source: [P005]
+    rules: [RULE-014]
+  XNF-006:
+    title: Compatible
+    description: backward compatible
+    priority: High
+    category: Data
+    owner: CLI
+    status: Draft
+    source: [P005]
+    rules: [RULE-014]
+  XNF-007:
+    title: Recoverable
+    description: phuc hoi sau loi
+    priority: High
+    category: Core
+    owner: CLI
+    status: Draft
+    source: [P005]
+    rules: [RULE-014]
+  XNF-008:
+    title: Testable
+    description: kiem thu tu dong
+    priority: High
+    category: Core
+    owner: CLI
+    status: Draft
+    source: [P005]
+    rules: [RULE-014]
+  XNF-009:
+    title: Performant
+    description: dap ung target render time
+    priority: High
+    category: Observability
+    owner: CLI
+    status: Draft
+    source: [P005]
+    rules: [RULE-014]
+  XNF-010:
+    title: Governed
+    description: chiu Governance (S013)
+    priority: Critical
+    category: Governance
+    owner: CLI
+    status: Draft
+    source: [P005]
+    rules: [RULE-014]
+  XNF-011:
+    title: Reusable
+    description: CLI pattern tai su dung
+    priority: Medium
+    category: Data
+    owner: CLI
+    status: Draft
+    source: [P005]
+    rules: [RULE-014]
+  XNF-012:
+    title: Traceable
+    description: moi view truy vet (S011)
+    priority: High
+    category: Observability
+    owner: CLI
+    status: Draft
+    source: [P005]
+    rules: [RULE-014]
+constraints:
+  XC-001:
+    name: Read-Only Only
+    type: Architectural
+    source: [P005]
+    rules: [RULE-014]
+  XC-002:
+    name: No New Data Source
+    type: Architectural
+    source: [P005]
+    rules: [RULE-014]
+  XC-003:
+    name: No Business Data
+    type: Architectural
+    source: [P001]
+    rules: [RULE-001]
+  XC-004:
+    name: No Redefine S011
+    type: Architectural
+    source: [P001]
+    rules: [RULE-014]
+  XC-005:
+    name: No Redefine Policy (S012)
+    type: Governance
+    source: [P015]
+    rules: [RULE-012]
+  XC-006:
+    name: Archive Before Delete
+    type: Governance
+    source: [P011]
+    rules: [RULE-014]
+assumptions:
+  XA-001: S011 metrics kha dung
+  XA-002: Execution ton tai (SPEC-001)
+  XA-003: Registry kha dung (SPEC-005)
+  XA-004: Event Bus + Doctor kha dung (SPEC-008/011)
+  note: Neu gia dinh sai, CLI chi bao loi, khong tu sua.
+dependencies:
+  logical:
+    - Constitution
+    - Runtime (SPEC-001)
+    - Registry (SPEC-005)
+    - Event Bus (SPEC-008)
+    - Doctor (SPEC-011)
+  runtime_services:
+    - Metrics Collector (S011)
+    - Event Store (S011)
+external_interfaces:
+  Execution: Input
+  S011 Metrics: Read
+  SPEC-011: Health Score
+  Policy (S012): Apply
+quality_attributes:
+  Read-Only:
+    target: "100%"
+    description: Khong thay doi he thong
+  Responsiveness:
+    target: "100%"
+  Reliability:
+    target: "99.9%"
+  Traceability:
+    target: "100%"
+  Observability:
+    target: "100%"
+acceptance:
+  XAR-001:
+    description: CLI render duoc widget tu S011 metrics
+    related: [XFR-001, P005]
+    verified_by: [CLI Tests, Doctor]
+  XAR-002:
+    description: CLI khong thay doi he thong
+    related: [XC-001, P005]
+    verified_by: [CLI Tests, Doctor]
+  XAR-003:
+    description: CLI khong tao nguon du lieu moi
+    related: [XC-002, P005]
+    verified_by: [Doctor]
+  XAR-004:
+    description: CLI khong chua Business Data
+    related: [XC-003, P001]
+    verified_by: [Doctor]

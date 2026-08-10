@@ -1,0 +1,16 @@
+# SPEC-003 C009 - Capability State Machine Registry
+---
+version: "1.0.0"
+registries:
+  - capability-state-machine.yaml
+  - capability-states.yaml
+  - capability-transitions.yaml
+  - capability-transition-guards.yaml
+  - capability-transition-triggers.yaml
+  - capability-transition-types.yaml
+  - capability-transition-matrix.yaml
+  - capability-state-events.yaml
+  - capability-state-history.yaml
+  - capability-state-metrics.yaml
+  - capability-state-machine-validation.yaml
+  - capability.schema.json

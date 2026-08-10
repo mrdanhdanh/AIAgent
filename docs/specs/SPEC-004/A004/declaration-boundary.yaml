@@ -1,0 +1,15 @@
+# SPEC-004 A004 - Declaration Boundary (AB001)
+---
+version: "1.0.0"
+name: Declaration Boundary
+severity: Critical
+allowed:
+  - Nhan khai bao Agent (metadata)
+  - Validate schema khai bao
+not_allowed:
+  - Nhan code thay vi khai bao
+violation: Agent System nhan code thay vi khai bao
+impact: Critical
+detected_by: Doctor
+principles: [P003]
+rules: [RULE-001]

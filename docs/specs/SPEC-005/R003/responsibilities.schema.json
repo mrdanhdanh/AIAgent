@@ -1,0 +1,9 @@
+{ "$schema": "https://json-schema.org/draft/2020-12/schema", "$id": "aios://registry-responsibilities.schema.json", "title": "SPEC-005 Registry Responsibilities (R003)", "type": "object",
+  "required": ["id","name","version","status","frozen","owner","principle","invariants","delegation","responsibilities"],
+  "properties": { "id": { "const": "SPEC-005-R003" }, "name": { "const": "Registry Responsibilities" },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "status": { "enum": ["Draft","Review","Approved","Stable","Deprecated"] }, "frozen": { "type": "boolean" },
+    "owner": { "type": "string" }, "principle": { "type": "string" },
+    "invariants": { "type": "array", "items": { "type": "string" }, "minItems": 4 },
+    "delegation": { "type": "object" }, "responsibilities": { "type": "object", "minProperties": 18 } },
+  "additionalProperties": false }

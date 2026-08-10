@@ -1,0 +1,9 @@
+# SPEC-008 X015 - Event Resource Metrics
+---
+version: "1.0.0"
+metrics:
+  - event_storage_bytes
+  - event_index_entries
+  - event_resource_leaked_total
+  - event_quota_exceeded_total
+  - event_deliver_threads_used

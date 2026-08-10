@@ -1,0 +1,13 @@
+# SPEC-007 X010 - Artifact Execution Flow (8 stages)
+---
+version: "1.0.0"
+stages:
+  XF-001: { name: Create, description: Tao Artifact tu output cua Task/Agent, actor: Artifact Store, event: ARTIFACT_CREATED }
+  XF-002: { name: Validate, description: Validate noi dung + schema, actor: Artifact Store, event: ARTIFACT_VALIDATING }
+  XF-003: { name: Checksum, description: Tinh checksum (SHA-256), actor: Artifact Store, event: ARTIFACT_CHECKSUMMED }
+  XF-004: { name: Publish, description: Publish immutable, actor: Artifact Store, event: ARTIFACT_PUBLISHED }
+  XF-005: { name: Version, description: Thay doi = version moi, actor: Artifact Store, event: ARTIFACT_VERSIONED }
+  XF-006: { name: Index, description: Index metadata, actor: Artifact Indexer, event: ARTIFACT_INDEXED }
+  XF-007: { name: Consume, description: Doc cho Agent/Doctor/Dashboard, actor: Consumer, event: ARTIFACT_CONSUMED }
+  XF-008: { name: Archive, description: Archive khi het retention, actor: Artifact Store, event: ARTIFACT_ARCHIVED }
+source: S008 ENT-008 (Artifact Manager thuc thi, khong dinh nghia lai)

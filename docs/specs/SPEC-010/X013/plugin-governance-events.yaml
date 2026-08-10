@@ -1,0 +1,12 @@
+# SPEC-010 X013 - Plugin Governance Events
+# SPEC010_* event types rieng cua SPEC-010 (khong trung SPEC khac).
+# S011 cung cap event model (fields, correlation_id).
+---
+version: "1.0.0"
+events:
+  - SPEC010_FROZEN
+  - SPEC010_UNFROZEN
+  - SPEC010_VERSIONED
+  - SPEC010_DECISION_MADE
+  - SPEC010_DECISION_OVERRIDDEN
+

@@ -1,0 +1,11 @@
+# SPEC-005 R011 - Registry Audit (S011 reuse)
+---
+version: "1.0.0"
+properties:
+  - Append Only
+  - Immutable
+  - Ordered
+  - Time Consistent
+rules:
+  - Ghi moi quyet dinh (publish, deprecate, reject, ownership) (P008).
+  - Khong ghi Business Data.

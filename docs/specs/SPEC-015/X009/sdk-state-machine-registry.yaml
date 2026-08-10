@@ -1,0 +1,6 @@
+# SPEC-015 X009 - SDK State Machine Registry
+---
+version: "1.0.0"
+registered_machines:
+  XSTM-001: { name: SDK Pipeline, owner: SDK, states: 6, transitions: 5, spec: X009 }
+note: Run State Machine cua S009 (Runtime) - khong dinh nghia lai.

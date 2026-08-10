@@ -1,0 +1,8 @@
+# SPEC-012 X015 - Simulation Resource Access
+---
+version: "1.0.0"
+access:
+  - Results chi access qua Simulation API
+  - He thong bi scan qua read-only interface
+  - Khong access truc tiep Store
+  - Audit moi access (X011)

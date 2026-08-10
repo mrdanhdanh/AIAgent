@@ -1,0 +1,7 @@
+# SPEC-014 X017 - Dashboard Extension Metrics
+---
+version: "1.0.0"
+metrics:
+  - DASHBOARD_extensions_total
+  - DASHBOARD_extensions_active
+  - DASHBOARD_extensions_rejected_total

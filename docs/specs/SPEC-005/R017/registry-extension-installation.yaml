@@ -1,0 +1,11 @@
+# SPEC-005 R017 - Extension Installation
+---
+version: "1.0.0"
+flow:
+  - Register (S014 plugin-registry)
+  - Validate (Contract R007 + Compatibility R013)
+  - Install
+  - Activate
+rules:
+  - Contract khong hop le -> Install that bai.
+  - Dependency chua resolve -> Install that bai (S014).

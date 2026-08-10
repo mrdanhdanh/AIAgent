@@ -1,0 +1,6 @@
+# SPEC-006 X004 - Boundary Matrix
+---
+version: "1.0.0"
+matrix:
+  Critical: [XB001-allocation, XB002-isolation, XB003-validation, XB004-distribution, XB007-release, XB009-governance]
+  High: [XB005-mutation, XB006-data, XB008-policy]

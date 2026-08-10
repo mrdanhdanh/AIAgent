@@ -1,0 +1,8 @@
+# SPEC-014 X019 - Dashboard Doctor Report
+---
+version: "1.0.0"
+report:
+  format: markdown + JSON
+  sections: [summary, score, checks, violations, evidence, actions]
+  # tool: spec014-validator.ps1
+  output: docs/specs/SPEC-014/reports/

@@ -1,0 +1,18 @@
+# SPEC-001 S012 - POL-TIMEOUT-001 (Timeout Policy)
+# Canonic Policy Model 13 fields.
+---
+policy:
+  id: POL-TIMEOUT-001
+  name: Timeout Policy
+  category: Control
+  version: "1.0.0"
+  status: Draft
+  owner: Runtime Team
+  trigger: Running (ST-004)
+  guard: timeout exceeded (S009 TR-013)
+  action: TimedOut (ST-011)
+  priority: 10
+  scope: Execution
+  lifecycle: Draft
+  metadata:
+    controls: Timeout Flow (S010 EF013)

@@ -1,0 +1,8 @@
+# SPEC-006 X020 - Context Dashboard Config
+---
+version: "1.0.0"
+config:
+  refresh: 30s (default)
+  theme: S011 dashboard theme
+  filters: [execution_id, state, agent_id, time_range]
+  export: JSON

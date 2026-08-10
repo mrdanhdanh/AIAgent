@@ -1,0 +1,50 @@
+# SPEC-014 X008 - Dashboard Data Model
+---
+version: "1.0.0"
+entities:
+  ENT-X001: { name: Dashboard, kind: AggregateRoot, owner: Dashboard, immutable: false }
+  ENT-X002: { name: DashboardDefinition, kind: Entity, owner: Dashboard, immutable: true }
+  ENT-X003: { name: Widget, kind: Entity, owner: Dashboard, immutable: true }
+  ENT-X004: { name: Panel, kind: Entity, owner: Dashboard, immutable: true }
+  ENT-X005: { name: DashboardView, kind: Value, owner: Dashboard, immutable: false }
+  ENT-X006: { name: DashboardState, kind: Transient, owner: Dashboard, immutable: false }
+  ENT-X007: { name: DashboardExport, kind: Entity, owner: Dashboard, immutable: true }
+  ENT-X008: { name: DashboardEvent, kind: Ref (S011), owner: Runtime, immutable: true }
+  ENT-X009: { name: DashboardMetric, kind: Ref (S011), owner: Runtime, immutable: true }
+  ENT-X010: { name: DashboardSnapshot, kind: Entity, owner: Dashboard, immutable: false }
+  ENT-X011: { name: ExecutionRef, kind: Ref (SPEC-001), owner: Execution, immutable: true }
+  ENT-X012: { name: SystemRef, kind: Ref (SPEC-000..013), owner: System, immutable: true }
+  ENT-X013: { name: MetricRef, kind: Ref (S011), owner: Dashboard, immutable: true }
+  ENT-X014: { name: PolicyRef, kind: Ref (S012), owner: Runtime, immutable: true }
+  ENT-X015: { name: DashboardExtension, kind: Value, owner: Dashboard, immutable: true }
+relations:
+  REL-X001: { from: Dashboard, to: DashboardDefinition, cardinality: 1..1 }
+  REL-X002: { from: Dashboard, to: Widget, cardinality: 0..* }
+  REL-X003: { from: Dashboard, to: Panel, cardinality: 0..* }
+  REL-X004: { from: Dashboard, to: DashboardView, cardinality: 0..* }
+  REL-X005: { from: Dashboard, to: DashboardState, cardinality: 1..1 }
+  REL-X006: { from: Dashboard, to: DashboardExport, cardinality: 0..1 }
+  REL-X007: { from: Dashboard, to: ExecutionRef, cardinality: 1..1 }
+  REL-X008: { from: Dashboard, to: DashboardEvent, cardinality: 0..* }
+  REL-X009: { from: Dashboard, to: DashboardSnapshot, cardinality: 0..* }
+invariants:
+  INV-X001: { name: Unique DashboardId, description: Moi Dashboard co id duy nhat }
+  INV-X002: { name: Read-Only, description: Dashboard khong thay doi he thong }
+  INV-X003: { name: S011 Source, description: Widget doc tu S011 metrics }
+  INV-X004: { name: No New Source, description: Khong tao nguon du lieu moi }
+  INV-X005: { name: Widget Valid, description: Widget co schema }
+  INV-X006: { name: View Complete, description: View day du }
+  INV-X007: { name: No Business Data, description: Dashboard khong chua business data }
+validation:
+  VAL-X001: { field: DashboardId, requirement: Required, type: UUID }
+  VAL-X002: { field: Widgets, requirement: Required, type: "Widget[]" }
+  VAL-X003: { field: Panels, requirement: Required, type: "Panel[]" }
+  VAL-X004: { field: Views, requirement: Required, type: "View[]" }
+  VAL-X005: { field: Filters, requirement: Optional, type: "Filter[]" }
+  VAL-X006: { field: Timestamp, requirement: Required, type: Timestamp }
+  VAL-X007: { field: RefreshInterval, requirement: Required, type: Integer }
+storage:
+  mode: View store
+  persistence: "true (P010 - view history)"
+  snapshot: DashboardSnapshot (optional, debug)
+  source: dashboard-sdk

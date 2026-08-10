@@ -1,0 +1,20 @@
+# SPEC-009 X003 - Contract Responsibility Matrix
+---
+version: "1.0.0"
+matrix:
+  XRR-001: { name: Declare Contract, owner: Contract System, role: OWNER }
+  XRR-002: { name: Validate Contract, owner: Contract System, role: OWNER }
+  XRR-003: { name: Version Contract, owner: Contract System, role: OWNER }
+  XRR-004: { name: Resolve Contract, owner: Contract System, role: OWNER }
+  XRR-005: { name: Verify Contract, owner: Contract System, role: OWNER }
+  XRR-006: { name: Retire Contract, owner: Contract System, role: OWNER }
+  XRR-007: { name: Check Compatible, owner: Contract System, role: OWNER }
+  XRR-008: { name: Bind Caller, owner: Caller, role: GRANTEE }
+  XRR-009: { name: Events, owner: Runtime (S011), role: EMITTER }
+  XRR-010: { name: Metrics, owner: Runtime (S011), role: EMITTER }
+  XRR-011: { name: Policy eval, owner: Policy (S012), role: DECIDER }
+  XRR-012: { name: Registry, owner: Registry (SPEC-005), role: REGISTER }
+  XRR-013: { name: Audit, owner: Runtime (S011), role: EMITTER }
+  XRR-014: { name: Retention, owner: Contract System, role: OWNER }
+  XRR-015: { name: Recovery, owner: Contract System, role: OWNER }
+  XRR-016: { name: Enforce No-Direct-Call, owner: Contract System, role: OWNER }

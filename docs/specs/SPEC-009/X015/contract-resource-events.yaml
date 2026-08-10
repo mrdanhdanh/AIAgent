@@ -1,0 +1,9 @@
+# SPEC-009 X015 - Contract Resource Events
+---
+version: "1.0.0"
+events:
+  - CONTRACT_RESOURCE_ALLOCATED
+  - CONTRACT_RESOURCE_RELEASED
+  - CONTRACT_RESOURCE_LEAKED
+  - CONTRACT_RESOURCE_QUOTA_EXCEEDED
+note: Event types do X015 dinh nghia — S011 cung cap event model (fields, correlation_id).

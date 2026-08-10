@@ -1,0 +1,6 @@
+# SPEC-014 X007 - Dashboard Contract Registry
+---
+version: "1.0.0"
+registry:
+  owner: Dashboard Team
+  tracked: [XCT-001..007]

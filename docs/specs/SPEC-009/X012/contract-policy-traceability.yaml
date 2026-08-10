@@ -1,0 +1,14 @@
+# SPEC-009 X012 - Contract Policy Traceability
+---
+version: "1.0.0"
+traceability:
+  XPOL-001: { name: Interface Only, source: TERM-014, principle: P004 }
+  XPOL-002: { name: No Implementation, source: TERM-014, principle: P004 }
+  XPOL-003: { name: Version Strict, source: P004, principle: P004 }
+  XPOL-004: { name: Backward Compatible, source: S007, principle: P004 }
+  XPOL-005: { name: No Business Data, source: S011 OB003A, principle: P001 }
+  XPOL-006: { name: Retention, source: S012, principle: P011 }
+  XPOL-007: { name: Quota, source: S012, principle: P011 }
+  XPOL-008: { name: No Direct Call, source: TERM-014, principle: P009 }
+  XPOL-009: { name: Audit All, source: S011, principle: P005 }
+  XPOL-010: { name: Schema Valid, source: X008, principle: P009 }

@@ -1,0 +1,11 @@
+# SPEC-003 C012 - Retry Binding (CPB-001 -> POL-RETRY-001)
+---
+version: "1.0.0"
+binding:
+  id: CPB-001
+  policy_ref: POL-RETRY-001 (S012)
+  scope: Resolution
+  parameters:
+    max_retry: 3
+    backoff: exponential
+  status: Draft

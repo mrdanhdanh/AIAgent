@@ -1,0 +1,77 @@
+# SPEC-002 W018 - Workflow Evolution
+# Workflow tu hoc tu du lieu quan sat (W011) - khong quyet dinh thay con nguoi.
+---
+id: SPEC-002-W018
+name: Workflow Evolution
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Workflow Team
+philosophy:
+  - Workflow Evolution hoc tu du lieu quan sat (W011).
+  - Evolution khong quyet dinh thay con nguoi.
+  - Moi thay doi deu qua Approval Gate (W013).
+  - Khong Breaking Change khi chua duoc duyet.
+principles:
+  - Evidence Based (W011 + W016)
+  - Read Only (khong doc implementation)
+  - Approved (W013 Governance)
+  - Versioned (thay doi qua Registry W014)
+  - Reversible (rollback luon kha dung)
+  - Non-invasive (hoc khong thay doi Workflow dang chay)
+scope:
+  reads:
+    - Workflow Event (W011)
+    - Workflow Metrics (W011)
+    - Workflow Trace (W011)
+    - Workflow Audit (W011)
+    - Compliance Report (W016)
+    - Registry (W014)
+  not_reads:
+    - Implementation
+    - Business Data
+    - User Data
+    - Agent Internal State
+    - Plugin Internal State
+pipeline:
+  - Collect (W011 data)
+  - Analyze (patterns, anomalies)
+  - Learn (lessons, hypotheses)
+  - Propose (evolution proposal)
+  - Approval Gate (W013 Governance)
+  - Apply (qua Registry W014 + Binding W012)
+proposal_model:
+  fields: [id, source, evidence, change, impact, status, approval]
+proposal_status: [Draft, Submitted, Approved, Rejected, Applied, Rolled Back]
+approval:
+  - "Low impact: auto-approve (Strict rules)."
+  - "Medium impact: Agent approval."
+  - "High impact / Breaking: Human approval bat buoc."
+  - Quyet dinh ghi Audit (W011).
+safety:
+  - Simulation truoc (S013 GV011A mode).
+  - Rollback luon kha dung.
+  - Khong Breaking Change khi chua duyet.
+  - Apply versioned qua Registry (W014).
+application:
+  - Binding moi la version moi (W012).
+  - Cap nhat Workflow Definition (W009 - Published moi).
+  - Cap nhat Registry Entry (W014).
+traceability:
+  - Evolution Proposal
+  - Evidence (W011)
+  - Workflow Execution
+  - Registry Entry (W014)
+events:
+  - WORKFLOW_EVOLUTION_PROPOSED
+  - WORKFLOW_EVOLUTION_APPROVED
+  - WORKFLOW_EVOLUTION_REJECTED
+  - WORKFLOW_EVOLUTION_APPLIED
+  - WORKFLOW_EVOLUTION_ROLLED_BACK
+metrics:
+  proposals: 0
+  applied: 0
+  rejected: 0
+  rolled_back: 0
+  success_rate: 0
+  avg_learning_time: 0

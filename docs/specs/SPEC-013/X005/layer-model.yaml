@@ -1,0 +1,9 @@
+# SPEC-013 X005 - Evolution Layer Model (5)
+---
+version: "1.0.0"
+layers:
+  XAL-001: { name: API Layer, role: Evolution API (diff, compat, migrate, heal, score, evolve) }
+  XAL-002: { name: Engine Layer, role: Pipeline Orchestrator + State Machine (X009) }
+  XAL-003: { name: Guard Layer, role: Policy Evaluator (S012) + Safe-Evolution Guard }
+  XAL-004: { name: Store Layer, role: Diff Store + Migration Store }
+  XAL-005: { name: Integration, role: Modules (9) + Doctor (SPEC-011) + Simulation (SPEC-012) + Events (S011) }

@@ -1,0 +1,11 @@
+# SPEC-015 X011 - SDK Traces
+---
+version: "1.0.0"
+traces:
+  - SDK.Create
+  - SDK.Render
+  - SDK.run
+  - SDK.Compose
+  - SDK.Filter
+  - SDK.Export
+span_attrs: [SDK_id, execution_id, scenario, domain]

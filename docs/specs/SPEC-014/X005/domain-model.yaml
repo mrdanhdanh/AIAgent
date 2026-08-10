@@ -1,0 +1,6 @@
+# SPEC-014 X005 - Dashboard Domain Model
+---
+version: "1.0.0"
+domain:
+  entities: [Dashboard, Widget, Panel, DashboardView, DashboardFilter]
+  logic_layer: Engine Layer

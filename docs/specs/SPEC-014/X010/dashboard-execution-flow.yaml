@@ -1,0 +1,11 @@
+# SPEC-014 X010 - Dashboard Execution Flow (6 stages)
+---
+version: "1.0.0"
+stages:
+  XF-001: { name: Create, description: Nhan view tu User, actor: Dashboard, event: DASHBOARD_CREATED }
+  XF-002: { name: Render, description: Doc S011 metrics + render widget, actor: RenderEngine, event: DASHBOARD_RENDERING }
+  XF-003: { name: Compose, description: Ghep widget thanh panel, actor: Dashboard, event: DASHBOARD_COMPOSED }
+  XF-004: { name: Filter, description: Loc theo thoi gian/scope, actor: FilterEngine, event: DASHBOARD_FILTERED }
+  XF-005: { name: Refresh, description: Lam moi dinh ky, actor: RefreshEngine, event: DASHBOARD_REFRESHED }
+  XF-006: { name: Export, description: Xuat JSON/markdown, actor: ExportEngine, event: DASHBOARD_EXPORTED }
+source: dashboard-sdk (Dashboard khong dinh nghia lai pipeline)

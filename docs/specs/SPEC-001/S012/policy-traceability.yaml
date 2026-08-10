@@ -1,0 +1,10 @@
+# SPEC-001 S012 - Policy Traceability
+# Moi lan ap dung policy deu ghi lai (S011 Audit + Event).
+---
+version: "1.0.0"
+records:
+  fields: [policy_id, execution_id, correlation_id, trigger, guard_result, action_taken, timestamp]
+rules:
+  - Moi ap dung sinh Event policy (S011 events.yaml).
+  - Moi ap dung ghi Audit (S011 audit.yaml).
+  - Truy vet duoc: policy instance -> dinh nghia policy -> version.

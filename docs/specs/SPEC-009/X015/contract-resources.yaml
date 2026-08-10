@@ -1,0 +1,10 @@
+# SPEC-009 X015 - Contract Resources
+---
+version: "1.0.0"
+resources:
+  XRES-001: { name: Storage, owner: Contract System }
+  XRES-002: { name: Index, owner: Contract System }
+  XRES-003: { name: ContractId, owner: Contract System }
+  XRES-004: { name: Verify CPU, owner: Contract System }
+  XRES-005: { name: Event Buffer, owner: Runtime }
+  XRES-006: { name: Snapshot Store, owner: Contract System }

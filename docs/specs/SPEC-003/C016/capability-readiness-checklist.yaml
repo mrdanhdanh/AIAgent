@@ -1,0 +1,11 @@
+# SPEC-003 C016 - Capability Readiness Checklist
+---
+version: "1.0.0"
+items:
+  - Capability Definition Published (C009).
+  - Binding Active (C012).
+  - Registry hop le (C014).
+  - Resources khong leak (C015).
+  - Contracts hop le (C007).
+  - Governance enforced (C013).
+  - Observability day du (C011).

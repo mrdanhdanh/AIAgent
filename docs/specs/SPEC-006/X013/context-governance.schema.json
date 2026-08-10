@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aios://context-governance.schema.json",
+  "title": "SPEC-006 Context Governance (X013)",
+  "type": "object",
+  "properties": {
+    "schema": { "const": "context-governance" },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "decision": { "type": "string", "pattern": "^XDEC-[0-9]{3}$" }
+  },
+  "required": [ "schema", "version" ],
+  "additionalProperties": true
+}

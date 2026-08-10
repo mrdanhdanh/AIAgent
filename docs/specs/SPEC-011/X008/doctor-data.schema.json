@@ -1,0 +1,7 @@
+{
+  "schema": "doctor-data-model",
+  "version": "1.0",
+  "scanId": { "type": "string", "format": "uuid" },
+  "score": { "type": "integer", "minimum": 0, "maximum": 100 },
+  "required": [ "scanId", "timestamp", "scope", "score" ]
+}

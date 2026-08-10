@@ -1,0 +1,10 @@
+# SPEC-011 X015 - Doctor Resource Model
+---
+version: "1.0.0"
+resources:
+  XRES-001: { name: Storage, description: Findings storage, owner: Doctor, priority: Critical }
+  XRES-002: { name: Index, description: Finding index (domain/severity), owner: Doctor, priority: High }
+  XRES-003: { name: ScanId, description: UUID pool, owner: Doctor, priority: Critical }
+  XRES-004: { name: Scan CPU, description: Scanner compute, owner: Doctor, priority: High }
+  XRES-005: { name: Event Buffer, description: S011 publish queue, owner: Runtime, priority: High }
+  XRES-006: { name: Snapshot Store, description: debug snapshots, owner: Doctor, priority: Low }

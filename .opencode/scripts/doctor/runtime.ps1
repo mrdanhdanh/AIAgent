@@ -67,8 +67,11 @@ function Get-DoctorRuntime {
         }
     }
 
-    # Contract parse simulation (output schema)
-    $contractFiles = @(Get-ChildItem -Path $contractsDir -Filter "*.yaml" -ErrorAction SilentlyContinue)
+    # Contract parse simulation (output schema) — workflow contracts are state machines, no input/output
+    $contractFiles = @(Get-ChildItem -Path $contractsDir -Filter "*.yaml" -ErrorAction SilentlyContinue | Where-Object {
+        $c = Get-Content -LiteralPath $_.FullName -Raw -Encoding utf8 -ErrorAction SilentlyContinue
+        $c -notmatch '(?m)^type\s*:\s*workflow\s*$'
+    })
     $contractOk = 0
     foreach ($cf in $contractFiles) {
         $content = Get-Content -LiteralPath $cf.FullName -Raw -Encoding utf8 -ErrorAction SilentlyContinue

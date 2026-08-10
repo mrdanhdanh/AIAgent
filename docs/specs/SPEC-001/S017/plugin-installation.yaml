@@ -1,0 +1,12 @@
+# SPEC-001 S017 - Plugin Installation
+---
+version: "1.0.0"
+flow:
+  - Register (S014 plugin-registry)
+  - Validate (Contract S007 + Compatibility S013)
+  - Install
+  - Activate
+rules:
+  - Contract khong hop le -> Install that bai.
+  - Dependency chua resolve -> Install that bai (S014).
+  - Moi buoc sinh Event + Audit (S011).

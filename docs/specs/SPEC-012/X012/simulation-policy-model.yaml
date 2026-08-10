@@ -1,0 +1,9 @@
+# SPEC-012 X012 - Simulation Policy Model
+---
+version: "1.0.0"
+policy_model:
+  identity: policy_id (XPOL-###)
+  enforcement: Simulation Engine (before op)
+  evaluation: metadata-only (khong doc business data)
+  result: allow | deny | warn
+  trace: policy decision log (S011)

@@ -1,0 +1,13 @@
+# SPEC-015 Appendix - SDK Canonical Models (8)
+---
+version: "1.0.0"
+models:
+  AM-001: { name: SDK, kind: AggregateRoot, owner: SDK, immutable: false }
+  AM-002: { name: SDKDefinition, kind: Entity, owner: SDK, immutable: true }
+  AM-003: { name: SDKClient, kind: Entity, owner: SDK, immutable: true }
+  AM-004: { name: APIBinding, kind: Entity, owner: SDK, immutable: true }
+  AM-005: { name: AuthToken, kind: Value, owner: SDK, immutable: false }
+  AM-006: { name: SDKState, kind: Transient, owner: SDK, immutable: false }
+  AM-007: { name: SDKCall, kind: Entity, owner: SDK, immutable: true }
+  AM-008: { name: ContractRef, kind: Value, owner: SDK, immutable: true }
+aggregate_root: AM-001 SDK

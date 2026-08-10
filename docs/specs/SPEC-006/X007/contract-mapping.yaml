@@ -1,0 +1,11 @@
+# SPEC-006 X007 - Contract Mapping
+---
+version: "1.0.0"
+mapping:
+  XCT-001: [XCP-00X]
+  XCT-002: [XCP-00X]
+  XCT-003: [XCP-00X]
+  XCT-004: [XCP-00X]
+  XCT-005: [XCP-00X]
+  XCT-006: [XCP-00X]
+  XCT-007: [XCP-00X]

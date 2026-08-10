@@ -1,0 +1,10 @@
+# SPEC-002 W007 - Contract Compatibility
+---
+version: "1.0"
+compatibility:
+  WCT-001: [1.x]
+  WCT-002: [1.x]
+  WCT-003: [1.x]
+  WCT-004: [1.x]
+  WCT-005: [1.x]
+  WCT-006: [1.x]

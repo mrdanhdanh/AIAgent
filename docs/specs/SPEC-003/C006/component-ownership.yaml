@@ -1,0 +1,12 @@
+# SPEC-003 C006 - Component Ownership
+---
+version: "1.0.0"
+ownership:
+  CCP-001: Capability
+  CCP-002: Capability
+  CCP-003: Capability
+  CCP-004: Capability
+  CCP-005: Capability
+  CCP-006: Capability
+  CCP-007: Capability
+  CCP-008: Capability

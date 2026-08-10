@@ -1,0 +1,7 @@
+{
+  "schema": "plugin-requirements",
+  "version": "1.0",
+  "functional": { "type": "object" },
+  "non_functional": { "type": "object" },
+  "constraints": { "type": "object" }
+}

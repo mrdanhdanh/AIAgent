@@ -1,0 +1,7 @@
+# SPEC-010 X007 - Plugin Contract Model
+---
+version: "1.0.0"
+contract_model:
+  identity: contract_id (XCT-###)
+  schema: plugin-*.schema.json
+  breaking: can ADR + RFC (SPEC-000)

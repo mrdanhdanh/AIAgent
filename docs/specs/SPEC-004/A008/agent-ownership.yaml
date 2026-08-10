@@ -1,0 +1,10 @@
+# SPEC-004 A008 - Agent Ownership
+---
+version: "1.0.0"
+ownership:
+  Agent: Agent Team
+  AgentDefinition: Agent Team
+  CapabilityMapping: Agent Team
+  AgentBinding: Agent Team
+  AgentResult: Agent Team
+  Capability (SPEC-003): Capability Team

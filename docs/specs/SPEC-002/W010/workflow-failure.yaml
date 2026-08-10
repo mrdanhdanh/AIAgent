@@ -1,0 +1,18 @@
+# SPEC-002 W010 - Failure Flow (tham chieu S010 EF017)
+---
+version: "1.0"
+failure_types:
+  - Validation Failure (Workflow khong hop le)
+  - Capability Failure (khong resolve duoc S014)
+  - Execution Failure (step loi)
+  - Policy Failure (Gate deny)
+  - System Failure
+flow:
+  - Failure
+  - Isolation
+  - Failure Event (S011)
+  - Failure Artifact
+  - Terminal State (S009)
+rules:
+  - Khong sua loi nghiep vu.
+  - Delegate Runtime (S010 EF017).

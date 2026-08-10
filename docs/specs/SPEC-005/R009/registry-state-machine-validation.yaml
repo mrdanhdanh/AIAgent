@@ -1,0 +1,9 @@
+# SPEC-005 R009 - Registry State Machine Validation
+---
+version: "1.0.0"
+checks:
+  - Entry co dung mot State.
+  - Transition hop le (da khai bao).
+  - Moi transition sinh Event (S011).
+  - Run dung State Machine S009 - khong dinh nghia lai.
+  - Terminal khong co transition ra.

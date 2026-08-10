@@ -1,0 +1,10 @@
+# SPEC-002 W010 - Compensation Flow (S010 EF022, POL-COMP-001)
+---
+version: "1.0"
+flow:
+  - Workflow Failed (S009 ST-009)
+  - Rollback cac step da xong (guard: completed steps exist)
+  - Compensated -> Failure (S009 ST-009)
+rules:
+  - Delegate Runtime (S010 EF022).
+  - Compensation theo thu tu nguoc (LIFO).

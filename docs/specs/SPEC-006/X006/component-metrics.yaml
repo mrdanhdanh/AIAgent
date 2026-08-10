@@ -1,0 +1,12 @@
+# SPEC-006 X006 - Component Metrics
+---
+version: "1.0.0"
+metrics:
+  XCP-001: Context Metric
+  XCP-002: Context Metric
+  XCP-003: Context Metric
+  XCP-004: Context Metric
+  XCP-005: Context Metric
+  XCP-006: Context Metric
+  XCP-007: Context Metric
+  XCP-008: Context Metric

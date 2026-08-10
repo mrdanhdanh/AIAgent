@@ -1,0 +1,8 @@
+# SPEC-011 X008 - Doctor Identity
+---
+version: "1.0.0"
+identity:
+  scan_id: UUID (generated at Scan)
+  execution_id: UUID (from Execution)
+  scope: Environment|System|Runtime|Capability
+identity_scope: Execution-scoped (never global)

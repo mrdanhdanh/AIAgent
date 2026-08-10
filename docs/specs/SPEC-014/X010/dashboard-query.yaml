@@ -1,0 +1,10 @@
+# SPEC-014 X010 - Dashboard Query
+---
+version: "1.0.0"
+query_ops:
+  - GetDashboard(dashboard_id)
+  - GetWidgets(dashboard_id)
+  - GetViews(dashboard_id)
+  - GetExport(dashboard_id)
+  - GetHistory(dashboard_id)
+rule: Query khong thay doi Dashboard, khong can grant.

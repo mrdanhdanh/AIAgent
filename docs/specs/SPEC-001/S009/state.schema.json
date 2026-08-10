@@ -14,20 +14,35 @@
     "philosophy": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
     "principles": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
     "states": { "type": "object" },
+    "categories": { "type": "object" },
     "initial_state": { "type": "string", "pattern": "^ST-\\d{3}$" },
     "terminal_states": { "type": "array", "items": { "type": "string", "pattern": "^ST-\\d{3}$" }, "minItems": 1 },
     "active_states": { "type": "array", "items": { "type": "string", "pattern": "^ST-\\d{3}$" } },
+    "control_states": { "type": "array", "items": { "type": "string", "pattern": "^ST-\\d{3}$" } },
+    "concurrency_rules": { "type": "array", "items": { "type": "string" } },
+    "composite_states": { "type": "array", "items": { "type": "string" } },
+    "terminal_rules": { "type": "array", "items": { "type": "string" } },
+    "triggers": { "type": "array", "items": { "type": "string" } },
+    "invalid_transitions": { "type": "array", "items": { "type": "string" } },
     "transitions": {
       "type": "array",
       "items": {
-        "type": "object",
-        "required": ["from", "to", "event", "guard"],
-        "properties": {
-          "from": { "type": "string", "pattern": "^ST-\\d{3}$" },
-          "to": { "type": "string", "pattern": "^ST-\\d{3}$" },
-          "event": { "type": "string" },
-          "guard": { "type": "string" }
-        }
+        "oneOf": [
+          {
+            "type": "object",
+            "required": ["from", "to", "event", "guard"],
+            "properties": {
+              "from": { "type": "string", "pattern": "^ST-\\d{3}$" },
+              "to": { "type": "string", "pattern": "^ST-\\d{3}$" },
+              "event": { "type": "string" },
+              "guard": { "type": "string" }
+            }
+          },
+          {
+            "type": "string",
+            "pattern": "^from: ST-\\d{3}; to: ST-\\d{3}(; .+)?$"
+          }
+        ]
       },
       "minItems": 5
     },

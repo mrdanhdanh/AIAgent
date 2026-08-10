@@ -1,0 +1,13 @@
+# SPEC-004 A005 - Architecture Decision Log
+---
+version: "1.0.0"
+decisions:
+  - id: AAD-001
+    decision: Agent System la Declarator + Orchestrator, khong phai Executor
+    reason: Agent chay qua Runtime (SPEC-001), dieu phoi qua Workflow (SPEC-002)
+  - id: AAD-002
+    decision: Khong lap lai Execution/State/Event layer cua Runtime
+    reason: Tranh trung lap, Agent chi khai bao + dang ky
+  - id: AAD-003
+    decision: Orchestration delegate cho Workflow (SPEC-002)
+    reason: Workflow co san dieu phoi step qua capability

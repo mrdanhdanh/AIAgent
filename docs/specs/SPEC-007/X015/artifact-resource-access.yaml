@@ -1,0 +1,8 @@
+# SPEC-007 X015 - Artifact Resource Access
+---
+version: "1.0.0"
+access:
+  - Artifact chi access qua Artifact Manager API
+  - Consumer doc qua API (read-only)
+  - Khong access truc tiep content (write-once)
+  - Audit moi access (X011)

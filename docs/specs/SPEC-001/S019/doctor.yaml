@@ -1,0 +1,81 @@
+# SPEC-001 S019 - Runtime Doctor
+# Kiem tra suc khoe Runtime - tong hop checks tu S011..S020.
+# Khong dinh nghia lai quy tac (S016 da tong hop).
+---
+id: SPEC-001-S019
+name: Runtime Doctor
+version: "1.0.0"
+status: Approved
+owner: Runtime Team
+philosophy:
+  - Doctor la co che kiem tra suc khoe Runtime.
+  - Doctor chi doc machine-readable (S011).
+  - Khong dinh nghia lai quy tac (S016 da tong hop).
+  - Self-repair chi thay doi an toan, co gioi han.
+principles:
+  - Evidence Based
+  - Machine-readable First
+  - Non-invasive
+  - Deterministic
+  - Repairable (self-repair an toan)
+  - Auditable
+scope:
+  checks_domains:
+    - Constitution (SPEC-000)
+    - Contracts (S007)
+    - Policies (S012)
+    - Governance (S013)
+    - Registry (S014)
+    - Resources (S015)
+    - Compliance (S016)
+    - Plugins (S017)
+    - Observability (S011)
+    - Dashboard (S020)
+  not_reads:
+    - Implementation
+    - Business Data
+    - Agent Internal State
+    - Plugin Internal State
+check_sources:
+  - "S011 Observability: 5 checks"
+  - "S013 Governance: 6 checks"
+  - "S014 Registry: 11 checks"
+  - "S015 Resources: 6 checks"
+  - "S016 Compliance: 23 rules"
+  - "S017 Plugins: 6 checks"
+  - "S018 Evolution: 6 checks"
+  - "S020 Dashboard: 5 checks"
+health_score: [Healthy, Degraded, Unhealthy]
+pipeline:
+  - Collect (machine-readable)
+  - Validate (checks per domain)
+  - Score (health - S016 CM006)
+  - Report (doctor-report)
+  - Repair (neu an toan, self-repair)
+self_repair:
+  - Chi Low impact.
+  - Qua Approval (S013) hoac auto cho quen thuoc.
+  - Co rollback.
+  - Ghi Audit (S011).
+  - Khong sua implementation.
+  - Khong Repair vi pham CRITICAL - bao cao len nguoi.
+report:
+  fields: [id, timestamp, runtime_version, checks, score, status, repair, evidence]
+events:
+  - DOCTOR_RUN
+  - DOCTOR_PASSED
+  - DOCTOR_FAILED
+  - DOCTOR_REPORTED
+  - DOCTOR_REPAIRED
+metrics:
+  health_score: 0
+  passed_checks: 0
+  failed_checks: 0
+  warning_checks: 0
+  total_checks: 0
+  repair_count: 0
+traceability:
+  - Doctor Report
+  - Checks
+  - Evidence (S011)
+  - SPEC source

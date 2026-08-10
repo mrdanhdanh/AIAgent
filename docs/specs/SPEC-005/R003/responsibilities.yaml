@@ -1,0 +1,253 @@
+# SPEC-005 R003 — Registry Responsibilities (18 RRR)
+---
+id: SPEC-005-R003
+name: Registry Responsibilities
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Registry Team
+principle: Responsibility != Capability != Component
+invariants:
+  - Mot Responsibility chi co mot Owner.
+  - Mot Responsibility co the delegate.
+  - Owner khong doi trong mot Entry vong doi.
+  - Khong Responsibility nao phu thuoc vong.
+delegation:
+  Resolution: Runtime (S014)
+  Policy: Runtime (S012)
+  Governance: Runtime (S013)
+responsibilities:
+  RRR-001:
+    name: Khai bao Entry
+    group: Core
+    owner: Registry
+    priority: Critical
+    status: Draft
+    capability: entry-declare
+    input: Entry Request
+    output: Entry Result
+    metric: Registry Metric
+    requirements: [RFR-001]
+    principles: [P003]
+    rules: [RULE-002]
+  RRR-002:
+    name: Luu tru Entry
+    group: Core
+    owner: Registry
+    priority: Critical
+    status: Draft
+    capability: entry-store
+    input: Entry Request
+    output: Entry Result
+    metric: Registry Metric
+    requirements: [RFR-001]
+    principles: [P003]
+    rules: [RULE-002]
+  RRR-003:
+    name: Validate Entry
+    group: Validation
+    owner: Registry
+    priority: Critical
+    status: Draft
+    capability: entry-validate
+    input: Entry Request
+    output: Entry Result
+    metric: Registry Metric
+    requirements: [RFR-001]
+    principles: [P003]
+    rules: [RULE-002]
+  RRR-004:
+    name: Version Entry
+    group: Data
+    owner: Registry
+    priority: High
+    status: Draft
+    capability: entry-version
+    input: Entry Request
+    output: Entry Result
+    metric: Registry Metric
+    requirements: [RFR-001]
+    principles: [P003]
+    rules: [RULE-002]
+  RRR-005:
+    name: Resolve Entry
+    group: Execution
+    owner: Registry
+    priority: Critical
+    status: Draft
+    capability: entry-resolve
+    input: Entry Request
+    output: Entry Result
+    metric: Registry Metric
+    requirements: [RFR-001]
+    principles: [P003]
+    rules: [RULE-002]
+  RRR-006:
+    name: Discover Entry
+    group: Data
+    owner: Registry
+    priority: High
+    status: Draft
+    capability: entry-discover
+    input: Entry Request
+    output: Entry Result
+    metric: Registry Metric
+    requirements: [RFR-001]
+    principles: [P003]
+    rules: [RULE-002]
+  RRR-007:
+    name: Query Registry
+    group: Data
+    owner: Registry
+    priority: High
+    status: Draft
+    capability: registry-query
+    input: Entry Request
+    output: Entry Result
+    metric: Registry Metric
+    requirements: [RFR-001]
+    principles: [P003]
+    rules: [RULE-002]
+  RRR-008:
+    name: Quan ly Domains
+    group: Core
+    owner: Registry
+    priority: High
+    status: Draft
+    capability: domain-manage
+    input: Entry Request
+    output: Entry Result
+    metric: Registry Metric
+    requirements: [RFR-001]
+    principles: [P003]
+    rules: [RULE-002]
+  RRR-009:
+    name: Check Compatibility
+    group: Validation
+    owner: Registry
+    priority: High
+    status: Draft
+    capability: compat-check
+    input: Entry Request
+    output: Entry Result
+    metric: Registry Metric
+    requirements: [RFR-001]
+    principles: [P003]
+    rules: [RULE-002]
+  RRR-010:
+    name: Enforce Ownership
+    group: Governance
+    owner: Registry
+    priority: Critical
+    status: Draft
+    capability: ownership-enforce
+    input: Entry Request
+    output: Entry Result
+    metric: Registry Metric
+    requirements: [RFR-001]
+    principles: [P003]
+    rules: [RULE-002]
+  RRR-011:
+    name: Track Lookup
+    group: Observability
+    owner: Registry
+    priority: High
+    status: Draft
+    capability: lookup-track
+    input: Entry Request
+    output: Entry Result
+    metric: Registry Metric
+    requirements: [RFR-001]
+    principles: [P003]
+    rules: [RULE-002]
+  RRR-012:
+    name: Publish Registry Events
+    group: Observability
+    owner: Registry
+    priority: High
+    status: Draft
+    capability: registry-events
+    input: Entry Request
+    output: Entry Result
+    metric: Registry Metric
+    requirements: [RFR-001]
+    principles: [P003]
+    rules: [RULE-002]
+  RRR-013:
+    name: Cache Read
+    group: Core
+    owner: Registry
+    priority: Medium
+    status: Draft
+    capability: cache-read
+    input: Entry Request
+    output: Entry Result
+    metric: Registry Metric
+    requirements: [RFR-001]
+    principles: [P003]
+    rules: [RULE-002]
+  RRR-014:
+    name: Quan ly Deprecation
+    group: Data
+    owner: Registry
+    priority: High
+    status: Draft
+    capability: deprecation
+    input: Entry Request
+    output: Entry Result
+    metric: Registry Metric
+    requirements: [RFR-001]
+    principles: [P003]
+    rules: [RULE-002]
+  RRR-015:
+    name: Quan ly Groups
+    group: Core
+    owner: Registry
+    priority: Medium
+    status: Draft
+    capability: group-manage
+    input: Entry Request
+    output: Entry Result
+    metric: Registry Metric
+    requirements: [RFR-001]
+    principles: [P003]
+    rules: [RULE-002]
+  RRR-016:
+    name: Quan ly Lifecycle
+    group: Execution
+    owner: Registry
+    priority: Critical
+    status: Draft
+    capability: lifecycle-manage
+    input: Entry Request
+    output: Entry Result
+    metric: Registry Metric
+    requirements: [RFR-001]
+    principles: [P003]
+    rules: [RULE-002]
+  RRR-017:
+    name: Thuc thi Registry Governance
+    group: Governance
+    owner: Registry
+    priority: Critical
+    status: Draft
+    capability: registry-governance
+    input: Entry Request
+    output: Entry Result
+    metric: Registry Metric
+    requirements: [RFR-001]
+    principles: [P003]
+    rules: [RULE-002]
+  RRR-018:
+    name: Tu choi Entry khong hop le
+    group: Governance
+    owner: Registry
+    priority: Critical
+    status: Draft
+    capability: entry-reject
+    input: Entry Request
+    output: Entry Result
+    metric: Registry Metric
+    requirements: [RFR-001]
+    principles: [P003]
+    rules: [RULE-002]

@@ -1,0 +1,10 @@
+# SPEC-004 A015 - Agent Resource Validation
+# Doctor kiem tra.
+---
+version: "1.0.0"
+checks:
+  - Double Allocation (S015)
+  - Resource Leak (S015)
+  - Quota Violation (binding A012)
+  - Undefined Resource
+  - Release sai Terminal State (S009)

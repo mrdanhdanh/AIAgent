@@ -1,0 +1,8 @@
+# SPEC-010 X010 - Plugin Resolution
+---
+version: "1.0.0"
+resolution:
+  input: plugin_id + version
+  output: Plugin + manifest hoac not-found
+  permission_check: verify permission truoc khi tra ve
+  trace: moi resolution co trace_id (S011)

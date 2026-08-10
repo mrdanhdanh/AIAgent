@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aios://capability-execution-flow.schema.json",
+  "title": "SPEC-003 Capability Execution Flow (C010)",
+  "type": "object",
+  "required": ["id", "name", "version", "status", "frozen", "owner", "philosophy", "principles", "stages", "canonical_flow", "capability_flows", "rules"],
+  "properties": {
+    "id": { "const": "SPEC-003-C010" },
+    "name": { "const": "Capability Execution Flow" },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "status": { "enum": ["Draft", "Review", "Approved", "Stable", "Deprecated"] },
+    "frozen": { "type": "boolean" },
+    "owner": { "type": "string" },
+    "philosophy": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "principles": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "stages": { "type": "array", "items": { "type": "string" }, "minItems": 7 },
+    "canonical_flow": { "type": "array", "items": { "type": "string" }, "minItems": 8 },
+    "capability_flows": { "type": "array", "items": { "type": "string" }, "minItems": 7 },
+    "rules": { "type": "array", "items": { "type": "string" }, "minItems": 5 }
+  },
+  "additionalProperties": false
+}

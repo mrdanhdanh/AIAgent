@@ -1,0 +1,8 @@
+# SPEC-009 X007 - Contract Contract Anti-Patterns
+---
+version: "1.0.0"
+anti_patterns:
+  - No implicit contract (undocumented)
+  - No silent breaking
+  - No implementation trong Contract
+  - No direct call (TERM-014)

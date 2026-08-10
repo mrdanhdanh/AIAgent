@@ -1,0 +1,14 @@
+# SPEC-012 X011 - Simulation Metrics
+---
+version: "1.0.0"
+metrics:
+  - simulation_runs_total
+  - simulation_reported_total
+  - simulation_failed_total
+  - simulation_success_rate
+  - simulation_deviation_total
+  - simulation_replayed_total
+  - simulation_run_duration_seconds
+  - simulation_compare_latency_seconds
+  - simulation_isolation_blocked_total
+labels: [simulation_id, state, execution_id, scenario]

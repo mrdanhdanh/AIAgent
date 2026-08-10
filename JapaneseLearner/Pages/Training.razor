@@ -147,8 +147,8 @@
     .save-message {
         text-align: center; padding: 8px; border-radius: 10px; font-size: 0.9rem;
     }
-    .msg-ok { background: var(--feedback-correct-bg, #d4edda); color: #155724; }
-    .msg-err { background: var(--feedback-wrong-bg, #f8d7da); color: #721c24; }
+    .msg-ok { background: var(--feedback-correct-bg); color: var(--feedback-correct-text); }
+    .msg-err { background: var(--feedback-wrong-bg); color: var(--feedback-wrong-text); }
     .template-stats {
         margin-top: 8px; padding: 16px;
         background: var(--card-bg); border-radius: 16px;
@@ -162,8 +162,8 @@
     .action-btns { margin-left: auto; display: flex; gap: 6px; }
     .export-btn, .import-btn { font-size: 0.75rem; white-space: nowrap; }
     .import-input { display: none; }
-    .clear-all-btn { margin-left: auto; font-size: 0.8rem; color: #e74c3c; }
-    .clear-char-btn { font-size: 0.8rem; color: #e67e22; }
+    .clear-all-btn { margin-left: auto; font-size: 0.8rem; color: var(--danger-color); }
+    .clear-char-btn { font-size: 0.8rem; color: var(--text-secondary); }
     .current-char-templates {
         display: flex; gap: 8px; align-items: center; flex-wrap: wrap;
         padding: 10px 14px; border-radius: 10px;

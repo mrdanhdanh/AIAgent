@@ -1,0 +1,7 @@
+# SPEC-008 X006 - Event Component Lifecycle
+---
+version: "1.0.0"
+lifecycle:
+  EventApi: co khi Runtime start
+  EventStore: per-Store instance
+  Others: singleton per Engine

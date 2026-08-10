@@ -1,0 +1,124 @@
+# SPEC-002 W007 — Workflow Contracts (6 WCT)
+# Contract Logic — khong class/interface/API/method/DTO/protocol.
+---
+id: SPEC-002-W007
+name: Workflow Contracts
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Workflow Team
+contracts:
+  WCT-001:
+    name: Workflow Contract
+    category: Execution
+    direction: Request/Response
+    pattern: Sync
+    version: 1.0.0
+    status: Draft
+    owner: Workflow Engine
+    layer: Command
+    domain: Execution
+    purpose: Quan ly vong doi Workflow
+    inputs: [Workflow Request, Workflow Definition]
+    outputs: [Workflow, Workflow Result]
+    preconditions: [Workflow hop le, Registry kha dung]
+    postconditions: [Workflow dat Terminal State, Event sinh ra]
+    invariants: [Workflow khong tu thay doi, Workflow la Execution cua Runtime]
+    dependencies: [Definition Contract, Orchestrator Contract, Registry Contract]
+    capability: workflow-management
+    compatibility: [1.x]
+  WCT-002:
+    name: Definition Contract
+    category: Data
+    direction: Read
+    pattern: Request/Response
+    version: 1.0.0
+    status: Draft
+    owner: Definition Manager
+    layer: Declaration
+    domain: Definition
+    purpose: Quan ly Workflow Definition + Version
+    inputs: [Definition Request]
+    outputs: [Workflow Definition]
+    preconditions: [Khai bao hop le (YAML)]
+    postconditions: [Definition versioned]
+    invariants: [Definition immutable khi Published, Khong chua code]
+    dependencies: []
+    capability: workflow-definition
+    compatibility: [1.x]
+  WCT-003:
+    name: Validation Contract
+    category: Execution
+    direction: Request/Response
+    pattern: Sync
+    version: 1.0.0
+    status: Draft
+    owner: Validation Engine
+    layer: Validation
+    domain: Validation
+    purpose: Validate + Normalize Workflow (EF006)
+    inputs: [Workflow Definition]
+    outputs: [Validation Result, Normalized Workflow]
+    preconditions: [Definition da nap]
+    postconditions: [Workflow valid hoac bi tu choi]
+    invariants: [Validate truoc khi chay, Khong chay step]
+    dependencies: [Definition Contract]
+    capability: workflow-validation
+    compatibility: [1.x]
+  WCT-004:
+    name: Orchestrator Contract
+    category: Execution
+    direction: Request/Response
+    pattern: Sync/Async
+    version: 1.0.0
+    status: Draft
+    owner: Workflow Orchestrator
+    layer: Orchestration
+    domain: Coordination
+    purpose: Dieu phoi luong - delegate Runtime (SPEC-001)
+    inputs: [Normalized Workflow]
+    outputs: [Runtime Execution Request]
+    preconditions: [Workflow da validate]
+    postconditions: [Luong hoan thanh dung thu tu]
+    invariants: [Orchestrator khong chua Business Logic, Khong tu chay step]
+    dependencies: [Registry Contract, Runtime (SPEC-001)]
+    capability: orchestration
+    compatibility: [1.x]
+  WCT-005:
+    name: Registry Contract
+    category: Registry
+    direction: Read/Write
+    pattern: Request/Response
+    version: 1.0.0
+    status: Draft
+    owner: Workflow Loader / Step Resolver / Workflow Registrar
+    layer: Resolution
+    domain: Capability
+    purpose: Truy cap Registry (S014) va resolve
+    inputs: [Lookup Request, Register Request]
+    outputs: [Lookup Result, Registry Entry]
+    preconditions: [Registry kha dung]
+    postconditions: [Ket qua khop metadata]
+    invariants: [Registry khong phai Database]
+    dependencies: []
+    capability: registry-resolution
+    compatibility: [1.x]
+  WCT-006:
+    name: Event Contract
+    category: Observability
+    direction: Publish
+    pattern: Event
+    version: 1.0.0
+    status: Draft
+    owner: Workflow Event Dispatcher
+    layer: Publication
+    domain: Observability
+    purpose: Publish Event/Metrics/Trace/Audit (S011)
+    inputs: [State Change]
+    outputs: [Workflow Event]
+    preconditions: [State change xay ra]
+    postconditions: [Event published, co correlation_id]
+    invariants: [Khong chua Business Data, Event immutable]
+    dependencies: [Event Store (S011)]
+    capability: workflow-observability
+    compatibility: [1.x]

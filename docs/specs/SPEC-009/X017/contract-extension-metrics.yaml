@@ -1,0 +1,7 @@
+# SPEC-009 X017 - Contract Extension Metrics
+---
+version: "1.0.0"
+metrics:
+  - contract_extensions_total
+  - contract_extensions_active
+  - contract_extensions_rejected_total

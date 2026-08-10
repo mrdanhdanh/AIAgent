@@ -1,0 +1,10 @@
+# SPEC-007 X011 - Artifact Dashboard
+---
+version: "1.0.0"
+dashboard:
+  - Artifact Activity (create/publish rate)
+  - Artifact Lifecycle (state histogram)
+  - Artifact Failures (rejected/corrupted)
+  - Storage Usage (content bytes)
+  - Retention Status (archive queue)
+  # tool: X020 Artifact Dashboard

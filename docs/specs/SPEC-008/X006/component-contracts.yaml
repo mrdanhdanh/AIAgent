@@ -1,0 +1,16 @@
+# SPEC-008 X006 - Event Component Contracts
+---
+version: "1.0.0"
+contracts:
+  XCP-001: { name: EventApi, contract: X007 XCT-### }
+  XCP-002: { name: RouteOrchestrator, contract: X007 XCT-### }
+  XCP-003: { name: EventStateMachine, contract: X007 XCT-### }
+  XCP-004: { name: EventValidator, contract: X007 XCT-### }
+  XCP-005: { name: PolicyGuard, contract: X007 XCT-### }
+  XCP-006: { name: EventStore, contract: X007 XCT-### }
+  XCP-007: { name: EventRouter, contract: X007 XCT-### }
+  XCP-008: { name: SubscriptionManager, contract: X007 XCT-### }
+  XCP-009: { name: ReplayEngine, contract: X007 XCT-### }
+  XCP-010: { name: EventMetrics, contract: X007 XCT-### }
+  XCP-011: { name: RegistryClient, contract: X007 XCT-### }
+  XCP-012: { name: Archiver, contract: X007 XCT-### }

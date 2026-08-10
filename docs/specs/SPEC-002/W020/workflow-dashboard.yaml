@@ -1,0 +1,62 @@
+# SPEC-002 W020 - Workflow Dashboard
+# Dashboard chi doc (S011 OB010) - view tu machine-readable.
+# Khong doc implementation. Khong ghi.
+---
+id: SPEC-002-W020
+name: Workflow Dashboard
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Workflow Team
+philosophy:
+  - Workflow Dashboard la mat quan sat Workflow Engine.
+  - Dashboard chi doc, khong ghi.
+  - Dashboard khong doc implementation.
+  - Moi view dung machine-readable.
+principles:
+  - Read Only
+  - Machine-readable First (W011)
+  - Event Driven (P005 - refresh theo event, khong polling)
+  - Single File (W014 workflow-registry-registry.yaml)
+  - Least Privilege (S012 POL-SEC-001)
+  - Immutable Views (view la projection, khong sua nguon)
+scope:
+  reads:
+    - Workflow Events (W011)
+    - Workflow Metrics (W011)
+    - Workflow Trace (W011)
+    - Workflow Audit (W011)
+    - Health (W011)
+    - Registry (W014)
+    - Governance (W013)
+    - Compliance (W016)
+    - Doctor (W019)
+  not_reads:
+    - Implementation
+    - Business Data
+    - Agent Internal State
+    - Plugin Internal State
+views:
+  - Workflow View (state + outcome distribution W009/W010)
+  - Definition View (definition version, binding W012)
+  - Registry View (W014 workflow-registry-registry.yaml)
+  - Governance View (W013 - graph)
+  - Resource View (W015 metrics)
+  - Health View (W011 health + W016 score)
+  - Compliance + Doctor View (W016 report + W019 report)
+read_model:
+  fields: [id, timestamp, workflow_version, views, sources, refresh]
+refresh:
+  - "Event Driven (P005): refresh khi co event moi."
+  - Khong polling.
+  - View la projection immutable (P010).
+events:
+  - WORKFLOW_DASHBOARD_VIEWED
+  - WORKFLOW_DASHBOARD_REFRESHED
+  - WORKFLOW_DASHBOARD_ERROR
+metrics:
+  views_count: 0
+  widgets_count: 0
+  refresh_count: 0
+  source_errors: 0
+  avg_render_time: 0

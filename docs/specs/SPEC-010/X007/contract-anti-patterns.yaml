@@ -1,0 +1,8 @@
+# SPEC-010 X007 - Plugin Contract Anti-Patterns
+---
+version: "1.0.0"
+anti_patterns:
+  - No implicit contract (undocumented)
+  - No silent breaking
+  - No Core modify trong Plugin
+  - No permission escalate

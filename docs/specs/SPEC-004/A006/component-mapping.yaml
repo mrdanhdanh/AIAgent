@@ -1,0 +1,12 @@
+# SPEC-004 A006 - Component Mapping (ACP -> Layer -> Domain)
+---
+version: "1.0.0"
+mapping:
+  ACP-001: { layer: Command, domain: Execution }
+  ACP-002: { layer: Declaration, domain: Definition }
+  ACP-003: { layer: Validation, domain: Validation }
+  ACP-004: { layer: Registration, domain: Mapping }
+  ACP-005: { layer: Orchestration, domain: Orchestration }
+  ACP-006: { layer: Registration, domain: Mapping }
+  ACP-007: { layer: Registration, domain: Mapping }
+  ACP-008: { layer: Publication, domain: Observability }

@@ -1,0 +1,11 @@
+# SPEC-004 A009 - Agent Transitions (7)
+---
+version: "1.0.0"
+transitions:
+  - "from: AST-001; to: AST-002; event: AGENT_VALIDATING; guard: Khai bao hop le (schema)"
+  - "from: AST-002; to: AST-003; event: AGENT_PUBLISHED; guard: Validate pass + Registry Entry (S014)"
+  - "from: AST-002; to: AST-006; event: AGENT_REJECTED; guard: Validate fail"
+  - "from: AST-003; to: AST-004; event: AGENT_DEPRECATED; guard: Governance (S013) cho phep"
+  - "from: AST-004; to: AST-003; event: AGENT_REACTIVATED; guard: Governance (S013) duyet"
+  - "from: AST-003; to: AST-005; event: AGENT_RETIRED; guard: Governance (S013)"
+  - "from: AST-004; to: AST-005; event: AGENT_RETIRED; guard: Khong con dung"

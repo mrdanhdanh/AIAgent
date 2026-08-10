@@ -1,0 +1,17 @@
+# SPEC-001 S010 — Compensation Flow (EF022) v3
+# Compensation KHONG phai Rollback
+---
+version: "1.0"
+concepts:
+  Rollback: Mục tiêu (trở về trạng thái trước Execution).
+  Compensation: Cách đạt được Rollback (bù trừ từng bước đã hoàn thành).
+flow:
+  - Failure
+  - Identify Completed Steps
+  - Compensate (ngược thứ tự)
+  - Compensation Artifact
+  - Terminal State
+rules:
+  - Compensation theo thứ tự ngược của Execution.
+  - Mỗi compensation phát Event.
+  - Không sửa Artifact đã sinh (P010).

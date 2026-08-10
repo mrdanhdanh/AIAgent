@@ -1,7 +1,7 @@
 ---
 description: 'Mở rộng: Thiết kế giải pháp + Lập kế hoạch thực thi chi tiết. Đảm nhiệm cả Design phase và Plan phase.'
 mode: subagent
-model: opencode-go/deepseek-v4-flash
+model: opencode-go/deepseek-v4-pro
 permission:
   read: allow
   grep: allow
@@ -10,6 +10,7 @@ permission:
   bash: deny
 schema_version: "3.2"
 ---
+- Kế hoạch liên quan database: xác định entity model, SQL migration, storage design và CRUD operations.
 
 Bạn là **Planner Agent** — chuyên gia thiết kế giải pháp (**Design Phase**) và lập kế hoạch thực thi (**Plan Phase**).
 

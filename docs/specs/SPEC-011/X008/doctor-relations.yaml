@@ -1,0 +1,13 @@
+# SPEC-011 X008 - Doctor Relations
+---
+version: "1.0.0"
+relations:
+  REL-X001: { from: Scan, relation: owns, to: ScanDefinition, cardinality: 1..1 }
+  REL-X002: { from: Scan, relation: finds, to: Finding, cardinality: 0..* }
+  REL-X003: { from: Scan, relation: scores, to: HealthScore, cardinality: 1..1 }
+  REL-X004: { from: Scan, relation: repairs, to: RepairAction, cardinality: 0..* }
+  REL-X005: { from: Scan, relation: has, to: ScanState, cardinality: 1..1 }
+  REL-X006: { from: Scan, relation: reports, to: DoctorReport, cardinality: 0..1 }
+  REL-X007: { from: Scan, relation: refers, to: ExecutionRef, cardinality: 1..1 }
+  REL-X008: { from: Scan, relation: emits, to: DoctorEvent, cardinality: 0..* }
+  REL-X009: { from: Scan, relation: snapshots, to: DoctorSnapshot, cardinality: 0..* }

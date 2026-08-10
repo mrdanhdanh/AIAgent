@@ -1,0 +1,17 @@
+# SPEC-001 S009 — State Metrics (Dashboard)
+---
+version: "1.0.0"
+metrics:
+  state_distribution: {}
+  average_duration: 0
+  average_running_time: 0
+  average_waiting_time: 0
+  average_retry_count: 0
+  transition_count: 0
+  invalid_transition_count: 0
+  state_duration: {}
+  terminal_distribution: {}
+  failure_rate: 0
+  retry_rate: 0
+  timeout_rate: 0
+  cancellation_rate: 0

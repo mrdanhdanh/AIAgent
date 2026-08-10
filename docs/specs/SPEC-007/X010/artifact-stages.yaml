@@ -1,0 +1,12 @@
+# SPEC-007 X010 - Artifact Stages Registry
+---
+version: "1.0.0"
+registered_stages:
+  XF-001: { name: Create, actor: Artifact Store, event: ARTIFACT_CREATED }
+  XF-002: { name: Validate, actor: Artifact Store, event: ARTIFACT_VALIDATING }
+  XF-003: { name: Checksum, actor: Artifact Store, event: ARTIFACT_CHECKSUMMED }
+  XF-004: { name: Publish, actor: Artifact Store, event: ARTIFACT_PUBLISHED }
+  XF-005: { name: Version, actor: Artifact Store, event: ARTIFACT_VERSIONED }
+  XF-006: { name: Index, actor: Artifact Indexer, event: ARTIFACT_INDEXED }
+  XF-007: { name: Consume, actor: Consumer, event: ARTIFACT_CONSUMED }
+  XF-008: { name: Archive, actor: Artifact Store, event: ARTIFACT_ARCHIVED }

@@ -1,0 +1,9 @@
+# SPEC-007 X008 - Artifact Identity
+---
+version: "1.0.0"
+identity:
+  artifact_id: UUID (generated at Create)
+  execution_id: UUID (from Execution)
+  version: SemVer (P004)
+  checksum: SHA-256 (content address)
+identity_scope: Execution-scoped (never global)

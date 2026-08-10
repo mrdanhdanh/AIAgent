@@ -1,0 +1,9 @@
+# SPEC-012 X016 - Simulation Compliance Metrics
+---
+version: "1.0.0"
+metrics:
+  - compliance_score (0-100)
+  - violations_total
+  - violations_by_type
+  - last_audit_timestamp
+  - open_actions_total

@@ -1,0 +1,10 @@
+# SPEC-005 R016 - Registry Compliance Metrics
+---
+version: "1.0.0"
+metrics:
+  registry_compliance_score: 0
+  passed_rules: 0
+  failed_rules: 0
+  warning_rules: 0
+  total_rules: 0
+  certification_count: 0

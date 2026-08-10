@@ -1,0 +1,12 @@
+# SPEC-003 C013 - Capability Policy Binding Enforcement
+# Tham chieu C012 (define binding) - o day chi enforce.
+---
+version: "1.0.0"
+enforcement:
+  - Resolve binding (C012 CP013)
+  - Validate binding (C012 CP014)
+  - Apply (S013 enforce)
+  - Audit (S011)
+rules:
+  - Chi enforce binding Active (C012 CP002B).
+  - Binding Invalid -> Capability khong chay (Validation Failure).

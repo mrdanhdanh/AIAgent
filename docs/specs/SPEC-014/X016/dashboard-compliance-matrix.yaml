@@ -1,0 +1,11 @@
+# SPEC-014 X016 - Dashboard Compliance Matrix
+---
+version: "1.0.0"
+matrix:
+  COMP-001: { check: Dashboard X019, artifact: dashboard-*, gate: build }
+  COMP-002: { check: Dashboard X019, artifact: dashboard-*, gate: build }
+  COMP-003: { check: Dashboard X019, artifact: dashboard-*, gate: build }
+  COMP-004: { check: Dashboard X019, artifact: dashboard-*, gate: build }
+  COMP-005: { check: Dashboard X019, artifact: dashboard-*, gate: build }
+  COMP-006: { check: Dashboard X019, artifact: dashboard-*, gate: build }
+gate: khong pass -> BLOCKED

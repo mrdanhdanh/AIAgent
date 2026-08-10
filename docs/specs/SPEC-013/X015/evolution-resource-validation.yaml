@@ -1,0 +1,8 @@
+# SPEC-013 X015 - Evolution Resource Validation
+---
+version: "1.0.0"
+validation:
+  - quota khong vuot (XPOL-007)
+  - khong leak sau Archive
+  - metrics day du (X011)
+  - kiem tra bang Evolution X019

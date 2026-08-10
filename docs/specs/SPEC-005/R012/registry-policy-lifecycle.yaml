@@ -1,0 +1,7 @@
+# SPEC-005 R012 - Registry Policy Binding Lifecycle (S012 RP002B)
+---
+version: "1.0.0"
+lifecycle: [Draft, Validated, Published, Active, Deprecated, Retired]
+rules:
+  - Chi Validated moi Published.
+  - Chi Active moi duoc apply.

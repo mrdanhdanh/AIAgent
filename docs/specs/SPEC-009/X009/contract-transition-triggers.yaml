@@ -1,0 +1,10 @@
+# SPEC-009 X009 - Contract Transition Triggers
+---
+version: "1.0.0"
+triggers:
+  XST-001: Declare (Contract System)
+  XST-002: Validate (Contract System)
+  XST-003: Publish (Contract System)
+  XST-004: Resolve (Caller)
+  XST-005: Retire (retention)
+  XST-006: Reject (validate fail)

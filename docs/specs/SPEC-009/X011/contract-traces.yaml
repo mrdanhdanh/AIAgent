@@ -1,0 +1,13 @@
+# SPEC-009 X011 - Contract Traces
+---
+version: "1.0.0"
+traces:
+  - contract.declare
+  - contract.validate
+  - contract.compat_check
+  - contract.publish
+  - contract.resolve
+  - contract.verify
+  - contract.bind
+  - contract.retire
+span_attrs: [contract_id, execution_id, version, provider_id]

@@ -1,0 +1,8 @@
+# SPEC-006 X005 - Domain Model
+---
+version: "1.0.0"
+domains:
+  Definition: { owner: Context, business_logic: false }
+  Validation: { owner: Context, business_logic: false }
+  Execution: { owner: Runtime (SPEC-001), business_logic: false }
+  Observability: { owner: Runtime (S011), business_logic: false }

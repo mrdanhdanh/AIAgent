@@ -1,0 +1,10 @@
+# SPEC-006 X013 - Context Governance Events
+---
+version: "1.0.0"
+events:
+  - SPEC006_FROZEN
+  - SPEC006_UNFROZEN
+  - SPEC006_VERSIONED
+  - SPEC006_DECISION_MADE
+  - SPEC006_DECISION_OVERRIDDEN
+note: Event goi vao S011.

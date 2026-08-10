@@ -1,0 +1,11 @@
+# SPEC-003 C013 - Capability Governance Stack
+# Kien truc 6 tang (tham chieu S013 GV003A).
+---
+version: "1.0.0"
+stack:
+  - Constitution
+  - Boundary (C004)
+  - Contract (C007)
+  - Policy Binding (C012)
+  - Permission
+  - Execution Decision

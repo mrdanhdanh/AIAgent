@@ -1,0 +1,6 @@
+# SPEC-015 X007 - SDK Contract Registry
+---
+version: "1.0.0"
+registry:
+  owner: SDK Team
+  tracked: [XCT-001..007]

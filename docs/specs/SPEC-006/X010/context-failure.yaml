@@ -1,0 +1,12 @@
+# SPEC-006 X010 - Context Failure Modes
+---
+version: "1.0.0"
+failure_modes:
+  - Allocate fail: error + khong tao Context
+  - Populate fail: CONTEXT_REJECTED + cleanup
+  - Distribute fail: thu hoi grant + retry policy
+  - Mutate fail: rollback item + event
+  - Merge fail: CONTEXT_MERGE_FAILED + giu Context cha
+  - Collect fail: giu Context, retry
+  - Release fail: CONTEXT_RELEASED_FAILED + manual
+retry: theo Policy S012

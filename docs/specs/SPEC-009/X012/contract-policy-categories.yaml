@@ -1,0 +1,10 @@
+# SPEC-009 X012 - Contract Policy Categories
+---
+version: "1.0.0"
+categories:
+  Interface: [XPOL-001, XPOL-002]
+  Data: [XPOL-005, XPOL-010]
+  Lifecycle: [XPOL-003, XPOL-004, XPOL-006]
+  Resource: [XPOL-007]
+  Security: [XPOL-008]
+  Audit: [XPOL-009]

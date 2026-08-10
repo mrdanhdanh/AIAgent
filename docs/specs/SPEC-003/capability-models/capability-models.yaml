@@ -1,0 +1,47 @@
+# SPEC-003 Appendix — Capability Canonical Models (8 models)
+# Single Source of Truth (P009) - moi SPEC tham chieu, khong dinh nghia lai.
+---
+version: "1.0.0"
+status: Draft
+aggregate_root: Capability
+models:
+  CM-001:
+    name: Capability
+    kind: Root
+    fields: [id, definition_ref, version, status, owner, created_at, mapping_ref]
+    immutable: false
+  CM-002:
+    name: CapabilityDefinition
+    kind: Entity
+    fields: [id, name, version, description, contracts, owner, status]
+    immutable: true (Published)
+  CM-003:
+    name: CapabilityVersion
+    kind: Entity
+    fields: [id, capability_ref, version, semver, changelog]
+    immutable: true
+  CM-004:
+    name: CapabilityMapping
+    kind: Value
+    fields: [id, capability_ref, agent_ref, plugin_ref, via_registry]
+    immutable: true (Published)
+  CM-005:
+    name: CapabilityGroup
+    kind: Value
+    fields: [id, name, capabilities, owner]
+    immutable: false
+  CM-006:
+    name: CapabilityBinding
+    kind: Value
+    fields: [id, capability_ref, policy_ref (S012), parameters, scope]
+    immutable: true (Published)
+  CM-007:
+    name: CapabilityResult
+    kind: Entity
+    fields: [id, capability_ref, outcome, artifacts_ref, metrics_ref, timestamp]
+    immutable: true
+  CM-008:
+    name: CapabilityRegistryEntry
+    kind: Reference
+    fields: [id, capability_ref, version, status (S014)]
+    immutable: true (Published)

@@ -1,0 +1,11 @@
+# SPEC-003 C003 - Responsibility Matrix (CRR x Group)
+---
+version: "1.0.0"
+groups:
+  Core: [CRR-001, CRR-002, CRR-015]
+  Validation: [CRR-003, CRR-009]
+  Execution: [CRR-005, CRR-016]
+  Mapping: [CRR-006, CRR-007]
+  Data: [CRR-004, CRR-013, CRR-014]
+  Observability: [CRR-011, CRR-012]
+  Governance: [CRR-008, CRR-010, CRR-017, CRR-018]

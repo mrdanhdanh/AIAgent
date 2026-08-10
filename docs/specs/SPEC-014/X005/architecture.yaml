@@ -1,0 +1,10 @@
+# SPEC-014 X005 - Dashboard Architecture
+---
+version: "1.0.0"
+architecture:
+  model: Layered (5 layers)
+  style: In-process + read-only data
+  key_decisions:
+    - Dashboard doc S011 (P005)
+    - Read-only (XC-001)
+    - Policy qua S012

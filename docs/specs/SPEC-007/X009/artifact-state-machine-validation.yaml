@@ -1,0 +1,9 @@
+# SPEC-007 X009 - Artifact State Machine Validation
+---
+version: "1.0.0"
+validation:
+  - initial_state ton tai
+  - moi state reachable
+  - terminal_states chi co inbound
+  - moi transition co event + guard
+  - kiem tra bang Doctor (X019)

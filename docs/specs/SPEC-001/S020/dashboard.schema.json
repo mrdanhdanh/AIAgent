@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aios://dashboard.schema.json",
+  "title": "SPEC-001 Runtime Dashboard (S020)",
+  "description": "JSON Schema cho dashboard.yaml. Validator kiem tra cau truc.",
+  "type": "object",
+  "required": ["id", "name", "version", "status", "owner", "philosophy", "principles", "scope", "views", "read_model", "refresh"],
+  "properties": {
+    "id": { "const": "SPEC-001-S020" },
+    "name": { "const": "Runtime Dashboard" },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "status": { "enum": ["Draft", "Review", "Approved", "Stable", "Deprecated"] },
+    "owner": { "type": "string" },
+    "philosophy": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "principles": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "scope": { "type": "object", "required": ["reads", "not_reads"] },
+    "views": { "type": "array", "items": { "type": "string" }, "minItems": 7 },
+    "read_model": { "type": "object", "required": ["fields"] },
+    "refresh": { "type": "array", "items": { "type": "string" }, "minItems": 3 },
+    "events": { "type": "array", "items": { "type": "string" } },
+    "metrics": { "type": "object" }
+  },
+  "additionalProperties": false
+}

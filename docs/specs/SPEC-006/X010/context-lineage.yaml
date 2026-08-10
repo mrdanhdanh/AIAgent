@@ -1,0 +1,9 @@
+# SPEC-006 X010 - Context Lineage
+---
+version: "1.0.0"
+lineage:
+  context_id: UUID
+  parent_context_id: null (Root) | UUID (child)
+  execution_id: UUID
+  grants: [grant_id...]
+  note: Lineage duoc luu trong metadata (transient).

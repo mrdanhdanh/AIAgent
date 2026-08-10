@@ -1,0 +1,10 @@
+# SPEC-013 X009 - Evolution Transition Triggers
+---
+version: "1.0.0"
+triggers:
+  XST-001: Diff (Evolution Engine)
+  XST-002: CompatCheck (Evolution Engine)
+  XST-003: Plan (Evolution Engine)
+  XST-004: Migrate (Evolution Engine)
+  XST-005: Evolve (Evolution Engine)
+  XST-006: Fail (compat/migrate loi)

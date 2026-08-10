@@ -1,0 +1,8 @@
+# SPEC-011 X005 - Doctor ADL
+---
+version: "1.0.0"
+decisions:
+  XAD-001: { decision: Doctor khong sua core, reason: P015 }
+  XAD-002: { decision: Scanner registry, reason: mo rong de dang }
+  XAD-003: { decision: Policy qua S012, reason: khong tu quyet }
+  XAD-004: { decision: Score tach Store, reason: report history }

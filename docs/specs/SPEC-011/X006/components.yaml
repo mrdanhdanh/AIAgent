@@ -1,0 +1,16 @@
+# SPEC-011 X006 - Doctor Components (12)
+---
+version: "1.0.0"
+components:
+  XCP-001: { name: DoctorApi, role: expose op, dependency: Engine, layer: Core }
+  XCP-002: { name: PipelineOrchestrator, role: pipeline flow, dependency: StateMachine, Store, layer: Core }
+  XCP-003: { name: DoctorStateMachine, role: state transitions, dependency: S009, layer: Core }
+  XCP-004: { name: ScanEngine, role: chay scanners, dependency: Store, layer: Core }
+  XCP-005: { name: DiagnoseEngine, role: chan doan findings, dependency: Store, layer: Core }
+  XCP-006: { name: PolicyGuard, role: policy eval, dependency: S012, layer: Guard }
+  XCP-007: { name: FindingsStore, role: findings storage, dependency: Store, layer: Core }
+  XCP-008: { name: ScoreStore, role: score history, dependency: Store, layer: Data }
+  XCP-009: { name: RepairEngine, role: doc-only repair, dependency: Store, layer: Data }
+  XCP-010: { name: ReportEngine, role: markdown/JSON report, dependency: Store, layer: Data }
+  XCP-011: { name: ScannerRegistry, role: scanner lookup, dependency: SPEC-005, layer: Integration }
+  XCP-012: { name: BenchmarkRunner, role: capability benchmark, dependency: Store, layer: Data }

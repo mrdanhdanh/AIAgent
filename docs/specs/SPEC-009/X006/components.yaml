@@ -1,0 +1,16 @@
+# SPEC-009 X006 - Contract Components (12)
+---
+version: "1.0.0"
+components:
+  XCP-001: { name: ContractApi, role: expose op, dependency: Engine, layer: Core }
+  XCP-002: { name: LifecycleOrchestrator, role: lifecycle flow, dependency: StateMachine, Store, layer: Core }
+  XCP-003: { name: ContractStateMachine, role: state transitions, dependency: S009, layer: Core }
+  XCP-004: { name: ContractValidator, role: schema validation, dependency: X008, layer: Core }
+  XCP-005: { name: CompatChecker, role: backward compatible check, dependency: Store, layer: Core }
+  XCP-006: { name: PolicyGuard, role: policy eval, dependency: S012, layer: Guard }
+  XCP-007: { name: ContractStore, role: contract versions, dependency: Store, layer: Core }
+  XCP-008: { name: VersionIndex, role: version lookup, dependency: Store, layer: Data }
+  XCP-009: { name: Verifier, role: verify contract, dependency: Store, layer: Data }
+  XCP-010: { name: ContractMetrics, role: metrics, dependency: S011, layer: Data }
+  XCP-011: { name: RegistryClient, role: definition lookup, dependency: SPEC-005, layer: Integration }
+  XCP-012: { name: Retirer, role: retire + retention, dependency: Store, layer: Data }

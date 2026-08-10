@@ -1,0 +1,9 @@
+# SPEC-008 X004 - Event Boundary Ownership Matrix
+---
+version: "1.0.0"
+ownership:
+  content: Event Bus (immutable)
+  metadata: Event Bus
+  producer: moi thanh phan
+  policy: Policy (S012)
+  events: Runtime (S011)

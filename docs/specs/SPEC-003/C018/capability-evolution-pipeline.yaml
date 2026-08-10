@@ -1,0 +1,10 @@
+# SPEC-003 C018 - Capability Evolution Pipeline
+---
+version: "1.0.0"
+pipeline:
+  - Collect (C011 data)
+  - Analyze (patterns, anomalies)
+  - Learn (lessons, hypotheses)
+  - Propose (evolution proposal)
+  - Approval Gate (C013 Governance)
+  - Apply (qua Registry C014 + Binding C012)

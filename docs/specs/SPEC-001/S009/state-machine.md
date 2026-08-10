@@ -1,15 +1,15 @@
 ---
 name: spec-001-s009-state-machine
 description: >
-  SPEC-001 S009 — Runtime State Machine. Hiến pháp của Execution. 18 sections
-  SM001-SM018, 14 states (ST-001..014), 18 transitions. Không mô tả
-  implementation/code/class/enum/database.
+  SPEC-001 S009 — Runtime State Machine. Hiến pháp của Execution. 20 sections
+  SM001-SM020, 14 states (ST-001..014), 6 categories, 19 transitions.
+  Không mô tả implementation/code/class/enum/database.
 agent: general
 ---
 
 # S009 — Runtime State Machine
 
-> **SPEC-001**: Runtime Kernel · **Version**: 1.0.0 · **Trạng thái**: Draft
+> **SPEC-001**: Runtime Kernel · **Version**: 1.0.0 · **Trạng thái**: ✅ Frozen (2026-08-08)
 > **Vị trí**: Hiến pháp của Execution — Retry, Timeout, Cancellation, Replay, Approval, Rollback, Doctor đều là transition hợp lệ.
 
 ## Mục tiêu
@@ -45,24 +45,72 @@ Chỉ mô tả **Canonical State Machine**.
 
 ## SM003 — Runtime States (14)
 
-| ID | State | Type |
-|----|-------|------|
-| ST-001 | Created | Initial |
-| ST-002 | Validating | Internal |
-| ST-003 | Prepared | Internal |
-| ST-004 | Running | Active |
-| ST-005 | Waiting | Active |
-| ST-006 | Suspended | Active |
-| ST-007 | Cancelling | Active |
-| ST-008 | Completed | Terminal |
-| ST-009 | Failed | Terminal |
-| ST-010 | Cancelled | Terminal |
-| ST-011 | TimedOut | Terminal |
-| ST-012 | Replayed | Terminal |
-| ST-013 | Retrying | Internal |
-| ST-014 | Aborted | Terminal |
+### Category
 
-## SM004 — Transition Rules
+| Category | States |
+|----------|--------|
+| Initial | Created |
+| Preparation | Validating, Prepared |
+| Active | Running, Waiting, Suspended |
+| Control | Retrying, Cancelling |
+| Terminal | Completed, Failed, Cancelled, TimedOut, Aborted |
+| Virtual | Replayed |
+
+### Catalog
+
+| ID | State | Category | Type |
+|----|-------|----------|------|
+| ST-001 | Created | Initial | Initial |
+| ST-002 | Validating | Preparation | Internal |
+| ST-003 | Prepared | Preparation | Internal |
+| ST-004 | Running | Active | Active |
+| ST-005 | Waiting | Active | Active |
+| ST-006 | Suspended | Active | Active |
+| ST-007 | Cancelling | Control | Active |
+| ST-008 | Completed | Terminal | Terminal |
+| ST-009 | Failed | Terminal | Terminal (retryable) |
+| ST-010 | Cancelled | Terminal | Terminal |
+| ST-011 | TimedOut | Terminal | Terminal |
+| ST-012 | Replayed | Virtual | Terminal |
+| ST-013 | Retrying | Control | Internal |
+| ST-014 | Aborted | Terminal | Terminal |
+
+## SM004 — State Metadata (template chuẩn)
+
+```yaml
+state:
+  id:
+  name:
+  category:
+  type:
+  owner:
+  enter_conditions:
+  exit_conditions:
+  allowed_transitions:
+  events:
+  terminal:
+  retryable:
+  metadata:
+```
+
+## SM005 — Transition Model (first-class entity)
+
+```yaml
+transition:
+  id: TR-###
+  from:
+  to:
+  trigger:
+  preconditions:
+  postconditions:
+  generated_events:
+  policy:
+  timeout:
+```
+
+> Transition là thực thể hạng nhất, không chỉ là mũi tên.
+
+## SM006 — Transition Rules
 
 ```text
 Created → Validating → Prepared → Running
@@ -73,7 +121,7 @@ Failed → Retrying → Running (nếu policy cho phép)
 Completed/Failed → Replayed (replay tạo Execution mới)
 ```
 
-## SM005 — Transition Matrix
+## SM007 — Transition Matrix
 
 | From | To | Allowed |
 |------|-----|---------|
@@ -83,9 +131,9 @@ Completed/Failed → Replayed (replay tạo Execution mới)
 | ST-004 Running | ST-009 Failed | ✔ |
 | ST-009 Failed | ST-004 Running | ✘ (qua Retrying) |
 
-> Doctor đọc bảng này (`transition-matrix.yaml`) — đầy đủ 21 mục.
+> Doctor đọc bảng này (`transition-matrix.yaml`).
 
-## SM006 — Transition Conditions
+## SM008 — Transition Conditions
 
 Mỗi transition có điều kiện:
 
@@ -97,7 +145,28 @@ Mỗi transition có điều kiện:
 - **Precondition**: lỗi không retry được.
 - **Postcondition**: Failure Artifact.
 
-## SM007 — State Invariants
+## SM009 — Triggers
+
+| Trigger | Ví dụ |
+|---------|-------|
+| Runtime | Running → Completed |
+| Policy | Failed → Retrying (retry policy) |
+| User | Running → Cancelled |
+| Approval | Running → Waiting / Waiting → Running |
+| Timeout | Running → TimedOut |
+| Event | Completed → Replayed |
+| Scheduler | Retrying → Running |
+
+## SM010 — Guards
+
+Guard khác Precondition — Guard quyết định transition có được phép hay không:
+
+```text
+Failed → Retrying
+Guard: retry_count < policy.max_retry
+```
+
+## SM011 — State Invariants
 
 - Chỉ một Active State tại một thời điểm.
 - Terminal State không đổi.
@@ -105,12 +174,19 @@ Mỗi transition có điều kiện:
 - Không quay ngược Lifecycle.
 - Event luôn đi cùng Transition.
 
-## SM008 — State Ownership
+## SM012 — State Ownership
 
 - Owner luôn là **Runtime**.
-- Không Agent nào được đổi State.
+- State chỉ Runtime được phép thay đổi.
+- Agent / Workflow / Plugin / Policy **không được sửa trực tiếp**.
 
-## SM009 — Failure State
+## SM013 — Terminal Rules
+
+- Terminal **không có transition ra**.
+- **Ngoại lệ duy nhất**: Replay (tạo Execution mới, không quay lại Execution cũ).
+- **Retry recovery** (Failed → Retrying → Running) cũng ra từ terminal ST-009 nhưng qua ST-013 trung gian.
+
+## SM014 — Failure States
 
 | State | Nghĩa | Khác nhau |
 |-------|-------|-----------|
@@ -119,15 +195,16 @@ Mỗi transition có điều kiện:
 | TimedOut | Vượt thời gian (policy) | Policy-driven |
 | Aborted | Lỗi hệ thống, không thể tiếp tục | System-level |
 
-## SM010 — Retry Model
+## SM015 — Retry Model
 
 ```text
 Failed → Retrying → Running (nếu Policy cho phép)
+Guard: retry_count < policy.max_retry
 ```
 
-Điều kiện: FR-018 Retry Policy, RULE-012. Giới hạn: max_retries, backoff, timeout_per_retry. Retry không thay đổi Lineage gốc.
+Giới hạn: max_retries, backoff, timeout_per_retry. Retry không thay đổi Lineage gốc.
 
-## SM011 — Replay Model
+## SM016 — Replay Model
 
 - **Replay không phải Resume.**
 - Replay tạo **Execution mới**.
@@ -136,83 +213,104 @@ Failed → Retrying → Running (nếu Policy cho phép)
 
 > Phục vụ Simulation, Doctor, Evolution.
 
-## SM012 — Approval Gate
+## SM017 — Approval Gate
 
 ```text
 Running → Waiting (Approval) → Running
 ```
 
-## SM013 — State Events
+## SM018 — Concurrency & Composite
 
-Mỗi transition sinh Event (18 events — `state-events.yaml`):
+**Concurrency Rules:**
 
-- EXECUTION_VALIDATING, EXECUTION_PREPARED, EXECUTION_STARTED, EXECUTION_WAITING, EXECUTION_APPROVED, EXECUTION_SUSPENDED, EXECUTION_RESUMED, EXECUTION_CANCELLING, EXECUTION_CANCELLED, EXECUTION_COMPLETED, EXECUTION_FAILED, EXECUTION_TIMED_OUT, EXECUTION_ABORTED, EXECUTION_RETRYING, EXECUTION_RETRIED, EXECUTION_REPLAYED, EXECUTION_VALIDATION_FAILED
+- Một Execution chỉ có một Active State.
+- Không được Running + Waiting đồng thời.
 
-## SM014 — Machine-readable
+**Composite States:**
+
+- Execution State ≠ Task State ≠ Phase State.
+- Không được trộn lẫn các mức state.
+
+## SM019 — State Principles & Design Rules
+
+- **One Active State** — luôn đúng một Active State.
+- **Immutable History** — history chỉ append.
+- **Deterministic Transition** — cùng trigger + guard → cùng kết quả.
+- **Explicit Transition** — không transition ngầm.
+- **Event on Transition** — mọi transition sinh event.
+- **Runtime Owned** — chỉ Runtime đổi state.
+- **Replay Creates New Execution** — replay không quay lại execution cũ.
+
+## SM020 — Compliance & Traceability Matrix
+
+```text
+State → Requirement → Principle → Rule → Doctor Rule
+```
+
+Traceability:
+
+```text
+State → Transition → Event → Artifact → Requirement → Responsibility → Boundary → Doctor
+```
+
+Doctor kiểm tra mọi state/transition theo matrix này.
+
+## Machine-readable
 
 ```text
 state-machine.yaml
 states.yaml
 transitions.yaml
+transition-types.yaml
+transition-triggers.yaml
 transition-matrix.yaml
+transition-guards.yaml
 state-events.yaml
+state-history.yaml
+state-metrics.yaml
 retry-model.yaml
 replay-model.yaml
+state-machine-validation.yaml
+state-machine-registry.yaml
 state.schema.json
 ```
 
-## SM015 — Validation
+## Validation (state-machine-validation.yaml — 7 rules)
 
-Doctor kiểm tra:
+Doctor kiểm tra (nguồn chuẩn: `state-machine-validation.yaml`):
 
-- Invalid Transition.
-- Multiple Active State.
-- Missing Initial.
-- Missing Terminal.
-- Circular Transition.
-- Dead State.
-- Unreachable State.
-- Missing Event.
+- Mọi transition phát Event (P005).
+- Mọi transition có Guard.
+- Execution luôn kết thúc bằng Terminal State.
+- Không có transition ngoài bảng (`transition-matrix.yaml`).
+- Retry phải qua recovery state (Failed → Retrying → Running).
+- Context không được chia sẻ giữa hai Execution.
+- State thuộc Runtime, Agent không giữ state (P006).
 
-## SM016 — Metrics
-
-Dashboard:
-
-```yaml
-state_distribution: {}
-average_duration: 0
-failure_rate: 0
-retry_rate: 0
-timeout_rate: 0
-cancellation_rate: 0
-```
-
-## SM017 — Traceability
-
-```text
-State → Transition → Requirement → Responsibility → Contract → Event → Execution Flow
-```
-
-## SM018 — Success Criteria
+## Success Criteria
 
 Hoàn thành khi:
 
 - Chỉ có một Canonical State Machine.
-- Mọi State có ID, Owner, Lifecycle và Transition rõ ràng.
-- Mọi Transition đều có điều kiện và sinh Event.
+- Mọi State có ID, Category, Owner, Lifecycle, Transition rõ ràng.
+- Mọi Transition là first-class (trigger/guard/pre/post/events/policy/timeout).
+- Mọi Trigger + Guard được định nghĩa.
 - Không tồn tại Transition không hợp lệ hoặc trạng thái không thể đạt tới.
-- Doctor xác minh toàn bộ State Machine từ file machine-readable.
+- Doctor xác minh toàn bộ từ file machine-readable.
 - S010 (Execution Flow) chỉ mô tả **thứ tự thực thi**, không định nghĩa lại State.
 
 ## Tham chiếu
 
 - `state-machine.yaml` — nguồn dữ liệu chuẩn.
 - `states.yaml` — SM003.
-- `transitions.yaml` — SM006.
-- `transition-matrix.yaml` — SM005.
-- `state-events.yaml` — SM013.
-- `retry-model.yaml` — SM010.
-- `replay-model.yaml` — SM011.
+- `transitions.yaml` — SM005.
+- `transition-types.yaml` / `transition-triggers.yaml` / `transition-guards.yaml` — SM009/SM010.
+- `transition-matrix.yaml` — SM007.
+- `state-events.yaml` — Event on transition.
+- `state-history.yaml` — history immutable.
+- `state-metrics.yaml` — Dashboard.
+- `retry-model.yaml` — SM015.
+- `replay-model.yaml` — SM016.
 - `state.schema.json` — validate cấu trúc.
 - Canonical Models: `../runtime-models/`
 - S008: `../S008/data-model.md`

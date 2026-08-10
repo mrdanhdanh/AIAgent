@@ -1,0 +1,51 @@
+# SPEC-002 W013 - Workflow Governance
+# Workflow chiu Governance cua Runtime (S013) - chi them Workflow-level.
+---
+id: SPEC-002-W013
+name: Workflow Governance
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Workflow Team
+philosophy:
+  - Governance la co che thuc thi luat.
+  - Workflow khong quyet dinh luat.
+  - Workflow chi thuc thi luat da duoc dinh nghia (S012/S013).
+  - Governance doc lap Business Logic.
+principles:
+  - Constitution First
+  - Policy Binding First (W012)
+  - Contract First (W007)
+  - Boundary First (W004)
+  - Least Privilege
+  - Deterministic
+  - Auditable
+  - Versioned
+scope:
+  enforces:
+    - Constitution (SPEC-000)
+    - Policy Binding (W012)
+    - Contract (W007)
+    - Boundary (W004)
+    - Permission (S013)
+    - Version Compatibility
+  not_enforces:
+    - Business Rule
+    - Domain Rule
+version_governance:
+  checks: [SemVer, Compatibility, Deprecated, Breaking Change]
+compatibility_governance:
+  checks: [Contract, Capability, Plugin, Workflow]
+validation_pipeline:
+  - Constitution
+  - Boundary (W004)
+  - Contract (W007)
+  - Policy Binding (W012)
+  - Execution (Runtime S010)
+decisions: [Allow, Deny, Suspend, Retry, Escalate]
+traceability:
+  - Workflow
+  - Policy Binding (W012)
+  - Contract (W007)
+  - Boundary (W004)
+  - Constitution

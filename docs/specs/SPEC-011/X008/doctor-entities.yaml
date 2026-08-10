@@ -1,0 +1,19 @@
+# SPEC-011 X008 - Doctor Entities (15 ENT)
+---
+version: "1.0.0"
+entities:
+  ENT-X001: { name: Scan, kind: AggregateRoot, owner: Doctor, immutable: false }
+  ENT-X002: { name: ScanDefinition, kind: Entity, owner: Doctor, immutable: true }
+  ENT-X003: { name: Finding, kind: Entity, owner: Doctor, immutable: false }
+  ENT-X004: { name: HealthScore, kind: Entity, owner: Doctor, immutable: true }
+  ENT-X005: { name: RepairAction, kind: Value, owner: Doctor, immutable: false }
+  ENT-X006: { name: ScanState, kind: Transient, owner: Doctor, immutable: false }
+  ENT-X007: { name: DoctorReport, kind: Entity, owner: Doctor, immutable: true }
+  ENT-X008: { name: DoctorEvent, kind: Ref (S011), owner: Runtime, immutable: true }
+  ENT-X009: { name: DoctorMetric, kind: Ref (S011), owner: Runtime, immutable: true }
+  ENT-X010: { name: DoctorSnapshot, kind: Entity, owner: Doctor, immutable: false }
+  ENT-X011: { name: ExecutionRef, kind: Ref (SPEC-001), owner: Execution, immutable: true }
+  ENT-X012: { name: SystemRef, kind: Ref (SPEC-000..010), owner: System, immutable: true }
+  ENT-X013: { name: ScannerRef, kind: Ref (SPEC-011), owner: Doctor, immutable: true }
+  ENT-X014: { name: PolicyRef, kind: Ref (S012), owner: Runtime, immutable: true }
+  ENT-X015: { name: DoctorExtension, kind: Value, owner: Doctor, immutable: true }

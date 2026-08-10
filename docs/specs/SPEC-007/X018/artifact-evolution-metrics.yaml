@@ -1,0 +1,8 @@
+# SPEC-007 X018 - Artifact Evolution Metrics
+---
+version: "1.0.0"
+metrics:
+  - spec007_version
+  - spec007_versions_total
+  - spec007_deprecated_count
+  - spec007_compat_score

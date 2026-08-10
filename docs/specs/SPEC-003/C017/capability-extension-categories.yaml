@@ -1,0 +1,4 @@
+# SPEC-003 C017 - Extension Categories
+---
+version: "1.0.0"
+categories: [Capability Type Extension, Binding Extension, Mapping Extension, Resolver Extension, Compatibility Extension]

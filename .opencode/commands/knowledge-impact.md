@@ -50,3 +50,12 @@ dependency_path: "A → B → C"
 recommendation: "Ước tính số file cần cập nhật"
 sources: ["Pages/WordStudy.razor:5"]
 ```
+
+## Flags:
+
+| Flag | Y nghia |
+|------|---------|
+| `--api` | Chi affected API |
+| `--screen` | Chi affected screens |
+| `--all` | Toan bo affected |
+

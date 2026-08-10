@@ -1,0 +1,11 @@
+# SPEC-012 X010 - Simulation Execution Flow (6 stages)
+---
+version: "1.0.0"
+stages:
+  XF-001: { name: Define, description: Nhan scenario tu User, actor: Simulation Engine, event: SIMULATION_DEFINED }
+  XF-002: { name: Configure, description: Cau hinh thong so, actor: Simulation Engine, event: SIMULATION_CONFIGURED }
+  XF-003: { name: Run, description: Chay isolated, actor: ScenarioEngine, event: SIMULATION_RUNNING }
+  XF-004: { name: Observe, description: Quan sat ket qua, actor: Observer, event: SIMULATION_OBSERVED }
+  XF-005: { name: Compare, description: So sanh voi ky vong, actor: Comparator, event: SIMULATION_COMPARED }
+  XF-006: { name: Report, description: Tao report, actor: Reporter, event: SIMULATION_REPORTED }
+source: /doctor --simulation (Simulation khong dinh nghia lai pipeline)

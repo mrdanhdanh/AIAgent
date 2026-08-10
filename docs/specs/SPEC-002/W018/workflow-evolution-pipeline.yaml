@@ -1,0 +1,10 @@
+# SPEC-002 W018 - Workflow Evolution Pipeline
+---
+version: "1.0"
+pipeline:
+  - Collect (W011 data)
+  - Analyze (patterns, anomalies)
+  - Learn (lessons, hypotheses)
+  - Propose (evolution proposal)
+  - Approval Gate (W013 Governance)
+  - Apply (qua Registry W014 + Binding W012)

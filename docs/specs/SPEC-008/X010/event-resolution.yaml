@@ -1,0 +1,8 @@
+# SPEC-008 X010 - Event Resolution
+---
+version: "1.0.0"
+resolution:
+  input: event_id hoac correlation_id
+  output: Event + lineage hoac not-found
+  immutable_check: Event khong doi khi tra ve
+  trace: moi resolution co trace_id (S011)

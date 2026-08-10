@@ -1,0 +1,9 @@
+# SPEC-002 W020 - Workflow Dashboard Metrics
+---
+version: "1.0"
+metrics:
+  views_count: 0
+  widgets_count: 0
+  refresh_count: 0
+  source_errors: 0
+  avg_render_time: 0

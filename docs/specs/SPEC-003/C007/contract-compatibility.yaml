@@ -1,0 +1,10 @@
+# SPEC-003 C007 - Contract Compatibility
+---
+version: "1.0.0"
+compatibility:
+  CCT-001: [1.x]
+  CCT-002: [1.x]
+  CCT-003: [1.x]
+  CCT-004: [1.x]
+  CCT-005: [1.x]
+  CCT-006: [1.x]

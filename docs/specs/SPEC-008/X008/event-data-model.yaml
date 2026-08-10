@@ -1,0 +1,50 @@
+# SPEC-008 X008 - Event Data Model
+---
+version: "1.0.0"
+entities:
+  ENT-X001: { name: Event, kind: AggregateRoot, owner: Event Bus, immutable: true }
+  ENT-X002: { name: EventDefinition, kind: Entity, owner: Event Bus, immutable: true }
+  ENT-X003: { name: EventStream, kind: Entity, owner: Event Bus, immutable: true }
+  ENT-X004: { name: EventMetadata, kind: Entity, owner: Event Bus, immutable: true }
+  ENT-X005: { name: EventLineage, kind: Value, owner: Event Bus, immutable: true }
+  ENT-X006: { name: EventState, kind: Transient, owner: Event Bus, immutable: false }
+  ENT-X007: { name: Subscription, kind: Entity, owner: Event Bus, immutable: false }
+  ENT-X008: { name: EventMetric, kind: Ref (S011), owner: Runtime, immutable: true }
+  ENT-X009: { name: EventSnapshot, kind: Entity, owner: Event Bus, immutable: false }
+  ENT-X010: { name: ExecutionRef, kind: Ref (SPEC-001), owner: Execution, immutable: true }
+  ENT-X011: { name: ProducerRef, kind: Ref (SPEC-004/002), owner: Agent/Task, immutable: true }
+  ENT-X012: { name: SubscriberRef, kind: Ref (SPEC-004), owner: Agent, immutable: true }
+  ENT-X013: { name: PolicyRef, kind: Ref (S012), owner: Runtime, immutable: true }
+  ENT-X014: { name: Topic, kind: Value, owner: Event Bus, immutable: true }
+  ENT-X015: { name: EventExtension, kind: Value, owner: Event Bus, immutable: true }
+relations:
+  REL-X001: { from: Event, to: EventDefinition, cardinality: 1..1 }
+  REL-X002: { from: Event, to: EventStream, cardinality: 1..1 }
+  REL-X003: { from: Event, to: EventMetadata, cardinality: 1..1 }
+  REL-X004: { from: Event, to: EventLineage, cardinality: 1..1 }
+  REL-X005: { from: Event, to: EventState, cardinality: 1..1 }
+  REL-X006: { from: Event, to: Subscription, cardinality: 0..* }
+  REL-X007: { from: Event, to: ExecutionRef, cardinality: 1..1 }
+  REL-X008: { from: Event, to: Topic, cardinality: 1..1 }
+  REL-X009: { from: Event, to: EventSnapshot, cardinality: 0..* }
+invariants:
+  INV-X001: { name: Unique EventId, description: Moi Event co id duy nhat }
+  INV-X002: { name: Single Owner, description: Event thuoc mot Execution }
+  INV-X003: { name: Immutable, description: Event khong doi sau publish }
+  INV-X004: { name: Append-Only, description: Khong xoa, khong overwrite }
+  INV-X005: { name: Lineage Valid, description: Chain lien tuc }
+  INV-X006: { name: Ordering, description: Thu tu per source bao toan }
+  INV-X007: { name: No Business Data, description: Event khong chua business data }
+validation:
+  VAL-X001: { field: EventId, requirement: Required, type: UUID }
+  VAL-X002: { field: Type, requirement: Required, type: String (S011 types) }
+  VAL-X003: { field: Severity, requirement: Required, type: info }
+  VAL-X004: { field: CorrelationId, requirement: Required, type: UUID }
+  VAL-X005: { field: ExecutionId, requirement: Required, type: UUID }
+  VAL-X006: { field: Timestamp, requirement: Required, type: Timestamp }
+  VAL-X007: { field: Lineage, requirement: Required, type: event chain }
+storage:
+  mode: Append-only log
+  persistence: "true (P005 - event log)"
+  snapshot: EventSnapshot (optional, debug)
+  source: S011 Event Model

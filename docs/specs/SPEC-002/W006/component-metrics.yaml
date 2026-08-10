@@ -1,0 +1,12 @@
+# SPEC-002 W006 - Component Metrics
+---
+version: "1.0"
+metrics:
+  WCP-001: Workflow Completion Rate
+  WCP-002: Definition Coverage
+  WCP-003: Invalid Workflows
+  WCP-004: Orchestration Coverage
+  WCP-005: Workflow Load Rate
+  WCP-006: Resolution Rate
+  WCP-007: Registration Rate
+  WCP-008: Event Coverage

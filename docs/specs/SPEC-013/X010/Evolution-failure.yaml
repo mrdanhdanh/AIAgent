@@ -1,0 +1,11 @@
+# SPEC-013 X010 - Evolution Failure Modes
+---
+version: "1.0.0"
+failure_modes:
+  - Diff fail: error + khong evolution
+  - Compat fail: EVOLUTION_FAILED (breaking) + BLOCK
+  - Plan fail: EVOLUTION_FAILED + cleanup
+  - Migrate fail: giu phien ban cu, retry
+  - Heal fail: ghi finding, khong sua core
+  - Evolve fail: retry policy
+retry: theo Policy S012

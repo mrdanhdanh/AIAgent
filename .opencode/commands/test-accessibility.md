@@ -65,3 +65,17 @@ next_action: "Fix CRITICAL trước khi /approve-test"
 
 - Xem thêm skill: `.opencode/skills/accessibility/SKILL.md`
 - Xem thêm: `.opencode/knowledge/ui/fluentui-components.md`
+
+## Flags:
+
+| Flag | Y nghia |
+|------|---------|
+| `--axe` | Axe scan |
+| `--wcag <level>` | WCAG A/AA/AAA |
+| `--report` | Xuat bao cao |
+
+## Output Contract
+
+- **Output**: axe results + WCAG report + fix suggestion.
+- **Format**: markdown.
+

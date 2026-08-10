@@ -1,0 +1,9 @@
+# SPEC-016 X011 - CLI Observability Model
+---
+version: "1.0.0"
+observability:
+  logs: CLI Engine logs (structured)
+  events: CLI_* (S011 Event Store)
+  metrics: CLI_* (prometheus)
+  traces: trace_id + correlation_id (S011)
+boundary: CLI la observable (RULE-014)

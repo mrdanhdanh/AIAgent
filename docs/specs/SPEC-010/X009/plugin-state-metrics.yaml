@@ -1,0 +1,10 @@
+# SPEC-010 X009 - Plugin State Metrics
+---
+version: "1.0.0"
+metrics:
+  - plugin_states_total
+  - plugin_transitions_total
+  - plugin_transition_duration_seconds
+  - plugin_rejected_total
+  - plugin_uninstalled_total
+labels: [plugin_id, state, transition, execution_id]

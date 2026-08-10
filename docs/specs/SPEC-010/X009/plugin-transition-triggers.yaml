@@ -1,0 +1,10 @@
+# SPEC-010 X009 - Plugin Transition Triggers
+---
+version: "1.0.0"
+triggers:
+  XST-001: Install (Plugin Framework)
+  XST-002: Validate (Plugin Framework)
+  XST-003: Enable (Plugin Framework)
+  XST-004: Disable (Plugin Framework)
+  XST-005: Uninstall (Plugin Framework)
+  XST-006: Reject (validate fail)

@@ -1,0 +1,7 @@
+# SPEC-016 X010 - CLI Resolution
+---
+version: "1.0.0"
+resolution:
+  input: CLI_id
+  output: view + metrics hoac not-found
+  trace: moi resolution co trace_id (S011)

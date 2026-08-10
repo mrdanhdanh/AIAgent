@@ -1,0 +1,13 @@
+# SPEC-002 W013 - Workflow Governance Registry
+---
+version: "1.0"
+registry:
+  - workflow-governance.yaml
+  - workflow-governance-stack.yaml
+  - workflow-binding-enforcement.yaml
+  - workflow-governance-matrix.yaml
+  - workflow-governance-events.yaml
+  - workflow-governance-decisions.yaml
+  - workflow-governance-lifecycle.yaml
+  - workflow-governance-metrics.yaml
+  - workflow-governance.schema.json

@@ -1,0 +1,66 @@
+# SPEC-003 C009 — Capability State Machine (Canonical)
+# 2 tang: Definition (CST-001..006) + Run (tham chieu S009, khong dinh nghia lai).
+---
+id: SPEC-003-C009
+name: Capability State Machine
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Capability Team
+philosophy:
+  - Capability luon co dung mot State.
+  - State chi thay doi qua Transition.
+  - Transition phai hop le.
+  - Moi Transition sinh Event.
+  - Capability Run dung State Machine cua Runtime (S009) - khong dinh nghia lai.
+principles:
+  - State la nguon su that duy nhat ve Capability.
+  - State doc lap implementation.
+  - State bat bien sau khi roi khoi.
+  - Transition quyet dinh Lifecycle.
+  - Khong duoc bo qua State.
+  - Run State Machine = S009 (Runtime).
+structure:
+  - Definition State Machine (CST-001..006)
+  - Run State Machine (tham chieu S009 ST-001..014)
+categories:
+  Initial: [CST-001]
+  Preparation: [CST-002]
+  Active: [CST-003]
+  Control: [CST-004]
+  Terminal: [CST-005, CST-006]
+states:
+  CST-001: { name: Draft, category: Initial, type: Initial, terminal: false }
+  CST-002: { name: Validating, category: Preparation, type: Internal, terminal: false }
+  CST-003: { name: Published, category: Active, type: Active, terminal: false }
+  CST-004: { name: Deprecated, category: Control, type: Active, terminal: false }
+  CST-005: { name: Retired, category: Terminal, type: Terminal, terminal: true }
+  CST-006: { name: Rejected, category: Terminal, type: Terminal, terminal: true }
+initial_state: CST-001
+terminal_states: [CST-005, CST-006]
+run_mapping:
+  note: Capability Run la Execution cua Runtime - dung S009 ST-001..014.
+  Capability Created: ST-001
+  Capability Validating: ST-002
+  Capability Prepared: ST-003
+  Capability Running: ST-004
+  Capability Waiting (Gate): ST-005
+  Capability Suspended: ST-006
+  Capability Cancelling: ST-007
+  Capability Completed: ST-008
+  Capability Failed: ST-009
+  Capability Cancelled: ST-010
+  Capability TimedOut: ST-011
+  Capability Aborted: ST-014
+terminal_rules:
+  - Terminal khong co transition ra.
+  - "Ngoai le duy nhat: Replay (S009 ST-012)."
+triggers: [Registry (S014), User, Governance (S013), Scheduler]
+transitions:
+  - "from: CST-001; to: CST-002; event: CAPABILITY_VALIDATING; guard: Khai bao hop le (schema)"
+  - "from: CST-002; to: CST-003; event: CAPABILITY_PUBLISHED; guard: Validate pass + Registry Entry (S014)"
+  - "from: CST-002; to: CST-006; event: CAPABILITY_REJECTED; guard: Validate fail"
+  - "from: CST-003; to: CST-004; event: CAPABILITY_DEPRECATED; guard: Governance (S013) cho phep"
+  - "from: CST-004; to: CST-003; event: CAPABILITY_REACTIVATED; guard: Governance (S013) duyet"
+  - "from: CST-003; to: CST-005; event: CAPABILITY_RETIRED; guard: Governance (S013)"
+  - "from: CST-004; to: CST-005; event: CAPABILITY_RETIRED; guard: Khong con dung"

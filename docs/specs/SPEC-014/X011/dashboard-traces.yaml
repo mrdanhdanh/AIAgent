@@ -1,0 +1,11 @@
+# SPEC-014 X011 - Dashboard Traces
+---
+version: "1.0.0"
+traces:
+  - Dashboard.Create
+  - Dashboard.Render
+  - Dashboard.run
+  - Dashboard.Compose
+  - Dashboard.Filter
+  - Dashboard.Export
+span_attrs: [DASHBOARD_id, execution_id, scenario, domain]

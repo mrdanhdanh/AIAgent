@@ -1,0 +1,13 @@
+# SPEC-006 X005 - Architecture Decision Log
+---
+version: "1.0.0"
+decisions:
+  - id: XAD-001
+    decision: Context transient - chi ton tai trong vong doi Execution
+    reason: Context la du lieu tam cua Execution
+  - id: XAD-002
+    decision: Context luon isolated
+    reason: P006/P009
+  - id: XAD-003
+    decision: Thuc thi EF008 - khong dinh nghia lai flow
+    reason: EF008 la Context Flow cua Runtime

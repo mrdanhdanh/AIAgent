@@ -1,0 +1,13 @@
+# SPEC-004 A011 - Agent Health (S011 OB009 reuse)
+---
+version: "1.0.0"
+status: [Healthy, Degraded, Unhealthy]
+sources:
+  - Execution (S009/S010)
+  - Resource (S015)
+  - Event (S011)
+  - Metrics (S011)
+  - Policy (S012)
+rules:
+  - Khong noi cong thuc (S011).
+  - Khong tu sua loi.

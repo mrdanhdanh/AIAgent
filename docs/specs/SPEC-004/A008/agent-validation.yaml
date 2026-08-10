@@ -1,0 +1,10 @@
+# SPEC-004 A008 - Agent Data Validation
+---
+version: "1.0.0"
+checks:
+  - Agent co dung mot Definition.
+  - CapabilityMapping qua SPEC-003 - khong hardcode.
+  - Binding co policy_ref (S012).
+  - Group chi chua Agent hop le.
+  - Result immutable.
+  - Reference tro den entity ton tai.

@@ -1,0 +1,8 @@
+# SPEC-007 X009 - Artifact Transition Guards
+---
+version: "1.0.0"
+guards:
+  XGD-001: { transition: XTR-002, condition: Validate pass + checksum khop }
+  XGD-002: { transition: XTR-005, condition: Content doi -> version moi (khong overwrite) }
+  XGD-003: { transition: XTR-006, condition: Retention het han (S012) }
+guard_fail: transition bi chan + error ARTIFACT_GUARD

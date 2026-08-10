@@ -1,0 +1,11 @@
+# SPEC-007 X016 - Artifact Compliance Matrix
+---
+version: "1.0.0"
+matrix:
+  COMP-001: { check: Doctor X019, artifact: artifact-*, gate: build }
+  COMP-002: { check: Doctor X019, artifact: artifact-*, gate: build }
+  COMP-003: { check: Doctor X019, artifact: artifact-*, gate: build }
+  COMP-004: { check: Doctor X019, artifact: artifact-*, gate: build }
+  COMP-005: { check: Doctor X019, artifact: artifact-*, gate: build }
+  COMP-006: { check: Doctor X019, artifact: artifact-*, gate: build }
+gate: khong pass -> BLOCKED

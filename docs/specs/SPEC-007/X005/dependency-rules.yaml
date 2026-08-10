@@ -1,0 +1,8 @@
+# SPEC-007 X005 - Artifact Dependency Rules
+---
+version: "1.0.0"
+dependency_rules:
+  - API -> Engine -> Guard -> Store
+  - Engine khong goi truc tiep S011 (qua port)
+  - Guard goi Policy qua interface (S012)
+  - Khong dependency vong

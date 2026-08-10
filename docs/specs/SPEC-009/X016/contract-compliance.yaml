@@ -1,0 +1,10 @@
+# SPEC-009 X016 - Contract Compliance Rules
+---
+version: "1.0.0"
+compliance_rules:
+  COMP-001: { name: Interface Only, requirement: Contract khong chua implementation (TERM-014), source: XNF-001 }
+  COMP-002: { name: No Direct Call, requirement: Goi qua Contract (TERM-014), source: XNF-002 }
+  COMP-003: { name: Versioned, requirement: Moi Contract co version (P004), source: XNF-003 }
+  COMP-004: { name: Observable, requirement: Moi thay doi co Event (P005), source: XNF-004 }
+  COMP-005: { name: Compatible, requirement: Backward compatible (S007), source: XNF-005 }
+  COMP-006: { name: Retired, requirement: Retire theo retention (S012), source: XPOL-006 }

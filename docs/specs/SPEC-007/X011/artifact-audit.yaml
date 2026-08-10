@@ -1,0 +1,11 @@
+# SPEC-007 X011 - Artifact Audit
+---
+version: "1.0.0"
+audit:
+  who: producer_id / consumer_id / engine
+  what: op (create/publish/version/consume/archive)
+  when: timestamp
+  where: artifact_id, execution_id
+  why: transition_id, event
+  audit_log: append-only (S011)
+  source: XFR-016

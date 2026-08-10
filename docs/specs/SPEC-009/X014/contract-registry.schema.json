@@ -1,0 +1,5 @@
+{
+  "schema": "contract-registry",
+  "version": "1.0",
+  "entry_types": ["ContractDefinition","ContractSchema","ContractPolicy","ContractStateMachine"]
+}

@@ -1,0 +1,8 @@
+# SPEC-002 W014 - Workflow Registry Traceability
+---
+version: "1.0"
+traceability:
+  - Registry (S014)
+  - Workflow
+  - Execution (S008)
+  - Artifact

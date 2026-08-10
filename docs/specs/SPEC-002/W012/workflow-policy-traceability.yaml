@@ -1,0 +1,8 @@
+# SPEC-002 W012 - Workflow Policy Traceability (S012 RP015)
+---
+version: "1.0"
+records:
+  fields: [binding_id, policy_ref, workflow_id, execution_id, correlation_id, parameters, result, timestamp]
+rules:
+  - Moi apply sinh Event + Audit (S011).
+  - Truy vet: binding -> policy (S012) -> version.

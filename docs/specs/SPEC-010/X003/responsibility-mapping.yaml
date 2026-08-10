@@ -1,0 +1,8 @@
+# SPEC-010 X003 - Plugin Responsibility Mapping
+---
+version: "1.0.0"
+mapping:
+  XRR-001..005: Plugin Framework core ops
+  XRR-006..009: export qua Capability/Agent System
+  XRR-010..012, XRR-014: Runtime/Policy integration
+  XRR-013: Registry (SPEC-005)

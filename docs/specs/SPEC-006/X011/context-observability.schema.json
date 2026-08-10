@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aios://context-observability.schema.json",
+  "title": "SPEC-006 Context Observability (X011)",
+  "type": "object",
+  "properties": {
+    "schema": { "const": "context-observability" },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "events": { "type": "array", "items": { "type": "string", "pattern": "^CONTEXT_" } }
+  },
+  "required": [ "schema", "version" ],
+  "additionalProperties": true
+}

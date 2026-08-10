@@ -1,0 +1,76 @@
+# SPEC-005 R018 - Registry Evolution
+---
+id: SPEC-005-R018
+name: Registry Evolution
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Registry Team
+philosophy:
+  - Registry Evolution hoc tu du lieu quan sat (R011).
+  - Evolution khong quyet dinh thay con nguoi.
+  - Moi thay doi deu qua Approval Gate (R013).
+  - Khong Breaking Change khi chua duoc duyet.
+principles:
+  - Evidence Based (R011 + R016)
+  - Read Only (khong doc implementation)
+  - Approved (R013 Governance)
+  - Versioned (thay doi qua S014)
+  - Reversible (rollback luon kha dung)
+  - Non-invasive
+scope:
+  reads:
+    - Registry Event (R011)
+    - Registry Metrics (R011)
+    - Registry Trace (R011)
+    - Registry Audit (R011)
+    - Compliance Report (R016)
+    - Registry-of-Registries (R014)
+  not_reads:
+    - Implementation
+    - Business Data
+    - User Data
+    - Agent Internal State
+    - Plugin Internal State
+pipeline:
+  - Collect (R011 data)
+  - Analyze (patterns, anomalies)
+  - Learn (lessons, hypotheses)
+  - Propose (evolution proposal)
+  - Approval Gate (R013 Governance)
+  - Apply (qua S014 + Binding R012)
+proposal_model:
+  fields: [id, source, evidence, change, impact, status, approval]
+proposal_status: [Draft, Submitted, Approved, Rejected, Applied, Rolled Back]
+approval:
+  - "Low impact: auto-approve (Strict rules)."
+  - "Medium impact: Agent approval."
+  - "High impact / Breaking: Human approval bat buoc."
+  - Quyet dinh ghi Audit (R011).
+safety:
+  - Simulation truoc (S013 GV011A mode).
+  - Rollback luon kha dung.
+  - Khong Breaking Change khi chua duyet.
+  - Apply versioned.
+application:
+  - Binding moi la version moi (R012).
+  - Cap nhat Entry Metadata (R009 - Published moi).
+  - Cap nhat Registry-of-Registries (R014).
+traceability:
+  - Evolution Proposal
+  - Evidence (R011)
+  - Entry Execution
+  - Registry Entry (S014)
+events:
+  - REGISTRY_EVOLUTION_PROPOSED
+  - REGISTRY_EVOLUTION_APPROVED
+  - REGISTRY_EVOLUTION_REJECTED
+  - REGISTRY_EVOLUTION_APPLIED
+  - REGISTRY_EVOLUTION_ROLLED_BACK
+metrics:
+  proposals: 0
+  applied: 0
+  rejected: 0
+  rolled_back: 0
+  success_rate: 0
+  avg_learning_time: 0

@@ -1,0 +1,16 @@
+# SPEC-009 X006 - Contract Component Contracts
+---
+version: "1.0.0"
+contracts:
+  XCP-001: { name: ContractApi, contract: X007 XCT-### }
+  XCP-002: { name: LifecycleOrchestrator, contract: X007 XCT-### }
+  XCP-003: { name: ContractStateMachine, contract: X007 XCT-### }
+  XCP-004: { name: ContractValidator, contract: X007 XCT-### }
+  XCP-005: { name: CompatChecker, contract: X007 XCT-### }
+  XCP-006: { name: PolicyGuard, contract: X007 XCT-### }
+  XCP-007: { name: ContractStore, contract: X007 XCT-### }
+  XCP-008: { name: VersionIndex, contract: X007 XCT-### }
+  XCP-009: { name: Verifier, contract: X007 XCT-### }
+  XCP-010: { name: ContractMetrics, contract: X007 XCT-### }
+  XCP-011: { name: RegistryClient, contract: X007 XCT-### }
+  XCP-012: { name: Retirer, contract: X007 XCT-### }

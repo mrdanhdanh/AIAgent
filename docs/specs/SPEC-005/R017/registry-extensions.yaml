@@ -1,0 +1,68 @@
+# SPEC-005 R017 - Registry Extensions
+---
+id: SPEC-005-R017
+name: Registry Extensions
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Registry Team
+philosophy:
+  - Extension mo rong Registry qua Contract (R007).
+  - Extension khong sua Registry core.
+  - Moi Extension dang ky trong Registry (S014).
+principles:
+  - Contract First (R007)
+  - Registry First (S014)
+  - Isolated (S012 POL-ISOL-001)
+  - Least Privilege (S012 POL-SEC-001)
+  - Versioned (SemVer)
+  - Verifiable (R016)
+categories:
+  - Entry Type Extension
+  - Binding Extension (R012)
+  - Resolution Extension
+  - Query Extension
+  - Compatibility Extension
+extension_model:
+  fields: [id, name, version, category, status, owner, capabilities, contracts, dependencies, metadata]
+lifecycle: [Draft, Published, Installed, Active, Disabled, Retired]
+installation:
+  - Register (S014 plugin-registry)
+  - Validate (Contract R007 + Compatibility R013)
+  - Install
+  - Activate
+activation_rules:
+  - Contract hop le (R007).
+  - Compatibility pass (R013).
+  - Governance allow (R013).
+  - Isolation dam bao (S012 POL-ISOL-001).
+isolation:
+  - Context isolated (S010 EF008).
+  - Resource bounded (R015 quota).
+  - Khong truy cap Agent Internal State (S011 OB003A).
+  - Khong truy cap Extension khac (goi qua Contract).
+security:
+  - Permission qua POL-SEC-001 (S012).
+  - Deny mac dinh (R013).
+resources:
+  - Extension owner resource (R015).
+  - Quota rieng cho moi Extension.
+compatibility:
+  - Contract (R013)
+  - Capability (R013)
+  - Agent (R013)
+  - Registry compatibility check (R014)
+events:
+  - REGISTRY_EXTENSION_REGISTERED
+  - REGISTRY_EXTENSION_INSTALLED
+  - REGISTRY_EXTENSION_ACTIVATED
+  - REGISTRY_EXTENSION_DISABLED
+  - REGISTRY_EXTENSION_FAILED
+  - REGISTRY_EXTENSION_UNINSTALLED
+metrics:
+  active_extensions: 0
+  installed_extensions: 0
+  failed_extensions: 0
+  extension_calls: 0
+  extension_errors: 0
+  avg_extension_latency: 0

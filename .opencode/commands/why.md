@@ -63,3 +63,16 @@ next_action: "Chạy /compare-doc nếu cần so sánh với tài liệu thiết
 
 - Xem thêm: `.opencode/skills/document-understanding/SKILL.md`
 - Xem thêm: `.opencode/skills/git-history/SKILL.md`
+
+## Flags:
+
+| Flag | Y nghia |
+|------|---------|
+| `--git` | Kem git history |
+| `--doc` | Kem doc tham chieu |
+
+## Output Contract
+
+- **Output**: ly do thiet ke + git history + doc.
+- **Format**: markdown.
+

@@ -1,0 +1,12 @@
+# SPEC-004 A006 - Component Metrics
+---
+version: "1.0.0"
+metrics:
+  ACP-001: Agent Completion Rate
+  ACP-002: Declaration Coverage
+  ACP-003: Invalid Agents
+  ACP-004: Registration Rate
+  ACP-005: Orchestration Coverage
+  ACP-006: Discovery Rate
+  ACP-007: Binding Coverage
+  ACP-008: Event Coverage

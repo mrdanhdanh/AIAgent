@@ -1,0 +1,10 @@
+# SPEC-015 X009 - SDK Transition Triggers
+---
+version: "1.0.0"
+triggers:
+  XST-001: Create (SDK)
+  XST-002: Render (SDK)
+  XST-003: Rendered (SDK)
+  XST-004: Filter (User)
+  XST-005: Archive (retention)
+  XST-006: Fail (render loi)

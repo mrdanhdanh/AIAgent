@@ -1,0 +1,15 @@
+# SPEC-001 S010 — Capability Resolution Flow (EF007) v3
+# Happy path + Resolve Failure
+---
+version: "1.0"
+happy_path:
+  - Capability
+  - Registry
+  - Resolved
+failure_path:
+  - Capability
+  - Resolution Failed
+  - Execution Failed
+rules:
+  - Runtime chỉ resolve, không biết Agent (P007).
+  - Resolution Failed → Execution Failed (Doctor trace được).

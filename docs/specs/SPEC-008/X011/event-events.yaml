@@ -1,0 +1,21 @@
+# SPEC-008 X011 - Event Events (S011 cung cap event model)
+---
+version: "1.0.0"
+definition_events:
+  - EVENT_CREATED
+  - EVENT_VALIDATING
+  - EVENT_LINEAGED
+  - EVENT_STORED
+  - EVENT_ROUTED
+  - EVENT_DELIVERED
+  - EVENT_REPLAYED
+  - EVENT_ARCHIVED
+  - EVENT_REJECTED
+  - EVENT_LOST
+  - EVENT_MUTATE_BLOCKED
+  - EVENT_RESTORED
+rules:
+  - Event immutable (P010).
+  - Event chi append.
+  - Moi transition sinh Event (X009).
+  - Event co correlation_id (S011).

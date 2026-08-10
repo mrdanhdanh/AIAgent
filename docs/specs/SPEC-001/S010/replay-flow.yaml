@@ -1,0 +1,11 @@
+# SPEC-001 S010 — Replay Flow (EF016)
+---
+version: "1.0"
+flow:
+  - Completed
+  - Replay
+  - New Execution
+rules:
+  - Replay không phải Resume.
+  - Replay tạo Execution mới.
+  - Lineage giữ nguyên.

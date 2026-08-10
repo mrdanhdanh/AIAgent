@@ -1,0 +1,9 @@
+# SPEC-006 X008 - Context Identity
+---
+version: "1.0.0"
+identity:
+  context_id: UUID (generated at Allocate)
+  execution_id: UUID (from Execution)
+  grant_id: UUID (per grant)
+  key_path: contextId/section/item
+identity_scope: Execution-scoped (never global)

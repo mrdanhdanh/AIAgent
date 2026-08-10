@@ -1,0 +1,11 @@
+# SPEC-003 C018 - Capability Evolution Approval Gate (C013)
+---
+version: "1.0.0"
+gate:
+  - Low impact: auto-approve (Strict rules).
+  - Medium impact: Agent approval.
+  - High impact / Breaking: Human approval bat buoc.
+  - Quyet dinh ghi Audit (C011).
+rules:
+  - Khong duyet -> Khong Apply.
+  - Breaking Change can Simulation (S013 GV011A) truoc.

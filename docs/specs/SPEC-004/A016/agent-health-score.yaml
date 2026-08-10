@@ -1,0 +1,13 @@
+# SPEC-004 A016 - Agent Health Score (S016 CM006)
+---
+version: "1.0.0"
+levels: [Healthy, Degraded, Unhealthy]
+sources:
+  - Agent Execution (S009)
+  - Resource (A015)
+  - Event (A011)
+  - Metrics (A011)
+  - Policy (S012)
+rules:
+  - CRITICAL violation -> Unhealthy.
+  - Chi warning -> Degraded.

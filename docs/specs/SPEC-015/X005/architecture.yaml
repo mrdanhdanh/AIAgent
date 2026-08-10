@@ -1,0 +1,10 @@
+# SPEC-015 X005 - SDK Architecture
+---
+version: "1.0.0"
+architecture:
+  model: Layered (5 layers)
+  style: In-process + read-only data
+  key_decisions:
+    - SDK doc S011 (P005)
+    - Read-only (XC-001)
+    - Policy qua S012

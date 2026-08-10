@@ -1,0 +1,9 @@
+# SPEC-015 X013 - SDK Governance Metrics
+---
+version: "1.0.0"
+metrics:
+  - spec012_frozen_sections
+  - spec012_open_questions
+  - spec012_decisions_total
+  - spec012_compliance_score (X016)
+  - spec012_health_score (X019)

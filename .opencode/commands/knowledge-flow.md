@@ -44,3 +44,11 @@ user_flow:
 mermaid: "sequenceDiagram ..."
 sources: ["Pages/WordStudy.razor:10"]
 ```
+
+## Flags:
+
+| Flag | Y nghia |
+|------|---------|
+| `--mermaid` | Xuat mermaid diagram |
+| `--detail` | Chi tiet tung buoc |
+

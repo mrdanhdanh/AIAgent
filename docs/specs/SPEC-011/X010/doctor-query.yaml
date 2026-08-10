@@ -1,0 +1,10 @@
+# SPEC-011 X010 - Doctor Query
+---
+version: "1.0.0"
+query_ops:
+  - GetScan(scan_id)
+  - GetFindings(scan_id)
+  - GetScore(scan_id)
+  - GetReport(scan_id)
+  - GetHistory(scan_id)
+rule: Query khong thay doi Scan, khong can grant.

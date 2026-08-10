@@ -1,0 +1,11 @@
+# SPEC-001 S009 — Transition Triggers
+---
+version: "1.0.0"
+triggers:
+  Runtime: [TR-001, TR-002, TR-003, TR-004, TR-010, TR-011, TR-012, TR-014]
+  Policy: [TR-015, TR-017]
+  User: [TR-007, TR-008, TR-009]
+  Approval: [TR-005, TR-006]
+  Timeout: [TR-013]
+  Event: [TR-018, TR-019]
+  Scheduler: [TR-016]

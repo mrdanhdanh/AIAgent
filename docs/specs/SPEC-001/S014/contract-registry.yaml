@@ -1,0 +1,7 @@
+# SPEC-001 S014 - Contract Registry
+# Contract: hop dong giao tiep (S007).
+---
+registry: Contract Registry
+version: "1.0.0"
+owner: Runtime
+entries: []

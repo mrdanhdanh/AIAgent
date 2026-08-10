@@ -1,0 +1,11 @@
+# SPEC-014 X010 - Dashboard Failure Modes
+---
+version: "1.0.0"
+failure_modes:
+  - Create fail: error + khong dashboard
+  - Render fail: DASHBOARD_FAILED + retry
+  - Compose fail: giu widget, retry
+  - Filter fail: giu view cu, retry
+  - Refresh fail: giu view cu, retry
+  - Export fail: retry policy
+retry: theo Policy S012

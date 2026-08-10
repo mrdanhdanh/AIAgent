@@ -1,0 +1,12 @@
+# SPEC-005 R006 - Component Mapping
+---
+version: "1.0.0"
+mapping:
+  RCP-001: { layer: Command, domain: Execution }
+  RCP-002: { layer: Declaration, domain: Definition }
+  RCP-003: { layer: Storage, domain: Definition }
+  RCP-004: { layer: Validation, domain: Validation }
+  RCP-005: { layer: Resolution, domain: Capability }
+  RCP-006: { layer: Query, domain: Data }
+  RCP-007: { layer: Storage, domain: Definition }
+  RCP-008: { layer: Publication, domain: Observability }

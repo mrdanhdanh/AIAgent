@@ -1,0 +1,8 @@
+# SPEC-001 S020 - Dashboard Events
+# S020 dinh nghia 3 event types rieng (DB009) — S011 cung cap event model (fields, correlation_id).
+---
+version: "1.0.0"
+event_types:
+  - DASHBOARD_VIEWED
+  - DASHBOARD_REFRESHED
+  - DASHBOARD_ERROR

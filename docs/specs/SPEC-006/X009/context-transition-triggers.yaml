@@ -1,0 +1,12 @@
+# SPEC-006 X009 - Context Transition Triggers
+---
+version: "1.0.0"
+triggers:
+  XST-001: Allocate (EF008)
+  XST-002: Populate (EF008)
+  XST-003: Distribute/Mutate (EF008)
+  XST-004: Distribute/Mutate/Merge (EF008)
+  XST-005: Merge (EF008)
+  XST-006: Collect (EF008)
+  XST-007: Release (EF008)
+  XST-008: Fail (EF008)

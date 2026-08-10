@@ -1,0 +1,8 @@
+# SPEC-016 X010 - CLI Lineage
+---
+version: "1.0.0"
+lineage:
+  CLI_id: UUID
+  parent_CLI_id: null (Root) | UUID (view chain)
+  execution_id: UUID
+  note: Lineage duoc luu trong metadata.

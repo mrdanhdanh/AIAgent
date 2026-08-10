@@ -1,0 +1,12 @@
+# SPEC-004 A012 - Agent Policy Resolution (S012 RP013)
+---
+version: "1.0.0"
+flow:
+  - Collect binding cua Agent/Execution (trigger khop)
+  - Kiem tra binding Active (lifecycle)
+  - Resolve policy_ref (S014 Registry)
+  - Ap dung parameters
+  - Apply (S013 enforce)
+rules:
+  - Binding khong Active -> bo qua.
+  - policy_ref khong resolve duoc -> Validation Failure.

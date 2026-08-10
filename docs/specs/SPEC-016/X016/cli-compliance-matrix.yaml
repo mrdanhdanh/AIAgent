@@ -1,0 +1,11 @@
+# SPEC-016 X016 - CLI Compliance Matrix
+---
+version: "1.0.0"
+matrix:
+  COMP-001: { check: CLI X019, artifact: cli-*, gate: build }
+  COMP-002: { check: CLI X019, artifact: cli-*, gate: build }
+  COMP-003: { check: CLI X019, artifact: cli-*, gate: build }
+  COMP-004: { check: CLI X019, artifact: cli-*, gate: build }
+  COMP-005: { check: CLI X019, artifact: cli-*, gate: build }
+  COMP-006: { check: CLI X019, artifact: cli-*, gate: build }
+gate: khong pass -> BLOCKED

@@ -1,0 +1,11 @@
+# SPEC-003 C011 - Capability Audit (event model: S011)
+---
+version: "1.0.0"
+properties:
+  - Append Only
+  - Immutable
+  - Ordered
+  - Time Consistent
+rules:
+  - Ghi moi quyet dinh (publish, deprecate, reject, mapping) (P008).
+  - Khong ghi Business Data.

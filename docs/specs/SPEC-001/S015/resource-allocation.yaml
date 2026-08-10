@@ -1,0 +1,14 @@
+# SPEC-001 S015 - Resource Allocation
+# Tham chieu S010 EF004 (Resource Allocation).
+---
+version: "1.0.0"
+flow:
+  - Request
+  - Policy Check (S012 POL-RES-001: guard resource available)
+  - Allocate (hoac Queue khi khong co san)
+  - Bind to Execution
+  - Track (S011: Event + Metric + Trace)
+rules:
+  - Khong Double Allocation.
+  - Release bat buoc tren Terminal State (S009).
+  - Queue khi khong co san (S012 POL-RES-001 action).

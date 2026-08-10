@@ -1,0 +1,10 @@
+# SPEC-002 W010 - Timeout Flow (S012 POL-TIMEOUT-001)
+---
+version: "1.0"
+flow:
+  - Step Running (S009 ST-004)
+  - Timeout exceeded (guard)
+  - TimedOut (S009 ST-011)
+rules:
+  - Delegate Runtime (S010 EF013).
+  - Moi timeout sinh Event + Audit (S011).

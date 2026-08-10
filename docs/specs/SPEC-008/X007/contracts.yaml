@@ -1,0 +1,11 @@
+# SPEC-008 X007 - Event Contract Types (7)
+---
+version: "1.0.0"
+contracts:
+  XCT-001: { name: API Contract, description: EventApi ops (publish/subscribe/replay), breaking: ADR }
+  XCT-002: { name: Data Contract, description: Event schema (S011 model), breaking: ADR }
+  XCT-003: { name: Event Contract, description: EVENT_* types (S011), breaking: ADR }
+  XCT-004: { name: Metric Contract, description: event_* metrics, breaking: additive }
+  XCT-005: { name: Policy Contract, description: retention/quota, breaking: ADR }
+  XCT-006: { name: Interface Contract, description: Store, Router, Subscription, breaking: ADR }
+  XCT-007: { name: Stream Contract, description: event stream schema, breaking: ADR }

@@ -1,0 +1,16 @@
+# SPEC-007 X006 - Artifact Components (12)
+---
+version: "1.0.0"
+components:
+  XCP-001: { name: ArtifactApi, role: expose op, dependency: Engine, layer: Core }
+  XCP-002: { name: LifecycleOrchestrator, role: lifecycle flow, dependency: StateMachine, Store, layer: Core }
+  XCP-003: { name: ArtifactStateMachine, role: state transitions, dependency: S009, layer: Core }
+  XCP-004: { name: ChecksumEngine, role: tinh checksum, dependency: Store, layer: Core }
+  XCP-005: { name: ArtifactValidator, role: schema/invariants, dependency: X008, layer: Core }
+  XCP-006: { name: PolicyGuard, role: policy eval, dependency: S012, layer: Guard }
+  XCP-007: { name: ArtifactStore, role: immutable content, dependency: Store, layer: Core }
+  XCP-008: { name: ArtifactIndexer, role: index metadata, dependency: Store, layer: Data }
+  XCP-009: { name: ArtifactEvents, role: publish events, dependency: S011, layer: Data }
+  XCP-010: { name: ArtifactMetrics, role: metrics, dependency: S011, layer: Data }
+  XCP-011: { name: RegistryClient, role: definition lookup, dependency: SPEC-005, layer: Integration }
+  XCP-012: { name: Archiver, role: archive + retention, dependency: Store, layer: Data }

@@ -1,0 +1,8 @@
+# SPEC-003 C014 - Capability Registry Traceability
+---
+version: "1.0.0"
+traceability:
+  - Registry (S014)
+  - Capability
+  - Execution (S008)
+  - Artifact

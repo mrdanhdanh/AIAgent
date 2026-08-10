@@ -1,0 +1,13 @@
+# SPEC-005 R013 - Registry Governance Registry
+---
+version: "1.0.0"
+registry:
+  - registry-governance.yaml
+  - registry-governance-stack.yaml
+  - registry-binding-enforcement.yaml
+  - registry-governance-matrix.yaml
+  - registry-governance-events.yaml
+  - registry-governance-decisions.yaml
+  - registry-governance-lifecycle.yaml
+  - registry-governance-metrics.yaml
+  - registry-governance.schema.json

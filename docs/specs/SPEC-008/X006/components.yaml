@@ -1,0 +1,16 @@
+# SPEC-008 X006 - Event Components (12)
+---
+version: "1.0.0"
+components:
+  XCP-001: { name: EventApi, role: expose op, dependency: Engine, layer: Core }
+  XCP-002: { name: RouteOrchestrator, role: route events, dependency: Router, Store, layer: Core }
+  XCP-003: { name: EventStateMachine, role: state transitions, dependency: S009, layer: Core }
+  XCP-004: { name: EventValidator, role: schema/invariants, dependency: X008, layer: Core }
+  XCP-005: { name: PolicyGuard, role: policy eval, dependency: S012, layer: Guard }
+  XCP-006: { name: EventStore, role: append-only log, dependency: Store, layer: Core }
+  XCP-007: { name: EventRouter, role: topic routing, dependency: Store, layer: Data }
+  XCP-008: { name: SubscriptionManager, role: subscribe/unsubscribe, dependency: Store, layer: Data }
+  XCP-009: { name: ReplayEngine, role: replay events, dependency: Store, layer: Data }
+  XCP-010: { name: EventMetrics, role: metrics, dependency: S011, layer: Data }
+  XCP-011: { name: RegistryClient, role: definition lookup, dependency: SPEC-005, layer: Integration }
+  XCP-012: { name: Archiver, role: archive + retention, dependency: Store, layer: Data }

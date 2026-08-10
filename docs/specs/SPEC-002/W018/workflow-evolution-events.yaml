@@ -1,0 +1,9 @@
+# SPEC-002 W018 - Workflow Evolution Events (5 event types WORKFLOW_EVOLUTION_* — S011 cung cap event model fields, correlation_id)
+---
+version: "1.0"
+event_types:
+  - WORKFLOW_EVOLUTION_PROPOSED
+  - WORKFLOW_EVOLUTION_APPROVED
+  - WORKFLOW_EVOLUTION_REJECTED
+  - WORKFLOW_EVOLUTION_APPLIED
+  - WORKFLOW_EVOLUTION_ROLLED_BACK

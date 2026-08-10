@@ -1,0 +1,12 @@
+# SPEC-006 X008 - Context Invariants
+---
+version: "1.0.0"
+invariants:
+  INV-X001: { name: Unique ContextId, description: Moi Context co id duy nhat }
+  INV-X002: { name: Single Owner, description: Context chi thuoc mot Execution }
+  INV-X003: { name: Key Unique In Section, description: Key khong trung trong section }
+  INV-X004: { name: Section Required, description: Context co it nhat mot section }
+  INV-X005: { name: Key Schema Valid, description: Key theo context-key.schema.json }
+  INV-X006: { name: No Business Data, description: Context khong chua business data }
+  INV-X007: { name: Grant Scope Valid, description: Grant scope nam trong context scope }
+violation: BLOCK operation + error CONTEXT_INVARIANT

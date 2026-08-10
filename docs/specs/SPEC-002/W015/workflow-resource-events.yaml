@@ -1,0 +1,10 @@
+# SPEC-002 W015 - Workflow Resource Events (6 event types WORKFLOW_RESOURCE_* — S011 cung cap event model fields, correlation_id)
+---
+version: "1.0"
+event_types:
+  - WORKFLOW_RESOURCE_ALLOCATED
+  - WORKFLOW_RESOURCE_RELEASED
+  - WORKFLOW_RESOURCE_EXHAUSTED
+  - WORKFLOW_RESOURCE_LEAKED
+  - WORKFLOW_RESOURCE_DENIED
+  - WORKFLOW_RESOURCE_QUEUED

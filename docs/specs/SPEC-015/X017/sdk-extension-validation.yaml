@@ -1,0 +1,9 @@
+# SPEC-015 X017 - SDK Extension Validation
+---
+version: "1.0.0"
+validation:
+  - extension co schema.json
+  - extension khong pha vo invariants (X008)
+  - extension co test (SDK Test)
+  - extension co doc
+  - kiem tra bang SDK X019

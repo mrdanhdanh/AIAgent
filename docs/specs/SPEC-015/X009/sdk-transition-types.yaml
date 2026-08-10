@@ -1,0 +1,8 @@
+# SPEC-015 X009 - SDK Transition Types
+---
+version: "1.0.0"
+transition_types:
+  external: [SDK_RENDERING, SDK_FAILED]
+  internal: [SDK_RENDERED, SDK_FILTERED, SDK_ARCHIVED]
+  error: [SDK_FAILED]
+rule: Internal transition chi trong SDK.

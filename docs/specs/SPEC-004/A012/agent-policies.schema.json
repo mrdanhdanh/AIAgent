@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aios://agent-policies.schema.json",
+  "title": "SPEC-004 Agent Policies (A012)",
+  "type": "object",
+  "required": ["id", "name", "version", "status", "frozen", "owner", "philosophy", "principles", "binding_model", "lifecycle", "categories", "bindings", "responsibility_chain"],
+  "properties": {
+    "id": { "const": "SPEC-004-A012" },
+    "name": { "const": "Agent Policies" },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "status": { "enum": ["Draft", "Review", "Approved", "Stable", "Deprecated"] },
+    "frozen": { "type": "boolean" },
+    "owner": { "type": "string" },
+    "philosophy": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "principles": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "binding_model": { "type": "object", "required": ["fields"] },
+    "lifecycle": { "type": "array", "items": { "type": "string" }, "minItems": 6 },
+    "categories": { "type": "array", "items": { "type": "string" }, "minItems": 7 },
+    "bindings": { "type": "array", "items": { "type": "string" }, "minItems": 10 },
+    "responsibility_chain": { "type": "array", "items": { "type": "string" }, "minItems": 3 }
+  },
+  "additionalProperties": false
+}

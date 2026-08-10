@@ -1,0 +1,9 @@
+# SPEC-008 X005 - Event Layer Model (5)
+---
+version: "1.0.0"
+layers:
+  XAL-001: { name: API Layer, role: Event API (publish, subscribe, deliver, replay) }
+  XAL-002: { name: Engine Layer, role: Route Orchestrator + State Machine (X009) }
+  XAL-003: { name: Guard Layer, role: Policy Evaluator (S012) + Validator }
+  XAL-004: { name: Store Layer, role: Event Store (append-only) + Replay }
+  XAL-005: { name: Integration, role: Registry (SPEC-005) + Metrics (S011) }

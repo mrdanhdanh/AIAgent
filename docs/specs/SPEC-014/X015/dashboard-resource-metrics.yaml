@@ -1,0 +1,9 @@
+# SPEC-014 X015 - Dashboard Resource Metrics
+---
+version: "1.0.0"
+metrics:
+  - DASHBOARD_storage_bytes
+  - DASHBOARD_result_count
+  - DASHBOARD_resource_leaked_total
+  - DASHBOARD_quota_exceeded_total
+  - DASHBOARD_scan_latency_seconds

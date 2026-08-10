@@ -1,0 +1,8 @@
+# SPEC-007 X012 - Artifact Policy Resolution
+---
+version: "1.0.0"
+resolution:
+  order: SPEC-005 registry (policy registry)
+  conflict: deny wins (S012)
+  scope: artifact op (create/publish/version)
+  cache: khong cache policy decision (evaluate moi lan)

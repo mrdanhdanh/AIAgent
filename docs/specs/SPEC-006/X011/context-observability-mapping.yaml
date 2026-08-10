@@ -1,0 +1,16 @@
+# SPEC-006 X011 - Context Observability Mapping
+---
+version: "1.0.0"
+mapping:
+  stage -> event:
+    Allocate: CONTEXT_ALLOCATED
+    Populate: CONTEXT_POPULATED
+    Distribute: CONTEXT_DISTRIBUTED
+    Mutate: CONTEXT_MUTATED
+    Merge: CONTEXT_MERGED
+    Collect: CONTEXT_COLLECTED
+    Release: CONTEXT_RELEASED
+  state -> metric:
+    Active: context_active_current
+    Released: context_released_total
+    Rejected: context_rejected_total

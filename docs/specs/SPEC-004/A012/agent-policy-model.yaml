@@ -1,0 +1,17 @@
+# SPEC-004 A012 - Canonical Agent Policy Binding
+---
+version: "1.0.0"
+binding:
+  id:
+  agent:
+  execution:
+  policy_ref:
+  parameters:
+  scope:
+  version:
+  status:
+  lifecycle:
+  metadata:
+rules:
+  - policy_ref bat buoc tro den POL-* ton tai (S012).
+  - Thieu bat ky field nao -> Invalid Binding.

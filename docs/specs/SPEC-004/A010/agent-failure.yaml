@@ -1,0 +1,19 @@
+# SPEC-004 A010 - Agent Failure Flow (tham chieu S010 EF017)
+---
+version: "1.0.0"
+failure_types:
+  - Validation Failure (khai bao khong hop le)
+  - Registration Failure (khong dang ky duoc S014)
+  - Resolution Failure (S014 RG005A)
+  - Policy Failure (Gate deny)
+  - Execution Failure (Runtime)
+  - System Failure
+flow:
+  - Failure
+  - Isolation
+  - Failure Event (S011)
+  - Failure Artifact
+  - Terminal State (S009)
+rules:
+  - Khong sua loi nghiep vu.
+  - Delegate Runtime (S010 EF017).

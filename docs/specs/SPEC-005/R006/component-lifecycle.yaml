@@ -1,0 +1,6 @@
+# SPEC-005 R006 - Component Lifecycle
+---
+version: "1.0.0"
+lifecycles:
+  runtime: [Defined, Initialized, Ready, Active, Stopping, Disposed]
+  entry: [Idle, Assigned, Running, Completed]

@@ -1,7 +1,7 @@
 # SPEC-001 S004 — Boundary Ownership Matrix
 # Boundary x (Runtime/Agent/Workflow/Registry) — Dashboard duong so do.
 ---
-version: "1.0"
+version: "1.0.0"
 matrix:
   B001-ownership:
     Runtime: true

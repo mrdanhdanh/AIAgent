@@ -1,0 +1,15 @@
+# SPEC-006 X009 - Context Transitions (11)
+---
+version: "1.0.0"
+transitions:
+  XTR-001: { from: XST-001, to: XST-002, event: CONTEXT_POPULATED, guard: Khai bao section hop le }
+  XTR-002: { from: XST-002, to: XST-003, event: CONTEXT_ACTIVE, guard: Populate pass validate }
+  XTR-003: { from: XST-002, to: XST-008, event: CONTEXT_REJECTED, guard: Populate fail }
+  XTR-004: { from: XST-003, to: XST-004, event: CONTEXT_DISTRIBUTED, guard: Grant tao thanh cong }
+  XTR-005: { from: XST-004, to: XST-003, event: CONTEXT_MUTATED, guard: Mutation trong scope }
+  XTR-006: { from: XST-004, to: XST-005, event: CONTEXT_MERGING, guard: Nhan Context con }
+  XTR-007: { from: XST-005, to: XST-003, event: CONTEXT_MERGED, guard: Merge pass }
+  XTR-008: { from: XST-005, to: XST-008, event: CONTEXT_MERGE_FAILED, guard: Merge fail }
+  XTR-009: { from: XST-003, to: XST-006, event: CONTEXT_COLLECTING, guard: Thu ket qua }
+  XTR-010: { from: XST-006, to: XST-007, event: CONTEXT_RELEASED, guard: Execution ket thuc }
+  XTR-011: { from: XST-006, to: XST-008, event: CONTEXT_RELEASED_FAILED, guard: Release fail }

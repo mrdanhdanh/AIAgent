@@ -1,0 +1,10 @@
+# SPEC-008 X015 - Event Resources
+---
+version: "1.0.0"
+resources:
+  XRES-001: { name: Storage, owner: Event Bus }
+  XRES-002: { name: Index, owner: Event Bus }
+  XRES-003: { name: EventId, owner: Event Bus }
+  XRES-004: { name: Deliver Threads, owner: Event Bus }
+  XRES-005: { name: Event Buffer, owner: Runtime }
+  XRES-006: { name: Snapshot Store, owner: Event Bus }

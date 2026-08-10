@@ -1,0 +1,4 @@
+# SPEC-003 C002 - Requirement Categories
+---
+version: "1.0.0"
+categories: [Core, Execution, Governance, Data, Observability, Validation]

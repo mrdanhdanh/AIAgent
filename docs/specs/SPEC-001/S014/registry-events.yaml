@@ -1,0 +1,15 @@
+# SPEC-001 S014 - Registry Events
+# S014 dinh nghia 10 event types rieng (RG012) — S011 cung cap event model (fields, correlation_id).
+---
+version: "1.0.0"
+event_types:
+  - REGISTRY_LOOKUP
+  - REGISTRY_RESOLVED
+  - REGISTRY_FAILED
+  - REGISTRY_DEPRECATED
+  - ENTRY_REGISTERED
+  - ENTRY_UPDATED
+  - ENTRY_DEPRECATED
+  - ENTRY_RETIRED
+  - RESOLUTION_FAILED
+  - REGISTRY_COMPATIBILITY_FAILED

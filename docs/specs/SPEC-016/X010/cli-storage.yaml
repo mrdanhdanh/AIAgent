@@ -1,0 +1,8 @@
+# SPEC-016 X010 - CLI Storage
+---
+version: "1.0.0"
+storage:
+  mode: View store (P005)
+  lifecycle: Create -> Export archive
+  snapshot: optional (debug)
+  quota: theo policy (X012)

@@ -1,0 +1,9 @@
+# SPEC-012 X017 - Simulation Extension Validation
+---
+version: "1.0.0"
+validation:
+  - extension co schema.json
+  - extension khong pha vo invariants (X008)
+  - extension co test (Simulation Test)
+  - extension co doc
+  - kiem tra bang Simulation Doctor

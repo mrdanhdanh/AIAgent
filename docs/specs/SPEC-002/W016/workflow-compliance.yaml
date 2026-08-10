@@ -1,0 +1,77 @@
+# SPEC-002 W016 - Workflow Compliance
+# Doctor xac minh Workflow Engine - dung S016 (Runtime) + Workflow-level rules.
+---
+id: SPEC-002-W016
+name: Workflow Compliance
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Workflow Team
+philosophy:
+  - Compliance la xac minh, khong phai thuc thi (S016).
+  - Doctor chi doc machine-readable (S011).
+  - Khong dinh nghia lai quy tac da co.
+  - Certification cho tung Workflow Engine implementation.
+principles:
+  - Evidence Based (S016)
+  - Machine-readable First (S016)
+  - Deterministic (S016)
+  - Verifiable (S016)
+  - Non-invasive (S016)
+  - Versioned (S016)
+scope:
+  verifies:
+    - Constitution (SPEC-000)
+    - Boundary (W004)
+    - Contract (W007)
+    - Policy Binding (W012)
+    - Governance (W013)
+    - Registry (W014)
+    - Resources (W015)
+    - Observability (W011)
+validation_rules:
+  - Invalid Workflow (W009/W002)
+  - Invalid Binding (W012)
+  - Boundary Violation (W004)
+  - Contract Failure (W007)
+  - Registry Violation (W014)
+  - Resource Leak (W015)
+  - Quota Violation (W015)
+  - Missing Workflow Event (W011)
+  - Missing Workflow Metrics (W011)
+  - Broken Workflow Trace (W011)
+  - Invalid Audit (W011)
+  - Constitution Violation (S013)
+health_score: [Healthy, Degraded, Unhealthy]
+readiness_checklist:
+  - Workflow Definition Published (W009).
+  - Binding Active (W012).
+  - Registry hop le (W014).
+  - Resources khong leak (W015).
+  - Contracts hop le (W007).
+  - Governance enforced (W013).
+  - Observability day du (W011).
+certification:
+  levels: [Not Certified, Certified, Revoked]
+  requirements:
+    - 100% validation rules Pass.
+    - Khong CRITICAL violation.
+    - Health Score = Healthy.
+pipeline:
+  - Collect Evidence (machine-readable)
+  - Validate Rules (workflow-compliance-matrix)
+  - Compute Score (workflow-health-score)
+  - Generate Report (workflow-compliance-report)
+events:
+  - WORKFLOW_COMPLIANCE_PASSED
+  - WORKFLOW_COMPLIANCE_FAILED
+  - WORKFLOW_COMPLIANCE_REPORTED
+  - WORKFLOW_CERTIFICATION_GRANTED
+  - WORKFLOW_CERTIFICATION_REVOKED
+metrics:
+  workflow_compliance_score: 0
+  passed_rules: 0
+  failed_rules: 0
+  warning_rules: 0
+  total_rules: 0
+  certification_count: 0

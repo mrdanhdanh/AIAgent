@@ -1,0 +1,14 @@
+# SPEC-016 X011 - CLI Metrics
+---
+version: "1.0.0"
+metrics:
+  - CLI_runs_total
+  - CLI_Exported_total
+  - CLI_failed_total
+  - CLI_success_rate
+  - CLI_deviation_total
+  - CLI_replayed_total
+  - CLI_run_duration_seconds
+  - CLI_Filter_latency_seconds
+  - CLI_isolation_blocked_total
+labels: [CLI_id, state, execution_id, scenario]

@@ -1,0 +1,10 @@
+# SPEC-013 X010 - Evolution Stages Registry
+---
+version: "1.0.0"
+registered_stages:
+  XF-001: { name: Diff, actor: DiffEngine, event: EVOLUTION_DIFFED }
+  XF-002: { name: CompatCheck, actor: CompatChecker, event: EVOLUTION_COMPAT_CHECKED }
+  XF-003: { name: Plan, actor: MigrationEngine, event: EVOLUTION_PLANNED }
+  XF-004: { name: Migrate, actor: MigrationEngine, event: EVOLUTION_MIGRATED }
+  XF-005: { name: Heal, actor: SelfHealEngine, event: EVOLUTION_HEALED }
+  XF-006: { name: Evolve, actor: Evolution Engine, event: EVOLUTION_EVOLVED }

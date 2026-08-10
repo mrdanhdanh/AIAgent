@@ -1,0 +1,372 @@
+# SPEC-003 C002 â€” Capability Requirements
+# Nguon du lieu chuan cho Capability System, Doctor, Dashboard.
+---
+id: SPEC-003-C002
+name: Capability Requirements
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Capability Team
+functional:
+  CFR-001:
+    title: Declare Capability
+    description: Capability System nhan khai bao nang luc (metadata)
+    priority: Critical
+    category: Core
+    owner: Capability
+    status: Draft
+    source: [P003, P011]
+    rules: [RULE-001]
+    verification: [Capability Test, Doctor]
+  CFR-002:
+    title: Register Capability
+    description: Capability System dang ky nang luc trong Registry (S014 capability-registry)
+    priority: Critical
+    category: Core
+    owner: Capability
+    status: Draft
+    source: [P003]
+    rules: [RULE-002]
+    verification: [Capability Test, Doctor]
+  CFR-003:
+    title: Resolve Capability
+    description: Capability System phan giai nang luc qua Runtime (S010 EF007)
+    priority: Critical
+    category: Execution
+    owner: Capability
+    status: Draft
+    source: [P007]
+    rules: [RULE-002]
+    verification: [Capability Test, Doctor]
+  CFR-004:
+    title: Map Agent
+    description: Capability System gan nang luc voi Agent
+    priority: Critical
+    category: Core
+    owner: Capability
+    status: Draft
+    source: [P007, P001]
+    rules: [RULE-004]
+    verification: [Capability Test, Doctor]
+  CFR-005:
+    title: Map Plugin
+    description: Capability System gan nang luc voi Plugin
+    priority: High
+    category: Core
+    owner: Capability
+    status: Draft
+    source: [P012]
+    rules: [RULE-010]
+    verification: [Capability Test, Doctor]
+  CFR-006:
+    title: Validate Capability
+    description: Capability System validate khai bao truoc khi dang ky
+    priority: Critical
+    category: Validation
+    owner: Capability
+    status: Draft
+    source: [P011, P002]
+    rules: [RULE-002]
+    verification: [Capability Test, Doctor]
+  CFR-007:
+    title: Version Capability
+    description: Capability System quan ly version nang luc (SemVer)
+    priority: High
+    category: Data
+    owner: Capability
+    status: Draft
+    source: [P004]
+    rules: [RULE-009]
+    verification: [Capability Test, Doctor]
+  CFR-008:
+    title: Bind Policy
+    description: Capability System khai bao tham so Policy (S012 binding)
+    priority: High
+    category: Governance
+    owner: Capability
+    status: Draft
+    source: [P015]
+    rules: [RULE-012]
+    verification: [Capability Test, Doctor]
+  CFR-009:
+    title: Check Compatibility
+    description: Capability System kiem tra tuong thich (S013 GV010)
+    priority: High
+    category: Validation
+    owner: Capability
+    status: Draft
+    source: [P018]
+    rules: [RULE-015]
+    verification: [Capability Test, Doctor]
+  CFR-010:
+    title: Enforce Permission
+    description: Capability System thuc thi permission (S012 POL-SEC-001)
+    priority: Critical
+    category: Governance
+    owner: Capability
+    status: Draft
+    source: [P016]
+    rules: [RULE-008]
+    verification: [Capability Test, Doctor]
+  CFR-011:
+    title: Track Usage
+    description: Capability System theo doi su dung nang luc (S011)
+    priority: High
+    category: Observability
+    owner: Capability
+    status: Draft
+    source: [P014]
+    rules: [RULE-014]
+    verification: [Doctor]
+  CFR-012:
+    title: Publish Capability Events
+    description: Capability System phat Event cho moi state change (S011)
+    priority: High
+    category: Observability
+    owner: Capability
+    status: Draft
+    source: [P005, P014]
+    rules: [RULE-007]
+    verification: [Capability Test, Doctor]
+  CFR-013:
+    title: Support Discovery
+    description: Capability System cho phep kham pha nang luc qua Registry (S014)
+    priority: High
+    category: Data
+    owner: Capability
+    status: Draft
+    source: [P003]
+    rules: [RULE-002]
+    verification: [Capability Test, Doctor]
+  CFR-014:
+    title: Support Deprecation
+    description: Capability System ho tro lifecycle deprecation (S014 RG010)
+    priority: Medium
+    category: Data
+    owner: Capability
+    status: Draft
+    source: [P018]
+    rules: [RULE-015]
+    verification: [Doctor]
+  CFR-015:
+    title: Support Capability Groups
+    description: Capability System ho tro nhom nang luc (group)
+    priority: Medium
+    category: Core
+    owner: Capability
+    status: Draft
+    source: [P001]
+    rules: [RULE-004]
+    verification: [Capability Test]
+  CFR-016:
+    title: Support Fallback
+    description: Capability System ho tro fallback khi resolution that bai
+    priority: Medium
+    category: Execution
+    owner: Capability
+    status: Draft
+    source: [P015]
+    rules: [RULE-012]
+    verification: [Doctor]
+non_functional:
+  CNFR-001:
+    title: Deterministic Resolution
+    description: Cung capability request -> cung resolution
+    priority: Critical
+    category: Execution
+    owner: Capability
+    status: Draft
+    source: [P009]
+    rules: [RULE-013]
+  CNFR-002:
+    title: Metadata Driven
+    description: Capability khai bao bang metadata, khong hardcode
+    priority: Critical
+    category: Core
+    owner: Capability
+    status: Draft
+    source: [P003]
+    rules: [RULE-001]
+  CNFR-003:
+    title: Registry First
+    description: Capability dang ky truoc khi resolve (S014)
+    priority: Critical
+    category: Core
+    owner: Capability
+    status: Draft
+    source: [P003]
+    rules: [RULE-002]
+  CNFR-004:
+    title: Observable
+    description: Moi resolution quan sat duoc qua S011
+    priority: High
+    category: Observability
+    owner: Capability
+    status: Draft
+    source: [P014]
+    rules: [RULE-014]
+  CNFR-005:
+    title: Versioned
+    description: Moi capability co version (SemVer)
+    priority: High
+    category: Data
+    owner: Capability
+    status: Draft
+    source: [P004]
+    rules: [RULE-009]
+  CNFR-006:
+    title: Compatible
+    description: Backward compatible, forward preferred
+    priority: High
+    category: Data
+    owner: Capability
+    status: Draft
+    source: [P018]
+    rules: [RULE-015]
+  CNFR-007:
+    title: Recoverable
+    description: Resolution that bai -> bao loi chuan (S014 RG005A)
+    priority: High
+    category: Core
+    owner: Capability
+    status: Draft
+    source: [P015]
+    rules: [RULE-012]
+  CNFR-008:
+    title: Testable
+    description: Capability co the kiem thu tu dong
+    priority: High
+    category: Core
+    owner: Capability
+    status: Draft
+    source: [P013]
+    rules: []
+  CNFR-009:
+    title: Performant
+    description: Dap ung target hieu nang phan giai
+    priority: High
+    category: Observability
+    owner: Capability
+    status: Draft
+    source: [P014]
+    rules: [RULE-014]
+  CNFR-010:
+    title: Governed
+    description: Capability chiu Governance cua Runtime (S013)
+    priority: Critical
+    category: Governance
+    owner: Capability
+    status: Draft
+    source: [P016]
+    rules: [RULE-008]
+  CNFR-011:
+    title: Reusable
+    description: Capability tai su dung qua Registry (S014)
+    priority: Medium
+    category: Data
+    owner: Capability
+    status: Draft
+    source: [P003]
+    rules: [RULE-001]
+  CNFR-012:
+    title: Traceable
+    description: Moi resolution truy vet duoc (S011)
+    priority: High
+    category: Observability
+    owner: Capability
+    status: Draft
+    source: [P014]
+    rules: [RULE-007]
+constraints:
+  CC-001:
+    name: No Business Logic
+    type: Architectural
+    source: [P001]
+    rules: [RULE-001]
+  CC-002:
+    name: No Hardcoded Capability
+    type: Architectural
+    source: [P003]
+    rules: [RULE-001]
+  CC-003:
+    name: No Direct Agent Call
+    type: Architectural
+    source: [P001]
+    rules: [RULE-004]
+  CC-004:
+    name: No Redefine Registry (S014)
+    type: Architectural
+    source: [P003]
+    rules: [RULE-002]
+  CC-005:
+    name: No Redefine Policy (S012)
+    type: Governance
+    source: [P015]
+    rules: [RULE-012]
+  CC-006:
+    name: Register Before Resolve
+    type: Governance
+    source: [P011]
+    rules: [RULE-002]
+assumptions:
+  CA-001: Capability hop le (da validate)
+  CA-002: Registry kha dung (S014)
+  CA-003: Contract hop le (S007)
+  CA-004: Runtime kha dung (SPEC-001)
+  note: Neu gia dinh sai, Capability System chi bao loi, khong tu sua.
+dependencies:
+  logical:
+    - Constitution
+    - Runtime (SPEC-001)
+    - Workflow Engine (SPEC-002)
+    - Registry (S014)
+  runtime_services:
+    - Event Store (S011)
+    - Metrics Collector (S011)
+external_interfaces:
+  Capability Declaration: Input
+  Registry (S014): Read/Write
+  Runtime (S010 EF007): Resolution
+  Event (S011): Publish
+  Policy (S012): Apply
+quality_attributes:
+  Determinism:
+    target: "100%"
+    description: Cung capability request -> cung resolution
+  Reliability:
+    target: "99.9%"
+  Availability:
+    target: "99.9%"
+  Extensibility:
+    target: 100% qua khai bao nang luc
+  Traceability:
+    target: "100%"
+  Observability:
+    target: "100%"
+  Maintainability:
+    target: Them nang luc khong sua Core
+acceptance:
+  CAR-001:
+    description: Capability System dang ky va resolve duoc capability hop le
+    related: [CFR-001, CFR-002, CFR-003, P007]
+    verified_by: [Capability Tests, Doctor]
+  CAR-002:
+    description: Capability System tu choi khai bao khong hop le
+    related: [CFR-006, P011]
+    verified_by: [Capability Tests, Doctor]
+  CAR-003:
+    description: Capability System phat Event day du cho moi resolution
+    related: [CFR-012, P005]
+    verified_by: [Doctor]
+  CAR-004:
+    description: Capability System dung an toan khi resolution that bai (loi chuan S014)
+    related: [CFR-016, CNFR-007, P015]
+    verified_by: [Capability Tests, Doctor]
+  CAR-005:
+    description: Khong capability nao duoc hardcode - moi nang luc qua Registry
+    related: [CC-002, P003]
+    verified_by: [Doctor]
+  CAR-006:
+    description: Capability System khong vi pham Constitution
+    related: [P020, CNFR-010]
+    verified_by: [Doctor]

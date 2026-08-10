@@ -1,0 +1,10 @@
+# SPEC-012 X011 - Simulation Health
+---
+version: "1.0.0"
+health_checks:
+  - define_ok: define nhanh, khong loi
+  - run_ok: run thanh cong
+  - isolation_ok: khong doi he thong that
+  - event_ok: event day du (S011)
+  - policy_ok: policy applied (S012)
+  # score: tinh trong X019 Doctor

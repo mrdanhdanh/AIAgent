@@ -1,0 +1,15 @@
+# SPEC-001 S016 - Readiness Checklist
+# Truoc khi Runtime san sang nhan Execution.
+---
+version: "1.0.0"
+items:
+  - Constitution hop le.
+  - Registry hop le (khong orphan, khong circular).
+  - Resources khong leak, khong double allocation.
+  - Contracts hop le.
+  - Policies Active, khong conflict.
+  - Governance enforced day du.
+  - Observability day du (Event/Metrics/Trace/Audit).
+result:
+  - Ready: Runtime san sang.
+  - Not Ready: chan Execution moi (S013 Deny).

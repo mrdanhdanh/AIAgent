@@ -1,0 +1,11 @@
+# SPEC-003 C015 - Capability Resource Metrics
+---
+version: "1.0.0"
+metrics:
+  capability_resource_allocations: 0
+  capability_resource_releases: 0
+  active_capability_resources: 0
+  leak_count: 0
+  exhaustion_count: 0
+  quota_utilization: 0
+  denied_count: 0

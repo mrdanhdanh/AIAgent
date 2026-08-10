@@ -1,0 +1,10 @@
+# SPEC-013 X016 - Evolution Certification
+---
+version: "1.0.0"
+certification:
+  certified_artifacts:
+    - SPEC-013 SPEC.yaml
+    - X001-X020 sections
+    - evolution-models/
+  criteria: validator PASS + Evolution PASS
+  issued_by: Evolution Team + Governance (S013)

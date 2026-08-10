@@ -1,0 +1,58 @@
+---
+id: SPEC-010
+name: Plugin Framework
+version: "1.0.0"
+status: Frozen
+type: Framework
+authority: High
+owner: Plugin Team
+description: >
+  Plugin Framework — quản lý Plugin: Install, Validate, Enable, Disable,
+  Uninstall (TERM-015, S014 Plugin Registry). Plugin là extension,
+  không sửa Core, khai báo permission trong manifest.
+dependencies:
+  - SPEC-000
+  - SPEC-001
+  - SPEC-003
+  - SPEC-005
+  - SPEC-009
+includes:
+  - X001
+  - X002
+  - X003
+  - X004
+  - X005
+  - X006
+  - X007
+  - X008
+  - X009
+  - X010
+  - X011
+  - X012
+  - X013
+  - X014
+  - X015
+  - X016
+  - X017
+  - X018
+  - X019
+  - X020
+outputs:
+  - Plugin
+  - Plugin Manifest
+  - Exported Capability/Agent/Skill
+implements:
+  - Plugin
+authoritative: false
+breaking_change_requires:
+  - ADR
+  - RFC
+references:
+  constitution: ../SPEC-000
+  runtime: ../SPEC-001
+  registry: ../SPEC-005
+  contract: ../SPEC-009
+  glossary: ../../glossary
+  principles: ../../principles
+  rules: ../../rules
+  governance: ../../governance

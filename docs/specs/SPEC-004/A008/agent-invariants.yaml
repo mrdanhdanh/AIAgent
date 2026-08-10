@@ -1,0 +1,16 @@
+# SPEC-004 A008 - Agent Invariants (12)
+---
+version: "1.0.0"
+invariants:
+  - Agent co dung mot Definition.
+  - Agent dang ky trong Registry (S014).
+  - CapabilityMapping qua SPEC-003 - khong hardcode (AB007).
+  - AgentResult immutable.
+  - Event khong thay doi.
+  - Agent ID toan cuc.
+  - Agent luon co Owner.
+  - Agent luon co Version.
+  - Agent luon co Lifecycle.
+  - Agent khong doi Identity.
+  - Definition khong doi khi Published.
+  - Binding khong doi khi Published.

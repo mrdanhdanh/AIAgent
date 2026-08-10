@@ -1,0 +1,14 @@
+# SPEC-015 X011 - SDK Metrics
+---
+version: "1.0.0"
+metrics:
+  - SDK_runs_total
+  - SDK_Exported_total
+  - SDK_failed_total
+  - SDK_success_rate
+  - SDK_deviation_total
+  - SDK_replayed_total
+  - SDK_run_duration_seconds
+  - SDK_Filter_latency_seconds
+  - SDK_isolation_blocked_total
+labels: [SDK_id, state, execution_id, scenario]

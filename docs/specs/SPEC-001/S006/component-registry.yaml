@@ -15,7 +15,7 @@ components:
     name: Execution Orchestrator
     layer: Coordination
     domain: Coordination
-    contracts: [Orchestrator Contract]
+    contracts: [Coordination Contract]
     capabilities: [orchestration]
     owner: Runtime
     status: Stable

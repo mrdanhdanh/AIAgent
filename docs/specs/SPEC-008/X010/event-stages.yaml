@@ -1,0 +1,12 @@
+# SPEC-008 X010 - Event Stages Registry
+---
+version: "1.0.0"
+registered_stages:
+  XF-001: { name: Publish, actor: Event Bus, event: EVENT_CREATED }
+  XF-002: { name: Validate, actor: Event Bus, event: EVENT_VALIDATING }
+  XF-003: { name: Lineage, actor: Event Bus, event: EVENT_LINEAGED }
+  XF-004: { name: Store, actor: Event Bus, event: EVENT_STORED }
+  XF-005: { name: Route, actor: Event Router, event: EVENT_ROUTED }
+  XF-006: { name: Deliver, actor: Event Bus, event: EVENT_DELIVERED }
+  XF-007: { name: Replay, actor: ReplayEngine, event: EVENT_REPLAYED }
+  XF-008: { name: Archive, actor: Event Bus, event: EVENT_ARCHIVED }

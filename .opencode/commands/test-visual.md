@@ -75,3 +75,9 @@ next_action: "Xác nhận change chủ đích / chuyển /approve-test"
 
 - Xem thêm: `.opencode/knowledge/ui/dark-mode-theming.md`
 - Xem thêm skill: `.opencode/skills/visual-regression/SKILL.md`, `.opencode/skills/screenshot-analyzer/SKILL.md`
+
+## Output Contract
+
+- **Output**: screenshot diff + report.
+- **Format**: markdown + images.
+

@@ -1,0 +1,20 @@
+# SPEC-010 X003 - Plugin Responsibility Matrix
+---
+version: "1.0.0"
+matrix:
+  XRR-001: { name: Install Plugin, owner: Plugin Framework, role: OWNER }
+  XRR-002: { name: Validate Plugin, owner: Plugin Framework, role: OWNER }
+  XRR-003: { name: Enable Plugin, owner: Plugin Framework, role: OWNER }
+  XRR-004: { name: Disable Plugin, owner: Plugin Framework, role: OWNER }
+  XRR-005: { name: Uninstall Plugin, owner: Plugin Framework, role: OWNER }
+  XRR-006: { name: Export Capability, owner: Plugin, role: EXPORTER }
+  XRR-007: { name: Export Agent, owner: Plugin, role: EXPORTER }
+  XRR-008: { name: Export Skill, owner: Plugin, role: EXPORTER }
+  XRR-009: { name: Export Widget, owner: Plugin, role: EXPORTER }
+  XRR-010: { name: Events, owner: Runtime (S011), role: EMITTER }
+  XRR-011: { name: Metrics, owner: Runtime (S011), role: EMITTER }
+  XRR-012: { name: Policy eval, owner: Policy (S012), role: DECIDER }
+  XRR-013: { name: Registry, owner: Registry (SPEC-005), role: REGISTER }
+  XRR-014: { name: Audit, owner: Runtime (S011), role: EMITTER }
+  XRR-015: { name: Sandbox, owner: Plugin Framework, role: ENFORCER }
+  XRR-016: { name: Recovery, owner: Plugin Framework, role: OWNER }

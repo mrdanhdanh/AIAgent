@@ -1,0 +1,6 @@
+# SPEC-010 X005 - Plugin Architecture Registry
+---
+version: "1.0.0"
+registry:
+  owner: Plugin Team
+  tracked: [XAL-001..005]

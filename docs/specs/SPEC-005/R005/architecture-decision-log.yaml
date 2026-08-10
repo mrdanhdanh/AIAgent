@@ -1,0 +1,13 @@
+# SPEC-005 R005 - Architecture Decision Log
+---
+version: "1.0.0"
+decisions:
+  - id: RAD-001
+    decision: Registry la metadata system, khong phai Database
+    reason: SSOT cho metadata, storage-agnostic
+  - id: RAD-002
+    decision: Thuc thi S014 - khong dinh nghia lai model
+    reason: S014 la Registry Model cua Runtime
+  - id: RAD-003
+    decision: Storage-agnostic
+    reason: Khong rang buoc database implementation

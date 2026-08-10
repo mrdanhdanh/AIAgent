@@ -1,0 +1,15 @@
+# SPEC-003 C004 - Policy Boundary (CB008)
+---
+version: "1.0.0"
+name: Policy Boundary
+severity: High
+allowed:
+  - Dung Policy cua Runtime (S012)
+  - Khai bao tham so cho policy
+not_allowed:
+  - Dinh nghia policy rieng
+violation: Capability System dinh nghia policy rieng
+impact: High
+detected_by: Doctor
+principles: [P015]
+rules: [RULE-012]

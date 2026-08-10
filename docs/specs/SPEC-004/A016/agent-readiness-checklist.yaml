@@ -1,0 +1,11 @@
+# SPEC-004 A016 - Agent Readiness Checklist
+---
+version: "1.0.0"
+items:
+  - Agent Definition Published (A009).
+  - Binding Active (A012).
+  - Registry hop le (A014).
+  - Resources khong leak (A015).
+  - Contracts hop le (A007).
+  - Governance enforced (A013).
+  - Observability day du (A011).

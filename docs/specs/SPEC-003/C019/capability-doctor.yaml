@@ -1,0 +1,79 @@
+# SPEC-003 C019 - Capability Doctor
+# Kiem tra suc khoe Capability System - tong hop checks tu C011..C018 + S016.
+---
+id: SPEC-003-C019
+name: Capability Doctor
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Capability Team
+philosophy:
+  - Capability Doctor la co che kiem tra suc khoe Capability System.
+  - Doctor chi doc machine-readable (C011).
+  - Khong dinh nghia lai quy tac (C016 da tong hop).
+  - Self-repair chi thay doi an toan, co gioi han.
+principles:
+  - Evidence Based
+  - Machine-readable First
+  - Non-invasive
+  - Deterministic
+  - Repairable (self-repair an toan)
+  - Auditable
+scope:
+  checks_domains:
+    - Constitution (SPEC-000)
+    - Contracts (C007)
+    - Policy Binding (C012)
+    - Governance (C013)
+    - Registry (C014)
+    - Resources (C015)
+    - Compliance (C016)
+    - Extensions (C017)
+    - Observability (C011)
+  not_reads:
+    - Implementation
+    - Business Data
+    - Agent Internal State
+    - Plugin Internal State
+check_sources:
+  - "C011 Observability: 5 checks"
+  - "C013 Governance: 6 checks"
+  - "C014 Registry: 7 checks"
+  - "C015 Resources: 5 checks"
+  - "C016 Compliance: 12 rules"
+  - "C017 Extensions: 6 checks"
+  - "C018 Evolution: 6 checks"
+health_score: [Healthy, Degraded, Unhealthy]
+pipeline:
+  - Collect (machine-readable)
+  - Validate (checks per domain)
+  - Score (health - C016 CMC006)
+  - Report (capability-doctor-report)
+  - Repair (neu an toan, self-repair)
+self_repair:
+  - Chi Low impact.
+  - Qua Approval (C013) hoac auto cho quen thuoc.
+  - Co rollback.
+  - Ghi Audit (C011).
+  - Khong sua implementation.
+  - Khong Repair vi pham CRITICAL - bao cao len nguoi.
+report:
+  fields: [id, timestamp, capability_version, checks, score, status, repair, evidence]
+events:
+  - CAPABILITY_DOCTOR_RUN
+  - CAPABILITY_DOCTOR_PASSED
+  - CAPABILITY_DOCTOR_FAILED
+  - CAPABILITY_DOCTOR_REPORTED
+  - CAPABILITY_DOCTOR_REPAIRED
+metrics:
+  health_score: 0
+  passed_checks: 0
+  failed_checks: 0
+  warning_checks: 0
+  total_checks: 0
+  repair_count: 0
+traceability:
+  - Capability Doctor Report
+  - Checks
+  - Evidence (C011)
+  - SPEC source (C0xx)

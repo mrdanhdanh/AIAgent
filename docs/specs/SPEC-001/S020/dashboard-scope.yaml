@@ -1,0 +1,19 @@
+# SPEC-001 S020 - Dashboard Scope
+# Dong bo S011 OB010 (Dashboard Model).
+---
+version: "1.0.0"
+reads:
+  - Events (S011)
+  - Metrics (S011)
+  - Trace (S011)
+  - Audit (S011)
+  - Health (S011)
+  - Registry (S014)
+  - Governance (S013)
+  - Compliance (S016)
+  - Doctor (S019)
+not_reads:
+  - Implementation
+  - Business Data
+  - Agent Internal State
+  - Plugin Internal State

@@ -1,0 +1,8 @@
+# SPEC-016 X020 - CLI Events
+---
+version: "1.0.0"
+events:
+  - CLI_CLI_OPENED
+  - CLI_CLI_FILTERED
+  - CLI_CLI_EXPORTED
+note: Event vao S011.

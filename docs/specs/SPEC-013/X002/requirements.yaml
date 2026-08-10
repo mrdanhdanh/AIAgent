@@ -1,0 +1,361 @@
+# SPEC-013 X002 - Evolution Requirements
+---
+id: SPEC-013-X002
+name: Evolution Requirements
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Evolution Team
+functional:
+  XFR-001:
+    title: Semantic Diff
+    description: so sanh phien ban cu/moi
+    priority: Critical
+    category: Core
+    owner: Evolution
+    status: Draft
+    source: [P013, P004]
+    rules: [RULE-013]
+    verification: [Evolution Test, Doctor]
+  XFR-002:
+    title: Check Compatibility
+    description: kiem tra backward compatible
+    priority: Critical
+    category: Core
+    owner: Evolution
+    status: Draft
+    source: [P013, P004]
+    rules: [RULE-013]
+    verification: [Evolution Test, Doctor]
+  XFR-003:
+    title: Create Migration Plan
+    description: tao migration plan
+    priority: Critical
+    category: Core
+    owner: Evolution
+    status: Draft
+    source: [P013, P004]
+    rules: [RULE-013]
+    verification: [Evolution Test, Doctor]
+  XFR-004:
+    title: Migrate
+    description: thuc hien migration
+    priority: High
+    category: Core
+    owner: Evolution
+    status: Draft
+    source: [P013, P004]
+    rules: [RULE-013]
+    verification: [Evolution Test, Doctor]
+  XFR-005:
+    title: Self-Heal
+    description: tu sua an toan (doc-only)
+    priority: High
+    category: Core
+    owner: Evolution
+    status: Draft
+    source: [P013, P004]
+    rules: [RULE-013]
+    verification: [Evolution Test, Doctor]
+  XFR-006:
+    title: Score Health
+    description: cham Health Score 0-100
+    priority: Critical
+    category: Core
+    owner: Evolution
+    status: Draft
+    source: [P013, P004]
+    rules: [RULE-013]
+    verification: [Evolution Test, Doctor]
+  XFR-007:
+    title: Capability Benchmark
+    description: benchmark capability (SPEC-003)
+    priority: High
+    category: Execution
+    owner: Evolution
+    status: Draft
+    source: [P013, P004]
+    rules: [RULE-013]
+    verification: [Evolution Test, Doctor]
+  XFR-008:
+    title: Knowledge Migration
+    description: migrate knowledge base
+    priority: High
+    category: Execution
+    owner: Evolution
+    status: Draft
+    source: [P013, P004]
+    rules: [RULE-013]
+    verification: [Evolution Test, Doctor]
+  XFR-009:
+    title: Stress Test
+    description: stress test qua Simulation (SPEC-012)
+    priority: High
+    category: Execution
+    owner: Evolution
+    status: Draft
+    source: [P013, P004]
+    rules: [RULE-013]
+    verification: [Evolution Test, Doctor]
+  XFR-010:
+    title: Evolve
+    description: tien hoa toan bo pipeline
+    priority: High
+    category: Execution
+    owner: Evolution
+    status: Draft
+    source: [P013, P004]
+    rules: [RULE-013]
+    verification: [Evolution Test, Doctor]
+  XFR-011:
+    title: Track Evolution
+    description: theo doi lifecycle (S011)
+    priority: High
+    category: Observability
+    owner: Evolution
+    status: Draft
+    source: [P013, P004]
+    rules: [RULE-013]
+    verification: [Evolution Test, Doctor]
+  XFR-012:
+    title: Bind Policy
+    description: khai bao tham so Policy (S012 binding)
+    priority: High
+    category: Governance
+    owner: Evolution
+    status: Draft
+    source: [P013, P004]
+    rules: [RULE-013]
+    verification: [Evolution Test, Doctor]
+  XFR-013:
+    title: Register Evolution
+    description: dang ky trong Registry (SPEC-005)
+    priority: Medium
+    category: Data
+    owner: Evolution
+    status: Draft
+    source: [P013, P004]
+    rules: [RULE-013]
+    verification: [Evolution Test, Doctor]
+  XFR-014:
+    title: Support Evolution Chain
+    description: Evolution cha-con
+    priority: Medium
+    category: Execution
+    owner: Evolution
+    status: Draft
+    source: [P013, P004]
+    rules: [RULE-013]
+    verification: [Evolution Test, Doctor]
+  XFR-015:
+    title: Manage Evolution Lifecycle
+    description: vong doi (diff->evolve)
+    priority: Critical
+    category: Execution
+    owner: Evolution
+    status: Draft
+    source: [P013, P004]
+    rules: [RULE-013]
+    verification: [Evolution Test, Doctor]
+  XFR-016:
+    title: Audit Evolution
+    description: ghi audit moi lan chay (S011)
+    priority: High
+    category: Observability
+    owner: Evolution
+    status: Draft
+    source: [P013, P004]
+    rules: [RULE-013]
+    verification: [Evolution Test, Doctor]
+non_functional:
+  XNF-001:
+    title: Safe Evolution
+    description: Khong pha vo he thong (P013)
+    priority: Critical
+    category: Core
+    owner: Evolution
+    status: Draft
+    source: [P013]
+    rules: [RULE-013]
+  XNF-002:
+    title: Backward Compatible
+    description: Moi thay doi giu tuong thich
+    priority: Critical
+    category: Core
+    owner: Evolution
+    status: Draft
+    source: [P013]
+    rules: [RULE-013]
+  XNF-003:
+    title: Migration Planned
+    description: Moi thay doi co migration plan
+    priority: Critical
+    category: Core
+    owner: Evolution
+    status: Draft
+    source: [P013]
+    rules: [RULE-013]
+  XNF-004:
+    title: Observable
+    description: moi evolution quan sat qua S011
+    priority: High
+    category: Observability
+    owner: Evolution
+    status: Draft
+    source: [P013]
+    rules: [RULE-013]
+  XNF-005:
+    title: Self-Heal Safe
+    description: Self-heal doc-only
+    priority: Critical
+    category: Core
+    owner: Evolution
+    status: Draft
+    source: [P013]
+    rules: [RULE-013]
+  XNF-006:
+    title: Compatible
+    description: backward compatible
+    priority: High
+    category: Data
+    owner: Evolution
+    status: Draft
+    source: [P013]
+    rules: [RULE-013]
+  XNF-007:
+    title: Recoverable
+    description: phuc hoi sau loi
+    priority: High
+    category: Core
+    owner: Evolution
+    status: Draft
+    source: [P013]
+    rules: [RULE-013]
+  XNF-008:
+    title: Testable
+    description: kiem thu tu dong
+    priority: High
+    category: Core
+    owner: Evolution
+    status: Draft
+    source: [P013]
+    rules: [RULE-013]
+  XNF-009:
+    title: Performant
+    description: dap ung target diff/migrate time
+    priority: High
+    category: Observability
+    owner: Evolution
+    status: Draft
+    source: [P013]
+    rules: [RULE-013]
+  XNF-010:
+    title: Governed
+    description: chiu Governance (S013)
+    priority: Critical
+    category: Governance
+    owner: Evolution
+    status: Draft
+    source: [P013]
+    rules: [RULE-013]
+  XNF-011:
+    title: Reusable
+    description: Evolution pattern tai su dung
+    priority: Medium
+    category: Data
+    owner: Evolution
+    status: Draft
+    source: [P013]
+    rules: [RULE-013]
+  XNF-012:
+    title: Traceable
+    description: moi evolution truy vet (S011)
+    priority: High
+    category: Observability
+    owner: Evolution
+    status: Draft
+    source: [P013]
+    rules: [RULE-013]
+constraints:
+  XC-001:
+    name: No Breaking Change
+    type: Architectural
+    source: [P013]
+    rules: [RULE-013]
+  XC-002:
+    name: Migration Required
+    type: Architectural
+    source: [P013]
+    rules: [RULE-013]
+  XC-003:
+    name: No Business Data
+    type: Architectural
+    source: [P001]
+    rules: [RULE-001]
+  XC-004:
+    name: No Redefine System
+    type: Architectural
+    source: [P001]
+    rules: [RULE-005]
+  XC-005:
+    name: No Redefine Policy (S012)
+    type: Governance
+    source: [P015]
+    rules: [RULE-012]
+  XC-006:
+    name: Self-Heal Doc-Only
+    type: Governance
+    source: [P015]
+    rules: [RULE-005]
+assumptions:
+  XA-001: He sinh thai ton tai (SPEC-000..012)
+  XA-002: Execution ton tai (SPEC-001)
+  XA-003: Registry kha dung (SPEC-005)
+  XA-004: Doctor + Simulation kha dung (SPEC-011/012)
+  note: Neu gia dinh sai, Evolution Engine chi bao loi, khong tu sua.
+dependencies:
+  logical:
+    - Constitution
+    - Runtime (SPEC-001)
+    - Workflow (SPEC-002)
+    - Registry (SPEC-005)
+    - Doctor (SPEC-011)
+    - Simulation (SPEC-012)
+  runtime_services:
+    - Event Store (S011)
+    - Metrics Collector (S011)
+external_interfaces:
+  Execution: Input
+  System: Diff/Migrate
+  Doctor (SPEC-011): Score
+  Simulation (SPEC-012): Stress
+  Policy (S012): Apply
+quality_attributes:
+  Safety:
+    target: "100%"
+    description: Khong pha vo he thong
+  Compatibility:
+    target: "100%"
+  Reliability:
+    target: "99.9%"
+  Traceability:
+    target: "100%"
+  Observability:
+    target: "100%"
+acceptance:
+  XAR-001:
+    description: Evolution Engine diff va check compatibility duoc
+    related: [XFR-001, XFR-002, P013]
+    verified_by: [Evolution Tests, Doctor]
+  XAR-002:
+    description: Evolution khong pha vo he thong
+    related: [XC-001, P013]
+    verified_by: [Evolution Tests, Doctor]
+  XAR-003:
+    description: Moi thay doi co migration plan
+    related: [XC-002, XFR-003]
+    verified_by: [Doctor]
+  XAR-004:
+    description: Evolution khong chua Business Data
+    related: [XC-003, P001]
+    verified_by: [Doctor]

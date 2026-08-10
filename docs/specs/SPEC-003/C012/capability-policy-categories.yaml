@@ -1,0 +1,4 @@
+# SPEC-003 C012 - Capability Policy Categories (S012 RP003)
+---
+version: "1.0.0"
+categories: [Recovery, Control, Orchestration, Resource, Governance, Security, Lifecycle]

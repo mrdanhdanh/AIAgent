@@ -1,0 +1,8 @@
+# SPEC-015 X010 - SDK Outcome
+---
+version: "1.0.0"
+outcome:
+  success: Exported + SDK_EXPORTED
+  failure: Failed + SDK_FAILED
+  metrics: [SDK_rendered_total, SDK_failed_total]
+  audit: moi outcome ghi vao S011

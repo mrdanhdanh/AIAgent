@@ -1,0 +1,8 @@
+# SPEC-014 X013 - Dashboard Binding Enforcement
+---
+version: "1.0.0"
+binding_enforcement:
+  rules: RULE-007 (event), RULE-013 (deterministic)
+  policies: XPOL-001..010
+  violations: ghi nhan + Doctor X019
+  escalation: S013 Governance

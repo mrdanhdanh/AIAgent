@@ -1,0 +1,11 @@
+# SPEC-002 W018 - Workflow Evolution Validation
+# Doctor kiem tra.
+---
+version: "1.0"
+checks:
+  - Missing Evidence (W011)
+  - Unauthorized Source
+  - Missing Approval (W013)
+  - Breaking Change Without Approval
+  - Invalid Proposal
+  - Apply Khong Qua Registry (W014)

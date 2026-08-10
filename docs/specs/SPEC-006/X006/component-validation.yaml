@@ -1,0 +1,9 @@
+# SPEC-006 X006 - Component Validation
+---
+version: "1.0.0"
+checks:
+  - Missing Component
+  - Duplicate Component ID
+  - Missing Contract
+  - Boundary Violation (X004)
+  - Business Logic trong Component

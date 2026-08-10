@@ -1,0 +1,79 @@
+# SPEC-002 W019 - Workflow Doctor
+# Kiem tra suc khoe Workflow Engine - tong hop checks tu W011..W018 + S016.
+---
+id: SPEC-002-W019
+name: Workflow Doctor
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Workflow Team
+philosophy:
+  - Workflow Doctor la co che kiem tra suc khoe Workflow Engine.
+  - Doctor chi doc machine-readable (W011).
+  - Khong dinh nghia lai quy tac (W016 da tong hop).
+  - Self-repair chi thay doi an toan, co gioi han.
+principles:
+  - Evidence Based
+  - Machine-readable First
+  - Non-invasive
+  - Deterministic
+  - Repairable (self-repair an toan)
+  - Auditable
+scope:
+  checks_domains:
+    - Constitution (SPEC-000)
+    - Contracts (W007)
+    - Policy Binding (W012)
+    - Governance (W013)
+    - Registry (W014)
+    - Resources (W015)
+    - Compliance (W016)
+    - Extensions (W017)
+    - Observability (W011)
+  not_reads:
+    - Implementation
+    - Business Data
+    - Agent Internal State
+    - Plugin Internal State
+check_sources:
+  - "W011 Observability: 5 checks"
+  - "W013 Governance: 6 checks"
+  - "W014 Registry: 6 checks"
+  - "W015 Resources: 5 checks"
+  - "W016 Compliance: 12 rules"
+  - "W017 Extensions: 6 checks"
+  - "W018 Evolution: 6 checks"
+health_score: [Healthy, Degraded, Unhealthy]
+pipeline:
+  - Collect (machine-readable)
+  - Validate (checks per domain)
+  - Score (health - W016 WMC006)
+  - Report (workflow-doctor-report)
+  - Repair (neu an toan, self-repair)
+self_repair:
+  - Chi Low impact.
+  - Qua Approval (W013) hoac auto cho quen thuoc.
+  - Co rollback.
+  - Ghi Audit (W011).
+  - Khong sua implementation.
+  - Khong Repair vi pham CRITICAL - bao cao len nguoi.
+report:
+  fields: [id, timestamp, workflow_version, checks, score, status, repair, evidence]
+events:
+  - WORKFLOW_DOCTOR_RUN
+  - WORKFLOW_DOCTOR_PASSED
+  - WORKFLOW_DOCTOR_FAILED
+  - WORKFLOW_DOCTOR_REPORTED
+  - WORKFLOW_DOCTOR_REPAIRED
+metrics:
+  health_score: 0
+  passed_checks: 0
+  failed_checks: 0
+  warning_checks: 0
+  total_checks: 0
+  repair_count: 0
+traceability:
+  - Workflow Doctor Report
+  - Checks
+  - Evidence (W011)
+  - SPEC source (W0xx)

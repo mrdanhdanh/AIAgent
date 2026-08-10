@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aios://capability-governance.schema.json",
+  "title": "SPEC-003 Capability Governance (C013)",
+  "type": "object",
+  "required": ["id", "name", "version", "status", "frozen", "owner", "philosophy", "principles", "scope", "version_governance", "compatibility_governance", "validation_pipeline", "decisions", "traceability"],
+  "properties": {
+    "id": { "const": "SPEC-003-C013" },
+    "name": { "const": "Capability Governance" },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "status": { "enum": ["Draft", "Review", "Approved", "Stable", "Deprecated"] },
+    "frozen": { "type": "boolean" },
+    "owner": { "type": "string" },
+    "philosophy": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "principles": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "scope": { "type": "object", "required": ["enforces", "not_enforces"] },
+    "version_governance": { "type": "object", "required": ["checks"] },
+    "compatibility_governance": { "type": "object", "required": ["checks"] },
+    "validation_pipeline": { "type": "array", "items": { "type": "string" }, "minItems": 5 },
+    "decisions": { "type": "array", "items": { "type": "string" }, "minItems": 5 },
+    "traceability": { "type": "array", "items": { "type": "string" }, "minItems": 5 }
+  },
+  "additionalProperties": false
+}

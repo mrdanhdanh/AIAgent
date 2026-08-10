@@ -1,0 +1,12 @@
+# SPEC-005 R011 - Registry Dashboard (S011 OB010 reuse)
+---
+version: "1.0.0"
+reads:
+  - Registry Events
+  - Registry Metrics
+  - Registry Trace
+  - Registry Audit
+  - Health (S011)
+rules:
+  - Dashboard chi doc (S011).
+  - Khong doc implementation.

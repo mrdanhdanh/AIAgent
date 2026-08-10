@@ -1,0 +1,8 @@
+# SPEC-008 X010 - Event Outcome
+---
+version: "1.0.0"
+outcome:
+  success: Published + Delivered + EVENT_DELIVERED
+  failure: Rejected + EVENT_REJECTED
+  metrics: [event_published_total, event_rejected_total]
+  audit: moi outcome ghi vao S011

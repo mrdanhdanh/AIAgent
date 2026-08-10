@@ -77,3 +77,16 @@ next_action: "Chạy /impact nếu cần phân tích ảnh hưởng"
 - Xem thêm: `.opencode/skills/dependency-analyzer/SKILL.md`
 - Xem thêm: `.opencode/skills/code-understanding/SKILL.md`
 - Xem thêm: `.opencode/skills/database-reader/SKILL.md`
+
+## Flags:
+
+| Flag | Y nghia |
+|------|---------|
+| `--detail` | Chi tiet tung lop |
+| `--diagram` | Kem sequence diagram |
+
+## Output Contract
+
+- **Output**: trace path UI->API->Service->Repository + evidence.
+- **Format**: markdown + diagram.
+

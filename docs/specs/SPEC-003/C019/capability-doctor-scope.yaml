@@ -1,0 +1,18 @@
+# SPEC-003 C019 - Capability Doctor Scope
+---
+version: "1.0.0"
+checks_domains:
+  - Constitution (SPEC-000)
+  - Contracts (C007)
+  - Policy Binding (C012)
+  - Governance (C013)
+  - Registry (C014)
+  - Resources (C015)
+  - Compliance (C016)
+  - Extensions (C017)
+  - Observability (C011)
+not_reads:
+  - Implementation
+  - Business Data
+  - Agent Internal State
+  - Plugin Internal State

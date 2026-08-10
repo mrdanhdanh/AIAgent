@@ -1,0 +1,6 @@
+# SPEC-009 X009 - Contract State Machine Registry
+---
+version: "1.0.0"
+registered_machines:
+  XSTM-001: { name: Contract Lifecycle, owner: Contract Registry, states: 6, transitions: 6, spec: X009 }
+note: Run State Machine cua S009 (Runtime) - khong dinh nghia lai.

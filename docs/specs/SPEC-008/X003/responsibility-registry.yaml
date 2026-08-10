@@ -1,0 +1,7 @@
+# SPEC-008 X003 - Event Responsibility Registry
+---
+version: "1.0.0"
+registry:
+  owner: Event Team
+  tracked: [XRR-001..016]
+  spec: SPEC-008 X003

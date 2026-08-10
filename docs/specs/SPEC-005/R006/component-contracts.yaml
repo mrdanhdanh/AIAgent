@@ -1,0 +1,6 @@
+# SPEC-005 R006 - Component Contracts
+---
+version: "1.0.0"
+contracts:
+  Registry Contract: [RCP-001, RCP-002, RCP-003, RCP-004, RCP-005, RCP-006, RCP-007]
+  Event Contract: [RCP-008]

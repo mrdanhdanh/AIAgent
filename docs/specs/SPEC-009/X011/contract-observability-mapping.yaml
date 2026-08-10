@@ -1,0 +1,17 @@
+# SPEC-009 X011 - Contract Observability Mapping
+---
+version: "1.0.0"
+mapping:
+  stage -> event:
+    Declare: CONTRACT_DECLARED
+    Validate: CONTRACT_VALIDATING
+    CompatCheck: CONTRACT_COMPAT_CHECKED
+    Publish: CONTRACT_PUBLISHED
+    Resolve: CONTRACT_RESOLVED
+    Verify: CONTRACT_VERIFIED
+    Bind: CONTRACT_BOUND
+    Retire: CONTRACT_RETIRED
+  state -> metric:
+    Published: contract_published_total
+    Retired: contract_retired_total
+    Rejected: contract_rejected_total

@@ -1,0 +1,171 @@
+# SPEC-006 X004 — Context Boundaries (9 XB)
+---
+id: SPEC-006-X004
+name: Context Boundaries
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Context Team
+hierarchy:
+  Context Boundary:
+    - XB001-allocation
+    - XB002-isolation
+    - XB003-validation
+    - XB004-distribution
+    - XB005-mutation
+    - XB006-data
+    - XB007-release
+    - XB008-policy
+    - XB009-governance
+decision:
+  - Neu mot chuc nang khong xac dinh duoc Boundary, chuc nang do khong duoc phep dua vao Context Engine.
+invariants:
+  - Context Engine khong vuot qua Boundary.
+  - Context khong bao gio bi chia se.
+  - Context Engine chi giao tiep qua Contract (S007).
+  - Context khong chua Business Data.
+validation:
+  - Co Business Data trong Context khong?
+  - Context co bi chia se khong?
+  - Context Engine co cap Context truc tiep khong?
+  - Context co bi giu sau Execution ket thuc khong?
+  - Context Engine co dinh nghia policy rieng khong?
+boundaries:
+  XB001-allocation:
+    name: Allocation Boundary
+    severity: Critical
+    version: 1.0.0
+    status: Draft
+    allowed: [Allocate Context khi Execution Created]
+    not_manage: [Allocate ngoai Execution]
+    violation: Allocate ngoai Execution
+    impact: Critical
+    detected_by: Doctor
+    metric: Context Violations
+    target: 0
+    principles: [P009]
+    rules: [RULE-005]
+  XB002-isolation:
+    name: Isolation Boundary
+    severity: Critical
+    version: 1.0.0
+    status: Draft
+    allowed: [Context isolated - khong chia se]
+    not_manage: [Chia se Context]
+    violation: Chia se Context
+    impact: Critical
+    detected_by: Doctor
+    metric: Context Violations
+    target: 0
+    principles: [P006]
+    rules: [RULE-005]
+  XB003-validation:
+    name: Validation Boundary
+    severity: Critical
+    version: 1.0.0
+    status: Draft
+    allowed: [Validate Context truoc khi cap]
+    not_manage: [Cap Context khong hop le]
+    violation: Cap Context khong hop le
+    impact: Critical
+    detected_by: Doctor
+    metric: Context Violations
+    target: 0
+    principles: [P011]
+    rules: [RULE-002]
+  XB004-distribution:
+    name: Distribution Boundary
+    severity: Critical
+    version: 1.0.0
+    status: Draft
+    allowed: [Cap Context cho Agent/Capability qua Contract]
+    not_manage: [Cap truc tiep]
+    violation: Cap truc tiep
+    impact: Critical
+    detected_by: Doctor
+    metric: Context Violations
+    target: 0
+    principles: [P002]
+    rules: [RULE-003]
+  XB005-mutation:
+    name: Mutation Boundary
+    severity: High
+    version: 1.0.0
+    status: Draft
+    allowed: [Mutate Context trong pham vi cap]
+    not_manage: [Mutate ngoai pham vi]
+    violation: Mutate ngoai pham vi
+    impact: High
+    detected_by: Doctor
+    metric: Context Violations
+    target: 0
+    principles: [P009]
+    rules: [RULE-005]
+  XB006-data:
+    name: Data Boundary
+    severity: High
+    version: 1.0.0
+    status: Draft
+    allowed: [Context chi chua metadata]
+    not_manage: [Chua Business Data]
+    violation: Chua Business Data
+    impact: High
+    detected_by: Doctor
+    metric: Context Violations
+    target: 0
+    principles: [P001]
+    rules: [RULE-001]
+  XB007-release:
+    name: Release Boundary
+    severity: Critical
+    version: 1.0.0
+    status: Draft
+    allowed: [Release Context khi Execution ket thuc]
+    not_manage: [Giu Context sau ket thuc]
+    violation: Giu Context sau ket thuc
+    impact: Critical
+    detected_by: Doctor
+    metric: Context Violations
+    target: 0
+    principles: [P009]
+    rules: [RULE-005]
+  XB008-policy:
+    name: Policy Boundary
+    severity: High
+    version: 1.0.0
+    status: Draft
+    allowed: [Dung Policy cua Runtime (S012)]
+    not_manage: [Dinh nghia policy rieng]
+    violation: Dinh nghia policy rieng
+    impact: High
+    detected_by: Doctor
+    metric: Context Violations
+    target: 0
+    principles: [P015]
+    rules: [RULE-012]
+  XB009-governance:
+    name: Governance Boundary
+    severity: Critical
+    version: 1.0.0
+    status: Draft
+    allowed: [Chiu Governance (S013)]
+    not_manage: [Bypass Governance]
+    violation: Bypass Governance
+    impact: Critical
+    detected_by: Doctor
+    metric: Context Violations
+    target: 0
+    principles: [P016]
+    rules: [RULE-008]
+mapping:
+  XB001-allocation: { principle: P009, rule: RULE-005 }
+  XB002-isolation: { principle: P006, rule: RULE-005 }
+  XB003-validation: { principle: P011, rule: RULE-002 }
+  XB004-distribution: { principle: P002, rule: RULE-003 }
+  XB005-mutation: { principle: P009, rule: RULE-005 }
+  XB006-data: { principle: P001, rule: RULE-001 }
+  XB007-release: { principle: P009, rule: RULE-005 }
+  XB008-policy: { principle: P015, rule: RULE-012 }
+  XB009-governance: { principle: P016, rule: RULE-008 }
+metrics:
+  Context Violations: 0

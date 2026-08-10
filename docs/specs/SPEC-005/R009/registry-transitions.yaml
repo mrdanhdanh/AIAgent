@@ -1,0 +1,11 @@
+# SPEC-005 R009 - Registry Transitions (7)
+---
+version: "1.0.0"
+transitions:
+  - "from: RST-001; to: RST-002; event: REGISTRY_ENTRY_VALIDATING; guard: Khai bao hop le"
+  - "from: RST-002; to: RST-003; event: REGISTRY_ENTRY_PUBLISHED; guard: Validate pass + Storage OK"
+  - "from: RST-002; to: RST-006; event: REGISTRY_ENTRY_REJECTED; guard: Validate fail"
+  - "from: RST-003; to: RST-004; event: REGISTRY_ENTRY_DEPRECATED; guard: Governance (S013)"
+  - "from: RST-004; to: RST-003; event: REGISTRY_ENTRY_REACTIVATED; guard: Governance (S013)"
+  - "from: RST-003; to: RST-005; event: REGISTRY_ENTRY_RETIRED; guard: Governance (S013)"
+  - "from: RST-004; to: RST-005; event: REGISTRY_ENTRY_RETIRED; guard: Khong con dung"

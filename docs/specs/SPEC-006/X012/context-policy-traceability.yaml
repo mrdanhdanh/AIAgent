@@ -1,0 +1,14 @@
+# SPEC-006 X012 - Context Policy Traceability
+---
+version: "1.0.0"
+traceability:
+  XPOL-001: { name: Isolation, source: POL-ISOL-001, principle: P006 }
+  XPOL-002: { name: No Business Data, source: S011 OB003A, principle: P001 }
+  XPOL-003: { name: Transient, source: P009, principle: P009 }
+  XPOL-004: { name: Grant Scope, source: S012, principle: P009 }
+  XPOL-005: { name: Release Before End, source: S010 EF008, principle: P011 }
+  XPOL-006: { name: Context Quota, source: S012, principle: P011 }
+  XPOL-007: { name: Merge Same Execution, source: S012, principle: P009 }
+  XPOL-008: { name: Retry Policy, source: S012, principle: P011 }
+  XPOL-009: { name: Audit All, source: S011, principle: P005 }
+  XPOL-010: { name: Key Schema, source: X008, principle: P009 }

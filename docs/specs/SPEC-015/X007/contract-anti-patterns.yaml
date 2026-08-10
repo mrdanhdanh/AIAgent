@@ -1,0 +1,8 @@
+# SPEC-015 X007 - SDK Contract Anti-Patterns
+---
+version: "1.0.0"
+anti_patterns:
+  - No implicit contract (undocumented)
+  - No silent breaking
+  - No write qua SDK
+  - No new data source (P005)

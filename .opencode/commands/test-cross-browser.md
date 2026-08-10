@@ -77,3 +77,9 @@ next_action: "Fix browser-specific issues"
 
 - Xem thêm skill: `.opencode/skills/browser-compatibility/SKILL.md`
 - Xem thêm: `.opencode/knowledge/testing/playwright-e2e.md`
+
+## Output Contract
+
+- **Output**: per-browser results + incompatibility list.
+- **Format**: markdown.
+

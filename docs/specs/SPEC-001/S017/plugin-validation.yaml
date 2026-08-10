@@ -1,0 +1,14 @@
+# SPEC-001 S017 - Plugin Validation
+# Doctor kiem tra.
+---
+version: "1.0.0"
+checks:
+  - Missing Contract
+  - Invalid Version
+  - Unresolved Dependency
+  - Circular Dependency
+  - Missing Capability
+  - Security Violation
+result:
+  - Valid: Plugin san sang Activate.
+  - Invalid: Plugin bi chan, co Invalid Audit (S013).

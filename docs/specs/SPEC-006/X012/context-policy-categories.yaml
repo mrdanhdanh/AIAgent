@@ -1,0 +1,11 @@
+# SPEC-006 X012 - Context Policy Categories
+---
+version: "1.0.0"
+categories:
+  Isolation: [XPOL-001]
+  Data: [XPOL-002, XPOL-010]
+  Lifecycle: [XPOL-003, XPOL-005, XPOL-007]
+  Security: [XPOL-004]
+  Resource: [XPOL-006]
+  Resilience: [XPOL-008]
+  Audit: [XPOL-009]

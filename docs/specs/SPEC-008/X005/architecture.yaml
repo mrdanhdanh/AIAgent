@@ -1,0 +1,10 @@
+# SPEC-008 X005 - Event Architecture
+---
+version: "1.0.0"
+architecture:
+  model: Pub/Sub (topic-based)
+  style: In-process + Event Store
+  key_decisions:
+    - Event immutable (P010)
+    - Append-only log (P005)
+    - Policy qua S012

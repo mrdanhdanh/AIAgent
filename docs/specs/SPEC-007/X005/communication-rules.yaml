@@ -1,0 +1,8 @@
+# SPEC-007 X005 - Artifact Communication Rules
+---
+version: "1.0.0"
+communication_rules:
+  - Sync: create/publish/version (blocking)
+  - Async: events, metrics (S011)
+  - Consume: read-only, khong can grant
+  - Moi op co trace_id (S011)

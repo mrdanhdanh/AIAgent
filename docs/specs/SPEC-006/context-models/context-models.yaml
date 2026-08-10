@@ -1,0 +1,46 @@
+# SPEC-006 Appendix — Context Canonical Models (8 XM)
+---
+version: "1.0.0"
+status: Draft
+aggregate_root: Context
+models:
+  XM-001:
+    name: Context
+    kind: Root
+    description: Context la Aggregate Root cua Context Engine
+    immutable: false
+  XM-002:
+    name: ContextMetadata
+    kind: Entity
+    description: Metadata cua Context
+    immutable: true
+  XM-003:
+    name: ContextScope
+    kind: Value
+    description: Pham vi Context (Execution/Step)
+    immutable: true
+  XM-004:
+    name: ContextOwner
+    kind: Value
+    description: Owner cua Context (Execution)
+    immutable: true
+  XM-005:
+    name: ContextValue
+    kind: Value
+    description: Gia tri Context (metadata)
+    immutable: true
+  XM-006:
+    name: ContextReference
+    kind: Value
+    description: Reference giua Context va Execution
+    immutable: true
+  XM-007:
+    name: ContextResult
+    kind: Entity
+    description: Ket qua Context (collect)
+    immutable: true
+  XM-008:
+    name: ContextSnapshot
+    kind: Entity
+    description: Snapshot Context (replay)
+    immutable: true

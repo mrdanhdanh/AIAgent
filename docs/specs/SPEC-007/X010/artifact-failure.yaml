@@ -1,0 +1,12 @@
+# SPEC-007 X010 - Artifact Failure Modes
+---
+version: "1.0.0"
+failure_modes:
+  - Create fail: error + khong tao Artifact
+  - Validate fail: ARTIFACT_REJECTED + cleanup
+  - Checksum fail: khong publish + event
+  - Publish fail: retry policy
+  - Version fail: giu version cu (P004)
+  - Index fail: publish OK, index retry
+  - Archive fail: giu Artifact, retry
+retry: theo Policy S012

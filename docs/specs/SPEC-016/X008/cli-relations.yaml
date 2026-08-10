@@ -1,0 +1,13 @@
+# SPEC-016 X008 - CLI Relations
+---
+version: "1.0.0"
+relations:
+  REL-X001: { from: CLI, relation: owns, to: CLIDefinition, cardinality: 1..1 }
+  REL-X002: { from: CLI, relation: renders, to: Widget, cardinality: 0..* }
+  REL-X003: { from: CLI, relation: composes, to: Panel, cardinality: 0..* }
+  REL-X004: { from: CLI, relation: builds, to: CLIView, cardinality: 0..* }
+  REL-X005: { from: CLI, relation: has, to: CLIState, cardinality: 1..1 }
+  REL-X006: { from: CLI, relation: exports, to: CLIExport, cardinality: 0..1 }
+  REL-X007: { from: CLI, relation: refers, to: ExecutionRef, cardinality: 1..1 }
+  REL-X008: { from: CLI, relation: emits, to: CLIEvent, cardinality: 0..* }
+  REL-X009: { from: CLI, relation: snapshots, to: CLISnapshot, cardinality: 0..* }

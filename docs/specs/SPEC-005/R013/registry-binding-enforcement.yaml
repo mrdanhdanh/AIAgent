@@ -1,0 +1,11 @@
+# SPEC-005 R013 - Registry Policy Binding Enforcement
+---
+version: "1.0.0"
+enforcement:
+  - Resolve binding (R012)
+  - Validate binding (R012)
+  - Apply (S013 enforce)
+  - Audit (S011)
+rules:
+  - Chi enforce binding Active (R012).
+  - Binding Invalid -> Entry khong luu (Validation Failure).

@@ -1,6 +1,6 @@
 # SPEC-001 S004 — Delegation Boundary (B003)
 ---
-version: "1.0"
+version: "1.0.0"
 delegates:
   Business Logic: Agent
   Tri thức chuyên môn: Skill

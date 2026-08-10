@@ -1,0 +1,15 @@
+# SPEC-002 W004 - State Boundary (WB007)
+---
+version: "1.0"
+name: State Boundary
+severity: Critical
+allowed:
+  - Dung State Machine (S009)
+  - Tham chieu state hop le
+not_allowed:
+  - Dinh nghia state rieng
+violation: Workflow Engine dinh nghia state rieng
+impact: Critical
+detected_by: Doctor
+principles: [P005]
+rules: [RULE-005]

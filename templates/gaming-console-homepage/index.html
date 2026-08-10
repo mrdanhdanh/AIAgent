@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="NEXA X1 — next-generation gaming console. Discover the future of play." />
+  <title>NEXA X1 — Gaming Console</title>
+  <link rel="stylesheet" href="style.css" />
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+
+  <!-- ============ NAV ============ -->
+  <header class="nav" id="top">
+    <div class="nav-inner">
+      <a class="logo" href="#top" aria-label="NEXA X1 home">
+        <span class="logo-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" width="28" height="28" role="img" aria-label="NEXA logo">
+            <path d="M4 16 L12 8 L16 12 L20 8 L28 16 L20 24 L16 20 L12 24 Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span class="logo-text">NEXA<span class="logo-x">X1</span></span>
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#intro">Introduction</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="btn btn-accent nav-cta" href="#contact">Pre-order</a>
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links-mobile">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav id="nav-links-mobile" class="nav-mobile" aria-label="Mobile">
+      <a href="#intro">Introduction</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+      <a href="#contact" class="btn btn-accent">Pre-order</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ============ SECTION 1: INTRODUCTION (HERO) ============ -->
+    <section class="hero" id="intro">
+      <div class="hero-bg" aria-hidden="true">
+        <span class="grid-line gl-1"></span>
+        <span class="grid-line gl-2"></span>
+        <span class="grid-line gl-3"></span>
+        <span class="orb orb-cyan"></span>
+        <span class="orb orb-magenta"></span>
+      </div>
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <span class="badge">Next-Generation Gaming Console</span>
+          <h1>Play <span class="grad-text">Beyond</span> Reality</h1>
+          <p class="hero-sub">
+            NEXA X1 packs 16 TFLOPS of ray-tracing power, a custom 8-core Zen 6 CPU,
+            and 1 TB of ultra-fast NVMe storage into the slimmest console we have ever built.
+            Experience 4K at 120 fps with near-zero latency.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-accent" href="#services">Explore services</a>
+            <a class="btn btn-ghost" href="#contact">Pre-order now</a>
+          </div>
+          <ul class="hero-stats">
+            <li><strong>16</strong><span>TFLOPS</span></li>
+            <li><strong>8K</strong><span>upscale</span></li>
+            <li><strong>120</strong><span>fps 4K</span></li>
+            <li><strong>1TB</strong><span>NVMe SSD</span></li>
+          </ul>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <svg class="console-svg" viewBox="0 0 420 240" width="100%" role="img" aria-label="NEXA X1 console illustration">
+            <defs>
+              <linearGradient id="bodyGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#1c1c30"/>
+                <stop offset="1" stop-color="#0b0b16"/>
+              </linearGradient>
+              <linearGradient id="stripeGrad" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0" stop-color="#00e5ff"/>
+                <stop offset="1" stop-color="#7b2dff"/>
+              </linearGradient>
+              <filter id="softGlow" x="-40%" y="-40%" width="180%" height="180%">
+                <feGaussianBlur stdDeviation="6" result="blur"/>
+                <feMerge>
+                  <feMergeNode in="blur"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
+            </defs>
+            <!-- console body -->
+            <rect x="40" y="70" width="340" height="110" rx="18" fill="url(#bodyGrad)" stroke="rgba(140,160,255,.25)" stroke-width="1.5"/>
+            <!-- top vent lines -->
+            <g stroke="rgba(140,160,255,.35)" stroke-width="2" stroke-linecap="round">
+              <line x1="70" y1="86" x2="110" y2="86"/>
+              <line x1="70" y1="96" x2="130" y2="96"/>
+              <line x1="70" y1="106" x2="120" y2="106"/>
+            </g>
+            <!-- neon stripe -->
+            <rect x="40" y="150" width="340" height="6" rx="3" fill="url(#stripeGrad)" filter="url(#softGlow)"/>
+            <!-- front panel -->
+            <rect x="300" y="100" width="60" height="34" rx="8" fill="#0d0d1a" stroke="rgba(140,160,255,.3)" stroke-width="1"/>
+            <circle cx="322" cy="117" r="4" fill="#00e5ff" filter="url(#softGlow)"/>
+            <rect x="334" y="113" width="16" height="8" rx="2" fill="rgba(140,160,255,.35)"/>
+            <!-- controller left -->
+            <g transform="translate(60 20)">
+              <path d="M0 60 h36 l8 -14 a26 26 0 0 1 44 0 l8 14 h36 v8 h-30 l-6 10 a18 18 0 0 1 -32 0 l-6 -10 h-58 z"
+                    fill="url(#bodyGrad)" stroke="rgba(140,160,255,.3)" stroke-width="1.2"/>
+              <circle cx="30" cy="62" r="5" fill="#00e5ff" filter="url(#softGlow)"/>
+              <circle cx="96" cy="62" r="5" fill="#ff2d78" filter="url(#softGlow)"/>
+            </g>
+            <!-- controller right -->
+            <g transform="translate(244 20)">
+              <path d="M0 60 h36 l8 -14 a26 26 0 0 1 44 0 l8 14 h36 v8 h-30 l-6 10 a18 18 0 0 1 -32 0 l-6 -10 h-58 z"
+                    fill="url(#bodyGrad)" stroke="rgba(140,160,255,.3)" stroke-width="1.2"/>
+              <circle cx="30" cy="62" r="5" fill="#00e5ff" filter="url(#softGlow)"/>
+              <circle cx="96" cy="62" r="5" fill="#ff2d78" filter="url(#softGlow)"/>
+            </g>
+            <!-- base shadow -->
+            <ellipse cx="210" cy="186" rx="160" ry="8" fill="rgba(0,229,255,.12)"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SECTION 2: SERVICES ============ -->
+    <section class="services" id="services">
+      <div class="section-head reveal">
+        <span class="badge">Services</span>
+        <h2>Everything a gamer needs</h2>
+        <p class="section-sub">One console. A complete gaming ecosystem designed for performance, community, and play.</p>
+      </div>
+      <div class="services-grid">
+
+        <article class="card reveal">
+          <span class="card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="34" height="34" role="img" aria-label="Cloud gaming icon">
+              <path d="M6.5 18a4.5 4.5 0 0 1-.4-9A6 6 0 0 1 18 9.6a4 4 0 0 1-.5 8z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <h3>Cloud Gaming</h3>
+          <p>Stream AAA titles instantly on NEXA Cloud — no downloads, no waiting. 2000+ games playable on day one.</p>
+        </article>
+
+        <article class="card reveal">
+          <span class="card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="34" height="34" role="img" aria-label="Game library icon">
+              <path d="M4 4h16v16H4z M4 9h16 M9 4v5 M4 14h16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <h3>Game Library</h3>
+          <p>Discover the NEXA Library — 2000+ curated titles across every genre, refreshed monthly with new releases.</p>
+        </article>
+
+        <article class="card reveal">
+          <span class="card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="34" height="34" role="img" aria-label="Multiplayer icon">
+              <path d="M9 11a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z M15.5 13a3 3 0 1 0 0-6 M2.5 20c0-3.5 3-6 6.5-6s6.5 2.5 6.5 6 M17 15c2.6 0 4.5 2 4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <h3>True Multiplayer</h3>
+          <p>Cross-play with up to 64 players over ultra-low-latency dedicated servers. Squad up on any device.</p>
+        </article>
+
+        <article class="card reveal">
+          <span class="card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="34" height="34" role="img" aria-label="Performance icon">
+              <path d="M13 3 5 14h6l-1 7 8-11h-6z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <h3>4K · 120 fps</h3>
+          <p>Hardware ray tracing, variable refresh rate, and 8K upscaling deliver buttery-smooth visuals on every display.</p>
+        </article>
+
+        <article class="card reveal">
+          <span class="card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="34" height="34" role="img" aria-label="Family controls icon">
+              <path d="M12 3l7 3v5c0 4.5-3 8.5-7 10-4-1.5-7-5.5-7-10V6z M9.5 11.5 11 13l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <h3>Family Controls</h3>
+          <p>Granular playtime limits, content filters, and spending caps — build a safe gaming space for every age.</p>
+        </article>
+
+        <article class="card reveal">
+          <span class="card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="34" height="34" role="img" aria-label="Backward compatibility icon">
+              <path d="M3 12a9 9 0 1 0 3-6.7M3 4v5h5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <h3>Backward Compatible</h3>
+          <p>Play generations of favorites with boosted resolution, improved load times, and enhanced frame rates.</p>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ============ SECTION 3: CONTACT DETAILS ============ -->
+    <section class="contact" id="contact">
+      <div class="section-head reveal">
+        <span class="badge">Contact</span>
+        <h2>Get in touch</h2>
+        <p class="section-sub">Questions about NEXA X1, pre-orders, or support? Our team is ready to help around the clock.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-info reveal">
+          <div class="contact-card">
+            <span class="contact-label">Email</span>
+            <a class="contact-value" href="mailto:support@nexa-gaming.com">support@nexa-gaming.com</a>
+          </div>
+          <div class="contact-card">
+            <span class="contact-label">Phone</span>
+            <a class="contact-value" href="tel:+18005550137">+1 (800) 555-0137</a>
+          </div>
+          <div class="contact-card">
+            <span class="contact-label">Address</span>
+            <span class="contact-value">2120 Play Circuit, Irvine, CA 92612, USA</span>
+          </div>
+          <div class="contact-social">
+            <span class="contact-label">Follow us</span>
+            <div class="social-links">
+              <a href="#" aria-label="NEXA X1 on X (Twitter)">
+                <svg viewBox="0 0 24 24" width="22" height="22" role="img" aria-hidden="true">
+                  <path d="M4 4l16 16M20 4L4 20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </a>
+              <a href="#" aria-label="NEXA X1 on YouTube">
+                <svg viewBox="0 0 24 24" width="22" height="22" role="img" aria-hidden="true">
+                  <path d="M3 8a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v8a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3z M10 9l5 3-5 3z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                </svg>
+              </a>
+              <a href="#" aria-label="NEXA X1 on Discord">
+                <svg viewBox="0 0 24 24" width="22" height="22" role="img" aria-hidden="true">
+                  <path d="M8 9c1-1 3-1 4-1s3 0 4 1m-8 5v-2m8 2v-2m-9 4c2 1 5 1 7 0" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <form class="contact-form reveal" action="#" method="post">
+          <h3>Send us a message</h3>
+          <div class="field">
+            <label for="cf-name">Name</label>
+            <input id="cf-name" name="name" type="text" autocomplete="name" required placeholder="Your name" />
+          </div>
+          <div class="field">
+            <label for="cf-email">Email</label>
+            <input id="cf-email" name="email" type="email" autocomplete="email" required placeholder="you@example.com" />
+          </div>
+          <div class="field">
+            <label for="cf-message">Message</label>
+            <textarea id="cf-message" name="message" rows="4" required placeholder="How can we help?"></textarea>
+          </div>
+          <button class="btn btn-accent btn-block" type="submit">Send message</button>
+          <p class="form-note">This demo opens your email client with the message pre-filled (mailto).</p>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <span class="logo-text">NEXA<span class="logo-x">X1</span></span>
+      <p>© <span id="year">2026</span> NEXA Gaming. All rights reserved. Built for players.</p>
+      <nav class="footer-links" aria-label="Footer">
+        <a href="#intro">Introduction</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

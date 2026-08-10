@@ -1,0 +1,14 @@
+# SPEC-001 S010 — Artifact Flow (EF011) v4
+---
+version: "1.0"
+flow:
+  - Execution Output
+  - Checkpoint
+  - Execution Result
+  - Artifact
+  - Publish
+  - Archive
+rules:
+  - Artifact immutable (P010).
+  - Checkpoint dùng cho Replay (S009).
+  - Result tổng hợp từ Artifact + Metrics (S008 ENT-012).

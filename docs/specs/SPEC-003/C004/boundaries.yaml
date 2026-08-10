@@ -1,0 +1,184 @@
+# SPEC-003 C004 — Capability Boundaries (Firewall cua Capability System)
+# 9 boundary + hierarchy + severity + violations + metrics.
+---
+id: SPEC-003-C004
+name: Capability Boundaries
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Capability Team
+hierarchy:
+  Capability Boundary:
+    - CB001-declaration
+    - CB002-registry
+    - CB003-validation
+    - CB004-resolution
+    - CB005-interface
+    - CB006-dependency
+    - CB007-mapping
+    - CB008-policy
+    - CB009-governance
+decision:
+  - Neu mot chuc nang khong xac dinh duoc Boundary, chuc nang do khong duoc phep dua vao Capability System.
+invariants:
+  - Capability System khong vuot qua Boundary.
+  - Capability System khong tu resolve - giao cho Runtime (EF007).
+  - Capability System chi giao tiep qua Contract (S007).
+  - Capability System chi phu thuoc vao Abstraction.
+  - Capability System khong biet implementation cua Agent.
+  - Capability System khong biet implementation cua Plugin.
+validation:
+  - Co code trong Capability khong?
+  - Capability System co tu resolve khong?
+  - Capability System co goi Agent cu the khong?
+  - Capability System co phu thuoc Plugin cu the khong?
+  - Capability System co hardcode mapping khong?
+  - Capability System co dinh nghia policy rieng khong?
+  - Capability System co giao tiep ngoai Contract khong?
+boundaries:
+  CB001-declaration:
+    name: Declaration Boundary
+    severity: Critical
+    version: 1.0.0
+    status: Draft
+    allowed: [Nhan khai bao nang luc (metadata), Validate schema khai bao]
+    not_manage: [Code, Script, Executable]
+    violation: Capability System nhan code thay vi khai bao
+    impact: Critical
+    detected_by: Doctor
+    metric: Declaration Violations
+    target: 0
+    principles: [P003]
+    rules: [RULE-001]
+  CB002-registry:
+    name: Registry Boundary
+    severity: Critical
+    version: 1.0.0
+    status: Draft
+    allowed: [Dang ky trong Registry (S014 capability-registry), Doc Registry (S014)]
+    not_manage: [Capability tu nguon khac, Capability chua dang ky]
+    violation: Capability System dung capability ngoai Registry
+    impact: Critical
+    detected_by: Doctor
+    metric: Registry Violations
+    target: 0
+    principles: [P003]
+    rules: [RULE-002]
+  CB003-validation:
+    name: Validation Boundary
+    severity: Critical
+    version: 1.0.0
+    status: Draft
+    allowed: [Validate cau truc, Validate tham chieu, Tu choi Capability khong hop le]
+    not_manage: [Dung Capability chua validate]
+    violation: Capability System dung capability khong hop le
+    impact: Critical
+    detected_by: Doctor
+    metric: Validation Violations
+    target: 0
+    principles: [P011]
+    rules: [RULE-002]
+  CB004-resolution:
+    name: Resolution Boundary
+    severity: Critical
+    version: 1.0.0
+    status: Draft
+    allowed: [Resolve qua Runtime (S010 EF007), Tra ket qua resolution]
+    not_manage: [Tu resolve, Tu chon Agent]
+    violation: Capability System tu resolve ngoai Runtime
+    impact: Critical
+    detected_by: Doctor
+    metric: Resolution Violations
+    target: 0
+    principles: [P007]
+    rules: [RULE-002]
+  CB005-interface:
+    name: Interface Boundary
+    severity: High
+    version: 1.0.0
+    status: Draft
+    allowed: [Giao tiep qua Contract (S007), Goi Capability da resolve]
+    not_manage: [Giao tiep truc tiep Agent/Plugin]
+    violation: Capability System goi truc tiep Agent
+    impact: High
+    detected_by: Doctor
+    metric: Interface Violations
+    target: 0
+    principles: [P002]
+    rules: [RULE-003]
+  CB006-dependency:
+    name: Dependency Boundary
+    severity: High
+    version: 1.0.0
+    status: Draft
+    allowed: [Phu thuoc Registry (S014), Phu thuoc Contract (S007)]
+    not_manage: [Phu thuoc Agent cu the, Phu thuoc Plugin cu the]
+    violation: Capability System phu thuoc Plugin cu the
+    impact: High
+    detected_by: Doctor
+    metric: Dependency Violations
+    target: 0
+    principles: [P012]
+    rules: [RULE-010]
+  CB007-mapping:
+    name: Mapping Boundary
+    severity: Critical
+    version: 1.0.0
+    status: Draft
+    allowed: [Mapping qua Registry (S014), Capability group hop le]
+    not_manage: [Hardcode mapping Agent, Mapping truc tiep]
+    violation: Capability System hardcode mapping Agent
+    impact: Critical
+    detected_by: Doctor
+    metric: Mapping Violations
+    target: 0
+    principles: [P003]
+    rules: [RULE-002]
+  CB008-policy:
+    name: Policy Boundary
+    severity: High
+    version: 1.0.0
+    status: Draft
+    allowed: [Dung Policy cua Runtime (S012), Khai bao tham so cho policy]
+    not_manage: [Dinh nghia policy rieng]
+    violation: Capability System dinh nghia policy rieng
+    impact: High
+    detected_by: Doctor
+    metric: Policy Violations
+    target: 0
+    principles: [P015]
+    rules: [RULE-012]
+  CB009-governance:
+    name: Governance Boundary
+    severity: Critical
+    version: 1.0.0
+    status: Draft
+    allowed: [Chiu Governance (S013), Ghi Audit (S011)]
+    not_manage: [Bypass Governance, Tu phe duyet]
+    violation: Capability System bypass Governance
+    impact: Critical
+    detected_by: Doctor
+    metric: Governance Violations
+    target: 0
+    principles: [P016]
+    rules: [RULE-008]
+mapping:
+  CB001-declaration: { principle: P003, rule: RULE-001 }
+  CB002-registry: { principle: P003, rule: RULE-002 }
+  CB003-validation: { principle: P011, rule: RULE-002 }
+  CB004-resolution: { principle: P007, rule: RULE-002 }
+  CB005-interface: { principle: P002, rule: RULE-003 }
+  CB006-dependency: { principle: P012, rule: RULE-010 }
+  CB007-mapping: { principle: P003, rule: RULE-002 }
+  CB008-policy: { principle: P015, rule: RULE-012 }
+  CB009-governance: { principle: P016, rule: RULE-008 }
+metrics:
+  Declaration Violations: 0
+  Registry Violations: 0
+  Validation Violations: 0
+  Resolution Violations: 0
+  Interface Violations: 0
+  Dependency Violations: 0
+  Mapping Violations: 0
+  Policy Violations: 0
+  Governance Violations: 0

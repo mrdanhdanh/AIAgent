@@ -1,0 +1,8 @@
+# SPEC-014 X018 - Dashboard Deprecation
+---
+version: "1.0.0"
+deprecation:
+  - Deprecated qua R009 lifecycle (SPEC-005).
+  - Co notice truoc 1 version.
+  - Breaking -> ADR + RFC.
+  - Migration guide bat buoc.

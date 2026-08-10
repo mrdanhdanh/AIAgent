@@ -1,0 +1,8 @@
+# SPEC-014 X020 - Dashboard Events
+---
+version: "1.0.0"
+events:
+  - DASHBOARD_DASHBOARD_OPENED
+  - DASHBOARD_DASHBOARD_FILTERED
+  - DASHBOARD_DASHBOARD_EXPORTED
+note: Event vao S011.

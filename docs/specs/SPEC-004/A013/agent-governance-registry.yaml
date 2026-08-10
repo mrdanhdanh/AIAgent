@@ -1,0 +1,13 @@
+# SPEC-004 A013 - Agent Governance Registry
+---
+version: "1.0.0"
+registry:
+  - agent-governance.yaml
+  - agent-governance-stack.yaml
+  - agent-binding-enforcement.yaml
+  - agent-governance-matrix.yaml
+  - agent-governance-events.yaml
+  - agent-governance-decisions.yaml
+  - agent-governance-lifecycle.yaml
+  - agent-governance-metrics.yaml
+  - agent-governance.schema.json

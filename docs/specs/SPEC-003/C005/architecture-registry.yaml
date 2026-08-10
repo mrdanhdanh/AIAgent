@@ -1,0 +1,12 @@
+# SPEC-003 C005 - Architecture Registry
+---
+version: "1.0.0"
+registries:
+  - architecture.yaml
+  - layer-model.yaml
+  - domain-model.yaml
+  - dependency-rules.yaml
+  - communication-rules.yaml
+  - architecture-matrix.yaml
+  - architecture-decision-log.yaml
+  - architecture.schema.json

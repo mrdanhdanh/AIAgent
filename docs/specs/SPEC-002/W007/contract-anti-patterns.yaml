@@ -1,0 +1,8 @@
+# SPEC-002 W007 - Contract Anti-patterns
+---
+version: "1.0"
+anti_patterns:
+  - Contract tra Business Data.
+  - Contract dinh nghia lai State Machine (S009).
+  - Contract dinh nghia lai Policy (S012).
+  - Contract phu thuoc Agent/Plugin cu the.

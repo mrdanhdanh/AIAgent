@@ -43,3 +43,12 @@ answer: "Markdown đầy đủ có nguồn"
 sources: ["path/to/file.cs:line"]
 suggested_commands: ["/knowledge-trace <entity>", "/knowledge-impact <entity>"]
 ```
+
+## Flags:
+
+| Flag | Y nghia |
+|------|---------|
+| `--index` | Dung knowledge index |
+| `--grep` | Grep truc tiep |
+| `--evidence` | Kem bang chung |
+

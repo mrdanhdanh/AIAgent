@@ -1,0 +1,10 @@
+# SPEC-008 X010 - Event Query
+---
+version: "1.0.0"
+query_ops:
+  - GetEvent(event_id)
+  - GetStream(stream_id)
+  - SearchEvents(query)
+  - ListByExecution(execution_id)
+  - GetLineage(event_id)
+rule: Query khong thay doi Event, khong can grant.

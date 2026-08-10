@@ -1,0 +1,8 @@
+# SPEC-009 X009 - Contract Transition Types
+---
+version: "1.0.0"
+transition_types:
+  external: [CONTRACT_VALIDATING, CONTRACT_PUBLISHED, CONTRACT_REJECTED, CONTRACT_RETIRED]
+  internal: [CONTRACT_VERSIONED, CONTRACT_RESOLVED]
+  error: [CONTRACT_REJECTED]
+rule: Internal transition chi trong Contract System.

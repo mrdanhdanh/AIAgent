@@ -1,0 +1,8 @@
+# SPEC-011 X012 - Retry Binding
+---
+version: "1.0.0"
+retry_binding:
+  retry: theo S012 retry policy
+  applies_to: [Scan, Report]
+  max_attempts: 3 (default)
+  backoff: exponential (S012)

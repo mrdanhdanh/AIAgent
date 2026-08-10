@@ -1,0 +1,10 @@
+# SPEC-009 X010 - Contract Query
+---
+version: "1.0.0"
+query_ops:
+  - GetContract(contract_id)
+  - GetVersion(contract_id, version)
+  - SearchContracts(query)
+  - ListByProvider(provider_id)
+  - GetHistory(contract_id)
+rule: Query khong thay doi Contract, khong can grant.

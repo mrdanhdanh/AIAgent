@@ -1,0 +1,11 @@
+# SPEC-005 R010 - Registry Query Flow
+---
+version: "1.0.0"
+flow:
+  - Query Request
+  - Validate Query
+  - Lookup (theo domain)
+  - Tra ket qua
+rules:
+  - Query chi doc metadata.
+  - Khong tra Business Data.

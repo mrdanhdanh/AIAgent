@@ -1,0 +1,19 @@
+# SPEC-013 X008 - Evolution Entities (15 ENT)
+---
+version: "1.0.0"
+entities:
+  ENT-X001: { name: Evolution, kind: AggregateRoot, owner: Evolution Engine, immutable: false }
+  ENT-X002: { name: EvolutionDefinition, kind: Entity, owner: Evolution Engine, immutable: true }
+  ENT-X003: { name: SemanticDiff, kind: Entity, owner: Evolution Engine, immutable: true }
+  ENT-X004: { name: CompatibilityReport, kind: Entity, owner: Evolution Engine, immutable: true }
+  ENT-X005: { name: MigrationPlan, kind: Value, owner: Evolution Engine, immutable: false }
+  ENT-X006: { name: EvolutionState, kind: Transient, owner: Evolution Engine, immutable: false }
+  ENT-X007: { name: EvolutionReport, kind: Entity, owner: Evolution Engine, immutable: true }
+  ENT-X008: { name: EvolutionEvent, kind: Ref (S011), owner: Runtime, immutable: true }
+  ENT-X009: { name: EvolutionMetric, kind: Ref (S011), owner: Runtime, immutable: true }
+  ENT-X010: { name: EvolutionSnapshot, kind: Entity, owner: Evolution Engine, immutable: false }
+  ENT-X011: { name: ExecutionRef, kind: Ref (SPEC-001), owner: Execution, immutable: true }
+  ENT-X012: { name: SystemRef, kind: Ref (SPEC-000..012), owner: System, immutable: true }
+  ENT-X013: { name: ModuleRef, kind: Ref (SPEC-013), owner: Evolution, immutable: true }
+  ENT-X014: { name: PolicyRef, kind: Ref (S012), owner: Runtime, immutable: true }
+  ENT-X015: { name: EvolutionExtension, kind: Value, owner: Evolution Engine, immutable: true }

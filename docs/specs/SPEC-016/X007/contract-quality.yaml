@@ -1,0 +1,7 @@
+# SPEC-016 X007 - CLI Contract Quality
+---
+version: "1.0.0"
+quality:
+  - Contract co schema + doc + test
+  - Contract register trong SPEC-005
+  - Doctor X019 check

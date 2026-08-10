@@ -1,0 +1,17 @@
+# SPEC-005 R011 - Registry Events (S011 reuse)
+---
+version: "1.0.0"
+definition_events: # nguon: R009 registry-state-events.yaml (6 event types)
+  - REGISTRY_ENTRY_VALIDATING
+  - REGISTRY_ENTRY_PUBLISHED
+  - REGISTRY_ENTRY_REJECTED
+  - REGISTRY_ENTRY_DEPRECATED
+  - REGISTRY_ENTRY_REACTIVATED
+  - REGISTRY_ENTRY_RETIRED
+run_events:
+  note: Entry Run dung EXECUTION_* cua S011 (Runtime).
+rules:
+  - Event immutable (P010).
+  - Event chi append.
+  - Moi transition sinh Event (R009).
+  - Event co correlation_id.

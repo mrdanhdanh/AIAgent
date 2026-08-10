@@ -1,0 +1,11 @@
+# SPEC-008 X008 - Event References
+---
+version: "1.0.0"
+references:
+  - ExecutionRef (SPEC-001)
+  - ProducerRef (SPEC-004/002)
+  - SubscriberRef (SPEC-004)
+  - PolicyRef (S012)
+  - ArtifactRef (SPEC-007)
+  - RegistryEntry (SPEC-005)
+rule: Reference readonly, khong duoc mutate qua Event.

@@ -1,0 +1,8 @@
+# SPEC-009 X008 - Contract Identity
+---
+version: "1.0.0"
+identity:
+  contract_id: UUID (generated at Declare)
+  version: SemVer (P004)
+  provider_id: UUID (from Provider)
+identity_scope: Registry-scoped (SPEC-005)

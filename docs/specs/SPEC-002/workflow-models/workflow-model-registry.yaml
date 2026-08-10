@@ -1,0 +1,4 @@
+# SPEC-002 Appendix - Workflow Model Registry
+---
+version: "1.0"
+models: [WM-001, WM-002, WM-003, WM-004, WM-005, WM-006, WM-007, WM-008]

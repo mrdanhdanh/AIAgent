@@ -1,0 +1,50 @@
+# SPEC-003 C008 — Capability Data Model
+# Canonical Data Model — Single Source of Truth (P009).
+---
+version: "1.0.0"
+status: Draft
+frozen: false
+aggregate_root: Capability
+aggregate_rules:
+  - Capability la Aggregate Root duy nhat.
+  - "Capability owns: [Definition, Mapping, Binding, Result, Events, Metrics]"
+  - "Capability references: [Agent (SPEC-004), Plugin (S017), Execution (S008), Registry Entry (S014)]"
+  - Ownership va Reference khac nhau - khong nham lan.
+classification:
+  Capability Data: [Definition Data, Mapping Data]
+  Definition Data: [CapabilityDefinition, CapabilityVersion, CapabilityGroup]
+  Mapping Data: [CapabilityMapping, CapabilityBinding]
+  Transient: [CapabilityState]
+  Persistent Metadata: [CapabilityResult, Events, Metrics, Trace]
+  Reference Data: [Agent Ref (SPEC-004), Plugin Ref (S017), Execution Ref (S008), Registry Entry (S014)]
+  not_manages: [Business Data, Knowledge, Plugin Data, User Data]
+invariants:
+  - Capability co dung mot Definition.
+  - Capability dang ky trong Registry (S014).
+  - Mapping qua Registry - khong hardcode (CB007).
+  - CapabilityResult immutable.
+  - Event khong thay doi.
+  - Capability ID toan cuc.
+  - Capability luon co Owner.
+  - Capability luon co Version.
+  - Capability luon co Lifecycle.
+  - Capability khong doi Identity.
+  - Definition khong doi khi Published.
+  - Binding khong doi khi Published.
+consistency:
+  levels: [Definition Consistency, Mapping Consistency, Binding Consistency]
+  rules:
+    - Definition luon hop le (validate truoc khi dang ky).
+    - Mapping luon qua Registry.
+    - Binding luon co policy_ref hop le (S012).
+    - Metrics chi append.
+    - Event chi append.
+dependencies:
+  - Capability → Definition
+  - Capability → Mapping
+  - Capability → Binding
+  - Capability → Agent (SPEC-004)
+  - Capability → Plugin (S017)
+  - Capability → Execution (S008)
+  - Capability → Registry (S014)
+# note: Khong dependency nguoc.

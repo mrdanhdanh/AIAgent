@@ -1,0 +1,8 @@
+# SPEC-015 X012 - Retry Binding
+---
+version: "1.0.0"
+retry_binding:
+  retry: theo S012 retry policy
+  applies_to: [Run, Compose, Export]
+  max_attempts: 3 (default)
+  backoff: exponential (S012)

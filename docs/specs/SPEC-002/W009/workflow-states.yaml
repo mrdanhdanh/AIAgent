@@ -1,0 +1,12 @@
+# SPEC-002 W009 - Workflow Definition States (6)
+---
+version: "1.0.0"
+initial_state: WST-001
+terminal_states: [WST-005, WST-006]
+states:
+  WST-001: { name: Draft, category: Initial, type: Initial, terminal: false }
+  WST-002: { name: Validating, category: Preparation, type: Internal, terminal: false }
+  WST-003: { name: Published, category: Active, type: Active, terminal: false }
+  WST-004: { name: Deprecated, category: Control, type: Active, terminal: false }
+  WST-005: { name: Retired, category: Terminal, type: Terminal, terminal: true }
+  WST-006: { name: Rejected, category: Terminal, type: Terminal, terminal: true }

@@ -1,0 +1,13 @@
+# SPEC-006 X008 - Context Relations
+---
+version: "1.0.0"
+relations:
+  REL-X001: { from: Context, relation: owns, to: ContextMetadata, cardinality: 1..1 }
+  REL-X002: { from: Context, relation: contains, to: ContextSection, cardinality: 1..* }
+  REL-X003: { from: ContextSection, relation: contains, to: ContextItem, cardinality: 1..* }
+  REL-X004: { from: Context, relation: has, to: ContextState, cardinality: 1..1 }
+  REL-X005: { from: Context, relation: grants, to: ContextGrant, cardinality: 0..* }
+  REL-X006: { from: Context, relation: refers, to: ExecutionRef, cardinality: 1..1 }
+  REL-X007: { from: Context, relation: refers, to: AgentRef, cardinality: 0..* }
+  REL-X008: { from: Context, relation: emits, to: ContextEvent, cardinality: 0..* }
+  REL-X009: { from: Context, relation: snapshots, to: ContextSnapshot, cardinality: 0..* }

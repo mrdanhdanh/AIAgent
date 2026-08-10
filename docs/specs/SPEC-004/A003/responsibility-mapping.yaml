@@ -1,0 +1,22 @@
+# SPEC-004 A003 - Responsibility Mapping (ARR -> Requirement)
+---
+version: "1.0.0"
+mapping:
+  ARR-001: [AFR-001]
+  ARR-002: [AFR-002]
+  ARR-003: [AFR-006]
+  ARR-004: [AFR-007]
+  ARR-005: [AFR-003]
+  ARR-006: [AFR-004]
+  ARR-007: [AFR-005]
+  ARR-008: [AFR-008]
+  ARR-009: [AFR-009]
+  ARR-010: [AFR-010]
+  ARR-011: [AFR-011]
+  ARR-012: [AFR-012]
+  ARR-013: [AFR-013]
+  ARR-014: [AFR-014]
+  ARR-015: [AFR-015]
+  ARR-016: [AFR-016]
+  ARR-017: [ANFR-010]
+  ARR-018: [AFR-006]

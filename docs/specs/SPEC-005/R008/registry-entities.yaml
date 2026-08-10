@@ -1,0 +1,19 @@
+# SPEC-005 R008 - Registry Entities (15 ENT)
+---
+version: "1.0.0"
+entities:
+  ENT-R001: { name: RegistryEntry, kind: AggregateRoot, owner: Registry, immutable: false }
+  ENT-R002: { name: EntryMetadata, kind: Entity, owner: Registry, immutable: true }
+  ENT-R003: { name: EntryVersion, kind: Entity, owner: Registry, immutable: true }
+  ENT-R004: { name: EntryDomain, kind: Value, owner: Registry, immutable: true }
+  ENT-R005: { name: EntryOwner, kind: Value, owner: Registry, immutable: true }
+  ENT-R006: { name: EntryReference, kind: Value, owner: Registry, immutable: true }
+  ENT-R007: { name: EntryState, kind: Transient, owner: Registry, immutable: false }
+  ENT-R008: { name: ResolutionResult, kind: Entity, owner: Registry, immutable: true }
+  ENT-R009: { name: RegistryEvent, kind: Ref (S011), owner: Runtime, immutable: true }
+  ENT-R010: { name: RegistryMetric, kind: Ref (S011), owner: Runtime, immutable: true }
+  ENT-R011: { name: RegistrySnapshot, kind: Entity, owner: Registry, immutable: true }
+  ENT-R012: { name: CapabilityRef, kind: Ref (SPEC-003), owner: Capability, immutable: true }
+  ENT-R013: { name: WorkflowRef, kind: Ref (SPEC-002), owner: Workflow, immutable: true }
+  ENT-R014: { name: AgentRef, kind: Ref (SPEC-004), owner: Agent, immutable: true }
+  ENT-R015: { name: RegistryExtension, kind: Value, owner: Registry, immutable: true }

@@ -1,0 +1,10 @@
+# SPEC-013 X011 - Evolution Health
+---
+version: "1.0.0"
+health_checks:
+  - diff_ok: diff nhanh, khong loi
+  - compat_ok: backward compatible check pass
+  - migrate_ok: migrate thanh cong
+  - event_ok: event day du (S011)
+  - policy_ok: policy applied (S012)
+  # score: tinh trong X019 Doctor

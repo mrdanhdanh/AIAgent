@@ -1,0 +1,9 @@
+# SPEC-005 R017 - Extension Isolation
+---
+version: "1.0.0"
+rules:
+  - Context isolated (S010 EF008).
+  - Resource bounded (R015 quota).
+  - Khong truy cap Agent Internal State (S011 OB003A).
+  - Khong truy cap Extension khac (goi qua Contract).
+  - Vi pham -> REGISTRY_EXTENSION_FAILED + Disabled.

@@ -1,0 +1,17 @@
+# SPEC-016 X006 - CLI Component Model
+---
+version: "1.0.0"
+component_model:
+  XCP-001: { name: CLIApi, layer: Core }
+  XCP-002: { name: PipelineOrchestrator, layer: Core }
+  XCP-003: { name: CLIStateMachine, layer: Core }
+  XCP-004: { name: CommandEngine, layer: Core }
+  XCP-005: { name: FlagEngine, layer: Core }
+  XCP-006: { name: PolicyGuard, layer: Guard }
+  XCP-007: { name: WidgetStore, layer: Core }
+  XCP-008: { name: ViewStore, layer: Data }
+  XCP-009: { name: CompletionEngine, layer: Data }
+  XCP-010: { name: TriggerEngine, layer: Data }
+  XCP-011: { name: RegistryCommand, layer: Integration }
+  XCP-012: { name: HelpEngine, layer: Data }
+rule: Component chi goi qua interface (X007).

@@ -1,0 +1,5 @@
+{
+  "schema": "plugin-contracts",
+  "version": "1.0",
+  "contract_id": { "type": "string", "pattern": "^XCT-[0-9]{3}$" }
+}

@@ -1,0 +1,7 @@
+# SPEC-006 X003 - Context Ownership
+---
+version: "1.0.0"
+owners:
+  Context Engine: Context Team
+  Context: Execution (SPEC-001)
+  Policy: Runtime (S012)

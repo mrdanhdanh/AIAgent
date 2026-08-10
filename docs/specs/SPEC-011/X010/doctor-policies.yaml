@@ -1,0 +1,10 @@
+# SPEC-011 X010 - Doctor Flow Policies
+---
+version: "1.0.0"
+policies:
+  - Doctor khong sua core (P015).
+  - Moi stage co Event (S011).
+  - Repair doc-only (P015).
+  - Report day du (XFR-005).
+  - Khong tu quyet dinh (S013).
+source: S012 Policy

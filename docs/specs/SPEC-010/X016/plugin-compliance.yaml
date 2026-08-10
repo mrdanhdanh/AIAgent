@@ -1,0 +1,10 @@
+# SPEC-010 X016 - Plugin Compliance Rules
+---
+version: "1.0.0"
+compliance_rules:
+  COMP-001: { name: Manifest Based, requirement: Plugin co manifest (TERM-015), source: XNF-002 }
+  COMP-002: { name: No Core Modify, requirement: Plugin khong sua Core (TERM-015), source: XNF-001 }
+  COMP-003: { name: Permission Scoped, requirement: Khong vuot permission (TERM-015), source: XNF-003 }
+  COMP-004: { name: Observable, requirement: Moi thay doi co Event (P005), source: XNF-004 }
+  COMP-005: { name: Sandboxed, requirement: Chay trong sandbox (TERM-015), source: XNF-005 }
+  COMP-006: { name: Uninstalled, requirement: Uninstall theo retention (S012), source: XPOL-006 }

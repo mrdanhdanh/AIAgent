@@ -1,0 +1,19 @@
+# SPEC-007 X008 - Artifact Entities (15 ENT)
+---
+version: "1.0.0"
+entities:
+  ENT-X001: { name: Artifact, kind: AggregateRoot, owner: Artifact Store, immutable: false }
+  ENT-X002: { name: ArtifactDefinition, kind: Entity, owner: Artifact Store, immutable: true }
+  ENT-X003: { name: ArtifactVersion, kind: Entity, owner: Artifact Store, immutable: true }
+  ENT-X004: { name: ArtifactMetadata, kind: Entity, owner: Artifact Store, immutable: true }
+  ENT-X005: { name: ArtifactChecksum, kind: Value, owner: Artifact Store, immutable: true }
+  ENT-X006: { name: ArtifactState, kind: Transient, owner: Artifact Store, immutable: false }
+  ENT-X007: { name: ArtifactIndex, kind: Entity, owner: Artifact Store, immutable: false }
+  ENT-X008: { name: ArtifactEvent, kind: Ref (S011), owner: Runtime, immutable: true }
+  ENT-X009: { name: ArtifactMetric, kind: Ref (S011), owner: Runtime, immutable: true }
+  ENT-X010: { name: ArtifactSnapshot, kind: Entity, owner: Artifact Store, immutable: false }
+  ENT-X011: { name: ExecutionRef, kind: Ref (SPEC-001), owner: Execution, immutable: true }
+  ENT-X012: { name: ProducerRef, kind: Ref (SPEC-004/002), owner: Agent/Task, immutable: true }
+  ENT-X013: { name: ConsumerRef, kind: Ref (SPEC-004), owner: Agent, immutable: true }
+  ENT-X014: { name: PolicyRef, kind: Ref (S012), owner: Runtime, immutable: true }
+  ENT-X015: { name: ArtifactExtension, kind: Value, owner: Artifact Store, immutable: true }

@@ -1,0 +1,14 @@
+# SPEC-010 X004 - Plugin Boundaries (10)
+---
+version: "1.0.0"
+boundaries:
+  XB-001: { name: Content, in_scope: Plugin manifest + exports, out_scope: "-", forbidden: "-" }
+  XB-002: { name: Metadata, in_scope: plugin_id, version, permission, provider, out_scope: format metadata, forbidden: "-" }
+  XB-003: { name: Plugin, in_scope: thanh phan mo rong, out_scope: "-", forbidden: "-" }
+  XB-004: { name: Exported, in_scope: Capability/Agent/Skill/Widget, out_scope: "-", forbidden: "-" }
+  XB-005: { name: Policy, in_scope: permission, quota (S012), out_scope: policy logic, forbidden: "-" }
+  XB-006: { name: Registry, in_scope: definition refs (SPEC-005), out_scope: runtime entries, forbidden: "-" }
+  XB-007: { name: Core, in_scope: KHONG trong Plugin, out_scope: Core, forbidden: "-" }
+  XB-008: { name: Secret, in_scope: "-", out_scope: "-", forbidden: credentials, keys }
+  XB-009: { name: PII, in_scope: "-", out_scope: "-", forbidden: user personal data }
+  XB-010: { name: Business Data, in_scope: "-", out_scope: "-", forbidden: business data }

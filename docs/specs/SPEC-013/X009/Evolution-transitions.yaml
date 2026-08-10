@@ -1,0 +1,9 @@
+# SPEC-013 X009 - Evolution Transitions (5)
+---
+version: "1.0.0"
+transitions:
+  XTR-001: { from: XST-001, to: XST-002, event: EVOLUTION_COMPAT_CHECKED, guard: Diff hop le }
+  XTR-002: { from: XST-002, to: XST-003, event: EVOLUTION_PLANNED, guard: Compat pass }
+  XTR-003: { from: XST-002, to: XST-006, event: EVOLUTION_FAILED, guard: Compat fail (breaking) }
+  XTR-004: { from: XST-003, to: XST-004, event: EVOLUTION_MIGRATED, guard: Migration xong }
+  XTR-005: { from: XST-004, to: XST-005, event: EVOLUTION_EVOLVED, guard: Evolve xong }

@@ -1,0 +1,18 @@
+# SPEC-001 S012 - POL-RESACC-001 (Resource Access Policy)
+# Canonic Policy Model 13 fields.
+---
+policy:
+  id: POL-RESACC-001
+  name: Resource Access Policy
+  category: Security
+  version: "1.0.0"
+  status: Draft
+  owner: Runtime Team
+  trigger: Resource access attempt
+  guard: permission + isolation satisfied
+  action: Allow / Deny
+  priority: 95
+  scope: Resource
+  lifecycle: Draft
+  metadata:
+    controls: Resource Access (Permission + Isolation)

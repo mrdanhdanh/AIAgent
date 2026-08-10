@@ -1,0 +1,8 @@
+# SPEC-008 X010 - Event Flow Validation
+---
+version: "1.0.0"
+validation:
+  - stage order dung S011
+  - moi stage co event tuong ung
+  - event delivered truoc khi archive
+  - khong co mutate/delete (Doctor X019)

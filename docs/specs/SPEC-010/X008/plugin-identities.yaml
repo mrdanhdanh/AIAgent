@@ -1,0 +1,8 @@
+# SPEC-010 X008 - Plugin Identity
+---
+version: "1.0.0"
+identity:
+  plugin_id: UUID (generated at Install)
+  version: SemVer
+  provider_id: UUID (from Provider)
+identity_scope: Registry-scoped (SPEC-005)

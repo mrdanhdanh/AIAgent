@@ -1,18 +1,131 @@
-# SPEC-001 S009 — Runtime States (ST catalog)
+# SPEC-001 S009 — Runtime States v2 (catalog + metadata)
 ---
-version: "1.0"
+version: "1.0.0"
+state_template: [id, name, category, type, owner, enter_conditions, exit_conditions, allowed_transitions, events, terminal, retryable, metadata]
 states:
-  ST-001: { name: Created, type: Initial }
-  ST-002: { name: Validating, type: Internal }
-  ST-003: { name: Prepared, type: Internal }
-  ST-004: { name: Running, type: Active }
-  ST-005: { name: Waiting, type: Active }
-  ST-006: { name: Suspended, type: Active }
-  ST-007: { name: Cancelling, type: Active }
-  ST-008: { name: Completed, type: Terminal }
-  ST-009: { name: Failed, type: Terminal }
-  ST-010: { name: Cancelled, type: Terminal }
-  ST-011: { name: TimedOut, type: Terminal }
-  ST-012: { name: Replayed, type: Terminal }
-  ST-013: { name: Retrying, type: Internal }
-  ST-014: { name: Aborted, type: Terminal }
+  ST-001:
+    name: Created
+    category: Initial
+    type: Initial
+    owner: Runtime
+    terminal: false
+    retryable: false
+    allowed_transitions: [ST-002]
+    events: [EXECUTION_CREATED]
+  ST-002:
+    name: Validating
+    category: Preparation
+    type: Internal
+    owner: Runtime
+    terminal: false
+    retryable: false
+    allowed_transitions: [ST-003, ST-009]
+    events: [EXECUTION_VALIDATING]
+  ST-003:
+    name: Prepared
+    category: Preparation
+    type: Internal
+    owner: Runtime
+    terminal: false
+    retryable: false
+    allowed_transitions: [ST-004]
+    events: [EXECUTION_PREPARED]
+  ST-004:
+    name: Running
+    category: Active
+    type: Active
+    owner: Runtime
+    terminal: false
+    retryable: false
+    allowed_transitions: [ST-005, ST-006, ST-007, ST-008, ST-009, ST-011, ST-014]
+    events: [EXECUTION_STARTED]
+  ST-005:
+    name: Waiting
+    category: Active
+    type: Active
+    owner: Runtime
+    terminal: false
+    retryable: false
+    allowed_transitions: [ST-004]
+    events: [EXECUTION_WAITING]
+  ST-006:
+    name: Suspended
+    category: Active
+    type: Active
+    owner: Runtime
+    terminal: false
+    retryable: false
+    allowed_transitions: [ST-004]
+    events: [EXECUTION_SUSPENDED]
+  ST-007:
+    name: Cancelling
+    category: Control
+    type: Active
+    owner: Runtime
+    terminal: false
+    retryable: false
+    allowed_transitions: [ST-010]
+    events: [EXECUTION_CANCELLING]
+  ST-008:
+    name: Completed
+    category: Terminal
+    type: Terminal
+    owner: Runtime
+    terminal: true
+    retryable: false
+    allowed_transitions: [ST-012]
+    events: [EXECUTION_COMPLETED]
+  ST-009:
+    name: Failed
+    category: Terminal
+    type: Terminal
+    owner: Runtime
+    terminal: true
+    retryable: true
+    allowed_transitions: [ST-012, ST-013]
+    events: [EXECUTION_FAILED]
+  ST-010:
+    name: Cancelled
+    category: Terminal
+    type: Terminal
+    owner: Runtime
+    terminal: true
+    retryable: false
+    allowed_transitions: []
+    events: [EXECUTION_CANCELLED]
+  ST-011:
+    name: TimedOut
+    category: Terminal
+    type: Terminal
+    owner: Runtime
+    terminal: true
+    retryable: false
+    allowed_transitions: []
+    events: [EXECUTION_TIMED_OUT]
+  ST-012:
+    name: Replayed
+    category: Virtual
+    type: Terminal
+    owner: Runtime
+    terminal: true
+    retryable: false
+    allowed_transitions: []
+    events: [EXECUTION_REPLAYED]
+  ST-013:
+    name: Retrying
+    category: Control
+    type: Internal
+    owner: Runtime
+    terminal: false
+    retryable: false
+    allowed_transitions: [ST-004, ST-009]
+    events: [EXECUTION_RETRYING]
+  ST-014:
+    name: Aborted
+    category: Terminal
+    type: Terminal
+    owner: Runtime
+    terminal: true
+    retryable: false
+    allowed_transitions: []
+    events: [EXECUTION_ABORTED]

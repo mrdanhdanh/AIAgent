@@ -1,0 +1,9 @@
+# SPEC-002 W005 - Dependency Rules
+---
+version: "1.0"
+rules:
+  - "Layer N -> Layer N+1: duoc phep"
+  - "Layer N -> Layer N+2: khong duoc phep"
+  - "Khong Circular Dependency"
+  - "Khong Skip Layer"
+  - "Orchestration -> Runtime: duoc phep (delegate)"

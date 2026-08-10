@@ -1,0 +1,8 @@
+# SPEC-008 X007 - Event Communication Matrix
+---
+version: "1.0.0"
+matrix:
+  Producer -> EventApi: async publish
+  EventApi -> Router: route by topic
+  Router -> Subscriber: deliver
+  EventApi -> Store: append

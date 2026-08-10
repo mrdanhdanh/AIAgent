@@ -1,0 +1,9 @@
+# SPEC-013 X015 - Evolution Resource Metrics
+---
+version: "1.0.0"
+metrics:
+  - EVOLUTION_storage_bytes
+  - EVOLUTION_result_count
+  - EVOLUTION_resource_leaked_total
+  - EVOLUTION_quota_exceeded_total
+  - EVOLUTION_scan_latency_seconds

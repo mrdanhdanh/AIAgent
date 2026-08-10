@@ -1,0 +1,56 @@
+# SPEC-005 R009 — Registry State Machine (Canonical)
+---
+id: SPEC-005-R009
+name: Registry State Machine
+version: "1.0.0"
+status: Draft
+frozen: false
+owner: Registry Team
+philosophy:
+  - Entry luon co dung mot State.
+  - State chi thay doi qua Transition.
+  - Moi Transition sinh Event.
+  - Entry Run dung State Machine cua Runtime (S009) - khong dinh nghia lai.
+principles:
+  - State la nguon su that duy nhat ve Entry.
+  - State doc lap implementation.
+  - Transition quyet dinh Lifecycle.
+  - Run State Machine = S009 (Runtime).
+structure:
+  - Definition State Machine (RST-001..006)
+  - Run State Machine (tham chieu S009 ST-001..014)
+categories:
+  Initial: [RST-001]
+  Preparation: [RST-002]
+  Active: [RST-003]
+  Control: [RST-004]
+  Terminal: [RST-005, RST-006]
+states:
+  RST-001: { name: Draft, category: Initial, type: Initial, terminal: false }
+  RST-002: { name: Validating, category: Preparation, type: Internal, terminal: false }
+  RST-003: { name: Published, category: Active, type: Active, terminal: false }
+  RST-004: { name: Deprecated, category: Control, type: Active, terminal: false }
+  RST-005: { name: Retired, category: Terminal, type: Terminal, terminal: true }
+  RST-006: { name: Rejected, category: Terminal, type: Terminal, terminal: true }
+initial_state: RST-001
+terminal_states: [RST-005, RST-006]
+run_mapping:
+  note: Entry Run la Execution cua Runtime - dung S009 ST-001..014.
+  Entry Created: ST-001
+  Entry Validating: ST-002
+  Entry Running: ST-004
+  Entry Completed: ST-008
+  Entry Failed: ST-009
+  Entry Cancelled: ST-010
+  Entry Aborted: ST-014
+terminal_rules:
+  - Terminal khong co transition ra.
+triggers: [Storage, User, Governance (S013), Scheduler]
+transitions:
+  - "from: RST-001; to: RST-002; event: REGISTRY_ENTRY_VALIDATING; guard: Khai bao hop le"
+  - "from: RST-002; to: RST-003; event: REGISTRY_ENTRY_PUBLISHED; guard: Validate pass + Storage OK"
+  - "from: RST-002; to: RST-006; event: REGISTRY_ENTRY_REJECTED; guard: Validate fail"
+  - "from: RST-003; to: RST-004; event: REGISTRY_ENTRY_DEPRECATED; guard: Governance (S013) cho phep"
+  - "from: RST-004; to: RST-003; event: REGISTRY_ENTRY_REACTIVATED; guard: Governance (S013) duyet"
+  - "from: RST-003; to: RST-005; event: REGISTRY_ENTRY_RETIRED; guard: Governance (S013)"
+  - "from: RST-004; to: RST-005; event: REGISTRY_ENTRY_RETIRED; guard: Khong con dung"

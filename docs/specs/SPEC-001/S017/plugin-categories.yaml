@@ -1,0 +1,10 @@
+# SPEC-001 S017 - Plugin Categories
+---
+version: "1.0.0"
+categories:
+  - Capability Plugin
+  - Workflow Plugin
+  - Tool Plugin
+  - Model Plugin
+  - Integration Plugin
+  - Provider Plugin

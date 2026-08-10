@@ -1,0 +1,8 @@
+# SPEC-001 S020 - Dashboard Refresh
+---
+version: "1.0.0"
+rules:
+  - "Event Driven (P005): refresh khi co event moi."
+  - Khong polling.
+  - View la projection immutable (P010).
+  - Moi refresh sinh DASHBOARD_REFRESHED (DB009 - S020 dinh nghia; S011 cung cap event model).

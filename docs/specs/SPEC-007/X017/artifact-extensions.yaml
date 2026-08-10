@@ -1,0 +1,11 @@
+# SPEC-007 X017 - Artifact Extension Points
+---
+version: "1.0.0"
+extensions:
+  XEXT-001: { name: Artifact Extension Point, description: Diem mo rong Artifact, owner: Artifact Store, priority: High }
+  XEXT-002: { name: Custom Content Type, description: Kieu content moi (MIME), owner: Artifact Store, priority: Medium }
+  XEXT-003: { name: Custom Checksum, description: Checksum algorithm tuy bien, owner: Artifact Store, priority: Medium }
+  XEXT-004: { name: Retention Hook, description: Hook retention (S012), owner: Policy (S012), priority: High }
+  XEXT-005: { name: Index Strategy, description: Chien luoc index tuy bien, owner: Artifact Store, priority: Medium }
+  XEXT-006: { name: Snapshot Serializer, description: Serialization tuy bien, owner: Artifact Store, priority: Low }
+  XEXT-007: { name: Dashboard Widget, description: Widget X020 tu tao, owner: X020, priority: Low }

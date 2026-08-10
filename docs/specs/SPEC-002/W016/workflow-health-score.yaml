@@ -1,0 +1,13 @@
+# SPEC-002 W016 - Workflow Health Score (S016 CM006)
+---
+version: "1.0"
+levels: [Healthy, Degraded, Unhealthy]
+sources:
+  - Workflow Execution (S009)
+  - Resource (W015)
+  - Event (W011)
+  - Metrics (W011)
+  - Policy (S012)
+rules:
+  - CRITICAL violation -> Unhealthy.
+  - Chi warning -> Degraded.

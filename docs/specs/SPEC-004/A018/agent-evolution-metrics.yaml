@@ -1,0 +1,10 @@
+# SPEC-004 A018 - Agent Evolution Metrics
+---
+version: "1.0.0"
+metrics:
+  proposals: 0
+  applied: 0
+  rejected: 0
+  rolled_back: 0
+  success_rate: 0
+  avg_learning_time: 0
