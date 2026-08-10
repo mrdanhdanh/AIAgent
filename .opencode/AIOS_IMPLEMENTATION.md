@@ -47,15 +47,16 @@ Mọi phase có đặc tả: architecture.md, README.md, schema.yaml, lifecycle.
 **Chứng nhận:** Architecture 98/100 · Reliability 95% · Performance 96% · Maintainability 99% · Compatibility 100% (`workflow-runtime/RUNTIME_CERTIFICATE.md`).
 **Đang chạy thực tế:** Workflow Engine v4 qua `/team`, `/team-*` commands.
 
-### Giai đoạn 3 — Data Layer ✅ docs
+### Giai đoạn 3 — Data Layer ✅ docs (runtime qua validator + module-tests)
 ```text
 1. Artifact Store   2. Context Engine   3. Knowledge Graph   4. Memory
 ```
 
-### Giai đoạn 4 — Intelligence Layer ✅ docs
+### Giai đoạn 4 — Intelligence Layer ✅ docs + scripts thật
 ```text
 1. Simulation   2. Doctor   3. Evaluation   4. Evolution
 ```
+**Scripts thật:** `scripts/evolution/` — simulation-engine, semantic-diff, migration-system, health-score, capability-benchmark, self-healing, compatibility-checker (chạy trong `/doctor -Mode full`).
 
 ### Ops & Extension ✅ docs
 ```text
@@ -125,7 +126,7 @@ Mỗi module 1 thư mục với đặc tả đầy đủ (architecture.md, READM
 | 🔴 HIGH | Stress test Runtime (Doctor: 50/100 UNSTABLE) | ✅ 100% (20/20, 2026-08-11) |
 | 🔴 HIGH | SemanticDiff 55/100 — cải thiện điểm | ✅ 100/100 (2026-08-11) |
 | 🟡 MEDIUM | Re-run `/doctor --full --markdown` sau khi fix | ✅ 98/100 (2026-08-11) |
-| 🟡 MEDIUM | Hoàn tất tests còn thiếu theo module tests.md | ⬜ |
+| 🟡 MEDIUM | Hoàn tất tests còn thiếu theo module tests.md | ✅ module-tests.ps1 (72/72, 2026-08-11) |
 | 🟢 LOW | Bảo trì định kỳ: `/team-syncdocs` + `/team-doctor` | 🔁 |
 
 ## 5. Progress Tracking
@@ -141,8 +142,8 @@ Mỗi module 1 thư mục với đặc tả đầy đủ (architecture.md, READM
 | Doctor Health | 98/100 |
 | Evolution Health | 98/100 |
 | Giai đoạn 2 (core runtime) | ✅ CERTIFIED |
-| Giai đoạn 3 (data) | ✅ docs |
-| Giai đoạn 4 (intelligence) | ✅ docs |
+| Giai đoạn 3 (data) | ✅ docs + validator/module-tests |
+| Giai đoạn 4 (intelligence) | ✅ docs + scripts thật (evolution/) |
 | Stress test | ✅ 100% (20/20 STABLE, 2026-08-11) |
 
 ## 6. Nguyên tắc Implementation

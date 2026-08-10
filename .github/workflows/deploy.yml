@@ -53,6 +53,12 @@ jobs:
             exit 1
           }
 
+      - name: Module tests (6 suites theo tests.md)
+        shell: pwsh
+        run: |
+          & ".opencode/scripts/module-tests.ps1"
+          if ($LASTEXITCODE -ne 0) { exit 1 }
+
   deploy:
     needs: quality
     if: github.event_name == 'push'
